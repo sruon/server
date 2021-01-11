@@ -11,6 +11,7 @@ zoneObject.onInitialize = function(zone)
     GetMobByID(ID.mob.HARVESTMAN):setRespawnTime(math.random(900, 10800))
 
     xi.helm.initZone(zone, xi.helmType.HARVESTING)
+    darkRider.zone.addHoofprints(zone)
 end
 
 zoneObject.onZoneIn = function(player, prevZone)
@@ -36,7 +37,13 @@ zoneObject.afterZoneIn = function(player)
     player:entityVisualPacket('2pb1')
 end
 
-zoneObject.onTriggerAreaEnter = function(player, triggerArea)
+zoneObject.onGameHour = function(zone)
+    updateZoneDigItems(zone)
+    darkRider.zone.onGameHour(zone)
+end
+
+zoneObjectonGameDay = function(zone)
+    darkRider.zone.addHoofprints(zone)
 end
 
 zoneObject.onEventUpdate = function(player, csid, option, npc)

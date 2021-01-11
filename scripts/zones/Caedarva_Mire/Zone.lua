@@ -12,6 +12,7 @@ zoneObject.onInitialize = function(zone)
     GetMobByID(ID.mob.KHIMAIRA):setRespawnTime(math.random(12, 36) * 3600) -- 12 to 36 hours after maintenance, in 1-hour increments
 
     xi.helm.initZone(zone, xi.helmType.LOGGING)
+    darkRider.zone.addHoofprints(zone)
 end
 
 zoneObject.onZoneIn = function(player, prevZone)
@@ -44,6 +45,14 @@ zoneObject.afterZoneIn = function(player)
 end
 
 zoneObject.onTriggerAreaEnter = function(player, triggerArea)
+end
+
+zoneObject.onGameDay = function(zone)
+    darkRider.zone.addHoofprints(zone)
+end
+
+zoneObject.onGameHour = function(zone)
+    darkRider.zone.onGameHour(zone)
 end
 
 zoneObject.onEventUpdate = function(player, csid, option, npc)

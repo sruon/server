@@ -10,6 +10,7 @@ zoneObject.onInitialize = function(zone)
     GetMobByID(ID.mob.CERBERUS):setRespawnTime(math.random(12, 36) * 3600)
 
     xi.helm.initZone(zone, xi.helmType.MINING)
+    darkRider.zone.addHoofprints(zone)
 end
 
 zoneObject.onZoneIn = function(player, prevZone)
@@ -36,8 +37,13 @@ end
 zoneObject.onTriggerAreaEnter = function(player, triggerArea)
 end
 
-zoneObject.onGameDay = function()
+zoneObject.onGameDay = function(zone)
     xi.apkallu.updateHate(xi.zone.MOUNT_ZHAYOLM, -3)
+    darkRider.zone.addHoofprints(zone)
+end
+
+zoneObject.onGameHour = function(zone)
+    darkRider.zone.onGameHour(zone)
 end
 
 zoneObject.onEventUpdate = function(player, csid, option, npc)
