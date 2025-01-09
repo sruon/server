@@ -9748,6 +9748,27 @@ void CLuaBaseEntity::setMP(int32 value)
 }
 
 /************************************************************************
+ *  Function: setMaxMP()
+ *  Purpose : Sets the Maximum Mana Points of an Entity
+ *  Example : player:setMaxMP(100)
+ *  Notes   :
+ ************************************************************************/
+
+void CLuaBaseEntity::setMaxMP(int32 value)
+{
+    if (m_PBaseEntity->objtype == TYPE_NPC)
+    {
+        ShowWarning("Invalid Entity (NPC: %s) calling function.", m_PBaseEntity->getName());
+        return;
+    }
+
+    auto* PBattle = static_cast<CBattleEntity*>(m_PBaseEntity);
+
+    PBattle->health.maxmp = std::max(0, value);
+    PBattle->UpdateHealth();
+}
+
+/************************************************************************
  *  Function: restoreMP()
  *  Purpose : Restores Mana Points to a player
  *  Example : player:restoreMP(player:getMaxHP() - player:getHP())
@@ -18786,6 +18807,7 @@ void CLuaBaseEntity::Register()
     SOL_REGISTER("getBaseMP", CLuaBaseEntity::getBaseMP);
     SOL_REGISTER("addMP", CLuaBaseEntity::addMP);
     SOL_REGISTER("setMP", CLuaBaseEntity::setMP);
+    SOL_REGISTER("setMaxMP", CLuaBaseEntity::setMaxMP);
     SOL_REGISTER("restoreMP", CLuaBaseEntity::restoreMP);
     SOL_REGISTER("delMP", CLuaBaseEntity::delMP);
 

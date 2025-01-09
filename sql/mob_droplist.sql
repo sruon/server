@@ -3320,7 +3320,7 @@ INSERT INTO `mob_droplist` VALUES (357,0,0,1000,1441,200);     -- Libation Abjur
 INSERT INTO `mob_droplist` VALUES (357,2,0,1000,17622,0);      -- Buccaneers Knife (Steal)
 
 -- ZoneID: 124 - Bright-Handed Kunberry
-INSERT INTO `mob_droplist` VALUES (358,0,0,1000,15468,440); -- Resentment Cape (44.0%)
+INSERT INTO `mob_droplist` VALUES (358,0,0,1000,15468,@VCOMMON); -- Resentment Cape (Very Common, 24%)
 
 -- ZoneID:   5 - Brontotaur
 -- ZoneID:   5 - Tyrannotaur
@@ -6186,7 +6186,7 @@ INSERT INTO `mob_droplist` VALUES (743,0,0,1000,642,70);       -- Chunk Of Zinc 
 INSERT INTO `mob_droplist` VALUES (743,0,0,1000,736,30);       -- Chunk Of Silver Ore (3.0%)
 
 -- ZoneID: 124 - Edacious Opo-Opo
-INSERT INTO `mob_droplist` VALUES (744,0,0,1000,4468,110);        -- Bunch Of Pamamas (11.0%)
+INSERT INTO `mob_droplist` VALUES (744,0,0,1000,4468,@UNCOMMON);  -- Bunch Of Pamamas (Uncommon, 10%)
 INSERT INTO `mob_droplist` VALUES (744,0,0,1000,14465,@UNCOMMON); -- Nanban Kariginu (Uncommon, 10%)
 
 -- ZoneID:  39 - Adamantking Effigy
@@ -21859,14 +21859,15 @@ INSERT INTO `mob_droplist` VALUES (2665,0,0,1000,2427,@COMMON); -- Wivre Maul (C
 INSERT INTO `mob_droplist` VALUES (2665,0,0,1000,2426,@RARE);   -- Wivre Horn (Rare, 5%)
 
 -- ZoneID: 124 - Woodland Sage
-INSERT INTO `mob_droplist` VALUES (2666,0,0,1000,701,530);  -- Rosewood Log (53.0%)
-INSERT INTO `mob_droplist` VALUES (2666,0,0,1000,700,280);  -- Mahogany Log (28.0%)
-INSERT INTO `mob_droplist` VALUES (2666,0,0,1000,701,270);  -- Rosewood Log (27.0%)
-INSERT INTO `mob_droplist` VALUES (2666,0,0,1000,702,260);  -- Ebony Log (26.0%)
-INSERT INTO `mob_droplist` VALUES (2666,0,0,1000,703,170);  -- Petrified Log (17.0%)
-INSERT INTO `mob_droplist` VALUES (2666,0,0,1000,700,140);  -- Mahogany Log (14.0%)
-INSERT INTO `mob_droplist` VALUES (2666,0,0,1000,700,90);   -- Mahogany Log (9.0%)
-INSERT INTO `mob_droplist` VALUES (2666,0,0,1000,17529,30); -- Sunlight Pole (3.0%)
+INSERT INTO `mob_droplist` VALUES (2666,0,0,1000,701,@COMMON);     -- Rosewood Log (Common, 15%)
+INSERT INTO `mob_droplist` VALUES (2666,0,0,1000,701,@COMMON);     -- Rosewood Log (Common, 15%)
+INSERT INTO `mob_droplist` VALUES (2666,0,0,1000,702,@UNCOMMON);   -- Ebony Log (Uncommon, 10%)
+INSERT INTO `mob_droplist` VALUES (2666,0,0,1000,702,@UNCOMMON);   -- Ebony Log (Uncommon, 10%)
+INSERT INTO `mob_droplist` VALUES (2666,0,0,1000,703,@UNCOMMON);   -- Petrified Log (Uncommon, 10%)
+INSERT INTO `mob_droplist` VALUES (2666,0,0,1000,700,@UNCOMMON);   -- Mahogany Log (Uncommon, 10%)
+INSERT INTO `mob_droplist` VALUES (2666,0,0,1000,700,@UNCOMMON);   -- Mahogany Log (Uncommon, 10%)
+INSERT INTO `mob_droplist` VALUES (2666,0,0,1000,700,@UNCOMMON);   -- Mahogany Log (Uncommon, 10%)
+INSERT INTO `mob_droplist` VALUES (2666,0,0,1000,17529,@UNCOMMON); -- Sunlight Pole (Uncommon, 10%)
 
 -- ZoneID:  40 - Woodnix Shrillwhistle
 INSERT INTO `mob_droplist` VALUES (2667,0,0,1000,1449,200);      -- Tukuku Whiteshell (20.0%)
@@ -24538,13 +24539,13 @@ INSERT INTO `mob_droplist` VALUES (3066,0,0,1000,11342,156); -- Restorer Cloak (
 INSERT INTO `mob_droplist` VALUES (3067,0,0,1000,16025,250); -- Rathe Earring (25.0%)
 
 -- ZoneID: 124 - Powderer Penny
-INSERT INTO `mob_droplist` VALUES (3068,0,0,1000,16016,200); -- Chary Earring (20.0%)
+INSERT INTO `mob_droplist` VALUES (3068,0,0,1000,16016,@COMMON); -- Chary Earring (Common, 15%)
 
 -- ZoneID: 124 - Hoar-Knuckled Rimberry
-INSERT INTO `mob_droplist` VALUES (3069,0,0,1000,16034,81); -- Sarabande Earring (8.1%)
+INSERT INTO `mob_droplist` VALUES (3069,0,0,1000,16034,@RARE); -- Sarabande Earring (Rare, 5%)
 
 -- ZoneID: 124 - Acolnahuacatl
-INSERT INTO `mob_droplist` VALUES (3070,0,0,1000,11534,81); -- Echo Cape (8.1%)
+INSERT INTO `mob_droplist` VALUES (3070,0,0,1000,11534,@RARE); -- Echo Cape (Rare, 5%)
 
 -- ZoneID: 169 - Canal Moocher
 INSERT INTO `mob_droplist` VALUES (3071,0,0,1000,2817,@VCOMMON);  -- Aptant Of Pera (Very Common, 24%)

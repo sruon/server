@@ -2038,6 +2038,11 @@ end
 function CBaseEntity:setMP(value)
 end
 
+---@param value integer
+---@return nil
+function CBaseEntity:setMaxMP(value)
+end
+
 ---@param amount integer
 ---@return integer
 function CBaseEntity:restoreMP(amount)
