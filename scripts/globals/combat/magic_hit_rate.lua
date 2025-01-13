@@ -33,7 +33,7 @@ local function magicAccuracyFromElement(actor, actionElement)
     local magicAcc = 0
 
     if actionElement > xi.element.NONE then
-        magicAcc = actor:getMod(xi.combat.element.elementalMagicAcc[actionElement]) + actor:getMod(xi.combat.element.strongAffinityAcc[actionElement]) * 10
+        magicAcc = actor:getMod(xi.combat.element.getElementalMACCModifier(actionElement)) + actor:getMod(xi.combat.element.getElementalAffinityMACCModifier(actionElement)) * 10
     end
 
     return magicAcc
@@ -89,7 +89,7 @@ local function magicAccuracyFromStatusEffects(actor, spellGroup, skillType, acti
     if
         actor:hasStatusEffect(xi.effect.KLIMAFORM) and
         actionElement > 0 and
-        (actorWeather == xi.combat.element.strongSingleWeather[actionElement] or actorWeather == xi.combat.element.strongDoubleWeather[actionElement])
+        (actorWeather == xi.combat.element.getAssociatedSingleWeather(actionElement) or actorWeather == xi.combat.element.getAssociatedDoubleWeather(actionElement))
     then
         magicAcc = magicAcc + 15
     end
@@ -143,7 +143,7 @@ local function magicAccuracyFromMerits(actor, skillType, actionElement)
                 actionElement >= xi.element.FIRE and
                 actionElement <= xi.element.WATER
             then
-                magicAcc = actor:getMerit(xi.combat.element.rdmMerit[actionElement])
+                magicAcc = actor:getMerit(xi.combat.element.getElementalAccuracyMerit(actionElement))
             end
 
             -- Category 2
@@ -235,7 +235,7 @@ local function magicAccuracyFromDayElement(actor, actionElement)
 
     if
         actionElement ~= xi.element.NONE and
-        (math.random(1, 100) <= 33 or actor:getMod(xi.combat.element.elementalObi[actionElement]) >= 1)
+        (math.random(1, 100) <= 33 or actor:getMod(xi.combat.element.getForcedDayOrWeatherBonusModifier(actionElement)) >= 1)
     then
         local dayElement = VanadielDayElement()
 
@@ -244,7 +244,7 @@ local function magicAccuracyFromDayElement(actor, actionElement)
             magicAcc = magicAcc + 5
 
         -- Weak day.
-        elseif dayElement == xi.combat.element.weakDay[actionElement] then
+        elseif dayElement == xi.combat.element.getOppositeElement(actionElement) then
             magicAcc = magicAcc - 5
         end
     end
@@ -259,20 +259,20 @@ local function magicAccuracyFromWeatherElement(actor, actionElement)
     -- Calculate if weather bonus triggers.
     if
         actionElement ~= xi.element.NONE and
-        (math.random(1, 100) <= 33 or actor:getMod(xi.combat.element.elementalObi[actionElement]) >= 1)
+        (math.random(1, 100) <= 33 or actor:getMod(xi.combat.element.getForcedDayOrWeatherBonusModifier(actionElement)) >= 1)
     then
         local actorWeather = actor:getWeather()
 
         -- Strong weathers.
-        if actorWeather == xi.combat.element.strongSingleWeather[actionElement] then
+        if actorWeather == xi.combat.element.getAssociatedSingleWeather(actionElement) then
             magicAcc = magicAcc + actor:getMod(xi.mod.IRIDESCENCE) * 5 + 5
-        elseif actorWeather == xi.combat.element.strongDoubleWeather[actionElement] then
+        elseif actorWeather == xi.combat.element.getAssociatedDoubleWeather(actionElement) then
             magicAcc = magicAcc + actor:getMod(xi.mod.IRIDESCENCE) * 5 + 10
 
         -- Weak weathers.
-        elseif actorWeather == xi.combat.element.weakSingleWeather[actionElement] then
+        elseif actorWeather == xi.combat.element.getOppositeSingleWeather(actionElement) then
             magicAcc = magicAcc - actor:getMod(xi.mod.IRIDESCENCE) * 5 - 5
-        elseif actorWeather == xi.combat.element.weakDoubleWeather[actionElement] then
+        elseif actorWeather == xi.combat.element.getOppositeDoubleWeather(actionElement) then
             magicAcc = magicAcc - actor:getMod(xi.mod.IRIDESCENCE) * 5 - 10
         end
     end
@@ -352,8 +352,8 @@ xi.combat.magicHitRate.calculateTargetMagicEvasion = function(actor, target, act
     -- Elemental magic evasion.
     if actionElement ~= xi.element.NONE then
         -- Mod set in database for mobs. Base 0 means not resistant nor weak. Bar-element spells included here.
-        resMod     = target:getMod(xi.combat.element.elementalMagicEva[actionElement])
-        resistRank = utils.clamp(target:getMod(xi.combat.element.resistRankMod[actionElement]), -3, 11)
+        resMod     = target:getMod(xi.combat.element.getElementalMEVAModifier(actionElement))
+        resistRank = utils.clamp(target:getMod(xi.combat.element.getElementalResistanceRankModifier(actionElement)), -3, 11)
 
         if resistRank > 4 then
             resistRank = utils.clamp(resistRank - rankModifier, 4, 11)
@@ -423,7 +423,7 @@ xi.combat.magicHitRate.calculateResistanceFactor = function(actor, target, skill
     ----------------------------------------
     -- Handle target resistance rank.
     ----------------------------------------
-    local targetResistRank = target:getMod(xi.combat.element.resistRankMod[actionElement]) or 0
+    local targetResistRank = target:getMod(xi.combat.element.getElementalResistanceRankModifier(actionElement)) or 0
 
     if targetResistRank > 4 then
         targetResistRank = utils.clamp(targetResistRank - rankModifier, 4, 11)
