@@ -67,7 +67,7 @@ namespace synthutils
         const char* fmtQuery =
 
             "SELECT ID, KeyItem, Wood, Smith, Gold, Cloth, Leather, Bone, Alchemy, Cook, \
-            Result, ResultHQ1, ResultHQ2, ResultHQ3, ResultQty, ResultHQ1Qty, ResultHQ2Qty, ResultHQ3Qty, Desynth \
+            Result, ResultHQ1, ResultHQ2, ResultHQ3, ResultQty, ResultHQ1Qty, ResultHQ2Qty, ResultHQ3Qty, Desynth, content_tag \
         FROM synth_recipes \
         WHERE (Crystal = %u OR HQCrystal = %u) \
             AND Ingredient1 = %u \
@@ -87,6 +87,13 @@ namespace synthutils
 
         if (ret != SQL_ERROR && _sql->NumRows() != 0 && _sql->NextRow() == SQL_SUCCESS)
         {
+            // Check content tag first
+            char* contentTag = (char*)_sql->GetData(19);
+            if (!luautils::IsContentEnabled(contentTag))
+            {
+                return false;
+            }
+
             uint16 KeyItemID = (uint16)_sql->GetUIntData(1); // Check if recipe needs KI
 
             if ((KeyItemID == 0) || (charutils::hasKeyItem(PChar, KeyItemID))) // If recipe doesn't need KI OR Player has the required KI
