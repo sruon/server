@@ -404,7 +404,7 @@ xi.spells.enfeebling.useEnfeeblingSpell = function(caster, target, spell)
         local rankModifier        = target:getMod(immunobreakModifier)
 
         if spellElement ~= xi.element.NONE then
-            resistRank = target:getMod(xi.combat.element.resistRankMod[spellElement])
+            resistRank = target:getMod(xi.combat.element.getElementalResistanceRankModifier(spellElement))
         end
 
         if
