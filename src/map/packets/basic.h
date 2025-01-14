@@ -84,15 +84,6 @@ public:
     CBasicPacket& operator=(const CBasicPacket& other)     = delete;
     CBasicPacket& operator=(CBasicPacket&& other) noexcept = delete;
 
-    /// <summary>
-    /// Copies the given packet data.
-    /// </summary>
-    /// <param name="other"></param>
-    void copy(CBasicPacket* other)
-    {
-        std::memcpy(buffer_.data(), other->buffer_.data(), PACKET_SIZE);
-    }
-
     uint16 getType()
     {
         return ref<uint16>(0) & 0x1FF;
@@ -142,7 +133,7 @@ public:
         return buffer_.data();
     }
 
-    uint8* operator[](const int index)
+    uint8* operator[](const std::size_t index)
     {
         return reinterpret_cast<uint8*>(buffer_.data()) + index;
     }

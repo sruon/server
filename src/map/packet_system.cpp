@@ -194,11 +194,11 @@ void PrintPacket(CBasicPacket& packet)
 {
     std::string message;
 
-    for (size_t idx = 0; idx < packet.getSize(); idx++)
+    for (std::size_t idx = 0U; idx < packet.getSize(); idx++)
     {
         message.append(fmt::format("{:02x} ", (char*)packet[idx]));
 
-        if (((idx + 1) % 16) == 0)
+        if (((idx + 1U) % 16U) == 0U)
         {
             message += "\n";
             ShowDebug(message.c_str());
@@ -907,7 +907,7 @@ void SmallPacket0x01A(map_session_data_t* const PSession, CCharEntity* const PCh
                 if (!PMob->GetCallForHelpFlag() && PMob->PEnmityContainer->HasID(PChar->id) && !PMob->m_CallForHelpBlocked)
                 {
                     PMob->SetCallForHelpFlag(true);
-                    PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageBasicPacket(PChar, PChar, 0, 0, 19));
+                    PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, std::make_unique<CMessageBasicPacket>(PChar, PChar, 0, 0, 19));
                     return;
                 }
             }
@@ -1039,7 +1039,7 @@ void SmallPacket0x01A(map_session_data_t* const PSession, CCharEntity* const PCh
             {
                 charutils::UpdateItem(PChar, LOC_INVENTORY, slotID, -1);
                 PChar->pushPacket<CInventoryFinishPacket>();
-                PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CChocoboDiggingPacket(PChar));
+                PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, std::make_unique<CChocoboDiggingPacket>(PChar));
             }
         }
         break;
@@ -3932,7 +3932,7 @@ void SmallPacket0x05D(map_session_data_t* const PSession, CCharEntity* const PCh
         return;
     }
 
-    PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCharEmotionPacket(PChar, TargetID, TargetIndex, EmoteID, emoteMode, extra));
+    PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, std::make_unique<CCharEmotionPacket>(PChar, TargetID, TargetIndex, EmoteID, emoteMode, extra));
 
     luautils::OnPlayerEmote(PChar, EmoteID);
 }
@@ -4354,7 +4354,7 @@ void SmallPacket0x06E(map_session_data_t* const PSession, CCharEntity* const PCh
                     ref<uint16>(packetData, 4)  = targid;
                     ref<uint32>(packetData, 6)  = PChar->id;
                     ref<uint16>(packetData, 10) = PChar->targid;
-                    message::send(MSG_PT_INVITE, packetData, sizeof(packetData), new CPartyInvitePacket(charid, targid, PChar, INVITE_PARTY));
+                    message::send(MSG_PT_INVITE, packetData, sizeof(packetData), std::make_unique<CPartyInvitePacket>(charid, targid, PChar, INVITE_PARTY));
 
                     ShowDebug("Sent invite packet to lobby server from %s to (%d)", PChar->getName(), charid);
                 }
@@ -4429,7 +4429,7 @@ void SmallPacket0x06E(map_session_data_t* const PSession, CCharEntity* const PCh
                     ref<uint16>(packetData, 4)  = targid;
                     ref<uint32>(packetData, 6)  = PChar->id;
                     ref<uint16>(packetData, 10) = PChar->targid;
-                    message::send(MSG_PT_INVITE, packetData, sizeof(packetData), new CPartyInvitePacket(charid, targid, PChar, INVITE_ALLIANCE));
+                    message::send(MSG_PT_INVITE, packetData, sizeof(packetData), std::make_unique<CPartyInvitePacket>(charid, targid, PChar, INVITE_ALLIANCE));
 
                     ShowDebug("(Alliance)Sent invite packet to lobby server from %s to (%d)", PChar->getName(), charid);
                 }
@@ -5405,7 +5405,7 @@ void SmallPacket0x0A2(map_session_data_t* const PSession, CCharEntity* const PCh
     TracyZoneScoped;
     uint16 diceroll = xirand::GetRandomNumber(1000);
 
-    PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CMessageStandardPacket(PChar, diceroll, MsgStd::DiceRoll));
+    PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, std::make_unique<CMessageStandardPacket>(PChar, diceroll, MsgStd::DiceRoll));
 }
 
 /************************************************************************
@@ -5502,7 +5502,7 @@ void SmallPacket0x0B5(map_session_data_t* const PSession, CCharEntity* const PCh
     }
     else if (data.ref<uint8>(0x06) == '#' && PChar->m_GMlevel > 0)
     {
-        message::send(MSG_CHAT_SERVMES, nullptr, 0, new CChatMessagePacket(PChar, MESSAGE_SYSTEM_1, (const char*)data[7]));
+        message::send(MSG_CHAT_SERVMES, nullptr, 0, std::make_unique<CChatMessagePacket>(PChar, MESSAGE_SYSTEM_1, (const char*)data[7]));
     }
     else
     {
@@ -5525,7 +5525,7 @@ void SmallPacket0x0B5(map_session_data_t* const PSession, CCharEntity* const PCh
                     });
                     // clang-format on
                 }
-                PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_SAY, (const char*)data[6]));
+                PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, std::make_unique<CChatMessagePacket>(PChar, MESSAGE_SAY, (const char*)data[6]));
             }
             else
             {
@@ -5553,12 +5553,12 @@ void SmallPacket0x0B5(map_session_data_t* const PSession, CCharEntity* const PCh
                         });
                         // clang-format on
                     }
-                    PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_SAY, (const char*)data[6]));
+                    PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, std::make_unique<CChatMessagePacket>(PChar, MESSAGE_SAY, (const char*)data[6]));
                 }
                 break;
                 case MESSAGE_EMOTION:
                 {
-                    PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CChatMessagePacket(PChar, MESSAGE_EMOTION, (const char*)data[6]));
+                    PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, std::make_unique<CChatMessagePacket>(PChar, MESSAGE_EMOTION, (const char*)data[6]));
                 }
                 break;
                 case MESSAGE_SHOUT:
@@ -5578,7 +5578,7 @@ void SmallPacket0x0B5(map_session_data_t* const PSession, CCharEntity* const PCh
                         });
                         // clang-format on
                     }
-                    PChar->loc.zone->PushPacket(PChar, CHAR_INSHOUT, new CChatMessagePacket(PChar, MESSAGE_SHOUT, (const char*)data[6]));
+                    PChar->loc.zone->PushPacket(PChar, CHAR_INSHOUT, std::make_unique<CChatMessagePacket>(PChar, MESSAGE_SHOUT, (const char*)data[6]));
                 }
                 break;
                 case MESSAGE_LINKSHELL:
@@ -5589,7 +5589,7 @@ void SmallPacket0x0B5(map_session_data_t* const PSession, CCharEntity* const PCh
                         ref<uint32>(packetData, 0) = PChar->PLinkshell1->getID();
                         ref<uint32>(packetData, 4) = PChar->id;
                         message::send(MSG_CHAT_LINKSHELL, packetData, sizeof(packetData),
-                                      new CChatMessagePacket(PChar, MESSAGE_LINKSHELL, (const char*)data[6]));
+                                      std::make_unique<CChatMessagePacket>(PChar, MESSAGE_LINKSHELL, (const char*)data[6]));
 
                         if (settings::get<bool>("map.AUDIT_CHAT") && settings::get<uint8>("map.AUDIT_LINKSHELL"))
                         {
@@ -5620,7 +5620,7 @@ void SmallPacket0x0B5(map_session_data_t* const PSession, CCharEntity* const PCh
                         ref<uint32>(packetData, 0) = PChar->PLinkshell2->getID();
                         ref<uint32>(packetData, 4) = PChar->id;
                         message::send(MSG_CHAT_LINKSHELL, packetData, sizeof(packetData),
-                                      new CChatMessagePacket(PChar, MESSAGE_LINKSHELL, (const char*)data[6]));
+                                      std::make_unique<CChatMessagePacket>(PChar, MESSAGE_LINKSHELL, (const char*)data[6]));
 
                         if (settings::get<bool>("map.AUDIT_CHAT") && settings::get<uint8>("map.AUDIT_LINKSHELL"))
                         {
@@ -5652,13 +5652,13 @@ void SmallPacket0x0B5(map_session_data_t* const PSession, CCharEntity* const PCh
                         {
                             ref<uint32>(packetData, 0) = PChar->PParty->m_PAlliance->m_AllianceID;
                             ref<uint32>(packetData, 4) = PChar->id;
-                            message::send(MSG_CHAT_ALLIANCE, packetData, sizeof(packetData), new CChatMessagePacket(PChar, MESSAGE_PARTY, (const char*)data[6]));
+                            message::send(MSG_CHAT_ALLIANCE, packetData, sizeof(packetData), std::make_unique<CChatMessagePacket>(PChar, MESSAGE_PARTY, (const char*)data[6]));
                         }
                         else
                         {
                             ref<uint32>(packetData, 0) = PChar->PParty->GetPartyID();
                             ref<uint32>(packetData, 4) = PChar->id;
-                            message::send(MSG_CHAT_PARTY, packetData, sizeof(packetData), new CChatMessagePacket(PChar, MESSAGE_PARTY, (const char*)data[6]));
+                            message::send(MSG_CHAT_PARTY, packetData, sizeof(packetData), std::make_unique<CChatMessagePacket>(PChar, MESSAGE_PARTY, (const char*)data[6]));
                         }
 
                         if (settings::get<bool>("map.AUDIT_CHAT") && settings::get<uint8>("map.AUDIT_PARTY"))
@@ -5694,7 +5694,7 @@ void SmallPacket0x0B5(map_session_data_t* const PSession, CCharEntity* const PCh
                             int8 packetData[4]{};
                             ref<uint32>(packetData, 0) = PChar->id;
 
-                            message::send(MSG_CHAT_YELL, packetData, sizeof(packetData), new CChatMessagePacket(PChar, MESSAGE_YELL, (const char*)data[6]));
+                            message::send(MSG_CHAT_YELL, packetData, sizeof(packetData), std::make_unique<CChatMessagePacket>(PChar, MESSAGE_YELL, (const char*)data[6]));
 
                             if (settings::get<bool>("map.AUDIT_CHAT") && settings::get<uint8>("map.AUDIT_YELL"))
                             {
@@ -5731,7 +5731,7 @@ void SmallPacket0x0B5(map_session_data_t* const PSession, CCharEntity* const PCh
                         ref<uint32>(packetData, 0) = PChar->PUnityChat->getLeader();
                         ref<uint32>(packetData, 4) = PChar->id;
                         message::send(MSG_CHAT_UNITY, packetData, sizeof(packetData),
-                                      new CChatMessagePacket(PChar, MESSAGE_UNITY, (const char*)data[6]));
+                                      std::make_unique<CChatMessagePacket>(PChar, MESSAGE_UNITY, (const char*)data[6]));
 
                         roeutils::event(ROE_EVENT::ROE_UNITY_CHAT, PChar, RoeDatagram("unityMessage", (const char*)data[6]));
 
@@ -5793,7 +5793,7 @@ void SmallPacket0x0B6(map_session_data_t* const PSession, CCharEntity* const PCh
     strncpy((char*)packetData + 4, recipientName.c_str(), recipientName.length() + 1);
     ref<uint32>(packetData, 0) = PChar->id;
 
-    message::send(MSG_CHAT_TELL, packetData, recipientName.length() + 5, new CChatMessagePacket(PChar, MESSAGE_TELL, message));
+    message::send(MSG_CHAT_TELL, packetData, recipientName.length() + 5, std::make_unique<CChatMessagePacket>(PChar, MESSAGE_TELL, message));
 
     if (settings::get<bool>("map.AUDIT_CHAT") && settings::get<bool>("map.AUDIT_TELL"))
     {
@@ -8437,7 +8437,7 @@ void SmallPacket0x11D(map_session_data_t* const PSession, CCharEntity* const PCh
     auto const& targetIndex = data.ref<uint16>(0x08);
     auto const& extra       = data.ref<uint16>(0x0A);
 
-    PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CCharEmotionJumpPacket(PChar, targetIndex, extra));
+    PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, std::make_unique<CCharEmotionJumpPacket>(PChar, targetIndex, extra));
 }
 
 /************************************************************************

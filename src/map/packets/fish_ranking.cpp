@@ -28,7 +28,7 @@
 
 #include <cstring>
 
-CFishRankingPacket::CFishRankingPacket(std::vector<FishingContestEntry> entries, int8 language, int32 timestamp, int32 msgOffset, uint32 totalEntries, uint8 msgChunk)
+CFishRankingPacket::CFishRankingPacket(const std::vector<FishingContestEntry>& entries, int8 language, int32 timestamp, int32 msgOffset, uint32 totalEntries, uint8 msgChunk)
 {
     this->setType(0x4D);
     this->setSize(0x28);

@@ -97,7 +97,7 @@ void CLinkshell::setMessage(const std::string& message, const std::string& poste
     if (message.size() != 0)
     {
         message::send(MSG_CHAT_LINKSHELL, packetData, sizeof(packetData),
-                      new CLinkshellMessagePacket(poster, message, m_name, std::numeric_limits<uint32>::min(), true));
+                      std::make_unique<CLinkshellMessagePacket>(poster, message, m_name, std::numeric_limits<uint32>::min(), true));
     }
 }
 
@@ -323,7 +323,7 @@ void CLinkshell::BreakLinkshell()
 }
 
 // send linkshell message to all online members
-void CLinkshell::PushPacket(uint32 senderID, CBasicPacket* packet)
+void CLinkshell::PushPacket(uint32 senderID, const std::unique_ptr<CBasicPacket>& packet)
 {
     for (auto& member : members)
     {
@@ -344,7 +344,6 @@ void CLinkshell::PushPacket(uint32 senderID, CBasicPacket* packet)
             member->pushPacket(std::move(newPacket));
         }
     }
-    destroy(packet);
 }
 
 void CLinkshell::PushLinkshellMessage(CCharEntity* PChar, bool ls1)

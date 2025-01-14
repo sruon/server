@@ -340,7 +340,7 @@ CActionPacket::CActionPacket(action_t& action)
             bitOffset = packBitsBE(buffer_.data(), target.param, bitOffset, 17);                          // message parameter (damage/healing)
             bitOffset = packBitsBE(buffer_.data(), target.messageID, bitOffset, 10);                      // message
             bitOffset = packBitsBE(buffer_.data(), static_cast<uint64>(target.modifier), bitOffset, 31);  // "Resist!", Immunobreak, MB for Swipe/Lunge, Cover message modifiers.
-                                                                                                // 4 bits are currently used, with the other bits unknown
+                                                                                                          // 4 bits are currently used, with the other bits unknown
 
             if (target.additionalEffect != SUBEFFECT_NONE)
             {

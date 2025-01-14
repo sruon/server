@@ -718,12 +718,12 @@ namespace mobutils
             }
         }
 
-        PMob->addModifier(Mod::DEF, GetBaseDefEva(PMob, PMob->defRank));                       // Base Defense for all mobs
+        PMob->addModifier(Mod::DEF, GetBaseDefEva(PMob, PMob->defRank));                   // Base Defense for all mobs
         PMob->addModifier(Mod::EVA, GetBaseDefEva(PMob, JobSkillRankToBaseEvaRank(mJob))); // Evasion is based off main job rank. // TODO: add family bonuses (colibri has static evasion+ porrogos have % boost.)
-        PMob->addModifier(Mod::ATT, GetBaseSkill(PMob, PMob->attRank));                        // Base Attack for all mobs is Rank A+ but pull from DB for specific cases
-        PMob->addModifier(Mod::ACC, GetBaseSkill(PMob, PMob->accRank));                        // Base Accuracy for all mobs is Rank A+ but pull from DB for specific cases
-        PMob->addModifier(Mod::RATT, GetBaseSkill(PMob, PMob->attRank));                       // Base Ranged Attack for all mobs is Rank A+ but pull from DB for specific cases
-        PMob->addModifier(Mod::RACC, GetBaseSkill(PMob, PMob->accRank));                       // Base Ranged Accuracy for all mobs is Rank A+ but pull from DB for specific cases
+        PMob->addModifier(Mod::ATT, GetBaseSkill(PMob, PMob->attRank));                    // Base Attack for all mobs is Rank A+ but pull from DB for specific cases
+        PMob->addModifier(Mod::ACC, GetBaseSkill(PMob, PMob->accRank));                    // Base Accuracy for all mobs is Rank A+ but pull from DB for specific cases
+        PMob->addModifier(Mod::RATT, GetBaseSkill(PMob, PMob->attRank));                   // Base Ranged Attack for all mobs is Rank A+ but pull from DB for specific cases
+        PMob->addModifier(Mod::RACC, GetBaseSkill(PMob, PMob->accRank));                   // Base Ranged Accuracy for all mobs is Rank A+ but pull from DB for specific cases
 
         // Known Base Parry for all mobs is Rank C
         // MOBMOD_CAN_PARRY uses the mod value as the rank, unknown if mobs in current retail or somewhere else have a different parry rank
@@ -1866,7 +1866,7 @@ namespace mobutils
         actionTarget_t& target = list.getNewActionTarget();
         target.animation       = animationID;
         target.param           = 2582;
-        PTarget->loc.zone->PushPacket(PTarget, CHAR_INRANGE, new CActionPacket(action));
+        PTarget->loc.zone->PushPacket(PTarget, CHAR_INRANGE, std::make_unique<CActionPacket>(action));
     }
 
 }; // namespace mobutils

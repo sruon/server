@@ -37,7 +37,7 @@ CPetSyncPacket::CPetSyncPacket(CCharEntity* PChar)
     this->setType(0x68);
     this->setSize(0x1C);
 
-    ref<uint8>(0x04) |= 0x04;                    // Message Type
+    ref<uint8>(0x04) |= 0x04;                            // Message Type
     packBitsBE(buffer_.data() + 0x04, (0x18), 0, 6, 10); // Message Size (0 for Despawn)
     ref<uint16>(0x06) = PChar->targid;
     ref<uint32>(0x08) = PChar->id;

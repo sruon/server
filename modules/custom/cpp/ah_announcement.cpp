@@ -179,7 +179,7 @@ class AHAnnouncementModule : public CPPModule
                                             name[0] = std::toupper(name[0]);
 
                                             // Send message to seller!
-                                            message::send(sellerId, new CChatMessagePacket(PChar, MESSAGE_SYSTEM_3,
+                                            message::send(sellerId, std::make_unique<CChatMessagePacket>(PChar, MESSAGE_SYSTEM_3,
                                                 fmt::format("Your '{}' has sold to {} for {} gil!", name, PChar->name, price).c_str(), ""));
                                         }
                                     }

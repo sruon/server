@@ -76,13 +76,13 @@ CDeliveryBoxPacket::CDeliveryBoxPacket(uint8 action, uint8 boxid, CItem* PItem, 
             {
                 ref<uint8>(0x10) = 0x07;
                 std::memcpy(buffer_.data() + 0x14, PItem->getSender().c_str(),
-                       PItem->getSender().size()); // Sender's name.  Client disables "Return" if it starts with "AH"
+                            PItem->getSender().size()); // Sender's name.  Client disables "Return" if it starts with "AH"
             }
             else
             {
                 ref<uint8>(0x10) = PItem->isSent() ? 0x03 : 0x05; // 0x05 in send: canceled. other values are unknown
                 std::memcpy(buffer_.data() + 0x14, PItem->getReceiver().c_str(),
-                       PItem->getReceiver().size()); // Receiver's name.  Client disables "Return" if it starts with "AH"
+                            PItem->getReceiver().size()); // Receiver's name.  Client disables "Return" if it starts with "AH"
             }
         }
         if (action == 0x02)

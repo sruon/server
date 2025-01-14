@@ -417,12 +417,12 @@ void CCharEntity::pushPacket(std::unique_ptr<CBasicPacket>&& packet)
     {
         if (PendingPositionPacket)
         {
-            // PendingPositionPacket->copy(packet);
+            PendingPositionPacket = std::make_unique<CBasicPacket>(*packet);
         }
         else
         {
-            // PendingPositionPacket = packet;
-            // PacketList.emplace_back(packet);
+            PendingPositionPacket = std::make_unique<CBasicPacket>(*packet);
+            PacketList.emplace_back(std::move(packet));
         }
     }
     else
@@ -437,9 +437,8 @@ void CCharEntity::updateCharPacket(CCharEntity* PChar, ENTITYUPDATE type, uint8 
     if (existing == PendingCharPackets.end())
     {
         // No existing packet update for the given char, so we push new packet
-        CCharPacket* packet = new CCharPacket(PChar, type, updatemask);
-        PacketList.emplace_back(packet);
-        PendingCharPackets.emplace(PChar->id, packet);
+        PacketList.emplace_back(std::make_unique<CCharPacket>(PChar, type, updatemask));
+        PendingCharPackets.emplace(PChar->id, std::make_unique<CCharPacket>(PChar, type, updatemask));
     }
     else
     {
@@ -454,9 +453,8 @@ void CCharEntity::updateEntityPacket(CBaseEntity* PEntity, ENTITYUPDATE type, ui
     if (existing == PendingEntityPackets.end())
     {
         // No existing packet update for the given entity, so we push new packet
-        CEntityUpdatePacket* packet = new CEntityUpdatePacket(PEntity, type, updatemask);
-        PacketList.emplace_back(packet);
-        PendingEntityPackets.emplace(PEntity->id, packet);
+        PacketList.emplace_back(std::make_unique<CEntityUpdatePacket>(PEntity, type, updatemask));
+        PendingEntityPackets.emplace(PEntity->id, std::make_unique<CEntityUpdatePacket>(PEntity, type, updatemask));
     }
     else
     {
@@ -1976,7 +1974,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
         // setup new action packet to send paralyze message
         action_t paralyze_action = {};
         setActionInterrupted(paralyze_action, PTarget, MSGBASIC_IS_PARALYZED, 0);
-        loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CActionPacket(paralyze_action));
+        loc.zone->PushPacket(this, CHAR_INRANGE_SELF, std::make_unique<CActionPacket>(paralyze_action));
 
         // Set up /ra action to be interrupted
         action.actiontype = ACTION_RANGED_INTERRUPT; // This handles some magic numbers in CActionPacket to cancel actions
@@ -2394,7 +2392,7 @@ void CCharEntity::OnRaise()
         updatemask |= UPDATE_HP;
         actionTarget.speceffect = SPECEFFECT::RAISE;
 
-        loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CActionPacket(action));
+        loc.zone->PushPacket(this, CHAR_INRANGE_SELF, std::make_unique<CActionPacket>(action));
 
         // Do not return EXP to the player if they do not have experienceLost variable.
         uint16 expLost = charutils::GetCharVar(this, "expLost");
@@ -2534,11 +2532,11 @@ void CCharEntity::Die()
     TracyZoneScoped;
     if (PLastAttacker)
     {
-        loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(PLastAttacker, this, 0, 0, MSGBASIC_PLAYER_DEFEATED_BY));
+        loc.zone->PushPacket(this, CHAR_INRANGE_SELF, std::make_unique<CMessageBasicPacket>(PLastAttacker, this, 0, 0, MSGBASIC_PLAYER_DEFEATED_BY));
     }
     else
     {
-        loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(this, this, 0, 0, MSGBASIC_FALLS_TO_GROUND));
+        loc.zone->PushPacket(this, CHAR_INRANGE_SELF, std::make_unique<CMessageBasicPacket>(this, this, 0, 0, MSGBASIC_FALLS_TO_GROUND));
     }
 
     battleutils::RelinquishClaim(this);
