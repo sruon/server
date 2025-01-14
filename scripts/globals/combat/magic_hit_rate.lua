@@ -15,13 +15,36 @@ xi.combat.magicHitRate = xi.combat.magicHitRate or {}
 -----------------------------------
 
 -- Magic Accuracy from spell's skill.
-local function magicAccuracyFromSkill(actor, skillType)
+local function magicAccuracyFromSkill(actor, skillType, skillRank)
     local magicAcc = 0
 
+    -- For known skills.
     if skillType > 0 then
         magicAcc = actor:getSkillLevel(skillType)
+
+        if skillType == xi.skill.SINGING then
+            if actor:isPC() then
+                -- Add ranged skill level ONLY if it's an instrument.
+                local rangeType = actor:getWeaponSkillType(xi.slot.RANGED)
+
+                -- String instruments have half the skill effectiveness and amplify the AoE in exchange.
+                if rangeType == xi.skill.WIND_INSTRUMENT then
+                    magicAcc = magicAcc + actor:getSkillLevel(rangeType)
+                elseif rangeType == xi.skill.STRING_INSTRUMENT then
+                    magicAcc = magicAcc + math.floor(actor:getSkillLevel(rangeType) / 2)
+                end
+
+            else
+                magicAcc = magicAcc * 2
+            end
+        end
+
+    -- Made for bolts. Will probably see other uses.
+    elseif skillRank > 0 then
+        magicAcc = xi.combat.skillLevel.getSkillCap(actor:getMainLvl(), skillRank)
+
+    -- For mob skills / additional effects which don't have a skill.
     else
-        -- For mob skills / additional effects which don't have a skill.
         magicAcc = xi.combat.skillLevel.getSkillCap(actor:getMainLvl(), xi.skillRank.A_PLUS)
     end
 
@@ -296,11 +319,11 @@ local function magicAccuracyFromFoodMultiplier(actor)
 end
 
 -- Global function to calculate total magicc accuracy.
-xi.combat.magicHitRate.calculateActorMagicAccuracy = function(actor, target, spellGroup, skillType, actionElement, statUsed, bonusMacc)
+xi.combat.magicHitRate.calculateActorMagicAccuracy = function(actor, target, spellGroup, skillType, skillRank, actionElement, statUsed, bonusMacc)
     local finalMagicAcc = 0
 
     local magicAccBase      = actor:getMod(xi.mod.MACC) + actor:getILvlMacc(xi.slot.MAIN)
-    local magicAccSkill     = magicAccuracyFromSkill(actor, skillType)
+    local magicAccSkill     = magicAccuracyFromSkill(actor, skillType, skillRank)
     local magicAccElement   = magicAccuracyFromElement(actor, actionElement)
     local magicAccStatDiff  = magicAccuracyFromStatDifference(actor, target, statUsed)
     local magicAccEffects   = magicAccuracyFromStatusEffects(actor, spellGroup, skillType, actionElement)
@@ -484,7 +507,7 @@ end
 -- Resist rate helper function.
 -----------------------------------
 
-xi.combat.magicHitRate.calculateResistRate = function(actor, target, spellGroup, skillType, actionElement, statUsed, effectId, bonusMacc)
+xi.combat.magicHitRate.calculateResistRate = function(actor, target, spellGroup, skillType, skillRank, actionElement, statUsed, effectId, bonusMacc)
     local magicEvasionModifier = 0
     local rankModifier         = 0
 
@@ -495,7 +518,7 @@ xi.combat.magicHitRate.calculateResistRate = function(actor, target, spellGroup,
     end
 
     -- Get Actor Magic Accuracy and target Magic Evasion
-    local magicAcc     = xi.combat.magicHitRate.calculateActorMagicAccuracy(actor, target, spellGroup, skillType, actionElement, statUsed, bonusMacc)
+    local magicAcc     = xi.combat.magicHitRate.calculateActorMagicAccuracy(actor, target, spellGroup, skillType, skillRank, actionElement, statUsed, bonusMacc)
     local magicEva     = xi.combat.magicHitRate.calculateTargetMagicEvasion(actor, target, actionElement, magicEvasionModifier, rankModifier)
     local magicHitRate = xi.combat.magicHitRate.calculateMagicHitRate(magicAcc, magicEva)
     local resistRate   = xi.combat.magicHitRate.calculateResistanceFactor(actor, target, skillType, actionElement, magicHitRate, rankModifier)
