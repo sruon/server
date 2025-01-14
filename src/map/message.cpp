@@ -166,7 +166,7 @@ namespace message
 
                 if (PParty)
                 {
-                    auto newPacket = std::unique_ptr<CBasicPacket>();
+                    auto newPacket = std::make_unique<CBasicPacket>();
                     std::memcpy(*newPacket, packet.data(), std::min<size_t>(packet.size(), PACKET_SIZE));
                     PParty->PushPacket(senderid, 0, newPacket);
                 }
@@ -202,7 +202,7 @@ namespace message
                 {
                     for (auto& currentParty : PAlliance->partyList)
                     {
-                        auto newPacket = std::unique_ptr<CBasicPacket>();
+                        auto newPacket = std::make_unique<CBasicPacket>();
                         std::memcpy(*newPacket, packet.data(), std::min<size_t>(packet.size(), PACKET_SIZE));
                         currentParty->PushPacket(senderid, 0, newPacket);
                     }
@@ -215,7 +215,7 @@ namespace message
                 CLinkshell* PLinkshell  = linkshell::GetLinkshell(linkshellID);
                 if (PLinkshell)
                 {
-                    auto newPacket = std::unique_ptr<CBasicPacket>();
+                    auto newPacket = std::make_unique<CBasicPacket>();
                     std::memcpy(*newPacket, packet.data(), std::min<size_t>(packet.size(), PACKET_SIZE));
                     PLinkshell->PushPacket(ref<uint32>((uint8*)extra.data(), 4), newPacket);
                 }
