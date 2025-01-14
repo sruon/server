@@ -121,11 +121,19 @@ public:
         ref<uint16>(2) = new_sequence;
     }
 
-    /* Indexer for the data buffer */
+    // Indexer for the buffer's data
     template <typename T>
     T& ref(std::size_t index)
     {
         return ::ref<T>(buffer_.data(), index);
+    }
+
+    // Reinterpret and use the underlying buffer as a different type
+    template <typename T>
+    auto as() -> std::remove_pointer_t<T>*
+    {
+        using Type = std::remove_pointer_t<T>;
+        return reinterpret_cast<Type*>(buffer_.data());
     }
 
     operator uint8*()
