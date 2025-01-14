@@ -411,6 +411,12 @@ void CCharEntity::pushPacket(std::unique_ptr<CBasicPacket>&& packet)
     TracyZoneString(getName());
     TracyZoneHex16(packet->getType());
 
+    if (isPacketFiltered(packet))
+    {
+        // packet will destruct itself when it goes out of scope
+        return;
+    }
+
     moduleutils::OnPushPacket(this, packet);
 
     if (packet->getType() == 0x5B)
@@ -508,6 +514,17 @@ void CCharEntity::erasePackets(uint8 num)
     {
         std::ignore = popPacket();
     }
+}
+
+bool CCharEntity::isPacketFiltered(std::unique_ptr<CBasicPacket>& packet)
+{
+    // Filter others synthesis results
+    if (packet->getType() == 0x70 && playerConfig.MessageFilter.others_synthesis_and_fishing_results)
+    {
+        return true;
+    }
+
+    return false;
 }
 
 bool CCharEntity::isNewPlayer() const

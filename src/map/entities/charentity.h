@@ -432,6 +432,7 @@ public:
     auto   getPacketListCopy() -> std::deque<std::unique_ptr<CBasicPacket>>; // Return a COPY of packet list
     size_t getPacketCount();
     void   erasePackets(uint8 num); // Erase num elements from front of packet list
+    bool   isPacketFiltered(std::unique_ptr<CBasicPacket>& packet);
 
     virtual void HandleErrorMessage(std::unique_ptr<CBasicPacket>&) override;
 
