@@ -546,7 +546,7 @@ int32 do_sockets(fd_set* rfd, duration next)
     {
     };
     int32 ret = 0;
-    memcpy(rfd, &readfds, sizeof(*rfd));
+    std::memcpy(rfd, &readfds, sizeof(*rfd));
 
     timeout.tv_sec  = std::chrono::duration_cast<std::chrono::seconds>(next).count();
     timeout.tv_usec = std::chrono::duration_cast<std::chrono::microseconds>(next - std::chrono::duration_cast<std::chrono::seconds>(next)).count();
@@ -849,8 +849,8 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
         if (static_cast<int32>(PacketDataSize) != -1)
         {
             // it's making result buff
-            // don't need memcpy header
-            memcpy(buff + FFXI_HEADER_SIZE, PacketDataBuff.get(), PacketDataSize);
+            // don't need std::memcpy header
+            std::memcpy(buff + FFXI_HEADER_SIZE, PacketDataBuff.get(), PacketDataSize);
             *buffsize = FFXI_HEADER_SIZE + PacketDataSize;
 
             return decryptCount;
@@ -938,12 +938,11 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
             }
             else
             {
-                // NOTE:
-                // CBasicPacket is incredibly light when constructed from a pointer like we're doing here.
-                // It is just a bag of offsets to the data in SmallPD_ptr so its safe to construct.
-                auto basicPacket = CBasicPacket(reinterpret_cast<uint8*>(SmallPD_ptr));
-                ShowTrace(fmt::format("map::parse: Char: {} ({}): 0x{:03X}", PChar->getName(), PChar->id, basicPacket.getType()).c_str());
-                PacketParser[SmallPD_Type](map_session_data, PChar, basicPacket);
+                // TODO: We should be passing a non-modifyable span of the packet data into the parser
+                //     : instead of creating a new packet here.
+                auto basicPacket = CBasicPacket::createFromBuffer(reinterpret_cast<uint8*>(SmallPD_ptr));
+                ShowTrace(fmt::format("map::parse: Char: {} ({}): 0x{:03X}", PChar->getName(), PChar->id, basicPacket->getType()).c_str());
+                PacketParser[SmallPD_Type](map_session_data, PChar, *basicPacket);
             }
         }
         else
@@ -1084,7 +1083,7 @@ int32 send_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
                     _sql->Query("UPDATE accounts_sessions SET client_port = 0, last_zoneout_time = NOW() WHERE charid = %u", map_session_data->charID);
                 }
 
-                memcpy(buff + *buffsize, *PSmallPacket, PSmallPacket->getSize());
+                std::memcpy(buff + *buffsize, *PSmallPacket, PSmallPacket->getSize());
 
                 *buffsize += PSmallPacket->getSize();
 
@@ -1131,7 +1130,7 @@ int32 send_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
     // Record data size excluding header
     uint8 hash[16];
     md5((uint8*)PTempBuff, hash, PacketSize);
-    memcpy(PTempBuff + PacketSize, hash, 16);
+    std::memcpy(PTempBuff + PacketSize, hash, 16);
     PacketSize += 16;
 
     if (PacketSize > MAX_BUFFER_SIZE + 20)
@@ -1140,7 +1139,7 @@ int32 send_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
     }
 
     // Making total packet
-    memcpy(buff + FFXI_HEADER_SIZE, PTempBuff, PacketSize);
+    std::memcpy(buff + FFXI_HEADER_SIZE, PTempBuff, PacketSize);
 
     uint32 CypherSize = (PacketSize / 4) & -2;
 

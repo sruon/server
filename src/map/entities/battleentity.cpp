@@ -69,7 +69,7 @@ CBattleEntity::CBattleEntity()
     m_Weapons[SLOT_AMMO]   = nullptr;
     m_dualWield            = false;
 
-    memset(&health, 0, sizeof(health));
+    std::memset(&health, 0, sizeof(health));
     health.maxhp = 1;
 
     PPet          = nullptr;

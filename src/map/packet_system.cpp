@@ -190,18 +190,15 @@ std::function<void(map_session_data_t* const, CCharEntity* const, CBasicPacket&)
  *                                                                       *
  ************************************************************************/
 
-void PrintPacket(CBasicPacket data)
+void PrintPacket(CBasicPacket& packet)
 {
     std::string message;
-    char        buffer[5];
 
-    for (size_t y = 0; y < data.getSize(); y++)
+    for (size_t idx = 0; idx < packet.getSize(); idx++)
     {
-        std::memset(buffer, 0, sizeof(buffer));                               // TODO: Replace these three lines with std::format when/if we move to C++ 20.
-        snprintf(buffer, sizeof(buffer), "%02hhx ", *((uint8*)data[(int)y])); //
-        message.append(buffer);                                               //
+        message.append(fmt::format("{:02x} ", (char*)packet[idx]));
 
-        if (((y + 1) % 16) == 0)
+        if (((idx + 1) % 16) == 0)
         {
             message += "\n";
             ShowDebug(message.c_str());
@@ -209,7 +206,7 @@ void PrintPacket(CBasicPacket data)
         }
     }
 
-    if (message.length() > 0)
+    if (!message.empty())
     {
         message += "\n";
         ShowDebug(message.c_str());
@@ -1213,7 +1210,7 @@ void SmallPacket0x01B(map_session_data_t* const PSession, CCharEntity* const PCh
 void SmallPacket0x01C(map_session_data_t* const PSession, CCharEntity* const PChar, CBasicPacket& data)
 {
     TracyZoneScoped;
-    PrintPacket(std::move(data));
+    PrintPacket(data);
 }
 
 /************************************************************************
@@ -2155,7 +2152,7 @@ void SmallPacket0x03D(map_session_data_t* const PSession, CCharEntity* const PCh
     TracyZoneScoped;
 
     char blacklistedName[PacketNameLength] = {};
-    memcpy(&blacklistedName, data[0x08], PacketNameLength - 1);
+    std::memcpy(&blacklistedName, data[0x08], PacketNameLength - 1);
 
     std::string name = blacklistedName;
     uint8       cmd  = data.ref<uint8>(0x18);
@@ -2523,7 +2520,7 @@ void SmallPacket0x04D(map_session_data_t* const PSession, CCharEntity* const PCh
                             size_t length = 0;
                             char*  extra  = nullptr;
                             _sql->GetData(5, &extra, &length);
-                            memcpy(PItem->m_extra, extra, (length > sizeof(PItem->m_extra) ? sizeof(PItem->m_extra) : length));
+                            std::memcpy(PItem->m_extra, extra, (length > sizeof(PItem->m_extra) ? sizeof(PItem->m_extra) : length));
 
                             if (boxtype == 2)
                             {
@@ -2614,12 +2611,12 @@ void SmallPacket0x04D(map_session_data_t* const PSession, CCharEntity* const PCh
                     }
 
                     char receiver[PacketNameLength] = {};
-                    memcpy(&receiver, data[0x10], PacketNameLength - 1);
+                    std::memcpy(&receiver, data[0x10], PacketNameLength - 1);
                     PUBoxItem->setReceiver(receiver);
                     PUBoxItem->setSender(PChar->getName());
                     PUBoxItem->setQuantity(quantity);
                     PUBoxItem->setSlotID(PItem->getSlotID());
-                    memcpy(PUBoxItem->m_extra, PItem->m_extra, sizeof(PUBoxItem->m_extra));
+                    std::memcpy(PUBoxItem->m_extra, PItem->m_extra, sizeof(PUBoxItem->m_extra));
 
                     char extra[sizeof(PItem->m_extra) * 2 + 1];
                     _sql->EscapeStringLen(extra, (const char*)PItem->m_extra, sizeof(PItem->m_extra));
@@ -2871,7 +2868,7 @@ void SmallPacket0x04D(map_session_data_t* const PSession, CCharEntity* const PCh
                             size_t length = 0;
                             char*  extra  = nullptr;
                             _sql->GetData(3, &extra, &length);
-                            memcpy(PItem->m_extra, extra, (length > sizeof(PItem->m_extra) ? sizeof(PItem->m_extra) : length));
+                            std::memcpy(PItem->m_extra, extra, (length > sizeof(PItem->m_extra) ? sizeof(PItem->m_extra) : length));
 
                             PItem->setSender(_sql->GetStringData(4));
                             if (PChar->UContainer->IsSlotEmpty(slotID))
@@ -4560,7 +4557,7 @@ void SmallPacket0x071(map_session_data_t* const PSession, CCharEntity* const PCh
             if (PChar->PParty && PChar->PParty->GetLeader() == PChar)
             {
                 char charName[PacketNameLength] = {};
-                memcpy(&charName, data[0x0C], PacketNameLength - 1);
+                std::memcpy(&charName, data[0x0C], PacketNameLength - 1);
 
                 CCharEntity* PVictim = dynamic_cast<CCharEntity*>(PChar->PParty->GetMemberByName(charName));
                 if (PVictim)
@@ -4630,7 +4627,7 @@ void SmallPacket0x071(map_session_data_t* const PSession, CCharEntity* const PCh
             {
                 int8 packetData[29]{};
                 ref<uint32>(packetData, 0) = PChar->id;
-                memcpy(packetData + 0x04, data[0x0C], 20);
+                std::memcpy(packetData + 0x04, data[0x0C], 20);
                 ref<uint32>(packetData, 24) = PChar->PLinkshell1->getID();
                 ref<uint8>(packetData, 28)  = PItemLinkshell->GetLSType();
                 message::send(MSG_LINKSHELL_REMOVE, packetData, sizeof(packetData), nullptr);
@@ -4645,7 +4642,7 @@ void SmallPacket0x071(map_session_data_t* const PSession, CCharEntity* const PCh
             {
                 int8 packetData[29]{};
                 ref<uint32>(packetData, 0) = PChar->id;
-                memcpy(packetData + 0x04, data[0x0C], 20);
+                std::memcpy(packetData + 0x04, data[0x0C], 20);
                 ref<uint32>(packetData, 24) = PChar->PLinkshell2->getID();
                 ref<uint8>(packetData, 28)  = PItemLinkshell->GetLSType();
                 message::send(MSG_LINKSHELL_REMOVE, packetData, sizeof(packetData), nullptr);
@@ -4660,7 +4657,7 @@ void SmallPacket0x071(map_session_data_t* const PSession, CCharEntity* const PCh
                 for (std::size_t i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
                 {
                     char charName[PacketNameLength] = {};
-                    memcpy(&charName, data[0x0C], PacketNameLength - 1);
+                    std::memcpy(&charName, data[0x0C], PacketNameLength - 1);
 
                     PVictim = dynamic_cast<CCharEntity*>(PChar->PParty->m_PAlliance->partyList[i]->GetMemberByName(charName));
                     if (PVictim && PVictim->PParty && PVictim->PParty->m_PAlliance) // victim is in this party
@@ -4878,7 +4875,7 @@ void SmallPacket0x077(map_session_data_t* const PSession, CCharEntity* const PCh
             if (PChar->PParty != nullptr && PChar->PParty->GetLeader() == PChar)
             {
                 char memberName[PacketNameLength] = {};
-                memcpy(&memberName, data[0x04], PacketNameLength - 1);
+                std::memcpy(&memberName, data[0x04], PacketNameLength - 1);
 
                 ShowDebug(fmt::format("(Party)Altering permissions of {} to {}", str(memberName), str(data[0x15])));
                 PChar->PParty->AssignPartyRole(memberName, data.ref<uint8>(0x15));
@@ -4891,7 +4888,7 @@ void SmallPacket0x077(map_session_data_t* const PSession, CCharEntity* const PCh
             {
                 int8 packetData[29]{};
                 ref<uint32>(packetData, 0) = PChar->id;
-                memcpy(packetData + 0x04, data[0x04], 20);
+                std::memcpy(packetData + 0x04, data[0x04], 20);
                 ref<uint32>(packetData, 24) = PChar->PLinkshell1->getID();
                 ref<uint8>(packetData, 28)  = data.ref<uint8>(0x15);
                 message::send(MSG_LINKSHELL_RANK_CHANGE, packetData, sizeof(packetData), nullptr);
@@ -4904,7 +4901,7 @@ void SmallPacket0x077(map_session_data_t* const PSession, CCharEntity* const PCh
             {
                 int8 packetData[29]{};
                 ref<uint32>(packetData, 0) = PChar->id;
-                memcpy(packetData + 0x04, data[0x04], 20);
+                std::memcpy(packetData + 0x04, data[0x04], 20);
                 ref<uint32>(packetData, 24) = PChar->PLinkshell2->getID();
                 ref<uint8>(packetData, 28)  = data.ref<uint8>(0x15);
                 message::send(MSG_LINKSHELL_RANK_CHANGE, packetData, sizeof(packetData), nullptr);
@@ -4917,7 +4914,7 @@ void SmallPacket0x077(map_session_data_t* const PSession, CCharEntity* const PCh
                 PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty)
             {
                 char memberName[PacketNameLength] = {};
-                memcpy(&memberName, data[0x04], PacketNameLength - 1);
+                std::memcpy(&memberName, data[0x04], PacketNameLength - 1);
 
                 ShowDebug(fmt::format("(Alliance)Changing leader to {}", str(memberName)));
                 PChar->PParty->m_PAlliance->assignAllianceLeader(str(data[0x04]).c_str());
@@ -5497,7 +5494,7 @@ void SmallPacket0x0B5(map_session_data_t* const PSession, CCharEntity* const PCh
     char  message[256]    = {};
     uint8 messagePosition = 0x07;
 
-    memcpy(&message, data[messagePosition], std::min(data.getSize() - messagePosition, sizeof(message)));
+    std::memcpy(&message, data[messagePosition], std::min(data.getSize() - messagePosition, sizeof(message)));
 
     if (data.ref<uint8>(0x06) == '!' && !jailutils::InPrison(PChar) && (CCommandHandler::call(lua, PChar, message) == 0 || PChar->m_GMlevel > 0))
     {
@@ -5954,7 +5951,7 @@ void SmallPacket0x0C3(map_session_data_t* const PSession, CCharEntity* const PCh
         if (PItemLinkPearl)
         {
             PItemLinkPearl->setQuantity(1);
-            memcpy(PItemLinkPearl->m_extra, PItemLinkshell->m_extra, 24);
+            std::memcpy(PItemLinkPearl->m_extra, PItemLinkshell->m_extra, 24);
             PItemLinkPearl->SetLSType(LSTYPE_LINKPEARL);
             charutils::AddItem(PChar, LOC_INVENTORY, PItemLinkPearl);
         }
@@ -5988,8 +5985,8 @@ void SmallPacket0x0C4(map_session_data_t* const PSession, CCharEntity* const PCh
             char DecodedName[DecodeStringLength];
             char EncodedName[LinkshellStringLength];
 
-            memset(&DecodedName, 0, sizeof(DecodedName));
-            memset(&EncodedName, 0, sizeof(EncodedName));
+            std::memset(&DecodedName, 0, sizeof(DecodedName));
+            std::memset(&EncodedName, 0, sizeof(EncodedName));
 
             char* decodePtr = reinterpret_cast<char*>(data[12]);
             DecodeStringLinkshell(decodePtr, DecodedName);
@@ -6710,7 +6707,7 @@ void SmallPacket0x0E2(map_session_data_t* const PSession, CCharEntity* const PCh
                 if (static_cast<uint8>(PItemLinkshell->GetLSType()) <= PChar->PLinkshell1->m_postRights)
                 {
                     char lsMessage[128] = {};
-                    memcpy(&lsMessage, data[16], sizeof(lsMessage));
+                    std::memcpy(&lsMessage, data[16], sizeof(lsMessage));
                     PChar->PLinkshell1->setMessage(lsMessage, PChar->getName());
                     return;
                 }
@@ -8238,10 +8235,6 @@ void SmallPacket0x110(map_session_data_t* const PSession, CCharEntity* const PCh
     if (settings::get<bool>("map.FISHING_ENABLE") && PChar->GetMLevel() >= settings::get<uint8>("map.FISHING_MIN_LEVEL"))
     {
         fishingutils::HandleFishingAction(PChar, data);
-    }
-    else
-    {
-        return;
     }
 }
 

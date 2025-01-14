@@ -111,13 +111,13 @@ namespace message
             case MSG_CHAT_TELL:
             {
                 char characterName[PacketNameLength] = {};
-                memcpy(&characterName, reinterpret_cast<char*>(extra.data()) + 4, PacketNameLength - 1);
+                std::memcpy(&characterName, reinterpret_cast<char*>(extra.data()) + 4, PacketNameLength - 1);
 
                 CCharEntity* PChar = zoneutils::GetCharByName(characterName);
                 if (PChar && PChar->status != STATUS_TYPE::DISAPPEAR && !jailutils::InPrison(PChar))
                 {
                     std::unique_ptr<CBasicPacket> newPacket = std::make_unique<CBasicPacket>();
-                    memcpy(*newPacket, packet.data(), std::min<size_t>(packet.size(), PACKET_SIZE));
+                    std::memcpy(*newPacket, packet.data(), std::min<size_t>(packet.size(), PACKET_SIZE));
                     auto gm_sent = newPacket->ref<uint8>(0x05);
                     if (settings::get<bool>("map.BLOCK_TELL_TO_HIDDEN_GM") && PChar->m_isGMHidden && !gm_sent)
                     {
@@ -167,7 +167,7 @@ namespace message
                 if (PParty)
                 {
                     CBasicPacket* newPacket = new CBasicPacket();
-                    memcpy(*newPacket, packet.data(), std::min<size_t>(packet.size(), PACKET_SIZE));
+                    std::memcpy(*newPacket, packet.data(), std::min<size_t>(packet.size(), PACKET_SIZE));
                     PParty->PushPacket(senderid, 0, newPacket);
                 }
                 break;
@@ -203,7 +203,7 @@ namespace message
                     for (auto& currentParty : PAlliance->partyList)
                     {
                         CBasicPacket* newPacket = new CBasicPacket();
-                        memcpy(*newPacket, packet.data(), std::min<size_t>(packet.size(), PACKET_SIZE));
+                        std::memcpy(*newPacket, packet.data(), std::min<size_t>(packet.size(), PACKET_SIZE));
                         currentParty->PushPacket(senderid, 0, newPacket);
                     }
                 }
@@ -216,7 +216,7 @@ namespace message
                 if (PLinkshell)
                 {
                     CBasicPacket* newPacket = new CBasicPacket();
-                    memcpy(*newPacket, packet.data(), std::min<size_t>(packet.size(), PACKET_SIZE));
+                    std::memcpy(*newPacket, packet.data(), std::min<size_t>(packet.size(), PACKET_SIZE));
                     PLinkshell->PushPacket(ref<uint32>((uint8*)extra.data(), 4), newPacket);
                 }
                 break;
@@ -228,7 +228,7 @@ namespace message
                 if (PUnityChat)
                 {
                     CBasicPacket* newPacket = new CBasicPacket();
-                    memcpy(*newPacket, packet.data(), std::min<size_t>(packet.size(), PACKET_SIZE));
+                    std::memcpy(*newPacket, packet.data(), std::min<size_t>(packet.size(), PACKET_SIZE));
                     PUnityChat->PushPacket(ref<uint32>((uint8*)extra.data(), 4), newPacket);
                 }
                 break;
@@ -521,7 +521,7 @@ namespace message
                 if (PLinkshell)
                 {
                     char memberName[PacketNameLength] = {};
-                    memcpy(&memberName, reinterpret_cast<char*>(extra.data()) + 4, PacketNameLength - 1);
+                    std::memcpy(&memberName, reinterpret_cast<char*>(extra.data()) + 4, PacketNameLength - 1);
                     PLinkshell->ChangeMemberRank(memberName, ref<uint8>((uint8*)extra.data(), 28));
                 }
                 break;
@@ -529,7 +529,7 @@ namespace message
             case MSG_LINKSHELL_REMOVE:
             {
                 char memberName[PacketNameLength] = {};
-                memcpy(&memberName, reinterpret_cast<char*>(extra.data()) + 4, PacketNameLength - 1);
+                std::memcpy(&memberName, reinterpret_cast<char*>(extra.data()) + 4, PacketNameLength - 1);
                 CCharEntity* PChar = zoneutils::GetCharByName(memberName);
 
                 if (PChar && PChar->PLinkshell1 && PChar->PLinkshell1->getID() == ref<uint32>((uint8*)extra.data(), 24))
@@ -564,7 +564,7 @@ namespace message
                     if (requester != 0)
                     {
                         char buf[30];
-                        memset(&buf[0], 0, sizeof(buf));
+                        std::memset(&buf[0], 0, sizeof(buf));
 
                         ref<uint32>(&buf, 0)  = requester;
                         ref<uint16>(&buf, 8)  = PChar->getZone();
@@ -617,7 +617,7 @@ namespace message
                     if (Entity && Entity->loc.zone)
                     {
                         char buf[22];
-                        memset(&buf[0], 0, sizeof(buf));
+                        std::memset(&buf[0], 0, sizeof(buf));
 
                         uint16 targetZone = ref<uint16>((uint8*)extra.data(), 2);
                         uint16 playerZone = ref<uint16>((uint8*)extra.data(), 4);
@@ -856,13 +856,13 @@ namespace message
     {
         const uint32 size      = sizeof(uint32) + sizeof(uint32) + sizeof(uint32) + sizeof(uint8) + 256;
         char         buf[size] = {};
-        memset(&buf[0], 0, size);
+        std::memset(&buf[0], 0, size);
 
         ref<uint32>(buf, 0) = charId;
         ref<int32>(buf, 4)  = value;
         ref<uint32>(buf, 8) = expiry;
         ref<uint8>(buf, 12) = static_cast<uint8>(std::min<size_t>(varName.size(), 255));
-        memcpy(buf + 13, varName.c_str(), varName.size());
+        std::memcpy(buf + 13, varName.c_str(), varName.size());
 
         message::send(MSG_CHARVAR_UPDATE, buf, size, nullptr);
     }
@@ -996,7 +996,7 @@ namespace message
         msg.data = zmq::message_t(datalen);
         if (datalen > 0)
         {
-            memcpy(msg.data.data(), data, datalen);
+            std::memcpy(msg.data.data(), data, datalen);
         }
 
         if (packet)

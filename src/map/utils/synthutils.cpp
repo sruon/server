@@ -1009,7 +1009,7 @@ namespace synthutils
                 {
                     char encodedSignature[SignatureStringLength];
 
-                    memset(&encodedSignature, 0, sizeof(encodedSignature));
+                    std::memset(&encodedSignature, 0, sizeof(encodedSignature));
                     PItem->setSignature(EncodeStringSignature(PChar->name.c_str(), encodedSignature));
 
                     char signature_esc[31]; // max charname: 15 chars * 2 + 1

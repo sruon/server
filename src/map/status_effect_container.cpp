@@ -206,7 +206,7 @@ CStatusEffectContainer::CStatusEffectContainer(CBattleEntity* PEntity)
         return;
     }
 
-    memset(m_StatusIcons, 0xFF, sizeof(m_StatusIcons));
+    std::memset(m_StatusIcons, 0xFF, sizeof(m_StatusIcons));
 }
 
 CStatusEffectContainer::~CStatusEffectContainer()
@@ -1381,7 +1381,7 @@ void CStatusEffectContainer::UpdateStatusIcons()
     auto* PChar = static_cast<CCharEntity*>(m_POwner);
 
     m_Flags = 0;
-    memset(m_StatusIcons, EFFECT_NONE, sizeof(m_StatusIcons));
+    std::memset(m_StatusIcons, EFFECT_NONE, sizeof(m_StatusIcons));
 
     uint8 count = 0;
 

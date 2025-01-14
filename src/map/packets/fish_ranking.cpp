@@ -64,7 +64,7 @@ CFishRankingPacket::CFishRankingPacket(std::vector<FishingContestEntry> entries,
         {
             if (offset + blockSize <= 0xFF)
             {
-                std::memcpy(data + offset, entry.name, static_cast<uint8>(sizeof(entry.name)));
+                std::memcpy(buffer_.data() + offset, entry.name, static_cast<uint8>(sizeof(entry.name)));
                 ref<uint8>(offset + 0x10)  = entry.mjob;
                 ref<uint8>(offset + 0x11)  = entry.sjob;
                 ref<uint8>(offset + 0x12)  = entry.mlvl;

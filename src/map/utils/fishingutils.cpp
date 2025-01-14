@@ -73,7 +73,7 @@ namespace fishingutils
     std::map<uint16, std::map<uint32, uint16>>        FishingGroups;         // groupid, fishid, rarity
     std::map<uint16, std::map<uint32, uint8>>         FishingBaitAffinities; // baitid, fishid, power
 
-    uint32 HandleFishingAction(CCharEntity* PChar, CBasicPacket data)
+    uint32 HandleFishingAction(CCharEntity* PChar, CBasicPacket& data)
     {
         uint16 stamina = data.ref<uint16>(0x08);
         uint8  action  = data.ref<uint8>(0x0E);
@@ -2965,7 +2965,7 @@ namespace fishingutils
 
                     for (int i = 0; i < fishingArea->numBounds; i++)
                     {
-                        memcpy((void*)&fishingArea->areaBounds[i], &bounds[i * sizeof(areavector_t)], sizeof(areavector_t));
+                        std::memcpy((void*)&fishingArea->areaBounds[i], &bounds[i * sizeof(areavector_t)], sizeof(areavector_t));
                     }
                 }
                 else
@@ -3061,7 +3061,7 @@ namespace fishingutils
                     for (int i = 0; i < numFish; i++)
                     {
                         uint16 fishid = 0;
-                        memcpy(&fishid, &reqFish[i * sizeof(uint16)], sizeof(uint16));
+                        std::memcpy(&fishid, &reqFish[i * sizeof(uint16)], sizeof(uint16));
                         fish->reqFish->emplace_back(fishid);
                     }
                 }

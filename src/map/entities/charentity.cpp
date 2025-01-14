@@ -139,26 +139,26 @@ CCharEntity::CCharEntity()
     m_RecycleBin = std::make_unique<CItemContainer>(LOC_RECYCLEBIN);
 
     keys = {};
-    memset(&equip, 0, sizeof(equip));
-    memset(&equipLoc, 0, sizeof(equipLoc));
+    std::memset(&equip, 0, sizeof(equip));
+    std::memset(&equipLoc, 0, sizeof(equipLoc));
 
     m_SpellList = {};
-    memset(&m_LearnedAbilities, 0, sizeof(m_LearnedAbilities));
-    memset(&m_TitleList, 0, sizeof(m_TitleList));
-    memset(&m_ZonesList, 0, sizeof(m_ZonesList));
-    memset(&m_Abilities, 0, sizeof(m_Abilities));
-    memset(&m_TraitList, 0, sizeof(m_TraitList));
-    memset(&m_PetCommands, 0, sizeof(m_PetCommands));
-    memset(&m_WeaponSkills, 0, sizeof(m_WeaponSkills));
-    memset(&m_SetBlueSpells, 0, sizeof(m_SetBlueSpells));
-    memset(&m_FieldChocobo, 0, sizeof(m_FieldChocobo));
-    memset(&m_unlockedAttachments, 0, sizeof(m_unlockedAttachments));
+    std::memset(&m_LearnedAbilities, 0, sizeof(m_LearnedAbilities));
+    std::memset(&m_TitleList, 0, sizeof(m_TitleList));
+    std::memset(&m_ZonesList, 0, sizeof(m_ZonesList));
+    std::memset(&m_Abilities, 0, sizeof(m_Abilities));
+    std::memset(&m_TraitList, 0, sizeof(m_TraitList));
+    std::memset(&m_PetCommands, 0, sizeof(m_PetCommands));
+    std::memset(&m_WeaponSkills, 0, sizeof(m_WeaponSkills));
+    std::memset(&m_SetBlueSpells, 0, sizeof(m_SetBlueSpells));
+    std::memset(&m_FieldChocobo, 0, sizeof(m_FieldChocobo));
+    std::memset(&m_unlockedAttachments, 0, sizeof(m_unlockedAttachments));
 
-    memset(&m_questLog, 0, sizeof(m_questLog));
-    memset(&m_missionLog, 0, sizeof(m_missionLog));
+    std::memset(&m_questLog, 0, sizeof(m_questLog));
+    std::memset(&m_missionLog, 0, sizeof(m_missionLog));
     m_eminenceCache.activemap.reset();
 
-    memset(&m_claimedDeeds, 0, sizeof(m_claimedDeeds));
+    std::memset(&m_claimedDeeds, 0, sizeof(m_claimedDeeds));
 
     for (uint8 i = 0; i <= 3; ++i)
     {

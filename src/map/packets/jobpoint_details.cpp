@@ -57,7 +57,7 @@ CJobPointDetailsPacket::CJobPointDetailsPacket(CCharEntity* PChar)
 
             // Reset Data
             uint8 jpPacketSize = JP_DETAIL_DATA_SIZE * 20;
-            std::memset(data + 4, 0, sizeof(jpPacketSize));
+            std::memset(buffer_.data() + 4, 0, sizeof(jpPacketSize));
         }
     }
 }

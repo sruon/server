@@ -1585,7 +1585,7 @@ namespace mobutils
                 PMob->m_maxLevel = (uint8)_sql->GetIntData(9);
 
                 uint16 sqlModelID[10];
-                memcpy(&sqlModelID, _sql->GetData(10), 20);
+                std::memcpy(&sqlModelID, _sql->GetData(10), 20);
                 PMob->look = look_t(sqlModelID);
 
                 PMob->SetMJob(_sql->GetIntData(11));
@@ -1747,7 +1747,7 @@ namespace mobutils
                 PMob->m_maxLevel = (uint8)_sql->GetIntData(9);
 
                 uint16 sqlModelID[10];
-                memcpy(&sqlModelID, _sql->GetData(10), 20);
+                std::memcpy(&sqlModelID, _sql->GetData(10), 20);
                 PMob->look = look_t(sqlModelID);
 
                 PMob->SetMJob(_sql->GetIntData(11));

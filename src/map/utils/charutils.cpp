@@ -2221,7 +2221,7 @@ namespace charutils
                 auto* PItem          = PChar->getEquip((SLOTTYPE)i);
                 PChar->styleItems[i] = (PItem == nullptr) ? 0 : PItem->getID();
             }
-            memcpy(&PChar->mainlook, &PChar->look, sizeof(PChar->look));
+            std::memcpy(&PChar->mainlook, &PChar->look, sizeof(PChar->look));
         }
         else
         {
@@ -2919,7 +2919,7 @@ namespace charutils
 
     void BuildingCharWeaponSkills(CCharEntity* PChar)
     {
-        memset(&PChar->m_WeaponSkills, 0, sizeof(PChar->m_WeaponSkills));
+        std::memset(&PChar->m_WeaponSkills, 0, sizeof(PChar->m_WeaponSkills));
 
         CItemWeapon* PItem        = nullptr;
         int          main_ws      = 0;
@@ -2981,7 +2981,7 @@ namespace charutils
             return;
         }
 
-        memset(&PChar->m_PetCommands, 0, sizeof(PChar->m_PetCommands));
+        std::memset(&PChar->m_PetCommands, 0, sizeof(PChar->m_PetCommands));
 
         if (PetID == 0)
         { // technically Fire Spirit but we're using this to null the abilities shown
@@ -3374,7 +3374,7 @@ namespace charutils
             PChar->delModifier(PTrait->getMod(), PTrait->getValue());
         }
         PChar->TraitList.clear();
-        memset(&PChar->m_TraitList, 0, sizeof(PChar->m_TraitList));
+        std::memset(&PChar->m_TraitList, 0, sizeof(PChar->m_TraitList));
 
         auto mjob = PChar->GetMJob();
         auto sjob = PChar->GetSJob();

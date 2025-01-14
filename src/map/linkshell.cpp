@@ -186,7 +186,7 @@ void CLinkshell::ChangeMemberRank(const std::string& MemberName, uint8 toSack)
                         return;
                     }
                     newShellItem->setQuantity(1);
-                    memcpy(newShellItem->m_extra, PItemLinkshell->m_extra, 24);
+                    std::memcpy(newShellItem->m_extra, PItemLinkshell->m_extra, 24);
                     newShellItem->SetLSType(newId == 514 ? LSTYPE_PEARLSACK : LSTYPE_LINKPEARL);
                     newShellItem->setSubType(ITEM_LOCKED);
                     uint8 LocationID = PItemLinkshell->getLocationID();
@@ -377,7 +377,7 @@ namespace linkshell
             PLinkshell->setColor(_sql->GetIntData(1));
             char EncodedName[LinkshellStringLength];
 
-            memset(&EncodedName, 0, sizeof(EncodedName));
+            std::memset(&EncodedName, 0, sizeof(EncodedName));
 
             EncodeStringLinkshell(_sql->GetStringData(2).c_str(), EncodedName);
             PLinkshell->setName(EncodedName);

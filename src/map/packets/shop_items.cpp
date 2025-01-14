@@ -43,7 +43,7 @@ CShopItemsPacket::CShopItemsPacket(CCharEntity* PChar)
 
             i = 0;
             this->setSize(0x08);
-            memset(data + 4, 0, PACKET_SIZE - 8);
+            std::memset(buffer_.data() + 4, 0, PACKET_SIZE - 8);
         }
         this->setSize(this->getSize() + 0x0C); // TODO: Verify
 

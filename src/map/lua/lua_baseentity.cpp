@@ -3627,7 +3627,7 @@ void CLuaBaseEntity::goToEntity(uint32 targetID, sol::object const& option)
     uint16 playerZone = PChar->loc.zone->GetID();
 
     char buf[12];
-    memset(&buf[0], 0, sizeof(buf));
+    std::memset(&buf[0], 0, sizeof(buf));
 
     ref<bool>(&buf, 0)    = true;        // Toggle for message routing; goes to entity server first
     ref<bool>(&buf, 1)    = spawnedOnly; // Specification for Spawned Only or Any
@@ -3658,7 +3658,7 @@ bool CLuaBaseEntity::gotoPlayer(std::string const& playerName)
     if (ret != SQL_ERROR && _sql->NumRows() != 0 && _sql->NextRow() == SQL_SUCCESS)
     {
         char buf[30];
-        memset(&buf[0], 0, sizeof(buf));
+        std::memset(&buf[0], 0, sizeof(buf));
 
         ref<uint32>(&buf, 0) = _sql->GetUIntData(0); // target char
         ref<uint32>(&buf, 4) = m_PBaseEntity->id;    // warping to target char, their server will send us a zoning message with their pos
@@ -3690,7 +3690,7 @@ bool CLuaBaseEntity::bringPlayer(std::string const& playerName)
     if (ret != SQL_ERROR && _sql->NumRows() != 0 && _sql->NextRow() == SQL_SUCCESS)
     {
         char buf[30];
-        memset(&buf[0], 0, sizeof(buf));
+        std::memset(&buf[0], 0, sizeof(buf));
 
         ref<uint32>(&buf, 0)  = _sql->GetUIntData(0); // target char
         ref<uint32>(&buf, 4)  = 0;                    // wanting to bring target char here so wont give our id
@@ -3902,7 +3902,7 @@ bool CLuaBaseEntity::addItem(sol::variadic_args va)
                 {
                     char encoded[SignatureStringLength];
 
-                    memset(&encoded, 0, sizeof(encoded));
+                    std::memset(&encoded, 0, sizeof(encoded));
                     PItem->setSignature(EncodeStringSignature(signature, encoded));
                 }
 
@@ -4480,7 +4480,7 @@ bool CLuaBaseEntity::addLinkpearl(std::string const& lsname, bool equip)
             // build linkpearl
             char EncodedString[LinkshellStringLength];
 
-            memset(&EncodedString, 0, sizeof(EncodedString));
+            std::memset(&EncodedString, 0, sizeof(EncodedString));
             EncodeStringLinkshell(lsname, EncodedString);
             ((CItem*)PItemLinkPearl)->setSignature(EncodedString);
             PItemLinkPearl->SetLSID(_sql->GetUIntData(0));

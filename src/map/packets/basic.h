@@ -30,7 +30,7 @@ along with this program.  If not, see http://www.gnu.org/licenses/
 #include <string.h>
 
 // Max packet size
-#define PACKET_SIZE 0x1FF
+constexpr size_t PACKET_SIZE = 0x1FF;
 
 enum ENTITYUPDATE
 {
@@ -50,83 +50,39 @@ enum ENTITYUPDATE
 class CBasicPacket
 {
 protected:
-    uint8* data;
-
-    // Mark these members as private, so that they can't be set without using their
-    // specialised setters.
-private:
-    uint8& type;
-    uint8& size;
-
-protected:
-    uint16& code;
-    bool    owner;
+    std::array<uint8, PACKET_SIZE> buffer_;
 
 public:
     CBasicPacket()
-    : data(new uint8[PACKET_SIZE])
-    , type(ref<uint8>(0))
-    , size(ref<uint8>(1))
-    , code(ref<uint16>(2))
-    , owner(true)
     {
         TracyZoneScoped;
-        std::fill(data, data + PACKET_SIZE, 0);
+        std::fill(buffer_.data(), buffer_.data() + PACKET_SIZE, 0);
     }
 
-    CBasicPacket(uint8* _data)
-    : data(_data)
-    , type(ref<uint8>(0))
-    , size(ref<uint8>(1))
-    , code(ref<uint16>(2))
-    , owner(false)
+    explicit CBasicPacket(const CBasicPacket& other)
     {
         TracyZoneScoped;
+        std::memcpy(buffer_.data(), other.buffer_.data(), PACKET_SIZE);
     }
 
-    CBasicPacket(const CBasicPacket& other)
-    : data(new uint8[PACKET_SIZE])
-    , type(ref<uint8>(0))
-    , size(ref<uint8>(1))
-    , code(ref<uint16>(2))
-    , owner(true)
+    explicit CBasicPacket(const std::unique_ptr<CBasicPacket>& other)
     {
         TracyZoneScoped;
-        std::memcpy(data, other.data, PACKET_SIZE);
+        std::memcpy(buffer_.data(), other->buffer_.data(), PACKET_SIZE);
     }
 
-    CBasicPacket(const std::unique_ptr<CBasicPacket>& other)
-    : data(new uint8[PACKET_SIZE])
-    , type(ref<uint8>(0))
-    , size(ref<uint8>(1))
-    , code(ref<uint16>(2))
-    , owner(true)
+    static auto createFromBuffer(const uint8* buffer) -> std::unique_ptr<CBasicPacket>
     {
-        TracyZoneScoped;
-        std::memcpy(data, other->data, PACKET_SIZE);
+        auto packet = std::make_unique<CBasicPacket>();
+        std::memcpy(packet->buffer_.data(), buffer, PACKET_SIZE);
+        return packet;
     }
 
-    CBasicPacket(CBasicPacket&& other)
-    : data(other.data)
-    , type(ref<uint8>(0))
-    , size(ref<uint8>(1))
-    , code(ref<uint16>(2))
-    , owner(other.owner)
-    {
-        other.data = nullptr;
-    }
+    virtual ~CBasicPacket() = default;
 
-    virtual ~CBasicPacket()
-    {
-        TracyZoneScoped;
-        if (owner && data)
-        {
-            destroy_arr(data);
-        }
-    }
-
-    CBasicPacket& operator=(const CBasicPacket& other) = delete;
-    CBasicPacket& operator=(CBasicPacket&& other)      = delete;
+    // Copy and move operators
+    CBasicPacket& operator=(const CBasicPacket& other)     = delete;
+    CBasicPacket& operator=(CBasicPacket&& other) noexcept = delete;
 
     /// <summary>
     /// Copies the given packet data.
@@ -134,10 +90,8 @@ public:
     /// <param name="other"></param>
     void copy(CBasicPacket* other)
     {
-        memcpy(data, other->data, PACKET_SIZE);
+        std::memcpy(buffer_.data(), other->buffer_.data(), PACKET_SIZE);
     }
-
-    /* Getters for the header */
 
     uint16 getType()
     {
@@ -180,17 +134,17 @@ public:
     template <typename T>
     T& ref(std::size_t index)
     {
-        return ::ref<T>(data, index);
+        return ::ref<T>(buffer_.data(), index);
     }
 
     operator uint8*()
     {
-        return data;
+        return buffer_.data();
     }
 
-    int8* operator[](const int index)
+    uint8* operator[](const int index)
     {
-        return reinterpret_cast<int8*>(data) + index;
+        return reinterpret_cast<uint8*>(buffer_.data()) + index;
     }
 
     // used for setting "proper" packet sizes rounded to the nearest four away from zero
@@ -206,4 +160,4 @@ public:
     }
 };
 
-#endif
+#endif // _BASICPACKET_H
