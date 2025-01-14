@@ -329,7 +329,7 @@ void CLinkshell::PushPacket(uint32 senderID, CBasicPacket* packet)
     {
         if (member->id != senderID && member->status != STATUS_TYPE::DISAPPEAR && !jailutils::InPrison(member))
         {
-            CBasicPacket* newPacket = new CBasicPacket(*packet);
+            auto newPacket = std::make_unique<CBasicPacket>(*packet);
             if (member->PLinkshell2 == this)
             {
                 if (newPacket->getType() == CChatMessagePacket::id)
@@ -341,7 +341,7 @@ void CLinkshell::PushPacket(uint32 senderID, CBasicPacket* packet)
                     newPacket->ref<uint8>(0x05) |= 0x40;
                 }
             }
-            member->pushPacket(newPacket);
+            member->pushPacket(std::move(newPacket));
         }
     }
     destroy(packet);

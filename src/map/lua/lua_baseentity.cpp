@@ -787,7 +787,7 @@ void CLuaBaseEntity::injectPacket(std::string const& filename)
 
     if (File)
     {
-        CBasicPacket* PPacket = new CBasicPacket();
+        auto PPacket = std::make_unique<CBasicPacket>();
 
         fseek(File, 1, SEEK_SET);
         if (fread(&size, 1, 1, File) != 1)
@@ -805,7 +805,7 @@ void CLuaBaseEntity::injectPacket(std::string const& filename)
             return;
         }
 
-        ((CCharEntity*)m_PBaseEntity)->pushPacket(PPacket);
+        ((CCharEntity*)m_PBaseEntity)->pushPacket(std::move(PPacket));
 
         fclose(File);
     }
@@ -2838,14 +2838,14 @@ void CLuaBaseEntity::sendEmptyEntityUpdateToPlayer(CLuaBaseEntity* entityToUpdat
 {
     if (m_PBaseEntity->objtype == TYPE_PC && entityToUpdate->GetBaseEntity())
     {
-        auto* packet = new CBasicPacket();
+        auto packet = std::make_unique<CBasicPacket>();
         packet->setType(0x0E);
         packet->setSize(0x50);
         packet->ref<uint32>(0x04) = entityToUpdate->GetBaseEntity()->id;
         packet->ref<uint16>(0x08) = entityToUpdate->GetBaseEntity()->targid;
         packet->ref<uint8>(0x0A)  = 0x20; // Matches retail observation
         packet->ref<uint8>(0x30)  = 0x01; // MODEL_TYPE::MODEL_EQUIPPED
-        static_cast<CCharEntity*>(m_PBaseEntity)->pushPacket(packet);
+        static_cast<CCharEntity*>(m_PBaseEntity)->pushPacket(std::move(packet));
     }
 }
 
@@ -11711,14 +11711,14 @@ void CLuaBaseEntity::countdown(sol::object const& secondsObj)
     }
 
     CCharEntity* PChar  = (CCharEntity*)m_PBaseEntity;
-    auto*        packet = new CObjectiveUtilityPacket();
+    auto         packet = std::make_unique<CObjectiveUtilityPacket>();
 
     if (secondsObj.is<uint32>())
     {
         packet->addCountdown(secondsObj.as<uint32>());
     }
 
-    PChar->pushPacket(packet);
+    PChar->pushPacket(std::move(packet));
 }
 
 /************************************************************************
@@ -11771,7 +11771,7 @@ void CLuaBaseEntity::objectiveUtility(sol::object const& obj)
     }
 
     CCharEntity* PChar  = (CCharEntity*)m_PBaseEntity;
-    auto*        packet = new CObjectiveUtilityPacket();
+    auto         packet = std::make_unique<CObjectiveUtilityPacket>();
 
     if (obj.is<sol::table>())
     {
@@ -11857,7 +11857,7 @@ void CLuaBaseEntity::objectiveUtility(sol::object const& obj)
         }
     }
 
-    PChar->pushPacket(packet);
+    PChar->pushPacket(std::move(packet));
 }
 
 /************************************************************************

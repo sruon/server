@@ -401,12 +401,11 @@ void CCharEntity::clearPacketList()
 {
     while (!PacketList.empty())
     {
-        auto* packet = popPacket();
-        destroy(packet);
+        std::ignore = popPacket();
     }
 }
 
-void CCharEntity::pushPacket(CBasicPacket* packet)
+void CCharEntity::pushPacket(std::unique_ptr<CBasicPacket>&& packet)
 {
     TracyZoneScoped;
     TracyZoneString(getName());
@@ -418,25 +417,18 @@ void CCharEntity::pushPacket(CBasicPacket* packet)
     {
         if (PendingPositionPacket)
         {
-            PendingPositionPacket->copy(packet);
-            destroy(packet);
+            // PendingPositionPacket->copy(packet);
         }
         else
         {
-            PendingPositionPacket = packet;
-            PacketList.emplace_back(packet);
+            // PendingPositionPacket = packet;
+            // PacketList.emplace_back(packet);
         }
     }
     else
     {
-        PacketList.emplace_back(packet);
+        PacketList.emplace_back(std::move(packet));
     }
-}
-
-void CCharEntity::pushPacket(std::unique_ptr<CBasicPacket> packet)
-{
-    // TODO: We should be maintaining unique_ptr instead of releasing here
-    pushPacket(packet.release());
 }
 
 void CCharEntity::updateCharPacket(CCharEntity* PChar, ENTITYUPDATE type, uint8 updatemask)
@@ -473,9 +465,10 @@ void CCharEntity::updateEntityPacket(CBaseEntity* PEntity, ENTITYUPDATE type, ui
     }
 }
 
-CBasicPacket* CCharEntity::popPacket()
+auto CCharEntity::popPacket() -> std::unique_ptr<CBasicPacket>
 {
-    CBasicPacket* PPacket = PacketList.front();
+    auto PPacket = std::move(PacketList.front());
+    PacketList.pop_front();
 
     // Clean up pending maps
     switch (PPacket->getType())
@@ -493,13 +486,17 @@ CBasicPacket* CCharEntity::popPacket()
             break;
     }
 
-    PacketList.pop_front();
     return PPacket;
 }
 
-PacketList_t CCharEntity::getPacketList()
+auto CCharEntity::getPacketListCopy() -> std::deque<std::unique_ptr<CBasicPacket>>
 {
-    return PacketList;
+    std::deque<std::unique_ptr<CBasicPacket>> PacketListCopy;
+    for (const auto& packet : PacketList)
+    {
+        PacketListCopy.emplace_back(std::make_unique<CBasicPacket>(packet));
+    }
+    return PacketListCopy;
 }
 
 size_t CCharEntity::getPacketCount()
@@ -511,8 +508,7 @@ void CCharEntity::erasePackets(uint8 num)
 {
     for (auto i = 0; i < num; i++)
     {
-        auto* packet = popPacket();
-        destroy(packet);
+        std::ignore = popPacket();
     }
 }
 
@@ -983,7 +979,7 @@ void CCharEntity::PostTick()
         dirtyInventoryContainers.clear();
 
         // Notify client containers are now ok
-        pushPacket(new CInventoryFinishPacket());
+        pushPacket<CInventoryFinishPacket>();
     }
 
     if (ReloadParty())
@@ -1371,11 +1367,11 @@ void CCharEntity::OnCastInterrupted(CMagicState& state, action_t& action, MSGBAS
     TracyZoneScoped;
     CBattleEntity::OnCastInterrupted(state, action, msg, blockedCast);
 
-    auto* message = state.GetErrorMsg();
+    auto message = state.GetErrorMsg();
 
     if (message && action.actiontype != ACTION_MAGIC_INTERRUPT) // Interrupt is handled elsewhere
     {
-        pushPacket(message);
+        pushPacket(std::move(message));
     }
 }
 
@@ -2315,7 +2311,7 @@ void CCharEntity::HandleErrorMessage(std::unique_ptr<CBasicPacket>& msg)
     TracyZoneScoped;
     if (msg && !isCharmed)
     {
-        pushPacket(msg.release());
+        pushPacket(std::move(msg));
     }
 }
 
@@ -2756,7 +2752,7 @@ void CCharEntity::UpdateMoghancement()
     // Always show which moghancement the player has if they have one at all
     if (newMoghancementID != 0)
     {
-        pushPacket(new CMessageSpecialPacket(this, luautils::GetTextIDVariable(getZone(), "KEYITEM_OBTAINED"), newMoghancementID, 0, 0, 0, false));
+        pushPacket<CMessageSpecialPacket>(this, luautils::GetTextIDVariable(getZone(), "KEYITEM_OBTAINED"), newMoghancementID, 0, 0, 0, false);
     }
 
     if (newMoghancementID != m_moghancementID)
@@ -2778,17 +2774,17 @@ void CCharEntity::UpdateMoghancement()
         uint8 currentTable = m_moghancementID >> 9;
         if (newTable == currentTable)
         {
-            pushPacket(new CKeyItemsPacket(this, (KEYS_TABLE)newTable));
+            pushPacket<CKeyItemsPacket>(this, (KEYS_TABLE)newTable);
         }
         else
         {
             if (newTable != 0)
             {
-                pushPacket(new CKeyItemsPacket(this, (KEYS_TABLE)newTable));
+                pushPacket<CKeyItemsPacket>(this, (KEYS_TABLE)newTable);
             }
             if (currentTable != 0)
             {
-                pushPacket(new CKeyItemsPacket(this, (KEYS_TABLE)currentTable));
+                pushPacket<CKeyItemsPacket>(this, (KEYS_TABLE)currentTable);
             }
         }
         charutils::SaveKeyItems(this);

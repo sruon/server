@@ -95,6 +95,17 @@ public:
         std::memcpy(data, other.data, PACKET_SIZE);
     }
 
+    CBasicPacket(const std::unique_ptr<CBasicPacket>& other)
+    : data(new uint8[PACKET_SIZE])
+    , type(ref<uint8>(0))
+    , size(ref<uint8>(1))
+    , code(ref<uint16>(2))
+    , owner(true)
+    {
+        TracyZoneScoped;
+        std::memcpy(data, other->data, PACKET_SIZE);
+    }
+
     CBasicPacket(CBasicPacket&& other)
     : data(other.data)
     , type(ref<uint8>(0))

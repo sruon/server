@@ -53,7 +53,7 @@ class AHAnnouncementModule : public CPPModule
 
         auto originalHandler = PacketParser[0x04E];
 
-        auto newHandler = [this, originalHandler](map_session_data_t* const PSession, CCharEntity* const PChar, CBasicPacket& data) -> void
+        auto newHandler = [originalHandler](map_session_data_t* const PSession, CCharEntity* const PChar, CBasicPacket& data) -> void
         {
             TracyZoneScoped;
 
@@ -72,7 +72,7 @@ class AHAnnouncementModule : public CPPModule
 
                 if (PChar->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() == 0)
                 {
-                    PChar->pushPacket(new CAuctionHousePacket(action, 0xE5, 0, 0, 0, 0));
+                    PChar->pushPacket<CAuctionHousePacket>(action, 0xE5, 0, 0, 0, 0);
                 }
                 else
                 {
@@ -85,7 +85,7 @@ class AHAnnouncementModule : public CPPModule
                             {
                                 if (PChar->getStorage(LocID)->SearchItem(itemid) != ERROR_SLOTID)
                                 {
-                                    PChar->pushPacket(new CAuctionHousePacket(action, 0xE5, 0, 0, 0, 0));
+                                    PChar->pushPacket<CAuctionHousePacket>(action, 0xE5, 0, 0, 0, 0);
                                     return;
                                 }
                             }

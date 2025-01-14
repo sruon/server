@@ -542,8 +542,10 @@ int32 do_sockets(fd_set* rfd, duration next)
 {
     message::handle_incoming();
 
-    struct timeval timeout{};
-    int32          ret = 0;
+    struct timeval timeout
+    {
+    };
+    int32 ret = 0;
     memcpy(rfd, &readfds, sizeof(*rfd));
 
     timeout.tv_sec  = std::chrono::duration_cast<std::chrono::seconds>(next).count();
@@ -564,8 +566,10 @@ int32 do_sockets(fd_set* rfd, duration next)
 
     if (sFD_ISSET(map_fd, rfd))
     {
-        struct sockaddr_in from{};
-        socklen_t          fromlen = sizeof(from);
+        struct sockaddr_in from
+        {
+        };
+        socklen_t fromlen = sizeof(from);
 
         ret = recvudp(map_fd, g_PBuff, MAX_BUFFER_SIZE, 0, (struct sockaddr*)&from, &fromlen);
         if (ret != -1)
@@ -1020,7 +1024,7 @@ int32 send_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
     CCharEntity* PChar = map_session_data->PChar;
     TracyZoneString(PChar->name);
 
-    CBasicPacket* PSmallPacket = nullptr;
+    std::unique_ptr<CBasicPacket> PSmallPacket = nullptr;
 
     uint32 PacketSize               = UINT32_MAX;
     size_t PacketCount              = std::clamp<size_t>(PChar->getPacketCount(), 0, MAX_PACKETS_PER_COMPRESSION);
@@ -1037,13 +1041,13 @@ int32 send_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
     {
         do
         {
-            *buffsize               = FFXI_HEADER_SIZE;
-            PacketList_t packetList = PChar->getPacketList();
-            packets                 = 0;
+            *buffsize       = FFXI_HEADER_SIZE;
+            auto packetList = PChar->getPacketListCopy();
+            packets         = 0;
 
             while (!packetList.empty() && *buffsize + packetList.front()->getSize() < MAX_BUFFER_SIZE && static_cast<size_t>(packets) < PacketCount)
             {
-                PSmallPacket = packetList.front();
+                PSmallPacket = std::move(packetList.front());
                 packetList.pop_front();
 
                 PSmallPacket->setSequence(map_session_data->server_packet_id);
@@ -1068,8 +1072,7 @@ int32 send_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
                 // Store zoneout packet in case we need to re-send this
                 if (type == 0x00B && map_session_data->blowfish.status == BLOWFISH_PENDING_ZONE && map_session_data->zone_ipp == 0)
                 {
-                    auto IPPacket = dynamic_cast<CServerIPPacket*>(PSmallPacket);
-                    if (IPPacket)
+                    if (auto IPPacket = dynamic_cast<CServerIPPacket*>(PSmallPacket.get()))
                     {
                         map_session_data->zone_ipp  = IPPacket->ipp;
                         map_session_data->zone_type = IPPacket->type;
@@ -1178,7 +1181,7 @@ int32 send_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
 
     *buffsize = PacketSize + FFXI_HEADER_SIZE;
 
-    auto remainingPackets = PChar->getPacketList().size();
+    auto remainingPackets = PChar->getPacketListCopy().size();
     TotalPacketsDelayedPerTick += static_cast<uint32>(remainingPackets);
 
     if (settings::get<bool>("logging.DEBUG_PACKET_BACKLOG"))

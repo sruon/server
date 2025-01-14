@@ -245,10 +245,9 @@ namespace message
                             // don't push to sender
                             if (PChar->id != ref<uint32>((uint8*)extra.data(), 0))
                             {
-                                CBasicPacket* newPacket = new CBasicPacket();
-                                memcpy(*newPacket, packet.data(), std::min<size_t>(packet.size(), PACKET_SIZE));
-
-                                PChar->pushPacket(newPacket);
+                                auto newPacket = std::make_unique<CBasicPacket>();
+                                std::memcpy(*newPacket, packet.data(), std::min<size_t>(packet.size(), PACKET_SIZE));
+                                PChar->pushPacket(std::move(newPacket));
                             }
                         });
                     }
@@ -263,9 +262,9 @@ namespace message
                 {
                     PZone->ForEachChar([&packet](CCharEntity* PChar)
                     {
-                        CBasicPacket* newPacket = new CBasicPacket();
-                        memcpy(*newPacket, packet.data(), std::min<size_t>(packet.size(), PACKET_SIZE));
-                        PChar->pushPacket(newPacket);
+                        auto newPacket = std::make_unique<CBasicPacket>();
+                        std::memcpy(*newPacket, packet.data(), std::min<size_t>(packet.size(), PACKET_SIZE));
+                        PChar->pushPacket(std::move(newPacket));
                     });
                 });
                 // clang-format on
@@ -310,9 +309,10 @@ namespace message
 
                     PInvitee->InvitePending.id     = ref<uint32>((uint8*)extra.data(), 6);
                     PInvitee->InvitePending.targid = ref<uint16>((uint8*)extra.data(), 10);
-                    CBasicPacket* newPacket        = new CBasicPacket();
-                    memcpy(*newPacket, packet.data(), std::min<size_t>(packet.size(), PACKET_SIZE));
-                    PInvitee->pushPacket(newPacket);
+
+                    auto newPacket = std::make_unique<CBasicPacket>();
+                    std::memcpy(*newPacket, packet.data(), std::min<size_t>(packet.size(), PACKET_SIZE));
+                    PInvitee->pushPacket(std::move(newPacket));
                 }
                 break;
             }
@@ -508,9 +508,9 @@ namespace message
                 CCharEntity* PChar = zoneutils::GetChar(ref<uint32>((uint8*)extra.data(), 0));
                 if (PChar)
                 {
-                    CBasicPacket* newPacket = new CBasicPacket();
-                    memcpy(*newPacket, packet.data(), std::min<size_t>(packet.size(), PACKET_SIZE));
-                    PChar->pushPacket(newPacket);
+                    auto newPacket = std::make_unique<CBasicPacket>();
+                    std::memcpy(*newPacket, packet.data(), std::min<size_t>(packet.size(), PACKET_SIZE));
+                    PChar->pushPacket(std::move(newPacket));
                 }
                 break;
             }

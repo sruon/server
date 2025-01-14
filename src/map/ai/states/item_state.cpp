@@ -294,7 +294,7 @@ void CItemState::InterruptItem(action_t& action)
         actionTarget.messageID  = 0;
         actionTarget.knockback  = 0;
 
-        m_PEntity->pushPacket(m_errorMsg.release());
+        m_PEntity->pushPacket(std::move(m_errorMsg));
     }
 }
 

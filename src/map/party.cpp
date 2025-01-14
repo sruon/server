@@ -1204,7 +1204,7 @@ void CParty::PushEffectsPacket()
                     }
                 }
             }
-            PMemberChar->pushPacket(effects.release());
+            PMemberChar->pushPacket(std::move(effects));
         }
         m_EffectsChanged = false;
     }
