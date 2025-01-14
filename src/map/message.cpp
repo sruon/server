@@ -1002,13 +1002,7 @@ namespace message
         if (packet)
         {
             // clang-format off
-            msg.packet = zmq::message_t(*packet, packet->getSize(),
-            [](void* data, void* hint)
-            {
-                auto* intdata = (uint8*)data;
-                destroy_arr(intdata);
-            });
-            // clang-format on
+            msg.packet = zmq::message_t(*packet, packet->getSize());
         }
         else
         {
