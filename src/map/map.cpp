@@ -1071,16 +1071,15 @@ int32 send_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
                 // Store zoneout packet in case we need to re-send this
                 if (type == 0x00B && map_session_data->blowfish.status == BLOWFISH_PENDING_ZONE && map_session_data->zone_ipp == 0)
                 {
-                    if (auto IPPacket = dynamic_cast<CServerIPPacket*>(PSmallPacket.get()))
-                    {
-                        map_session_data->zone_ipp  = IPPacket->ipp;
-                        map_session_data->zone_type = IPPacket->type;
-                    }
+                    auto IPPacket = static_cast<CServerIPPacket*>(PSmallPacket.get());
+
+                    map_session_data->zone_ipp  = IPPacket->zoneIPP();
+                    map_session_data->zone_type = IPPacket->zoneType();
 
                     incrementKeyAfterEncrypt = true;
 
                     // Set client port to zero, indicating the client tried to zone out and no longer has a port until the next 0x00A
-                    _sql->Query("UPDATE accounts_sessions SET client_port = 0, last_zoneout_time = NOW() WHERE charid = %u", map_session_data->charID);
+                    db::preparedStmt("UPDATE accounts_sessions SET client_port = 0, last_zoneout_time = NOW() WHERE charid = ?", map_session_data->charID);
                 }
 
                 std::memcpy(buff + *buffsize, *PSmallPacket, PSmallPacket->getSize());
