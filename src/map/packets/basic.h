@@ -137,8 +137,8 @@ public:
     template <typename T>
     auto as() -> std::remove_pointer_t<T>*
     {
-        using Type = std::remove_pointer_t<T>;
-        return reinterpret_cast<Type*>(buffer_.data());
+        static_assert(std::is_standard_layout_v<T>, "Type must be standard layout (No virtual functions, inheritance, etc.)");
+        return reinterpret_cast<std::remove_pointer_t<T>*>(buffer_.data());
     }
 
     operator uint8*()
