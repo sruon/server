@@ -1702,11 +1702,13 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
                 {
                     StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
                 }
+                StatusEffectContainer->DelStatusEffect(EFFECT_ILLUSION);
             }
             else if (PAbility->getID() != ABILITY_TRICK_ATTACK)
             {
                 // remove invisible only
                 StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_INVISIBLE);
+                StatusEffectContainer->DelStatusEffect(EFFECT_ILLUSION);
             }
         }
 
@@ -2282,6 +2284,7 @@ void CCharEntity::OnRangedAttack(CRangeState& state, action_t& action)
             StatusEffectContainer->DelStatusEffect(EFFECT_SNEAK);
             StatusEffectContainer->DelStatusEffect(EFFECT_INVISIBLE);
             StatusEffectContainer->DelStatusEffect(EFFECT_DEODORIZE);
+            StatusEffectContainer->DelStatusEffect(EFFECT_ILLUSION);
         }
     }
     else
