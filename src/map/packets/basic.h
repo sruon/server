@@ -139,6 +139,14 @@ public:
         return reinterpret_cast<std::remove_pointer_t<T>*>(buffer_.data());
     }
 
+    // Reinterpret the underlying buffer as a different type and apply a function to it
+    template <typename T>
+    void as(const auto& fn)
+    {
+        static_assert(std::is_standard_layout_v<T>, "Type must be standard layout (No virtual functions, inheritance, etc.)");
+        fn(reinterpret_cast<std::remove_pointer_t<T>*>(buffer_.data()));
+    }
+
     operator uint8*()
     {
         return buffer_.data();
