@@ -15878,7 +15878,7 @@ auto CLuaBaseEntity::getAllRuneEffects() -> sol::table
     }
 
     std::vector<EFFECT> runeEffectList = PEntity->StatusEffectContainer->GetAllRuneEffects();
-    auto table                         = lua.create_table();
+    auto                table          = lua.create_table();
     for (const auto& runeEffect : runeEffectList)
     {
         table.add(runeEffect);
