@@ -777,7 +777,7 @@ namespace synthutils
             currentZone != ZONE_49 &&
             currentZone < MAX_ZONEID)
         {
-            PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CSynthResultMessagePacket(PChar, SYNTH_FAIL));
+            PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, std::make_unique<CSynthResultMessagePacket>(PChar, SYNTH_FAIL));
         }
 
         PChar->pushPacket<CSynthMessagePacket>(PChar, SYNTH_FAIL, 29695);
@@ -910,7 +910,7 @@ namespace synthutils
 
         if (PChar->loc.zone->GetID() != 255 && PChar->loc.zone->GetID() != 0)
         {
-            PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, new CSynthAnimationPacket(PChar, effect, result));
+            PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, std::make_unique<CSynthAnimationPacket>(PChar, effect, result));
         }
         else
         {
@@ -1009,7 +1009,7 @@ namespace synthutils
                 {
                     char encodedSignature[SignatureStringLength];
 
-                    memset(&encodedSignature, 0, sizeof(encodedSignature));
+                    std::memset(&encodedSignature, 0, sizeof(encodedSignature));
                     PItem->setSignature(EncodeStringSignature(PChar->name.c_str(), encodedSignature));
 
                     char signature_esc[31]; // max charname: 15 chars * 2 + 1
@@ -1025,7 +1025,7 @@ namespace synthutils
             PChar->pushPacket<CInventoryFinishPacket>();
             if (PChar->loc.zone->GetID() != 255 && PChar->loc.zone->GetID() != 0)
             {
-                PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, new CSynthResultMessagePacket(PChar, SYNTH_SUCCESS, itemID, quantity));
+                PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, std::make_unique<CSynthResultMessagePacket>(PChar, SYNTH_SUCCESS, itemID, quantity));
                 PChar->pushPacket<CSynthMessagePacket>(PChar, SYNTH_SUCCESS, itemID, quantity);
             }
             else
