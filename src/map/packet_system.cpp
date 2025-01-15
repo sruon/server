@@ -196,7 +196,8 @@ void PrintPacket(CBasicPacket& packet)
 
     for (std::size_t idx = 0U; idx < packet.getSize(); idx++)
     {
-        message.append(fmt::format("{:02x} ", (char*)packet[idx]));
+        uint8 byte = *packet[idx];
+        message.append(fmt::format("{:02x} ", byte));
 
         if (((idx + 1U) % 16U) == 0U)
         {
