@@ -173,6 +173,15 @@ local function magicAccuracyFromMerits(actor, skillType, actionElement)
             magicAcc = magicAcc + actor:getMerit(xi.merit.MAGIC_ACCURACY)
         end,
 
+        [xi.job.BRD] = function()
+            if
+                skillType == xi.skill.SINGING and
+                actor:hasStatusEffect(xi.effect.TROUBADOUR)
+            then
+                magicAcc = 64 * (actor:getMerit(xi.merit.TROUBADOUR) / 25 - 1)
+            end
+        end,
+
         [xi.job.NIN] = function()
             if skillType == xi.skill.NINJUTSU then
                 magicAcc = actor:getMerit(xi.merit.NIN_MAGIC_ACCURACY)
@@ -215,6 +224,12 @@ local function magicAccuracyFromJobPoints(actor, spellGroup, skillType)
 
             -- RDM Job Point: Magic Accuracy Bonus, All MACC + 1
             magicAcc = magicAcc + actor:getJobPointLevel(xi.jp.RDM_MAGIC_ACC_BONUS)
+        end,
+
+        [xi.job.BRD] = function()
+            if skillType == xi.skill.SINGING then
+                magicAcc = actor:getJobPointLevel(xi.jp.SONG_ACC_BONUS)
+            end
         end,
 
         [xi.job.NIN] = function()
