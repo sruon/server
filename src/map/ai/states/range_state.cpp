@@ -38,18 +38,18 @@ CRangeState::CRangeState(CBattleEntity* PEntity, uint16 targid)
 
     if (!PTarget || m_errorMsg)
     {
-        throw CStateInitException(std::move(m_errorMsg));
+        throw CStateInitException(m_errorMsg->copy());
     }
 
     if (!CanUseRangedAttack(PTarget, false))
     {
-        throw CStateInitException(std::move(m_errorMsg));
+        throw CStateInitException(m_errorMsg->copy());
     }
 
     if (distance(m_PEntity->loc.p, PTarget->loc.p) > 25)
     {
         m_errorMsg = std::make_unique<CMessageBasicPacket>(m_PEntity, PTarget, 0, 0, MSGBASIC_TOO_FAR_AWAY);
-        throw CStateInitException(std::move(m_errorMsg));
+        throw CStateInitException(m_errorMsg->copy());
     }
 
     auto delay = m_PEntity->GetRangedWeaponDelay(false);
@@ -124,7 +124,7 @@ bool CRangeState::Update(time_point tick)
 
             if (auto* PChar = dynamic_cast<CCharEntity*>(m_PEntity))
             {
-                PChar->pushPacket(std::move(m_errorMsg));
+                PChar->pushPacket(m_errorMsg->copy());
             }
             // reset aim time so interrupted players only have to wait the correct 2.7s until next shot
             m_aimTime = std::chrono::seconds(0);

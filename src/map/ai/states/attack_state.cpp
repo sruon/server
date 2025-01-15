@@ -38,7 +38,7 @@ CAttackState::CAttackState(CBattleEntity* PEntity, uint16 targid)
     if (!GetTarget() || m_errorMsg)
     {
         PEntity->SetBattleTargetID(0);
-        throw CStateInitException(std::move(m_errorMsg));
+        throw CStateInitException(m_errorMsg->copy());
     }
     if (PEntity->PAI->PathFind)
     {

@@ -47,7 +47,7 @@ CAbilityState::CAbilityState(CBattleEntity* PEntity, uint16 targid, uint16 abili
 
     if (!PTarget || m_errorMsg)
     {
-        throw CStateInitException(std::move(m_errorMsg));
+        throw CStateInitException(m_errorMsg->copy());
     }
     SetTarget(PTarget->targid);
     m_PAbility = std::make_unique<CAbility>(*PAbility);

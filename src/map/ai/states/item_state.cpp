@@ -82,7 +82,7 @@ CItemState::CItemState(CCharEntity* PEntity, uint16 targid, uint8 loc, uint8 slo
 
     if (!PTarget || m_errorMsg)
     {
-        throw CStateInitException(std::move(m_errorMsg));
+        throw CStateInitException(m_errorMsg->copy());
     }
 
     auto [error, param, value] = luautils::OnItemCheck(PTarget, m_PItem, ITEMCHECK::NONE, m_PEntity);
@@ -294,7 +294,7 @@ void CItemState::InterruptItem(action_t& action)
         actionTarget.messageID  = 0;
         actionTarget.knockback  = 0;
 
-        m_PEntity->pushPacket(std::move(m_errorMsg));
+        m_PEntity->pushPacket(m_errorMsg->copy());
     }
 }
 

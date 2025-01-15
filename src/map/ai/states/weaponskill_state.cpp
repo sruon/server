@@ -44,7 +44,7 @@ CWeaponSkillState::CWeaponSkillState(CBattleEntity* PEntity, uint16 targid, uint
 
     if (!PTarget || m_errorMsg)
     {
-        throw CStateInitException(std::move(m_errorMsg));
+        throw CStateInitException(m_errorMsg->copy());
     }
 
     if (!m_PEntity->CanSeeTarget(PTarget, false))

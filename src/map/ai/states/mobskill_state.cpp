@@ -49,7 +49,7 @@ CMobSkillState::CMobSkillState(CBattleEntity* PEntity, uint16 targid, uint16 wsi
 
     if (!PTarget || m_errorMsg)
     {
-        throw CStateInitException(std::move(m_errorMsg));
+        throw CStateInitException(m_errorMsg->copy());
     }
 
     m_PSkill = std::make_unique<CMobSkill>(*skill);

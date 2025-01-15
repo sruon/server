@@ -81,7 +81,7 @@ bool CState::HasErrorMsg() const
 
 auto CState::GetErrorMsg() -> std::unique_ptr<CBasicPacket>
 {
-    return std::move(m_errorMsg);
+    return m_errorMsg->copy();
 }
 
 bool CState::DoUpdate(time_point tick)

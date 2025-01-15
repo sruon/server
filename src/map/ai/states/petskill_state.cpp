@@ -48,7 +48,7 @@ CPetSkillState::CPetSkillState(CPetEntity* PEntity, uint16 targid, uint16 wsid)
 
     if (!PTarget || m_errorMsg)
     {
-        throw CStateInitException(std::move(m_errorMsg));
+        throw CStateInitException(m_errorMsg->copy());
     }
 
     m_PSkill = std::make_unique<CPetSkill>(*skill);
