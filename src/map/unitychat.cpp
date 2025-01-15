@@ -62,7 +62,7 @@ void CUnityChat::PushPacket(uint32 senderID, const std::unique_ptr<CBasicPacket>
     {
         if (member->id != senderID && member->status != STATUS_TYPE::DISAPPEAR && !jailutils::InPrison(member))
         {
-            member->pushPacket<CBasicPacket>(*packet);
+            member->pushPacket(packet->copy());
         }
     }
 }

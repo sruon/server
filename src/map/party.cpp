@@ -1177,7 +1177,7 @@ void CParty::PushPacket(uint32 senderID, uint16 ZoneID, const std::unique_ptr<CB
         {
             if (ZoneID == 0 || member->getZone() == ZoneID)
             {
-                member->pushPacket<CBasicPacket>(*packet);
+                member->pushPacket(packet->copy());
             }
         }
     }

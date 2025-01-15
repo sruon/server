@@ -1,20 +1,20 @@
 ﻿/*
 ===========================================================================
 
-Copyright © 2010-2015 Darkstar Dev Teams
+  Copyright (c) 2010-2015 Darkstar Dev Teams
 
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
 
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see http://www.gnu.org/licenses/
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see http://www.gnu.org/licenses/
 
 ===========================================================================
 */
@@ -41,12 +41,12 @@ enum ENTITYUPDATE
     ENTITY_DESPAWN,
 };
 
-/** Base class for all packets
- *
- * Contains a 0x104 byte sized buffer
- * Access the raw data with ref<T>(index)
- *
- */
+//
+// Base class for all packets
+//
+// Contains a 0x1FF byte sized buffer
+// Access the raw data with ref<T>(index)
+//
 class CBasicPacket
 {
 protected:
@@ -104,8 +104,6 @@ public:
         return ref<uint16>(2);
     }
 
-    /* Setters for the header */
-
     // Set the first 9 bits to the ID. The highest bit overflows into the second byte.
     void setType(unsigned int new_id)
     {
@@ -151,7 +149,7 @@ public:
         return reinterpret_cast<uint8*>(buffer_.data()) + index;
     }
 
-    // used for setting "proper" packet sizes rounded to the nearest four away from zero
+    // Used for setting "proper" packet sizes rounded to the nearest four away from zero
     uint32 roundUpToNearestFour(uint32 input)
     {
         int remainder = input % 4;

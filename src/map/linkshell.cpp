@@ -329,7 +329,7 @@ void CLinkshell::PushPacket(uint32 senderID, const std::unique_ptr<CBasicPacket>
     {
         if (member->id != senderID && member->status != STATUS_TYPE::DISAPPEAR && !jailutils::InPrison(member))
         {
-            auto newPacket = std::make_unique<CBasicPacket>(*packet);
+            auto newPacket = packet->copy();
             if (member->PLinkshell2 == this)
             {
                 if (newPacket->getType() == CChatMessagePacket::id)

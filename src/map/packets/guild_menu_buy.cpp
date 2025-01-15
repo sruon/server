@@ -61,7 +61,7 @@ CGuildMenuBuyPacket::CGuildMenuBuyPacket(CCharEntity* PChar, CItemContainer* PGu
                 ref<uint8>(0xF4) = ItemCount;
                 ref<uint8>(0xF5) = (PacketCount == 0 ? 0x40 : PacketCount);
 
-                PChar->pushPacket<CBasicPacket>(*this);
+                PChar->pushPacket(this->copy());
 
                 ItemCount = 0;
                 PacketCount++;

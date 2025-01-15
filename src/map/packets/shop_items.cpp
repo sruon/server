@@ -39,7 +39,7 @@ CShopItemsPacket::CShopItemsPacket(CCharEntity* PChar)
     {
         if (i == 20)
         {
-            PChar->pushPacket<CBasicPacket>(*this);
+            PChar->pushPacket(this->copy());
 
             i = 0;
             this->setSize(0x08);

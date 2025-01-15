@@ -423,11 +423,11 @@ void CCharEntity::pushPacket(std::unique_ptr<CBasicPacket>&& packet)
     {
         if (PendingPositionPacket)
         {
-            PendingPositionPacket = std::make_unique<CBasicPacket>(*packet);
+            PendingPositionPacket = packet->copy();
         }
         else
         {
-            PendingPositionPacket = std::make_unique<CBasicPacket>(*packet);
+            PendingPositionPacket = packet->copy();
             PacketList.emplace_back(std::move(packet));
         }
     }
