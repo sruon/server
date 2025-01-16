@@ -1,7 +1,6 @@
 -----------------------------------
 -- Area: Port San d'Oria
 --  NPC: Regine
--- Standard Merchant NPC
 -- !pos 68 -9 -74 232
 -----------------------------------
 ---@type TNpcEntity
