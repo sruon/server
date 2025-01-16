@@ -81,7 +81,14 @@ bool CState::HasErrorMsg() const
 
 auto CState::GetErrorMsg() -> std::unique_ptr<CBasicPacket>
 {
-    return m_errorMsg->copy();
+    if (HasErrorMsg())
+    {
+        return m_errorMsg->copy();
+    }
+
+    ShowError("State attempted to get error message when error message was null");
+
+    return std::unique_ptr<CBasicPacket>();
 }
 
 bool CState::DoUpdate(time_point tick)

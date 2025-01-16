@@ -1382,11 +1382,14 @@ void CCharEntity::OnCastInterrupted(CMagicState& state, action_t& action, MSGBAS
     TracyZoneScoped;
     CBattleEntity::OnCastInterrupted(state, action, msg, blockedCast);
 
-    auto message = state.GetErrorMsg();
-
-    if (message && action.actiontype != ACTION_MAGIC_INTERRUPT) // Interrupt is handled elsewhere
+    if (state.HasErrorMsg())
     {
-        pushPacket(std::move(message));
+        auto message = state.GetErrorMsg();
+
+        if (message && action.actiontype != ACTION_MAGIC_INTERRUPT) // Interrupt is handled elsewhere
+        {
+            pushPacket(std::move(message));
+        }
     }
 }
 
