@@ -44,8 +44,8 @@ public:
     void SpawnPETs(CCharEntity* PChar);
     void SpawnNPCs(CCharEntity* PChar);
     void SpawnTRUSTs(CCharEntity* PChar);
-    void SpawnMoogle(CCharEntity* PChar);    // display Moogle in MogHouse in zone
-    void SpawnTransport(CCharEntity* PChar); // display ship/boat in zone
+    void SpawnConditionalNPCs(CCharEntity* PChar); // display Moogle in MogHouse in zone
+    void SpawnTransport(CCharEntity* PChar);       // display ship/boat in zone
     void DespawnPC(CCharEntity* PChar);
     void SavePlayTime();
 

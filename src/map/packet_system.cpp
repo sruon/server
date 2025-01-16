@@ -668,7 +668,7 @@ void SmallPacket0x016(map_session_data_t* const PSession, CCharEntity* const PCh
                 PEntity->loc.p.z == 1.5 &&
                 PEntity->look.face == 0x52)
             {
-                // Using the same logic as in ZoneEntities::SpawnMoogle:
+                // Using the same logic as in ZoneEntities::SpawnConditionalNPCs:
                 // Change the status of the entity, send the packet, change it back to disappear
                 PEntity->status = STATUS_TYPE::NORMAL;
                 PChar->updateEntityPacket(PEntity, ENTITY_SPAWN, UPDATE_ALL_MOB);
@@ -1076,9 +1076,9 @@ void SmallPacket0x01A(map_session_data_t* const PSession, CCharEntity* const PCh
         break;
         case 0x14: // complete character update
         {
-            if (PChar->m_moghouseID != 0)
+            if (PChar->m_moghouseID != 0) // TODO: For now this is only in the moghouse
             {
-                PChar->loc.zone->SpawnMoogle(PChar);
+                PChar->loc.zone->SpawnConditionalNPCs(PChar);
             }
             else
             {
@@ -7150,6 +7150,8 @@ void SmallPacket0x0FA(map_session_data_t* const PSession, CCharEntity* const PCh
             PChar->pushPacket<CInventorySizePacket>(PChar);
 
             luautils::OnFurniturePlaced(PChar, PItem);
+
+            PChar->loc.zone->SpawnConditionalNPCs(PChar);
         }
         PChar->pushPacket<CInventoryItemPacket>(PItem, containerID, slotID);
         PChar->pushPacket<CInventoryFinishPacket>();
@@ -7246,6 +7248,8 @@ void SmallPacket0x0FB(map_session_data_t* const PSession, CCharEntity* const PCh
                 PChar->pushPacket<CInventorySizePacket>(PChar);
 
                 luautils::OnFurnitureRemoved(PChar, PItem);
+
+                PChar->loc.zone->SpawnConditionalNPCs(PChar);
             }
             PChar->pushPacket<CInventoryItemPacket>(PItem, containerID, PItem->getSlotID());
             PChar->pushPacket<CInventoryFinishPacket>();
