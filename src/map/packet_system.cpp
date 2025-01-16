@@ -1155,7 +1155,7 @@ void SmallPacket0x01A(map_session_data_t* const PSession, CCharEntity* const PCh
                     return;
                 }
 
-                if (PChar->PNotorietyContainer->hasEnmity())
+                if (PChar->hasEnmityEXPENSIVE())
                 {
                     PChar->pushPacket<CMessageBasicPacket>(PChar, PChar, 0, 0, MSGBASIC_YOUR_MOUNT_REFUSES);
                     return;

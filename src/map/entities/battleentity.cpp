@@ -2691,3 +2691,32 @@ uint16 CBattleEntity::GetBattleTargetID() const
 {
     return m_battleTarget;
 }
+
+bool CBattleEntity::hasEnmityEXPENSIVE() const
+{
+    // TODO: This check seems to always fail for pets?
+    if (PNotorietyContainer->hasEnmity())
+    {
+        return true;
+    }
+
+    bool isTargeted = false;
+
+    // TODO: this is bad but because of how super tanking is implemented there's not much we can do without a larger refactor
+    if (loc.zone)
+    {
+        // clang-format off
+        loc.zone->ForEachMob([&](CMobEntity* PMob)
+        {
+            // Account for charmed mobs attacking normal mobs, etc
+            if (PMob->GetBattleTargetID() == targid && PMob->allegiance != allegiance)
+            {
+                isTargeted = true;
+                return;
+            }
+        });
+        // clang-format on
+    }
+
+    return isTargeted;
+}
