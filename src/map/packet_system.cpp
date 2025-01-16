@@ -833,7 +833,7 @@ void SmallPacket0x01A(map_session_data_t* const PSession, CCharEntity* const PCh
             }
 
             // NOTE: Moogles inside of mog houses are the exception for not requiring Spawned or Status checks.
-            if (PNpc != nullptr && distance(PNpc->loc.p, PChar->loc.p) <= 10 && ((PNpc->PAI->IsSpawned() && PNpc->status == STATUS_TYPE::NORMAL) || PChar->m_moghouseID != 0))
+            if (PNpc != nullptr && distance(PNpc->loc.p, PChar->loc.p) <= 6.0f && ((PNpc->PAI->IsSpawned() && PNpc->status == STATUS_TYPE::NORMAL) || PChar->m_moghouseID != 0))
             {
                 PNpc->PAI->Trigger(PChar);
                 PChar->m_charHistory.npcInteractions++;
@@ -1500,9 +1500,26 @@ void SmallPacket0x032(map_session_data_t* const PSession, CCharEntity* const PCh
             return;
         }
 
+        if (distance(PChar->loc.p, PTarget->loc.p) > 6.0f) // Tested as around 6.0' on retail
+        {
+            ShowWarning("%s trade request with %s was blocked. They are too far away!", PChar->getName(), PTarget->getName());
+            PChar->pushPacket<CTradeActionPacket>(PTarget, 0x07);
+            return;
+        }
+
+        // You must either both be outside (your_id == their_id == 0),
+        // or in the same moghouse by invite (your_id == their_id)
+        if (PChar->m_moghouseID != PTarget->m_moghouseID)
+        {
+            ShowError("%s trade request with %s was blocked. They have mismatching moghouse IDs!", PChar->getName(), PTarget->getName());
+            PChar->pushPacket<CTradeActionPacket>(PTarget, 0x07);
+            return;
+        }
+
         // If either player is in prison don't allow the trade.
         if (jailutils::InPrison(PChar) || jailutils::InPrison(PTarget))
         {
+            ShowError("%s trade request with %s was blocked. They are in prison!", PChar->getName(), PTarget->getName());
             PChar->pushPacket<CTradeActionPacket>(PTarget, 0x07);
             return;
         }
@@ -1511,7 +1528,7 @@ void SmallPacket0x032(map_session_data_t* const PSession, CCharEntity* const PCh
         if (PChar->animation == ANIMATION_SYNTH || (PChar->CraftContainer && PChar->CraftContainer->getItemsCount() > 0) ||
             PTarget->animation == ANIMATION_SYNTH || (PTarget->CraftContainer && PTarget->CraftContainer->getItemsCount() > 0))
         {
-            ShowDebug("%s trade request with %s was blocked.", PChar->getName(), PTarget->getName());
+            ShowError("%s trade request with %s was blocked. They are synthing!", PChar->getName(), PTarget->getName());
             PChar->pushPacket<CTradeActionPacket>(PTarget, 0x07);
             return;
         }
@@ -1824,8 +1841,14 @@ void SmallPacket0x036(map_session_data_t* const PSession, CCharEntity* const PCh
         return;
     }
 
-    if ((PNpc != nullptr) && (PNpc->id == npcid) && distance(PNpc->loc.p, PChar->loc.p) <= 10)
+    if ((PNpc != nullptr) && (PNpc->id == npcid))
     {
+        if (distance(PChar->loc.p, PNpc->loc.p) > 6.0f) // Tested as around 6.0' on retail
+        {
+            ShowError("Player %s trying to trade NPC %s from too far away! ", PChar->getName(), PNpc->getName());
+            return;
+        }
+
         uint8 numItems = data.ref<uint8>(0x3C);
 
         PChar->TradeContainer->Clean();
@@ -1839,13 +1862,13 @@ void SmallPacket0x036(map_session_data_t* const PSession, CCharEntity* const PCh
 
             if (PItem == nullptr || PItem->getQuantity() < Quantity)
             {
-                ShowError("SmallPacket0x036: Player %s trying to trade invalid item [to NPC]! ", PChar->getName());
+                ShowError("Player %s trying to trade NPC %s with invalid item! ", PChar->getName(), PNpc->getName());
                 return;
             }
 
             if (PItem->getReserve() > 0)
             {
-                ShowError("SmallPacket0x036: Player %s trying to trade a RESERVED item [to NPC]! ", PChar->getName());
+                ShowError("Player %s trying to trade NPC %s with reserved item! ", PChar->getName(), PNpc->getName());
                 return;
             }
 
@@ -1880,7 +1903,13 @@ void SmallPacket0x037(map_session_data_t* const PSession, CCharEntity* const PCh
 
     if (StorageID >= CONTAINER_ID::MAX_CONTAINER_ID)
     {
-        ShowWarning("SmallPacket0x037: Invalid storage ID passed to packet %u by %s", StorageID, PChar->getName());
+        ShowError("Invalid storage ID passed to packet %u by %s", StorageID, PChar->getName());
+        return;
+    }
+
+    if (PChar->m_moghouseID)
+    {
+        ShowError("Invalid storage ID passed to packet %u by %s", StorageID, PChar->getName());
         return;
     }
 
@@ -6131,6 +6160,9 @@ void SmallPacket0x0CB(map_session_data_t* const PSession, CCharEntity* const PCh
     if (operation == 1)
     {
         // open mog house
+
+        // NOTE: If you zone or move floors while in the MH and you have someone visiting, they will be booted.
+        // NOTE: When you zone or move floors your "open MH" flag will be reset.
     }
     else if (operation == 2)
     {
