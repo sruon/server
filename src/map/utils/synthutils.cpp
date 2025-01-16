@@ -189,6 +189,12 @@ namespace synthutils
 
     void LoadSynthRecipes()
     {
+        TracyZoneScoped;
+
+        ShowInfo("Loading synth recipes");
+
+        synthRecipes.clear();
+
         // TODO: If we limit by ID ranges, we could use multiple threads to load the recipes
 
         const auto rset = db::preparedStmt("SELECT \
@@ -291,6 +297,8 @@ namespace synthutils
 
     bool isRightRecipe(CCharEntity* PChar)
     {
+        TracyZoneScoped;
+
         const auto crystal     = PChar->CraftContainer->getItemID(0);
         const auto ingredient1 = PChar->CraftContainer->getItemID(1);
         const auto ingredient2 = PChar->CraftContainer->getItemID(2);

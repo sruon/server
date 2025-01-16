@@ -403,6 +403,13 @@ int32 do_init(int32 argc, char** argv)
         settings::init();
     });
 
+    gConsoleService->RegisterCommand("reload_recipes", "Reload crafting recipes.",
+    [&](std::vector<std::string>& inputs)
+    {
+        fmt::print("Reloading crafting recipes\n");
+        synthutils::LoadSynthRecipes();
+    });
+
     gConsoleService->RegisterCommand("exit", "Terminate the program.",
     [&](std::vector<std::string>& inputs)
     {
