@@ -1909,7 +1909,7 @@ void SmallPacket0x037(map_session_data_t* const PSession, CCharEntity* const PCh
 
     if (PChar->m_moghouseID)
     {
-        ShowError("Invalid storage ID passed to packet %u by %s", StorageID, PChar->getName());
+        ShowError("Player trying to use item in moghouse %s", PChar->getName());
         return;
     }
 

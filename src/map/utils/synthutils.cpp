@@ -273,14 +273,6 @@ namespace synthutils
                 .ContentTag   = rset->getOrDefault<std::string>("content_tag", ""),
             };
 
-            // Check content tag before adding to the map
-            // TODO: If this loading is multi-threaded, Lua cannot be accessed from any thread
-            //     : apart from the main thread!
-            if (!luautils::IsContentEnabled(recipe.ContentTag.c_str()))
-            {
-                continue; // Skip this recipe
-            }
-
             synthRecipes[recipe.key()] = recipe;
         }
     }
@@ -314,6 +306,12 @@ namespace synthutils
         if (synthRecipes.find(possibleRecipeKey) != synthRecipes.end())
         {
             const auto& recipe = synthRecipes[possibleRecipeKey];
+
+            if (!luautils::IsContentEnabled(recipe.ContentTag.c_str()))
+            {
+                PChar->pushPacket<CSynthMessagePacket>(PChar, SYNTH_BADRECIPE);
+                return false;
+            }
 
             if (recipe.KeyItem == 0 || charutils::hasKeyItem(PChar, recipe.KeyItem))
             {
