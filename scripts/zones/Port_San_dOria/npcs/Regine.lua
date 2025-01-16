@@ -9,7 +9,6 @@ local entity = {}
 
 entity.onTrade = function(player, npc, trade)
     local flyersForRegine = player:getQuestStatus(xi.questLog.SANDORIA, xi.quest.id.sandoria.FLYERS_FOR_REGINE)
-    local theBrugaireConsortium = player:getQuestStatus(xi.questLog.SANDORIA, xi.quest.id.sandoria.THE_BRUGAIRE_CONSORTIUM)
 
     -- FLYERS FOR REGINE
     if
@@ -19,13 +18,6 @@ entity.onTrade = function(player, npc, trade)
         if npcUtil.giveItem(player, xi.item.MAGICMART_FLYER) then
             player:confirmTrade()
         end
-
-    -- THE BRUGAIRE CONSORTIUM
-    elseif
-        theBrugaireConsortium == xi.questStatus.QUEST_ACCEPTED and
-        npcUtil.tradeHas(trade, xi.item.PARCEL_FOR_THE_MAGIC_SHOP)
-    then
-        player:startEvent(535)
     end
 end
 
@@ -71,11 +63,6 @@ entity.onEventFinish = function(player, csid, option, npc)
                 var = '[ffr]deliveryMask',
             }
         )
-
-    -- THE BRUGAIRE CONSORTIUM
-    elseif csid == 535 then
-        player:confirmTrade()
-        player:setCharVar('TheBrugaireConsortium-Parcels', 11)
 
     -- WHITE MAGIC SHOP
     elseif csid == 510 and option == 0 then
