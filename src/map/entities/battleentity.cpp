@@ -1717,6 +1717,7 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
     }
 
     StatusEffectContainer->DelStatusEffectsByFlag(effectFlags);
+    StatusEffectContainer->DelStatusEffect(EFFECT_ILLUSION);
 
     PAI->TargetFind->reset();
 

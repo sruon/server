@@ -1046,6 +1046,11 @@ void CZone::CharZoneIn(CCharEntity* PChar)
         PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_COSTUME);
     }
 
+    if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_ILLUSION))
+    {
+        PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_ILLUSION);
+    }
+
     PChar->ReloadPartyInc();
 
     // Zone-wide treasure pool takes precendence over all others
