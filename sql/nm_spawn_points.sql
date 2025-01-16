@@ -2232,6 +2232,10 @@ INSERT INTO `nm_spawn_points` VALUES (17232117,47,-224.000,-80.000,-130.000);
 INSERT INTO `nm_spawn_points` VALUES (17232117,48,134.000,-21.200,133.000);
 INSERT INTO `nm_spawn_points` VALUES (17232117,49,297.000,20.000,446.000);
 INSERT INTO `nm_spawn_points` VALUES (17236027,0,57.000,-21.108,-24.000); -- Barbaric Weapon
+INSERT INTO `nm_spawn_points` VALUES (17236027,1,49.105,-17.595,-6.8771);
+INSERT INTO `nm_spawn_points` VALUES (17236027,2,65.671,-19.058,-12.3478);
+INSERT INTO `nm_spawn_points` VALUES (17236027,3,82.766,-15.533,-27.2944);
+INSERT INTO `nm_spawn_points` VALUES (17236027,4,61.546,-21.743,-30.5311);
 INSERT INTO `nm_spawn_points` VALUES (17236045,0,47.210,-24.020,-367.510); -- Timeworn Warrior
 INSERT INTO `nm_spawn_points` VALUES (17236146,0,36.000,-36.000,160.000);
 INSERT INTO `nm_spawn_points` VALUES (17236146,1,42.000,-35.998,154.000);
@@ -2283,7 +2287,7 @@ INSERT INTO `nm_spawn_points` VALUES (17236146,46,44.000,-36.000,119.000);
 INSERT INTO `nm_spawn_points` VALUES (17236146,47,47.000,-36.000,126.000);
 INSERT INTO `nm_spawn_points` VALUES (17236146,48,46.000,-35.690,137.000);
 INSERT INTO `nm_spawn_points` VALUES (17236146,49,37.000,-35.998,153.000);
-INSERT INTO `nm_spawn_points` VALUES (17236180,0,-238.000,-12.000,83.000); -- Shadow Eye
+INSERT INTO `nm_spawn_points` VALUES (17236180,0,-236.734,-11.177,-23.543); -- Shadow Eye
 INSERT INTO `nm_spawn_points` VALUES (17240376,0,-283.874,-0.660,485.504);
 INSERT INTO `nm_spawn_points` VALUES (17240376,1,-272.224,-0.942,461.321);
 INSERT INTO `nm_spawn_points` VALUES (17240376,2,-268.000,-0.558,440.000);
@@ -7050,7 +7054,7 @@ INSERT INTO `nm_spawn_points` VALUES (17293485,0,-341.691,-21.0,39.305);
 INSERT INTO `nm_spawn_points` VALUES (17293485,1,-338.898,-21.028,45.62);
 INSERT INTO `nm_spawn_points` VALUES (17293485,2,-286.022,-21.102,75.4);
 INSERT INTO `nm_spawn_points` VALUES (17293485,3,-226.756,-20.846,32.378);
-INSERT INTO `nm_spawn_points` VALUES (17293485,4,-202.11,-20.31,-10.47); -- This is the spot Atkorkamuy always spawns on server reboot even if this isn't in the db 
+INSERT INTO `nm_spawn_points` VALUES (17293485,4,-202.11,-20.31,-10.47); -- This is the spot Atkorkamuy always spawns on server reboot even if this isn't in the db
 
 /*!40000 ALTER TABLE `nm_spawn_points` ENABLE KEYS */;
 UNLOCK TABLES;
