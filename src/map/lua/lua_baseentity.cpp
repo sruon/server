@@ -16353,7 +16353,7 @@ void CLuaBaseEntity::spawn(sol::object const& despawnSec, sol::object const& res
 
 /************************************************************************
  *  Function: isSpawned()
- *  Purpose : Returns true if a Mob is already spawned
+ *  Purpose : Returns true if a Mob or NPC is spawned or visible
  *  Example : if mob:isSpawned() then
  *  Notes   :
  ************************************************************************/
@@ -16366,9 +16366,13 @@ bool CLuaBaseEntity::isSpawned()
     {
         return static_cast<CMobEntity*>(m_PBaseEntity)->PAI->IsSpawned();
     }
+    else if (CNpcEntity* PNpcEntity = dynamic_cast<CNpcEntity*>(m_PBaseEntity))
+    {
+        return PNpcEntity->status != STATUS_TYPE::DISAPPEAR;
+    }
     else
     {
-        ShowError("CLuaBaseEntity::isSpawned() called on entity that is not a PMobEntity.");
+        ShowError("CLuaBaseEntity::isSpawned() called on entity that is not a CMobEntity or CNpcEntity.");
     }
     return false;
 }
