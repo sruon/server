@@ -866,7 +866,7 @@ xi.abyssea.procMonster = function(mob, player, triggerType)
                 mob:setLocalVar('[AbysseaRedProc]', 0)
             end
 
-            mob:weaknessTrigger(2)
+            mob:weaknessTrigger(player, 2)
             mob:addStatusEffect(xi.effect.TERROR, 0, 0, 30)
         elseif triggerType == xi.abyssea.triggerType.YELLOW then
             if mob:getLocalVar('[AbysseaYellowProc]') == 0 then
@@ -875,7 +875,7 @@ xi.abyssea.procMonster = function(mob, player, triggerType)
                 mob:setLocalVar('[AbysseaYellowProc]', 0)
             end
 
-            mob:weaknessTrigger(1)
+            mob:weaknessTrigger(player, 1)
             mob:addStatusEffect(xi.effect.TERROR, 0, 0, 30)
         elseif triggerType == xi.abyssea.triggerType.BLUE then
             if mob:getLocalVar('[AbysseaBlueProc]') == 0 then
@@ -884,7 +884,7 @@ xi.abyssea.procMonster = function(mob, player, triggerType)
                 mob:setLocalVar('[AbysseaBlueProc]', 0)
             end
 
-            mob:weaknessTrigger(0)
+            mob:weaknessTrigger(player, 0)
             mob:addStatusEffect(xi.effect.TERROR, 0, 0, 30)
         end
     end

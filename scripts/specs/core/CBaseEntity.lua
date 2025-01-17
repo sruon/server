@@ -3800,9 +3800,10 @@ end
 function CBaseEntity:drawIn()
 end
 
+---@param PLuaBaseEntity CBaseEntity
 ---@param level integer
 ---@return nil
-function CBaseEntity:weaknessTrigger(level)
+function CBaseEntity:weaknessTrigger(PLuaBaseEntity, level)
 end
 
 ---@param PLuaBaseEntity CBaseEntity

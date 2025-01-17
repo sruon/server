@@ -17212,19 +17212,25 @@ void CLuaBaseEntity::drawIn(sol::variadic_args va)
 /************************************************************************
  *  Function: weaknessTrigger()
  *  Purpose : Triggers the weakness of a mob to an active state
- *  Example : mob:weaknessTrigger(1)
+ *  Example : mob:weaknessTrigger(player, 1)
  *  Notes   : Used in scripts/mixins/abyssea_nm.lua
  ************************************************************************/
 
-void CLuaBaseEntity::weaknessTrigger(uint8 level)
+void CLuaBaseEntity::weaknessTrigger(CLuaBaseEntity* PProc, uint8 level)
 {
     if (m_PBaseEntity->objtype != TYPE_MOB)
     {
         ShowWarning("Attempting to trigger weakness for invalid entity type (%s).", m_PBaseEntity->getName());
         return;
     }
-
-    mobutils::WeaknessTrigger(m_PBaseEntity, static_cast<WeaknessType>(level));
+    if (auto* PChar = dynamic_cast<CCharEntity*>(PProc->GetBaseEntity()))
+    {
+        mobutils::WeaknessTrigger(m_PBaseEntity, PChar, static_cast<WeaknessType>(level));
+    }
+    else
+    {
+        ShowWarning("Invalid Entity (PC: %s) calling function.", m_PBaseEntity->getName());
+    }
 }
 
 /************************************************************************

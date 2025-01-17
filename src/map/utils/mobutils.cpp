@@ -33,6 +33,7 @@
 #include "mob_spell_list.h"
 #include "mobutils.h"
 #include "packets/action.h"
+#include "packets/message_special.h"
 #include "petutils.h"
 #include "spell.h"
 #include "status_effect_container.h"
@@ -1810,8 +1811,48 @@ namespace mobutils
         return PMob;
     }
 
-    void WeaknessTrigger(CBaseEntity* PTarget, WeaknessType level)
+    void WeaknessTrigger(CBaseEntity* PTarget, CCharEntity* PProc, WeaknessType level)
     {
+        std::vector<CMessageSpecialPacket*> packets;
+
+        // <Player>'s attack staggers the fiend!
+        packets.push_back(new CMessageSpecialPacket(PProc,
+                                                    luautils::GetTextIDVariable(PTarget->getZone(), "ATTACK_STAGGERS_THE_FIEND") + 0x8000, true));
+
+        // Abyssea specific stagger texts
+        if (zoneutils::GetCurrentRegion(PTarget->getZone()) == REGION_TYPE::ABYSSEA)
+        {
+            std::map<WeaknessType, std::string> abysseaTexts = {
+                { WeaknessType::RED, "RED_STAGGER" },
+                { WeaknessType::YELLOW, "YELLOW_STAGGER" },
+                { WeaknessType::BLUE, "BLUE_STAGGER" },
+            };
+            
+            uint16 abysseaTextId = luautils::GetTextIDVariable(PTarget->getZone(), abysseaTexts[level].c_str());
+            packets.push_back(new CMessageSpecialPacket(PTarget, abysseaTextId + 0x8000, true));
+        }
+
+        // TODO: Might need a range check here
+        for (auto packet : packets)
+        {
+            if (PProc->PParty && PProc->PParty->m_PAlliance)
+            {
+                for (auto& party : PProc->PParty->m_PAlliance->partyList)
+                {
+                    party->PushPacket(PTarget->id, PTarget->getZone(), packet);
+                }
+            }
+            else if (PProc->PParty)
+            {
+                PProc->PParty->PushPacket(PTarget->id, PTarget->getZone(), packet);
+            }
+            else
+            {
+                PProc->pushPacket(packet);
+            }
+        }
+
+        // Send packet displaying the stagger animation
         uint16 animationID = 0;
         switch (level)
         {
@@ -1828,6 +1869,8 @@ namespace mobutils
                 animationID = 1946;
                 break;
         }
+
+        // TODO: should be 0x3A packet (GP_SERV_COMMAND_MAGICSCHEDULOR) but the end result is effectively the same
         action_t action;
         action.actiontype      = ACTION_MOBABILITY_FINISH;
         action.id              = PTarget->id;

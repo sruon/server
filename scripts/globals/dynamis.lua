@@ -826,19 +826,19 @@ xi.dynamis.procMonster = function(mob, player)
             if player:hasStatusEffect(xi.effect.SJ_RESTRICTION) and math.random(1, 100) == 1 then
                 mob:setLocalVar('dynamis_proc', 4)
                 mob:addStatusEffect(xi.effect.TERROR, 0, 0, 30)
-                mob:weaknessTrigger(3)
+                mob:weaknessTrigger(player, 3)
             elseif extensions == 5 then
                 mob:setLocalVar('dynamis_proc', 3)
                 mob:addStatusEffect(xi.effect.TERROR, 0, 0, 30)
-                mob:weaknessTrigger(2)
+                mob:weaknessTrigger(player, 2)
             elseif extensions == 4 then
                 mob:setLocalVar('dynamis_proc', 2)
                 mob:addStatusEffect(xi.effect.TERROR, 0, 0, 30)
-                mob:weaknessTrigger(1)
+                mob:weaknessTrigger(player, 1)
             elseif extensions == 3 then
                 mob:setLocalVar('dynamis_proc', 1)
                 mob:addStatusEffect(xi.effect.TERROR, 0, 0, 30)
-                mob:weaknessTrigger(0)
+                mob:weaknessTrigger(player, 0)
             end
         end
     end

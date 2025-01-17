@@ -22,6 +22,7 @@ zones[xi.zone.DYNAMIS_VALKURM] =
         DYNAMIS_TIME_UPDATE_2         = 7332, -- ou will be expelled from Dynamis in <number> [seconds/minutes] (Earth time).
         DYNAMIS_TIME_EXPIRED          = 7334, -- The sands of the hourglass have emptied...
         DYNAMIS_SUB_UNLOCKED          = 7339, -- Memories of skills long forgotten come flooding back to you...
+        ATTACK_STAGGERS_THE_FIEND     = 7345, -- <name>'s attack staggers the fiend!
         OMINOUS_PRESENCE              = 7346, -- You feel an ominous presence, as if something might happen if you possessed <item>.
     },
     mob =

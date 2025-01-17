@@ -21,6 +21,7 @@ zones[xi.zone.DYNAMIS_BEAUCEDINE] =
         DYNAMIS_TIME_UPDATE_1         = 7331, -- ou will be expelled from Dynamis in <number> [second/minute] (Earth time).
         DYNAMIS_TIME_UPDATE_2         = 7332, -- ou will be expelled from Dynamis in <number> [seconds/minutes] (Earth time).
         DYNAMIS_TIME_EXPIRED          = 7334, -- The sands of the hourglass have emptied...
+        ATTACK_STAGGERS_THE_FIEND     = 7345, -- <name>'s attack staggers the fiend!
         OMINOUS_PRESENCE              = 7346, -- You feel an ominous presence, as if something might happen if you possessed <item>.
     },
     mob =

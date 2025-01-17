@@ -870,7 +870,7 @@ public:
     bool hasTPMoves();
     void drawIn(sol::variadic_args va); // Forces a mob to draw-in the specified target, or its current target with no args
 
-    void weaknessTrigger(uint8 level);
+    void weaknessTrigger(CLuaBaseEntity* PProc, uint8 level);
     void restoreFromChest(CLuaBaseEntity* PLuaBaseEntity, uint32 restoreType);
     bool hasPreventActionEffect();
     void stun(uint32 milliseconds);
