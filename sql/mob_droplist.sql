@@ -2633,7 +2633,7 @@ INSERT INTO `mob_droplist` VALUES (265,0,0,1000,16360,@VRARE);   -- Etoile Tight
 INSERT INTO `mob_droplist` VALUES (265,2,0,1000,1449,0);         -- Tukuku Whiteshell (Steal)
 
 -- ZoneID: 112 - Biast
-INSERT INTO `mob_droplist` VALUES (266,0,0,1000,15221,560); -- Patrocluss Helm (56.0%)
+INSERT INTO `mob_droplist` VALUES (266,0,0,1000,15221,@VCOMMON); -- Patrocluss Helm (Very Common, 24%)
 
 -- ZoneID:  82 - Biddybug
 INSERT INTO `mob_droplist` VALUES (267,0,0,1000,2506,320); -- Ladybug Wing (32.0%)
@@ -6560,11 +6560,11 @@ INSERT INTO `mob_droplist` VALUES (787,0,0,1000,14018,@UNCOMMON); -- Gigas Brace
 INSERT INTO `mob_droplist` VALUES (787,0,0,1000,12290,30);        -- Maple Shield (3.0%)
 
 -- ZoneID: 112 - Ereshkigal
-INSERT INTO `mob_droplist` VALUES (788,0,0,1000,825,500);   -- Square Of Cotton Cloth (50.0%)
-INSERT INTO `mob_droplist` VALUES (788,0,0,1000,15467,380); -- Lucent Cape (38.0%)
-INSERT INTO `mob_droplist` VALUES (788,0,0,1000,825,330);   -- Square Of Cotton Cloth (33.0%)
-INSERT INTO `mob_droplist` VALUES (788,0,0,1000,940,210);   -- Revival Tree Root (21.0%)
-INSERT INTO `mob_droplist` VALUES (788,2,0,1000,825,0);     -- Square Of Cotton Cloth (Steal)
+INSERT INTO `mob_droplist` VALUES (788,0,0,1000,15467,@VCOMMON); -- Lucent Cape (Very Common, 24%)
+INSERT INTO `mob_droplist` VALUES (788,0,0,1000,825,@UNCOMMON);  -- Square Of Cotton Cloth (Uncommon, 10%)
+INSERT INTO `mob_droplist` VALUES (788,0,0,1000,825,@UNCOMMON);  -- Square Of Cotton Cloth (Uncommon, 10%)
+INSERT INTO `mob_droplist` VALUES (788,0,0,1000,940,@UNCOMMON);  -- Revival Tree Root (Uncommon, 10%)
+INSERT INTO `mob_droplist` VALUES (788,2,0,1000,825,0);          -- Square Of Cotton Cloth (Steal)
 
 -- ZoneID: 218 - Ergdrake
 INSERT INTO `mob_droplist` VALUES (789,0,0,1000,1122,200); -- Wyvern Skin (20.0%)
@@ -17627,10 +17627,9 @@ INSERT INTO `mob_droplist` VALUES (2224,0,0,1000,812,@UNCOMMON); -- Deathstone (
 INSERT INTO `mob_droplist` VALUES (2225,0,0,1000,1621,80); -- Taurus Wing (8.0%)
 
 -- ZoneID: 112 - Shadow Eye
-INSERT INTO `mob_droplist` VALUES (2226,0,0,1000,921,@ALWAYS);     -- Bottle Of Ahriman Tears (Always, 100%)
-INSERT INTO `mob_droplist` VALUES (2226,0,0,1000,557,130);         -- Ahriman Lens (13.0%)
-INSERT INTO `mob_droplist` VALUES (2226,0,0,1000,13114,@UNCOMMON); -- Moon Amulet (Uncommon, 10%)
-INSERT INTO `mob_droplist` VALUES (2226,0,0,1000,935,80);          -- Ahriman Wing (8.0%)
+INSERT INTO `mob_droplist` VALUES (2226,0,0,1000,921,@ALWAYS);    -- Bottle Of Ahriman Tears (Always, 100%)
+INSERT INTO `mob_droplist` VALUES (2226,0,0,1000,13114,@VCOMMON); -- Moon Amulet (Very Common, 24%)
+INSERT INTO `mob_droplist` VALUES (2226,0,0,1000,935,@COMMON);    -- Ahriman Wing (Common, 15%)
 
 -- ZoneID:  15 - Shadow Funguar
 INSERT INTO `mob_droplist` VALUES (2227,0,0,1000,4373,120); -- Woozyshroom (12.0%)
@@ -24086,7 +24085,7 @@ INSERT INTO `mob_droplist` VALUES (2941,0,0,1000,19043,@VCOMMON); -- Tenax Strap
 INSERT INTO `mob_droplist` VALUES (2942,0,0,1000,2832,218); -- Samwells Shank (21.8%)
 
 -- ZoneID: 112 - Duke Focalor
-INSERT INTO `mob_droplist` VALUES (2943,0,0,1000,2852,228); -- Ingot Of Tenebrium (22.8%)
+INSERT INTO `mob_droplist` VALUES (2943,0,0,1000,2852,@VCOMMON); -- Ingot Of Tenebrium (Very Common, 24%)
 
 -- ZoneID:   7 - Sargas
 INSERT INTO `mob_droplist` VALUES (2944,0,0,1000,2811,250); -- Aptant Of Primus (25.0%)
@@ -24520,7 +24519,7 @@ INSERT INTO `mob_droplist` VALUES (3060,0,0,1000,16300,333); -- Wit Pendant (33.
 INSERT INTO `mob_droplist` VALUES (3061,0,0,1000,2838,@VCOMMON); -- Square Of Ephemeral Cloth (Very Common, 24%)
 
 -- ZoneID: 112 - Timeworn Warrior
-INSERT INTO `mob_droplist` VALUES (3062,0,0,1000,19238,154); -- Jasper Tathlum (15.4%)
+INSERT INTO `mob_droplist` VALUES (3062,0,0,1000,19238,@COMMON); -- Jasper Tathlum (Common, 15%)
 
 -- ZoneID: 105 - Eyegouger
 INSERT INTO `mob_droplist` VALUES (3063,0,0,1000,16021,@VCOMMON); -- Brawn Earring (Very Common, 24%)
@@ -24640,7 +24639,7 @@ INSERT INTO `mob_droplist` VALUES (3096,0,0,1000,16033,209); -- Sylph Earring (2
 INSERT INTO `mob_droplist` VALUES (3097,0,0,1000,16020,@VCOMMON); -- Survivor Earring (Very common, 24%)
 
 -- ZoneID: 112 - Barbaric Weapon
-INSERT INTO `mob_droplist` VALUES (3098,0,0,1000,15056,212); -- Rovers Gloves (21.2%)
+INSERT INTO `mob_droplist` VALUES (3098,0,0,1000,15056,@COMMON); -- Rovers Gloves (Common, 15%)
 
 -- ZoneID:  98 - Herensugue
 INSERT INTO `mob_droplist` VALUES (3099,0,0,1000,2828,86); -- Herensugue Skin (8.6%)
