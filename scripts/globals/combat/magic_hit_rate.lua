@@ -422,13 +422,13 @@ end
 -----------------------------------
 
 xi.combat.magicHitRate.calculateMagicHitRate = function(magicAcc, magicEva)
-    local magicAccDiff = magicAcc - magicEva
+    local magicHitRate = magicAcc - magicEva
 
-    if magicAccDiff < 0 then
-        magicAccDiff = math.floor(magicAccDiff / 2)
+    if magicHitRate < 0 then
+        magicHitRate = math.floor(magicHitRate / 2)
     end
 
-    local magicHitRate = utils.clamp(50 + magicAccDiff, 5, 95)
+    magicHitRate = utils.clamp((50 + magicHitRate) / 100, 0.05, 0.95)
 
     return magicHitRate
 end
@@ -478,36 +478,53 @@ xi.combat.magicHitRate.calculateResistanceFactor = function(actor, target, skill
     -- Handle magic hit rate.
     ----------------------------------------
     if targetResistRank >= 10 then
-        magicHitRate = 5
+        magicHitRate = 0.05
     end
 
     ----------------------------------------
     -- Calculate first 3 resist tiers.
+    -- Notes: https://wiki-ffo-jp.translate.goog/html/795.html?_x_tr_sl=ja&_x_tr_tl=en&_x_tr_hl=en&_x_tr_pto=sc
     ----------------------------------------
-    local resistTier = 0
-    local randomVar  = math.random()
+    -- Calculate max allowed resist tier.
+    local maxResistTier = 3
 
-    -- NOTE: Elemental magic evasion 'Boons'.
-    -- According to wiki, 1 positive point in the spell element MEVA allows for an additional tier. This would be tier 3, not the resistance rank tier.
-    -- However, it also states that a negative value will also prevent full resists, which is redundant. We already wouldnt be eligible for it.
+    -- Players: Affected by element shown in equipment screen.
+    if target:isPC() then
+        local playerElementalEvasion = target:getMod(xi.combat.element.getElementalMEVAModifier(actionElement)) or 0
 
-    for tierVar = 3, 1, -1 do
-        if randomVar <= (1 - magicHitRate / 100) ^ tierVar then
-            resistTier = tierVar
-            break
+        if playerElementalEvasion < 0 then
+            maxResistTier = 1
+        elseif playerElementalEvasion == 0 then
+            maxResistTier = 2
+        end
+
+    -- Non-players: Affected by resistance rank.
+    else
+        if targetResistRank <= -3 then
+            maxResistTier = 1
         end
     end
+
+    -- Calculate resist tier.
+    local resistTier = 3
+    local randomVar  = math.random() -- High number = More resist.
+
+    if randomVar <= magicHitRate then
+        resistTier = 0
+    elseif randomVar <= 2 * magicHitRate - magicHitRate ^ 2 then
+        resistTier = 1
+    elseif randomVar <= magicHitRate ^ 3 - 3 * magicHitRate ^ 2 + 3 * magicHitRate then
+        resistTier = 2
+    end
+
+    resistTier = utils.clamp(resistTier, 0, maxResistTier)
 
     targetResistRate = 1 / (2 ^ resistTier)
 
     ----------------------------------------
     -- Calculate additional resist tier.
     ----------------------------------------
-    -- Force just 1/2 resist tier max if target resistance rank is -3 (150% EEM).
-    if targetResistRank <= -3 then
-        targetResistRate = utils.clamp(targetResistRate, 0.5, 1)
-
-    elseif
+    if
         not actor:hasStatusEffect(xi.effect.SUBTLE_SORCERY) and -- Subtle sorcery bypasses this tier.
         targetResistRank >= 4 and                               -- Forced only at and after rank 4 (50% EEM).
         skillType == xi.skill.ELEMENTAL_MAGIC                   -- Only applies to nukes.
