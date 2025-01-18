@@ -844,13 +844,13 @@ void CZone::SpawnPCs(CCharEntity* PChar)
 
 /************************************************************************
  *                                                                       *
- *  Displaying Moogle in MogHouse                                        *
+ *  Displaying Moogle in MogHouse, etc.                                  *
  *                                                                       *
  ************************************************************************/
 
-void CZone::SpawnMoogle(CCharEntity* PChar)
+void CZone::SpawnConditionalNPCs(CCharEntity* PChar)
 {
-    m_zoneEntities->SpawnMoogle(PChar);
+    m_zoneEntities->SpawnConditionalNPCs(PChar);
 }
 
 /************************************************************************

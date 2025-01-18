@@ -7301,4 +7301,25 @@ namespace charutils
         PChar->status = STATUS_TYPE::DISAPPEAR;
     }
 
+    bool isOrchestrionPlaced(CCharEntity* PChar)
+    {
+        for (auto safeContainerId : { LOC_MOGSAFE, LOC_MOGSAFE2 })
+        {
+            CItemContainer* PContainer = PChar->getStorage(safeContainerId);
+            for (int slotIndex = 1; slotIndex <= PContainer->GetSize(); ++slotIndex)
+            {
+                CItem* PContainerItem = PContainer->GetItem(slotIndex);
+                if (PContainerItem != nullptr && PContainerItem->isType(ITEM_FURNISHING))
+                {
+                    CItemFurnishing* PFurniture = static_cast<CItemFurnishing*>(PContainerItem);
+                    if (PFurniture->isInstalled() && PFurniture->getID() == 426)
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
 }; // namespace charutils

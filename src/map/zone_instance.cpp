@@ -323,12 +323,12 @@ void CZoneInstance::SpawnPCs(CCharEntity* PChar)
     }
 }
 
-void CZoneInstance::SpawnMoogle(CCharEntity* PChar)
+void CZoneInstance::SpawnConditionalNPCs(CCharEntity* PChar)
 {
     TracyZoneScoped;
     if (PChar->PInstance)
     {
-        PChar->PInstance->SpawnMoogle(PChar);
+        PChar->PInstance->SpawnConditionalNPCs(PChar);
     }
 }
 

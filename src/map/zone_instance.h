@@ -39,8 +39,8 @@ public:
     virtual void SpawnPETs(CCharEntity* PChar) override;
     virtual void SpawnTRUSTs(CCharEntity* PChar) override;
     virtual void SpawnNPCs(CCharEntity* PChar) override;
-    virtual void SpawnMoogle(CCharEntity* PChar) override;    // display Moogle in MogHouse in zone
-    virtual void SpawnTransport(CCharEntity* PChar) override; // display ship/boat in zone
+    virtual void SpawnConditionalNPCs(CCharEntity* PChar) override; // display Moogle in MogHouse in zone
+    virtual void SpawnTransport(CCharEntity* PChar) override;       // display ship/boat in zone
 
     virtual void WideScan(CCharEntity* PChar, uint16 radius) override;
 

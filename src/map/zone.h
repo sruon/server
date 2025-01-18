@@ -586,8 +586,8 @@ public:
     virtual void SpawnPETs(CCharEntity* PChar);
     virtual void SpawnNPCs(CCharEntity* PChar);
     virtual void SpawnTRUSTs(CCharEntity* PChar);
-    virtual void SpawnMoogle(CCharEntity* PChar);    // Spawn Moogle in Moghouse in zone (if applicable)
-    virtual void SpawnTransport(CCharEntity* PChar); // Spawn ships/boats in the zone
+    virtual void SpawnConditionalNPCs(CCharEntity* PChar); // Spawn Moogle in Moghouse in zone (if applicable)
+    virtual void SpawnTransport(CCharEntity* PChar);       // Spawn ships/boats in the zone
     void         SavePlayTime();
 
     virtual void WideScan(CCharEntity* PChar, uint16 radius);
