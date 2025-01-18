@@ -1061,7 +1061,7 @@ uint16 CBattleEntity::DEF()
     int32 DEF       = 8 + m_modStat[Mod::DEF];
     float vitFactor = 1.5f;
 
-    if (this->objtype == TYPE_MOB || (this->objtype == TYPE_PET && this->isCharmed))
+    if (this->objtype == TYPE_MOB)
     {
         vitFactor = 0.5f;
     }
