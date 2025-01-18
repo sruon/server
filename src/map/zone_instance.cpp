@@ -461,15 +461,15 @@ void CZoneInstance::CheckTriggerAreas()
             //     : use them here to make the search domain smaller.
 
             uint32 triggerAreaID = 0;
-            for (triggerAreaList_t::const_iterator triggerAreaItr = m_triggerAreaList.begin(); triggerAreaItr != m_triggerAreaList.end(); ++triggerAreaItr)
+            for (const auto& triggerArea : m_triggerAreaList)
             {
-                if ((*triggerAreaItr)->isPointInside(PChar->loc.p))
+                if (triggerArea->isPointInside(PChar->loc.p))
                 {
-                    triggerAreaID = (*triggerAreaItr)->GetTriggerAreaID();
+                    triggerAreaID = triggerArea->GetTriggerAreaID();
 
-                    if ((*triggerAreaItr)->GetTriggerAreaID() != PChar->m_InsideTriggerAreaID)
+                    if (triggerArea->GetTriggerAreaID() != PChar->m_InsideTriggerAreaID)
                     {
-                        luautils::OnTriggerAreaEnter(PChar, *triggerAreaItr);
+                        luautils::OnTriggerAreaEnter(PChar, triggerArea);
                     }
 
                     if (PChar->m_InsideTriggerAreaID == 0)
@@ -477,9 +477,9 @@ void CZoneInstance::CheckTriggerAreas()
                         break;
                     }
                 }
-                else if ((*triggerAreaItr)->GetTriggerAreaID() == PChar->m_InsideTriggerAreaID)
+                else if (triggerArea->GetTriggerAreaID() == PChar->m_InsideTriggerAreaID)
                 {
-                    luautils::OnTriggerAreaLeave(PChar, *triggerAreaItr);
+                    luautils::OnTriggerAreaLeave(PChar, triggerArea);
                 }
             }
             PChar->m_InsideTriggerAreaID = triggerAreaID;

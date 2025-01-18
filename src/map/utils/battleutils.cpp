@@ -1228,11 +1228,11 @@ namespace battleutils
         {
             if (PAttacker->objtype == TYPE_PC && PAttacker->PParty != nullptr)
             {
-                for (auto& member : PAttacker->PParty->members)
+                for (auto* PMember : PAttacker->PParty->members)
                 {
-                    PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_DRAIN_DAZE, member->id);
-                    PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_HASTE_DAZE, member->id);
-                    PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_ASPIR_DAZE, member->id);
+                    PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_DRAIN_DAZE, PMember->id);
+                    PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_HASTE_DAZE, PMember->id);
+                    PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_ASPIR_DAZE, PMember->id);
                 }
             }
             else if (PAttacker->objtype == TYPE_TRUST && PAttacker->PMaster)
@@ -4344,16 +4344,16 @@ namespace battleutils
             // Collect all potential TA targets who are closer to the mob than the TA user
             for (auto&& party : taPartyList)
             {
-                for (auto&& member : party->members)
+                for (auto&& PMember : party->members)
                 {
-                    float distTAtarget = distance(member->loc.p, PMob->loc.p);
+                    float distTAtarget = distance(PMember->loc.p, PMob->loc.p);
                     // require closer target not be closer than .5 yalms (.5*.5=.25 distsquared) to mob
                     if (distTAtarget >= worldAngleMinDistance && distTAtarget < distTAmob)
                     {
-                        taTargetList.emplace_back(distTAtarget, member);
+                        taTargetList.emplace_back(distTAtarget, PMember);
                     }
 
-                    if (auto* PChar = dynamic_cast<CCharEntity*>(member))
+                    if (auto* PChar = dynamic_cast<CCharEntity*>(PMember))
                     {
                         for (auto* PTrust : PChar->PTrusts)
                         {
@@ -4426,9 +4426,9 @@ namespace battleutils
             return;
         }
 
-        for (auto* entity : *PTarget->PNotorietyContainer)
+        for (auto* PEntity : *PTarget->PNotorietyContainer)
         {
-            if (CMobEntity* PCurrentMob = dynamic_cast<CMobEntity*>(entity))
+            if (CMobEntity* PCurrentMob = dynamic_cast<CMobEntity*>(PEntity))
             {
                 if (PCurrentMob->m_HiPCLvl > 0 && PCurrentMob->PEnmityContainer->HasID(PTarget->id))
                 {
@@ -4463,10 +4463,8 @@ namespace battleutils
 
         if (PIterSource)
         {
-            for (SpawnIDList_t::const_iterator it = PIterSource->SpawnMOBList.begin(); it != PIterSource->SpawnMOBList.end(); ++it)
+            FOR_EACH_PAIR_CAST_SECOND(PIterSource->SpawnMOBList, CMobEntity*, PCurrentMob)
             {
-                CMobEntity* PCurrentMob = (CMobEntity*)it->second;
-
                 if (PCurrentMob->m_HiPCLvl > 0 && PCurrentMob->PEnmityContainer->HasID(PSource->id))
                 {
                     PCurrentMob->PEnmityContainer->UpdateEnmity(PSource, CE, VE, false, false, false);
@@ -6813,12 +6811,13 @@ namespace battleutils
         // If the cover ability target is in a party, try to find a cover ability user
         if (PCoverAbilityTarget->PParty != nullptr)
         {
-            for (auto member : PCoverAbilityTarget->PParty->members)
+            for (auto* PMember : PCoverAbilityTarget->PParty->members)
             {
-                if (coverAbilityTargetID == member->GetLocalVar("COVER_ABILITY_TARGET") && member->StatusEffectContainer->HasStatusEffect(EFFECT_COVER) &&
-                    member->isAlive())
+                if (coverAbilityTargetID == PMember->GetLocalVar("COVER_ABILITY_TARGET") &&
+                    PMember->StatusEffectContainer->HasStatusEffect(EFFECT_COVER) &&
+                    PMember->isAlive())
                 {
-                    PCoverAbilityUser = member;
+                    PCoverAbilityUser = PMember;
                     break;
                 }
             }
