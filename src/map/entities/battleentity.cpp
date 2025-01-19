@@ -1053,7 +1053,21 @@ uint16 CBattleEntity::ACC(uint8 attackNumber, uint16 offsetAccuracy)
 
 uint16 CBattleEntity::DEF()
 {
-    int32 DEF = 8 + m_modStat[Mod::DEF] + std::floor(VIT() * 1.5f); // https://wiki.ffo.jp/html/313.html
+    // VIT * 1.5 for PCs / Alter egos / Fellows / Familiars / Wyverns / Avatars / Automatons / Luopans
+    // VIT * 0.5 for Enemy NPCs and pets controlled by Charm
+    // https://wiki.ffo.jp/html/313.html
+    // https://wiki.ffo.jp/html/35712.html
+    // https://forum.square-enix.com/ffxi/threads/51154-Aug.-3-2016-%28JST%29-Version-Update?p=583669&viewfull=1#post583669
+    int32 DEF       = 8 + m_modStat[Mod::DEF];
+    float vitFactor = 1.5f;
+
+    if (this->objtype == TYPE_MOB)
+    {
+        vitFactor = 0.5f;
+    }
+
+    DEF = DEF + std::floor(VIT() * vitFactor);
+
     if (this->StatusEffectContainer->HasStatusEffect(EFFECT_COUNTERSTANCE, 0))
     {
         return DEF / 2;
