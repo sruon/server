@@ -3820,8 +3820,10 @@ function CBaseEntity:hasTPMoves()
 end
 
 ---@param PLuaBaseEntity CBaseEntity
+---@param offset integer
+---@param degrees integer
 ---@return nil
-function CBaseEntity:drawIn(PLuaBaseEntity)
+function CBaseEntity:drawIn(PLuaBaseEntity, offset, degrees)
 end
 
 ---@return nil
