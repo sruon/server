@@ -24,6 +24,8 @@ entity.onMobSpawn = function(mob)
     -- Change animation to humanoid w/ prismatic core
     mob:setAnimationSub(1)
     mob:setModelId(1169)
+    mob:setMod(xi.mod.UDMGPHYS, -9500)
+    mob:setMod(xi.mod.UDMGRANGE, -9500)
 end
 
 entity.onMobFight = function(mob, target)
