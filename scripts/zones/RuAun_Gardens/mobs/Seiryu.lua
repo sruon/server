@@ -15,6 +15,7 @@ end
 
 entity.onMobInitialize = function(mob)
     mob:setMobMod(xi.mobMod.ADD_EFFECT, 1)
+    mob:setMobMod(xi.mobMod.IDLE_DESPAWN, 300)
 end
 
 entity.onMobMagicPrepare = function(mob, target, spellId)

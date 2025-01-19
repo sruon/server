@@ -9,7 +9,7 @@ mixins = { require('scripts/mixins/draw_in') }
 local entity = {}
 
 entity.onMobInitialize = function(mob)
-    mob:setMobMod(xi.mobMod.IDLE_DESPAWN, 180)
+    mob:setMobMod(xi.mobMod.IDLE_DESPAWN, 900)
     mob:setMobMod(xi.mobMod.HP_STANDBACK, -1)
     mob:setMod(xi.mod.STUN_MEVA, 50)
 end

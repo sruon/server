@@ -34,46 +34,9 @@ LOCK TABLES `mob_spawn_mods` WRITE;
 
 -- These are oddly specific. Are they for a fight? Need to check.
 
--- Wanderer
-INSERT INTO `mob_spawn_mods` VALUES (16867455,55,180,1); -- IDLE_DESPAWN: 180
-
--- Weeper
-INSERT INTO `mob_spawn_mods` VALUES (16867544,55,180,1); -- IDLE_DESPAWN: 180
-
--- Weeper
-INSERT INTO `mob_spawn_mods` VALUES (16867642,55,180,1); -- IDLE_DESPAWN: 180
-
 -- Jailer Of Hope
 INSERT INTO `mob_spawn_mods` VALUES (16912838,7,60,1);    -- GA_CHANCE: 60
-INSERT INTO `mob_spawn_mods` VALUES (16912838,55,300,1);  -- IDLE_DESPAWN: 300
 INSERT INTO `mob_spawn_mods` VALUES (16912838,407,150,0); -- UFASTCAST: 150
-
--- Jailer Of Justice
-INSERT INTO `mob_spawn_mods` VALUES (16912839,55,300,1); -- IDLE_DESPAWN: 300
-
--- Jailer Of Prudence
-INSERT INTO `mob_spawn_mods` VALUES (16912846,55,300,1); -- IDLE_DESPAWN: 300
-
--- Jailer Of Prudence
-INSERT INTO `mob_spawn_mods` VALUES (16912847,55,300,1); -- IDLE_DESPAWN: 300
-
--- Jailer Of Love
-INSERT INTO `mob_spawn_mods` VALUES (16912848,55,300,1); -- IDLE_DESPAWN: 300
-
--- Ix'Ghrah
-INSERT INTO `mob_spawn_mods` VALUES (16916813,55,180,1); -- IDLE_DESPAWN: 180
-
--- Jailer Of Temperance
-INSERT INTO `mob_spawn_mods` VALUES (16916814,55,300,1); -- IDLE_DESPAWN: 300
-
--- Ix'Aern
-INSERT INTO `mob_spawn_mods` VALUES (16916815,55,300,1); -- IDLE_DESPAWN: 300
-
--- Qn'Aern
-INSERT INTO `mob_spawn_mods` VALUES (16916816,55,300,1); -- IDLE_DESPAWN: 300
-
--- Qn'Aern
-INSERT INTO `mob_spawn_mods` VALUES (16916817,55,300,1); -- IDLE_DESPAWN: 300
 
 -- Qn'Zdei
 INSERT INTO `mob_spawn_mods` VALUES (16920577,26,1000,1); -- SUBLINK: 1000
@@ -94,201 +57,14 @@ INSERT INTO `mob_spawn_mods` VALUES (16920766,26,1003,1); -- SUBLINK: 1003
 INSERT INTO `mob_spawn_mods` VALUES (16920767,26,1003,1); -- SUBLINK: 1003
 
 -- Jailer Of Fortitude
-INSERT INTO `mob_spawn_mods` VALUES (16921015,55,180,1);  -- IDLE_DESPAWN: 180
 INSERT INTO `mob_spawn_mods` VALUES (16921015,387,-95,0); -- UDMGPHYS: -95
 INSERT INTO `mob_spawn_mods` VALUES (16921015,390,-95,0); -- UDMGRANGE: -95
-
--- Kf'Ghrah
-INSERT INTO `mob_spawn_mods` VALUES (16921016,55,180,1); -- IDLE_DESPAWN: 180
-
--- Kf'Ghrah
-INSERT INTO `mob_spawn_mods` VALUES (16921017,55,180,1); -- IDLE_DESPAWN: 180
-
--- Ix'Aern
-INSERT INTO `mob_spawn_mods` VALUES (16921018,55,180,1); -- IDLE_DESPAWN: 180
-
--- Qn'Aern
-INSERT INTO `mob_spawn_mods` VALUES (16921019,55,180,1); -- IDLE_DESPAWN: 180
-
--- Qn'Aern
-INSERT INTO `mob_spawn_mods` VALUES (16921020,55,180,1); -- IDLE_DESPAWN: 180
-
--- Jailer Of Faith
-INSERT INTO `mob_spawn_mods` VALUES (16921021,55,900,1); -- IDLE_DESPAWN: 900
-
--- Ix'Aern
-INSERT INTO `mob_spawn_mods` VALUES (16921022,55,300,1); -- IDLE_DESPAWN: 300
-
--- Aern'S Wynav
-INSERT INTO `mob_spawn_mods` VALUES (16921023,55,300,1); -- IDLE_DESPAWN: 300
-
--- Aern'S Wynav
-INSERT INTO `mob_spawn_mods` VALUES (16921024,55,300,1); -- IDLE_DESPAWN: 300
-
--- Aern'S Wynav
-INSERT INTO `mob_spawn_mods` VALUES (16921025,55,300,1); -- IDLE_DESPAWN: 300
-
--- Vulpangue
-INSERT INTO `mob_spawn_mods` VALUES (16986428,55,180,1); -- IDLE_DESPAWN: 180
-
--- Iriz Ima
-INSERT INTO `mob_spawn_mods` VALUES (16986429,55,180,1); -- IDLE_DESPAWN: 180
-
--- Gotoh Zha The Redolent
-INSERT INTO `mob_spawn_mods` VALUES (16986430,55,180,1); -- IDLE_DESPAWN: 180
-
--- Tinnin
-INSERT INTO `mob_spawn_mods` VALUES (16986431,55,180,1); -- IDLE_DESPAWN: 180
-
--- Lamia'S Skeleton
-INSERT INTO `mob_spawn_mods` VALUES (16998869,55,180,1); -- IDLE_DESPAWN: 180
-
--- Lamia'S Skeleton
-INSERT INTO `mob_spawn_mods` VALUES (16998870,55,180,1); -- IDLE_DESPAWN: 180
-
--- Lil' Apkallu
-INSERT INTO `mob_spawn_mods` VALUES (16998871,55,180,1); -- IDLE_DESPAWN: 180
-
--- Velionis
-INSERT INTO `mob_spawn_mods` VALUES (16998872,55,180,1); -- IDLE_DESPAWN: 180
-
--- Zareehkl The Jubilant
-INSERT INTO `mob_spawn_mods` VALUES (16998873,55,180,1); -- IDLE_DESPAWN: 180
-
--- Nuhn
-INSERT INTO `mob_spawn_mods` VALUES (16998874,55,180,1); -- IDLE_DESPAWN: 180
-
--- Brass Borer
-INSERT INTO `mob_spawn_mods` VALUES (17027471,55,180,1); -- IDLE_DESPAWN: 180
-
--- Claret
-INSERT INTO `mob_spawn_mods` VALUES (17027472,55,180,1); -- IDLE_DESPAWN: 180
-
--- Anantaboga
-INSERT INTO `mob_spawn_mods` VALUES (17027473,55,180,1); -- IDLE_DESPAWN: 180
-
--- Khromasoul Bhurborlor
-INSERT INTO `mob_spawn_mods` VALUES (17027474,55,180,1); -- IDLE_DESPAWN: 180
-
--- Sarameya
-INSERT INTO `mob_spawn_mods` VALUES (17027485,55,180,1); -- IDLE_DESPAWN: 180
-
--- Big Bomb
-INSERT INTO `mob_spawn_mods` VALUES (17031401,55,900,1); -- IDLE_DESPAWN: 900
-
--- Dextrose
-INSERT INTO `mob_spawn_mods` VALUES (17031598,55,180,1); -- IDLE_DESPAWN: 180
-
--- Reacton
-INSERT INTO `mob_spawn_mods` VALUES (17031599,55,180,1); -- IDLE_DESPAWN: 180
-
--- Achamoth
-INSERT INTO `mob_spawn_mods` VALUES (17031600,55,180,1); -- IDLE_DESPAWN: 180
-
--- Mamool Ja Chamberlain
-INSERT INTO `mob_spawn_mods` VALUES (17043876,55,180,1); -- IDLE_DESPAWN: 180
-
--- Mamool Ja Chamberlain
-INSERT INTO `mob_spawn_mods` VALUES (17043877,55,180,1); -- IDLE_DESPAWN: 180
-
--- Mamool Ja Palatine
-INSERT INTO `mob_spawn_mods` VALUES (17043878,55,180,1); -- IDLE_DESPAWN: 180
-
--- Mamool Ja Palatine
-INSERT INTO `mob_spawn_mods` VALUES (17043879,55,180,1); -- IDLE_DESPAWN: 180
-
--- Chamrosh
-INSERT INTO `mob_spawn_mods` VALUES (17043887,55,180,1); -- IDLE_DESPAWN: 180
-
--- Iriri Samariri
-INSERT INTO `mob_spawn_mods` VALUES (17043888,55,180,1); -- IDLE_DESPAWN: 180
-
--- Nosferatu
-INSERT INTO `mob_spawn_mods` VALUES (17056157,55,180,1); -- IDLE_DESPAWN: 180
-
--- Pandemonium Warden
-INSERT INTO `mob_spawn_mods` VALUES (17056168,55,180,1); -- IDLE_DESPAWN: 180
-
--- Pandemonium Lamp
-INSERT INTO `mob_spawn_mods` VALUES (17056170,55,180,1); -- IDLE_DESPAWN: 180
-
--- Pandemonium Lamp
-INSERT INTO `mob_spawn_mods` VALUES (17056171,55,180,1); -- IDLE_DESPAWN: 180
-
--- Pandemonium Lamp
-INSERT INTO `mob_spawn_mods` VALUES (17056172,55,180,1); -- IDLE_DESPAWN: 180
-
--- Pandemonium Lamp
-INSERT INTO `mob_spawn_mods` VALUES (17056173,55,180,1); -- IDLE_DESPAWN: 180
-
--- Pandemonium Lamp
-INSERT INTO `mob_spawn_mods` VALUES (17056174,55,180,1); -- IDLE_DESPAWN: 180
-
--- Pandemonium Lamp
-INSERT INTO `mob_spawn_mods` VALUES (17056175,55,180,1); -- IDLE_DESPAWN: 180
-
--- Pandemonium Lamp
-INSERT INTO `mob_spawn_mods` VALUES (17056176,55,180,1); -- IDLE_DESPAWN: 180
-
--- Pandemonium Lamp
-INSERT INTO `mob_spawn_mods` VALUES (17056177,55,180,1); -- IDLE_DESPAWN: 180
-
--- Chigre
-INSERT INTO `mob_spawn_mods` VALUES (17056186,55,180,1); -- IDLE_DESPAWN: 180
-
--- Ob
-INSERT INTO `mob_spawn_mods` VALUES (17072171,55,180,1); -- IDLE_DESPAWN: 180
-
--- Cheese Hoarder Gigiroon
-INSERT INTO `mob_spawn_mods` VALUES (17072172,55,180,1); -- IDLE_DESPAWN: 180
-
--- Armed Gears
-INSERT INTO `mob_spawn_mods` VALUES (17072178,55,180,1); -- IDLE_DESPAWN: 180
-
--- Wulgaru
-INSERT INTO `mob_spawn_mods` VALUES (17072179,55,180,1); -- IDLE_DESPAWN: 180
-
--- Verdelet
-INSERT INTO `mob_spawn_mods` VALUES (17101202,55,180,1); -- IDLE_DESPAWN: 180
-
--- Tyger
-INSERT INTO `mob_spawn_mods` VALUES (17101203,55,180,1); -- IDLE_DESPAWN: 180
-
--- Mahjlaef The Paintorn
-INSERT INTO `mob_spawn_mods` VALUES (17101204,55,180,1); -- IDLE_DESPAWN: 180
-
--- Experimental Lamia
-INSERT INTO `mob_spawn_mods` VALUES (17101205,55,180,1); -- IDLE_DESPAWN: 180
-
--- Fingerfilcher Dradzad
-INSERT INTO `mob_spawn_mods` VALUES (17113462,55,180,1); -- IDLE_DESPAWN: 180
-
--- Cobraclaw Buchzvotch
-INSERT INTO `mob_spawn_mods` VALUES (17113464,55,180,1); -- IDLE_DESPAWN: 180
-
--- Kinepikwa
-INSERT INTO `mob_spawn_mods` VALUES (17146147,55,300,1); -- IDLE_DESPAWN: 300
-
--- War Lynx
-INSERT INTO `mob_spawn_mods` VALUES (17170645,55,180,1); -- IDLE_DESPAWN: 180
-
--- Bloodlapper
-INSERT INTO `mob_spawn_mods` VALUES (17174889,55,1800,1); -- IDLE_DESPAWN: 1800
 
 -- Amanita
 INSERT INTO `mob_spawn_mods` VALUES (17186927,368,33,0); -- REGAIN: 33
 
 -- Slumbering Samwell
 INSERT INTO `mob_spawn_mods` VALUES (17195221,368,33,0); -- REGAIN: 33
-
--- Marchelute
-INSERT INTO `mob_spawn_mods` VALUES (17199566,55,300,1); -- IDLE_DESPAWN: 300
-
--- Doman
-INSERT INTO `mob_spawn_mods` VALUES (17199567,55,300,1); -- IDLE_DESPAWN: 300
-
--- Onryo
-INSERT INTO `mob_spawn_mods` VALUES (17199568,55,300,1); -- IDLE_DESPAWN: 300
 
 -- King Arthro
 INSERT INTO `mob_spawn_mods` VALUES (17203216,1,15000,1); -- GIL_MIN: 15000
@@ -299,38 +75,14 @@ INSERT INTO `mob_spawn_mods` VALUES (17207308,1,15000,1); -- GIL_MIN: 15000
 INSERT INTO `mob_spawn_mods` VALUES (17207308,2,20000,1); -- GIL_MAX: 20000
 INSERT INTO `mob_spawn_mods` VALUES (17207308,15,7500,1); -- MUG_GIL: 7500
 
--- Sturmtiger
-INSERT INTO `mob_spawn_mods` VALUES (17207696,55,300,1); -- IDLE_DESPAWN: 300
-
--- Suparna
-INSERT INTO `mob_spawn_mods` VALUES (17207697,55,600,1); -- IDLE_DESPAWN: 600
-
--- Suparna Fledgling
-INSERT INTO `mob_spawn_mods` VALUES (17207698,55,600,1); -- IDLE_DESPAWN: 600
-
--- Vegnix Greenthumb
-INSERT INTO `mob_spawn_mods` VALUES (17207710,55,180,1); -- IDLE_DESPAWN: 180
-
--- Gambilox Wanderling
-INSERT INTO `mob_spawn_mods` VALUES (17211848,55,120,1); -- IDLE_DESPAWN: 120
-
--- Bubbly Bernie
-INSERT INTO `mob_spawn_mods` VALUES (17215494,55,288,1); -- IDLE_DESPAWN: 288
-
 -- Simurgh
 INSERT INTO `mob_spawn_mods` VALUES (17228242,1,21000,1); -- GIL_MIN: 21000
 INSERT INTO `mob_spawn_mods` VALUES (17228242,2,31300,1); -- GIL_MAX: 31300
 INSERT INTO `mob_spawn_mods` VALUES (17228242,15,2550,1); -- MUG_GIL: 2550 (https://ffxiclopedia.fandom.com/wiki/Simurgh)
 
--- Chuglix Berrypaws
-INSERT INTO `mob_spawn_mods` VALUES (17228249,55,180,1); -- IDLE_DESPAWN: 180
-
 -- Shadow Dragon
 INSERT INTO `mob_spawn_mods` VALUES (17235987,1,1076,1); -- GIL_MIN: 1076
 INSERT INTO `mob_spawn_mods` VALUES (17235987,2,2765,1); -- GIL_MAX: 2765
-
--- Chaos Elemental
-INSERT INTO `mob_spawn_mods` VALUES (17236201,55,180,1); -- IDLE_DESPAWN: 180
 
 -- Boreal Hound
 INSERT INTO `mob_spawn_mods` VALUES (17236202,160,50,0); -- DMG: 50
@@ -338,415 +90,45 @@ INSERT INTO `mob_spawn_mods` VALUES (17236202,160,50,0); -- DMG: 50
 -- Boreal Coeurl
 INSERT INTO `mob_spawn_mods` VALUES (17236203,23,8,1);   -- IMMUNITY: 8
 
--- Koenigstiger
-INSERT INTO `mob_spawn_mods` VALUES (17236205,55,240,1); -- IDLE_DESPAWN: 240
-
 -- Tegmine
 INSERT INTO `mob_spawn_mods` VALUES (17240232,23,50,0);  -- ATT: 50
 INSERT INTO `mob_spawn_mods` VALUES (17240232,288,40,0); -- DOUBLE_ATTACK: 40
-
--- Axesarion The Wanderer
-INSERT INTO `mob_spawn_mods` VALUES (17240414,55,300,1); -- IDLE_DESPAWN: 300
-
--- Decurio I-Iii
-INSERT INTO `mob_spawn_mods` VALUES (17244523,55,300,1); -- IDLE_DESPAWN: 300
-
--- Tsuchigumo
-INSERT INTO `mob_spawn_mods` VALUES (17244524,55,300,1); -- IDLE_DESPAWN: 300
-
--- Tsuchigumo
-INSERT INTO `mob_spawn_mods` VALUES (17244525,55,300,1); -- IDLE_DESPAWN: 300
 
 -- Roc
 INSERT INTO `mob_spawn_mods` VALUES (17269106,1,15000,1); -- GIL_MIN: 15000
 INSERT INTO `mob_spawn_mods` VALUES (17269106,2,30545,1); -- GIL_MAX: 30545
 
--- Climbpix Highrise
-INSERT INTO `mob_spawn_mods` VALUES (17269107,55,120,1); -- IDLE_DESPAWN: 120
-
--- Dribblix Greasemaw
-INSERT INTO `mob_spawn_mods` VALUES (17269114,55,180,1); -- IDLE_DESPAWN: 180
-
--- Guardian Treant
-INSERT INTO `mob_spawn_mods` VALUES (17272838,55,288,1); -- IDLE_DESPAWN: 288
-
--- Doomed Pilgrims
-INSERT INTO `mob_spawn_mods` VALUES (17272839,55,300,1); -- IDLE_DESPAWN: 300
-
--- Isonade
-INSERT INTO `mob_spawn_mods` VALUES (17273285,55,180,1); -- IDLE_DESPAWN: 180
-
--- Tipha
-INSERT INTO `mob_spawn_mods` VALUES (17281030,55,300,1); -- IDLE_DESPAWN: 300
-
--- Carthi
-INSERT INTO `mob_spawn_mods` VALUES (17281031,55,300,1); -- IDLE_DESPAWN: 300
-
 -- Bisque-Heeled Sunberry
 INSERT INTO `mob_spawn_mods` VALUES (17285460,1,379,1); -- GIL_MIN: 379
 INSERT INTO `mob_spawn_mods` VALUES (17285460,2,900,1); -- GIL_MAX: 900
 
--- Kappa Akuso
-INSERT INTO `mob_spawn_mods` VALUES (17285544,55,150,1); -- IDLE_DESPAWN: 150
-
--- Kappa Bonze
-INSERT INTO `mob_spawn_mods` VALUES (17285545,55,300,1); -- IDLE_DESPAWN: 300
-
--- Kappa Biwa
-INSERT INTO `mob_spawn_mods` VALUES (17285546,55,150,1); -- IDLE_DESPAWN: 150
-
--- Eastern Sphinx
-INSERT INTO `mob_spawn_mods` VALUES (17289654,55,168,1); -- IDLE_DESPAWN: 168
-
--- Western Sphinx
-INSERT INTO `mob_spawn_mods` VALUES (17289655,55,168,1); -- IDLE_DESPAWN: 168
-
 -- Kraken
 INSERT INTO `mob_spawn_mods` VALUES (17293486,31,5,1); -- ROAM_DISTANCE: 5
 INSERT INTO `mob_spawn_mods` VALUES (17293486,51,1,1); -- ROAM_TURNS: 1
-
--- Picklix Longindex
-INSERT INTO `mob_spawn_mods` VALUES (17297446,55,180,1); -- IDLE_DESPAWN: 180
-
--- Moxnix Nightgoggle
-INSERT INTO `mob_spawn_mods` VALUES (17297447,55,180,1); -- IDLE_DESPAWN: 180
-
--- Doglix Muttsnout
-INSERT INTO `mob_spawn_mods` VALUES (17297448,55,180,1); -- IDLE_DESPAWN: 180
-
--- Ancient Weapon
-INSERT INTO `mob_spawn_mods` VALUES (17297449,55,300,1); -- IDLE_DESPAWN: 300
-
--- Legendary Weapon
-INSERT INTO `mob_spawn_mods` VALUES (17297450,55,300,1); -- IDLE_DESPAWN: 300
 
 -- Despot
 INSERT INTO `mob_spawn_mods` VALUES (17309954,1,18000,1); -- GIL_MIN: 18000
 INSERT INTO `mob_spawn_mods` VALUES (17309954,2,29250,1); -- GIL_MAX: 29250
 INSERT INTO `mob_spawn_mods` VALUES (17309954,15,3250,1); -- MUG_GIL: 3250
 
--- Mimic
-INSERT INTO `mob_spawn_mods` VALUES (17309979,55,120,1); -- IDLE_DESPAWN: 120
-
 -- Genbu
 INSERT INTO `mob_spawn_mods` VALUES (17309980,1,1500,1);  -- GIL_MIN: 1500
 INSERT INTO `mob_spawn_mods` VALUES (17309980,2,29036,1); -- GIL_MAX: 29036
-INSERT INTO `mob_spawn_mods` VALUES (17309980,55,300,1);  -- IDLE_DESPAWN: 300
 
 -- Seiryu
 INSERT INTO `mob_spawn_mods` VALUES (17309981,1,1500,1);  -- GIL_MIN: 1500
 INSERT INTO `mob_spawn_mods` VALUES (17309981,2,28608,1); -- GIL_MAX: 28608
-INSERT INTO `mob_spawn_mods` VALUES (17309981,55,300,1);  -- IDLE_DESPAWN: 300
 
 -- Byakko
 INSERT INTO `mob_spawn_mods` VALUES (17309982,1,1500,1);  -- GIL_MIN: 1500
 INSERT INTO `mob_spawn_mods` VALUES (17309982,2,18000,1); -- GIL_MAX: 18000
-INSERT INTO `mob_spawn_mods` VALUES (17309982,55,300,1);  -- IDLE_DESPAWN: 300
 
 -- Suzaku
 INSERT INTO `mob_spawn_mods` VALUES (17309983,1,1500,1);  -- GIL_MIN: 1500
 INSERT INTO `mob_spawn_mods` VALUES (17309983,2,28886,1); -- GIL_MAX: 28886
-INSERT INTO `mob_spawn_mods` VALUES (17309983,55,300,1);  -- IDLE_DESPAWN: 300
-
--- Satellite Shield
-INSERT INTO `mob_spawn_mods` VALUES (17330290,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Shield
-INSERT INTO `mob_spawn_mods` VALUES (17330291,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Shield
-INSERT INTO `mob_spawn_mods` VALUES (17330292,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Shield
-INSERT INTO `mob_spawn_mods` VALUES (17330299,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Shield
-INSERT INTO `mob_spawn_mods` VALUES (17330300,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Shield
-INSERT INTO `mob_spawn_mods` VALUES (17330301,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Daggers
-INSERT INTO `mob_spawn_mods` VALUES (17330306,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Daggers
-INSERT INTO `mob_spawn_mods` VALUES (17330307,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Daggers
-INSERT INTO `mob_spawn_mods` VALUES (17330308,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Knuckles
-INSERT INTO `mob_spawn_mods` VALUES (17330309,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Knuckles
-INSERT INTO `mob_spawn_mods` VALUES (17330310,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Knuckles
-INSERT INTO `mob_spawn_mods` VALUES (17330311,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Daggers
-INSERT INTO `mob_spawn_mods` VALUES (17330316,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Daggers
-INSERT INTO `mob_spawn_mods` VALUES (17330317,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Daggers
-INSERT INTO `mob_spawn_mods` VALUES (17330318,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Knuckles
-INSERT INTO `mob_spawn_mods` VALUES (17330319,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Knuckles
-INSERT INTO `mob_spawn_mods` VALUES (17330320,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Knuckles
-INSERT INTO `mob_spawn_mods` VALUES (17330321,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Hammers
-INSERT INTO `mob_spawn_mods` VALUES (17330334,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Hammers
-INSERT INTO `mob_spawn_mods` VALUES (17330335,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Hammers
-INSERT INTO `mob_spawn_mods` VALUES (17330336,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Staves
-INSERT INTO `mob_spawn_mods` VALUES (17330337,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Staves
-INSERT INTO `mob_spawn_mods` VALUES (17330338,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Staves
-INSERT INTO `mob_spawn_mods` VALUES (17330339,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Hammers
-INSERT INTO `mob_spawn_mods` VALUES (17330344,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Hammers
-INSERT INTO `mob_spawn_mods` VALUES (17330345,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Hammers
-INSERT INTO `mob_spawn_mods` VALUES (17330346,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Staves
-INSERT INTO `mob_spawn_mods` VALUES (17330347,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Staves
-INSERT INTO `mob_spawn_mods` VALUES (17330348,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Staves
-INSERT INTO `mob_spawn_mods` VALUES (17330349,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Longswords
-INSERT INTO `mob_spawn_mods` VALUES (17330355,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Longswords
-INSERT INTO `mob_spawn_mods` VALUES (17330356,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Longswords
-INSERT INTO `mob_spawn_mods` VALUES (17330357,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Longswords
-INSERT INTO `mob_spawn_mods` VALUES (17330362,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Longswords
-INSERT INTO `mob_spawn_mods` VALUES (17330363,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Longswords
-INSERT INTO `mob_spawn_mods` VALUES (17330364,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Claymores
-INSERT INTO `mob_spawn_mods` VALUES (17330365,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Claymores
-INSERT INTO `mob_spawn_mods` VALUES (17330366,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Claymores
-INSERT INTO `mob_spawn_mods` VALUES (17330367,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Claymores
-INSERT INTO `mob_spawn_mods` VALUES (17330372,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Claymores
-INSERT INTO `mob_spawn_mods` VALUES (17330373,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Claymores
-INSERT INTO `mob_spawn_mods` VALUES (17330374,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Tabars
-INSERT INTO `mob_spawn_mods` VALUES (17330380,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Tabars
-INSERT INTO `mob_spawn_mods` VALUES (17330381,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Tabars
-INSERT INTO `mob_spawn_mods` VALUES (17330382,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Great Axes
-INSERT INTO `mob_spawn_mods` VALUES (17330383,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Great Axes
-INSERT INTO `mob_spawn_mods` VALUES (17330384,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Great Axes
-INSERT INTO `mob_spawn_mods` VALUES (17330385,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Tabars
-INSERT INTO `mob_spawn_mods` VALUES (17330392,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Tabars
-INSERT INTO `mob_spawn_mods` VALUES (17330393,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Tabars
-INSERT INTO `mob_spawn_mods` VALUES (17330394,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Great Axes
-INSERT INTO `mob_spawn_mods` VALUES (17330395,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Great Axes
-INSERT INTO `mob_spawn_mods` VALUES (17330396,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Great Axes
-INSERT INTO `mob_spawn_mods` VALUES (17330397,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Scythes
-INSERT INTO `mob_spawn_mods` VALUES (17330420,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Scythes
-INSERT INTO `mob_spawn_mods` VALUES (17330421,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Scythes
-INSERT INTO `mob_spawn_mods` VALUES (17330422,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Spears
-INSERT INTO `mob_spawn_mods` VALUES (17330423,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Spears
-INSERT INTO `mob_spawn_mods` VALUES (17330424,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Spears
-INSERT INTO `mob_spawn_mods` VALUES (17330425,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Scythes
-INSERT INTO `mob_spawn_mods` VALUES (17330432,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Scythes
-INSERT INTO `mob_spawn_mods` VALUES (17330433,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Scythes
-INSERT INTO `mob_spawn_mods` VALUES (17330434,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Spears
-INSERT INTO `mob_spawn_mods` VALUES (17330435,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Spears
-INSERT INTO `mob_spawn_mods` VALUES (17330436,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Spears
-INSERT INTO `mob_spawn_mods` VALUES (17330437,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Kunai
-INSERT INTO `mob_spawn_mods` VALUES (17330442,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Kunai
-INSERT INTO `mob_spawn_mods` VALUES (17330443,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Kunai
-INSERT INTO `mob_spawn_mods` VALUES (17330444,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Tachi
-INSERT INTO `mob_spawn_mods` VALUES (17330445,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Tachi
-INSERT INTO `mob_spawn_mods` VALUES (17330446,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Tachi
-INSERT INTO `mob_spawn_mods` VALUES (17330447,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Kunai
-INSERT INTO `mob_spawn_mods` VALUES (17330454,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Kunai
-INSERT INTO `mob_spawn_mods` VALUES (17330455,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Kunai
-INSERT INTO `mob_spawn_mods` VALUES (17330456,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Tachi
-INSERT INTO `mob_spawn_mods` VALUES (17330457,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Tachi
-INSERT INTO `mob_spawn_mods` VALUES (17330458,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Tachi
-INSERT INTO `mob_spawn_mods` VALUES (17330459,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Horns
-INSERT INTO `mob_spawn_mods` VALUES (17330495,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Horns
-INSERT INTO `mob_spawn_mods` VALUES (17330496,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Horns
-INSERT INTO `mob_spawn_mods` VALUES (17330497,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Horns
-INSERT INTO `mob_spawn_mods` VALUES (17330503,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Horns
-INSERT INTO `mob_spawn_mods` VALUES (17330504,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Horns
-INSERT INTO `mob_spawn_mods` VALUES (17330505,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Guns
-INSERT INTO `mob_spawn_mods` VALUES (17330513,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Guns
-INSERT INTO `mob_spawn_mods` VALUES (17330514,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Guns
-INSERT INTO `mob_spawn_mods` VALUES (17330515,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Guns
-INSERT INTO `mob_spawn_mods` VALUES (17330516,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Guns
-INSERT INTO `mob_spawn_mods` VALUES (17330517,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Guns
-INSERT INTO `mob_spawn_mods` VALUES (17330518,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Longbows
-INSERT INTO `mob_spawn_mods` VALUES (17330522,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Longbows
-INSERT INTO `mob_spawn_mods` VALUES (17330523,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Longbows
-INSERT INTO `mob_spawn_mods` VALUES (17330524,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Longbows
-INSERT INTO `mob_spawn_mods` VALUES (17330525,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Longbows
-INSERT INTO `mob_spawn_mods` VALUES (17330526,55,120,1); -- IDLE_DESPAWN: 120
-
--- Satellite Longbows
-INSERT INTO `mob_spawn_mods` VALUES (17330527,55,120,1); -- IDLE_DESPAWN: 120
-
--- Orcish Fighter
-INSERT INTO `mob_spawn_mods` VALUES (17354895,55,600,1); -- IDLE_DESPAWN: 600
-
--- Chariotbuster Byakzak
-INSERT INTO `mob_spawn_mods` VALUES (17354896,55,600,1); -- IDLE_DESPAWN: 600
 
 -- Qu'Vho Deathhurler
 INSERT INTO `mob_spawn_mods` VALUES (17363080,368,33,0); -- REGAIN: 33
-
--- Ni'Ghu Nestfender
-INSERT INTO `mob_spawn_mods` VALUES (17363318,55,180,1); -- IDLE_DESPAWN: 180
 
 -- Maat
 INSERT INTO `mob_spawn_mods` VALUES (17367080,33,30,1); -- SPECIAL_COOL: 30
@@ -765,143 +147,33 @@ INSERT INTO `mob_spawn_mods` VALUES (17371142,2,33,1); -- GIL_MAX: 33
 INSERT INTO `mob_spawn_mods` VALUES (17371143,1,20,1); -- GIL_MIN: 20
 INSERT INTO `mob_spawn_mods` VALUES (17371143,2,25,1); -- GIL_MAX: 25
 
--- Vaa Huja The Erudite
-INSERT INTO `mob_spawn_mods` VALUES (17371579,55,180,1); -- IDLE_DESPAWN: 180
-
 -- Maat
 INSERT INTO `mob_spawn_mods` VALUES (17375263,34,30,1); -- MAGIC_COOL: 30
 
 -- Maat
 INSERT INTO `mob_spawn_mods` VALUES (17375267,34,30,1); -- MAGIC_COOL: 30
 
--- Mimic
-INSERT INTO `mob_spawn_mods` VALUES (17379783,55,120,1); -- IDLE_DESPAWN: 120
-
--- Gavotvut
-INSERT INTO `mob_spawn_mods` VALUES (17387965,55,300,1); -- IDLE_DESPAWN: 300
-
--- Barakbok
-INSERT INTO `mob_spawn_mods` VALUES (17387966,55,300,1); -- IDLE_DESPAWN: 300
-
--- Bilopdop
-INSERT INTO `mob_spawn_mods` VALUES (17387967,55,300,1); -- IDLE_DESPAWN: 300
-
--- Deloknok
-INSERT INTO `mob_spawn_mods` VALUES (17387968,55,300,1); -- IDLE_DESPAWN: 300
-
--- One-Eyed Gwajboj
-INSERT INTO `mob_spawn_mods` VALUES (17387970,55,180,1); -- IDLE_DESPAWN: 180
-
--- Three-Eyed Prozpuz
-INSERT INTO `mob_spawn_mods` VALUES (17387971,55,180,1); -- IDLE_DESPAWN: 180
-
--- Bugaboo
-INSERT INTO `mob_spawn_mods` VALUES (17391804,55,180,1); -- IDLE_DESPAWN: 180
-
--- Mimic
-INSERT INTO `mob_spawn_mods` VALUES (17391805,55,120,1); -- IDLE_DESPAWN: 120
-
--- Huu Xalmo The Savage
-INSERT INTO `mob_spawn_mods` VALUES (17396140,55,180,1); -- IDLE_DESPAWN: 180
-
--- Mimic
-INSERT INTO `mob_spawn_mods` VALUES (17396144,55,120,1); -- IDLE_DESPAWN: 120
-
 -- Voluptuous Vivian
 INSERT INTO `mob_spawn_mods` VALUES (17404331,1,20000,1); -- GIL_MIN: 20000
 INSERT INTO `mob_spawn_mods` VALUES (17404331,2,24000,1); -- GIL_MAX: 24000
-
--- Agas
-INSERT INTO `mob_spawn_mods` VALUES (17404337,55,288,1); -- IDLE_DESPAWN: 288
-
--- Beet Leafhopper
-INSERT INTO `mob_spawn_mods` VALUES (17404338,55,120,1); -- IDLE_DESPAWN: 120
-
--- Gerwitz'S Scythe
-INSERT INTO `mob_spawn_mods` VALUES (17420629,55,300,1); -- IDLE_DESPAWN: 300
-
--- Scythe Victim
-INSERT INTO `mob_spawn_mods` VALUES (17420630,55,180,1); -- IDLE_DESPAWN: 180
-
--- Scythe Victim
-INSERT INTO `mob_spawn_mods` VALUES (17420631,55,180,1); -- IDLE_DESPAWN: 180
-
--- Pallas
-INSERT INTO `mob_spawn_mods` VALUES (17424444,55,120,1); -- IDLE_DESPAWN: 120
-
--- Alkyoneus
-INSERT INTO `mob_spawn_mods` VALUES (17424480,55,120,1); -- IDLE_DESPAWN: 120
 
 -- Autarch
 INSERT INTO `mob_spawn_mods` VALUES (17424488,23,60,0);  -- ATT: 60
 INSERT INTO `mob_spawn_mods` VALUES (17424488,288,25,0); -- DOUBLE_ATTACK: 25
 INSERT INTO `mob_spawn_mods` VALUES (17424488,302,25,0); -- TRIPLE_ATTACK: 25
 
--- Nio-A
-INSERT INTO `mob_spawn_mods` VALUES (17428495,55,180,1); -- IDLE_DESPAWN: 180
-
--- Nio-Hum
-INSERT INTO `mob_spawn_mods` VALUES (17428496,55,180,1); -- IDLE_DESPAWN: 180
-
--- Mimic
-INSERT INTO `mob_spawn_mods` VALUES (17428497,55,120,1); -- IDLE_DESPAWN: 120
-
 -- Tonberry Kinq
 INSERT INTO `mob_spawn_mods` VALUES (17428677,1,18000,1); -- GIL_MIN: 18000
 INSERT INTO `mob_spawn_mods` VALUES (17428677,2,30000,1); -- GIL_MAX: 30000
 
--- Sozu Rogberry
-INSERT INTO `mob_spawn_mods` VALUES (17428751,55,300,1); -- IDLE_DESPAWN: 300
-
--- Cleuvarion M Resoaix
-INSERT INTO `mob_spawn_mods` VALUES (17428807,55,180,1); -- IDLE_DESPAWN: 180
-
--- Rompaulion S Citalle
-INSERT INTO `mob_spawn_mods` VALUES (17428808,55,180,1); -- IDLE_DESPAWN: 180
-
--- Beryl-Footed Molberry
-INSERT INTO `mob_spawn_mods` VALUES (17428809,55,300,1); -- IDLE_DESPAWN: 300
-
--- Death From Above
-INSERT INTO `mob_spawn_mods` VALUES (17428810,55,300,1); -- IDLE_DESPAWN: 300
-
 -- Habetrot
 INSERT INTO `mob_spawn_mods` VALUES (17428811,1,2000,1); -- GIL_MIN: 2000
 INSERT INTO `mob_spawn_mods` VALUES (17428811,2,5625,1); -- GIL_MAX: 5625
-INSERT INTO `mob_spawn_mods` VALUES (17428811,55,900,1); -- IDLE_DESPAWN: 900
-
--- Rumble Crawler
-INSERT INTO `mob_spawn_mods` VALUES (17428812,17,1,1);   -- NO_DESPAWN: 1
-INSERT INTO `mob_spawn_mods` VALUES (17428812,55,900,1); -- IDLE_DESPAWN: 900
-
--- Crimson-Toothed Pawberry
-INSERT INTO `mob_spawn_mods` VALUES (17428813,55,300,1); -- IDLE_DESPAWN: 300
-
--- Tonberry'S Avatar
-INSERT INTO `mob_spawn_mods` VALUES (17428815,55,300,1); -- IDLE_DESPAWN: 300
-
--- Sacrificial Goblet
-INSERT INTO `mob_spawn_mods` VALUES (17428816,55,300,1); -- IDLE_DESPAWN: 300
-
--- Mimic
-INSERT INTO `mob_spawn_mods` VALUES (17432583,55,120,1); -- IDLE_DESPAWN: 120
-
--- Hakutaku
-INSERT INTO `mob_spawn_mods` VALUES (17433005,55,120,1); -- IDLE_DESPAWN: 120
 
 -- Azrael
 INSERT INTO `mob_spawn_mods` VALUES (17433009,1,15000,1); -- GIL_MIN: 15000
 INSERT INTO `mob_spawn_mods` VALUES (17433009,2,18000,1); -- GIL_MAX: 18000
 INSERT INTO `mob_spawn_mods` VALUES (17433009,302,15,0);  -- TRIPLE_ATTACK: 15
-
--- Dark Spark
-INSERT INTO `mob_spawn_mods` VALUES (17436964,55,180,1); -- IDLE_DESPAWN: 180
-
--- Mimic
-INSERT INTO `mob_spawn_mods` VALUES (17436965,55,120,1); -- IDLE_DESPAWN: 120
-
--- Tros
-INSERT INTO `mob_spawn_mods` VALUES (17457309,55,180,1); -- IDLE_DESPAWN: 180
 
 -- Bloodsucker
 INSERT INTO `mob_spawn_mods` VALUES (17461478,1,3000,1); -- GIL_MIN: 3000
@@ -917,12 +189,6 @@ INSERT INTO `mob_spawn_mods` VALUES (17465362,33,30,1); -- SPECIAL_COOL: 30
 -- Maat
 INSERT INTO `mob_spawn_mods` VALUES (17465364,33,30,1); -- SPECIAL_COOL: 30
 
--- Magic Sludge
-INSERT INTO `mob_spawn_mods` VALUES (17469516,55,180,1); -- IDLE_DESPAWN: 180
-
--- Mimic
-INSERT INTO `mob_spawn_mods` VALUES (17469761,55,120,1); -- IDLE_DESPAWN: 120
-
 -- Cargo Crab Colin
 INSERT INTO `mob_spawn_mods` VALUES (17485980,1,1200,1); -- GIL_MIN: 1200
 INSERT INTO `mob_spawn_mods` VALUES (17485980,2,1950,1); -- GIL_MAX: 1950
@@ -935,204 +201,35 @@ INSERT INTO `mob_spawn_mods` VALUES (17486031,2,1903,1); -- GIL_MAX: 1903
 INSERT INTO `mob_spawn_mods` VALUES (17486129,1,3600,1); -- GIL_MIN: 3600
 INSERT INTO `mob_spawn_mods` VALUES (17486129,2,6079,1); -- GIL_MAX: 6079
 
--- Korroloka Leech
-INSERT INTO `mob_spawn_mods` VALUES (17486187,55,168,1); -- IDLE_DESPAWN: 168
-
--- Korroloka Leech
-INSERT INTO `mob_spawn_mods` VALUES (17486188,55,168,1); -- IDLE_DESPAWN: 168
-
--- Korroloka Leech
-INSERT INTO `mob_spawn_mods` VALUES (17486189,55,168,1); -- IDLE_DESPAWN: 168
-
--- Morion Worm
-INSERT INTO `mob_spawn_mods` VALUES (17486190,55,1800,1); -- IDLE_DESPAWN: 1800
-
 -- Amemet
 INSERT INTO `mob_spawn_mods` VALUES (17490016,1,6000,1); -- GIL_MIN: 6000
 INSERT INTO `mob_spawn_mods` VALUES (17490016,2,9100,1); -- GIL_MAX: 9100
 
--- Mimic
-INSERT INTO `mob_spawn_mods` VALUES (17490230,55,120,1); -- IDLE_DESPAWN: 120
-
 -- Cancer
 INSERT INTO `mob_spawn_mods` VALUES (17490231,1,6000,1); -- GIL_MIN: 6000
 INSERT INTO `mob_spawn_mods` VALUES (17490231,2,9500,1); -- GIL_MAX: 9500
-INSERT INTO `mob_spawn_mods` VALUES (17490231,55,180,1); -- IDLE_DESPAWN: 180
-
--- Robber Crab
-INSERT INTO `mob_spawn_mods` VALUES (17490232,55,180,1); -- IDLE_DESPAWN: 180
-
--- Phantom Worm
-INSERT INTO `mob_spawn_mods` VALUES (17490233,55,180,1); -- IDLE_DESPAWN: 180
-
--- Mimic
-INSERT INTO `mob_spawn_mods` VALUES (17498564,55,120,1); -- IDLE_DESPAWN: 120
-
--- Mimic
-INSERT INTO `mob_spawn_mods` VALUES (17502567,55,120,1); -- IDLE_DESPAWN: 120
 
 -- Brigandish Blade
 INSERT INTO `mob_spawn_mods` VALUES (17502568,1,18227,1); -- GIL_MIN: 18227
 INSERT INTO `mob_spawn_mods` VALUES (17502568,2,18606,1); -- GIL_MAX: 18606
-INSERT INTO `mob_spawn_mods` VALUES (17502568,55,180,1);  -- IDLE_DESPAWN: 180
 
 -- Faust
 INSERT INTO `mob_spawn_mods` VALUES (17506370,1,17986,1); -- GIL_MIN: 17986
 INSERT INTO `mob_spawn_mods` VALUES (17506370,2,27482,1); -- GIL_MAX: 27482
 
--- Ullikummi
-INSERT INTO `mob_spawn_mods` VALUES (17506418,55,180,1); -- IDLE_DESPAWN: 180
-
--- Olla Pequena
-INSERT INTO `mob_spawn_mods` VALUES (17506667,55,180,1); -- IDLE_DESPAWN: 180
-
--- Olla Media
-INSERT INTO `mob_spawn_mods` VALUES (17506668,55,180,1); -- IDLE_DESPAWN: 180
-
--- Olla Grande
-INSERT INTO `mob_spawn_mods` VALUES (17506669,55,180,1); -- IDLE_DESPAWN: 180
-
--- Disaster Idol
-INSERT INTO `mob_spawn_mods` VALUES (17531121,55,180,1); -- IDLE_DESPAWN: 180
-
 -- Cemetery Cherry
 INSERT INTO `mob_spawn_mods` VALUES (17555754,1,20000,1);  -- GIL_MIN: 20000
 INSERT INTO `mob_spawn_mods` VALUES (17555754,2,30000,1);  -- GIL_MAX: 30000
 INSERT INTO `mob_spawn_mods` VALUES (17555754,15,10000,1); -- MUG_GIL: 10000
-INSERT INTO `mob_spawn_mods` VALUES (17555754,55,600,1);   -- IDLE_DESPAWN: 600
-
--- Fire Elemental
-INSERT INTO `mob_spawn_mods` VALUES (17559870,55,300,1); -- IDLE_DESPAWN: 300
-
--- Polevik
-INSERT INTO `mob_spawn_mods` VALUES (17568134,55,168,1); -- IDLE_DESPAWN: 168
-
--- Gerwitz'S Axe
-INSERT INTO `mob_spawn_mods` VALUES (17568135,55,180,1); -- IDLE_DESPAWN: 180
-
--- Gerwitz'S Sword
-INSERT INTO `mob_spawn_mods` VALUES (17568136,55,180,1); -- IDLE_DESPAWN: 180
-
--- Gerwitz'S Soul
-INSERT INTO `mob_spawn_mods` VALUES (17568137,55,180,1); -- IDLE_DESPAWN: 180
-
--- Air Elemental
-INSERT INTO `mob_spawn_mods` VALUES (17568139,55,300,1); -- IDLE_DESPAWN: 300
-
--- Thunder Elemental
-INSERT INTO `mob_spawn_mods` VALUES (17572203,55,300,1); -- IDLE_DESPAWN: 300
-
--- Yum Kimil
-INSERT INTO `mob_spawn_mods` VALUES (17576264,55,300,1); -- IDLE_DESPAWN: 300
-
--- Dog Guardian
-INSERT INTO `mob_spawn_mods` VALUES (17576265,55,180,1); -- IDLE_DESPAWN: 180
-
--- Owl Guardian
-INSERT INTO `mob_spawn_mods` VALUES (17576266,55,180,1); -- IDLE_DESPAWN: 180
-
--- Sturm
-INSERT INTO `mob_spawn_mods` VALUES (17576267,55,180,1); -- IDLE_DESPAWN: 180
-
--- Taifun
-INSERT INTO `mob_spawn_mods` VALUES (17576268,55,180,1); -- IDLE_DESPAWN: 180
-
--- Trombe
-INSERT INTO `mob_spawn_mods` VALUES (17576269,55,180,1); -- IDLE_DESPAWN: 180
-
--- Ice Elemental
-INSERT INTO `mob_spawn_mods` VALUES (17576271,55,120,1); -- IDLE_DESPAWN: 120
-
--- Blind Moby
-INSERT INTO `mob_spawn_mods` VALUES (17580038,55,300,1); -- IDLE_DESPAWN: 300
-
--- Wandering Ghost
-INSERT INTO `mob_spawn_mods` VALUES (17580337,55,300,1); -- IDLE_DESPAWN: 300
-
--- Earth Elemental
-INSERT INTO `mob_spawn_mods` VALUES (17580340,55,300,1); -- IDLE_DESPAWN: 300
-
--- Guardian Crawler
-INSERT INTO `mob_spawn_mods` VALUES (17584129,55,120,1); -- IDLE_DESPAWN: 120
-
--- Guardian Crawler
-INSERT INTO `mob_spawn_mods` VALUES (17584130,55,120,1); -- IDLE_DESPAWN: 120
-
--- Drone Crawler
-INSERT INTO `mob_spawn_mods` VALUES (17584131,55,120,1); -- IDLE_DESPAWN: 120
-
--- Drone Crawler
-INSERT INTO `mob_spawn_mods` VALUES (17584132,55,120,1); -- IDLE_DESPAWN: 120
-
--- Queen Crawler
-INSERT INTO `mob_spawn_mods` VALUES (17584133,55,120,1); -- IDLE_DESPAWN: 120
-
--- Matron Crawler
-INSERT INTO `mob_spawn_mods` VALUES (17584134,55,120,1); -- IDLE_DESPAWN: 120
-
--- Awd Goggie
-INSERT INTO `mob_spawn_mods` VALUES (17584135,55,120,1); -- IDLE_DESPAWN: 120
-
--- Dreadbug
-INSERT INTO `mob_spawn_mods` VALUES (17584425,55,168,1); -- IDLE_DESPAWN: 168
-
--- Mimic
-INSERT INTO `mob_spawn_mods` VALUES (17584426,55,120,1); -- IDLE_DESPAWN: 120
-
--- Water Elemental
-INSERT INTO `mob_spawn_mods` VALUES (17584427,55,300,1); -- IDLE_DESPAWN: 300
-
--- Wyrmfly
-INSERT INTO `mob_spawn_mods` VALUES (17588701,55,180,1); -- IDLE_DESPAWN: 180
-
--- Wyrmfly
-INSERT INTO `mob_spawn_mods` VALUES (17588702,55,180,1); -- IDLE_DESPAWN: 180
-
--- Wyrmfly
-INSERT INTO `mob_spawn_mods` VALUES (17588703,55,180,1); -- IDLE_DESPAWN: 180
-
--- Dark Elemental
-INSERT INTO `mob_spawn_mods` VALUES (17588704,55,300,1); -- IDLE_DESPAWN: 300
-
--- Lost Soul
-INSERT INTO `mob_spawn_mods` VALUES (17588706,55,180,1); -- IDLE_DESPAWN: 180
-
--- Chandelier
-INSERT INTO `mob_spawn_mods` VALUES (17596533,55,120,1); -- IDLE_DESPAWN: 120
-
--- Guardian Statue
-INSERT INTO `mob_spawn_mods` VALUES (17596643,55,180,1); -- IDLE_DESPAWN: 180
 
 -- Serket
 INSERT INTO `mob_spawn_mods` VALUES (17596720,1,19000,1); -- GIL_MIN: 19000
 INSERT INTO `mob_spawn_mods` VALUES (17596720,2,32767,1); -- GIL_MAX: 32767
 
--- Mimic
-INSERT INTO `mob_spawn_mods` VALUES (17596728,55,120,1); -- IDLE_DESPAWN: 120
-
--- Light Elemental
-INSERT INTO `mob_spawn_mods` VALUES (17596729,55,300,1); -- IDLE_DESPAWN: 300
-
--- Mimic
-INSERT INTO `mob_spawn_mods` VALUES (17617157,55,120,1); -- IDLE_DESPAWN: 120
-
 -- Bomb Queen
 INSERT INTO `mob_spawn_mods` VALUES (17617158,1,15000,1); -- GIL_MIN: 15000
 INSERT INTO `mob_spawn_mods` VALUES (17617158,2,18000,1); -- GIL_MAX: 18000
 INSERT INTO `mob_spawn_mods` VALUES (17617158,15,3370,1); -- MUG_GIL: 3370
-INSERT INTO `mob_spawn_mods` VALUES (17617158,55,900,1);  -- IDLE_DESPAWN: 900
-
--- Tarasque
-INSERT INTO `mob_spawn_mods` VALUES (17617164,55,900,1); -- IDLE_DESPAWN: 900
-
--- Valor
-INSERT INTO `mob_spawn_mods` VALUES (17629185,55,180,1); -- IDLE_DESPAWN: 180
-
--- Honor
-INSERT INTO `mob_spawn_mods` VALUES (17629186,55,180,1); -- IDLE_DESPAWN: 180
-
--- Mimic
-INSERT INTO `mob_spawn_mods` VALUES (17629190,55,120,1); -- IDLE_DESPAWN: 120
 
 -- Centurio X-I
 INSERT INTO `mob_spawn_mods` VALUES (17629238,1,2000,1); -- GIL_MIN: 2000
@@ -1187,23 +284,13 @@ INSERT INTO `mob_spawn_mods` VALUES (17629640,2,9234,1); -- GIL_MAX: 9234
 INSERT INTO `mob_spawn_mods` VALUES (17629641,1,6000,1); -- GIL_MIN: 6000
 INSERT INTO `mob_spawn_mods` VALUES (17629641,2,9234,1); -- GIL_MAX: 9234
 
--- Ancient Vessel
-INSERT INTO `mob_spawn_mods` VALUES (17629642,55,600,1); -- IDLE_DESPAWN: 600
-
 -- Tribunus Vii-I
 INSERT INTO `mob_spawn_mods` VALUES (17629643,1,6000,1); -- GIL_MIN: 6000
 INSERT INTO `mob_spawn_mods` VALUES (17629643,2,9234,1); -- GIL_MAX: 9234
-INSERT INTO `mob_spawn_mods` VALUES (17629643,55,900,1); -- IDLE_DESPAWN: 900
 
 -- Proconsul Xii
 INSERT INTO `mob_spawn_mods` VALUES (17629644,1,6000,1); -- GIL_MIN: 6000
 INSERT INTO `mob_spawn_mods` VALUES (17629644,2,9234,1); -- GIL_MAX: 9234
-
--- Ubume
-INSERT INTO `mob_spawn_mods` VALUES (17649860,55,300,1); -- IDLE_DESPAWN: 300
-
--- Enagakure
-INSERT INTO `mob_spawn_mods` VALUES (17678351,55,600,1); -- IDLE_DESPAWN: 600
 
 -- [Narasimha]
 -- Values taken from wiki on 04/23/2018 (http://ffxiclopedia.wikia.com/wiki/Narasimha)

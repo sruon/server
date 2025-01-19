@@ -23,7 +23,7 @@ local function spawnSaplings()
 end
 
 entity.onMobInitialize = function(mob)
-    mob:setMobMod(xi.mobMod.IDLE_DESPAWN, 180)
+    mob:setMobMod(xi.mobMod.IDLE_DESPAWN, 600)
     mob:addImmunity(xi.immunity.SILENCE)
 
     local saplingsRespawn = math.random(1800, 3600) -- 30 to 60 minutes

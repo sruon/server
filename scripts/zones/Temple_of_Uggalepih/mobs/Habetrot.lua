@@ -8,6 +8,7 @@ local entity = {}
 
 entity.onMobInitialize = function(mob)
     mob:setMobMod(xi.mobMod.ADD_EFFECT, 1)
+    mob:setMobMod(xi.mobMod.IDLE_DESPAWN, 900)
 end
 
 entity.onAdditionalEffect = function(mob, target, damage)
