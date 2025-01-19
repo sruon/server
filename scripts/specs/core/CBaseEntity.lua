@@ -3429,8 +3429,20 @@ function CBaseEntity:getAutomatonFrame()
 end
 
 ---@nodiscard
+---@param itemId integer
+---@return nil
+function CBaseEntity:setAutomatonFrame(itemId)
+end
+
+---@nodiscard
 ---@return integer
 function CBaseEntity:getAutomatonHead()
+end
+
+---@nodiscard
+---@param itemId integer
+---@return nil
+function CBaseEntity:setAutomatonHead(itemId)
 end
 
 ---@param itemID integer
@@ -3455,6 +3467,13 @@ end
 ---@param slotId integer
 ---@return CItem?
 function CBaseEntity:getAttachment(slotId)
+end
+
+---@nodiscard
+---@param itemId integer
+---@param slotId integer
+---@return nil
+function CBaseEntity:setAttachment(itemId, slotId)
 end
 
 ---@nodiscard
