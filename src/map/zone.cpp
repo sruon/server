@@ -959,63 +959,54 @@ void CZone::ZoneServer(time_point tick)
 void CZone::ForEachChar(std::function<void(CCharEntity*)> const& func)
 {
     TracyZoneScoped;
-    for (auto PChar : m_zoneEntities->GetCharList())
+    FOR_EACH_PAIR_CAST_SECOND(m_zoneEntities->m_charList, CCharEntity*, PChar)
     {
-        func((CCharEntity*)PChar.second);
+        func(PChar);
     }
 }
 
 void CZone::ForEachCharInstance(CBaseEntity* PEntity, std::function<void(CCharEntity*)> const& func)
 {
     TracyZoneScoped;
-    for (auto PChar : m_zoneEntities->GetCharList())
-    {
-        func((CCharEntity*)PChar.second);
-    }
+    ForEachChar(func);
 }
 
 void CZone::ForEachMob(std::function<void(CMobEntity*)> const& func)
 {
     TracyZoneScoped;
-    for (auto PMob : m_zoneEntities->m_mobList)
+    FOR_EACH_PAIR_CAST_SECOND(m_zoneEntities->m_mobList, CMobEntity*, PMob)
     {
-        func((CMobEntity*)PMob.second);
+        func(PMob);
     }
 }
 
 void CZone::ForEachMobInstance(CBaseEntity* PEntity, std::function<void(CMobEntity*)> const& func)
 {
     TracyZoneScoped;
-    for (auto PMob : m_zoneEntities->m_mobList)
-    {
-        func((CMobEntity*)PMob.second);
-    }
+    ForEachMob(func);
 }
 
 void CZone::ForEachTrust(std::function<void(CTrustEntity*)> const& func)
 {
     TracyZoneScoped;
-    for (auto PTrust : m_zoneEntities->m_trustList)
+    FOR_EACH_PAIR_CAST_SECOND(m_zoneEntities->m_trustList, CTrustEntity*, PTrust)
     {
-        func((CTrustEntity*)PTrust.second);
+        func(PTrust);
     }
 }
 
 void CZone::ForEachTrustInstance(CBaseEntity* PEntity, std::function<void(CTrustEntity*)> const& func)
 {
     TracyZoneScoped;
-    for (auto PTrust : m_zoneEntities->m_trustList)
-    {
-        func((CTrustEntity*)PTrust.second);
-    }
+    ForEachTrust(func);
 }
 
 void CZone::ForEachNpc(std::function<void(CNpcEntity*)> const& func)
 {
     TracyZoneScoped;
-    for (auto PNpc : m_zoneEntities->m_npcList)
+    FOR_EACH_PAIR_CAST_SECOND(m_zoneEntities->m_npcList, CNpcEntity*, PNpc)
     {
-        func((CNpcEntity*)PNpc.second);
+        func(PNpc);
     }
 }
 
@@ -1223,10 +1214,8 @@ void CZone::CheckTriggerAreas()
 {
     TracyZoneScoped;
 
-    for (auto const& [targid, PEntity] : m_zoneEntities->m_charList)
+    FOR_EACH_PAIR_CAST_SECOND(m_zoneEntities->m_charList, CCharEntity*, PChar)
     {
-        auto* PChar = static_cast<CCharEntity*>(PEntity);
-
         // TODO: When we start to use octrees or spatial hashing to split up zones,
         //     : use them here to make the search domain smaller.
 
