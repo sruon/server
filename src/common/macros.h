@@ -72,7 +72,7 @@
 //
 // Assembly Analysis: https://github.com/LandSandBoat/server/pull/6751
 //
-#define FOR_EACH_PAIR_CAST_SECOND(_collection, _type, _var) \
+#define FOR_EACH_PAIR_CAST_SECOND(_type, _var, _collection) \
     for (const auto& [_key, _value] : _collection)          \
         if (auto _var = static_cast<_type>(_value); true)
 

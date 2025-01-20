@@ -235,7 +235,7 @@ void CTargetFind::addAllInMobList(CBattleEntity* PTarget, bool withPet)
     CCharEntity* PChar = dynamic_cast<CCharEntity*>(findMaster(m_PBattleEntity));
     if (PChar)
     {
-        FOR_EACH_PAIR_CAST_SECOND(PChar->SpawnMOBList, CMobEntity*, PBattleTarget)
+        FOR_EACH_PAIR_CAST_SECOND(CMobEntity*, PBattleTarget, PChar->SpawnMOBList)
         {
             if (PBattleTarget && isMobOwner(PBattleTarget))
             {
@@ -332,9 +332,9 @@ void CTargetFind::addAllInRange(CBattleEntity* PTarget, float radius, ALLEGIANCE
         if (PTarget->objtype == TYPE_PC)
         {
             CCharEntity* PChar = static_cast<CCharEntity*>(PTarget);
-            for (auto& list : { PChar->SpawnPCList, PChar->SpawnPETList })
+            for (auto& spawnList : { PChar->SpawnPCList, PChar->SpawnPETList })
             {
-                FOR_EACH_PAIR_CAST_SECOND(list, CBattleEntity*, PBattleEntity)
+                FOR_EACH_PAIR_CAST_SECOND(CBattleEntity*, PBattleEntity, spawnList)
                 {
                     if (PBattleEntity && isWithinArea(&(PBattleEntity->loc.p)) && !PBattleEntity->isDead() &&
                         PBattleEntity->allegiance == ALLEGIANCE_TYPE::PLAYER)

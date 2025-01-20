@@ -12805,7 +12805,7 @@ void CLuaBaseEntity::transferEnmity(CLuaBaseEntity* entity, uint8 percent, float
 
     if (PIterEntity)
     {
-        FOR_EACH_PAIR_CAST_SECOND(PIterEntity->SpawnMOBList, CMobEntity*, PMob)
+        FOR_EACH_PAIR_CAST_SECOND(CMobEntity*, PMob, PIterEntity->SpawnMOBList)
         {
             if (isWithinDistance(PMob->loc.p, PEntity->loc.p, range))
             {

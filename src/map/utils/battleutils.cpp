@@ -4463,7 +4463,7 @@ namespace battleutils
 
         if (PIterSource)
         {
-            FOR_EACH_PAIR_CAST_SECOND(PIterSource->SpawnMOBList, CMobEntity*, PCurrentMob)
+            FOR_EACH_PAIR_CAST_SECOND(CMobEntity*, PCurrentMob, PIterSource->SpawnMOBList)
             {
                 if (PCurrentMob->m_HiPCLvl > 0 && PCurrentMob->PEnmityContainer->HasID(PSource->id))
                 {
