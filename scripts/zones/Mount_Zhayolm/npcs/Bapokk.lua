@@ -38,6 +38,11 @@ entity.onEventUpdate = function(player, csid, option, npc)
 end
 
 entity.onEventFinish = function(player, csid, option, npc)
+    -- Moved to onTrade to match other Ruins Entry NPCs scripts
+    -- if csid == 163 then
+    --    player:confirmTrade()
+    --    player:setPos(-20, -6, 0, 192) -- using the pos method until the problem below is fixed
+    -- end
 end
 
 return entity
