@@ -4,6 +4,8 @@
 -- Type: Alzadaal Undersea Ruins
 -- !pos -459.942 -20.048 -4.999 52
 -----------------------------------
+local ID = zones[xi.zone.BHAFLAU_THICKETS]
+-----------------------------------
 ---@type TNpcEntity
 local entity = {}
 
@@ -25,19 +27,37 @@ entity.onTrigger = function(player, npc)
         player:getXPos() > -459 and
         player:getYPos() < -16.079
     then
-        player:startEvent(134)
+        if player:hasKeyItem(xi.ki.CAPTAIN_WILDCAT_BADGE) then
+            player:messageSpecial(ID.text.YOU_HAVE_A_BADGE, xi.ki.CAPTAIN_WILDCAT_BADGE)
+            player:setPos(-458, -16, 0, 189) -- using the pos method until the problem below is fixed
+            -- player:startEvent(135) -- << this CS goes black at the end, never fades in
+        else
+            player:startEvent(134)
+        end
     elseif
         player:getXPos() < -459 and
         player:getXPos() > -462 and
         player:getYPos() < -16.070
     then
-        player:startEvent(134)
+        if player:hasKeyItem(xi.ki.CAPTAIN_WILDCAT_BADGE) then
+            player:messageSpecial(ID.text.YOU_HAVE_A_BADGE, xi.ki.CAPTAIN_WILDCAT_BADGE)
+            player:setPos(-458, -16, 0, 189) -- using the pos method until the problem below is fixed
+            -- player:startEvent(135) -- << this CS goes black at the end, never fades in
+        else
+            player:startEvent(134)
+        end
     elseif
         player:getXPos() < -462 and
         player:getXPos() > -464 and
         player:getYPos() < -16.071
     then
-        player:startEvent(134)
+        if player:hasKeyItem(xi.ki.CAPTAIN_WILDCAT_BADGE) then
+            player:messageSpecial(ID.text.YOU_HAVE_A_BADGE, xi.ki.CAPTAIN_WILDCAT_BADGE)
+            player:setPos(-458, -16, 0, 189) -- using the pos method until the problem below is fixed
+            -- player:startEvent(135) -- << this CS goes black at the end, never fades in
+        else
+            player:startEvent(134)
+        end
     else
         player:startEvent(136)
     end
