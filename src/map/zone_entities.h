@@ -37,6 +37,9 @@
 class CZoneEntities
 {
 public:
+    CZoneEntities(CZone*);
+    ~CZoneEntities();
+
     void HealAllMobs();
     void TryAddToNearbySpawnLists(CBaseEntity* PEntity);
 
@@ -67,8 +70,6 @@ public:
     void InsertMOB(CBaseEntity* PMob);
     void InsertPET(CBaseEntity* PPet);
     void InsertTRUST(CBaseEntity* PTrust);
-    void DeletePET(CBaseEntity* PPet);
-    void DeleteTRUST(CBaseEntity* PTrust);
 
     void FindPartyForMob(CBaseEntity* PEntity);         // looking for a party for the monster
     void TransportDepart(uint16 boundary, uint16 zone); // ship/boat is leaving, passengers need to be collected
@@ -87,8 +88,19 @@ public:
     EntityList_t GetMobList() const;
     bool         CharListEmpty() const;
 
-    uint16 GetNewCharTargID();
-    void   AssignDynamicTargIDandLongID(CBaseEntity* PEntity);
+    void ForEachChar(std::function<void(CCharEntity*)> const& func);
+    void ForEachMob(std::function<void(CMobEntity*)> const& func);
+    void ForEachNpc(std::function<void(CNpcEntity*)> const& func);
+    void ForEachTrust(std::function<void(CTrustEntity*)> const& func);
+    void ForEachPet(std::function<void(CPetEntity*)> const& func);
+    void ForEachAlly(std::function<void(CMobEntity*)> const& func);
+
+    auto GetNewCharTargID() -> uint16;
+    void AssignDynamicTargIDandLongID(CBaseEntity* PEntity);
+    void EraseStaleDynamicTargIDs();
+
+private:
+    CZone* m_zone;
 
     EntityList_t m_allyList;
     EntityList_t m_mobList;
@@ -104,11 +116,6 @@ public:
 
     std::vector<std::pair<uint16, time_point>> m_dynamicTargIdsToDelete; // list of targids pending deletion at a later date
 
-    CZoneEntities(CZone*);
-    ~CZoneEntities();
-
-private:
-    CZone*     m_zone;
     time_point m_EffectCheckTime{ server_clock::now() };
 
     time_point m_computeTime{ server_clock::now() };

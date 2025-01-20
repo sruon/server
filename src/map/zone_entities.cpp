@@ -281,14 +281,6 @@ void CZoneEntities::InsertNPC(CBaseEntity* PNpc)
     }
 }
 
-void CZoneEntities::DeletePET(CBaseEntity* PPet)
-{
-    if (PPet != nullptr)
-    {
-        m_petList.erase(PPet->targid);
-    }
-}
-
 void CZoneEntities::InsertPET(CBaseEntity* PPet)
 {
     TracyZoneScoped;
@@ -324,14 +316,6 @@ void CZoneEntities::InsertTRUST(CBaseEntity* PTrust)
         PTrust->spawnAnimation = SPAWN_ANIMATION::NORMAL; // Turn off special spawn animation
 
         return;
-    }
-}
-
-void CZoneEntities::DeleteTRUST(CBaseEntity* PTrust)
-{
-    if (PTrust != nullptr)
-    {
-        m_trustList.erase(PTrust->id);
     }
 }
 
@@ -664,9 +648,74 @@ void CZoneEntities::AssignDynamicTargIDandLongID(CBaseEntity* PEntity)
     }
 }
 
+void CZoneEntities::EraseStaleDynamicTargIDs()
+{
+    for (auto it = m_dynamicTargIdsToDelete.begin(); it != m_dynamicTargIdsToDelete.end();)
+    {
+        // Erase dynamic targid if it's stale enough
+        if ((server_clock::now() - it->second) > 60s)
+        {
+            m_dynamicTargIds.erase(it->first);
+            it = m_dynamicTargIdsToDelete.erase(it);
+        }
+        else
+        {
+            ++it;
+        }
+    }
+}
+
 bool CZoneEntities::CharListEmpty() const
 {
     return m_charList.empty();
+}
+
+void CZoneEntities::ForEachChar(std::function<void(CCharEntity*)> const& func)
+{
+    FOR_EACH_PAIR_CAST_SECOND(m_charList, CCharEntity*, PChar)
+    {
+        func(PChar);
+    }
+}
+
+void CZoneEntities::ForEachMob(std::function<void(CMobEntity*)> const& func)
+{
+    FOR_EACH_PAIR_CAST_SECOND(m_mobList, CMobEntity*, PMob)
+    {
+        func(PMob);
+    }
+}
+
+void CZoneEntities::ForEachNpc(std::function<void(CNpcEntity*)> const& func)
+{
+    FOR_EACH_PAIR_CAST_SECOND(m_npcList, CNpcEntity*, PNpc)
+    {
+        func(PNpc);
+    }
+}
+
+void CZoneEntities::ForEachTrust(std::function<void(CTrustEntity*)> const& func)
+{
+    FOR_EACH_PAIR_CAST_SECOND(m_trustList, CTrustEntity*, PTrust)
+    {
+        func(PTrust);
+    }
+}
+
+void CZoneEntities::ForEachPet(std::function<void(CPetEntity*)> const& func)
+{
+    FOR_EACH_PAIR_CAST_SECOND(m_petList, CPetEntity*, PPet)
+    {
+        func(PPet);
+    }
+}
+
+void CZoneEntities::ForEachAlly(std::function<void(CMobEntity*)> const& func)
+{
+    FOR_EACH_PAIR_CAST_SECOND(m_allyList, CMobEntity*, PAlly)
+    {
+        func(PAlly);
+    }
 }
 
 void CZoneEntities::DespawnPC(CCharEntity* PChar)
@@ -1617,6 +1666,10 @@ void CZoneEntities::ZoneServer(time_point tick)
 
     luautils::OnZoneTick(this->m_zone);
 
+    //
+    // Mob tick logic
+    //
+
     FOR_EACH_PAIR_CAST_SECOND(m_mobList, CMobEntity*, PMob)
     {
         if (!PMob)
@@ -1711,6 +1764,10 @@ void CZoneEntities::ZoneServer(time_point tick)
         }
     }
 
+    //
+    // NPC tick logic
+    //
+
     FOR_EACH_PAIR_CAST_SECOND(m_npcList, CNpcEntity*, PNpc)
     {
         ShowTrace(fmt::format("CZoneEntities::ZoneServer: NPC: {} ({})", PNpc->getName(), PNpc->id).c_str());
@@ -1732,6 +1789,10 @@ void CZoneEntities::ZoneServer(time_point tick)
             continue;
         }
     }
+
+    //
+    // Pet tick logic
+    //
 
     FOR_EACH_PAIR_CAST_SECOND(m_petList, CPetEntity*, PPet)
     {
@@ -1764,6 +1825,10 @@ void CZoneEntities::ZoneServer(time_point tick)
 
         PPet->PAI->Tick(tick);
     }
+
+    //
+    // Trust tick logic
+    //
 
     FOR_EACH_PAIR_CAST_SECOND(m_trustList, CTrustEntity*, PTrust)
     {
@@ -1799,6 +1864,10 @@ void CZoneEntities::ZoneServer(time_point tick)
             continue;
         }
     }
+
+    //
+    // Char tick logic
+    //
 
     FOR_EACH_PAIR_CAST_SECOND(m_charList, CCharEntity*, PChar)
     {
@@ -1837,6 +1906,10 @@ void CZoneEntities::ZoneServer(time_point tick)
             m_charsToChangeZone.emplace_back(PChar);
         }
     }
+
+    //
+    // Cleanup logic
+    //
 
     for (const auto* PMob : m_mobsToDelete)
     {
