@@ -1288,6 +1288,8 @@ def main():
                     )
                     fetch_errors(query, result)
                     setup_db()
+                else:
+                    setup_db()
                 return
             elif "dump" == arg1:
                 if len(sys.argv) > 2:
