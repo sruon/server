@@ -398,7 +398,7 @@ jobs:
           name: windows_modules_executables
           path: |
             xi_connect.exe
-            xi_map.exe
+            xi_map_tracy.exe
             xi_search.exe
             xi_world.exe
           
@@ -727,6 +727,9 @@ jobs:
     - uses: zach2good/setup-mariadb@v1
       with:
           database: xidb
+    - name: Rename exe
+      run: |
+        mv xi_map_tracy.exe xi_map.exe
     - name: Copy settings
       run: |
         cp settings/default/* settings/
