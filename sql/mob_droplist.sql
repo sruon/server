@@ -26941,8 +26941,8 @@ INSERT INTO `mob_droplist` VALUES (3325,0,0,1000,1312,@RARE);      -- Piece Of A
 INSERT INTO `mob_droplist` VALUES (3325,0,0,1000,19126,@UNCOMMON); -- Papilio Kirpan (Uncommon, 10%)
 
 -- ZoneID: 136 - Becut
-INSERT INTO `mob_droplist` VALUES (3326,0,0,1000,2815,@UNCOMMON);      -- Aptant Of Arkhe (Uncommon, 10%)
-INSERT INTO `mob_droplist` VALUES (3326,0,0,1000,2822,2811,@UNCOMMON); -- Aptant Of Primus (Uncommon, 10%)
+INSERT INTO `mob_droplist` VALUES (3326,0,0,1000,2815,@UNCOMMON); -- Aptant Of Arkhe (Uncommon, 10%)
+INSERT INTO `mob_droplist` VALUES (3326,0,0,1000,2811,@UNCOMMON); -- Aptant Of Primus (Uncommon, 10%)
 
 -- ZoneID: 137 - Prince Orobas
 INSERT INTO `mob_droplist` VALUES (3327,0,0,1000,19161,@UNCOMMON); -- Lyft Claymore (Uncommon, 10%)
