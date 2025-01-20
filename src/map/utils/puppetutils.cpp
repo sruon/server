@@ -789,12 +789,15 @@ namespace puppetutils
 
                 if (attachment != 0)
                 {
-                    CItemPuppet* PAttachment = (CItemPuppet*)itemutils::GetItemPointer(0x2100 + attachment);
+                    CItemPuppet* PAttachment = dynamic_cast<CItemPuppet*>(itemutils::GetItemPointer(0x2100 + attachment));
 
-                    // Attachment scripts may have custom unequip logic that needs to run before the restriction is applied
-                    // If they were to delMod after the restriction is applied, under/overflow may occur.
-                    // This will also clear the localVars holding previously applied modifiers
-                    luautils::OnAttachmentUnequip(PAutomaton, PAttachment);
+                    if (PAttachment)
+                    {
+                        // Attachment scripts may have custom unequip logic that needs to run before the restriction is applied
+                        // If they were to delMod after the restriction is applied, under/overflow may occur.
+                        // This will also clear the localVars holding previously applied modifiers
+                        luautils::OnAttachmentUnequip(PAutomaton, PAttachment);
+                    }
                 }
             }
         }
@@ -812,10 +815,12 @@ namespace puppetutils
 
                 if (attachment != 0)
                 {
-                    CItemPuppet* PAttachment = (CItemPuppet*)itemutils::GetItemPointer(0x2100 + attachment);
-
-                    // Attachment scripts may have custom equip logic that needs to be computed against the LvRestricted puppet stats
-                    luautils::OnAttachmentEquip(PAutomaton, PAttachment);
+                    CItemPuppet* PAttachment = dynamic_cast<CItemPuppet*>(itemutils::GetItemPointer(0x2100 + attachment));
+                    if (PAttachment)
+                    {
+                        // Attachment scripts may have custom equip logic that needs to be computed against the LvRestricted puppet stats
+                        luautils::OnAttachmentEquip(PAutomaton, PAttachment);
+                    }
                 }
             }
 
