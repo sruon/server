@@ -6,7 +6,7 @@ local attachmentObject = {}
 
 local function calcEnspellDmg(pet, maneuvers)
     local skill = math.max(pet:getSkillLevel(xi.skill.AUTOMATON_MELEE), pet:getSkillLevel(xi.skill.AUTOMATON_RANGED), pet:getSkillLevel(xi.skill.AUTOMATON_MAGIC))
-    return (skill * 0.1) + ((skill * 0.05) * maneuvers)
+    return math.floor(skill / 10 + skill * maneuvers / 20)
 end
 
 attachmentObject.onEquip = function(pet, attachment)
