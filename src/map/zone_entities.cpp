@@ -73,7 +73,9 @@ namespace
 
     inline bool isWithinVerticalDistance(CBaseEntity* source, CBaseEntity* target)
     {
-        return abs(target->loc.p.y - source->loc.p.y - 0.5f) <= ENTITY_VERTICAL_RENDER_DISTANCE;
+        constexpr float offset           = 0.5f;
+        const float     verticalDistance = target->loc.p.y - source->loc.p.y - offset;
+        return std::abs(verticalDistance) <= ENTITY_VERTICAL_RENDER_DISTANCE;
     }
 } // namespace
 
@@ -152,7 +154,7 @@ void CZoneEntities::TryAddToNearbySpawnLists(CBaseEntity* PEntity)
     FOR_EACH_PAIR_CAST_SECOND(m_charList, CCharEntity*, PCurrentChar)
     {
         const auto isInHeightRange = isWithinVerticalDistance(PEntity, PCurrentChar);
-        const auto isInRange       = distance(PEntity->loc.p, PCurrentChar->loc.p) <= ENTITY_RENDER_DISTANCE;
+        const auto isInRange       = isWithinDistance(PEntity->loc.p, PCurrentChar->loc.p, ENTITY_RENDER_DISTANCE);
 
         if (isInHeightRange && isInRange)
         {
@@ -696,7 +698,7 @@ void CZoneEntities::SpawnMOBs(CCharEntity* PChar)
         const auto itr             = spawnList.find(id);
         const auto isInSpawnList   = itr != spawnList.end();
         const auto isInHeightRange = isWithinVerticalDistance(PChar, PCurrentMob);
-        const auto isInRange       = distance(PChar->loc.p, PCurrentMob->loc.p) <= ENTITY_RENDER_DISTANCE;
+        const auto isInRange       = isWithinDistance(PChar->loc.p, PCurrentMob->loc.p, ENTITY_RENDER_DISTANCE);
         const auto isVisibleStatus = PCurrentMob->status != STATUS_TYPE::DISAPPEAR;
 
         const auto tryAddToSpawnList = [&]()
@@ -778,7 +780,7 @@ void CZoneEntities::SpawnPETs(CCharEntity* PChar)
         const auto itr             = spawnList.find(id);
         const auto isInSpawnList   = itr != spawnList.end();
         const auto isInHeightRange = isWithinVerticalDistance(PChar, PCurrentEntity);
-        const auto isInRange       = distance(PChar->loc.p, PCurrentEntity->loc.p) <= ENTITY_RENDER_DISTANCE;
+        const auto isInRange       = isWithinDistance(PChar->loc.p, PCurrentEntity->loc.p, ENTITY_RENDER_DISTANCE);
         const auto isVisibleStatus = PCurrentEntity->status == STATUS_TYPE::NORMAL || PCurrentEntity->status == STATUS_TYPE::UPDATE;
 
         const auto tryAddToSpawnList = [&]()
@@ -831,7 +833,7 @@ void CZoneEntities::SpawnNPCs(CCharEntity* PChar)
         const auto itr             = spawnList.find(id);
         const auto isInSpawnList   = itr != spawnList.end();
         const auto isInHeightRange = isWithinVerticalDistance(PChar, PCurrentEntity);
-        const auto isInRange       = distance(PChar->loc.p, PCurrentEntity->loc.p) <= ENTITY_RENDER_DISTANCE;
+        const auto isInRange       = isWithinDistance(PChar->loc.p, PCurrentEntity->loc.p, ENTITY_RENDER_DISTANCE);
         const auto isVisibleStatus = PCurrentEntity->status == STATUS_TYPE::NORMAL || PCurrentEntity->status == STATUS_TYPE::UPDATE;
 
         const auto tryAddToSpawnList = [&]()
@@ -879,7 +881,7 @@ void CZoneEntities::SpawnTRUSTs(CCharEntity* PChar)
         const auto itr             = spawnList.find(id);
         const auto isInSpawnList   = itr != spawnList.end();
         const auto isInHeightRange = isWithinVerticalDistance(PChar, PCurrentEntity);
-        const auto isInRange       = distance(PChar->loc.p, PCurrentEntity->loc.p) <= ENTITY_RENDER_DISTANCE;
+        const auto isInRange       = isWithinDistance(PChar->loc.p, PCurrentEntity->loc.p, ENTITY_RENDER_DISTANCE);
         const auto isVisibleStatus = PCurrentEntity->status == STATUS_TYPE::NORMAL || PCurrentEntity->status == STATUS_TYPE::UPDATE;
 
         const auto tryAddToSpawnList = [&]()
@@ -1469,13 +1471,13 @@ void CZoneEntities::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message
                 TracyZoneCString("CHAR_INRANGE");
                 // TODO: rewrite packet handlers and use enums instead of rawdog packet ids
                 // 30 yalms if action packet, 50 otherwise
-                const int checkDistanceSq = packet->getType() == 0x0028 ? 900 : 2500;
+                const int checkDistance = packet->getType() == 0x0028 ? 30 : 50;
 
                 FOR_EACH_PAIR_CAST_SECOND(m_charList, CCharEntity*, PCurrentChar)
                 {
                     if (PEntity != PCurrentChar)
                     {
-                        if (distanceSquared(PEntity->loc.p, PCurrentChar->loc.p) < checkDistanceSq &&
+                        if (isWithinDistance(PEntity->loc.p, PCurrentChar->loc.p, checkDistance) &&
                             (PEntity->objtype != TYPE_PC || static_cast<CCharEntity*>(PEntity)->m_moghouseID == PCurrentChar->m_moghouseID))
                         {
                             uint16 packetType = packet->getType();
@@ -1599,7 +1601,7 @@ void CZoneEntities::WideScan(CCharEntity* PChar, uint16 radius)
     {
         for (const auto& [_, PEntity] : entityList)
         {
-            if (PEntity->isWideScannable() && distance(PChar->loc.p, PEntity->loc.p) < radius)
+            if (PEntity->isWideScannable() && isWithinDistance(PChar->loc.p, PEntity->loc.p, radius))
             {
                 PChar->pushPacket<CWideScanPacket>(PChar, PEntity);
             }
@@ -1696,7 +1698,7 @@ void CZoneEntities::ZoneServer(time_point tick)
         FOR_EACH_PAIR_CAST_SECOND(m_mobList, CMobEntity*, PCurrentMob)
         {
             const auto isInHeightRange = isWithinVerticalDistance(PMob, PCurrentMob);
-            const auto isInRange       = distance(PMob->loc.p, PCurrentMob->loc.p) <= ENTITY_RENDER_DISTANCE;
+            const auto isInRange       = isWithinDistance(PMob->loc.p, PCurrentMob->loc.p, ENTITY_RENDER_DISTANCE);
 
             if (PCurrentMob != nullptr && PCurrentMob->isAlive() && PMob->allegiance != PCurrentMob->allegiance && isInHeightRange && isInRange)
             {

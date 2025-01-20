@@ -500,8 +500,8 @@ bool CEnmityContainer::IsWithinEnmityRange(CBattleEntity* PEntity) const
     {
         return false;
     }
-    float maxRange = square(m_EnmityHolder->m_Type == MOBTYPE_NOTORIOUS ? 28.f : 25.f);
-    return distanceSquared(m_EnmityHolder->loc.p, PEntity->loc.p) <= maxRange;
+    float maxRange = m_EnmityHolder->m_Type == MOBTYPE_NOTORIOUS ? 28.0f : 25.0f;
+    return isWithinDistance(m_EnmityHolder->loc.p, PEntity->loc.p, maxRange);
 }
 
 EnmityList_t* CEnmityContainer::GetEnmityList()

@@ -4088,7 +4088,7 @@ namespace charutils
             // clang-format off
             PChar->ForAlliance([PMob, &members](CBattleEntity* PPartyMember)
             {
-                if (PPartyMember->getZone() == PMob->getZone() && distanceSquared(PPartyMember->loc.p, PMob->loc.p) < square(100.f))
+                if (PPartyMember->getZone() == PMob->getZone() && isWithinDistance(PPartyMember->loc.p, PMob->loc.p, 100.f))
                 {
                     members.emplace_back((CCharEntity*)PPartyMember);
                 }
@@ -4120,7 +4120,7 @@ namespace charutils
                 }
             }
         }
-        else if (distanceSquared(PChar->loc.p, PMob->loc.p) < square(100.f))
+        else if (isWithinDistance(PChar->loc.p, PMob->loc.p, 100.f))
         {
             // Check for gilfinder
             gil += gil * PChar->getMod(Mod::GILFINDER) / 100;
