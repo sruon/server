@@ -2164,7 +2164,7 @@ void CBattleEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
                 target.knockback = 0;
             }
 
-            if (first && (PSkill->getPrimarySkillchain() != 0))
+            if (first && PTargetFound->health.hp > 0 && PSkill->getPrimarySkillchain() != 0)
             {
                 SUBEFFECT effect = battleutils::GetSkillChainEffect(PTargetFound, PSkill->getPrimarySkillchain(), PSkill->getSecondarySkillchain(),
                                                                     PSkill->getTertiarySkillchain());
