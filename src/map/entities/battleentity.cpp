@@ -307,7 +307,7 @@ uint8 CBattleEntity::UpdateSpeed(bool run)
         outputSpeed = settings::get<uint8>("map.MOUNT_SPEED") / 2;
         outputSpeed *= (100 + getMod(Mod::MOUNT_MOVE)) / 100;
     }
-    else if (baseSpeed == 0 || getMod(Mod::MOVE_SPEED_OVERRIDE) > 255)
+    else if (baseSpeed == 0 || getMod(Mod::MOVE_SPEED_OVERRIDE) < 0)
     {
         outputSpeed = 0;
     }
