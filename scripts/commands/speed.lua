@@ -34,11 +34,7 @@ commandObj.onTrigger = function(player, speed)
     local baseSpeed = speed
 
     if speed == 0 then
-        if player:hasStatusEffect(xi.effect.MOUNTED) then
-            baseSpeed = 40 + xi.settings.map.MOUNT_SPEED_MOD
-        else
-            baseSpeed = 50 + xi.settings.map.SPEED_MOD
-        end
+        baseSpeed = xi.settings.map.BASE_SPEED
 
         player:printToPlayer('Returning to your regular speed.')
     else
@@ -48,7 +44,7 @@ commandObj.onTrigger = function(player, speed)
     end
 
     player:setMod(xi.mod.MOVE_SPEED_OVERRIDE, speed)
-    player:setSpeed(baseSpeed)
+    player:setBaseSpeed(baseSpeed)
 end
 
 return commandObj
