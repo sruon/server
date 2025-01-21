@@ -1255,7 +1255,8 @@ void CCharEntity::OnCastFinished(CMagicState& state, action_t& action)
             }
 
             // Immanence will create or extend a skillchain for elemental spells
-            if (actionTarget.param >= 0 &&
+            if (PTarget->health.hp > 0 &&
+                actionTarget.param >= 0 &&
                 PSpell->dealsDamage() &&
                 PSpell->getSpellGroup() == SPELLGROUP_BLACK &&
                 (StatusEffectContainer->HasStatusEffect(EFFECT_IMMANENCE)))
@@ -1507,7 +1508,8 @@ void CCharEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& acti
                 if ((actionTarget.reaction & REACTION::MISS) == REACTION::NONE)
                 {
                     int wspoints = settings::get<uint8>("map.WS_POINTS_BASE");
-                    if (PWeaponSkill->getPrimarySkillchain() != 0)
+
+                    if (PBattleTarget->health.hp > 0 && PWeaponSkill->getPrimarySkillchain() != 0)
                     {
                         // NOTE: GetSkillChainEffect is INSIDE this if statement because it
                         //  ALTERS the state of the resonance, which misses and non-elemental skills should NOT do.
