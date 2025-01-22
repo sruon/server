@@ -497,8 +497,6 @@ public:
     uint32 m_PlayTime;
     uint32 m_SaveTime;
 
-    uint32 m_LastYell;
-
     time_point m_LeaderCreatedPartyTime; // Time that a party member joined and this player was leader.
 
     uint8 m_GMlevel;    // Level of the GM flag assigned to this character

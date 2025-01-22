@@ -237,7 +237,6 @@ CCharEntity::CCharEntity()
     m_SaveTime    = 0;
     m_reloadParty = false;
 
-    m_LastYell       = 0;
     m_moghouseID     = 0;
     m_moghancementID = 0;
 

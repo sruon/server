@@ -5711,16 +5711,21 @@ void SmallPacket0x0B5(map_session_data_t* const PSession, CCharEntity* const PCh
                 break;
                 case MESSAGE_YELL:
                 {
+                    const auto yellCooldownTime = settings::get<uint16>("map.YELL_COOLDOWN");
+                    const auto isYellBanned     = PChar->getCharVar("[YELL]Banned") == 1;
+                    const auto isInYellCooldown = PChar->getCharVar("[YELL]Cooldown") == 1;
+
                     if (PChar->loc.zone->CanUseMisc(MISC_YELL))
                     {
-                        int yellBanned = PChar->getCharVar("[YELL]Banned");
-                        if (yellBanned == 1)
+                        if (isYellBanned)
                         {
                             PChar->pushPacket<CMessageBasicPacket>(PChar, PChar, 0, 0, MSGBASIC_CANNOT_USE_IN_AREA);
                         }
-                        else if (gettick() >= PChar->m_LastYell)
+                        else if (!isInYellCooldown)
                         {
-                            PChar->m_LastYell = gettick() + settings::get<uint16>("map.YELL_COOLDOWN") * 1000;
+                            // CharVar will self-expire and set to zero after the cooldown period
+                            PChar->setCharVar("[YELL]Cooldown", 1, CVanaTime::getInstance()->getSysTime() + yellCooldownTime);
+
                             int8 packetData[4]{};
                             ref<uint32>(packetData, 0) = PChar->id;
 
