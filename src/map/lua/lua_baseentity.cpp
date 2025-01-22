@@ -712,6 +712,24 @@ void CLuaBaseEntity::setLocalVar(std::string const& var, uint32 val)
 }
 
 /************************************************************************
+ *  Function: clearLocalVarsWithPrefix()
+ *  Purpose : Deletes all local variables with the given prefix.
+ *  Example : pet:clearLocalVarsWithPrefix("volt");
+ *  Notes   :
+ ************************************************************************/
+
+void CLuaBaseEntity::clearLocalVarsWithPrefix(std::string const& prefix)
+{
+    for (const auto& [localVar, _] : m_PBaseEntity->GetLocalVars())
+    {
+        if (starts_with(localVar, prefix))
+        {
+            m_PBaseEntity->SetLocalVar(localVar, 0);
+        }
+    }
+}
+
+/************************************************************************
  *  Function: resetLocalVars()
  *  Purpose : Reset local variables back to default (ex: on Mob disengage)
  *  Example : GetMobByID(Defender):resetLocalVars();
@@ -6655,6 +6673,11 @@ uint8 CLuaBaseEntity::levelRestriction(sol::object const& level)
 
         if (PChar->GetMLevel() != NewMLevel)
         {
+            if (PChar->PAutomaton)
+            {
+                // Call each attachment onUnequip handler and zero out localVars tracking applied buffs
+                puppetutils::PreLevelRestriction(PChar);
+            }
             charutils::RemoveAllEquipMods(PChar);
             PChar->SetMLevel(NewMLevel);
             PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
@@ -6737,6 +6760,9 @@ uint8 CLuaBaseEntity::levelRestriction(sol::object const& level)
                             return PChar->m_LevelRestriction;
                         }
                         petutils::CalculateAutomatonStats(PChar, PPet);
+
+                        // Call each attachment onEquip handler and replay maneuvers against the new stats
+                        puppetutils::PostLevelRestriction(PChar);
                         break;
                     case PET_TYPE::LUOPAN:
                         petutils::CalculateLuopanStats(PChar, PPet);
@@ -15744,6 +15770,32 @@ uint8 CLuaBaseEntity::getAutomatonFrame()
 }
 
 /************************************************************************
+ *  Function: setAutomatonFrame(frameItemID)
+ *  Purpose : Sets the provided frame on the automaton
+ *  Example : player:setAutomatonFrame(xi.item.VALOREDGE_FRAME)
+ *  Notes   :
+ ************************************************************************/
+
+void CLuaBaseEntity::setAutomatonFrame(uint8 frameItemID)
+{
+    auto* PChar = dynamic_cast<CCharEntity*>(m_PBaseEntity);
+
+    if (PChar == nullptr)
+    {
+        ShowWarning("Invalid entity type calling function (%s).", m_PBaseEntity->getName());
+        return;
+    }
+
+    if (PChar->PAutomaton)
+    {
+        puppetutils::setFrame(PChar, frameItemID - 0x2000);
+        PChar->pushPacket<CCharJobExtraPacket>(PChar, true);
+        PChar->pushPacket<CCharJobExtraPacket>(PChar, false);
+        puppetutils::SaveAutomaton(PChar);
+    }
+}
+
+/************************************************************************
  *  Function: getAutomatonHead()
  *  Purpose : Returns the integer value of the (active?) automation head
  *  Example : local head = pet:getAutomatonHead()
@@ -15760,6 +15812,32 @@ uint8 CLuaBaseEntity::getAutomatonHead()
 
     auto* PAutomaton = static_cast<CAutomatonEntity*>(m_PBaseEntity);
     return static_cast<uint8>(PAutomaton->getHead());
+}
+
+/************************************************************************
+ *  Function: setAutomatonHead(headItemID)
+ *  Purpose : Sets the automaton head to the specified item
+ *  Example : player:setAutomatonHead(xi.item.VALOREDGE_HEAD)
+ *  Notes   :
+ ************************************************************************/
+
+void CLuaBaseEntity::setAutomatonHead(uint8 headItemID)
+{
+    auto* PChar = dynamic_cast<CCharEntity*>(m_PBaseEntity);
+
+    if (PChar == nullptr)
+    {
+        ShowWarning("Invalid entity type calling function (%s).", m_PBaseEntity->getName());
+        return;
+    }
+
+    if (PChar->PAutomaton)
+    {
+        puppetutils::setHead(PChar, headItemID - 0x2000);
+        PChar->pushPacket<CCharJobExtraPacket>(PChar, true);
+        PChar->pushPacket<CCharJobExtraPacket>(PChar, false);
+        puppetutils::SaveAutomaton(PChar);
+    }
 }
 
 /************************************************************************
@@ -15861,6 +15939,30 @@ std::optional<CLuaItem> CLuaBaseEntity::getAttachment(uint8 slotId)
     }
 
     return std::nullopt;
+}
+
+/************************************************************************
+ *  Function: setAttachment(attachmentItemID, slotID)
+ *  Purpose : Sets the attachment of an automaton in the slot specified
+ *  Example : player:setAttachment(8465, 0)
+ ************************************************************************/
+
+void CLuaBaseEntity::setAttachment(uint8 attachmentItemID, uint8 slotID)
+{
+    auto* PChar = dynamic_cast<CCharEntity*>(m_PBaseEntity);
+
+    if (PChar == nullptr)
+    {
+        ShowWarning("Invalid entity type calling function (%s).", m_PBaseEntity->getName());
+        return;
+    }
+    if (PChar->PAutomaton)
+    {
+        puppetutils::setAttachment(PChar, slotID, attachmentItemID - 0x2100);
+        PChar->pushPacket<CCharJobExtraPacket>(PChar, true);
+        PChar->pushPacket<CCharJobExtraPacket>(PChar, false);
+        puppetutils::SaveAutomaton(PChar);
+    }
 }
 
 /************************************************************************
@@ -18525,6 +18627,7 @@ void CLuaBaseEntity::Register()
     SOL_REGISTER("getLocalVars", CLuaBaseEntity::getLocalVars);
     SOL_REGISTER("getLocalVar", CLuaBaseEntity::getLocalVar);
     SOL_REGISTER("setLocalVar", CLuaBaseEntity::setLocalVar);
+    SOL_REGISTER("clearLocalVarsWithPrefix", CLuaBaseEntity::clearLocalVarsWithPrefix);
     SOL_REGISTER("resetLocalVars", CLuaBaseEntity::resetLocalVars);
     SOL_REGISTER("clearVarsWithPrefix", CLuaBaseEntity::clearVarsWithPrefix);
     SOL_REGISTER("getLastOnline", CLuaBaseEntity::getLastOnline);
@@ -19201,13 +19304,16 @@ void CLuaBaseEntity::Register()
     SOL_REGISTER("hasAttachment", CLuaBaseEntity::hasAttachment);
     SOL_REGISTER("getAutomatonName", CLuaBaseEntity::getAutomatonName);
     SOL_REGISTER("getAutomatonFrame", CLuaBaseEntity::getAutomatonFrame);
+    SOL_REGISTER("setAutomatonFrame", CLuaBaseEntity::setAutomatonFrame);
     SOL_REGISTER("getAutomatonHead", CLuaBaseEntity::getAutomatonHead);
+    SOL_REGISTER("setAutomatonHead", CLuaBaseEntity::setAutomatonHead);
     SOL_REGISTER("unlockAttachment", CLuaBaseEntity::unlockAttachment);
 
     SOL_REGISTER("getActiveManeuverCount", CLuaBaseEntity::getActiveManeuverCount);
     SOL_REGISTER("removeOldestManeuver", CLuaBaseEntity::removeOldestManeuver);
     SOL_REGISTER("removeAllManeuvers", CLuaBaseEntity::removeAllManeuvers);
     SOL_REGISTER("getAttachment", CLuaBaseEntity::getAttachment);
+    SOL_REGISTER("setAttachment", CLuaBaseEntity::setAttachment);
     SOL_REGISTER("getAttachments", CLuaBaseEntity::getAttachments);
     SOL_REGISTER("updateAttachments", CLuaBaseEntity::updateAttachments);
     SOL_REGISTER("reduceBurden", CLuaBaseEntity::reduceBurden);
