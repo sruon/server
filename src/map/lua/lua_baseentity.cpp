@@ -720,16 +720,12 @@ void CLuaBaseEntity::setLocalVar(std::string const& var, uint32 val)
 
 void CLuaBaseEntity::clearLocalVarsWithPrefix(std::string const& prefix)
 {
-    auto& localVars = m_PBaseEntity->GetLocalVars();
-
-    auto iter = localVars.begin();
-    while (iter != localVars.end())
+    for (const auto& localVar : m_PBaseEntity->GetLocalVars())
     {
-        if (iter->first.rfind(prefix, 0) == 0)
+        if (starts_with(localVar.first, prefix))
         {
-            m_PBaseEntity->SetLocalVar(iter->first.c_str(), 0);
+            m_PBaseEntity->SetLocalVar(localVar.first, 0);
         }
-        ++iter;
     }
 
     return;
