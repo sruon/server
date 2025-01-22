@@ -3939,6 +3939,12 @@ function CBaseEntity:getTHlevel()
 end
 
 ---@nodiscard
+---@param newLevel integer
+---@return nil
+function CBaseEntity:setTHlevel(newLevel)
+end
+
+---@nodiscard
 ---@return integer
 function CBaseEntity:getAvailableTraverserStones()
 end
