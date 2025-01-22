@@ -1129,70 +1129,73 @@ namespace battleutils
         {
             PChar = dynamic_cast<CCharEntity*>(PAttacker);
 
-            // TODO: cleanup lua further so we can handle all this add effect stuff somewhere else
-            // Treasure hunter takes priority over enspells
-            if (PChar &&
-                finaldamage > 0 &&
-                isFirstSwing &&
-                PDefender->objtype == TYPE_MOB &&
-                PChar->GetMJob() == JOB_THF &&
-                PChar->hasTrait(TRAITTYPE::TRAIT_TREASURE_HUNTER)) // TH trait as a requirement is assumed, but likely. Could this just be a level 15 check instead?
+            if (!settings::get<bool>("map.DISABLE_TREASURE_HUNTER_PROCS"))
             {
-                auto PMob = dynamic_cast<CMobEntity*>(PDefender);
-                if (PMob && PMob->m_THLvl < (12 + PChar->getMod(Mod::TREASURE_HUNTER_CAP))) // TH proc cap is 12 + job gifts
+                // TODO: cleanup lua further so we can handle all this add effect stuff somewhere else
+                // Treasure hunter takes priority over enspells
+                if (PChar &&
+                    finaldamage > 0 &&
+                    isFirstSwing &&
+                    PDefender->objtype == TYPE_MOB &&
+                    PChar->GetMJob() == JOB_THF &&
+                    PChar->hasTrait(TRAITTYPE::TRAIT_TREASURE_HUNTER)) // TH trait as a requirement is assumed, but likely. Could this just be a level 15 check instead?
                 {
-                    int16 playerTH = PChar->getMod(Mod::TREASURE_HUNTER);
-
-                    int16 THdiff = PMob->m_THLvl - playerTH;
-
-                    // Auto upgrade TH to mod level up to TH8
-                    if (THdiff < 0 && PMob->m_THLvl < 8)
+                    auto PMob = dynamic_cast<CMobEntity*>(PDefender);
+                    if (PMob && PMob->m_THLvl < (12 + PChar->getMod(Mod::TREASURE_HUNTER_CAP))) // TH proc cap is 12 + job gifts
                     {
-                        PMob->m_THLvl = std::min<int16>(8, playerTH);
+                        int16 playerTH = PChar->getMod(Mod::TREASURE_HUNTER);
 
-                        // Recalculate diff
-                        THdiff = PMob->m_THLvl - playerTH;
-                    }
+                        int16 THdiff = PMob->m_THLvl - playerTH;
 
-                    float procRate = 0.04f / std::pow<float>(2.f, std::max<int16>(0, THdiff)); // Numbers below diff of -1 (i.e. TH 10 vs mobs TH8 level) are not known. Assume no extra bonus for now.
+                        // Auto upgrade TH to mod level up to TH8
+                        if (THdiff < 0 && PMob->m_THLvl < 8)
+                        {
+                            PMob->m_THLvl = std::min<int16>(8, playerTH);
 
-                    // Not known if Feint and Gifts are multiplicative or additive. Currently assuming additive
-                    // The mob has an evasion down from feint that applies this mod.
-                    // The player has job point gifts that apply this mod.
-                    float procRateBonus = 1.f + (PChar->getMod(Mod::TREASURE_HUNTER_PROC) + PMob->getMod(Mod::TREASURE_HUNTER_PROC)) / 100.f;
+                            // Recalculate diff
+                            THdiff = PMob->m_THLvl - playerTH;
+                        }
 
-                    procRate *= procRateBonus;
+                        float procRate = 0.04f / std::pow<float>(2.f, std::max<int16>(0, THdiff)); // Numbers below diff of -1 (i.e. TH 10 vs mobs TH8 level) are not known. Assume no extra bonus for now.
 
-                    // It's unlikely that SATA bonus is multiplicative SA * TA bonus -- the rate would be astronomically higher if it was
-                    // Add the two together if they exist
-                    float sneakAttackTrickAttackBonus = 0.f;
+                        // Not known if Feint and Gifts are multiplicative or additive. Currently assuming additive
+                        // The mob has an evasion down from feint that applies this mod.
+                        // The player has job point gifts that apply this mod.
+                        float procRateBonus = 1.f + (PChar->getMod(Mod::TREASURE_HUNTER_PROC) + PMob->getMod(Mod::TREASURE_HUNTER_PROC)) / 100.f;
 
-                    // BG wiki claims 10x bonus for SA
-                    if (attack.CheckHadSneakAttack())
-                    {
-                        sneakAttackTrickAttackBonus += 10.f;
-                    }
+                        procRate *= procRateBonus;
 
-                    // BG wiki claims 10x bonus for TA
-                    if (attack.CheckHadTrickAttack())
-                    {
-                        sneakAttackTrickAttackBonus += 10.f;
-                    }
+                        // It's unlikely that SATA bonus is multiplicative SA * TA bonus -- the rate would be astronomically higher if it was
+                        // Add the two together if they exist
+                        float sneakAttackTrickAttackBonus = 0.f;
 
-                    // way greater than epsilon just in case...
-                    if (sneakAttackTrickAttackBonus > 1.f)
-                    {
-                        procRateBonus *= sneakAttackTrickAttackBonus;
-                    }
+                        // BG wiki claims 10x bonus for SA
+                        if (attack.CheckHadSneakAttack())
+                        {
+                            sneakAttackTrickAttackBonus += 10.f;
+                        }
 
-                    if (xirand::GetRandomNumber<float>(0.f, 1.f) <= procRate)
-                    {
-                        PMob->m_THLvl++;
+                        // BG wiki claims 10x bonus for TA
+                        if (attack.CheckHadTrickAttack())
+                        {
+                            sneakAttackTrickAttackBonus += 10.f;
+                        }
 
-                        Action->additionalEffect = SUBEFFECT_LIGHT_DAMAGE; // Looks like enlight, and is reflected in the capture
-                        Action->addEffectMessage = static_cast<uint16>(MsgStd::TreasureHunterProc);
-                        Action->addEffectParam   = PMob->m_THLvl;
-                        return;
+                        // way greater than epsilon just in case...
+                        if (sneakAttackTrickAttackBonus > 1.f)
+                        {
+                            procRateBonus *= sneakAttackTrickAttackBonus;
+                        }
+
+                        if (xirand::GetRandomNumber<float>(0.f, 1.f) <= procRate)
+                        {
+                            PMob->m_THLvl++;
+
+                            Action->additionalEffect = SUBEFFECT_LIGHT_DAMAGE; // Looks like enlight, and is reflected in the capture
+                            Action->addEffectMessage = static_cast<uint16>(MsgStd::TreasureHunterProc);
+                            Action->addEffectParam   = PMob->m_THLvl;
+                            return;
+                        }
                     }
                 }
             }
