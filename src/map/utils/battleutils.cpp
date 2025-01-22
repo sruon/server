@@ -1455,7 +1455,7 @@ namespace battleutils
 
                 if (PAttacker->objtype == TYPE_PC && PAttacker->PParty != nullptr)
                 {
-                    if (auto* PChar = dynamic_cast<CCharEntity*>(PAttacker))
+                    if (PChar)
                     {
                         // clang-format off
                         PChar->ForPartyWithTrusts([&](CBattleEntity* PMember)
@@ -1470,10 +1470,10 @@ namespace battleutils
                 }
                 else if (PAttacker->objtype == TYPE_TRUST)
                 {
-                    if (auto* PChar = dynamic_cast<CCharEntity*>(PAttacker->PMaster))
+                    if (auto* PMaster = dynamic_cast<CCharEntity*>(PAttacker->PMaster))
                     {
                         // clang-format off
-                        PChar->ForPartyWithTrusts([&](CBattleEntity* PMember)
+                        PMaster->ForPartyWithTrusts([&](CBattleEntity* PMember)
                         {
                             if (attackerID == PMember->id)
                             {
