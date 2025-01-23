@@ -422,11 +422,11 @@ void CCharEntity::pushPacket(std::unique_ptr<CBasicPacket>&& packet)
     {
         if (PendingPositionPacket)
         {
-            PendingPositionPacket = packet->copy();
+            PendingPositionPacket = packet.get();
         }
         else
         {
-            PendingPositionPacket = packet->copy();
+            PendingPositionPacket = packet.get();
             PacketList.emplace_back(std::move(packet));
         }
     }
@@ -442,13 +442,17 @@ void CCharEntity::updateCharPacket(CCharEntity* PChar, ENTITYUPDATE type, uint8 
     if (existing == PendingCharPackets.end())
     {
         // No existing packet update for the given char, so we push new packet
-        PacketList.emplace_back(std::make_unique<CCharPacket>(PChar, type, updatemask));
-        PendingCharPackets.emplace(PChar->id, std::make_unique<CCharPacket>(PChar, type, updatemask));
+        auto packet = std::make_unique<CCharPacket>(PChar, type, updatemask);
+        PendingCharPackets.emplace(PChar->id, packet.get());
+        PacketList.emplace_back(std::move(packet));
     }
     else
     {
-        // Found existing packet update for the given char, so we update it instead of pushing new
-        existing->second->updateWith(PChar, type, updatemask);
+        if (existing->second != nullptr)
+        {
+            // Found existing packet update for the given char, so we update it instead of pushing new
+            existing->second->updateWith(PChar, type, updatemask);
+        }
     }
 }
 
@@ -458,13 +462,17 @@ void CCharEntity::updateEntityPacket(CBaseEntity* PEntity, ENTITYUPDATE type, ui
     if (existing == PendingEntityPackets.end())
     {
         // No existing packet update for the given entity, so we push new packet
-        PacketList.emplace_back(std::make_unique<CEntityUpdatePacket>(PEntity, type, updatemask));
-        PendingEntityPackets.emplace(PEntity->id, std::make_unique<CEntityUpdatePacket>(PEntity, type, updatemask));
+        auto packet = std::make_unique<CEntityUpdatePacket>(PEntity, type, updatemask);
+        PendingEntityPackets.emplace(PEntity->id, packet.get());
+        PacketList.emplace_back(std::move(packet));
     }
     else
     {
-        // Found existing packet update for the given entity, so we update it instead of pushing new
-        existing->second->updateWith(PEntity, type, updatemask);
+        if (existing->second != nullptr)
+        {
+            // Found existing packet update for the given entity, so we update it instead of pushing new
+            existing->second->updateWith(PEntity, type, updatemask);
+        }
     }
 }
 
