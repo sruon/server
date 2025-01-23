@@ -899,6 +899,7 @@ public:
     uint16 getDespoilDebuff(uint16 itemID); // gets the status effect id to apply to the mob on successful despoil
     bool   itemStolen();                    // sets mob's ItemStolen var = true
     int16  getTHlevel();                    // Returns the Monster's current Treasure Hunter Tier
+    void   setTHlevel(int16 newLevel);      // Sets the Monster's current Treasure Hunter Tier
 
     uint32 getAvailableTraverserStones();
     time_t getTraverserEpoch();
