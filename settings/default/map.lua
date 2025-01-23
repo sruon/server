@@ -48,7 +48,7 @@ xi.settings.map =
 
     -- Max open listings per player, 0 = no limit. (Default 7)
     -- Note = Settings over 7 may need client-side plugin to work under all circumstances.
-    -- If this is the case, consider using the ah_pagination module
+    -- If this is the case, consider using the ah_pagination module (which supports setting AH_LIST_LIMIT to 0 or >7).
     AH_LIST_LIMIT = 7,
 
     -- The total enmity cap for a given entity on the enmity table.
