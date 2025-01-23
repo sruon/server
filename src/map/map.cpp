@@ -1376,24 +1376,10 @@ int32 map_cleanup(time_point tick, CTaskMgr::CTask* PTask)
     // clang-format off
     zoneutils::ForEachZone([](CZone* PZone)
     {
-        auto& staledynamicTargIds = PZone->GetZoneEntities()->dynamicTargIdsToDelete;
-
-        auto it = staledynamicTargIds.begin();
-        while(it != staledynamicTargIds.end())
-        {
-            // Erase dynamic targid if it's stale enough
-            if ((server_clock::now() - it->second) > 60s)
-            {
-                PZone->GetZoneEntities()->dynamicTargIds.erase(it->first);
-                it = staledynamicTargIds.erase(it);
-            }
-            else
-            {
-                ++it;
-            }
-        }
+        PZone->GetZoneEntities()->EraseStaleDynamicTargIDs();
     });
     // clang-format on
+
     return 0;
 }
 
