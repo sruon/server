@@ -542,7 +542,8 @@ public:
 
     CItemEquipment* getEquip(SLOTTYPE slot);
 
-    std::unique_ptr<CBasicPacket> PendingPositionPacket = nullptr;
+    // TODO: Don't use raw ptrs for this, but don't duplicate whole packets with unique_ptr either.
+    CBasicPacket* PendingPositionPacket = nullptr;
 
     bool requestedInfoSync = false;
 
@@ -663,9 +664,11 @@ private:
     uint8      dataToPersist = 0;
     time_point nextDataPersistTime;
 
-    std::deque<std::unique_ptr<CBasicPacket>>                        PacketList;           // The list of packets to be sent to the character during the next network cycle
-    std::unordered_map<uint32, std::unique_ptr<CCharPacket>>         PendingCharPackets;   // Keep track of which char packets are queued up for this char, such that they can be updated
-    std::unordered_map<uint32, std::unique_ptr<CEntityUpdatePacket>> PendingEntityPackets; // Keep track of which entity update packets are queued up for this char, such that they can be updated
+    std::deque<std::unique_ptr<CBasicPacket>> PacketList; // The list of packets to be sent to the character during the next network cycle
+
+    // TODO: Don't use raw ptrs for this, but don't duplicate whole packets with unique_ptr either.
+    std::unordered_map<uint32, CCharPacket*>         PendingCharPackets;   // Keep track of which char packets are queued up for this char, such that they can be updated
+    std::unordered_map<uint32, CEntityUpdatePacket*> PendingEntityPackets; // Keep track of which entity update packets are queued up for this char, such that they can be updated
 };
 
 #endif
