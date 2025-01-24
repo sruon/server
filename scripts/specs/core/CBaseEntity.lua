@@ -3276,6 +3276,16 @@ function CBaseEntity:trustPartyMessage(messageId)
 end
 
 ---@param targ integer
+---@param conditions table
+---@param react integer
+---@param select integer
+---@param selectorArg integer
+---@param retry integer?
+---@return string
+function CBaseEntity:addGambit(targ, conditions, react, select, selectorArg, retry)
+end
+
+---@param targ integer
 ---@param cond integer
 ---@param condition_arg integer
 ---@param react integer

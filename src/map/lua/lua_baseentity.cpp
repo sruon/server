@@ -15105,6 +15105,51 @@ void CLuaBaseEntity::trustPartyMessage(uint32 message_id)
 }
 
 /************************************************************************
+ *  Function: addGambit(target, predicates, reaction, selector, selector_arg, retry)
+ *  Purpose : Adds a behavior to the gambit system with an arbitrary number of predicates
+ *  Example : trust:addGambit(ai.t.CASTER, {
+ *                  { cond=ai.c.NOT_STATUS, arg=xi.effect.REFRESH },
+ *                  { cond=ai.c.NOT_STATUS, arg=xi.effect.SUBLIMATION_ACTIVATED },
+ *            }, ai.r.MA, ai.s.HIGHEST, xi.magic.spellFamily.REFRESH)
+ *  Notes   : Adds a behavior to the gambit system
+ ************************************************************************/
+
+std::string CLuaBaseEntity::addGambit(uint16 targ, sol::table const& predicates, uint16 react, uint16 select, uint32 selector_arg, sol::object const& retry)
+{
+    if (m_PBaseEntity->objtype != TYPE_TRUST)
+    {
+        ShowWarning("Invalid Entity calling function (%s).", m_PBaseEntity->getName());
+        return {};
+    }
+
+    using namespace gambits;
+    Gambit_t g;
+
+    auto target = static_cast<G_TARGET>(targ);
+    for (const auto& kvp : predicates)
+    {
+        sol::table predicate     = kvp.second; // Each entry is a table
+        auto       condition     = static_cast<G_CONDITION>(predicate.get<uint16>("cond"));
+        auto       condition_arg = predicate.get<uint32>("arg");
+        g.predicates.emplace_back(target, condition, condition_arg);
+    }
+
+    auto reaction = static_cast<G_REACTION>(react);
+    auto selector = static_cast<G_SELECT>(select);
+    // Optional
+    uint16 retry_delay = (retry != sol::lua_nil) ? retry.as<uint16>() : 0;
+
+    g.actions.emplace_back(reaction, selector, selector_arg);
+    g.retry_delay = retry_delay;
+    g.identifier  = fmt::format("{}_{}_{}_{}_{}", targ, react, select, selector_arg, retry_delay);
+
+    auto* trust      = static_cast<CTrustEntity*>(m_PBaseEntity);
+    auto* controller = static_cast<CTrustController*>(trust->PAI->GetController());
+
+    return controller->m_GambitsContainer->AddGambit(g);
+}
+
+/************************************************************************
  *  Function: addSimpleGambit()
  *  Purpose :
  *  Example : trust:addSimpleGambit(target, condition, condition_arg, reaction, selector, selector_arg)
@@ -19359,6 +19404,7 @@ void CLuaBaseEntity::Register()
     SOL_REGISTER("clearTrusts", CLuaBaseEntity::clearTrusts);
     SOL_REGISTER("getTrustID", CLuaBaseEntity::getTrustID);
     SOL_REGISTER("trustPartyMessage", CLuaBaseEntity::trustPartyMessage);
+    SOL_REGISTER("addGambit", CLuaBaseEntity::addGambit);
     SOL_REGISTER("addSimpleGambit", CLuaBaseEntity::addSimpleGambit);
     SOL_REGISTER("removeSimpleGambit", CLuaBaseEntity::removeSimpleGambit);
     SOL_REGISTER("removeAllSimpleGambits", CLuaBaseEntity::removeAllSimpleGambits);

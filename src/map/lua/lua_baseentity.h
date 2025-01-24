@@ -751,6 +751,7 @@ public:
     void   clearTrusts();
     uint32 getTrustID();
     void   trustPartyMessage(uint32 message_id);
+    auto   addGambit(uint16 targ, sol::table const& predicates, uint16 react, uint16 select, uint32 selector_arg, sol::object const& retry) -> std::string;
     auto   addSimpleGambit(uint16 targ, uint16 cond, uint32 condition_arg, uint16 react, uint16 select, uint32 selector_arg, sol::object const& retry) -> std::string;
     void   removeSimpleGambit(std::string const& id);
     void   removeAllSimpleGambits();
