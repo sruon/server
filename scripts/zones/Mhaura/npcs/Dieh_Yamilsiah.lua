@@ -38,9 +38,6 @@ entity.onTimeTrigger = function(npc, triggerID)
     xi.transport.dockMessage(npc, triggerID, messages, 'mhaura')
 end
 
-entity.onTrade = function(player, npc, trade)
-end
-
 entity.onTrigger = function(player, npc)
     xi.transport.onDockTimekeeperTrigger(player, npc)
 
@@ -50,12 +47,6 @@ entity.onTrigger = function(player, npc)
 
     Can't find a way to toggle the destination on 233 or 234, so they are not used.
     Users knowing which ferry is which > using all CSs.]]
-end
-
-entity.onEventUpdate = function(player, csid, option, npc)
-end
-
-entity.onEventFinish = function(player, csid, option, npc)
 end
 
 return entity
