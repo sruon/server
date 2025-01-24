@@ -91,160 +91,6 @@ namespace gambits
             return;
         }
 
-        auto runPredicate = [&](Predicate_t& predicate) -> bool
-        {
-            auto isValidMember = [&](CBattleEntity* PPartyTarget) -> bool
-            {
-                return PPartyTarget->isAlive() && POwner->loc.zone == PPartyTarget->loc.zone && distance(POwner->loc.p, PPartyTarget->loc.p) <= 15.0f;
-            };
-
-            if (predicate.target == G_TARGET::SELF)
-            {
-                return CheckTrigger(POwner, predicate);
-            }
-            else if (predicate.target == G_TARGET::TARGET)
-            {
-                return CheckTrigger(POwner->GetBattleTarget(), predicate);
-            }
-            else if (predicate.target == G_TARGET::PARTY)
-            {
-                auto result = false;
-                // clang-format off
-                static_cast<CCharEntity*>(POwner->PMaster)->ForPartyWithTrusts([&](CBattleEntity* PMember)
-                {
-                    if (isValidMember(PMember) && CheckTrigger(PMember, predicate))
-                    {
-                        result = true;
-                    }
-                });
-                // clang-format on
-                return result;
-            }
-            else if (predicate.target == G_TARGET::MASTER)
-            {
-                return CheckTrigger(POwner->PMaster, predicate);
-            }
-            else if (predicate.target == G_TARGET::PARTY_DEAD)
-            {
-                auto result = false;
-                // clang-format off
-                static_cast<CCharEntity*>(POwner->PMaster)->ForPartyWithTrusts([&](CBattleEntity* PMember)
-                {
-                    if (PMember->isDead())
-                    {
-                        result = true;
-                    }
-                });
-                // clang-format on
-                return result;
-            }
-            else if (predicate.target == G_TARGET::TANK)
-            {
-                auto result = false;
-                // clang-format off
-                static_cast<CCharEntity*>(POwner->PMaster)->ForPartyWithTrusts([&](CBattleEntity* PMember)
-                {
-                    if (isValidMember(PMember) && CheckTrigger(PMember, predicate) && (PMember->GetMJob() == JOB_PLD || PMember->GetMJob() == JOB_RUN))
-                    {
-                        result = true;
-                    }
-                });
-                // clang-format on
-                return result;
-            }
-            else if (predicate.target == G_TARGET::MELEE)
-            {
-                auto result = false;
-                // clang-format off
-                static_cast<CCharEntity*>(POwner->PMaster)->ForPartyWithTrusts([&](CBattleEntity* PMember)
-                {
-                    if (isValidMember(PMember) && CheckTrigger(PMember, predicate) && melee_jobs.find(PMember->GetMJob()) != melee_jobs.end())
-                    {
-                        result = true;
-                    }
-                });
-                // clang-format on
-                return result;
-            }
-            else if (predicate.target == G_TARGET::RANGED)
-            {
-                auto result = false;
-                static_cast<CCharEntity*>(POwner->PMaster)->ForPartyWithTrusts([&](CBattleEntity* PMember)
-                                                                               {
-                    if (isValidMember(PMember) && CheckTrigger(PMember, predicate) && (PMember->GetMJob() == JOB_RNG || PMember->GetMJob() == JOB_COR))
-                    {
-                        result = true;
-                    } });
-                return result;
-            }
-            else if (predicate.target == G_TARGET::CASTER)
-            {
-                auto result = false;
-                // clang-format off
-                static_cast<CCharEntity*>(POwner->PMaster)->ForPartyWithTrusts([&](CBattleEntity* PMember)
-                {
-                    if (isValidMember(PMember) && CheckTrigger(PMember, predicate) && caster_jobs.find(PMember->GetMJob()) != caster_jobs.end())
-                    {
-                        result = true;
-                    }
-                });
-                // clang-format on
-                return result;
-            }
-            else if (predicate.target == G_TARGET::TOP_ENMITY)
-            {
-                auto result = false;
-                if (auto* PMob = dynamic_cast<CMobEntity*>(POwner->GetBattleTarget()))
-                {
-                    // clang-format off
-                    static_cast<CCharEntity*>(POwner->PMaster)->ForPartyWithTrusts([&](CBattleEntity* PMember)
-                    {
-                        if (isValidMember(PMember) && CheckTrigger(PMember, predicate) && PMob->PEnmityContainer->GetHighestEnmity() == PMember)
-                        {
-                            result = true;
-                        }
-                    });
-                    // clang-format on
-                }
-                return result;
-            }
-            else if (predicate.target == G_TARGET::CURILLA)
-            {
-                auto result = false;
-                // clang-format off
-                static_cast<CCharEntity*>(POwner->PMaster)->ForPartyWithTrusts([&](CBattleEntity* PMember)
-                {
-                    if (isValidMember(PMember) && CheckTrigger(PMember, predicate))
-                    {
-                        auto name = PMember->getName();
-                        if (strcmpi(name.c_str(), "curilla") == 0)
-                        {
-                            result = true;
-                        }
-                    }
-                });
-                // clang-format on
-                return result;
-            }
-            else if (predicate.target == G_TARGET::PARTY_MULTI)
-            {
-                uint8 count = 0;
-                // clang-format off
-                static_cast<CCharEntity*>(POwner->PMaster)->ForPartyWithTrusts([&](CBattleEntity* PMember)
-                {
-                    if (isValidMember(PMember) && CheckTrigger(PMember, predicate))
-                    {
-                        ++count;
-                    }
-                });
-                // clang-format on
-                return count > 1;
-            }
-
-            // Fallthrough
-            return false;
-        };
-
         // Didn't WS/MS, go for other Gambits
         for (auto& gambit : gambits)
         {
@@ -255,20 +101,6 @@ namespace gambits
 
             for (auto& action : gambit.actions)
             {
-                // Make sure that the predicates remain true for each action in a gambit
-                bool all_predicates_true = true;
-                for (auto& predicate : gambit.predicates)
-                {
-                    if (!runPredicate(predicate))
-                    {
-                        all_predicates_true = false;
-                    }
-                }
-                if (!all_predicates_true)
-                {
-                    break;
-                }
-
                 auto isValidMember = [this](CBattleEntity* PSettableTarget, CBattleEntity* PPartyTarget)
                 {
                     return !PSettableTarget && PPartyTarget->isAlive() && POwner->loc.zone == PPartyTarget->loc.zone &&
@@ -277,33 +109,39 @@ namespace gambits
 
                 // TODO: This whole section is messy and bonkers
                 // Try and extract target out the first predicate
-                CBattleEntity* target = nullptr;
-                if (gambit.predicates[0].target == G_TARGET::SELF)
+                // All predicates in a gambit should be pointing to the same target
+                // TODO: What's the point of predicates holding the target?
+                G_TARGET targetType = gambit.predicates[0].target;
+
+                CBattleEntity*            target = nullptr;
+                std::list<CBattleEntity*> potentialTargets;
+
+                if (targetType == G_TARGET::SELF)
                 {
-                    target = CheckTrigger(POwner, gambit.predicates[0]) ? POwner : nullptr;
+                    potentialTargets.push_back(POwner);
                 }
-                else if (gambit.predicates[0].target == G_TARGET::TARGET)
+                else if (targetType == G_TARGET::TARGET)
                 {
                     auto* mob = POwner->GetBattleTarget();
-                    target    = CheckTrigger(mob, gambit.predicates[0]) ? mob : nullptr;
+                    potentialTargets.push_back(mob);
                 }
-                else if (gambit.predicates[0].target == G_TARGET::PARTY)
+                else if (targetType == G_TARGET::PARTY)
                 {
                     // clang-format off
                     static_cast<CCharEntity*>(POwner->PMaster)->ForPartyWithTrusts([&](CBattleEntity* PMember)
                     {
-                        if (isValidMember(target, PMember) && CheckTrigger(PMember, gambit.predicates[0]))
+                        if (isValidMember(target, PMember))
                         {
-                            target = PMember;
+                            potentialTargets.push_back(PMember);
                         }
                     });
                     // clang-format on
                 }
-                else if (gambit.predicates[0].target == G_TARGET::MASTER)
+                else if (targetType == G_TARGET::MASTER)
                 {
-                    target = POwner->PMaster;
+                    potentialTargets.push_back(POwner->PMaster);
                 }
-                else if (gambit.predicates[0].target == G_TARGET::PARTY_DEAD)
+                else if (targetType == G_TARGET::PARTY_DEAD)
                 {
                     auto* mob = POwner->GetBattleTarget();
                     if (mob != nullptr)
@@ -312,95 +150,114 @@ namespace gambits
                         static_cast<CCharEntity*>(POwner->PMaster)->ForParty([&](CBattleEntity* PMember) {
                             if (PMember->isDead())
                             {
-                                target = PMember;
+                                potentialTargets.push_back(PMember);
                             }
                         });
                         // clang-format on
                     }
                 }
-                else if (gambit.predicates[0].target == G_TARGET::TANK)
+                else if (targetType == G_TARGET::TANK)
                 {
                     // clang-format off
                     static_cast<CCharEntity*>(POwner->PMaster)->ForPartyWithTrusts([&](CBattleEntity* PMember)
                     {
-                        if (isValidMember(target, PMember) && CheckTrigger(PMember, gambit.predicates[0]) &&
+                        if (isValidMember(target, PMember) &&
                             (PMember->GetMJob() == JOB_PLD || PMember->GetMJob() == JOB_RUN))
                         {
-                            target = PMember;
+                            potentialTargets.push_back(PMember);
                         }
                     });
                     // clang-format on
                 }
-                else if (gambit.predicates[0].target == G_TARGET::MELEE)
+                else if (targetType == G_TARGET::MELEE)
                 {
                     // clang-format off
                     static_cast<CCharEntity*>(POwner->PMaster)->ForPartyWithTrusts([&](CBattleEntity* PMember)
                     {
-                        if (isValidMember(target, PMember) && CheckTrigger(PMember, gambit.predicates[0]) &&
+                        if (isValidMember(target, PMember) &&
                             melee_jobs.find(PMember->GetMJob()) != melee_jobs.end())
                         {
-                            target = PMember;
+                            potentialTargets.push_back(PMember);
                         }
                     });
                     // clang-format on
                 }
-                else if (gambit.predicates[0].target == G_TARGET::RANGED)
+                else if (targetType == G_TARGET::RANGED)
                 {
                     // clang-format off
                     static_cast<CCharEntity*>(POwner->PMaster)->ForPartyWithTrusts([&](CBattleEntity* PMember)
                     {
-                        if (isValidMember(target, PMember) && CheckTrigger(PMember, gambit.predicates[0]) &&
+                        if (isValidMember(target, PMember) &&
                             (PMember->GetMJob() == JOB_RNG || PMember->GetMJob() == JOB_COR))
                         {
-                            target = PMember;
+                            potentialTargets.push_back(PMember);
                         }
                     });
                     // clang-format on
                 }
-                else if (gambit.predicates[0].target == G_TARGET::CASTER)
+                else if (targetType == G_TARGET::CASTER)
                 {
                     // clang-format off
                     static_cast<CCharEntity*>(POwner->PMaster)->ForPartyWithTrusts([&](CBattleEntity* PMember)
                     {
-                        if (isValidMember(target, PMember) && CheckTrigger(PMember, gambit.predicates[0]) &&
+                        if (isValidMember(target, PMember) &&
                             caster_jobs.find(PMember->GetMJob()) != caster_jobs.end())
                         {
-                            target = PMember;
+                            potentialTargets.push_back(PMember);
                         }
                     });
                     // clang-format on
                 }
-                else if (gambit.predicates[0].target == G_TARGET::TOP_ENMITY)
+                else if (targetType == G_TARGET::TOP_ENMITY)
                 {
                     if (auto* PMob = dynamic_cast<CMobEntity*>(POwner->GetBattleTarget()))
                     {
                         // clang-format off
                         static_cast<CCharEntity*>(POwner->PMaster)->ForPartyWithTrusts([&](CBattleEntity* PMember)
                         {
-                            if (isValidMember(target, PMember) && CheckTrigger(PMember, gambit.predicates[0]) &&
+                            if (isValidMember(target, PMember) &&
                                 PMob->PEnmityContainer->GetHighestEnmity() == PMember)
                             {
-                                target = PMember;
+                                potentialTargets.push_back(PMember);
                             }
                         });
                         // clang-format on
                     }
                 }
-                else if (gambit.predicates[0].target == G_TARGET::CURILLA)
+                else if (targetType == G_TARGET::CURILLA)
                 {
                     // clang-format off
                     static_cast<CCharEntity*>(POwner->PMaster)->ForPartyWithTrusts([&](CBattleEntity* PMember)
                     {
-                        if (isValidMember(target, PMember) && CheckTrigger(PMember, gambit.predicates[0]))
+                        if (isValidMember(target, PMember))
                         {
                             auto name = PMember->getName();
                             if (strcmpi(name.c_str(), "curilla") == 0)
                             {
-                                target = PMember;
+                                potentialTargets.push_back(PMember);
                             }
                         }
                     });
                     // clang-format on
+                }
+                for (auto& potentialTarget : potentialTargets)
+                {
+                    // All predicates must be true for the target to be considered
+                    // TODO: Support OR
+                    bool targetMatchAllPredicates = true;
+                    for (auto& predicate : gambit.predicates)
+                    {
+                        if (!CheckTrigger(potentialTarget, predicate))
+                        {
+                            targetMatchAllPredicates = false;
+                        }
+                    }
+                    // All predicates were matched, use this target
+                    if (targetMatchAllPredicates)
+                    {
+                        target = potentialTarget;
+                        break;
+                    }
                 }
 
                 if (!target)
