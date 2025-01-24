@@ -24,7 +24,11 @@ spellObject.onMobSpawn = function(mob)
     mob:addSimpleGambit(ai.t.PARTY, ai.c.HPP_LT, 50, ai.r.MA, ai.s.HIGHEST, xi.magic.spellFamily.CURE)
 
     mob:addSimpleGambit(ai.t.MELEE, ai.c.NOT_STATUS, xi.effect.HASTE, ai.r.MA, ai.s.HIGHEST, xi.magic.spellFamily.HASTE)
-    mob:addSimpleGambit(ai.t.CASTER, ai.c.NOT_STATUS, xi.effect.REFRESH, ai.r.MA, ai.s.HIGHEST, xi.magic.spellFamily.REFRESH)
+    mob:addGambit(ai.t.CASTER, {
+        { cond = ai.c.NOT_STATUS, arg = xi.effect.REFRESH },
+        { cond = ai.c.NOT_STATUS, arg = xi.effect.SUBLIMATION_ACTIVATED },
+        { cond = ai.c.NOT_STATUS, arg = xi.effect.SUBLIMATION_COMPLETE },
+    }, ai.r.MA, ai.s.HIGHEST, xi.magic.spellFamily.REFRESH)
     mob:addSimpleGambit(ai.t.TANK, ai.c.NOT_STATUS, xi.effect.REFRESH, ai.r.MA, ai.s.HIGHEST, xi.magic.spellFamily.REFRESH)
     mob:addSimpleGambit(ai.t.RANGED, ai.c.NOT_STATUS, xi.effect.FLURRY_II, ai.r.MA, ai.s.HIGHEST, xi.magic.spellFamily.FLURRY) -- xi.effect.FLURRY_II is not a typo
 
