@@ -42,7 +42,7 @@ entity.onTrade = function(player, npc, trade)
 end
 
 entity.onTrigger = function(player, npc)
-    xi.transport.onDockTimekeeperTrigger(player, xi.transport.routes.SELBINA_MHAURA_OPEN_SEA, 231)
+    xi.transport.onDockTimekeeperTrigger(player, npc)
 
     --[[Other cutscenes:
     233 "This ship is headed for Selbina."
