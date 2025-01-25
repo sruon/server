@@ -4,8 +4,6 @@
 -- Involved in Quest: A Potter's Preference
 -- !pos 117 -21 432 196
 -----------------------------------
-local ID = zones[xi.zone.GUSGEN_MINES]
------------------------------------
 ---@type TNpcEntity
 local entity = {}
 
