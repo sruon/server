@@ -9984,7 +9984,6 @@ INSERT INTO `mob_droplist` VALUES (1208,0,0,1000,1611,@UNCOMMON); -- Remnant Of 
 INSERT INTO `mob_droplist` VALUES (1208,0,0,1000,1612,@UNCOMMON); -- Remnant Of A Radiant Memory (Uncommon, 10%)
 INSERT INTO `mob_droplist` VALUES (1208,0,0,1000,1613,@UNCOMMON); -- Remnant Of A Malevolent Memory (Uncommon, 10%)
 INSERT INTO `mob_droplist` VALUES (1208,0,0,1000,1689,80);        -- Recollection Of Guilt (8.0%)
-INSERT INTO `mob_droplist` VALUES (1208,0,0,1000,1722,80);        -- Indigo Memosphere (8.0%)
 INSERT INTO `mob_droplist` VALUES (1208,0,0,1000,1723,80);        -- White Memosphere (8.0%)
 
 -- ZoneID:  40 - Gosspix Blabberlips
