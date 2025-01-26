@@ -1188,7 +1188,7 @@ int32 send_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
 
     *buffsize = PacketSize + FFXI_HEADER_SIZE;
 
-    auto remainingPackets = PChar->getPacketListCopy().size();
+    auto remainingPackets = PChar->getPacketCount();
     TotalPacketsDelayedPerTick += static_cast<uint32>(remainingPackets);
 
     if (settings::get<bool>("logging.DEBUG_PACKET_BACKLOG"))

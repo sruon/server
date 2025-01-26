@@ -3280,7 +3280,7 @@ end
 ---@param reactions table
 ---@param retry integer?
 ---@return string
-function CBaseEntity:addGambit(targ, conditions, reactions)
+function CBaseEntity:addGambit(targ, conditions, reactions, retry)
 end
 
 ---@param targ integer

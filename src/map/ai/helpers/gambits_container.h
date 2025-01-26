@@ -188,11 +188,11 @@ namespace gambits
     struct Gambit_t
     {
         std::vector<PredicateGroup_t> predicate_groups;
-        std::vector<Action_t>    actions;
-        G_TARGET                 target_selector;
-        uint16                   retry_delay;
-        time_point               last_used;
-        std::string              identifier;
+        std::vector<Action_t>         actions;
+        G_TARGET                      target_selector;
+        uint16                        retry_delay;
+        time_point                    last_used;
+        std::string                   identifier;
 
         Gambit_t()
         : retry_delay(0)

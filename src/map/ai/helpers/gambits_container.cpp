@@ -113,7 +113,7 @@ namespace gambits
 
             G_TARGET targetType = gambit.target_selector;
 
-            CBattleEntity*              target = nullptr;
+            CBattleEntity* target = nullptr;
 
             // Capture all potential targets
             std::vector<CBattleEntity*> potentialTargets;
@@ -541,7 +541,7 @@ namespace gambits
     {
         TracyZoneScoped;
 
-        auto* controller = static_cast<CTrustController*>(POwner->PAI->GetController());
+        auto*             controller = static_cast<CTrustController*>(POwner->PAI->GetController());
         std::vector<bool> predicateResults;
 
         // Iterate and collect results from all predicates in the group
