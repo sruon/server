@@ -3277,12 +3277,10 @@ end
 
 ---@param targ integer
 ---@param conditions table
----@param react integer
----@param select integer
----@param selectorArg integer
+---@param reactions table
 ---@param retry integer?
 ---@return string
-function CBaseEntity:addGambit(targ, conditions, react, select, selectorArg, retry)
+function CBaseEntity:addGambit(targ, conditions, reactions)
 end
 
 ---@param targ integer
@@ -3298,7 +3296,16 @@ end
 
 ---@param id string
 ---@return nil
+function CBaseEntity:removeGambit(id)
+end
+
+---@param id string
+---@return nil
 function CBaseEntity:removeSimpleGambit(id)
+end
+
+---@return nil
+function CBaseEntity:removeAllGambits()
 end
 
 ---@return nil

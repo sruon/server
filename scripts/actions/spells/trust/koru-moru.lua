@@ -25,12 +25,15 @@ spellObject.onMobSpawn = function(mob)
 
     mob:addSimpleGambit(ai.t.MELEE, ai.c.NOT_STATUS, xi.effect.HASTE, ai.r.MA, ai.s.HIGHEST, xi.magic.spellFamily.HASTE)
     mob:addGambit(ai.t.CASTER, {
-        { cond = ai.c.NOT_STATUS, arg = xi.effect.REFRESH },
-        { cond = ai.c.NOT_STATUS, arg = xi.effect.SUBLIMATION_ACTIVATED },
-        { cond = ai.c.NOT_STATUS, arg = xi.effect.SUBLIMATION_COMPLETE },
-    }, ai.r.MA, ai.s.HIGHEST, xi.magic.spellFamily.REFRESH)
+        { ai.c.NOT_STATUS, xi.effect.REFRESH },
+        { ai.c.NOT_STATUS, xi.effect.SUBLIMATION_ACTIVATED },
+        { ai.c.NOT_STATUS, xi.effect.SUBLIMATION_COMPLETE },
+    }, { ai.r.MA, ai.s.HIGHEST, xi.magic.spellFamily.REFRESH })
     mob:addSimpleGambit(ai.t.TANK, ai.c.NOT_STATUS, xi.effect.REFRESH, ai.r.MA, ai.s.HIGHEST, xi.magic.spellFamily.REFRESH)
-    mob:addSimpleGambit(ai.t.RANGED, ai.c.NOT_STATUS, xi.effect.FLURRY_II, ai.r.MA, ai.s.HIGHEST, xi.magic.spellFamily.FLURRY) -- xi.effect.FLURRY_II is not a typo
+    mob:addGambit(ai.t.RANGED, {
+            { ai.c.NOT_STATUS, xi.effect.FLURRY_II },
+            { ai.c.NOT_STATUS, xi.effect.HASTE }, -- No overwriting Haste
+        }, { ai.r.MA, ai.s.HIGHEST, xi.magic.spellFamily.FLURRY }) -- xi.effect.FLURRY_II is not a typo
 
     mob:addSimpleGambit(ai.t.TOP_ENMITY, ai.c.NOT_STATUS, xi.effect.PHALANX, ai.r.MA, ai.s.SPECIFIC, xi.magic.spell.PHALANX_II)
 
