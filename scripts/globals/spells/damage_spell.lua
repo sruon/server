@@ -240,12 +240,12 @@ local function cardinalChantBonus(actor, target, direction, spellId, skillType)
     }
 
     local chantTable =
-    { -- [trait] = { { east }, { south }, { west }, { north } }
-        [0] = { {  0,  0 }, {  0,  0 }, {  0,  0 }, {  0,  0 } },
-        [1] = { {  5,  8 }, {  5,  8 }, { 10, 15 }, {  5,  8 } },
-        [2] = { {  7, 10 }, {  7, 10 }, { 14, 19 }, {  7, 10 } },
-        [3] = { { 10, 14 }, { 10, 14 }, { 18, 24 }, { 10, 14 } },
-        [4] = { { 13, 17 }, { 13, 17 }, { 22, 28 }, { 13, 17 } },
+    {
+        [0] = { [xi.direction.EAST] = {  0,  0 }, [xi.direction.SOUTH] = {  0,  0 }, [xi.direction.WEST] = {  0,  0 }, [xi.direction.NORTH] = {  0,  0 } },
+        [1] = { [xi.direction.EAST] = {  5,  8 }, [xi.direction.SOUTH] = {  5,  8 }, [xi.direction.WEST] = { 10, 15 }, [xi.direction.NORTH] = {  5,  8 } },
+        [2] = { [xi.direction.EAST] = {  7, 10 }, [xi.direction.SOUTH] = {  7, 10 }, [xi.direction.WEST] = { 14, 19 }, [xi.direction.NORTH] = {  7, 10 } },
+        [3] = { [xi.direction.EAST] = { 10, 14 }, [xi.direction.SOUTH] = { 10, 14 }, [xi.direction.WEST] = { 18, 24 }, [xi.direction.NORTH] = { 10, 14 } },
+        [4] = { [xi.direction.EAST] = { 13, 17 }, [xi.direction.SOUTH] = { 13, 17 }, [xi.direction.WEST] = { 22, 28 }, [xi.direction.NORTH] = { 13, 17 } },
     }
 
     local isRaSpell = raSpellTable[spellId] and 2 or 1
@@ -264,34 +264,34 @@ local function cardinalChantBonus(actor, target, direction, spellId, skillType)
     switch (direction) : caseof
     {
         [xi.direction.EAST] = function() -- MAB -> Optimal angle = 0
-            if angle > 192 and angle <= 256 then
-                angleFactor = 100 - (256 - angle) * 100 / 64
-            elseif angle > 0 and angle < 64 then
-                angleFactor = 100 - angle * 100 / 64
+            if angle > 192 and angle < 256 then
+                angleFactor = 1 - (256 - angle) / 64
+            elseif angle >= 0 and angle < 64 then
+                angleFactor = 1 - angle / 64
             end
         end,
 
         [xi.direction.SOUTH] = function() -- MACC -> Optimal angle = 64
-            if angle > 0 and angle <= 64 then
-                angleFactor = 100 - (64 - angle) * 100 / 64
-            elseif angle > 64 and angle < 128 then
-                angleFactor = 100 - (angle - 64) * 100 / 64
+            if angle > 0 and angle < 64 then
+                angleFactor = 1 - (64 - angle) / 64
+            elseif angle >= 64 and angle < 128 then
+                angleFactor = 1 - (angle - 64) / 64
             end
         end,
 
         [xi.direction.WEST] = function() -- MBB -> Optimal angle = 128
-            if angle > 64 and angle <= 128 then
-                angleFactor = 100 - (128 - angle) * 100 / 64
-            elseif angle > 128 and angle < 192 then
-                angleFactor = 100 - (angle - 128) * 100 / 64
+            if angle > 64 and angle < 128 then
+                angleFactor = 1 - (128 - angle) / 64
+            elseif angle >= 128 and angle < 192 then
+                angleFactor = 1 - (angle - 128) / 64
             end
         end,
 
         [xi.direction.NORTH] = function() -- M.Crit -> Optimal angle = 192
-            if angle > 128 and angle <= 192 then
-                angleFactor = 100 - (192 - angle) * 100 / 64
-            elseif angle > 192 and angle < 256 then
-                angleFactor = 100 - (angle - 192) * 100 / 64
+            if angle > 128 and angle < 192 then
+                angleFactor = 1 - (192 - angle) / 64
+            elseif angle >= 192 and angle < 256 then
+                angleFactor = 1 - (angle - 192) / 64
             end
         end,
     }
