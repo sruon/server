@@ -1566,7 +1566,7 @@ void CZoneEntities::PushPacket(CBaseEntity* PEntity, GLOBAL_MESSAGE_TYPE message
                                     auto iter = spawnlist.lower_bound(id);
                                     if (iter != spawnlist.end() && !spawnlist.key_comp()(id, iter->first))
                                     {
-                                        PCurrentChar->pushPacket(packet->copy());
+                                        PChar->pushPacket(packet->copy());
                                     }
                                 };
 
