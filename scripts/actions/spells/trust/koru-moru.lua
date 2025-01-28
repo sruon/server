@@ -24,12 +24,15 @@ spellObject.onMobSpawn = function(mob)
     mob:addGambit(ai.t.PARTY, { ai.c.HPP_LT, 50 }, { ai.r.MA, ai.s.HIGHEST, xi.magic.spellFamily.CURE })
 
     mob:addGambit(ai.t.MELEE, { ai.c.NOT_STATUS, xi.effect.HASTE }, { ai.r.MA, ai.s.HIGHEST, xi.magic.spellFamily.HASTE })
+
     mob:addGambit(ai.t.CASTER, {
         { ai.c.NOT_STATUS, xi.effect.REFRESH },
         { ai.c.NOT_STATUS, xi.effect.SUBLIMATION_ACTIVATED },
         { ai.c.NOT_STATUS, xi.effect.SUBLIMATION_COMPLETE },
     }, { ai.r.MA, ai.s.HIGHEST, xi.magic.spellFamily.REFRESH })
+
     mob:addGambit(ai.t.TANK, { ai.c.NOT_STATUS, xi.effect.REFRESH }, { ai.r.MA, ai.s.HIGHEST, xi.magic.spellFamily.REFRESH })
+
     mob:addGambit(ai.t.RANGED, {
             { ai.c.NOT_STATUS, xi.effect.FLURRY_II }, -- xi.effect.FLURRY_II is not a typo
             { ai.c.NOT_STATUS, xi.effect.HASTE }, -- No overwriting Haste
