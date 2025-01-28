@@ -15287,34 +15287,11 @@ std::string CLuaBaseEntity::addGambit(uint16 targ, sol::table const& predicates,
 }
 
 /************************************************************************
- *  DEPRECATED: Use trust:addGambit(...) instead
- *  Function: addSimpleGambit()
- *  Purpose :
- *  Example : trust:addSimpleGambit(target, condition, condition_arg, reaction, selector, selector_arg)
- *  Notes   : Adds a behavior to the gambit system
- ************************************************************************/
-
-std::string CLuaBaseEntity::addSimpleGambit(uint16 targ, uint16 cond, uint32 condition_arg, uint16 react, uint16 select, uint32 selector_arg, sol::object const& retry)
-{
-    const auto* PTrust = dynamic_cast<CTrustEntity*>(m_PBaseEntity);
-    if (!PTrust)
-    {
-        ShowWarning("Invalid Entity calling function (%s).", m_PBaseEntity->getName());
-        return {};
-    }
-    ShowWarning("%s: addSimpleGambit is deprecated. Please use addGambit instead.", m_PBaseEntity->getName());
-    const auto conditionsTable = lua.create_table_with(1, cond, 2, condition_arg);
-    const auto reactionsTable  = lua.create_table_with(1, react, 2, select, 3, selector_arg);
-
-    return addGambit(targ, conditionsTable, reactionsTable, retry);
-}
-
-/************************************************************************
  *  Function: removeGambit()
  *  Purpose :
  *  Example : trust:removeGambit(id)
  *  Notes   : Removes a behavior from the gambit system, using the id returned
- *          : from addGambit/addSimpleGambit
+ *          : from addGambit
  ************************************************************************/
 
 void CLuaBaseEntity::removeGambit(std::string const& id)
@@ -15329,20 +15306,6 @@ void CLuaBaseEntity::removeGambit(std::string const& id)
     auto* controller = static_cast<CTrustController*>(PTrust->PAI->GetController());
 
     controller->m_GambitsContainer->RemoveGambit(id);
-}
-
-/************************************************************************
- *  Function: removeSimpleGambit()
- *  Purpose :
- *  Example : trust:removeSimpleGambit(id)
- *  Notes   : Removes a behavior from the gambit system, using the id returned
- *          : from addSimpleGambit
- ************************************************************************/
-
-void CLuaBaseEntity::removeSimpleGambit(std::string const& id)
-{
-    ShowWarning("%s: removeSimpleGambit is deprecated. Please use removeGambit instead.", m_PBaseEntity->getName());
-    removeGambit(id);
 }
 
 /************************************************************************
@@ -15364,19 +15327,6 @@ void CLuaBaseEntity::removeAllGambits()
     auto* controller = static_cast<CTrustController*>(PTrust->PAI->GetController());
 
     controller->m_GambitsContainer->RemoveAllGambits();
-}
-
-/************************************************************************
- *  Function: removeAllSimpleGambits()
- *  Purpose :
- *  Example : trust:removeAllSimpleGambits()
- *  Notes   : Removes all gambits from a trust.
- ************************************************************************/
-
-void CLuaBaseEntity::removeAllSimpleGambits()
-{
-    ShowWarning("%s: removeAllSimpleGambits is deprecated. Please use removeAllGambits instead.", m_PBaseEntity->getName());
-    removeAllGambits();
 }
 
 /************************************************************************
@@ -19555,11 +19505,8 @@ void CLuaBaseEntity::Register()
     SOL_REGISTER("getTrustID", CLuaBaseEntity::getTrustID);
     SOL_REGISTER("trustPartyMessage", CLuaBaseEntity::trustPartyMessage);
     SOL_REGISTER("addGambit", CLuaBaseEntity::addGambit);
-    SOL_REGISTER("addSimpleGambit", CLuaBaseEntity::addSimpleGambit);
     SOL_REGISTER("removeGambit", CLuaBaseEntity::removeGambit);
-    SOL_REGISTER("removeSimpleGambit", CLuaBaseEntity::removeSimpleGambit);
     SOL_REGISTER("removeAllGambits", CLuaBaseEntity::removeAllGambits);
-    SOL_REGISTER("removeAllSimpleGambits", CLuaBaseEntity::removeAllSimpleGambits);
     SOL_REGISTER("setTrustTPSkillSettings", CLuaBaseEntity::setTrustTPSkillSettings);
 
     // Mob Entity-Specific
