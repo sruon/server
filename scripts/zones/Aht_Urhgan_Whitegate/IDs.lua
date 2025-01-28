@@ -45,6 +45,7 @@ zones[xi.zone.AHT_URHGAN_WHITEGATE] =
         ASSAULT_FAILED                = 5670,  -- Your mission was not successful; however, the Empire recognizes your contribution and has awarded you Assault Points.
         AUTOMATON_RENAME              = 5847,  -- Your automaton has a new name.
         YOU_CAN_BECOME_PUP            = 5850,  -- You can now become a puppetmaster!
+        PROMOTION_SERGEANT_MAJOR      = 6174, -- <name> has been promoted to Sergeant Major!
         NYZUL_FAIL                    = 6191,  -- Your mission was not successful. I regret to inform you that the Imperial Army does not officially recognize your efforts within this Assault area.
         BESIEGED_OFFSET               = 6832,  -- Your Imperial Standing has increased!
         PROMOTION_SERGEANT            = 7740,  -- <player> has been promoted to Sergeant!
