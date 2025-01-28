@@ -379,6 +379,16 @@ end
 
 -- WARNING: This function is used in src/utils/battleutils.cpp "GetDamageRatio" function.
 -- If you update this parameters, update them there aswell.
+---@param actor CBaseEntity
+---@param target CBaseEntity
+---@param weaponType xi.skill
+---@param wsAttackMod number
+---@param isCritical boolean
+---@param applyLevelCorrection boolean
+---@param tpIgnoresDefense boolean
+---@param tpFactor number
+---@param isWeaponskill boolean
+---@param weaponSlot xi.slot
 xi.combat.physical.calculateMeleePDIF = function(actor, target, weaponType, wsAttackMod, isCritical, applyLevelCorrection, tpIgnoresDefense, tpFactor, isWeaponskill, weaponSlot)
     local pDif = 0
 
@@ -493,6 +503,15 @@ xi.combat.physical.calculateMeleePDIF = function(actor, target, weaponType, wsAt
     return pDif
 end
 
+---@param actor CBaseEntity
+---@param target CBaseEntity
+---@param weaponType xi.skill
+---@param wsAttackMod number
+---@param isCritical boolean
+---@param applyLevelCorrection boolean
+---@param tpIgnoresDefense boolean
+---@param tpFactor number
+---@param isWeaponskill boolean
 xi.combat.physical.calculateRangedPDIF = function(actor, target, weaponType, wsAttackMod, isCritical, applyLevelCorrection, tpIgnoresDefense, tpFactor, isWeaponskill)
     local pDif = 0
 
