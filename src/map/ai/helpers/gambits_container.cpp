@@ -248,9 +248,9 @@ namespace gambits
             {
                 // All predicate groups must resolve successfully for the target to be considered
                 bool targetMatchAllPredicates = true;
-                for (auto& predicate_group : gambit.predicate_groups)
+                for (auto& predicateGroup : gambit.predicate_groups)
                 {
-                    if (!CheckTrigger(potentialTarget, predicate_group))
+                    if (!CheckTrigger(potentialTarget, predicateGroup))
                     {
                         targetMatchAllPredicates = false;
                     }
@@ -270,6 +270,9 @@ namespace gambits
             }
 
             // Execute all actions defined on the Gambit
+            // TODO: When multiple actions are defined:
+            // - Recast of all actions should be considered before executing
+            // - Casting 2 spells in a row does not yet work
             for (auto& action : gambit.actions)
             {
                 if (action.reaction == G_REACTION::RATTACK)
@@ -527,12 +530,12 @@ namespace gambits
                         controller->MobSkill(target->targid, action.select_arg);
                     }
                 }
+            }
 
-                // Assume success
-                if (gambit.retry_delay != 0)
-                {
-                    gambit.last_used = tick;
-                }
+            // Assume success
+            if (gambit.retry_delay != 0)
+            {
+                gambit.last_used = tick;
             }
         }
     }

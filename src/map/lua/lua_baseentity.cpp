@@ -15170,7 +15170,8 @@ void CLuaBaseEntity::trustPartyMessage(uint32 message_id)
 
 std::string CLuaBaseEntity::addGambit(uint16 targ, sol::table const& predicates, sol::table const& reactions, sol::object const& retry)
 {
-    if (m_PBaseEntity->objtype != TYPE_TRUST)
+    const auto* PTrust = dynamic_cast<CTrustEntity*>(m_PBaseEntity);
+    if (!PTrust)
     {
         ShowWarning("Invalid Entity calling function (%s).", m_PBaseEntity->getName());
         return {};
@@ -15220,8 +15221,8 @@ std::string CLuaBaseEntity::addGambit(uint16 targ, sol::table const& predicates,
                     {
                         // Else we're dealing with unwrapped predicates, assumed to be AND together:
                         // { { condition, arg1 }, { condition, arg1 } }
-                        auto predicateType = static_cast<G_CONDITION>(conditionTable.get<uint16>(1)); // First element
-                        auto predicateArg  = conditionTable.get<uint32>(2);                           // Second element
+                        auto predicateType = static_cast<G_CONDITION>(conditionTable.get<uint16>(1));
+                        auto predicateArg  = conditionTable.get<uint32>(2);
                         wrappedPredicates.emplace_back(predicateType, predicateArg);
                     }
                     predicateGroups.emplace_back(logic, wrappedPredicates);
@@ -15276,17 +15277,17 @@ std::string CLuaBaseEntity::addGambit(uint16 targ, sol::table const& predicates,
 
     // Optional
     const uint16 retryDelay = (retry != sol::lua_nil) ? retry.as<uint16>() : 0;
+    const auto*  controller = static_cast<CTrustController*>(PTrust->PAI->GetController());
 
-    g.retry_delay          = retryDelay;
-    g.target_selector      = targetSelector;
-    const auto* trust      = static_cast<CTrustEntity*>(m_PBaseEntity);
-    const auto* controller = static_cast<CTrustController*>(trust->PAI->GetController());
-    g.identifier           = controller->m_GambitsContainer->NewGambitIdentifier(g);
+    g.retry_delay     = retryDelay;
+    g.target_selector = targetSelector;
+    g.identifier      = controller->m_GambitsContainer->NewGambitIdentifier(g);
 
     return controller->m_GambitsContainer->AddGambit(g);
 }
 
 /************************************************************************
+ *  DEPRECATED: Use trust:addGambit(...) instead
  *  Function: addSimpleGambit()
  *  Purpose :
  *  Example : trust:addSimpleGambit(target, condition, condition_arg, reaction, selector, selector_arg)
@@ -15295,36 +15296,17 @@ std::string CLuaBaseEntity::addGambit(uint16 targ, sol::table const& predicates,
 
 std::string CLuaBaseEntity::addSimpleGambit(uint16 targ, uint16 cond, uint32 condition_arg, uint16 react, uint16 select, uint32 selector_arg, sol::object const& retry)
 {
-    if (m_PBaseEntity->objtype != TYPE_TRUST)
+    const auto* PTrust = dynamic_cast<CTrustEntity*>(m_PBaseEntity);
+    if (!PTrust)
     {
         ShowWarning("Invalid Entity calling function (%s).", m_PBaseEntity->getName());
         return {};
     }
+    ShowWarning("%s: addSimpleGambit is deprecated. Please use addGambit instead.", m_PBaseEntity->getName());
+    const auto conditionsTable = lua.create_table_with(1, cond, 2, condition_arg);
+    const auto reactionsTable  = lua.create_table_with(1, react, 2, select, 3, selector_arg);
 
-    using namespace gambits;
-
-    auto target    = static_cast<G_TARGET>(targ);
-    auto condition = static_cast<G_CONDITION>(cond);
-
-    auto reaction = static_cast<G_REACTION>(react);
-    auto selector = static_cast<G_SELECT>(select);
-
-    // Optional
-    uint16 retry_delay = (retry != sol::lua_nil) ? retry.as<uint16>() : 0;
-
-    Gambit_t g;
-    // Temporary backward compability for simple gambits
-    g.predicate_groups.emplace_back(G_LOGIC::AND, std::vector<Predicate_t>{ { condition, condition_arg } });
-
-    g.actions.emplace_back(reaction, selector, selector_arg);
-    g.retry_delay     = retry_delay;
-    g.target_selector = target;
-    g.identifier      = fmt::format("{}_{}_{}_{}_{}_{}_{}", targ, cond, condition_arg, react, select, selector_arg, retry_delay);
-
-    auto* trust      = static_cast<CTrustEntity*>(m_PBaseEntity);
-    auto* controller = static_cast<CTrustController*>(trust->PAI->GetController());
-
-    return controller->m_GambitsContainer->AddGambit(g);
+    return addGambit(targ, conditionsTable, reactionsTable, retry);
 }
 
 /************************************************************************
@@ -15337,14 +15319,14 @@ std::string CLuaBaseEntity::addSimpleGambit(uint16 targ, uint16 cond, uint32 con
 
 void CLuaBaseEntity::removeGambit(std::string const& id)
 {
-    if (m_PBaseEntity->objtype != TYPE_TRUST)
+    const auto* PTrust = dynamic_cast<CTrustEntity*>(m_PBaseEntity);
+    if (!PTrust)
     {
         ShowWarning("Invalid Entity calling function (%s).", m_PBaseEntity->getName());
         return;
     }
 
-    auto* trust      = static_cast<CTrustEntity*>(m_PBaseEntity);
-    auto* controller = static_cast<CTrustController*>(trust->PAI->GetController());
+    auto* controller = static_cast<CTrustController*>(PTrust->PAI->GetController());
 
     controller->m_GambitsContainer->RemoveGambit(id);
 }
@@ -15359,6 +15341,7 @@ void CLuaBaseEntity::removeGambit(std::string const& id)
 
 void CLuaBaseEntity::removeSimpleGambit(std::string const& id)
 {
+    ShowWarning("%s: removeSimpleGambit is deprecated. Please use removeGambit instead.", m_PBaseEntity->getName());
     removeGambit(id);
 }
 
@@ -15371,14 +15354,14 @@ void CLuaBaseEntity::removeSimpleGambit(std::string const& id)
 
 void CLuaBaseEntity::removeAllGambits()
 {
-    if (m_PBaseEntity->objtype != TYPE_TRUST)
+    const auto* PTrust = dynamic_cast<CTrustEntity*>(m_PBaseEntity);
+    if (!PTrust)
     {
         ShowWarning("Invalid Entity calling function (%s).", m_PBaseEntity->getName());
         return;
     }
 
-    auto* trust      = static_cast<CTrustEntity*>(m_PBaseEntity);
-    auto* controller = static_cast<CTrustController*>(trust->PAI->GetController());
+    auto* controller = static_cast<CTrustController*>(PTrust->PAI->GetController());
 
     controller->m_GambitsContainer->RemoveAllGambits();
 }
@@ -15392,6 +15375,7 @@ void CLuaBaseEntity::removeAllGambits()
 
 void CLuaBaseEntity::removeAllSimpleGambits()
 {
+    ShowWarning("%s: removeAllSimpleGambits is deprecated. Please use removeAllGambits instead.", m_PBaseEntity->getName());
     removeAllGambits();
 }
 
