@@ -394,7 +394,7 @@ xi.combat.physical.calculateMeleePDIF = function(actor, target, weaponType, wsAt
         if actor:hasStatusEffect(xi.effect.BUILDING_FLOURISH) then
             local flourishEffect = actor:getStatusEffect(xi.effect.BUILDING_FLOURISH)
 
-            if flourishEffect:getPower() >= 2 then -- 2 or more Finishing Moves used.
+            if flourishEffect and flourishEffect:getPower() >= 2 then -- 2 or more Finishing Moves used.
                 actorAttack = math.floor(actorAttack * (125 + flourishEffect:getSubPower()) / 100)
             end
         end
@@ -510,7 +510,7 @@ xi.combat.physical.calculateRangedPDIF = function(actor, target, weaponType, wsA
         if actor:hasStatusEffect(xi.effect.BUILDING_FLOURISH) then
             local flourishEffect = actor:getStatusEffect(xi.effect.BUILDING_FLOURISH)
 
-            if flourishEffect:getPower() >= 2 then -- 2 or more Finishing Moves used.
+            if flourishEffect and flourishEffect:getPower() >= 2 then -- 2 or more Finishing Moves used.
                 actorAttack = math.floor(actorAttack * (125 + flourishEffect:getSubPower()) / 100)
             end
         end
