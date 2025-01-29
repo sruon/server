@@ -11,7 +11,7 @@ zoneObject.onInitialize = function(zone)
     GetMobByID(ID.mob.HARVESTMAN):setRespawnTime(math.random(900, 10800))
 
     xi.helm.initZone(zone, xi.helmType.HARVESTING)
-    darkRider.zone.addHoofprints(zone)
+    xi.darkRider.addHoofprints(zone)
 end
 
 zoneObject.onZoneIn = function(player, prevZone)
@@ -38,12 +38,11 @@ zoneObject.afterZoneIn = function(player)
 end
 
 zoneObject.onGameHour = function(zone)
-    updateZoneDigItems(zone)
-    darkRider.zone.onGameHour(zone)
-end
+    xi.darkRider.onGameHour(zone)
 
-zoneObjectonGameDay = function(zone)
-    darkRider.zone.addHoofprints(zone)
+    if VanadielHour() == 0 then
+        xi.darkRider.addHoofprints(zone)
+    end
 end
 
 zoneObject.onEventUpdate = function(player, csid, option, npc)
