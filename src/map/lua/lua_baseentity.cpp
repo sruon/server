@@ -5252,6 +5252,24 @@ uint8 CLuaBaseEntity::getRace()
 }
 
 /************************************************************************
+ *  Function: getFace()
+ *  Purpose : Returns the integer value of the face of a character
+ *  Example : player:getFace()
+ *  Notes   :
+ ************************************************************************/
+
+uint8 CLuaBaseEntity::getFace()
+{
+    if (m_PBaseEntity->objtype != TYPE_PC)
+    {
+        ShowWarning("Invalid entity type calling function (%s).", m_PBaseEntity->getName());
+        return 0;
+    }
+
+    return static_cast<CCharEntity*>(m_PBaseEntity)->look.face;
+}
+
+/************************************************************************
  *  Function: getGender()
  *  Purpose : Returns the integer value of the gender of the character
  *  Female: 0, Male: 1
@@ -18983,6 +19001,7 @@ void CLuaBaseEntity::Register()
 
     // Player Appearance
     SOL_REGISTER("getRace", CLuaBaseEntity::getRace);
+    SOL_REGISTER("getFace", CLuaBaseEntity::getFace);
     SOL_REGISTER("getGender", CLuaBaseEntity::getGender);
     SOL_REGISTER("getName", CLuaBaseEntity::getName);
     SOL_REGISTER("getPacketName", CLuaBaseEntity::getPacketName);
