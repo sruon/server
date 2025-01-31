@@ -5488,6 +5488,7 @@ namespace luautils
 
         if (_sql->SetAutoCommit(false) && _sql->TransactionStart())
         {
+            // NOTE: This will trigger SQL trigger: delivery_box_insert
             const char* Query = "INSERT INTO delivery_box (charid, box, itemid, quantity, senderid, sender) VALUES ("
                                 "%u, "     // Player ID
                                 "1, "      // Box ID == 1

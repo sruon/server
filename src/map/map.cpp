@@ -155,18 +155,17 @@ map_session_data_t* mapsession_createsession(uint32 ip, uint16 port)
 {
     TracyZoneScoped;
 
-    auto ipstr    = ip2str(ip);
-    auto fmtQuery = fmt::format("SELECT charid FROM accounts_sessions WHERE inet_ntoa(client_addr) = '{}' LIMIT 1", ipstr);
+    const auto ipstr = ip2str(ip);
 
-    int32 ret = _sql->Query(fmtQuery.c_str());
+    const auto rset = db::preparedStmt("SELECT charid FROM accounts_sessions WHERE inet_ntoa(client_addr) = ? LIMIT 1", ipstr);
 
-    if (ret == SQL_ERROR)
+    if (rset == nullptr)
     {
         ShowError("SQL query failed in mapsession_createsession!");
         return nullptr;
     }
 
-    if (_sql->NumRows() == 0)
+    if (rset->rowsCount() == 0)
     {
         // This is noisy and not really necessary
         DebugSockets(fmt::format("recv_parse: Invalid login attempt from {}", ipstr));
