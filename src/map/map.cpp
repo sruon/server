@@ -241,10 +241,11 @@ int32 do_init(int32 argc, char** argv)
     ShowInfo("do_init: connecting to database");
     _sql = std::make_unique<SqlConnection>();
 
-    ShowInfo(_sql->GetDatabaseName().c_str());
-    ShowInfo(_sql->GetClientVersion().c_str());
-    ShowInfo(_sql->GetServerVersion().c_str());
-    _sql->CheckCharset();
+    ShowInfo(fmt::format("database name: {}", db::getDatabaseSchema()).c_str());
+    ShowInfo(fmt::format("database server version: {}", db::getDatabaseVersion()).c_str());
+    ShowInfo(fmt::format("database client version: {}", db::getDriverVersion()).c_str());
+    db::checkCharset();
+    db::checkTriggers();
 
     luautils::init(); // Also calls moduleutils::LoadLuaModules();
 
@@ -347,6 +348,8 @@ int32 do_init(int32 argc, char** argv)
     luautils::OnServerStart();
 
     moduleutils::ReportLuaModuleUsage();
+
+    db::enableTimers();
 
     ShowInfo("The map-server is ready to work!");
     ShowInfo("=======================================================================");
