@@ -236,13 +236,13 @@ void ConquestSystem::updateWeekConquest()
     sendTallyStartMsg();
 
     // 2- Do the actual db update
-    auto query = "UPDATE conquest_system SET region_control = \
-                            IF(sandoria_influence > bastok_influence AND sandoria_influence > windurst_influence AND \
-                            sandoria_influence > beastmen_influence, 0, \
-                            IF(bastok_influence > sandoria_influence AND bastok_influence > windurst_influence AND \
-                            bastok_influence > beastmen_influence, 1, \
-                            IF(windurst_influence > bastok_influence AND windurst_influence > sandoria_influence AND \
-                            windurst_influence > beastmen_influence, 2, 3)))";
+    auto query = "UPDATE conquest_system SET region_control = "
+                 "IF(sandoria_influence > bastok_influence AND sandoria_influence > windurst_influence AND "
+                 "sandoria_influence > beastmen_influence, 0, "
+                 "IF(bastok_influence > sandoria_influence AND bastok_influence > windurst_influence AND "
+                 "bastok_influence > beastmen_influence, 1, "
+                 "IF(windurst_influence > bastok_influence AND windurst_influence > sandoria_influence AND "
+                 "windurst_influence > beastmen_influence, 2, 3)))";
 
     auto rset = db::preparedStmt(query);
     if (!rset)

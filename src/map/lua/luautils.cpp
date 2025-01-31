@@ -2186,8 +2186,8 @@ namespace luautils
     {
         TracyZoneScoped;
 
-        ShowTrace("luautils::OnEventUpdate: {} ({}), string: {}",
-                  PChar->getName(), PChar->loc.zone->getName(), updateString);
+        ShowTraceFmt("luautils::OnEventUpdate: {} ({}), string: {}",
+                     PChar->getName(), PChar->loc.zone->getName(), updateString);
 
         EventPrep* previousPrep = PChar->eventPreparation;
         PChar->eventPreparation = PChar->currentEvent;
@@ -4227,7 +4227,7 @@ namespace luautils
         auto name     = PMob->getName();
         auto filename = fmt::format("./scripts/zones/{}/mobs/{}.lua", zone, name);
 
-        ShowTrace("luautils::OnSteal: {} ({}) -> {}", PChar->getName(), zone, name);
+        ShowTraceFmt("luautils::OnSteal: {} ({}) -> {}", PChar->getName(), zone, name);
 
         auto onStealFramework = lua["InteractionGlobal"]["onSteal"];
         auto onSteal          = GetCacheEntryFromFilename(filename)["onSteal"];

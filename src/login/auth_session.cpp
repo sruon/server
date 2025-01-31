@@ -480,14 +480,14 @@ void auth_session::read_func()
                 ref<uint8>(data_, 0) = LOGIN_SUCCESS_CHANGE_PASSWORD;
                 do_write(33);
 
-                ShowInfo("login_parse: password updated for account {} successfully.", accid);
+                ShowInfoFmt("login_parse: password updated for account {} successfully.", accid);
                 return;
             }
         }
         break;
         default:
         {
-            ShowError("Unhandled auth code: {} from {}", code, ipAddress);
+            ShowErrorFmt("Unhandled auth code: {} from {}", code, ipAddress);
         }
         break;
     }
