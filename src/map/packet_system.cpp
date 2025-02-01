@@ -2625,7 +2625,7 @@ void SmallPacket0x04D(map_session_data_t* const PSession, CCharEntity* const PCh
                     }
 
                     PUBoxItem->setReceiver(recieverName);
-                    PUBoxItem->setSender(PChar->getName().c_str());
+                    PUBoxItem->setSender(PChar->getName());
                     PUBoxItem->setQuantity(quantity);
                     PUBoxItem->setSlotID(PItem->getSlotID());
                     std::memcpy(PUBoxItem->m_extra, PItem->m_extra, sizeof(PUBoxItem->m_extra));
