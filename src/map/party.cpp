@@ -116,6 +116,7 @@ void CParty::DisbandParty(bool playerInitiated)
     {
         m_PAlliance->removeParty(this);
     }
+
     m_PSyncTarget = nullptr;
     m_PLeader     = nullptr;
     m_PAlliance   = nullptr;
@@ -123,8 +124,8 @@ void CParty::DisbandParty(bool playerInitiated)
     if (m_PartyType == PARTY_PCS)
     {
         SetQuarterMaster("");
-        auto partyDefinePacket = std::make_unique<CPartyDefinePacket>(nullptr);
-        PushPacket(0, 0, std::move(partyDefinePacket));
+
+        this->PushPacket(0, 0, std::make_unique<CPartyDefinePacket>(nullptr));
 
         for (auto& member : members)
         {
