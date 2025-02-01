@@ -64,15 +64,31 @@ namespace logging
 
 // clang-format off
 
-// Helper to allow pointers to numeric types to be formatted
-// as strings.
-// TODO: All need for this should eventually be removed!
-// TODO: Any place we use this it is indicating some smelly and unsafe code.
-//     : When replacing, the surrounding code should be audited!
 template <typename T>
-std::string str(T v)
+std::string asStringFromUntrustedSource(const T* ptr)
 {
-    return std::string(reinterpret_cast<const char*>(v));
+    if (!ptr)
+    {
+        return "";
+    }
+
+    static constexpr size_t MAX_STRING_LENGTH = 1024;
+
+    const auto str = reinterpret_cast<const char*>(ptr);
+    return std::string(str, strnlen(str, MAX_STRING_LENGTH));
+}
+
+template <typename T>
+std::string asStringFromUntrustedSource(const T* ptr, size_t max_size)
+{
+    if (!ptr)
+    {
+        return "";
+    }
+
+    const auto str = reinterpret_cast<const char*>(ptr);
+    const auto len = strnlen(str, max_size);
+    return std::string(str, len);
 }
 
 // Helper for allowing `enum` and `enum class` types to be formatted
