@@ -8743,7 +8743,7 @@ INSERT INTO `mob_groups` VALUES (16,1758,121,'Goobbue_Gardener',330,0,1201,0,0,4
 INSERT INTO `mob_groups` VALUES (17,3358,121,'Revenant',330,0,2092,0,0,45,47,0);
 INSERT INTO `mob_groups` VALUES (18,1760,121,'Goobbue_Parasite',330,0,1202,0,0,42,45,0);
 INSERT INTO `mob_groups` VALUES (19,3379,121,'Rock_Golem',330,0,2117,0,0,49,50,0);
-INSERT INTO `mob_groups` VALUES (20,4572,121,'Huwasi',7200,0,3014,0,0,64,65,0);
+INSERT INTO `mob_groups` VALUES (20,4572,121,'Huwasi',7200,0,3014,6500,0,64,65,0);
 INSERT INTO `mob_groups` VALUES (21,3232,121,'Puroboros',330,8,569,0,0,47,49,0);
 INSERT INTO `mob_groups` VALUES (22,2203,121,'Keeper_of_Halidom',0,32,1428,0,0,56,57,0);
 INSERT INTO `mob_groups` VALUES (23,6669,121,'Goblin_Robber',330,0,1146,0,0,42,46,0);
