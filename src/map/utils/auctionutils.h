@@ -32,11 +32,11 @@ namespace auctionutils
 {
     void HandlePacket(CCharEntity* PChar, CBasicPacket& data);
 
-    void SellingItems(CCharEntity* PChar, uint8 action, uint8 slotid, uint32 price, uint8 slot, uint16 itemid, uint8 quantity);
-    void OpenListOfSales(CCharEntity* PChar, uint8 action, uint8 slotid, uint32 price, uint8 slot, uint16 itemid, uint8 quantity);
-    void RetrieveListOfItemsSoldByPlayer(CCharEntity* PChar, uint8 action, uint8 slotid, uint32 price, uint8 slot, uint16 itemid, uint8 quantity);
-    void ProofOfPurchase(CCharEntity* PChar, uint8 action, uint8 slotid, uint32 price, uint8 slot, uint16 itemid, uint8 quantity);
-    void PurchasingItems(CCharEntity* PChar, uint8 action, uint8 slotid, uint32 price, uint8 slot, uint16 itemid, uint8 quantity);
-    void CancelSale(CCharEntity* PChar, uint8 action, uint8 slotid, uint32 price, uint8 slot, uint16 itemid, uint8 quantity);
-    void UpdateSaleListByPlayer(CCharEntity* PChar, uint8 action, uint8 slotid, uint32 price, uint8 slot, uint16 itemid, uint8 quantity);
+    void SellingItems(CCharEntity* PChar, uint8 action, uint32 price, uint8 slot, uint16 itemid, uint8 quantity);
+    void OpenListOfSales(CCharEntity* PChar, uint8 action, uint16 itemid);
+    void RetrieveListOfItemsSoldByPlayer(CCharEntity* PChar);
+    void ProofOfPurchase(CCharEntity* PChar, uint8 action, uint32 price, uint8 slot, uint8 quantity);
+    void PurchasingItems(CCharEntity* PChar, uint8 action, uint32 price, uint16 itemid, uint8 quantity);
+    void CancelSale(CCharEntity* PChar, uint8 action, uint8 slotid);
+    void UpdateSaleListByPlayer(CCharEntity* PChar, uint8 action, uint8 slotid);
 }; // namespace auctionutils

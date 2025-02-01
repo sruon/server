@@ -41,14 +41,15 @@ void auctionutils::HandlePacket(CCharEntity* PChar, CBasicPacket& data)
 {
     TracyZoneScoped;
 
-    const uint8  action   = data.ref<uint8>(0x04);
-    const uint8  slotid   = data.ref<uint8>(0x05);
-    const uint32 price    = data.ref<uint32>(0x08);
-    const uint8  slot     = data.ref<uint8>(0x0C);
-    const uint16 itemid   = data.ref<uint16>(0x0E);
-    const uint8  quantity = data.ref<uint8>(0x10);
+    const auto playerName = PChar->getName();
 
-    ShowDebug("AH Action (%02hx)", action);
+    // TODO: Validate all of these to make sure they're within sane bounds.
+    const auto action   = data.ref<uint8>(0x04);
+    const auto slotid   = data.ref<uint8>(0x05);
+    const auto price    = data.ref<uint32>(0x08);
+    const auto slot     = data.ref<uint8>(0x0C);
+    const auto itemid   = data.ref<uint16>(0x0E);
+    const auto quantity = data.ref<uint8>(0x10);
 
     if (jailutils::InPrison(PChar)) // If jailed, no AH menu for you.
     {
@@ -57,7 +58,7 @@ void auctionutils::HandlePacket(CCharEntity* PChar, CBasicPacket& data)
 
     if (PChar->m_GMlevel == 0 && !PChar->loc.zone->CanUseMisc(MISC_AH))
     {
-        ShowWarning("%s is trying to use the auction house in a disallowed zone [%s]", PChar->getName(), PChar->loc.zone->getName());
+        ShowWarningFmt("{} is trying to use the auction house in a disallowed zone [{}]", PChar->getName(), PChar->loc.zone->getName());
         return;
     }
 
@@ -65,55 +66,80 @@ void auctionutils::HandlePacket(CCharEntity* PChar, CBasicPacket& data)
     {
         case 0x04:
         {
-            SellingItems(PChar, action, slotid, price, slot, itemid, quantity);
+            DebugAuctionsFmt("AH: SellingItems (action: {:02X}): player: {}, price: {}, slot: {}, itemid: {}, quantity: {}", action, playerName, price, slot, itemid, quantity);
+            SellingItems(PChar, action, price, slot, itemid, quantity);
         }
         break;
         case 0x05:
         {
-            OpenListOfSales(PChar, action, slotid, price, slot, itemid, quantity);
-        }
+            DebugAuctionsFmt("AH: OpenListOfSales (action: {:02X}): player: {}, itemid: {}", action, playerName, itemid);
+            OpenListOfSales(PChar, action, itemid);
             [[fallthrough]];
+        }
+        // FALLTHROUGH!
         case 0x0A:
         {
-            RetrieveListOfItemsSoldByPlayer(PChar, action, slotid, price, slot, itemid, quantity);
+            DebugAuctionsFmt("AH: RetrieveListOfItemsSoldByPlayer (action: {:02X}): player: {}", action, playerName);
+            RetrieveListOfItemsSoldByPlayer(PChar);
         }
         break;
         case 0x0B:
         {
-            ProofOfPurchase(PChar, action, slotid, price, slot, itemid, quantity);
+            DebugAuctionsFmt("AH: ProofOfPurchase (action: {:02X}): player: {}, price: {}, slot: {}, itemid: {}, quantity: {}", action, playerName, price, slot, itemid, quantity);
+            ProofOfPurchase(PChar, action, price, slot, quantity);
         }
         break;
         case 0x0E:
         {
-            const uint16 otheritemid = data.ref<uint16>(0x0C);
-            PurchasingItems(PChar, action, slotid, price, slot, otheritemid, quantity);
+            const auto itemIdFrom0x0C = data.ref<uint16>(0x0C);
+
+            DebugAuctionsFmt("AH: PurchasingItems (action: {:02X}): player: {}, price: {}, slot: {}, itemid: {}, quantity: {}", action, playerName, price, slot, itemIdFrom0x0C, quantity);
+            PurchasingItems(PChar, action, price, itemIdFrom0x0C, quantity);
         }
         break;
         case 0x0C:
         {
-            CancelSale(PChar, action, slotid, price, slot, itemid, quantity);
+            DebugAuctionsFmt("AH: CancelSale (action: {:02X}): player: {}, slotid: {}", action, playerName, slotid);
+            CancelSale(PChar, action, slotid);
         }
         break;
         case 0x0D:
         {
-            UpdateSaleListByPlayer(PChar, action, slotid, price, slot, itemid, quantity);
+            DebugAuctionsFmt("AH: UpdateSaleListByPlayer (action: {:02X}): player: {}, slotid: {}", action, playerName, slotid);
+            UpdateSaleListByPlayer(PChar, action, slotid);
         }
         break;
         default:
         {
-            ShowError("Unhandled AH action %02hx", action);
+            ShowErrorFmt("AH: Unhandled action: {:02X}, from player {}", action, playerName);
         }
         break;
     }
 }
 
-void auctionutils::SellingItems(CCharEntity* PChar, uint8 action, uint8 slotid, uint32 price, uint8 slot, uint16 itemid, uint8 quantity)
+void auctionutils::SellingItems(CCharEntity* PChar, uint8 action, uint32 price, uint8 slot, uint16 itemid, uint8 quantity)
 {
-    CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slot);
+    TracyZoneScoped;
 
-    if ((PItem != nullptr) && (PItem->getID() == itemid) && !(PItem->isSubType(ITEM_LOCKED)) && !(PItem->getFlag() & ITEM_FLAG_NOAUCTION))
+    CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slot);
+    if (PItem == nullptr)
     {
-        if (PItem->isSubType(ITEM_CHARGED) && ((CItemUsable*)PItem)->getCurrentCharges() < ((CItemUsable*)PItem)->getMaxCharges())
+        return;
+    }
+
+    if (PItem->getID() == itemid && !PItem->isSubType(ITEM_LOCKED) && !(PItem->getFlag() & ITEM_FLAG_NOAUCTION))
+    {
+        const bool isPartiallyUsed = [&]()
+        {
+            const bool isChargedItem = PItem->isSubType(ITEM_CHARGED);
+            if (isChargedItem)
+            {
+                const auto PChargedItem = static_cast<CItemUsable*>(PItem);
+                return PChargedItem->getCurrentCharges() < PChargedItem->getMaxCharges();
+            }
+            return false;
+        }();
+        if (isPartiallyUsed)
         {
             PChar->pushPacket<CAuctionHousePacket>(action, 197, 0, 0, 0, 0);
             return;
@@ -122,9 +148,11 @@ void auctionutils::SellingItems(CCharEntity* PChar, uint8 action, uint8 slotid, 
     }
 }
 
-void auctionutils::OpenListOfSales(CCharEntity* PChar, uint8 action, uint8 slotid, uint32 price, uint8 slot, uint16 itemid, uint8 quantity)
+void auctionutils::OpenListOfSales(CCharEntity* PChar, uint8 action, uint16 itemid)
 {
-    uint32 curTick = gettick();
+    TracyZoneScoped;
+
+    const uint32 curTick = gettick();
 
     if (curTick - PChar->m_AHHistoryTimestamp > 5000)
     {
@@ -133,7 +161,7 @@ void auctionutils::OpenListOfSales(CCharEntity* PChar, uint8 action, uint8 sloti
         PChar->pushPacket<CAuctionHousePacket>(action);
 
         // A single SQL query for the player's AH history which is stored in a Char Entity struct + vector.
-        auto rset = db::preparedStmt("SELECT itemid, price, stack FROM auction_house WHERE seller = ? AND sale=0 ORDER BY id ASC LIMIT 7", PChar->id);
+        const auto rset = db::preparedStmt("SELECT itemid, price, stack FROM auction_house WHERE seller = ? AND sale=0 ORDER BY id ASC LIMIT 7", PChar->id);
         if (rset && rset->rowsCount())
         {
             while (rset->next())
@@ -146,7 +174,7 @@ void auctionutils::OpenListOfSales(CCharEntity* PChar, uint8 action, uint8 sloti
                 });
             }
         }
-        ShowDebug("%s has %i items up on the AH. ", PChar->getName(), PChar->m_ah_history.size());
+        DebugAuctionsFmt("AH: {} has {} items up on the AH", PChar->getName(), PChar->m_ah_history.size());
     }
     else
     {
@@ -154,23 +182,37 @@ void auctionutils::OpenListOfSales(CCharEntity* PChar, uint8 action, uint8 sloti
     }
 }
 
-void auctionutils::RetrieveListOfItemsSoldByPlayer(CCharEntity* PChar, uint8 action, uint8 slotid, uint32 price, uint8 slot, uint16 itemid, uint8 quantity)
+void auctionutils::RetrieveListOfItemsSoldByPlayer(CCharEntity* PChar)
 {
-    auto totalItemsOnAh = PChar->m_ah_history.size();
+    TracyZoneScoped;
+
+    const auto totalItemsOnAh = PChar->m_ah_history.size();
 
     for (size_t auctionSlot = 0; auctionSlot < totalItemsOnAh; auctionSlot++)
     {
-        PChar->pushPacket<CAuctionHousePacket>(0x0C, (uint8)auctionSlot, PChar);
+        PChar->pushPacket<CAuctionHousePacket>(0x0C, static_cast<uint8>(auctionSlot), PChar);
     }
 }
 
-void auctionutils::ProofOfPurchase(CCharEntity* PChar, uint8 action, uint8 slotid, uint32 price, uint8 slot, uint16 itemid, uint8 quantity)
+void auctionutils::ProofOfPurchase(CCharEntity* PChar, uint8 action, uint32 price, uint8 slot, uint8 quantity)
 {
+    TracyZoneScoped;
+
     CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slot);
 
     if ((PItem != nullptr) && !(PItem->isSubType(ITEM_LOCKED)) && PItem->getReserve() == 0 && !(PItem->getFlag() & ITEM_FLAG_NOAUCTION) && PItem->getQuantity() >= quantity)
     {
-        if (PItem->isSubType(ITEM_CHARGED) && ((CItemUsable*)PItem)->getCurrentCharges() < ((CItemUsable*)PItem)->getMaxCharges())
+        const bool isPartiallyUsed = [&]()
+        {
+            const bool isChargedItem = PItem->isSubType(ITEM_CHARGED);
+            if (isChargedItem)
+            {
+                const auto PChargedItem = static_cast<CItemUsable*>(PItem);
+                return PChargedItem->getCurrentCharges() < PChargedItem->getMaxCharges();
+            }
+            return false;
+        }();
+        if (isPartiallyUsed)
         {
             PChar->pushPacket<CAuctionHousePacket>(action, 197, 0, 0, 0, 0);
             return;
@@ -181,7 +223,7 @@ void auctionutils::ProofOfPurchase(CCharEntity* PChar, uint8 action, uint8 sloti
         {
             if (PItem->getStackSize() == 1 || PItem->getStackSize() != PItem->getQuantity())
             {
-                ShowError("SmallPacket0x04E::AuctionHouse: Incorrect quantity of item %s", PItem->getName());
+                ShowErrorFmt("AH: Incorrect quantity of item {}", PItem->getName());
                 PChar->pushPacket<CAuctionHousePacket>(action, 197, 0, 0, 0, 0); // Failed to place up
                 return;
             }
@@ -194,7 +236,7 @@ void auctionutils::ProofOfPurchase(CCharEntity* PChar, uint8 action, uint8 sloti
 
         auctionFee = std::clamp<uint32>(auctionFee, 0, settings::get<uint32>("map.AH_MAX_FEE"));
 
-        auto PGil = PChar->getStorage(LOC_INVENTORY)->GetItem(0);
+        const auto PGil = PChar->getStorage(LOC_INVENTORY)->GetItem(0);
         if (PGil->getQuantity() < auctionFee || PGil->getReserve() > 0)
         {
             PChar->pushPacket<CAuctionHousePacket>(action, 197, 0, 0, 0, 0); // Not enough gil to pay fee
@@ -215,7 +257,7 @@ void auctionutils::ProofOfPurchase(CCharEntity* PChar, uint8 action, uint8 sloti
         const auto ahListLimit = settings::get<uint8>("map.AH_LIST_LIMIT");
         if (ahListLimit && ahListings >= ahListLimit)
         {
-            ShowDebug("Player %s has reached the AH listing limit of %u", PChar->getName(), ahListLimit);
+            DebugAuctionsFmt("AH: Player {} has reached the AH listing limit of {}", PChar->getName(), ahListLimit);
             PChar->pushPacket<CAuctionHousePacket>(action, 197, 0, 0, 0, 0); // Failed to place up
             return;
         }
@@ -223,7 +265,7 @@ void auctionutils::ProofOfPurchase(CCharEntity* PChar, uint8 action, uint8 sloti
         if (!db::preparedStmt("INSERT INTO auction_house(itemid, stack, seller, seller_name, date, price) VALUES(?, ?, ?, ?, ?, ?)",
                               PItem->getID(), quantity == 0, PChar->id, PChar->getName(), (uint32)time(nullptr), price))
         {
-            ShowError("SmallPacket0x04E::AuctionHouse: Cannot insert item %s to database", PItem->getName());
+            ShowErrorFmt("AH: Cannot insert item {} to database", PItem->getName());
             PChar->pushPacket<CAuctionHousePacket>(action, 197, 0, 0, 0, 0); // failed to place up
             return;
         }
@@ -236,8 +278,10 @@ void auctionutils::ProofOfPurchase(CCharEntity* PChar, uint8 action, uint8 sloti
     }
 }
 
-void auctionutils::PurchasingItems(CCharEntity* PChar, uint8 action, uint8 slotid, uint32 price, uint8 slot, uint16 itemid, uint8 quantity)
+void auctionutils::PurchasingItems(CCharEntity* PChar, uint8 action, uint32 price, uint16 itemid, uint8 quantity)
 {
+    TracyZoneScoped;
+
     if (PChar->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() == 0)
     {
         PChar->pushPacket<CAuctionHousePacket>(action, 0xE5, 0, 0, 0, 0);
@@ -294,11 +338,13 @@ void auctionutils::PurchasingItems(CCharEntity* PChar, uint8 action, uint8 sloti
     }
 }
 
-void auctionutils::CancelSale(CCharEntity* PChar, uint8 action, uint8 slotid, uint32 price, uint8 slot, uint16 itemid, uint8 quantity)
+void auctionutils::CancelSale(CCharEntity* PChar, uint8 action, uint8 slotid)
 {
+    TracyZoneScoped;
+
     if (slotid < PChar->m_ah_history.size())
     {
-        bool isAutoCommitOn = db::getAutoCommit();
+        const bool isAutoCommitOn = db::getAutoCommit();
 
         AuctionHistory_t canceledItem = PChar->m_ah_history[slotid];
 
@@ -324,7 +370,7 @@ void auctionutils::CancelSale(CCharEntity* PChar, uint8 action, uint8 slotid, ui
             }
             else
             {
-                ShowError("Failed to return item id %u stack %u to char. ", canceledItem.itemid, canceledItem.stack);
+                ShowErrorFmt("AH: Failed to return item id {} stack {} to char. ", canceledItem.itemid, canceledItem.stack);
             }
 
             db::transactionRollback();
@@ -336,7 +382,9 @@ void auctionutils::CancelSale(CCharEntity* PChar, uint8 action, uint8 slotid, ui
     PChar->pushPacket<CAuctionHousePacket>(action, 0xE5, PChar, slotid, true); // Inventory full, unable to remove msg
 }
 
-void auctionutils::UpdateSaleListByPlayer(CCharEntity* PChar, uint8 action, uint8 slotid, uint32 price, uint8 slot, uint16 itemid, uint8 quantity)
+void auctionutils::UpdateSaleListByPlayer(CCharEntity* PChar, uint8 action, uint8 slotid)
 {
+    TracyZoneScoped;
+
     PChar->pushPacket<CAuctionHousePacket>(action, slotid, PChar);
 }
