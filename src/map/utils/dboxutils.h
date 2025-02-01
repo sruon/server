@@ -30,13 +30,6 @@ class CCharEntity;
 
 namespace dboxutils
 {
-    void OpenSendBox(CCharEntity* PChar, uint8 action, uint8 boxtype);
-    void OpenRecvBox(CCharEntity* PChar, uint8 action, uint8 boxtype);
-
-    bool IsSendBoxOpen(CCharEntity* PChar);
-    bool IsRecvBoxOpen(CCharEntity* PChar);
-    bool IsAnyDeliveryBoxOpen(CCharEntity* PChar);
-
     void HandlePacket(CCharEntity* PChar, CBasicPacket& data);
 
     void SendOldItems(CCharEntity* PChar, uint8 action, uint8 boxtype);
@@ -52,4 +45,12 @@ namespace dboxutils
     void RemoveItemFromCell(CCharEntity* PChar, uint8 action, uint8 boxtype, uint8 slotID);
     void ConfirmNameBeforeSending(CCharEntity* PChar, uint8 action, uint8 boxtype, const std::string& receiver);
     void CloseMailWindow(CCharEntity* PChar, uint8 action, uint8 boxtype);
+
+    void OpenSendBox(CCharEntity* PChar, uint8 action, uint8 boxtype);
+    void OpenRecvBox(CCharEntity* PChar, uint8 action, uint8 boxtype);
+
+    bool IsSendBoxOpen(CCharEntity* PChar);
+    bool IsRecvBoxOpen(CCharEntity* PChar);
+    bool IsAnyDeliveryBoxOpen(CCharEntity* PChar);
+
 }; // namespace dboxutils

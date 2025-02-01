@@ -42,45 +42,6 @@
 
 extern std::unique_ptr<SqlConnection> _sql;
 
-constexpr auto actionToStr = [](uint8 actionIn)
-{
-    switch (actionIn)
-    {
-        case 0x01:
-            return "Send old items";
-        case 0x02:
-            return "Add item";
-        case 0x03:
-            return "Send confirmation";
-        case 0x04:
-            return "Cancel item";
-        case 0x05:
-            return "Send item count";
-        case 0x06:
-            return "Send new items";
-        case 0x07:
-            return "Remove delivered item";
-        case 0x08:
-            return "Update delivery slot";
-        case 0x09:
-            return "Return to sender";
-        case 0x0A:
-            return "Take item";
-        case 0x0B:
-            return "Remove item";
-        case 0x0C:
-            return "Confirm name";
-        case 0x0D:
-            return "Open send box";
-        case 0x0E:
-            return "Open recv box";
-        case 0x0F:
-            return "Close box";
-        default:
-            return "Unknown";
-    }
-};
-
 namespace
 {
     auto escapeString(const std::string_view str) -> std::string
@@ -90,47 +51,16 @@ namespace
     }
 } // namespace
 
-void dboxutils::OpenSendBox(CCharEntity* PChar, uint8 action, uint8 boxtype)
-{
-    PChar->UContainer->Clean();
-    PChar->UContainer->SetType(UCONTAINER_SEND_DELIVERYBOX);
-    PChar->pushPacket<CDeliveryBoxPacket>(action, boxtype, 0, 1);
-}
-
-void dboxutils::OpenRecvBox(CCharEntity* PChar, uint8 action, uint8 boxtype)
-{
-    PChar->UContainer->Clean();
-    PChar->UContainer->SetType(UCONTAINER_RECV_DELIVERYBOX);
-    PChar->pushPacket<CDeliveryBoxPacket>(action, boxtype, 0, 1);
-}
-
-bool dboxutils::IsSendBoxOpen(CCharEntity* PChar)
-{
-    return PChar->UContainer->GetType() == UCONTAINER_SEND_DELIVERYBOX;
-}
-
-bool dboxutils::IsRecvBoxOpen(CCharEntity* PChar)
-{
-    return PChar->UContainer->GetType() == UCONTAINER_RECV_DELIVERYBOX;
-}
-
-bool dboxutils::IsAnyDeliveryBoxOpen(CCharEntity* PChar)
-{
-    return IsSendBoxOpen(PChar) || IsRecvBoxOpen(PChar);
-}
-
 void dboxutils::HandlePacket(CCharEntity* PChar, CBasicPacket& data)
 {
     TracyZoneScoped;
 
-    const uint8 action  = data.ref<uint8>(0x04);
-    const uint8 boxtype = data.ref<uint8>(0x05);
-    const uint8 slotID  = data.ref<uint8>(0x06);
+    const auto charName = PChar->getName();
 
-    if (settings::get<bool>("logging.DEBUG_DELIVERY_BOX"))
-    {
-        ShowDebug(fmt::format("DeliveryBox Action 0x{:02X} ({}) by {}", action, actionToStr(action), PChar->name));
-    }
+    // TODO: Validate all of these to make sure they're within sane bounds.
+    const auto action  = data.ref<uint8>(0x04);
+    const auto boxtype = data.ref<uint8>(0x05);
+    const auto slotID  = data.ref<uint8>(0x06);
 
     if (jailutils::InPrison(PChar)) // If jailed, no mailbox menu for you.
     {
@@ -139,20 +69,20 @@ void dboxutils::HandlePacket(CCharEntity* PChar, CBasicPacket& data)
 
     if (!zoneutils::IsResidentialArea(PChar) && PChar->m_GMlevel == 0 && !PChar->loc.zone->CanUseMisc(MISC_AH) && !PChar->loc.zone->CanUseMisc(MISC_MOGMENU))
     {
-        ShowWarning("%s is trying to use the delivery box in a disallowed zone [%s]", PChar->getName(), PChar->loc.zone->getName());
+        ShowWarningFmt("DBOX: {} ({}) is trying to use the delivery box in a disallowed zone [{}]", charName, PChar->id, PChar->loc.zone->getName());
         return;
     }
 
     if (PChar->animation == ANIMATION_SYNTH || (PChar->CraftContainer && PChar->CraftContainer->getItemsCount() > 0))
     {
-        ShowWarning("SmallPacket0x04D: %s attempting to access delivery box in the middle of a synth!", PChar->getName());
+        ShowWarningFmt("DBOX: {} ({}) attempting to access delivery box in the middle of a synth!", charName, PChar->id);
         return;
     }
 
     if ((PChar->animation >= ANIMATION_FISHING_FISH && PChar->animation <= ANIMATION_FISHING_STOP) ||
         PChar->animation == ANIMATION_FISHING_START_OLD || PChar->animation == ANIMATION_FISHING_START)
     {
-        ShowWarning("SmallPacket0x04D: %s attempting to access delivery box while fishing!", PChar->getName());
+        ShowWarningFmt("DBOX: {} ({}) attempting to access delivery box while fishing!", charName, PChar->id);
         return;
     }
 
@@ -160,6 +90,7 @@ void dboxutils::HandlePacket(CCharEntity* PChar, CBasicPacket& data)
     {
         case 0x01:
         {
+            DebugDeliveryBoxFmt("DBOX: SendOldItems (action: {:02X}): player: {}, boxtype: {}", action, charName, PChar->id, boxtype);
             SendOldItems(PChar, action, boxtype);
         }
         break;
@@ -169,51 +100,62 @@ void dboxutils::HandlePacket(CCharEntity* PChar, CBasicPacket& data)
             const uint32 quantity     = data.ref<uint32>(0x08);
             const auto   recieverName = escapeString(asStringFromUntrustedSource(data[0x10], 15));
 
+            DebugDeliveryBoxFmt("DBOX: AddItemsToBeSent (action: {:02X}): player: {} ({}), boxtype: {}, slotID: {}, invslot: {}, quantity: {}, recieverName: {}",
+                                action, charName, PChar->id, boxtype, slotID, invslot, quantity, recieverName);
             AddItemsToBeSent(PChar, action, boxtype, slotID, invslot, quantity, recieverName);
         }
         break;
         case 0x03:
         {
+            DebugDeliveryBoxFmt("DBOX: SendConfirmation (action: {:02X}): player: {} ({}), boxtype: {}, slotID: {}", action, charName, PChar->id, boxtype, slotID);
             SendConfirmation(PChar, action, boxtype, slotID);
         }
         break;
         case 0x04:
         {
+            DebugDeliveryBoxFmt("DBOX: CancelSendingItem (action: {:02X}): player: {} ({}), boxtype: {}, slotID: {}", action, charName, PChar->id, boxtype, slotID);
             CancelSendingItem(PChar, action, boxtype, slotID);
         }
         break;
         case 0x05:
         {
+            DebugDeliveryBoxFmt("DBOX: SendClientNewItemCount (action: {:02X}): player: {} ({}), boxtype: {}, slotID: {}", action, charName, PChar->id, boxtype, slotID);
             SendClientNewItemCount(PChar, action, boxtype, slotID);
         }
         break;
         case 0x06:
         {
+            DebugDeliveryBoxFmt("DBOX: SendNewItems (action: {:02X}): player: {} ({}), boxtype: {}, slotID: {}", action, charName, PChar->id, boxtype, slotID);
             SendNewItems(PChar, action, boxtype, slotID);
         }
         break;
         case 0x07:
         {
+            DebugDeliveryBoxFmt("DBOX: RemoveDeliveredItemFromSendingBox (action: {:02X}): player: {} ({}), boxtype: {}, slotID: {}", action, charName, PChar->id, boxtype, slotID);
             RemoveDeliveredItemFromSendingBox(PChar, action, boxtype, slotID);
         }
         break;
         case 0x08:
         {
+            DebugDeliveryBoxFmt("DBOX: UpdateDeliveryCellBeforeRemoving (action: {:02X}): player: {} ({}), boxtype: {}, slotID: {}", action, charName, PChar->id, boxtype, slotID);
             UpdateDeliveryCellBeforeRemoving(PChar, action, boxtype, slotID);
         }
         break;
         case 0x09:
         {
+            DebugDeliveryBoxFmt("DBOX: ReturnToSender (action: {:02X}): player: {} ({}), boxtype: {}, slotID: {}", action, charName, PChar->id, boxtype, slotID);
             ReturnToSender(PChar, action, boxtype, slotID);
         }
         break;
         case 0x0A:
         {
+            DebugDeliveryBoxFmt("DBOX: TakeItemFromCell (action: {:02X}): player: {} ({}), boxtype: {}, slotID: {}", action, charName, PChar->id, boxtype, slotID);
             TakeItemFromCell(PChar, action, boxtype, slotID);
         }
         break;
         case 0x0B:
         {
+            DebugDeliveryBoxFmt("DBOX: RemoveItemFromCell (action: {:02X}): player: {} ({}), boxtype: {}, slotID: {}", action, charName, PChar->id, boxtype, slotID);
             RemoveItemFromCell(PChar, action, boxtype, slotID);
         }
         break;
@@ -221,24 +163,32 @@ void dboxutils::HandlePacket(CCharEntity* PChar, CBasicPacket& data)
         {
             const auto recieverName = escapeString(asStringFromUntrustedSource(data[0x10], 15));
 
+            DebugDeliveryBoxFmt("DBOX: ConfirmNameBeforeSending (action: {:02X}): player: {} ({}), boxtype: {}, recieverName: {}", action, charName, PChar->id, boxtype, recieverName);
             ConfirmNameBeforeSending(PChar, action, boxtype, recieverName);
         }
         break;
         case 0x0D:
         {
+            DebugDeliveryBoxFmt("DBOX: OpenSendBox (action: {:02X}): player: {} ({}), boxtype: {}", action, charName, PChar->id, boxtype);
             OpenSendBox(PChar, action, boxtype);
         }
         break;
         case 0x0E:
         {
+            DebugDeliveryBoxFmt("DBOX: OpenRecvBox (action: {:02X}): player: {} ({}), boxtype: {}", action, charName, PChar->id, boxtype);
             OpenRecvBox(PChar, action, boxtype);
         }
         break;
         case 0x0F:
         {
+            DebugDeliveryBoxFmt("DBOX: CloseMailWindow (action: {:02X}): player: {} ({}), boxtype: {}", action, charName, PChar->id, boxtype);
             CloseMailWindow(PChar, action, boxtype);
         }
         break;
+        default:
+        {
+            ShowErrorFmt("DBOX: Unhandled action: {:02X}, from player {} ({})", action, charName, PChar->id);
+        }
     }
 }
 
@@ -246,7 +196,7 @@ void dboxutils::SendOldItems(CCharEntity* PChar, uint8 action, uint8 boxtype)
 {
     if (boxtype < 1 || boxtype > 2 || !IsAnyDeliveryBoxOpen(PChar))
     {
-        ShowWarning("Delivery Box packet handler received action %u while UContainer is in an invalid state (%s)", action, PChar->getName());
+        ShowWarningFmt("DBOX: Received action {} while UContainer is in an invalid state: {} ({})", action, PChar->getName(), PChar->id);
         return;
     }
 
@@ -307,7 +257,7 @@ void dboxutils::AddItemsToBeSent(CCharEntity* PChar, uint8 action, uint8 boxtype
 {
     if (!IsSendBoxOpen(PChar))
     {
-        ShowWarning("Delivery Box packet handler received action %u while UContainer is in a state other than UCONTAINER_SEND_DELIVERYBOX (%s)", action, PChar->getName());
+        ShowWarningFmt("DBOX: Received action {} while UContainer is in a state other than UCONTAINER_SEND_DELIVERYBOX: {} ({})", action, PChar->getName(), PChar->id);
         return;
     }
 
@@ -320,7 +270,7 @@ void dboxutils::AddItemsToBeSent(CCharEntity* PChar, uint8 action, uint8 boxtype
 
     if (PItem->getQuantity() < quantity || PItem->getReserve() > 0)
     {
-        ShowWarning("Delivery Box: %s attempted to send insufficient/reserved %u %s (%u).", PChar->getName(), quantity, PItem->getName(), PItem->getID());
+        ShowWarningFmt("DBOX: {} attempted to send insufficient/reserved {}: {} ({})", PChar->getName(), quantity, PItem->getName(), PItem->getID());
         return;
     }
 
@@ -354,10 +304,9 @@ void dboxutils::AddItemsToBeSent(CCharEntity* PChar, uint8 action, uint8 boxtype
             }
 
             CItem* PUBoxItem = itemutils::GetItem(PItem->getID());
-
             if (PUBoxItem == nullptr)
             {
-                ShowError("PUBoxItem was null.");
+                ShowErrorFmt("DBOX: PUBoxItem was null (player: {}, item: {})", PChar->getName(), PItem->getID());
                 return;
             }
 
@@ -394,7 +343,7 @@ void dboxutils::SendConfirmation(CCharEntity* PChar, uint8 action, uint8 boxtype
 {
     if (!IsSendBoxOpen(PChar))
     {
-        ShowWarning("Delivery Box packet handler received action %u while UContainer is in a state other than UCONTAINER_SEND_DELIVERYBOX (%s)", action, PChar->getName());
+        ShowWarningFmt("DBOX: Received action {} while UContainer is in a state other than UCONTAINER_SEND_DELIVERYBOX: {} ({})", action, PChar->getName(), PChar->id);
         return;
     }
 
@@ -419,7 +368,6 @@ void dboxutils::SendConfirmation(CCharEntity* PChar, uint8 action, uint8 boxtype
             if (_sql->SetAutoCommit(false) && _sql->TransactionStart())
             {
                 int32 ret = _sql->Query("SELECT charid FROM chars WHERE charname = '%s' LIMIT 1", PItem->getReceiver());
-
                 if (ret != SQL_ERROR && _sql->NumRows() > 0 && _sql->NextRow() == SQL_SUCCESS)
                 {
                     uint32 charid = _sql->GetUIntData(0);
@@ -436,8 +384,7 @@ void dboxutils::SendConfirmation(CCharEntity* PChar, uint8 action, uint8 boxtype
                         ret = _sql->Query(
                             "INSERT INTO delivery_box(charid, charname, box, itemid, itemsubid, quantity, extra, senderid, sender) "
                             "VALUES(%u, '%s', 1, %u, %u, %u, '%s', %u, '%s'); ",
-                            charid, PItem->getReceiver(), PItem->getID(), PItem->getSubID(), PItem->getQuantity(), extra, PChar->id,
-                            PChar->getName());
+                            charid, PItem->getReceiver(), PItem->getID(), PItem->getSubID(), PItem->getQuantity(), extra, PChar->id, PChar->getName());
 
                         if (ret != SQL_ERROR && _sql->AffectedRows() == 1)
                         {
@@ -452,7 +399,8 @@ void dboxutils::SendConfirmation(CCharEntity* PChar, uint8 action, uint8 boxtype
                 if (!commit || !_sql->TransactionCommit())
                 {
                     _sql->TransactionRollback();
-                    ShowError("Could not finalize send transaction. PlayerID: %d Target: %s slotID: %d", PChar->id, PItem->getReceiver(), slotID);
+                    ShowErrorFmt("DBOX: Could not finalize send transaction (player: {} ({}), target: {}, slotID: {})",
+                                 PChar->getName(), PChar->id, PItem->getReceiver(), slotID);
                 }
 
                 _sql->SetAutoCommit(isAutoCommitOn);
@@ -465,7 +413,7 @@ void dboxutils::CancelSendingItem(CCharEntity* PChar, uint8 action, uint8 boxtyp
 {
     if (!IsSendBoxOpen(PChar))
     {
-        ShowWarning("Delivery Box packet handler received action %u while UContainer is in a state other than UCONTAINER_SEND_DELIVERYBOX (%s)", action, PChar->getName());
+        ShowWarningFmt("DBOX: Received action {} while UContainer is in a state other than UCONTAINER_SEND_DELIVERYBOX: {} ({})", action, PChar->getName(), PChar->id);
         return;
     }
 
@@ -478,9 +426,7 @@ void dboxutils::CancelSendingItem(CCharEntity* PChar, uint8 action, uint8 boxtyp
 
         if (_sql->SetAutoCommit(false) && _sql->TransactionStart())
         {
-            int32 ret =
-                _sql->Query("SELECT charid FROM chars WHERE charname = '%s' LIMIT 1", PChar->UContainer->GetItem(slotID)->getReceiver());
-
+            int32 ret = _sql->Query("SELECT charid FROM chars WHERE charname = '%s' LIMIT 1", PChar->UContainer->GetItem(slotID)->getReceiver());
             if (ret != SQL_ERROR && _sql->NumRows() > 0 && _sql->NextRow() == SQL_SUCCESS)
             {
                 uint32 charid = _sql->GetUIntData(0);
@@ -518,7 +464,8 @@ void dboxutils::CancelSendingItem(CCharEntity* PChar, uint8 action, uint8 boxtyp
             if (!commit || !_sql->TransactionCommit())
             {
                 _sql->TransactionRollback();
-                ShowError("Could not finalize cancel send transaction. PlayerID: %d slotID: %d", PChar->id, slotID);
+                ShowErrorFmt("DBOX: Could not finalize cancel send transaction (player: {} ({}), target: {}, slotID: {})",
+                             PChar->getName(), PChar->id, PItem->getReceiver(), slotID);
                 if (orphan)
                 {
                     _sql->SetAutoCommit(true);
@@ -527,7 +474,8 @@ void dboxutils::CancelSendingItem(CCharEntity* PChar, uint8 action, uint8 boxtyp
                         PChar->id, PItem->getID(), PItem->getQuantity(), slotID);
                     if (ret != SQL_ERROR && _sql->AffectedRows() == 1)
                     {
-                        ShowError("Deleting orphaned outbox record. PlayerID: %d slotID: %d itemID: %d", PChar->id, slotID, PItem->getID());
+                        ShowErrorFmt("DBOX: Deleting orphaned outbox record (player: {} ({}), target: {}, slotID: {})",
+                                     PChar->getName(), PChar->id, PItem->getReceiver(), slotID);
                         PChar->pushPacket<CDeliveryBoxPacket>(0x0F, boxtype, 0, 1);
                     }
                 }
@@ -545,7 +493,7 @@ void dboxutils::SendClientNewItemCount(CCharEntity* PChar, uint8 action, uint8 b
     // Send the player the new items count not seen
     if (boxtype < 1 || boxtype > 2 || !IsAnyDeliveryBoxOpen(PChar))
     {
-        ShowWarning("Delivery Box packet handler received action %u while UContainer is in an invalid state (%s)", action, PChar->getName());
+        ShowWarningFmt("DBOX: Received action {} while UContainer is in an invalid state: {} ({})", action, PChar->getName(), PChar->id);
         return;
     }
 
@@ -584,7 +532,7 @@ void dboxutils::SendNewItems(CCharEntity* PChar, uint8 action, uint8 boxtype, ui
 {
     if (!IsRecvBoxOpen(PChar))
     {
-        ShowWarning("Delivery Box packet handler received action %u while UContainer is in a state other than UCONTAINER_RECV_DELIVERYBOX (%s)", action, PChar->getName());
+        ShowWarningFmt("DBOX: Received action {} while UContainer is in a state other than UCONTAINER_RECV_DELIVERYBOX: {} ({})", action, PChar->getName(), PChar->id);
         return;
     }
 
@@ -595,8 +543,8 @@ void dboxutils::SendNewItems(CCharEntity* PChar, uint8 action, uint8 boxtype, ui
 
         if (_sql->SetAutoCommit(false) && _sql->TransactionStart())
         {
-            std::string Query = "SELECT itemid, itemsubid, quantity, extra, sender, senderid FROM delivery_box WHERE charid = %u AND box = 1 AND slot "
-                                ">= 8 ORDER BY slot ASC LIMIT 1";
+            std::string Query = "SELECT itemid, itemsubid, quantity, extra, sender, senderid FROM delivery_box WHERE charid = %u "
+                                "AND box = 1 AND slot >= 8 ORDER BY slot ASC LIMIT 1";
 
             int32 ret = _sql->Query(Query.c_str(), PChar->id);
 
@@ -605,7 +553,6 @@ void dboxutils::SendNewItems(CCharEntity* PChar, uint8 action, uint8 boxtype, ui
             if (ret != SQL_ERROR && _sql->NumRows() > 0 && _sql->NextRow() == SQL_SUCCESS)
             {
                 PItem = itemutils::GetItem(_sql->GetUIntData(0));
-
                 if (PItem)
                 {
                     PItem->setSubID(_sql->GetIntData(1));
@@ -640,6 +587,7 @@ void dboxutils::SendNewItems(CCharEntity* PChar, uint8 action, uint8 boxtype, ui
                                 if (ret != SQL_ERROR)
                                 {
                                     PChar->UContainer->SetItem(slotID, PItem);
+
                                     // TODO: increment "count" for every new item, if needed
                                     PChar->pushPacket<CDeliveryBoxPacket>(action, boxtype, nullptr, slotID, 1, 2);
                                     PChar->pushPacket<CDeliveryBoxPacket>(action, boxtype, PItem, slotID, 1, 1);
@@ -656,7 +604,7 @@ void dboxutils::SendNewItems(CCharEntity* PChar, uint8 action, uint8 boxtype, ui
                 destroy(PItem);
 
                 _sql->TransactionRollback();
-                ShowError("Could not find new item to add to delivery box. PlayerID: %d Box :%d Slot: %d", PChar->id, boxtype, slotID);
+                ShowErrorFmt("DBOX: Could not finalize send transaction (player: {} ({}), slotID: {})", PChar->getName(), PChar->id, slotID);
                 PChar->pushPacket<CDeliveryBoxPacket>(action, boxtype, 0, 0xEB);
             }
         }
@@ -668,7 +616,7 @@ void dboxutils::RemoveDeliveredItemFromSendingBox(CCharEntity* PChar, uint8 acti
 {
     if (!IsSendBoxOpen(PChar))
     {
-        ShowWarning("Delivery Box packet handler received action %u while UContainer is in a state other than UCONTAINER_SEND_DELIVERYBOX (%s)", action, PChar->getName());
+        ShowWarningFmt("DBOX: Received action {} while UContainer is in a state other than UCONTAINER_SEND_DELIVERYBOX: {} ({})", action, PChar->getName(), PChar->id);
         return;
     }
 
@@ -691,6 +639,9 @@ void dboxutils::RemoveDeliveredItemFromSendingBox(CCharEntity* PChar, uint8 acti
                     ret = _sql->Query("DELETE FROM delivery_box WHERE charid = %u AND box = 2 AND slot = %u LIMIT 1", PChar->id, deliverySlotID);
                     if (ret != SQL_ERROR && _sql->AffectedRows() == 1)
                     {
+                        DebugDeliveryBoxFmt("DBOX: RemoveDeliveredItemFromSendingBox (action: {:02X}): player: {} ({}) removed item: {} ({})",
+                                            action, PChar->getName(), PChar->id, PItem->getName(), PItem->getID());
+
                         PChar->pushPacket<CDeliveryBoxPacket>(action, boxtype, 0, 0x02);
                         PChar->pushPacket<CDeliveryBoxPacket>(action, boxtype, PItem, deliverySlotID, received_items, 0x01);
                         PChar->UContainer->SetItem(deliverySlotID, nullptr);
@@ -706,7 +657,7 @@ void dboxutils::UpdateDeliveryCellBeforeRemoving(CCharEntity* PChar, uint8 actio
 {
     if (!IsAnyDeliveryBoxOpen(PChar))
     {
-        ShowWarning("Delivery Box packet handler received action %u while UContainer is in an invalid state (%s)", action, PChar->getName());
+        ShowWarningFmt("DBOX: Received action {} while UContainer is in an invalid state: {} ({})", action, PChar->getName(), PChar->id);
         return;
     }
 
@@ -720,7 +671,7 @@ void dboxutils::ReturnToSender(CCharEntity* PChar, uint8 action, uint8 boxtype, 
 {
     if (!IsRecvBoxOpen(PChar))
     {
-        ShowWarning("Delivery Box packet handler received action %u while UContainer is in a state other than UCONTAINER_RECV_DELIVERYBOX (%s)", action, PChar->getName());
+        ShowWarningFmt("DBOX: Received action {} while UContainer is in a state other than UCONTAINER_RECV_DELIVERYBOX: {} ({})", action, PChar->getName(), PChar->id);
         return;
     }
 
@@ -775,9 +726,14 @@ void dboxutils::ReturnToSender(CCharEntity* PChar, uint8 action, uint8 boxtype, 
             if (!commit || !_sql->TransactionCommit())
             {
                 _sql->TransactionRollback();
-                ShowError("Could not finalize delivery return transaction. PlayerID: %d SenderID :%d ItemID: %d Quantity: %d",
-                          PChar->id, senderID, item_id, quantity);
+                ShowErrorFmt("DBOX: Could not finalize delivery return transaction (player: {} ({}), sender: {}, itemID: {}, quantity: {})",
+                             PChar->getName(), PChar->id, senderName, item_id, quantity);
                 PChar->pushPacket<CDeliveryBoxPacket>(action, boxtype, PItem, slotID, PChar->UContainer->GetItemsCount(), 0xEB);
+            }
+            else
+            {
+                DebugDeliveryBoxFmt("DBOX: ReturnToSender (action: {:02X}): player: {} ({}) returned item: {} ({}) to sender: {} ({})",
+                                    action, PChar->getName(), PChar->id, PItem->getName(), item_id, senderName, senderID);
             }
 
             _sql->SetAutoCommit(isAutoCommitOn);
@@ -789,7 +745,7 @@ void dboxutils::TakeItemFromCell(CCharEntity* PChar, uint8 action, uint8 boxtype
 {
     if (boxtype < 1 || boxtype > 2 || !IsAnyDeliveryBoxOpen(PChar))
     {
-        ShowWarning("Delivery Box packet handler received action %u while UContainer is in an invalid state (%s)", action, PChar->getName());
+        ShowWarningFmt("DBOX: Received action {} while UContainer is in an invalid state {} ({})", action, PChar->getName(), PChar->id);
         return;
     }
 
@@ -838,12 +794,16 @@ void dboxutils::TakeItemFromCell(CCharEntity* PChar, uint8 action, uint8 boxtype
                 _sql->TransactionRollback();
                 PChar->pushPacket<CDeliveryBoxPacket>(action, boxtype, PItem, slotID, PChar->UContainer->GetItemsCount(), 0xBA);
                 if (!invErr)
-                { // only display error in log if there's a database problem, not if inv is full or rare item conflict
-                    ShowError("Could not finalize receive transaction. PlayerID: %d Action: 0x0A", PChar->id);
+                {
+                    // only display error in log if there's a database problem, not if inv is full or rare item conflict
+                    ShowErrorFmt("DBOX: Could not finalize receive transaction player: {} ({}), slotID: {}", PChar->getName(), PChar->id, slotID);
                 }
             }
             else
             {
+                DebugDeliveryBoxFmt("DBOX: TakeItemFromCell (action: {:02X}): player: {} ({}) received item: {} ({}) from slot {}",
+                                    action, PChar->getName(), PChar->id, PItem->getName(), PItem->getID(), slotID);
+
                 PChar->pushPacket<CDeliveryBoxPacket>(action, boxtype, PItem, slotID, PChar->UContainer->GetItemsCount(), 1);
                 PChar->pushPacket<CInventoryFinishPacket>();
                 PChar->UContainer->SetItem(slotID, nullptr);
@@ -859,7 +819,7 @@ void dboxutils::RemoveItemFromCell(CCharEntity* PChar, uint8 action, uint8 boxty
 {
     if (!IsRecvBoxOpen(PChar))
     {
-        ShowWarning("Delivery Box packet handler received action %u while UContainer is in a state other than UCONTAINER_RECV_DELIVERYBOX (%s)", action, PChar->getName());
+        ShowWarningFmt("DBOX: Received action {} while UContainer is in a state other than UCONTAINER_RECV_DELIVERYBOX: {} ({})", action, PChar->getName(), PChar->id);
         return;
     }
 
@@ -872,6 +832,9 @@ void dboxutils::RemoveItemFromCell(CCharEntity* PChar, uint8 action, uint8 boxty
             CItem* PItem = PChar->UContainer->GetItem(slotID);
             PChar->UContainer->SetItem(slotID, nullptr);
 
+            DebugDeliveryBoxFmt("DBOX: RemoveItemFromCell (action: {:02X}): player: {} ({}) removed item {} ({}) from slot {}",
+                                action, PChar->getName(), PChar->id, PItem->getName(), PItem->getID(), slotID);
+
             PChar->pushPacket<CDeliveryBoxPacket>(action, boxtype, PItem, slotID, PChar->UContainer->GetItemsCount(), 1);
             destroy(PItem);
         }
@@ -882,7 +845,7 @@ void dboxutils::ConfirmNameBeforeSending(CCharEntity* PChar, uint8 action, uint8
 {
     if (!IsSendBoxOpen(PChar))
     {
-        ShowWarning("Delivery Box packet handler received action %u while UContainer is in a state other than UCONTAINER_SEND_DELIVERYBOX (%s)", action, PChar->getName());
+        ShowWarningFmt("DBOX: Received action {} while UContainer is in a state other than UCONTAINER_SEND_DELIVERYBOX: {} ({})", action, PChar->getName(), PChar->id);
         return;
     }
 
@@ -918,4 +881,33 @@ void dboxutils::CloseMailWindow(CCharEntity* PChar, uint8 action, uint8 boxtype)
 
     // Open mail, close mail
     PChar->pushPacket<CDeliveryBoxPacket>(action, boxtype, 0, 1);
+}
+
+void dboxutils::OpenSendBox(CCharEntity* PChar, uint8 action, uint8 boxtype)
+{
+    PChar->UContainer->Clean();
+    PChar->UContainer->SetType(UCONTAINER_SEND_DELIVERYBOX);
+    PChar->pushPacket<CDeliveryBoxPacket>(action, boxtype, 0, 1);
+}
+
+void dboxutils::OpenRecvBox(CCharEntity* PChar, uint8 action, uint8 boxtype)
+{
+    PChar->UContainer->Clean();
+    PChar->UContainer->SetType(UCONTAINER_RECV_DELIVERYBOX);
+    PChar->pushPacket<CDeliveryBoxPacket>(action, boxtype, 0, 1);
+}
+
+bool dboxutils::IsSendBoxOpen(CCharEntity* PChar)
+{
+    return PChar->UContainer->GetType() == UCONTAINER_SEND_DELIVERYBOX;
+}
+
+bool dboxutils::IsRecvBoxOpen(CCharEntity* PChar)
+{
+    return PChar->UContainer->GetType() == UCONTAINER_RECV_DELIVERYBOX;
+}
+
+bool dboxutils::IsAnyDeliveryBoxOpen(CCharEntity* PChar)
+{
+    return IsSendBoxOpen(PChar) || IsRecvBoxOpen(PChar);
 }
