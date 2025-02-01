@@ -102,6 +102,7 @@ public:
 private:
     CZone* m_zone;
 
+    // NOTE: These are all keyed by targid
     EntityList_t m_allyList;
     EntityList_t m_mobList;
     EntityList_t m_petList;

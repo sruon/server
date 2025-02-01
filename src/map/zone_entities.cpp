@@ -162,8 +162,14 @@ void CZoneEntities::TryAddToNearbySpawnLists(CBaseEntity* PEntity)
             {
                 case TYPE_PC:
                 {
+                    auto* PChar = static_cast<CCharEntity*>(PEntity);
+                    if (PChar->m_moghouseID != PCurrentChar->m_moghouseID)
+                    {
+                        continue;
+                    }
+
                     PCurrentChar->SpawnPCList[PEntity->id] = PEntity;
-                    PCurrentChar->updateCharPacket(static_cast<CCharEntity*>(PEntity), ENTITY_SPAWN, UPDATE_ALL_CHAR);
+                    PCurrentChar->updateCharPacket(PChar, ENTITY_SPAWN, UPDATE_ALL_CHAR);
                     break;
                 }
                 case TYPE_NPC:
@@ -178,7 +184,6 @@ void CZoneEntities::TryAddToNearbySpawnLists(CBaseEntity* PEntity)
                     PCurrentChar->updateEntityPacket(PEntity, ENTITY_SPAWN, UPDATE_ALL_MOB);
                     break;
                 }
-
                 case TYPE_PET:
                 {
                     PCurrentChar->SpawnPETList[PEntity->id] = PEntity;
@@ -213,7 +218,6 @@ void CZoneEntities::InsertPC(CCharEntity* PChar)
     m_charTargIds.insert(PChar->targid);
     m_charList[PChar->targid] = PChar;
 
-    // TODO: Do we need to force-add the entity to spawn lists? It'll happen on a char's next update anyway?
     TryAddToNearbySpawnLists(PChar);
 
     ShowDebug("CZone:: %s IncreaseZoneCounter <%u> %s", m_zone->getName(), m_charList.size(), PChar->getName());
@@ -228,7 +232,6 @@ void CZoneEntities::InsertAlly(CBaseEntity* PMob)
         PMob->loc.zone           = m_zone;
         m_allyList[PMob->targid] = PMob;
 
-        // TODO: Do we need to force-add the entity to spawn lists? It'll happen on a char's next update anyway?
         TryAddToNearbySpawnLists(PMob);
     }
 }
@@ -244,7 +247,6 @@ void CZoneEntities::InsertMOB(CBaseEntity* PMob)
         FindPartyForMob(PMob);
         m_mobList[PMob->targid] = PMob;
 
-        // TODO: Do we need to force-add the entity to spawn lists? It'll happen on a char's next update anyway?
         TryAddToNearbySpawnLists(PMob);
     }
 }
@@ -276,7 +278,6 @@ void CZoneEntities::InsertNPC(CBaseEntity* PNpc)
             m_npcList[PNpc->targid] = PNpc;
         }
 
-        // TODO: Do we need to force-add the entity to spawn lists? It'll happen on a char's next update anyway?
         TryAddToNearbySpawnLists(PNpc);
     }
 }
@@ -291,7 +292,6 @@ void CZoneEntities::InsertPET(CBaseEntity* PPet)
 
         m_petList[PPet->targid] = PPet;
 
-        // TODO: Do we need to force-add the entity to spawn lists? It'll happen on a char's next update anyway?
         TryAddToNearbySpawnLists(PPet);
 
         PPet->spawnAnimation = SPAWN_ANIMATION::NORMAL; // Turn off special spawn animation
@@ -310,7 +310,6 @@ void CZoneEntities::InsertTRUST(CBaseEntity* PTrust)
         m_zone->GetZoneEntities()->AssignDynamicTargIDandLongID(PTrust);
         m_trustList[PTrust->targid] = PTrust;
 
-        // TODO: Do we need to force-add the entity to spawn lists? It'll happen on a char's next update anyway?
         TryAddToNearbySpawnLists(PTrust);
 
         PTrust->spawnAnimation = SPAWN_ANIMATION::NORMAL; // Turn off special spawn animation
