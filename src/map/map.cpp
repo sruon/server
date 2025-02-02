@@ -559,10 +559,8 @@ int32 do_sockets(fd_set* rfd, duration next)
 {
     message::handle_incoming();
 
-    struct timeval timeout
-    {
-    };
-    int32 ret = 0;
+    timeval timeout{};
+    int32   ret = 0;
     std::memcpy(rfd, &readfds, sizeof(*rfd));
 
     timeout.tv_sec  = std::chrono::duration_cast<std::chrono::seconds>(next).count();
@@ -583,10 +581,8 @@ int32 do_sockets(fd_set* rfd, duration next)
 
     if (sFD_ISSET(map_fd, rfd))
     {
-        struct sockaddr_in from
-        {
-        };
-        socklen_t fromlen = sizeof(from);
+        sockaddr_in from{};
+        socklen_t   fromlen = sizeof(from);
 
         ret = recvudp(map_fd, g_PBuff, MAX_BUFFER_SIZE, 0, (struct sockaddr*)&from, &fromlen);
         if (ret != -1)
