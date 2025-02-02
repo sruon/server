@@ -94,8 +94,9 @@ instanceObject.onInstanceProgressUpdate = function(instance, progress)
 
         local npcs = instance:getNpcs()
 
+       -- Now we know we are closing a door. Why are we looping through all npcs just to close a single door? And why arent we stoping once we do?
         for i, value in pairs(npcs) do
-            if value:getID() == ID.npc._259 then
+            if value:getID() == ID.npc.DOOR_OFFSET + 6 then
                 value:setAnimation(8)
             end
         end
