@@ -131,20 +131,16 @@ zones[xi.zone.NYZUL_ISLE] =
 
     mob =
     {
-        [51] = -- Nyzul Isle Investigation
-        {
-            ARCHAIC_RAMPART1    = 17092629,
-            ARCHAIC_RAMPART2    = 17092630,
-            OFFSET_REGULAR      = 17092631, -- Greatclaw
-            DAHAK               = 17092823,
-            OFFSET_NM           = 17092824, -- Bat Eye
-            TAISAIJIN           = 17092913,
-            OFFSET_GEARS        = 17092916, -- Gear
-            MOKKE               = 17092944,
-            LONG_HORNED_CHARIOT = 17092968,
-            OFFSET_SPECIFIED    = 17092969, -- Heraldic Imp
-            ADAMANTOISE         = 17092999,
-        },
+        -- Instance ID: 51 - Nyzul Isle Investigation
+        ARCHAIC_RAMPART_OFFSET = GetFirstID('Archaic_Rampart'),
+        BOSS_OFFSET            = GetFirstID('Adamantoise'),
+        DAHAK                  = GetFirstID('Dahak'),
+        GEAR_OFFSET            = GetFirstID('Archaic_Gear'),
+        LEADER_OFFSET          = GetFirstID('Mokke'),
+        MOB_OFFSET             = GetFirstID('Greatclaw'),
+        NM_OFFSET              = GetFirstID('Bat_Eye'),
+        SPECIFIED_OFFSET       = GetFirstID('Heraldic_Imp'),
+        TAISAIJIN              = GetFirstID('Taisaijin'),
 
         -- Instance ID: 58 - Path of Darkness
         AMNAF_BLU            = GetFirstID('Amnaf_BLU'),
@@ -156,7 +152,6 @@ zones[xi.zone.NYZUL_ISLE] =
         ALEXANDER = GetFirstID('Alexander'),
         RAUBAHN   = GetFirstID('Raubahn'),
         RAZFAHD   = GetFirstID('Razfahd'),
-
     },
 
     npc =

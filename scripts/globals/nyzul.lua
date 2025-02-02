@@ -251,7 +251,7 @@ xi.nyzul.handleAppraisalItem = function(player, npc)
     for _, cofferID in ipairs(ID.npc.TREASURE_COFFER) do
         if npc:getID() == cofferID and npc:getLocalVar('opened') == 0 then
             -- Appraisal Items
-            local mobOffset = npc:getLocalVar('appraisalItem') - (ID.mob[51].OFFSET_NM - xi.appraisal.origin.NYZUL_BAT_EYE) -- Bat Eye mobId - Appraisal mob value.
+            local mobOffset = npc:getLocalVar('appraisalItem') - (ID.mob.NM_OFFSET - xi.appraisal.origin.NYZUL_BAT_EYE) -- Bat Eye mobId - Appraisal mob value.
 
             if mobOffset == 166 or mobOffset == 187 then
                 mobOffset = 108
@@ -608,8 +608,8 @@ xi.nyzul.spawnChest = function(mob, player)
 
     -- NM chest spawn.
     if
-        mobID >= ID.mob[51].OFFSET_NM and
-        mobID <= ID.mob[51].TAISAIJIN
+        mobID >= ID.mob.NM_OFFSET and
+        mobID <= ID.mob.TAISAIJIN
     then
         xi.nyzul.vigilWeaponDrop(player, mob)
 
@@ -629,7 +629,7 @@ xi.nyzul.spawnChest = function(mob, player)
 
     -- NM casket spawn.
     elseif
-        mobID < ID.mob[51].ADAMANTOISE and
+        mobID < ID.mob.BOSS_OFFSET and
         xi.settings.main.ENABLE_NYZUL_CASKETS
     then
         if math.random(1, 100) <= 6 then
