@@ -248,10 +248,10 @@ xi.nyzul.handleAppraisalItem = function(player, npc)
     local instance = npc:getInstance()
     local chars    = instance:getChars()
 
-    for _, cofferID in ipairs(ID.npc.TREASURE_COFFER) do
+    for cofferID = ID.npc.TREASURE_COFFER_OFFSET, ID.npc.TREASURE_COFFER_OFFSET + 2 do
         if npc:getID() == cofferID and npc:getLocalVar('opened') == 0 then
             -- Appraisal Items
-            local mobOffset = npc:getLocalVar('appraisalItem') - (ID.mob[51].OFFSET_NM - xi.appraisal.origin.NYZUL_BAT_EYE) -- Bat Eye mobId - Appraisal mob value.
+            local mobOffset = npc:getLocalVar('appraisalItem') - (ID.mob.NM_OFFSET - xi.appraisal.origin.NYZUL_BAT_EYE) -- Bat Eye mobId - Appraisal mob value.
 
             if mobOffset == 166 or mobOffset == 187 then
                 mobOffset = 108
@@ -433,7 +433,7 @@ xi.nyzul.tempBoxFinish = function(player, csid, option, npc)
 end
 
 xi.nyzul.clearChests = function(instance)
-    for _, cofferID in ipairs(ID.npc.TREASURE_COFFER) do
+    for cofferID = ID.npc.TREASURE_COFFER_OFFSET, ID.npc.TREASURE_COFFER_OFFSET + 2 do
         local coffer = GetNPCByID(cofferID, instance)
 
         if coffer and coffer:getStatus() ~= xi.status.DISAPPEAR then
@@ -444,7 +444,7 @@ xi.nyzul.clearChests = function(instance)
     end
 
     if xi.settings.main.ENABLE_NYZUL_CASKETS then
-        for _, casketID in ipairs(ID.npc.TREASURE_CASKET) do
+        for casketID = ID.npc.TREASURE_CASKET_OFFSET, ID.npc.TREASURE_CASKET_OFFSET + 3 do
             local casket = GetNPCByID(casketID, instance)
 
             if casket and casket:getStatus() ~= xi.status.DISAPPEAR then
@@ -566,7 +566,7 @@ xi.nyzul.eliminateAllKill = function(mob)
 end
 
 xi.nyzul.activateRuneOfTransfer = function(instance)
-    for _, runeID in pairs(ID.npc.RUNE_OF_TRANSFER) do
+    for runeID = ID.npc.RUNE_OF_TRANSFER_OFFSET, ID.npc.RUNE_OF_TRANSFER_OFFSET + 1 do
         if GetNPCByID(runeID, instance):getStatus() == xi.status.NORMAL then
             GetNPCByID(runeID, instance):setAnimationSub(1)
 
@@ -608,12 +608,12 @@ xi.nyzul.spawnChest = function(mob, player)
 
     -- NM chest spawn.
     if
-        mobID >= ID.mob[51].OFFSET_NM and
-        mobID <= ID.mob[51].TAISAIJIN
+        mobID >= ID.mob.NM_OFFSET and
+        mobID <= ID.mob.TAISAIJIN
     then
         xi.nyzul.vigilWeaponDrop(player, mob)
 
-        for _, cofferID in ipairs(ID.npc.TREASURE_COFFER) do
+    for cofferID = ID.npc.TREASURE_COFFER_OFFSET, ID.npc.TREASURE_COFFER_OFFSET + 2 do
             local coffer = GetNPCByID(cofferID, instance)
 
             if coffer and coffer:getStatus() == xi.status.DISAPPEAR then
@@ -629,11 +629,11 @@ xi.nyzul.spawnChest = function(mob, player)
 
     -- NM casket spawn.
     elseif
-        mobID < ID.mob[51].ADAMANTOISE and
+        mobID < ID.mob.BOSS_OFFSET and
         xi.settings.main.ENABLE_NYZUL_CASKETS
     then
         if math.random(1, 100) <= 6 then
-            for _, casketID in ipairs(ID.npc.TREASURE_CASKET) do
+            for casketID = ID.npc.TREASURE_CASKET_OFFSET, ID.npc.TREASURE_CASKET_OFFSET + 3 do
                 local casket = GetNPCByID(casketID, instance)
 
                 if casket and casket:getStatus() == xi.status.DISAPPEAR then
