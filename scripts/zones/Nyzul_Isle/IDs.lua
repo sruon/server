@@ -156,40 +156,30 @@ zones[xi.zone.NYZUL_ISLE] =
 
     npc =
     {
-        TREASURE_COFFER =
-        {
-            17092611, 17092612, 17092614
-        },
-
-        TREASURE_CASKET =
-        {
-            17092609, 17092610, 17092613, 17092620
-        },
-
-        RUNE_OF_TRANSFER =
-        {
-            17093330, 17093331
-        },
-
         -- Nyzul Isle Investigation
-        DOOR_OFFSET         = GetFirstID('_253'),
-        RUNE_TRANSFER_START = GetFirstID('Rune_of_Transfer_Start'),
-        RUNIC_LAMP_OFFSET   = GetFirstID('Runic_Lamp'),
-        VENDING_BOX         = GetFirstID('Vending_Box'),
+        DOOR_OFFSET               = GetFirstID('_253'),
+        RUNE_OF_TRANSFER_OFFSET   = GetFirstID('Rune_of_Transfer'),
+        RUNE_OF_TRANSFER_ENTRANCE = GetFirstID('Rune_of_Transfer_Start'),
+        RUNIC_LAMP_OFFSET         = GetFirstID('Runic_Lamp'),
+        TREASURE_CASKET_OFFSET    = GetFirstID('Armoury_Crate_Casket'),
+        TREASURE_COFFER_OFFSET    = GetFirstID('Armoury_Crate_Coffer'),
+        VENDING_BOX               = GetFirstID('Vending_Box'),
 
         -- Other instances
-        WEATHER             = 17093424,
-        QM1                 = 17093473,
-        BLANK1              = 17093474,
-        BLANK2              = 17093475,
-        BLANK3              = 17093476,
-        NASHMEIRA1          = 17093477,
-        NASHMEIRA2          = 17093478,
-        RAZFAHD             = 17093479,
-        CSNPC1              = 17093480,
-        GHATSAD             = 17093481,
-        ALEXANDER           = 17093482,
-        CSNPC2              = 17093483,
+        WEATHER    = GetFirstID('_k5y'), -- Unused?
+
+        -- This NPCs aren't even enabled in the sql (pos 0, 0, 0). Leaving them here for now.
+        -- QM1        = GetFirstID('17093473'),
+        -- BLANK1     = GetFirstID('17093474'),
+        -- BLANK2     = GetFirstID('17093475'),
+        -- BLANK3     = GetFirstID('17093476'),
+        -- NASHMEIRA1 = GetFirstID('17093477'),
+        -- NASHMEIRA2 = GetFirstID('17093478'),
+        -- RAZFAHD    = GetFirstID('17093479'),
+        -- CSNPC1     = GetFirstID('17093480'),
+        -- GHATSAD    = GetFirstID('17093481'),
+        -- ALEXANDER  = GetFirstID('17093482'),
+        -- CSNPC2     = GetFirstID('17093483'),
     }
 }
 
