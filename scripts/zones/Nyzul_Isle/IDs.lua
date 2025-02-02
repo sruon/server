@@ -146,24 +146,17 @@ zones[xi.zone.NYZUL_ISLE] =
             ADAMANTOISE         = 17092999,
         },
 
-        -- Path of Darkness
-        [58] =
-        {
-            AMNAF_BLU          = 17093132,
-            AMNAF_PSYCHEFLAYER = 17093133,
-            IMPERIAL_GEAR1     = 17093134,
-            IMPERIAL_GEAR2     = 17093135,
-            IMPERIAL_GEAR3     = 17093136,
-            IMPERIAL_GEAR4     = 17093137,
-            NAJA               = 17093142,
-        },
+        -- Instance ID: 58 - Path of Darkness
+        AMNAF_BLU            = GetFirstID('Amnaf_BLU'),
+        AMNAF_PSYCHEFLAYER   = GetFirstID('Amnaf_Psycheflayer'),
+        IMPERIAL_GEAR_OFFSET = GetFirstID('Imperial_Gear'),
+        NAJA_SALAHEEM        = GetFirstID('Naja_Salaheem'),
 
-        [59] =
-        {
-            RAZFAHD   = 17093143,
-            ALEXANDER = 17093144,
-            RAUBAHN   = 17093145,
-        },
+        -- Instance ID: 59 - Nashmeiras Plea
+        ALEXANDER = GetFirstID('Alexander'),
+        RAUBAHN   = GetFirstID('Raubahn'),
+        RAZFAHD   = GetFirstID('Razfahd'),
+
     },
 
     npc =
