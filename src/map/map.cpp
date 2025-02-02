@@ -515,9 +515,11 @@ void ReportTracyStats()
 {
     TracyReportLuaMemory(lua.lua_state());
 
-    std::size_t activeZoneCount = 0;
-    std::size_t playerCount     = 0;
-    std::size_t mobCount        = 0;
+    std::size_t activeZoneCount       = 0;
+    std::size_t playerCount           = 0;
+    std::size_t mobCount              = 0;
+    std::size_t dynamicTargIdCount    = 0;
+    std::size_t dynamicTargIdCapacity = 0;
 
     for (auto& [id, PZone] : g_PZoneList)
     {
@@ -526,6 +528,8 @@ void ReportTracyStats()
             activeZoneCount += 1;
             playerCount += PZone->GetZoneEntities()->GetCharList().size();
             mobCount += PZone->GetZoneEntities()->GetMobList().size();
+            dynamicTargIdCount += PZone->GetZoneEntities()->GetUsedDynamicTargIDsCount();
+            dynamicTargIdCapacity += 511;
         }
     }
 
@@ -533,6 +537,8 @@ void ReportTracyStats()
     TracyReportGraphNumber("Connected Players (Process)", static_cast<std::int64_t>(playerCount));
     TracyReportGraphNumber("Active Mobs (Process)", static_cast<std::int64_t>(mobCount));
     TracyReportGraphNumber("Task Manager Tasks", static_cast<std::int64_t>(CTaskMgr::getInstance()->getTaskList().size()));
+
+    TracyReportGraphPercent("Dynamic Entity TargID Capacity Usage Percent", static_cast<double>(dynamicTargIdCount) / static_cast<double>(dynamicTargIdCapacity));
 
     TracyReportGraphNumber("Total Packets To Send Per Tick", static_cast<std::int64_t>(TotalPacketsToSendPerTick));
     TracyReportGraphNumber("Total Packets Sent Per Tick", static_cast<std::int64_t>(TotalPacketsSentPerTick));

@@ -614,6 +614,7 @@ void CZoneEntities::AssignDynamicTargIDandLongID(CBaseEntity* PEntity)
     while (std::find(m_dynamicTargIds.begin(), m_dynamicTargIds.end(), targid) != m_dynamicTargIds.end())
     {
         ++targid;
+
         // Wrap around 0x8FF to 0x700
         if (targid > 0x8FF)
         {
@@ -622,7 +623,7 @@ void CZoneEntities::AssignDynamicTargIDandLongID(CBaseEntity* PEntity)
 
         if (counter > 0x1FF)
         {
-            ShowError(fmt::format("dynamicTargIds list full in zone {}!", m_zone->getName()));
+            ShowCriticalFmt("dynamicTargIds list full in zone {}!", m_zone->getName());
             targid = 0x900;
             break;
         }
@@ -662,6 +663,12 @@ void CZoneEntities::EraseStaleDynamicTargIDs()
             ++it;
         }
     }
+}
+
+// The range for dynamic targids is [0x700, 0x900), so a possible 0x1FF (511) entities can be in the zone at once.
+auto CZoneEntities::GetUsedDynamicTargIDsCount() const -> std::size_t
+{
+    return m_dynamicTargIds.size();
 }
 
 bool CZoneEntities::CharListEmpty() const
