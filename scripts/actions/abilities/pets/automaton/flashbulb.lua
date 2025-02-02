@@ -23,9 +23,10 @@ abilityObject.onAutomatonAbility = function(target, automaton, skill, master, ac
 
     local resist = applyResistanceAbility(automaton, target, 7, highestskill, 150)
     local duration = 12 * resist
+    local power = 200 -- TODO: Check if it has a 10% variance like other flash effects
 
     if resist > 0.0625 then
-        if target:addStatusEffect(xi.effect.FLASH, 200, 0, duration) then
+        if target:addStatusEffect(xi.effect.FLASH, power, 1, duration) then
             skill:setMsg(xi.msg.basic.SKILL_ENFEEB)
         else
             skill:setMsg(xi.msg.basic.SKILL_NO_EFFECT)

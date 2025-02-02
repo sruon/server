@@ -665,6 +665,9 @@ xi.mobskills.mobStatusEffectMove = function(mob, target, typeEffect, power, tick
 
         if resist >= 0.25 then
             local totalDuration = utils.clamp(duration * resist, 1)
+            if typeEffect == xi.effect.FLASH then
+                power = utils.clamp(power * resist, 1)
+            end
             target:addStatusEffect(typeEffect, power, tick, totalDuration, subType, subPower, tier)
 
             return xi.msg.basic.SKILL_ENFEEB_IS

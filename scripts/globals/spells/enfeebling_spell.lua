@@ -88,7 +88,7 @@ local pTable =
 
     -- White Magic
     [xi.magic.spell.ADDLE         ] = { xi.effect.ADDLE,              xi.mod.MND,   30,   0,      180,      2,   0, true,        0 },
-    [xi.magic.spell.FLASH         ] = { xi.effect.FLASH,              xi.mod.MND,  300,   0,       12,      4,   0, true,      200 },
+    [xi.magic.spell.FLASH         ] = { xi.effect.FLASH,              xi.mod.MND,  300,   1,       12,      4,   0, true,      200 },
     [xi.magic.spell.INUNDATION    ] = { xi.effect.INUNDATION,         xi.mod.MND,    1,   0,      300,      5,   0, false,       0 },
     [xi.magic.spell.PARALYZE      ] = { xi.effect.PARALYSIS,          xi.mod.MND,    0,   0,      120,      2,   0, true,      -10 },
     [xi.magic.spell.PARALYZE_II   ] = { xi.effect.PARALYSIS,          xi.mod.MND,    0,   0,      120,      2,   0, true,        0 },
@@ -235,6 +235,10 @@ xi.spells.enfeebling.calculatePotency = function(caster, target, spellId, spellE
 
         [xi.effect.SHOCK] = function()
             potency = getElementalDebuffPotency(caster, statUsed)
+        end,
+
+        [xi.effect.FLASH] = function()
+            potency = potency * (1 + (math.random(-10, 10) / 100))
         end,
     }
 
