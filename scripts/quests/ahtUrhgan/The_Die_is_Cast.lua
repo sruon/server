@@ -9,12 +9,12 @@
 -- qm9: !pos 311.088 -3.674 170.124 54
 -----------------------------------
 
-local quest = Quest:new(xi.questLog.AHT_URHGAN, xi.quest.id.ahtUrhgan.THE_DIE_IS_CAST)
 local ID = zones[xi.zone.ARRAPAGO_REEF]
+local quest = Quest:new(xi.questLog.AHT_URHGAN, xi.quest.id.ahtUrhgan.THE_DIE_IS_CAST)
 
 quest.reward =
 {
-    item  = dsp.item.RANDOM_RING,
+    item  = xi.item.RANDOM_RING,
 }
 
 quest.sections =
@@ -24,7 +24,7 @@ quest.sections =
             return status == xi.questStatus.QUEST_AVAILABLE
         end,
 
-        [dsp.zone.AHT_URHGAN_WHITEGATE] =
+        [xi.zone.AHT_URHGAN_WHITEGATE] =
         {
             ['Ratihb'] = quest:progressEvent(591),
 
@@ -42,7 +42,7 @@ quest.sections =
             vars.Prog == 0
         end,
 
-        [dsp.zone.AHT_URHGAN_WHITEGATE] =
+        [xi.zone.AHT_URHGAN_WHITEGATE] =
         {
             ['Ekhu_Pesshyadha'] = quest:progressEvent(592),
 
@@ -60,7 +60,7 @@ quest.sections =
             vars.Prog == 1
         end,
 
-        [dsp.zone.NASHMAU] =
+        [xi.zone.NASHMAU] =
         {
             ['Jijiroon'] = quest:progressEvent(245),
 
@@ -78,7 +78,7 @@ quest.sections =
             vars.Prog == 2
         end,
 
-        [dsp.zone.ARRAPAGO_REEF] =
+        [xi.zone.ARRAPAGO_REEF] =
         {
             ['qm9'] = quest:progressEvent(212),
 
@@ -96,7 +96,7 @@ quest.sections =
             vars.Prog == 3
         end,
 
-        [dsp.zone.ARRAPAGO_REEF] =
+        [xi.zone.ARRAPAGO_REEF] =
         {
             ['qm9'] =
             {
@@ -109,7 +109,7 @@ quest.sections =
 
             ['Bukki'] =
             {
-                onMobDeath = function(mob, player, isKiller, noKiller)
+                onMobDeath = function(mob, player, optParams)
                     quest:setVar(player, 'Prog', 4)
                 end,
             },
@@ -121,7 +121,7 @@ quest.sections =
             vars.Prog == 4
         end,
 
-        [dsp.zone.ARRAPAGO_REEF] =
+        [xi.zone.ARRAPAGO_REEF] =
         {
             ['qm9'] = quest:progressEvent(213),
 
@@ -129,7 +129,7 @@ quest.sections =
             {
                 [213] = function(player, csid, option, npc)
                     quest:setVar(player, 'Prog', 5)
-                    npcUtil.giveKeyItem(player, dsp.ki.BAG_OF_GOLD_PIECES)
+                    npcUtil.giveKeyItem(player, xi.ki.BAG_OF_GOLD_PIECES)
                 end,
             },
         },
@@ -140,15 +140,16 @@ quest.sections =
             vars.Prog == 5
         end,
 
-        [dsp.zone.AHT_URHGAN_WHITEGATE] =
+        [xi.zone.AHT_URHGAN_WHITEGATE] =
         {
             ['Ratihb'] = quest:progressEvent(593),
 
             onEventFinish =
             {
                 [593] = function(player, csid, option, npc)
-                    quest:complete(player)
-                    player:delKeyItem(dsp.ki.BAG_OF_GOLD_PIECES)
+                    if quest:complete(player) then
+                        player:delKeyItem(xi.ki.BAG_OF_GOLD_PIECES)
+                    end
                 end,
             },
         },
