@@ -33,6 +33,10 @@ zones[xi.zone.APOLLYON] =
     },
     mob =
     {
+        NE_APOLLYON_SWEEPER_OFFSET   = GetFirstID('Apollyon_Sweeper'),
+        NE_GOOBBUE_HARVESTER         = GetFirstID('Goobbue_Harvester'),
+        NE_TROGLODYTE_DHALMEL_OFFSET = GetFirstID('Troglodyte_Dhalmel'),
+
         NW_APOLLYON_SCAVENGER_OFFSET = GetFirstID('Apollyon_Scavenger'),
         NW_BARDHA_OFFSET             = GetFirstID('Bardha'),
         NW_CYNOPROSOPI               = GetFirstID('Cynoprosopi'),
@@ -188,29 +192,6 @@ zones[xi.zone.APOLLYON] =
 
     NE_APOLLYON =
     {
-        mob =
-        {
-            GOOBBUE_HARVESTER = 16933044,
-            APOLLYON_SWEEPER =
-            {
-                16933081,
-                16933086,
-                16933091,
-            },
-
-            TROGLODYTE_DHALMEL =
-            {
-                16933115,
-                16933116,
-                16933117,
-                16933118,
-                16933119,
-                16933120,
-                16933121,
-                16933122,
-            },
-        },
-
         npc =
         {
             PORTAL =
