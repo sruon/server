@@ -181,17 +181,16 @@ CCharEntity::CCharEntity()
 
     m_PMonstrosity = nullptr;
 
-    m_Costume             = 0;
-    m_Costume2            = 0;
-    m_hasTractor          = 0;
-    m_hasRaise            = 0;
-    m_weaknessLvl         = 0;
-    m_hasArise            = false;
-    m_InsideTriggerAreaID = 0;
-    m_LevelRestriction    = 0;
-    m_lastBcnmTimePrompt  = 0;
-    m_AHHistoryTimestamp  = 0;
-    m_DeathTimestamp      = 0;
+    m_Costume            = 0;
+    m_Costume2           = 0;
+    m_hasTractor         = 0;
+    m_hasRaise           = 0;
+    m_weaknessLvl        = 0;
+    m_hasArise           = false;
+    m_LevelRestriction   = 0;
+    m_lastBcnmTimePrompt = 0;
+    m_AHHistoryTimestamp = 0;
+    m_DeathTimestamp     = 0;
 
     m_EquipFlag         = 0;
     m_EquipBlock        = 0;
@@ -3096,6 +3095,26 @@ bool CCharEntity::OnAttackError(CAttackState& state)
         return true;
     }
     return false;
+}
+
+bool CCharEntity::isInTriggerArea(uint32 triggerAreaID)
+{
+    return charTriggerAreaIDs.find(triggerAreaID) != charTriggerAreaIDs.end();
+}
+
+void CCharEntity::onTriggerAreaEnter(uint32 triggerAreaID)
+{
+    charTriggerAreaIDs.insert(triggerAreaID);
+}
+
+void CCharEntity::onTriggerAreaLeave(uint32 triggerAreaID)
+{
+    charTriggerAreaIDs.erase(triggerAreaID);
+}
+
+void CCharEntity::clearTriggerAreas()
+{
+    charTriggerAreaIDs.clear();
 }
 
 bool CCharEntity::isInEvent()
