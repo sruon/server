@@ -13235,6 +13235,40 @@ std::optional<CLuaStatusEffect> CLuaBaseEntity::getStatusEffect(uint16 StatusID,
 }
 
 /************************************************************************
+ *  Function: getStatusEffectBySource()
+ *  Purpose : Returns the Object of a specified Status ID by source type and param
+ *  Example : local aiming_gloves_enchantment = target:getStatusEffectBySource(xi.effect.ENCHANTMENT, xi.effectSourceType.EQUIPPED_ITEM, xi.item.AIMING_GLOVES)
+ *  Notes   :
+ ************************************************************************/
+
+std::optional<CLuaStatusEffect> CLuaBaseEntity::getStatusEffectBySource(uint16 StatusID, EffectSourceType SourceType, uint16 SourceTypeParam)
+{
+    if (m_PBaseEntity->objtype == TYPE_NPC)
+    {
+        ShowWarning("Invalid Entity (NPC: %s) calling function.", m_PBaseEntity->getName());
+        return std::nullopt;
+    }
+
+    auto* PBattleEntity = dynamic_cast<CBattleEntity*>(m_PBaseEntity);
+    if (!PBattleEntity)
+    {
+        return std::nullopt;
+    }
+
+    CStatusEffect* PStatusEffect   = nullptr;
+    auto           effect_StatusID = static_cast<EFFECT>(StatusID);
+
+    PStatusEffect = PBattleEntity->StatusEffectContainer->GetStatusEffectBySource(effect_StatusID, SourceType, SourceTypeParam);
+
+    if (PStatusEffect)
+    {
+        return std::optional<CLuaStatusEffect>(PStatusEffect);
+    }
+
+    return std::nullopt;
+}
+
+/************************************************************************
  *  Function: getStatusEffects()
  *  Purpose : Returns a Lua table of all Status Effects an Entity has
  *  Example : local effects = caster:getStatusEffects() -- can iterate over table
@@ -19398,6 +19432,7 @@ void CLuaBaseEntity::Register()
     SOL_REGISTER("addStatusEffect", CLuaBaseEntity::addStatusEffect);
     SOL_REGISTER("addStatusEffectEx", CLuaBaseEntity::addStatusEffectEx);
     SOL_REGISTER("getStatusEffect", CLuaBaseEntity::getStatusEffect);
+    SOL_REGISTER("getStatusEffectBySource", CLuaBaseEntity::getStatusEffectBySource);
     SOL_REGISTER("getStatusEffects", CLuaBaseEntity::getStatusEffects);
     SOL_REGISTER("getStatusEffectElement", CLuaBaseEntity::getStatusEffectElement);
     SOL_REGISTER("canGainStatusEffect", CLuaBaseEntity::canGainStatusEffect);
