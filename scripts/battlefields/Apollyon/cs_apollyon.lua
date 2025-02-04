@@ -20,6 +20,7 @@ local content = Limbus:new({
     requiredKeyItems = { xi.ki.COSMO_CLEANSE, { xi.ki.RED_CARD, xi.ki.BLACK_CARD }, message = ID.text.YOU_INSERT_THE_CARD_POLISHED },
     requiredItems    = { xi.item.METAL_CHIP },
     name             = 'CS_APOLLYON',
+    lootCrateId      = ID.npc.CS_LOOT_CRATE,
     timeExtension    = 5,
 })
 
@@ -266,7 +267,7 @@ content.groups =
             elseif count == 2 then
                 xi.limbus.spawnFrom(mob, ID.CS_APOLLYON.npc.TIME_CRATES[2])
             elseif count == 3 then
-                npcUtil.showCrate(GetNPCByID(ID.CS_APOLLYON.npc.LOOT_CRATE))
+                npcUtil.showCrate(GetNPCByID(ID.npc.CS_LOOT_CRATE))
             end
         end
     }
@@ -274,7 +275,7 @@ content.groups =
 
 content.loot =
 {
-    [ID.CS_APOLLYON.npc.LOOT_CRATE] =
+    [ID.npc.CS_LOOT_CRATE] =
     {
         {
             quantity = 5,
