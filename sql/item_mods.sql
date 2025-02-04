@@ -80481,7 +80481,7 @@ INSERT INTO `item_mods` VALUES (28197,24,30);  -- RATT: 30
 INSERT INTO `item_mods` VALUES (28197,29,5);   -- MDEF: 5
 INSERT INTO `item_mods` VALUES (28197,31,69);  -- MEVA: 69
 INSERT INTO `item_mods` VALUES (28197,68,38);  -- EVA: 38
-INSERT INTO `item_mods` VALUES (28197,365,90); -- SNAPSHOT: 90
+INSERT INTO `item_mods` VALUES (28197,365,9);  -- SNAPSHOT: 9
 
 -- Mikinaak Cuisses
 INSERT INTO `item_mods` VALUES (28198,1,89);  -- DEF: 89
