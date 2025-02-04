@@ -33,6 +33,10 @@ zones[xi.zone.APOLLYON] =
     },
     mob =
     {
+        CS_CARNAGECHIEF_JACKBODOKK = GetFirstID('Carnagechief_Jackbodokk'),
+        CS_DEE_WAPA_THE_DESOLATOR  = GetFirstID('Dee_Wapa_the_Desolator'),
+        CS_NAQBA_CHIRURGEON        = GetFirstID('NaQba_Chirurgeon'),
+
         NE_APOLLYON_SWEEPER_OFFSET   = GetFirstID('Apollyon_Sweeper'),
         NE_GOOBBUE_HARVESTER         = GetFirstID('Goobbue_Harvester'),
         NE_TROGLODYTE_DHALMEL_OFFSET = GetFirstID('Troglodyte_Dhalmel'),
@@ -247,13 +251,6 @@ zones[xi.zone.APOLLYON] =
 
     CS_APOLLYON =
     {
-        mob =
-        {
-            CARNAGECHIEF_JACKBODOKK = 16933129,
-            NAQBA_CHIRURGEON = 16933137,
-            DEE_WAPA_THE_DESOLATOR = 16933144,
-        },
-
         npc =
         {
             TIME_CRATES =

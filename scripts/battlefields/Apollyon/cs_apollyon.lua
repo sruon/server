@@ -70,12 +70,12 @@ function content:onBattlefieldTick(battlefield, tick)
     local previousBoss = battlefield:getLocalVar('AutoAggro')
     local nextBoss     = 0
 
-    if previousBoss == ID.CS_APOLLYON.mob.CARNAGECHIEF_JACKBODOKK then
-        nextBoss = ID.CS_APOLLYON.mob.DEE_WAPA_THE_DESOLATOR
-    elseif previousBoss == ID.CS_APOLLYON.mob.DEE_WAPA_THE_DESOLATOR then
-        nextBoss = ID.CS_APOLLYON.mob.NAQBA_CHIRURGEON
+    if previousBoss == ID.mob.CS_CARNAGECHIEF_JACKBODOKK then
+        nextBoss = ID.mob.CS_DEE_WAPA_THE_DESOLATOR
+    elseif previousBoss == ID.mob.CS_DEE_WAPA_THE_DESOLATOR then
+        nextBoss = ID.mob.CS_NAQBA_CHIRURGEON
     else
-        nextBoss = ID.CS_APOLLYON.mob.CARNAGECHIEF_JACKBODOKK
+        nextBoss = ID.mob.CS_CARNAGECHIEF_JACKBODOKK
     end
 
     local boss = GetMobByID(nextBoss)
@@ -181,7 +181,7 @@ content.groups =
         isParty    = true,
         superlink  = true,
         spawned    = false,
-        initialize = utils.bind(setupSharedHate, ID.CS_APOLLYON.mob.CARNAGECHIEF_JACKBODOKK),
+        initialize = utils.bind(setupSharedHate, ID.mob.CS_CARNAGECHIEF_JACKBODOKK),
     },
 
     {
@@ -212,7 +212,7 @@ content.groups =
         isParty    = true,
         superlink  = true,
         spawned    = false,
-        initialize = utils.bind(setupSharedHate, ID.CS_APOLLYON.mob.NAQBA_CHIRURGEON),
+        initialize = utils.bind(setupSharedHate, ID.mob.CS_NAQBA_CHIRURGEON),
     },
 
     {
@@ -243,7 +243,7 @@ content.groups =
         isParty    = true,
         superlink  = true,
         spawned    = false,
-        initialize = utils.bind(setupSharedHate, ID.CS_APOLLYON.mob.DEE_WAPA_THE_DESOLATOR),
+        initialize = utils.bind(setupSharedHate, ID.mob.CS_DEE_WAPA_THE_DESOLATOR),
     },
 
     {
