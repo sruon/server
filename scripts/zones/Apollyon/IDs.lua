@@ -33,6 +33,16 @@ zones[xi.zone.APOLLYON] =
     },
     mob =
     {
+        NW_APOLLYON_SCAVENGER_OFFSET = GetFirstID('Apollyon_Scavenger'),
+        NW_BARDHA_OFFSET             = GetFirstID('Bardha'),
+        NW_CYNOPROSOPI               = GetFirstID('Cynoprosopi'),
+        NW_GORYNICH_OFFSET           = GetFirstID('Gorynich'),
+        NW_KAISER_BEHEMOTH           = GetFirstID('Kaiser_Behemoth'),
+        NW_MILLENARY_MOSSBACK        = GetFirstID('Millenary_Mossback'),
+        NW_MOUNTAIN_BUFFALO_OFFSET   = GetFirstID('Mountain_Buffalo'),
+        NW_PLUTO                     = GetFirstID('Pluto'),
+        NW_ZLATOROG                  = GetFirstID('Zlatorog'),
+
         SE_ADAMANTSHELL_OFFSET = GetFirstID('Adamantshell'),
         SE_FLYING_SPEAR_OFFSET = GetFirstID('Flying_Spear'),
         SE_TIEHOLTSODI         = GetFirstID('Tieholtsodi'),
@@ -131,57 +141,6 @@ zones[xi.zone.APOLLYON] =
 
     NW_APOLLYON =
     {
-        mob =
-        {
-            PLUTO = 16932937,
-            BARDHA =
-            {
-                16932938,
-                16932939,
-                16932940,
-                16932941,
-                16932942,
-                16932943,
-                16932944,
-            },
-
-            ZLATOROG = 16932950,
-            MOUNTAIN_BUFFALO =
-            {
-                16932951,
-                16932952,
-                16932953,
-                16932954,
-                16932955,
-                16932956,
-                16932957,
-            },
-
-            MILLENARY_MOSSBACK = 16932963,
-            APOLLYON_SCAVENGER =
-            {
-                16932964,
-                16932965,
-                16932966,
-                16932967,
-                16932968,
-                16932969,
-                16932970,
-            },
-
-            CYNOPROSOPI = 16932976,
-            GORYNICH =
-            {
-                16932977,
-                16932978,
-                16932979,
-                16932980,
-                16932981,
-            },
-
-            KAISER_BEHEMOTH = 16932985,
-        },
-
         npc =
         {
             PORTAL =
