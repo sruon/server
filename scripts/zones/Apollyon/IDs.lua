@@ -33,6 +33,9 @@ zones[xi.zone.APOLLYON] =
     },
     mob =
     {
+        SE_ADAMANTSHELL_OFFSET = GetFirstID('Adamantshell'),
+        SE_FLYING_SPEAR_OFFSET = GetFirstID('Flying_Spear'),
+        SE_TIEHOLTSODI         = GetFirstID('Tieholtsodi'),
 
         SW_BOSS_JIDRA               = GetFirstID('Jidra_Boss'),
         SW_AIR_ELEMENTAL_OFFSET     = GetFirstID('Air_Elemental'),
@@ -96,32 +99,6 @@ zones[xi.zone.APOLLYON] =
 
     SE_APOLLYON =
     {
-        mob =
-        {
-            TIEHOLTSODI = 16933006,
-            ADAMANTSHELL =
-            {
-                16933007,
-                16933008,
-                16933009,
-                16933010,
-                16933011,
-                16933012,
-                16933013,
-                16933014,
-            },
-            FLYING_SPEAR =
-            {
-                16933033,
-                16933034,
-                16933035,
-                16933036,
-                16933037,
-                16933038,
-                16933039,
-                16933040,
-            }
-        },
         npc =
         {
             PORTAL =
