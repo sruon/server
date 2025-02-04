@@ -34,6 +34,15 @@ zones[xi.zone.APOLLYON] =
     mob =
     {
 
+        SW_BOSS_JIDRA               = GetFirstID('Jidra_Boss'),
+        SW_AIR_ELEMENTAL_OFFSET     = GetFirstID('Air_Elemental'),
+        SW_DARK_ELEMENTAL_OFFSET    = GetFirstID('Dark_Elemental'),
+        SW_EARTH_ELEMENTAL_OFFSET   = GetFirstID('Earth_Elemental'),
+        SW_FIRE_ELEMENTAL_OFFSET    = GetFirstID('Fire_Elemental'),
+        SW_ICE_ELEMENTAL_OFFSET     = GetFirstID('Ice_Elemental'),
+        SW_LIGHT_ELEMENTAL_OFFSET   = GetFirstID('Light_Elemental'),
+        SW_THUNDER_ELEMENTAL_OFFSET = GetFirstID('Thunder_Elemental'),
+        SW_WATER_ELEMENTAL_OFFSET   = GetFirstID('Water_Elemental'),
     },
     npc =
     {
@@ -42,66 +51,6 @@ zones[xi.zone.APOLLYON] =
 
     SW_APOLLYON =
     {
-        mob =
-        {
-            JIDRA_BOSS = 16932881,
-            AIR_ELEMENTAL =
-            {
-                16932910,
-                16932918,
-                16932926,
-            },
-
-            DARK_ELEMENTAL =
-            {
-                16932911,
-                16932919,
-                16932927,
-            },
-
-            EARTH_ELEMENTAL =
-            {
-                16932912,
-                16932920,
-                16932928,
-            },
-
-            FIRE_ELEMENTAL =
-            {
-                16932913,
-                16932921,
-                16932929,
-            },
-
-            ICE_ELEMENTAL =
-            {
-                16932914,
-                16932922,
-                16932930,
-            },
-
-            LIGHT_ELEMENTAL =
-            {
-                16932915,
-                16932923,
-                16932931,
-            },
-
-            WATER_ELEMENTAL =
-            {
-                16932916,
-                16932924,
-                16932932,
-            },
-
-            THUNDER_ELEMENTAL =
-            {
-                16932917,
-                16932925,
-                16932933,
-            },
-        },
-
         npc =
         {
             PORTAL =
