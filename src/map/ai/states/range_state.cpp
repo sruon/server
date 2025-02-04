@@ -72,18 +72,25 @@ CRangeState::CRangeState(CBattleEntity* PEntity, uint16 targid)
     auto delay = m_PEntity->GetRangedWeaponDelay(false);
     delay      = battleutils::GetRangedDelayReduction(m_PEntity, delay);
 
-    // TODO: Allow trusts to use this
-    if (auto* PChar = dynamic_cast<CCharEntity*>(m_PEntity))
+    // TODO: verify can use rapid shot
+    if (m_PEntity->objtype == TYPE_PC || m_PEntity->objtype == TYPE_TRUST)
     {
-        if (charutils::hasTrait(PChar, TRAIT_RAPID_SHOT))
+        auto chance{ m_PEntity->getMod(Mod::RAPID_SHOT) };
+
+        if (auto* PChar = dynamic_cast<CCharEntity*>(m_PEntity))
         {
-            auto chance{ PChar->getMod(Mod::RAPID_SHOT) + PChar->PMeritPoints->GetMeritValue(MERIT_RAPID_SHOT_RATE, PChar) };
+            chance += PChar->PMeritPoints->GetMeritValue(MERIT_RAPID_SHOT_RATE, PChar);
+        }
+
+        // Don't bother if we cant even proc
+        if (chance > 0)
+        {
             if (xirand::GetRandomNumber(100) < chance)
             {
                 // reduce delay by 1/16 - 8/16
                 // https://wiki.ffo.jp/html/2986.html
                 // https://www.bg-wiki.com/ffxi/Delay#Ranged_Delay
-                delay       = (int16)(delay * (1.f - xirand::GetRandomNumber<uint8>(1, 8) / 16.f));
+                delay       = (int16)(delay * (1.f - xirand::GetRandomNumber<uint16>(1, 8) / 16.f));
                 m_rapidShot = true;
             }
         }
