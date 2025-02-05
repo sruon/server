@@ -1,7 +1,7 @@
 -----------------------------------
 -- Area: Alzadaal Undersea Ruins
--- Door: Gilded Gateway (Silver Sea)
--- !pos 580 -2 442 72
+-- Door: Gilded Gateway (Zhayolm)
+-- !pos -580 0 -405 72
 -----------------------------------
 local ID = zones[xi.zone.ALZADAAL_UNDERSEA_RUINS]
 -----------------------------------
@@ -9,7 +9,7 @@ local ID = zones[xi.zone.ALZADAAL_UNDERSEA_RUINS]
 local entity = {}
 
 entity.onTrigger = function(player, npc)
---    if not xi.instance.onTrigger(player, npc, xi.zone.SILVER_SEA_REMNANTS) then
+--    if not xi.instance.onTrigger(player, npc, xi.zone.ZHAYOLM_REMNANTS) then
         player:messageSpecial(ID.text.NOTHING_HAPPENS)
 --    end
 end
