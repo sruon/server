@@ -6251,6 +6251,7 @@ void CLuaBaseEntity::changeJob(uint8 newJob)
         {
             blueutils::UnequipAllBlueSpells(PChar);
         }
+
         puppetutils::LoadAutomaton(PChar);
         charutils::SetStyleLock(PChar, false);
         luautils::CheckForGearSet(PChar); // check for gear set on gear change
@@ -6701,7 +6702,7 @@ uint8 CLuaBaseEntity::levelRestriction(sol::object const& level)
 
         if (PChar->GetMLevel() != NewMLevel)
         {
-            if (PChar->PAutomaton)
+            if (PChar->PPet && PChar->PPet->objtype == TYPE_PET && static_cast<CPetEntity*>(PChar->PPet)->getPetType() == PET_TYPE::AUTOMATON)
             {
                 // Call each attachment onUnequip handler and zero out localVars tracking applied buffs
                 puppetutils::PreLevelRestriction(PChar);
@@ -6722,10 +6723,7 @@ uint8 CLuaBaseEntity::levelRestriction(sol::object const& level)
             PChar->updatemask |= UPDATE_HP;
 
             // Update the character's Automaton capacity bonus regardless if the pet is out or not
-            if (PChar->PAutomaton)
-            {
-                PChar->PAutomaton->setElementalCapacityBonus(PChar->getMod(Mod::AUTO_ELEM_CAPACITY));
-            }
+            PChar->setAutomatonElementalCapacityBonus(PChar->getMod(Mod::AUTO_ELEM_CAPACITY));
 
             if (PChar->status != STATUS_TYPE::DISAPPEAR)
             {
@@ -15072,14 +15070,7 @@ void CLuaBaseEntity::spawnPet(sol::object const& arg0)
             uint32 petId = arg0.as<uint32>();
             if (petId == PETID_HARLEQUINFRAME)
             {
-                if (((CCharEntity*)m_PBaseEntity)->PAutomaton)
-                {
-                    petId = static_cast<uint32>(PETID_HARLEQUINFRAME) + static_cast<uint32>(PChar->PAutomaton->getFrame()) - 0x20;
-                }
-                else
-                {
-                    ShowError("CLuaBaseEntity::spawnPet : PetID is nullptr");
-                }
+                petId = static_cast<uint32>(PETID_HARLEQUINFRAME) + static_cast<uint32>(PChar->getAutomatonFrame()) - 0x20;
             }
 
             // Note: arg1 of SpawnPet below was arg0 and not petId
@@ -15735,10 +15726,7 @@ void CLuaBaseEntity::setPetName(uint8 pType, uint16 value, sol::object const& ar
         {
             _sql->Query("INSERT INTO char_pet SET charid = %u, automatonid = %u ON DUPLICATE KEY UPDATE automatonid = %u", m_PBaseEntity->id, value,
                         value);
-            if (static_cast<CCharEntity*>(m_PBaseEntity)->PAutomaton != nullptr)
-            {
-                puppetutils::LoadAutomaton(static_cast<CCharEntity*>(m_PBaseEntity));
-            }
+            puppetutils::LoadAutomaton(static_cast<CCharEntity*>(m_PBaseEntity));
         }
     }
     else if (arg2.is<int>())
@@ -15985,13 +15973,10 @@ void CLuaBaseEntity::setAutomatonFrame(uint8 frameItemID)
         return;
     }
 
-    if (PChar->PAutomaton)
-    {
-        puppetutils::setFrame(PChar, frameItemID - 0x2000);
-        PChar->pushPacket<CCharJobExtraPacket>(PChar, true);
-        PChar->pushPacket<CCharJobExtraPacket>(PChar, false);
-        puppetutils::SaveAutomaton(PChar);
-    }
+    puppetutils::setFrame(PChar, frameItemID - 0x2000);
+    PChar->pushPacket<CCharJobExtraPacket>(PChar, true);
+    PChar->pushPacket<CCharJobExtraPacket>(PChar, false);
+    puppetutils::SaveAutomaton(PChar);
 }
 
 /************************************************************************
@@ -16030,13 +16015,10 @@ void CLuaBaseEntity::setAutomatonHead(uint8 headItemID)
         return;
     }
 
-    if (PChar->PAutomaton)
-    {
-        puppetutils::setHead(PChar, headItemID - 0x2000);
-        PChar->pushPacket<CCharJobExtraPacket>(PChar, true);
-        PChar->pushPacket<CCharJobExtraPacket>(PChar, false);
-        puppetutils::SaveAutomaton(PChar);
-    }
+    puppetutils::setHead(PChar, headItemID - 0x2000);
+    PChar->pushPacket<CCharJobExtraPacket>(PChar, true);
+    PChar->pushPacket<CCharJobExtraPacket>(PChar, false);
+    puppetutils::SaveAutomaton(PChar);
 }
 
 /************************************************************************
@@ -16155,13 +16137,11 @@ void CLuaBaseEntity::setAttachment(uint8 attachmentItemID, uint8 slotID)
         ShowWarning("Invalid entity type calling function (%s).", m_PBaseEntity->getName());
         return;
     }
-    if (PChar->PAutomaton)
-    {
-        puppetutils::setAttachment(PChar, slotID, attachmentItemID - 0x2100);
-        PChar->pushPacket<CCharJobExtraPacket>(PChar, true);
-        PChar->pushPacket<CCharJobExtraPacket>(PChar, false);
-        puppetutils::SaveAutomaton(PChar);
-    }
+
+    puppetutils::setAttachment(PChar, slotID, attachmentItemID - 0x2100);
+    PChar->pushPacket<CCharJobExtraPacket>(PChar, true);
+    PChar->pushPacket<CCharJobExtraPacket>(PChar, false);
+    puppetutils::SaveAutomaton(PChar);
 }
 
 /************************************************************************
@@ -16265,14 +16245,9 @@ bool CLuaBaseEntity::isExceedingElementalCapacity()
 
     auto* PChar = static_cast<CCharEntity*>(m_PBaseEntity);
 
-    if (!PChar->PAutomaton)
-    {
-        return false;
-    }
-
     for (uint8 i = 0; i < 8; ++i)
     {
-        if (PChar->PAutomaton->getElementCapacity(i) > PChar->PAutomaton->getElementMax(i))
+        if (PChar->getAutomatonElementCapacity(i) > PChar->getAutomatonElementMax(i))
         {
             return true;
         }

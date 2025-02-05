@@ -846,7 +846,7 @@ namespace charutils
         BuildingCharTraitsTable(PChar);
 
         // Order matters as this uses merits and JP gifts.
-        puppetutils::LoadAutomaton(PChar); // Take care not to reset petZoningInfo with this call
+        puppetutils::LoadAutomaton(PChar);
 
         PChar->animation = (HP == 0 ? ANIMATION_DEATH : ANIMATION_NONE);
 
@@ -3269,10 +3269,8 @@ namespace charutils
             }
             else if (i >= SKILL_AUTOMATON_MELEE && i <= SKILL_AUTOMATON_MAGIC)
             {
-                if (PChar->PAutomaton)
-                {
-                    maxMainSkill = battleutils::GetMaxSkill(1, PChar->GetMLevel()); // A+ capped down to the Automaton's rating
-                }
+                // TODO: does this need to change if you are /PUP?
+                maxMainSkill = battleutils::GetMaxSkill(1, PChar->GetMLevel()); // A+ capped down to the Automaton's rating
             }
 
             skillBonus += PChar->PMeritPoints->GetMeritValue(skillMerit[meritIndex], PChar);
@@ -5113,10 +5111,7 @@ namespace charutils
                     BuildingCharAbilityTable(PChar);
                     BuildingCharTraitsTable(PChar);
                     BuildingCharWeaponSkills(PChar);
-                    if (PChar->PAutomaton != nullptr && PChar->PAutomaton != PChar->PPet)
-                    {
-                        puppetutils::LoadAutomatonStats(PChar);
-                    }
+                    puppetutils::LoadAutomaton(PChar);
                 }
                 PChar->PLatentEffectContainer->CheckLatentsJobLevel();
 

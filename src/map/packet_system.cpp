@@ -6559,6 +6559,7 @@ void SmallPacket0x100(map_session_data_t* const PSession, CCharEntity* const PCh
 
             // If removing RemoveAllEquipment, please add a charutils::CheckUnarmedItem(PChar) if main hand is empty.
             puppetutils::LoadAutomaton(PChar);
+
             if (mjob == JOB_BLU)
             {
                 blueutils::LoadSetSpells(PChar);
@@ -6588,6 +6589,7 @@ void SmallPacket0x100(map_session_data_t* const PSession, CCharEntity* const PCh
 
             charutils::CheckEquipLogic(PChar, SCRIPT_CHANGESJOB, prevsjob);
             puppetutils::LoadAutomaton(PChar);
+
             if (sjob == JOB_BLU)
             {
                 blueutils::LoadSetSpells(PChar);
@@ -6771,8 +6773,14 @@ void SmallPacket0x102(map_session_data_t* const PSession, CCharEntity* const PCh
             }
         }
     }
-    else if ((PChar->GetMJob() == JOB_PUP || PChar->GetSJob() == JOB_PUP) && job == JOB_PUP && PChar->PAutomaton != nullptr && PChar->PPet == nullptr)
+    else if ((PChar->GetMJob() == JOB_PUP || PChar->GetSJob() == JOB_PUP) && job == JOB_PUP)
     {
+        if (dynamic_cast<CAutomatonEntity*>(PChar->PPet))
+        {
+            // Client already prints an error about not being able to do this without our intervention
+            return;
+        }
+
         uint8 attachment = data.ref<uint8>(0x04);
 
         if (attachment == 0x00)
@@ -6791,12 +6799,12 @@ void SmallPacket0x102(map_session_data_t* const PSession, CCharEntity* const PCh
             if (data.ref<uint8>(0x0C) != 0)
             {
                 puppetutils::setHead(PChar, data.ref<uint8>(0x0C));
-                puppetutils::LoadAutomatonStats(PChar);
+                petutils::CalculateAutomatonStats(PChar, PChar->PPet);
             }
             else if (data.ref<uint8>(0x0D) != 0)
             {
                 puppetutils::setFrame(PChar, data.ref<uint8>(0x0D));
-                puppetutils::LoadAutomatonStats(PChar);
+                petutils::CalculateAutomatonStats(PChar, PChar->PPet);
             }
             else
             {
@@ -6809,6 +6817,7 @@ void SmallPacket0x102(map_session_data_t* const PSession, CCharEntity* const PCh
                 }
             }
         }
+
         PChar->pushPacket<CCharJobExtraPacket>(PChar, true);
         PChar->pushPacket<CCharJobExtraPacket>(PChar, false);
         puppetutils::SaveAutomaton(PChar);
