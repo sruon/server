@@ -173,7 +173,7 @@ local teleportEventsByArea =
 
 zoneObject.onTriggerAreaEnter = function(player, triggerArea)
     if player:getLocalVar('TeleportAntiTrigger') == 0 and player:getAnimation() == 0 then
-        local areaId = triggerArea:GetTriggerAreaID()
+        local areaId = triggerArea:getTriggerAreaID()
 
         if areaId == 1 then
             if

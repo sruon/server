@@ -63,7 +63,7 @@ end
 zoneObject.onTriggerAreaEnter = function(player, triggerArea)
     -- TODO: Gasponia's shouldn't "always" poison you. However, in retail trigger areas constantly reapply themselves without having to re-enter the trigger area.
     -- That doesn't happen currently so I'm leaving it as-is for now.
-    local triggerAreaID = triggerArea:GetTriggerAreaID()
+    local triggerAreaID = triggerArea:getTriggerAreaID()
 
     if triggerAreaID <= 30 then
         local gasponia = GetNPCByID(ID.npc.GASPONIA_OFFSET + triggerAreaID - 1)

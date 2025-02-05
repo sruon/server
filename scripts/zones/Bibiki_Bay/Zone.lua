@@ -32,11 +32,11 @@ zoneObject.onConquestUpdate = function(zone, updatetype, influence, owner, ranki
 end
 
 zoneObject.onTriggerAreaEnter = function(player, triggerArea)
-    xi.manaclipper.aboard(player, triggerArea:GetTriggerAreaID(), true)
+    xi.manaclipper.aboard(player, triggerArea:getTriggerAreaID(), true)
 end
 
 zoneObject.onTriggerAreaLeave = function(player, triggerArea)
-    xi.manaclipper.aboard(player, triggerArea:GetTriggerAreaID(), false)
+    xi.manaclipper.aboard(player, triggerArea:getTriggerAreaID(), false)
 end
 
 zoneObject.onTransportEvent = function(player, transport)

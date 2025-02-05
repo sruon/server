@@ -54,7 +54,7 @@ zoneObject.onTriggerAreaEnter = function(player, triggerArea)
         player:getAnimation() == xi.anim.NONE
     then
         -- prevent 2cs at same time
-        player:startEvent(149 + triggerArea:GetTriggerAreaID())
+        player:startEvent(149 + triggerArea:getTriggerAreaID())
     end
 end
 

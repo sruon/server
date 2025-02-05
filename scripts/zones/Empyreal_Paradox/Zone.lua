@@ -28,7 +28,7 @@ zoneObject.onZoneIn = function(player, prevZone)
 end
 
 zoneObject.onTriggerAreaEnter = function(player, triggerArea)
-    if triggerArea:GetTriggerAreaID() == 1 then
+    if triggerArea:getTriggerAreaID() == 1 then
         player:startEvent(100)
     end
 end

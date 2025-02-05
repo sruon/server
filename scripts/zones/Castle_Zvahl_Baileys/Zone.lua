@@ -58,7 +58,7 @@ local teleportEventsByArea =
 }
 
 zoneObject.onTriggerAreaEnter = function(player, triggerArea)
-    local areaId = triggerArea:GetTriggerAreaID()
+    local areaId = triggerArea:getTriggerAreaID()
 
     if teleportEventsByArea[areaId] then
         player:startEvent(teleportEventsByArea[areaId])

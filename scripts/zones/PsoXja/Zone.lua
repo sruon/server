@@ -63,7 +63,7 @@ zoneObject.afterZoneIn = function(player)
 end
 
 zoneObject.onTriggerAreaEnter = function(player, triggerArea)
-    player:startEvent(19 + triggerArea:GetTriggerAreaID())
+    player:startEvent(19 + triggerArea:getTriggerAreaID())
 end
 
 zoneObject.onTriggerAreaLeave = function(player, triggerArea)

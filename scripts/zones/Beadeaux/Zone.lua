@@ -44,7 +44,7 @@ zoneObject.onConquestUpdate = function(zone, updatetype, influence, owner, ranki
 end
 
 zoneObject.onTriggerAreaEnter = function(player, triggerArea)
-    local triggerAreaID = triggerArea:GetTriggerAreaID()
+    local triggerAreaID = triggerArea:getTriggerAreaID()
     local yPos     = player:getYPos()
     local time     = os.time()
 
@@ -62,7 +62,7 @@ zoneObject.onTriggerAreaEnter = function(player, triggerArea)
     then
         if not player:hasStatusEffect(xi.effect.CURSE_I) then
             if not player:hasStatusEffect(xi.effect.SILENCE) then
-                GetNPCByID(ID.npc.AFFLICTOR_BASE + (triggerArea:GetTriggerAreaID() -1)):entityAnimationPacket('main', player)
+                GetNPCByID(ID.npc.AFFLICTOR_BASE + (triggerArea:getTriggerAreaID() -1)):entityAnimationPacket('main', player)
                 player:setLocalVar('inRegion', time + 11) -- Start timer. We set it here to prevent double message.
                 player:addStatusEffect(xi.effect.CURSE_I, 75, 0, 120)
                 player:messageSpecial(ID.text.FEEL_NUMB)
@@ -93,7 +93,7 @@ zoneObject.onTriggerAreaEnter = function(player, triggerArea)
 end
 
 zoneObject.onTriggerAreaLeave = function(player, triggerArea)
-    local triggerAreaID = triggerArea:GetTriggerAreaID()
+    local triggerAreaID = triggerArea:getTriggerAreaID()
     local yPos      = player:getYPos()
 
     if

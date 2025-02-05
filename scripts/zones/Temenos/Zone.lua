@@ -70,7 +70,7 @@ zoneObject.onZoneIn = function(player, prevZone)
 end
 
 zoneObject.onTriggerAreaEnter = function(player, triggerArea)
-    local triggerAreaID = triggerArea:GetTriggerAreaID()
+    local triggerAreaID = triggerArea:getTriggerAreaID()
     local cs
 
     if GetNPCByID(ID.TEMENOS_NORTHERN_TOWER.npc.PORTAL[1] + (triggerAreaID - 1)):getAnimation() == xi.animation.OPEN_DOOR then

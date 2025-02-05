@@ -75,7 +75,7 @@ zoneObject.onConquestUpdate = function(zone, updatetype, influence, owner, ranki
 end
 
 zoneObject.onTriggerAreaEnter = function(player, triggerArea)
-    local triggerAreaID = triggerArea:GetTriggerAreaID()
+    local triggerAreaID = triggerArea:getTriggerAreaID()
 
     if player:hasStatusEffect(xi.effect.FULL_SPEED_AHEAD) then
         xi.fsa.onTriggerAreaEnter(player, triggerAreaID)

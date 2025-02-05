@@ -59,7 +59,7 @@ end
 quests.flyers_for_regine.onTriggerAreaEnter = function(player, triggerArea)
     if player:getQuestStatus(xi.questLog.SANDORIA, xi.quest.id.sandoria.FLYERS_FOR_REGINE) == xi.questStatus.QUEST_ACCEPTED then
         local zoneId        = player:getZoneID()
-        local triggerAreaId = triggerArea:GetTriggerAreaID()
+        local triggerAreaId = triggerArea:getTriggerAreaID()
         local data          = npcData[zoneId]
 
         if data then

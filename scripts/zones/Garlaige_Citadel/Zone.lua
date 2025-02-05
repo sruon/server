@@ -56,7 +56,7 @@ zoneObject.onConquestUpdate = function(zone, updatetype, influence, owner, ranki
 end
 
 zoneObject.onTriggerAreaEnter = function(player, triggerArea)
-    local triggerAreaID = triggerArea:GetTriggerAreaID()
+    local triggerAreaID = triggerArea:getTriggerAreaID()
     local leverSet = math.floor(triggerAreaID / 9) -- The set of levers player is standing on (0, 1, 2)
     local gateId   = ID.npc.BANISHING_GATE_OFFSET + (9 * leverSet) -- The ID of the related gate
     local gate = GetNPCByID(gateId)
@@ -102,7 +102,7 @@ end
 -- However, if a lever is activated while it's related door is open, the lever will remain activated until the door closes.
 
 zoneObject.onTriggerAreaLeave = function(player, triggerArea)
-    GetNPCByID(ID.npc.BANISHING_GATE_OFFSET + triggerArea:GetTriggerAreaID()):setAnimation(xi.anim.CLOSE_DOOR)
+    GetNPCByID(ID.npc.BANISHING_GATE_OFFSET + triggerArea:getTriggerAreaID()):setAnimation(xi.anim.CLOSE_DOOR)
 end
 
 zoneObject.onEventUpdate = function(player, csid, option, npc)

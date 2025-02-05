@@ -35,7 +35,7 @@ end
 
 zoneObject.onTriggerAreaEnter = function(player, triggerArea)
     if player:getCharVar('BathedInScent') == 1 then  -- pollen scent from touching all 3 Blue Rafflesias in Yuhtunga
-        switch (triggerArea:GetTriggerAreaID()): caseof
+        switch (triggerArea:getTriggerAreaID()): caseof
         {
             [1] = function()  -- Left Pool
                 player:messageSpecial(ID.text.ENTERED_SPRING)
@@ -56,7 +56,7 @@ zoneObject.onTriggerAreaEnter = function(player, triggerArea)
 end
 
 zoneObject.onTriggerAreaLeave = function(player, triggerArea)
-    local triggerAreaID = triggerArea:GetTriggerAreaID()
+    local triggerAreaID = triggerArea:getTriggerAreaID()
     local pooltime = os.time() - player:getLocalVar('POOL_TIME')
 
     if triggerAreaID <= 3 and player:getCharVar('BathedInScent') == 1 then

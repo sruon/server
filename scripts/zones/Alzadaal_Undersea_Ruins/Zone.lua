@@ -58,7 +58,7 @@ end
 -- TODO: Table teleporter events keyed by triggerArea and perform a direct
 -- lookup.
 zoneObject.onTriggerAreaEnter = function(player, triggerArea)
-    switch (triggerArea:GetTriggerAreaID()): caseof
+    switch (triggerArea:getTriggerAreaID()): caseof
     {
         [1] = function(x)
             player:startEvent(204)

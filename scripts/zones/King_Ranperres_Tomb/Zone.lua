@@ -34,7 +34,7 @@ zoneObject.onConquestUpdate = function(zone, updatetype, influence, owner, ranki
 end
 
 zoneObject.onTriggerAreaEnter = function(player, triggerArea)
-    if triggerArea:GetTriggerAreaID() == 1 then
+    if triggerArea:getTriggerAreaID() == 1 then
         player:startCutscene(9)
     end
 end

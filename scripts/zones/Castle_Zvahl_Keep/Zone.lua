@@ -69,7 +69,7 @@ zoneObject.onZoneIn = function(player, prevZone)
 end
 
 zoneObject.onTriggerAreaEnter = function(player, triggerArea)
-    local table      = teleportTable[triggerArea:GetTriggerAreaID()]
+    local table      = teleportTable[triggerArea:getTriggerAreaID()]
     local teleporter = GetNPCByID(table.npc)
 
     player:setLocalVar(string.format('Zvhal_teleporter_%s', table.npc), 1)
@@ -80,7 +80,7 @@ zoneObject.onTriggerAreaEnter = function(player, triggerArea)
 end
 
 zoneObject.onTriggerAreaLeave = function(player, triggerArea)
-    local table = teleportTable[triggerArea:GetTriggerAreaID()]
+    local table = teleportTable[triggerArea:getTriggerAreaID()]
 
     player:setLocalVar(string.format('Zvhal_teleporter_%s', table.npc), 0)
 end
