@@ -9,7 +9,7 @@ local zoneObject = {}
 
 zoneObject.onInitialize = function(zone)
     -- A Chocobo Riding Game finish line
-    zone:registerTriggerArea(1, -489.11, 20, 349.14, 0, 0, 0)
+    zone:registerCylindricalTriggerArea(1, -489.11, 349.14, 20)
 
     UpdateNMSpawnPoint(ID.mob.ROC)
     GetMobByID(ID.mob.ROC):setRespawnTime(math.random(900, 10800))

@@ -10,7 +10,7 @@ zoneObject.onInitialize = function(zone)
     xi.reives.setupZone(zone)
 
     -- Ergon Locus area at F-6
-    zone:registerTriggerArea(1, -447.7, 6.6, 362.799, 0, 0, 0)
+    zone:registerCylindricalTriggerArea(1, -447.7, 362.799, 6.6)
 end
 
 zoneObject.onZoneIn = function(player, prevZone)

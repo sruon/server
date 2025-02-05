@@ -13,7 +13,7 @@ zoneObject.onInitialize = function(zone)
     xi.voidwalker.zoneOnInit(zone)
 
     -- A Chocobo Riding Game finish line
-    zone:registerTriggerArea(1, 218.533, 20, 484.50, 0, 0, 0)
+    zone:registerCylindricalTriggerArea(1, 218.533, 484.50, 20)
 end
 
 zoneObject.onZoneIn = function(player, prevZone)

@@ -28,21 +28,21 @@ end
 
 zoneObject.onInitialize = function(zone)
     -- Blue portals (Regular)
-    zone:registerTriggerArea(1,    1.125, 3, -581.300, 0, 0, 0) -- Entrance to Main Island
-    zone:registerTriggerArea(2,  149.875, 3, -447.275, 0, 0, 0) -- Main Island to Entrance (East)
-    zone:registerTriggerArea(3, -149.875, 3, -447.275, 0, 0, 0) -- Main Island to Entrance (West)
+    zone:registerCylindricalTriggerArea(1, 1.125, -581.300, 3) -- Entrance to Main Island
+    zone:registerCylindricalTriggerArea(2, 149.875, -447.275, 3) -- Main Island to Entrance (East)
+    zone:registerCylindricalTriggerArea(3, -149.875, -447.275, 3) -- Main Island to Entrance (West)
 
     -- Blue portals (Pincerstones)
-    zone:registerTriggerArea(4,   165.880, 3, -350.782, 0, 0, 0) -- Main Island to SE Island
-    zone:registerTriggerArea(5,   267.662, 3, -274.356, 0, 0, 0) -- SE Island to Main Island
-    zone:registerTriggerArea(6,   377.808, 3,   64.638, 0, 0, 0) -- SE Island to NE Island
-    zone:registerTriggerArea(7,   343.641, 3,  169.781, 0, 0, 0) -- NE Island to SE Island
-    zone:registerTriggerArea(8,    55.273, 3,  379.291, 0, 0, 0) -- NE Island to NW Island
-    zone:registerTriggerArea(9,   -55.280, 3,  379.287, 0, 0, 0) -- NW Island to NE Island
-    zone:registerTriggerArea(10, -343.647, 3,  169.776, 0, 0, 0) -- NW Island to SW Island
-    zone:registerTriggerArea(11, -377.806, 3,   64.631, 0, 0, 0) -- SW Island to NW Island
-    zone:registerTriggerArea(12, -267.659, 3, -274.364, 0, 0, 0) -- SW Island to Main Island
-    zone:registerTriggerArea(13, -165.880, 3, -350.782, 0, 0, 0) -- Main Island to SW Island
+    zone:registerCylindricalTriggerArea(4, 165.880, -350.782, 3) -- Main Island to SE Island
+    zone:registerCylindricalTriggerArea(5, 267.662, -274.356, 3) -- SE Island to Main Island
+    zone:registerCylindricalTriggerArea(6, 377.808, 64.638, 3) -- SE Island to NE Island
+    zone:registerCylindricalTriggerArea(7, 343.641, 169.781, 3) -- NE Island to SE Island
+    zone:registerCylindricalTriggerArea(8, 55.273, 379.291, 3) -- NE Island to NW Island
+    zone:registerCylindricalTriggerArea(9, -55.280, 379.287, 3) -- NW Island to NE Island
+    zone:registerCylindricalTriggerArea(10, -343.647, 169.776, 3) -- NW Island to SW Island
+    zone:registerCylindricalTriggerArea(11, -377.806, 64.631, 3) -- SW Island to NW Island
+    zone:registerCylindricalTriggerArea(12, -267.659, -274.364, 3) -- SW Island to Main Island
+    zone:registerCylindricalTriggerArea(13, -165.880, -350.782, 3) -- Main Island to SW Island
 
     -- Red portals (To Laloff)
     zone:registerTriggerArea(14,  186, -43, -405,  190, -39, -401) -- Main Island to Laloff (SE / AA Galka)
@@ -64,10 +64,10 @@ zoneObject.onInitialize = function(zone)
     zone:registerTriggerArea(28, -276, -42, -379, -272, -38, -375) -- Laloff (SW / AA Taru)
 
     -- Yellow portals (To Sky Gods)
-    zone:registerTriggerArea(29,  455.288, 3, -147.932, 0, 0, 0) -- SE Island to Seiryu Island
-    zone:registerTriggerArea(30,  279.603, 3,  384.841, 0, 0, 0) -- NE Island to Genbu Island
-    zone:registerTriggerArea(31, -281.383, 3,  387.291, 0, 0, 0) -- NW Island to Byakko Island
-    zone:registerTriggerArea(32, -455.288, 3, -147.932, 0, 0, 0) -- SW Island to Suzaku Island
+    zone:registerCylindricalTriggerArea(29, 455.288, -147.932, 3) -- SE Island to Seiryu Island
+    zone:registerCylindricalTriggerArea(30, 279.603, 384.841, 3) -- NE Island to Genbu Island
+    zone:registerCylindricalTriggerArea(31, -281.383, 387.291, 3) -- NW Island to Byakko Island
+    zone:registerCylindricalTriggerArea(32, -455.288, -147.932, 3) -- SW Island to Suzaku Island
 
     -- Yellow portals (From Sky Gods)
     zone:registerTriggerArea(33,  543, -73,  -19,  547, -69,  -15) -- Seiryu Island to SE Island

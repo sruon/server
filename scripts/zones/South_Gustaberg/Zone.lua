@@ -8,7 +8,7 @@ local zoneObject = {}
 
 zoneObject.onInitialize = function(zone)
     -- A Chocobo Riding Game finish line
-    zone:registerTriggerArea(1, 580.074, 5, -307.355, 0, 0, 0)
+    zone:registerCylindricalTriggerArea(1, 580.074, -307.355, 5)
 end
 
 zoneObject.onZoneIn = function(player, prevZone)

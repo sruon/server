@@ -10,7 +10,7 @@ local zoneObject = {}
 
 zoneObject.onInitialize = function(zone)
     -- A Chocobo Riding Game finish line
-    zone:registerTriggerArea(1, -485.54, 5, -379.19, 0, 0, 0)
+    zone:registerCylindricalTriggerArea(1, -485.54, -379.19, 5)
 
     xi.conquest.setRegionalConquestOverseers(zone:getRegionID())
 
