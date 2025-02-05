@@ -425,7 +425,7 @@ void CZoneInstance::CheckTriggerAreas()
 
             for (const auto& triggerArea : m_triggerAreaList)
             {
-                auto triggerAreaID = triggerArea->GetTriggerAreaID();
+                const auto triggerAreaID = triggerArea->getTriggerAreaID();
                 if (triggerArea->isPointInside(PChar->loc.p))
                 {
                     if (!PChar->isInTriggerArea(triggerAreaID))

@@ -5,17 +5,17 @@
 local zoneObject = {}
 
 zoneObject.onInitialize = function(zone)
-    zone:registerTriggerArea(1,   420, 4, -339, 0, 0, 0)
-    zone:registerTriggerArea(2,   420, 4, -499, 0, 0, 0)
-    zone:registerTriggerArea(3,   259, 4, -499, 0, 0, 0)
-    zone:registerTriggerArea(4,   259, 4, -339, 0, 0, 0)
-    zone:registerTriggerArea(5,   340, 4,  100, 0, 0, 0)
-    zone:registerTriggerArea(6,   339, 4,  419, 0, 0, 0)
-    zone:registerTriggerArea(7,   339, 4,  500, 0, 0, 0)
-    zone:registerTriggerArea(8,  -379, 4, -620, 0, 0, 0)
-    zone:registerTriggerArea(9,  -300, 4, -461, 0, 0, 0)
-    zone:registerTriggerArea(10, -339, 4,  -99, 0, 0, 0)
-    zone:registerTriggerArea(11, -339, 4,  300, 0, 0, 0)
+    zone:registerCylindricalTriggerArea(1, 420, -339, 4)
+    zone:registerCylindricalTriggerArea(2, 420, -499, 4)
+    zone:registerCylindricalTriggerArea(3, 259, -499, 4)
+    zone:registerCylindricalTriggerArea(4, 259, -339, 4)
+    zone:registerCylindricalTriggerArea(5, 340, 100, 4)
+    zone:registerCylindricalTriggerArea(6, 339, 419, 4)
+    zone:registerCylindricalTriggerArea(7, 339, 500, 4)
+    zone:registerCylindricalTriggerArea(8, -379, -620, 4)
+    zone:registerCylindricalTriggerArea(9, -300, -461, 4)
+    zone:registerCylindricalTriggerArea(10, -339, -99, 4)
+    zone:registerCylindricalTriggerArea(11, -339, 300, 4)
 end
 
 zoneObject.onInstanceZoneIn = function(player, instance)

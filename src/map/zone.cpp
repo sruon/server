@@ -128,11 +128,6 @@ CZone::~CZone()
         destroy(lineOfSight);
     }
 
-    // Manually delete and clear m_triggerAreaList
-    for (auto triggerArea : m_triggerAreaList)
-    {
-        destroy(triggerArea);
-    }
     m_triggerAreaList.clear();
 
     for (auto zoneLine : m_zoneLineList)
@@ -529,11 +524,11 @@ void CZone::InsertTRUST(CBaseEntity* PTrust)
  *                                                                       *
  ************************************************************************/
 
-void CZone::InsertTriggerArea(CTriggerArea* triggerArea)
+void CZone::InsertTriggerArea(std::unique_ptr<ITriggerArea>&& triggerArea)
 {
     if (triggerArea != nullptr)
     {
-        m_triggerAreaList.emplace_back(triggerArea);
+        m_triggerAreaList.emplace_back(std::move(triggerArea));
     }
 }
 
@@ -1140,9 +1135,10 @@ void CZone::CharZoneIn(CCharEntity* PChar)
 void CZone::CharZoneOut(CCharEntity* PChar)
 {
     TracyZoneScoped;
+
     for (const auto& triggerArea : m_triggerAreaList)
     {
-        if (PChar->isInTriggerArea(triggerArea->GetTriggerAreaID()))
+        if (PChar->isInTriggerArea(triggerArea->getTriggerAreaID()))
         {
             luautils::OnTriggerAreaLeave(PChar, triggerArea);
             break;
@@ -1230,7 +1226,7 @@ void CZone::CheckTriggerAreas()
 
         for (const auto& triggerArea : m_triggerAreaList)
         {
-            auto triggerAreaID = triggerArea->GetTriggerAreaID();
+            const auto triggerAreaID = triggerArea->getTriggerAreaID();
             if (triggerArea->isPointInside(PChar->loc.p))
             {
                 if (!PChar->isInTriggerArea(triggerAreaID))
