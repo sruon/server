@@ -1,25 +1,25 @@
 ---@meta
 
 -- luacheck: ignore 241
----@class CTriggerArea
-local CTriggerArea = {}
+---@class ITriggerArea
+local ITriggerArea = {}
 
 ---@nodiscard
 ---@return integer
-function CTriggerArea:getTriggerAreaID()
+function ITriggerArea:getTriggerAreaID()
 end
 
 ---@nodiscard
 ---@return integer
-function CTriggerArea:getCount()
+function ITriggerArea:getCount()
 end
 
 ---@param count integer
 ---@return integer
-function CTriggerArea:addCount(count)
+function ITriggerArea:addCount(count)
 end
 
 ---@param count integer
 ---@return integer
-function CTriggerArea:delCount(count)
+function ITriggerArea:delCount(count)
 end

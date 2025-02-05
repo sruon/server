@@ -84,7 +84,7 @@ class CItem;
 class CInstance;
 class CMobSkill;
 class CPetSkill;
-class CTriggerArea;
+class ITriggerArea;
 class CStatusEffect;
 class CTradeContainer;
 class CItemPuppet;

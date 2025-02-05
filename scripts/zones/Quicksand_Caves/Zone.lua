@@ -7,7 +7,7 @@ local ID = zones[xi.zone.QUICKSAND_CAVES]
 local zoneObject = {}
 
 zoneObject.onInitialize = function(zone)
-    -- Weight Door System (RegionID, X, Radius, Z)
+    -- Weight Door System
     zone:registerCylindricalTriggerArea(1, -15, -60, 5)
     zone:registerCylindricalTriggerArea(3, 15, -180, 5)
     zone:registerCylindricalTriggerArea(5, -580, -420, 5)

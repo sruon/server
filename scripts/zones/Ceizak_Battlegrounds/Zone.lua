@@ -9,6 +9,7 @@ local zoneObject = {}
 zoneObject.onInitialize = function(zone)
     -- Ergon Locus area at K-10
     zone:registerCylindricalTriggerArea(1, 357.819, -250.201, 11)
+
     -- Ergon Locus area at I-8
     zone:registerCylindricalTriggerArea(2, 87.2, 72.9, 8)
 
