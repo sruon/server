@@ -5,7 +5,7 @@
 local zoneObject = {}
 
 zoneObject.onInitialize = function(zone)
-    zone:registerTriggerArea(1, 375, -10, 259, 460, 10, 420)
+    zone:registerCuboidTriggerArea(1, 375, -10, 259, 460, 10, 420)
 end
 
 zoneObject.onZoneIn = function(player, prevZone)

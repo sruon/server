@@ -5,7 +5,7 @@
 local zoneObject = {}
 
 zoneObject.onInitialize = function(zone)
-    zone:registerTriggerArea(1, 305.5, -1, -414.5, 374.5, 1, -345.5) -- Special Fomor room
+    zone:registerCuboidTriggerArea(1, 305.5, -1, -414.5, 374.5, 1, -345.5) -- Special Fomor room
     zone:registerCylindricalTriggerArea(2, 340, -300, 4)
     zone:registerCylindricalTriggerArea(3, 260, 380, 4)
     zone:registerCylindricalTriggerArea(4, 300, 620, 4)

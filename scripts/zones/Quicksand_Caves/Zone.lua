@@ -23,11 +23,11 @@ zoneObject.onInitialize = function(zone)
     zone:registerCylindricalTriggerArea(25, -400, 670, 5)
 
     -- Hole in the Sand
-    zone:registerTriggerArea(30, 495, -9, -817, 497, -7, -815) -- E-11 (Map 2)
-    zone:registerTriggerArea(31, 815, -9, -744, 817, -7, -742) -- M-9 (Map 2)
-    zone:registerTriggerArea(32, 215, 6, -17, 217, 8, -15)     -- K-6 (Map 3)
-    zone:registerTriggerArea(33, -297, 6, 415, -295, 8, 417)   -- E-7 (Map 6)
-    zone:registerTriggerArea(34, -137, 6, -177, -135, 8, -175) -- G-7 (Map 8)
+    zone:registerCuboidTriggerArea(30, 495, -9, -817, 497, -7, -815) -- E-11 (Map 2)
+    zone:registerCuboidTriggerArea(31, 815, -9, -744, 817, -7, -742) -- M-9 (Map 2)
+    zone:registerCuboidTriggerArea(32, 215, 6, -17, 217, 8, -15)     -- K-6 (Map 3)
+    zone:registerCuboidTriggerArea(33, -297, 6, 415, -295, 8, 417)   -- E-7 (Map 6)
+    zone:registerCuboidTriggerArea(34, -137, 6, -177, -135, 8, -175) -- G-7 (Map 8)
 
     xi.treasure.initZone(zone)
 
