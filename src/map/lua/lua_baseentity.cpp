@@ -2800,7 +2800,7 @@ bool CLuaBaseEntity::isInMogHouse()
  *  Function: isPlayerInTriggerArea
  *  Purpose : Returns a boolean indiciating if the player is within the provided TriggerAreaID
  *  Example : local isInTriggerArea = player:isPlayerInTriggerArea(1)
- *  Notes   : This refers to trigger areas added via the registerTriggerArea function
+ *  Notes   : This refers to trigger areas added via the registerXTriggerArea functions
  ************************************************************************/
 bool CLuaBaseEntity::isPlayerInTriggerArea(uint32 TriggerAreaID)
 {
@@ -2818,7 +2818,7 @@ bool CLuaBaseEntity::isPlayerInTriggerArea(uint32 TriggerAreaID)
  *  Function: onPlayerTriggerAreaEnter
  *  Purpose : Returns a boolean indiciating if the player is within the provided TriggerAreaID
  *  Example : player:onPlayerTriggerAreaEnter(1)
- *  Notes   : This refers to trigger areas added via the registerTriggerArea function
+ *  Notes   : This refers to trigger areas added via the registerXTriggerArea functions
  ************************************************************************/
 void CLuaBaseEntity::onPlayerTriggerAreaEnter(uint32 TriggerAreaID)
 {
@@ -2836,7 +2836,7 @@ void CLuaBaseEntity::onPlayerTriggerAreaEnter(uint32 TriggerAreaID)
  *  Function: onPlayerTriggerAreaLeave
  *  Purpose : Returns a boolean indiciating if the player is within the provided TriggerAreaID
  *  Example : player:onPlayerTriggerAreaLeave(1)
- *  Notes   : This refers to trigger areas added via the registerTriggerArea function
+ *  Notes   : This refers to trigger areas added via the registerXTriggerArea functions
  ************************************************************************/
 void CLuaBaseEntity::onPlayerTriggerAreaLeave(uint32 TriggerAreaID)
 {
@@ -2854,7 +2854,7 @@ void CLuaBaseEntity::onPlayerTriggerAreaLeave(uint32 TriggerAreaID)
  *  Function: clearPlayerTriggerAreas
  *  Purpose : Returns a boolean indiciating if the player is within the provided TriggerAreaID
  *  Example : player:clearPlayerTriggerAreas(1)
- *  Notes   : This refers to trigger areas added via the registerTriggerArea function
+ *  Notes   : This refers to trigger areas added via the registerXTriggerArea functions
  ************************************************************************/
 void CLuaBaseEntity::clearPlayerTriggerAreas()
 {

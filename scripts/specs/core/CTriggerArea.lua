@@ -6,20 +6,20 @@ local CTriggerArea = {}
 
 ---@nodiscard
 ---@return integer
-function CTriggerArea:GetTriggerAreaID()
+function CTriggerArea:getTriggerAreaID()
 end
 
 ---@nodiscard
 ---@return integer
-function CTriggerArea:GetCount()
+function CTriggerArea:getCount()
 end
 
 ---@param count integer
 ---@return integer
-function CTriggerArea:AddCount(count)
+function CTriggerArea:addCount(count)
 end
 
 ---@param count integer
 ---@return integer
-function CTriggerArea:DelCount(count)
+function CTriggerArea:delCount(count)
 end
