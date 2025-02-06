@@ -51,6 +51,7 @@ zones[xi.zone.BHAFLAU_THICKETS] =
         LIVIDROOT_AMOOSHAH = GetFirstID('Lividroot_Amooshah'),
         MAHISHASURA        = GetFirstID('Mahishasura'),
         NIS_PUK            = GetFirstID('Nis_Puk'),
+        PLAGUE_CHIGOE      = GetFirstID('Plague_Chigoe'),
     },
     npc =
     {
