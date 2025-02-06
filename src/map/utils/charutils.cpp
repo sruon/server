@@ -3192,6 +3192,8 @@ namespace charutils
 
         uint8 meritIndex = 0;
 
+        bool automatonSkillUpdated = false;
+
         // Iterate over skill IDs (offsetting by 79 to get modifier ID)
         for (int32 i = 1; i < 48; ++i)
         {
@@ -3348,6 +3350,32 @@ namespace charutils
                 }
                 PChar->WorkingSkills.skill[i] = static_cast<uint16>(skillBonus) | 0x8000; // New value AND Blue text.
             }
+
+            // Automaton skills are special (especially with magic...)
+            if (i >= SKILL_AUTOMATON_MELEE && i <= SKILL_AUTOMATON_MAGIC)
+            {
+                if (auto PAutomaton = dynamic_cast<CAutomatonEntity*>(PChar->PPet))
+                {
+                    switch (i)
+                    {
+                        case SKILL_AUTOMATON_MAGIC:
+                            PAutomaton->WorkingSkills.skill[i] = PChar->WorkingSkills.skill[i];
+
+                            PAutomaton->WorkingSkills.skill[SKILL_HEALING_MAGIC]    = PChar->WorkingSkills.skill[i];
+                            PAutomaton->WorkingSkills.skill[SKILL_ENHANCING_MAGIC]  = PChar->WorkingSkills.skill[i];
+                            PAutomaton->WorkingSkills.skill[SKILL_ENFEEBLING_MAGIC] = PChar->WorkingSkills.skill[i];
+                            PAutomaton->WorkingSkills.skill[SKILL_ELEMENTAL_MAGIC]  = PChar->WorkingSkills.skill[i];
+                            PAutomaton->WorkingSkills.skill[SKILL_DARK_MAGIC]       = PChar->WorkingSkills.skill[i];
+                            break;
+
+                        default:
+                            PAutomaton->WorkingSkills.skill[i] = PChar->WorkingSkills.skill[i];
+                            break;
+                    }
+
+                    automatonSkillUpdated = true;
+                }
+            }
         }
 
         for (int32 i = 48; i < 58; ++i)
@@ -3363,6 +3391,12 @@ namespace charutils
         for (int32 i = 58; i < 64; ++i)
         {
             PChar->WorkingSkills.skill[i] = 0xFFFF;
+        }
+
+        // Update skills menu
+        if (automatonSkillUpdated)
+        {
+            PChar->pushPacket<CCharJobExtraPacket>(PChar, PChar->GetMJob() == JOB_PUP);
         }
     }
 
