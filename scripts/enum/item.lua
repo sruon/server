@@ -5709,6 +5709,7 @@ xi.item =
     EMPRESS_BAND                        = 15762,
     EMPEROR_BAND                        = 15763,
     OLDUUM_RING                         = 15769,
+    RANDOM_RING                         = 15770,
     IMPERIAL_RING                       = 15773,
     STORM_RING                          = 15774,
     UNFETTERED_RING                     = 15775,
