@@ -56,7 +56,8 @@ zones[xi.zone.MOUNT_ZHAYOLM] =
     },
     npc =
     {
-        MINING = GetTableOfIDs('Mining_Point'),
+        HOOFPRINT = GetFirstID('Warhorse_Hoofprint'),
+        MINING    = GetTableOfIDs('Mining_Point'),
     },
 }
 
