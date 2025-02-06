@@ -14598,7 +14598,8 @@ uint16 CLuaBaseEntity::getWeaponDmg()
 
     // TODO: Determine if trusts and player fellows use mob or player damage formula
     if (m_PBaseEntity->objtype == TYPE_MOB ||
-        m_PBaseEntity->objtype == TYPE_PET)
+        (m_PBaseEntity->objtype == TYPE_PET &&
+         static_cast<CPetEntity*>(m_PBaseEntity)->getPetType() != PET_TYPE::AUTOMATON))
     {
         auto* PMob   = static_cast<CMobEntity*>(m_PBaseEntity);
         weaponDamage = mobutils::GetWeaponDamage(PMob, SLOT_MAIN);
