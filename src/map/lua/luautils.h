@@ -158,14 +158,13 @@ namespace luautils
     auto GetAbility(uint16 id) -> std::optional<CLuaAbility>;
     auto GetSpell(uint16 id) -> std::optional<CLuaSpell>;
 
-    auto   SpawnMob(uint32 mobid, sol::object const& arg2, sol::object const& arg3) -> std::optional<CLuaBaseEntity>; // Spawn Mob By Mob Id - NMs, BCNM...
-    void   DespawnMob(uint32 mobid, sol::object const& arg2);                                                         // Despawn (Fade Out) Mob By Id
-    auto   GetPlayerByName(std::string const& name) -> std::optional<CLuaBaseEntity>;
-    auto   GetPlayerByID(uint32 pid) -> std::optional<CLuaBaseEntity>;
-    bool   PlayerHasValidSession(uint32 playerId);
-    uint32 GetPlayerIDByName(std::string const& name);
-    void   SendToJailOffline(uint32 playerId, int8 cellId, float posX, float posY, float posZ, uint8 rot);
-    void   DrawIn(CLuaBaseEntity* PLuaBaseEntity, sol::table const& table, float offset, float degrees);
+    auto SpawnMob(uint32 mobid, sol::object const& arg2, sol::object const& arg3) -> std::optional<CLuaBaseEntity>; // Spawn Mob By Mob Id - NMs, BCNM...
+    void DespawnMob(uint32 mobid, sol::object const& arg2);                                                         // Despawn (Fade Out) Mob By Id
+    auto GetPlayerByName(std::string const& name) -> std::optional<CLuaBaseEntity>;
+    auto GetPlayerByID(uint32 pid) -> std::optional<CLuaBaseEntity>;
+    bool PlayerHasValidSession(uint32 playerId);
+    void SendToJailOffline(uint32 playerId, int8 cellId, float posX, float posY, float posZ, uint8 rot);
+    void DrawIn(CLuaBaseEntity* PLuaBaseEntity, sol::table const& table, float offset, float degrees);
 
     uint32 GetSystemTime();
     uint32 JstMidnight();
