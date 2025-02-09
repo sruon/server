@@ -133,7 +133,7 @@ local diggingLayer =
     BORE     = 4, -- Special "Raised chocobo only" layer. Requires the mounted chocobo to have a concrete skill. It's an independent AND additional item dig.
 }
 
-local digInfo =
+xi.chocoboDig.digInfo =
 {
     [xi.zone.CARPENTERS_LANDING] = -- 2
     {
@@ -2156,7 +2156,7 @@ local function calculateSkillUp(player)
 end
 
 local function  handleDiggingLayer(player, zoneId, currentLayer)
-    local digTable = digInfo[zoneId][currentLayer]
+    local digTable = xi.chocoboDig.digInfo[zoneId][currentLayer]
 
     -- Early return.
     if
