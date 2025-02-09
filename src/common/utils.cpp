@@ -37,25 +37,6 @@
 #include <intrin.h>
 #endif
 
-//--------------------------------------------------
-// Return numerical value of a switch configuration
-// on/off, english, fran<E7>ais, deutsch, espa<F1>ol
-//--------------------------------------------------
-int config_switch(const char* str)
-{
-    if (strcmpi(str, "true") == 0 || strcmpi(str, "on") == 0 || strcmpi(str, "yes") == 0 || strcmpi(str, "oui") == 0 || strcmpi(str, "ja") == 0 ||
-        strcmpi(str, "si") == 0)
-    {
-        return 1;
-    }
-    if (strcmpi(str, "false") == 0 || strcmpi(str, "off") == 0 || strcmpi(str, "no") == 0 || strcmpi(str, "non") == 0 || strcmpi(str, "nein") == 0)
-    {
-        return 0;
-    }
-
-    return (int)strtol(str, nullptr, 0);
-}
-
 int32 checksum(unsigned char* buf, uint32 buflen, char checkhash[16])
 {
     unsigned char hash[16];
@@ -228,7 +209,7 @@ position_t nearPosition(const position_t& A, float offset, float radian)
 
 /************************************************************************
  *                                                                       *
- *  Methods for working with bit arrays.                                                *
+ *  Methods for working with bit arrays.                                 *
  *                                                                       *
  ************************************************************************/
 

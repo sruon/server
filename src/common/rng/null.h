@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2023 LandSandBoat Dev Teams
+  Copyright (c) 2025 LandSandBoat Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -30,23 +30,45 @@
 
 extern size_t sysrandom(void* dst, size_t dstlen);
 
+class NullRandomEngine
+{
+public:
+    using result_type = uint64_t;
+
+    static constexpr result_type min()
+    {
+        return 0;
+    }
+
+    static constexpr result_type max()
+    {
+        return std::numeric_limits<result_type>::max();
+    }
+
+    result_type operator()()
+    {
+        return (min() + max()) / 2;
+    }
+
+    void seed(result_type)
+    {
+    }
+};
+
 class xirand
 {
 public:
-    static std::mt19937_64& rng()
+    static NullRandomEngine& rng()
     {
-        static thread_local std::mt19937_64 e{};
+        static thread_local NullRandomEngine e{};
         return e;
     }
 
     static void seed()
     {
-        ShowInfo("Seeding Mersenne Twister 64 bit RNG");
+        ShowInfo("Seeding Null Random Engine (does nothing)");
 
-        uint64_t seed;
-        sysrandom(&seed, sizeof(seed));
-
-        rng().seed(seed);
+        rng().seed(42);
     }
 
     //
