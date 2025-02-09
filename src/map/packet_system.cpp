@@ -2197,16 +2197,12 @@ void SmallPacket0x03D(map_session_data_t* const PSession, CCharEntity* const PCh
         PChar->pushPacket<CBlacklistEditResponsePacket>(0, "", 0x02);
     };
 
-    // Attempt to locate the character by their name
-    const auto rset = db::preparedStmt("SELECT charid, accid FROM chars WHERE charname = ? LIMIT 1", name);
-    if (!rset || rset->rowsCount() != 1 || !rset->next())
+    const auto [charid, accid] = charutils::getCharIdAndAccountIdFromName(name);
+    if (!charid)
     {
         sendFailPacket();
         return;
     }
-
-    uint32 charid = rset->get<uint32>("charid");
-    uint32 accid  = rset->get<uint32>("accid");
 
     // User is trying to add someone to their blacklist
     if (cmd == 0x00)
@@ -3556,12 +3552,10 @@ void SmallPacket0x071(map_session_data_t* const PSession, CCharEntity* const PCh
                 {
                     const auto victimName = escapeString(asStringFromUntrustedSource(data[0x0C], 15));
 
-                    int32 ret = _sql->Query("SELECT charid FROM chars WHERE charname = '%s'", victimName);
-                    if (ret != SQL_ERROR && _sql->NumRows() == 1 && _sql->NextRow() == SQL_SUCCESS)
+                    if (const auto victimId = charutils::getCharIdFromName(victimName))
                     {
-                        uint32 id = _sql->GetUIntData(0);
-                        if (_sql->Query("DELETE FROM accounts_parties WHERE partyid = %u AND charid = %u", PChar->id, id) == SQL_SUCCESS &&
-                            _sql->AffectedRows())
+                        const auto [rset, affectedRows] = db::preparedStmtWithAffectedRows("DELETE FROM accounts_parties WHERE partyid = ? AND charid = ?", PChar->id, victimId);
+                        if (rset && affectedRows)
                         {
                             ShowDebug("%s has removed %s from party", PChar->getName(), victimName);
 
@@ -3578,7 +3572,7 @@ void SmallPacket0x071(map_session_data_t* const PSession, CCharEntity* const PCh
                             }
 
                             // Notify the player they were just kicked -- they are no longer in the DB and party/alliance reloads won't notify them.
-                            ref<uint32>(reloadData, 0) = id;
+                            ref<uint32>(reloadData, 0) = victimId;
                             message::send(MSG_PLAYER_KICK, reloadData, sizeof(reloadData), nullptr);
                         }
                     }
@@ -3654,22 +3648,21 @@ void SmallPacket0x071(map_session_data_t* const PSession, CCharEntity* const PCh
                 if (!PVictim && PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty)
                 {
                     const auto victimName = escapeString(asStringFromUntrustedSource(data[0x0C], 15));
+                    uint32     allianceID = PChar->PParty->m_PAlliance->m_AllianceID;
 
-                    uint32 allianceID = PChar->PParty->m_PAlliance->m_AllianceID;
-
-                    int32 ret = _sql->Query("SELECT charid FROM chars WHERE charname = '%s'", victimName);
-                    if (ret != SQL_ERROR && _sql->NumRows() == 1 && _sql->NextRow() == SQL_SUCCESS)
+                    if (const auto victimId = charutils::getCharIdFromName(victimName))
                     {
-                        uint32 charid = _sql->GetUIntData(0);
-                        ret           = _sql->Query(
-                            "SELECT partyid FROM accounts_parties WHERE charid = %u AND allianceid = %u AND partyflag & %d",
-                            charid, PChar->PParty->m_PAlliance->m_AllianceID, PARTY_LEADER | PARTY_SECOND | PARTY_THIRD);
-                        if (ret != SQL_ERROR && _sql->NumRows() == 1 && _sql->NextRow() == SQL_SUCCESS)
+                        const auto rset = db::preparedStmt(
+                            "SELECT partyid FROM accounts_parties WHERE charid = ? AND allianceid = ? AND partyflag & ?",
+                            victimId, PChar->PParty->m_PAlliance->m_AllianceID, PARTY_LEADER | PARTY_SECOND | PARTY_THIRD);
+
+                        FOR_DB_SINGLE_RESULT(rset)
                         {
-                            uint32 partyid = _sql->GetUIntData(0);
-                            if (_sql->Query("UPDATE accounts_parties SET allianceid = 0, partyflag = partyflag & ~%d WHERE partyid = %u",
-                                            PARTY_SECOND | PARTY_THIRD, partyid) == SQL_SUCCESS &&
-                                _sql->AffectedRows())
+                            uint32 partyid = rset->get<uint32>("partyid");
+
+                            const auto [rset2, affectedRows] = db::preparedStmtWithAffectedRows("UPDATE accounts_parties SET allianceid = 0, partyflag = partyflag & ~? WHERE partyid = ?",
+                                                                                                PARTY_SECOND | PARTY_THIRD, partyid);
+                            if (rset2 && affectedRows)
                             {
                                 ShowDebug("%s has removed %s party from alliance", PChar->getName(), victimName);
 

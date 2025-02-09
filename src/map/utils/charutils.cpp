@@ -20,6 +20,7 @@
 */
 
 #include "common/logging.h"
+#include "common/macros.h"
 #include "common/socket.h"
 #include "common/sql.h"
 #include "common/timer.h"
@@ -7163,16 +7164,43 @@ namespace charutils
         return spawnlist->find(entity->id) != spawnlist->end();
     }
 
-    uint32 getCharIdFromName(std::string const& name)
+    uint32 getCharIdFromName(const std::string& name)
     {
         TracyZoneScoped;
 
-        auto ret = _sql->Query("SELECT charid FROM chars WHERE charname = '%s' LIMIT 1", name.c_str());
-        if (ret != SQL_ERROR && _sql->NumRows() != 0 && _sql->NextRow() == SQL_SUCCESS)
+        const auto rset = db::preparedStmt("SELECT charid FROM chars WHERE charname = ? LIMIT 1", name);
+        FOR_DB_SINGLE_RESULT(rset)
         {
-            return _sql->GetUIntData(0);
+            return rset->get<uint32>("charid");
         }
+
         return 0;
+    }
+
+    uint32 getAccountIdFromName(const std::string& name)
+    {
+        TracyZoneScoped;
+
+        const auto rset = db::preparedStmt("SELECT accid FROM chars WHERE charname = ? LIMIT 1", name);
+        FOR_DB_SINGLE_RESULT(rset)
+        {
+            return rset->get<uint32>("accid");
+        }
+
+        return 0;
+    }
+
+    auto getCharIdAndAccountIdFromName(const std::string& name) -> std::pair<uint32, uint32>
+    {
+        TracyZoneScoped;
+
+        const auto rset = db::preparedStmt("SELECT charid, accid FROM chars WHERE charname = ? LIMIT 1", name);
+        FOR_DB_SINGLE_RESULT(rset)
+        {
+            return { rset->get<uint32>("charid"), rset->get<uint32>("accid") };
+        }
+
+        return { 0, 0 };
     }
 
     void forceSynthCritFail(const std::string& sourceFunction, CCharEntity* PChar)

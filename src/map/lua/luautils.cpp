@@ -180,7 +180,7 @@ namespace luautils
         lua.set_function("GetPlayerByName", &luautils::GetPlayerByName);
         lua.set_function("GetPlayerByID", &luautils::GetPlayerByID);
         lua.set_function("PlayerHasValidSession", &luautils::PlayerHasValidSession);
-        lua.set_function("GetPlayerIDByName", &luautils::GetPlayerIDByName);
+        lua.set_function("GetPlayerIDByName", &charutils::getCharIdFromName);
         lua.set_function("SendToJailOffline", &luautils::SendToJailOffline);
         lua.set_function("DrawIn", &luautils::DrawIn);
         lua.set_function("GetSystemTime", &luautils::GetSystemTime);
@@ -1730,27 +1730,6 @@ namespace luautils
         }
 
         return false;
-    }
-
-    /************************************************************************
-     *                                                                       *
-     *  Gets a player ID from any zone, regardless of online status          *
-     *                                                                       *
-     ************************************************************************/
-
-    uint32 GetPlayerIDByName(std::string const& playerName)
-    {
-        TracyZoneScoped;
-
-        const auto rset = db::preparedStmt("SELECT charid FROM chars WHERE charname = ? LIMIT 1", playerName);
-        if (rset && rset->next())
-        {
-            return rset->get<uint32>("charid");
-        }
-
-        ShowWarning("GetPlayerIDByName: Player %s not found", playerName.c_str());
-
-        return 0;
     }
 
     /************************************************************************
@@ -5443,7 +5422,7 @@ namespace luautils
 
     SendToDBoxReturnCode SendItemToDeliveryBox(const std::string& playerName, uint16 itemId, uint32 quantity, const std::string& senderText)
     {
-        uint32 playerID = GetPlayerIDByName(playerName);
+        uint32 playerID = charutils::getCharIdFromName(playerName);
         if (playerID == 0)
         {
             return SendToDBoxReturnCode::PLAYER_NOT_FOUND;
@@ -5472,44 +5451,29 @@ namespace luautils
         // limit the quantity to the stack size of the item
         quantity = std::clamp<uint32>(quantity, 1, stackSize);
 
-        bool isAutoCommitOn = _sql->GetAutoCommit();
-
-        if (_sql->SetAutoCommit(false) && _sql->TransactionStart())
+        // clang-format off
+        const bool success = db::transaction([&]()
         {
-            // NOTE: This will trigger SQL trigger: delivery_box_insert
-            const char* Query = "INSERT INTO delivery_box (charid, box, itemid, quantity, senderid, sender) VALUES ("
-                                "%u, "     // Player ID
-                                "1, "      // Box ID == 1
-                                "%u, "     // Item ID
-                                "%u, "     // Quantity
-                                "%u, "     // Sender ID ( =Player ID )
-                                "'%s'); "; // Sender Text
-            int32 ret = _sql->Query(Query, playerID, itemId, quantity, playerID, senderText);
+            const auto rset = db::preparedStmt("INSERT INTO delivery_box (charid, box, itemid, quantity, senderid, sender) VALUES (?, ?, ?, ?, ?, ?)",
+                                               playerID, 1, itemId, quantity, playerID, senderText);
+            if (!rset)
+            {
+                throw std::runtime_error(fmt::format("Failed to insert item into delivery box for player: {} ({}), itemId: {}", playerName, playerID, itemId));
+            }
+        });
+        if (!success)
+        {
+            return SendToDBoxReturnCode::QUERY_ERROR;
+        }
+        // clang-format on
 
-            if (ret == SQL_ERROR)
-            {
-                _sql->TransactionRollback();
-                _sql->SetAutoCommit(isAutoCommitOn);
-                return SendToDBoxReturnCode::QUERY_ERROR;
-            }
-            else
-            {
-                _sql->TransactionCommit();
-                _sql->SetAutoCommit(isAutoCommitOn);
-            }
-
-            if (quantityMoreThanStackSize)
-            {
-                return SendToDBoxReturnCode::SUCCESS_LIMITED_TO_STACK_SIZE;
-            }
-            else
-            {
-                return SendToDBoxReturnCode::SUCCESS;
-            }
+        if (quantityMoreThanStackSize)
+        {
+            return SendToDBoxReturnCode::SUCCESS_LIMITED_TO_STACK_SIZE;
         }
         else
         {
-            return SendToDBoxReturnCode::QUERY_ERROR;
+            return SendToDBoxReturnCode::SUCCESS;
         }
     }
 

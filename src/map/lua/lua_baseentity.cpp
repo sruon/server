@@ -3653,53 +3653,37 @@ void CLuaBaseEntity::setHomePoint()
 
 void CLuaBaseEntity::resetPlayer(const char* charName)
 {
-    uint32 id = 0;
-
-    // char will not be logged in so get the id manually
-    char escapedCharName[16 * 2 + 1];
-    _sql->EscapeString(escapedCharName, charName);
-    const char* Query = "SELECT charid FROM chars WHERE charname = '%s'";
-    int32       ret   = _sql->Query(Query, escapedCharName);
-
-    if (ret != SQL_ERROR && _sql->NumRows() != 0 && _sql->NextRow() == SQL_SUCCESS)
-    {
-        id = _sql->GetIntData(0);
-    }
-
-    // could not get player from database
+    uint32 id = charutils::getCharIdFromName(charName);
     if (id == 0)
     {
-        ShowDebug("Could not get the character from database.");
+        ShowDebug("Could not get the character %s from database", charName);
         return;
     }
 
-    // delete the account session
-    Query = "DELETE FROM accounts_sessions WHERE charid = %u";
-    _sql->Query(Query, id);
+    // Delete the account session
+    db::preparedStmt("DELETE FROM accounts_sessions WHERE charid = ?", id);
 
-    // send the player to lower jeuno
-    Query = "UPDATE chars "
-            "SET "
-            "pos_zone = %u,"
-            "pos_prevzone = %u,"
-            "pos_rot = %u,"
-            "pos_x = %.3f,"
-            "pos_y = %.3f,"
-            "pos_z = %.3f,"
-            "boundary = %u,"
-            "moghouse = %u "
-            "WHERE charid = %u";
-
-    _sql->Query(Query,
-                245,     // lower jeuno
-                122,     // prev zone
-                86,      // rotation
-                33.464f, // x
-                -5.000f, // y
-                69.162f, // z
-                0,       // boundary,
-                0,       // moghouse,
-                id);
+    // Send the player to Lower Jeuno
+    db::preparedStmt("UPDATE chars "
+                     "SET "
+                     "pos_zone = ?, "
+                     "pos_prevzone = ?, "
+                     "pos_rot = ?, "
+                     "pos_x = ?, "
+                     "pos_y = ?, "
+                     "pos_z = ?, "
+                     "boundary = ?, "
+                     "moghouse = ? "
+                     "WHERE charid = ?",
+                     ZONE_LOWER_JEUNO, // pos_zone
+                     ZONE_LOWER_JEUNO, // prev zone
+                     86,               // rotation
+                     33.464f,          // x
+                     -5.000f,          // y
+                     69.162f,          // z
+                     0,                // boundary,
+                     0,                // moghouse,
+                     id);
 
     ShowDebug("Player reset was successful.");
 }
@@ -3750,19 +3734,14 @@ bool CLuaBaseEntity::gotoPlayer(std::string const& playerName)
 {
     bool found = false;
 
-    char escapedCharName[16 * 2 + 1];
-    _sql->EscapeString(escapedCharName, playerName.c_str());
-
-    const char* fmtQuery = "SELECT charid FROM chars WHERE charname = '%s'";
-    int32       ret      = _sql->Query(fmtQuery, escapedCharName);
-
-    if (ret != SQL_ERROR && _sql->NumRows() != 0 && _sql->NextRow() == SQL_SUCCESS)
+    uint32 charid = charutils::getCharIdFromName(playerName);
+    if (charid != 0)
     {
         char buf[30];
         std::memset(&buf[0], 0, sizeof(buf));
 
-        ref<uint32>(&buf, 0) = _sql->GetUIntData(0); // target char
-        ref<uint32>(&buf, 4) = m_PBaseEntity->id;    // warping to target char, their server will send us a zoning message with their pos
+        ref<uint32>(&buf, 0) = charid;            // target char id
+        ref<uint32>(&buf, 4) = m_PBaseEntity->id; // warping to target char, their server will send us a zoning message with their pos
 
         message::send(MSG_SEND_TO_ZONE, &buf[0], sizeof(buf), nullptr);
         found = true;
@@ -3782,19 +3761,14 @@ bool CLuaBaseEntity::bringPlayer(std::string const& playerName)
 {
     bool found = false;
 
-    char escapedCharName[16 * 2 + 1];
-    _sql->EscapeString(escapedCharName, playerName.c_str());
-
-    const char* fmtQuery = "SELECT charid FROM chars WHERE charname = '%s'";
-    int32       ret      = _sql->Query(fmtQuery, escapedCharName);
-
-    if (ret != SQL_ERROR && _sql->NumRows() != 0 && _sql->NextRow() == SQL_SUCCESS)
+    uint32 charid = charutils::getCharIdFromName(playerName);
+    if (charid != 0)
     {
         char buf[30];
         std::memset(&buf[0], 0, sizeof(buf));
 
-        ref<uint32>(&buf, 0)  = _sql->GetUIntData(0); // target char
-        ref<uint32>(&buf, 4)  = 0;                    // wanting to bring target char here so wont give our id
+        ref<uint32>(&buf, 0)  = charid; // target char
+        ref<uint32>(&buf, 4)  = 0;      // wanting to bring target char here so wont give our id
         ref<uint16>(&buf, 8)  = m_PBaseEntity->getZone();
         ref<uint16>(&buf, 10) = static_cast<uint16>(m_PBaseEntity->loc.p.x);
         ref<uint16>(&buf, 14) = static_cast<uint16>(m_PBaseEntity->loc.p.y);
