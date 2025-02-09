@@ -2176,18 +2176,27 @@ local function  handleDiggingLayer(player, zoneId, currentLayer)
     -- Moon phase 50        -> multiplier = 1.5
     -- Moon phase 25 and 75 -> multiplier = 1
 
-    -- TODO: Implement pants that lower common item chance and raise rare item chance.
-
     -- Add valid items to dynamic table
     local playerRank = player:getSkillRank(xi.skill.DIG)
     local randomRoll = 1000
+    local digRate    = 0
 
     for i = 1, #digTable do
         randomRoll = utils.clamp(math.floor(math.random(1, 1000) * rollMultiplier), 1, 1000)
+        digRate    = digTable[i][2]
+
+        -- Denim Pants +1 and Black Chocobo Suit
+        if player:getMod(xi.mod.DIG_RARE_ABILITY) > 0 then
+            if digRate >= 100 then
+                digRate = math.floor(digRate / 2)
+            else
+                digRate = digRate * 2
+            end
+        end
 
         if
-            randomRoll <= digTable[i][2] and -- Roll check
-            playerRank >= digTable[i][3]     -- Rank check
+            randomRoll <= digRate and    -- Roll check
+            playerRank >= digTable[i][3] -- Rank check
         then
             table.insert(dTableItemIds, #dTableItemIds + 1, digTable[i][1]) -- Insert item ID to table.
         end
