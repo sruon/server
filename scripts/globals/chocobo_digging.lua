@@ -2168,14 +2168,13 @@ local function  handleDiggingLayer(player, zoneId, currentLayer)
 
     local dTableItemIds  = {}
     local rewardItem     = 0
-    local rollMultiplier = 1 -- Determined by moon and certain gear. Higher = WORSE
 
     -- Determine moon multiplier.
-    local moon = VanadielMoonPhase()
-
-    if moon >= 40 and moon <= 60 then
-        rollMultiplier = rollMultiplier * 2
-    end
+    local moon           = VanadielMoonPhase()
+    local rollMultiplier = 1.5 - math.abs(moon - 50) / 50 -- The lower the multiplier, the better for the player.
+    -- Moon phase 0 and 100 -> multiplier = 0.5
+    -- Moon phase 50        -> multiplier = 1.5
+    -- Moon phase 25 and 75 -> multiplier = 1
 
     -- TODO: Implement pants that lower common item chance and raise rare item chance.
 
@@ -2201,7 +2200,7 @@ local function  handleDiggingLayer(player, zoneId, currentLayer)
         local isElementalOreZone = elementalOreZoneTable[player:getZoneID()] or false
 
         -- Crystals and Clusters.
-        randomRoll = math.random(1, 1000) * rollMultiplier
+        randomRoll = utils.clamp(math.floor(math.random(1, 1000) * rollMultiplier), 1, 1000)
         if
             diggingWeatherTable[weather] and
             randomRoll <= 100
@@ -2210,7 +2209,7 @@ local function  handleDiggingLayer(player, zoneId, currentLayer)
         end
 
         -- Geodes / Colored Rocks.
-        randomRoll = math.random(1, 1000) * rollMultiplier
+        randomRoll = utils.clamp(math.floor(math.random(1, 1000) * rollMultiplier), 1, 1000)
         if
             diggingDayTable[currentDay] and
             playerRank >= xi.craftRank.NOVICE and
@@ -2220,7 +2219,7 @@ local function  handleDiggingLayer(player, zoneId, currentLayer)
         end
 
         -- Elemenal Ores.
-        randomRoll = math.random(1, 1000) * rollMultiplier
+        randomRoll = utils.clamp(math.floor(math.random(1, 1000) * rollMultiplier), 1, 1000)
         if
             diggingDayTable[currentDay] and
             playerRank >= xi.craftRank.CRAFTSMAN and
