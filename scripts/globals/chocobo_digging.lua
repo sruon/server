@@ -2262,6 +2262,14 @@ local function handleItemObtained(player, text, itemId)
     end
 end
 
+local function handleFatigue(player, text, todayDigCount)
+    if math.random(1, 100) <= player:getMod(xi.mod.DIG_BYPASS_FATIGUE) then
+        player:messageSpecial(text.FOUND_ITEM_WITH_EASE)
+    else
+        player:setVar('[DIG]DigCount', todayDigCount + 1, NextJstDay())
+    end
+end
+
 xi.chocoboDig.start = function(player)
     local zoneId        = player:getZoneID()
     local text          = zones[zoneId].text
@@ -2335,13 +2343,13 @@ xi.chocoboDig.start = function(player)
     player:setLocalVar('[DIG]LastXPosSign', currentXSign)
     player:setLocalVar('[DIG]LastZPosSign', currentZSign)
     player:setLocalVar('[DIG]LastDigTime', os.time())
-    player:setVar('[DIG]DigCount', todayDigCount + 1, NextJstDay())
 
     -- Handle trasure layer. Incompatible with the other 3 layers. "Early" return.
     local trasureItemId = handleDiggingLayer(player, zoneId, diggingLayer.TREASURE)
 
     if trasureItemId > 0 then
         handleItemObtained(player, text, trasureItemId)
+        handleFatigue(player, text, todayDigCount)
         calculateSkillUp(player)
         player:triggerRoeEvent(xi.roeTrigger.CHOCOBO_DIG_SUCCESS)
 
@@ -2385,6 +2393,7 @@ xi.chocoboDig.start = function(player)
     then
         player:messageText(player, text.FIND_NOTHING)
     else
+        handleFatigue(player, text, todayDigCount)
         player:triggerRoeEvent(xi.roeTrigger.CHOCOBO_DIG_SUCCESS)
     end
 
