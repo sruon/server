@@ -114,8 +114,16 @@ namespace luautils
 {
     namespace detail
     {
-        auto findCachedObject(const std::string& objName) -> sol::reference;
-        void cacheObject(const std::string& objName, sol::reference obj);
+        // TODO:
+        // Instead of always taking a string of the form "xi.server.onTimeServerTick"
+        // and splitting it into parts, then using those parts to walk up the Lua
+        // global table, we can build a map of that string to the underlying sol::reference.
+        //
+        // This however comes with the cost of maintaining this map, and those sol::references
+        // keep the underlying objects alive, so we need to be careful about what we cache.
+
+        // auto findCachedObject(const std::string& objName) -> sol::reference;
+        // void cacheObject(const std::string& objName, sol::reference obj);
         auto findGlobalLuaFunction(const std::string& funcName) -> sol::function;
     } // namespace detail
 
@@ -135,6 +143,9 @@ namespace luautils
     // luautils::callGlobal<void>("xi.player.onPlayerDeath", PChar);
     // auto value = callGlobal<uint32>("xi.server.functionThatReturnsANumber");
     // ```
+    //
+    // NOTE: This is slower (but safet) than looking up something manually like this:
+    //     : lua["xi"]["server"]["onTimeServerTick"]();
     template <typename T, typename... Targs>
     auto callGlobal(const std::string& funcName, Targs... args)
     {
@@ -412,6 +423,8 @@ namespace luautils
     void OnPlayerMount(CCharEntity* PChar);
     void OnPlayerEmote(CCharEntity* PChar, Emote EmoteID);
     void OnPlayerVolunteer(CCharEntity* PChar, std::string const& text);
+
+    bool OnChocoboDig(CCharEntity* PChar);
 
     // Utility method: checks for and loads a lua function for events
     auto LoadEventScript(CCharEntity* PChar, const char* functionName) -> sol::function;

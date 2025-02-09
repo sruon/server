@@ -108,7 +108,7 @@ SOL_BIND_DEF(CLuaTradeContainer, CTradeContainer);
 
 #include "trigger_area.h"
 #include "lua_trigger_area.h"
-SOL_BIND_DEF(CLuaTriggerArea, CTriggerArea);
+SOL_BIND_DEF(CLuaTriggerArea, ITriggerArea);
 
 #include "zone.h"
 #include "lua_zone.h"

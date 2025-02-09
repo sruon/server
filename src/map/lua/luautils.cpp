@@ -144,22 +144,21 @@ namespace luautils
 
     namespace detail
     {
-        std::unordered_map<std::string, sol::reference> cachedObjects;
+        // std::unordered_map<std::string, sol::reference> cachedObjects;
 
-        auto findCachedObject(const std::string& objName) -> sol::reference
-        {
-            if (auto it = cachedObjects.find(objName); it != cachedObjects.end())
-            {
-                return it->second;
-            }
+        // auto findCachedObject(const std::string& objName) -> sol::reference
+        // {
+        //     if (auto it = cachedObjects.find(objName); it != cachedObjects.end())
+        //     {
+        //         return it->second;
+        //     }
+        //     return sol::lua_nil;
+        // }
 
-            return sol::lua_nil;
-        }
-
-        void cacheObject(const std::string& objName, sol::reference obj)
-        {
-            cachedObjects[objName] = obj;
-        }
+        // void cacheObject(const std::string& objName, sol::reference obj)
+        // {
+        //     cachedObjects[objName] = obj;
+        // }
 
         // NOTE: Will crash if any intermediate keys look up nil tables
         auto lookupByKeysFast(const std::vector<std::string>& keys) -> sol::object
@@ -184,7 +183,7 @@ namespace luautils
                 case 8:
                     return lua[keys[0]][keys[1]][keys[2]][keys[3]][keys[4]][keys[5]][keys[6]][keys[7]];
                 default:
-                    throw;
+                    throw std::runtime_error(fmt::format("lookupByKeysFast: Too many keys: {}", keys.size()));
             }
         };
 
@@ -212,10 +211,12 @@ namespace luautils
 
         auto findGlobalLuaFunction(const std::string& funcName) -> sol::function
         {
-            if (const auto cachedFunc = findCachedObject(funcName))
-            {
-                return cachedFunc;
-            }
+            // TODO: Reinstate this level of caching
+
+            // if (const auto cachedFunc = findCachedObject(funcName))
+            // {
+            //     return cachedFunc;
+            // }
 
             return lookupByKeysSafe(split(funcName, "."));
         }
@@ -501,7 +502,7 @@ namespace luautils
 
         // For coherency between looking things up by filename and by Lua global
         // name we need to nuke the whole lookup cache on any file changes.
-        detail::cachedObjects.clear();
+        // detail::cachedObjects.clear();
 
         for (const auto& [filename, action] : changedFiles)
         {
@@ -564,31 +565,39 @@ namespace luautils
         {
             std::string zone_name = PEntity->loc.zone->getName();
             std::string npc_name  = PEntity->getName();
-            std::string cacheKey  = fmt::format("xi.zones.{}.npcs.{}.{}", zone_name, npc_name, funcName);
 
-            return detail::findGlobalLuaFunction(cacheKey);
+            if (auto cached_func = lua["xi"]["zones"][zone_name]["npcs"][npc_name][funcName]; cached_func.valid())
+            {
+                return cached_func;
+            }
         }
         else if (PEntity->objtype == TYPE_MOB)
         {
             std::string zone_name = PEntity->loc.zone->getName();
             std::string mob_name  = PEntity->getName();
-            std::string cacheKey  = fmt::format("xi.zones.{}.mobs.{}.{}", zone_name, mob_name, funcName);
 
-            return detail::findGlobalLuaFunction(cacheKey);
+            if (auto cached_func = lua["xi"]["zones"][zone_name]["mobs"][mob_name][funcName]; cached_func.valid())
+            {
+                return cached_func;
+            }
         }
         else if (PEntity->objtype == TYPE_PET)
         {
             std::string mob_name = static_cast<CPetEntity*>(PEntity)->GetScriptName();
-            std::string cacheKey = fmt::format("xi.pets.{}.{}", mob_name, funcName);
 
-            return detail::findGlobalLuaFunction(cacheKey);
+            if (auto cached_func = lua["xi"]["pets"][mob_name][funcName]; cached_func.valid())
+            {
+                return cached_func;
+            }
         }
         else if (PEntity->objtype == TYPE_TRUST)
         {
             std::string mob_name = PEntity->getName();
-            std::string cacheKey = fmt::format("xi.actions.spells.trust.{}.{}", mob_name, funcName);
 
-            return detail::findGlobalLuaFunction(cacheKey);
+            if (auto cached_func = lua["xi"]["actions"]["spells"]["trust"][mob_name][funcName]; cached_func.valid())
+            {
+                return cached_func;
+            }
         }
 
         // Didn't find it
@@ -653,7 +662,13 @@ namespace luautils
             break;
         }
 
-        return detail::findGlobalLuaFunction(fmt::format("xi.actions.spells.{}.{}.{}", switchKey, name, funcName));
+        if (auto cached_func = lua["xi"]["actions"]["spells"][switchKey][name][funcName]; cached_func.valid())
+        {
+            return cached_func;
+        }
+
+        // Didn't find it
+        return sol::lua_nil;
     }
 
     // Assumes filename in the form "./scripts/folder0/folder1/folder2/mob_name.lua
@@ -834,7 +849,7 @@ namespace luautils
         }
 
         // file_result should be good, cache it!
-        detail::cachedObjects[filename] = file_result;
+        // detail::cachedObjects[filename] = file_result;
 
         auto table = lua["xi"].get_or_create<sol::table>();
         for (auto& part : parts)
@@ -869,10 +884,10 @@ namespace luautils
             return sol::lua_nil;
         }
 
-        if (auto cached = detail::findCachedObject(filename); cached.valid())
-        {
-            return cached;
-        }
+        // if (auto cached = detail::findCachedObject(filename); cached.valid())
+        // {
+        //     return cached;
+        // }
 
         // Handle filename -> path conversion
         std::filesystem::path    path(filename);
@@ -900,7 +915,7 @@ namespace luautils
             table = table[part].get_or_create<sol::table>();
         }
 
-        detail::cacheObject(filename, table);
+        // detail::cacheObject(filename, table);
 
         return table;
     }
@@ -2069,7 +2084,7 @@ namespace luautils
         }
 
         auto onTriggerAreaEnterFramework = lua["InteractionGlobal"]["onTriggerAreaEnter"];
-        auto result                      = onTriggerAreaEnterFramework(CLuaBaseEntity(PChar), CLuaTriggerArea(PTriggerArea.get()), optInstance, onTriggerAreaEnter);
+        auto result                      = onTriggerAreaEnterFramework(PChar, PTriggerArea.get(), optInstance, onTriggerAreaEnter);
         if (!result.valid())
         {
             sol::error err = result;
@@ -2117,7 +2132,7 @@ namespace luautils
         }
 
         auto onTriggerAreaLeaveFramework = lua["InteractionGlobal"]["onTriggerAreaLeave"];
-        auto result                      = onTriggerAreaLeaveFramework(CLuaBaseEntity(PChar), CLuaTriggerArea(PTriggerArea.get()), optInstance, onTriggerAreaLeave);
+        auto result                      = onTriggerAreaLeaveFramework(PChar, PTriggerArea.get(), optInstance, onTriggerAreaLeave);
         if (!result.valid())
         {
             sol::error err = result;
@@ -2187,13 +2202,7 @@ namespace luautils
         auto onEventUpdateFramework = lua["InteractionGlobal"]["onEventUpdate"];
         auto onEventUpdate          = LoadEventScript(PChar, "onEventUpdate");
 
-        std::optional<CLuaBaseEntity> optTarget = std::nullopt;
-        if (PChar->currentEvent->targetEntity)
-        {
-            optTarget = CLuaBaseEntity(PChar->currentEvent->targetEntity);
-        }
-
-        auto func_result = onEventUpdateFramework(PChar, eventID, result, optTarget, onEventUpdate);
+        auto func_result = onEventUpdateFramework(PChar, eventID, result, PChar->currentEvent->targetEntity, onEventUpdate);
 
         PChar->eventPreparation = previousPrep;
 
@@ -2221,13 +2230,7 @@ namespace luautils
         auto onEventUpdateFramework = lua["InteractionGlobal"]["onEventUpdate"];
         auto onEventUpdate          = LoadEventScript(PChar, "onEventUpdate");
 
-        std::optional<CLuaBaseEntity> optTarget = std::nullopt;
-        if (PChar->currentEvent->targetEntity)
-        {
-            optTarget = CLuaBaseEntity(PChar->currentEvent->targetEntity);
-        }
-
-        auto result = onEventUpdateFramework(PChar, PChar->currentEvent->eventId, updateString, optTarget, onEventUpdate);
+        auto result = onEventUpdateFramework(PChar, PChar->currentEvent->eventId, updateString, PChar->currentEvent->targetEntity, onEventUpdate);
 
         PChar->eventPreparation = previousPrep;
 
@@ -2255,18 +2258,15 @@ namespace luautils
         auto onEventFinishFramework = lua["InteractionGlobal"]["onEventFinish"];
         auto onEventFinish          = LoadEventScript(PChar, "onEventFinish");
 
-        std::optional<CLuaBaseEntity> optTarget = std::nullopt;
         if (PChar->currentEvent->targetEntity)
         {
             if (PChar->currentEvent->targetEntity->objtype == TYPE_NPC)
             {
                 PChar->currentEvent->targetEntity->SetLocalVar("pauseNPCPathing", 0);
             }
-
-            optTarget = CLuaBaseEntity(PChar->currentEvent->targetEntity);
         }
 
-        auto func_result = onEventFinishFramework(PChar, eventID, result, optTarget, onEventFinish);
+        auto func_result = onEventFinishFramework(PChar, eventID, result, PChar->currentEvent->targetEntity, onEventFinish);
 
         // Restore eventPreparation before potentially bailing out of function due to errors
         PChar->eventPreparation = previousPrep;
@@ -2464,7 +2464,7 @@ namespace luautils
             return;
         }
 
-        auto result = onEffectGain(PEntity, CLuaStatusEffect(PStatusEffect));
+        auto result = onEffectGain(PEntity, PStatusEffect);
         if (!result.valid())
         {
             sol::error err = result;
@@ -2485,7 +2485,7 @@ namespace luautils
             return;
         }
 
-        auto result = onEffectTick(PEntity, CLuaStatusEffect(PStatusEffect));
+        auto result = onEffectTick(PEntity, PStatusEffect);
         if (!result.valid())
         {
             sol::error err = result;
@@ -2506,7 +2506,7 @@ namespace luautils
             return;
         }
 
-        auto result = onEffectLose(PEntity, CLuaStatusEffect(PStatusEffect));
+        auto result = onEffectLose(PEntity, PStatusEffect);
         if (!result.valid())
         {
             sol::error err = result;
@@ -2527,7 +2527,7 @@ namespace luautils
             return;
         }
 
-        auto result = onEquip(PEntity, CLuaItem(attachment));
+        auto result = onEquip(PEntity, attachment);
         if (!result.valid())
         {
             sol::error err = result;
@@ -2547,7 +2547,7 @@ namespace luautils
             return;
         }
 
-        auto result = onUnequip(PEntity, CLuaItem(attachment));
+        auto result = onUnequip(PEntity, attachment);
         if (!result.valid())
         {
             sol::error err = result;
@@ -2567,7 +2567,7 @@ namespace luautils
             return;
         }
 
-        auto result = onManeuverGain(PEntity, CLuaItem(attachment), maneuvers);
+        auto result = onManeuverGain(PEntity, attachment, maneuvers);
         if (!result.valid())
         {
             sol::error err = result;
@@ -2587,7 +2587,7 @@ namespace luautils
             return;
         }
 
-        auto result = onManeuverLose(PEntity, CLuaItem(attachment), maneuvers);
+        auto result = onManeuverLose(PEntity, attachment, maneuvers);
         if (!result.valid())
         {
             sol::error err = result;
@@ -2607,7 +2607,7 @@ namespace luautils
             return;
         }
 
-        auto result = onUpdate(PEntity, CLuaItem(attachment), maneuvers);
+        auto result = onUpdate(PEntity, attachment, maneuvers);
         if (!result.valid())
         {
             sol::error err = result;
@@ -5028,6 +5028,13 @@ namespace luautils
         TracyZoneScoped;
 
         callGlobal<void>("xi.player.onPlayerVolunteer", PChar, text);
+    }
+
+    bool OnChocoboDig(CCharEntity* PChar)
+    {
+        TracyZoneScoped;
+
+        return callGlobal<bool>("xi.player.onChocoboDig", PChar);
     }
 
     // Loads a Lua function with a fallback hierarchy

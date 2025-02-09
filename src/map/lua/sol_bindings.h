@@ -141,8 +141,8 @@ class CTradeContainer;
 SOL_BIND_DEC(CLuaTradeContainer, CTradeContainer);
 
 class CLuaTriggerArea;
-class CTriggerArea;
-SOL_BIND_DEC(CLuaTriggerArea, CTriggerArea);
+class ITriggerArea;
+SOL_BIND_DEC(CLuaTriggerArea, ITriggerArea);
 
 class CLuaZone;
 class CZone;

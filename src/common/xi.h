@@ -50,9 +50,14 @@ namespace xi
         {
         }
 
-        constexpr explicit optional(T&& value) noexcept
+        constexpr optional(T&& value)
+        : m_value(std::forward<T>(value))
         {
-            m_value = std::move(value);
+        }
+
+        constexpr optional(const T& value)
+        : m_value(value)
+        {
         }
 
         constexpr optional(const optional& other)                = default;
