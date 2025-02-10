@@ -94,14 +94,14 @@ enum class Mod
     WATERATT   = 37, // Water Damage
     LIGHTATT   = 38, // Light Damage
     DARKATT    = 39, // Dark Damage
-    FIREACC    = 40, // Fire Accuracy
-    ICEACC     = 41, // Ice Accuracy
-    WINDACC    = 42, // Wind Accuracy
-    EARTHACC   = 43, // Earth Accuracy
-    THUNDERACC = 44, // Thunder Accuracy
-    WATERACC   = 45, // Water Accuracy
-    LIGHTACC   = 46, // Light Accuracy
-    DARKACC    = 47, // Dark Accuracy
+    FIRE_MACC    = 40, // Fire Accuracy
+    ICE_MACC     = 41, // Ice Accuracy
+    WIND_MACC    = 42, // Wind Accuracy
+    EARTH_MACC   = 43, // Earth Accuracy
+    THUNDER_MACC = 44, // Thunder Accuracy
+    WATER_MACC   = 45, // Water Accuracy
+    LIGHT_MACC   = 46, // Light Accuracy
+    DARK_MACC    = 47, // Dark Accuracy
 
     WSACC = 48, // Weaponskill Accuracy
 
