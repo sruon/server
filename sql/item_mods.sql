@@ -25137,12 +25137,14 @@ INSERT INTO `item_mods` VALUES (15028,1,14); -- DEF: 14
 INSERT INTO `item_mods` VALUES (15028,2,12); -- HP: 12
 INSERT INTO `item_mods` VALUES (15028,11,2); -- AGI: 2
 INSERT INTO `item_mods` VALUES (15028,26,5); -- RACC: 5
+INSERT INTO `item_mods` VALUES (15028,365,5); -- SNAPSHOT: 5
 
 -- Commodore Gants +1
 INSERT INTO `item_mods` VALUES (15029,1,15); -- DEF: 15
 INSERT INTO `item_mods` VALUES (15029,2,15); -- HP: 15
 INSERT INTO `item_mods` VALUES (15029,11,3); -- AGI: 3
 INSERT INTO `item_mods` VALUES (15029,26,5); -- RACC: 5
+INSERT INTO `item_mods` VALUES (15029,365,5); -- SNAPSHOT: 5
 
 -- Puppetry Dastanas +1
 INSERT INTO `item_mods` VALUES (15030,1,13);  -- DEF: 13
