@@ -72,26 +72,32 @@ CRangeState::CRangeState(CBattleEntity* PEntity, uint16 targid)
     auto delay = m_PEntity->GetRangedWeaponDelay(false);
     delay      = battleutils::GetRangedDelayReduction(m_PEntity, delay);
 
-    // TODO: verify can use rapid shot
+    // Rapid Shot
     if (m_PEntity->objtype == TYPE_PC || m_PEntity->objtype == TYPE_TRUST)
     {
-        auto chance{ m_PEntity->getMod(Mod::RAPID_SHOT) };
-
-        if (auto* PChar = dynamic_cast<CCharEntity*>(m_PEntity))
+        CItemWeapon* weapon     = dynamic_cast<CItemWeapon*>(m_PEntity->m_Weapons[SLOT_RANGED]);
+        bool         isThrowing = weapon && weapon->isThrowing();
+        // Don't apply Rapid Shot to throwing weapons
+        if (!isThrowing)
         {
-            chance += PChar->PMeritPoints->GetMeritValue(MERIT_RAPID_SHOT_RATE, PChar);
-        }
+            auto chance{ m_PEntity->getMod(Mod::RAPID_SHOT) };
 
-        // Don't bother if we cant even proc
-        if (chance > 0)
-        {
-            if (xirand::GetRandomNumber(100) < chance)
+            if (auto* PChar = dynamic_cast<CCharEntity*>(m_PEntity))
             {
-                // reduce delay by 1/16 - 8/16
-                // https://wiki.ffo.jp/html/2986.html
-                // https://www.bg-wiki.com/ffxi/Delay#Ranged_Delay
-                delay       = (int16)(delay * (1.f - xirand::GetRandomNumber<uint16>(1, 8) / 16.f));
-                m_rapidShot = true;
+                chance += PChar->PMeritPoints->GetMeritValue(MERIT_RAPID_SHOT_RATE, PChar);
+            }
+
+            // Don't bother if we cant even proc
+            if (chance > 0)
+            {
+                if (xirand::GetRandomNumber(100) < chance)
+                {
+                    // reduce delay by 2-50%
+                    // https://www.bg-wiki.com/ffxi/Rapid_Shot
+                    // https://www.ffxiah.com/forum/topic/49806/ranger-firing-range-testing/4/#3233650
+                    delay       = (int16)(delay * (1.f - xirand::GetRandomNumber<uint16>(2, 50) / 100.f));
+                    m_rapidShot = true;
+                }
             }
         }
     }
