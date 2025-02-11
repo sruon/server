@@ -162,13 +162,13 @@ ZONE_TYPE CLuaZone::getTypeMask()
     return m_pLuaZone->GetTypeMask();
 }
 
-std::optional<CLuaBattlefield> CLuaZone::getBattlefieldByInitiator(uint32 charID)
+auto CLuaZone::getBattlefieldByInitiator(uint32 charID) -> CBattlefield*
 {
     if (m_pLuaZone->m_BattlefieldHandler)
     {
-        return std::optional<CLuaBattlefield>(m_pLuaZone->m_BattlefieldHandler->GetBattlefieldByInitiator(charID));
+        return m_pLuaZone->m_BattlefieldHandler->GetBattlefieldByInitiator(charID);
     }
-    return std::nullopt;
+    return nullptr;
 }
 
 WEATHER CLuaZone::getWeather()
@@ -217,7 +217,7 @@ bool CLuaZone::isNavigablePoint(const sol::table& point)
     }
 }
 
-std::optional<CLuaBaseEntity> CLuaZone::insertDynamicEntity(sol::table table)
+auto CLuaZone::insertDynamicEntity(sol::table table) -> CBaseEntity*
 {
     return luautils::GenerateDynamicEntity(m_pLuaZone, nullptr, std::move(table));
 }

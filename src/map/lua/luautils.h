@@ -212,11 +212,11 @@ namespace luautils
 
     void SendEntityVisualPacket(uint32 npcid, const char* command);
     void InitInteractionGlobal();
-    auto GetZone(uint16 zoneId) -> std::optional<CLuaZone>;
-    auto GetItemByID(uint32 itemId) -> std::optional<CLuaItem>;
-    auto GetNPCByID(uint32 npcid, sol::object const& instanceObj) -> std::optional<CLuaBaseEntity>;
-    auto GetMobByID(uint32 mobid, sol::object const& instanceObj) -> std::optional<CLuaBaseEntity>;
-    auto GetEntityByID(uint32 mobid, sol::object const& instanceObj, sol::object const& arg3) -> std::optional<CLuaBaseEntity>;
+    auto GetZone(uint16 zoneId) -> CZone*;
+    auto GetItemByID(uint32 itemId) -> CItem*;
+    auto GetNPCByID(uint32 npcid, sol::object const& instanceObj) -> CBaseEntity*;
+    auto GetMobByID(uint32 mobid, sol::object const& instanceObj) -> CBaseEntity*;
+    auto GetEntityByID(uint32 mobid, sol::object const& instanceObj, sol::object const& arg3) -> CBaseEntity*;
 
     void  WeekUpdateConquest(uint8 updateType);
     uint8 GetRegionOwner(uint8 type);
@@ -227,14 +227,14 @@ namespace luautils
     void  SetRegionalConquestOverseers(uint8 regionID); // Update NPC Conquest Guard
     void  SendLuaFuncStringToZone(uint16 zoneId, std::string const& str);
 
-    auto GetReadOnlyItem(uint32 id) -> std::optional<CLuaItem>; // Returns a read only lookup item object of the specified ID
-    auto GetAbility(uint16 id) -> std::optional<CLuaAbility>;
-    auto GetSpell(uint16 id) -> std::optional<CLuaSpell>;
+    auto GetReadOnlyItem(uint32 id) -> CItem*; // Returns a read only lookup item object of the specified ID
+    auto GetAbility(uint16 id) -> CAbility*;
+    auto GetSpell(uint16 id) -> CSpell*;
 
-    auto SpawnMob(uint32 mobid, sol::object const& arg2, sol::object const& arg3) -> std::optional<CLuaBaseEntity>; // Spawn Mob By Mob Id - NMs, BCNM...
-    void DespawnMob(uint32 mobid, sol::object const& arg2);                                                         // Despawn (Fade Out) Mob By Id
-    auto GetPlayerByName(std::string const& name) -> std::optional<CLuaBaseEntity>;
-    auto GetPlayerByID(uint32 pid) -> std::optional<CLuaBaseEntity>;
+    auto SpawnMob(uint32 mobid, sol::object const& arg2, sol::object const& arg3) -> CBaseEntity*; // Spawn Mob By Mob Id - NMs, BCNM...
+    void DespawnMob(uint32 mobid, sol::object const& arg2);                                        // Despawn (Fade Out) Mob By Id
+    auto GetPlayerByName(std::string const& name) -> CBaseEntity*;
+    auto GetPlayerByID(uint32 pid) -> CBaseEntity*;
     bool PlayerHasValidSession(uint32 playerId);
     void SendToJailOffline(uint32 playerId, int8 cellId, float posX, float posY, float posZ, uint8 rot);
     void DrawIn(CLuaBaseEntity* PLuaBaseEntity, sol::table const& table, float offset, float degrees);
@@ -444,7 +444,7 @@ namespace luautils
     uint16 GetItemIDByName(std::string const& name);
     auto   SendItemToDeliveryBox(const std::string& playerName, uint16 itemId, uint32 quantity, const std::string& senderText) -> SendToDBoxReturnCode;
 
-    std::optional<CLuaBaseEntity> GenerateDynamicEntity(CZone* PZone, CInstance* PInstance, sol::table table);
+    auto GenerateDynamicEntity(CZone* PZone, CInstance* PInstance, sol::table table) -> CBaseEntity*;
 
     // Fishing Contest
     auto GetFishingContest() -> sol::table;

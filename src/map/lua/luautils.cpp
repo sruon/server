@@ -1192,17 +1192,14 @@ namespace luautils
         }
     }
 
-    std::optional<CLuaItem> GetItemByID(uint32 itemId)
+    CItem* GetItemByID(uint32 itemId)
     {
-        if (auto* PItem = itemutils::GetItemPointer(itemId))
-        {
-            return PItem;
-        }
+        TracyZoneScoped;
 
-        return std::nullopt;
+        return itemutils::GetItemPointer(itemId);
     }
 
-    std::optional<CLuaBaseEntity> GetNPCByID(uint32 npcid, sol::object const& instanceObj)
+    CBaseEntity* GetNPCByID(uint32 npcid, sol::object const& instanceObj)
     {
         TracyZoneScoped;
 
@@ -1225,10 +1222,10 @@ namespace luautils
         if (!PNpc)
         {
             ShowWarning("luautils::GetNPCByID NPC doesn't exist (%d)", npcid);
-            return std::nullopt;
+            return nullptr;
         }
 
-        return std::optional<CLuaBaseEntity>(PNpc);
+        return PNpc;
     }
 
     void InitInteractionGlobal()
@@ -1252,20 +1249,14 @@ namespace luautils
         }
     }
 
-    std::optional<CLuaZone> GetZone(uint16 zoneId)
+    CZone* GetZone(uint16 zoneId)
     {
         TracyZoneScoped;
 
-        CZone* zone = zoneutils::GetZone(zoneId);
-        if (zone)
-        {
-            return std::optional<CLuaZone>(zone);
-        }
-
-        return std::nullopt;
+        return zoneutils::GetZone(zoneId);
     }
 
-    std::optional<CLuaBaseEntity> GetMobByID(uint32 mobid, sol::object const& instanceObj)
+    CBaseEntity* GetMobByID(uint32 mobid, sol::object const& instanceObj)
     {
         TracyZoneScoped;
 
@@ -1289,13 +1280,13 @@ namespace luautils
         if (!PMob)
         {
             ShowWarning("luautils::GetMobByID Mob doesn't exist (%d)", mobid);
-            return std::nullopt;
+            return nullptr;
         }
 
-        return std::optional<CLuaBaseEntity>(PMob);
+        return PMob;
     }
 
-    std::optional<CLuaBaseEntity> GetEntityByID(uint32 entityid, sol::object const& instanceObj, sol::object const& arg3)
+    CBaseEntity* GetEntityByID(uint32 entityid, sol::object const& instanceObj, sol::object const& arg3)
     {
         TracyZoneScoped;
 
@@ -1324,10 +1315,10 @@ namespace luautils
             {
                 ShowWarning("luautils::GetEntityByID Mob doesn't exist (%d)", entityid);
             }
-            return std::nullopt;
+            return nullptr;
         }
 
-        return std::optional<CLuaBaseEntity>(PEntity);
+        return PEntity;
     }
 
     void WeekUpdateConquest(uint8 updateType)
@@ -1675,7 +1666,7 @@ namespace luautils
      *  Spawn a mob using mob ID                                             *
      *                                                                       *
      ************************************************************************/
-    std::optional<CLuaBaseEntity> SpawnMob(uint32 mobid, sol::object const& arg2, sol::object const& arg3)
+    CBaseEntity* SpawnMob(uint32 mobid, sol::object const& arg2, sol::object const& arg3)
     {
         TracyZoneScoped;
 
@@ -1719,10 +1710,10 @@ namespace luautils
         else
         {
             ShowDebug("SpawnMob: mob <%u> not found", mobid);
-            return std::nullopt;
+            return nullptr;
         }
 
-        return std::optional<CLuaBaseEntity>(PMob);
+        return PMob;
     }
 
     /************************************************************************
@@ -1766,18 +1757,11 @@ namespace luautils
      *                                                                       *
      ************************************************************************/
 
-    std::optional<CLuaBaseEntity> GetPlayerByName(std::string const& name)
+    CBaseEntity* GetPlayerByName(std::string const& name)
     {
         TracyZoneScoped;
 
-        CCharEntity* PTargetChar = zoneutils::GetCharByName(name.c_str());
-
-        if (PTargetChar != nullptr)
-        {
-            return std::optional<CLuaBaseEntity>(PTargetChar);
-        }
-
-        return std::nullopt;
+        return zoneutils::GetCharByName(name.c_str());
     }
 
     /************************************************************************
@@ -1786,18 +1770,11 @@ namespace luautils
      *                                                                       *
      ************************************************************************/
 
-    std::optional<CLuaBaseEntity> GetPlayerByID(uint32 pid)
+    CBaseEntity* GetPlayerByID(uint32 pid)
     {
         TracyZoneScoped;
 
-        CCharEntity* PTargetChar = zoneutils::GetChar(pid);
-
-        if (PTargetChar != nullptr)
-        {
-            return std::optional<CLuaBaseEntity>(PTargetChar);
-        }
-
-        return std::nullopt;
+        return zoneutils::GetChar(pid);
     }
 
     /************************************************************************
@@ -2049,14 +2026,11 @@ namespace luautils
     {
         TracyZoneScoped;
 
-        std::string                 filename;
-        std::optional<CLuaInstance> optInstance = std::nullopt;
+        std::string filename;
         if (PChar->PInstance)
         {
             filename =
                 std::string("./scripts/zones/") + PChar->loc.zone->getName() + "/instances/" + PChar->PInstance->GetName() + ".lua";
-
-            optInstance = CLuaInstance(PChar->PInstance);
         }
         else
         {
@@ -2084,7 +2058,7 @@ namespace luautils
         }
 
         auto onTriggerAreaEnterFramework = lua["InteractionGlobal"]["onTriggerAreaEnter"];
-        auto result                      = onTriggerAreaEnterFramework(PChar, PTriggerArea.get(), optInstance, onTriggerAreaEnter);
+        auto result                      = onTriggerAreaEnterFramework(PChar, PTriggerArea.get(), PChar->PInstance, onTriggerAreaEnter);
         if (!result.valid())
         {
             sol::error err = result;
@@ -2097,14 +2071,11 @@ namespace luautils
     {
         TracyZoneScoped;
 
-        std::string                 filename;
-        std::optional<CLuaInstance> optInstance = std::nullopt;
+        std::string filename;
         if (PChar->PInstance)
         {
             filename =
                 std::string("scripts/zones/") + PChar->loc.zone->getName() + "/instances/" + PChar->PInstance->GetName() + ".lua";
-
-            optInstance = CLuaInstance(PChar->PInstance);
         }
         else
         {
@@ -2132,7 +2103,7 @@ namespace luautils
         }
 
         auto onTriggerAreaLeaveFramework = lua["InteractionGlobal"]["onTriggerAreaLeave"];
-        auto result                      = onTriggerAreaLeaveFramework(PChar, PTriggerArea.get(), optInstance, onTriggerAreaLeave);
+        auto result                      = onTriggerAreaLeaveFramework(PChar, PTriggerArea.get(), PChar->PInstance, onTriggerAreaLeave);
         if (!result.valid())
         {
             sol::error err = result;
@@ -2629,13 +2600,7 @@ namespace luautils
             return { 56, 0, 0 };
         }
 
-        std::optional<CLuaBaseEntity> caster = std::nullopt;
-        if (PCaster)
-        {
-            caster = PCaster;
-        }
-
-        auto result = onItemCheck(PTarget, PItem, static_cast<uint32>(param), caster);
+        auto result = onItemCheck(PTarget, PItem, static_cast<uint32>(param), PCaster);
         if (!result.valid())
         {
             sol::error err = result;
@@ -2836,13 +2801,7 @@ namespace luautils
             return {};
         }
 
-        std::optional<CLuaSpell> luaSpell;
-        if (startingSpellId.has_value())
-        {
-            luaSpell = spell::GetSpell(startingSpellId.value());
-        }
-
-        auto result = onMobMagicPrepare(PCaster, PTarget, luaSpell);
+        auto result = onMobMagicPrepare(PCaster, PTarget, spell::GetSpell(startingSpellId.value()));
         if (!result.valid())
         {
             sol::error err = result;
@@ -3331,13 +3290,7 @@ namespace luautils
             return;
         }
 
-        std::optional<CLuaBaseEntity> optionalKiller = std::nullopt;
-        if (PAttacker)
-        {
-            optionalKiller = PAttacker;
-        }
-
-        auto result = onCriticalHit(PMob, optionalKiller);
+        auto result = onCriticalHit(PMob, PAttacker);
         if (!result.valid())
         {
             sol::error err = result;
@@ -3406,12 +3359,6 @@ namespace luautils
                     uint16 weaponskillUsed   = weaponskillVar >> 24;
                     uint32 weaponskillDamage = weaponskillVar & 0xFFFFFF;
 
-                    std::optional<CBaseEntity*> optAllyEntity = std::nullopt;
-                    if (PMember)
-                    {
-                        optAllyEntity = PMember;
-                    }
-
                     optParams["isKiller"]          = PMember == PChar;
                     optParams["noKiller"]          = false;
                     optParams["isWeaponSkillKill"] = weaponskillUsed > 0;
@@ -3422,7 +3369,7 @@ namespace luautils
                     PChar->eventPreparation->scriptFile   = filename;
 
                     // onMobDeath(mob, player, optParams)
-                    auto result = onMobDeathFramework(PMob, optAllyEntity, optParams, onMobDeath);
+                    auto result = onMobDeathFramework(PMob, PMember, optParams, onMobDeath);
 
                     // NOTE: result is only NOT valid if the function call fails. If it returns nil its still valid (this is expected)
                     if (!result.valid())
@@ -3431,7 +3378,7 @@ namespace luautils
                         ShowError("luautils::onMobDeath: %s", err.what());
                     }
 
-                    PChar->PAI->EventHandler.triggerListener("DEFEATED_MOB", PMob, optAllyEntity, optParams);
+                    PChar->PAI->EventHandler.triggerListener("DEFEATED_MOB", PMob, PMember, optParams);
                 }
             });
             // clang-format on
@@ -3693,13 +3640,7 @@ namespace luautils
             return std::tuple<int32, uint8, uint8>();
         }
 
-        std::optional<CBaseEntity*> optTrickAttackChar = std::nullopt;
-        if (taChar)
-        {
-            optTrickAttackChar = taChar;
-        }
-
-        auto result = onUseWeaponSkill(PChar, PMob, wskill->getID(), tp, primary, &action, optTrickAttackChar);
+        auto result = onUseWeaponSkill(PChar, PMob, wskill->getID(), tp, primary, &action, taChar);
         if (!result.valid())
         {
             sol::error err = result;
@@ -4927,25 +4868,25 @@ namespace luautils
      *                                                                       *
      ************************************************************************/
 
-    std::optional<CLuaItem> GetReadOnlyItem(uint32 id)
+    CItem* GetReadOnlyItem(uint32 id)
     {
         TracyZoneScoped;
-        CItem* PItem = itemutils::GetItemPointer(id);
-        return PItem ? std::optional<CLuaItem>(PItem) : std::nullopt;
+
+        return itemutils::GetItemPointer(id);
     }
 
-    std::optional<CLuaAbility> GetAbility(uint16 id)
+    CAbility* GetAbility(uint16 id)
     {
         TracyZoneScoped;
-        CAbility* PAbility = ability::GetAbility(id);
-        return PAbility ? std::optional<CLuaAbility>(PAbility) : std::nullopt;
+
+        return ability::GetAbility(id);
     }
 
-    std::optional<CLuaSpell> GetSpell(uint16 id)
+    CSpell* GetSpell(uint16 id)
     {
         TracyZoneScoped;
-        CSpell* PSpell = spell::GetSpell(static_cast<SpellID>(id));
-        return PSpell ? std::optional<CLuaSpell>(PSpell) : std::nullopt;
+
+        return spell::GetSpell(static_cast<SpellID>(id));
     }
 
     sol::table NearLocation(sol::table const& table, float radius, float theta)
@@ -5047,31 +4988,43 @@ namespace luautils
     {
         TracyZoneScoped;
 
-        auto funcFromChar = GetCacheEntryFromFilename(PChar->currentEvent->scriptFile)[functionName];
-        if (funcFromChar.valid())
+        const auto currentEventEntry = GetCacheEntryFromFilename(PChar->currentEvent->scriptFile);
+        if (currentEventEntry.valid())
         {
-            return funcFromChar;
+            const auto funcFromChar = currentEventEntry[functionName];
+            if (funcFromChar.valid())
+            {
+                return funcFromChar;
+            }
         }
 
         if (PChar->PInstance)
         {
-            auto instance_filename = fmt::format(
+            const auto instanceFilename = fmt::format(
                 "./scripts/zones/{}/instances/{}",
                 PChar->PInstance->GetZone()->getName(),
                 PChar->PInstance->GetName());
 
-            auto funcFromInstance = GetCacheEntryFromFilename(instance_filename)[functionName];
-            if (funcFromInstance.valid())
+            const auto instanceEntry = GetCacheEntryFromFilename(instanceFilename);
+            if (instanceEntry.valid())
             {
-                return funcFromInstance;
+                const auto funcFromInstance = instanceEntry[functionName];
+                if (funcFromInstance.valid())
+                {
+                    return funcFromInstance;
+                }
             }
         }
 
-        auto zone_filename = fmt::format("./scripts/zones/{}/Zone.lua", PChar->loc.zone->getName());
-        auto funcFromZone  = GetCacheEntryFromFilename(zone_filename)[functionName];
-        if (funcFromZone.valid())
+        const auto zoneFilename = fmt::format("./scripts/zones/{}/Zone.lua", PChar->loc.zone->getName());
+        const auto zoneEntry    = GetCacheEntryFromFilename(zoneFilename);
+        if (zoneEntry.valid())
         {
-            return funcFromZone;
+            const auto funcFromZone = zoneEntry[functionName];
+            if (funcFromZone.valid())
+            {
+                return funcFromZone;
+            }
         }
 
         return sol::lua_nil;
@@ -5393,7 +5346,7 @@ namespace luautils
         return id;
     }
 
-    std::optional<CLuaBaseEntity> GenerateDynamicEntity(CZone* PZone, CInstance* PInstance, sol::table table)
+    CBaseEntity* GenerateDynamicEntity(CZone* PZone, CInstance* PInstance, sol::table table)
     {
         CBaseEntity* PEntity = nullptr;
         if (table.get_or<uint8>("objtype", TYPE_NPC) == TYPE_NPC)
@@ -5413,7 +5366,7 @@ namespace luautils
         if (PEntity == nullptr)
         {
             ShowWarning("Failed to insert Dynamic Entity.");
-            return std::nullopt;
+            return nullptr;
         }
 
         // NOTE: Mob allegiance is the default for NPCs

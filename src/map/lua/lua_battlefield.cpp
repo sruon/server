@@ -256,22 +256,21 @@ void CLuaBattlefield::setStatus(uint8 status)
     m_PLuaBattlefield->SetStatus(status);
 }
 
-std::optional<CLuaBaseEntity> CLuaBattlefield::insertEntity(uint16 targid, bool ally, bool inBattlefield)
+auto CLuaBattlefield::insertEntity(uint16 targid, bool ally, bool inBattlefield) -> CBaseEntity*
 {
     BATTLEFIELDMOBCONDITION conditions = static_cast<BATTLEFIELDMOBCONDITION>(0);
     ENTITYTYPE              filter     = static_cast<ENTITYTYPE>(0x1F);
 
-    auto* PEntity =
-        ally ? mobutils::InstantiateAlly(targid, m_PLuaBattlefield->GetZoneID()) : m_PLuaBattlefield->GetZone()->GetEntity(targid, filter);
+    auto* PEntity = ally ? mobutils::InstantiateAlly(targid, m_PLuaBattlefield->GetZoneID()) : m_PLuaBattlefield->GetZone()->GetEntity(targid, filter);
 
     if (PEntity)
     {
         m_PLuaBattlefield->InsertEntity(PEntity, inBattlefield, conditions, ally);
-        return std::optional<CLuaBaseEntity>(PEntity);
+        return PEntity;
     }
 
     ShowError("CLuaBattlefield::insertEntity - targid ID %u not found!", targid);
-    return std::nullopt;
+    return nullptr;
 }
 
 bool CLuaBattlefield::cleanup(bool cleanup)
