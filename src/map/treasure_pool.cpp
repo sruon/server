@@ -120,7 +120,7 @@ void CTreasurePool::DelMember(CCharEntity* PChar)
         m_TreasurePoolType = TREASUREPOOL_SOLO;
     }
 
-    if (m_TreasurePoolType != TREASUREPOOL_ZONE && members.empty())
+    if (m_TreasurePoolType != TREASUREPOOL_ZONE && m_TreasurePoolType != TREASUREPOOL_SHARED && members.empty())
     {
         // TODO: This entire system needs rewriting to both:
         //     : - Make it stable

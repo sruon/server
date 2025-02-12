@@ -110,6 +110,15 @@ CZone::CZone(ZONEID ZoneID, REGION_TYPE RegionID, CONTINENT_TYPE ContinentID, ui
 CZone::~CZone()
 {
     destroy(m_TreasurePool);
+    for (auto sharedPool : m_SharedTreasurePools)
+    {
+        if (sharedPool)
+        {
+            destroy(sharedPool);
+        }
+    }
+    
+    m_SharedTreasurePools.clear();
     destroy(m_zoneEntities);
     destroy(m_BattlefieldHandler);
 
@@ -835,6 +844,37 @@ void CZone::SpawnTransport(CCharEntity* PChar)
 CBaseEntity* CZone::GetEntity(uint16 targid, uint8 filter)
 {
     return m_zoneEntities->GetEntity(targid, filter);
+}
+
+/************************************************************************
+ *                                                                       *
+ *  Create shared treasure pools local to the zone.                      *
+ *                                                                       *
+ ************************************************************************/
+
+CTreasurePool* CZone::CreateSharedTreasurePool()
+{
+    CTreasurePool* sharedPool = new CTreasurePool(TREASUREPOOL_SHARED);
+    m_SharedTreasurePools.push_back(sharedPool);
+
+    return sharedPool;
+}
+
+bool CZone::DeleteSharedTreasurePool(CTreasurePool* pool)
+{
+    if (pool == nullptr)
+    {
+        return false;
+    }
+
+    if (const auto it = std::find(m_SharedTreasurePools.begin(), m_SharedTreasurePools.end(), pool); it != m_SharedTreasurePools.end())
+    {
+        m_SharedTreasurePools.erase(it);
+        destroy(pool);
+        return true;
+    }
+
+    return false;
 }
 
 /************************************************************************

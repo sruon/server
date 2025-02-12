@@ -32,6 +32,7 @@
 #include "entities/charentity.h"
 #include "item_container.h"
 #include "status_effect_container.h"
+#include "treasure_pool.h"
 #include "utils/itemutils.h"
 
 // https://github.com/atom0s/XiPackets/tree/main/world/server/0x0037
@@ -254,7 +255,7 @@ CCharStatusPacket::CCharStatusPacket(CCharEntity* PChar)
     flags0.AwayFlag        = PChar->isAway();
     flags0.AnonymousFlag   = PChar->isAnon();
     flags0.Gender          = PChar->GetGender();
-    flags0.unknown_1_9     = PChar->loc.zone ? PChar->loc.zone->CanUseMisc(MISC_TREASURE) : 0; // Set global treasure pool;
+    flags0.unknown_1_9     = PChar->PTreasurePool ? PChar->PTreasurePool->GetPoolType() > TREASUREPOOL_ALLIANCE : 0; // Set global treasure pool;
     flags0.unknown_1_10    = 0;
     flags0.GraphSize       = PChar->look.size;
     flags0.Chocobo_Index   = 0;
