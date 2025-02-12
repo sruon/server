@@ -564,6 +564,8 @@ public:
 
     CTreasurePool* CreateSharedTreasurePool();
     bool           DeleteSharedTreasurePool(CTreasurePool* pool);
+    bool           HasZonePool() const;
+    bool           AddToZonePool(CCharEntity* PChar);
 
     void SetSoloBattleMusic(uint16 music);
     void SetPartyBattleMusic(uint16 music);

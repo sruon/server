@@ -26,6 +26,8 @@
 #include "luautils.h"
 
 class CZone;
+class CLuaTreasurePool;
+
 class CLuaZone
 {
     CZone* m_pLuaZone;
@@ -43,6 +45,9 @@ public:
     auto getLocalVar(const char* key);
     void setLocalVar(const char* key, uint32 value);
     void resetLocalVars();
+
+    auto createSharedPool() -> std::optional<CLuaTreasurePool>;
+    auto deleteSharedPool(const CLuaTreasurePool* pool) -> bool;
 
     void registerCuboidTriggerArea(uint32 triggerAreaID, float xMin, float yMin, float zMin, float xMax, float yMax, float zMax);
     void registerCylindricalTriggerArea(uint32 triggerAreaID, float xPos, float zPos, float radius);

@@ -53,6 +53,7 @@ extern sol::state lua;
 #include "lua_spell.h"
 #include "lua_statuseffect.h"
 #include "lua_trade_container.h"
+#include "lua_treasure_pool.h"
 #include "lua_trigger_area.h"
 #include "lua_zone.h"
 
@@ -101,6 +102,7 @@ class CLuaTriggerArea;
 class CLuaSpell;
 class CLuaStatusEffect;
 class CLuaTradeContainer;
+class CLuaTreasurePool;
 class CLuaZone;
 
 struct action_t;

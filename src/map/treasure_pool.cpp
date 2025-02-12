@@ -473,6 +473,7 @@ void CTreasurePool::CheckTreasureItem(time_point tick, uint8 SlotID)
 
     if ((tick - m_PoolItems[SlotID].TimeStamp) > treasure_livetime ||
         (m_TreasurePoolType == TREASUREPOOL_SOLO && members[0]->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0) ||
+        (m_TreasurePoolType == TREASUREPOOL_SHARED && members.size() == 1 && members[0]->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0) ||
         m_PoolItems[SlotID].Lotters.size() == members.size())
     {
         // Find item's highest lotter

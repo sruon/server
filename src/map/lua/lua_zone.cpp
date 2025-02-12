@@ -27,6 +27,7 @@
 #include "entities/charentity.h"
 #include "entities/npcentity.h"
 #include "lua_baseentity.h"
+#include "lua_treasure_pool.h"
 #include "trigger_area.h"
 #include "utils/mobutils.h"
 #include "zone.h"
@@ -51,6 +52,40 @@ CLuaZone::CLuaZone(CZone* PZone)
 auto CLuaZone::getLocalVar(const char* key)
 {
     return m_pLuaZone->GetLocalVar(key);
+}
+
+/************************************************************************
+ *  Function: createSharedPool()
+ *  Purpose : Create a new shared treasure pool and assign it to the zone.
+ *  Example : zone:createSharedPool();
+ *  Notes   :
+ ************************************************************************/
+
+auto CLuaZone::createSharedPool() -> std::optional<CLuaTreasurePool>
+{
+    if (auto PTreasurePool = m_pLuaZone->CreateSharedTreasurePool())
+    {
+        return std::optional<CLuaTreasurePool>(PTreasurePool);
+    }
+
+    return std::nullopt;
+}
+
+/************************************************************************
+ *  Function: deleteSharedPool()
+ *  Purpose : Deletes a previously created shared treasure pool
+ *  Example : zone:deleteSharedPool(pool);
+ *  Notes   :
+ ************************************************************************/
+
+auto CLuaZone::deleteSharedPool(const CLuaTreasurePool* pool) -> bool
+{
+    if (pool == nullptr)
+    {
+        return false;
+    }
+
+    return m_pLuaZone->DeleteSharedTreasurePool(pool->GetTreasurePool());
 }
 
 /************************************************************************
@@ -309,6 +344,9 @@ void CLuaZone::Register()
     SOL_REGISTER("getLocalVar", CLuaZone::getLocalVar);
     SOL_REGISTER("setLocalVar", CLuaZone::setLocalVar);
     SOL_REGISTER("resetLocalVars", CLuaZone::resetLocalVars);
+
+    SOL_REGISTER("createSharedPool", CLuaZone::createSharedPool);
+    SOL_REGISTER("deleteSharedPool", CLuaZone::deleteSharedPool);
 
     SOL_REGISTER("registerCuboidTriggerArea", CLuaZone::registerCuboidTriggerArea);
     SOL_REGISTER("registerCylindricalTriggerArea", CLuaZone::registerCylindricalTriggerArea);

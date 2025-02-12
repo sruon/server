@@ -117,7 +117,7 @@ CZone::~CZone()
             destroy(sharedPool);
         }
     }
-    
+
     m_SharedTreasurePools.clear();
     destroy(m_zoneEntities);
     destroy(m_BattlefieldHandler);
@@ -871,6 +871,27 @@ bool CZone::DeleteSharedTreasurePool(CTreasurePool* pool)
     {
         m_SharedTreasurePools.erase(it);
         destroy(pool);
+        return true;
+    }
+
+    return false;
+}
+
+bool CZone::HasZonePool() const
+{
+    return m_TreasurePool != nullptr;
+}
+
+bool CZone::AddToZonePool(CCharEntity* PChar)
+{
+    if (m_TreasurePool)
+    {
+        if (PChar->PTreasurePool)
+        {
+            PChar->PTreasurePool->DelMember(PChar);
+        }
+        PChar->PTreasurePool = m_TreasurePool;
+        PChar->PTreasurePool->AddMember(PChar);
         return true;
     }
 

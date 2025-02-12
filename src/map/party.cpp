@@ -979,7 +979,7 @@ void CParty::ReloadTreasurePool(CCharEntity* PChar)
                 {
                     CCharEntity* PPartyMember = (CCharEntity*)PChar->PParty->m_PAlliance->partyList.at(a)->members.at(i);
 
-                    if (PPartyMember != PChar && PPartyMember->PTreasurePool != nullptr && PPartyMember->getZone() == PChar->getZone())
+                    if (PPartyMember != PChar && PPartyMember->PTreasurePool != nullptr && PPartyMember->getZone() == PChar->getZone() && PPartyMember->PTreasurePool->GetPoolType() != TREASUREPOOL_SHARED)
                     {
                         if (PChar->PTreasurePool != nullptr)
                         {
@@ -999,7 +999,7 @@ void CParty::ReloadTreasurePool(CCharEntity* PChar)
             {
                 CCharEntity* PPartyMember = (CCharEntity*)member;
 
-                if (PPartyMember != PChar && PPartyMember->PTreasurePool != nullptr && PPartyMember->getZone() == PChar->getZone())
+                if (PPartyMember != PChar && PPartyMember->PTreasurePool != nullptr && PPartyMember->getZone() == PChar->getZone() && PPartyMember->PTreasurePool->GetPoolType() != TREASUREPOOL_SHARED)
                 {
                     if (PChar->PTreasurePool != nullptr)
                     {
