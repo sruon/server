@@ -143,7 +143,7 @@ void CParty::DisbandParty(bool playerInitiated)
             if (PChar->PTreasurePool != nullptr && PChar->PTreasurePool->GetPoolType() != TREASUREPOOL_ZONE)
             {
                 PChar->PTreasurePool->DelMember(PChar);
-                PChar->PTreasurePool = new CTreasurePool(TREASUREPOOL_SOLO);
+                PChar->PTreasurePool = std::make_shared<CTreasurePool>(TREASUREPOOL_SOLO);
                 PChar->PTreasurePool->AddMember(PChar);
                 PChar->PTreasurePool->UpdatePool(PChar);
             }
@@ -365,7 +365,7 @@ void CParty::RemoveMember(CBattleEntity* PEntity)
                 if (PChar->PTreasurePool != nullptr && PChar->PTreasurePool->GetPoolType() != TREASUREPOOL_ZONE)
                 {
                     PChar->PTreasurePool->DelMember(PChar);
-                    PChar->PTreasurePool = new CTreasurePool(TREASUREPOOL_SOLO);
+                    PChar->PTreasurePool = std::make_shared<CTreasurePool>(TREASUREPOOL_SOLO);
                     PChar->PTreasurePool->AddMember(PChar);
                     PChar->PTreasurePool->UpdatePool(PChar);
                 }
@@ -441,7 +441,7 @@ void CParty::DelMember(CBattleEntity* PEntity)
                 if (PChar->PTreasurePool != nullptr && PChar->PTreasurePool->GetPoolType() != TREASUREPOOL_ZONE)
                 {
                     PChar->PTreasurePool->DelMember(PChar);
-                    PChar->PTreasurePool = new CTreasurePool(TREASUREPOOL_SOLO);
+                    PChar->PTreasurePool = std::make_shared<CTreasurePool>(TREASUREPOOL_SOLO);
                     PChar->PTreasurePool->AddMember(PChar);
                     PChar->PTreasurePool->UpdatePool(PChar);
                 }
@@ -1015,7 +1015,7 @@ void CParty::ReloadTreasurePool(CCharEntity* PChar)
 
     if (PChar->PTreasurePool == nullptr)
     {
-        PChar->PTreasurePool = new CTreasurePool(TREASUREPOOL_SOLO);
+        PChar->PTreasurePool = std::make_shared<CTreasurePool>(TREASUREPOOL_SOLO);
         PChar->PTreasurePool->AddMember(PChar);
     }
 }

@@ -468,13 +468,13 @@ public:
 
     virtual void HandleErrorMessage(std::unique_ptr<CBasicPacket>&) override;
 
-    CLinkshell*    PLinkshell1;
-    CLinkshell*    PLinkshell2;
-    CUnityChat*    PUnityChat;
-    CTreasurePool* PTreasurePool;
-    CMeritPoints*  PMeritPoints;
-    CJobPoints*    PJobPoints;
-    bool           MeritMode;
+    CLinkshell*                    PLinkshell1;
+    CLinkshell*                    PLinkshell2;
+    CUnityChat*                    PUnityChat;
+    std::shared_ptr<CTreasurePool> PTreasurePool;
+    CMeritPoints*                  PMeritPoints;
+    CJobPoints*                    PJobPoints;
+    bool                           MeritMode;
 
     CLatentEffectContainer* PLatentEffectContainer;
     bool                    retriggerLatents; // used to retrigger all latent effects if some event requires them to be retriggered

@@ -562,10 +562,10 @@ public:
     uint16 GetBackgroundMusicDay() const;
     uint16 GetBackgroundMusicNight() const;
 
-    CTreasurePool* CreateSharedTreasurePool();
-    bool           DeleteSharedTreasurePool(CTreasurePool* pool);
-    bool           HasZonePool() const;
-    bool           AddToZonePool(CCharEntity* PChar);
+    auto CreateSharedTreasurePool() -> std::shared_ptr<CTreasurePool>;
+    auto DeleteSharedTreasurePool(const std::shared_ptr<CTreasurePool>& pool) -> bool;
+    auto HasZonePool() const -> bool;
+    auto AddToZonePool(CCharEntity* PChar) -> bool;
 
     void SetSoloBattleMusic(uint16 music);
     void SetPartyBattleMusic(uint16 music);
@@ -683,8 +683,8 @@ private:
     void LoadZoneLines();
     void LoadZoneWeather();
 
-    CTreasurePool*              m_TreasurePool;
-    std::vector<CTreasurePool*> m_SharedTreasurePools;
+    std::shared_ptr<CTreasurePool>              m_TreasurePool;
+    std::vector<std::shared_ptr<CTreasurePool>> m_SharedTreasurePools;
 
     time_point m_timeZoneEmpty; // The time point when the last player left the zone
 

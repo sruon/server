@@ -82,6 +82,7 @@ CZone::CZone(ZONEID ZoneID, REGION_TYPE RegionID, CONTINENT_TYPE ContinentID, ui
 , m_continentID(ContinentID)
 , m_levelRestriction(levelRestriction)
 , m_WeatherChangeTime(0)
+, m_TreasurePool(nullptr)
 {
     TracyZoneScoped;
 
@@ -91,7 +92,6 @@ CZone::CZone(ZONEID ZoneID, REGION_TYPE RegionID, CONTINENT_TYPE ContinentID, ui
     ZoneTimer             = nullptr;
     ZoneTimerTriggerAreas = nullptr;
 
-    m_TreasurePool       = nullptr;
     m_BattlefieldHandler = nullptr;
     m_Weather            = WEATHER_NONE;
     m_navMesh            = nullptr;
@@ -109,15 +109,6 @@ CZone::CZone(ZONEID ZoneID, REGION_TYPE RegionID, CONTINENT_TYPE ContinentID, ui
 
 CZone::~CZone()
 {
-    destroy(m_TreasurePool);
-    for (auto sharedPool : m_SharedTreasurePools)
-    {
-        if (sharedPool)
-        {
-            destroy(sharedPool);
-        }
-    }
-
     m_SharedTreasurePools.clear();
     destroy(m_zoneEntities);
     destroy(m_BattlefieldHandler);
@@ -434,7 +425,7 @@ void CZone::LoadZoneSettings()
         }
         if (m_miscMask & MISC_TREASURE)
         {
-            m_TreasurePool = new CTreasurePool(TREASUREPOOL_ZONE);
+            m_TreasurePool = std::make_shared<CTreasurePool>(TREASUREPOOL_ZONE);
         }
         if (m_CampaignHandler && m_CampaignHandler->m_PZone == nullptr)
         {
@@ -852,15 +843,15 @@ CBaseEntity* CZone::GetEntity(uint16 targid, uint8 filter)
  *                                                                       *
  ************************************************************************/
 
-CTreasurePool* CZone::CreateSharedTreasurePool()
+auto CZone::CreateSharedTreasurePool() -> std::shared_ptr<CTreasurePool>
 {
-    CTreasurePool* sharedPool = new CTreasurePool(TREASUREPOOL_SHARED);
+    std::shared_ptr<CTreasurePool> sharedPool = std::make_shared<CTreasurePool>(TREASUREPOOL_SHARED);
     m_SharedTreasurePools.push_back(sharedPool);
 
     return sharedPool;
 }
 
-bool CZone::DeleteSharedTreasurePool(CTreasurePool* pool)
+auto CZone::DeleteSharedTreasurePool(const std::shared_ptr<CTreasurePool>& pool) -> bool
 {
     if (pool == nullptr)
     {
@@ -870,19 +861,18 @@ bool CZone::DeleteSharedTreasurePool(CTreasurePool* pool)
     if (const auto it = std::find(m_SharedTreasurePools.begin(), m_SharedTreasurePools.end(), pool); it != m_SharedTreasurePools.end())
     {
         m_SharedTreasurePools.erase(it);
-        destroy(pool);
         return true;
     }
 
     return false;
 }
 
-bool CZone::HasZonePool() const
+auto CZone::HasZonePool() const -> bool
 {
     return m_TreasurePool != nullptr;
 }
 
-bool CZone::AddToZonePool(CCharEntity* PChar)
+auto CZone::AddToZonePool(CCharEntity* PChar) -> bool
 {
     if (m_TreasurePool)
     {
@@ -1126,7 +1116,7 @@ void CZone::CharZoneIn(CCharEntity* PChar)
         }
         else
         {
-            PChar->PTreasurePool = new CTreasurePool(TREASUREPOOL_SOLO);
+            PChar->PTreasurePool = std::make_shared<CTreasurePool>(TREASUREPOOL_SOLO);
             PChar->PTreasurePool->AddMember(PChar);
         }
     }
@@ -1246,8 +1236,8 @@ void CZone::CharZoneOut(CCharEntity* PChar)
     // this prevents loot from staying in zone pool after the last player leaves the zone
     if (m_TreasurePool && m_TreasurePool->GetPoolType() == TREASUREPOOL_ZONE && m_zoneEntities->CharListEmpty())
     {
-        destroy(m_TreasurePool);
-        m_TreasurePool = new CTreasurePool(TREASUREPOOL_ZONE);
+        m_TreasurePool.reset();
+        m_TreasurePool = std::make_shared<CTreasurePool>(TREASUREPOOL_ZONE);
     }
 
     PChar->loc.zone = nullptr;

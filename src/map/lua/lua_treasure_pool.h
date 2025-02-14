@@ -29,12 +29,12 @@
 class CTreasurePool;
 class CLuaTreasurePool
 {
-    CTreasurePool* m_pLuaTreasurePool;
+    std::shared_ptr<CTreasurePool> m_pLuaTreasurePool;
 
 public:
-    CLuaTreasurePool(CTreasurePool*);
+    CLuaTreasurePool(const std::shared_ptr<CTreasurePool>&);
 
-    CTreasurePool* GetTreasurePool() const
+    auto GetTreasurePool() const -> std::shared_ptr<CTreasurePool>
     {
         return m_pLuaTreasurePool;
     }
@@ -44,11 +44,6 @@ public:
 
     auto flush() -> bool;
     auto addTreasure(uint16 itemID, sol::object const& arg1) -> uint8;
-
-    bool operator==(const CLuaTreasurePool& other) const
-    {
-        return this->m_pLuaTreasurePool == other.m_pLuaTreasurePool;
-    }
 
     static void Register();
 };

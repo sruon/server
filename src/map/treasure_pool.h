@@ -69,7 +69,7 @@ struct TreasurePoolItem
     }
 };
 
-class CTreasurePool
+class CTreasurePool : public std::enable_shared_from_this<CTreasurePool>
 {
 public:
     CTreasurePool(TREASUREPOOLTYPE PoolType);

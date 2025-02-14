@@ -54,7 +54,7 @@ TREASUREPOOLTYPE CTreasurePool::GetPoolType()
 
 void CTreasurePool::AddMember(CCharEntity* PChar)
 {
-    if (PChar == nullptr || PChar->PTreasurePool != this)
+    if (PChar == nullptr || PChar->PTreasurePool.get() != this)
     {
         ShowWarning("CTreasurePool::AddMember() - PChar was null, or PTreasurePool mismatched.");
         return;
@@ -80,11 +80,14 @@ void CTreasurePool::AddMember(CCharEntity* PChar)
 
 void CTreasurePool::DelMember(CCharEntity* PChar)
 {
-    if (PChar == nullptr || PChar->PTreasurePool != this)
+    if (PChar == nullptr || PChar->PTreasurePool.get() != this)
     {
         ShowWarning("CTreasurePool::DelMember() - PChar was null, or PTreasurePool mismatched.");
         return;
     }
+
+    // Prevent pool deletion until this goes out of scope
+    std::shared_ptr<CTreasurePool> selfRef = shared_from_this();
 
     // if(m_TreasurePoolType != TREASUREPOOL_ZONE)
     // Zone drops e.g. Dynamis DO NOT remove previous lot info. Everything else does.
@@ -118,15 +121,6 @@ void CTreasurePool::DelMember(CCharEntity* PChar)
     if ((m_TreasurePoolType == TREASUREPOOL_PARTY || m_TreasurePoolType == TREASUREPOOL_ALLIANCE) && members.size() == 1)
     {
         m_TreasurePoolType = TREASUREPOOL_SOLO;
-    }
-
-    if (m_TreasurePoolType != TREASUREPOOL_ZONE && m_TreasurePoolType != TREASUREPOOL_SHARED && members.empty())
-    {
-        // TODO: This entire system needs rewriting to both:
-        //     : - Make it stable
-        //     : - Get rid of `delete this` and manage memory nicely
-        delete this; // cpp.sh allow
-        return;
     }
 }
 
@@ -263,7 +257,7 @@ uint8 CTreasurePool::AddItem(uint16 ItemID, CBaseEntity* PEntity)
 
 void CTreasurePool::UpdatePool(CCharEntity* PChar)
 {
-    if (PChar == nullptr || PChar->PTreasurePool != this)
+    if (PChar == nullptr || PChar->PTreasurePool.get() != this)
     {
         ShowWarning("CTreasurePool::UpdatePool() - PChar was null, or PTreasurePool mismatched.");
         return;
@@ -286,7 +280,7 @@ void CTreasurePool::UpdatePool(CCharEntity* PChar)
 
 void CTreasurePool::LotItem(CCharEntity* PChar, uint8 SlotID, uint16 Lot)
 {
-    if (PChar == nullptr || PChar->PTreasurePool != this)
+    if (PChar == nullptr || PChar->PTreasurePool.get() != this)
     {
         ShowWarning("CTreasurePool::LotItem() - PChar was null, or PTreasurePool mismatched.");
         return;
@@ -351,7 +345,7 @@ void CTreasurePool::LotItem(CCharEntity* PChar, uint8 SlotID, uint16 Lot)
 
 void CTreasurePool::PassItem(CCharEntity* PChar, uint8 SlotID)
 {
-    if (PChar == nullptr || PChar->PTreasurePool != this)
+    if (PChar == nullptr || PChar->PTreasurePool.get() != this)
     {
         ShowWarning("CTreasurePool::PassItem() - PChar was null, or PTreasurePool mismatched.");
         return;
@@ -548,7 +542,7 @@ void CTreasurePool::CheckTreasureItem(time_point tick, uint8 SlotID)
 
 void CTreasurePool::TreasureWon(CCharEntity* winner, uint8 SlotID)
 {
-    if (winner == nullptr || winner->PTreasurePool != this || m_PoolItems[SlotID].ID == 0)
+    if (winner == nullptr || winner->PTreasurePool.get() != this || m_PoolItems[SlotID].ID == 0)
     {
         ShowWarning("CTreasurePool::TreasureError() - Winner, or Winner Treasure Pool mismatch, or Pool ID = 0.");
         return;
@@ -570,7 +564,7 @@ void CTreasurePool::TreasureWon(CCharEntity* winner, uint8 SlotID)
 
 void CTreasurePool::TreasureError(CCharEntity* winner, uint8 SlotID)
 {
-    if (winner == nullptr || winner->PTreasurePool != this || m_PoolItems[SlotID].ID == 0)
+    if (winner == nullptr || winner->PTreasurePool.get() != this || m_PoolItems[SlotID].ID == 0)
     {
         ShowWarning("CTreasurePool::TreasureError() - Winner, or Winner Treasure Pool mismatch, or Pool ID = 0.");
         return;

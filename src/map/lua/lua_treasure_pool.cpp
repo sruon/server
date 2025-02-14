@@ -31,7 +31,7 @@
 #include "utils/mobutils.h"
 #include "zone_entities.h"
 
-CLuaTreasurePool::CLuaTreasurePool(CTreasurePool* PTreasurePool)
+CLuaTreasurePool::CLuaTreasurePool(const std::shared_ptr<CTreasurePool>& PTreasurePool)
 : m_pLuaTreasurePool(PTreasurePool)
 {
     if (PTreasurePool == nullptr)
@@ -104,7 +104,7 @@ auto CLuaTreasurePool::delMember(CLuaBaseEntity* member) -> bool
         }
         else if (!PChar->PParty) // If not in a party, create a new solo pool
         {
-            PChar->PTreasurePool = new CTreasurePool(TREASUREPOOL_SOLO);
+            PChar->PTreasurePool = std::make_shared<CTreasurePool>(TREASUREPOOL_SOLO);
             PChar->PTreasurePool->AddMember(PChar);
         }
         else if (PChar->PParty)
