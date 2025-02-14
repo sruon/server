@@ -147,3 +147,7 @@ SOL_BIND_DEC(CLuaTriggerArea, ITriggerArea);
 class CLuaZone;
 class CZone;
 SOL_BIND_DEC(CLuaZone, CZone);
+
+class CLuaTreasurePool;
+class CTreasurePool;
+SOL_BIND_DEC(CLuaTreasurePool, CTreasurePool);
