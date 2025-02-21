@@ -310,8 +310,8 @@ xi.settings.main =
     HOMEPOINT_TELEPORT           = 1,     -- Enables the homepoint teleport system
     DIG_ABUNDANCE_BONUS          = 0,     -- Increase chance of digging up an item (450  = item digup chance +45)
     DIG_FATIGUE                  = 300,   -- Allowed succesful digs per day. Set to 0 to disable Dig Fatigue
-    DIG_GRANT_BURROW             = 0,     -- Set to 1 to grant burrow ability
-    DIG_GRANT_BORE               = 0,     -- Set to 1 to grant bore ability
+    DIG_GRANT_BURROW             = 1,     -- Set to 1 to grant burrow ability
+    DIG_GRANT_BORE               = 1,     -- Set to 1 to grant bore ability
     ENM_COOLDOWN                 = 71,    -- Number of hours before a player can obtain same KI for ENMs (default: 120 hours (5 days))
     FORCE_SPAWN_QM_RESET_TIME    = 180,   -- Number of seconds the ??? remains hidden for after the despawning of the mob it force spawns.
     GOBBIE_BOX_MIN_AGE           = 14,    -- Minimum character age in days before a character can sign up for Gobbie Mystery Box
