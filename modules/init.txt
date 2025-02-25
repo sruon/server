@@ -44,3 +44,6 @@ catseyexi/lua/complete_overrides
 # Lua ADDITIVE overrides here:
 catseyexi/lua/additive_overrides
 #contrib/lua/additive_overrides
+#
+# Lua LAST overrides here (these must load after everything else)
+catseyexi/lua/last_overrides
