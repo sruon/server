@@ -181,6 +181,9 @@ settings, default_settings = populate_settings()
 # These are the 'protected' files
 player_data = [
     "accounts.sql",
+    "account_ip_record.sql",
+    "audit_chat.sql",
+    "audit_gm.sql",
     "accounts_banned.sql",
     "auction_house_items.sql",
     "auction_house.sql",
