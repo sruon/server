@@ -34,7 +34,7 @@ CItemContainer::CItemContainer(uint16 LocationID)
 , m_size(0)
 , m_count(0)
 {
-    memset(m_ItemList, 0, sizeof(m_ItemList));
+    std::memset(m_ItemList, 0, sizeof(m_ItemList));
 }
 
 CItemContainer::~CItemContainer()
@@ -201,6 +201,20 @@ uint8 CItemContainer::SearchItem(uint16 ItemID)
         }
     }
     return ERROR_SLOTID;
+}
+
+auto CItemContainer::SearchItems(uint16 ItemID) -> std::vector<uint8>
+{
+    std::vector<uint8> SlotIDs;
+
+    for (uint8 SlotID = 0; SlotID <= m_size; ++SlotID)
+    {
+        if ((m_ItemList[SlotID] != nullptr) && (m_ItemList[SlotID]->getID() == ItemID))
+        {
+            SlotIDs.push_back(SlotID);
+        }
+    }
+    return SlotIDs;
 }
 
 uint8 CItemContainer::SearchItemWithSpace(uint16 ItemID, uint32 quantity)

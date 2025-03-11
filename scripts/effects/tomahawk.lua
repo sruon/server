@@ -3,21 +3,24 @@
 -----------------------------------
 ---@type TEffect
 local effectObject = {}
-local physSDT = { xi.mod.SLASH_SDT, xi.mod.PIERCE_SDT, xi.mod.IMPACT_SDT, xi.mod.HTH_SDT }
 
 effectObject.onEffectGain = function(target, effect)
-    for i = 1, #physSDT do
-        local sdtModPhys = target:getMod(physSDT[i])
-        local reductionPhys = (1000 - sdtModPhys) * 0.25
+    local physSDT = { xi.mod.SLASH_SDT, xi.mod.PIERCE_SDT, xi.mod.IMPACT_SDT, xi.mod.HTH_SDT }
 
-        effect:addMod(physSDT[i], reductionPhys)
+    for i = 1, #physSDT do
+        local physicalSDTModifier   = physSDT[i]
+        local physicalSDTValue      = target:getMod(physicalSDTModifier)
+        local physicalSDTAdjustment = math.floor(physicalSDTValue * 0.25)
+
+        effect:addMod(physicalSDTModifier, -physicalSDTAdjustment)
     end
 
-    for i = 1, #xi.magic.specificDmgTakenMod do
-        local sdtModMagic = target:getMod(xi.magic.specificDmgTakenMod[i])
-        local reductionMagic = sdtModMagic * 0.25
+    for element = xi.element.FIRE, xi.element.DARK do
+        local elementSDTModifier   = xi.combat.element.getElementalSDTModifier(element)
+        local elementSDTValue      = target:getMod(elementSDTModifier)
+        local elementSDTAdjustment = math.floor(elementSDTValue * 0.25)
 
-        effect:addMod(xi.magic.specificDmgTakenMod[i], -reductionMagic)
+        effect:addMod(elementSDTModifier, -elementSDTAdjustment)
     end
 end
 
@@ -25,7 +28,6 @@ effectObject.onEffectTick = function(target, effect)
 end
 
 effectObject.onEffectLose = function(target, effect)
-    -- Mods are stacked on the effect and will be removed automatically when the effect wears off
 end
 
 return effectObject

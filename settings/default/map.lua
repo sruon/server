@@ -48,7 +48,7 @@ xi.settings.map =
 
     -- Max open listings per player, 0 = no limit. (Default 7)
     -- Note = Settings over 7 may need client-side plugin to work under all circumstances.
-    -- If this is the case, consider using the ah_pagination module
+    -- If this is the case, consider using the ah_pagination module (which supports setting AH_LIST_LIMIT to 0 or >7).
     AH_LIST_LIMIT = 0,
 
     -- The total enmity cap for a given entity on the enmity table.
@@ -95,6 +95,9 @@ xi.settings.map =
     -- Disables ability to equip higher level gear when level cap/sync effect is on player.
     DISABLE_GEAR_SCALING = false,
 
+    -- Disables Treasure Hunter procs (Era behavior wants this true)
+    DISABLE_TREASURE_HUNTER_PROCS = false,
+
     -- Weaponskill point base (before skillchain) for breaking latent - whole numbers only. retail is 1.
     WS_POINTS_BASE = 1,
 
@@ -105,15 +108,22 @@ xi.settings.map =
     -- Enable/disable jobs other than BST and RNG having widescan
     ALL_JOBS_WIDESCAN = true,
 
-    -- Modifier to apply to player speed. 0 is the retail accurate default. Negative numbers will reduce it.
-    SPEED_MOD = 0,
+    -- Base player movement speed
+    BASE_SPEED = 50,
 
-    -- Modifier to apply to mount speed. 0 is the retail accurate default. Negative numbers will reduce it.
-    -- Note retail treats the mounted speed as double what it actually is.
-    MOUNT_SPEED_MOD = 0,
+    -- Player movement speed limit
+    SPEED_LIMIT = 80,
 
-    -- This is an integer percentage. Modifier to apply to agro'd monster speed (i.e. while engaged in combat). 0 is the retail accurate default. Negative numbers will reduce ALL mobs's speed.
-    MOB_SPEED_MOD = 0,
+    -- Mount speed, expressed as player speed. Can surpass speed limit.
+    MOUNT_SPEED = 80,
+
+    -- Player animation speed divisor
+    -- Raising this increases the players movement animation speed
+    ANIMATION_SPEED_DIVISOR = 1.0,
+
+    -- Multiplier for speed of engaged mobs when their target is out of range.
+    -- The default for almost all mobs on retail is 2.5x their normal speed.
+    MOB_RUN_SPEED_MULTIPLIER = 2.5,
 
     -- Allows you to manipulate the constant multiplier in the skill-up rate formulas, having a potent effect on skill-up rates.
     SKILLUP_CHANCE_MULTIPLIER = 2.0,
@@ -141,7 +151,7 @@ xi.settings.map =
     -- Multiplier applied to high quality chance
     CRAFT_HQ_CHANCE_MULTIPLIER = 1.0,
 
-    -- Enables fishing. 0 = Disabled. 1 = Enable. ENABLE AT YOUR OWN RISK.
+    -- Enable/disable all fishing, including quests. ENABLE AT YOUR OWN RISK.
     FISHING_ENABLE = 1,
 
     -- Sets the minimum level a character must be to fish.
@@ -266,12 +276,6 @@ xi.settings.map =
 
     -- Seconds between healing ticks. Default is 10
     HEALING_TICK_DELAY = 10,
-
-    -- Set to 1 to enable server side anti-cheating measurements
-    ANTICHEAT_ENABLED = true,
-
-    -- Set to 1 to completely disable auto-jailing offenders
-    ANTICHEAT_JAIL_DISABLE = false,
 
     -- Enable/disable keeping jug pets through zoning
     KEEP_JUGPET_THROUGH_ZONING = false,

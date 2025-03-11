@@ -155,9 +155,9 @@ int sSocket(int af, int type, int protocol);
 
 #endif
 
-#define TOB(n) ((uint8)((n)&std::numeric_limits<uint8>::max()))
-#define TOW(n) ((uint16)((n)&std::numeric_limits<uint16>::max()))
-#define TOL(n) ((uint32)((n)&std::numeric_limits<uint32>::max()))
+#define TOB(n) ((uint8)((n) & std::numeric_limits<uint8>::max()))
+#define TOW(n) ((uint16)((n) & std::numeric_limits<uint16>::max()))
+#define TOL(n) ((uint32)((n) & std::numeric_limits<uint32>::max()))
 
 enum class socket_type
 {
@@ -186,8 +186,6 @@ void socket_final();
 std::string ip2str(uint32 ip);
 
 uint32 str2ip(const char* ip_str);
-
-uint16 ntows(uint16 netshort);
 
 /************************************************/
 /*
@@ -334,9 +332,16 @@ int32 recvudp(int32 fd, void* buff, size_t nbytes, int32 flags, struct sockaddr*
 int32 sendudp(int32 fd, void* buff, size_t nbytes, int32 flags, const struct sockaddr* from, socklen_t addrlen);
 
 template <typename T, typename U>
-T& ref(U* buf, std::size_t index)
+auto ref(U* buf, std::size_t index) -> T&
 {
     return *reinterpret_cast<T*>(reinterpret_cast<uint8*>(buf) + index);
+}
+
+template <typename T, typename U>
+auto as(U& object) -> T*
+{
+    static_assert(std::is_standard_layout_v<T>, "Type must be standard layout (No virtual functions, inheritance, etc.)");
+    return reinterpret_cast<T*>(&object);
 }
 
 #endif // _SOCKET_H //

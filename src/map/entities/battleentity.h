@@ -66,11 +66,11 @@ enum class ECOSYSTEM : uint8
     UNCLASSIFIED   = 18,
     UNDEAD         = 19,
     VERMIN         = 20,
-    VORAGEAN       = 21
+    VORAGEAN       = 21,
 };
 DECLARE_FORMAT_AS_UNDERLYING(ECOSYSTEM);
 
-enum JOBTYPE
+enum JOBTYPE : uint8
 {
     JOB_NON = 0,
     JOB_WAR = 1,
@@ -100,7 +100,7 @@ enum JOBTYPE
 #define MAX_JOBTYPE 24
 DECLARE_FORMAT_AS_UNDERLYING(JOBTYPE);
 
-enum SKILLTYPE
+enum SKILLTYPE : uint8
 {
     SKILL_NONE         = 0,
     SKILL_HAND_TO_HAND = 1,
@@ -152,12 +152,12 @@ enum SKILLTYPE
     SKILL_COOKING      = 56,
     SKILL_SYNERGY      = 57,
     SKILL_RID          = 58,
-    SKILL_DIG          = 59
+    SKILL_DIG          = 59,
 };
 #define MAX_SKILLTYPE 64
 DECLARE_FORMAT_AS_UNDERLYING(SKILLTYPE);
 
-enum SUBSKILLTYPE
+enum SUBSKILLTYPE : uint8
 {
     SUBSKILL_XBO      = 0,
     SUBSKILL_GUN      = 1,
@@ -213,11 +213,11 @@ enum SUBSKILLTYPE
     SUBSKILL_RAPHIE     = 65,
     SUBSKILL_MAC        = 66,
     SUBSKILL_SILAS      = 67,
-    SUBSKILL_TOLOI      = 68
+    SUBSKILL_TOLOI      = 68,
 };
 DECLARE_FORMAT_AS_UNDERLYING(SUBSKILLTYPE);
 
-enum SLOTTYPE
+enum SLOTTYPE : uint8
 {
     SLOT_MAIN   = 0x00,
     SLOT_SUB    = 0x01,
@@ -241,14 +241,14 @@ enum SLOTTYPE
 #define MAX_SLOTTYPE 18
 DECLARE_FORMAT_AS_UNDERLYING(SLOTTYPE);
 
-enum class ATTACK_TYPE
+enum class ATTACK_TYPE : uint8
 {
     NONE     = 0,
     PHYSICAL = 1,
     MAGICAL  = 2,
     RANGED   = 3,
     SPECIAL  = 4,
-    BREATH   = 5
+    BREATH   = 5,
 };
 DECLARE_FORMAT_AS_UNDERLYING(ATTACK_TYPE);
 
@@ -267,7 +267,7 @@ enum class DAMAGE_TYPE : uint16
     LIGHTNING = 10,
     WATER     = 11,
     LIGHT     = 12,
-    DARK      = 13
+    DARK      = 13,
 };
 DECLARE_FORMAT_AS_UNDERLYING(DAMAGE_TYPE);
 
@@ -312,18 +312,18 @@ inline REACTION operator|=(REACTION& a, REACTION b)
     return a;
 }
 
-enum class SPECEFFECT
+enum class SPECEFFECT : uint8
 {
     NONE         = 0x00,
     BLOOD        = 0x02,
     HIT          = 0x10,
     RAISE        = 0x11,
     RECOIL       = 0x20,
-    CRITICAL_HIT = 0x22
+    CRITICAL_HIT = 0x22,
 };
 DECLARE_FORMAT_AS_UNDERLYING(SPECEFFECT);
 
-enum class MODIFIER
+enum class MODIFIER : uint8
 {
     NONE        = 0x00,
     COVER       = 0x01,
@@ -333,7 +333,7 @@ enum class MODIFIER
 };
 DECLARE_FORMAT_AS_UNDERLYING(MODIFIER);
 
-enum SUBEFFECT
+enum SUBEFFECT : uint8
 {
     // ATTACK
     SUBEFFECT_FIRE_DAMAGE      = 1,  // 110000     3
@@ -411,24 +411,24 @@ enum SUBEFFECT
 };
 DECLARE_FORMAT_AS_UNDERLYING(SUBEFFECT);
 
-enum TARGETTYPE
+enum TARGETTYPE : uint16
 {
-    TARGET_NONE                    = 0x00,
-    TARGET_SELF                    = 0x01,
-    TARGET_PLAYER_PARTY            = 0x02,
-    TARGET_ENEMY                   = 0x04,
-    TARGET_PLAYER_ALLIANCE         = 0x08,
-    TARGET_PLAYER                  = 0x10,
-    TARGET_PLAYER_DEAD             = 0x20,
-    TARGET_NPC                     = 0x40, // an npc is a mob that looks like an npc and fights on the side of the character
-    TARGET_PLAYER_PARTY_PIANISSIMO = 0x80,
-    TARGET_PET                     = 0x100,
-    TARGET_PLAYER_PARTY_ENTRUST    = 0x200,
-    TARGET_IGNORE_BATTLEID         = 0x400, // Can hit targets that do not have the same battle ID
+    TARGET_NONE                    = 0x0000,
+    TARGET_SELF                    = 0x0001,
+    TARGET_PLAYER_PARTY            = 0x0002,
+    TARGET_ENEMY                   = 0x0004,
+    TARGET_PLAYER_ALLIANCE         = 0x0008,
+    TARGET_PLAYER                  = 0x0010,
+    TARGET_PLAYER_DEAD             = 0x0020,
+    TARGET_NPC                     = 0x0040, // an npc is a mob that looks like an npc and fights on the side of the character
+    TARGET_PLAYER_PARTY_PIANISSIMO = 0x0080,
+    TARGET_PET                     = 0x0100,
+    TARGET_PLAYER_PARTY_ENTRUST    = 0x0200,
+    TARGET_IGNORE_BATTLEID         = 0x0400, // Can hit targets that do not have the same battle ID
 };
 DECLARE_FORMAT_AS_UNDERLYING(TARGETTYPE);
 
-enum SKILLCHAIN_ELEMENT
+enum SKILLCHAIN_ELEMENT : uint8
 {
     SC_NONE = 0, // Lv0 None
 
@@ -457,24 +457,25 @@ DECLARE_FORMAT_AS_UNDERLYING(SKILLCHAIN_ELEMENT);
 
 enum IMMUNITY : uint32
 {
-    IMMUNITY_NONE        = 0x00000000,
-    IMMUNITY_ADDLE       = 0x00000001,
-    IMMUNITY_GRAVITY     = 0x00000002,
-    IMMUNITY_BIND        = 0x00000004,
-    IMMUNITY_STUN        = 0x00000008,
-    IMMUNITY_SILENCE     = 0x00000010, // 16
-    IMMUNITY_PARALYZE    = 0x00000020, // 32
-    IMMUNITY_BLIND       = 0x00000040, // 64
-    IMMUNITY_SLOW        = 0x00000080, // 128
-    IMMUNITY_POISON      = 0x00000100, // 256
-    IMMUNITY_ELEGY       = 0x00000200, // 512
-    IMMUNITY_REQUIEM     = 0x00000400, // 1024
-    IMMUNITY_LIGHT_SLEEP = 0x00000800, // 2048
-    IMMUNITY_DARK_SLEEP  = 0x00001000, // 4096
-    IMMUNITY_ASPIR       = 0x00002000, // 8192
-    IMMUNITY_TERROR      = 0x00004000, // 16384
-    IMMUNITY_DISPEL      = 0x00008000, // 32768
-    IMMUNITY_PETRIFY     = 0x00010000, // 65536
+    IMMUNITY_NONE        = 0x00000000, //      0
+    IMMUNITY_ADDLE       = 0x00000001, //      1
+    IMMUNITY_GRAVITY     = 0x00000002, //      2
+    IMMUNITY_BIND        = 0x00000004, //      4
+    IMMUNITY_STUN        = 0x00000008, //      8
+    IMMUNITY_SILENCE     = 0x00000010, //     16
+    IMMUNITY_PARALYZE    = 0x00000020, //     32
+    IMMUNITY_BLIND       = 0x00000040, //     64
+    IMMUNITY_SLOW        = 0x00000080, //    128
+    IMMUNITY_POISON      = 0x00000100, //    256
+    IMMUNITY_ELEGY       = 0x00000200, //    512
+    IMMUNITY_REQUIEM     = 0x00000400, //   1024
+    IMMUNITY_LIGHT_SLEEP = 0x00000800, //   2048
+    IMMUNITY_DARK_SLEEP  = 0x00001000, //   4096
+    IMMUNITY_ASPIR       = 0x00002000, //   8192
+    IMMUNITY_TERROR      = 0x00004000, //  16384
+    IMMUNITY_DISPEL      = 0x00008000, //  32768
+    IMMUNITY_PETRIFY     = 0x00010000, //  65536
+    IMMUNITY_PLAGUE      = 0x00020000, // 131064
 };
 DECLARE_FORMAT_AS_UNDERLYING(IMMUNITY);
 
@@ -558,15 +559,15 @@ public:
     uint16 CHR();
     uint16 DEF();
     uint16 ATT(SLOTTYPE slot);
-    uint16 ACC(uint8 attackNumber, uint8 offsetAccuracy);
+    uint16 ACC(uint8 attackNumber, uint16 offsetAccuracy);
     uint16 EVA();
     uint16 RATT(uint8 skill, uint16 bonusSkill = 0);
     uint16 RACC(uint8 skill, uint16 bonusSkill = 0);
 
-    uint8 GetSpeed();
-
     bool isDead();
     bool isAlive();
+    bool isFullyHealed();
+    bool isInAdoulin();
     bool isInAssault();
     bool isInDynamis();
     bool isInMogHouse();
@@ -593,6 +594,7 @@ public:
     uint8 GetMPP() const;
     int32 GetMaxMP() const;
     void  UpdateHealth(); // recalculation of the maximum amount of hp and mp, as well as adjusting their current values
+    uint8 UpdateSpeed(bool run = false) override;
 
     int16  GetWeaponDelay(bool tp);              // returns delay of combined weapons
     float  GetMeleeRange() const;                // returns the distance considered to be within melee range of the entity
@@ -700,6 +702,8 @@ public:
         m_battleTarget = id;
     }
     CBattleEntity* GetBattleTarget();
+
+    bool hasEnmityEXPENSIVE() const; // Returns true if own notoriety container is not empty or mob in zone has entity listed as battle target
 
     /* State callbacks */
     /* Auto attack */

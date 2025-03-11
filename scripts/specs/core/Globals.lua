@@ -81,10 +81,11 @@ end
 function IsConquestAlliance()
 end
 
----@param zoneId xi.zone
+---@param requestingZoneId xi.zone
+---@param executorZoneId xi.zone
 ---@param str string
 ---@return nil
-function SendLuaFuncStringToZone(zoneId, str)
+function SendLuaFuncStringToZone(requestingZoneId, executorZoneId, str)
 end
 
 ---@nodiscard
@@ -340,6 +341,14 @@ end
 function Terminate()
 end
 
+---@param target CBaseEntity
+---@param table table
+---@param offset number
+---@param degrees number
+---@return nil
+function DrawIn(target, table, offset, degrees)
+end
+
 ---@nodiscard
 ---@param mobid integer
 ---@return integer
@@ -408,4 +417,27 @@ end
 ---@param timedSchedule table
 ---@return nil
 function RoeParseTimed(timedSchedule)
+end
+
+--@return table
+function GetFishingContest()
+end
+
+--@return nil
+function InitNewFishingContest()
+end
+
+--@param fishId integer
+--@param measure integer
+--@param criteria integer
+--@return nil
+function SetContestParameters(fishId, measure, criteria)
+end
+
+--@return nil
+function ProgressFishingContest()
+end
+
+--@return nil
+function InitializeFishingContestSystem()
 end

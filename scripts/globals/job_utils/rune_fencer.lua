@@ -2,6 +2,7 @@
 -- Rune Fencer Job Utilities
 -----------------------------------
 require('scripts/globals/ability')
+require('scripts/globals/combat/magic_hit_rate')
 require('scripts/globals/weaponskills')
 require('scripts/globals/jobpoints')
 require('scripts/globals/spells/damage_spell')
@@ -22,7 +23,7 @@ end
 
 local function applyRuneEnhancement(effectType, player)
     local runLevel      = getRUNLevel(player)
-    local meritBonus    =  player:getMerit(xi.merit.MERIT_RUNE_ENHANCE) -- 2 more elemental resistance per merit for a maximum total of (2*5) = 10 (power of merit is 2 per level)
+    local meritBonus    = player:getMerit(xi.merit.MERIT_RUNE_ENHANCE) -- 2 more elemental resistance per merit for a maximum total of (2*5) = 10 (power of merit is 2 per level)
     local jobPointBonus = player:getJobPointLevel(xi.jp.RUNE_ENCHANTMENT_EFFECT) -- 1 more elemental resistance per level for a maximum total of 20
 
     -- see https://www.bg-wiki.com/ffxi/Category:Rune
@@ -296,8 +297,8 @@ local function applyVallationValianceSDTMods(target, SDTTypes, power, effect, du
         local newEffect = target:getStatusEffect(effect)
 
         for _, SDT in ipairs(SDTTypes) do
-            target:addMod(SDT, power)
-            newEffect:addMod(SDT, power) -- due to order of events, this only adds mods to the container, not to the owner of the effect.
+            target:addMod(SDT, -power)
+            newEffect:addMod(SDT, -power) -- due to order of events, this only adds mods to the container, not to the owner of the effect.
         end
     end
 end
@@ -309,8 +310,8 @@ local function applyGambitSDTMods(target, SDTTypes, power, effect, duration) -- 
         local newEffect = target:getStatusEffect(effect)
 
         for _, SDT in ipairs(SDTTypes) do
-            target:addMod(SDT, power)
-            newEffect:addMod(SDT, power) -- due to order of events, this only adds mods to the container, not to the owner of the effect.
+            target:addMod(SDT, -power)
+            newEffect:addMod(SDT, -power) -- due to order of events, this only adds mods to the container, not to the owner of the effect.
         end
     end
 end
@@ -516,7 +517,7 @@ local function getSwipeLungeDamageMultipliers(player, target, element, bonusMacc
     multipliers.eleStaffBonus       = xi.spells.damage.calculateElementalStaffBonus(player, element)
     multipliers.magianAffinity      = xi.spells.damage.calculateMagianAffinity() -- Presumed but untested.
     multipliers.SDT                 = xi.spells.damage.calculateSDT(target, element)
-    multipliers.resist              = xi.spells.damage.calculateResist(player, target, 0, 0, element, 0, bonusMacc)
+    multipliers.resist              = xi.combat.magicHitRate.calculateResistRate(player, target, 0, 0, 0, element, 0, 0, bonusMacc)
     multipliers.dayAndWeather       = xi.spells.damage.calculateDayAndWeather(player, 0, element)
     multipliers.magicBonusDiff      = xi.spells.damage.calculateMagicBonusDiff(player, target, 0, 0, element)
     multipliers.TMDA                = xi.spells.damage.calculateTMDA(target, element)
@@ -855,7 +856,7 @@ xi.job_utils.rune_fencer.useLiement = function(player, target, ability, action)
     end
 
     local runeEffects = target:getAllRuneEffects()
-    local absorbPower = 25
+    local absorbPower = 15 -- in core -> 85 + 15 * (1, 2, or 3) = 100, 115, 130
     local duration    = 10 + player:getMod(xi.mod.LIEMENT_DURATION)
     local absorbTypes = {} -- one absorb type per rune which can be additive
     local i           = 0

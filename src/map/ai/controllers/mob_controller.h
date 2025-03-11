@@ -58,7 +58,9 @@ public:
     void         TapDeclaimTime();
     virtual bool Cast(uint16 targid, SpellID spellid) override;
     void         SetFollowTarget(CBaseEntity* PTarget, FollowType followType);
+    bool         HasFollowTarget();
     void         ClearFollowTarget();
+    bool         CheckHide(CBattleEntity* PTarget);
 
     void OnCastStopped(CMagicState& state, action_t& action);
 
@@ -68,7 +70,6 @@ protected:
     virtual void TryLink();
     bool         CanDetectTarget(CBattleEntity* PTarget, bool forceSight = false);
     bool         CanPursueTarget(CBattleEntity* PTarget);
-    bool         CheckHide(CBattleEntity* PTarget);
     bool         CheckLock(CBattleEntity* PTarget);
     bool         CheckDetection(CBattleEntity* PTarget);
     virtual bool CanCastSpells();
@@ -104,7 +105,7 @@ private:
     time_point m_NeutralTime;
     time_point m_WaitTime;
     time_point m_mobHealTime;
-    FollowType m_followType;
+    FollowType m_followType = FollowType::None;
 
     bool       m_firstSpell{ true };
     time_point m_LastRoamScript{ time_point::min() };

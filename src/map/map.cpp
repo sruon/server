@@ -25,26 +25,20 @@
 #include "common/blowfish.h"
 #include "common/console_service.h"
 #include "common/database.h"
+#include "common/debug.h"
 #include "common/logging.h"
-#include "common/md52.h"
 #include "common/timer.h"
 #include "common/utils.h"
 #include "common/vana_time.h"
 #include "common/version.h"
 #include "common/zlib.h"
 
-#include <cmath>
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
-#include <thread>
-
 #include "ability.h"
-#include "common/debug.h"
-#include "common/vana_time.h"
+#include "daily_system.h"
+#include "ipc_client.h"
 #include "job_points.h"
+#include "latent_effect_container.h"
 #include "linkshell.h"
-#include "message.h"
 #include "mob_spell_list.h"
 #include "monstrosity.h"
 #include "packet_guard.h"
@@ -58,11 +52,13 @@
 #include "zone_entities.h"
 
 #include "ai/controllers/automaton_controller.h"
-#include "daily_system.h"
-#include "latent_effect_container.h"
+
+#include "items/item_equipment.h"
+
 #include "packets/basic.h"
 #include "packets/chat_message.h"
 #include "packets/server_ip.h"
+
 #include "utils/battleutils.h"
 #include "utils/charutils.h"
 #include "utils/fishingutils.h"
@@ -75,8 +71,15 @@
 #include "utils/petutils.h"
 #include "utils/serverutils.h"
 #include "utils/synergyutils.h"
+#include "utils/synthutils.h"
 #include "utils/trustutils.h"
 #include "utils/zoneutils.h"
+
+#include <cmath>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+#include <thread>
 
 #include <nonstd/jthread.hpp>
 
@@ -121,12 +124,6 @@ namespace
     uint32 TotalPacketsDelayedPerTick = 0U;
 } // namespace
 
-/************************************************************************
- *                                                                       *
- *  mapsession_getbyipp                                                  *
- *                                                                       *
- ************************************************************************/
-
 map_session_data_t* mapsession_getbyipp(uint64 ipp)
 {
     TracyZoneScoped;
@@ -142,15 +139,41 @@ map_session_data_t* mapsession_getbyipp(uint64 ipp)
     return nullptr;
 }
 
-/************************************************************************
- *                                                                       *
- *  mapsession_createsession                                             *
- *                                                                       *
- ************************************************************************/
+map_session_data_t* mapsession_getbychar(CCharEntity* PChar)
+{
+    TracyZoneScoped;
+
+    for (const auto& [_, session] : map_session_list)
+    {
+        if (PChar && session->PChar->id == PChar->id)
+        {
+            return session;
+        }
+    }
+
+    return nullptr;
+}
 
 map_session_data_t* mapsession_createsession(uint32 ip, uint16 port)
 {
     TracyZoneScoped;
+
+    const auto ipstr = ip2str(ip);
+
+    const auto rset = db::preparedStmt("SELECT charid FROM accounts_sessions WHERE inet_ntoa(client_addr) = ? LIMIT 1", ipstr);
+
+    if (rset == nullptr)
+    {
+        ShowError("SQL query failed in mapsession_createsession!");
+        return nullptr;
+    }
+
+    if (rset->rowsCount() == 0)
+    {
+        // This is noisy and not really necessary
+        DebugSockets(fmt::format("recv_parse: Invalid login attempt from {}", ipstr));
+        return nullptr;
+    }
 
     map_session_data_t* map_session_data = new map_session_data_t();
 
@@ -164,23 +187,6 @@ map_session_data_t* mapsession_createsession(uint32 ip, uint16 port)
     uint64 ipp    = ip;
     ipp |= port64 << 32;
     map_session_list[ipp] = map_session_data;
-
-    auto ipstr    = ip2str(map_session_data->client_addr);
-    auto fmtQuery = fmt::format("SELECT charid FROM accounts_sessions WHERE inet_ntoa(client_addr) = '{}' LIMIT 1", ipstr);
-
-    int32 ret = _sql->Query(fmtQuery.c_str());
-
-    if (ret == SQL_ERROR)
-    {
-        ShowError("SQL query failed in mapsession_createsession!");
-    }
-
-    if (_sql->NumRows() == 0)
-    {
-        // This is noisy and not really necessary
-        DebugSockets(fmt::format("recv_parse: Invalid login attempt from {}", ipstr));
-        return nullptr;
-    }
 
     return map_session_data;
 }
@@ -212,6 +218,7 @@ int32 do_init(int32 argc, char** argv)
     map_ip.s_addr = 0;
     map_port      = 0;
 
+    // TODO: Replace with argparse::ArgumentParser
     for (int i = 1; i < argc; i++)
     {
         if (strcmp(argv[i], "--ip") == 0)
@@ -230,18 +237,23 @@ int32 do_init(int32 argc, char** argv)
         }
     }
 
-    ShowInfo(fmt::format("map_port: {}", map_port));
+    ShowInfoFmt("map_port: {}", map_port);
+    ShowInfoFmt("Zones assigned to this process: {}", zoneutils::GetZonesAssignedToThisProcess().size());
 
     srand((uint32)time(nullptr));
     xirand::seed();
+    ShowInfo(fmt::format("Random samples (integer): {}", utils::getRandomSampleString(0, 255)));
+    ShowInfo(fmt::format("Random samples (float): {}", utils::getRandomSampleString(0.0f, 1.0f)));
 
+    // TODO: Get rid of legacy _sql and SqlConnection
     ShowInfo("do_init: connecting to database");
     _sql = std::make_unique<SqlConnection>();
 
-    ShowInfo(_sql->GetDatabaseName().c_str());
-    ShowInfo(_sql->GetClientVersion().c_str());
-    ShowInfo(_sql->GetServerVersion().c_str());
-    _sql->CheckCharset();
+    ShowInfo(fmt::format("database name: {}", db::getDatabaseSchema()).c_str());
+    ShowInfo(fmt::format("database server version: {}", db::getDatabaseVersion()).c_str());
+    ShowInfo(fmt::format("database client version: {}", db::getDriverVersion()).c_str());
+    db::checkCharset();
+    db::checkTriggers();
 
     luautils::init(); // Also calls moduleutils::LoadLuaModules();
 
@@ -255,7 +267,6 @@ int32 do_init(int32 argc, char** argv)
 
     ShowInfo("do_init: starting ZMQ thread");
     message::init();
-    messageThread = nonstd::jthread(message::listen);
 
     ShowInfo("do_init: loading items");
     itemutils::Initialize();
@@ -289,7 +300,9 @@ int32 do_init(int32 argc, char** argv)
     jobpointutils::LoadGifts();
     daily::LoadDailyItems();
     roeutils::UpdateUnityRankings();
+    synthutils::LoadSynthRecipes();
     synergyutils::LoadSynergyRecipes();
+    CItemEquipment::LoadAugmentData(); // TODO: Move to itemutils
 
     if (!std::filesystem::exists("./navmeshes/") || std::filesystem::is_empty("./navmeshes/"))
     {
@@ -318,10 +331,12 @@ int32 do_init(int32 argc, char** argv)
 
     CTransportHandler::getInstance()->InitializeTransport();
 
-    CTaskMgr::getInstance()->AddTask("time_server", server_clock::now(), nullptr, CTaskMgr::TASK_INTERVAL, time_server, 2400ms);
-    CTaskMgr::getInstance()->AddTask("map_cleanup", server_clock::now(), nullptr, CTaskMgr::TASK_INTERVAL, map_cleanup, 5s);
-    CTaskMgr::getInstance()->AddTask("garbage_collect", server_clock::now(), nullptr, CTaskMgr::TASK_INTERVAL, map_garbage_collect, 15min);
-    CTaskMgr::getInstance()->AddTask("persist_server_vars", server_clock::now(), nullptr, CTaskMgr::TASK_INTERVAL, serverutils::PersistVolatileServerVars, 1min);
+    CTaskMgr::getInstance()->AddTask("time_server", server_clock::now(), nullptr, CTaskMgr::TASK_INTERVAL, 2400ms, time_server);
+    CTaskMgr::getInstance()->AddTask("map_cleanup", server_clock::now(), nullptr, CTaskMgr::TASK_INTERVAL, 5s, map_cleanup);
+    CTaskMgr::getInstance()->AddTask("garbage_collect", server_clock::now(), nullptr, CTaskMgr::TASK_INTERVAL, 15min, map_garbage_collect);
+    CTaskMgr::getInstance()->AddTask("persist_server_vars", server_clock::now(), nullptr, CTaskMgr::TASK_INTERVAL, 1min, serverutils::PersistVolatileServerVars);
+
+    zoneutils::TOTDChange(CVanaTime::getInstance()->GetCurrentTOTD()); // This tells the zones to spawn stuff based on time of day conditions (such as undead at night)
 
     ShowInfo("do_init: Removing expired database variables");
     uint32 currentTimestamp = CVanaTime::getInstance()->getSysTime();
@@ -342,6 +357,8 @@ int32 do_init(int32 argc, char** argv)
     luautils::OnServerStart();
 
     moduleutils::ReportLuaModuleUsage();
+
+    db::enableTimers();
 
     ShowInfo("The map-server is ready to work!");
     ShowInfo("=======================================================================");
@@ -381,13 +398,12 @@ int32 do_init(int32 argc, char** argv)
         // our own SQL connection.
         {
             auto otherSql  = std::make_unique<SqlConnection>();
-            auto query = "UPDATE %s SET %s %u WHERE charid = %u;";
+            auto query = "UPDATE %s SET %s %u WHERE charid = %u";
             otherSql->Query(query, "chars", "gmlevel =", PChar->m_GMlevel, PChar->id);
         }
 
         fmt::print("Promoting {} to GM level {}\n", PChar->name, level);
-        PChar->pushPacket(new CChatMessagePacket(PChar, MESSAGE_SYSTEM_3,
-            fmt::format("You have been set to GM level {}.", level), ""));
+        PChar->pushPacket<CChatMessagePacket>(PChar, MESSAGE_SYSTEM_3, fmt::format("You have been set to GM level {}.", level));
     });
 
     gConsoleService->RegisterCommand("reload_settings", "Reload settings files.",
@@ -395,6 +411,13 @@ int32 do_init(int32 argc, char** argv)
     {
         fmt::print("Reloading settings files\n");
         settings::init();
+    });
+
+    gConsoleService->RegisterCommand("reload_recipes", "Reload crafting recipes.",
+    [&](std::vector<std::string>& inputs)
+    {
+        fmt::print("Reloading crafting recipes\n");
+        synthutils::LoadSynthRecipes();
     });
 
     gConsoleService->RegisterCommand("exit", "Terminate the program.",
@@ -442,7 +465,6 @@ void do_final(int code)
     trustutils::FreeTrustList();
     zoneutils::FreeZoneList();
 
-    message::close();
     messageThread.join();
 
     CTaskMgr::delInstance();
@@ -500,9 +522,11 @@ void ReportTracyStats()
 {
     TracyReportLuaMemory(lua.lua_state());
 
-    std::size_t activeZoneCount = 0;
-    std::size_t playerCount     = 0;
-    std::size_t mobCount        = 0;
+    std::size_t activeZoneCount       = 0;
+    std::size_t playerCount           = 0;
+    std::size_t mobCount              = 0;
+    std::size_t dynamicTargIdCount    = 0;
+    std::size_t dynamicTargIdCapacity = 0;
 
     for (auto& [id, PZone] : g_PZoneList)
     {
@@ -511,6 +535,8 @@ void ReportTracyStats()
             activeZoneCount += 1;
             playerCount += PZone->GetZoneEntities()->GetCharList().size();
             mobCount += PZone->GetZoneEntities()->GetMobList().size();
+            dynamicTargIdCount += PZone->GetZoneEntities()->GetUsedDynamicTargIDsCount();
+            dynamicTargIdCapacity += 511;
         }
     }
 
@@ -518,6 +544,8 @@ void ReportTracyStats()
     TracyReportGraphNumber("Connected Players (Process)", static_cast<std::int64_t>(playerCount));
     TracyReportGraphNumber("Active Mobs (Process)", static_cast<std::int64_t>(mobCount));
     TracyReportGraphNumber("Task Manager Tasks", static_cast<std::int64_t>(CTaskMgr::getInstance()->getTaskList().size()));
+
+    TracyReportGraphPercent("Dynamic Entity TargID Capacity Usage Percent", static_cast<double>(dynamicTargIdCount) / static_cast<double>(dynamicTargIdCapacity));
 
     TracyReportGraphNumber("Total Packets To Send Per Tick", static_cast<std::int64_t>(TotalPacketsToSendPerTick));
     TracyReportGraphNumber("Total Packets Sent Per Tick", static_cast<std::int64_t>(TotalPacketsSentPerTick));
@@ -538,11 +566,9 @@ int32 do_sockets(fd_set* rfd, duration next)
 {
     message::handle_incoming();
 
-    struct timeval timeout
-    {
-    };
-    int32 ret = 0;
-    memcpy(rfd, &readfds, sizeof(*rfd));
+    timeval timeout{};
+    int32   ret = 0;
+    std::memcpy(rfd, &readfds, sizeof(*rfd));
 
     timeout.tv_sec  = std::chrono::duration_cast<std::chrono::seconds>(next).count();
     timeout.tv_usec = std::chrono::duration_cast<std::chrono::microseconds>(next - std::chrono::duration_cast<std::chrono::seconds>(next)).count();
@@ -562,10 +588,8 @@ int32 do_sockets(fd_set* rfd, duration next)
 
     if (sFD_ISSET(map_fd, rfd))
     {
-        struct sockaddr_in from
-        {
-        };
-        socklen_t fromlen = sizeof(from);
+        sockaddr_in from{};
+        socklen_t   fromlen = sizeof(from);
 
         ret = recvudp(map_fd, g_PBuff, MAX_BUFFER_SIZE, 0, (struct sockaddr*)&from, &fromlen);
         if (ret != -1)
@@ -597,9 +621,6 @@ int32 do_sockets(fd_set* rfd, duration next)
             int32 decryptCount = recv_parse(g_PBuff, &size, &from, map_session_data);
             if (decryptCount != -1)
             {
-                // Update the time we last got a valid packet
-                map_session_data->last_update = time(nullptr);
-
                 // DecryptCount of 0 means the main key decrypted the packet
                 if (decryptCount == 0)
                 {
@@ -620,7 +641,7 @@ int32 do_sockets(fd_set* rfd, duration next)
                     if (auto PChar = map_session_data->PChar)
                     {
                         PChar->clearPacketList();
-                        PChar->pushPacket(new CServerIPPacket(PChar, map_session_data->zone_type, map_session_data->zone_ipp));
+                        PChar->pushPacket<CServerIPPacket>(PChar, map_session_data->zone_type, map_session_data->zone_ipp);
                     }
                     send_parse(g_PBuff, &size, &from, map_session_data, true);
 
@@ -723,6 +744,40 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
 
     if (checksumResult == 0)
     {
+        uint16 packetID = ref<uint16>(buff, FFXI_HEADER_SIZE) & 0x1FF;
+
+        if (packetID != 0x00A)
+        {
+            return -1;
+        }
+
+        // Not big enough to be 0x00A
+        if (size < (FFXI_HEADER_SIZE + sizeof(GP_CLI_LOGIN)))
+        {
+            return -1;
+        }
+
+        GP_CLI_LOGIN loginPacket = {};
+
+        std::memcpy(&loginPacket, buff + FFXI_HEADER_SIZE, sizeof(GP_CLI_LOGIN));
+
+        // See LoginPacketCheck from https://github.com/atom0s/XiPackets/tree/main/world/client/0x000A
+        uint8 checksum = 0;
+
+        const auto checksumOffset = offsetof(GP_CLI_LOGIN, unknown01);
+        const auto checksumLength = sizeof(GP_CLI_LOGIN) - checksumOffset;
+
+        for (int i = 0; i < checksumLength; i++)
+        {
+            checksum += ref<uint8>(&loginPacket, checksumOffset + i);
+        }
+
+        // Failed checksum
+        if (checksum != loginPacket.LoginPacketCheck)
+        {
+            return -1;
+        }
+
         // We can only get here if an 0x00A (not encrypted) packet was here.
         // If we were pending zones, delete our old char
         if (map_session_data->blowfish.status == BLOWFISH_PENDING_ZONE)
@@ -732,22 +787,22 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
 
         if (map_session_data->PChar == nullptr)
         {
-            uint32 CharID = ref<uint32>(buff, FFXI_HEADER_SIZE + 0x0C);
-            uint16 LangID = ref<uint16>(buff, FFXI_HEADER_SIZE + 0x58);
+            uint32 charID = ref<uint32>(buff, FFXI_HEADER_SIZE + 0x0C);
+            uint16 langID = ref<uint16>(buff, FFXI_HEADER_SIZE + 0x58);
 
-            std::ignore = LangID;
+            std::ignore = langID;
 
-            auto rset = db::preparedStmt("SELECT charid FROM chars WHERE charid = (?) LIMIT 1", CharID);
+            auto rset = db::preparedStmt("SELECT charid FROM chars WHERE charid = ? LIMIT 1", charID);
             if (!rset || rset->rowsCount() == 0 || !rset->next())
             {
-                ShowError("recv_parse: Cannot load charid %u", CharID);
+                ShowError("recv_parse: Cannot load charid %u", charID);
                 return -1;
             }
 
-            rset = db::preparedStmt("SELECT session_key FROM accounts_sessions WHERE charid = (?) LIMIT 1", CharID);
+            rset = db::preparedStmt("SELECT session_key FROM accounts_sessions WHERE charid = ? LIMIT 1", charID);
             if (!rset || rset->rowsCount() == 0 || !rset->next())
             {
-                ShowError("recv_parse: Cannot load session_key for charid %u", CharID);
+                ShowError("recv_parse: Cannot load session_key for charid %u", charID);
             }
             else
             {
@@ -756,16 +811,15 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
                 map_session_data->initBlowfish();
             }
 
-            map_session_data->PChar  = charutils::LoadChar(CharID);
-            map_session_data->charID = CharID;
+            map_session_data->PChar  = charutils::LoadChar(charID);
+            map_session_data->charID = charID;
 
             // If we're a new char on a new instance and prevzone != zone
             if (map_session_data->blowfish.status == BLOWFISH_WAITING && map_session_data->PChar->loc.destination != map_session_data->PChar->loc.prevzone)
             {
-                uint8 data[4]{};
-                ref<uint32>(data, 0) = CharID;
-
-                message::send(MSG_KILL_SESSION, data, sizeof data, nullptr);
+                message::send(ipc::KillSession{
+                    .victimId = charID,
+                });
             }
         }
 
@@ -814,8 +868,8 @@ int32 recv_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
         if (static_cast<int32>(PacketDataSize) != -1)
         {
             // it's making result buff
-            // don't need memcpy header
-            memcpy(buff + FFXI_HEADER_SIZE, PacketDataBuff.get(), PacketDataSize);
+            // don't need std::memcpy header
+            std::memcpy(buff + FFXI_HEADER_SIZE, PacketDataBuff.get(), PacketDataSize);
             *buffsize = FFXI_HEADER_SIZE + PacketDataSize;
 
             return decryptCount;
@@ -846,6 +900,15 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
     uint16 SmallPD_Size = 0;
     uint16 SmallPD_Type = 0;
     uint16 SmallPD_Code = ref<uint16>(buff, 0);
+
+    // TODO: figure out what exactly the client sends when you're not in a CS. there's no C2S packets being sent via the client,
+    // and yet we receive something here. It doesnt look like a valid packet, as it has no size and the type is 0x001 which is not valid.
+    if (map_session_data->blowfish.status != BLOWFISH_PENDING_ZONE && map_session_data->blowfish.status != BLOWFISH_WAITING)
+    {
+        // Update the time we last got a char sync packet
+        // The client can spam some other packets when trying to zone, preventing timely session deletions
+        map_session_data->last_update = time(nullptr);
+    }
 
     for (int8* SmallPD_ptr = PacketData_Begin; SmallPD_ptr + (ref<uint8>(SmallPD_ptr, 1) & 0xFE) * 2 <= PacketData_End && (ref<uint8>(SmallPD_ptr, 1) & 0xFE);
          SmallPD_ptr       = SmallPD_ptr + SmallPD_Size * 2)
@@ -884,18 +947,28 @@ int32 parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_data_t*
                 continue; // skip this packet
             }
 
+            if (settings::get<bool>("map.PACKETGUARD_ENABLED") && !PacketGuard::PacketsArrivingInCorrectOrder(PChar, SmallPD_Type))
+            {
+                ShowWarning("[PacketGuard] Caught out-of-order packet: Player: %s - Packet: %03hX", PChar->getName(), SmallPD_Type);
+                // TODO: Plug in optional jailutils usage
+                continue; // skip this packet
+            }
+
             if (PChar->loc.zone == nullptr && SmallPD_Type != 0x0A)
             {
-                ShowWarning("This packet is unexpected from %s - Received %03hX earlier without matching 0x0A", PChar->getName(), SmallPD_Type);
+                // Packets aren't unexpected from the old key under BLOWFISH_PENDING_ZONE
+                if (map_session_data->blowfish.status != BLOWFISH_PENDING_ZONE)
+                {
+                    ShowWarning("This packet is unexpected from %s - Received %03hX earlier without matching 0x0A", PChar->getName(), SmallPD_Type);
+                }
             }
             else
             {
-                // NOTE:
-                // CBasicPacket is incredibly light when constructed from a pointer like we're doing here.
-                // It is just a bag of offsets to the data in SmallPD_ptr so its safe to construct.
-                auto basicPacket = CBasicPacket(reinterpret_cast<uint8*>(SmallPD_ptr));
-                ShowTrace(fmt::format("map::parse: Char: {} ({}): 0x{:03X}", PChar->getName(), PChar->id, basicPacket.getType()).c_str());
-                PacketParser[SmallPD_Type](map_session_data, PChar, basicPacket);
+                // TODO: We should be passing a non-modifyable span of the packet data into the parser
+                //     : instead of creating a new packet here.
+                auto basicPacket = CBasicPacket::createFromBuffer(reinterpret_cast<uint8*>(SmallPD_ptr));
+                ShowTrace(fmt::format("map::parse: Char: {} ({}): 0x{:03X}", PChar->getName(), PChar->id, basicPacket->getType()).c_str());
+                PacketParser[SmallPD_Type](map_session_data, PChar, *basicPacket);
             }
         }
         else
@@ -976,7 +1049,7 @@ int32 send_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
     CCharEntity* PChar = map_session_data->PChar;
     TracyZoneString(PChar->name);
 
-    CBasicPacket* PSmallPacket = nullptr;
+    std::unique_ptr<CBasicPacket> PSmallPacket = nullptr;
 
     uint32 PacketSize               = UINT32_MAX;
     size_t PacketCount              = std::clamp<size_t>(PChar->getPacketCount(), 0, MAX_PACKETS_PER_COMPRESSION);
@@ -993,13 +1066,13 @@ int32 send_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
     {
         do
         {
-            *buffsize               = FFXI_HEADER_SIZE;
-            PacketList_t packetList = PChar->getPacketList();
-            packets                 = 0;
+            *buffsize       = FFXI_HEADER_SIZE;
+            auto packetList = PChar->getPacketListCopy();
+            packets         = 0;
 
             while (!packetList.empty() && *buffsize + packetList.front()->getSize() < MAX_BUFFER_SIZE && static_cast<size_t>(packets) < PacketCount)
             {
-                PSmallPacket = packetList.front();
+                PSmallPacket = std::move(packetList.front());
                 packetList.pop_front();
 
                 PSmallPacket->setSequence(map_session_data->server_packet_id);
@@ -1024,20 +1097,18 @@ int32 send_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
                 // Store zoneout packet in case we need to re-send this
                 if (type == 0x00B && map_session_data->blowfish.status == BLOWFISH_PENDING_ZONE && map_session_data->zone_ipp == 0)
                 {
-                    auto IPPacket = dynamic_cast<CServerIPPacket*>(PSmallPacket);
-                    if (IPPacket)
-                    {
-                        map_session_data->zone_ipp  = IPPacket->ipp;
-                        map_session_data->zone_type = IPPacket->type;
-                    }
+                    auto IPPacket = static_cast<CServerIPPacket*>(PSmallPacket.get());
+
+                    map_session_data->zone_ipp  = IPPacket->zoneIPP();
+                    map_session_data->zone_type = IPPacket->zoneType();
 
                     incrementKeyAfterEncrypt = true;
 
                     // Set client port to zero, indicating the client tried to zone out and no longer has a port until the next 0x00A
-                    _sql->Query("UPDATE accounts_sessions SET client_port = 0, last_zoneout_time = NOW() WHERE charid = %u", map_session_data->charID);
+                    db::preparedStmt("UPDATE accounts_sessions SET client_port = 0, last_zoneout_time = NOW() WHERE charid = ?", map_session_data->charID);
                 }
 
-                memcpy(buff + *buffsize, *PSmallPacket, PSmallPacket->getSize());
+                std::memcpy(buff + *buffsize, *PSmallPacket, PSmallPacket->getSize());
 
                 *buffsize += PSmallPacket->getSize();
 
@@ -1084,7 +1155,7 @@ int32 send_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
     // Record data size excluding header
     uint8 hash[16];
     md5((uint8*)PTempBuff, hash, PacketSize);
-    memcpy(PTempBuff + PacketSize, hash, 16);
+    std::memcpy(PTempBuff + PacketSize, hash, 16);
     PacketSize += 16;
 
     if (PacketSize > MAX_BUFFER_SIZE + 20)
@@ -1093,7 +1164,7 @@ int32 send_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
     }
 
     // Making total packet
-    memcpy(buff + FFXI_HEADER_SIZE, PTempBuff, PacketSize);
+    std::memcpy(buff + FFXI_HEADER_SIZE, PTempBuff, PacketSize);
 
     uint32 CypherSize = (PacketSize / 4) & -2;
 
@@ -1134,7 +1205,7 @@ int32 send_parse(int8* buff, size_t* buffsize, sockaddr_in* from, map_session_da
 
     *buffsize = PacketSize + FFXI_HEADER_SIZE;
 
-    auto remainingPackets = PChar->getPacketList().size();
+    auto remainingPackets = PChar->getPacketCount();
     TotalPacketsDelayedPerTick += static_cast<uint32>(remainingPackets);
 
     if (settings::get<bool>("logging.DEBUG_PACKET_BACKLOG"))
@@ -1181,6 +1252,12 @@ int32 map_close_session(time_point tick, map_session_data_t* map_session_data)
         destroy_arr(map_session_data->server_packet_data);
         if (map_session_data->PChar)
         {
+            CZone* PZone = map_session_data->PChar->loc.zone;
+            if (PZone)
+            {
+                // This should already be done in removeCharFromZone, but just to be safe...
+                PZone->DecreaseZoneCounter(map_session_data->PChar);
+            }
             destroy(map_session_data->PChar);
         }
         destroy(map_session_data);
@@ -1248,92 +1325,36 @@ int32 map_cleanup(time_point tick, CTaskMgr::CTask* PTask)
 
                 if (PChar != nullptr)
                 {
-                    // Check if the PChar current zone is on this server
-                    CZone* PZone = nullptr;
+                    ShowDebug(fmt::format("Clearing map server session for player: '{}' in zone: '{}' (On other map server = {})", PChar->name, PChar->loc.zone ? PChar->loc.zone->getName() : "None", otherMap ? "Yes" : "No"));
 
-                    // Get zone if available
-                    if (PChar->loc.zone && PChar->loc.zone->GetID() && (g_PZoneList.find(PChar->loc.zone->GetID()) != g_PZoneList.end()))
+                    // Player session is attached to this map process and has stopped responding.
+                    if (!otherMap)
                     {
-                        PZone = PChar->loc.zone;
-                    }
+                        map_session_data->PChar->StatusEffectContainer->SaveStatusEffects(true);
+                        _sql->Query("DELETE FROM accounts_sessions WHERE charid = %u", map_session_data->charID);
 
-                    if (map_session_data->shuttingDown == 0)
-                    {
-                        if (!otherMap)
+                        // Save position if d/c or logout/shutdown
+                        if (map_session_data->shuttingDown == 0 || map_session_data->shuttingDown == 1)
                         {
-                            // [Alliance] fix to stop server crashing:
-                            // if a party within an alliance only has 1 char (that char will be party leader)
-                            // if char then disconnects we need to tell the server about the alliance change
-                            if (PChar->PParty != nullptr && PChar->PParty->m_PAlliance != nullptr && PChar->PParty->GetLeader() == PChar)
-                            {
-                                if (PChar->PParty->HasOnlyOneMember())
-                                {
-                                    if (PChar->PParty->m_PAlliance->hasOnlyOneParty())
-                                    {
-                                        PChar->PParty->m_PAlliance->dissolveAlliance();
-                                    }
-                                    else
-                                    {
-                                        PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
-                                    }
-                                }
-                            }
-
-                            // uncharm pet if player d/c
-                            if (PChar->PPet != nullptr && PChar->PPet->objtype == TYPE_MOB)
-                            {
-                                petutils::DespawnPet(PChar);
-                            }
-
-                            PChar->StatusEffectContainer->SaveStatusEffects(true);
                             charutils::SaveCharPosition(PChar);
-
-                            ShowDebug("map_cleanup: %s timed out, closing session", PChar->getName());
-
-                            PChar->status    = STATUS_TYPE::SHUTDOWN;
-                            auto basicPacket = CBasicPacket();
-                            charutils::removeCharFromZone(PChar);
-                        }
-                        else
-                        {
-                            ShowDebug(fmt::format("Clearing map server session for player: {} in zone: {} (On other map server = {})", PChar->name, PChar->loc.zone ? PChar->loc.zone->getName() : "None", otherMap ? "Yes" : "No"));
-
-                            if (PZone)
-                            {
-                                PZone->DecreaseZoneCounter(PChar);
-                            }
-
-                            destroy_arr(map_session_data->server_packet_data);
-                            destroy(map_session_data->PChar);
-                            destroy(map_session_data);
-
-                            map_session_list.erase(it++);
-                            continue;
                         }
                     }
-                    else
+
+                    // uncharm pet if player d/c
+                    if (PChar->PPet != nullptr && PChar->PPet->objtype == TYPE_MOB)
                     {
-                        if (!otherMap)
-                        {
-                            // Player session is attached to this map process and has stopped responding.
-                            map_session_data->PChar->StatusEffectContainer->SaveStatusEffects(true);
-                            _sql->Query("DELETE FROM accounts_sessions WHERE charid = %u", map_session_data->charID);
-                        }
-
-                        ShowDebug(fmt::format("Clearing map server session for player: {} in zone: {} (On other map server = {})", PChar->name, PChar->loc.zone ? PChar->loc.zone->getName() : "None", otherMap ? "Yes" : "No"));
-
-                        if (PZone)
-                        {
-                            PZone->DecreaseZoneCounter(PChar);
-                        }
-
-                        destroy_arr(map_session_data->server_packet_data);
-                        destroy(map_session_data->PChar);
-                        destroy(map_session_data);
-
-                        map_session_list.erase(it++);
-                        continue;
+                        petutils::DespawnPet(PChar);
                     }
+
+                    PChar->status = STATUS_TYPE::SHUTDOWN;
+
+                    charutils::removeCharFromZone(PChar);
+
+                    destroy_arr(map_session_data->server_packet_data);
+                    destroy(map_session_data->PChar);
+                    destroy(map_session_data);
+
+                    map_session_list.erase(it++);
                 }
                 else
                 {
@@ -1343,11 +1364,14 @@ int32 map_cleanup(time_point tick, CTaskMgr::CTask* PTask)
                         const char* Query = "DELETE FROM accounts_sessions WHERE charid = %u";
                         _sql->Query(Query, map_session_data->charID);
                     }
+
                     destroy_arr(map_session_data->server_packet_data);
-                    map_session_list.erase(it++);
                     destroy(map_session_data);
-                    continue;
+
+                    map_session_list.erase(it++);
                 }
+
+                continue;
             }
         }
         else if (PChar != nullptr && PChar->isLinkDead)
@@ -1369,24 +1393,10 @@ int32 map_cleanup(time_point tick, CTaskMgr::CTask* PTask)
     // clang-format off
     zoneutils::ForEachZone([](CZone* PZone)
     {
-        auto& staledynamicTargIds = PZone->GetZoneEntities()->dynamicTargIdsToDelete;
-
-        auto it = staledynamicTargIds.begin();
-        while(it != staledynamicTargIds.end())
-        {
-            // Erase dynamic targid if it's stale enough
-            if ((server_clock::now() - it->second) > 60s)
-            {
-                PZone->GetZoneEntities()->dynamicTargIds.erase(it->first);
-                it = staledynamicTargIds.erase(it);
-            }
-            else
-            {
-                ++it;
-            }
-        }
+        PZone->GetZoneEntities()->EraseStaleDynamicTargIDs();
     });
     // clang-format on
+
     return 0;
 }
 

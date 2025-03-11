@@ -80,8 +80,8 @@ struct Trust_t
     uint8  cmbSkill;
     uint16 cmbDmgMult;
     uint16 cmbDelay;
-    uint8  speed;
-    uint8  subSpeed;
+    uint8  baseSpeed;
+    uint8  animationSpeed;
 
     // stat ranks
     uint8 strRank;
@@ -142,8 +142,8 @@ struct Trust_t
     , cmbSkill(0)
     , cmbDmgMult(0)
     , cmbDelay(0)
-    , speed(0)
-    , subSpeed(0)
+    , baseSpeed(0)
+    , animationSpeed(0)
     , strRank(0)
     , dexRank(0)
     , vitRank(0)
@@ -281,7 +281,7 @@ namespace trustutils
                 trust->packet_name.insert(0, (const char*)_sql->GetData(2));
 
                 uint16 sqlModelID[10];
-                memcpy(&sqlModelID, _sql->GetData(3), 20);
+                std::memcpy(&sqlModelID, _sql->GetData(3), 20);
                 trust->look = look_t(sqlModelID);
 
                 trust->m_Family       = (uint16)_sql->GetIntData(4);
@@ -304,12 +304,8 @@ namespace trustutils
                 trust->HPscale   = _sql->GetFloatData(17);
                 trust->MPscale   = _sql->GetFloatData(18);
 
-                // retail seems to have a static *155* for all Trusts in client memory
-                // TODO: trust->speed = 155;
-                trust->speed = (uint8)_sql->GetIntData(19);
-
-                // similarly speedSub is always 50
-                trust->subSpeed = 50;
+                trust->baseSpeed      = 62;
+                trust->animationSpeed = 50;
 
                 trust->strRank = (uint8)_sql->GetIntData(20);
                 trust->dexRank = (uint8)_sql->GetIntData(21);
@@ -324,10 +320,10 @@ namespace trustutils
                 trust->evaRank = (uint8)_sql->GetIntData(30);
 
                 // resistances
-                trust->slash_sdt  = (uint16)(_sql->GetFloatData(31) * 1000);
-                trust->pierce_sdt = (uint16)(_sql->GetFloatData(32) * 1000);
-                trust->hth_sdt    = (uint16)(_sql->GetFloatData(33) * 1000);
-                trust->impact_sdt = (uint16)(_sql->GetFloatData(34) * 1000);
+                trust->slash_sdt  = (int16)_sql->GetIntData(31);
+                trust->pierce_sdt = (int16)_sql->GetIntData(32);
+                trust->hth_sdt    = (int16)_sql->GetIntData(33);
+                trust->impact_sdt = (int16)_sql->GetIntData(34);
 
                 trust->magical_sdt = (int16)_sql->GetIntData(35); // Modifier 389, base 10000 stored as signed integer. Positives signify less damage.
 
@@ -440,11 +436,13 @@ namespace trustutils
         PTrust->m_MobSkillList = trustData->m_MobSkillList;
         PTrust->HPscale        = trustData->HPscale;
         PTrust->MPscale        = trustData->MPscale;
-        PTrust->speed          = trustData->speed;
-        PTrust->m_TrustID      = trustData->trustID;
-        PTrust->status         = STATUS_TYPE::NORMAL;
-        PTrust->m_ModelRadius  = trustData->radius;
-        PTrust->m_EcoSystem    = trustData->EcoSystem;
+        PTrust->baseSpeed      = trustData->baseSpeed;
+        PTrust->animationSpeed = trustData->animationSpeed;
+        PTrust->UpdateSpeed();
+        PTrust->m_TrustID     = trustData->trustID;
+        PTrust->status        = STATUS_TYPE::NORMAL;
+        PTrust->m_ModelRadius = trustData->radius;
+        PTrust->m_EcoSystem   = trustData->EcoSystem;
 
         PTrust->SetMJob(trustData->mJob);
         PTrust->SetSJob(trustData->sJob);

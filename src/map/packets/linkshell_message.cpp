@@ -25,7 +25,7 @@
 
 #include <cstring>
 
-CLinkshellMessagePacket::CLinkshellMessagePacket(const std::string& poster, const std::string& message, const std::string& lsname, uint32 posttime, bool ls1)
+CLinkshellMessagePacket::CLinkshellMessagePacket(const std::string& poster, const std::string& message, const std::string& lsname, uint32 posttime, LinkshellSlot slot)
 {
     this->setType(id);
     this->setSize(0xB0);
@@ -36,14 +36,14 @@ CLinkshellMessagePacket::CLinkshellMessagePacket(const std::string& poster, cons
     ref<uint8>(0x04) = 0x70;
     ref<uint8>(0x05) = 0x06;
 
-    if (!ls1)
+    if (slot == LinkshellSlot::LS2)
     {
         ref<uint8>(0x05) |= 0x40; // LS2
     }
 
-    memcpy(data + (0x08), message.c_str(), std::min<size_t>(message.size(), 128));
-    memcpy(data + (0x8C), poster.c_str(), std::min<size_t>(poster.size(), 15));
-    memcpy(data + (0xA0), lsname.c_str(), std::min<size_t>(lsname.size(), 16));
+    std::memcpy(buffer_.data() + 0x08, message.c_str(), std::min<size_t>(message.size(), 128));
+    std::memcpy(buffer_.data() + 0x8C, poster.c_str(), std::min<size_t>(poster.size(), 15));
+    std::memcpy(buffer_.data() + 0xA0, lsname.c_str(), std::min<size_t>(lsname.size(), 16));
 
     ref<uint32>(0x88) = posttime;
 

@@ -43,6 +43,7 @@
 #include "packets/action.h"
 #include "packets/entity_update.h"
 #include "packets/pet_sync.h"
+#include "recast_container.h"
 #include "roe.h"
 #include "status_effect_container.h"
 #include "treasure_pool.h"
@@ -90,7 +91,7 @@ CMobEntity::CMobEntity()
 , m_TrueDetection(false)
 , m_Link(0)
 , m_isAggroable(false)
-, m_Behaviour(BEHAVIOUR_NONE)
+, m_Behavior(BEHAVIOR_NONE)
 , m_SpawnType(SPAWNTYPE_NORMAL)
 , m_battlefieldID(0)
 , m_bcnmID(0)
@@ -112,6 +113,7 @@ CMobEntity::CMobEntity()
 , m_unk2(0)
 , m_CallForHelpBlocked(false)
 , m_IsClaimable(true)
+, m_IsPathingHome(false)
 {
     TracyZoneScoped;
     objtype     = ENTITYTYPE::TYPE_MOB;
@@ -504,7 +506,7 @@ void CMobEntity::PostTick()
         // If this mob is charmed, it should sync with its master
         if (PMaster && PMaster->PPet == this && PMaster->objtype == TYPE_PC)
         {
-            ((CCharEntity*)PMaster)->pushPacket(new CPetSyncPacket((CCharEntity*)PMaster));
+            ((CCharEntity*)PMaster)->pushPacket<CPetSyncPacket>((CCharEntity*)PMaster);
         }
 
         updatemask = 0;
@@ -535,7 +537,7 @@ bool CMobEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
         return true;
     }
 
-    if (targetFlags & TARGET_PLAYER_DEAD && (m_Behaviour & BEHAVIOUR_RAISABLE) && isDead())
+    if (targetFlags & TARGET_PLAYER_DEAD && (m_Behavior & BEHAVIOR_RAISABLE) && isDead())
     {
         return true;
     }
@@ -547,7 +549,7 @@ bool CMobEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
 
     if (targetFlags & TARGET_NPC)
     {
-        if (allegiance == PInitiator->allegiance && !(m_Behaviour & BEHAVIOUR_NOHELP) && !isCharmed)
+        if (allegiance == PInitiator->allegiance && !(m_Behavior & BEHAVIOR_NOHELP) && !isCharmed)
         {
             return true;
         }
@@ -652,8 +654,8 @@ void CMobEntity::DistributeRewards()
                 if (PMember->getZone() == PChar->getZone())
                 {
                     RoeDatagramList datagrams;
-                    datagrams.emplace_back(RoeDatagram("mob", this));
-                    datagrams.emplace_back(RoeDatagram("atkType", static_cast<uint8>(this->BattleHistory.lastHitTaken_atkType)));
+                    datagrams.emplace_back("mob", this);
+                    datagrams.emplace_back("atkType", static_cast<uint8>(this->BattleHistory.lastHitTaken_atkType));
                     roeutils::event(ROE_MOBKILL, (CCharEntity*)PMember, datagrams);
                 }
             });
@@ -685,15 +687,59 @@ void CMobEntity::DistributeRewards()
 void CMobEntity::DropItems(CCharEntity* PChar)
 {
     TracyZoneScoped;
-    // Adds an item to the treasure pool and returns true if the pool has been filled
-    auto AddItemToPool = [this, PChar](uint16 ItemID, uint8 dropCount)
+    // Adds an item to the treasure pool. Treasure pool will automatically kick out items if the pool is full (prioritizing non rare non ex items)
+    auto AddItemToPool = [this, PChar](uint16 ItemID)
     {
-        PChar->PTreasurePool->AddItem(ItemID, this);
-        return dropCount >= TREASUREPOOL_SIZE;
+        PChar->PTreasurePool->addItem(ItemID, this);
+        PAI->EventHandler.triggerListener("TREASUREPOOL", CLuaBaseEntity(this), CLuaBaseEntity(PChar), ItemID);
     };
 
-    // Limit number of items that can drop to the treasure pool size
-    uint8 dropCount = 0;
+    auto CanAddSeal = [PChar]()
+    {
+        const auto PParty = PChar->PParty;
+
+        if (!PParty || !PChar->PTreasurePool)
+        {
+            return !PChar->PRecastContainer->Has(RECAST_LOOT, 1);
+        }
+
+        for (const auto& member : PChar->PTreasurePool->getMembers())
+        {
+            if (member->PParty == PParty)
+            {
+                if (member->PRecastContainer->Has(RECAST_LOOT, 1))
+                {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    };
+
+    // Seals are limited to one every 5 minutes per party.
+    // Cooldown is applied to members (in zone) of the party that delivered the killing blow.
+    // Note that the following has been verified to be retail accurate:
+    // - Other alliance parties are NOT included in that cooldown.
+    // - The cooldown does reset when zoning.
+    auto AddSealRecast = [PChar]()
+    {
+        const auto PParty = PChar->PParty;
+
+        if (!PParty || !PChar->PTreasurePool)
+        {
+            PChar->PRecastContainer->Add(RECAST_LOOT, 1, 300);
+            return;
+        }
+
+        for (const auto& member : PChar->PTreasurePool->getMembers())
+        {
+            if (member->PParty == PParty)
+            {
+                member->PRecastContainer->Add(RECAST_LOOT, 1, 300);
+            }
+        }
+    };
 
     DropList_t* dropList = itemutils::GetDropList(m_DropID);
 
@@ -704,7 +750,7 @@ void CMobEntity::DropItems(CCharEntity* PChar)
 
         LootContainer loot(dropList);
 
-        PAI->EventHandler.triggerListener("ITEM_DROPS", CLuaBaseEntity(this), CLuaLootContainer(&loot));
+        PAI->EventHandler.triggerListener("ITEM_DROPS", this, &loot);
 
         // clang-format off
         loot.ForEachGroup([&](const DropGroup_t& group)
@@ -723,7 +769,7 @@ void CMobEntity::DropItems(CCharEntity* PChar)
             }
 
             // Determine if this group should drop an item.
-            if (groupDropRate > 0 && xirand::GetRandomNumber(1, 10000) <= groupDropRate * settings::get<float>("map.DROP_RATE_MULTIPLIER"))
+            if (groupDropRate > 0 && (1 + xirand::GetRandomNumber(10000)) <= groupDropRate * settings::get<float>("map.DROP_RATE_MULTIPLIER"))
             {
                 // Each item in the group is given its own weight range which is the previous value to the previous value + item.DropRate
                 // Such as 2 items with drop rates of 200 and 800 would be 0-199 and 200-999 respectively
@@ -733,10 +779,8 @@ void CMobEntity::DropItems(CCharEntity* PChar)
                 {
                     if (itemRoll < previousRateValue + item.DropRate)
                     {
-                        if (AddItemToPool(item.ItemID, ++dropCount))
-                        {
-                            return;
-                        }
+                        AddItemToPool(item.ItemID);
+
                         break;
                     }
                     previousRateValue += item.DropRate;
@@ -754,12 +798,9 @@ void CMobEntity::DropItems(CCharEntity* PChar)
                 itemDropRate = thDropRateFunction(m_THLvl, itemDropRate);
             }
 
-            if (itemDropRate > 0 && xirand::GetRandomNumber(1, 10000) <= itemDropRate * settings::get<float>("map.DROP_RATE_MULTIPLIER"))
+            if (itemDropRate > 0 && (1 + xirand::GetRandomNumber(10000)) <= itemDropRate * settings::get<float>("map.DROP_RATE_MULTIPLIER"))
             {
-                if (AddItemToPool(item.ItemID, ++dropCount))
-                {
-                    return;
-                }
+                AddItemToPool(item.ItemID);
             }
         });
         // clang-format on
@@ -777,7 +818,7 @@ void CMobEntity::DropItems(CCharEntity* PChar)
         >= 75 = Kindred Crests ID=2955
         >= 90 = High Kindred Crests ID=2956
         */
-        if (xirand::GetRandomNumber(100) < 20 && PChar->PTreasurePool->CanAddSeal())
+        if (xirand::GetRandomNumber(100) < 20 && CanAddSeal())
         {
             // RULES: Only 1 kind may drop per mob
             if (GetMLevel() >= 75 && luautils::IsContentEnabled("ABYSSEA")) // all 4 types
@@ -785,53 +826,33 @@ void CMobEntity::DropItems(CCharEntity* PChar)
                 switch (xirand::GetRandomNumber(4))
                 {
                     case 0:
-
-                        if (AddItemToPool(1126, ++dropCount))
-                        {
-                            return;
-                        }
+                        AddItemToPool(1126);
                         break;
                     case 1:
-                        if (AddItemToPool(1127, ++dropCount))
-                        {
-                            return;
-                        }
+                        AddItemToPool(1127);
                         break;
                     case 2:
-                        if (AddItemToPool(2955, ++dropCount))
-                        {
-                            return;
-                        }
+                        AddItemToPool(2955);
                         break;
                     case 3:
-                        if (AddItemToPool(2956, ++dropCount))
-                        {
-                            return;
-                        }
+                        AddItemToPool(2956);
                         break;
                 }
+
+                AddSealRecast();
             }
             else if (GetMLevel() >= 70 && luautils::IsContentEnabled("ABYSSEA")) // b.seal & k.seal & k.crest
             {
                 switch (xirand::GetRandomNumber(3))
                 {
                     case 0:
-                        if (AddItemToPool(1126, ++dropCount))
-                        {
-                            return;
-                        }
+                        AddItemToPool(1126);
                         break;
                     case 1:
-                        if (AddItemToPool(1127, ++dropCount))
-                        {
-                            return;
-                        }
+                        AddItemToPool(1127);
                         break;
                     case 2:
-                        if (AddItemToPool(2955, ++dropCount))
-                        {
-                            return;
-                        }
+                        AddItemToPool(2955);
                         break;
                 }
             }
@@ -839,26 +860,17 @@ void CMobEntity::DropItems(CCharEntity* PChar)
             {
                 if (xirand::GetRandomNumber(2) == 0)
                 {
-                    if (AddItemToPool(1126, ++dropCount))
-                    {
-                        return;
-                    }
+                    AddItemToPool(1126);
                 }
                 else
                 {
-                    if (AddItemToPool(1127, ++dropCount))
-                    {
-                        return;
-                    }
+                    AddItemToPool(1127);
                 }
             }
             else
             {
                 // b.seal only
-                if (AddItemToPool(1126, ++dropCount))
-                {
-                    return;
-                }
+                AddItemToPool(1126);
             }
         }
 
@@ -931,28 +943,28 @@ void CMobEntity::DropItems(CCharEntity* PChar)
                 switch (element)
                 {
                     case ELEMENT_FIRE:
-                        AddItemToPool(3297, ++dropCount); // Flame Geode
+                        AddItemToPool(3297); // Flame Geode
                         break;
                     case ELEMENT_EARTH:
-                        AddItemToPool(3300, ++dropCount); // Soil Geode
+                        AddItemToPool(3300); // Soil Geode
                         break;
                     case ELEMENT_WATER:
-                        AddItemToPool(3302, ++dropCount); // Aqua Geode
+                        AddItemToPool(3302); // Aqua Geode
                         break;
                     case ELEMENT_WIND:
-                        AddItemToPool(3299, ++dropCount); // Breeze Geode
+                        AddItemToPool(3299); // Breeze Geode
                         break;
                     case ELEMENT_ICE:
-                        AddItemToPool(3298, ++dropCount); // Snow Geode
+                        AddItemToPool(3298); // Snow Geode
                         break;
                     case ELEMENT_THUNDER:
-                        AddItemToPool(3301, ++dropCount); // Thunder Geode
+                        AddItemToPool(3301); // Thunder Geode
                         break;
                     case ELEMENT_LIGHT:
-                        AddItemToPool(3303, ++dropCount); // Light Geode
+                        AddItemToPool(3303); // Light Geode
                         break;
                     case ELEMENT_DARK:
-                        AddItemToPool(3304, ++dropCount); // Shadow Geode
+                        AddItemToPool(3304); // Shadow Geode
                         break;
                     default:
                         break;
@@ -964,28 +976,28 @@ void CMobEntity::DropItems(CCharEntity* PChar)
                 switch (element)
                 {
                     case ELEMENT_FIRE:
-                        AddItemToPool(3520, ++dropCount); // Ifritite
+                        AddItemToPool(3520); // Ifritite
                         break;
                     case ELEMENT_EARTH:
-                        AddItemToPool(3523, ++dropCount); // Titanite
+                        AddItemToPool(3523); // Titanite
                         break;
                     case ELEMENT_WATER:
-                        AddItemToPool(3525, ++dropCount); // Leviatite
+                        AddItemToPool(3525); // Leviatite
                         break;
                     case ELEMENT_WIND:
-                        AddItemToPool(3522, ++dropCount); // Garudite
+                        AddItemToPool(3522); // Garudite
                         break;
                     case ELEMENT_ICE:
-                        AddItemToPool(3521, ++dropCount); // Shivite
+                        AddItemToPool(3521); // Shivite
                         break;
                     case ELEMENT_THUNDER:
-                        AddItemToPool(3524, ++dropCount); // Ramuite
+                        AddItemToPool(3524); // Ramuite
                         break;
                     case ELEMENT_LIGHT:
-                        AddItemToPool(3526, ++dropCount); // Carbit
+                        AddItemToPool(3526); // Carbit
                         break;
                     case ELEMENT_DARK:
-                        AddItemToPool(3527, ++dropCount); // Fenrite
+                        AddItemToPool(3527); // Fenrite
                         break;
                     default:
                         break;
@@ -998,6 +1010,7 @@ void CMobEntity::DropItems(CCharEntity* PChar)
         if (m_Element > 0)
         {
             REGION_TYPE regionID = PChar->loc.zone->GetRegionID();
+
             switch (regionID)
             {
                 // Sanction Regions
@@ -1005,8 +1018,10 @@ void CMobEntity::DropItems(CCharEntity* PChar)
                 case REGION_TYPE::MAMOOL_JA_SAVAGE:
                 case REGION_TYPE::HALVUNG:
                 case REGION_TYPE::ARRAPAGO:
+                case REGION_TYPE::ALZADAAL:
                     effect = 2;
                     break;
+
                 // Sigil Regions
                 case REGION_TYPE::RONFAURE_FRONT:
                 case REGION_TYPE::NORVALLEN_FRONT:
@@ -1018,12 +1033,20 @@ void CMobEntity::DropItems(CCharEntity* PChar)
                 case REGION_TYPE::VALDEAUNIA_FRONT:
                     effect = 3;
                     break;
+
+                // Ionis Regions
+                case REGION_TYPE::ADOULIN_ISLANDS:
+                case REGION_TYPE::EAST_ULBUKA:
+                    effect = 4;
+                    break;
+
                 // Signet Regions
                 default:
-                    effect = (conquest::GetRegionOwner(PChar->loc.zone->GetRegionID()) <= 2) ? 1 : 0;
+                    effect = (regionID < REGION_TYPE::TAVNAZIA && conquest::GetRegionOwner(regionID) <= 2) ? 1 : 0;
                     break;
             }
         }
+
         uint8 crystalRolls = 0;
         // clang-format off
         PChar->ForParty([this, &crystalRolls, &effect](CBattleEntity* PMember)
@@ -1051,17 +1074,26 @@ void CMobEntity::DropItems(CCharEntity* PChar)
                         crystalRolls++;
                     }
                     break;
+                case 4:
+                    if (PMember->StatusEffectContainer->HasStatusEffect(EFFECT_IONIS) && PMember->getZone() == getZone() &&
+                        distance(PMember->loc.p, loc.p) < 100)
+                    {
+                        crystalRolls++;
+                    }
+                    break;
                 default:
                     break;
             }
         });
         // clang-format on
 
+        // Is this really checked last? Would crystals actually kick out non-rare/ex items from the same mob dropping a large pool?
         for (uint8 i = 0; i < crystalRolls; i++)
         {
-            if (xirand::GetRandomNumber(100) < 20 && AddItemToPool(4095 + m_Element, ++dropCount))
+            // TODO: implement nation aketon crystal bonus (per member?)
+            if (xirand::GetRandomNumber(100) < 20)
             {
-                return;
+                AddItemToPool(4095 + m_Element);
             }
         }
     }
@@ -1139,7 +1171,7 @@ void CMobEntity::FadeOut()
 void CMobEntity::OnDeathTimer()
 {
     TracyZoneScoped;
-    if (!(m_Behaviour & BEHAVIOUR_RAISABLE))
+    if (!(m_Behavior & BEHAVIOR_RAISABLE))
     {
         PAI->Despawn();
     }
@@ -1152,7 +1184,7 @@ void CMobEntity::OnDespawn(CDespawnState& /*unused*/)
     PAI->Internal_Respawn(std::chrono::milliseconds(m_RespawnTime));
     luautils::OnMobDespawn(this);
     // #event despawn
-    PAI->EventHandler.triggerListener("DESPAWN", CLuaBaseEntity(this));
+    PAI->EventHandler.triggerListener("DESPAWN", this);
 }
 
 void CMobEntity::Die()
@@ -1180,11 +1212,11 @@ void CMobEntity::Die()
         {
             if (PLastAttacker)
             {
-                loc.zone->PushPacket(this, CHAR_INRANGE, new CMessageBasicPacket(PLastAttacker, this, 0, 0, MSGBASIC_DEFEATS_TARG));
+                loc.zone->PushPacket(this, CHAR_INRANGE, std::make_unique<CMessageBasicPacket>(PLastAttacker, this, 0, 0, MSGBASIC_DEFEATS_TARG));
             }
             else
             {
-                loc.zone->PushPacket(this, CHAR_INRANGE, new CMessageBasicPacket(this, this, 0, 0, MSGBASIC_FALLS_TO_GROUND));
+                loc.zone->PushPacket(this, CHAR_INRANGE, std::make_unique<CMessageBasicPacket>(this, this, 0, 0, MSGBASIC_FALLS_TO_GROUND));
             }
 
             DistributeRewards();

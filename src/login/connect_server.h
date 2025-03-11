@@ -27,9 +27,10 @@
 #include "common/lua.h"
 #include "common/md52.h"
 #include "common/settings.h"
-#include "common/sql.h"
 #include "common/utils.h"
 #include "common/xirand.h"
+#include "common/zmq_dealer_wrapper.h"
+
 #include "map/packets/basic.h"
 
 #include <asio/ssl.hpp>
@@ -86,4 +87,7 @@ public:
     // When this happens, the data/view socket are never opened and will never be cleaned up normally.
     // Auth is closed before any other sessions are open, so the data/view cleanups aren't sufficient
     void periodicCleanup(const asio::error_code& error, asio::steady_timer* timer);
+
+private:
+    ZMQDealerWrapper zmqDealerWrapper_;
 };

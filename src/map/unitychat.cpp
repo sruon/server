@@ -19,8 +19,8 @@
 #include <cstring>
 
 #include "entities/charentity.h"
+#include "ipc_client.h"
 #include "map.h"
-#include "message.h"
 #include "unitychat.h"
 #include "utils/jailutils.h"
 
@@ -56,17 +56,15 @@ bool CUnityChat::DelMember(CCharEntity* PChar)
     return !members.empty();
 }
 
-void CUnityChat::PushPacket(uint32 senderID, CBasicPacket* packet)
+void CUnityChat::PushPacket(uint32 senderID, const std::unique_ptr<CBasicPacket>& packet)
 {
     for (auto& member : members)
     {
         if (member->id != senderID && member->status != STATUS_TYPE::DISAPPEAR && !jailutils::InPrison(member))
         {
-            CBasicPacket* newPacket = new CBasicPacket(*packet);
-            member->pushPacket(newPacket);
+            member->pushPacket(packet->copy());
         }
     }
-    destroy(packet);
 }
 
 namespace unitychat

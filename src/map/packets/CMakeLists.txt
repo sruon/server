@@ -26,8 +26,6 @@ set(PACKET_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/caught_monster.h
     ${CMAKE_CURRENT_SOURCE_DIR}/change_music.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/change_music.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/char.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/char.h
     ${CMAKE_CURRENT_SOURCE_DIR}/char_abilities.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/char_abilities.h
     ${CMAKE_CURRENT_SOURCE_DIR}/char_appearance.cpp
@@ -58,6 +56,8 @@ set(PACKET_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/char_spells.h
     ${CMAKE_CURRENT_SOURCE_DIR}/char_stats.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/char_stats.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/char_status.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/char_status.h
     ${CMAKE_CURRENT_SOURCE_DIR}/char_sync.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/char_sync.h
     ${CMAKE_CURRENT_SOURCE_DIR}/char_update.cpp
@@ -98,6 +98,8 @@ set(PACKET_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/event_update_string.h
     ${CMAKE_CURRENT_SOURCE_DIR}/fishing.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/fishing.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/fish_ranking.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/fish_ranking.h
     ${CMAKE_CURRENT_SOURCE_DIR}/furniture_interact.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/furniture_interact.h
     ${CMAKE_CURRENT_SOURCE_DIR}/guild_menu.cpp

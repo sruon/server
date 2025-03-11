@@ -24,6 +24,7 @@
 
 #include "common/cbasetypes.h"
 #include "map.h"
+#include "packets/message_standard.h"
 
 #include <vector>
 
@@ -32,21 +33,22 @@ class CBattleEntity;
 class CCharEntity;
 class CAlliance;
 
-enum PARTYTYPE
+enum PARTYTYPE : uint8
 {
     PARTY_PCS,
     PARTY_MOBS,
 };
 DECLARE_FORMAT_AS_UNDERLYING(PARTYTYPE);
 
-enum PARTYFLAG
+enum PARTYFLAG : uint16
+
 {
     PARTY_SECOND    = 0x0001,
     PARTY_THIRD     = 0x0002,
     PARTY_LEADER    = 0x0004,
     ALLIANCE_LEADER = 0x0008,
     PARTY_QM        = 0x0010,
-    PARTY_SYNC      = 0x0100
+    PARTY_SYNC      = 0x0100,
 };
 DECLARE_FORMAT_AS_UNDERLYING(PARTYFLAG);
 
@@ -86,7 +88,7 @@ public:
     void   SetPartyID(uint32 id);                // set new party ID
     void   AssignPartyRole(const std::string& MemberName, uint8 role);
     void   DisableSync();
-    void   SetSyncTarget(const std::string& MemberName, uint16 message);
+    void   SetSyncTarget(const std::string& MemberName, MsgStd message);
     void   RefreshSync();
     void   SetPartyNumber(uint8 number);
     bool   HasOnlyOneMember() const;
@@ -98,7 +100,7 @@ public:
 
     std::size_t GetMemberCountAcrossAllProcesses();
 
-    void PushPacket(uint32 senderID, uint16 ZoneID, CBasicPacket* packet); // Send a packet to all group members, with the exception of PPartyMember
+    void PushPacket(uint32 senderID, uint16 ZoneID, const std::unique_ptr<CBasicPacket>& packet); // Send a packet to all group members, with the exception of PPartyMember
     void PushEffectsPacket();
     void EffectsChanged();
 

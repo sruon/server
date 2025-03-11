@@ -40,7 +40,7 @@ enum class EFFECTOVERWRITE : uint8
 };
 DECLARE_FORMAT_AS_UNDERLYING(EFFECTOVERWRITE);
 
-enum EFFECTFLAG
+enum EFFECTFLAG : uint32
 {
     EFFECTFLAG_NONE            = 0x00000000,
     EFFECTFLAG_DISPELABLE      = 0x00000001,
@@ -73,10 +73,11 @@ enum EFFECTFLAG
     EFFECTFLAG_HIDE_TIMER      = 0x08000000, // Sends "Always" in the packet, even though timer is tracked
     EFFECTFLAG_ON_ZONE_PATHOS  = 0x10000000, // removes the effect zoning into a non instanced zone
     EFFECTFLAG_ALWAYS_EXPIRING = 0x20000000, // Timer is always 4 seconds from now to have an illusion permanent "expiring", used for Auras
+    EFFECTFLAG_ON_ATTACK       = 0x40000000, // Removes effect upon receiving an attack, regardless of hit/dmg
 };
 DECLARE_FORMAT_AS_UNDERLYING(EFFECTFLAG);
 
-enum EFFECT
+enum EFFECT : uint16
 {
     EFFECT_KO                    = 0,
     EFFECT_WEAKNESS              = 1,
@@ -769,18 +770,28 @@ DECLARE_FORMAT_AS_UNDERLYING(EFFECT);
 
 class CBattleEntity;
 
+enum EffectSourceType : uint8_t
+{
+    SOURCE_NONE    = 0,
+    EQUIPPED_ITEM  = 1,
+    TEMPORARY_ITEM = 2,
+    MOB            = 3,
+};
+
 class CStatusEffect
 {
 public:
-    EFFECT GetStatusID();
-    uint32 GetSubID() const;
-    uint16 GetIcon() const;
-    uint16 GetPower() const;
-    uint16 GetSubPower() const;
-    uint16 GetTier() const;
-    uint32 GetEffectFlags() const;
-    uint16 GetEffectType() const;
-    uint8  GetEffectSlot() const;
+    EFFECT           GetStatusID();
+    uint32           GetSubID() const;
+    EffectSourceType GetSourceType() const;
+    uint16           GetSourceTypeParam() const;
+    uint16           GetIcon() const;
+    uint16           GetPower() const;
+    uint16           GetSubPower() const;
+    uint16           GetTier() const;
+    uint32           GetEffectFlags() const;
+    uint16           GetEffectType() const;
+    uint8            GetEffectSlot() const;
 
     uint32         GetTickTime() const;
     uint32         GetDuration() const;
@@ -795,6 +806,7 @@ public:
     void SetEffectType(uint16 Type);
     void SetEffectSlot(uint8 Slot);
     void SetIcon(uint16 Icon);
+    void SetSource(EffectSourceType SourceType, uint16 SourceTypeParam);
     void SetPower(uint16 Power);
     void SetSubPower(uint16 subPower);
     void SetTier(uint16 tier);
@@ -822,15 +834,17 @@ public:
 private:
     CBattleEntity* m_POwner{ nullptr };
 
-    EFFECT m_StatusID{ EFFECT_NONE }; // Main effect type
-    uint32 m_SubID{ 0 };              // Additional effect type
-    uint16 m_Icon{ 0 };               // Effect icon
-    uint16 m_Power{ 0 };              // Strength of effect
-    uint16 m_SubPower{ 0 };           // Secondary power of the effect
-    uint16 m_Tier{ 0 };               // Tier of the effect
-    uint32 m_Flags{ 0 };              // Effect flags (conditions for its disappearance)
-    uint16 m_Type{ 0 };               // Used to enforce only one
-    uint8  m_Slot{ 0 };               // Used to determine slot order for songs/rolls
+    EFFECT           m_StatusID{ EFFECT_NONE };                     // Main effect type
+    uint32           m_SubID{ 0 };                                  // Additional effect type
+    EffectSourceType m_SourceType{ EffectSourceType::SOURCE_NONE }; // The effect's source type
+    uint16           m_SourceTypeParam{ 0 };                        // The effect's source ID
+    uint16           m_Icon{ 0 };                                   // Effect icon
+    uint16           m_Power{ 0 };                                  // Strength of effect
+    uint16           m_SubPower{ 0 };                               // Secondary power of the effect
+    uint16           m_Tier{ 0 };                                   // Tier of the effect
+    uint32           m_Flags{ 0 };                                  // Effect flags (conditions for its disappearance)
+    uint16           m_Type{ 0 };                                   // Used to enforce only one
+    uint8            m_Slot{ 0 };                                   // Used to determine slot order for songs/rolls
 
     uint32     m_TickTime{ 0 };  // Effect repetition time (ms)
     uint32     m_Duration{ 0 };  // Duration of effect (ms)

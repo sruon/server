@@ -22,19 +22,37 @@
 #pragma once
 
 #include "singleton.h"
-#include "sql.h"
-#include <task_system.hpp>
 
+#include <atomic>
+#include <condition_variable>
 #include <functional>
-#include <string>
+#include <mutex>
+#include <thread>
 
-class Async : public Singleton<Async>, private ts::task_system
+namespace asio
+{
+    class thread_pool;
+}
+
+class Async : public Singleton<Async>
 {
 public:
-    void query(std::string const& query);
-    void query(std::function<void(SqlConnection*)> const& func);
-    void submit(std::function<void()> const& func);
+    ~Async();
+
+    void submit(const std::function<void()>& func);
+    void wait();
+    auto currentTaskCount() const -> std::size_t;
+
+    void setThreadpoolSize(std::size_t size);
 
 protected:
     Async();
+
+private:
+    std::mutex                         mutex_;
+    std::condition_variable            cv_;
+    std::size_t                        threadPoolSize_{ 1U };
+    std::atomic<std::size_t>           taskCount_{ 0U };
+    std::unique_ptr<asio::thread_pool> threadPool_;
+    std::thread::id                    mainThreadId_;
 };

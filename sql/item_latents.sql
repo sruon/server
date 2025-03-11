@@ -112,7 +112,7 @@ INSERT INTO `item_latents` VALUES (11486,28,4,37,4);     -- Full moon magic atta
 -- Fenrir's Crown (11496) (pet latent via item lua)
 
 -- Trainee's Spectacles
-INSERT INTO `item_latents` VALUES (11499,127,1,24,48); -- SYNTH_TRAINEE: SKILL_FISHING - FISH: 1
+INSERT INTO `item_latents` VALUES (11499,127,1,24,48); -- Fishing +1 if skill level < 40
 
 -- Aesir Mantle
 INSERT INTO `item_latents` VALUES (11546,288,1,32,0);    -- Double Attack +2% On Darksdays
@@ -785,7 +785,7 @@ INSERT INTO `item_latents` VALUES (14085,369,1,26,0);    -- Daytime: Adds "Refre
 INSERT INTO `item_latents` VALUES (14085,370,1,26,1);    -- Nighttime: Adds "Regen" effect
 
 -- Ninja Kyahan
-INSERT INTO `item_latents` VALUES (14101,76,25,26,1);   -- MOVE_SPEED_GEAR_BONUS %25 during nighttime
+INSERT INTO `item_latents` VALUES (14101,76,24,26,1);   -- MOVE_SPEED_GEAR_BONUS %25 during nighttime (retail testing shows +24%)
 
 INSERT INTO `item_latents` VALUES (14122,68,8,52,6);     -- Kyahan: Evasion +8 in Water weather
 
@@ -956,6 +956,10 @@ INSERT INTO `item_latents` VALUES (14448,10,6,1,71);     -- VIT+6 when HP >71%
 
 -- Unicorn Harness +1
 INSERT INTO `item_latents` VALUES (14449,10,7,1,71);     -- VIT+7 when HP >71%
+
+-- Nanban Kariginu
+INSERT INTO `item_latents` VALUES (14465,68,10,49,4468); -- EVA +10 with Pamama food active
+
 INSERT INTO `item_latents` VALUES (14500,68,10,13,58);  -- WAR AF2 +1 Body Reduces evasion penalty by 10 if Aggressor Active
 INSERT INTO `item_latents` VALUES (14509,8,8,10,0);
 INSERT INTO `item_latents` VALUES (14509,9,8,10,0);
@@ -1072,7 +1076,7 @@ INSERT INTO `item_latents` VALUES (14954,168,-5,14,0);
 -- Evoker's Gages (14960) (pet latent via item lua)
 
 -- Trainee Gloves
-INSERT INTO `item_latents` VALUES (15008,133,1,24,54); -- SYNTH_TRAINEE: BONE - BONE: 1
+INSERT INTO `item_latents` VALUES (15008,133,1,24,54); -- Bonecraft +1 if skill level < 40
 
 -- Serpentes Cuffs
 INSERT INTO `item_latents` VALUES (15019,369,1,26,1);    -- Nighttime: Adds "Regen" effect
@@ -1210,7 +1214,7 @@ INSERT INTO `item_latents` VALUES (15318,68,2,29,0);
 INSERT INTO `item_latents` VALUES (15318,68,2,31,0);
 
 -- Caitiff's Socks
--- INSERT INTO `item_latents` VALUES (15324,???,1,2,25); -- Flee when HP <25% and TP <100%
+-- INSERT INTO `item_latents` VALUES (15324,???,1,2,25); -- ~10% chance of 100% Flee effect when taking phys dmg while HP <25% and TP <100%
 
 INSERT INTO `item_latents` VALUES (15328,370,2,13,11);
 
@@ -1224,7 +1228,7 @@ INSERT INTO `item_latents` VALUES (15345,384,300,1,75);  -- Haste+3% when HP > 7
 INSERT INTO `item_latents` VALUES (15346,384,400,1,75);  -- Haste+4% when HP > 75%
 
 -- Ninja Kyahan +1
-INSERT INTO `item_latents` VALUES (15364,76,25,26,2);   -- Dusk - Dawn: MOVE_SPEED_GEAR_BONUS +25%
+INSERT INTO `item_latents` VALUES (15364,76,24,26,2);   -- Dusk - Dawn: MOVE_SPEED_GEAR_BONUS +25% (retail testing shows +24%)
 
 -- Hachiman Hakama
 INSERT INTO `item_latents` VALUES (15392,24,7,7,1000);   -- Ranged Attack+7 while TP >=100%
@@ -1881,6 +1885,9 @@ INSERT INTO `item_latents` VALUES (17762,287,4,40,0);    -- Erlking's Sword DMG+
 
 INSERT INTO `item_latents` VALUES (17763,287,6,40,0);    -- Erlking's Blade DMG+6 in Main hand
 
+-- Trainee Sword
+INSERT INTO `item_latents` VALUES (17764,134,1,24,55); -- Alchemy +1 if skill level < 40
+
 -- Lyft Scimitar
 INSERT INTO `item_latents` VALUES (17766,10,2,16,3);     -- VIT +1~4,party size 3+. Effect strengthens with more members
 INSERT INTO `item_latents` VALUES (17766,10,2,16,4);     -- VIT +1~4,party size 3+. Effect strengthens with more members
@@ -2268,6 +2275,9 @@ INSERT INTO `item_latents` VALUES (18491,23,10,6,1000);  -- Attack+10 while TP <
 INSERT INTO `item_latents` VALUES (18491,25,5,6,1000);   -- Accuracy+5 while TP <100%
 INSERT INTO `item_latents` VALUES (18491,287,5,6,1000);  -- DMG+5 while TP <100%
 
+-- Trainee Axe
+INSERT INTO `item_latents` VALUES (18502,128,1,24,49); -- Woodworking +1 if skill level < 40
+
 INSERT INTO `item_latents` VALUES (18504,165,7,59,17);   -- Eventreuse - Vs. plantoid: Critical hit rate +7%
 
 -- Lyft Voulge
@@ -2320,7 +2330,7 @@ INSERT INTO `item_latents` VALUES (18758,8,3,37,4);      -- Full moon STR+3
 INSERT INTO `item_latents` VALUES (18758,9,3,37,4);      -- Full moon DEX+3
 
 -- Trainee Scissors
-INSERT INTO `item_latents` VALUES (18763,131,1,24,52); -- SYNTH_TRAINEE: SKILL_CLOTHCRAFT - CLOTH: 1
+INSERT INTO `item_latents` VALUES (18763,131,1,24,52); -- Clothcraft +1 if skill level < 40
 
 INSERT INTO `item_latents` VALUES (18767,25,3,59,8);     -- Birdbanes - Vs. birds: Accuracy+3
 
@@ -2347,6 +2357,9 @@ INSERT INTO `item_latents` VALUES (18850,287,5,6,1000);  -- DMG+5 while TP <100%
 -- Octave Club
 INSERT INTO `item_latents` VALUES (18852,978,2,38,2);    -- Occasionally attacks 2 times when mjob multiple of 2
 INSERT INTO `item_latents` VALUES (18852,978,6,38,8);    -- Occasionally attacks 2 to 8 times when mjob multiple of 8
+
+-- Trainee Hamer
+INSERT INTO `item_latents` VALUES (18855,129,1,24,50); -- Smithing +1 if skill level < 40
 
 -- Kerykeion
 INSERT INTO `item_latents` VALUES (18859,370,3,0,50);    -- Regen+3 when HP <51%
@@ -2419,10 +2432,15 @@ INSERT INTO `item_latents` VALUES (19081,68,20,13,60);   -- EVA +20 if Dodge Act
 INSERT INTO `item_latents` VALUES (19081,165,3,13,59);   -- Crit rate +3% if Focus Active
 INSERT INTO `item_latents` VALUES (19081,976,5,13,60);   -- Guard +5% if Dodge Active
 
+-- Trainee Knife
+INSERT INTO `item_latents` VALUES (19101,135,1,24,56); -- Cooking +1 if skill level < 40
+
 -- Zareehkl Jambiya
 INSERT INTO `item_latents` VALUES (19108,287,5,0,75);    -- DNG:36 when HP <=75%
 
--- INSERT INTO `item_latents` VALUES (19110,132,1,24,x); -- Trainee's Needle - : +1 Leather craft (x not implemented)
+-- Trainee's Needle
+INSERT INTO `item_latents` VALUES (19110,132,1,24,53); -- Leathercraft +1 if skill level < 40
+
 INSERT INTO `item_latents` VALUES (19113,165,7,59,14);   -- Ermine's Tail - Vs. lizards: Critical hit rate +7%
 
 INSERT INTO `item_latents` VALUES (19115,287,5,40,0);    -- Fane Baselard DMG+5 in Main hand
@@ -2470,6 +2488,9 @@ INSERT INTO `item_latents` VALUES (19234,11,1,16,5);     -- AGI +1~4,party size 
 INSERT INTO `item_latents` VALUES (19234,11,1,16,6);     -- AGI +1~4,party size 3+. Effect strengthens with more members
 
 INSERT INTO `item_latents` VALUES (19273,165,7,59,6);    -- Onishibari - Vs. beasts: Critical hit rate +7%
+
+-- Trainee Burin
+INSERT INTO `item_latents` VALUES (19274,130,1,24,51); -- Goldsmithing +1 if skill level < 40
 
 INSERT INTO `item_latents` VALUES (19275,287,4,40,0);    -- Tsukumo DMG+4 in Main hand
 
@@ -2766,7 +2787,7 @@ INSERT INTO `item_latents` VALUES (23298,291,16,13,420); -- Hattori Hakama +2: E
 -- TODO: INSERT INTO `item_latents` VALUES (23301,??,750,13,457); -- Hashishin Tayt +2: EFFECT_EFFLUX: TP Bonus +750
 
 -- Hachiya Kyahan +2
-INSERT INTO `item_latents` VALUES (23320,76,25,26,2);   -- Dusk to dawn: MOVE_SPEED_GEAR_BONUS+25%
+INSERT INTO `item_latents` VALUES (23320,76,24,26,2);   -- Dusk to dawn: MOVE_SPEED_GEAR_BONUS+25% (retail testing shows +24%)
 
 INSERT INTO `item_latents` VALUES (23338,63,10,13,64);   -- Fallen's sollerets +2: STATUS_EFFECT_ACTIVE: EFFECT_LAST_RESORT: DEFP: 10
 
@@ -2781,7 +2802,7 @@ INSERT INTO `item_latents` VALUES (23350,399,17,52,8);   -- Pedagogy Loafers+2: 
 
 INSERT INTO `item_latents` VALUES (23532,518,15,13,57); -- WAR AF2 119 +3 Hands Defender Shield Rate +15
 -- Hachiya Kyahan +3
-INSERT INTO `item_latents` VALUES (23655,76,25,26,2);   -- Dusk to dawn: MOVE_SPEED_GEAR_BONUS+25%
+INSERT INTO `item_latents` VALUES (23655,76,24,26,2);   -- Dusk to dawn: MOVE_SPEED_GEAR_BONUS+25% (retail testing shows +24%)
 
 INSERT INTO `item_latents` VALUES (23685,399,18,52,1);   -- Pedagogy Loafers+3: Weather: Enhances Celerity and Alacrity Effect +18% (FIRE)
 INSERT INTO `item_latents` VALUES (23685,399,18,52,2);   -- Pedagogy Loafers+3: Weather: Enhances Celerity and Alacrity Effect +18% (EARTH)
@@ -2821,8 +2842,12 @@ INSERT INTO `item_latents` VALUES (27367,399,16,52,5);   -- Pedagogy Loafers+1: 
 INSERT INTO `item_latents` VALUES (27367,399,16,52,6);   -- Pedagogy Loafers+1: Weather: Enhances Celerity and Alacrity Effect +16% (THUNDER)
 INSERT INTO `item_latents` VALUES (27367,399,16,52,7);   -- Pedagogy Loafers+1: Weather: Enhances Celerity and Alacrity Effect +16% (LIGHT)
 INSERT INTO `item_latents` VALUES (27367,399,16,52,8);   -- Pedagogy Loafers+1: Weather: Enhances Celerity and Alacrity Effect +16% (DARK)
-INSERT INTO `item_latents` VALUES (28235,76,25,26,2);   -- Hachiya Kyahan: Dusk to dawn: MOVE_SPEED_GEAR_BONUS+25%
-INSERT INTO `item_latents` VALUES (28256,76,25,26,2);   -- Hachiya Kyahan +1: Dusk to dawn: MOVE_SPEED_GEAR_BONUS+25%
+
+-- Councilor's Garb
+INSERT INTO `item_latents` VALUES (27923,76,24,63,0);   -- While in Adoulin: MOVE_SPEED_GEAR_BONUS +25% (retail testing shows +24%)
+
+INSERT INTO `item_latents` VALUES (28235,76,24,26,2);   -- Hachiya Kyahan: Dusk to dawn: MOVE_SPEED_GEAR_BONUS+25% (retail testing shows +24%)
+INSERT INTO `item_latents` VALUES (28256,76,24,26,2);   -- Hachiya Kyahan +1: Dusk to dawn: MOVE_SPEED_GEAR_BONUS+25% (retail testing shows +24%)
 INSERT INTO `item_latents` VALUES (28445,23,10,14,0);   -- Shetal Stone ATT +10 No Food Active
 INSERT INTO `item_latents` VALUES (28445,68,10,14,0);   -- Shetal Stone EVA +10 No Food Active
 

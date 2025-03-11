@@ -144,6 +144,7 @@ local function corsairSetup(caster, ability, action, effect, job)
     caster:delStatusEffectSilent(xi.effect.DOUBLE_UP_CHANCE)
     caster:addStatusEffectEx(xi.effect.DOUBLE_UP_CHANCE, xi.effect.DOUBLE_UP_CHANCE, roll, 0, 45, ability:getID(), effect, job, true)
     caster:setLocalVar('corsairRollTotal', roll)
+    caster:setLocalVar('corsairDuEffect', effect)
     action:speceffect(caster:getID(), roll)
 
     local recastReduction = utils.clamp(caster:getMerit(xi.merit.PHANTOM_ROLL_RECAST) + caster:getMod(xi.mod.PHANTOM_RECAST), 0, 45)
@@ -190,6 +191,7 @@ local function applyRoll(caster, target, inAbility, action, total, isDoubleup, c
         effectpower = effectpower * actorLevel / targetLevel
     end
 
+    caster:setLocalVar('corsairApplyingRoll', 1)
     if not target:addCorsairRoll(caster:getMainJob(), caster:getMerit(xi.merit.BUST_DURATION), corsairRollMods[abilityId][4], effectpower, 0, duration, caster:getID(), total, corsairRollMods[abilityId][5]) then
         -- no effect or otherwise prevented
         if caster:getID() == target:getID() then                  -- dead code? you can't roll if the same roll is already active. There is no known buff that would prevent a corsair roll.
@@ -217,6 +219,7 @@ local function applyRoll(caster, target, inAbility, action, total, isDoubleup, c
         end
     end
 
+    caster:setLocalVar('corsairApplyingRoll', 0)
     return total
 end
 
@@ -253,7 +256,7 @@ xi.job_utils.corsair.useDoubleUp = function(caster, target, ability, action)
         local snakeEye = caster:getStatusEffect(xi.effect.SNAKE_EYE)
 
         if snakeEye then
-            if roll >= 5 and math.random(100) < snakeEye:getPower() then
+            if roll >= 5 and math.random(1, 100) < snakeEye:getPower() then
                 roll = 11
             else
                 roll = roll + 1
@@ -352,5 +355,19 @@ xi.job_utils.corsair.onDoubleUpAbilityCheck = function(player, target, ability)
         return xi.msg.basic.NO_ELIGIBLE_ROLL, 0
     else
         return 0, 0
+    end
+end
+
+xi.job_utils.corsair.onRollEffectLose = function(player, effect)
+    -- Ignore effect loss if COR is doubling up
+    if player:getLocalVar('corsairApplyingRoll') == 1 then
+        return
+    end
+
+    if player:hasStatusEffect(xi.effect.DOUBLE_UP_CHANCE) then
+        if player:getLocalVar('corsairDuEffect') == effect:getEffectType() then
+            player:delStatusEffectSilent(xi.effect.DOUBLE_UP_CHANCE)
+            player:setLocalVar('corsairDuEffect', 0)
+        end
     end
 end

@@ -30,7 +30,7 @@ spellObject.onSpellCast = function(caster, target, spell)
     -- Add on bonuses (staff/day/weather/jas/mab/etc all go in this function)
     dmg = addBonuses(caster, spell, target, dmg)
     -- Add in target adjustment
-    dmg = adjustForTarget(target, dmg, spell:getElement())
+    dmg = dmg * xi.spells.damage.calculateNukeAbsorbOrNullify(target, spell:getElement())
     -- Add in final adjustments including the actual damage dealt
     local final = finalMagicAdjustments(caster, target, spell, dmg)
 
@@ -43,11 +43,11 @@ spellObject.onSpellCast = function(caster, target, spell)
     -- Check for Bio
     local bio = target:getStatusEffect(xi.effect.BIO)
 
-    if  bio == nil then -- if no bio, add dia dot
+    if not bio then -- if no bio, add dia dot
         target:addStatusEffect(xi.effect.DIA, 1 + dotBonus, 3, duration, 0, 10, 1)
-    elseif  bio:getSubPower() == 10 and xi.settings.main.BIO_OVERWRITE == 1 then -- Try to kill same tier Bio (non-default behavior)
-            target:delStatusEffect(xi.effect.BIO)
-            target:addStatusEffect(xi.effect.DIA, 1 + dotBonus, 3, duration, 0, 10, 1)
+    elseif bio:getSubPower() == 10 and xi.settings.main.BIO_OVERWRITE == 1 then -- Try to kill same tier Bio (non-default behavior)
+        target:delStatusEffect(xi.effect.BIO)
+        target:addStatusEffect(xi.effect.DIA, 1 + dotBonus, 3, duration, 0, 10, 1)
     end
 
     return final

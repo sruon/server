@@ -69,7 +69,7 @@ CBattleEntity::CBattleEntity()
     m_Weapons[SLOT_AMMO]   = nullptr;
     m_dualWield            = false;
 
-    memset(&health, 0, sizeof(health));
+    std::memset(&health, 0, sizeof(health));
     health.maxhp = 1;
 
     PPet          = nullptr;
@@ -81,10 +81,10 @@ CBattleEntity::CBattleEntity()
     PRecastContainer      = std::make_unique<CRecastContainer>(this);
     PNotorietyContainer   = std::make_unique<CNotorietyContainer>(this);
 
-    m_modStat[Mod::SLASH_SDT]  = 1000;
-    m_modStat[Mod::PIERCE_SDT] = 1000;
-    m_modStat[Mod::HTH_SDT]    = 1000;
-    m_modStat[Mod::IMPACT_SDT] = 1000;
+    m_modStat[Mod::SLASH_SDT]  = 0;
+    m_modStat[Mod::PIERCE_SDT] = 0;
+    m_modStat[Mod::HTH_SDT]    = 0;
+    m_modStat[Mod::IMPACT_SDT] = 0;
 
     m_Immunity   = 0;
     isCharmed    = false;
@@ -110,6 +110,18 @@ bool CBattleEntity::isAlive()
     return !isDead();
 }
 
+bool CBattleEntity::isFullyHealed()
+{
+    if (isAlive())
+    {
+        if (health.hp >= health.maxhp && health.mp >= health.maxmp)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
 bool CBattleEntity::isInDynamis()
 {
     auto* PZone = loc.zone == nullptr ? zoneutils::GetZone(loc.destination) : loc.zone;
@@ -126,6 +138,26 @@ bool CBattleEntity::isInAssault()
     {
         return loc.zone->GetTypeMask() & ZONE_TYPE::INSTANCED &&
                (loc.zone->GetRegionID() >= REGION_TYPE::WEST_AHT_URHGAN && loc.zone->GetRegionID() <= REGION_TYPE::ALZADAAL);
+    }
+    return false;
+}
+
+bool CBattleEntity::isInAdoulin()
+{
+    if (loc.zone != nullptr)
+    {
+        ZONEID zoneid = loc.zone->GetID();
+        switch (zoneid)
+        {
+            case ZONEID::ZONE_WESTERN_ADOULIN:
+            case ZONEID::ZONE_EASTERN_ADOULIN:
+            case ZONEID::ZONE_MOG_GARDEN:
+            case ZONEID::ZONE_SILVER_KNIFE:
+            case ZONEID::ZONE_CELENNIA_MEMORIAL_LIBRARY:
+                return true;
+            default:
+                break;
+        }
     }
     return false;
 }
@@ -175,18 +207,45 @@ bool CBattleEntity::isSitting()
 void CBattleEntity::UpdateHealth()
 {
     TracyZoneScoped;
-    int32 dif = (getMod(Mod::CONVMPTOHP) - getMod(Mod::CONVHPTOMP));
 
-    health.modmp = std::max(0, ((health.maxmp) * (100 + getMod(Mod::MPP)) / 100) +
-                                   std::min<int16>((health.maxmp * m_modStat[Mod::FOOD_MPP] / 100), m_modStat[Mod::FOOD_MP_CAP]) + getMod(Mod::MP));
-    health.modhp = std::max(1, ((health.maxhp) * (100 + getMod(Mod::HPP)) / 100) +
-                                   std::min<int16>((health.maxhp * m_modStat[Mod::FOOD_HPP] / 100), m_modStat[Mod::FOOD_HP_CAP]) + getMod(Mod::HP));
+    float weaknessPower = (100.f + getMod(Mod::WEAKNESS_PCT)) / 100.f;
+    float cursePower    = (100.f + getMod(Mod::CURSE_PCT)) / 100.f;
+    float HPPPower      = (100.f + getMod(Mod::HPP)) / 100.f;
+    float MPPPower      = (100.f + getMod(Mod::MPP)) / 100.f;
 
-    dif = (health.modmp - 0) < dif ? (health.modmp - 0) : dif;
-    dif = (health.modhp - 1) < -dif ? -(health.modhp - 1) : dif;
+    // Calculate "base" hp/mp with weakness, curse, HP mods. Raw HP/MP mods from food are post-curse.
+    // Note: Afflictor was noted to use exactly 75/256 for curse power
+    int32 baseHPBonus = std::floor((std::floor((health.maxhp + getMod(Mod::BASE_HP)) * weaknessPower) + getMod(Mod::HP)) * cursePower) + getMod(Mod::FOOD_HP);
+    int32 baseMPBonus = std::floor((std::floor((health.maxmp + getMod(Mod::BASE_MP)) * weaknessPower) + getMod(Mod::MP)) * cursePower) + getMod(Mod::FOOD_MP);
 
-    health.modhp += dif;
-    health.modmp -= dif;
+    // Resolve HP/MP conversion
+    int32 HPMPConvertDiff = getMod(Mod::CONVMPTOHP) - getMod(Mod::CONVHPTOMP);
+    int32 convertHP       = 0;
+    int32 convertMP       = 0;
+
+    // positive = convert HP to MP wins out
+    if (HPMPConvertDiff > 0)
+    {
+        convertHP = std::min(baseMPBonus, HPMPConvertDiff);
+        convertMP = -convertHP;
+    }
+    else if (HPMPConvertDiff < 0) // negative = convert MP to HP wins out
+    {
+        // -1 so we don't end up with zero HP...
+        convertMP = std::min(baseHPBonus - 1, -HPMPConvertDiff);
+        convertHP = -convertMP;
+    }
+
+    // add in convert HP/MP..
+    baseHPBonus = std::floor((baseHPBonus + convertHP) * HPPPower);
+    baseMPBonus = std::floor((baseMPBonus + convertMP) * MPPPower);
+
+    // Food is additive at the end
+    float foodHPBonus = std::min<int16>(baseHPBonus * m_modStat[Mod::FOOD_HPP] / 100, m_modStat[Mod::FOOD_HP_CAP]);
+    float foodMPBonus = std::min<int16>(baseMPBonus * m_modStat[Mod::FOOD_MPP] / 100, m_modStat[Mod::FOOD_MP_CAP]);
+
+    health.modhp = baseHPBonus + foodHPBonus;
+    health.modmp = baseMPBonus + foodMPBonus;
 
     if (objtype == TYPE_PC)
     {
@@ -208,7 +267,12 @@ void CBattleEntity::UpdateHealth()
 
 uint8 CBattleEntity::GetHPP() const
 {
-    return (uint8)ceil(((float)health.hp / (float)GetMaxHP()) * 100);
+    if (health.hp == 0)
+    {
+        return 0;
+    }
+
+    return static_cast<uint8>(std::max<uint8>(1, std::floor((static_cast<float>(health.hp) / static_cast<float>(GetMaxHP())) * 100.f)));
 }
 
 int32 CBattleEntity::GetMaxHP() const
@@ -224,7 +288,12 @@ int32 CBattleEntity::GetMaxHP() const
 
 uint8 CBattleEntity::GetMPP() const
 {
-    return (uint8)ceil(((float)health.mp / (float)GetMaxMP()) * 100);
+    if (health.mp == 0)
+    {
+        return 0;
+    }
+
+    return static_cast<uint8>(std::max<uint8>(1, std::floor((static_cast<float>(health.mp) / static_cast<float>(GetMaxMP())) * 100.f)));
 }
 
 int32 CBattleEntity::GetMaxMP() const
@@ -240,70 +309,106 @@ int32 CBattleEntity::GetMaxMP() const
  *                                                                       *
  ************************************************************************/
 
-uint8 CBattleEntity::GetSpeed()
+uint8 CBattleEntity::UpdateSpeed(bool run)
 {
-    uint8 baseSpeed   = speed;
-    uint8 outputSpeed = 0;
+    int16 outputSpeed = 0;
 
     // Mount speed. Independent from regular speed and unaffected by most things.
-    // Note: retail treats mounted speed as double what it actually is! 40 is in fact retail accurate!
     if (isMounted())
     {
-        baseSpeed   = 40 + settings::get<int8>("map.MOUNT_SPEED_MOD");
-        outputSpeed = baseSpeed * (100 + getMod(Mod::MOUNT_MOVE)) / 100;
-
-        return std::clamp<uint8>(outputSpeed, std::numeric_limits<uint8>::min(), std::numeric_limits<uint8>::max());
+        outputSpeed = settings::get<uint8>("map.MOUNT_SPEED") / 2;
+        outputSpeed *= (100 + getMod(Mod::MOUNT_MOVE)) / 100;
     }
-
-    // Gear penalties, Bolters Roll.
-    uint8 additiveMods = static_cast<uint8>(getMod(Mod::MOVE_SPEED_STACKABLE));
-
-    // Gravity and Curse. They seem additive to each other and the sum seems to be multiplicative.
-    float weightFactor = std::clamp<float>(1.0f - static_cast<float>(getMod(Mod::MOVE_SPEED_WEIGHT_PENALTY)) / 100.0f, 0.1f, 1.0f);
-
-    // Flee.
-    float fleeFactor = std::clamp<float>(1.0f + static_cast<float>(getMod(Mod::MOVE_SPEED_FLEE)) / 100.0f, 1.0f, 2.0f);
-
-    // Cheer KI's
-    float cheerFactor = (99.0f + static_cast<float>(getMod(Mod::MOVE_SPEED_CHEER))) / 99.0f;
-
-    // Bolter's Roll. Additive
-    uint8 boltersRollEffect = static_cast<uint8>(getMod(Mod::MOVE_SPEED_BOLTERS_ROLL));
-
-    // Positive movement speed from gear and from Atmas. Only highest applies. Multiplicative to base speed.
-    float gearFactor = 1.0f;
-
-    if (objtype == TYPE_PC)
+    else if (baseSpeed == 0 || getMod(Mod::MOVE_SPEED_OVERRIDE) < 0)
     {
-        gearFactor = std::clamp<float>(1.0f + static_cast<float>(getMaxGearMod(Mod::MOVE_SPEED_GEAR_BONUS)) / 100.0f, 1.0f, 1.25f);
+        outputSpeed = 0;
     }
-
-    // Quickening and Mazurka. They share a cap. Additive.
-    uint8 mazurkaQuickeningEffect = std::clamp<uint8>(getMod(Mod::MOVE_SPEED_QUICKENING) + getMod(Mod::MOVE_SPEED_MAZURKA), 0, 10);
-
-    // We have all the modifiers needed. Calculate final speed.
-    // This MUST BE DONE IN THIS ORDER. Using uint8 data type, we use that to floor.
-    outputSpeed = baseSpeed + additiveMods;
-    outputSpeed = outputSpeed * weightFactor;
-    outputSpeed = outputSpeed * fleeFactor;
-    outputSpeed = outputSpeed * cheerFactor;
-    outputSpeed = outputSpeed + boltersRollEffect;
-    outputSpeed = outputSpeed * gearFactor;
-    outputSpeed = outputSpeed + mazurkaQuickeningEffect;
-
-    // Set cap (Default 80).
-    outputSpeed = std::clamp<uint8>(outputSpeed, 0, 80 + settings::get<int8>("map.SPEED_MOD"));
-
-    // Speed cap can be bypassed. Ex. Feast of swords. GM speed.
-    // TODO: Find exceptions. Add them here.
-
-    // GM speed bypass.
-    if (getMod(Mod::MOVE_SPEED_OVERRIDE) > 0)
+    else if (getMod(Mod::MOVE_SPEED_OVERRIDE) > 0)
     {
+        // GM speed bypass.
+        // Speed cap can be bypassed. Ex. Feast of swords. GM speed.
+        // TODO: Find exceptions. Add them here.
         outputSpeed = getMod(Mod::MOVE_SPEED_OVERRIDE);
     }
+    else
+    {
+        // Gear penalties.
+        int8 additiveMods = static_cast<int8>(getMod(Mod::MOVE_SPEED_STACKABLE));
 
-    return std::clamp<uint8>(outputSpeed, std::numeric_limits<uint8>::min(), std::numeric_limits<uint8>::max());
+        // Gravity and Curse. They seem additive to each other and the sum seems to be multiplicative.
+        float weightFactor = std::clamp<float>(1.0f - static_cast<float>(getMod(Mod::MOVE_SPEED_WEIGHT_PENALTY)) / 100.0f, 0.1f, 1.0f);
+
+        // Flee.
+        float fleeFactor = std::clamp<float>(1.0f + static_cast<float>(getMod(Mod::MOVE_SPEED_FLEE)) / 10000.0f, 1.0f, 2.0f);
+
+        // Cheer KI's
+        float cheerFactor = (99.0f + static_cast<float>(getMod(Mod::MOVE_SPEED_CHEER))) / 99.0f;
+
+        // Bolter's Roll. Additive
+        uint8 boltersRollEffect = static_cast<uint8>(getMod(Mod::MOVE_SPEED_BOLTERS_ROLL));
+
+        // Positive movement speed from gear and from Atmas. Only highest applies. Multiplicative to base speed.
+        float gearFactor = 1.0f;
+
+        if (objtype == TYPE_PC)
+        {
+            gearFactor = std::clamp<float>(1.0f + static_cast<float>(getMaxGearMod(Mod::MOVE_SPEED_GEAR_BONUS)) / 100.0f, 1.0f, 1.25f);
+        }
+
+        // Quickening and Mazurka. They share a cap. Additive.
+        uint8 mazurkaQuickeningEffect = std::clamp<uint8>(getMod(Mod::MOVE_SPEED_QUICKENING) + getMod(Mod::MOVE_SPEED_MAZURKA), 0, 10);
+
+        // We have all the modifiers needed. Calculate final speed.
+        // This MUST BE DONE IN THIS ORDER. Using int8 data type, we use that to floor.
+        outputSpeed = baseSpeed + additiveMods;
+        outputSpeed = outputSpeed * weightFactor;
+        outputSpeed = outputSpeed * fleeFactor;
+        outputSpeed = outputSpeed * cheerFactor;
+        outputSpeed = outputSpeed + boltersRollEffect;
+        outputSpeed = outputSpeed * gearFactor;
+        if (outputSpeed > 0)
+        {
+            outputSpeed = outputSpeed + mazurkaQuickeningEffect;
+        }
+
+        // Set cap if a PC (Default 80).
+        if (objtype == TYPE_PC)
+        {
+            outputSpeed = std::clamp<int16>(outputSpeed, 0, settings::get<uint8>("map.SPEED_LIMIT"));
+        }
+
+        if (run && outputSpeed > 0)
+        {
+            float multiplier = settings::get<float>("map.MOB_RUN_SPEED_MULTIPLIER");
+            if (multiplier > 1.0f)
+            {
+                if (auto* mobEntity = dynamic_cast<CMobEntity*>(this))
+                {
+                    // mob has a custom multiplier
+                    if (mobEntity->getMobMod(MOBMOD_RUN_SPEED_MULT) > 0)
+                    {
+                        multiplier = mobEntity->getMobMod(MOBMOD_RUN_SPEED_MULT) / 100.0f;
+                    }
+
+                    // if some weight penalty (like gravity) then cut the multiplier
+                    // (for mobs with default boost of 2.5 then boost becomes 1.20)
+                    if (mobEntity->getMod(Mod::MOVE_SPEED_WEIGHT_PENALTY) > 0)
+                    {
+                        multiplier *= 0.48f;
+                    }
+
+                    // Ensure the multiplier is at least 1.0 so that multiplier never decreases speed
+                    multiplier = std::max<float>(multiplier, 1.0f);
+
+                    outputSpeed *= multiplier;
+                }
+            }
+        }
+    }
+
+    speed = static_cast<uint8>(std::clamp<int16>(outputSpeed, std::numeric_limits<uint8>::min(), std::numeric_limits<uint8>::max()));
+
+    return speed;
 }
 
 bool CBattleEntity::CanRest()
@@ -338,10 +443,6 @@ bool CBattleEntity::Rest(float rate)
 int16 CBattleEntity::GetWeaponDelay(bool tp)
 {
     TracyZoneScoped;
-    if (StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS) && !tp)
-    {
-        return 1700;
-    }
     uint16 WeaponDelay = 9999;
     if (auto* weapon = dynamic_cast<CItemWeapon*>(m_Weapons[SLOT_MAIN]))
     {
@@ -396,6 +497,13 @@ int16 CBattleEntity::GetWeaponDelay(bool tp)
         // This should be enforced on -delay equipment, martial arts, dual wield, and haste, hence MinimumDelay * 0.2.
         // TODO: Could be converted to value/1024 if the exact cap is ever determined.
         MinimumDelay -= (uint16)(MinimumDelay * 0.8);
+
+        // if hundred fists then use the min delay (as hundred fists also reduces base delay by 80%
+        if (StatusEffectContainer->HasStatusEffect(EFFECT_HUNDRED_FISTS) && !tp)
+        {
+            WeaponDelay = MinimumDelay;
+        }
+
         WeaponDelay = (WeaponDelay < MinimumDelay) ? MinimumDelay : WeaponDelay;
     }
     return WeaponDelay;
@@ -562,10 +670,14 @@ uint16 CBattleEntity::GetSubWeaponRank()
 
 uint16 CBattleEntity::GetRangedWeaponRank()
 {
-    if (auto* weapon = dynamic_cast<CItemWeapon*>(m_Weapons[SLOT_RANGED]))
+    // Check ranged slot first, otherwise use ammo if it's null
+    CItemEquipment* item = m_Weapons[SLOT_RANGED] ? m_Weapons[SLOT_RANGED] : m_Weapons[SLOT_AMMO];
+
+    if (auto* weapon = dynamic_cast<CItemWeapon*>(item))
     {
         return (weapon->getDamage() + getMod(Mod::RANGED_DMG_RANK)) / 9;
     }
+
     return 0;
 }
 
@@ -663,10 +775,10 @@ int32 CBattleEntity::takeDamage(int32 amount, CBattleEntity* attacker /* = nullp
                                 DAMAGE_TYPE damageType /* = DAMAGE_NONE*/, bool isSkillchainDamage /* = false */)
 {
     TracyZoneScoped;
-    PLastAttacker                             = attacker;
-    this->BattleHistory.lastHitTaken_atkType  = attackType;
-    std::optional<CLuaBaseEntity> optAttacker = attacker ? std::optional<CLuaBaseEntity>(CLuaBaseEntity(attacker)) : std::nullopt;
-    PAI->EventHandler.triggerListener("TAKE_DAMAGE", CLuaBaseEntity(this), amount, optAttacker, (uint16)attackType, (uint16)damageType);
+    PLastAttacker                            = attacker;
+    this->BattleHistory.lastHitTaken_atkType = attackType;
+
+    PAI->EventHandler.triggerListener("TAKE_DAMAGE", this, amount, attacker, (uint16)attackType, (uint16)damageType);
 
     // RoE Damage Taken Trigger
     if (this->objtype == TYPE_PC)
@@ -752,17 +864,27 @@ uint16 CBattleEntity::ATT(SLOTTYPE slot)
     int32 ATT    = 8 + m_modStat[Mod::ATT];
     auto  ATTP   = m_modStat[Mod::ATTP];
     auto* weapon = dynamic_cast<CItemWeapon*>(m_Weapons[slot]);
-    if (weapon && weapon->isTwoHanded())
+
+    // https://www.bg-wiki.com/ffxi/Strength
+    if (weapon && weapon->isTwoHanded()) // 2-handed weapon
     {
-        ATT += (STR() * 3) / 4;
+        ATT += STR();
     }
-    else if (weapon && weapon->isHandToHand())
+    else if (weapon && weapon->isHandToHand()) // H2H Weapon
     {
-        ATT += (STR() * 5) / 8;
+        ATT += STR() * 3 / 4;
     }
-    else
+    else if (slot == SLOT_RANGED || slot == SLOT_AMMO) // Ranged/ammo weapon.
     {
-        ATT += (STR() * 3) / 4;
+        ATT += STR();
+    }
+    else if (slot == SLOT_MAIN) // 1-handed weapon in main slot.
+    {
+        ATT += STR();
+    }
+    else // 1-handed weapon in sub slot.
+    {
+        ATT += STR() / 2;
     }
 
     if (this->StatusEffectContainer->HasStatusEffect(EFFECT_ENDARK))
@@ -801,9 +923,9 @@ uint16 CBattleEntity::RATT(uint8 skill, uint16 bonusSkill)
 
     // make sure to not use fishing skill
     uint16 baseSkill = skill == SKILL_FISHING ? 0 : GetSkill(skill);
-    int32  RATT      = 8 + baseSkill + bonusSkill + m_modStat[Mod::RATT] + battleutils::GetRangedAttackBonuses(this) + (STR() * 3) / 4;
+    int32  RATT      = 8 + baseSkill + bonusSkill + m_modStat[Mod::RATT] + battleutils::GetRangedAttackBonuses(this) + STR();
     // use max to prevent any underflow
-    return std::max(0, RATT + (RATT * m_modStat[Mod::RATTP] / 100) + std::min<int16>((RATT * m_modStat[Mod::FOOD_RATTP] / 100), m_modStat[Mod::FOOD_RATT_CAP]));
+    return std::max(1, RATT + (RATT * m_modStat[Mod::RATTP] / 100) + std::min<int16>((RATT * m_modStat[Mod::FOOD_RATTP] / 100), m_modStat[Mod::FOOD_RATT_CAP]));
 }
 
 uint16 CBattleEntity::RACC(uint8 skill, uint16 bonusSkill)
@@ -830,7 +952,7 @@ uint16 CBattleEntity::RACC(uint8 skill, uint16 bonusSkill)
     return std::max(0, RACC + std::min<int16>(((100 + getMod(Mod::FOOD_RACCP) * RACC) / 100), getMod(Mod::FOOD_RACC_CAP)));
 }
 
-uint16 CBattleEntity::ACC(uint8 attackNumber, uint8 offsetAccuracy)
+uint16 CBattleEntity::ACC(uint8 attackNumber, uint16 offsetAccuracy)
 {
     TracyZoneScoped;
 
@@ -881,7 +1003,7 @@ uint16 CBattleEntity::ACC(uint8 attackNumber, uint8 offsetAccuracy)
             }
             skill = SKILL_HAND_TO_HAND;
         }
-        int16 ACC = GetSkill(skill) + iLvlSkill;
+        int32 ACC = GetSkill(skill) + iLvlSkill;
         ACC       = (ACC > 200 ? (int16)(((ACC - 200) * 0.9) + 200) : ACC);
         if (auto* weapon = dynamic_cast<CItemWeapon*>(m_Weapons[SLOT_MAIN]); weapon && weapon->isTwoHanded())
         {
@@ -910,7 +1032,7 @@ uint16 CBattleEntity::ACC(uint8 attackNumber, uint8 offsetAccuracy)
     }
     else if (this->objtype == TYPE_PET && ((CPetEntity*)this)->getPetType() == PET_TYPE::AUTOMATON)
     {
-        int16 ACC = this->GetSkill(SKILL_AUTOMATON_MELEE);
+        int32 ACC = this->GetSkill(SKILL_AUTOMATON_MELEE);
         ACC       = (ACC > 200 ? (int16)(((ACC - 200) * 0.9) + 200) : ACC);
         ACC += (int16)(DEX() * 0.5);
         ACC += m_modStat[Mod::ACC] + offsetAccuracy;
@@ -925,7 +1047,7 @@ uint16 CBattleEntity::ACC(uint8 attackNumber, uint8 offsetAccuracy)
     }
     else
     {
-        int16 ACC = m_modStat[Mod::ACC];
+        int32 ACC = m_modStat[Mod::ACC] + offsetAccuracy;
 
         if (this->StatusEffectContainer->HasStatusEffect(EFFECT_ENLIGHT))
         {
@@ -939,7 +1061,21 @@ uint16 CBattleEntity::ACC(uint8 attackNumber, uint8 offsetAccuracy)
 
 uint16 CBattleEntity::DEF()
 {
-    int32 DEF = 8 + m_modStat[Mod::DEF] + VIT() / 2;
+    // VIT * 1.5 for PCs / Alter egos / Fellows / Familiars / Wyverns / Avatars / Automatons / Luopans
+    // VIT * 0.5 for Enemy NPCs and pets controlled by Charm
+    // https://wiki.ffo.jp/html/313.html
+    // https://wiki.ffo.jp/html/35712.html
+    // https://forum.square-enix.com/ffxi/threads/51154-Aug.-3-2016-%28JST%29-Version-Update?p=583669&viewfull=1#post583669
+    int32 DEF       = 8 + m_modStat[Mod::DEF];
+    float vitFactor = 1.5f;
+
+    if (this->objtype == TYPE_MOB)
+    {
+        vitFactor = 0.5f;
+    }
+
+    DEF = DEF + std::floor(VIT() * vitFactor);
+
     if (this->StatusEffectContainer->HasStatusEffect(EFFECT_COUNTERSTANCE, 0))
     {
         return DEF / 2;
@@ -1568,11 +1704,11 @@ void CBattleEntity::Die()
             }
         });
         // clang-format on
-        PAI->EventHandler.triggerListener("DEATH", CLuaBaseEntity(this), CLuaBaseEntity(PKiller));
+        PAI->EventHandler.triggerListener("DEATH", this, PKiller);
     }
     else
     {
-        PAI->EventHandler.triggerListener("DEATH", CLuaBaseEntity(this));
+        PAI->EventHandler.triggerListener("DEATH", this);
     }
     SetBattleTargetID(0);
 }
@@ -1603,6 +1739,7 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
     }
 
     StatusEffectContainer->DelStatusEffectsByFlag(effectFlags);
+    StatusEffectContainer->DelStatusEffect(EFFECT_ILLUSION);
 
     PAI->TargetFind->reset();
 
@@ -1829,7 +1966,7 @@ void CBattleEntity::OnCastInterrupted(CMagicState& state, action_t& action, MSGB
         {
             actionTarget.reaction = REACTION::HIT;
             // For some reason, despite the system supporting interrupted message in the action packet (like auto attacks, JA), an 0x029 message is sent for spells.
-            loc.zone->PushPacket(this, CHAR_INRANGE_SELF, new CMessageBasicPacket(this, state.GetTarget() ? state.GetTarget() : this, 0, 0, msg));
+            loc.zone->PushPacket(this, CHAR_INRANGE_SELF, std::make_unique<CMessageBasicPacket>(this, state.GetTarget() ? state.GetTarget() : this, 0, 0, msg));
         }
     }
 }
@@ -1996,8 +2133,8 @@ void CBattleEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
         else
         {
             damage = luautils::OnMobWeaponSkill(PTargetFound, this, PSkill, &action);
-            this->PAI->EventHandler.triggerListener("WEAPONSKILL_USE", CLuaBaseEntity(this), CLuaBaseEntity(PTargetFound), PSkill->getID(), state.GetSpentTP(), CLuaAction(&action), damage);
-            PTarget->PAI->EventHandler.triggerListener("WEAPONSKILL_TAKE", CLuaBaseEntity(PTargetFound), CLuaBaseEntity(this), PSkill->getID(), state.GetSpentTP(), CLuaAction(&action));
+            this->PAI->EventHandler.triggerListener("WEAPONSKILL_USE", this, PTargetFound, PSkill->getID(), state.GetSpentTP(), &action, damage);
+            PTarget->PAI->EventHandler.triggerListener("WEAPONSKILL_TAKE", PTargetFound, this, PSkill->getID(), state.GetSpentTP(), &action);
         }
 
         if (msg == 0)
@@ -2049,7 +2186,7 @@ void CBattleEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
                 target.knockback = 0;
             }
 
-            if (first && (PSkill->getPrimarySkillchain() != 0))
+            if (first && PTargetFound->health.hp > 0 && PSkill->getPrimarySkillchain() != 0)
             {
                 SUBEFFECT effect = battleutils::GetSkillChainEffect(PTargetFound, PSkill->getPrimarySkillchain(), PSkill->getSecondarySkillchain(),
                                                                     PSkill->getTertiarySkillchain());
@@ -2116,7 +2253,7 @@ void CBattleEntity::OnDisengage(CAttackState& s)
         animation = ANIMATION_NONE;
     }
     updatemask |= UPDATE_HP;
-    PAI->EventHandler.triggerListener("DISENGAGE", CLuaBaseEntity(this));
+    PAI->EventHandler.triggerListener("DISENGAGE", this);
 }
 
 void CBattleEntity::OnChangeTarget(CBattleEntity* PTarget)
@@ -2154,6 +2291,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
     {
         // TODO: Should not be removed by AoE effects that don't target the player.
         PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DETECTABLE);
+        PTarget->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_ON_ATTACK);
     }
 
     battleutils::ClaimMob(PTarget, this); // Mobs get claimed whether or not your attack actually is intimidated/paralyzed
@@ -2292,7 +2430,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                             attBonus += ((static_cast<float>(targetDex) / 100) * csJpModifier);
                         }
 
-                        float DamageRatio = battleutils::GetDamageRatio(PTarget, this, attack.IsCritical(), attBonus, skilltype, SLOT_MAIN);
+                        float DamageRatio = battleutils::GetDamageRatio(PTarget, this, attack.IsCritical(), attBonus, skilltype, SLOT_MAIN, false);
                         auto  damage      = (int32)((PTarget->GetMainWeaponDmg() + naturalh2hDMG + battleutils::GetFSTR(PTarget, this, SLOT_MAIN)) * DamageRatio);
 
                         actionTarget.spikesParam =
@@ -2309,6 +2447,8 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                         }
                     }
                 }
+
+                this->PAI->EventHandler.triggerListener("MELEE_SWING_MISS", this, PTarget, &attack);
             }
             else
             {
@@ -2316,7 +2456,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                 // Set this attack's critical flag.
                 attack.SetCritical(xirand::GetRandomNumber(100) < battleutils::GetCritHitRate(this, PTarget, !attack.IsFirstSwing(), weaponSlot));
 
-                this->PAI->EventHandler.triggerListener("MELEE_SWING_HIT", CLuaBaseEntity(this), CLuaBaseEntity(PTarget), CLuaAttack(&attack));
+                this->PAI->EventHandler.triggerListener("MELEE_SWING_HIT", this, PTarget, &attack);
 
                 actionTarget.reaction = REACTION::HIT;
 
@@ -2329,7 +2469,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                     if (PTarget->objtype == TYPE_MOB)
                     {
                         // Listener (hook)
-                        PTarget->PAI->EventHandler.triggerListener("CRITICAL_TAKE", CLuaBaseEntity(PTarget), CLuaBaseEntity(this));
+                        PTarget->PAI->EventHandler.triggerListener("CRITICAL_TAKE", PTarget, this);
 
                         // Binding
                         luautils::OnCriticalHit(PTarget, this);
@@ -2352,8 +2492,14 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                 // Apply Feint
                 if (CStatusEffect* PFeintEffect = StatusEffectContainer->GetStatusEffect(EFFECT_FEINT))
                 {
-                    PTarget->StatusEffectContainer->AddStatusEffect(
-                        new CStatusEffect(EFFECT_EVASION_DOWN, EFFECT_EVASION_DOWN, PFeintEffect->GetPower(), 3, 30));
+                    if (PTarget->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_EVASION_DOWN, EFFECT_EVASION_DOWN, PFeintEffect->GetPower(), 3, 30)))
+                    {
+                        auto PEffect = PTarget->StatusEffectContainer->GetStatusEffect(EFFECT_EVASION_DOWN);
+
+                        // When Feint's evasion down effect is on, the target can get "debuffed" with TREASURE_HUNTER_PROC +25% * level above first on Feint
+                        PEffect->addMod(Mod::TREASURE_HUNTER_PROC, PFeintEffect->GetSubPower());      // Remove TREASURE_HUNTER_PROC debuff on effect wearing off. This isnt added to the mob directly.
+                        PTarget->addModifier(Mod::TREASURE_HUNTER_PROC, PFeintEffect->GetSubPower()); // Add TREASURE_HUNTER_PROC debuff immediately to mob
+                    }
                     StatusEffectContainer->DelStatusEffect(EFFECT_FEINT);
                 }
 
@@ -2394,13 +2540,6 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
                     }
                 }
 
-                if (attack.IsParried() || !settings::get<bool>("map.PARRY_OLD_SKILLUP_STYLE"))
-                {
-                    if (battleutils::GetParryRate(this, PTarget) > 0)
-                    {
-                        charutils::TrySkillUP((CCharEntity*)PTarget, SKILL_PARRY, GetMLevel());
-                    }
-                }
                 if (!attack.IsCountered() && !attack.IsParried())
                 {
                     charutils::TrySkillUP((CCharEntity*)PTarget, SKILL_EVASION, GetMLevel());
@@ -2423,6 +2562,8 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
             {
                 charutils::TrySkillUP(PChar, SKILL_EVASION, GetMLevel());
             }
+
+            this->PAI->EventHandler.triggerListener("MELEE_SWING_MISS", this, PTarget, &attack);
         }
 
         // If we didn't hit at all, set param to 0 if we didn't blink any shadows.
@@ -2435,7 +2576,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
         if ((actionTarget.reaction & REACTION::MISS) == REACTION::NONE && attack.GetAttackType() != PHYSICAL_ATTACK_TYPE::DAKEN)
         {
             battleutils::HandleEnspell(this, PTarget, &actionTarget, attack.IsFirstSwing(), (CItemWeapon*)this->m_Weapons[attack.GetWeaponSlot()],
-                                       attack.GetDamage());
+                                       attack.GetDamage(), attack);
             battleutils::HandleSpikesDamage(this, PTarget, &actionTarget, attack.GetDamage());
         }
 
@@ -2466,6 +2607,22 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
             }
         }
 
+        // Remove shuriken if Daken proc and Sange is up
+        if (attack.GetAttackType() == PHYSICAL_ATTACK_TYPE::DAKEN)
+        {
+            if (StatusEffectContainer && StatusEffectContainer->HasStatusEffect(EFFECT_SANGE))
+            {
+                CCharEntity* PChar = dynamic_cast<CCharEntity*>(this);
+                CItemWeapon* PAmmo = dynamic_cast<CItemWeapon*>(PChar->getEquip(SLOT_AMMO));
+
+                if (PChar && PAmmo && PAmmo->isShuriken()) // Not sure how they wouldn't have a shuriken by this point, but just in case...
+                {
+                    // Removing ammo here is safe because you can only create one Daken attack per attack round
+                    battleutils::RemoveAmmo(PChar, 1);
+                }
+            }
+        }
+
         attackRound.DeleteAttackSwing();
 
         if (list.actionTargets.size() == 8)
@@ -2474,8 +2631,8 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
         }
     }
 
-    PAI->EventHandler.triggerListener("ATTACK", CLuaBaseEntity(this), CLuaBaseEntity(PTarget), CLuaAction(&action));
-    PTarget->PAI->EventHandler.triggerListener("ATTACKED", CLuaBaseEntity(PTarget), CLuaBaseEntity(this), CLuaAction(&action));
+    PAI->EventHandler.triggerListener("ATTACK", this, PTarget, &action);
+    PTarget->PAI->EventHandler.triggerListener("ATTACKED", PTarget, this, &action);
     /////////////////////////////////////////////////////////////////////////////////////////////
     // End of attack loop
     /////////////////////////////////////////////////////////////////////////////////////////////
@@ -2497,7 +2654,7 @@ void CBattleEntity::OnEngage(CAttackState& state)
     TracyZoneScoped;
     animation = ANIMATION_ATTACK;
     updatemask |= UPDATE_HP;
-    PAI->EventHandler.triggerListener("ENGAGE", CLuaBaseEntity(this), CLuaBaseEntity(state.GetTarget()));
+    PAI->EventHandler.triggerListener("ENGAGE", this, state.GetTarget());
 }
 
 void CBattleEntity::TryHitInterrupt(CBattleEntity* PAttacker)
@@ -2513,7 +2670,7 @@ void CBattleEntity::OnDespawn(CDespawnState& /*unused*/)
     TracyZoneScoped;
     FadeOut();
     // #event despawn
-    PAI->EventHandler.triggerListener("DESPAWN", CLuaBaseEntity(this));
+    PAI->EventHandler.triggerListener("DESPAWN", this);
     PAI->Internal_Respawn(0s);
 }
 
@@ -2555,4 +2712,37 @@ void CBattleEntity::PostTick()
 uint16 CBattleEntity::GetBattleTargetID() const
 {
     return m_battleTarget;
+}
+
+bool CBattleEntity::hasEnmityEXPENSIVE() const
+{
+    // TODO: This check seems to always fail for pets?
+    if (PNotorietyContainer->hasEnmity())
+    {
+        return true;
+    }
+
+    bool isTargeted = false;
+
+    // TODO: this is bad but because of how super tanking is implemented there's not much we can do without a larger refactor
+    if (loc.zone)
+    {
+        // clang-format off
+        loc.zone->ForEachMob([&](CMobEntity* PMob)
+        {
+            if (!PMob->isAlive())
+            {
+                return;
+            }
+            // Account for charmed mobs attacking normal mobs, etc
+            if (PMob->GetBattleTargetID() == targid && PMob->allegiance != allegiance)
+            {
+                isTargeted = true;
+                return;
+            }
+        });
+        // clang-format on
+    }
+
+    return isTargeted;
 }

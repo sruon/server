@@ -31,6 +31,12 @@ class CBasicPacket;
 class CCharEntity;
 class CItemLinkshell;
 
+enum class LinkshellSlot : uint8
+{
+    LS1 = 0,
+    LS2 = 1,
+};
+
 class CLinkshell
 {
 public:
@@ -54,8 +60,8 @@ public:
     void RemoveMemberByName(const std::string& MemberName, uint8 kickerRank, bool breakLinkshell = false);
     void ChangeMemberRank(const std::string& MemberName, uint8 toSack);
 
-    void PushPacket(uint32 senderID, CBasicPacket* packet);
-    void PushLinkshellMessage(CCharEntity* PChar, bool ls1);
+    void PushPacket(uint32 senderID, const std::unique_ptr<CBasicPacket>& packet);
+    void PushLinkshellMessage(CCharEntity* PChar, LinkshellSlot slot);
 
     std::vector<CCharEntity*> members;
     uint8                     m_postRights;

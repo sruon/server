@@ -8,10 +8,17 @@ local zoneObject = {}
 
 zoneObject.onInitialize = function(zone)
     xi.server.setExplorerMoogles(ID.npc.EXPLORER_MOOGLE)
+    InitializeFishingContestSystem()
 end
 
 zoneObject.onGameHour = function(zone)
     SetServerVariable('Selbina_Destination', math.random(1, 100))
+end
+
+zoneObject.onZoneTick = function(zone)
+    if xi.settings.main.AUTO_FISHING_CONTEST then
+        ProgressFishingContest()
+    end
 end
 
 zoneObject.onZoneIn = function(player, prevZone)
@@ -44,7 +51,7 @@ zoneObject.onZoneIn = function(player, prevZone)
 end
 
 zoneObject.onConquestUpdate = function(zone, updatetype, influence, owner, ranking, isConquestAlliance)
-    xi.conq.onConquestUpdate(zone, updatetype, influence, owner, ranking, isConquestAlliance)
+    xi.conquest.onConquestUpdate(zone, updatetype, influence, owner, ranking, isConquestAlliance)
 end
 
 zoneObject.onTransportEvent = function(player, transport)

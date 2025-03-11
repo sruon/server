@@ -32,15 +32,15 @@ class CZone;
 class CInstanceLoader
 {
 public:
-    CInstanceLoader(uint16 instanceid, CCharEntity* PRequester);
+    CInstanceLoader(uint32 instanceid, CCharEntity* PRequester);
     ~CInstanceLoader();
 
     CInstance* LoadInstance();
 
 private:
-    CInstance*   instance;
-    CZone*       zone;
-    CCharEntity* requester;
+    CInstance*   m_PInstance;
+    CZone*       m_PZone;
+    CCharEntity* m_PRequester;
 };
 
 #endif

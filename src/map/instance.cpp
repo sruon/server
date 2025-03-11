@@ -30,7 +30,7 @@
 
 #include "common/timer.h"
 
-CInstance::CInstance(CZone* zone, uint16 instanceid)
+CInstance::CInstance(CZone* zone, uint32 instanceid)
 : CZoneEntities(zone)
 , m_instanceid(instanceid)
 , m_zone(zone)
@@ -71,6 +71,7 @@ uint32 CInstance::GetStage() const
 void CInstance::LoadInstance()
 {
     TracyZoneScoped;
+
     static const char* Query = "SELECT "
                                "instance_name, "
                                "time_limit, "
@@ -245,17 +246,35 @@ bool CInstance::CharRegistered(CCharEntity* PChar)
 
 void CInstance::ClearEntities()
 {
-    auto clearStates = [](auto& entity)
+    auto clearStates = [](CBattleEntity* entity)
     {
-        if (static_cast<CBattleEntity*>(entity.second)->isAlive())
+        if (static_cast<CBattleEntity*>(entity)->isAlive())
         {
-            entity.second->PAI->ClearStateStack();
+            entity->PAI->ClearStateStack();
         }
     };
-    std::for_each(m_charList.cbegin(), m_charList.cend(), clearStates);
-    std::for_each(m_mobList.cbegin(), m_mobList.cend(), clearStates);
-    std::for_each(m_petList.cbegin(), m_petList.cend(), clearStates);
-    std::for_each(m_trustList.cbegin(), m_trustList.cend(), clearStates);
+
+    // clang-format off
+    ForEachChar([&](CCharEntity* PChar)
+    {
+        clearStates(PChar);
+    });
+
+    ForEachMob([&](CMobEntity* PMob)
+    {
+        clearStates(PMob);
+    });
+
+    ForEachPet([&](CPetEntity* PPet)
+    {
+        clearStates(PPet);
+    });
+
+    ForEachTrust([&](CTrustEntity* PTrust)
+    {
+        clearStates(PTrust);
+    });
+    // clang-format on
 }
 
 void CInstance::Fail()
