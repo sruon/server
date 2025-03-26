@@ -244,10 +244,12 @@ jobs:
         key: ${{ runner.os }}-clang
     - name: Configure CMake
       run: |
+        pwd
+        mkdir -p modules/catseyexi/cpp
+        mv modules/custom/cpp/* modules/catseyexi/cpp/
         export CC=/usr/bin/clang-18
         export CXX=/usr/bin/clang++-18
-        mkdir -p modules/catseyexi/cpp
-        mv modules/custom/cpp/* modules/catseyexi/cpp/        mkdir -p build
+        mkdir -p build
         cmake -S . -B build
     - name: Build
       run: |
@@ -284,10 +286,11 @@ jobs:
         key: ${{ runner.os }}-clang-tidy
     - name: Configure CMake
       run: |
+        mkdir -p modules/catseyexi/cpp
+        mv modules/custom/cpp/* modules/catseyexi/cpp/
         export CC=/usr/bin/clang-18
         export CXX=/usr/bin/clang++-18
-        mkdir -p modules/catseyexi/cpp
-        mv modules/custom/cpp/* modules/catseyexi/cpp/        mkdir -p build
+        mkdir -p build
         cmake -S . -B build -DENABLE_CLANG_TIDY=ON
     - name: Build
       run: |
@@ -322,10 +325,11 @@ jobs:
         key: ${{ runner.os }}-gcc
     - name: Configure CMake
       run: |
+        mkdir -p modules/catseyexi/cpp
+        mv modules/custom/cpp/* modules/catseyexi/cpp/
         export CC=/usr/bin/gcc-14
         export CXX=/usr/bin/g++-14
-        mkdir -p modules/catseyexi/cpp
-        mv modules/custom/cpp/* modules/catseyexi/cpp/        mkdir -p build
+        mkdir -p build
         CFLAGS=-m64 CXXFLAGS=-m64 LDFLAGS=-m64 cmake -S . -B build
     - name: Build
       run: |
@@ -472,6 +476,15 @@ jobs:
         sed -i 's/tpzdb/xidb/g' settings/network.lua
         sed -i 's/topazadmin/root/g' settings/network.lua
         sed -i 's/topazisawesome/root/g' settings/network.lua
+    - name: Enable Modules
+      shell: bash
+      run: |
+        python3 << EOF
+        with open("modules/init.txt", "w") as f:
+            f.write("custom\n")
+            f.write("era\n")
+            f.write("renamer\n")
+        EOF
     - name: Startup and character login checks
       uses: nick-invision/retry@v3
       with:

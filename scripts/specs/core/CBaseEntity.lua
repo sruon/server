@@ -111,6 +111,11 @@ end
 function CBaseEntity:getVar(varName)
 end
 
+---@param prefix string
+---@return table
+function CBaseEntity:getCharVarsWithPrefix(prefix)
+end
+
 ---@param varName string
 ---@param value integer
 ---@param expiry integer?
@@ -725,9 +730,27 @@ end
 function CBaseEntity:isInMogHouse()
 end
 
----@nodiscard
----@return integer
-function CBaseEntity:getPlayerTriggerAreaInZone()
+---@param triggerAreaId integer
+---@return boolean
+function CBaseEntity:isPlayerInTriggerArea(triggerAreaId)
+end
+
+---@return nil
+function CBaseEntity:isPlayerInAnyTriggerArea()
+end
+
+---@param triggerAreaId integer
+---@return nil
+function CBaseEntity:onPlayerTriggerAreaEnter(triggerAreaId)
+end
+
+---@param triggerAreaId integer
+---@return nil
+function CBaseEntity:onPlayerTriggerAreaLeave(triggerAreaId)
+end
+
+---@return nil
+function CBaseEntity:clearPlayerTriggerAreas()
 end
 
 ---@param statusID integer
@@ -822,6 +845,12 @@ end
 function CBaseEntity:addTeleport(teleType, bitval, setval)
 end
 
+---@param pos table
+---@param mode integer
+---@return nil
+function CBaseEntity:positionSpecial(pos, mode)
+end
+
 ---@nodiscard
 ---@param type integer
 ---@param abysseaRegionObj integer?
@@ -866,7 +895,7 @@ end
 ---@param targetID integer
 ---@param option boolean?
 ---@return nil
-function CBaseEntity:goToEntity(targetID, option)
+function CBaseEntity:gotoEntity(targetID, option)
 end
 
 ---@param playerName string
@@ -922,6 +951,14 @@ end
 function CBaseEntity:delItem(itemID, quantity, containerID)
 end
 
+---@param itemId integer
+---@param quantity integer
+---@param containerId integer
+---@param slotId integer
+---@return boolean
+function CBaseEntity:delItemAt(itemId, quantity, containerId, slotId)
+end
+
 ---@param containerID integer?
 ---@return boolean
 function CBaseEntity:delContainerItems(containerID)
@@ -955,6 +992,13 @@ end
 ---@param location integer?
 ---@return CItem?
 function CBaseEntity:findItem(itemID, location)
+end
+
+---@nodiscard
+---@param itemID integer
+---@param location integer?
+---@return table
+function CBaseEntity:findItems(itemID, location)
 end
 
 ---@param size integer
@@ -3911,6 +3955,11 @@ end
 ---@param arg2 integer?
 ---@return nil
 function CBaseEntity:addTreasure(itemID, arg1, arg2)
+end
+
+---@nodiscard
+---@return CTreasurePool?
+function CBaseEntity:getTreasurePool()
 end
 
 ---@nodiscard

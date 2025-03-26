@@ -32,7 +32,6 @@
 #include "items/item_weapon.h"
 #include "mob_modifier.h"
 #include "mob_spell_container.h"
-#include "packets/char.h"
 #include "player_controller.h"
 #include "recast_container.h"
 #include "status_effect_container.h"
@@ -212,7 +211,7 @@ void CTrustController::DoCombatTick(time_point tick)
 
         m_GambitsContainer->Tick(tick);
 
-        POwner->PAI->EventHandler.triggerListener("COMBAT_TICK", CLuaBaseEntity(POwner), CLuaBaseEntity(POwner->PMaster), CLuaBaseEntity(PTarget));
+        POwner->PAI->EventHandler.triggerListener("COMBAT_TICK", POwner, POwner->PMaster, PTarget);
     }
 }
 
@@ -366,7 +365,7 @@ void CTrustController::PathOutToDistance(CBattleEntity* PTarget, float amount)
         std::vector<position_t> positions(5);
         for (auto& position : positions)
         {
-            int        random_angle       = xirand::GetRandomNumber(255);
+            int        random_angle       = xirand::GetRandomNumber(256);
             position_t potential_position = {
                 PTarget->loc.p.x - (cosf(rotationToRadian(random_angle)) * amount),
                 PTarget->loc.p.y,
