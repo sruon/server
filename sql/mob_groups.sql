@@ -4128,7 +4128,7 @@ INSERT INTO `mob_groups` VALUES (15,3782,78,'Stoorworm',0,128,0,82000,0,85,85,0)
 INSERT INTO `mob_groups` VALUES (16,1422,78,'Freke',0,128,0,80000,0,85,85,0);
 INSERT INTO `mob_groups` VALUES (17,4130,78,'Vampyr_Jarl',0,128,0,50000,0,85,85,0);
 INSERT INTO `mob_groups` VALUES (18,2756,78,'Motsognir',0,128,0,100000,0,85,85,0);
-INSERT INTO `mob_groups` VALUES (19,913,78,'Dark_Elemental',0,128,3410,10000,0,82,82,0);
+INSERT INTO `mob_groups` VALUES (19,7079,78,'Dark_Elemental',0,128,3410,10000,0,82,82,0);
 INSERT INTO `mob_groups` VALUES (20,3397,78,'Rotting_Huskarl_war',0,128,3410,7000,0,82,82,0);
 INSERT INTO `mob_groups` VALUES (21,829,78,'Craven_Einherjar',0,128,3410,10000,0,82,82,0);
 INSERT INTO `mob_groups` VALUES (22,2037,78,'Hyndla',0,128,3410,17500,0,82,82,0);
@@ -4147,7 +4147,7 @@ INSERT INTO `mob_groups` VALUES (34,4110,78,'Utgarth_Bats',0,128,3410,9000,0,82,
 INSERT INTO `mob_groups` VALUES (35,4111,78,'Utgarth_Leech',0,128,3410,9000,0,82,82,0);
 INSERT INTO `mob_groups` VALUES (36,1273,78,'Experimental_Poroggo',0,128,3410,7500,0,82,82,0);
 INSERT INTO `mob_groups` VALUES (37,2422,78,'Liquified_Einherjar',0,128,3410,6800,0,82,82,0);
-INSERT INTO `mob_groups` VALUES (38,3704,78,'Soulflayer',0,128,3410,6500,0,82,82,0);
+INSERT INTO `mob_groups` VALUES (38,7080,78,'Soulflayer',0,128,3410,6500,0,82,82,0);
 INSERT INTO `mob_groups` VALUES (39,283,78,'Audhumbla',0,128,3410,11000,0,82,82,0);
 INSERT INTO `mob_groups` VALUES (40,2563,78,'Marid-X',0,128,3410,42000,0,82,82,0);
 INSERT INTO `mob_groups` VALUES (41,4356,78,'Wivre-X',0,128,3410,50000,0,82,82,0);
