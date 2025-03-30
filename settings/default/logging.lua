@@ -54,6 +54,7 @@ xi.settings.logging =
     DEBUG_ID_LOOKUP      = false, -- Calls in C++: DebugIDLookup(...)
     DEBUG_MODULES        = false, -- Calls in C++: DebugModules(...)
     DEBUG_PACKET_BACKLOG = false, -- Special logic in map.cpp::send_parse
+    DEBUG_AUCTIONS       = false, -- Special logic in auctionutils.cpp
     DEBUG_DELIVERY_BOX   = true, -- Special logic in packet_system.cpp::SmallPacket0x04D
     DEBUG_BAZAARS        = true, -- Additional debug logs for bazaar interactions in packet_system.cpp
 
