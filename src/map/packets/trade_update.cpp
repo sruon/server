@@ -49,7 +49,7 @@ CTradeUpdatePacket::CTradeUpdatePacket(CItem* PItem, uint8 SlotID)
             ref<uint8>(0x0F) = ((CItemUsable*)PItem)->getCurrentCharges();
         }
     }
-    if (PItem->isType(ITEM_LINKSHELL))
+    else if (PItem->isType(ITEM_LINKSHELL))
     {
         ref<uint32>(0x0E) = ((CItemLinkshell*)PItem)->GetLSID();
         ref<uint16>(0x14) = ((CItemLinkshell*)PItem)->GetLSRawColor();
@@ -59,6 +59,6 @@ CTradeUpdatePacket::CTradeUpdatePacket(CItem* PItem, uint8 SlotID)
     }
     else
     {
-        std::memcpy(buffer_.data() + 0x1A, PItem->getSignature().c_str(), std::min<size_t>(PItem->getSignature().size(), 12));
+        std::memcpy(buffer_.data() + 0x0E, PItem->m_extra, std::min<size_t>(CItem::extra_size, 24));
     }
 }
