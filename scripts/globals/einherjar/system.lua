@@ -294,6 +294,11 @@ local function onMobEngage(chamberData, mob, target)
             local specialMobSpawnTime = os.time() + math.random(90, 300)
             log(chamberData.id, 'Special mob will spawn at ' .. specialMobSpawnTime)
             chamberData.eventsQueue[specialMobSpawnTime] = function()
+                -- If final crate is already up and visible, don't spawn special mob
+                if chamberData.completed then
+                    return
+                end
+
                 local x, y, z = unpack(xi.einherjar.getRandomPosForMobGroup(chamberData.id, 10, 30))
                 local specialMob = GetMobByID(chamberData.encounters.special)
                 if specialMob then
@@ -369,6 +374,7 @@ xi.einherjar.new = function(chamberId, leader)
         startTime   = startTime,
         endTime     = startTime + (xi.einherjar.settings.EINHERJAR_TIME_LIMIT * 60),
         locked      = false,
+        completed   = false,
         players     = {},
 
         encounters  = xi.einherjar.makeChamberPlan(chamberId),
@@ -595,6 +601,7 @@ xi.einherjar.cycleWave = function(chamberData)
         log(chamberData.id, 'All waves cleared! Showing armoury crate.')
         despawnSpecialMob(chamberData.encounters.special)
         npcUtil.showCrate(chamberData.lootCrate)
+        chamberData.completed = true
         chamberData.lootCrate:setLocalVar('[ein]chamber', chamberData.id)
 
         return
