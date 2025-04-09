@@ -10,12 +10,16 @@ local ID = zones[xi.zone.HAZHALM_TESTING_GROUNDS]
 -- Certain mob groups contain different models/jobs of the same mob family
 local function mergeArrays(a, b)
     local result = {}
-    for i = 1, #a do
-        result[#result + 1] = a[i]
+    if a then
+        for i = 1, #a do
+            result[#result + 1] = a[i]
+        end
     end
 
-    for i = 1, #b do
-        result[#result + 1] = b[i]
+    if b then
+        for i = 1, #b do
+            result[#result + 1] = b[i]
+        end
     end
 
     return result
@@ -73,7 +77,7 @@ local mobPool =
     [xi.einherjar.wing.WING_3] =
     {
         ID.mob.AUDHUMBLA,
-        ID.mob.BERSERKR,
+        mergeArrays(ID.mob.BERSERKR_WAR, ID.mob.BERSERKR_BLM, ID.mob.BERSERKR_DRK),
         ID.mob.CORRUPT_EINHERJAR,
         ID.mob.DJIGGA,
         ID.mob.EXPERIMENTAL_POROGGO,

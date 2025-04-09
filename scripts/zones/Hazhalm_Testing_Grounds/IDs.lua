@@ -104,7 +104,9 @@ zones[xi.zone.HAZHALM_TESTING_GROUNDS] =
 
         -- Einherjar: Wing 3: Mobs
         AUDHUMBLA            = GetTableOfIDs('Audhumbla'),
-        BERSERKR             = GetTableOfIDs('Berserkr'),
+        BERSERKR_WAR         = GetTableOfIDs('Berserkr_war'), -- Intertwined with BLM/DRK
+        BERSERKR_BLM         = GetTableOfIDs('Berserkr_blm'), -- Intertwined with WAR/DRK
+        BERSERKR_DRK         = GetTableOfIDs('Berserkr_drk'), -- Intertwined with WAR/BLM
         DJIGGA               = GetTableOfIDs('Djigga'),
         EXPERIMENTAL_POROGGO = GetTableOfIDs('Experimental_Poroggo'),
         HAFGYGR              = GetTableOfIDs('Hafgygr'),
