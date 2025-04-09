@@ -4159,7 +4159,7 @@ INSERT INTO `mob_groups` VALUES (46,2555,78,'Manticore-X',0,128,3410,13500,0,82,
 INSERT INTO `mob_groups` VALUES (47,3054,78,'Ormr',0,128,3410,32000,0,82,82,0);
 INSERT INTO `mob_groups` VALUES (48,7074,78,'Chigoe',0,128,3410,7200,0,82,82,0);
 INSERT INTO `mob_groups` VALUES (49,1071,78,'Djigga',0,128,3410,9000,0,82,82,0);
-INSERT INTO `mob_groups` VALUES (50,2430,78,'Logi',0,128,3410,7500,0,82,82,0);
+INSERT INTO `mob_groups` VALUES (50,2430,78,'Logi_grow',0,128,3410,7500,0,82,82,0);
 INSERT INTO `mob_groups` VALUES (51,1356,78,'Flames_of_Muspelheim',0,128,3410,18000,0,82,82,0);
 INSERT INTO `mob_groups` VALUES (52,2076,78,'Infected_Wamoura',0,128,3410,11500,0,82,82,0);
 INSERT INTO `mob_groups` VALUES (53,3641,78,'Sjokrakjen',0,128,3410,22300,0,82,82,0);
@@ -4206,6 +4206,7 @@ INSERT INTO `mob_groups` VALUES (93,7078,78,'Rotting_Huskarl_thf',0,128,3410,700
 INSERT INTO `mob_groups` VALUES (94,1071,78,'Djigga_Hildesvini',0,128,0,9000,0,82,82,0);
 INSERT INTO `mob_groups` VALUES (95,7081,78,'Berserkr_blm',0,128,3410,7000,0,82,82,0);
 INSERT INTO `mob_groups` VALUES (96,7082,78,'Berserkr_drk',0,128,3410,7000,0,82,82,0);
+INSERT INTO `mob_groups` VALUES (97,7083,78,'Logi',0,128,3410,7500,0,82,82,0);
 
 -- ------------------------------------------------------------
 -- Caedarva_Mire (Zone 79)
