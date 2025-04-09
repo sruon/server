@@ -22,9 +22,11 @@ local function playersCount(players)
     return count
 end
 
+local function allPlayersDead(players)
+    if playersCount(players) == 0 then
+        return false
     end
 
-local function allPlayersDead(players)
     for _, player in pairs(players) do
         if player and not player:isDead() then
             return false
@@ -136,7 +138,7 @@ local function expelAllFromChamber(chamberData)
 
     utils.each(chamberData.players, function(player)
         log(chamberData.id, 'Expelling player: ' .. player:getName() .. ' (' .. player:getID() .. ')')
-        xi.einherjar.onChamberExit(chamberData, player)
+        xi.einherjar.onChamberExit(chamberData, player, false)
     end)
 
     cleanChamber(chamberData)
@@ -337,7 +339,7 @@ local function onPlayerDeath(chamberData, player)
 
     local function checkExpel()
         if not allPlayersDead(chamberData.players) then
-            log(chamberData.id, 'Players no longer dead, cancelling emergency teleportation.')
+            log(chamberData.id, 'No more players or players no longer dead, cancelling emergency teleportation.')
             return
         end
 
@@ -478,47 +480,22 @@ xi.einherjar.onChamberEnter = function(chamberData, player, reconnecting)
     then
         xi.einherjar.recordLockout(player)
     end
+
+    -- Cancel the initial empty check when any player has entered
+    chamberData.eventsQueue[chamberData.startTime + (xi.einherjar.settings.EINHERJAR_RESERVATION_TIMEOUT * 60)] = nil
 end
 
-xi.einherjar.onChamberExit = function(chamberData, player)
+xi.einherjar.onChamberExit = function(chamberData, player, isZoningOut)
     local playerId = player:getID()
+    if not chamberData.players[playerId] then -- player dropped glass without entering or was already expelled
+        return
+    end
+
     log(chamberData.id, 'Player left: ' .. player:getName() .. ' (' .. playerId .. ')')
     player:delContainerItems(xi.inv.TEMPITEMS)
     player:removeListener('EINHERJAR_DEATH')
 
-    if not chamberData.players[playerId] then -- player dropped glass without entering
-        return
-    end
-
-    for _, remainingMob in pairs(chamberData.mobs) do
-        remainingMob:clearEnmityForEntity(player)
-    end
-
-    -- Expel player from chamber
-    player:messageSpecial(ID.text.LAMP_POWER_FADED, xi.item.GLOWING_LAMP)
-    player:startEvent(4)
-
-    -- Award Therion Ichor
-    local ampoulesReward = xi.einherjar.getAmpoulesReward(chamberData.id, #chamberData.deadMobs, chamberData.plannedMobs)
-    player:messageSpecial(ID.text.AMPOULES_OBTAINED, ampoulesReward)
-
-    if ampoulesReward ~= 0 then
-        player:addCurrency('therion_ichor', ampoulesReward)
-    end
-
-    -- Clean player state
-    player:setCharVar('[ein]chamber', 0)
-
-    -- TODO: Remove from chamber treasure pool
-    -- TODO: If last player to leave pool, pool is forcefully flushed
-
-    for i = 0, 3 do
-        player:changeMusic(i, 0x0)
-    end
-
     chamberData.players[playerId] = nil
-
-    xi.einherjar.voidAllLamps(player, chamberData.id)
 
     -- Check if remaining players are dead
     onPlayerDeath(chamberData, player)
@@ -529,6 +506,34 @@ xi.einherjar.onChamberExit = function(chamberData, player)
         log(chamberData.id, 'No players left in chamber, scheduling timeout at ' .. chamberTimeout)
         chamberData.eventsQueue[chamberTimeout] = function()
             emptyChamberCheck(chamberData)
+        end
+    end
+
+    if not isZoningOut then
+        player:setCharVar('[ein]chamber', 0)
+        xi.einherjar.voidAllLamps(player, chamberData.id)
+
+        for _, remainingMob in pairs(chamberData.mobs) do
+            remainingMob:clearEnmityForEntity(player)
+        end
+
+        -- Expel player from chamber
+        player:messageSpecial(ID.text.LAMP_POWER_FADED, xi.item.GLOWING_LAMP)
+        player:startEvent(4)
+
+        -- Award Therion Ichor
+        local ampoulesReward = xi.einherjar.getAmpoulesReward(chamberData.id, #chamberData.deadMobs, chamberData.plannedMobs)
+        player:messageSpecial(ID.text.AMPOULES_OBTAINED, ampoulesReward)
+
+        if ampoulesReward ~= 0 then
+            player:addCurrency('therion_ichor', ampoulesReward)
+        end
+
+        -- TODO: Remove from chamber treasure pool
+        -- TODO: If last player to leave pool, pool is forcefully flushed
+
+        for i = 0, 3 do
+            player:changeMusic(i, 0x0)
         end
     end
 end
@@ -675,12 +680,8 @@ end
 -- Zoning out without dropping glass forfeits ichor rewards
 xi.einherjar.onZoneOut = function(chamberData, player)
     if chamberData.players[player:getID()] then
-        player:delContainerItems(xi.inv.TEMPITEMS)
         log(chamberData.id, 'Player zoned out: ' .. player:getName() .. ' (' .. player:getID() .. ')')
-        chamberData.players[player:getID()] = nil
-
-        -- Check if remaining players are dead
-        onPlayerDeath(chamberData, player)
+        xi.einherjar.onChamberExit(chamberData, player, true)
     end
 end
 
