@@ -575,6 +575,7 @@ end
 xi.einherjar.cycleWave = function(chamberData)
     if not chamberData.encounters.waves[chamberData.waveIndex + 1] then
         log(chamberData.id, 'All waves cleared! Showing armoury crate.')
+        xi.einherjar.despawnSpecialMob(chamberData)
         npcUtil.showCrate(chamberData.lootCrate)
         chamberData.lootCrate:setLocalVar('[ein]chamber', chamberData.id)
 
