@@ -11,6 +11,7 @@ mixins =
 local entity = {}
 
 entity.onMobInitialize = function(mob)
+    xi.einherjar.onBossInitialize(mob)
     mob:addImmunity(xi.immunity.BLIND)
     mob:addImmunity(xi.immunity.POISON)
     mob:addImmunity(xi.immunity.SILENCE)

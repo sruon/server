@@ -12,6 +12,7 @@ local ID = zones[xi.zone.HAZHALM_TESTING_GROUNDS]
 local entity = {}
 
 entity.onMobInitialize = function(mob)
+    xi.einherjar.onBossInitialize(mob)
     mob:addMod(xi.mod.UDMGPHYS, -10000)
     mob:addMod(xi.mod.UDMGMAGIC, -10000)
     mob:addMod(xi.mod.UDMGRANGE, -10000)

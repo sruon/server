@@ -11,6 +11,7 @@ mixins =
 local entity = {}
 
 entity.onMobInitialize = function(mob)
+    xi.einherjar.onBossInitialize(mob)
 end
 
 entity.onMobSpawn = function(mob)
