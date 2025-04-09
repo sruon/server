@@ -264,13 +264,6 @@ end
 
 -- Lock the chamber when any mob is engaged
 local function onMobEngage(chamberData, mob, target)
-    if mob:getLocalVar('[ein]type') == mobType.BOSS then
-        -- All bosses have some sort of regain effect
-        -- TODO: Review conflicts with Saehrimnir/Muninn effect
-        -- TODO: Get exact value from capture
-        mob:setMod(xi.mod.REGAIN, 50)
-    end
-
     if not chamberData.locked then
         chamberData.locked = true
         log(chamberData.id, 'Mobs engaged, locking the chamber.')
@@ -561,6 +554,9 @@ xi.einherjar.spawnMob = function(mob, newMobType, chamberData)
         mob:setMobMod(xi.mobMod.SIGHT_RANGE, 20)
         mob:setMobMod(xi.mobMod.SOUND_RANGE, 20)
         mob:setMobMod(xi.mobMod.DETECTION, bit.bor(xi.detects.SIGHT, xi.detects.HEARING))
+
+        -- Bosses have +100 Regain
+        mob:setMod(xi.mod.REGAIN, 100)
     end
 
     for mod, value in pairs(chamberData.mods) do
