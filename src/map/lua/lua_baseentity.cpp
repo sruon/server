@@ -12883,8 +12883,14 @@ void CLuaBaseEntity::addEnmity(CLuaBaseEntity* PEntity, int32 CE, int32 VE)
     }
     else if (m_PBaseEntity->objtype == TYPE_MOB)
     {
-        if (PEntity != nullptr && (CE > 0 || VE > 0) && PEntity->GetBaseEntity()->objtype != TYPE_NPC)
+        if (PEntity != nullptr && PEntity->GetBaseEntity()->objtype != TYPE_NPC)
         {
+            if (CE == 0 && VE == 0)
+            {
+                PMob->PEnmityContainer->AddBaseEnmity(static_cast<CBattleEntity*>(PEntity->GetBaseEntity()));
+                return;
+            }
+
             PMob->PEnmityContainer->UpdateEnmity(static_cast<CBattleEntity*>(PEntity->GetBaseEntity()), CE, VE);
         }
     }
