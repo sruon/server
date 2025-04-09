@@ -53,7 +53,7 @@ zones[xi.zone.HAZHALM_TESTING_GROUNDS] =
     {
         -- Einherjar: Wing 1: Mobs
         BUGARD_X            = GetTableOfIDs('Bugard-X'),
-        CHIGOE              = GetTableOfIDs('Chigoe'),
+        CHIGOE              = GetTableOfIDs('Chigoe_einherjar'),
         CRAVEN_EINHERJAR    = GetTableOfIDs('Craven_Einherjar'),
         DARK_ELEMENTAL      = GetTableOfIDs('Dark_Elemental'),
         EINHERJAR_EATER     = GetTableOfIDs('Einherjar_Eater'),
@@ -115,7 +115,7 @@ zones[xi.zone.HAZHALM_TESTING_GROUNDS] =
         MANTICORE_X          = GetTableOfIDs('Manticore-X'),
         ODINS_JESTER         = GetTableOfIDs('Odins_Jester'),
         ORMR                 = GetTableOfIDs('Ormr'),
-        SOULFLAYER           = GetTableOfIDs('Soulflayer'),
+        SOULFLAYER           = GetTableOfIDs('Soulflayer_einherjar'),
         VAMPYR_DOG           = GetTableOfIDs('Vampyr_Dog'),
         VANQUISHED_EINHERJAR = GetTableOfIDs('Vanquished_Einherjar'),
         WIVRE_X              = GetTableOfIDs('Wivre-X'),
