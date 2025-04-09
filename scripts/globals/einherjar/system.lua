@@ -188,7 +188,14 @@ local function onArmouryCrateTrigger(chamberData, chestOpener, armouryCrate)
     end)
 end
 
-local function onSpecialMobDespawn(chamberData, mob)
+xi.einherjar.onSpecialMobDespawn = function(mob)
+    local chamberId = mob:getLocalVar('[ein]chamber')
+    local chamberData = xi.einherjar.getChamber(chamberId)
+
+    if not chamberData then
+        return
+    end
+
     local specialMobHandlers =
     {
         ['Saehrimnir'] = function()
@@ -212,13 +219,16 @@ local function onSpecialMobDespawn(chamberData, mob)
     end
 end
 
-local function onSpecialMobDeath(chamberData, mob)
+xi.einherjar.onSpecialMobDeath = function(mob)
+    local chamberId = mob:getLocalVar('[ein]chamber')
+    local chamberData = xi.einherjar.getChamber(chamberId)
+
+    if not chamberData then
+        return
+    end
+
     local specialMobHandlers =
     {
-        ['Saehrimnir'] = function()
-            mob:removeListener('EINHERJAR_DESPAWN')
-        end,
-
         ['Heithrun'] = function()
             -- TODO: Not enough data on Heithrun effect
         end,
@@ -276,7 +286,14 @@ local function onMobDespawn(chamberData, mob)
 end
 
 -- Lock the chamber when any mob is engaged
-local function onMobEngage(chamberData, mob, target)
+xi.einherjar.onMobEngage = function(mob, target)
+    local chamberId = mob:getLocalVar('[ein]chamber')
+    local chamberData = xi.einherjar.getChamber(chamberId)
+
+    if not chamberData then
+        return
+    end
+
     if not chamberData.locked then
         chamberData.locked = true
         log(chamberData.id, 'Mobs engaged, locking the chamber.')
@@ -553,22 +570,9 @@ end
 xi.einherjar.spawnMob = function(mob, newMobType, chamberData)
     mob:setCallForHelpBlocked(true)
 
-    if newMobType == mobType.SPECIAL then
-        mob:addListener('DEATH', 'EINHERJAR_DEATH', utils.bind(onSpecialMobDeath, chamberData))
-        mob:addListener('DESPAWN', 'EINHERJAR_DESPAWN', utils.bind(onSpecialMobDespawn, chamberData))
-        mob:addListener('ENGAGE', 'EINHERJAR_ENGAGE', utils.bind(onMobEngage, chamberData))
-
-        -- Despawn special mob after 5 minutes
-        local specialMobDespawnTime = os.time() + 300
-        log(chamberData.id, 'Special mob ' .. mob:getName() .. ' will despawn at ' .. specialMobDespawnTime)
-        chamberData.eventsQueue[specialMobDespawnTime] = function()
-            if mob and mob:isSpawned() then
-                DespawnMob(mob:getID())
-            end
-        end
-    else
+    if newMobType ~= mobType.SPECIAL then
         mob:addListener('DESPAWN', 'EINHERJAR_DESPAWN', utils.bind(onMobDespawn, chamberData))
-        mob:addListener('ENGAGE', 'EINHERJAR_ENGAGE', utils.bind(onMobEngage, chamberData))
+        mob:addListener('ENGAGE', 'EINHERJAR_ENGAGE', xi.einherjar.onMobEngage)
         table.insert(chamberData.mobs, mob)
     end
 
@@ -580,12 +584,7 @@ xi.einherjar.spawnMob = function(mob, newMobType, chamberData)
         mob:setMobMod(mod, value)
     end
 
-    if newMobType == mobType.SPECIAL then
-        -- Special mobs have unique roaming properties
-        mob:setMobMod(xi.mobMod.ROAM_COOL, 8)
-        mob:setMobMod(xi.mobMod.ROAM_DISTANCE, 60)
-        mob:setMobMod(xi.mobMod.ROAM_RATE, 5)
-    elseif newMobType == mobType.REGULAR then
+    if newMobType == mobType.REGULAR then
         mob:setMobMod(xi.mobMod.ROAM_DISTANCE, 20)
     elseif newMobType == mobType.BOSS then
         xi.einherjar.onBossInitialize(mob)
