@@ -309,19 +309,20 @@ local function onMobEngage(chamberData, mob, target)
         end
     end
 
-    -- Add enmity to all players
-    -- Add 1 more CE towards the aggroing player/pet
-    mob:addEnmity(target, 1, 1)
-    local master = target:getMaster()
-    if master then
-        mob:addEnmity(master, 1, 1)
-    end
-
+    -- Add enmity to all players - this replicates more or less ALLI_HATE but scoped to the chamber
     forEachPlayer(chamberData.players, function(player)
         if player ~= target then
-            mob:addEnmity(player, 0, 1)
+            mob:addEnmity(player, 0, 0)
         end
     end)
+
+    -- Add some VE to the actual target so the mob chases them
+    local master = target:getMaster()
+    if master then
+        mob:addEnmity(master, 0, 1)
+    end
+
+    mob:addEnmity(target, 0, 2)
 end
 
 -- Check if everyone is dead, queue emergency teleportation
