@@ -172,6 +172,13 @@ local function onWin(chamberData)
     end
 end
 
+local function emptyChamberCheck(chamberData)
+    if playersCount(chamberData.players) == 0 then
+        log(chamberData.id, 'Reservation timeout, clearing chamber.')
+        expelAllFromChamber(chamberData)
+    end
+end
+
 --=============================
 -- Chamber listeners
 --=============================
@@ -417,10 +424,7 @@ xi.einherjar.new = function(chamberId, leader)
     chamberData.eventsQueue =
     {
         [chamberData.startTime + (xi.einherjar.settings.EINHERJAR_RESERVATION_TIMEOUT * 60)] = function()
-            if not chamberData.players[chamberData.leaderId] then
-                log(chamberId, 'Leader never entered chamber, cancelling reservation.')
-                expelAllFromChamber(chamberData)
-            end
+            emptyChamberCheck(chamberData)
         end,
 
         -- 10 minutes, 5 minutes, 30 seconds warnings
@@ -472,10 +476,12 @@ xi.einherjar.onChamberEnter = function(chamberData, player, reconnecting)
 end
 
 xi.einherjar.onChamberExit = function(chamberData, player)
+    local playerId = player:getID()
+    log(chamberData.id, 'Player left: ' .. player:getName() .. ' (' .. playerId .. ')')
     player:delContainerItems(xi.inv.TEMPITEMS)
     player:removeListener('EINHERJAR_DEATH')
 
-    if not chamberData.players[player:getID()] then -- player dropped glass without entering
+    if not chamberData.players[playerId] then -- player dropped glass without entering
         return
     end
 
@@ -497,19 +503,29 @@ xi.einherjar.onChamberExit = function(chamberData, player)
 
     -- Clean player state
     player:setCharVar('[ein]chamber', 0)
+
     -- TODO: Remove from chamber treasure pool
+    -- TODO: If last player to leave pool, pool is forcefully flushed
 
     for i = 0, 3 do
         player:changeMusic(i, 0x0)
     end
 
-    chamberData.players[player:getID()] = nil
+    chamberData.players[playerId] = nil
 
     xi.einherjar.voidAllLamps(player, chamberData.id)
 
-
     -- Check if remaining players are dead
     onPlayerDeath(chamberData, player)
+
+    -- If no players are left, schedule a reservation timeout in EINHERJAR_RESERVATION_TIMEOUT minutes
+    if playersCount(chamberData.players) == 0 then
+        local chamberTimeout = os.time() + (xi.einherjar.settings.EINHERJAR_RESERVATION_TIMEOUT * 60)
+        log(chamberData.id, 'No players left in chamber, scheduling timeout at ' .. chamberTimeout)
+        chamberData.eventsQueue[chamberTimeout] = function()
+            emptyChamberCheck(chamberData)
+        end
+    end
 end
 
 xi.einherjar.spawnMob = function(mob, newMobType, chamberData)
