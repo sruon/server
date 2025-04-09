@@ -8,6 +8,8 @@ local bossDrops = {
     [ID.mob.HAKENMANN] =
     {
         { item = xi.item.CHUNK_OF_OROBON_MEAT, rate = 1000 },
+        { item = xi.item.CHUNK_OF_OROBON_MEAT, rate =  250 },
+        { item = xi.item.CHUNK_OF_OROBON_MEAT, rate =  250 },
     },
     [ID.mob.HILDESVINI] =
     {
