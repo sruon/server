@@ -27,13 +27,9 @@ local function allPlayersDead(players)
         return false
     end
 
-    for _, player in pairs(players) do
-        if player and not player:isDead() then
-            return false
-        end
-    end
-
-    return true
+    return utils.all(players, function(_, player)
+        return player and player:isDead()
+    end)
 end
 
 local function log(chamberId, msg)
