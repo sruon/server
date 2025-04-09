@@ -26,14 +26,14 @@ entity.onTrade = function(player, npc, trade)
         end
 
         player:startEvent(2,
-                0,
-                xi.besieged.getMercenaryRank(player),
-                xi.einherjar.settings.EINHERJAR_KO_EXPEL_TIME,
-                xi.einherjar.settings.EINHERJAR_REENTRY_TIME,
-                0, -- Unknown
-                xi.einherjar.getChambersMenu(player),
-                xi.item.SMOLDERING_LAMP,
-                xi.item.GLOWING_LAMP
+            0,
+            xi.besieged.getMercenaryRank(player),
+            xi.einherjar.settings.EINHERJAR_KO_EXPEL_TIME,
+            xi.einherjar.settings.EINHERJAR_REENTRY_TIME,
+            0, -- Unknown
+            xi.einherjar.getChambersMenu(player),
+            xi.item.SMOLDERING_LAMP,
+            xi.item.GLOWING_LAMP
         )
         -- Continued in onEventUpdate 2
     end
@@ -59,14 +59,14 @@ entity.onTrade = function(player, npc, trade)
         player:setLocalVar('[ein]requestedStart', lampData.startTime)
 
         player:startEvent(3,
-                0x1D + lampData.chamber,
-                xi.besieged.getMercenaryRank(player),
-                xi.einherjar.settings.EINHERJAR_KO_EXPEL_TIME,
-                xi.einherjar.settings.EINHERJAR_REENTRY_TIME,
-                0, -- Unknown
-                xi.einherjar.getChambersMenu(player),
-                xi.item.SMOLDERING_LAMP,
-                xi.item.GLOWING_LAMP
+            0x1D + lampData.chamber,
+            xi.besieged.getMercenaryRank(player),
+            xi.einherjar.settings.EINHERJAR_KO_EXPEL_TIME,
+            xi.einherjar.settings.EINHERJAR_REENTRY_TIME,
+            0, -- Unknown
+            xi.einherjar.getChambersMenu(player),
+            xi.item.SMOLDERING_LAMP,
+            xi.item.GLOWING_LAMP
         )
         -- Continued in onEventFinish 3,1
     end
@@ -125,6 +125,7 @@ entity.onEventUpdate = function(player, csid, option, npc)
             end
 
             xi.einherjar.makeLamp(player, chamberData.id, chamberData.startTime, chamberData.endTime)
+            xi.einherjar.recordLockout(player)
             player:instanceEntry(npc, 4)
             -- Continued in onEventFinish 2
         else
@@ -158,7 +159,7 @@ entity.onEventFinish = function(player, csid, option)
         end
 
         local chamberData = xi.einherjar.getChamber(requestedChamber)
-        print(string.format("Einherjar: %s requested entry into chamber %d at %d.", player:getName(), requestedChamber, requestedStart))
+        print(string.format("Einherjar: %s requested entry into chamber %d (%d).", player:getName(), requestedChamber, requestedStart))
         if chamberData and chamberData.startTime == requestedStart then
             xi.einherjar.onChamberEnter(chamberData, player)
         end

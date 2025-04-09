@@ -476,7 +476,11 @@ xi.einherjar.onChamberEnter = function(chamberData, player, reconnecting)
 
     chamberData.players[playerId] = player
 
-    if not reconnecting then
+    -- Leader lockout is applied at reservation
+    if
+        playerId ~= chamberData.leaderId and
+        not reconnecting
+    then
         xi.einherjar.recordLockout(player)
     end
 end
