@@ -88,8 +88,21 @@ xi.einherjar.createNewChamber = function(chamberId, leader)
     return chambersInstances[chamberId]
 end
 
+local function despawnSpecialMob(specialId)
+    if specialId then
+        local specialMob = GetMobByID(specialId)
+        if specialMob and specialMob:isSpawned() then
+            specialMob:removeListener('EINHERJAR_ENGAGE')
+            specialMob:removeListener('EINHERJAR_DEATH')
+            specialMob:removeListener('EINHERJAR_DESPAWN')
+            DespawnMob(specialId)
+        end
+    end
+end
+
 -- Clean up related entities, hide chests, despawn mobs, etc.
 local function cleanChamber(chamberData)
+    despawnSpecialMob(chamberData.encounters.special)
     for _, mob in pairs(chamberData.mobs) do
         if mob and mob:isSpawned() then
             mob:removeListener('EINHERJAR_ENGAGE')
@@ -131,14 +144,17 @@ local function expelAllFromChamber(chamberData)
         log(chamberData.id, 'Expelling player: ' .. player:getName() .. ' (' .. player:getID() .. ')')
         xi.einherjar.onChamberExit(chamberData, player)
     end)
+
+    cleanChamber(chamberData)
+    releaseChamber(chamberData.id)
 end
 
 local function onWin(chamberData)
     forEachPlayer(chamberData.players, function(player)
         player:messageSpecial(
-                ID.text.CHAMBER_CLEARED,
-                xi.einherjar.settings.EINHERJAR_CLEAR_EXTRA_TIME,
-                chamberData.id - 1
+            ID.text.CHAMBER_CLEARED,
+            xi.einherjar.settings.EINHERJAR_CLEAR_EXTRA_TIME,
+            chamberData.id - 1
         )
         xi.einherjar.giveChamberFeather(player, chamberData.id)
     end)
@@ -153,8 +169,6 @@ local function onWin(chamberData)
     chamberData.eventsQueue[expelTime] = function()
         log(chamberData.id, 'Post-win timeout, expelling players and cleaning chamber.')
         expelAllFromChamber(chamberData)
-        cleanChamber(chamberData)
-        releaseChamber(chamberData.id)
     end
 end
 
@@ -327,8 +341,6 @@ local function onPlayerDeath(chamberData, player)
             end)
 
             expelAllFromChamber(chamberData)
-            cleanChamber(chamberData)
-            releaseChamber(chamberData.id)
         else
             chamberData.eventsQueue[os.time() + 5] = checkExpel
         end
@@ -359,8 +371,8 @@ xi.einherjar.new = function(chamberId, leader)
         mobMods     =
         {
             [xi.mobMod.CHARMABLE]      = 0,
-            [xi.mobMod.DONT_ROAM_HOME] = 1,
             [xi.mobMod.CLAIM_TYPE]     = xi.claimType.NON_EXCLUSIVE,
+            [xi.mobMod.DONT_ROAM_HOME] = 1,
             [xi.mobMod.EXP_BONUS]      = -100,
             [xi.mobMod.GIL_BONUS]      = -100,
         },
@@ -407,8 +419,7 @@ xi.einherjar.new = function(chamberId, leader)
         [chamberData.startTime + (xi.einherjar.settings.EINHERJAR_RESERVATION_TIMEOUT * 60)] = function()
             if not chamberData.players[chamberData.leaderId] then
                 log(chamberId, 'Leader never entered chamber, cancelling reservation.')
-                cleanChamber(chamberData)
-                releaseChamber(chamberData.id)
+                expelAllFromChamber(chamberData)
             end
         end,
 
@@ -462,6 +473,8 @@ end
 
 xi.einherjar.onChamberExit = function(chamberData, player)
     player:delContainerItems(xi.inv.TEMPITEMS)
+    player:removeListener('EINHERJAR_DEATH')
+
     if not chamberData.players[player:getID()] then -- player dropped glass without entering
         return
     end
@@ -471,9 +484,8 @@ xi.einherjar.onChamberExit = function(chamberData, player)
     end
 
     -- Expel player from chamber
-    player:startEvent(4)
-
     player:messageSpecial(ID.text.LAMP_POWER_FADED, xi.item.GLOWING_LAMP)
+    player:startEvent(4)
 
     -- Award Therion Ichor
     local ampoulesReward = xi.einherjar.getAmpoulesReward(chamberData.id, #chamberData.deadMobs, chamberData.plannedMobs)
@@ -495,14 +507,9 @@ xi.einherjar.onChamberExit = function(chamberData, player)
 
     xi.einherjar.voidAllLamps(player, chamberData.id)
 
+
     -- Check if remaining players are dead
     onPlayerDeath(chamberData, player)
-
-    -- Release chamber if no players are left without waiting for the timeout
-    if playersCount(chamberData.players) == 0 then
-        cleanChamber(chamberData)
-        releaseChamber(chamberData.id)
-    end
 end
 
 xi.einherjar.spawnMob = function(mob, newMobType, chamberData)
@@ -535,7 +542,6 @@ xi.einherjar.spawnMob = function(mob, newMobType, chamberData)
         mob:setMobMod(mod, value)
     end
 
-    -- TODO: All of this should be moved to the DB
     if newMobType == mobType.SPECIAL then
         -- Special mobs have unique roaming properties
         mob:setMobMod(xi.mobMod.ROAM_COOL, 8)
@@ -571,7 +577,7 @@ end
 xi.einherjar.cycleWave = function(chamberData)
     if not chamberData.encounters.waves[chamberData.waveIndex + 1] then
         log(chamberData.id, 'All waves cleared! Showing armoury crate.')
-        xi.einherjar.despawnSpecialMob(chamberData)
+        despawnSpecialMob(chamberData.encounters.special)
         npcUtil.showCrate(chamberData.lootCrate)
         chamberData.lootCrate:setLocalVar('[ein]chamber', chamberData.id)
 
@@ -653,13 +659,6 @@ xi.einherjar.onZoneOut = function(chamberData, player)
 
         -- Check if remaining players are dead
         onPlayerDeath(chamberData, player)
-
-        -- Release chamber if no players are left without waiting for the timeout
-        if playersCount(chamberData.players) == 0 then
-            log(chamberData.id, 'No players left in chamber, cleaning up.')
-            cleanChamber(chamberData)
-            releaseChamber(chamberData.id)
-        end
     end
 end
 
