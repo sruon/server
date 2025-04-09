@@ -336,6 +336,15 @@ function utils.map(tbl, func)
     return t
 end
 
+-- Iterates through the table and calls the callback on each value.
+---@param tbl table
+---@param func function
+function utils.each(tbl, func)
+    for _, value in pairs(tbl) do
+        func(value)
+    end
+end
+
 -- Given a table and a filter function, returns a new table composed of the
 -- elements that pass the given filter.
 -- e.g: utils.filter({ 'a', 'b', 'c', 'd' }, function(k, v) return v >= 'c' end)  --> { 'c', 'd }

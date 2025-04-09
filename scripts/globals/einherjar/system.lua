@@ -22,13 +22,7 @@ local function playersCount(players)
     return count
 end
 
-local function forEachPlayer(players, callback)
-    for _, player in pairs(players) do
-        if player then
-            callback(player)
-        end
     end
-end
 
 local function allPlayersDead(players)
     for _, player in pairs(players) do
@@ -140,7 +134,7 @@ end
 local function expelAllFromChamber(chamberData)
     -- TODO: Flush the chamber-scoped pool
 
-    forEachPlayer(chamberData.players, function(player)
+    utils.each(chamberData.players, function(player)
         log(chamberData.id, 'Expelling player: ' .. player:getName() .. ' (' .. player:getID() .. ')')
         xi.einherjar.onChamberExit(chamberData, player)
     end)
@@ -150,7 +144,7 @@ local function expelAllFromChamber(chamberData)
 end
 
 local function onWin(chamberData)
-    forEachPlayer(chamberData.players, function(player)
+    utils.each(chamberData.players, function(player)
         player:messageSpecial(
             ID.text.CHAMBER_CLEARED,
             xi.einherjar.settings.EINHERJAR_CLEAR_EXTRA_TIME,
@@ -208,7 +202,7 @@ local function onSpecialMobDespawn(chamberData, mob)
                 spawnedMob:setMod(xi.mod.REGAIN, 30)
             end
 
-            forEachPlayer(chamberData.players, function(player)
+            utils.each(chamberData.players, function(player)
                 player:messageSpecial(ID.text.STAGNANT_AURA_CLEARED)
                 player:messageSpecial(ID.text.CREATURES_RESTLESS)
             end)
@@ -238,7 +232,7 @@ local function onSpecialMobDeath(chamberData, mob)
                 spawnedMob:updateHealth()
             end
 
-            forEachPlayer(chamberData.players, function(player)
+            utils.each(chamberData.players, function(player)
                 player:messageSpecial(ID.text.STAGNANT_AURA_CLEARED)
                 player:messageSpecial(ID.text.CREATURES_CALMED)
             end)
@@ -310,7 +304,7 @@ local function onMobEngage(chamberData, mob, target)
     end
 
     -- Add enmity to all players - this replicates more or less ALLI_HATE but scoped to the chamber
-    forEachPlayer(chamberData.players, function(player)
+    utils.each(chamberData.players, function(player)
         if player ~= target then
             mob:addEnmity(player, 0, 0)
         end
@@ -337,7 +331,7 @@ local function onPlayerDeath(chamberData, player)
     log(chamberData.id, string.format('All players dead, queueing emergency teleportation in %d minutes.', xi.einherjar.settings.EINHERJAR_KO_EXPEL_TIME))
 
     local expelTime = os.time() + (xi.einherjar.settings.EINHERJAR_KO_EXPEL_TIME * 60)
-    forEachPlayer(chamberData.players, function(chamberPlayer)
+    utils.each(chamberData.players, function(chamberPlayer)
         chamberPlayer:messageSpecial(ID.text.EXPEDITION_INCAPACITATED_WARN, xi.einherjar.settings.EINHERJAR_KO_EXPEL_TIME)
     end)
 
@@ -349,7 +343,7 @@ local function onPlayerDeath(chamberData, player)
 
         if os.time() >= expelTime then
             log(chamberData.id, 'Emergency teleportation, expelling all players.')
-            forEachPlayer(chamberData.players, function(chamberPlayer)
+            utils.each(chamberData.players, function(chamberPlayer)
                 chamberPlayer:messageSpecial(ID.text.EXPEDITION_INCAPACITATED)
             end)
 
@@ -436,19 +430,19 @@ xi.einherjar.new = function(chamberId, leader)
 
         -- 10 minutes, 5 minutes, 30 seconds warnings
         [chamberData.endTime - 600] = function()
-            forEachPlayer(chamberData.players, function(player)
+            utils.each(chamberData.players, function(player)
                 player:messageSpecial(ID.text.TIMEOUT_WARNING, 10)
             end)
         end,
 
         [chamberData.endTime - 300] = function()
-            forEachPlayer(chamberData.players, function(player)
+            utils.each(chamberData.players, function(player)
                 player:messageSpecial(ID.text.TIMEOUT_WARNING, 5)
             end)
         end,
 
         [chamberData.endTime - 30] = function()
-            forEachPlayer(chamberData.players, function(player)
+            utils.each(chamberData.players, function(player)
                 player:messageSpecial(ID.text.TIMEOUT_WARNING_SECONDS, 30)
             end)
         end,
