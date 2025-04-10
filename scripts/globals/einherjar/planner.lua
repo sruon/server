@@ -92,6 +92,7 @@ local mobPool =
         ID.mob.MANTICORE_X,
         ID.mob.ODINS_JESTER,
         ID.mob.ORMR,
+        ID.mob.SJOKRAKJEN,
         ID.mob.SOULFLAYER,
         ID.mob.UTGARTH_BAT,
         ID.mob.UTGARTH_BATS,
