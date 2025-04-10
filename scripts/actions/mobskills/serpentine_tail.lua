@@ -24,6 +24,8 @@ mobskillObject.onMobSkillCheck = function(target, mob, skill)
         else
             return 1
         end
+    elseif mob:getFamily() == 164 then -- Hydra
+        return target:isBehind(mob, 48) and 0 or 1
     end
 
     return 0

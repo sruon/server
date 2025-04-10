@@ -8,6 +8,15 @@ mixins =
 }
 local ID = zones[xi.zone.HAZHALM_TESTING_GROUNDS]
 -----------------------------------
+-- Spawns with 12 demons
+-- Cannot be damaged/enfeeb by any source, all spells/attacks show as "No effect", 0 dmg or "Resist"
+-- Each dead demon reduces Motsognir's HP by 1/12th of its max HP
+-- When all demons are dead, Motsognir despawns after 10 seconds
+-- Uses BLM spells with no standback every 20 seconds
+-- Uses all Dvergr moves but the selection expands as HP goes down.
+-- Uses a TP move every 16 seconds, regardless of HP
+-- Hellsnap wakes all demons
+-- Demons superlink with Motsognir and vice versa
 ---@type TMobEntity
 local entity = {}
 
@@ -17,7 +26,31 @@ entity.onMobInitialize = function(mob)
     mob:addMod(xi.mod.UDMGMAGIC, -10000)
     mob:addMod(xi.mod.UDMGRANGE, -10000)
     mob:addMod(xi.mod.UDMGBREATH, -10000)
+    mob:setMod(xi.mod.REGAIN, 0)
+
+    -- TODO: There might be a status effect that does all of this...
+    mob:addImmunity(xi.immunity.ADDLE)
+    mob:addImmunity(xi.immunity.GRAVITY)
+    mob:addImmunity(xi.immunity.BIND)
+    mob:addImmunity(xi.immunity.STUN)
+    mob:addImmunity(xi.immunity.SILENCE)
+    mob:addImmunity(xi.immunity.PARALYZE)
+    mob:addImmunity(xi.immunity.BLIND)
+    mob:addImmunity(xi.immunity.SLOW)
+    mob:addImmunity(xi.immunity.POISON)
+    mob:addImmunity(xi.immunity.ELEGY)
+    mob:addImmunity(xi.immunity.REQUIEM)
+    mob:addImmunity(xi.immunity.LIGHT_SLEEP)
+    mob:addImmunity(xi.immunity.DARK_SLEEP)
+    mob:addImmunity(xi.immunity.ASPIR)
+    mob:addImmunity(xi.immunity.TERROR)
+    mob:addImmunity(xi.immunity.DISPEL)
+    mob:addImmunity(xi.immunity.PETRIFY)
+    mob:addImmunity(xi.immunity.PLAGUE)
+
     mob:setMobMod(xi.mobMod.NO_STANDBACK, 1)
+    mob:setMobMod(xi.mobMod.MAGIC_COOL, 20)
+
     -- TODO: Superlinking is not working quite right.
     -- Motsognir ends up with enmity but does not engage
     -- See onMobRoamAction for current workaround
@@ -25,6 +58,13 @@ entity.onMobInitialize = function(mob)
 end
 
 entity.onMobFight = function(mob, target)
+    if mob:getLocalVar('nextTpMove') <= os.time() then
+        mob:setMobAbilityEnabled(true)
+        mob:setTP(3000)
+    else
+        mob:setMobAbilityEnabled(false)
+    end
+
     if mob:getLocalVar('despawning') == 1 then
         return
     end
@@ -54,8 +94,58 @@ entity.onMobFight = function(mob, target)
     end
 end
 
+entity.onMobWeaponSkillPrepare = function(mob)
+    local mobHPP = mob:getHPP()
+
+    if mobHPP <= 25 then
+        -- + thundris_shriek
+        return utils.randomEntry({2113,2114,2115,2116,2117,2118,2119})
+    elseif mobHPP <= 50 then
+        -- + bilgestorm
+        return utils.randomEntry({2113,2114,2115,2116,2117,2118})
+    elseif mobHPP <= 75 then
+        -- + necrobane, necropurge
+        return utils.randomEntry({2113,2114,2115,2116,2117})
+    else
+        -- hellsnap, hellclap, cackle
+        return utils.randomEntry({2113,2114,2115})
+    end
+end
+
+entity.onMobWeaponSkill = function(target, mob, skill)
+    -- Wake all demons on hellsnap, no known range limit
+    if skill:getID() == 2113 then -- hellsnap
+        for i = ID.mob.HERVARTH, ID.mob.HADDING_THE_YOUNGER do
+            local demon = GetMobByID(i)
+            if demon and demon:isAlive() then
+                demon:wakeUp()
+            end
+        end
+    end
+
+    mob:setLocalVar('nextTpMove', os.time() + 16)
+end
+
+entity.onMobEngage = function(mob)
+    -- First TP move about 5 seconds in, then every 16 seconds
+    mob:setLocalVar('nextTpMove', os.time() + 5)
+end
+
 entity.onMobSpawn = function(mob)
     mob:setLocalVar('despawning', 0)
+    if mob:getLocalVar('[ein]chamber') == 0 then -- fallback for testing without einherjar context
+        for i = ID.mob.HERVARTH, ID.mob.HADDING_THE_YOUNGER do
+            local demon = GetMobByID(i)
+            if demon and not demon:isSpawned() then
+                demon:setSpawn(mob:getXPos(), mob:getYPos(), mob:getZPos(), mob:getRotPos())
+                demon:spawn()
+                local target = mob:getTarget()
+                if target then
+                    demon:updateEnmity(target)
+                end
+            end
+        end
+    end
 end
 
 entity.onMobRoamAction = function(mob)

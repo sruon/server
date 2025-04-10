@@ -5,19 +5,16 @@
 mixins =
 {
     require('scripts/mixins/draw_in'),
+    require('scripts/mixins/families/khimaira')
 }
 -----------------------------------
+-- Regular Khimaira moves
+-- No known special mechanics
 ---@type TMobEntity
 local entity = {}
 
 entity.onMobInitialize = function(mob)
     xi.einherjar.onBossInitialize(mob)
-end
-
-entity.onMobSpawn = function(mob)
-end
-
-entity.onMobDeath = function(mob, player, optParams)
 end
 
 return entity

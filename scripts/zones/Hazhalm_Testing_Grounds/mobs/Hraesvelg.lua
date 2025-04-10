@@ -8,6 +8,9 @@ mixins =
     require('scripts/mixins/draw_in'),
 }
 -----------------------------------
+-- Regular Manticore TP moves
+-- Uses Mighty Strikes
+-- Switches target randomly
 ---@type TMobEntity
 local entity = {}
 
@@ -17,10 +20,20 @@ entity.onMobInitialize = function(mob)
     mob:addImmunity(xi.immunity.GRAVITY)
 end
 
-entity.onMobSpawn = function(mob)
-end
+entity.onMobFight = function(mob)
+    if os.time() >= mob:getLocalVar('resetEnmity') then
+        local enmityList = mob:getEnmityList()
 
-entity.onMobDeath = function(mob, player, optParams)
+        for _, enmity in ipairs(enmityList) do
+            mob:resetEnmity(enmity.entity)
+        end
+
+        local randomTarget = utils.randomEntry(enmityList)
+        mob:addEnmity(randomTarget.entity, 30000, 30000)
+        mob:updateTarget()
+
+        mob:setLocalVar('resetEnmity', os.time() + math.random(5, 20))
+    end
 end
 
 return entity

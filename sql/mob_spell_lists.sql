@@ -5435,7 +5435,94 @@ INSERT INTO `mob_spell_lists` VALUES ('Vanquished_Einherjar_blm', 535, 254, 1, 2
 INSERT INTO `mob_spell_lists` VALUES ('Vanquished_Einherjar_blm', 535, 258, 1, 255); -- Bind
 INSERT INTO `mob_spell_lists` VALUES ('Vanquished_Einherjar_blm', 535, 273, 1, 255); -- Sleepga
 
--- Next Available: 536
+-- Andhrimnir (536)
+INSERT INTO `mob_spell_lists` VALUES ('Andhrimnir', 536, 176, 1, 255); -- Firaga III
+INSERT INTO `mob_spell_lists` VALUES ('Andhrimnir', 536, 181, 1, 255); -- Blizzaga III
+INSERT INTO `mob_spell_lists` VALUES ('Andhrimnir', 536, 186, 1, 255); -- Aeroga III
+INSERT INTO `mob_spell_lists` VALUES ('Andhrimnir', 536, 191, 1, 255); -- Stonega III
+INSERT INTO `mob_spell_lists` VALUES ('Andhrimnir', 536, 196, 1, 255); -- Thundaga III
+INSERT INTO `mob_spell_lists` VALUES ('Andhrimnir', 536, 201, 1, 255); -- Waterga III
+INSERT INTO `mob_spell_lists` VALUES ('Andhrimnir', 536, 226, 1, 255); -- Poisonga II
+INSERT INTO `mob_spell_lists` VALUES ('Andhrimnir', 536, 232, 1, 255); -- Bio III
+INSERT INTO `mob_spell_lists` VALUES ('Andhrimnir', 536, 237, 1, 255); -- Choke
+INSERT INTO `mob_spell_lists` VALUES ('Andhrimnir', 536, 240, 1, 255); -- Drown
+INSERT INTO `mob_spell_lists` VALUES ('Andhrimnir', 536, 249, 1, 255); -- Blaze Spikes
+INSERT INTO `mob_spell_lists` VALUES ('Andhrimnir', 536, 250, 1, 255); -- Ice Spikes
+INSERT INTO `mob_spell_lists` VALUES ('Andhrimnir', 536, 251, 1, 255); -- Shock Spikes
+INSERT INTO `mob_spell_lists` VALUES ('Andhrimnir', 536, 252, 1, 255); -- Stun
+INSERT INTO `mob_spell_lists` VALUES ('Andhrimnir', 536, 258, 1, 255); -- Bind
+INSERT INTO `mob_spell_lists` VALUES ('Andhrimnir', 536, 274, 1, 255); -- Sleepga II
+
+-- Balrahn (537)
+INSERT INTO `mob_spell_lists` VALUES ('Balrahn', 537, 176, 1, 255); -- Firaga III
+INSERT INTO `mob_spell_lists` VALUES ('Balrahn', 537, 181, 1, 255); -- Blizzaga III
+INSERT INTO `mob_spell_lists` VALUES ('Balrahn', 537, 196, 1, 255); -- Thundaga III
+
+-- Mokkuralfi (538)
+INSERT INTO `mob_spell_lists` VALUES ('Mokkuralfi', 538, 175, 1, 255); -- Firaga II
+INSERT INTO `mob_spell_lists` VALUES ('Mokkuralfi', 538, 176, 1, 255); -- Firaga III
+INSERT INTO `mob_spell_lists` VALUES ('Mokkuralfi', 538, 180, 1, 255); -- Blizzaga II
+INSERT INTO `mob_spell_lists` VALUES ('Mokkuralfi', 538, 181, 1, 255); -- Blizzaga III
+INSERT INTO `mob_spell_lists` VALUES ('Mokkuralfi', 538, 185, 1, 255); -- Aeroga II
+INSERT INTO `mob_spell_lists` VALUES ('Mokkuralfi', 538, 190, 1, 255); -- Stonega II
+INSERT INTO `mob_spell_lists` VALUES ('Mokkuralfi', 538, 195, 1, 255); -- Thundaga II
+INSERT INTO `mob_spell_lists` VALUES ('Mokkuralfi', 538, 196, 1, 255); -- Thundaga III
+INSERT INTO `mob_spell_lists` VALUES ('Mokkuralfi', 538, 200, 1, 255); -- Waterga II
+INSERT INTO `mob_spell_lists` VALUES ('Mokkuralfi', 538, 226, 1, 255); -- Poisonga II
+INSERT INTO `mob_spell_lists` VALUES ('Mokkuralfi', 538, 232, 1, 255); -- Bio III
+INSERT INTO `mob_spell_lists` VALUES ('Mokkuralfi', 538, 235, 1, 255); -- Burn
+INSERT INTO `mob_spell_lists` VALUES ('Mokkuralfi', 538, 237, 1, 255); -- Choke
+INSERT INTO `mob_spell_lists` VALUES ('Mokkuralfi', 538, 239, 1, 255); -- Shock
+INSERT INTO `mob_spell_lists` VALUES ('Mokkuralfi', 538, 245, 1, 255); -- Drain
+INSERT INTO `mob_spell_lists` VALUES ('Mokkuralfi', 538, 249, 1, 255); -- Blaze Spikes
+INSERT INTO `mob_spell_lists` VALUES ('Mokkuralfi', 538, 250, 1, 255); -- Ice Spikes
+INSERT INTO `mob_spell_lists` VALUES ('Mokkuralfi', 538, 251, 1, 255); -- Shock Spikes
+INSERT INTO `mob_spell_lists` VALUES ('Mokkuralfi', 538, 274, 1, 255); -- Sleepga II
+
+-- Ariri Samariri (539)
+INSERT INTO `mob_spell_lists` VALUES ('Ariri_Samariri', 539, 176, 1, 255); -- Firaga III
+INSERT INTO `mob_spell_lists` VALUES ('Ariri_Samariri', 539, 181, 1, 255); -- Blizzaga III
+INSERT INTO `mob_spell_lists` VALUES ('Ariri_Samariri', 539, 196, 1, 255); -- Thundaga III
+INSERT INTO `mob_spell_lists` VALUES ('Ariri_Samariri', 539, 226, 1, 255); -- Poisonga II
+INSERT INTO `mob_spell_lists` VALUES ('Ariri_Samariri', 539, 232, 1, 255); -- Bio III
+INSERT INTO `mob_spell_lists` VALUES ('Ariri_Samariri', 539, 245, 1, 255); -- Drain
+INSERT INTO `mob_spell_lists` VALUES ('Ariri_Samariri', 539, 251, 1, 255); -- Shock Spikes
+INSERT INTO `mob_spell_lists` VALUES ('Ariri_Samariri', 539, 252, 1, 255); -- Stun
+INSERT INTO `mob_spell_lists` VALUES ('Ariri_Samariri', 539, 274, 1, 255); -- Sleepga II
+INSERT INTO `mob_spell_lists` VALUES ('Ariri_Samariri', 539, 366, 1, 255); -- Graviga
+
+-- Motsognir (540)
+INSERT INTO `mob_spell_lists` VALUES ('Motsognir', 540, 147, 1, 255); -- Fire IV
+INSERT INTO `mob_spell_lists` VALUES ('Motsognir', 540, 152, 1, 255); -- Blizzard IV
+INSERT INTO `mob_spell_lists` VALUES ('Motsognir', 540, 167, 1, 255); -- Thunder IV
+INSERT INTO `mob_spell_lists` VALUES ('Motsognir', 540, 176, 1, 255); -- Firaga III
+INSERT INTO `mob_spell_lists` VALUES ('Motsognir', 540, 181, 1, 255); -- Blizzaga III
+INSERT INTO `mob_spell_lists` VALUES ('Motsognir', 540, 196, 1, 255); -- Thundaga III
+INSERT INTO `mob_spell_lists` VALUES ('Motsognir', 540, 226, 1, 255); -- Poisonga II
+INSERT INTO `mob_spell_lists` VALUES ('Motsognir', 540, 232, 1, 255); -- Bio III
+INSERT INTO `mob_spell_lists` VALUES ('Motsognir', 540, 235, 1, 255); -- Burn
+INSERT INTO `mob_spell_lists` VALUES ('Motsognir', 540, 237, 1, 255); -- Choke
+INSERT INTO `mob_spell_lists` VALUES ('Motsognir', 540, 239, 1, 255); -- Shock
+INSERT INTO `mob_spell_lists` VALUES ('Motsognir', 540, 252, 1, 255); -- Stun
+INSERT INTO `mob_spell_lists` VALUES ('Motsognir', 540, 254, 1, 255); -- Blind
+INSERT INTO `mob_spell_lists` VALUES ('Motsognir', 540, 258, 1, 255); -- Bind
+INSERT INTO `mob_spell_lists` VALUES ('Motsognir', 540, 274, 1, 255); -- Sleepga II
+
+-- Vampyr_Jarl (541)
+INSERT INTO `mob_spell_lists` VALUES ('Vampyr_Jarl', 541, 226, 1, 255); -- Poisonga II
+INSERT INTO `mob_spell_lists` VALUES ('Vampyr_Jarl', 541, 232, 1, 255); -- Bio III
+INSERT INTO `mob_spell_lists` VALUES ('Vampyr_Jarl', 541, 246, 1, 255); -- Drain II
+INSERT INTO `mob_spell_lists` VALUES ('Vampyr_Jarl', 541, 252, 1, 255); -- Stun
+INSERT INTO `mob_spell_lists` VALUES ('Vampyr_Jarl', 541, 266, 1, 255); -- Absorb-STR
+INSERT INTO `mob_spell_lists` VALUES ('Vampyr_Jarl', 541, 267, 1, 255); -- Absorb-DEX
+INSERT INTO `mob_spell_lists` VALUES ('Vampyr_Jarl', 541, 268, 1, 255); -- Absorb-VIT
+INSERT INTO `mob_spell_lists` VALUES ('Vampyr_Jarl', 541, 269, 1, 255); -- Absorb-AGI
+INSERT INTO `mob_spell_lists` VALUES ('Vampyr_Jarl', 541, 274, 1, 255); -- Sleepga II
+INSERT INTO `mob_spell_lists` VALUES ('Vampyr_Jarl', 541, 275, 1, 255); -- Absorb-TP
+INSERT INTO `mob_spell_lists` VALUES ('Vampyr_Jarl', 541, 277, 1, 255); -- Dread Spikes
+INSERT INTO `mob_spell_lists` VALUES ('Vampyr_Jarl', 541, 362, 1, 255); -- Bindga
+
+-- Next Available: 542
 
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;

@@ -19799,7 +19799,7 @@ INSERT INTO `mob_spawn_points` VALUES (17096718,'Ariri_Samariri','Ariri Samariri
 INSERT INTO `mob_spawn_points` VALUES (17096719,'Balrahn','Balrahn',9,1.000,1.000,1.000,0);
 INSERT INTO `mob_spawn_points` VALUES (17096720,'Tanngrisnir','Tanngrisnir',10,1.000,1.000,1.000,0);
 INSERT INTO `mob_spawn_points` VALUES (17096721,'Hrungnir','Hrungnir',11,1.000,1.000,1.000,0);
-INSERT INTO `mob_spawn_points` VALUES (17096722,'Hrungnir_clone','Hrungnir',11,1.000,1.000,1.000,0);
+INSERT INTO `mob_spawn_points` VALUES (17096722,'Hrungnir_clone','Hrungnir',100,1.000,1.000,1.000,0);
 INSERT INTO `mob_spawn_points` VALUES (17096723,'Andhrimnir','Andhrimnir',12,1.000,1.000,1.000,0);
 INSERT INTO `mob_spawn_points` VALUES (17096724,'Dendainsonne','Dendainsonne',13,1.000,1.000,1.000,0);
 INSERT INTO `mob_spawn_points` VALUES (17096725,'Gorgimera','Gorgimera',14,1.000,1.000,1.000,0);

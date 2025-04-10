@@ -23,6 +23,18 @@ mobskillObject.onMobWeaponSkill = function(target, mob, skill)
 
     skill:setMsg(xi.mobskills.mobPhysicalDrainMove(mob, target, skill, xi.mobskills.drainType.HP, damage))
 
+    -- In ToAU zones, this has an additional effect of absorbing all status effects, including food.
+    if
+        target:getCurrentRegion() >= xi.region.WEST_AHT_URHGAN and
+        target:getCurrentRegion() <= xi.region.ALZADAAL
+    then
+        -- TODO: This is supposed to also absorb non dispellable buffs such as food, reraise
+        local result = mob:stealStatusEffect(target)
+        while result ~= 0 do
+            result = mob:stealStatusEffect(target)
+        end
+    end
+
     return damage
 end
 

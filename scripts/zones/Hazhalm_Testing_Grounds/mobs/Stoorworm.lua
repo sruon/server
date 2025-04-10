@@ -4,10 +4,14 @@
 -----------------------------------
 mixins =
 {
+    require('scripts/mixins/families/hydra'),
     require('scripts/mixins/job_special'),
     require('scripts/mixins/draw_in'),
 }
 -----------------------------------
+-- Regular Hydra TP moves
+-- Can use Mighty Strikes
+-- Heads regrow 60-90 seconds after being destroyed
 ---@type TMobEntity
 local entity = {}
 
@@ -19,9 +23,8 @@ entity.onMobInitialize = function(mob)
 end
 
 entity.onMobSpawn = function(mob)
-end
-
-entity.onMobDeath = function(mob, player, optParams)
+    mob:setLocalVar('headRegrowMin', 60)
+    mob:setLocalVar('headRegrowMax', 90)
 end
 
 return entity
