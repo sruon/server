@@ -4043,7 +4043,47 @@ INSERT INTO `mob_skill_lists` VALUES ('Avatar_Carbuncle_WTB',2031,909); -- Wakin
 INSERT INTO `mob_skill_lists` VALUES ('Avatar_Carbuncle_WTB',2031,910); -- Waking the Beast, meteorite
 INSERT INTO `mob_skill_lists` VALUES ('Avatar_Carbuncle_WTB',2031,911); -- Waking the Beast, healing_ruby_ii
 
--- Next ID : 2032
+INSERT INTO `mob_skill_lists` VALUES ('Hazhalm_Bat',2032,392); -- Ultrasonics
+INSERT INTO `mob_skill_lists` VALUES ('Hazhalm_Bat',2032,394); -- Blood Drain
+
+INSERT INTO `mob_skill_lists` VALUES ('Rotting_Huskarl',2033,478); -- Hell Slash
+INSERT INTO `mob_skill_lists` VALUES ('Rotting_Huskarl',2033,479); -- Horror Cloud
+INSERT INTO `mob_skill_lists` VALUES ('Rotting_Huskarl',2033,484); -- Black Cloud
+INSERT INTO `mob_skill_lists` VALUES ('Rotting_Huskarl',2033,485); -- Blood Saber
+INSERT INTO `mob_skill_lists` VALUES ('Rotting_Huskarl',2033,1795); -- Malediction
+
+INSERT INTO `mob_skill_lists` VALUES ('Ormr',2034,642); -- Flame Breath
+INSERT INTO `mob_skill_lists` VALUES ('Ormr',2034,645); -- Body Slam
+INSERT INTO `mob_skill_lists` VALUES ('Ormr',2034,647); -- Chaos Blade
+INSERT INTO `mob_skill_lists` VALUES ('Ormr',2034,649); -- Voidsong
+
+INSERT INTO `mob_skill_lists` VALUES ('Wivre-X',2035,2099); -- Batterhorn
+INSERT INTO `mob_skill_lists` VALUES ('Wivre-X',2035,2101); -- Demoralizing Roar
+INSERT INTO `mob_skill_lists` VALUES ('Wivre-X',2035,2102); -- Boiling Blood
+INSERT INTO `mob_skill_lists` VALUES ('Wivre-X',2035,2103); -- Granite Skin
+
+INSERT INTO `mob_skill_lists` VALUES ('Utgarth_Bats',2036,393);  -- Sonic Boom
+INSERT INTO `mob_skill_lists` VALUES ('Utgarth_Bats',2036,395);  -- Jet Stream
+INSERT INTO `mob_skill_lists` VALUES ('Utgarth_Bats',2036,1157); -- Slipstream
+INSERT INTO `mob_skill_lists` VALUES ('Utgarth_Bats',2036,1158); -- Turbulence
+
+INSERT INTO `mob_skill_lists` VALUES ('Waldgeist',2037,437); -- Death Ray
+INSERT INTO `mob_skill_lists` VALUES ('Waldgeist',2037,438); -- Hex Ray
+
+INSERT INTO `mob_skill_lists` VALUES ('Manticore-X',2038,798); -- Tail Swing
+INSERT INTO `mob_skill_lists` VALUES ('Manticore-X',2038,799); -- Tail Smash
+INSERT INTO `mob_skill_lists` VALUES ('Manticore-X',2038,800); -- Heat Breath
+INSERT INTO `mob_skill_lists` VALUES ('Manticore-X',2038,802); -- Great Sandstorm
+INSERT INTO `mob_skill_lists` VALUES ('Manticore-X',2038,803); -- Great Whirlwind
+
+INSERT INTO `mob_skill_lists` VALUES ('Logi',2039,510); -- Berserk
+INSERT INTO `mob_skill_lists` VALUES ('Logi',2039,594); -- Vulcanian Impact
+INSERT INTO `mob_skill_lists` VALUES ('Logi',2039,595); -- Heat Wave
+INSERT INTO `mob_skill_lists` VALUES ('Logi',2039,596); -- Hellstorm
+
+INSERT INTO `mob_skill_lists` VALUES ('Soulflayer_einherjar',2040,1965); -- Immortal Shield
+
+-- Next ID : 2041
 
 -- ------------------------------------------------------------
 -- Start of Ambuscade section

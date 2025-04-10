@@ -5168,7 +5168,274 @@ INSERT INTO `mob_spell_lists` VALUES ('Jailer_of_Love_Dark',520,274,1,255); -- S
 INSERT INTO `mob_spell_lists` VALUES ('Jailer_of_Love_Dark',520,360,1,255); -- Dispelga (1~255)
 INSERT INTO `mob_spell_lists` VALUES ('Jailer_of_Love_Dark',520,361,1,255); -- Blindga (1~255)
 
--- Next Available: 521
+-- Craven Einherjar (521)
+INSERT INTO `mob_spell_lists` VALUES ('Craven_Einherjar',521,152,74,88);  -- blizzard_iv (74~88)
+INSERT INTO `mob_spell_lists` VALUES ('Craven_Einherjar',521,181,71,255); -- blizzaga_iii (71~255)
+INSERT INTO `mob_spell_lists` VALUES ('Craven_Einherjar',521,206,50,255); -- freeze (50~255)
+INSERT INTO `mob_spell_lists` VALUES ('Craven_Einherjar',521,236,22,50);  -- frost (22~50)
+INSERT INTO `mob_spell_lists` VALUES ('Craven_Einherjar',521,250,20,255); -- ice_spikes (20~255)
+INSERT INTO `mob_spell_lists` VALUES ('Craven_Einherjar',521,258,7,255);  -- bind (7~255)
+
+-- Dark Elemental (Einherjar) (522)
+INSERT INTO `mob_spell_lists` VALUES ('Dark_Elemental_einherjar',522,232,1,255); -- Bio III (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Dark_Elemental_einherjar',522,245,1,255); -- Drain (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Dark_Elemental_einherjar',522,247,1,255); -- Aspir (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Dark_Elemental_einherjar',522,252,1,255); -- Stun (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Dark_Elemental_einherjar',522,260,1,255); -- Dispel (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Dark_Elemental_einherjar',522,266,1,255); -- Absorb-STR (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Dark_Elemental_einherjar',522,267,1,255); -- Absorb-DEX (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Dark_Elemental_einherjar',522,268,1,255); -- Absorb-VIT (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Dark_Elemental_einherjar',522,269,1,255); -- Absorb-AGI (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Dark_Elemental_einherjar',522,270,1,255); -- Absorb-INT (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Dark_Elemental_einherjar',522,271,1,255); -- Absorb-MND (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Dark_Elemental_einherjar',522,272,1,255); -- Absorb-CHR (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Dark_Elemental_einherjar',522,273,1,255); -- Sleepga (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Dark_Elemental_einherjar',522,274,1,255); -- Sleepga II (1~255)
+
+-- Einherjar Eater (523)
+INSERT INTO `mob_spell_lists` VALUES ('Einherjar_Eater',523,54,1,255);  -- Stoneskin (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Einherjar_Eater',523,162,1,255); -- Stone IV (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Einherjar_Eater',523,191,1,255); -- Stonega III (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Einherjar_Eater',523,210,1,255); -- Quake (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Einherjar_Eater',523,238,1,255); -- Rasp (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Einherjar_Eater',523,258,1,255); -- Bind (1~255)
+
+-- Rotting Huskarl (BLM) (524)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_blm',524,157,1,255); -- Aero IV (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_blm',524,167,1,255); -- Thunder IV (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_blm',524,172,1,255); -- Water IV (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_blm',524,181,1,255); -- Blizzaga III (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_blm',524,196,1,255); -- Thundaga III (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_blm',524,212,1,255); -- Burst (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_blm',524,214,1,255); -- Flood (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_blm',524,216,1,255); -- Gravity (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_blm',524,226,1,255); -- Poisonga II (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_blm',524,232,1,255); -- Bio III (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_blm',524,236,1,255); -- Frost (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_blm',524,237,1,255); -- Choke (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_blm',524,238,1,255); -- Rasp (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_blm',524,240,1,255); -- Drown (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_blm',524,245,1,255); -- Drain (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_blm',524,247,1,255); -- Aspir (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_blm',524,250,1,255); -- Ice Spikes (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_blm',524,252,1,255); -- Stun (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_blm',524,253,1,255); -- Sleep (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_blm',524,254,1,255); -- Blind (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_blm',524,258,1,255); -- Bind (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_blm',524,259,1,255); -- Sleep II (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_blm',524,273,1,255); -- Sleepga (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_blm',524,274,1,255); -- Sleepga II (1~255)
+
+-- Rotting Huskarl (DRK) (525)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_drk',525,150,1,255); -- Blizzard II (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_drk',525,161,1,255); -- Stone III (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_drk',525,165,1,255); -- Thunder II (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_drk',525,171,1,255); -- Water III (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_drk',525,221,1,255); -- Poison II (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_drk',525,231,1,255); -- Bio II (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_drk',525,245,1,255); -- Drain (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_drk',525,247,1,255); -- Aspir (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_drk',525,252,1,255); -- Stun (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_drk',525,258,1,255); -- Bind (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_drk',525,266,1,255); -- Absorb-STR (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_drk',525,267,1,255); -- Absorb-DEX (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_drk',525,269,1,255); -- Absorb-AGI (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_drk',525,270,1,255); -- Absorb-INT (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Rotting_Huskarl_drk',525,275,1,255); -- Absorb-TP (1~255)
+
+-- Odin's Jester, Odin's Fool (526)
+INSERT INTO `mob_spell_lists` VALUES ('Odins_Jester',526,151,1,255); -- Blizzard III (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Odins_Jester',526,156,1,255); -- Aero III (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Odins_Jester',526,166,1,255); -- Thunder III (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Odins_Jester',526,171,1,255); -- Water III (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Odins_Jester',526,175,1,255); -- Firaga II (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Odins_Jester',526,195,1,255); -- Thundaga II (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Odins_Jester',526,226,1,255); -- Poisonga II (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Odins_Jester',526,231,1,255); -- Bio II (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Odins_Jester',526,235,1,255); -- Burn (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Odins_Jester',526,237,1,255); -- Choke (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Odins_Jester',526,240,1,255); -- Drown (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Odins_Jester',526,247,1,255); -- Aspir (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Odins_Jester',526,249,1,255); -- Blaze Spikes (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Odins_Jester',526,252,1,255); -- Stun (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Odins_Jester',526,253,1,255); -- Sleep (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Odins_Jester',526,254,1,255); -- Blind (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Odins_Jester',526,258,1,255); -- Bind (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Odins_Jester',526,259,1,255); -- Sleep II (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Odins_Jester',526,273,1,255); -- Sleepga (1~255)
+
+-- Waldgeist (527)
+INSERT INTO `mob_spell_lists` VALUES ('Waldgeist',527,147,1,255); -- Fire IV (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Waldgeist',527,152,1,255); -- Blizzard IV (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Waldgeist',527,157,1,255); -- Aero IV (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Waldgeist',527,167,1,255); -- Thunder IV (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Waldgeist',527,172,1,255); -- Water IV (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Waldgeist',527,173,1,255); -- Water V (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Waldgeist',527,176,1,255); -- Firaga III (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Waldgeist',527,186,1,255); -- Aeroga III (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Waldgeist',527,196,1,255); -- Thundaga III (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Waldgeist',527,204,1,255); -- Flare (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Waldgeist',527,226,1,255); -- Poisonga II (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Waldgeist',527,231,1,255); -- Bio II (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Waldgeist',527,235,1,255); -- Burn (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Waldgeist',527,236,1,255); -- Frost (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Waldgeist',527,237,1,255); -- Choke (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Waldgeist',527,240,1,255); -- Drown (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Waldgeist',527,245,1,255); -- Drain (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Waldgeist',527,247,1,255); -- Aspir (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Waldgeist',527,249,1,255); -- Blaze Spikes (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Waldgeist',527,252,1,255); -- Stun (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Waldgeist',527,253,1,255); -- Sleep (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Waldgeist',527,254,1,255); -- Blind (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Waldgeist',527,259,1,255); -- Sleep II (1~255)
+
+-- Logi (528)
+INSERT INTO `mob_spell_lists` VALUES ('Logi',528,100,1,255); -- Enfire (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Logi',528,147,1,255); -- Fire IV (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Logi',528,176,1,255); -- Firaga III (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Logi',528,204,1,255); -- Flare (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Logi',528,235,1,255); -- Burn (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Logi',528,249,1,255); -- Blaze Spikes (1~255)
+
+-- Liquified Einherjar (529)
+INSERT INTO `mob_spell_lists` VALUES ('Liquified_Einherjar',529,147,1,255); -- Fire IV (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Liquified_Einherjar',529,167,1,255); -- Thunder IV (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Liquified_Einherjar',529,176,1,255); -- Firaga III (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Liquified_Einherjar',529,191,1,255); -- Stonega III (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Liquified_Einherjar',529,204,1,255); -- Flare (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Liquified_Einherjar',529,210,1,255); -- Quake (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Liquified_Einherjar',529,212,1,255); -- Burst (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Liquified_Einherjar',529,231,1,255); -- Bio II (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Liquified_Einherjar',529,235,1,255); -- Burn (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Liquified_Einherjar',529,238,1,255); -- Rasp (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Liquified_Einherjar',529,239,1,255); -- Shock (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Liquified_Einherjar',529,245,1,255); -- Drain (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Liquified_Einherjar',529,247,1,255); -- Aspir (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Liquified_Einherjar',529,249,1,255); -- Blaze Spikes (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Liquified_Einherjar',529,252,1,255); -- Stun (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Liquified_Einherjar',529,254,1,255); -- Blind (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Liquified_Einherjar',529,273,1,255); -- Sleepga (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Liquified_Einherjar',529,274,1,255); -- Sleepga II (1~255)
+
+-- Margygr (530)
+INSERT INTO `mob_spell_lists` VALUES ('Margygr',530,147,1,255); -- Fire IV (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Margygr',530,152,1,255); -- Blizzard IV (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Margygr',530,157,1,255); -- Aero IV (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Margygr',530,167,1,255); -- Thunder IV (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Margygr',530,172,1,255); -- Water IV (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Margygr',530,176,1,255); -- Firaga III (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Margygr',530,196,1,255); -- Thundaga III (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Margygr',530,204,1,255); -- Flare (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Margygr',530,226,1,255); -- Poisonga II (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Margygr',530,231,1,255); -- Bio II (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Margygr',530,235,1,255); -- Burn (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Margygr',530,236,1,255); -- Frost (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Margygr',530,237,1,255); -- Choke (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Margygr',530,240,1,255); -- Drown (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Margygr',530,245,1,255); -- Drain (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Margygr',530,247,1,255); -- Aspir (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Margygr',530,249,1,255); -- Blaze Spikes (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Margygr',530,252,1,255); -- Stun (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Margygr',530,253,1,255); -- Sleep (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Margygr',530,254,1,255); -- Blind (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Margygr',530,258,1,255); -- Bind (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Margygr',530,259,1,255); -- Sleep II (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Margygr',530,273,1,255); -- Sleepga (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Margygr',530,274,1,255); -- Sleepga II (1~255)
+
+-- Soulflayer (Einherjar) (531)
+INSERT INTO `mob_spell_lists` VALUES ('Soulflayer_einherjar',531,152,1,255); -- Blizzard IV (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Soulflayer_einherjar',531,157,1,255); -- Aero IV (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Soulflayer_einherjar',531,167,1,255); -- Thunder IV (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Soulflayer_einherjar',531,172,1,255); -- Water IV (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Soulflayer_einherjar',531,181,1,255); -- Blizzaga III (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Soulflayer_einherjar',531,196,1,255); -- Thundaga III (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Soulflayer_einherjar',531,212,1,255); -- Burst (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Soulflayer_einherjar',531,214,1,255); -- Flood (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Soulflayer_einherjar',531,216,1,255); -- Gravity (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Soulflayer_einherjar',531,226,1,255); -- Poisonga II (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Soulflayer_einherjar',531,232,1,255); -- Bio III (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Soulflayer_einherjar',531,236,1,255); -- Frost (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Soulflayer_einherjar',531,237,1,255); -- Choke (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Soulflayer_einherjar',531,238,1,255); -- Rasp (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Soulflayer_einherjar',531,240,1,255); -- Drown (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Soulflayer_einherjar',531,245,1,255); -- Drain (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Soulflayer_einherjar',531,247,1,255); -- Aspir (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Soulflayer_einherjar',531,250,1,255); -- Ice Spikes (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Soulflayer_einherjar',531,252,1,255); -- Stun (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Soulflayer_einherjar',531,254,1,255); -- Blind (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Soulflayer_einherjar',531,258,1,255); -- Bind (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Soulflayer_einherjar',531,259,1,255); -- Sleep II (1~255)
+INSERT INTO `mob_spell_lists` VALUES ('Soulflayer_einherjar',531,274,1,255); -- Sleepga II (1~255)
+
+-- Berserkr (BLM) (532)
+INSERT INTO `mob_spell_lists` VALUES ('Berserkr_blm', 532, 147, 1, 255); -- Fire IV
+INSERT INTO `mob_spell_lists` VALUES ('Berserkr_blm', 532, 157, 1, 255); -- Aero IV
+INSERT INTO `mob_spell_lists` VALUES ('Berserkr_blm', 532, 167, 1, 255); -- Thunder IV
+INSERT INTO `mob_spell_lists` VALUES ('Berserkr_blm', 532, 196, 1, 255); -- Thundaga III
+INSERT INTO `mob_spell_lists` VALUES ('Berserkr_blm', 532, 204, 1, 255); -- Flare
+INSERT INTO `mob_spell_lists` VALUES ('Berserkr_blm', 532, 220, 1, 255); -- Poison
+INSERT INTO `mob_spell_lists` VALUES ('Berserkr_blm', 532, 231, 1, 255); -- Bio II
+INSERT INTO `mob_spell_lists` VALUES ('Berserkr_blm', 532, 235, 1, 255); -- Burn
+INSERT INTO `mob_spell_lists` VALUES ('Berserkr_blm', 532, 236, 1, 255); -- Frost
+INSERT INTO `mob_spell_lists` VALUES ('Berserkr_blm', 532, 237, 1, 255); -- Choke
+INSERT INTO `mob_spell_lists` VALUES ('Berserkr_blm', 532, 240, 1, 255); -- Drown
+INSERT INTO `mob_spell_lists` VALUES ('Berserkr_blm', 532, 245, 1, 255); -- Drain
+INSERT INTO `mob_spell_lists` VALUES ('Berserkr_blm', 532, 247, 1, 255); -- Aspir
+INSERT INTO `mob_spell_lists` VALUES ('Berserkr_blm', 532, 249, 1, 255); -- Blaze Spikes
+INSERT INTO `mob_spell_lists` VALUES ('Berserkr_blm', 532, 252, 1, 255); -- Stun
+INSERT INTO `mob_spell_lists` VALUES ('Berserkr_blm', 532, 273, 1, 255); -- Sleepga
+
+-- Berserkr (DRK) (533)
+INSERT INTO `mob_spell_lists` VALUES ('Berserkr_drk', 533, 145, 1, 255); -- Fire II
+INSERT INTO `mob_spell_lists` VALUES ('Berserkr_drk', 533, 150, 1, 255); -- Blizzard II
+INSERT INTO `mob_spell_lists` VALUES ('Berserkr_drk', 533, 155, 1, 255); -- Aero II
+INSERT INTO `mob_spell_lists` VALUES ('Berserkr_drk', 533, 161, 1, 255); -- Stone III
+INSERT INTO `mob_spell_lists` VALUES ('Berserkr_drk', 533, 165, 1, 255); -- Thunder II
+INSERT INTO `mob_spell_lists` VALUES ('Berserkr_drk', 533, 220, 1, 255); -- Poison
+INSERT INTO `mob_spell_lists` VALUES ('Berserkr_drk', 533, 245, 1, 255); -- Drain
+INSERT INTO `mob_spell_lists` VALUES ('Berserkr_drk', 533, 247, 1, 255); -- Aspir
+INSERT INTO `mob_spell_lists` VALUES ('Berserkr_drk', 533, 252, 1, 255); -- Stun
+INSERT INTO `mob_spell_lists` VALUES ('Berserkr_drk', 533, 266, 1, 255); -- Absorb-STR
+INSERT INTO `mob_spell_lists` VALUES ('Berserkr_drk', 533, 267, 1, 255); -- Absorb-DEX
+INSERT INTO `mob_spell_lists` VALUES ('Berserkr_drk', 533, 268, 1, 255); -- Absorb-VIT
+INSERT INTO `mob_spell_lists` VALUES ('Berserkr_drk', 533, 269, 1, 255); -- Absorb-AGI
+INSERT INTO `mob_spell_lists` VALUES ('Berserkr_drk', 533, 270, 1, 255); -- Absorb-INT
+INSERT INTO `mob_spell_lists` VALUES ('Berserkr_drk', 533, 271, 1, 255); -- Absorb-MND
+INSERT INTO `mob_spell_lists` VALUES ('Berserkr_drk', 533, 272, 1, 255); -- Absorb-CHR
+INSERT INTO `mob_spell_lists` VALUES ('Berserkr_drk', 533, 275, 1, 255); -- Absorb-TP
+
+-- Vanquished Einherjar (DRK) (534)
+INSERT INTO `mob_spell_lists` VALUES ('Vanquished_Einherjar_drk', 534, 155, 1, 255); -- Aero II
+INSERT INTO `mob_spell_lists` VALUES ('Vanquished_Einherjar_drk', 534, 165, 1, 255); -- Thunder II
+INSERT INTO `mob_spell_lists` VALUES ('Vanquished_Einherjar_drk', 534, 221, 1, 255); -- Poison II
+INSERT INTO `mob_spell_lists` VALUES ('Vanquished_Einherjar_drk', 534, 245, 1, 255); -- Drain
+INSERT INTO `mob_spell_lists` VALUES ('Vanquished_Einherjar_drk', 534, 247, 1, 255); -- Aspir
+INSERT INTO `mob_spell_lists` VALUES ('Vanquished_Einherjar_drk', 534, 252, 1, 255); -- Stun
+INSERT INTO `mob_spell_lists` VALUES ('Vanquished_Einherjar_drk', 534, 259, 1, 255); -- Sleep II
+INSERT INTO `mob_spell_lists` VALUES ('Vanquished_Einherjar_drk', 534, 266, 1, 255); -- Absorb-STR
+INSERT INTO `mob_spell_lists` VALUES ('Vanquished_Einherjar_drk', 534, 267, 1, 255); -- Absorb-DEX
+INSERT INTO `mob_spell_lists` VALUES ('Vanquished_Einherjar_drk', 534, 268, 1, 255); -- Absorb-VIT
+INSERT INTO `mob_spell_lists` VALUES ('Vanquished_Einherjar_drk', 534, 269, 1, 255); -- Absorb-AGI
+INSERT INTO `mob_spell_lists` VALUES ('Vanquished_Einherjar_drk', 534, 270, 1, 255); -- Absorb-INT
+INSERT INTO `mob_spell_lists` VALUES ('Vanquished_Einherjar_drk', 534, 275, 1, 255); -- Absorb-TP
+
+-- Vanquished Einherjar (BLM) (535)
+INSERT INTO `mob_spell_lists` VALUES ('Vanquished_Einherjar_blm', 535, 152, 1, 255); -- Blizzard IV
+INSERT INTO `mob_spell_lists` VALUES ('Vanquished_Einherjar_blm', 535, 157, 1, 255); -- Aero IV
+INSERT INTO `mob_spell_lists` VALUES ('Vanquished_Einherjar_blm', 535, 196, 1, 255); -- Thundaga III
+INSERT INTO `mob_spell_lists` VALUES ('Vanquished_Einherjar_blm', 535, 214, 1, 255); -- Flood
+INSERT INTO `mob_spell_lists` VALUES ('Vanquished_Einherjar_blm', 535, 232, 1, 255); -- Bio III
+INSERT INTO `mob_spell_lists` VALUES ('Vanquished_Einherjar_blm', 535, 236, 1, 255); -- Frost
+INSERT INTO `mob_spell_lists` VALUES ('Vanquished_Einherjar_blm', 535, 237, 1, 255); -- Choke
+INSERT INTO `mob_spell_lists` VALUES ('Vanquished_Einherjar_blm', 535, 245, 1, 255); -- Drain
+INSERT INTO `mob_spell_lists` VALUES ('Vanquished_Einherjar_blm', 535, 247, 1, 255); -- Aspir
+INSERT INTO `mob_spell_lists` VALUES ('Vanquished_Einherjar_blm', 535, 250, 1, 255); -- Ice Spikes
+INSERT INTO `mob_spell_lists` VALUES ('Vanquished_Einherjar_blm', 535, 254, 1, 255); -- Blind
+INSERT INTO `mob_spell_lists` VALUES ('Vanquished_Einherjar_blm', 535, 258, 1, 255); -- Bind
+INSERT INTO `mob_spell_lists` VALUES ('Vanquished_Einherjar_blm', 535, 273, 1, 255); -- Sleepga
+
+-- Next Available: 536
 
 /*!40000 ALTER TABLE `mob_spell_lists` ENABLE KEYS */;
 UNLOCK TABLES;

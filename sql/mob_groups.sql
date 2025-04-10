@@ -4128,7 +4128,7 @@ INSERT INTO `mob_groups` VALUES (15,3782,78,'Stoorworm',0,128,0,82000,0,85,85,0)
 INSERT INTO `mob_groups` VALUES (16,1422,78,'Freke',0,128,0,80000,0,85,85,0);
 INSERT INTO `mob_groups` VALUES (17,4130,78,'Vampyr_Jarl',0,128,0,50000,0,85,85,0);
 INSERT INTO `mob_groups` VALUES (18,2756,78,'Motsognir',0,128,0,100000,0,85,85,0);
-INSERT INTO `mob_groups` VALUES (19,7079,78,'Dark_Elemental',0,128,3410,10000,0,82,82,0);
+INSERT INTO `mob_groups` VALUES (19,7079,78,'Dark_Elemental_einherjar',0,128,3410,10000,0,82,82,0);
 INSERT INTO `mob_groups` VALUES (20,3397,78,'Rotting_Huskarl_war',0,128,3410,7000,0,82,82,0);
 INSERT INTO `mob_groups` VALUES (21,829,78,'Craven_Einherjar',0,128,3410,10000,0,82,82,0);
 INSERT INTO `mob_groups` VALUES (22,2037,78,'Hyndla',0,128,3410,17500,0,82,82,0);
