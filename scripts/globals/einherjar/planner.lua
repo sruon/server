@@ -98,7 +98,7 @@ local mobPool =
         ID.mob.UTGARTH_BATS,
         ID.mob.UTGARTH_LEECH,
         ID.mob.VAMPYR_DOG,
-        ID.mob.VANQUISHED_EINHERJAR,
+        mergeArrays(ID.mob.VANQUISHED_EINHERJAR_THF, ID.mob.VANQUISHED_EINHERJAR_BLM, ID.mob.VANQUISHED_EINHERJAR_DRK),
         ID.mob.WIVRE_X,
     },
 }

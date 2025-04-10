@@ -4179,7 +4179,7 @@ INSERT INTO `mob_groups` VALUES (66,1870,78,'Hadding_the_Elder',0,128,3410,15000
 INSERT INTO `mob_groups` VALUES (67,1871,78,'Hadding_the_Younger',0,128,3410,15000,0,82,82,0);
 INSERT INTO `mob_groups` VALUES (68,4129,78,'Vampyr_Dog',0,128,3410,7350,0,82,82,0);
 INSERT INTO `mob_groups` VALUES (69,2049,78,'Idun',0,128,3410,6000,0,82,82,0);
-INSERT INTO `mob_groups` VALUES (70,4201,78,'Vanquished_Einherjar',0,128,3410,6500,0,82,82,0);
+INSERT INTO `mob_groups` VALUES (70,4201,78,'Vanquished_Einherjar_blm',0,128,3410,6500,0,82,82,0);
 INSERT INTO `mob_groups` VALUES (71,558,78,'Bugard-X',0,128,3410,17000,0,82,82,0);
 INSERT INTO `mob_groups` VALUES (72,4128,78,'Vampyr_Bats',0,128,0,6000,0,82,82,0);
 INSERT INTO `mob_groups` VALUES (73,4131,78,'Vampyr_Wolf',0,128,0,6000,0,82,82,0);
@@ -4207,6 +4207,8 @@ INSERT INTO `mob_groups` VALUES (94,1071,78,'Djigga_Hildesvini',0,128,0,9000,0,8
 INSERT INTO `mob_groups` VALUES (95,7081,78,'Berserkr_blm',0,128,3410,7000,0,82,82,0);
 INSERT INTO `mob_groups` VALUES (96,7082,78,'Berserkr_drk',0,128,3410,7000,0,82,82,0);
 INSERT INTO `mob_groups` VALUES (97,7083,78,'Logi',0,128,3410,7500,0,82,82,0);
+INSERT INTO `mob_groups` VALUES (98,7084,78,'Vanquished_Einherjar_thf',0,128,3410,6500,0,82,82,0);
+INSERT INTO `mob_groups` VALUES (99,7085,78,'Vanquished_Einherjar_drk',0,128,3410,6500,0,82,82,0);
 
 -- ------------------------------------------------------------
 -- Caedarva_Mire (Zone 79)
