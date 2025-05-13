@@ -1161,9 +1161,9 @@ bool CCharEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
         return true;
     }
 
-    bool isSameParty      = PParty && PInitiator->PParty && PInitiator->PParty == PParty;
-    bool isSameAlliance   = PParty && PParty->m_PAlliance && PInitiator->PParty && PInitiator->PParty->m_PAlliance && PParty->m_PAlliance == PInitiator->PParty->m_PAlliance;
-    bool isPartyPetMaster = PInitiator->PMaster && PInitiator->PMaster->PParty && PInitiator->PMaster->PParty == PParty;
+    bool isSameParty      = PParty && static_cast<CCharEntity*>(PInitiator)->PParty && static_cast<CCharEntity*>(PInitiator)->PParty == PParty;
+    bool isSameAlliance   = PParty && PParty->m_PAlliance && static_cast<CCharEntity*>(PInitiator)->PParty && static_cast<CCharEntity*>(PInitiator)->PParty->m_PAlliance && PParty->m_PAlliance == static_cast<CCharEntity*>(PInitiator)->PParty->m_PAlliance;
+    bool isPartyPetMaster = PInitiator->PMaster && static_cast<CCharEntity*>(PInitiator->PMaster)->PParty && static_cast<CCharEntity*>(PInitiator->PMaster)->PParty == PParty;
     bool isSoloPetMaster  = PParty == nullptr && PInitiator->PMaster == this;
     bool targetsParty     = targetFlags & TARGET_PLAYER_PARTY;
     bool targetsAlliance  = targetFlags & TARGET_PLAYER_ALLIANCE;
@@ -2538,7 +2538,7 @@ void CCharEntity::OnItemFinish(CItemState& state, action_t& action)
 {
     TracyZoneScoped;
 
-    auto* PTarget = static_cast<CBattleEntity*>(state.GetTarget());
+    auto* PTarget = static_cast<CCharEntity*>(state.GetTarget());
     auto* PItem   = state.GetItem();
 
     if (!PItem->isType(ITEM_EQUIPMENT) && (PItem->getQuantity() < 1 || PItem->getReserve() > 0))

@@ -1399,7 +1399,7 @@ namespace petutils
             static_cast<CCharEntity*>(PMaster)->PLatentEffectContainer->CheckLatentsPetType();
 
             // clang-format off
-            PMaster->ForParty([](CBattleEntity* PMember)
+            static_cast<CCharEntity*>(PMaster)->ForParty([](CBattleEntity* PMember)
             {
                 static_cast<CCharEntity*>(PMember)->PLatentEffectContainer->CheckLatentsPartyAvatar();
             });

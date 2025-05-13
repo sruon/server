@@ -466,7 +466,7 @@ void CLuaBattlefield::addGroups(sol::table const& groups, bool hasMultipleArenas
         bool isParty = groupData.get_or("isParty", false);
         if (isParty)
         {
-            CParty* party = nullptr;
+            CMobParty* party = nullptr;
             for (CBaseEntity* entity : groupEntities)
             {
                 auto PMob = dynamic_cast<CMobEntity*>(entity);
@@ -484,7 +484,7 @@ void CLuaBattlefield::addGroups(sol::table const& groups, bool hasMultipleArenas
 
                 if (party == nullptr)
                 {
-                    party = new CParty(PMob);
+                    party = new CMobParty(PMob);
                 }
                 else
                 {

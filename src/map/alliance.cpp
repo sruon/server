@@ -44,20 +44,21 @@
 
 CAlliance::CAlliance(CBattleEntity* PEntity)
 {
-    if (PEntity->PParty == nullptr)
+    auto* PChar = dynamic_cast<CCharEntity*>(PEntity);
+    if (PChar && PChar->PParty == nullptr)
     {
         ShowError("Attempt to construct Alliance with a null Party (%s).", PEntity->getName());
         return;
     }
 
-    m_AllianceID = PEntity->PParty->GetPartyID();
+    m_AllianceID = PChar->PParty->GetPartyID();
 
     // Will need to deal with these:
     // m_PSyncTarget
     // m_PQuarterMaster
 
-    addParty(PEntity->PParty);
-    this->aLeader = PEntity->PParty;
+    addParty(PChar->PParty);
+    this->aLeader = PChar->PParty;
     db::preparedStmt("UPDATE accounts_parties SET partyflag = partyflag | ? WHERE partyid = ? AND partyflag & ?",
                      ALLIANCE_LEADER, m_AllianceID, PARTY_LEADER);
 }

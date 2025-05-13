@@ -95,6 +95,8 @@ set(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/mob_spell_container.h
     ${CMAKE_CURRENT_SOURCE_DIR}/mob_spell_list.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/mob_spell_list.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/mobparty.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/mobparty.h
     ${CMAKE_CURRENT_SOURCE_DIR}/mobskill.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/mobskill.h
     ${CMAKE_CURRENT_SOURCE_DIR}/modifier.cpp

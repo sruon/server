@@ -378,7 +378,7 @@ void CZoneEntities::FindPartyForMob(CBaseEntity* PEntity)
                 }
             }
         }
-        PMob->PParty = new CParty(PMob);
+        PMob->PParty = new CMobParty(PMob);
     }
 }
 

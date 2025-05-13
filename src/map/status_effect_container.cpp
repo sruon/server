@@ -1906,7 +1906,7 @@ void CStatusEffectContainer::HandleAura(CStatusEffect* PStatusEffect)
         if (auraTarget == AURA_TARGET::ALLIES)
         {
             // clang-format off
-            PEntity->ForParty([&](CBattleEntity* PMember)
+            static_cast<CMobEntity*>(PEntity)->ForParty([&](CBattleEntity* PMember)
             {
                 if (PMember != nullptr &&
                     m_POwner->loc.zone &&

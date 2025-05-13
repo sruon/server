@@ -237,7 +237,8 @@ typedef std::vector<EntityID_t>        BazaarList_t;
 class CCharEntity : public CBattleEntity
 {
 public:
-    uint32 accid{}; // Account ID associated with the character.
+    uint32  accid{}; // Account ID associated with the character.
+    CParty* PParty;
 
     MapSession* PSession = nullptr;
 
@@ -346,6 +347,51 @@ public:
     UnlockedAttachments_t m_unlockedAttachments{}; // Unlocked Automaton Attachments (1 bit per attachment)
 
     std::vector<CTrustEntity*> PTrusts; // Active trusts
+
+    template <typename F, typename... Args>
+    void ForAlliance(F func, Args&&... args)
+    {
+        if (PParty)
+        {
+            if (PParty->m_PAlliance)
+            {
+                for (auto PAllianceParty : PParty->m_PAlliance->partyList)
+                {
+                    for (auto PMember : PAllianceParty->members)
+                    {
+                        func(PMember, std::forward<Args>(args)...);
+                    }
+                }
+            }
+            else
+            {
+                for (auto PMember : PParty->members)
+                {
+                    func(PMember, std::forward<Args>(args)...);
+                }
+            }
+        }
+        else
+        {
+            func(this);
+        }
+    }
+
+    template <typename F, typename... Args>
+    void ForParty(F func, Args&&... args)
+    {
+        if (PParty)
+        {
+            for (auto PMember : PParty->members)
+            {
+                func(PMember, std::forward<Args>(args)...);
+            }
+        }
+        else
+        {
+            func(this, std::forward<Args>(args)...);
+        }
+    }
 
     template <typename F, typename... Args>
     void ForPartyWithTrusts(F const& func, Args&&... args)

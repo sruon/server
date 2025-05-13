@@ -63,7 +63,7 @@ struct CParty::partyInfo_t
 // Constructor
 CParty::CParty(CBattleEntity* PEntity)
 : m_PartyID(0)
-, m_PartyType(PARTY_MOBS)
+, m_PartyType(PARTY_PCS)
 , m_PartyNumber(0)
 {
     m_PLeader        = nullptr;
@@ -72,7 +72,8 @@ CParty::CParty(CBattleEntity* PEntity)
     m_PQuarterMaster = nullptr;
     m_EffectsChanged = false;
 
-    if (PEntity != nullptr && PEntity->PParty == nullptr)
+    auto* PChar = dynamic_cast<CCharEntity*>(PEntity);
+    if (PChar && PChar->PParty == nullptr)
     {
         m_PartyID   = PEntity->id;
         m_PartyType = PEntity->objtype == TYPE_PC ? PARTY_PCS : PARTY_MOBS;
@@ -166,13 +167,6 @@ void CParty::DisbandParty(bool playerInitiated)
             });
         }
     }
-    else if (m_PartyType == PARTY_MOBS)
-    {
-        for (auto& member : members) // this should really only trigger when a dynamic entity dies and nothing else qualifies for it's party anymore (such as !fafnir in zones without dragons)
-        {
-            member->PParty = nullptr;
-        }
-    }
 
     // TODO: This entire system needs rewriting to both:
     //     : - Make it stable
@@ -257,12 +251,6 @@ uint8 CParty::MemberCount(uint16 ZoneID)
 // Returns entity pointer to party member by name (used for /pcmd kick or otherwise)
 CBattleEntity* CParty::GetMemberByName(const std::string& memberName)
 {
-    if (m_PartyType != PARTY_PCS)
-    {
-        ShowWarning("Attempting to get Member data for %s in Mob Party.", memberName);
-        return nullptr;
-    }
-
     if (memberName == "")
     {
         return nullptr;
@@ -281,7 +269,7 @@ CBattleEntity* CParty::GetMemberByName(const std::string& memberName)
 
 void CParty::RemoveMember(CBattleEntity* PEntity)
 {
-    if (PEntity == nullptr || PEntity->PParty != this)
+    if (PEntity == nullptr || static_cast<CCharEntity*>(PEntity)->PParty != this)
     {
         ShowWarning("CParty::RemoveMember() - PEntity was null, or PParty mismatch.");
         return;
@@ -375,14 +363,14 @@ void CParty::RemoveMember(CBattleEntity* PEntity)
             }
 
             members.erase(memberToDelete);
-            PEntity->PParty = nullptr;
+            static_cast<CCharEntity*>(PEntity)->PParty = nullptr;
         }
     }
 }
 
 void CParty::DelMember(CBattleEntity* PEntity)
 {
-    if (PEntity == nullptr || PEntity->PParty != this)
+    if (PEntity == nullptr || static_cast<CCharEntity*>(PEntity)->PParty != this)
     {
         ShowWarning("CParty::DelMember() - PEntity was null, or PParty mismatch.");
         return;
@@ -449,10 +437,6 @@ void CParty::DelMember(CBattleEntity* PEntity)
                     PChar->PTreasurePool->updatePool(PChar);
                 }
             }
-            else
-            {
-                PEntity->PParty = nullptr;
-            }
             members.erase(memberToDelete);
         }
         this->ReloadParty();
@@ -461,7 +445,7 @@ void CParty::DelMember(CBattleEntity* PEntity)
 
 void CParty::PopMember(CBattleEntity* PEntity)
 {
-    if (PEntity == nullptr || PEntity->PParty != this)
+    if (PEntity == nullptr || static_cast<CCharEntity*>(PEntity)->PParty != this)
     {
         ShowWarning("CParty::PopMember() - PEntity was null, or PParty mismatch.");
         return;
@@ -497,7 +481,7 @@ void CParty::PopMember(CBattleEntity* PEntity)
         }
         delete this; // cpp.sh allow
     }
-    PEntity->PParty = nullptr;
+    static_cast<CCharEntity*>(PEntity)->PParty = nullptr;
 }
 
 bool CParty::RemovePartyLeader(CBattleEntity* PEntity)
@@ -583,7 +567,7 @@ std::vector<CParty::partyInfo_t> CParty::GetPartyInfo() const
 
 void CParty::AddMember(CBattleEntity* PEntity)
 {
-    if (PEntity == nullptr || PEntity->PParty != nullptr)
+    if (PEntity == nullptr || static_cast<CCharEntity*>(PEntity)->PParty != nullptr)
     {
         ShowWarning("CParty::AddMember() - PEntity was null, or PParty not null.");
         return;
@@ -601,7 +585,7 @@ void CParty::AddMember(CBattleEntity* PEntity)
         return;
     }
 
-    PEntity->PParty = this;
+    static_cast<CCharEntity*>(PEntity)->PParty = this;
     members.emplace_back(PEntity);
 
     if (PEntity->objtype == TYPE_PC && this->members.size() > 1)
@@ -741,13 +725,13 @@ void CParty::AddMember(uint32 id)
 
 void CParty::PushMember(CBattleEntity* PEntity)
 {
-    if (PEntity == nullptr || PEntity->PParty != nullptr)
+    if (PEntity == nullptr || static_cast<CCharEntity*>(PEntity)->PParty != nullptr)
     {
         ShowWarning("CParty::PushMember() - PEntity was null, or PParty not null.");
         return;
     }
 
-    PEntity->PParty = this;
+    static_cast<CCharEntity*>(PEntity)->PParty = this;
     members.emplace_back(PEntity);
 
     auto info = GetPartyInfo();
@@ -801,7 +785,7 @@ CBattleEntity* CParty::GetQuaterMaster()
 
 uint16 CParty::GetMemberFlags(CBattleEntity* PEntity)
 {
-    if (PEntity == nullptr || PEntity->PParty != this)
+    if (PEntity == nullptr || static_cast<CCharEntity*>(PEntity)->PParty != this)
     {
         ShowWarning("CParty::GetMemberFlags() - PEntity was null, or PParty mismatch.");
         return 0;
@@ -809,19 +793,19 @@ uint16 CParty::GetMemberFlags(CBattleEntity* PEntity)
 
     uint16 Flags = 0;
 
-    if (PEntity->PParty->m_PAlliance != nullptr)
+    if (static_cast<CCharEntity*>(PEntity)->PParty->m_PAlliance != nullptr)
     {
-        if (PEntity == m_PLeader && PEntity->PParty->m_PAlliance->getMainParty() == PEntity->PParty)
+        if (PEntity == m_PLeader && static_cast<CCharEntity*>(PEntity)->PParty->m_PAlliance->getMainParty() == static_cast<CCharEntity*>(PEntity)->PParty)
         {
             Flags |= ALLIANCE_LEADER;
         }
     }
 
-    if (PEntity->PParty->m_PartyNumber == 1)
+    if (static_cast<CCharEntity*>(PEntity)->PParty->m_PartyNumber == 1)
     {
         Flags += PARTY_SECOND;
     }
-    else if (PEntity->PParty->m_PartyNumber == 2)
+    else if (static_cast<CCharEntity*>(PEntity)->PParty->m_PartyNumber == 2)
     {
         Flags += PARTY_THIRD;
     }

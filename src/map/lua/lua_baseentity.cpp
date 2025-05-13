@@ -10897,7 +10897,7 @@ sol::table CLuaBaseEntity::getParty()
 
     // clang-format off
     auto table = lua.create_table();
-    ((CBattleEntity*)m_PBaseEntity)->ForParty([&table](CBattleEntity* member)
+    ((CCharEntity*)m_PBaseEntity)->ForParty([&table](CBattleEntity* member)
     {
         table.add(CLuaBaseEntity(member));
     });
@@ -10950,7 +10950,7 @@ uint8 CLuaBaseEntity::getPartySize(sol::object const& arg0)
     uint8 allianceparty = (arg0 == sol::lua_nil) ? 0 : arg0.as<uint8>();
     uint8 partysize     = 1;
 
-    auto* PBattle = static_cast<CBattleEntity*>(m_PBaseEntity);
+    auto* PBattle = static_cast<CCharEntity*>(m_PBaseEntity);
 
     if (PBattle->PParty != nullptr)
     {
@@ -11015,7 +11015,7 @@ auto CLuaBaseEntity::getPartyMember(uint8 member, uint8 allianceparty) -> CBaseE
         return nullptr;
     }
 
-    CBattleEntity* PBattle     = static_cast<CBattleEntity*>(m_PBaseEntity);
+    CCharEntity* PBattle     = static_cast<CCharEntity*>(m_PBaseEntity);
     CBattleEntity* PTargetChar = nullptr;
 
     if (allianceparty == 0 && member == 0)
@@ -11081,7 +11081,7 @@ auto CLuaBaseEntity::getPartyLeader() -> CBaseEntity*
 
 void CLuaBaseEntity::forMembersInRange(float range, sol::function function)
 {
-    auto* target = (CBattleEntity*)m_PBaseEntity;
+    auto* target = (CCharEntity*)m_PBaseEntity;
 
     // clang-format off
     target->ForParty([&target, &range, &function](CBattleEntity* member)
@@ -11120,7 +11120,7 @@ void CLuaBaseEntity::addPartyEffect(sol::variadic_args va)
     CStatusEffect* PEffect =
         new CStatusEffect(static_cast<EFFECT>(args[0]), args[1], args[2], std::chrono::seconds(args[3]), std::chrono::seconds(args[4]), args[5], args[6]);
 
-    CBattleEntity* PEntity = ((CBattleEntity*)m_PBaseEntity);
+    CCharEntity* PEntity = ((CCharEntity*)m_PBaseEntity);
 
     // clang-format off
     PEntity->ForParty([PEffect](CBattleEntity* PMember)
@@ -11234,7 +11234,7 @@ uint8 CLuaBaseEntity::getAllianceSize()
         return 1;
     }
 
-    auto* PBattle      = static_cast<CBattleEntity*>(m_PBaseEntity);
+    auto* PBattle      = static_cast<CCharEntity*>(m_PBaseEntity);
     uint8 alliancesize = 1;
 
     if (PBattle->PParty != nullptr)

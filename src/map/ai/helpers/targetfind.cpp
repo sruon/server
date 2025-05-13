@@ -116,13 +116,14 @@ void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOE_RADIUS radiusType, 
         // handle this as a player
         if (m_PMasterTarget->objtype == TYPE_PC)
         {
+            const auto mTarget = static_cast<CCharEntity*>(m_PMasterTarget);
             // players will never need to add whole alliance
             m_findType = FIND_TYPE::PLAYER_PLAYER;
 
-            if (m_PMasterTarget->PParty != nullptr)
+            if (mTarget->PParty != nullptr)
             {
                 // player -ra spells should never hit whole alliance
-                if ((m_findFlags & FINDFLAGS_ALLIANCE) && m_PMasterTarget->PParty->m_PAlliance != nullptr)
+                if ((m_findFlags & FINDFLAGS_ALLIANCE) && mTarget->PParty->m_PAlliance != nullptr)
                 {
                     addAllInAlliance(m_PMasterTarget, withPet);
                 }
@@ -274,12 +275,15 @@ void CTargetFind::addAllInZone(CBattleEntity* PTarget, bool withPet)
 
 void CTargetFind::addAllInAlliance(CBattleEntity* PTarget, bool withPet)
 {
-    // clang-format off
-    PTarget->ForAlliance([this, withPet](CBattleEntity* PMember)
+    if (auto* PChar = dynamic_cast<CCharEntity*>(PTarget))
+    {
+        // clang-format off
+        PChar->ForAlliance([this, withPet](CBattleEntity* PMember)
     {
         addEntity(PMember, withPet);
     });
-    // clang-format on
+        // clang-format on
+    }
 }
 
 void CTargetFind::addAllInParty(CBattleEntity* PTarget, bool withPet)
@@ -297,10 +301,13 @@ void CTargetFind::addAllInParty(CBattleEntity* PTarget, bool withPet)
     }
     else
     {
-        PTarget->ForParty([this, withPet](CBattleEntity* PMember)
+        if (auto* PMob = dynamic_cast<CMobEntity*>(PTarget))
         {
-            addEntity(PMember, withPet);
-        });
+            PMob->ForParty([this, withPet](CBattleEntity* PMember)
+            {
+                addEntity(PMember, withPet);
+            });
+        }
     }
     // clang-format on
 }
@@ -404,15 +411,18 @@ bool CTargetFind::isMobOwner(CBattleEntity* PTarget)
 
     bool found = false;
 
-    // clang-format off
-    m_PBattleEntity->ForAlliance([&found, &PTarget](CBattleEntity* PMember)
+    if (auto* PChar = dynamic_cast<CCharEntity*>(m_PBattleEntity))
     {
-        if (PMember->id == PTarget->m_OwnerID.id)
+        // clang-format off
+        PChar->ForAlliance([&found, &PTarget](CBattleEntity* PMember)
         {
-            found = true;
-        }
-    });
-    // clang-format on
+            if (PMember->id == PTarget->m_OwnerID.id)
+            {
+                found = true;
+            }
+        });
+        // clang-format on
+    }
 
     return found;
 }
