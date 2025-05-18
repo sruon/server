@@ -107,7 +107,7 @@ void CCharParty::update(const ipc::PartyUpdate& message)
                 if (deletedMember != members_.end())
                 {
                     ShowInfoFmt("Removing member with ID: {}", deletedMember->GetId());
-                    members_.erase(deletedMember);
+                    delMember(*deletedMember);
                 }
             }
         }
@@ -405,6 +405,18 @@ void CCharParty::addMember(PartyMemberData& data)
 
             PChar->m_charHistory.joinedParties++;
         }
+    }
+}
+
+void CCharParty::delMember(const PartyMember& member)
+{
+    auto it = std::find_if(members_.begin(), members_.end(), [&](const PartyMember& m)
+                           { return m.GetId() == member.GetId(); });
+
+    if (it != members_.end())
+    {
+        ipc().NotifyKick(member.GetId());
+        members_.erase(it);
     }
 }
 

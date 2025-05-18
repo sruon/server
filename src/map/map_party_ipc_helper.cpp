@@ -80,3 +80,18 @@ void CCharParty::IpcHelper::RemoveMember(CBattleEntity* PEntity) const
         RemoveMember(PEntity->id);
     }
 }
+
+void CCharParty::IpcHelper::NotifyKick(const uint32 UniqueNo) const
+{
+    message::send(ipc::PlayerKick{
+        .victimId = UniqueNo
+    });
+}
+
+void CCharParty::IpcHelper::NotifyKick(CCharEntity* PEntity) const
+{
+    if (PEntity)
+    {
+        NotifyKick(PEntity->id);
+    }
+}

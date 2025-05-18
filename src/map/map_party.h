@@ -56,6 +56,7 @@ public:
 
 private:
     void                       addMember(PartyMemberData& data);
+    void                       delMember(const PartyMember& member);
     std::vector<PartyMember>   members_;
     uint32                     m_PartyId               = 0;
     uint32                     m_LeaderUniqueNo        = 0;
