@@ -1006,7 +1006,7 @@ void CZone::CharZoneIn(CCharEntity* PChar)
     {
         if (PChar->PParty)
         {
-            PChar->PParty->ReloadTreasurePool(PChar);
+            // PChar->PParty->ReloadTreasurePool(PChar);
         }
         else
         {
@@ -1102,21 +1102,15 @@ void CZone::CharZoneOut(CCharEntity* PChar)
         {
             if (PChar->PParty->GetSyncTarget() == PChar || PChar->PParty->GetLeader() == PChar)
             {
-                PChar->PParty->SetSyncTarget("", MsgStd::LevelSyncDeactivateLeftArea);
+                PChar->PParty->ipc().SetSyncTarget(nullptr);
+                // PChar->PParty->SetSyncTarget("", MsgStd::LevelSyncDeactivateLeftArea);
             }
             if (PChar->PParty->GetSyncTarget() != nullptr)
             {
-                uint8 count = 0;
-                for (uint32 i = 0; i < PChar->PParty->members.size(); ++i)
+                if (PChar->PParty->GetMembers(PChar->PParty->GetSyncTarget()->getZone()).size() < 2)
                 {
-                    if (PChar->PParty->members.at(i) != PChar && PChar->PParty->members.at(i)->getZone() == PChar->PParty->GetSyncTarget()->getZone())
-                    {
-                        count++;
-                    }
-                }
-                if (count < 2) // 3, because one is zoning out - thus at least 2 will be left
-                {
-                    PChar->PParty->SetSyncTarget("", MsgStd::LevelSyncRemoveTooFewMembers);
+                    PChar->PParty->ipc().SetSyncTarget(nullptr);
+                    // PChar->PParty->SetSyncTarget("", MsgStd::LevelSyncRemoveTooFewMembers);
                 }
             }
         }

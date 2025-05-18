@@ -26,6 +26,7 @@
 #include "character_cache.h"
 #include "colonization_system.h"
 #include "conquest_system.h"
+#include "party_system.h"
 #include "world_server.h"
 
 #include <concurrentqueue.h>
@@ -490,15 +491,7 @@ void IPCServer::handleMessage_PartyReload(const IPP& ipp, const ipc::PartyReload
     // worldServer_.partySystem_->handleMessage(message);
 }
 
-void IPCServer::handleMessage_PartyDisband(const IPP& ipp, const ipc::PartyDisband& message)
-{
-    TracyZoneScoped;
 
-    rerouteMessageToPartyMembers(message.partyId, message);
-
-    // TODO:
-    // worldServer_.partySystem_->handleMessage(message);
-}
 
 void IPCServer::handleMessage_AllianceReload(const IPP& ipp, const ipc::AllianceReload& message)
 {
@@ -666,6 +659,60 @@ void IPCServer::handleMessage_SendPlayerToLocation(const IPP& ipp, const ipc::Se
     TracyZoneScoped;
 
     rerouteMessageToCharId(message.targetId, message);
+}
+
+void IPCServer::handleMessage_PartyCreate(const IPP& ipp, const ipc::PartyCreate& message)
+{
+    TracyZoneScoped;
+    worldServer_.partySystem_->PartyCreate(ipp, message);
+}
+
+void IPCServer::handleMessage_PartyAddMember(const IPP& ipp, const ipc::PartyAddMember& message)
+{
+    TracyZoneScoped;
+    worldServer_.partySystem_->PartyAddMember(ipp, message);
+}
+
+void IPCServer::handleMessage_PartyRemoveMember(const IPP& ipp, const ipc::PartyRemoveMember& message)
+{
+    TracyZoneScoped;
+    worldServer_.partySystem_->PartyRemoveMember(ipp, message);
+}
+
+void IPCServer::handleMessage_PartyDisband(const IPP& ipp, const ipc::PartyDisband& message)
+{
+    TracyZoneScoped;
+
+    rerouteMessageToPartyMembers(message.partyId, message);
+
+    // TODO:
+    worldServer_.partySystem_->PartyDisband(ipp, message);
+}
+
+void IPCServer::handleMessage_PartySetLeader(const IPP& ipp, const ipc::PartySetLeader& message)
+{
+    TracyZoneScoped;
+
+    worldServer_.partySystem_->PartySetLeader(ipp, message);
+}
+
+void IPCServer::handleMessage_PartySetQuartermaster(const IPP& ipp, const ipc::PartySetQuartermaster& message)
+{
+    TracyZoneScoped;
+
+    worldServer_.partySystem_->PartySetQuartermaster(ipp, message);
+}
+
+void IPCServer::handleMessage_PartySetSyncTarget(const IPP& ipp, const ipc::PartySetSyncTarget& message)
+{
+    TracyZoneScoped;
+
+    worldServer_.partySystem_->PartySetSyncTarget(ipp, message);
+}
+
+void IPCServer::handleMessage_PartyUpdate(const IPP& ipp, const ipc::PartyUpdate& message)
+{
+
 }
 
 void IPCServer::handleUnknownMessage(const IPP& ipp, const std::span<uint8_t> message)

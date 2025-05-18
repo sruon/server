@@ -3357,7 +3357,7 @@ namespace luautils
             }
 
             // clang-format off
-            PChar->ForAlliance([PMob, PChar, &onMobDeathEx](CBattleEntity* PMember)
+            PChar->ForEveryAllianceMember([PMob, PChar, &onMobDeathEx](CBattleEntity* PMember)
             {
                 if (PMember->getZone() == PChar->getZone())
                 {
@@ -3380,7 +3380,7 @@ namespace luautils
             sol::function onMobDeath          = getEntityCachedFunction(PMob, "onMobDeath");
 
             // clang-format off
-            PChar->ForAlliance([PMob, PChar, &onMobDeathFramework, &onMobDeath, &filename, &optParams](CBattleEntity* PPartyMember)
+            PChar->ForEveryAllianceMember([PMob, PChar, &onMobDeathFramework, &onMobDeath, &filename, &optParams](CBattleEntity* PPartyMember)
             {
                 CCharEntity* PMember = (CCharEntity*)PPartyMember;
                 if (PMember && PMember->getZone() == PChar->getZone())

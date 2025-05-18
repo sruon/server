@@ -20,3 +20,8 @@
 */
 
 #include "party_system.h"
+
+#include <common/ipc.h>
+#include <common/ipc_structs.h>
+#include <ipc_stubs.h>
+

@@ -66,6 +66,13 @@ int32 pump_queues(timer::time_point tick, CTaskManager::CTask* PTask)
     return 0;
 }
 
+int32 dump_parties(timer::time_point tick, CTaskManager::CTask* PTask)
+{
+    std::any_cast<WorldServer*>(PTask->m_data)->partySystem_->Dump();
+
+    return 0;
+}
+
 WorldServer::WorldServer(int argc, char** argv)
 : Application("world", argc, argv)
 , ipcServer_(std::make_unique<IPCServer>(*this))
@@ -81,6 +88,8 @@ WorldServer::WorldServer(int argc, char** argv)
 
     // TODO: Make this more reactive than a polling job
     CTaskManager::getInstance()->AddTask("pump_queues", timer::now(), this, CTaskManager::TASK_INTERVAL, kPumpQueuesTime, pump_queues);
+
+    CTaskManager::getInstance()->AddTask("dump_parties", timer::now(), this, CTaskManager::TASK_INTERVAL, 5000ms, dump_parties);
 
     // asio::steady_timer timeServerTimer(io_context_, kPumpQueuesTime);
     // timeServerTimer.async_wait(std::bind(&pump_queues, this, &timeServerTimer));

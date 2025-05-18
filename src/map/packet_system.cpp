@@ -3354,82 +3354,82 @@ void SmallPacket0x06E(MapSession* const PSession, CCharEntity* const PChar, CBas
             }
         }
         break;
-        case INVITE_ALLIANCE: // alliance - must be unallied party leader or alliance leader of a non-full alliance
-        {
-            if (PInviter->PParty && PInviter->PParty->GetLeader() == PInviter &&
-                (PInviter->PParty->m_PAlliance == nullptr ||
-                 (PInviter->PParty->m_PAlliance->getMainParty() == PInviter->PParty && !PInviter->PParty->m_PAlliance->isFull())))
-            {
-                CCharEntity* PInvitee = nullptr;
-
-                if (inviteeTargId != 0)
-                {
-                    CBaseEntity* PEntity = PInviter->GetEntity(inviteeTargId, TYPE_PC);
-                    if (PEntity && PEntity->id == inviteeCharId)
-                    {
-                        PInvitee = (CCharEntity*)PEntity;
-                    }
-                }
-                else
-                {
-                    PInvitee = zoneutils::GetChar(inviteeCharId);
-                }
-
-                if (PInvitee)
-                {
-                    ShowDebug("%s sent alliance invite to %s", PInviter->getName(), PInvitee->getName());
-
-                    // check /blockaid
-                    if (PInvitee->getBlockingAid())
-                    {
-                        ShowDebug("%s is blocking alliance invites", PInvitee->getName());
-                        // Target is blocking assistance
-                        PInviter->pushPacket<CMessageSystemPacket>(0, 0, MsgStd::TargetIsCurrentlyBlocking);
-                        // Interaction was blocked
-                        PInvitee->pushPacket<CMessageSystemPacket>(0, 0, MsgStd::BlockedByBlockaid);
-                        // You cannot invite that person at this time.
-                        PInviter->pushPacket<CMessageSystemPacket>(0, 0, MsgStd::CannotInvite);
-                        break;
-                    }
-
-                    // make sure intvitee isn't dead or in jail, they are an unallied party leader and don't already have an invite pending
-                    if (PInvitee->isDead() || jailutils::InPrison(PInvitee) || PInvitee->InvitePending.id != 0 || PInvitee->PParty == nullptr ||
-                        PInvitee->PParty->GetLeader() != PInvitee || PInvitee->PParty->m_PAlliance)
-                    {
-                        ShowDebug("%s is dead, in jail, has a pending invite, or is already in a party/alliance", PInvitee->getName());
-                        PInviter->pushPacket<CMessageStandardPacket>(PInviter, 0, 0, MsgStd::CannotInvite);
-                        break;
-                    }
-
-                    if (PInvitee->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))
-                    {
-                        ShowDebug("%s has level sync, unable to send invite", PInvitee->getName());
-                        PInviter->pushPacket<CMessageStandardPacket>(PInviter, 0, 0, MsgStd::CannotInviteLevelSync);
-                        break;
-                    }
-
-                    PInvitee->InvitePending.id     = PInviter->id;
-                    PInvitee->InvitePending.targid = PInviter->targid;
-
-                    PInvitee->pushPacket<CPartyInvitePacket>(inviteeCharId, inviteeTargId, PInviter->getName(), INVITE_ALLIANCE);
-
-                    ShowDebug("Sent party invite packet to %s", PInvitee->getName());
-                }
-                else
-                {
-                    // on another server (hopefully)
-                    message::send(ipc::PartyInvite{
-                        .inviteeId     = inviteeCharId,
-                        .inviteeTargId = inviteeTargId,
-                        .inviterId     = PInviter->id,
-                        .inviterTargId = PInviter->targid,
-                        .inviterName   = PInviter->getName(),
-                        .inviteType    = INVITE_ALLIANCE,
-                    });
-                }
-            }
-        }
-        break;
+        // case INVITE_ALLIANCE: // alliance - must be unallied party leader or alliance leader of a non-full alliance
+        // {
+        //     if (PInviter->PParty && PInviter->PParty->GetLeader() == PInviter &&
+        //         (PInviter->PParty->m_PAlliance == nullptr ||
+        //          (PInviter->PParty->m_PAlliance->getMainParty() == PInviter->PParty && !PInviter->PParty->m_PAlliance->isFull())))
+        //     {
+        //         CCharEntity* PInvitee = nullptr;
+        //
+        //         if (inviteeTargId != 0)
+        //         {
+        //             CBaseEntity* PEntity = PInviter->GetEntity(inviteeTargId, TYPE_PC);
+        //             if (PEntity && PEntity->id == inviteeCharId)
+        //             {
+        //                 PInvitee = (CCharEntity*)PEntity;
+        //             }
+        //         }
+        //         else
+        //         {
+        //             PInvitee = zoneutils::GetChar(inviteeCharId);
+        //         }
+        //
+        //         if (PInvitee)
+        //         {
+        //             ShowDebug("%s sent alliance invite to %s", PInviter->getName(), PInvitee->getName());
+        //
+        //             // check /blockaid
+        //             if (PInvitee->getBlockingAid())
+        //             {
+        //                 ShowDebug("%s is blocking alliance invites", PInvitee->getName());
+        //                 // Target is blocking assistance
+        //                 PInviter->pushPacket<CMessageSystemPacket>(0, 0, MsgStd::TargetIsCurrentlyBlocking);
+        //                 // Interaction was blocked
+        //                 PInvitee->pushPacket<CMessageSystemPacket>(0, 0, MsgStd::BlockedByBlockaid);
+        //                 // You cannot invite that person at this time.
+        //                 PInviter->pushPacket<CMessageSystemPacket>(0, 0, MsgStd::CannotInvite);
+        //                 break;
+        //             }
+        //
+        //             // make sure intvitee isn't dead or in jail, they are an unallied party leader and don't already have an invite pending
+        //             if (PInvitee->isDead() || jailutils::InPrison(PInvitee) || PInvitee->InvitePending.id != 0 || PInvitee->PParty == nullptr ||
+        //                 PInvitee->PParty->GetLeader() != PInvitee || PInvitee->PParty->m_PAlliance)
+        //             {
+        //                 ShowDebug("%s is dead, in jail, has a pending invite, or is already in a party/alliance", PInvitee->getName());
+        //                 PInviter->pushPacket<CMessageStandardPacket>(PInviter, 0, 0, MsgStd::CannotInvite);
+        //                 break;
+        //             }
+        //
+        //             if (PInvitee->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))
+        //             {
+        //                 ShowDebug("%s has level sync, unable to send invite", PInvitee->getName());
+        //                 PInviter->pushPacket<CMessageStandardPacket>(PInviter, 0, 0, MsgStd::CannotInviteLevelSync);
+        //                 break;
+        //             }
+        //
+        //             PInvitee->InvitePending.id     = PInviter->id;
+        //             PInvitee->InvitePending.targid = PInviter->targid;
+        //
+        //             PInvitee->pushPacket<CPartyInvitePacket>(inviteeCharId, inviteeTargId, PInviter->getName(), INVITE_ALLIANCE);
+        //
+        //             ShowDebug("Sent party invite packet to %s", PInvitee->getName());
+        //         }
+        //         else
+        //         {
+        //             // on another server (hopefully)
+        //             message::send(ipc::PartyInvite{
+        //                 .inviteeId     = inviteeCharId,
+        //                 .inviteeTargId = inviteeTargId,
+        //                 .inviterId     = PInviter->id,
+        //                 .inviterTargId = PInviter->targid,
+        //                 .inviterName   = PInviter->getName(),
+        //                 .inviteType    = INVITE_ALLIANCE,
+        //             });
+        //         }
+        //     }
+        // }
+        // break;
         default:
         {
             ShowError("SmallPacket0x06E : unknown byte <%.2X>", data.ref<uint8>(0x0A));
@@ -3454,54 +3454,53 @@ void SmallPacket0x06F(MapSession* const PSession, CCharEntity* const PChar, CBas
         {
             case INVITE_PARTY: // party - anyone may remove themself from party regardless of leadership or alliance
             {
-                if (PChar->PParty->m_PAlliance &&
-                    PChar->PParty->HasOnlyOneMember()) // single member alliance parties must be removed from alliance before disband
-                {
-                    ShowDebug("%s party size is one", PChar->getName());
-
-                    if (PChar->PParty->m_PAlliance->hasOnlyOneParty()) // if there is only 1 party then dissolve alliance
-                    {
-                        ShowDebug("%s alliance size is one party", PChar->getName());
-
-                        PChar->PParty->m_PAlliance->dissolveAlliance();
-                        ShowDebug("%s alliance is dissolved", PChar->getName());
-                    }
-                    else
-                    {
-                        ShowDebug("Removing %s party from alliance", PChar->getName());
-
-                        PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
-                        ShowDebug("%s party is removed from alliance", PChar->getName());
-                    }
-                }
+                // if (PChar->PParty->m_PAlliance &&
+                //     PChar->PParty->HasOnlyOneMember()) // single member alliance parties must be removed from alliance before disband
+                // {
+                //     ShowDebug("%s party size is one", PChar->getName());
+                //
+                //     if (PChar->PParty->m_PAlliance->hasOnlyOneParty()) // if there is only 1 party then dissolve alliance
+                //     {
+                //         ShowDebug("%s alliance size is one party", PChar->getName());
+                //
+                //         PChar->PParty->m_PAlliance->dissolveAlliance();
+                //         ShowDebug("%s alliance is dissolved", PChar->getName());
+                //     }
+                //     else
+                //     {
+                //         ShowDebug("Removing %s party from alliance", PChar->getName());
+                //
+                //         PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
+                //         ShowDebug("%s party is removed from alliance", PChar->getName());
+                //     }
+                // }
                 ShowDebug("Removing %s from party", PChar->getName());
-
-                PChar->PParty->RemoveMember(PChar);
+                PChar->PParty->ipc().RemoveMember(PChar);
                 ShowDebug("%s is removed from party", PChar->getName());
             }
             break;
-            case INVITE_ALLIANCE: // alliance - any party leader in alliance may remove their party
-            {
-                if (PChar->PParty->m_PAlliance && PChar->PParty->GetLeader() == PChar)
-                {
-                    ShowDebug("%s is leader of a party in an alliance", PChar->getName());
-                    if (PChar->PParty->m_PAlliance->hasOnlyOneParty()) // if there is only 1 party then dissolve alliance
-                    {
-                        ShowDebug("One party in alliance, %s wants to dissolve the alliance", PChar->getName());
-
-                        PChar->PParty->m_PAlliance->dissolveAlliance();
-                        ShowDebug("%s has dissolved the alliance", PChar->getName());
-                    }
-                    else
-                    {
-                        ShowDebug("%s wants to remove their party from the alliance", PChar->getName());
-
-                        PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
-                        ShowDebug("%s party is removed from the alliance", PChar->getName());
-                    }
-                }
-            }
-            break;
+            // case INVITE_ALLIANCE: // alliance - any party leader in alliance may remove their party
+            // {
+            //     if (PChar->PParty->m_PAlliance && PChar->PParty->GetLeader() == PChar)
+            //     {
+            //         ShowDebug("%s is leader of a party in an alliance", PChar->getName());
+            //         if (PChar->PParty->m_PAlliance->hasOnlyOneParty()) // if there is only 1 party then dissolve alliance
+            //         {
+            //             ShowDebug("One party in alliance, %s wants to dissolve the alliance", PChar->getName());
+            //
+            //             PChar->PParty->m_PAlliance->dissolveAlliance();
+            //             ShowDebug("%s has dissolved the alliance", PChar->getName());
+            //         }
+            //         else
+            //         {
+            //             ShowDebug("%s wants to remove their party from the alliance", PChar->getName());
+            //
+            //             PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
+            //             ShowDebug("%s party is removed from the alliance", PChar->getName());
+            //         }
+            //     }
+            // }
+            // break;
             default:
             {
                 ShowError("SmallPacket0x06F : unknown byte <%.2X>", data.ref<uint8>(0x04));
@@ -3521,32 +3520,30 @@ void SmallPacket0x070(MapSession* const PSession, CCharEntity* const PChar, CBas
 {
     TracyZoneScoped;
 
-    if (PChar->PParty && PChar->PParty->GetLeader() == PChar)
+    // TODO: Get party ID from PChar
+    if (PChar->PParty == nullptr)
     {
-        switch (data.ref<uint8>(0x04))
-        {
-            case 0: // party - party leader may disband party if not an alliance member
-                if (PChar->PParty->m_PAlliance == nullptr)
-                {
-                    ShowDebug("%s is disbanding the party (pcmd breakup)", PChar->getName());
-                    PChar->PParty->DisbandParty();
-                    ShowDebug("%s party has been disbanded (pcmd breakup)", PChar->getName());
-                }
-                break;
+        return;
+    }
 
-            case 5: // alliance - only alliance leader may dissolve the entire alliance
-                if (PChar->PParty->m_PAlliance && PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty)
-                {
-                    ShowDebug("%s is disbanding the alliance (acmd breakup)", PChar->getName());
-                    PChar->PParty->m_PAlliance->dissolveAlliance();
-                    ShowDebug("%s alliance has been disbanded (acmd breakup)", PChar->getName());
-                }
-                break;
+    switch (data.ref<uint8>(0x04))
+    {
+        case 0:
+            ShowDebug("Forwarding request: %s is disbanding the party (pcmd breakup)", PChar->getName());
+            message::send(ipc::PartyDisband{
+                .partyId = PChar->PParty->GetPartyID(),
+            });
 
-            default:
-                ShowError("SmallPacket0x070 : unknown byte <%.2X>", data.ref<uint8>(0x04));
-                break;
-        }
+            break;
+        case 5:
+            // Alliances not handled yet
+            // message::send(ipc::PartyDisband{
+            //         .partyId = 1,
+            //     });
+            break;
+        default:
+            ShowError("SmallPacket0x070 : unknown byte <%.2X>", data.ref<uint8>(0x04));
+            break;
     }
 }
 
@@ -3575,25 +3572,25 @@ void SmallPacket0x071(MapSession* const PSession, CCharEntity* const PChar, CBas
                     ShowDebug("%s is trying to kick %s from party", PChar->getName(), PVictim->getName());
                     if (PVictim == PChar) // using kick on yourself, let's borrow the logic from /pcmd leave to prevent alliance crash
                     {
-                        if (PChar->PParty->m_PAlliance &&
-                            PChar->PParty->HasOnlyOneMember()) // single member alliance parties must be removed from alliance before disband
-                        {
-                            if (PChar->PParty->m_PAlliance->hasOnlyOneParty()) // if there is only 1 party then dissolve alliance
-                            {
-                                ShowDebug("One party in alliance, %s wants to dissolve the alliance", PChar->getName());
-                                PChar->PParty->m_PAlliance->dissolveAlliance();
-                                ShowDebug("%s has dissolved the alliance", PChar->getName());
-                            }
-                            else
-                            {
-                                ShowDebug("%s wants to remove their party from the alliance", PChar->getName());
-                                PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
-                                ShowDebug("%s party is removed from the alliance", PChar->getName());
-                            }
-                        }
+                        // if (PChar->PParty->m_PAlliance &&
+                        //     PChar->PParty->HasOnlyOneMember()) // single member alliance parties must be removed from alliance before disband
+                        // {
+                        //     if (PChar->PParty->m_PAlliance->hasOnlyOneParty()) // if there is only 1 party then dissolve alliance
+                        //     {
+                        //         ShowDebug("One party in alliance, %s wants to dissolve the alliance", PChar->getName());
+                        //         PChar->PParty->m_PAlliance->dissolveAlliance();
+                        //         ShowDebug("%s has dissolved the alliance", PChar->getName());
+                        //     }
+                        //     else
+                        //     {
+                        //         ShowDebug("%s wants to remove their party from the alliance", PChar->getName());
+                        //         PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
+                        //         ShowDebug("%s party is removed from the alliance", PChar->getName());
+                        //     }
+                        // }
                     }
 
-                    PChar->PParty->RemoveMember(PVictim);
+                    PChar->PParty->ipc().RemoveMember(PVictim);
                     ShowDebug("%s has removed %s from party", PChar->getName(), PVictim->getName());
                 }
                 else
@@ -3605,18 +3602,18 @@ void SmallPacket0x071(MapSession* const PSession, CCharEntity* const PChar, CBas
                         {
                             ShowDebug("%s has removed %s from party", PChar->getName(), victimName);
 
-                            if (PChar->PParty && PChar->PParty->m_PAlliance)
-                            {
-                                message::send(ipc::AllianceReload{
-                                    .allianceId = PChar->PParty->m_PAlliance->m_AllianceID,
-                                });
-                            }
-                            else // No alliance, notify party.
-                            {
-                                message::send(ipc::PartyReload{
-                                    .partyId = PChar->PParty->GetPartyID(),
-                                });
-                            }
+                            // if (PChar->PParty && PChar->PParty->m_PAlliance)
+                            // {
+                            //     message::send(ipc::AllianceReload{
+                            //         .allianceId = PChar->PParty->m_PAlliance->m_AllianceID,
+                            //     });
+                            // }
+                            // else // No alliance, notify party.
+                            // {
+                            //     message::send(ipc::PartyReload{
+                            //         .partyId = PChar->PParty->GetPartyID(),
+                            //     });
+                            // }
 
                             // Notify the player they were just kicked -- they are no longer in the DB and party/alliance reloads won't notify them.
                             message::send(ipc::PlayerKick{
@@ -3658,71 +3655,71 @@ void SmallPacket0x071(MapSession* const PSession, CCharEntity* const PChar, CBas
             }
         }
         break;
-        case 5: // alliance - alliance leader may kick a party by using that party's leader as kick parameter
-        {
-            if (PChar->PParty && PChar->PParty->GetLeader() == PChar && PChar->PParty->m_PAlliance)
-            {
-                CCharEntity* PVictim = nullptr;
-                for (std::size_t i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
-                {
-                    PVictim = dynamic_cast<CCharEntity*>(PChar->PParty->m_PAlliance->partyList[i]->GetMemberByName(victimName));
-                    if (PVictim && PVictim->PParty && PVictim->PParty->m_PAlliance) // victim is in this party
-                    {
-                        ShowDebug("%s is trying to kick %s party from alliance", PChar->getName(), PVictim->getName());
-                        // if using kick on yourself, or alliance leader using kick on another party leader - remove the party
-                        if (PVictim == PChar || (PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty && PVictim->PParty->GetLeader() == PVictim))
-                        {
-                            if (PVictim->PParty->m_PAlliance->hasOnlyOneParty()) // if there is only 1 party then dissolve alliance
-                            {
-                                ShowDebug("One party in alliance, %s wants to dissolve the alliance", PChar->getName());
-                                PVictim->PParty->m_PAlliance->dissolveAlliance();
-                                ShowDebug("%s has dissolved the alliance", PChar->getName());
-                            }
-                            else
-                            {
-                                PVictim->PParty->m_PAlliance->removeParty(PVictim->PParty);
-                                ShowDebug("%s has removed %s party from alliance", PChar->getName(), PVictim->getName());
-                            }
-                        }
-                        break; // we're done, break the for
-                    }
-                }
-                if (!PVictim && PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty)
-                {
-                    uint32 allianceID = PChar->PParty->m_PAlliance->m_AllianceID;
-
-                    if (const auto victimId = charutils::getCharIdFromName(victimName))
-                    {
-                        const auto rset = db::preparedStmt(
-                            "SELECT partyid FROM accounts_parties WHERE charid = ? AND allianceid = ? AND partyflag & ?",
-                            victimId, PChar->PParty->m_PAlliance->m_AllianceID, PARTY_LEADER | PARTY_SECOND | PARTY_THIRD);
-
-                        FOR_DB_SINGLE_RESULT(rset)
-                        {
-                            uint32 partyid = rset->get<uint32>("partyid");
-
-                            const auto rset2 = db::preparedStmt("UPDATE accounts_parties SET allianceid = 0, partyflag = partyflag & ~? WHERE partyid = ?",
-                                                                PARTY_SECOND | PARTY_THIRD, partyid);
-                            if (rset2 && rset2->rowsAffected())
-                            {
-                                ShowDebug("%s has removed %s party from alliance", PChar->getName(), victimName);
-
-                                // notify party they were removed
-                                message::send(ipc::PartyReload{
-                                    .partyId = partyid,
-                                });
-
-                                // notify alliance a party was removed
-                                message::send(ipc::AllianceReload{
-                                    .allianceId = allianceID,
-                                });
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        break;
+        // case 5: // alliance - alliance leader may kick a party by using that party's leader as kick parameter
+        // {
+        //     if (PChar->PParty && PChar->PParty->GetLeader() == PChar && PChar->PParty->m_PAlliance)
+        //     {
+        //         CCharEntity* PVictim = nullptr;
+        //         for (std::size_t i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
+        //         {
+        //             PVictim = dynamic_cast<CCharEntity*>(PChar->PParty->m_PAlliance->partyList[i]->GetMemberByName(victimName));
+        //             if (PVictim && PVictim->PParty && PVictim->PParty->m_PAlliance) // victim is in this party
+        //             {
+        //                 ShowDebug("%s is trying to kick %s party from alliance", PChar->getName(), PVictim->getName());
+        //                 // if using kick on yourself, or alliance leader using kick on another party leader - remove the party
+        //                 if (PVictim == PChar || (PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty && PVictim->PParty->GetLeader() == PVictim))
+        //                 {
+        //                     if (PVictim->PParty->m_PAlliance->hasOnlyOneParty()) // if there is only 1 party then dissolve alliance
+        //                     {
+        //                         ShowDebug("One party in alliance, %s wants to dissolve the alliance", PChar->getName());
+        //                         PVictim->PParty->m_PAlliance->dissolveAlliance();
+        //                         ShowDebug("%s has dissolved the alliance", PChar->getName());
+        //                     }
+        //                     else
+        //                     {
+        //                         PVictim->PParty->m_PAlliance->removeParty(PVictim->PParty);
+        //                         ShowDebug("%s has removed %s party from alliance", PChar->getName(), PVictim->getName());
+        //                     }
+        //                 }
+        //                 break; // we're done, break the for
+        //             }
+        //         }
+        //         if (!PVictim && PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty)
+        //         {
+        //             uint32 allianceID = PChar->PParty->m_PAlliance->m_AllianceID;
+        //
+        //             if (const auto victimId = charutils::getCharIdFromName(victimName))
+        //             {
+        //                 const auto rset = db::preparedStmt(
+        //                     "SELECT partyid FROM accounts_parties WHERE charid = ? AND allianceid = ? AND partyflag & ?",
+        //                     victimId, PChar->PParty->m_PAlliance->m_AllianceID, PARTY_LEADER | PARTY_SECOND | PARTY_THIRD);
+        //
+        //                 FOR_DB_SINGLE_RESULT(rset)
+        //                 {
+        //                     uint32 partyid = rset->get<uint32>("partyid");
+        //
+        //                     const auto rset2 = db::preparedStmt("UPDATE accounts_parties SET allianceid = 0, partyflag = partyflag & ~? WHERE partyid = ?",
+        //                                                         PARTY_SECOND | PARTY_THIRD, partyid);
+        //                     if (rset2 && rset2->rowsAffected())
+        //                     {
+        //                         ShowDebug("%s has removed %s party from alliance", PChar->getName(), victimName);
+        //
+        //                         // notify party they were removed
+        //                         message::send(ipc::PartyReload{
+        //                             .partyId = partyid,
+        //                         });
+        //
+        //                         // notify alliance a party was removed
+        //                         message::send(ipc::AllianceReload{
+        //                             .allianceId = allianceID,
+        //                         });
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
+        // break;
         default:
         {
             ShowError("SmallPacket0x071 : unknown byte <%.2X>", data.ref<uint8>(0x0A));
@@ -3758,49 +3755,50 @@ void SmallPacket0x074(MapSession* const PSession, CCharEntity* const PChar, CBas
         }
 
         // check for alliance invite
-        if (PChar->PParty != nullptr && PInviter->PParty != nullptr)
-        {
-            // both invitee and and inviter are party leaders
-            if (PInviter->PParty->GetLeader() == PInviter && PChar->PParty->GetLeader() == PChar)
-            {
-                ShowDebug("%s invited %s to an alliance", PInviter->getName(), PChar->getName());
-
-                // the inviter already has an alliance and wants to add another party - only add if they have room for another party
-                if (PInviter->PParty->m_PAlliance)
-                {
-                    // break if alliance is full or the inviter is not the leader
-                    if (PInviter->PParty->m_PAlliance->isFull() || PInviter->PParty->m_PAlliance->getMainParty() != PInviter->PParty)
-                    {
-                        ShowDebug("Alliance is full, invite to %s cancelled", PChar->getName());
-                        PChar->pushPacket<CMessageStandardPacket>(PChar, 0, 0, MsgStd::CannotBeProcessed);
-                        PChar->InvitePending.clean();
-                        return;
-                    }
-
-                    // alliance is not full, add the new party
-                    PInviter->PParty->m_PAlliance->addParty(PChar->PParty);
-                    PChar->InvitePending.clean();
-                    ShowDebug("%s party added to %s alliance", PChar->getName(), PInviter->getName());
-                    return;
-                }
-                else if (PChar->PParty->HasTrusts() || PInviter->PParty->HasTrusts())
-                {
-                    // Cannot form alliance if you have Trusts
-                    PChar->pushPacket<CMessageStandardPacket>(PChar, 0, 0, MsgStd::TrustCannotJoinAlliance);
-                    return;
-                }
-                else
-                {
-                    // party leaders have no alliance - create a new one!
-                    ShowDebug("Creating new alliance");
-                    PInviter->PParty->m_PAlliance = new CAlliance(PInviter);
-                    PInviter->PParty->m_PAlliance->addParty(PChar->PParty);
-                    PChar->InvitePending.clean();
-                    ShowDebug("%s party added to %s alliance", PChar->getName(), PInviter->getName());
-                    return;
-                }
-            }
-        }
+        // if (PChar->PParty != nullptr && PInviter->PParty != nullptr)
+        // {
+        //     // both invitee and and inviter are party leaders
+        //     if (PInviter->PParty->GetLeader() == PInviter && PChar->PParty->GetLeader() == PChar)
+        //     {
+        //         ShowDebug("%s invited %s to an alliance", PInviter->getName(), PChar->getName());
+        //
+        //         // the inviter already has an alliance and wants to add another party - only add if they have room for another party
+        //         if (PInviter->PParty->m_PAlliance)
+        //         {
+        //             // break if alliance is full or the inviter is not the leader
+        //             if (PInviter->PParty->m_PAlliance->isFull() || PInviter->PParty->m_PAlliance->getMainParty() != PInviter->PParty)
+        //             {
+        //                 ShowDebug("Alliance is full, invite to %s cancelled", PChar->getName());
+        //                 PChar->pushPacket<CMessageStandardPacket>(PChar, 0, 0, MsgStd::CannotBeProcessed);
+        //                 PChar->InvitePending.clean();
+        //                 return;
+        //             }
+        //
+        //             // alliance is not full, add the new party
+        //             PInviter->PParty->m_PAlliance->addParty(PChar->PParty);
+        //             PChar->InvitePending.clean();
+        //             ShowDebug("%s party added to %s alliance", PChar->getName(), PInviter->getName());
+        //             return;
+        //         }
+        //         // TODO: Uplift for new system
+        //         // else if (PChar->PParty->HasTrusts() || PInviter->PParty->HasTrusts())
+        //         // {
+        //         //     // Cannot form alliance if you have Trusts
+        //         //     PChar->pushPacket<CMessageStandardPacket>(PChar, 0, 0, MsgStd::TrustCannotJoinAlliance);
+        //         //     return;
+        //         // }
+        //         else
+        //         {
+        //             // party leaders have no alliance - create a new one!
+        //             ShowDebug("Creating new alliance");
+        //             PInviter->PParty->m_PAlliance = new CAlliance(PInviter);
+        //             PInviter->PParty->m_PAlliance->addParty(PChar->PParty);
+        //             PChar->InvitePending.clean();
+        //             ShowDebug("%s party added to %s alliance", PChar->getName(), PInviter->getName());
+        //             return;
+        //         }
+        //     }
+        // }
 
         // the rest is for a standard party invitation
         if (PChar->PParty == nullptr)
@@ -3811,7 +3809,10 @@ void SmallPacket0x074(MapSession* const PSession, CCharEntity* const PChar, CBas
                 if (PInviter->PParty == nullptr)
                 {
                     ShowDebug("Creating new party");
-                    PInviter->PParty = new CParty(PInviter);
+                    message::send(ipc::PartyCreate{
+                        .charId = PInviter->id,
+                        .zoneId = PInviter->getZone(),
+                    });
                 }
                 if (PInviter->PParty->GetLeader() == PInviter)
                 {
@@ -3824,7 +3825,8 @@ void SmallPacket0x074(MapSession* const PSession, CCharEntity* const PChar, CBas
                     else
                     {
                         ShowDebug("Added %s to %s's party", PChar->getName(), PInviter->getName());
-                        PInviter->PParty->AddMember(PChar);
+                        PInviter->PParty->ipc().AddMember(PChar);
+                        // PInviter->PParty->AddMember(PChar);
                     }
                 }
             }
@@ -3860,15 +3862,16 @@ void SmallPacket0x076(MapSession* const PSession, CCharEntity* const PChar, CBas
 {
     TracyZoneScoped;
 
-    if (PChar->PParty)
-    {
-        PChar->PParty->ReloadPartyMembers(PChar);
-    }
-    else
-    {
-        // previous CPartyDefine was dropped or otherwise didn't work?
-        PChar->pushPacket<CPartyDefinePacket>(nullptr, false);
-    }
+    // TODO: Uplift for new party system
+    // if (PChar->PParty)
+    // {
+    //     PChar->PParty->ReloadPartyMembers(PChar);
+    // }
+    // else
+    // {
+    // previous CPartyDefine was dropped or otherwise didn't work?
+    // PChar->pushPacket<CPartyDefinePacket>(nullptr, false);
+    // }
 }
 
 /************************************************************************
@@ -3892,7 +3895,32 @@ void SmallPacket0x077(MapSession* const PSession, CCharEntity* const PChar, CBas
             if (PChar->PParty != nullptr && PChar->PParty->GetLeader() == PChar)
             {
                 ShowDebug(fmt::format("(Party) Altering permissions of {} to {}", memberName, permission));
-                PChar->PParty->AssignPartyRole(memberName, permission);
+                auto* PNewLeader = PChar->PParty->GetMemberByName(memberName);
+
+                switch (permission)
+                {
+                    case 0: // Leader change
+                        PChar->PParty->ipc().SetLeader(PNewLeader);
+                        break;
+                    case 4: // QM
+                        PChar->PParty->ipc().SetQuartermaster(PNewLeader);
+                        break;
+                    case 5: // Lottery type
+                        PChar->PParty->ipc().SetQuartermaster(static_cast<uint32>(0));
+                        break;
+                    case 6: // Set sync
+                        PChar->PParty->ipc().SetSyncTarget(PNewLeader);
+                        break;
+                    case 7: // Remove sync
+                        PChar->PParty->ipc().SetSyncTarget(static_cast<uint32>(0));
+                        break;
+                    default:
+                        ShowError("SmallPacket0x077 : unknown permission <%.2X>", permission);
+                        break;
+                }
+                // TODO: wont work cross process as is
+
+                // PChar->PParty->AssignPartyRole(memberName, permission);
             }
         }
         break;
@@ -3922,20 +3950,20 @@ void SmallPacket0x077(MapSession* const PSession, CCharEntity* const PChar, CBas
             }
         }
         break;
-        case 5: // alliance
-        {
-            if (PChar->PParty && PChar->PParty->m_PAlliance && PChar->PParty->GetLeader() == PChar &&
-                PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty)
-            {
-                ShowDebug(fmt::format("(Alliance) Changing leader to {}", memberName));
-                PChar->PParty->m_PAlliance->assignAllianceLeader(memberName);
-
-                message::send(ipc::AllianceReload{
-                    .allianceId = PChar->PParty->m_PAlliance->m_AllianceID,
-                });
-            }
-        }
-        break;
+        // case 5: // alliance
+        // {
+        //     if (PChar->PParty && PChar->PParty->m_PAlliance && PChar->PParty->GetLeader() == PChar &&
+        //         PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty)
+        //     {
+        //         ShowDebug(fmt::format("(Alliance) Changing leader to {}", memberName));
+        //         PChar->PParty->m_PAlliance->assignAllianceLeader(memberName);
+        //
+        //         message::send(ipc::AllianceReload{
+        //             .allianceId = PChar->PParty->m_PAlliance->m_AllianceID,
+        //         });
+        //     }
+        // }
+        // break;
         default:
         {
             ShowError("SmallPacket0x077 : changing role packet with unknown byte <%.2X>", data.ref<uint8>(0x14));
@@ -4735,28 +4763,28 @@ void SmallPacket0x0B5(MapSession* const PSession, CCharEntity* const PChar, CBas
                 {
                     if (PChar->PParty != nullptr)
                     {
-                        if (PChar->PParty->m_PAlliance)
-                        {
-                            message::send(ipc::ChatMessageAlliance{
-                                .allianceId = PChar->PParty->m_PAlliance->m_AllianceID,
-                                .senderId   = PChar->id,
-                                .senderName = PChar->getName(),
-                                .message    = rawMessage,
-                                .zoneId     = PChar->getZone(),
-                                .gmLevel    = PChar->m_GMlevel,
-                            });
-                        }
-                        else
-                        {
-                            message::send(ipc::ChatMessageParty{
-                                .partyId    = PChar->PParty->GetPartyID(),
-                                .senderId   = PChar->id,
-                                .senderName = PChar->getName(),
-                                .message    = rawMessage,
-                                .zoneId     = PChar->getZone(),
-                                .gmLevel    = PChar->m_GMlevel,
-                            });
-                        }
+                        // if (PChar->PParty->m_PAlliance)
+                        // {
+                        //     message::send(ipc::ChatMessageAlliance{
+                        //         .allianceId = PChar->PParty->m_PAlliance->m_AllianceID,
+                        //         .senderId   = PChar->id,
+                        //         .senderName = PChar->getName(),
+                        //         .message    = rawMessage,
+                        //         .zoneId     = PChar->getZone(),
+                        //         .gmLevel    = PChar->m_GMlevel,
+                        //     });
+                        // }
+                        // else
+                        // {
+                        message::send(ipc::ChatMessageParty{
+                            .partyId    = PChar->PParty->GetPartyID(),
+                            .senderId   = PChar->id,
+                            .senderName = PChar->getName(),
+                            .message    = rawMessage,
+                            .zoneId     = PChar->getZone(),
+                            .gmLevel    = PChar->m_GMlevel,
+                        });
+                        // }
 
                         if (settings::get<bool>("map.AUDIT_CHAT") && settings::get<uint8>("map.AUDIT_PARTY"))
                         {
@@ -5300,7 +5328,7 @@ void SmallPacket0x0D2(MapSession* const PSession, CCharEntity* const PChar, CBas
     TracyZoneScoped;
 
     // clang-format off
-    PChar->ForAlliance([PChar](CBattleEntity* PPartyMember)
+    PChar->ForEveryAllianceMember([PChar](CBattleEntity* PPartyMember)
     {
         if (PPartyMember)
         {
@@ -6755,7 +6783,7 @@ void SmallPacket0x100(MapSession* const PSession, CCharEntity* const PChar, CBas
         PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE | EFFECTFLAG_ROLL | EFFECTFLAG_ON_JOBCHANGE);
 
         // clang-format off
-        PChar->ForParty([](CBattleEntity* PMember)
+        PChar->ForEveryPartyMember([](CBattleEntity* PMember)
         {
             ((CCharEntity*)PMember)->PLatentEffectContainer->CheckLatentsPartyJobs();
         });

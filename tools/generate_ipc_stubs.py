@@ -59,6 +59,14 @@ IPC_STRUCT_NAMES = [
     "EntityInformationResponse",
 
     "SendPlayerToLocation",
+
+    "PartyUpdate",
+    "PartyCreate",
+    "PartyAddMember",
+    "PartyRemoveMember",
+    "PartySetLeader",
+    "PartySetQuartermaster",
+    "PartySetSyncTarget",
 ]
 
 

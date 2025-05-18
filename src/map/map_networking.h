@@ -26,10 +26,12 @@
 #include "common/ipp.h"
 
 #include "map_constants.h"
+#include "map_party_container.h"
 #include "map_session.h"
 #include "map_session_container.h"
 #include "map_socket.h"
 #include "map_statistics.h"
+#include "party.h"
 
 #include <span>
 
@@ -62,6 +64,7 @@ public:
 
     auto ipp() -> IPP;
     auto sessions() -> MapSessionContainer&;
+    auto parties() -> PartyContainer&;
     auto socket() -> MapSocket&;
 
 private:
@@ -70,4 +73,5 @@ private:
     IPP                        mapIPP_;
     MapSessionContainer        mapSessions_;
     std::unique_ptr<MapSocket> mapSocket_;
+    PartyContainer             parties_;
 };

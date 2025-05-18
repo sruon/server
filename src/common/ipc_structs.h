@@ -22,6 +22,7 @@
 #pragma once
 
 #include "cbasetypes.h"
+#include "party.h"
 
 #include "common/regional_event.h"
 
@@ -297,4 +298,52 @@ namespace ipc
         uint8  rot{};
         uint32 moghouseId{};
     };
+
+    struct PartyUpdate
+    {
+        uint32                         partyId{};
+        uint32                         leaderUniqueNo{};
+        uint32                         quartermasterUniqueNo{};
+        uint32                         syncTargetUniqueNo{};
+        std::vector<PartyMemberData>   members{};
+    };
+
+    struct PartyCreate
+    {
+        uint32 charId{};
+        uint16 zoneId{};
+    };
+
+    struct PartyAddMember
+    {
+        uint32          partyId{};
+        uint32          charId{};
+        PartyMemberType type{};
+        uint16          zoneId{};
+    };
+
+    struct PartyRemoveMember
+    {
+        uint32 partyId{};
+        uint32 charId{};
+    };
+
+    struct PartySetLeader
+    {
+        uint32 partyId{};
+        uint32 charId{};
+    };
+
+    struct PartySetQuartermaster
+    {
+        uint32 partyId{};
+        uint32 charId{};
+    };
+
+    struct PartySetSyncTarget
+    {
+        uint32 partyId{};
+        uint32 charId{};
+    };
+
 } // namespace ipc

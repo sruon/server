@@ -66,7 +66,6 @@ public:
     ~CParty();
 
     uint32 GetPartyID() const;
-    uint16 GetMemberFlags(CBattleEntity* PEntity);
     uint8  MemberCount(uint16 ZoneID);
 
     CBattleEntity* GetLeader();
@@ -74,35 +73,21 @@ public:
     CBattleEntity* GetQuaterMaster();
     CBattleEntity* GetMemberByName(const std::string& memberName); // Returns entity pointer for member name string
 
-    void DisbandParty(bool playerInitiated = true);
-    void ReloadParty();
-    void ReloadPartyMembers(CCharEntity* PChar);
     void ReloadTreasurePool(CCharEntity* PChar);
 
-    void   AddMember(CBattleEntity* PEntity);
-    void   AddMember(uint32 id);                 // Add party member from outside this server's scope
     void   RemoveMember(CBattleEntity* PEntity); //
     void   DelMember(CBattleEntity* PEntity);    // remove a member without invoking chat/db
     void   PopMember(CBattleEntity* PEntity);    // remove a member from memberlist (zoned to different server)
-    void   PushMember(CBattleEntity* PEntity);   // add a member without invoking chat/db
     void   SetPartyID(uint32 id);                // set new party ID
     void   AssignPartyRole(const std::string& MemberName, uint8 role);
     void   DisableSync();
     void   SetSyncTarget(const std::string& MemberName, MsgStd message);
     void   RefreshSync();
     void   SetPartyNumber(uint8 number);
-    bool   HasOnlyOneMember() const;
-    bool   IsFull() const;
-    uint32 LoadPartySize() const;
 
-    timer::time_point GetTimeLastMemberJoined();
-    bool              HasTrusts();
 
-    std::size_t GetMemberCountAcrossAllProcesses();
 
     void PushPacket(uint32 senderID, uint16 ZoneID, const std::unique_ptr<CBasicPacket>& packet); // Send a packet to all group members, with the exception of PPartyMember
-    void PushEffectsPacket();
-    void EffectsChanged();
 
     CAlliance* m_PAlliance;
 

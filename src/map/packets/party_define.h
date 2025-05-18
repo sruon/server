@@ -25,13 +25,15 @@
 #include "common/cbasetypes.h"
 
 #include "basic.h"
+#include "entities/battleentity.h"
 
 class CParty;
 
 class CPartyDefinePacket : public CBasicPacket
 {
 public:
-    CPartyDefinePacket(CParty* PParty, bool loadTrust = false);
+    // CPartyDefinePacket(CParty* PParty, bool loadTrust = false);
+    CPartyDefinePacket(std::vector<CBattleEntity*> Members, uint32 leaderId, uint32 qmId);
 };
 
 #endif

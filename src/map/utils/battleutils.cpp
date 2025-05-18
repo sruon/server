@@ -1246,7 +1246,7 @@ namespace battleutils
         {
             if (PAttacker->objtype == TYPE_PC && static_cast<CCharEntity*>(PAttacker)->PParty != nullptr)
             {
-                for (auto* PMember : static_cast<CCharEntity*>(PAttacker)->PParty->members)
+                for (auto* PMember : static_cast<CCharEntity*>(PAttacker)->PParty->GetMembers())
                 {
                     PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_DRAIN_DAZE, PMember->id);
                     PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_HASTE_DAZE, PMember->id);
@@ -1256,7 +1256,7 @@ namespace battleutils
             else if (PAttacker->objtype == TYPE_TRUST && PAttacker->PMaster)
             {
                 // clang-format off
-                static_cast<CCharEntity*>(PAttacker->PMaster)->ForPartyWithTrusts(
+                static_cast<CCharEntity*>(PAttacker->PMaster)->ForEveryPartyMemberWithTrusts(
                 [&](CBattleEntity* PMember)
                 {
                     PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_DRAIN_DAZE, PMember->id);
@@ -1476,7 +1476,7 @@ namespace battleutils
                     if (PChar)
                     {
                         // clang-format off
-                        PChar->ForPartyWithTrusts([&](CBattleEntity* PMember)
+                        PChar->ForEveryPartyMemberWithTrusts([&](CBattleEntity* PMember)
                         {
                             if (attackerID == PMember->id)
                             {
@@ -1491,7 +1491,7 @@ namespace battleutils
                     if (auto* PMaster = dynamic_cast<CCharEntity*>(PAttacker->PMaster))
                     {
                         // clang-format off
-                        PMaster->ForPartyWithTrusts([&](CBattleEntity* PMember)
+                        PMaster->ForEveryPartyMemberWithTrusts([&](CBattleEntity* PMember)
                         {
                             if (attackerID == PMember->id)
                             {
@@ -4340,7 +4340,7 @@ namespace battleutils
             // Collect all potential TA targets who are closer to the mob than the TA user
 
             // clang-format off
-            static_cast<CCharEntity*>(taUser)->ForAlliance([&PMob, distTAmob, &taTargetList](CBattleEntity* PMember)
+            static_cast<CCharEntity*>(taUser)->ForEveryAllianceMember([&PMob, distTAmob, &taTargetList](CBattleEntity* PMember)
             {
                 float distTAtarget = distance(PMember->loc.p, PMob->loc.p);
                 // require closer target not be closer than .5 yalms (.5*.5=.25 distsquared) to mob
@@ -4706,7 +4706,7 @@ namespace battleutils
                 PChar->pushPacket<CPetSyncPacket>(PChar);
             }
             // clang-format off
-            PChar->ForAlliance([&PVictim](CBattleEntity* PMember)
+            PChar->ForEveryAllianceMember([&PVictim](CBattleEntity* PMember)
             {
                 if (static_cast<CCharEntity*>(PMember)->PClaimedMob == PVictim)
                 {
@@ -4835,7 +4835,7 @@ namespace battleutils
                                 highestClaim = static_cast<CTrustEntity*>(highestClaim)->PMaster;
                             }
                             // clang-format off
-                            attacker->ForAlliance([&](CBattleEntity* PMember)
+                            attacker->ForEveryAllianceMember([&](CBattleEntity* PMember)
                             {
                                 if (!highestClaim || highestClaim == PMember || highestClaim == PMember->PPet)
                                 { // someone in your alliance is top of hate list, claim for your alliance
@@ -4877,7 +4877,7 @@ namespace battleutils
                 uint8 pcinzone = 0;
                 uint8 maxLevel = 0;
                 // clang-format off
-                static_cast<CCharEntity*>(PAttacker)->ForAlliance([&pcinzone, &maxLevel, &mob](CBattleEntity* PMember)
+                static_cast<CCharEntity*>(PAttacker)->ForEveryAllianceMember([&pcinzone, &maxLevel, &mob](CBattleEntity* PMember)
                 {
                     if (PMember->getZone() == mob->getZone() && distance(PMember->loc.p, mob->loc.p) < 100)
                     {
@@ -4899,7 +4899,7 @@ namespace battleutils
         { // if we currently own a mob
             bool found = false;
             // clang-format off
-            static_cast<CCharEntity*>(PChar)->ForAlliance([&PChar, &mob, &found](CBattleEntity* PMember)
+            static_cast<CCharEntity*>(PChar)->ForEveryAllianceMember([&PChar, &mob, &found](CBattleEntity* PMember)
             {
                 CCharEntity* member = static_cast<CCharEntity*>(PMember);
                 if (member != PChar && !found && member->getZone() == PChar->getZone() && member->isAlive() &&
@@ -6107,7 +6107,7 @@ namespace battleutils
         bool found = false;
 
         // clang-format off
-        static_cast<CCharEntity*>(PMaster)->ForAlliance([&PTarget, &found](CBattleEntity* PChar)
+        static_cast<CCharEntity*>(PMaster)->ForEveryAllianceMember([&PTarget, &found](CBattleEntity* PChar)
         {
             if (PChar->id == PTarget->m_OwnerID.id)
             {
@@ -6813,7 +6813,7 @@ namespace battleutils
         // If the cover ability target is in a party, try to find a cover ability user
         if (static_cast<CCharEntity*>(PCoverAbilityTarget)->PParty != nullptr)
         {
-            for (auto* PMember : static_cast<CCharEntity*>(PCoverAbilityTarget)->PParty->members)
+            for (auto* PMember : static_cast<CCharEntity*>(PCoverAbilityTarget)->PParty->GetMembers())
             {
                 if (coverAbilityTargetID == PMember->GetLocalVar("COVER_ABILITY_TARGET") &&
                     PMember->StatusEffectContainer->HasStatusEffect(EFFECT_COVER) &&

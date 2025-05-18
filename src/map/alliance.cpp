@@ -44,23 +44,23 @@
 
 CAlliance::CAlliance(CBattleEntity* PEntity)
 {
-    auto* PChar = dynamic_cast<CCharEntity*>(PEntity);
-    if (PChar && PChar->PParty == nullptr)
-    {
-        ShowError("Attempt to construct Alliance with a null Party (%s).", PEntity->getName());
-        return;
-    }
-
-    m_AllianceID = PChar->PParty->GetPartyID();
-
-    // Will need to deal with these:
-    // m_PSyncTarget
-    // m_PQuarterMaster
-
-    addParty(PChar->PParty);
-    this->aLeader = PChar->PParty;
-    db::preparedStmt("UPDATE accounts_parties SET partyflag = partyflag | ? WHERE partyid = ? AND partyflag & ?",
-                     ALLIANCE_LEADER, m_AllianceID, PARTY_LEADER);
+    // auto* PChar = dynamic_cast<CCharEntity*>(PEntity);
+    // if (PChar && PChar->PParty == nullptr)
+    // {
+    //     ShowError("Attempt to construct Alliance with a null Party (%s).", PEntity->getName());
+    //     return;
+    // }
+    //
+    // m_AllianceID = PChar->PParty->GetPartyID();
+    //
+    // // Will need to deal with these:
+    // // m_PSyncTarget
+    // // m_PQuarterMaster
+    //
+    // addParty(PChar->PParty);
+    // this->aLeader = PChar->PParty;
+    // db::preparedStmt("UPDATE accounts_parties SET partyflag = partyflag | ? WHERE partyid = ? AND partyflag & ?",
+    //                  ALLIANCE_LEADER, m_AllianceID, PARTY_LEADER);
 }
 
 CAlliance::CAlliance(uint32 id)
@@ -114,7 +114,7 @@ void CAlliance::dissolveAlliance(bool playerInitiated)
         {
             CParty* party = partyList.at(0);
             this->delParty(party);
-            party->ReloadParty();
+            //party->ReloadParty();
         }
 
         // Clear the party list -- deletion of parties is handled elsewhere if applicable.
@@ -225,10 +225,10 @@ void CAlliance::delParty(CParty* party)
         party->m_PAlliance->partyList.erase(partyToDelete);
     }
 
-    for (auto* entry : party->m_PAlliance->partyList)
-    {
-        entry->ReloadParty();
-    }
+    // for (auto* entry : party->m_PAlliance->partyList)
+    // {
+    //     //entry->ReloadParty();
+    // }
 
     party->m_PAlliance = nullptr;
     party->SetPartyNumber(0);
@@ -249,7 +249,7 @@ void CAlliance::delParty(CParty* party)
         auto* PMember = dynamic_cast<CCharEntity*>(member);
         if (PMember && PMember->PParty)
         {
-            PMember->PParty->ReloadTreasurePool(PMember);
+            // PMember->PParty->ReloadTreasurePool(PMember);
         }
     }
 }
@@ -297,7 +297,7 @@ void CAlliance::addParty(CParty* party)
     for (std::size_t i = 0; i < party->members.size(); ++i)
     {
         CCharEntity* PChar = static_cast<CCharEntity*>(party->members.at(i));
-        party->ReloadTreasurePool(PChar);
+        // party->ReloadTreasurePool(PChar);
         charutils::SaveCharStats(PChar);
         PChar->m_charHistory.joinedAlliances++;
     }
@@ -353,7 +353,7 @@ void CAlliance::pushParty(CParty* PParty, uint8 number)
 
     for (std::size_t i = 0; i < PParty->members.size(); ++i)
     {
-        PParty->ReloadTreasurePool((CCharEntity*)PParty->members.at(i));
+        // PParty->ReloadTreasurePool((CCharEntity*)PParty->members.at(i));
         charutils::SaveCharStats((CCharEntity*)PParty->members.at(i));
     }
 }

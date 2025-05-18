@@ -25,6 +25,9 @@
 #include "common/cbasetypes.h"
 
 #include "basic.h"
+#include "common/party.h"
+
+#include <common/ipc_structs.h>
 
 class CCharEntity;
 class CTrustEntity;
@@ -36,6 +39,8 @@ public:
     CPartyMemberUpdatePacket(CCharEntity* PChar, uint8 MemberNumber, uint16 memberflags, uint16 zoneid);
     CPartyMemberUpdatePacket(CTrustEntity* PTrust, uint8 MemberNumber);
     CPartyMemberUpdatePacket(uint32 id, const std::string& name, uint16 memberFlags, uint8 MemberNumber, uint16 ZoneID);
+    CPartyMemberUpdatePacket(CCharEntity* PMember, uint8 MemberNumber, bool isLeader, bool isQm);
+    CPartyMemberUpdatePacket(const CCharEntity* PChar, uint8 MemberNumber, const ipc::PartyUpdate& data);
 };
 
 #endif

@@ -32,6 +32,7 @@
 #include "ai/states/weaponskill_state.h"
 #include "attack.h"
 #include "enmity_container.h"
+#include "ipc_client.h"
 #include "mob_spell_container.h"
 #include "mob_spell_list.h"
 #include "packets/char_health.h"
@@ -78,7 +79,7 @@ void CTrustEntity::PostTick()
         if (PMaster && static_cast<CCharEntity*>(PMaster)->PParty && updatemask & UPDATE_HP)
         {
             // clang-format off
-            static_cast<CCharEntity*>(PMaster)->ForParty([this](auto PMember)
+            static_cast<CCharEntity*>(PMaster)->ForEveryPartyMember([this](auto PMember)
             {
                 static_cast<CCharEntity*>(PMember)->pushPacket<CCharHealthPacket>(this);
             });

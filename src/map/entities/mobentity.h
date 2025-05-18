@@ -190,7 +190,7 @@ public:
     timer::duration m_RespawnTime;  // respawn time
     timer::duration m_DropItemTime; // time until monster death animation
 
-    CMobParty* PParty;
+    CMobParty* PParty = nullptr;
     uint32     m_DropID; // dropid of items to be dropped. dropid in Database (mob_droplist)
 
     uint8  m_minLevel; // lowest possible level of the mob

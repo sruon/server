@@ -63,7 +63,6 @@ struct CMobParty::partyInfo_t
 // Constructor
 CMobParty::CMobParty(CMobEntity* PEntity)
 : m_PartyID(0)
-, m_PartyType(PARTY_MOBS)
 , m_PartyNumber(0)
 {
     m_PLeader        = nullptr;
@@ -74,8 +73,7 @@ CMobParty::CMobParty(CMobEntity* PEntity)
 
     if (PEntity != nullptr && PEntity->PParty == nullptr)
     {
-        m_PartyID   = PEntity->id;
-        m_PartyType = PARTY_MOBS;
+        m_PartyID = PEntity->id;
 
         AddMember(PEntity);
         SetLeader(PEntity->name);
@@ -88,7 +86,6 @@ CMobParty::CMobParty(CMobEntity* PEntity)
 
 CMobParty::CMobParty(uint32 id)
 : m_PartyID(id)
-, m_PartyType(PARTY_PCS)
 , m_PartyNumber(0)
 {
     m_PAlliance = nullptr;
@@ -116,12 +113,9 @@ void CMobParty::DisbandParty(bool playerInitiated)
     m_PLeader     = nullptr;
     m_PAlliance   = nullptr;
 
-    if (m_PartyType == PARTY_MOBS)
+    for (auto& member : members) // this should really only trigger when a dynamic entity dies and nothing else qualifies for it's party anymore (such as !fafnir in zones without dragons)
     {
-        for (auto& member : members) // this should really only trigger when a dynamic entity dies and nothing else qualifies for it's party anymore (such as !fafnir in zones without dragons)
-        {
-            member->PParty = nullptr;
-        }
+        member->PParty = nullptr;
     }
 
     // TODO: This entire system needs rewriting to both:
@@ -133,50 +127,7 @@ void CMobParty::DisbandParty(bool playerInitiated)
 // Assign roles to group members (players only)
 void CMobParty::AssignPartyRole(const std::string& MemberName, uint8 role)
 {
-    if (m_PartyType != PARTY_PCS)
-    {
-        ShowWarning("Attempting to assign role (%d) to %s in Mob Party.", role, MemberName);
-        return;
-    }
 
-    // Make sure that the the character is actually a part of this party
-    const auto rset = db::preparedStmt("SELECT chars.charid FROM chars JOIN accounts_parties ON accounts_parties.charid = chars.charid WHERE charname = ? AND partyid = ?", MemberName, m_PartyID);
-    if (!rset || rset->rowsCount() == 0)
-    {
-        return;
-    }
-
-    switch (role)
-    {
-        case 0:
-            SetLeader(MemberName);
-            break;
-        case 4:
-            SetQuarterMaster(MemberName);
-            break;
-        case 5:
-            SetQuarterMaster("");
-            break;
-        case 6:
-            SetSyncTarget(MemberName, MsgStd::LevelSyncSet);
-            break;
-        case 7:
-            SetSyncTarget("", MsgStd::LevelSyncRemoveLeftParty);
-            break;
-    }
-
-    if (m_PAlliance)
-    {
-        message::send(ipc::AllianceReload{
-            .allianceId = m_PAlliance->m_AllianceID,
-        });
-    }
-    else
-    {
-        message::send(ipc::PartyReload{
-            .partyId = m_PartyID,
-        });
-    }
 }
 
 // get number of members in specified zone
@@ -197,25 +148,6 @@ uint8 CMobParty::MemberCount(uint16 ZoneID)
 // Returns entity pointer to party member by name (used for /pcmd kick or otherwise)
 CMobEntity* CMobParty::GetMemberByName(const std::string& memberName)
 {
-    if (m_PartyType != PARTY_PCS)
-    {
-        ShowWarning("Attempting to get Member data for %s in Mob Party.", memberName);
-        return nullptr;
-    }
-
-    if (memberName == "")
-    {
-        return nullptr;
-    }
-
-    for (auto& member : members)
-    {
-        if (strcmpi(memberName.c_str(), member->getName().c_str()) == 0)
-        {
-            return member;
-        }
-    }
-
     return nullptr;
 }
 
@@ -302,8 +234,7 @@ bool CMobParty::RemovePartyLeader(CMobEntity* PEntity)
         return false;
     }
 
-    if (m_PartyType == PARTYTYPE::PARTY_MOBS) // mob party, mob destructor being called and is leader of a party
-    {
+
         for (auto member : members)
         {
             if (member != PEntity) // assign leader to next party member
@@ -314,7 +245,6 @@ bool CMobParty::RemovePartyLeader(CMobEntity* PEntity)
                 return true;
             }
         }
-    }
 
     if (m_PLeader == PEntity)
     {
@@ -368,29 +298,6 @@ void CMobParty::PushMember(CMobEntity* PEntity)
 
     PEntity->PParty = this;
     members.emplace_back(PEntity);
-
-    auto info = GetPartyInfo();
-
-    for (auto&& memberinfo : info)
-    {
-        if (memberinfo.id == PEntity->id)
-        {
-            if (memberinfo.flags & PARTY_LEADER)
-            {
-                m_PLeader = PEntity;
-            }
-            if (memberinfo.flags & PARTY_QM)
-            {
-                m_PQuarterMaster = PEntity;
-            }
-            if (memberinfo.flags & PARTY_SYNC)
-            {
-                m_PSyncTarget = PEntity;
-            }
-        }
-    }
-
-    ReloadTreasurePool((CMobEntity*)PEntity);
 }
 
 void CMobParty::SetPartyID(uint32 id)
@@ -427,28 +334,6 @@ uint16 CMobParty::GetMemberFlags(CMobEntity* PEntity)
     }
 
     uint16 Flags = 0;
-
-    if (PEntity->PParty->m_PartyNumber == 1)
-    {
-        Flags += PARTY_SECOND;
-    }
-    else if (PEntity->PParty->m_PartyNumber == 2)
-    {
-        Flags += PARTY_THIRD;
-    }
-
-    if (PEntity == m_PLeader)
-    {
-        Flags |= PARTY_LEADER;
-    }
-    if (PEntity == m_PQuarterMaster)
-    {
-        Flags |= PARTY_QM;
-    }
-    if (PEntity == m_PSyncTarget)
-    {
-        Flags |= PARTY_SYNC;
-    }
 
     return Flags;
 }
@@ -559,65 +444,7 @@ bool CMobParty::HasTrusts()
 
 void CMobParty::RefreshFlags(std::vector<partyInfo_t>& info)
 {
-    // Clear pointers in case they no longer exist on this instance
-    m_PLeader        = nullptr;
-    m_PQuarterMaster = nullptr;
-    m_PSyncTarget    = nullptr;
 
-    for (auto&& memberinfo : info)
-    {
-        if (memberinfo.partyid == m_PartyID)
-        {
-            if (memberinfo.flags & PARTY_LEADER)
-            {
-                bool found = false;
-                for (auto* member : members)
-                {
-                    if (member->id == memberinfo.id)
-                    {
-                        m_PLeader = member;
-                        found     = true;
-                    }
-                }
-                if (!found)
-                {
-                    m_PLeader = nullptr;
-                }
-            }
-            if (memberinfo.flags & PARTY_QM)
-            {
-                bool found = false;
-                for (auto* member : members)
-                {
-                    if (member->id == memberinfo.id)
-                    {
-                        m_PQuarterMaster = member;
-                        found            = true;
-                    }
-                }
-                if (!found)
-                {
-                    m_PQuarterMaster = nullptr;
-                }
-            }
-            if (memberinfo.flags & PARTY_SYNC)
-            {
-                bool found = false;
-                for (auto* member : members)
-                {
-                    if (member->id == memberinfo.id)
-                    {
-                        m_PSyncTarget = member;
-                        found         = true;
-                    }
-                }
-                if (!found)
-                {
-                    m_PSyncTarget = nullptr;
-                }
-            }
-        }
-    }
 }
 
 std::size_t CMobParty::GetMemberCountAcrossAllProcesses()

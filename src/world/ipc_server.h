@@ -91,10 +91,6 @@ public:
     void handleMessage_ChatMessageYell(const IPP& ipp, const ipc::ChatMessageYell& message);
     void handleMessage_ChatMessageServerMessage(const IPP& ipp, const ipc::ChatMessageServerMessage& message);
     void handleMessage_ChatMessageCustom(const IPP& ipp, const ipc::ChatMessageCustom& message);
-    void handleMessage_PartyInvite(const IPP& ipp, const ipc::PartyInvite& message);
-    void handleMessage_PartyInviteResponse(const IPP& ipp, const ipc::PartyInviteResponse& message);
-    void handleMessage_PartyReload(const IPP& ipp, const ipc::PartyReload& message);
-    void handleMessage_PartyDisband(const IPP& ipp, const ipc::PartyDisband& message);
     void handleMessage_AllianceReload(const IPP& ipp, const ipc::AllianceReload& message);
     void handleMessage_AllianceDissolve(const IPP& ipp, const ipc::AllianceDissolve& message);
     void handleMessage_PlayerKick(const IPP& ipp, const ipc::PlayerKick& message);
@@ -112,6 +108,18 @@ public:
     void handleMessage_EntityInformationRequest(const IPP& ipp, const ipc::EntityInformationRequest& message);
     void handleMessage_EntityInformationResponse(const IPP& ipp, const ipc::EntityInformationResponse& message);
     void handleMessage_SendPlayerToLocation(const IPP& ipp, const ipc::SendPlayerToLocation& message);
+    void handleMessage_PartyCreate(const IPP& ipp, const ipc::PartyCreate& message);
+    void handleMessage_PartyAddMember(const IPP& ipp, const ipc::PartyAddMember& message);
+    void handleMessage_PartyRemoveMember(const IPP& ipp, const ipc::PartyRemoveMember& message);
+
+    void handleMessage_PartyInvite(const IPP& ipp, const ipc::PartyInvite& message);
+    void handleMessage_PartyInviteResponse(const IPP& ipp, const ipc::PartyInviteResponse& message);
+    void handleMessage_PartyReload(const IPP& ipp, const ipc::PartyReload& message);
+    void handleMessage_PartyDisband(const IPP& ipp, const ipc::PartyDisband& message);
+    void handleMessage_PartySetLeader(const IPP& ipp, const ipc::PartySetLeader& message);
+    void handleMessage_PartySetQuartermaster(const IPP& ipp, const ipc::PartySetQuartermaster& message);
+    void handleMessage_PartySetSyncTarget(const IPP& ipp, const ipc::PartySetSyncTarget& message);
+    void handleMessage_PartyUpdate(const IPP& ipp, const ipc::PartyUpdate& message);
 
     void handleUnknownMessage(const IPP& ipp, const std::span<uint8_t> message);
 

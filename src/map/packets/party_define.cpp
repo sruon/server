@@ -33,56 +33,94 @@ const char* partyQuery = "SELECT chars.charid, partyflag, pos_zone, pos_prevzone
                                         LEFT JOIN chars ON accounts_parties.charid = chars.charid WHERE \
                                         IF (allianceid <> 0, allianceid = %d, partyid = %d) ORDER BY partyflag & %u, timestamp";
 
-CPartyDefinePacket::CPartyDefinePacket(CParty* PParty, bool loadTrust)
+// CPartyDefinePacket::CPartyDefinePacket(CParty* PParty, bool loadTrust)
+// {
+//     this->setType(0xC8);
+//     this->setSize(0xF8);
+//
+//     if (PParty)
+//     {
+//         uint32 allianceid = 0;
+//         if (PParty->m_PAlliance)
+//         {
+//             allianceid = PParty->m_PAlliance->m_AllianceID;
+//         }
+//
+//         uint8 i = 0;
+//
+//         int ret = _sql->Query(partyQuery, allianceid, PParty->GetPartyID(), PARTY_SECOND | PARTY_THIRD);
+//
+//         if (ret != SQL_ERROR && _sql->NumRows() > 0)
+//         {
+//             while (_sql->NextRow() == SQL_SUCCESS)
+//             {
+//                 uint16       targid = 0;
+//                 CCharEntity* PChar  = zoneutils::GetChar(_sql->GetUIntData(0));
+//                 if (PChar)
+//                 {
+//                     targid = PChar->targid;
+//                 }
+//                 ref<uint32>(12 * i + 0x08) = _sql->GetUIntData(0);
+//                 ref<uint16>(12 * i + 0x0C) = targid;
+//                 ref<uint16>(12 * i + 0x0E) = _sql->GetUIntData(1);
+//                 ref<uint16>(12 * i + 0x10) = _sql->GetUIntData(2) ? _sql->GetUIntData(2) : _sql->GetUIntData(3);
+//                 i++;
+//             }
+//         }
+//
+//         if (loadTrust)
+//         {
+//             CCharEntity* PLeader = (CCharEntity*)PParty->GetLeader();
+//
+//             if (PLeader != nullptr)
+//             {
+//                 for (auto* PTrust : PLeader->PTrusts)
+//                 {
+//                     ref<uint32>(12 * i + (0x08)) = PTrust->id;
+//                     ref<uint16>(12 * i + (0x0C)) = PTrust->targid;
+//                     ref<uint16>(12 * i + (0x0E)) = 0;
+//                     ref<uint16>(12 * i + (0x10)) = PTrust->getZone();
+//                     i++;
+//                 }
+//             }
+//         }
+//     }
+// }
+
+CPartyDefinePacket::CPartyDefinePacket(std::vector<CBattleEntity*> Members, uint32 leaderId, uint32 qmId)
 {
     this->setType(0xC8);
     this->setSize(0xF8);
 
-    if (PParty)
+    // TODO: Alliance
+
+    uint8              i       = 0;
+    for (auto member : Members)
     {
-        uint32 allianceid = 0;
-        if (PParty->m_PAlliance)
+        xi::bitset<8> flags;
+        // flags.set(0, true);                                      // PartyNo, 1-3
+        flags.set(2, member->id == leaderId);        // PartyLeaderFlg
+        flags.set(3, false);                              // AllianceLeaderFlg
+        flags.set(4, member->id == qmId); // PartyRFlg (QM)
+        flags.set(5, false);                              // AllianceRFlg (QM)
+        flags.set(6, false);                              // unknown06
+        flags.set(7, false);                              // unknown07
+
+        // TODO: If PChar in another zone, then targid is 0
+        if (auto* PChar = dynamic_cast<CCharEntity*>(member))
         {
-            allianceid = PParty->m_PAlliance->m_AllianceID;
+            ref<uint32>(12 * i + 0x08) = PChar->id; // UniqueNo
+            ref<uint16>(12 * i + 0x0C) = PChar->targid;          // ActIndex
+            ref<uint16>(12 * i + 0x0E) = flags.data[0];   // Flags
+            ref<uint16>(12 * i + 0x10) = PChar->getZone();   // Supposed to be prevzone if not
         }
-
-        uint8 i = 0;
-
-        int ret = _sql->Query(partyQuery, allianceid, PParty->GetPartyID(), PARTY_SECOND | PARTY_THIRD);
-
-        if (ret != SQL_ERROR && _sql->NumRows() > 0)
+        else if (auto* PTrust = dynamic_cast<CTrustEntity*>(member))
         {
-            while (_sql->NextRow() == SQL_SUCCESS)
-            {
-                uint16       targid = 0;
-                CCharEntity* PChar  = zoneutils::GetChar(_sql->GetUIntData(0));
-                if (PChar)
-                {
-                    targid = PChar->targid;
-                }
-                ref<uint32>(12 * i + 0x08) = _sql->GetUIntData(0);
-                ref<uint16>(12 * i + 0x0C) = targid;
-                ref<uint16>(12 * i + 0x0E) = _sql->GetUIntData(1);
-                ref<uint16>(12 * i + 0x10) = _sql->GetUIntData(2) ? _sql->GetUIntData(2) : _sql->GetUIntData(3);
-                i++;
-            }
+            ref<uint32>(12 * i + (0x08)) = PTrust->id;
+            ref<uint16>(12 * i + (0x0C)) = PTrust->targid;
+            ref<uint16>(12 * i + (0x0E)) = 0;
+            ref<uint16>(12 * i + (0x10)) = PTrust->getZone();
         }
-
-        if (loadTrust)
-        {
-            CCharEntity* PLeader = (CCharEntity*)PParty->GetLeader();
-
-            if (PLeader != nullptr)
-            {
-                for (auto* PTrust : PLeader->PTrusts)
-                {
-                    ref<uint32>(12 * i + (0x08)) = PTrust->id;
-                    ref<uint16>(12 * i + (0x0C)) = PTrust->targid;
-                    ref<uint16>(12 * i + (0x0E)) = 0;
-                    ref<uint16>(12 * i + (0x10)) = PTrust->getZone();
-                    i++;
-                }
-            }
-        }
+        ++i;
     }
 }

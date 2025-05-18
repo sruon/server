@@ -98,10 +98,10 @@ void CTreasurePool::addMember(CCharEntity* PChar)
     {
         m_TreasurePoolType = TreasurePoolType::Party;
     }
-    else if (m_TreasurePoolType == TreasurePoolType::Party && PChar->PParty && PChar->PParty->m_PAlliance)
-    {
-        m_TreasurePoolType = TreasurePoolType::Alliance;
-    }
+    // else if (m_TreasurePoolType == TreasurePoolType::Party && PChar->PParty && PChar->PParty->m_PAlliance)
+    // {
+    //     m_TreasurePoolType = TreasurePoolType::Alliance;
+    // }
 
     updatePool(PChar);
 }

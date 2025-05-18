@@ -85,6 +85,13 @@ public:
     void handleMessage_EntityInformationRequest(const IPP& ipp, const ipc::EntityInformationRequest& message);
     void handleMessage_EntityInformationResponse(const IPP& ipp, const ipc::EntityInformationResponse& message);
     void handleMessage_SendPlayerToLocation(const IPP& ipp, const ipc::SendPlayerToLocation& message);
+    void handleMessage_PartyCreate(const IPP& ipp, const ipc::PartyCreate& message){};
+    void handleMessage_PartyAddMember(const IPP& ipp, const ipc::PartyAddMember& message){};
+    void handleMessage_PartyRemoveMember(const IPP& ipp, const ipc::PartyRemoveMember& message){};
+    void handleMessage_PartySetLeader(const IPP& ipp, const ipc::PartySetLeader& message){};
+    void handleMessage_PartySetQuartermaster(const IPP& ipp, const ipc::PartySetQuartermaster& message){};
+    void handleMessage_PartySetSyncTarget(const IPP& ipp, const ipc::PartySetSyncTarget& message){};
+    void handleMessage_PartyUpdate(const IPP& ipp, const ipc::PartyUpdate& message);
 
     void handleUnknownMessage(const IPP& ipp, const std::span<uint8_t> message);
 

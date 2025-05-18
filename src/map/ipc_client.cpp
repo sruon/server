@@ -36,6 +36,7 @@
 #include "unitychat.h"
 
 #include "entities/charentity.h"
+#include "entities/trustentity.h"
 
 #include "lua/luautils.h"
 
@@ -47,6 +48,8 @@
 #include "packets/server_ip.h"
 
 #include "items/item_linkshell.h"
+#include "packets/party_define.h"
+#include "packets/party_member_update.h"
 
 #include "utils/charutils.h"
 #include "utils/jailutils.h"
@@ -213,7 +216,7 @@ void IPCClient::handleMessage_ChatMessageParty(const IPP& ipp, const ipc::ChatMe
 {
     TracyZoneScoped;
 
-    CParty* PParty = nullptr;
+    CCharParty* PParty = nullptr;
 
     const auto partyid = message.partyId;
 
@@ -257,11 +260,11 @@ void IPCClient::handleMessage_ChatMessageAlliance(const IPP& ipp, const ipc::Cha
     {
         PZone->ForEachChar([allianceid, &PAlliance](CCharEntity* PChar)
         {
-            if (PChar->PParty && PChar->PParty && PChar->PParty->m_PAlliance && PChar->PParty->m_PAlliance->m_AllianceID == allianceid)
-            {
-                PAlliance = PChar->PParty->m_PAlliance;
-                return;
-            }
+            // if (PChar->PParty && PChar->PParty && PChar->PParty->m_PAlliance && PChar->PParty->m_PAlliance->m_AllianceID == allianceid)
+            // {
+            //     PAlliance = PChar->PParty->m_PAlliance;
+            //     return;
+            // }
         });
         if (PAlliance)
         {
@@ -362,8 +365,8 @@ void IPCClient::handleMessage_PartyInvite(const IPP& ipp, const ipc::PartyInvite
         if (PInvitee->isDead() ||
             jailutils::InPrison(PInvitee) ||
             PInvitee->InvitePending.id != 0 ||
-            (PInvitee->PParty && message.inviteType == INVITE_PARTY) ||
-            (message.inviteType == INVITE_ALLIANCE && (!PInvitee->PParty || PInvitee->PParty->GetLeader() != PInvitee || (PInvitee->PParty && PInvitee->PParty->m_PAlliance))))
+            (PInvitee->PParty && message.inviteType == INVITE_PARTY)) // ||
+            // (message.inviteType == INVITE_ALLIANCE && (!PInvitee->PParty || PInvitee->PParty->GetLeader() != PInvitee || (PInvitee->PParty && PInvitee->PParty->m_PAlliance))))
         {
             message::send(ipc::MessageStandard{
                 .recipientId = message.inviterId,
@@ -415,6 +418,7 @@ void IPCClient::handleMessage_PartyInviteResponse(const IPP& ipp, const ipc::Par
     TracyZoneScoped;
 
     CCharEntity* PInviter = zoneutils::GetChar(message.inviterId);
+    CCharEntity* PInvitee = zoneutils::GetChar(message.inviteeId);
     if (PInviter)
     {
         if (message.inviteAnswer == 0)
@@ -423,63 +427,9 @@ void IPCClient::handleMessage_PartyInviteResponse(const IPP& ipp, const ipc::Par
         }
         else
         {
-            // both party leaders?
-            const auto rset = db::preparedStmt("SELECT * FROM accounts_parties WHERE partyid <> 0 AND "
-                                               "((charid = ? OR charid = ?) AND partyflag & ?)",
-                                               message.inviterId, message.inviteeId, PARTY_LEADER);
-            if (rset && rset->rowsCount() == 2)
-            {
-                if (PInviter->PParty)
-                {
-                    if (PInviter->PParty->m_PAlliance)
-                    {
-                        const auto rset2 = db::preparedStmt("SELECT * FROM accounts_parties WHERE allianceid <> 0 AND "
-                                                            "allianceid = (SELECT allianceid FROM accounts_parties where "
-                                                            "charid = ?) GROUP BY partyid",
-                                                            message.inviterId);
-                        if (rset2 && rset2->rowsCount() > 0 && rset2->rowsCount() < 3)
-                        {
-                            PInviter->PParty->m_PAlliance->addParty(message.inviteeId);
-                        }
-                        else
-                        {
-                            message::send(ipc::MessageStandard{
-                                .recipientId = message.inviteeId,
-                                .message     = MsgStd::CannotBeProcessed,
-                            });
-                        }
-                    }
-                    else if (PInviter->PParty)
-                    {
-                        // make new alliance
-                        CAlliance* PAlliance = new CAlliance(PInviter);
-                        PAlliance->addParty(message.inviteeId);
-                    }
-                }
-                else // Somehow, the inviter didn't have a party despite the database thinking they did.
-                {
-                    message::send(ipc::MessageStandard{
-                        .recipientId = message.inviteeId,
-                        .message     = MsgStd::CannotBeProcessed,
-                    });
-                }
-            }
-            else
-            {
-                if (PInviter->PParty == nullptr)
-                {
-                    PInviter->PParty = new CParty(PInviter);
-                }
-
-                if (PInviter->PParty && PInviter->PParty->GetLeader() == PInviter)
-                {
-                    const auto rset2 = db::preparedStmt("SELECT * FROM accounts_parties WHERE partyid <> 0 AND charid = ?", message.inviteeId);
-                    if (rset2 && rset2->rowsCount() == 0)
-                    {
-                        PInviter->PParty->AddMember(message.inviteeId);
-                    }
-                }
-            }
+            // TODO: This won't work cross zone process
+            // TODO: alliance
+            PInviter->PParty->ipc().AddMember(message.inviteeId, PartyMemberType::Player, PInvitee->getZone());
         }
     }
 }
@@ -488,50 +438,50 @@ void IPCClient::handleMessage_PartyReload(const IPP& ipp, const ipc::PartyReload
 {
     TracyZoneScoped;
 
-    const auto rset = db::preparedStmt("SELECT charid FROM accounts_parties WHERE partyid = ?", message.partyId);
-    if (rset && rset->rowsCount())
-    {
-        while (rset->next())
-        {
-            const auto charid = rset->get<uint32>("charid");
-            if (CCharEntity* PChar = zoneutils::GetChar(charid))
-            {
-                PChar->ReloadPartyInc();
-            }
-        }
-    }
+    // const auto rset = db::preparedStmt("SELECT charid FROM accounts_parties WHERE partyid = ?", message.partyId);
+    // if (rset && rset->rowsCount())
+    // {
+    //     while (rset->next())
+    //     {
+    //         const auto charid = rset->get<uint32>("charid");
+    //         if (CCharEntity* PChar = zoneutils::GetChar(charid))
+    //         {
+    //             PChar->ReloadPartyInc();
+    //         }
+    //     }
+    // }
 }
 
 void IPCClient::handleMessage_PartyDisband(const IPP& ipp, const ipc::PartyDisband& message)
 {
     TracyZoneScoped;
 
-    CParty* PParty = nullptr;
-
-    const auto partyid = message.partyId;
-
-    // TODO: When Party/Alliance gets a rewrite, make a zoneutils::ForEachParty or some other accessor to reduce the amount of iterations significantly.
-
-    // clang-format off
-    zoneutils::ForEachZone([partyid, &PParty](CZone* PZone)
-    {
-        PZone->ForEachChar([partyid, &PParty](CCharEntity* PChar)
-        {
-            if (PChar->PParty && PChar->PParty->GetPartyID() == partyid)
-            {
-                PParty = PChar->PParty;
-                return;
-            }
-        });
-        if (PParty)
-        {
-            return;
-        }
-    });
-    if (PParty)
-    {
-        PParty->DisbandParty(false);
-    }
+    // CParty* PParty = nullptr;
+    //
+    // const auto partyid = message.partyId;
+    //
+    // // TODO: When Party/Alliance gets a rewrite, make a zoneutils::ForEachParty or some other accessor to reduce the amount of iterations significantly.
+    //
+    // // clang-format off
+    // zoneutils::ForEachZone([partyid, &PParty](CZone* PZone)
+    // {
+    //     PZone->ForEachChar([partyid, &PParty](CCharEntity* PChar)
+    //     {
+    //         if (PChar->PParty && PChar->PParty->GetPartyID() == partyid)
+    //         {
+    //             PParty = PChar->PParty;
+    //             return;
+    //         }
+    //     });
+    //     if (PParty)
+    //     {
+    //         return;
+    //     }
+    // });
+    // if (PParty)
+    // {
+    //     PParty->DisbandParty(false);
+    // }
     // clang-format on
 }
 
@@ -539,50 +489,50 @@ void IPCClient::handleMessage_AllianceReload(const IPP& ipp, const ipc::Alliance
 {
     TracyZoneScoped;
 
-    const auto rset = db::preparedStmt("SELECT charid FROM accounts_parties WHERE allianceid = ?", message.allianceId);
-    if (rset && rset->rowsCount())
-    {
-        while (rset->next())
-        {
-            const auto charid = rset->get<uint32>("charid");
-            if (CCharEntity* PChar = zoneutils::GetChar(charid))
-            {
-                PChar->ReloadPartyInc();
-            }
-        }
-    }
+    // const auto rset = db::preparedStmt("SELECT charid FROM accounts_parties WHERE allianceid = ?", message.allianceId);
+    // if (rset && rset->rowsCount())
+    // {
+    //     while (rset->next())
+    //     {
+    //         const auto charid = rset->get<uint32>("charid");
+    //         if (CCharEntity* PChar = zoneutils::GetChar(charid))
+    //         {
+    //             PChar->ReloadPartyInc();
+    //         }
+    //     }
+    // }
 }
 
 void IPCClient::handleMessage_AllianceDissolve(const IPP& ipp, const ipc::AllianceDissolve& message)
 {
     TracyZoneScoped;
 
-    CAlliance* PAlliance = nullptr;
-
-    const auto allianceid = message.allianceId;
-
-    // TODO: When Party/Alliance gets a rewrite, make a zoneutils::ForEachAlliance or some other accessor to reduce the amount of iterations significantly.
-
-    // clang-format off
-    zoneutils::ForEachZone([allianceid, &PAlliance](CZone* PZone)
-    {
-        PZone->ForEachChar([allianceid, &PAlliance](CCharEntity* PChar)
-        {
-            if (PChar->PParty && PChar->PParty->m_PAlliance && PChar->PParty->m_PAlliance->m_AllianceID == allianceid)
-            {
-                PAlliance = PChar->PParty->m_PAlliance;
-                return;
-            }
-        });
-        if (PAlliance)
-        {
-            return;
-        }
-    });
-    if (PAlliance)
-    {
-        PAlliance->dissolveAlliance(false);
-    }
+    // CAlliance* PAlliance = nullptr;
+    //
+    // const auto allianceid = message.allianceId;
+    //
+    // // TODO: When Party/Alliance gets a rewrite, make a zoneutils::ForEachAlliance or some other accessor to reduce the amount of iterations significantly.
+    //
+    // // clang-format off
+    // zoneutils::ForEachZone([allianceid, &PAlliance](CZone* PZone)
+    // {
+    //     PZone->ForEachChar([allianceid, &PAlliance](CCharEntity* PChar)
+    //     {
+    //         if (PChar->PParty && PChar->PParty->m_PAlliance && PChar->PParty->m_PAlliance->m_AllianceID == allianceid)
+    //         {
+    //             PAlliance = PChar->PParty->m_PAlliance;
+    //             return;
+    //         }
+    //     });
+    //     if (PAlliance)
+    //     {
+    //         return;
+    //     }
+    // });
+    // if (PAlliance)
+    // {
+    //     PAlliance->dissolveAlliance(false);
+    // }
     // clang-format on
 }
 
@@ -591,10 +541,10 @@ void IPCClient::handleMessage_PlayerKick(const IPP& ipp, const ipc::PlayerKick& 
     TracyZoneScoped;
 
     // player was kicked and is no longer in alliance/party db -- they need a direct update.
-    if (CCharEntity* PChar = zoneutils::GetChar(message.victimId))
-    {
-        PChar->ReloadPartyInc();
-    }
+    // if (CCharEntity* PChar = zoneutils::GetChar(message.victimId))
+    // {
+    //     PChar->ReloadPartyInc();
+    // }
 }
 
 void IPCClient::handleMessage_MessageStandard(const IPP& ipp, const ipc::MessageStandard& message)
@@ -837,6 +787,12 @@ void IPCClient::handleMessage_SendPlayerToLocation(const IPP& ipp, const ipc::Se
 
         charutils::SendToZone(PChar, PChar->loc.destination);
     }
+}
+
+void IPCClient::handleMessage_PartyUpdate(const IPP& ipp, const ipc::PartyUpdate& message)
+{
+    ShowInfoFmt("PartyUpdate message received for partyId: {}", message.partyId);
+    networking_.parties().updateParty(message);
 }
 
 void IPCClient::handleUnknownMessage(const IPP& ipp, const std::span<uint8_t> message)

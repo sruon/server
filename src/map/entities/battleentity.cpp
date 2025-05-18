@@ -1753,7 +1753,8 @@ void CBattleEntity::Die()
     if (CBaseEntity* PKiller = GetEntity(m_OwnerID.targid))
     {
         // clang-format off
-        static_cast<CCharEntity*>(PKiller)->ForAlliance([this](CBattleEntity* PMember)
+        // TODO: This will blow if no party
+        static_cast<CCharEntity*>(PKiller)->ForEveryAllianceMember([this](CBattleEntity* PMember)
         {
             CCharEntity* member = static_cast<CCharEntity*>(PMember);
             if (member->PClaimedMob == this)
@@ -1960,7 +1961,7 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
         {
             if (PChar == PTargetChar || // Casting on self or ally
                 (PChar->PParty && PTargetChar->PParty &&
-                 ((PChar->PParty == PTargetChar->PParty) || (PChar->PParty->m_PAlliance && PChar->PParty->m_PAlliance == PTargetChar->PParty->m_PAlliance))))
+                 ((PChar->PParty == PTargetChar->PParty)))) // || (PChar->PParty->m_PAlliance && PChar->PParty->m_PAlliance == PTargetChar->PParty->m_PAlliance))))
             {
                 if (PSpell->isHeal())
                 {

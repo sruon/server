@@ -34,6 +34,7 @@
 #include "conquest_system.h"
 #include "enmity_container.h"
 #include "entities/charentity.h"
+#include "ipc_client.h"
 #include "items.h"
 #include "lua/lua_loot.h"
 #include "lua/luautils.h"
@@ -682,7 +683,7 @@ void CMobEntity::DistributeRewards()
 
             // RoE Mob kill event for all party members
             // clang-format off
-            PChar->ForAlliance([this, PChar](CBattleEntity* PMember)
+            PChar->ForEveryAllianceMember([this, PChar](CBattleEntity* PMember)
             {
                 if (PMember->getZone() == PChar->getZone())
                 {
@@ -1011,7 +1012,7 @@ void CMobEntity::DropItems(CCharEntity* PChar)
 
         uint8 crystalRolls = 0;
         // clang-format off
-        PChar->ForParty([this, &crystalRolls, &effect](CBattleEntity* PMember)
+        PChar->ForEveryPartyMember([this, &crystalRolls, &effect](CBattleEntity* PMember)
         {
             switch (effect)
             {
@@ -1107,7 +1108,7 @@ void CMobEntity::OnEngage(CAttackState& state)
         if (PTarget->objtype == TYPE_PC)
         {
             // clang-format off
-            ((CCharEntity*)PTarget)->ForAlliance([this, PTarget, range](CBattleEntity* PMember)
+            ((CCharEntity*)PTarget)->ForEveryAllianceMember([this, PTarget, range](CBattleEntity* PMember)
             {
                 auto currentDistance = distance(PMember->loc.p, PTarget->loc.p);
                 if (currentDistance < range)

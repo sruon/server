@@ -76,6 +76,12 @@ set(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/linkshell.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/linkshell.h
     ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/map_party.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/map_party.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/map_party_ipc_helper.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/map_party_ipc_helper.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/map_party_container.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/map_party_container.h
     ${CMAKE_CURRENT_SOURCE_DIR}/map_networking.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/map_networking.h
     ${CMAKE_CURRENT_SOURCE_DIR}/map_server.cpp

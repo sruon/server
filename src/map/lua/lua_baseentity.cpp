@@ -365,17 +365,18 @@ void CLuaBaseEntity::printToArea(std::string const& message, sol::object const& 
     }
     else if (messageRange == ChatMessageArea::Party)
     {
-        if (PChar->PParty && PChar->PParty->m_PAlliance)
-        {
-            message::send(ipc::ChatMessageAlliance{
-                .allianceId  = PChar->PParty->m_PAlliance->m_AllianceID,
-                .senderId    = PChar->id,
-                .senderName  = name,
-                .message     = message,
-                .messageType = messageLook,
-            });
-        }
-        else if (PChar->PParty)
+        // if (PChar->PParty && PChar->PParty->m_PAlliance)
+        // {
+        //     message::send(ipc::ChatMessageAlliance{
+        //         .allianceId  = PChar->PParty->m_PAlliance->m_AllianceID,
+        //         .senderId    = PChar->id,
+        //         .senderName  = name,
+        //         .message     = message,
+        //         .messageType = messageLook,
+        //     });
+        // }
+        // else
+        if (PChar->PParty)
         {
             message::send(ipc::ChatMessageParty{
                 .partyId     = PChar->PParty->GetPartyID(),
@@ -6422,7 +6423,7 @@ void CLuaBaseEntity::changeJob(uint8 newJob)
         charutils::BuildingCharTraitsTable(PChar);
 
         // clang-format off
-        PChar->ForParty([](CBattleEntity* PMember)
+        PChar->ForEveryPartyMember([](CBattleEntity* PMember)
         {
             ((CCharEntity*)PMember)->PLatentEffectContainer->CheckLatentsPartyJobs();
         });
@@ -10897,7 +10898,7 @@ sol::table CLuaBaseEntity::getParty()
 
     // clang-format off
     auto table = lua.create_table();
-    ((CCharEntity*)m_PBaseEntity)->ForParty([&table](CBattleEntity* member)
+    ((CCharEntity*)m_PBaseEntity)->ForEveryPartyMember([&table](CBattleEntity* member)
     {
         table.add(CLuaBaseEntity(member));
     });
@@ -10923,7 +10924,7 @@ sol::table CLuaBaseEntity::getPartyWithTrusts()
 
     // clang-format off
     auto table = lua.create_table();
-    ((CCharEntity*)m_PBaseEntity)->ForPartyWithTrusts([&table](CBattleEntity* member)
+    ((CCharEntity*)m_PBaseEntity)->ForEveryPartyMemberWithTrusts([&table](CBattleEntity* member)
     {
         table.add(CLuaBaseEntity(member));
     });
@@ -10956,12 +10957,12 @@ uint8 CLuaBaseEntity::getPartySize(sol::object const& arg0)
     {
         if (allianceparty == 0)
         {
-            partysize = static_cast<uint8>(PBattle->PParty->members.size());
+            partysize = static_cast<uint8>(PBattle->PParty->GetMembers().size());
         }
-        else if (PBattle->PParty->m_PAlliance != nullptr)
-        {
-            partysize = static_cast<uint8>(PBattle->PParty->m_PAlliance->partyList.at(allianceparty)->members.size());
-        }
+        // else if (PBattle->PParty->m_PAlliance != nullptr)
+        // {
+        //     partysize = static_cast<uint8>(PBattle->PParty->m_PAlliance->partyList.at(allianceparty)->members.size());
+        // }
     }
 
     return partysize;
@@ -10978,7 +10979,7 @@ bool CLuaBaseEntity::hasPartyJob(uint8 job)
 {
     if (static_cast<CCharEntity*>(m_PBaseEntity)->PParty != nullptr)
     {
-        for (auto const& member : static_cast<CCharEntity*>(m_PBaseEntity)->PParty->members)
+        for (auto const& member : static_cast<CCharEntity*>(m_PBaseEntity)->PParty->GetMembers())
         {
             CCharEntity* PTarget = static_cast<CCharEntity*>(member);
 
@@ -11009,38 +11010,38 @@ bool CLuaBaseEntity::hasPartyJob(uint8 job)
 
 auto CLuaBaseEntity::getPartyMember(uint8 member, uint8 allianceparty) -> CBaseEntity*
 {
-    if (m_PBaseEntity->objtype == TYPE_NPC)
-    {
-        ShowWarning("CLuaBaseEntity::getPartyMember() - NPC calling function.");
-        return nullptr;
-    }
-
-    CCharEntity* PBattle     = static_cast<CCharEntity*>(m_PBaseEntity);
-    CBattleEntity* PTargetChar = nullptr;
-
-    if (allianceparty == 0 && member == 0)
-    {
-        PTargetChar = PBattle;
-    }
-    else if (PBattle->PParty != nullptr)
-    {
-        if (allianceparty == 0 && member < PBattle->PParty->members.size())
-        {
-            PTargetChar = PBattle->PParty->members[member];
-        }
-        else if (PBattle->PParty->m_PAlliance != nullptr &&
-                 member <= PBattle->PParty->m_PAlliance->partyList.at(allianceparty)->members.size())
-        {
-            PTargetChar = PBattle->PParty->m_PAlliance->partyList.at(allianceparty)->members[member];
-        }
-    }
-
-    if (PTargetChar != nullptr)
-    {
-        return PTargetChar;
-    }
-
-    ShowError("Lua::getPartyMember :: Member or Alliance Number is not valid.");
+    // if (m_PBaseEntity->objtype == TYPE_NPC)
+    // {
+    //     ShowWarning("CLuaBaseEntity::getPartyMember() - NPC calling function.");
+    //     return nullptr;
+    // }
+    //
+    // CCharEntity* PBattle     = static_cast<CCharEntity*>(m_PBaseEntity);
+    // CBattleEntity* PTargetChar = nullptr;
+    //
+    // if (allianceparty == 0 && member == 0)
+    // {
+    //     PTargetChar = PBattle;
+    // }
+    // else if (PBattle->PParty != nullptr)
+    // {
+    //     if (allianceparty == 0 && member < PBattle->PParty->GetMembers().size())
+    //     {
+    //         PTargetChar = PBattle->PParty->members[member];
+    //     }
+    //     else if (PBattle->PParty->m_PAlliance != nullptr &&
+    //              member <= PBattle->PParty->m_PAlliance->partyList.at(allianceparty)->members.size())
+    //     {
+    //         PTargetChar = PBattle->PParty->m_PAlliance->partyList.at(allianceparty)->members[member];
+    //     }
+    // }
+    //
+    // if (PTargetChar != nullptr)
+    // {
+    //     return PTargetChar;
+    // }
+    //
+    // ShowError("Lua::getPartyMember :: Member or Alliance Number is not valid.");
     return nullptr;
 }
 
@@ -11084,7 +11085,7 @@ void CLuaBaseEntity::forMembersInRange(float range, sol::function function)
     auto* target = (CCharEntity*)m_PBaseEntity;
 
     // clang-format off
-    target->ForParty([&target, &range, &function](CBattleEntity* member)
+    target->ForEveryPartyMember([&target, &range, &function](CBattleEntity* member)
     {
         if (target->loc.zone == member->loc.zone && isWithinDistance(target->loc.p, member->loc.p, range))
         {
@@ -11123,7 +11124,7 @@ void CLuaBaseEntity::addPartyEffect(sol::variadic_args va)
     CCharEntity* PEntity = ((CCharEntity*)m_PBaseEntity);
 
     // clang-format off
-    PEntity->ForParty([PEffect](CBattleEntity* PMember)
+    PEntity->ForEveryPartyMember([PEffect](CBattleEntity* PMember)
     {
         PMember->StatusEffectContainer->AddStatusEffect(PEffect);
     });
@@ -11149,7 +11150,7 @@ bool CLuaBaseEntity::hasPartyEffect(uint16 effectid)
 
     if (PChar->PParty != nullptr)
     {
-        for (const auto& member : PChar->PParty->members)
+        for (const auto& member : PChar->PParty->GetMembers())
         {
             if (member->loc.zone == PChar->loc.zone)
             {
@@ -11181,7 +11182,7 @@ void CLuaBaseEntity::removePartyEffect(uint16 effectid)
 
     CCharEntity* PChar = ((CCharEntity*)m_PBaseEntity);
 
-    for (const auto& member : PChar->PParty->members)
+    for (const auto& member : PChar->PParty->GetMembers())
     {
         if (member->loc.zone == PChar->loc.zone)
         {
@@ -11210,7 +11211,7 @@ sol::table CLuaBaseEntity::getAlliance()
     auto table = lua.create_table();
 
     // clang-format off
-    PChar->ForAlliance([&table](CBattleEntity* PMember)
+    PChar->ForEveryAllianceMember([&table](CBattleEntity* PMember)
     {
         table.add(CLuaBaseEntity(PMember));
     });
@@ -11234,27 +11235,28 @@ uint8 CLuaBaseEntity::getAllianceSize()
         return 1;
     }
 
-    auto* PBattle      = static_cast<CCharEntity*>(m_PBaseEntity);
-    uint8 alliancesize = 1;
+    // auto* PBattle      = static_cast<CCharEntity*>(m_PBaseEntity);
+    // uint8 alliancesize = 1;
+    //
+    // if (PBattle->PParty != nullptr)
+    // {
+    //     if (PBattle->PParty->m_PAlliance != nullptr)
+    //     {
+    //         // Reset to use as counter..
+    //         alliancesize = 0;
+    //         for (const CParty* PParty : PBattle->PParty->m_PAlliance->partyList)
+    //         {
+    //             alliancesize += static_cast<uint8>(PParty->members.size());
+    //         }
+    //     }
+    //     else
+    //     {
+    //         return static_cast<uint8>(PBattle->PParty->members.size());
+    //     }
+    // }
 
-    if (PBattle->PParty != nullptr)
-    {
-        if (PBattle->PParty->m_PAlliance != nullptr)
-        {
-            // Reset to use as counter..
-            alliancesize = 0;
-            for (const CParty* PParty : PBattle->PParty->m_PAlliance->partyList)
-            {
-                alliancesize += static_cast<uint8>(PParty->members.size());
-            }
-        }
-        else
-        {
-            return static_cast<uint8>(PBattle->PParty->members.size());
-        }
-    }
-
-    return alliancesize;
+    // return alliancesize;
+    return 1;
 }
 
 /************************************************************************
@@ -11278,12 +11280,12 @@ uint32 CLuaBaseEntity::getLeaderID()
     {
         if (PChar->PParty != nullptr)
         {
-            if (PChar->PParty->m_PAlliance != nullptr)
-            {
-                return PChar->PParty->m_PAlliance->m_AllianceID;
-            }
+            // if (PChar->PParty->m_PAlliance != nullptr)
+            // {
+            //     return PChar->PParty->m_PAlliance->m_AllianceID;
+            // }
 
-            return PChar->PParty->GetPartyID();
+            return PChar->PParty->GetLeader()->id;
         }
 
         return PChar->id;
@@ -11301,18 +11303,19 @@ uint32 CLuaBaseEntity::getLeaderID()
 
 uint32 CLuaBaseEntity::getPartyLastMemberJoinedTime()
 {
-    if (m_PBaseEntity->objtype != TYPE_PC)
-    {
-        ShowWarning("Invalid entity type calling function (%s).", m_PBaseEntity->getName());
-        return 0;
-    }
-
-    auto* PChar = static_cast<CCharEntity*>(m_PBaseEntity);
-
-    if (PChar->PParty != nullptr)
-    {
-        return earth_time::timestamp(timer::to_utc(PChar->PParty->GetTimeLastMemberJoined()));
-    }
+    // TODO: Uplift for new PT system
+    // if (m_PBaseEntity->objtype != TYPE_PC)
+    // {
+    //     ShowWarning("Invalid entity type calling function (%s).", m_PBaseEntity->getName());
+    //     return 0;
+    // }
+    //
+    // auto* PChar = static_cast<CCharEntity*>(m_PBaseEntity);
+    //
+    // if (PChar->PParty != nullptr)
+    // {
+    //     return earth_time::timestamp(timer::to_utc(PChar->PParty->GetTimeLastMemberJoined()));
+    // }
 
     return 0;
 }
@@ -11354,17 +11357,24 @@ void CLuaBaseEntity::disableLevelSync()
 
     if (PChar->PParty)
     {
-        if (PChar->PParty->GetSyncTarget() == PChar)
-        {
-            PChar->PParty->SetSyncTarget("", MsgStd::LevelSyncRemoveLeftParty);
-        }
-        else
-        {
-            PChar->PParty->DisableSync();
-        }
+        // TODO: message
+        PChar->PParty->ipc().SetSyncTarget(nullptr);
+        // if (PChar->PParty->GetSyncTarget() == PChar)
+        // {
+        //     // TODO: message
+        //     message::send(ipc::PartySetSyncTarget{
+        //         .partyId = PChar->PParty->GetPartyID(),
+        //         .charId = 0,
+        //     });
+        //     // PChar->PParty->SetSyncTarget("", MsgStd::LevelSyncRemoveLeftParty);
+        // }
+        // else
+        // {
+        //     PChar->PParty->DisableSync();
+        // }
     }
 
-    PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, std::make_unique<CCharSyncPacket>(PChar));
+    // PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, std::make_unique<CCharSyncPacket>(PChar));
 }
 
 /************************************************************************
@@ -11414,10 +11424,10 @@ uint8 CLuaBaseEntity::checkSoloPartyAlliance()
     if (PChar->PParty != nullptr)
     {
         SoloPartyAlliance = 1;
-        if (PChar->PParty->m_PAlliance != nullptr)
-        {
-            SoloPartyAlliance = 2;
-        }
+        // if (PChar->PParty->m_PAlliance != nullptr)
+        // {
+        //     SoloPartyAlliance = 2;
+        // }
     }
 
     return SoloPartyAlliance;
@@ -15346,7 +15356,7 @@ void CLuaBaseEntity::trustPartyMessage(uint32 message_id)
     if (auto* PMaster = dynamic_cast<CCharEntity*>(PTrust->PMaster))
     {
         // clang-format off
-        PMaster->ForParty([&](CBattleEntity* PMember)
+        PMaster->ForEveryPartyMember([&](CBattleEntity* PMember)
         {
             auto* PCharMember = static_cast<CCharEntity*>(PMember);
             PCharMember->pushPacket<CMessageCombatPacket>(PTrust, PMember, message_id, 0, 711);

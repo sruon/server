@@ -24,9 +24,12 @@
 #include "party_member_update.h"
 
 #include "alliance.h"
+#include "common/party.h"
 #include "entities/charentity.h"
 #include "entities/trustentity.h"
 #include "party.h"
+#include "party_define.h"
+#include "utils/zoneutils.h"
 
 CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(CCharEntity* PChar, uint8 MemberNumber, uint16 memberflags, uint16 ZoneID)
 {
@@ -115,4 +118,42 @@ CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(uint32 id, const std::string&
     ref<uint16>(0x20) = ZoneID;
 
     std::memcpy(buffer_.data() + 0x28, name.c_str(), name.size());
+}
+
+CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(CCharEntity* PMember, const uint8 MemberNumber, bool isLeader, bool isQm)
+{
+    this->setType(0xDD);
+
+    this->setSize(0x40);
+
+    ref<uint32>(0x04) = PMember->id;
+
+    xi::bitset<8> flags;
+    // flags.set(0, true);                                           // PartyNo, 1-3
+    flags.set(2, isLeader); // PartyLeaderFlg
+    flags.set(3, false);    // AllianceLeaderFlg
+    flags.set(4, isQm);     // PartyRFlg (QM)
+    flags.set(5, false);    // AllianceRFlg (QM)
+    flags.set(6, false);    // unknown06
+    flags.set(7, false);    // unknown07
+
+    ref<uint16>(0x14) = flags.data[0];
+    ref<uint32>(0x08) = PMember->health.hp;
+    ref<uint32>(0x0C) = PMember->health.mp;
+    ref<uint16>(0x10) = PMember->health.tp;
+    ref<uint16>(0x18) = PMember->targid;
+    ref<uint8>(0x1A)  = MemberNumber;
+    ref<uint8>(0x1D)  = PMember->GetHPP();
+    ref<uint8>(0x1E)  = PMember->GetMPP();
+
+    if (!PMember->isAnon())
+    {
+        ref<uint8>(0x22) = PMember->GetMJob();
+        ref<uint8>(0x23) = PMember->GetMLevel();
+        ref<uint8>(0x24) = PMember->GetSJob();
+        ref<uint8>(0x25) = PMember->GetSLevel();
+    }
+
+    // TODO: This will fail if PChar is not on this zone process
+    std::memcpy(buffer_.data() + 0x28, PMember->getName().c_str(), PMember->getName().size());
 }

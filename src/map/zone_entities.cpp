@@ -998,11 +998,11 @@ float getSignificanceScore(CCharEntity* originChar, CCharEntity* targetChar)
             // Same party
             return CHARACTER_SYNC_PARTY_SIGNIFICANCE;
         }
-        else if (originChar->PParty->m_PAlliance && targetChar->PParty->m_PAlliance && originChar->PParty->m_PAlliance->m_AllianceID == targetChar->PParty->m_PAlliance->m_AllianceID)
-        {
-            // Same alliance
-            return CHARACTER_SYNC_ALLI_SIGNIFICANCE;
-        }
+        // else if (originChar->PParty->m_PAlliance && targetChar->PParty->m_PAlliance && originChar->PParty->m_PAlliance->m_AllianceID == targetChar->PParty->m_PAlliance->m_AllianceID)
+        // {
+        //     // Same alliance
+        //     return CHARACTER_SYNC_ALLI_SIGNIFICANCE;
+        // }
     }
 
     return 0;

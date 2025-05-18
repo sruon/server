@@ -123,15 +123,15 @@ void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOE_RADIUS radiusType, 
             if (mTarget->PParty != nullptr)
             {
                 // player -ra spells should never hit whole alliance
-                if ((m_findFlags & FINDFLAGS_ALLIANCE) && mTarget->PParty->m_PAlliance != nullptr)
-                {
-                    addAllInAlliance(m_PMasterTarget, withPet);
-                }
-                else
-                {
+                // if ((m_findFlags & FINDFLAGS_ALLIANCE) && mTarget->PParty->m_PAlliance != nullptr)
+                // {
+                //     addAllInAlliance(m_PMasterTarget, withPet);
+                // }
+                // else
+                // {
                     // add party members
                     addAllInParty(m_PMasterTarget, withPet);
-                }
+                // }
             }
             else
             {
@@ -278,10 +278,10 @@ void CTargetFind::addAllInAlliance(CBattleEntity* PTarget, bool withPet)
     if (auto* PChar = dynamic_cast<CCharEntity*>(PTarget))
     {
         // clang-format off
-        PChar->ForAlliance([this, withPet](CBattleEntity* PMember)
-    {
-        addEntity(PMember, withPet);
-    });
+    //     PChar->ForAlliance([this, withPet](CBattleEntity* PMember)
+    // {
+    //     addEntity(PMember, withPet);
+    // });
         // clang-format on
     }
 }
@@ -291,13 +291,13 @@ void CTargetFind::addAllInParty(CBattleEntity* PTarget, bool withPet)
     // clang-format off
     if (PTarget->objtype == TYPE_PC)
     {
-        static_cast<CCharEntity*>(PTarget)->ForPartyWithTrusts([this, withPet](CBattleEntity* PMember)
-        {
-            if (!PMember->isInMogHouse())
-            {
-                addEntity(PMember, withPet);
-            }
-        });
+        // static_cast<CCharEntity*>(PTarget)->ForPartyWithTrusts([this, withPet](CBattleEntity* PMember)
+        // {
+        //     if (!PMember->isInMogHouse())
+        //     {
+        //         addEntity(PMember, withPet);
+        //     }
+        // });
     }
     else
     {
@@ -414,13 +414,13 @@ bool CTargetFind::isMobOwner(CBattleEntity* PTarget)
     if (auto* PChar = dynamic_cast<CCharEntity*>(m_PBattleEntity))
     {
         // clang-format off
-        PChar->ForAlliance([&found, &PTarget](CBattleEntity* PMember)
-        {
-            if (PMember->id == PTarget->m_OwnerID.id)
-            {
-                found = true;
-            }
-        });
+        // PChar->ForAlliance([&found, &PTarget](CBattleEntity* PMember)
+        // {
+        //     if (PMember->id == PTarget->m_OwnerID.id)
+        //     {
+        //         found = true;
+        //     }
+        // });
         // clang-format on
     }
 

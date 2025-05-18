@@ -94,7 +94,6 @@ public:
 private:
     struct partyInfo_t;
     uint32    m_PartyID;     // unique party ID
-    PARTYTYPE m_PartyType;   // the type of party (players or mobs)
     uint8     m_PartyNumber; // party number in alliance
 
     CMobEntity* m_PLeader;        // party leader
