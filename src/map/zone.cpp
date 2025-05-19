@@ -44,7 +44,6 @@
 #include "monstrosity.h"
 #include "navmesh.h"
 #include "notoriety_container.h"
-#include "party.h"
 #include "spell.h"
 #include "status_effect_container.h"
 #include "treasure_pool.h"

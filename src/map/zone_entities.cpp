@@ -26,7 +26,6 @@
 #include "instance.h"
 #include "latent_effect_container.h"
 #include "mob_modifier.h"
-#include "party.h"
 #include "recast_container.h"
 #include "status_effect_container.h"
 #include "trade_container.h"

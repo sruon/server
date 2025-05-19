@@ -34,7 +34,6 @@
 #include "mob_modifier.h"
 #include "mob_spell_container.h"
 #include "mobskill.h"
-#include "party.h"
 #include "status_effect_container.h"
 #include "utils/battleutils.h"
 #include "utils/petutils.h"

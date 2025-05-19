@@ -27,7 +27,6 @@
 #include "common/party.h"
 #include "entities/charentity.h"
 #include "entities/trustentity.h"
-#include "party.h"
 #include "party_define.h"
 #include "utils/zoneutils.h"
 

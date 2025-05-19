@@ -41,7 +41,6 @@
 #include "job_points.h"
 #include "merit.h"
 #include "modifier.h"
-#include "party.h"
 #include "spell.h"
 
 namespace blueutils

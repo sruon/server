@@ -22,7 +22,6 @@
 #include "party_search.h"
 
 #include "entities/charentity.h"
-#include "party.h"
 
 CPartySearchPacket::CPartySearchPacket(CCharEntity* PChar)
 {

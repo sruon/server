@@ -21,7 +21,6 @@
 
 #include "party_effects.h"
 #include "entities/battleentity.h"
-#include "party.h"
 #include "status_effect_container.h"
 
 void CPartyEffectsPacket::AddMemberEffects(std::size_t partyIndex, CCharEntity* PMember)

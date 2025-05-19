@@ -31,7 +31,6 @@
 #include "map_session_container.h"
 #include "map_socket.h"
 #include "map_statistics.h"
-#include "party.h"
 
 #include <span>
 

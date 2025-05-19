@@ -50,7 +50,6 @@
 #include "monstrosity.h"
 #include "notoriety_container.h"
 #include "packet_system.h"
-#include "party.h"
 #include "recast_container.h"
 #include "roe.h"
 #include "spell.h"

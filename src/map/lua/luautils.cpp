@@ -99,7 +99,6 @@
 #include "mobskill.h"
 #include "monstrosity.h"
 #include "navmesh.h"
-#include "party.h"
 #include "petskill.h"
 #include "roe.h"
 #include "spell.h"

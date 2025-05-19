@@ -11207,19 +11207,17 @@ uint32 CLuaBaseEntity::getLeaderID()
 
 uint32 CLuaBaseEntity::getPartyLastMemberJoinedTime()
 {
-    // TODO: Uplift for new PT system
-    // if (m_PBaseEntity->objtype != TYPE_PC)
-    // {
-    //     ShowWarning("Invalid entity type calling function (%s).", m_PBaseEntity->getName());
-    //     return 0;
-    // }
-    //
-    // auto* PChar = static_cast<CCharEntity*>(m_PBaseEntity);
-    //
-    // if (PChar->PParty != nullptr)
-    // {
-    //     return earth_time::timestamp(timer::to_utc(PChar->PParty->GetTimeLastMemberJoined()));
-    // }
+    if (const auto* PChar = dynamic_cast<CCharEntity*>(m_PBaseEntity))
+    {
+        if (PChar->HasParty())
+        {
+            return std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - PChar->GetParty().GetTimeLastMemberJoined()).count();
+        }
+    }
+    else
+    {
+        ShowWarning("Invalid entity type calling function (%s).", m_PBaseEntity->getName());
+    }
 
     return 0;
 }

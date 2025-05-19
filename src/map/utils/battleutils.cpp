@@ -71,7 +71,6 @@
 #include "packets/lock_on.h"
 #include "packets/pet_sync.h"
 #include "packets/position.h"
-#include "party.h"
 #include "petskill.h"
 #include "recast_container.h"
 #include "spell.h"
