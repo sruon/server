@@ -197,7 +197,7 @@ namespace zoneutils
                     {
                         PPrimary = PChar;
                     }
-                    else if (PChar->PParty && PChar->PParty->GetPartyID() == primary)
+                    else if (PChar->HasParty() && PChar->GetParty().GetPartyId() == primary)
                     {
                         PSecondary = PChar;
                     }

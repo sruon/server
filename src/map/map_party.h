@@ -12,51 +12,92 @@
 #include "packets/party_effects.h"
 #include "packets/party_member_update.h"
 
+// Set of flags used when building PartyDefine/PartyMemberUpdate packets
+// The client uses them to define how to render the party list.
+enum class PartyFlag : uint16
+{
+    PartySecond      = 0x0001,
+    PartyThird       = 0x0002,
+    IsLeader         = 0x0004,
+    IsAllianceLeader = 0x0008,
+    IsQuartermaster  = 0x0010,
+    IsSyncTarget     = 0x0100,
+};
+
+inline PartyFlag operator|(PartyFlag a, PartyFlag b)
+{
+    return static_cast<PartyFlag>(static_cast<uint16>(a) | static_cast<uint16>(b));
+}
+
+inline PartyFlag operator&(PartyFlag a, PartyFlag b)
+{
+    return static_cast<PartyFlag>(static_cast<uint16>(a) & static_cast<uint16>(b));
+}
+
+inline PartyFlag operator~(PartyFlag a)
+{
+    return static_cast<PartyFlag>(~static_cast<uint16>(a));
+}
+DECLARE_FORMAT_AS_UNDERLYING(PartyFlag);
+
+// This is a read-only view of a party of CCharEntity
+// Updates are only permitted through the IPC interface
+// The nested IpcHelper class is used to send messages to the world server
 class CCharParty
 {
 public:
-    // All map->world communications go through this
+    // All map->world communications go through the IpcHelper
     class IpcHelper;
+    auto ipc() const -> const IpcHelper&;
 
-    CCharParty(const ipc::PartyUpdate& message);
-    const IpcHelper& ipc() const;
+    static std::unique_ptr<CCharParty> Create(const ipc::PartyUpdate& message)
+    {
+        return std::unique_ptr<CCharParty>(new CCharParty(message));
+    }
 
+    ~CCharParty();
+
+    auto GetPartyId() const -> uint32;
+
+    // Helpers
     bool IsFull() const;
-
     bool HasOnlyOneMember() const;
-
-    timer::time_point GetTimeLastMemberJoined() const;
-
+    auto GetTimeLastMemberJoined() const -> timer::time_point;
     bool HasTrusts();
+    bool IsTrustOnlyParty() const;
+    auto GetFlagsForMember(const CCharEntity* PChar) const -> uint16;
 
-    void                        broadcast();
-    void                        update(const ipc::PartyUpdate& message);
-    std::vector<CBattleEntity*> GetMembersWithTrusts() const;
-    std::vector<CCharEntity*>   GetMembers() const;
-    std::vector<CCharEntity*>   GetMembers(uint16 zoneId) const;
-    CCharEntity*                GetLeader() const;
-    CCharEntity*                GetQuartermaster() const;
-    uint32                      GetPartyID() const
-    {
-        return m_PartyId;
-    }
+    // Packets
+    void BroadcastPartyPackets(const CCharEntity* PSingle = nullptr);
+    bool ChatMessage(const ipc::ChatMessageParty& message);
+    bool ChatMessage(const ipc::ChatMessageAlliance& message);
+    void PushPacket(uint32 senderID, uint16 ZoneID, const std::unique_ptr<CBasicPacket>& packet) const;
+    void EffectsChanged();
+    void PushEffectsPacket();
 
-    CCharEntity* GetSyncTarget() const;
-    uint16       GetFlagsForMember(CCharEntity* PChar);
-    void         PushEffectsPacket();
-    void         PushPacket(uint32 senderID, uint16 ZoneID, const std::unique_ptr<CBasicPacket>& packet);
-    void         EffectsChanged()
-    {
-        m_EffectsChanged = true;
-    }
-    CCharEntity* GetMemberByName(const std::string& memberName); // Returns entity pointer for member name string
-    void         ForEveryMember(std::function<void(CCharEntity*)> func);
-    void         ForEveryMemberWithTrusts(std::function<void(CBattleEntity*)> func);
-    void         ForEveryAllianceMember(std::function<void(CCharEntity*)> func);
+    // Members retrieval
+    auto GetMembersWithTrusts() const -> std::vector<CBattleEntity*>;
+    auto GetMembers() const -> std::vector<CCharEntity*>;
+    auto GetMembers(uint16 zoneId) const -> std::vector<CCharEntity*>;
+    auto GetLeader() const -> CCharEntity*;
+    auto GetQuartermaster() const -> CCharEntity*;
+    auto GetSyncTarget() const -> CCharEntity*;
+    auto GetMemberByName(const std::string& memberName) const -> CCharEntity*;
+
+    // Iterators
+    void ForEveryMember(const std::function<void(CCharEntity*)>& func) const;
+    void ForEveryMemberWithTrusts(const std::function<void(CBattleEntity*)>& func) const;
+    void ForEveryAllianceMember(std::function<void(CCharEntity*)> func);
 
 private:
-    void                       addMember(PartyMemberData& data);
-    void                       delMember(const PartyMember& member);
+    CCharParty(const ipc::PartyUpdate& message);
+
+    void setPartyId(uint32 partyId);
+    void update(const ipc::PartyUpdate& message);
+    void addMember(PartyMemberData& data);
+    void delMember(const PartyMember& member);
+
+    // This should be an array but does that really matter?
     std::vector<PartyMember>   members_;
     uint32                     m_PartyId               = 0;
     uint32                     m_LeaderUniqueNo        = 0;
@@ -65,6 +106,9 @@ private:
     timer::time_point          m_LastJoined            = timer::now();
     bool                       m_EffectsChanged        = false;
     std::unique_ptr<IpcHelper> m_pIpcHelper;
+
+    // Allow only PartyContainer to call update() to enforce the read-only nature
+    friend class PartyContainer;
 };
 
 #include "map_party_ipc_helper.h"

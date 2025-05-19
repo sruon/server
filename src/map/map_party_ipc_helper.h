@@ -34,6 +34,8 @@ public:
     void RemoveMember(const uint32 UniqueNo) const;
     void RemoveMember(CBattleEntity* PEntity) const;
 
+    void Disband() const;
+
     void NotifyKick(const uint32 UniqueNo) const;
     void NotifyKick(CCharEntity* PEntity) const;
 

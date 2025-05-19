@@ -500,7 +500,7 @@ bool CAutomatonController::TryHeal(const CurrentManeuvers& maneuvers)
         }
     }
 
-    if (maneuvers.light && !PCastTarget && PAutomaton->getHead() == HEAD_SOULSOOTHER && static_cast<CCharEntity*>(PAutomaton->PMaster)->PParty) // Light + Soulsoother head -> Heal party
+    if (maneuvers.light && !PCastTarget && PAutomaton->getHead() == HEAD_SOULSOOTHER && static_cast<CCharEntity*>(PAutomaton->PMaster)->HasParty()) // Light + Soulsoother head -> Heal party
     {
         // clang-format off
         if (PMob)
@@ -1128,9 +1128,9 @@ bool CAutomatonController::TryStatusRemoval(const CurrentManeuvers& maneuvers)
         }
     }
 
-    if (maneuvers.water && PAutomaton->getHead() == HEAD_SOULSOOTHER && static_cast<CCharEntity*>(PAutomaton->PMaster)->PParty) // Water + Soulsoother head -> Remove party's statuses
+    if (maneuvers.water && PAutomaton->getHead() == HEAD_SOULSOOTHER && static_cast<CCharEntity*>(PAutomaton->PMaster)->HasParty()) // Water + Soulsoother head -> Remove party's statuses
     {
-        for (auto member : static_cast<CCharEntity*>(PAutomaton->PMaster)->PParty->GetMembers())
+        for (auto member : static_cast<CCharEntity*>(PAutomaton->PMaster)->GetParty().GetMembers())
         {
             if (member->id != PAutomaton->PMaster->id)
             {
@@ -1337,9 +1337,9 @@ bool CAutomatonController::TryEnhance()
     size_t members = 0;
 
     // Unknown whether it only applies buffs to other members if they have hate or if the Soulsoother head is needed
-    if (static_cast<CCharEntity*>(PAutomaton->PMaster)->PParty)
+    if (static_cast<CCharEntity*>(PAutomaton->PMaster)->HasParty())
     {
-        members = static_cast<CCharEntity*>(PAutomaton->PMaster)->PParty->GetMembers().size();
+        members = static_cast<CCharEntity*>(PAutomaton->PMaster)->GetParty().GetMembers().size();
         // clang-format off
         // static_cast<CCharEntity*>(PAutomaton->PMaster)->ForPartyWithTrusts([&](CBattleEntity* PMember)
         // {

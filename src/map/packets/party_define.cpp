@@ -94,25 +94,25 @@ CPartyDefinePacket::CPartyDefinePacket(std::vector<CBattleEntity*> Members, uint
 
     // TODO: Alliance
 
-    uint8              i       = 0;
+    uint8 i = 0;
     for (auto member : Members)
     {
         xi::bitset<8> flags;
         // flags.set(0, true);                                      // PartyNo, 1-3
-        flags.set(2, member->id == leaderId);        // PartyLeaderFlg
-        flags.set(3, false);                              // AllianceLeaderFlg
-        flags.set(4, member->id == qmId); // PartyRFlg (QM)
-        flags.set(5, false);                              // AllianceRFlg (QM)
-        flags.set(6, false);                              // unknown06
-        flags.set(7, false);                              // unknown07
+        flags.set(2, member->id == leaderId); // PartyLeaderFlg
+        flags.set(3, false);                  // AllianceLeaderFlg
+        flags.set(4, member->id == qmId);     // PartyRFlg (QM)
+        flags.set(5, false);                  // AllianceRFlg (QM)
+        flags.set(6, false);                  // unknown06
+        flags.set(7, false);                  // unknown07
 
         // TODO: If PChar in another zone, then targid is 0
         if (auto* PChar = dynamic_cast<CCharEntity*>(member))
         {
-            ref<uint32>(12 * i + 0x08) = PChar->id; // UniqueNo
-            ref<uint16>(12 * i + 0x0C) = PChar->targid;          // ActIndex
-            ref<uint16>(12 * i + 0x0E) = flags.data[0];   // Flags
-            ref<uint16>(12 * i + 0x10) = PChar->getZone();   // Supposed to be prevzone if not
+            ref<uint32>(12 * i + 0x08) = PChar->id;        // UniqueNo
+            ref<uint16>(12 * i + 0x0C) = PChar->targid;    // ActIndex
+            ref<uint16>(12 * i + 0x0E) = flags.data[0];    // Flags
+            ref<uint16>(12 * i + 0x10) = PChar->getZone(); // Supposed to be prevzone if not
         }
         else if (auto* PTrust = dynamic_cast<CTrustEntity*>(member))
         {

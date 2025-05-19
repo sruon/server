@@ -555,14 +555,9 @@ public:
     uint32 getPartyLastMemberJoinedTime();
     void   forMembersInRange(float range, sol::function function);
 
-    void addPartyEffect(sol::variadic_args va);
-    bool hasPartyEffect(uint16 effectid);
-    void removePartyEffect(uint16 effectid);
-
     auto  getAlliance() -> sol::table;
     uint8 getAllianceSize();
 
-    void reloadParty();
     void disableLevelSync();
     bool isLevelSync();
 

@@ -73,8 +73,7 @@ CParty::CParty(CBattleEntity* PEntity)
     m_PQuarterMaster = nullptr;
     m_EffectsChanged = false;
 
-    auto* PChar = dynamic_cast<CCharEntity*>(PEntity);
-    if (PChar && PChar->PParty == nullptr)
+    if (const auto* PChar = dynamic_cast<CCharEntity*>(PEntity); PChar && !PChar->HasParty())
     {
         m_PartyID   = PEntity->id;
         m_PartyType = PARTY_PCS;
@@ -158,15 +157,15 @@ void CParty::AssignPartyRole(const std::string& MemberName, uint8 role)
 
     if (m_PAlliance)
     {
-        message::send(ipc::AllianceReload{
-            .allianceId = m_PAlliance->m_AllianceID,
-        });
+        // message::send(ipc::AllianceReload{
+        //     .allianceId = m_PAlliance->m_AllianceID,
+        // });
     }
     else
     {
-        message::send(ipc::PartyReload{
-            .partyId = m_PartyID,
-        });
+        // message::send(ipc::PartyReload{
+        //     .partyId = m_PartyID,
+        // });
     }
 }
 

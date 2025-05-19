@@ -994,7 +994,7 @@ void CZone::CharZoneIn(CCharEntity* PChar)
         PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_ILLUSION);
     }
 
-    PChar->ReloadPartyInc();
+    // TODO: Ask party system for party packets
 
     // Zone-wide treasure pool takes precendence over all others
     if (m_TreasurePool && m_TreasurePool->getPoolType() == TreasurePoolType::Zone)
@@ -1004,7 +1004,7 @@ void CZone::CharZoneIn(CCharEntity* PChar)
     }
     else
     {
-        if (PChar->PParty)
+        if (PChar->HasParty())
         {
             // PChar->PParty->ReloadTreasurePool(PChar);
         }
@@ -1061,7 +1061,7 @@ void CZone::CharZoneIn(CCharEntity* PChar)
     else if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))
     {
         // Logging in with no party and a level sync status = bad.
-        if (!PChar->PParty)
+        if (!PChar->HasParty())
         {
             PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_SYNC);
             PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_RESTRICTION);
@@ -1098,18 +1098,18 @@ void CZone::CharZoneOut(CCharEntity* PChar)
 
     if (PChar->m_LevelRestriction != 0)
     {
-        if (PChar->PParty)
+        if (PChar->HasParty())
         {
-            if (PChar->PParty->GetSyncTarget() == PChar || PChar->PParty->GetLeader() == PChar)
+            if (PChar->GetParty().GetSyncTarget() == PChar || PChar->GetParty().GetLeader() == PChar)
             {
-                PChar->PParty->ipc().SetSyncTarget(nullptr);
+                PChar->GetParty().ipc().SetSyncTarget(nullptr);
                 // PChar->PParty->SetSyncTarget("", MsgStd::LevelSyncDeactivateLeftArea);
             }
-            if (PChar->PParty->GetSyncTarget() != nullptr)
+            if (PChar->GetParty().GetSyncTarget() != nullptr)
             {
-                if (PChar->PParty->GetMembers(PChar->PParty->GetSyncTarget()->getZone()).size() < 2)
+                if (PChar->GetParty().GetMembers(PChar->GetParty().GetSyncTarget()->getZone()).size() < 2)
                 {
-                    PChar->PParty->ipc().SetSyncTarget(nullptr);
+                    PChar->GetParty().ipc().SetSyncTarget(nullptr);
                     // PChar->PParty->SetSyncTarget("", MsgStd::LevelSyncRemoveTooFewMembers);
                 }
             }

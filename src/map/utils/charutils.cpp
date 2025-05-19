@@ -4136,7 +4136,7 @@ namespace charutils
         }
 
         // Distribute gil to player/party/alliance
-        if (PChar->PParty != nullptr)
+        if (PChar->HasParty())
         {
             std::vector<CCharEntity*> members;
 
@@ -4274,11 +4274,11 @@ namespace charutils
         uint8       maxlevel = PChar->GetMLevel();
         REGION_TYPE region   = PChar->loc.zone->GetRegionID();
 
-        if (PChar->PParty)
+        if (PChar->HasParty())
         {
-            if (PChar->PParty->GetSyncTarget())
+            if (PChar->GetParty().GetSyncTarget())
             {
-                if (distance(PMob->loc.p, PChar->PParty->GetSyncTarget()->loc.p) >= 100 || PChar->PParty->GetSyncTarget()->health.hp == 0)
+                if (distance(PMob->loc.p, PChar->GetParty().GetSyncTarget()->loc.p) >= 100 || PChar->GetParty().GetSyncTarget()->health.hp == 0)
                 {
                     // clang-format off
                     PChar->ForEveryPartyMember([&PMob](CBattleEntity* PMember)
@@ -4944,9 +4944,9 @@ namespace charutils
                 SaveCharStats(PChar);
                 SaveCharJob(PChar, PChar->GetMJob());
 
-                if (PChar->PParty != nullptr)
+                if (PChar->HasParty())
                 {
-                    if (PChar->PParty->GetSyncTarget() == PChar)
+                    if (PChar->GetParty().GetSyncTarget() == PChar)
                     {
                         // TODO: Refresh sync
                         // PChar->PParty->RefreshSync();
@@ -5111,10 +5111,10 @@ namespace charutils
             if (PChar->jobs.job[PChar->GetMJob()] >= PChar->jobs.genkai)
             {
                 PChar->jobs.exp[PChar->GetMJob()] = GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) - 1;
-                if (PChar->PParty && PChar->PParty->GetSyncTarget() == PChar)
+                if (PChar->HasParty() && PChar->GetParty().GetSyncTarget() == PChar)
                 {
                     // TODO: Message
-                    PChar->PParty->ipc().SetSyncTarget(nullptr);
+                    PChar->GetParty().ipc().SetSyncTarget(nullptr);
                     // PChar->PParty->SetSyncTarget("", MsgStd::LevelSyncRemoveIneligibleExp);
                 }
             }
@@ -5142,9 +5142,9 @@ namespace charutils
                 }
                 PChar->PLatentEffectContainer->CheckLatentsJobLevel();
 
-                if (PChar->PParty != nullptr)
+                if (PChar->HasParty())
                 {
-                    if (PChar->PParty->GetSyncTarget() == PChar)
+                    if (PChar->GetParty().GetSyncTarget() == PChar)
                     {
                         // TODO: Refresh sync on level up
                         // PChar->PParty->RefreshSync();
@@ -7302,9 +7302,9 @@ namespace charutils
 
         if (PChar->status == STATUS_TYPE::SHUTDOWN)
         {
-            if (PChar->PParty != nullptr)
+            if (PChar->HasParty())
             {
-                PChar->PParty->ipc().RemoveMember(PChar);
+                PChar->GetParty().ipc().RemoveMember(PChar);
                 // if (PChar->PParty->m_PAlliance != nullptr)
                 // {
                 //     if (PChar->PParty->GetLeader() == PChar)

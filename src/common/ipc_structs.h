@@ -162,19 +162,9 @@ namespace ipc
         uint8  inviteAnswer{};
     };
 
-    struct PartyReload
-    {
-        uint32 partyId{};
-    };
-
     struct PartyDisband
     {
         uint32 partyId{};
-    };
-
-    struct AllianceReload
-    {
-        uint32 allianceId{};
     };
 
     struct AllianceDissolve
@@ -344,6 +334,12 @@ namespace ipc
     {
         uint32 partyId{};
         uint32 charId{};
+    };
+
+    struct PartyChangeId
+    {
+        uint32 formerId{};
+        uint32 newId{};
     };
 
 } // namespace ipc

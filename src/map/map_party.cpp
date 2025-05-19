@@ -12,19 +12,39 @@
 #include "utils/jailutils.h"
 #include "utils/zoneutils.h"
 
-enum PARTYFLAG : uint16
+CCharParty::CCharParty(const ipc::PartyUpdate& message)
 {
-    PARTY_SECOND    = 0x0001,
-    PARTY_THIRD     = 0x0002,
-    PARTY_LEADER    = 0x0004,
-    ALLIANCE_LEADER = 0x0008,
-    PARTY_QM        = 0x0010,
-    PARTY_SYNC      = 0x0100,
-};
-DECLARE_FORMAT_AS_UNDERLYING(PARTYFLAG);
+    m_pIpcHelper            = IpcHelper::Create(*this);
+    m_PartyId               = message.partyId;
+    m_LeaderUniqueNo        = message.leaderUniqueNo;
+    m_QuartermasterUniqueNo = message.quartermasterUniqueNo;
+    m_SyncTargetUniqueNo    = message.syncTargetUniqueNo;
 
+    for (auto member : message.members)
+    {
+        addMember(member);
+    }
+
+    BroadcastPartyPackets();
+}
+
+// TODO: Not sure we need this logic since the container only deletes a party when all members are gone
+CCharParty::~CCharParty()
+{
+    for (const auto member : GetMembers())
+    {
+        ShowErrorFmt("CCharParty destructor called with members.");
+        member->ClearParty();
+    }
+}
+
+// Receives party updates from the world server
+// Determines changes, if any, and updates the party.
+// This may trigger additional IPC messages.
 void CCharParty::update(const ipc::PartyUpdate& message)
 {
+    bool changes = false;
+
     if (message.leaderUniqueNo != m_LeaderUniqueNo)
     {
         m_LeaderUniqueNo = message.leaderUniqueNo;
@@ -32,14 +52,13 @@ void CCharParty::update(const ipc::PartyUpdate& message)
         // Changing leader dismisses trusts
         ForEveryMember([&](CCharEntity* PChar)
                        { PChar->ClearTrusts(); });
-
-        // Resend the party define packet to all members
+        changes = true;
     }
 
     if (message.quartermasterUniqueNo != m_QuartermasterUniqueNo)
     {
         m_QuartermasterUniqueNo = message.quartermasterUniqueNo;
-        // Resend the party define packet to all members
+        changes                 = true;
     }
 
     if (message.syncTargetUniqueNo != m_SyncTargetUniqueNo)
@@ -61,10 +80,13 @@ void CCharParty::update(const ipc::PartyUpdate& message)
                     sync->SetDuration(30s);
                 } });
         }
+
         m_SyncTargetUniqueNo = message.syncTargetUniqueNo;
-        // Resend the party define packet to all members
+        changes              = true;
     }
 
+    // This compares party membership.
+    // TODO: Deeper checks, including zone IDs.
     if (message.members.size() != members_.size())
     {
         std::unordered_set<uint32> oldIds, newIds;
@@ -91,6 +113,7 @@ void CCharParty::update(const ipc::PartyUpdate& message)
                     if (member.UniqueNo == id)
                     {
                         addMember(member);
+                        changes = true;
                         break;
                     }
                 }
@@ -108,38 +131,48 @@ void CCharParty::update(const ipc::PartyUpdate& message)
                 {
                     ShowInfoFmt("Removing member with ID: {}", deletedMember->GetId());
                     delMember(*deletedMember);
+                    changes = true;
                 }
             }
         }
     }
 
-    broadcast();
+    if (changes)
+    {
+        BroadcastPartyPackets();
+    }
 }
 
-uint16 CCharParty::GetFlagsForMember(CCharEntity* PChar)
+auto CCharParty::GetFlagsForMember(const CCharEntity* PChar) const -> uint16
 {
-    // TODO: Alliance flags
-    uint16 flags = 0;
+    auto flags = static_cast<PartyFlag>(0);
+
+    if (!PChar)
+    {
+        return static_cast<uint16>(flags);
+    }
 
     if (PChar->id == m_LeaderUniqueNo)
     {
-        flags |= PARTY_LEADER;
+        flags = flags | PartyFlag::IsLeader;
     }
 
     if (PChar->id == m_QuartermasterUniqueNo)
     {
-        flags |= PARTY_QM;
+        flags = flags | PartyFlag::IsQuartermaster;
     }
 
     if (PChar->id == m_SyncTargetUniqueNo)
     {
-        flags |= PARTY_SYNC;
+        flags = flags | PartyFlag::IsSyncTarget;
     }
 
-    return flags;
+    return static_cast<uint16>(flags);
 }
 
-void CCharParty::broadcast()
+// Recalculate latents, send party define and party update packets.
+// Can optionally be scoped to a single entity.
+void CCharParty::BroadcastPartyPackets(const CCharEntity* PSingle)
 {
     // Retail packet flow:
     // 0xC8: Defines party layout
@@ -148,75 +181,47 @@ void CCharParty::broadcast()
     // 0x67: Entity status
     // 0xDF: Char update with trust data
     // 0x0E: Several NPC updates with name etc
+    const size_t memberCount = this->GetMembers().size();
+    const size_t trustCount  = this->GetMembersWithTrusts().size() - memberCount;
+
+    //clang-format off
     ForEveryMember([&](CCharEntity* PChar)
                    {
-                size_t memberCount = this->GetMembers().size();
-                size_t trustCount  = this->GetMembersWithTrusts().size() - memberCount;
+        if (PSingle != nullptr && PChar != PSingle)
+        {
+            return;
+        }
 
-            PChar->PLatentEffectContainer->CheckLatentsPartyJobs();
-            PChar->PLatentEffectContainer->CheckLatentsPartyMembers(memberCount, trustCount);
-            PChar->PLatentEffectContainer->CheckLatentsPartyAvatar();
-               PChar->pushPacket<CPartyDefinePacket>(GetMembersWithTrusts(), m_LeaderUniqueNo, m_QuartermasterUniqueNo);
-               uint8 i = 0;
-               for (auto member : GetMembersWithTrusts())
-               {
-                   if (auto *PCharMember = dynamic_cast<CCharEntity*>(member))
-                   {
-                       // TODO: This wont work cross zone
-                       PChar->pushPacket<CPartyMemberUpdatePacket>(PCharMember, i, PCharMember->id == m_LeaderUniqueNo, PCharMember->id == m_QuartermasterUniqueNo);
-                   }
-                   else if (auto *PTrust = dynamic_cast<CTrustEntity*>(member))
-                   {
-                       PChar->pushPacket<CPartyMemberUpdatePacket>(PTrust, i);
-                   }
-                     ++i;
-               } });
-    //    for (auto member : message.members)
-    //    {
-    //        if (member.Type == PartyMemberType::Player)
-    //        {
-    //            CCharEntity* PChar = zoneutils::GetChar(member.UniqueNo);
-    //            if (PChar)
-    //            {
-    //                // TODO:
-    //                //PChar->PLatentEffectContainer->CheckLatentsPartyJobs();
-    //                //PChar->PLatentEffectContainer->CheckLatentsPartyMembers(members.size(), trustCount);
-    //                //PChar->PLatentEffectContainer->CheckLatentsPartyAvatar();
-    //                //PChar->ReloadPartyDec();
-    //                //auto effects = std::make_unique<CPartyEffectsPacket>();
-    //                // effects->AddMemberEffects(PChar)
-    //                ShowInfoFmt("Player {} ({}) is on this zone server.", PChar->getName(), PChar->id);
-    //                PChar->pushPacket<CPartyDefinePacket>(message);
-    //                int i = 0;
-    //                for (auto otherMember : message.members)
-    //                {
-    //                    if (otherMember.Type == PartyMemberType::Trust)
-    //                    {
-    //                        CCharEntity* PLeader = zoneutils::GetChar(message.leaderUniqueNo);
-    //                        if (PLeader)
-    //                        {
-    //                            for (auto& PTrust : PLeader->PTrusts)
-    //                            {
-    //                                if (PTrust->id == otherMember.UniqueNo)
-    //                                {
-    //                                    // Temporary: This is how it used to work in LSB but this is absolutely not how retail streams trust updates
-    //                                    PChar->pushPacket<CPartyMemberUpdatePacket>(PTrust, i);
-    //                                    break;
-    //                                }
-    //                            }
-    //                        }
-    //                    }
-    //                    else
-    //                    {
-    //                        PChar->pushPacket<CPartyMemberUpdatePacket>(PChar, i, message);
-    //                    }
-    //                    ++i;
-    //                }
-    //            }
-    //        }
-    //    }
+        // TODO: Party effects
+        // auto effects = std::make_unique<CPartyEffectsPacket>();
+        // effects->AddMemberEffects(PChar)
+        PChar->PLatentEffectContainer->CheckLatentsPartyJobs();
+        PChar->PLatentEffectContainer->CheckLatentsPartyMembers(memberCount, trustCount);
+        PChar->PLatentEffectContainer->CheckLatentsPartyAvatar();
+        PChar->pushPacket<CPartyDefinePacket>(GetMembersWithTrusts(), m_LeaderUniqueNo, m_QuartermasterUniqueNo);
+        uint8 i = 0;
+
+        for (const auto PMember : GetMembersWithTrusts())
+        {
+            if (auto *PCharMember = dynamic_cast<CCharEntity*>(PMember))
+            {
+                // TODO: This wont work cross zone
+                PChar->pushPacket<CPartyMemberUpdatePacket>(PCharMember, i, PCharMember->id == m_LeaderUniqueNo, PCharMember->id == m_QuartermasterUniqueNo);
+            }
+            else if (auto *PTrust = dynamic_cast<CTrustEntity*>(PMember))
+            {
+                // This is wrong for trusts but that's how it used to work before.
+                PChar->pushPacket<CPartyMemberUpdatePacket>(PTrust, i);
+            }
+
+            ++i;
+       } });
+    //clang-format on
 }
-std::vector<CBattleEntity*> CCharParty::GetMembersWithTrusts() const
+
+// Returns a vector of CCharEntity present on this map server, along with the trusts.
+// This is not guaranteed to be the full set of party members.
+auto CCharParty::GetMembersWithTrusts() const -> std::vector<CBattleEntity*>
 {
     auto  result  = std::vector<CBattleEntity*>{};
     auto* PLeader = GetLeader();
@@ -247,7 +252,9 @@ std::vector<CBattleEntity*> CCharParty::GetMembersWithTrusts() const
     return result;
 }
 
-std::vector<CCharEntity*> CCharParty::GetMembers() const
+// Returns a vector of CCharEntity present on this map server
+// This is not guaranteed to be the full set of party members.
+auto CCharParty::GetMembers() const -> std::vector<CCharEntity*>
 {
     auto result = std::vector<CCharEntity*>{};
 
@@ -262,7 +269,9 @@ std::vector<CCharEntity*> CCharParty::GetMembers() const
     return result;
 }
 
-std::vector<CCharEntity*> CCharParty::GetMembers(uint16 zoneId) const
+// Returns a vector of CCharEntity present on this map server in the given zone.
+// This is not guaranteed to be the full set of party members.
+auto CCharParty::GetMembers(const uint16 zoneId) const -> std::vector<CCharEntity*>
 {
     auto result = std::vector<CCharEntity*>{};
 
@@ -280,39 +289,48 @@ std::vector<CCharEntity*> CCharParty::GetMembers(uint16 zoneId) const
     return result;
 }
 
-CCharEntity* CCharParty::GetLeader() const
+// Returns the entity representing the party leader
+// This only works if the leader is on the same map process
+auto CCharParty::GetLeader() const -> CCharEntity*
 {
     // TODO: This needs to work across map processes
     return zoneutils::GetChar(m_LeaderUniqueNo);
 }
 
-CCharEntity* CCharParty::GetQuartermaster() const
+// Returns the entity representing the quartermaster
+// This only works if the quartermaster is on the same map process
+auto CCharParty::GetQuartermaster() const -> CCharEntity*
 {
     // TODO: This needs to work across map processes
     return zoneutils::GetChar(m_QuartermasterUniqueNo);
 }
 
-CCharEntity* CCharParty::GetSyncTarget() const
+// Returns the entity representing the sync target
+// This only works if the sync target is on the same map process
+auto CCharParty::GetSyncTarget() const -> CCharEntity*
 {
     // TODO: This needs to work across map processes
     return zoneutils::GetChar(m_SyncTargetUniqueNo);
 }
 
-void CCharParty::ForEveryMember(std::function<void(CCharEntity*)> func)
+// Executes an arbitrary function for each party member present on this map process
+void CCharParty::ForEveryMember(const std::function<void(CCharEntity*)>& func) const
 {
-    for (auto member : GetMembers())
+    for (const auto member : GetMembers())
     {
         func(member);
     }
 }
 
+// Executes an arbitrary function for each alliance member present on this map process
 void CCharParty::ForEveryAllianceMember(std::function<void(CCharEntity*)> func)
 {
 }
 
-void CCharParty::ForEveryMemberWithTrusts(std::function<void(CBattleEntity*)> func)
+// Executes an arbitrary function for each party member present on this map process, including the trusts.
+void CCharParty::ForEveryMemberWithTrusts(const std::function<void(CBattleEntity*)>& func) const
 {
-    for (auto member : GetMembersWithTrusts())
+    for (const auto member : GetMembersWithTrusts())
     {
         func(member);
     }
@@ -332,7 +350,7 @@ void CCharParty::PushEffectsPacket()
 // Send a packet to all members of the group if the zone is specified as 0
 // or to the party members in the specified zone.
 // Packet for PPartyMember is not sent in both cases
-void CCharParty::PushPacket(uint32 senderID, uint16 ZoneID, const std::unique_ptr<CBasicPacket>& packet)
+void CCharParty::PushPacket(uint32 senderID, uint16 ZoneID, const std::unique_ptr<CBasicPacket>& packet) const
 {
     for (auto& member : GetMembers())
     {
@@ -346,7 +364,7 @@ void CCharParty::PushPacket(uint32 senderID, uint16 ZoneID, const std::unique_pt
     }
 }
 
-CCharEntity* CCharParty::GetMemberByName(const std::string& memberName)
+auto CCharParty::GetMemberByName(const std::string& memberName) const -> CCharEntity*
 {
     for (auto& member : GetMembers())
     {
@@ -358,18 +376,32 @@ CCharEntity* CCharParty::GetMemberByName(const std::string& memberName)
     return nullptr;
 }
 
+auto CCharParty::GetPartyId() const -> uint32
+{
+    return m_PartyId;
+}
+
+void CCharParty::EffectsChanged()
+{
+    m_EffectsChanged = true;
+}
+
+void CCharParty::setPartyId(const uint32 partyId)
+{
+    m_PartyId = partyId;
+}
+
 void CCharParty::addMember(PartyMemberData& data)
 {
-    members_.push_back(data);
+    members_.emplace_back(data);
     m_LastJoined = timer::now();
 
     if (data.Type == PartyMemberType::Player)
     {
-        CCharEntity* PChar = zoneutils::GetChar(data.UniqueNo);
         // Char may not be on this server and will be handled by another map process
-        if (PChar)
+        if (CCharEntity* PChar = zoneutils::GetChar(data.UniqueNo))
         {
-            PChar->PParty = this;
+            PChar->SetParty(*this);
             // this is garbage and should be handled elsewhere
             //                        ReloadTreasurePool(PChar);
 
@@ -389,7 +421,7 @@ void CCharParty::addMember(PartyMemberData& data)
             PChar->PTreasurePool->updatePool(PChar);
 
             // Apply level sync if the party is level synced
-            if (auto* PSync = GetSyncTarget())
+            if (const auto* PSync = GetSyncTarget())
             {
                 if (PChar->getZone() == PSync->getZone())
                 {
@@ -410,48 +442,44 @@ void CCharParty::addMember(PartyMemberData& data)
 
 void CCharParty::delMember(const PartyMember& member)
 {
-    auto it = std::find_if(members_.begin(), members_.end(), [&](const PartyMember& m)
-                           { return m.GetId() == member.GetId(); });
+    const auto it = std::find_if(members_.begin(), members_.end(), [&](const PartyMember& m)
+                                 { return m.GetId() == member.GetId(); });
 
     if (it != members_.end())
     {
-        ipc().NotifyKick(member.GetId());
+        // Char may not be on this server and will be handled by another map process
+        if (it->GetType() == PartyMemberType::Player)
+        {
+            if (CCharEntity* PChar = zoneutils::GetChar(it->GetId()))
+            {
+                PChar->ClearParty();
+            }
+
+            ipc().NotifyKick(member.GetId());
+        }
+
+        // but we still remove it from our list!
         members_.erase(it);
     }
 }
 
-CCharParty::CCharParty(const ipc::PartyUpdate& message)
-{
-    m_pIpcHelper            = IpcHelper::Create(*this);
-    m_PartyId               = message.partyId;
-    m_LeaderUniqueNo        = message.leaderUniqueNo;
-    m_QuartermasterUniqueNo = message.quartermasterUniqueNo;
-    m_SyncTargetUniqueNo    = message.syncTargetUniqueNo;
-
-    // Defer to AddMember or something
-    for (auto member : message.members)
-    {
-        addMember(member);
-    }
-
-    broadcast();
-}
 const CCharParty::IpcHelper& CCharParty::ipc() const
 {
     return *m_pIpcHelper;
 }
 
-bool CCharParty::IsFull() const
+// The world server should decide if we're full, but this is an easy helper.
+auto CCharParty::IsFull() const -> bool
 {
     return members_.size() >= 6;
 }
 
-bool CCharParty::HasOnlyOneMember() const
+auto CCharParty::HasOnlyOneMember() const -> bool
 {
     return members_.size() == 1;
 }
 
-timer::time_point CCharParty::GetTimeLastMemberJoined() const
+auto CCharParty::GetTimeLastMemberJoined() const -> timer::time_point
 {
     return m_LastJoined;
 }
@@ -460,4 +488,38 @@ bool CCharParty::HasTrusts()
 {
     return std::find_if(members_.begin(), members_.end(), [](auto& member)
                         { return member.GetType() == PartyMemberType::Trust; }) != members_.end();
+}
+
+// Returns true if the party only contains the leader and their trusts.
+//
+// There are certain conditions where packets are processed differently
+// if the player is in a "fake" party only with trusts.
+auto CCharParty::IsTrustOnlyParty() const -> bool
+{
+    for (auto& member : members_)
+    {
+        if (member.GetId() == m_LeaderUniqueNo)
+        {
+            continue;
+        }
+
+        if (member.GetType() == PartyMemberType::Player)
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+auto CCharParty::ChatMessage(const ipc::ChatMessageParty& message) -> bool
+{
+    PushPacket(message.senderId, 0, std::make_unique<CChatMessagePacket>(message.senderName, message.zoneId, message.messageType, message.message, message.gmLevel));
+    return true;
+}
+
+auto CCharParty::ChatMessage(const ipc::ChatMessageAlliance& message) -> bool
+{
+    PushPacket(message.senderId, 0, std::make_unique<CChatMessagePacket>(message.senderName, message.zoneId, message.messageType, message.message, message.gmLevel));
+    return true;
 }

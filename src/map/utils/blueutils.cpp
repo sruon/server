@@ -102,9 +102,9 @@ namespace blueutils
         }
 
         std::vector<CCharEntity*> PBlueMages;
-        auto                      AddBlueMages = [&PMob, &PBlueMages](const CCharParty* PParty)
+        auto                      AddBlueMages = [&PMob, &PBlueMages](const CCharParty& PParty)
         {
-            for (const auto& member : PParty->GetMembers())
+            for (const auto& member : PParty.GetMembers())
             {
                 if (member &&
                     member->GetMJob() == JOB_BLU &&
@@ -116,7 +116,7 @@ namespace blueutils
         };
 
         // populate PBlueMages
-        if (PChar->PParty != nullptr)
+        if (PChar->HasParty())
         {
             // if (PChar->PParty->m_PAlliance)
             // {
@@ -127,7 +127,7 @@ namespace blueutils
             // }
             // else
             // {
-                AddBlueMages(PChar->PParty);
+                AddBlueMages(PChar->GetParty());
             // }
         }
         else if (PChar->GetMJob() == JOB_BLU)

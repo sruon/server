@@ -31,10 +31,8 @@ IPC_STRUCT_NAMES = [
 
     "PartyInvite",
     "PartyInviteResponse",
-    "PartyReload",
     "PartyDisband",
 
-    "AllianceReload",
     "AllianceDissolve",
 
     "PlayerKick",
@@ -67,6 +65,7 @@ IPC_STRUCT_NAMES = [
     "PartySetLeader",
     "PartySetQuartermaster",
     "PartySetSyncTarget",
+    "PartyChangeId",
 ]
 
 

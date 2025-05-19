@@ -23,6 +23,7 @@
 
 #include "common/party.h"
 #include "ipc_server.h"
+#include "map/ipc_client.h"
 #include "world_server.h"
 
 #include <common/ipc.h>
@@ -41,7 +42,6 @@ public:
     Party(uint32 leaderId)
     : m_LeaderUniqueNo(leaderId)
     {
-        // TODO: some sort of unique incrementing ID
         m_PartyId = m_LeaderUniqueNo;
     }
 
@@ -53,6 +53,11 @@ public:
     bool IsDirty() const
     {
         return dirty;
+    }
+
+    uint32 GetPartyId() const
+    {
+        return m_PartyId;
     }
 
     size_t GetMemberCount() const
@@ -160,7 +165,8 @@ public:
             if (memberSlot && memberSlot->GetId() == UniqueNo)
             {
                 m_LeaderUniqueNo = UniqueNo;
-                ShowInfoFmt("Leader set to UniqueNo: {}", UniqueNo);
+                m_PartyId        = UniqueNo;
+                ShowInfoFmt("Leader set to UniqueNo: {}, changed PartyId", UniqueNo);
                 SetDirty(true);
                 return true;
             }
@@ -269,6 +275,7 @@ public:
                         if (m_Members[j])
                         {
                             m_LeaderUniqueNo = m_Members[j]->GetId();
+                            m_PartyId        = m_LeaderUniqueNo;
                             ShowInfoFmt("Leader reassigned to UniqueNo: {}", m_Members[j]->GetId());
                             break;
                         }
@@ -320,6 +327,12 @@ public:
 
     ~PartySystem() = default;
 
+    Party* GetParty(const uint32 partyId)
+    {
+        const auto it = m_Parties.find(partyId);
+        return it != m_Parties.end() ? &it->second : nullptr;
+    }
+
     template <typename Func, typename... Args>
     bool ModifyParty(uint16 partyId, Func&& func, Args&&... args)
     {
@@ -330,23 +343,24 @@ public:
             return false;
         }
 
-        bool result = (it->second.*func)(std::forward<Args>(args)...);
+        const bool result = (it->second.*func)(std::forward<Args>(args)...);
 
         if (it->second.IsDirty())
         {
-            for (auto& member : it->second.GetMembers())
-            {
-                if (member->GetType() == PartyMemberType::Player)
-                {
-                    ShowInfoFmt("Notifying map server for member {} that party {} is dirty.", member->GetId(), partyId);
-                    // TODO: Supposed to send only to the zone server with the char
-                    worldServer_.ipcServer_->broadcastMessage(it->second.AsPartyUpdate());
-                }
-            }
-            it->second.SetDirty(false);
+            BroadcastPartyUpdate(it->second);
         }
 
         return result;
+    }
+
+    void BroadcastPartyUpdate(Party& party) const
+    {
+        if (party.IsDirty())
+        {
+            ShowInfoFmt("Notifying map servers that party {} is dirty.", party.GetPartyId());
+            worldServer_.ipcServer_->rerouteMessageToPartyMembers(party.GetPartyId(), party.AsPartyUpdate());
+            party.SetDirty(false);
+        }
     }
 
     void Dump()
@@ -362,15 +376,15 @@ public:
             {
                 if (member == pLeader)
                 {
-                    ShowInfoFmt("  Leader: {} (joined {}s ago)", member->GetId(), member->GetTimeSinceJoined());
+                    ShowInfoFmt("  Leader: {} (joined {} ago)", member->GetId(), member->GetTimeSinceJoined());
                 }
                 else if (member == pQuarterMaster)
                 {
-                    ShowInfoFmt("  Quartermaster: {} (joined {}s ago)", member->GetId(), member->GetTimeSinceJoined());
+                    ShowInfoFmt("  Quartermaster: {} (joined {} ago)", member->GetId(), member->GetTimeSinceJoined());
                 }
                 else if (member == pSyncTarget)
                 {
-                    ShowInfoFmt("  Sync Target: {} (joined {}s ago)", member->GetId(), member->GetTimeSinceJoined());
+                    ShowInfoFmt("  Sync Target: {} (joined {} ago)", member->GetId(), member->GetTimeSinceJoined());
                 }
                 else
                 {
@@ -395,12 +409,39 @@ public:
 
     bool PartyRemoveMember(const IPP& ipp, const ipc::PartyRemoveMember& message)
     {
-        return ModifyParty(message.partyId, &Party::RemoveMember, message.charId);
+        const bool res = ModifyParty(message.partyId, &Party::RemoveMember, message.charId);
+        if (res)
+        {
+            // Notify the player they've been kicked.
+            worldServer_.ipcServer_->rerouteMessageToCharId(message.charId, ipc::PlayerKick{ .victimId = message.charId });
+        }
+
+        if (const auto it = m_Parties.find(message.partyId); it != m_Parties.end())
+        {
+            // If the leader leaves, then the party is disbanded
+            if (it->second.GetMembers().size() == 0)
+            {
+                PartyDisband(ipp, ipc::PartyDisband{ .partyId = message.partyId });
+            }
+        }
+
+        return res;
     }
 
     bool PartyDisband(const IPP& ipp, const ipc::PartyDisband& message)
     {
-        // TODO: Handle updates
+        if (const auto it = m_Parties.find(message.partyId); it != m_Parties.end())
+        {
+            // If leader requested breaking the PT, but we still have members, process them first.
+            if (const auto members = it->second.GetMembers(); members.size() != 0)
+            {
+                for (auto& member : members)
+                {
+                    PartyRemoveMember(ipp, ipc::PartyRemoveMember{ .partyId = message.partyId, .charId = member->GetId() });
+                }
+            }
+        }
+
         this->m_Parties.erase(message.partyId);
         ShowInfoFmt("Party disbanded with partyId: {}", message.partyId);
         return true;
@@ -408,18 +449,26 @@ public:
 
     bool PartySetLeader(const IPP& ipp, const ipc::PartySetLeader& message)
     {
-        auto& party = this->m_Parties.at(message.partyId);
-        if (party.SetLeader(message.charId))
+        auto&      party       = this->m_Parties.at(message.partyId);
+        const auto oldLeaderId = party.GetLeader()->GetId();
+
+        if (const auto newLeaderId = message.charId; party.SetLeader(newLeaderId))
         {
-            auto partyEntry = this->m_Parties.extract(message.partyId);
-            if (!partyEntry.empty())
+            // From that point on, the underlying leader and partyId have been modified
+            // Find and extract the entry under the old leader ID
+            if (auto partyEntry = this->m_Parties.extract(oldLeaderId); !partyEntry.empty())
             {
-                partyEntry.key() = message.charId;
+                // Insert it back under the new leader ID
+                partyEntry.key() = newLeaderId;
                 this->m_Parties.insert(std::move(partyEntry));
                 ShowInfoFmt("Party leader set with partyId: {}", message.partyId);
             }
 
-            ShowInfoFmt("Party leader set with charId: {}", message.charId);
+            // Tell map servers to update the partyId. This must happen before the next update.
+            worldServer_.ipcServer_->rerouteMessageToPartyMembers(newLeaderId, ipc::PartyChangeId{ .formerId = oldLeaderId, .newId = newLeaderId });
+
+            // Broadcast an update to force the map servers to push packets to the clients
+            BroadcastPartyUpdate(party);
             return true;
         }
 

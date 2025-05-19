@@ -66,9 +66,7 @@ public:
     void handleMessage_ChatMessageCustom(const IPP& ipp, const ipc::ChatMessageCustom& message);
     void handleMessage_PartyInvite(const IPP& ipp, const ipc::PartyInvite& message);
     void handleMessage_PartyInviteResponse(const IPP& ipp, const ipc::PartyInviteResponse& message);
-    void handleMessage_PartyReload(const IPP& ipp, const ipc::PartyReload& message);
     void handleMessage_PartyDisband(const IPP& ipp, const ipc::PartyDisband& message);
-    void handleMessage_AllianceReload(const IPP& ipp, const ipc::AllianceReload& message);
     void handleMessage_AllianceDissolve(const IPP& ipp, const ipc::AllianceDissolve& message);
     void handleMessage_PlayerKick(const IPP& ipp, const ipc::PlayerKick& message);
     void handleMessage_MessageStandard(const IPP& ipp, const ipc::MessageStandard& message);
@@ -92,6 +90,7 @@ public:
     void handleMessage_PartySetQuartermaster(const IPP& ipp, const ipc::PartySetQuartermaster& message){};
     void handleMessage_PartySetSyncTarget(const IPP& ipp, const ipc::PartySetSyncTarget& message){};
     void handleMessage_PartyUpdate(const IPP& ipp, const ipc::PartyUpdate& message);
+    void handleMessage_PartyChangeId(const IPP& ipp, const ipc::PartyChangeId& message);
 
     void handleUnknownMessage(const IPP& ipp, const std::span<uint8_t> message);
 

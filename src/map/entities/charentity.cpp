@@ -234,7 +234,6 @@ CCharEntity::CCharEntity()
     petZoningInfo.petID = 0;
 
     m_SaveTime    = timer::time_point::min();
-    m_reloadParty = false;
 
     m_moghouseID     = 0;
     m_moghancementID = 0;
@@ -305,18 +304,19 @@ CCharEntity::~CCharEntity()
 
     if (m_LevelRestriction != 0)
     {
-        if (PParty)
+        // TODO: Refactor this mess
+        if (HasParty())
         {
-            if (PParty->GetSyncTarget() == this || PParty->GetLeader() == this)
+            if (GetParty().GetSyncTarget() == this || GetParty().GetLeader() == this)
             {
-                PParty->ipc().SetSyncTarget(nullptr);
+                GetParty().ipc().SetSyncTarget(nullptr);
             }
-            if (PParty->GetSyncTarget() != nullptr)
+            if (GetParty().GetSyncTarget() != nullptr)
             {
-                if (PParty->GetMembers(PParty->GetSyncTarget()->getZone()).size() < 2)
+                if (GetParty().GetMembers(GetParty().GetSyncTarget()->getZone()).size() < 2)
                 {
                     // TODO: Message MsgStd::LevelSyncRemoveTooFewMembers
-                    PParty->ipc().SetSyncTarget(nullptr);
+                    GetParty().ipc().SetSyncTarget(nullptr);
                     // PParty->SetSyncTarget("", MsgStd::LevelSyncRemoveTooFewMembers);
                 }
             }
@@ -325,22 +325,10 @@ CCharEntity::~CCharEntity()
         StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_RESTRICTION);
     }
 
-    if (PParty && loc.destination != 0 && m_moghouseID == 0)
+    if (HasParty() && loc.destination != 0 && m_moghouseID == 0)
     {
         // TODO: High chance this will blow up somehow due to the async nature
-        PParty->ipc().RemoveMember(this);
-        // if (PParty->m_PAlliance)
-        // {
-        //     message::send(ipc::AllianceReload{
-        //         .allianceId = PParty->m_PAlliance->m_AllianceID,
-        //     });
-        // }
-        // else
-        // {
-        //     message::send(ipc::PartyReload{
-        //         .partyId = PParty->GetPartyID(),
-        //     });
-        // }
+        GetParty().ipc().RemoveMember(this);
     }
 
     SpawnPCList.clear();
@@ -902,21 +890,6 @@ CItemEquipment* CCharEntity::getEquip(SLOTTYPE slot)
     return item;
 }
 
-void CCharEntity::ReloadPartyInc()
-{
-    m_reloadParty = true;
-}
-
-void CCharEntity::ReloadPartyDec()
-{
-    m_reloadParty = false;
-}
-
-bool CCharEntity::ReloadParty() const
-{
-    return m_reloadParty;
-}
-
 void CCharEntity::RemoveTrust(CTrustEntity* PTrust)
 {
     if (!PTrust->PAI->IsSpawned())
@@ -933,9 +906,9 @@ void CCharEntity::RemoveTrust(CTrustEntity* PTrust)
 
     if (trustIt != PTrusts.end())
     {
-        if (PParty)
+        if (HasParty())
         {
-            PParty->ipc().RemoveMember(PTrust);
+            GetParty().ipc().RemoveMember(PTrust);
         }
 
         if (PTrust->animation == ANIMATION_DESPAWN)
@@ -945,24 +918,20 @@ void CCharEntity::RemoveTrust(CTrustEntity* PTrust)
         PTrust->PAI->Despawn();
         PTrusts.erase(trustIt);
     }
-
-    ReloadPartyInc();
 }
 
 void CCharEntity::ClearTrusts()
 {
     for (auto* PTrust : PTrusts)
     {
-        if (PParty)
+        if (HasParty())
         {
-            PParty->ipc().RemoveMember(PTrust);
+            GetParty().ipc().RemoveMember(PTrust);
         }
 
         PTrust->PAI->Despawn();
     }
     PTrusts.clear();
-
-    ReloadPartyInc();
 }
 
 void CCharEntity::RequestPersist(CHAR_PERSIST toPersist)
@@ -1168,10 +1137,10 @@ bool CCharEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
         return true;
     }
 
-    bool isSameParty      = PParty && static_cast<CCharEntity*>(PInitiator)->PParty && static_cast<CCharEntity*>(PInitiator)->PParty == PParty;
+    bool isSameParty      = HasParty() && &static_cast<CCharEntity*>(PInitiator)->GetParty() == &GetParty();
     bool isSameAlliance   = false; // PParty && PParty->m_PAlliance && static_cast<CCharEntity*>(PInitiator)->PParty && static_cast<CCharEntity*>(PInitiator)->PParty->m_PAlliance && PParty->m_PAlliance == static_cast<CCharEntity*>(PInitiator)->PParty->m_PAlliance;
-    bool isPartyPetMaster = PInitiator->PMaster && static_cast<CCharEntity*>(PInitiator->PMaster)->PParty && static_cast<CCharEntity*>(PInitiator->PMaster)->PParty == PParty;
-    bool isSoloPetMaster  = PParty == nullptr && PInitiator->PMaster == this;
+    bool isPartyPetMaster = PInitiator->PMaster && static_cast<CCharEntity*>(PInitiator->PMaster)->HasParty() && &static_cast<CCharEntity*>(PInitiator->PMaster)->GetParty() == &GetParty();
+    bool isSoloPetMaster  = !HasParty() && PInitiator->PMaster == this;
     bool targetsParty     = targetFlags & TARGET_PLAYER_PARTY;
     bool targetsAlliance  = targetFlags & TARGET_PLAYER_ALLIANCE;
     bool hasPianissimo    = (targetFlags & TARGET_PLAYER_PARTY_PIANISSIMO) && PInitiator->StatusEffectContainer->HasStatusEffect(EFFECT_PIANISSIMO);
@@ -1827,7 +1796,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
         // Special cases go here
         auto isAbilityAoE = [&]() -> bool
         {
-            if (this->PParty != nullptr)
+            if (HasParty())
             {
                 if (PAbility->isAoE())
                 {
@@ -3416,9 +3385,9 @@ bool CCharEntity::startSynth(SKILLTYPE synthSkill)
 
 void         CCharEntity::ForEveryPartyMember(std::function<void(CCharEntity*)> func)
 {
-    if (PParty)
+    if (HasParty())
     {
-        PParty->ForEveryMember(func);
+        GetParty().ForEveryMember(func);
     }
     else
     {
@@ -3427,9 +3396,9 @@ void         CCharEntity::ForEveryPartyMember(std::function<void(CCharEntity*)> 
 }
 void         CCharEntity::ForEveryPartyMemberWithTrusts(std::function<void(CBattleEntity*)> func)
 {
-    if (PParty)
+    if (HasParty())
     {
-        PParty->ForEveryMemberWithTrusts(func);
+        GetParty().ForEveryMemberWithTrusts(func);
     }
     else
     {
@@ -3439,9 +3408,9 @@ void         CCharEntity::ForEveryPartyMemberWithTrusts(std::function<void(CBatt
 
 void         CCharEntity::ForEveryAllianceMember(std::function<void(CCharEntity*)> func)
 {
-    if (PParty)
+    if (HasParty())
     {
-        PParty->ForEveryAllianceMember(func);
+        GetParty().ForEveryAllianceMember(func);
     }
     else
     {

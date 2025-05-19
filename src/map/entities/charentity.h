@@ -44,7 +44,6 @@
 
 #include "utils/fishingutils.h"
 
-
 #define MAX_QUESTAREA    11
 #define MAX_QUESTID      256
 #define MAX_MISSIONAREA  15
@@ -242,7 +241,6 @@ class CCharEntity : public CBattleEntity
 {
 public:
     uint32      accid{}; // Account ID associated with the character.
-    CCharParty* PParty   = nullptr;
     MapSession* PSession = nullptr;
 
     jobs_t     jobs{}; // Available Character jobs
@@ -351,73 +349,9 @@ public:
 
     std::vector<CTrustEntity*> PTrusts; // Active trusts
 
-    void         ForEveryPartyMember(std::function<void(CCharEntity*)> func);
-    void         ForEveryPartyMemberWithTrusts(std::function<void(CBattleEntity*)> func);
-    void         ForEveryAllianceMember(std::function<void(CCharEntity*)> func);
-    // template <typename F, typename... Args>
-    // void ForAlliance(F func, Args&&... args)
-    // {
-    //     if (PParty)
-    //     {
-    //         // if (PParty->m_PAlliance)
-    //         // {
-    //         //     for (auto PAllianceParty : PParty->m_PAlliance->partyList)
-    //         //     {
-    //         //         for (auto PMember : PAllianceParty->members)
-    //         //         {
-    //         //             func(PMember, std::forward<Args>(args)...);
-    //         //         }
-    //         //     }
-    //         // }
-    //         // else
-    //         // {
-    //             for (auto PMember : PParty->GetMembers())
-    //             {
-    //                 func(PMember, std::forward<Args>(args)...);
-    //             }
-    //         // }
-    //     }
-    //     else
-    //     {
-    //         func(this);
-    //     }
-    // }
-
-    // template <typename F, typename... Args>
-    // void ForParty(F func, Args&&... args)
-    // {
-    //     if (PParty)
-    //     {
-    //         for (auto PMember : PParty->GetMembers())
-    //         {
-    //             func(PMember, std::forward<Args>(args)...);
-    //         }
-    //     }
-    //     else
-    //     {
-    //         func(this, std::forward<Args>(args)...);
-    //     }
-    // }
-    //
-    // template <typename F, typename... Args>
-    // void ForPartyWithTrusts(F const& func, Args&&... args)
-    // {
-    //     if (PParty)
-    //     {
-    //         for (auto* PMember : PParty->GetMembersWithTrusts())
-    //         {
-    //             func(PMember, std::forward<Args>(args)...);
-    //         }
-    //     }
-    //     else
-    //     {
-    //         func(this, std::forward<Args>(args)...);
-    //         for (auto PTrust : this->PTrusts)
-    //         {
-    //             func(PTrust, std::forward<Args>(args)...);
-    //         }
-    //     }
-    // }
+    void ForEveryPartyMember(std::function<void(CCharEntity*)> func);
+    void ForEveryPartyMemberWithTrusts(std::function<void(CBattleEntity*)> func);
+    void ForEveryAllianceMember(std::function<void(CCharEntity*)> func);
 
     CBattleEntity* PClaimedMob = nullptr;
 
@@ -575,9 +509,6 @@ public:
     uint32          fishingToken; // To track fishing process
     uint8           hookDelay;    // How long it takes to hook a fish
 
-    void ReloadPartyInc();
-    void ReloadPartyDec();
-    bool ReloadParty() const;
     void ClearTrusts();
     void RemoveTrust(CTrustEntity*);
 
@@ -659,6 +590,23 @@ public:
     // Starts a synth with skillType X
     bool startSynth(SKILLTYPE synthSkill);
 
+    void SetParty(CCharParty& party) {
+        m_Party = std::ref(party);
+    }
+
+    void ClearParty() {
+        m_Party.reset();
+    }
+
+    bool HasParty() const {
+        return m_Party.has_value();
+    }
+
+    CCharParty& GetParty() const
+    {
+        return m_Party.value();
+    }
+
     CCharEntity();
     ~CCharEntity();
 
@@ -667,6 +615,8 @@ protected:
     void TrackArrowUsageForScavenge(CItemWeapon* PAmmo);
 
 private:
+    std::optional<std::reference_wrapper<CCharParty>> m_Party;
+
     std::unique_ptr<CItemContainer> m_Inventory;
     std::unique_ptr<CItemContainer> m_Mogsafe;
     std::unique_ptr<CItemContainer> m_Storage;

@@ -1244,9 +1244,9 @@ namespace battleutils
 
         if (previous_daze != EFFECT_NONE)
         {
-            if (PAttacker->objtype == TYPE_PC && static_cast<CCharEntity*>(PAttacker)->PParty != nullptr)
+            if (PAttacker->objtype == TYPE_PC && static_cast<CCharEntity*>(PAttacker)->HasParty())
             {
-                for (auto* PMember : static_cast<CCharEntity*>(PAttacker)->PParty->GetMembers())
+                for (const auto* PMember : static_cast<CCharEntity*>(PAttacker)->GetParty().GetMembers())
                 {
                     PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_DRAIN_DAZE, PMember->id);
                     PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_HASTE_DAZE, PMember->id);
@@ -1257,7 +1257,7 @@ namespace battleutils
             {
                 // clang-format off
                 static_cast<CCharEntity*>(PAttacker->PMaster)->ForEveryPartyMemberWithTrusts(
-                [&](CBattleEntity* PMember)
+                [&](const CBattleEntity* PMember)
                 {
                     PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_DRAIN_DAZE, PMember->id);
                     PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_HASTE_DAZE, PMember->id);
@@ -1471,7 +1471,7 @@ namespace battleutils
 
                 attackerID = PDefender->StatusEffectContainer->GetStatusEffect(daze)->GetSubID();
 
-                if (PAttacker->objtype == TYPE_PC && static_cast<CCharEntity*>(PAttacker)->PParty != nullptr)
+                if (PAttacker->objtype == TYPE_PC && static_cast<CCharEntity*>(PAttacker)->HasParty())
                 {
                     if (PChar)
                     {
@@ -4335,7 +4335,7 @@ namespace battleutils
         auto                                          distTAmob  = distance(taUser->loc.p, PMob->loc.p);
         std::vector<std::pair<float, CBattleEntity*>> taTargetList;
 
-        if (static_cast<CCharEntity*>(taUser)->PParty != nullptr)
+        if (static_cast<CCharEntity*>(taUser)->HasParty())
         {
             // Collect all potential TA targets who are closer to the mob than the TA user
 
@@ -6811,9 +6811,9 @@ namespace battleutils
         uint32         coverAbilityTargetID = PCoverAbilityTarget->id;
 
         // If the cover ability target is in a party, try to find a cover ability user
-        if (static_cast<CCharEntity*>(PCoverAbilityTarget)->PParty != nullptr)
+        if (static_cast<CCharEntity*>(PCoverAbilityTarget)->HasParty())
         {
-            for (auto* PMember : static_cast<CCharEntity*>(PCoverAbilityTarget)->PParty->GetMembers())
+            for (auto* PMember : static_cast<CCharEntity*>(PCoverAbilityTarget)->GetParty().GetMembers())
             {
                 if (coverAbilityTargetID == PMember->GetLocalVar("COVER_ABILITY_TARGET") &&
                     PMember->StatusEffectContainer->HasStatusEffect(EFFECT_COVER) &&

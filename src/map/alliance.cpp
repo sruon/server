@@ -193,14 +193,14 @@ void CAlliance::removeParty(CParty* party)
                      ALLIANCE_LEADER | PARTY_SECOND | PARTY_THIRD, party->GetPartyID());
 
     // notify alliance
-    message::send(ipc::AllianceReload{
-        .allianceId = m_AllianceID,
-    });
+    // message::send(ipc::AllianceReload{
+    //     .allianceId = m_AllianceID,
+    // });
 
     // notify leaving party
-    message::send(ipc::PartyReload{
-        .partyId = party->GetPartyID(),
-    });
+    // message::send(ipc::PartyReload{
+    //     .partyId = party->GetPartyID(),
+    // });
 }
 
 void CAlliance::delParty(CParty* party)
@@ -247,7 +247,7 @@ void CAlliance::delParty(CParty* party)
     for (auto& member : party->members)
     {
         auto* PMember = dynamic_cast<CCharEntity*>(member);
-        if (PMember && PMember->PParty)
+        if (PMember && PMember->HasParty())
         {
             // PMember->PParty->ReloadTreasurePool(PMember);
         }
@@ -307,9 +307,9 @@ void CAlliance::addParty(CParty* party)
 
     party->SetPartyNumber(newparty);
 
-    message::send(ipc::AllianceReload{
-        .allianceId = m_AllianceID,
-    });
+    // message::send(ipc::AllianceReload{
+    //     .allianceId = m_AllianceID,
+    // });
 }
 
 void CAlliance::addParty(uint32 partyid) const
@@ -334,9 +334,9 @@ void CAlliance::addParty(uint32 partyid) const
 
     db::preparedStmt("UPDATE accounts_parties SET allianceid = ?, partyflag = partyflag | ? WHERE partyid = ?", m_AllianceID, newparty, partyid);
 
-    message::send(ipc::AllianceReload{
-        .allianceId = m_AllianceID,
-    });
+    // message::send(ipc::AllianceReload{
+    //     .allianceId = m_AllianceID,
+    // });
 }
 
 void CAlliance::pushParty(CParty* PParty, uint8 number)

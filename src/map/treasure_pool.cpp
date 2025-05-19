@@ -94,7 +94,7 @@ void CTreasurePool::addMember(CCharEntity* PChar)
 
     m_Members.emplace_back(PChar);
 
-    if (m_TreasurePoolType == TreasurePoolType::Solo && PChar->PParty)
+    if (m_TreasurePoolType == TreasurePoolType::Solo && PChar->HasParty())
     {
         m_TreasurePoolType = TreasurePoolType::Party;
     }

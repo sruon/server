@@ -991,9 +991,9 @@ float getSignificanceScore(CCharEntity* originChar, CCharEntity* targetChar)
         return CHARACTER_SYNC_ALLI_SIGNIFICANCE;
     }
 
-    if (originChar->PParty && targetChar->PParty)
+    if (originChar->HasParty() && targetChar->HasParty())
     {
-        if (originChar->PParty->GetPartyID() == targetChar->PParty->GetPartyID())
+        if (&originChar->GetParty() == &targetChar->GetParty())
         {
             // Same party
             return CHARACTER_SYNC_PARTY_SIGNIFICANCE;

@@ -2355,32 +2355,6 @@ end
 function CBaseEntity:forMembersInRange(range, luaFunction)
 end
 
--- NOTE: This function is currently unused, and defaults to 0-values for the parameters on init.
--- Requiring all parameters at this time, and may need to be changed moving forward.
----@param statusId integer
----@param icon integer
----@param power integer
----@param tick integer
----@param duration integer
----@param subid integer
----@param subPower integer
----@param tier integer
----@param flags integer
----@return nil
-function CBaseEntity:addPartyEffect(statusId, icon, power, tick, duration, subid, subPower, tier, flags)
-end
-
----@nodiscard
----@param effectid integer
----@return boolean
-function CBaseEntity:hasPartyEffect(effectid)
-end
-
----@param effectid integer
----@return nil
-function CBaseEntity:removePartyEffect(effectid)
-end
-
 ---@nodiscard
 ---@return table
 function CBaseEntity:getAlliance()
@@ -2389,10 +2363,6 @@ end
 ---@nodiscard
 ---@return integer
 function CBaseEntity:getAllianceSize()
-end
-
----@return nil
-function CBaseEntity:reloadParty()
 end
 
 ---@return nil
