@@ -3,10 +3,15 @@
 //
 
 #include "map_party.h"
+#include "entities/trustentity.h"
 #include "latent_effect_container.h"
 #include "packets/char_status.h"
 #include "packets/char_sync.h"
 #include "packets/menu_config.h"
+#include "packets/party_define.h"
+#include "packets/party_effects.h"
+#include "packets/party_member_update.h"
+#include "party/flags.h"
 #include "status_effect_container.h"
 #include "utils/charutils.h"
 #include "utils/jailutils.h"
@@ -34,7 +39,37 @@ CCharParty::~CCharParty()
     for (const auto member : GetMembers())
     {
         ShowErrorFmt("CCharParty destructor called with members.");
-        member->ClearParty();
+        member->clearParty();
+    }
+}
+
+void CCharParty::applySync(CCharEntity* PChar) const
+{
+    const auto* PSync = GetSyncTarget();
+
+    if (!PSync)
+    {
+        return;
+    }
+
+    if (PChar->status != STATUS_TYPE::DISAPPEAR)
+    {
+        PChar->pushPacket<CMessageStandardPacket>(PChar->GetMLevel(), 0, 0, 0, MsgStd::LevelSyncSet);
+        PChar->StatusEffectContainer->AddStatusEffect(
+            new CStatusEffect(EFFECT_LEVEL_SYNC, EFFECT_LEVEL_SYNC, PSync->GetMLevel(), 0s, 0s), EffectNotice::Silent);
+        PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE | EFFECTFLAG_ON_ZONE);
+        PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, std::make_unique<CCharSyncPacket>(PChar));
+    }
+}
+
+void CCharParty::disableSync(CCharEntity* PChar) const
+{
+    if (CStatusEffect* sync = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_LEVEL_SYNC);
+        sync && sync->GetDuration() == 0s)
+    {
+        PChar->pushPacket<CMessageBasicPacket>(PChar, PChar, 0, 30, MsgStd::LevelSyncRemoveLeftParty);
+        sync->SetStartTime(timer::now());
+        sync->SetDuration(30s);
     }
 }
 
@@ -50,8 +85,12 @@ void CCharParty::update(const ipc::PartyUpdate& message)
         m_LeaderUniqueNo = message.leaderUniqueNo;
 
         // Changing leader dismisses trusts
+        // clang-format off
         ForEveryMember([&](CCharEntity* PChar)
-                       { PChar->ClearTrusts(); });
+        {
+            PChar->ClearTrusts();
+        });
+        // clang-format on
         changes = true;
     }
 
@@ -65,20 +104,32 @@ void CCharParty::update(const ipc::PartyUpdate& message)
     {
         if (m_SyncTargetUniqueNo == 0 && message.syncTargetUniqueNo != 0)
         {
-            // Going from no sync to sync
+            // If sync target is on this server, apply sync effect to all in same zone.
+            if (const auto* PSync = GetSyncTarget())
+            {
+                // clang-format off
+                ForEveryMember([&](CCharEntity* PChar)
+                {
+                    if (PChar->getZone() == PSync->getZone())
+                    {
+                        applySync(PChar);
+                    }
+                });
+                // clang-format on
+            }
         }
         else if (m_SyncTargetUniqueNo != 0 && message.syncTargetUniqueNo == 0)
         {
             // Going from sync to no sync
+            // The world server may have sent the reason as a separate message to the players
+            // we are merely going to clear the sync effect.
+
+            // clang-format off
             ForEveryMember([&](CCharEntity* PChar)
-                           {
-                CStatusEffect* sync = PChar->StatusEffectContainer->GetStatusEffect(EFFECT_LEVEL_SYNC);
-                if (sync && sync->GetDuration() == 0s)
-                {
-                    PChar->pushPacket<CMessageBasicPacket>(PChar, PChar, 0, 30, MsgStd::LevelSyncRemoveLeftParty);
-                    sync->SetStartTime(timer::now());
-                    sync->SetDuration(30s);
-                } });
+            {
+                disableSync(PChar);
+            });
+            // clang-format on
         }
 
         m_SyncTargetUniqueNo = message.syncTargetUniqueNo;
@@ -125,7 +176,8 @@ void CCharParty::update(const ipc::PartyUpdate& message)
         {
             if (newIds.find(id) == newIds.end())
             {
-                auto deletedMember = std::find_if(members_.begin(), members_.end(), [id](const auto& member)
+                auto deletedMember = std::find_if(members_.begin(), members_.end(),
+                                                  [id](const auto& member)
                                                   { return member.GetId() == id; });
                 if (deletedMember != members_.end())
                 {
@@ -143,14 +195,10 @@ void CCharParty::update(const ipc::PartyUpdate& message)
     }
 }
 
+// TODO: Alliance flags
 auto CCharParty::GetFlagsForMember(const CCharEntity* PChar) const -> uint16
 {
     auto flags = static_cast<PartyFlag>(0);
-
-    if (!PChar)
-    {
-        return static_cast<uint16>(flags);
-    }
 
     if (PChar->id == m_LeaderUniqueNo)
     {
@@ -163,6 +211,29 @@ auto CCharParty::GetFlagsForMember(const CCharEntity* PChar) const -> uint16
     }
 
     if (PChar->id == m_SyncTargetUniqueNo)
+    {
+        flags = flags | PartyFlag::IsSyncTarget;
+    }
+
+    return static_cast<uint16>(flags);
+}
+
+// TODO: Alliance flags
+auto CCharParty::GetFlagsForMember(const PartyMember& PMember) const -> uint16
+{
+    auto flags = static_cast<PartyFlag>(0);
+
+    if (PMember.GetId() == m_LeaderUniqueNo)
+    {
+        flags = flags | PartyFlag::IsLeader;
+    }
+
+    if (PMember.GetId() == m_QuartermasterUniqueNo)
+    {
+        flags = flags | PartyFlag::IsQuartermaster;
+    }
+
+    if (PMember.GetId() == m_SyncTargetUniqueNo)
     {
         flags = flags | PartyFlag::IsSyncTarget;
     }
@@ -184,9 +255,9 @@ void CCharParty::BroadcastPartyPackets(const CCharEntity* PSingle)
     const size_t memberCount = this->GetMembers().size();
     const size_t trustCount  = this->GetMembersWithTrusts().size() - memberCount;
 
-    //clang-format off
+    // clang-format off
     ForEveryMember([&](CCharEntity* PChar)
-                   {
+    {
         if (PSingle != nullptr && PChar != PSingle)
         {
             return;
@@ -198,25 +269,56 @@ void CCharParty::BroadcastPartyPackets(const CCharEntity* PSingle)
         PChar->PLatentEffectContainer->CheckLatentsPartyJobs();
         PChar->PLatentEffectContainer->CheckLatentsPartyMembers(memberCount, trustCount);
         PChar->PLatentEffectContainer->CheckLatentsPartyAvatar();
+        // TODO: This need to work with PartyMember, not CCharEntity
         PChar->pushPacket<CPartyDefinePacket>(GetMembersWithTrusts(), m_LeaderUniqueNo, m_QuartermasterUniqueNo);
         uint8 i = 0;
 
-        for (const auto PMember : GetMembersWithTrusts())
+        for (const auto& Member : members_)
         {
-            if (auto *PCharMember = dynamic_cast<CCharEntity*>(PMember))
+            if (Member.GetType() == PartyMemberType::Player)
             {
-                // TODO: This wont work cross zone
-                PChar->pushPacket<CPartyMemberUpdatePacket>(PCharMember, i, PCharMember->id == m_LeaderUniqueNo, PCharMember->id == m_QuartermasterUniqueNo);
+                if (auto* PMemberEntity = zoneutils::GetChar(Member.GetId()); PMemberEntity->getZone() == PChar->getZone())
+                {
+                    // If party member is on this process AND in the same zone, send a full packet
+                    PChar->pushPacket<CPartyMemberUpdatePacket>(*this, PMemberEntity, i);
+                }
+                else
+                {
+                    // If party member is on a different process OR in a different zone, send a limited packet
+                    PChar->pushPacket<CPartyMemberUpdatePacket>(*this, Member, i);
+                }
             }
-            else if (auto *PTrust = dynamic_cast<CTrustEntity*>(PMember))
+            else if (Member.GetType() == PartyMemberType::Trust)
             {
-                // This is wrong for trusts but that's how it used to work before.
-                PChar->pushPacket<CPartyMemberUpdatePacket>(PTrust, i);
+                // Trusts are special in the following ways:
+                // 1. The way we build the packet is _slightly_ different
+                // 2. They do not show in the party list if you're in a different zone
+                // 3. They are always attached to the leader.
+                // TODO: This is not how retail updates trusts but this is how LSB worked before the rewrite.
+
+                if (const auto PLeader = GetLeader(); PLeader->getZone() == PChar->getZone())
+                {
+                    // PLeader is on this process and in the same zone as PChar
+                    auto maybeTrust = std::find_if(PLeader->PTrusts.begin(), PLeader->PTrusts.end(),
+                                                   [Member](const CTrustEntity* PTrust)
+                                                   {
+                                                       return PTrust->id == Member.GetId();
+                                                   });
+                    if (maybeTrust != PLeader->PTrusts.end())
+                    {
+                        PChar->pushPacket<CPartyMemberUpdatePacket>(*maybeTrust, i);
+                    }
+                    else
+                    {
+                        ShowErrorFmt("Could not find trust with ID: {} in leader's trust list?!", Member.GetId());
+                    }
+                }
             }
 
             ++i;
-       } });
-    //clang-format on
+       }
+    });
+    // clang-format on
 }
 
 // Returns a vector of CCharEntity present on this map server, along with the trusts.
@@ -239,8 +341,11 @@ auto CCharParty::GetMembersWithTrusts() const -> std::vector<CBattleEntity*>
         {
             if (PLeader)
             {
-                auto maybeTrust = std::find_if(PLeader->PTrusts.begin(), PLeader->PTrusts.end(), [member](const CTrustEntity* PTrust)
-                                               { return PTrust->id == member.GetId(); });
+                auto maybeTrust = std::find_if(PLeader->PTrusts.begin(), PLeader->PTrusts.end(),
+                                               [member](const CTrustEntity* PTrust)
+                                               {
+                                                   return PTrust->id == member.GetId();
+                                               });
                 if (maybeTrust != PLeader->PTrusts.end())
                 {
                     result.push_back(*maybeTrust);
@@ -340,9 +445,12 @@ void CCharParty::PushEffectsPacket()
 {
     if (m_EffectsChanged)
     {
+        // clang-format off
         ForEveryMember([&](CCharEntity* PChar)
-                       { PChar->pushPacket<CPartyEffectsPacket>(GetMembers()); });
-
+        {
+            PChar->pushPacket<CPartyEffectsPacket>(GetMembers());
+        });
+        // clang-format on
         m_EffectsChanged = false;
     }
 }
@@ -401,7 +509,7 @@ void CCharParty::addMember(PartyMemberData& data)
         // Char may not be on this server and will be handled by another map process
         if (CCharEntity* PChar = zoneutils::GetChar(data.UniqueNo))
         {
-            PChar->SetParty(*this);
+            PChar->setParty(*this);
             // this is garbage and should be handled elsewhere
             //                        ReloadTreasurePool(PChar);
 
@@ -425,10 +533,7 @@ void CCharParty::addMember(PartyMemberData& data)
             {
                 if (PChar->getZone() == PSync->getZone())
                 {
-                    PChar->pushPacket<CMessageBasicPacket>(PChar, PChar, 0, PSync->GetMLevel(), MsgStd::LevelSyncActivated);
-                    PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_LEVEL_SYNC, EFFECT_LEVEL_SYNC, PSync->GetMLevel(), 0s, 0s), EffectNotice::Silent);
-                    PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE | EFFECTFLAG_ON_ZONE);
-                    PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, std::make_unique<CCharSyncPacket>(PChar));
+                    applySync(PChar);
                 }
             }
 
@@ -442,7 +547,8 @@ void CCharParty::addMember(PartyMemberData& data)
 
 void CCharParty::delMember(const PartyMember& member)
 {
-    const auto it = std::find_if(members_.begin(), members_.end(), [&](const PartyMember& m)
+    const auto it = std::find_if(members_.begin(), members_.end(),
+                                 [&](const PartyMember& m)
                                  { return m.GetId() == member.GetId(); });
 
     if (it != members_.end())
@@ -452,10 +558,9 @@ void CCharParty::delMember(const PartyMember& member)
         {
             if (CCharEntity* PChar = zoneutils::GetChar(it->GetId()))
             {
-                PChar->ClearParty();
+                PChar->clearParty();
+                ipc().NotifyKick(member.GetId());
             }
-
-            ipc().NotifyKick(member.GetId());
         }
 
         // but we still remove it from our list!
@@ -512,14 +617,12 @@ auto CCharParty::IsTrustOnlyParty() const -> bool
     return true;
 }
 
-auto CCharParty::ChatMessage(const ipc::ChatMessageParty& message) -> bool
+void CCharParty::ChatMessage(const ipc::ChatMessageParty& message) const
 {
     PushPacket(message.senderId, 0, std::make_unique<CChatMessagePacket>(message.senderName, message.zoneId, message.messageType, message.message, message.gmLevel));
-    return true;
 }
 
-auto CCharParty::ChatMessage(const ipc::ChatMessageAlliance& message) -> bool
+void CCharParty::ChatMessage(const ipc::ChatMessageAlliance& message) const
 {
     PushPacket(message.senderId, 0, std::make_unique<CChatMessagePacket>(message.senderName, message.zoneId, message.messageType, message.message, message.gmLevel));
-    return true;
 }

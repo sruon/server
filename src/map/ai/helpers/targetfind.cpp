@@ -120,7 +120,7 @@ void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOE_RADIUS radiusType, 
             // players will never need to add whole alliance
             m_findType = FIND_TYPE::PLAYER_PLAYER;
 
-            if (mTarget->HasParty())
+            if (mTarget->hasParty())
             {
                 // player -ra spells should never hit whole alliance
                 // if ((m_findFlags & FINDFLAGS_ALLIANCE) && mTarget->PParty->m_PAlliance != nullptr)

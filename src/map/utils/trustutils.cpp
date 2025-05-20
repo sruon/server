@@ -159,7 +159,7 @@ auto trustutils::SpawnTrust(CCharEntity* PMaster, uint32 TrustID) -> CTrustEntit
         return nullptr;
     }
 
-    if (!PMaster->HasParty())
+    if (!PMaster->hasParty())
     {
         message::send(ipc::PartyCreate{
             .charId = PMaster->id,

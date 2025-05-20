@@ -76,7 +76,7 @@ void CTrustEntity::PostTick()
         m_nextUpdateTimer = now + 250ms;
         loc.zone->UpdateEntityPacket(this, ENTITY_UPDATE, updatemask);
 
-        if (PMaster && static_cast<CCharEntity*>(PMaster)->HasParty() && updatemask & UPDATE_HP)
+        if (PMaster && static_cast<CCharEntity*>(PMaster)->hasParty() && updatemask & UPDATE_HP)
         {
             // clang-format off
             static_cast<CCharEntity*>(PMaster)->ForEveryPartyMember([this](auto PMember)

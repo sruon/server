@@ -469,9 +469,6 @@ void IPCServer::handleMessage_PartyInviteResponse(const IPP& ipp, const ipc::Par
     TracyZoneScoped;
 
     rerouteMessageToCharId(message.inviterId, message);
-
-    // TODO:
-    // worldServer_.partySystem_->handleMessage(message);
 }
 
 void IPCServer::handleMessage_AllianceDissolve(const IPP& ipp, const ipc::AllianceDissolve& message)
@@ -484,12 +481,7 @@ void IPCServer::handleMessage_AllianceDissolve(const IPP& ipp, const ipc::Allian
     // worldServer_.partySystem_->handleMessage(message);
 }
 
-void IPCServer::handleMessage_PlayerKick(const IPP& ipp, const ipc::PlayerKick& message)
-{
-    TracyZoneScoped;
 
-    rerouteMessageToCharId(message.victimId, message);
-}
 
 void IPCServer::handleMessage_MessageStandard(const IPP& ipp, const ipc::MessageStandard& message)
 {
@@ -681,6 +673,13 @@ void IPCServer::handleMessage_PartySetSyncTarget(const IPP& ipp, const ipc::Part
 void IPCServer::handleMessage_PartyUpdate(const IPP& ipp, const ipc::PartyUpdate& message) const
 {
     // TODO: Use this to backfill information if we're recovering from a crash
+}
+
+void IPCServer::handleMessage_PlayerKick(const IPP& ipp, const ipc::PlayerKick& message)
+{
+    TracyZoneScoped;
+
+    rerouteMessageToCharId(message.victimId, message);
 }
 
 void IPCServer::handleUnknownMessage(const IPP& ipp, const std::span<uint8_t> message)

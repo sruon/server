@@ -115,7 +115,7 @@ namespace blueutils
         };
 
         // populate PBlueMages
-        if (PChar->HasParty())
+        if (PChar->hasParty())
         {
             // if (PChar->PParty->m_PAlliance)
             // {
@@ -126,7 +126,7 @@ namespace blueutils
             // }
             // else
             // {
-                AddBlueMages(PChar->GetParty());
+                AddBlueMages(PChar->getParty());
             // }
         }
         else if (PChar->GetMJob() == JOB_BLU)

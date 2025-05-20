@@ -5,6 +5,7 @@ add_subdirectory(los)
 add_subdirectory(lua)
 add_subdirectory(packets)
 add_subdirectory(utils)
+add_subdirectory(party)
 
 set(SOURCES
     ${COMMON_SOURCES}
@@ -15,6 +16,7 @@ set(SOURCES
     ${LUA_SOURCES}
     ${PACKET_SOURCES}
     ${UTIL_SOURCES}
+    ${PARTY_SOURCES}
     ${CMAKE_CURRENT_SOURCE_DIR}/ability.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/ability.h
     ${CMAKE_CURRENT_SOURCE_DIR}/alliance.cpp
@@ -80,8 +82,6 @@ set(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/map_party.h
     ${CMAKE_CURRENT_SOURCE_DIR}/map_party_ipc_helper.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/map_party_ipc_helper.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/map_party_container.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/map_party_container.h
     ${CMAKE_CURRENT_SOURCE_DIR}/map_networking.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/map_networking.h
     ${CMAKE_CURRENT_SOURCE_DIR}/map_server.cpp

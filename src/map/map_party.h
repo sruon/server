@@ -4,41 +4,12 @@
 
 #pragma once
 
-#include "common/ipc_structs.h"
-#include "entities/charentity.h"
-#include "entities/trustentity.h"
-#include "ipc_client.h"
-#include "packets/party_define.h"
-#include "packets/party_effects.h"
-#include "packets/party_member_update.h"
+#include "common/ipc.h"
+#include "common/cbasetypes.h"
 
-// Set of flags used when building PartyDefine/PartyMemberUpdate packets
-// The client uses them to define how to render the party list.
-enum class PartyFlag : uint16
-{
-    PartySecond      = 0x0001,
-    PartyThird       = 0x0002,
-    IsLeader         = 0x0004,
-    IsAllianceLeader = 0x0008,
-    IsQuartermaster  = 0x0010,
-    IsSyncTarget     = 0x0100,
-};
-
-inline PartyFlag operator|(PartyFlag a, PartyFlag b)
-{
-    return static_cast<PartyFlag>(static_cast<uint16>(a) | static_cast<uint16>(b));
-}
-
-inline PartyFlag operator&(PartyFlag a, PartyFlag b)
-{
-    return static_cast<PartyFlag>(static_cast<uint16>(a) & static_cast<uint16>(b));
-}
-
-inline PartyFlag operator~(PartyFlag a)
-{
-    return static_cast<PartyFlag>(~static_cast<uint16>(a));
-}
-DECLARE_FORMAT_AS_UNDERLYING(PartyFlag);
+class CCharEntity;
+class CBattleEntity;
+enum class PartyFlag : uint16;
 
 // This is a read-only view of a party of CCharEntity
 // Updates are only permitted through the IPC interface
@@ -57,6 +28,13 @@ public:
 
     ~CCharParty();
 
+    CCharParty(const CCharParty&)            = delete;
+    CCharParty& operator=(const CCharParty&) = delete;
+    CCharParty(CCharParty&&)                 = delete;
+    CCharParty& operator=(CCharParty&&)      = delete;
+
+    void applySync(CCharEntity* PChar) const;
+
     auto GetPartyId() const -> uint32;
 
     // Helpers
@@ -66,11 +44,12 @@ public:
     bool HasTrusts();
     bool IsTrustOnlyParty() const;
     auto GetFlagsForMember(const CCharEntity* PChar) const -> uint16;
+    auto GetFlagsForMember(const PartyMember& PMember) const -> uint16;
 
     // Packets
     void BroadcastPartyPackets(const CCharEntity* PSingle = nullptr);
-    bool ChatMessage(const ipc::ChatMessageParty& message);
-    bool ChatMessage(const ipc::ChatMessageAlliance& message);
+    void ChatMessage(const ipc::ChatMessageParty& message) const;
+    void ChatMessage(const ipc::ChatMessageAlliance& message) const;
     void PushPacket(uint32 senderID, uint16 ZoneID, const std::unique_ptr<CBasicPacket>& packet) const;
     void EffectsChanged();
     void PushEffectsPacket();
@@ -93,6 +72,7 @@ private:
     CCharParty(const ipc::PartyUpdate& message);
 
     void setPartyId(uint32 partyId);
+    void disableSync(CCharEntity* PChar) const;
     void update(const ipc::PartyUpdate& message);
     void addMember(PartyMemberData& data);
     void delMember(const PartyMember& member);

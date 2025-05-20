@@ -31,16 +31,19 @@
 
 class Party
 {
-    uint32                                    m_PartyId = 0;
+    uint32 m_PartyId = 0;
+    // TODO: Vector like the map process counterpart?
     std::array<std::optional<PartyMember>, 6> m_Members{};
     uint32                                    m_LeaderUniqueNo        = 0;
     uint32                                    m_QuarterMasterUniqueNo = 0;
     uint32                                    m_SyncTargetUniqueNo    = 0;
     bool                                      dirty                   = true;
+    IPCServer*                                m_IpcServer;
 
 public:
-    Party(uint32 leaderId)
+    Party(uint32 leaderId, IPCServer* ipcServer)
     : m_LeaderUniqueNo(leaderId)
+    , m_IpcServer(ipcServer)
     {
         m_PartyId = m_LeaderUniqueNo;
     }
@@ -89,25 +92,45 @@ public:
         return result;
     }
 
+    auto ForEachMember(const std::function<void(const PartyMember&)>& func) const -> void
+    {
+        for (const auto& memberSlot : m_Members)
+        {
+            if (memberSlot.has_value())
+            {
+                func(*memberSlot);
+            }
+        }
+    }
+
+    auto ForEachMemberInZone(const uint16 zoneId, const std::function<void(const PartyMember&)>& func) const -> void
+    {
+        for (const auto& memberSlot : m_Members)
+        {
+            if (memberSlot.has_value())
+            {
+                if (memberSlot->GetZone() == zoneId)
+                {
+                    func(*memberSlot);
+                }
+            }
+        }
+    }
+
     auto GetLeader() const -> const PartyMember*
     {
-        // Lambda function to check if an optional party member is the leader
         const auto isLeader = [&](const std::optional<PartyMember>& opt_member) -> bool
         {
-            // First check if the optional contains a value
             if (!opt_member.has_value())
             {
                 return false;
             }
 
-            // Then check if the contained member is the leader
             return opt_member.value().GetId() == m_LeaderUniqueNo;
         };
 
-        // Find the first optional member that matches the isLeader condition
         const auto leader = std::find_if(m_Members.begin(), m_Members.end(), isLeader);
 
-        // If found, return a pointer to the PartyMember, otherwise return nullptr
         return leader != m_Members.end() ? &(leader->value()) : nullptr;
     }
 
@@ -120,13 +143,11 @@ public:
 
         const auto isQm = [&](const std::optional<PartyMember>& opt_member) -> bool
         {
-            // First check if the optional contains a value
             if (!opt_member.has_value())
             {
                 return false;
             }
 
-            // Then check if the contained member is the quartermaster
             return opt_member.value().GetId() == m_QuarterMasterUniqueNo;
         };
 
@@ -143,13 +164,11 @@ public:
 
         const auto isSync = [&](const std::optional<PartyMember>& opt_member) -> bool
         {
-            // First check if the optional contains a value
             if (!opt_member.has_value())
             {
                 return false;
             }
 
-            // Then check if the contained member is the sync target
             return opt_member.value().GetId() == m_SyncTargetUniqueNo;
         };
 
@@ -226,7 +245,7 @@ public:
         return false;
     }
 
-    bool AddMember(uint32_t UniqueNo, PartyMemberType type, uint32 ZoneId)
+    bool AddMember(uint32_t UniqueNo, PartyMemberType type, const uint32 ZoneId)
     {
         for (const auto& memberSlot : m_Members)
         {
@@ -241,8 +260,19 @@ public:
         {
             if (!memberSlot.has_value())
             {
-                memberSlot = PartyMember{ UniqueNo, type, ZoneId };
-                ShowInfoFmt("Added member with UniqueNo: {} (type {})", UniqueNo, static_cast<uint8>(type));
+                // Capture PC names. Not relevant for trusts.
+                std::string charName = "";
+                if (type == PartyMemberType::Player)
+                {
+                    const auto rset = db::preparedStmt("SELECT charname FROM chars WHERE charid = ?");
+                    if (rset && rset->rowsCount() && rset->next())
+                    {
+                        charName = rset->get<std::string>("charname");
+                    }
+                }
+
+                memberSlot = PartyMember{ UniqueNo, type, ZoneId, charName };
+                ShowInfoFmt("Added member {} ({}) (type {})", charName, UniqueNo, static_cast<uint8>(type));
                 SetDirty(true);
                 return true;
             }
@@ -287,7 +317,6 @@ public:
 
                 if (m_SyncTargetUniqueNo == UniqueNo)
                     SetSyncTarget(0);
-                // Notify of sync wearing out
 
                 ShowInfoFmt("Removed member with UniqueNo: {}", UniqueNo);
                 SetDirty(true);
@@ -333,8 +362,27 @@ public:
         return it != m_Parties.end() ? &it->second : nullptr;
     }
 
+    void NotifyIppForParty(const uint32 partyId, const auto& message, const uint16 zoneId) const
+    {
+        if (const auto it = m_Parties.find(partyId); it != m_Parties.end())
+        {
+            for (const auto& member : it->second.GetMembers())
+            {
+                if (member->GetZone() == zoneId)
+                {
+                    worldServer_.ipcServer_->rerouteMessageToCharId(member->GetId(), message);
+                }
+            }
+        }
+    }
+
+    void NotifyIppForParty(const uint32 partyId, const auto& message) const
+    {
+        worldServer_.ipcServer_->rerouteMessageToPartyMembers(partyId, message);
+    }
+
     template <typename Func, typename... Args>
-    bool ModifyParty(uint16 partyId, Func&& func, Args&&... args)
+    bool ModifyParty(uint32 partyId, Func&& func, Args&&... args)
     {
         const auto it = m_Parties.find(partyId);
         if (it == m_Parties.end())
@@ -357,8 +405,25 @@ public:
     {
         if (party.IsDirty())
         {
+            for (const auto& member : party.GetMembers())
+            {
+                if (member->GetType() != PartyMemberType::Player)
+                {
+                    continue;
+                }
+
+                // Temporary hack to make the search server work
+                db::preparedStmt("INSERT INTO accounts_parties (charid, partyid, allianceid, partyflag) VALUES (?, ?, ?, ?)"
+                                 "ON DUPLICATE KEY UPDATE "
+                                 "partyid = VALUES(partyid), "
+                                 "partyflag = VALUES(partyflag)",
+                                 member->GetId(),
+                                 party.GetPartyId(),
+                                 0,
+                                 member == party.GetLeader() ? 4 : 0);
+            }
             ShowInfoFmt("Notifying map servers that party {} is dirty.", party.GetPartyId());
-            worldServer_.ipcServer_->rerouteMessageToPartyMembers(party.GetPartyId(), party.AsPartyUpdate());
+            NotifyIppForParty(party.GetPartyId(), party.AsPartyUpdate());
             party.SetDirty(false);
         }
     }
@@ -396,7 +461,7 @@ public:
 
     bool PartyCreate(const IPP& ipp, const ipc::PartyCreate& message)
     {
-        auto [it, inserted] = this->m_Parties.emplace(message.charId, Party(message.charId));
+        auto [it, inserted] = this->m_Parties.emplace(message.charId, Party(message.charId, worldServer_.ipcServer_.get()));
         it->second.AddMember(message.charId, PartyMemberType::Player, message.zoneId);
         ShowInfoFmt("Party created with charId: {}", message.charId);
         return true;
@@ -409,9 +474,19 @@ public:
 
     bool PartyRemoveMember(const IPP& ipp, const ipc::PartyRemoveMember& message)
     {
+        const auto& party        = this->m_Parties.at(message.partyId);
+        const auto  syncTargetId = party.GetSyncTarget() ? party.GetSyncTarget()->GetId() : 0;
+
         const bool res = ModifyParty(message.partyId, &Party::RemoveMember, message.charId);
         if (res)
         {
+            // If we just removed the sync, we need to notify the party members
+            // TODO: this is a mess and should be handled better
+            if (syncTargetId == message.charId)
+            {
+                PartySetSyncTarget(ipp, ipc::PartySetSyncTarget{ .partyId = message.partyId, .charId = 0, .reason = MsgStd::LevelSyncRemoveLeftParty });
+            }
+
             // Notify the player they've been kicked.
             worldServer_.ipcServer_->rerouteMessageToCharId(message.charId, ipc::PlayerKick{ .victimId = message.charId });
         }
@@ -424,7 +499,8 @@ public:
                 PartyDisband(ipp, ipc::PartyDisband{ .partyId = message.partyId });
             }
         }
-
+        // TODO: If a given map server no longer has any member, they should be notified they need to clear the entry
+        // Alternatively, this could be handled on the map process itself.
         return res;
     }
 
@@ -444,6 +520,10 @@ public:
 
         this->m_Parties.erase(message.partyId);
         ShowInfoFmt("Party disbanded with partyId: {}", message.partyId);
+
+        // Notify map servers that the party should no longer be tracked
+        // TODO: Store IPPs we've interacted with and only send to those.
+        worldServer_.ipcServer_->broadcastMessage(message);
         return true;
     }
 
@@ -482,7 +562,92 @@ public:
 
     bool PartySetSyncTarget(const IPP& ipp, const ipc::PartySetSyncTarget& message)
     {
-        return ModifyParty(message.partyId, &Party::SetSyncTarget, message.charId);
+        const auto& party        = this->m_Parties.at(message.partyId);
+        const auto  oldSync      = party.GetSyncTarget();
+        uint32      syncTargetId = 0;
+
+        if (message.charId == 0 && !message.charName.empty())
+        {
+            const auto rset = db::preparedStmt("SELECT charid FROM chars WHERE charname = ?",
+                                               message.charName);
+            if (rset && rset->rowsCount() && rset->next())
+            {
+                syncTargetId = rset->get<uint32>("charid");
+                // TODO:if (PChar->GetMLevel() < 10)
+                // {
+                //     ((CCharEntity*)GetLeader())->pushPacket<CMessageBasicPacket>((CCharEntity*)GetLeader(), (CCharEntity*)GetLeader(), 0, 10, MsgStd::LevelSyncDesigneeBelowMin);
+                //     return;
+                // }
+                // else if (PChar->getZone() != GetLeader()->getZone())
+                // {
+                //     ((CCharEntity*)GetLeader())->pushPacket<CMessageBasicPacket>((CCharEntity*)GetLeader(), (CCharEntity*)GetLeader(), 0, 0, MsgStd::LevelSyncDesigneeInOtherArea);
+                //     return;
+                // }
+                // for (auto& member : members)
+                // {
+                //     if (member->StatusEffectContainer->HasStatusEffect({ EFFECT_LEVEL_RESTRICTION, EFFECT_LEVEL_SYNC, EFFECT_SJ_RESTRICTION, EFFECT_CONFRONTATION, EFFECT_BATTLEFIELD }))
+                //     {
+                //         ((CCharEntity*)GetLeader())->pushPacket<CMessageBasicPacket>((CCharEntity*)GetLeader(), (CCharEntity*)GetLeader(), 0, 0, MsgStd::LevelSyncPreventedByStatus);
+                //         return;
+                //     }
+                // }
+            }
+            else
+            {
+                ShowErrorFmt("PartySetSyncTarget: Unable to find charId for charName: {}", message.charName);
+                return false;
+            }
+        }
+        else
+        {
+            syncTargetId = message.charId;
+        }
+
+        const bool res = ModifyParty(message.partyId, &Party::SetSyncTarget, syncTargetId);
+
+        // If a reason was provided for disabling, we need to stream it to certain party members
+        if (syncTargetId == 0 && static_cast<uint16>(message.reason) != 0)
+        {
+            switch (message.reason)
+            {
+                case MsgStd::LevelSyncRemoveTooFewMembers:
+                    // This occurs when there is not enough members in the synced zone
+                    party.ForEachMemberInZone(oldSync->GetZone(), [&](const PartyMember& member)
+                                              { worldServer_.ipcServer_->rerouteMessageToCharId(member.GetId(), ipc::MessageStandard{
+                                                                                                                    .recipientId = member.GetId(),
+                                                                                                                    .message     = MsgStd::LevelSyncRemoveTooFewMembers,
+                                                                                                                }); });
+                    break;
+                case MsgStd::LevelSyncRemoveLeftParty:
+                    // This occurs when the sync leaves the party
+                    party.ForEachMemberInZone(oldSync->GetZone(), [&](const PartyMember& member)
+                                              { worldServer_.ipcServer_->rerouteMessageToCharId(member.GetId(), ipc::MessageStandard{
+                                                                                                                    .recipientId = member.GetId(),
+                                                                                                                    .message     = MsgStd::LevelSyncRemoveLeftParty,
+                                                                                                                }); });
+                    break;
+                case MsgStd::LevelSyncRemoveIneligibleExp:
+                    // This occurs when the character is blocked by genkai
+                    party.ForEachMemberInZone(oldSync->GetZone(), [&](const PartyMember& member)
+                                              { worldServer_.ipcServer_->rerouteMessageToCharId(member.GetId(), ipc::MessageStandard{
+                                                                                                                    .recipientId = member.GetId(),
+                                                                                                                    .message     = MsgStd::LevelSyncRemoveIneligibleExp,
+                                                                                                                }); });
+                    break;
+                case MsgStd::LevelSyncDeactivateLeftArea:
+                    // This occurs when the character leaves the area
+                    party.ForEachMemberInZone(oldSync->GetZone(), [&](const PartyMember& member)
+                                              { worldServer_.ipcServer_->rerouteMessageToCharId(member.GetId(), ipc::MessageStandard{
+                                                                                                                    .recipientId = member.GetId(),
+                                                                                                                    .message     = MsgStd::LevelSyncDeactivateLeftArea,
+                                                                                                                }); });
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        return res;
     }
 
 private:

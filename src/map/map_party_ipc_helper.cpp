@@ -4,6 +4,10 @@
 
 #include "map_party_ipc_helper.h"
 
+#include "entities/charentity.h"
+#include "entities/trustentity.h"
+#include "ipc_client.h"
+
 // Tell the world server the party leader is changing
 void CCharParty::IpcHelper::SetLeader(const CCharEntity* PChar) const
 {
@@ -19,10 +23,36 @@ void CCharParty::IpcHelper::SetLeader(const uint32 UniqueNo) const
     });
 }
 
+// Tell the world server the party leader is changing
+void CCharParty::IpcHelper::SetLeader(const std::string charName) const
+{
+    message::send(ipc::PartySetLeader{
+        .partyId  = m_Party.GetPartyId(),
+        .charName = charName,
+    });
+}
+
 // Tell the world server the sync target is changing
 void CCharParty::IpcHelper::SetSyncTarget(const CCharEntity* PChar) const
 {
     SetSyncTarget(PChar ? PChar->id : 0);
+}
+
+void CCharParty::IpcHelper::ClearSyncTarget(const MsgStd Reason) const
+{
+    message::send(ipc::PartySetSyncTarget{
+        .partyId = m_Party.GetPartyId(),
+        .charId  = 0,
+        .reason  = Reason,
+    });
+}
+
+void CCharParty::IpcHelper::SetSyncTarget(const std::string& CharName) const
+{
+    message::send(ipc::PartySetSyncTarget{
+        .partyId  = m_Party.GetPartyId(),
+        .charName = CharName,
+    });
 }
 
 // Tell the world server the sync target is changing
@@ -46,6 +76,14 @@ void CCharParty::IpcHelper::SetQuartermaster(const uint32 UniqueNo) const
     message::send(ipc::PartySetQuartermaster{
         .partyId = m_Party.GetPartyId(),
         .charId  = UniqueNo,
+    });
+}
+
+void CCharParty::IpcHelper::SetQuartermaster(const std::string charName) const
+{
+    message::send(ipc::PartySetQuartermaster{
+        .partyId  = m_Party.GetPartyId(),
+        .charName = charName,
     });
 }
 
@@ -95,8 +133,7 @@ void CCharParty::IpcHelper::RemoveMember(CBattleEntity* PEntity) const
 void CCharParty::IpcHelper::NotifyKick(const uint32 UniqueNo) const
 {
     message::send(ipc::PlayerKick{
-        .victimId = UniqueNo
-    });
+        .victimId = UniqueNo });
 }
 
 // Tell the world server we'd like to notify a member they've been removed

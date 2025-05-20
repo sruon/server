@@ -3267,9 +3267,9 @@ void SmallPacket0x06E(MapSession* const PSession, CCharEntity* const PChar, CBas
         case INVITE_PARTY: // party - must by party leader or solo
         {
             // TODO: Let the world server handle these checks
-            if (!PInviter->HasParty() || PInviter->GetParty().GetLeader() == PInviter)
+            if (!PInviter->hasParty() || PInviter->getParty().GetLeader() == PInviter)
             {
-                if (PInviter->HasParty() && PInviter->GetParty().IsFull())
+                if (PInviter->hasParty() && PInviter->getParty().IsFull())
                 {
                     PInviter->pushPacket<CMessageStandardPacket>(PInviter, 0, 0, MsgStd::CannotInvite);
                     break;
@@ -3295,7 +3295,7 @@ void SmallPacket0x06E(MapSession* const PSession, CCharEntity* const PChar, CBas
                     ShowDebug("%s sent party invite to %s", PInviter->getName(), PInvitee->getName());
 
                     // make sure invitee isn't dead or in jail, they aren't a party member and don't already have an invite pending, and your party is not full
-                    if (PInvitee->isDead() || jailutils::InPrison(PInvitee) || PInvitee->InvitePending.id != 0 || PInvitee->HasParty())
+                    if (PInvitee->isDead() || jailutils::InPrison(PInvitee) || PInvitee->InvitePending.id != 0 || PInvitee->hasParty())
                     {
                         ShowDebug("%s is dead, in jail, has a pending invite, or is already in a party", PInvitee->getName());
                         PInviter->pushPacket<CMessageStandardPacket>(PInviter, 0, 0, MsgStd::CannotInvite);
@@ -3329,7 +3329,7 @@ void SmallPacket0x06E(MapSession* const PSession, CCharEntity* const PChar, CBas
 
                     ShowDebug("Sent party invite packet to %s", PInvitee->getName());
 
-                    if (PInviter->HasParty() && PInviter->GetParty().GetSyncTarget())
+                    if (PInviter->hasParty() && PInviter->getParty().GetSyncTarget())
                     {
                         PInvitee->pushPacket<CMessageStandardPacket>(PInvitee, 0, 0, MsgStd::LevelSyncWarning);
                     }
@@ -3448,7 +3448,7 @@ void SmallPacket0x06F(MapSession* const PSession, CCharEntity* const PChar, CBas
 {
     TracyZoneScoped;
 
-    if (PChar->HasParty())
+    if (PChar->hasParty())
     {
         switch (data.ref<uint8>(0x04))
         {
@@ -3475,7 +3475,7 @@ void SmallPacket0x06F(MapSession* const PSession, CCharEntity* const PChar, CBas
                 //     }
                 // }
                 ShowDebug("Removing %s from party", PChar->getName());
-                PChar->GetParty().ipc().RemoveMember(PChar);
+                PChar->getParty().ipc().RemoveMember(PChar);
                 ShowDebug("%s is removed from party", PChar->getName());
             }
             break;
@@ -3520,7 +3520,7 @@ void SmallPacket0x070(MapSession* const PSession, CCharEntity* const PChar, CBas
 {
     TracyZoneScoped;
 
-    if (!PChar->HasParty())
+    if (!PChar->hasParty())
     {
         return;
     }
@@ -3529,7 +3529,7 @@ void SmallPacket0x070(MapSession* const PSession, CCharEntity* const PChar, CBas
     {
         case 0:
             ShowDebug("Forwarding request: %s is disbanding the party (pcmd breakup)", PChar->getName());
-            PChar->GetParty().ipc().Disband();
+            PChar->getParty().ipc().Disband();
             break;
         case 5:
             // Alliances not handled yet
@@ -3561,9 +3561,9 @@ void SmallPacket0x071(MapSession* const PSession, CCharEntity* const PChar, CBas
         case 0: // party - party leader may remove member of his own party
         {
             // TODO: Move all of this to world server so the logic can be simplified
-            if (PChar->HasParty() && PChar->GetParty().GetLeader() == PChar)
+            if (PChar->hasParty() && PChar->getParty().GetLeader() == PChar)
             {
-                CCharEntity* PVictim = PChar->GetParty().GetMemberByName(victimName);
+                CCharEntity* PVictim = PChar->getParty().GetMemberByName(victimName);
                 if (PVictim)
                 {
                     ShowDebug("%s is trying to kick %s from party", PChar->getName(), PVictim->getName());
@@ -3587,7 +3587,7 @@ void SmallPacket0x071(MapSession* const PSession, CCharEntity* const PChar, CBas
                         // }
                     }
 
-                    PChar->GetParty().ipc().RemoveMember(PVictim);
+                    PChar->getParty().ipc().RemoveMember(PVictim);
                     ShowDebug("%s has removed %s from party", PChar->getName(), PVictim->getName());
                 }
                 else
@@ -3798,12 +3798,12 @@ void SmallPacket0x074(MapSession* const PSession, CCharEntity* const PChar, CBas
         // }
 
         // the rest is for a standard party invitation
-        if (!PChar->HasParty())
+        if (!PChar->hasParty())
         {
             if (!(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC) && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_RESTRICTION)))
             {
                 ShowDebug("%s is not under lvl sync or restriction", PChar->getName());
-                if (!PInviter->HasParty())
+                if (!PInviter->hasParty())
                 {
                     ShowDebug("Creating new party");
                     message::send(ipc::PartyCreate{
@@ -3815,7 +3815,7 @@ void SmallPacket0x074(MapSession* const PSession, CCharEntity* const PChar, CBas
                 ShowDebug("Adding %s to %s's party", PChar->getName(), PInviter->getName());
                 // TODO: Party full check sends a message to the invitee
                 message::send(ipc::PartyAddMember{
-                    .partyId = PInviter->HasParty() ? PInviter->GetParty().GetPartyId() : PInviter->id,
+                    .partyId = PInviter->hasParty() ? PInviter->getParty().GetPartyId() : PInviter->id,
                     .charId  = PChar->id,
                     .zoneId  = PInviter->getZone(),
                 });
@@ -3867,10 +3867,10 @@ void SmallPacket0x076(MapSession* const PSession, CCharEntity* const PChar, CBas
 {
     TracyZoneScoped;
 
-    if (PChar->HasParty())
+    if (PChar->hasParty())
     {
         // Send updates just to one char
-        PChar->GetParty().BroadcastPartyPackets(PChar);
+        PChar->getParty().BroadcastPartyPackets(PChar);
     }
     else
     {
@@ -3897,27 +3897,26 @@ void SmallPacket0x077(MapSession* const PSession, CCharEntity* const PChar, CBas
     {
         case 0: // party
         {
-            if (PChar->HasParty() && PChar->GetParty().GetLeader() == PChar)
+            if (PChar->hasParty() && PChar->getParty().GetLeader() == PChar)
             {
                 ShowDebug(fmt::format("(Party) Altering permissions of {} to {}", memberName, permission));
-                const auto* PNewLeader = PChar->GetParty().GetMemberByName(memberName);
-
+                // The targeted player MAY not be on this map process,
                 switch (permission)
                 {
                     case 0: // Leader change
-                        PChar->GetParty().ipc().SetLeader(PNewLeader);
+                        PChar->getParty().ipc().SetLeader(memberName);
                         break;
                     case 4: // QM
-                        PChar->GetParty().ipc().SetQuartermaster(PNewLeader);
+                        PChar->getParty().ipc().SetQuartermaster(memberName);
                         break;
                     case 5: // Lottery type
-                        PChar->GetParty().ipc().SetQuartermaster(static_cast<uint32>(0));
+                        PChar->getParty().ipc().SetQuartermaster(static_cast<uint32>(0));
                         break;
                     case 6: // Set sync
-                        PChar->GetParty().ipc().SetSyncTarget(PNewLeader);
+                        PChar->getParty().ipc().SetSyncTarget(memberName);
                         break;
                     case 7: // Remove sync
-                        PChar->GetParty().ipc().SetSyncTarget(static_cast<uint32>(0));
+                        PChar->getParty().ipc().SetSyncTarget(static_cast<uint32>(0));
                         break;
                     default:
                         ShowError("SmallPacket0x077 : unknown permission <%.2X>", permission);
@@ -4764,7 +4763,7 @@ void SmallPacket0x0B5(MapSession* const PSession, CCharEntity* const PChar, CBas
                 break;
                 case MESSAGE_PARTY:
                 {
-                    if (PChar->HasParty())
+                    if (PChar->hasParty())
                     {
                         // if (PChar->PParty->m_PAlliance)
                         // {
@@ -4780,7 +4779,7 @@ void SmallPacket0x0B5(MapSession* const PSession, CCharEntity* const PChar, CBas
                         // else
                         // {
                         message::send(ipc::ChatMessageParty{
-                            .partyId    = PChar->GetParty().GetPartyId(),
+                            .partyId    = PChar->getParty().GetPartyId(),
                             .senderId   = PChar->id,
                             .senderName = PChar->getName(),
                             .message    = rawMessage,

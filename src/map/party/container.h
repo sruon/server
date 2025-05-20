@@ -1,7 +1,7 @@
 ﻿/*
 ===========================================================================
 
-  Copyright (c) 2010-2015 Darkstar Dev Teams
+  Copyright (c) 2025 LandSandBoat Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -19,17 +19,21 @@
 ===========================================================================
 */
 
-#include "party_search.h"
+#pragma once
 
-#include "entities/charentity.h"
+#include "common/ipc.h"
 
-CPartySearchPacket::CPartySearchPacket(CCharEntity* PChar)
+class CCharParty;
+
+class PartyContainer
 {
-    this->setType(0xE1);
-    this->setSize(0x08);
+public:
+    void updateParty(const ipc::PartyUpdate& message);
+    void updateId(uint32 old, uint32 newId);
+    void chatMessage(const ipc::ChatMessageParty& message);
+    void chatMessage(const ipc::ChatMessageAlliance& message);
+    void disbandParty(const ipc::PartyDisband& message);
 
-    if (PChar->hasParty())
-    {
-        ref<uint32>(0x04) = PChar->getParty().GetPartyId();
-    }
-}
+private:
+    std::unordered_map<uint32, std::unique_ptr<CCharParty>> m_Parties;
+};

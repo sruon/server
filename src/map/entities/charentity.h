@@ -349,8 +349,8 @@ public:
 
     std::vector<CTrustEntity*> PTrusts; // Active trusts
 
-    void ForEveryPartyMember(std::function<void(CCharEntity*)> func);
-    void ForEveryPartyMemberWithTrusts(std::function<void(CBattleEntity*)> func);
+    void ForEveryPartyMember(const std::function<void(CCharEntity*)>& func);
+    void ForEveryPartyMemberWithTrusts(const std::function<void(CBattleEntity*)>& func);
     void ForEveryAllianceMember(std::function<void(CCharEntity*)> func);
 
     CBattleEntity* PClaimedMob = nullptr;
@@ -590,22 +590,10 @@ public:
     // Starts a synth with skillType X
     bool startSynth(SKILLTYPE synthSkill);
 
-    void SetParty(CCharParty& party) {
-        m_Party = std::ref(party);
-    }
-
-    void ClearParty() {
-        m_Party.reset();
-    }
-
-    bool HasParty() const {
-        return m_Party.has_value();
-    }
-
-    CCharParty& GetParty() const
-    {
-        return m_Party.value();
-    }
+    void setParty(CCharParty& party);
+    void clearParty();
+    bool hasParty() const;
+    auto getParty() const -> CCharParty&;
 
     CCharEntity();
     ~CCharEntity();

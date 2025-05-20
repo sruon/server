@@ -21,12 +21,16 @@ public:
 
     void SetLeader(const CCharEntity* PChar) const;
     void SetLeader(const uint32 UniqueNo) const;
+    void SetLeader(const std::string charName) const;
 
     void SetSyncTarget(const CCharEntity* PChar) const;
+    void SetSyncTarget(const std::string& CharName) const;
     void SetSyncTarget(const uint32 UniqueNo) const;
+    void ClearSyncTarget(const MsgStd Reason) const;
 
     void SetQuartermaster(const CCharEntity* PChar) const;
     void SetQuartermaster(const uint32 UniqueNo) const;
+    void SetQuartermaster(const std::string charName) const;
 
     void AddMember(const uint32 UniqueNo, const PartyMemberType Type, const uint16 ZoneId) const;
     void AddMember(CBattleEntity* PEntity) const;

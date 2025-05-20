@@ -1960,8 +1960,8 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
         if (PChar)
         {
             if (PChar == PTargetChar || // Casting on self or ally
-                (PChar->HasParty() && PTargetChar->HasParty() &&
-                 ((&PChar->GetParty() == &PTargetChar->GetParty())))) // || (PChar->PParty->m_PAlliance && PChar->PParty->m_PAlliance == PTargetChar->PParty->m_PAlliance))))
+                (PChar->hasParty() && PTargetChar->hasParty() &&
+                 ((&PChar->getParty() == &PTargetChar->getParty())))) // || (PChar->PParty->m_PAlliance && PChar->PParty->m_PAlliance == PTargetChar->PParty->m_PAlliance))))
             {
                 if (PSpell->isHeal())
                 {

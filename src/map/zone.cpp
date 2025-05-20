@@ -1003,7 +1003,7 @@ void CZone::CharZoneIn(CCharEntity* PChar)
     }
     else
     {
-        if (PChar->HasParty())
+        if (PChar->hasParty())
         {
             // PChar->PParty->ReloadTreasurePool(PChar);
         }
@@ -1060,7 +1060,7 @@ void CZone::CharZoneIn(CCharEntity* PChar)
     else if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))
     {
         // Logging in with no party and a level sync status = bad.
-        if (!PChar->HasParty())
+        if (!PChar->hasParty())
         {
             PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_SYNC);
             PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_RESTRICTION);
@@ -1097,19 +1097,17 @@ void CZone::CharZoneOut(CCharEntity* PChar)
 
     if (PChar->m_LevelRestriction != 0)
     {
-        if (PChar->HasParty())
+        if (PChar->hasParty())
         {
-            if (PChar->GetParty().GetSyncTarget() == PChar || PChar->GetParty().GetLeader() == PChar)
+            if (PChar->getParty().GetSyncTarget() == PChar || PChar->getParty().GetLeader() == PChar)
             {
-                PChar->GetParty().ipc().SetSyncTarget(nullptr);
-                // PChar->PParty->SetSyncTarget("", MsgStd::LevelSyncDeactivateLeftArea);
+                PChar->getParty().ipc().ClearSyncTarget(MsgStd::LevelSyncDeactivateLeftArea);
             }
-            if (PChar->GetParty().GetSyncTarget() != nullptr)
+            if (PChar->getParty().GetSyncTarget() != nullptr)
             {
-                if (PChar->GetParty().GetMembers(PChar->GetParty().GetSyncTarget()->getZone()).size() < 2)
+                if (PChar->getParty().GetMembers(PChar->getParty().GetSyncTarget()->getZone()).size() < 2)
                 {
-                    PChar->GetParty().ipc().SetSyncTarget(nullptr);
-                    // PChar->PParty->SetSyncTarget("", MsgStd::LevelSyncRemoveTooFewMembers);
+                    PChar->getParty().ipc().ClearSyncTarget(MsgStd::LevelSyncRemoveTooFewMembers);
                 }
             }
         }

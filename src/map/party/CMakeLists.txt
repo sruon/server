@@ -1,0 +1,6 @@
+set(PARTY_SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/flags.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/container.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/container.cpp
+    PARENT_SCOPE
+)

@@ -291,11 +291,11 @@ namespace ipc
 
     struct PartyUpdate
     {
-        uint32                         partyId{};
-        uint32                         leaderUniqueNo{};
-        uint32                         quartermasterUniqueNo{};
-        uint32                         syncTargetUniqueNo{};
-        std::vector<PartyMemberData>   members{};
+        uint32                       partyId{};
+        uint32                       leaderUniqueNo{};
+        uint32                       quartermasterUniqueNo{};
+        uint32                       syncTargetUniqueNo{};
+        std::vector<PartyMemberData> members{};
     };
 
     struct PartyCreate
@@ -320,20 +320,24 @@ namespace ipc
 
     struct PartySetLeader
     {
-        uint32 partyId{};
-        uint32 charId{};
+        uint32      partyId{};
+        uint32      charId{};
+        std::string charName{};
     };
 
     struct PartySetQuartermaster
     {
-        uint32 partyId{};
-        uint32 charId{};
+        uint32      partyId{};
+        uint32      charId{};
+        std::string charName{};
     };
 
     struct PartySetSyncTarget
     {
-        uint32 partyId{};
-        uint32 charId{};
+        uint32      partyId{};
+        uint32      charId{};
+        std::string charName{};
+        MsgStd      reason{};
     };
 
     struct PartyChangeId

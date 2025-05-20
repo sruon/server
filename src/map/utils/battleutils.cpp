@@ -1243,9 +1243,9 @@ namespace battleutils
 
         if (previous_daze != EFFECT_NONE)
         {
-            if (PAttacker->objtype == TYPE_PC && static_cast<CCharEntity*>(PAttacker)->HasParty())
+            if (PAttacker->objtype == TYPE_PC && static_cast<CCharEntity*>(PAttacker)->hasParty())
             {
-                for (const auto* PMember : static_cast<CCharEntity*>(PAttacker)->GetParty().GetMembers())
+                for (const auto* PMember : static_cast<CCharEntity*>(PAttacker)->getParty().GetMembers())
                 {
                     PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_DRAIN_DAZE, PMember->id);
                     PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_HASTE_DAZE, PMember->id);
@@ -1470,7 +1470,7 @@ namespace battleutils
 
                 attackerID = PDefender->StatusEffectContainer->GetStatusEffect(daze)->GetSubID();
 
-                if (PAttacker->objtype == TYPE_PC && static_cast<CCharEntity*>(PAttacker)->HasParty())
+                if (PAttacker->objtype == TYPE_PC && static_cast<CCharEntity*>(PAttacker)->hasParty())
                 {
                     if (PChar)
                     {
@@ -4334,7 +4334,7 @@ namespace battleutils
         auto                                          distTAmob  = distance(taUser->loc.p, PMob->loc.p);
         std::vector<std::pair<float, CBattleEntity*>> taTargetList;
 
-        if (static_cast<CCharEntity*>(taUser)->HasParty())
+        if (static_cast<CCharEntity*>(taUser)->hasParty())
         {
             // Collect all potential TA targets who are closer to the mob than the TA user
 
@@ -6810,9 +6810,9 @@ namespace battleutils
         uint32         coverAbilityTargetID = PCoverAbilityTarget->id;
 
         // If the cover ability target is in a party, try to find a cover ability user
-        if (static_cast<CCharEntity*>(PCoverAbilityTarget)->HasParty())
+        if (static_cast<CCharEntity*>(PCoverAbilityTarget)->hasParty())
         {
-            for (auto* PMember : static_cast<CCharEntity*>(PCoverAbilityTarget)->GetParty().GetMembers())
+            for (auto* PMember : static_cast<CCharEntity*>(PCoverAbilityTarget)->getParty().GetMembers())
             {
                 if (coverAbilityTargetID == PMember->GetLocalVar("COVER_ABILITY_TARGET") &&
                     PMember->StatusEffectContainer->HasStatusEffect(EFFECT_COVER) &&

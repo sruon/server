@@ -13,30 +13,25 @@ enum class PartyMemberType : uint8
     Trust,
 };
 
-struct SerializablePartyMember
-{
-    uint32          UniqueNo;
-    std::time_t     JoinedTime;
-    PartyMemberType Type;
-};
-
 struct PartyMemberData
 {
     uint32          UniqueNo;
     std::time_t     JoinedTime;
     PartyMemberType Type;
     uint32          ZoneId;
+    std::string     Name;
 };
 
 class PartyMember
 {
 public:
-    PartyMember(const uint32 _UniqueNo, const PartyMemberType _type, const uint32 _ZoneId)
+    PartyMember(const uint32 _UniqueNo, const PartyMemberType _type, const uint32 _ZoneId, const std::string& _Name)
     {
         m_Data.UniqueNo   = _UniqueNo;
         m_Data.JoinedTime = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
         m_Data.Type       = _type;
         m_Data.ZoneId     = _ZoneId;
+        m_Data.Name       = _Name;
     }
 
     PartyMember(PartyMemberData& data)
@@ -57,6 +52,11 @@ public:
     auto GetZone() const -> uint32
     {
         return m_Data.ZoneId;
+    }
+
+    auto GetName() const -> const std::string&
+    {
+        return m_Data.Name;
     }
 
     auto GetTimeSinceJoined() const -> std::chrono::seconds

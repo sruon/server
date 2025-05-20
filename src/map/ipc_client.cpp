@@ -300,8 +300,6 @@ void IPCClient::handleMessage_ChatMessageCustom(const IPP& ipp, const ipc::ChatM
     }
 }
 
-
-
 void IPCClient::handleMessage_MessageStandard(const IPP& ipp, const ipc::MessageStandard& message)
 {
     TracyZoneScoped;
@@ -560,8 +558,8 @@ void IPCClient::handleMessage_PartyInvite(const IPP& ipp, const ipc::PartyInvite
         if (PInvitee->isDead() ||
             jailutils::InPrison(PInvitee) ||
             PInvitee->InvitePending.id != 0 ||
-            (PInvitee->HasParty() && message.inviteType == INVITE_PARTY)) // ||
-            // (message.inviteType == INVITE_ALLIANCE && (!PInvitee->PParty || PInvitee->PParty->GetLeader() != PInvitee || (PInvitee->PParty && PInvitee->PParty->m_PAlliance))))
+            (PInvitee->hasParty() && message.inviteType == INVITE_PARTY)) // ||
+        // (message.inviteType == INVITE_ALLIANCE && (!PInvitee->PParty || PInvitee->PParty->GetLeader() != PInvitee || (PInvitee->PParty && PInvitee->PParty->m_PAlliance))))
         {
             message::send(ipc::MessageStandard{
                 .recipientId = message.inviterId,
@@ -611,9 +609,18 @@ void IPCClient::handleMessage_PartyInvite(const IPP& ipp, const ipc::PartyInvite
 void IPCClient::handleMessage_PartyInviteResponse(const IPP& ipp, const ipc::PartyInviteResponse& message)
 {
     TracyZoneScoped;
+    uint16 zoneId = 0;
 
+    // PInviter is on this map process but PInvitee might not be. Ask DB for their current zone.
     CCharEntity* PInviter = zoneutils::GetChar(message.inviterId);
-    CCharEntity* PInvitee = zoneutils::GetChar(message.inviteeId);
+    const auto   rset     = db::preparedStmt("SELECT pos_zone FROM chars"
+                                                   "WHERE charid = ?",
+                                             message.inviteeId);
+    if (rset && rset->rowsCount() && rset->next())
+    {
+        zoneId = rset->get<uint16>("pos_zone");
+    }
+
     if (PInviter)
     {
         if (message.inviteAnswer == 0)
@@ -622,9 +629,8 @@ void IPCClient::handleMessage_PartyInviteResponse(const IPP& ipp, const ipc::Par
         }
         else
         {
-            // TODO: This won't work cross zone process
             // TODO: alliance
-            PInviter->GetParty().ipc().AddMember(message.inviteeId, PartyMemberType::Player, PInvitee->getZone());
+            PInviter->getParty().ipc().AddMember(message.inviteeId, PartyMemberType::Player, zoneId);
         }
     }
 }
@@ -633,33 +639,9 @@ void IPCClient::handleMessage_PartyDisband(const IPP& ipp, const ipc::PartyDisba
 {
     TracyZoneScoped;
 
-    // CParty* PParty = nullptr;
-    //
-    // const auto partyid = message.partyId;
-    //
-    // // TODO: When Party/Alliance gets a rewrite, make a zoneutils::ForEachParty or some other accessor to reduce the amount of iterations significantly.
-    //
-    // // clang-format off
-    // zoneutils::ForEachZone([partyid, &PParty](CZone* PZone)
-    // {
-    //     PZone->ForEachChar([partyid, &PParty](CCharEntity* PChar)
-    //     {
-    //         if (PChar->PParty && PChar->PParty->GetPartyID() == partyid)
-    //         {
-    //             PParty = PChar->PParty;
-    //             return;
-    //         }
-    //     });
-    //     if (PParty)
-    //     {
-    //         return;
-    //     }
-    // });
-    // if (PParty)
-    // {
-    //     PParty->DisbandParty(false);
-    // }
-    // clang-format on
+    // The world process takes care of removing members and forwarding packet updates through RemoveMember/PlayerKick,
+    // but we need to clean up the entry in the party container at the end.
+    networking_.parties().disbandParty(message);
 }
 
 void IPCClient::handleMessage_AllianceDissolve(const IPP& ipp, const ipc::AllianceDissolve& message)
@@ -702,7 +684,7 @@ void IPCClient::handleMessage_PlayerKick(const IPP& ipp, const ipc::PlayerKick& 
     if (CCharEntity* PChar = zoneutils::GetChar(message.victimId))
     {
         PChar->pushPacket<CPartyDefinePacket>(std::vector<CBattleEntity*>{}, 0, 0);
-        PChar->pushPacket<CPartyMemberUpdatePacket>(PChar, 0, 0, PChar->getZone());
+        PChar->pushPacket<CPartyMemberUpdatePacket>(PChar);
         PChar->pushPacket<CCharStatusPacket>(PChar);
     }
 }
@@ -711,7 +693,6 @@ void IPCClient::handleMessage_PartyChangeId(const IPP& ipp, const ipc::PartyChan
 {
     networking_.parties().updateId(message.formerId, message.newId);
 }
-
 
 void IPCClient::handleUnknownMessage(const IPP& ipp, const std::span<uint8_t> message)
 {

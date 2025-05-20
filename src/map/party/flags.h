@@ -1,7 +1,7 @@
-﻿/*
+/*
 ===========================================================================
 
-  Copyright (c) 2010-2015 Darkstar Dev Teams
+  Copyright (c) 2025 LandSandBoat Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -23,21 +23,30 @@
 
 #include "common/cbasetypes.h"
 
-#include "basic.h"
-#include "common/party.h"
-
-#include <common/ipc_structs.h>
-
-class CCharEntity;
-class CTrustEntity;
-class CAlliance;
-class CCharParty;
-
-class CPartyMemberUpdatePacket : public CBasicPacket
+// Set of flags used when building PartyDefine/PartyMemberUpdate packets
+// The client uses them to define how to render the party list.
+enum class PartyFlag : uint16
 {
-public:
-    CPartyMemberUpdatePacket(CCharEntity* PSolo);
-    CPartyMemberUpdatePacket(CTrustEntity* PTrust, uint8 MemberNumber);
-    CPartyMemberUpdatePacket(const CCharParty& PParty, const PartyMember& PMember, uint8 MemberNumber);
-    CPartyMemberUpdatePacket(const CCharParty& PParty, CCharEntity* PMember, uint8 MemberNumber);
+    PartySecond      = 0x0001,
+    PartyThird       = 0x0002,
+    IsLeader         = 0x0004,
+    IsAllianceLeader = 0x0008,
+    IsQuartermaster  = 0x0010,
+    IsSyncTarget     = 0x0100,
 };
+DECLARE_FORMAT_AS_UNDERLYING(PartyFlag);
+
+inline PartyFlag operator|(PartyFlag a, PartyFlag b)
+{
+    return static_cast<PartyFlag>(static_cast<uint16>(a) | static_cast<uint16>(b));
+}
+
+inline PartyFlag operator&(PartyFlag a, PartyFlag b)
+{
+    return static_cast<PartyFlag>(static_cast<uint16>(a) & static_cast<uint16>(b));
+}
+
+inline PartyFlag operator~(PartyFlag a)
+{
+    return static_cast<PartyFlag>(~static_cast<uint16>(a));
+}

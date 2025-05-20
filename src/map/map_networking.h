@@ -26,11 +26,11 @@
 #include "common/ipp.h"
 
 #include "map_constants.h"
-#include "map_party_container.h"
 #include "map_session.h"
 #include "map_session_container.h"
 #include "map_socket.h"
 #include "map_statistics.h"
+#include "party/container.h"
 
 #include <span>
 

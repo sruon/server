@@ -831,16 +831,16 @@ void CMobEntity::DropItems(CCharEntity* PChar)
     // Checks if the party is eligible for adding global drops (seals, geodes, avatarites)
     auto CanAddSpecial = [PChar](const uint16 id)
     {
-        if (!PChar->HasParty() || !PChar->PTreasurePool)
+        if (!PChar->hasParty() || !PChar->PTreasurePool)
         {
             return !PChar->PRecastContainer->Has(RECAST_LOOT, id);
         }
 
-        const auto& PParty = PChar->GetParty();
+        const auto& PParty = PChar->getParty();
 
         for (const auto& member : PChar->PTreasurePool->getMembers())
         {
-            if (&member->GetParty() == &PParty)
+            if (&member->getParty() == &PParty)
             {
                 if (member->PRecastContainer->Has(RECAST_LOOT, id))
                 {
@@ -860,17 +860,17 @@ void CMobEntity::DropItems(CCharEntity* PChar)
     // - The cooldown does reset when zoning.
     auto AddSpecialRecast = [PChar](const uint16 id)
     {
-        if (!PChar->HasParty() || !PChar->PTreasurePool)
+        if (!PChar->hasParty() || !PChar->PTreasurePool)
         {
             PChar->PRecastContainer->Add(RECAST_LOOT, id, SPECIAL_DROP_COOLDOWN);
             return;
         }
 
-        const auto& PParty = PChar->GetParty();
+        const auto& PParty = PChar->getParty();
 
         for (const auto& member : PChar->PTreasurePool->getMembers())
         {
-            if (&member->GetParty() == &PParty)
+            if (&member->getParty() == &PParty)
             {
                 member->PRecastContainer->Add(RECAST_LOOT, id, SPECIAL_DROP_COOLDOWN);
             }
