@@ -1,0 +1,104 @@
+﻿/*
+===========================================================================
+
+  Copyright (c) 2025 LandSandBoat Dev Teams
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see http://www.gnu.org/licenses/
+
+===========================================================================
+*/
+
+#pragma once
+
+#include "common/cbasetypes.h"
+#include "common/party/member.h"
+#include "common/timer.h"
+#include <functional>
+
+namespace ipc
+{
+    struct PartyUpdate;
+}
+
+enum class PartyMemberType : uint8
+{
+    Player,
+    Trust,
+};
+
+struct PartyMemberData
+{
+    uint32          UniqueNo;
+    std::time_t     JoinedTime;
+    PartyMemberType Type;
+    uint32          ZoneId;
+    std::string     Name;
+};
+
+class PartyBase
+{
+public:
+    size_t getMemberCount() const;
+
+    bool isDirty() const;
+    void setDirty(bool isDirty);
+
+    auto getFlagsForMember(const PartyMember& PMember) const -> uint16;
+
+    // IDs retrieval
+    auto getPartyId() const -> uint32;
+    auto getLeaderId() const -> uint32;
+    auto getQuartermasterId() const -> uint32;
+    auto getSyncTargetId() const -> uint32;
+
+    // Members retrieval
+    auto getMemberById(uint32 UniqueNo) const -> std::optional<std::reference_wrapper<const PartyMember>>;
+    auto getMemberByName(const std::string& memberName) const -> std::optional<std::reference_wrapper<const PartyMember>>;
+    auto getMembers(const PartyMemberFilter& filter = {}) const -> std::vector<PartyMember>;
+    auto getPlayers() const -> std::vector<PartyMember>;
+    auto getTrusts() const -> std::vector<PartyMember>;
+
+    auto getLeader() const -> std::optional<std::reference_wrapper<const PartyMember>>;
+    auto getQuartermaster() const -> std::optional<std::reference_wrapper<const PartyMember>>;
+    auto getSyncTarget() const -> std::optional<std::reference_wrapper<const PartyMember>>;
+
+    // Helpers
+    bool isFull() const;
+    auto getTimeLastMemberJoined() const -> timer::time_point;
+    bool hasTrusts() const;
+    bool isTrustOnlyParty() const;
+
+    // Iterators
+    auto ForEveryMember(const std::function<void(const PartyMember&)>& func) const -> void;
+    auto ForEveryMember(PartyMemberFilter filter, const std::function<void(const PartyMember&)>& func) const -> void;
+    auto ForEveryAllianceMember(std::function<void(const PartyMember&)> func) -> void;
+
+    auto asIpcUpdate() -> ipc::PartyUpdate;
+
+    // TODO: protected/private?
+    bool reassignLeader();
+
+protected:
+    PartyBase(const ipc::PartyUpdate& message);
+    PartyBase(uint32 _LeaderUniqueNo);
+
+    uint32                   m_PartyId               = 0;
+    uint32                   m_LeaderUniqueNo        = 0;
+    uint32                   m_QuartermasterUniqueNo = 0;
+    uint32                   m_SyncTargetUniqueNo    = 0;
+    timer::time_point        m_LastJoined            = timer::now();
+    std::vector<PartyMember> m_Members;
+
+    bool dirty = false;
+};

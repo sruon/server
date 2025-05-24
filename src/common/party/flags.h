@@ -1,4 +1,4 @@
-﻿/*
+/*
 ===========================================================================
 
   Copyright (c) 2025 LandSandBoat Dev Teams
@@ -21,23 +21,36 @@
 
 #pragma once
 
-#include "common/ipc.h"
-#include "party/char_party.h"
+#include "common/cbasetypes.h"
 
-class CCharParty;
-
-class PartyContainer
+// Set of flags used when building PartyDefine/PartyMemberUpdate packets
+// The client uses them to define how to render the party list.
+enum class PartyFlag : uint16
 {
-public:
-    void updateParty(const ipc::PartyUpdate& message);
-    void updateId(uint32 old, uint32 newId);
-    void disbandParty(const ipc::PartyDisband& message);
-    void reattachMember(const ipc::CharZoneIn& message);
-
-    void chatMessage(const ipc::ChatMessageParty& message);
-    void chatMessage(const ipc::ChatMessageAlliance& message);
-    auto partiesSync() -> std::vector<ipc::PartyUpdate>;
-
-private:
-    std::unordered_map<uint32, std::unique_ptr<CCharParty>> m_Parties;
+    PartySecond      = 0x0001,
+    PartyThird       = 0x0002,
+    IsLeader         = 0x0004,
+    IsAllianceLeader = 0x0008,
+    IsQuartermaster  = 0x0010,
+    IsSyncTarget     = 0x0100,
 };
+
+inline auto format_as(PartyFlag v)
+{
+    return fmt::underlying(v);
+}
+
+inline PartyFlag operator|(PartyFlag a, PartyFlag b)
+{
+    return static_cast<PartyFlag>(static_cast<uint16>(a) | static_cast<uint16>(b));
+}
+
+inline PartyFlag operator&(PartyFlag a, PartyFlag b)
+{
+    return static_cast<PartyFlag>(static_cast<uint16>(a) & static_cast<uint16>(b));
+}
+
+inline PartyFlag operator~(PartyFlag a)
+{
+    return static_cast<PartyFlag>(~static_cast<uint16>(a));
+}

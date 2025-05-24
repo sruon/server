@@ -63,7 +63,7 @@ public:
 
     auto ipp() -> IPP;
     auto sessions() -> MapSessionContainer&;
-    auto parties() -> PartyContainer&;
+    auto server() -> MapServer&;
     auto socket() -> MapSocket&;
 
 private:
@@ -72,5 +72,4 @@ private:
     IPP                        mapIPP_;
     MapSessionContainer        mapSessions_;
     std::unique_ptr<MapSocket> mapSocket_;
-    PartyContainer             parties_;
 };

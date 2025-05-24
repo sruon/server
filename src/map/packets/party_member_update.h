@@ -23,8 +23,8 @@
 
 #include "common/cbasetypes.h"
 
+#include "common/party/base.h"
 #include "basic.h"
-#include "common/party.h"
 
 #include <common/ipc_structs.h>
 

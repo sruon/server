@@ -39,10 +39,10 @@
 #include "mob_modifier.h"
 #include "mob_spell_list.h"
 
+#include "common/party/base.h"
 #include "ai/ai_container.h"
 #include "ai/controllers/trust_controller.h"
 #include "ai/helpers/gambits_container.h"
-#include "common/party.h"
 #include "entities/mobentity.h"
 #include "entities/trustentity.h"
 #include "items/item_weapon.h"
@@ -163,7 +163,6 @@ auto trustutils::SpawnTrust(CCharEntity* PMaster, uint32 TrustID) -> CTrustEntit
     {
         message::send(ipc::PartyCreate{
             .charId = PMaster->id,
-            .zoneId = PMaster->getZone(),
         });
     }
 
@@ -191,7 +190,6 @@ auto trustutils::SpawnTrust(CCharEntity* PMaster, uint32 TrustID) -> CTrustEntit
         .partyId = PMaster->id,
         .charId  = PTrust->id,
         .type    = PartyMemberType::Trust,
-        .zoneId  = PTrust->getZone(),
     });
 
     return PTrust;

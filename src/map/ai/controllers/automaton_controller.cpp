@@ -38,7 +38,7 @@
 #include "utils/petutils.h"
 #include "utils/puppetutils.h"
 
-#include <map_party.h>
+#include "party/char_party.h"
 
 CAutomatonController::CAutomatonController(CAutomatonEntity* PPet)
 : CPetController(PPet)
@@ -1130,7 +1130,7 @@ bool CAutomatonController::TryStatusRemoval(const CurrentManeuvers& maneuvers)
 
     if (maneuvers.water && PAutomaton->getHead() == HEAD_SOULSOOTHER && static_cast<CCharEntity*>(PAutomaton->PMaster)->hasParty()) // Water + Soulsoother head -> Remove party's statuses
     {
-        for (auto member : static_cast<CCharEntity*>(PAutomaton->PMaster)->getParty().GetMembers())
+        for (auto member : static_cast<CCharEntity*>(PAutomaton->PMaster)->getParty().getMembers())
         {
             if (member->id != PAutomaton->PMaster->id)
             {
@@ -1339,7 +1339,7 @@ bool CAutomatonController::TryEnhance()
     // Unknown whether it only applies buffs to other members if they have hate or if the Soulsoother head is needed
     if (static_cast<CCharEntity*>(PAutomaton->PMaster)->hasParty())
     {
-        members = static_cast<CCharEntity*>(PAutomaton->PMaster)->getParty().GetMembers().size();
+        members = static_cast<CCharEntity*>(PAutomaton->PMaster)->getParty().getMembers().size();
         // clang-format off
         // static_cast<CCharEntity*>(PAutomaton->PMaster)->ForPartyWithTrusts([&](CBattleEntity* PMember)
         // {

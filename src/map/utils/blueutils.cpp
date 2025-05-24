@@ -41,6 +41,7 @@
 #include "job_points.h"
 #include "merit.h"
 #include "modifier.h"
+#include "party/char_party.h"
 #include "spell.h"
 
 namespace blueutils
@@ -103,7 +104,7 @@ namespace blueutils
         std::vector<CCharEntity*> PBlueMages;
         auto                      AddBlueMages = [&PMob, &PBlueMages](const CCharParty& PParty)
         {
-            for (const auto& member : PParty.GetMembers())
+            for (const auto& member : PParty.getMembers())
             {
                 if (member &&
                     member->GetMJob() == JOB_BLU &&
@@ -126,7 +127,7 @@ namespace blueutils
             // }
             // else
             // {
-                AddBlueMages(PChar->getParty());
+            AddBlueMages(PChar->getParty());
             // }
         }
         else if (PChar->GetMJob() == JOB_BLU)

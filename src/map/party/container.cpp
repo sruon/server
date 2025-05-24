@@ -20,17 +20,19 @@
 */
 
 #include "container.h"
-
 #include "entities/charentity.h"
+#include "party/char_party.h"
 #include "utils/zoneutils.h"
 
+// Bulk of the logic for party lives in this scope.
+// We receive full party updates from the world server and process them accordingly.
 void PartyContainer::updateParty(const ipc::PartyUpdate& message)
 {
     if (const auto it = m_Parties.find(message.partyId); it == m_Parties.end())
     {
         ShowInfoFmt("Creating new party with ID: {}", message.partyId);
         // Party doesn't exist, create a new one
-        auto newParty             = CCharParty::Create(message);
+        auto newParty              = CCharParty::Create(message);
         m_Parties[message.partyId] = std::move(newParty);
     }
     else
@@ -48,6 +50,7 @@ void PartyContainer::updateParty(const ipc::PartyUpdate& message)
     // 0x0E: Several NPC updates with name etc
 }
 
+// If the leader changes, so does the unique party ID.
 void PartyContainer::updateId(const uint32 old, const uint32 newId)
 {
     ShowInfoFmt("Updating party ID from {} to {}", old, newId);
@@ -64,7 +67,7 @@ void PartyContainer::chatMessage(const ipc::ChatMessageParty& message)
 {
     if (const auto it = m_Parties.find(message.partyId); it != m_Parties.end())
     {
-        it->second->ChatMessage(message);
+        it->second->chatMessage(message);
     }
 }
 
@@ -73,10 +76,14 @@ void PartyContainer::chatMessage(const ipc::ChatMessageAlliance& message)
     // TODO: this is wrong
     if (const auto it = m_Parties.find(message.allianceId); it != m_Parties.end())
     {
-        it->second->ChatMessage(message);
+        it->second->chatMessage(message);
     }
 }
 
+// A party has been disbanded.
+// The world server will emit several updates to remove each member before it gets here.
+// The world server will also make use of PlayerKick to reset their client state with packets
+// Therefore, we just need to clean up the party from our store.
 void PartyContainer::disbandParty(const ipc::PartyDisband& message)
 {
     if (const auto it = m_Parties.find(message.partyId); it != m_Parties.end())
@@ -84,4 +91,41 @@ void PartyContainer::disbandParty(const ipc::PartyDisband& message)
         ShowInfoFmt("Removing party ID {} from party container", message.partyId);
         m_Parties.erase(it);
     }
+}
+
+// After zoning in, reattach the new CCharEntity to their party.
+// This can be done in many ways, but it needs to be handled at the correct time to ensure PChar is loaded and ready to go.
+void PartyContainer::reattachMember(const ipc::CharZoneIn& message)
+{
+    // Find any party that have this char in them
+    for (auto& [partyId, party] : m_Parties)
+    {
+        for (const auto& member : party->getMembers())
+        {
+            if (member->id == message.charId)
+            {
+                member->setParty(*party);
+
+                // Reapply sync if needed
+                party->applySync(member);
+
+                // Resync packets for everyone
+                party->BroadcastPartyPackets();
+                return;
+            }
+        }
+    }
+}
+
+auto PartyContainer::partiesSync() -> std::vector<ipc::PartyUpdate>
+{
+    std::vector<ipc::PartyUpdate> parties{};
+    parties.reserve(m_Parties.size());
+
+    for (auto& [partyId, party] : m_Parties)
+    {
+        parties.emplace_back(party->asIpcUpdate());
+    }
+
+    return parties;
 }

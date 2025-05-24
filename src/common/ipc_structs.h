@@ -22,7 +22,7 @@
 #pragma once
 
 #include "cbasetypes.h"
-#include "party.h"
+#include "common/party/base.h"
 
 #include "common/regional_event.h"
 
@@ -34,6 +34,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
+
+enum class PartyMemberType : uint8;
 
 namespace ipc
 {
@@ -47,10 +49,16 @@ namespace ipc
         uint32 charId{};
     };
 
-    struct CharZone
+    struct CharZoneOut
     {
         uint32 charId{};
         uint16 destinationZoneId{};
+    };
+
+    struct CharZoneIn
+    {
+        uint32 charId{};
+        uint16 zoneId{};
     };
 
     struct CharVarUpdate
@@ -185,6 +193,14 @@ namespace ipc
         uint32 param1{};
     };
 
+    struct MessageBasic
+    {
+        uint32 recipientId{};
+        MsgStd message{};
+        uint32 param0{};
+        uint32 param1{};
+    };
+
     struct MessageSystem
     {
         uint32 recipientId{};
@@ -291,17 +307,16 @@ namespace ipc
 
     struct PartyUpdate
     {
-        uint32                       partyId{};
-        uint32                       leaderUniqueNo{};
-        uint32                       quartermasterUniqueNo{};
-        uint32                       syncTargetUniqueNo{};
-        std::vector<PartyMemberData> members{};
+        uint32                   partyId{};
+        uint32                   leaderUniqueNo{};
+        uint32                   quartermasterUniqueNo{};
+        uint32                   syncTargetUniqueNo{};
+        std::vector<PartyMember> members{};
     };
 
     struct PartyCreate
     {
         uint32 charId{};
-        uint16 zoneId{};
     };
 
     struct PartyAddMember
@@ -309,7 +324,6 @@ namespace ipc
         uint32          partyId{};
         uint32          charId{};
         PartyMemberType type{};
-        uint16          zoneId{};
     };
 
     struct PartyRemoveMember
@@ -344,6 +358,11 @@ namespace ipc
     {
         uint32 formerId{};
         uint32 newId{};
+    };
+
+    struct PartySystemSync
+    {
+        uint8 dummy{};
     };
 
 } // namespace ipc

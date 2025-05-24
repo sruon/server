@@ -82,6 +82,7 @@
 #include "map_networking.h"
 #include "map_server.h"
 #include "mob_modifier.h"
+#include "party/char_party.h"
 #include "recast_container.h"
 #include "roe.h"
 #include "spell.h"
@@ -93,14 +94,13 @@
 #include "universal_container.h"
 #include "weapon_skill.h"
 
+#include "battleutils.h"
+#include "blueutils.h"
+#include "charutils.h"
 #include "entities/automatonentity.h"
 #include "entities/charentity.h"
 #include "entities/mobentity.h"
 #include "entities/petentity.h"
-
-#include "battleutils.h"
-#include "blueutils.h"
-#include "charutils.h"
 #include "itemutils.h"
 #include "petutils.h"
 #include "puppetutils.h"
@@ -4276,9 +4276,9 @@ namespace charutils
 
         if (PChar->hasParty())
         {
-            if (PChar->getParty().GetSyncTarget())
+            if (PChar->getParty().getSyncTarget())
             {
-                if (distance(PMob->loc.p, PChar->getParty().GetSyncTarget()->loc.p) >= 100 || PChar->getParty().GetSyncTarget()->health.hp == 0)
+                if (distance(PMob->loc.p, PChar->getParty().getSyncTarget()->loc.p) >= 100 || PChar->getParty().getSyncTarget()->health.hp == 0)
                 {
                     // clang-format off
                     PChar->ForEveryPartyMember([&PMob](CBattleEntity* PMember)
@@ -4681,7 +4681,7 @@ namespace charutils
         uint8  mobLevel = PMob->GetMLevel();
 
         PChar->ForEveryAllianceMember([&PMob, &zone, &mobLevel](CBattleEntity* PPartyMember)
-                           {
+                                      {
             CCharEntity* PMember = dynamic_cast<CCharEntity*>(PPartyMember);
 
             if (!PMember || PMember->isDead() || (PMember->loc.zone->GetID() != zone))
@@ -4946,7 +4946,7 @@ namespace charutils
 
                 if (PChar->hasParty())
                 {
-                    if (PChar->getParty().GetSyncTarget() == PChar)
+                    if (PChar->getParty().getSyncTarget() == PChar)
                     {
                         // TODO: Refresh sync
                         // PChar->PParty->RefreshSync();
@@ -5111,7 +5111,7 @@ namespace charutils
             if (PChar->jobs.job[PChar->GetMJob()] >= PChar->jobs.genkai)
             {
                 PChar->jobs.exp[PChar->GetMJob()] = GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) - 1;
-                if (PChar->hasParty() && PChar->getParty().GetSyncTarget() == PChar)
+                if (PChar->hasParty() && PChar->getParty().getSyncTarget() == PChar)
                 {
                     PChar->getParty().ipc().ClearSyncTarget(MsgStd::LevelSyncRemoveIneligibleExp);
                 }
@@ -5142,7 +5142,7 @@ namespace charutils
 
                 if (PChar->hasParty())
                 {
-                    if (PChar->getParty().GetSyncTarget() == PChar)
+                    if (PChar->getParty().getSyncTarget() == PChar)
                     {
                         // TODO: Refresh sync on level up
                         // PChar->PParty->RefreshSync();
@@ -6594,7 +6594,7 @@ namespace charutils
                     (PChar->m_moghouseID || PChar->loc.destination == PChar->getZone()) ? PChar->loc.prevzone : PChar->getZone(), PChar->loc.p.rotation,
                     PChar->loc.p.x, PChar->loc.p.y, PChar->loc.p.z, PChar->m_moghouseID, PChar->loc.boundary, PChar->id);
 
-        message::send(ipc::CharZone{
+        message::send(ipc::CharZoneOut{
             .charId            = PChar->id,
             .destinationZoneId = PChar->loc.destination,
         });
@@ -6625,7 +6625,7 @@ namespace charutils
 
         SaveCharPosition(PChar);
 
-        message::send(ipc::CharZone{
+        message::send(ipc::CharZoneOut{
             .charId            = PChar->id,
             .destinationZoneId = 0xFFFF, // Clear cache
         });
@@ -7301,7 +7301,7 @@ namespace charutils
         {
             if (PChar->hasParty())
             {
-                PChar->getParty().ipc().RemoveMember(PChar);
+                PChar->getParty().ipc().RemoveMember(PChar->id);
                 // if (PChar->PParty->m_PAlliance != nullptr)
                 // {
                 //     if (PChar->PParty->GetLeader() == PChar)

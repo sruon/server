@@ -80,6 +80,7 @@
 #include "notoriety_container.h"
 #include "packets/char_job_extra.h"
 #include "packets/status_effects.h"
+#include "party/char_party.h"
 #include "petskill.h"
 #include "spell.h"
 #include "status_effect_container.h"
@@ -304,29 +305,13 @@ CCharEntity::~CCharEntity()
 
     if (m_LevelRestriction != 0)
     {
-        // TODO: Refactor this mess
-        if (hasParty())
-        {
-            if (getParty().GetSyncTarget() == this || getParty().GetLeader() == this)
-            {
-                getParty().ipc().SetSyncTarget(nullptr);
-            }
-            if (getParty().GetSyncTarget() != nullptr)
-            {
-                if (getParty().GetMembers(getParty().GetSyncTarget()->getZone()).size() < 2)
-                {
-                    getParty().ipc().ClearSyncTarget(MsgStd::LevelSyncRemoveTooFewMembers);
-                }
-            }
-        }
         StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_SYNC);
         StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_RESTRICTION);
     }
 
-    if (hasParty() && loc.destination != 0 && m_moghouseID == 0)
+    if (hasParty()) // party membership is handled separately by the world server
     {
-        // TODO: High chance this will blow up somehow due to the async nature
-        getParty().ipc().RemoveMember(this);
+        clearParty();
     }
 
     SpawnPCList.clear();
@@ -901,7 +886,7 @@ void CCharEntity::RemoveTrust(CTrustEntity* PTrust)
     {
         if (hasParty())
         {
-            getParty().ipc().RemoveMember(PTrust);
+            getParty().ipc().RemoveMember(PTrust->id);
         }
 
         if (PTrust->animation == ANIMATION_DESPAWN)
@@ -919,7 +904,7 @@ void CCharEntity::ClearTrusts()
     {
         if (hasParty())
         {
-            getParty().ipc().RemoveMember(PTrust);
+            getParty().ipc().RemoveMember(PTrust->id);
         }
 
         PTrust->PAI->Despawn();
@@ -1040,11 +1025,6 @@ void CCharEntity::PostTick()
         pushPacket<CInventoryFinishPacket>();
     }
 
-    // if (ReloadParty())
-    // {
-    //     charutils::ReloadParty(this);
-    // }
-
     if (m_EffectsChanged)
     {
         pushPacket<CCharStatusPacket>(this);
@@ -1052,11 +1032,21 @@ void CCharEntity::PostTick()
         pushPacket<CCharJobExtraPacket>(this, true);
         pushPacket<CCharJobExtraPacket>(this, false);
         pushPacket<CStatusEffectPacket>(this);
-        // TODO: uplift
-        // if (PParty)
-        // {
-        //     PParty->PushEffectsPacket();
-        // }
+
+        if (hasParty())
+        {
+            // TODO: Could move this directly to the party
+            // clang-format off
+            ForEveryPartyMember([&](CCharEntity* PMember)
+            {
+                if (PMember->getZone() == getZone())
+                {
+                    getParty().pushEffectsPacket(PMember);
+                }
+            });
+            // clang-format on
+        }
+
         m_EffectsChanged = false;
     }
 
@@ -3399,7 +3389,7 @@ void CCharEntity::ForEveryPartyMemberWithTrusts(const std::function<void(CBattle
     }
 }
 
-void CCharEntity::ForEveryAllianceMember(std::function<void(CCharEntity*)> func)
+void CCharEntity::ForEveryAllianceMember(const std::function<void(CCharEntity*)>& func)
 {
     if (hasParty())
     {

@@ -1,7 +1,7 @@
-﻿/*
+/*
 ===========================================================================
 
-  Copyright (c) 2010-2015 Darkstar Dev Teams
+  Copyright (c) 2025 LandSandBoat Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -19,21 +19,8 @@
 ===========================================================================
 */
 
-#ifndef _CPARTYDEFINEPACKET_H
-#define _CPARTYDEFINEPACKET_H
+#pragma once
 
-#include "common/cbasetypes.h"
+#include "common/party/member_serialization.h"
 
-#include "basic.h"
-#include "entities/battleentity.h"
-
-class CParty;
-class CCharParty;
-
-class CPartyDefinePacket : public CBasicPacket
-{
-public:
-    CPartyDefinePacket(const CCharEntity* PReceiver, const CCharParty* party);
-};
-
-#endif
+#include <alpaca/alpaca.h>

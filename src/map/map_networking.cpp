@@ -777,7 +777,7 @@ auto MapNetworking::socket() -> MapSocket&
     return *mapSocket_;
 }
 
-auto MapNetworking::parties() -> PartyContainer&
+auto MapNetworking::server() -> MapServer&
 {
-    return parties_;
+    return mapServer_;
 }

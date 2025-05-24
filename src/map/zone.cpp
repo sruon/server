@@ -44,6 +44,7 @@
 #include "monstrosity.h"
 #include "navmesh.h"
 #include "notoriety_container.h"
+#include "party/char_party.h"
 #include "spell.h"
 #include "status_effect_container.h"
 #include "treasure_pool.h"
@@ -1003,15 +1004,9 @@ void CZone::CharZoneIn(CCharEntity* PChar)
     }
     else
     {
-        if (PChar->hasParty())
-        {
-            // PChar->PParty->ReloadTreasurePool(PChar);
-        }
-        else
-        {
-            PChar->PTreasurePool = new CTreasurePool(TreasurePoolType::Solo);
-            PChar->PTreasurePool->addMember(PChar);
-        }
+        // TODO: Party treasure pool...
+        PChar->PTreasurePool = new CTreasurePool(TreasurePoolType::Solo);
+        PChar->PTreasurePool->addMember(PChar);
     }
 
     if (!(m_zoneType & ZONE_TYPE::INSTANCED))
@@ -1059,12 +1054,8 @@ void CZone::CharZoneIn(CCharEntity* PChar)
     }
     else if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))
     {
-        // Logging in with no party and a level sync status = bad.
-        if (!PChar->hasParty())
-        {
-            PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_SYNC);
-            PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_RESTRICTION);
-        }
+        PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_SYNC);
+        PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_RESTRICTION);
     }
 
     // Mark current zone as visited
@@ -1077,6 +1068,11 @@ void CZone::CharZoneIn(CCharEntity* PChar)
     charutils::ReadHistory(PChar);
 
     moduleutils::OnCharZoneIn(PChar);
+
+    message::send(ipc::CharZoneIn{
+        .charId = PChar->id,
+        .zoneId = this->GetID(),
+    });
 }
 
 void CZone::CharZoneOut(CCharEntity* PChar)
@@ -1099,13 +1095,13 @@ void CZone::CharZoneOut(CCharEntity* PChar)
     {
         if (PChar->hasParty())
         {
-            if (PChar->getParty().GetSyncTarget() == PChar || PChar->getParty().GetLeader() == PChar)
+            if (PChar->getParty().getSyncTarget() == PChar || PChar->getParty().getLeader() == PChar)
             {
                 PChar->getParty().ipc().ClearSyncTarget(MsgStd::LevelSyncDeactivateLeftArea);
             }
-            if (PChar->getParty().GetSyncTarget() != nullptr)
+            if (PChar->getParty().getSyncTarget() != nullptr)
             {
-                if (PChar->getParty().GetMembers(PChar->getParty().GetSyncTarget()->getZone()).size() < 2)
+                if (PChar->getParty().getMembers(PChar->getParty().getSyncTarget()->getZone()).size() < 2)
                 {
                     PChar->getParty().ipc().ClearSyncTarget(MsgStd::LevelSyncRemoveTooFewMembers);
                 }

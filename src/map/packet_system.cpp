@@ -50,6 +50,7 @@
 #include "monstrosity.h"
 #include "notoriety_container.h"
 #include "packet_system.h"
+#include "party/char_party.h"
 #include "recast_container.h"
 #include "roe.h"
 #include "spell.h"
@@ -3267,9 +3268,9 @@ void SmallPacket0x06E(MapSession* const PSession, CCharEntity* const PChar, CBas
         case INVITE_PARTY: // party - must by party leader or solo
         {
             // TODO: Let the world server handle these checks
-            if (!PInviter->hasParty() || PInviter->getParty().GetLeader() == PInviter)
+            if (!PInviter->hasParty() || PInviter->getParty().getLeader() == PInviter)
             {
-                if (PInviter->hasParty() && PInviter->getParty().IsFull())
+                if (PInviter->hasParty() && PInviter->getParty().isFull())
                 {
                     PInviter->pushPacket<CMessageStandardPacket>(PInviter, 0, 0, MsgStd::CannotInvite);
                     break;
@@ -3329,7 +3330,7 @@ void SmallPacket0x06E(MapSession* const PSession, CCharEntity* const PChar, CBas
 
                     ShowDebug("Sent party invite packet to %s", PInvitee->getName());
 
-                    if (PInviter->hasParty() && PInviter->getParty().GetSyncTarget())
+                    if (PInviter->hasParty() && PInviter->getParty().getSyncTarget())
                     {
                         PInvitee->pushPacket<CMessageStandardPacket>(PInvitee, 0, 0, MsgStd::LevelSyncWarning);
                     }
@@ -3475,7 +3476,7 @@ void SmallPacket0x06F(MapSession* const PSession, CCharEntity* const PChar, CBas
                 //     }
                 // }
                 ShowDebug("Removing %s from party", PChar->getName());
-                PChar->getParty().ipc().RemoveMember(PChar);
+                PChar->getParty().ipc().RemoveMember(PChar->id);
                 ShowDebug("%s is removed from party", PChar->getName());
             }
             break;
@@ -3561,9 +3562,9 @@ void SmallPacket0x071(MapSession* const PSession, CCharEntity* const PChar, CBas
         case 0: // party - party leader may remove member of his own party
         {
             // TODO: Move all of this to world server so the logic can be simplified
-            if (PChar->hasParty() && PChar->getParty().GetLeader() == PChar)
+            if (PChar->hasParty() && PChar->getParty().getLeader() == PChar)
             {
-                CCharEntity* PVictim = PChar->getParty().GetMemberByName(victimName);
+                CCharEntity* PVictim = PChar->getParty().getMemberByName(victimName);
                 if (PVictim)
                 {
                     ShowDebug("%s is trying to kick %s from party", PChar->getName(), PVictim->getName());
@@ -3587,7 +3588,7 @@ void SmallPacket0x071(MapSession* const PSession, CCharEntity* const PChar, CBas
                         // }
                     }
 
-                    PChar->getParty().ipc().RemoveMember(PVictim);
+                    PChar->getParty().ipc().RemoveMember(PVictim->id);
                     ShowDebug("%s has removed %s from party", PChar->getName(), PVictim->getName());
                 }
                 else
@@ -3735,126 +3736,74 @@ void SmallPacket0x074(MapSession* const PSession, CCharEntity* const PChar, CBas
 {
     TracyZoneScoped;
 
-    CCharEntity* PInviter = zoneutils::GetCharFromWorld(PChar->InvitePending.id, PChar->InvitePending.targid);
+    const uint8 InviteAnswer = data.ref<uint8>(0x04);
 
-    uint8 InviteAnswer = data.ref<uint8>(0x04);
-
-    if (PInviter != nullptr)
+    if (InviteAnswer == 1) // Accept
     {
-        if (InviteAnswer == 0)
+        if (PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC) || PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_RESTRICTION))
         {
-            ShowDebug("%s declined party invite from %s", PChar->getName(), PInviter->getName());
-
-            // invitee declined invite
-            PInviter->pushPacket<CMessageStandardPacket>(PInviter, 0, 0, MsgStd::InvitationDeclined);
+            PChar->pushPacket<CMessageStandardPacket>(PChar, 0, 0, MsgStd::CannotJoinLevelSync);
             PChar->InvitePending.clean();
             return;
         }
-
-        // check for alliance invite
-        // if (PChar->PParty != nullptr && PInviter->PParty != nullptr)
-        // {
-        //     // both invitee and and inviter are party leaders
-        //     if (PInviter->PParty->GetLeader() == PInviter && PChar->PParty->GetLeader() == PChar)
-        //     {
-        //         ShowDebug("%s invited %s to an alliance", PInviter->getName(), PChar->getName());
-        //
-        //         // the inviter already has an alliance and wants to add another party - only add if they have room for another party
-        //         if (PInviter->PParty->m_PAlliance)
-        //         {
-        //             // break if alliance is full or the inviter is not the leader
-        //             if (PInviter->PParty->m_PAlliance->isFull() || PInviter->PParty->m_PAlliance->getMainParty() != PInviter->PParty)
-        //             {
-        //                 ShowDebug("Alliance is full, invite to %s cancelled", PChar->getName());
-        //                 PChar->pushPacket<CMessageStandardPacket>(PChar, 0, 0, MsgStd::CannotBeProcessed);
-        //                 PChar->InvitePending.clean();
-        //                 return;
-        //             }
-        //
-        //             // alliance is not full, add the new party
-        //             PInviter->PParty->m_PAlliance->addParty(PChar->PParty);
-        //             PChar->InvitePending.clean();
-        //             ShowDebug("%s party added to %s alliance", PChar->getName(), PInviter->getName());
-        //             return;
-        //         }
-        //         // TODO: Uplift for new system
-        //         // else if (PChar->PParty->HasTrusts() || PInviter->PParty->HasTrusts())
-        //         // {
-        //         //     // Cannot form alliance if you have Trusts
-        //         //     PChar->pushPacket<CMessageStandardPacket>(PChar, 0, 0, MsgStd::TrustCannotJoinAlliance);
-        //         //     return;
-        //         // }
-        //         else
-        //         {
-        //             // party leaders have no alliance - create a new one!
-        //             ShowDebug("Creating new alliance");
-        //             PInviter->PParty->m_PAlliance = new CAlliance(PInviter);
-        //             PInviter->PParty->m_PAlliance->addParty(PChar->PParty);
-        //             PChar->InvitePending.clean();
-        //             ShowDebug("%s party added to %s alliance", PChar->getName(), PInviter->getName());
-        //             return;
-        //         }
-        //     }
-        // }
-
-        // the rest is for a standard party invitation
-        if (!PChar->hasParty())
-        {
-            if (!(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC) && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_RESTRICTION)))
-            {
-                ShowDebug("%s is not under lvl sync or restriction", PChar->getName());
-                if (!PInviter->hasParty())
-                {
-                    ShowDebug("Creating new party");
-                    message::send(ipc::PartyCreate{
-                        .charId = PInviter->id,
-                        .zoneId = PInviter->getZone(),
-                    });
-                }
-
-                ShowDebug("Adding %s to %s's party", PChar->getName(), PInviter->getName());
-                // TODO: Party full check sends a message to the invitee
-                message::send(ipc::PartyAddMember{
-                    .partyId = PInviter->hasParty() ? PInviter->getParty().GetPartyId() : PInviter->id,
-                    .charId  = PChar->id,
-                    .zoneId  = PInviter->getZone(),
-                });
-                // if (PInviter->PParty->GetLeader() == PInviter)
-                // {
-                //     if (PInviter->PParty->IsFull())
-                //     { // someone else accepted invitation
-                //         // PInviter->pushPacket<CMessageStandardPacket>(PInviter, 0, 0, 14); Don't think retail sends error packet to inviter on full pt
-                //         ShowDebug("Someone else accepted party invite, %s cannot be added to party", PChar->getName());
-                //         PChar->pushPacket<CMessageStandardPacket>(PChar, 0, 0, MsgStd::CannotBeProcessed);
-                //     }
-                //     else
-                //     {
-                //         ShowDebug("Added %s to %s's party", PChar->getName(), PInviter->getName());
-                //         PInviter->PParty->ipc().AddMember(PChar);
-                //         // PInviter->PParty->AddMember(PChar);
-                //     }
-                // }
-            }
-            else
-            {
-                PChar->pushPacket<CMessageStandardPacket>(PChar, 0, 0, MsgStd::CannotJoinLevelSync);
-            }
-        }
     }
-    else
-    {
-        message::send(ipc::PartyInviteResponse{
-            .inviteeId     = PChar->id,
-            .inviteeTargId = PChar->targid,
-            .inviterId     = PChar->InvitePending.id,
-            .inviterTargId = PChar->InvitePending.targid,
-            .inviteAnswer  = InviteAnswer,
-        });
 
-        PChar->InvitePending.clean();
-    }
+    message::send(ipc::PartyInviteResponse{
+        .inviteeId     = PChar->id,
+        .inviteeTargId = PChar->targid,
+        .inviterId     = PChar->InvitePending.id,
+        .inviterTargId = PChar->InvitePending.targid,
+        .inviteAnswer  = InviteAnswer,
+    });
 
     PChar->InvitePending.clean();
+
+    // TODO: Alliance
+    // check for alliance invite
+    // if (PChar->PParty != nullptr && PInviter->PParty != nullptr)
+    // {
+    //     // both invitee and and inviter are party leaders
+    //     if (PInviter->PParty->GetLeader() == PInviter && PChar->PParty->GetLeader() == PChar)
+    //     {
+    //         ShowDebug("%s invited %s to an alliance", PInviter->getName(), PChar->getName());
+    //
+    //         // the inviter already has an alliance and wants to add another party - only add if they have room for another party
+    //         if (PInviter->PParty->m_PAlliance)
+    //         {
+    //             // break if alliance is full or the inviter is not the leader
+    //             if (PInviter->PParty->m_PAlliance->isFull() || PInviter->PParty->m_PAlliance->getMainParty() != PInviter->PParty)
+    //             {
+    //                 ShowDebug("Alliance is full, invite to %s cancelled", PChar->getName());
+    //                 PChar->pushPacket<CMessageStandardPacket>(PChar, 0, 0, MsgStd::CannotBeProcessed);
+    //                 PChar->InvitePending.clean();
+    //                 return;
+    //             }
+    //
+    //             // alliance is not full, add the new party
+    //             PInviter->PParty->m_PAlliance->addParty(PChar->PParty);
+    //             PChar->InvitePending.clean();
+    //             ShowDebug("%s party added to %s alliance", PChar->getName(), PInviter->getName());
+    //             return;
+    //         }
+    //         // TODO: Uplift for new system
+    //         // else if (PChar->PParty->HasTrusts() || PInviter->PParty->HasTrusts())
+    //         // {
+    //         //     // Cannot form alliance if you have Trusts
+    //         //     PChar->pushPacket<CMessageStandardPacket>(PChar, 0, 0, MsgStd::TrustCannotJoinAlliance);
+    //         //     return;
+    //         // }
+    //         else
+    //         {
+    //             // party leaders have no alliance - create a new one!
+    //             ShowDebug("Creating new alliance");
+    //             PInviter->PParty->m_PAlliance = new CAlliance(PInviter);
+    //             PInviter->PParty->m_PAlliance->addParty(PChar->PParty);
+    //             PChar->InvitePending.clean();
+    //             ShowDebug("%s party added to %s alliance", PChar->getName(), PInviter->getName());
+    //             return;
+    //         }
+    //     }
+    // }
 }
 
 /************************************************************************
@@ -3875,7 +3824,7 @@ void SmallPacket0x076(MapSession* const PSession, CCharEntity* const PChar, CBas
     else
     {
         // previous CPartyDefine was dropped or otherwise didn't work?
-        PChar->pushPacket<CPartyDefinePacket>(std::vector<CBattleEntity*>{}, 0, 0);
+        PChar->pushPacket<CPartyDefinePacket>(PChar, nullptr);
     }
 }
 
@@ -3897,7 +3846,7 @@ void SmallPacket0x077(MapSession* const PSession, CCharEntity* const PChar, CBas
     {
         case 0: // party
         {
-            if (PChar->hasParty() && PChar->getParty().GetLeader() == PChar)
+            if (PChar->hasParty() && PChar->getParty().getLeader() == PChar)
             {
                 ShowDebug(fmt::format("(Party) Altering permissions of {} to {}", memberName, permission));
                 // The targeted player MAY not be on this map process,
@@ -3916,13 +3865,12 @@ void SmallPacket0x077(MapSession* const PSession, CCharEntity* const PChar, CBas
                         PChar->getParty().ipc().SetSyncTarget(memberName);
                         break;
                     case 7: // Remove sync
-                        PChar->getParty().ipc().SetSyncTarget(static_cast<uint32>(0));
+                        PChar->getParty().ipc().ClearSyncTarget(MsgStd::LevelSyncWillBeRemoved);
                         break;
                     default:
                         ShowError("SmallPacket0x077 : unknown permission <%.2X>", permission);
                         break;
                 }
-                // TODO: wont work cross process as is
             }
         }
         break;
@@ -4779,7 +4727,7 @@ void SmallPacket0x0B5(MapSession* const PSession, CCharEntity* const PChar, CBas
                         // else
                         // {
                         message::send(ipc::ChatMessageParty{
-                            .partyId    = PChar->getParty().GetPartyId(),
+                            .partyId    = PChar->getParty().getPartyId(),
                             .senderId   = PChar->id,
                             .senderName = PChar->getName(),
                             .message    = rawMessage,

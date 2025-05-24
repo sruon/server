@@ -17,7 +17,8 @@ IPC_STRUCT_NAMES = [
     "EmptyStruct",
 
     "CharLogin",
-    "CharZone",
+    "CharZoneOut",
+    "CharZoneIn",
     "CharVarUpdate",
 
     "ChatMessageTell",
@@ -38,6 +39,7 @@ IPC_STRUCT_NAMES = [
     "PlayerKick",
 
     "MessageStandard",
+    "MessageBasic",
     "MessageSystem",
 
     "LinkshellRankChange",
@@ -66,6 +68,7 @@ IPC_STRUCT_NAMES = [
     "PartySetQuartermaster",
     "PartySetSyncTarget",
     "PartyChangeId",
+    "PartySystemSync",
 ]
 
 

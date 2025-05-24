@@ -215,8 +215,6 @@ enum CHAR_PERSIST : uint8
     LINKSHELL = 0x08,
 };
 
-#include <map_party.h>
-
 class CBasicPacket;
 class CLinkshell;
 class CUnityChat;
@@ -351,7 +349,7 @@ public:
 
     void ForEveryPartyMember(const std::function<void(CCharEntity*)>& func);
     void ForEveryPartyMemberWithTrusts(const std::function<void(CBattleEntity*)>& func);
-    void ForEveryAllianceMember(std::function<void(CCharEntity*)> func);
+    void ForEveryAllianceMember(const std::function<void(CCharEntity*)>& func);
 
     CBattleEntity* PClaimedMob = nullptr;
 

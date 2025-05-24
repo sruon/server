@@ -23,6 +23,8 @@
 
 #include "entities/charentity.h"
 
+#include "party/char_party.h"
+
 CPartySearchPacket::CPartySearchPacket(CCharEntity* PChar)
 {
     this->setType(0xE1);
@@ -30,6 +32,6 @@ CPartySearchPacket::CPartySearchPacket(CCharEntity* PChar)
 
     if (PChar->hasParty())
     {
-        ref<uint32>(0x04) = PChar->getParty().GetPartyId();
+        ref<uint32>(0x04) = PChar->getParty().getPartyId();
     }
 }

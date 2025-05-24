@@ -81,7 +81,9 @@ public:
 
     void handleMessage_EmptyStruct(const IPP& ipp, const ipc::EmptyStruct& message);
     void handleMessage_CharLogin(const IPP& ipp, const ipc::CharLogin& message);
-    void handleMessage_CharZone(const IPP& ipp, const ipc::CharZone& message);
+    void handleMessage_CharZoneOut(const IPP& ipp, const ipc::CharZoneOut& message);
+    void handleMessage_CharZoneIn(const IPP& ipp, const ipc::CharZoneIn& message);
+    void handleMessage_CharZone(const IPP& ipp, const ipc::CharZoneOut& message);
     void handleMessage_CharVarUpdate(const IPP& ipp, const ipc::CharVarUpdate& message);
     void handleMessage_ChatMessageTell(const IPP& ipp, const ipc::ChatMessageTell& message);
     void handleMessage_ChatMessageParty(const IPP& ipp, const ipc::ChatMessageParty& message);
@@ -93,7 +95,9 @@ public:
     void handleMessage_ChatMessageCustom(const IPP& ipp, const ipc::ChatMessageCustom& message);
     void handleMessage_AllianceDissolve(const IPP& ipp, const ipc::AllianceDissolve& message);
     void handleMessage_PlayerKick(const IPP& ipp, const ipc::PlayerKick& message);
+    void handleMessage_PartySystemSync(const IPP& ipp, const ipc::PartySystemSync& message);
     void handleMessage_MessageStandard(const IPP& ipp, const ipc::MessageStandard& message);
+    void handleMessage_MessageBasic(const IPP& ipp, const ipc::MessageBasic& message);
     void handleMessage_MessageSystem(const IPP& ipp, const ipc::MessageSystem& message);
     void handleMessage_LinkshellRankChange(const IPP& ipp, const ipc::LinkshellRankChange& message);
     void handleMessage_LinkshellRemove(const IPP& ipp, const ipc::LinkshellRemove& message);

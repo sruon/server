@@ -1955,12 +1955,13 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
             luautils::OnMagicHit(this, PTarget, PSpell);
         }
 
+        // TODO: This blows up with Trusts
         auto* PChar = dynamic_cast<CCharEntity*>(this);
         auto* PTargetChar = dynamic_cast<CCharEntity*>(PTarget);
         if (PChar)
         {
             if (PChar == PTargetChar || // Casting on self or ally
-                (PChar->hasParty() && PTargetChar->hasParty() &&
+                (PChar->hasParty() && PTargetChar && PTargetChar->hasParty() &&
                  ((&PChar->getParty() == &PTargetChar->getParty())))) // || (PChar->PParty->m_PAlliance && PChar->PParty->m_PAlliance == PTargetChar->PParty->m_PAlliance))))
             {
                 if (PSpell->isHeal())

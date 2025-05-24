@@ -1,6 +1,9 @@
 set(PARTY_SOURCES
-    ${CMAKE_CURRENT_SOURCE_DIR}/flags.h
     ${CMAKE_CURRENT_SOURCE_DIR}/container.h
     ${CMAKE_CURRENT_SOURCE_DIR}/container.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/ipc_helper.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/ipc_helper.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/char_party.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/char_party.cpp
     PARENT_SCOPE
 )

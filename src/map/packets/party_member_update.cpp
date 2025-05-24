@@ -23,10 +23,11 @@
 
 #include "party_member_update.h"
 
+#include "common/party/base.h"
 #include "alliance.h"
-#include "common/party.h"
 #include "entities/charentity.h"
 #include "entities/trustentity.h"
+#include "party/char_party.h"
 #include "party_define.h"
 #include "utils/zoneutils.h"
 
@@ -100,13 +101,13 @@ CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(const CCharParty& PParty, con
     this->setType(0xDD);
     this->setSize(0x40);
 
-    ref<uint32>(0x04) = PMember.GetId();
+    ref<uint32>(0x04) = PMember.getId();
 
     // TODO: Alliance flags
-    ref<uint16>(0x14) = PParty.GetFlagsForMember(PMember);
+    ref<uint16>(0x14) = PParty.getFlagsForMember(PMember);
     ref<uint8>(0x1A)  = MemberNumber;
 
-    std::memcpy(buffer_.data() + 0x28, PMember.GetName().c_str(), PMember.GetName().size());
+    std::memcpy(buffer_.data() + 0x28, PMember.getName().c_str(), PMember.getName().size());
 }
 
 // Notifying player of a party member information (same zone, full packet)

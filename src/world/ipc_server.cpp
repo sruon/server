@@ -120,12 +120,12 @@ auto IPCServer::getIPPsForParty(uint32 partyId) -> std::vector<IPP>
 {
     TracyZoneScoped;
 
-    if (const auto Party = worldServer_.partySystem_->GetParty(partyId))
+    if (const auto Party = worldServer_.partySystem_->getParty(partyId))
     {
         std::set<IPP> uniqueIPPs;
-        for (const auto Members = Party->GetMembers(); auto& member : Members)
+        for (auto& member : Party->getMembers())
         {
-            if (const auto maybeCharIPP = getIPPForCharId(member->GetId()))
+            if (const auto maybeCharIPP = getIPPForCharId(member.getId()))
             {
                 uniqueIPPs.insert(*maybeCharIPP);
             }
@@ -372,7 +372,7 @@ void IPCServer::handleMessage_CharLogin(const IPP& ipp, const ipc::CharLogin& me
     // NOTE: Originally a NO-OP
 }
 
-void IPCServer::handleMessage_CharZone(const IPP& ipp, const ipc::CharZone& message)
+void IPCServer::handleMessage_CharZoneOut(const IPP& ipp, const ipc::CharZoneOut& message)
 {
     TracyZoneScoped;
 
@@ -389,6 +389,21 @@ void IPCServer::handleMessage_CharZone(const IPP& ipp, const ipc::CharZone& mess
             rerouteMessageToZoneId(message.destinationZoneId, message);
         }
     }
+
+    worldServer_.partySystem_->handle_CharZoneOut(ipp, message);
+}
+
+void IPCServer::handleMessage_CharZoneIn(const IPP& ipp, const ipc::CharZoneIn& message)
+{
+    TracyZoneScoped;
+
+    // We're notified when the map server has zoned a character in.
+    // Check with the party system if any changes need to be performed.
+    // This will also implicitely send a full party update to the new IPP if we just switched process
+    worldServer_.partySystem_->handle_CharZoneIn(ipp, message);
+
+    // Send the message back so the map servers can reattach the char to their party now that they have a full update.
+    rerouteMessageToZoneId(message.zoneId, message);
 }
 
 void IPCServer::handleMessage_CharVarUpdate(const IPP& ipp, const ipc::CharVarUpdate& message)
@@ -484,6 +499,13 @@ void IPCServer::handleMessage_AllianceDissolve(const IPP& ipp, const ipc::Allian
 
 
 void IPCServer::handleMessage_MessageStandard(const IPP& ipp, const ipc::MessageStandard& message)
+{
+    TracyZoneScoped;
+
+    rerouteMessageToCharId(message.recipientId, message);
+}
+
+void IPCServer::handleMessage_MessageBasic(const IPP& ipp, const ipc::MessageBasic& message)
 {
     TracyZoneScoped;
 
@@ -625,54 +647,55 @@ void IPCServer::handleMessage_PartyCreate(const IPP& ipp, const ipc::PartyCreate
 {
     TracyZoneScoped;
 
-    worldServer_.partySystem_->PartyCreate(ipp, message);
+    worldServer_.partySystem_->handle_PartyCreate(ipp, message);
 }
 
 void IPCServer::handleMessage_PartyAddMember(const IPP& ipp, const ipc::PartyAddMember& message) const
 {
     TracyZoneScoped;
 
-    worldServer_.partySystem_->PartyAddMember(ipp, message);
+    worldServer_.partySystem_->handle_PartyAddMember(ipp, message);
 }
 
 void IPCServer::handleMessage_PartyRemoveMember(const IPP& ipp, const ipc::PartyRemoveMember& message)
 {
     TracyZoneScoped;
 
-    worldServer_.partySystem_->PartyRemoveMember(ipp, message);
+    worldServer_.partySystem_->handle_PartyRemoveMember(ipp, message);
 }
 
 void IPCServer::handleMessage_PartyDisband(const IPP& ipp, const ipc::PartyDisband& message) const
 {
     TracyZoneScoped;
 
-    worldServer_.partySystem_->PartyDisband(ipp, message);
+    worldServer_.partySystem_->handle_PartyDisband(ipp, message);
 }
 
 void IPCServer::handleMessage_PartySetLeader(const IPP& ipp, const ipc::PartySetLeader& message)
 {
     TracyZoneScoped;
 
-    worldServer_.partySystem_->PartySetLeader(ipp, message);
+    worldServer_.partySystem_->handle_PartySetLeader(ipp, message);
 }
 
 void IPCServer::handleMessage_PartySetQuartermaster(const IPP& ipp, const ipc::PartySetQuartermaster& message) const
 {
     TracyZoneScoped;
 
-    worldServer_.partySystem_->PartySetQuartermaster(ipp, message);
+    worldServer_.partySystem_->handle_PartySetQuartermaster(ipp, message);
 }
 
 void IPCServer::handleMessage_PartySetSyncTarget(const IPP& ipp, const ipc::PartySetSyncTarget& message) const
 {
     TracyZoneScoped;
 
-    worldServer_.partySystem_->PartySetSyncTarget(ipp, message);
+    worldServer_.partySystem_->handle_PartySetSyncTarget(ipp, message);
 }
 
 void IPCServer::handleMessage_PartyUpdate(const IPP& ipp, const ipc::PartyUpdate& message) const
 {
     // TODO: Use this to backfill information if we're recovering from a crash
+    worldServer_.partySystem_->handle_PartyUpdate(ipp, message);
 }
 
 void IPCServer::handleMessage_PlayerKick(const IPP& ipp, const ipc::PlayerKick& message)
@@ -680,6 +703,13 @@ void IPCServer::handleMessage_PlayerKick(const IPP& ipp, const ipc::PlayerKick& 
     TracyZoneScoped;
 
     rerouteMessageToCharId(message.victimId, message);
+}
+
+void IPCServer::handleMessage_PartySystemSync(const IPP& ipp, const ipc::PartySystemSync& message)
+{
+    TracyZoneScoped;
+
+    // Unused on this side, this notifies the Map servers we'd like copies of the party system
 }
 
 void IPCServer::handleUnknownMessage(const IPP& ipp, const std::span<uint8_t> message)

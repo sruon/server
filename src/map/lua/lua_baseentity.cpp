@@ -165,6 +165,7 @@
 #include "utils/puppetutils.h"
 #include "utils/trustutils.h"
 #include "utils/zoneutils.h"
+#include "party/char_party.h"
 
 #include <magic_enum/magic_enum.hpp>
 
@@ -379,7 +380,7 @@ void CLuaBaseEntity::printToArea(std::string const& message, sol::object const& 
         if (PChar->hasParty())
         {
             message::send(ipc::ChatMessageParty{
-                .partyId     = PChar->getParty().GetPartyId(),
+                .partyId     = PChar->getParty().getPartyId(),
                 .senderId    = PChar->id,
                 .senderName  = name,
                 .message     = message,
@@ -10957,7 +10958,7 @@ uint8 CLuaBaseEntity::getPartySize(sol::object const& arg0)
     {
         if (allianceparty == 0)
         {
-            partysize = static_cast<uint8>(PBattle->getParty().GetMembers().size());
+            partysize = static_cast<uint8>(PBattle->getParty().getMemberCount());
         }
         // else if (PBattle->PParty->m_PAlliance != nullptr)
         // {
@@ -10979,10 +10980,8 @@ bool CLuaBaseEntity::hasPartyJob(uint8 job)
 {
     if (static_cast<CCharEntity*>(m_PBaseEntity)->hasParty())
     {
-        for (auto const& member : static_cast<CCharEntity*>(m_PBaseEntity)->getParty().GetMembers())
+        for (auto const& PTarget : static_cast<CCharEntity*>(m_PBaseEntity)->getParty().getMembers())
         {
-            CCharEntity* PTarget = static_cast<CCharEntity*>(member);
-
             if (PTarget->GetMJob() == job)
             {
                 return true;
@@ -11063,7 +11062,7 @@ auto CLuaBaseEntity::getPartyLeader() -> CBaseEntity*
     CCharEntity* PChar = (CCharEntity*)m_PBaseEntity;
     if (PChar->hasParty())
     {
-        CBattleEntity* PLeader = PChar->getParty().GetLeader();
+        CBattleEntity* PLeader = PChar->getParty().getLeader();
         if (PLeader != nullptr)
         {
             return PLeader;
@@ -11189,7 +11188,7 @@ uint32 CLuaBaseEntity::getLeaderID()
             //     return PChar->PParty->m_PAlliance->m_AllianceID;
             // }
 
-            return PChar->getParty().GetLeader()->id;
+            return PChar->getParty().getLeader()->id;
         }
 
         return PChar->id;
@@ -11211,7 +11210,7 @@ uint32 CLuaBaseEntity::getPartyLastMemberJoinedTime()
     {
         if (PChar->hasParty())
         {
-            return std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - PChar->getParty().GetTimeLastMemberJoined()).count();
+            return std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - PChar->getParty().getTimeLastMemberJoined()).count();
         }
     }
     else
@@ -11239,12 +11238,14 @@ void CLuaBaseEntity::disableLevelSync()
 
     auto* PChar = static_cast<CCharEntity*>(m_PBaseEntity);
 
-    if (PChar->hasParty())
+    // TODO: Provide binding for disabling sync on party.
+    if (PChar->m_LevelRestriction != 0)
     {
-        PChar->getParty().ipc().ClearSyncTarget(MsgStd::LevelSyncRemoveLeftParty);
+        PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_SYNC);
+        PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_RESTRICTION);
     }
 
-    // PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, std::make_unique<CCharSyncPacket>(PChar));
+    PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE, std::make_unique<CCharSyncPacket>(PChar));
 }
 
 /************************************************************************
@@ -11266,7 +11267,7 @@ bool CLuaBaseEntity::isLevelSync()
 
     if (PChar->hasParty())
     {
-        return PChar->getParty().GetSyncTarget() && PChar->getParty().GetSyncTarget() != PChar;
+        return PChar->getParty().getSyncTarget() && PChar->getParty().getSyncTarget() != PChar;
     }
 
     return false;
@@ -11328,9 +11329,9 @@ bool CLuaBaseEntity::checkKillCredit(CLuaBaseEntity* PLuaBaseEntity, sol::object
 
     if (charutils::CheckMob(PMob->m_HiPCLvl, PMob->GetMLevel()) > EMobDifficulty::TooWeak && distance(PMob->loc.p, PChar->loc.p) < range && !PMob->GetCallForHelpFlag())
     {
-        if (PChar->hasParty() && PChar->getParty().GetSyncTarget())
+        if (PChar->hasParty() && PChar->getParty().getSyncTarget())
         {
-            if (distance(PMob->loc.p, PChar->getParty().GetSyncTarget()->loc.p) < range && PChar->getParty().GetSyncTarget()->health.hp)
+            if (distance(PMob->loc.p, PChar->getParty().getSyncTarget()->loc.p) < range && PChar->getParty().getSyncTarget()->health.hp)
             {
                 credit = true;
             }

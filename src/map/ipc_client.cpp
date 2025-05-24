@@ -51,6 +51,7 @@
 #include "packets/party_define.h"
 #include "packets/party_member_update.h"
 
+#include "party/char_party.h"
 #include "utils/charutils.h"
 #include "utils/jailutils.h"
 #include "utils/serverutils.h"
@@ -154,7 +155,7 @@ void IPCClient::handleMessage_CharLogin(const IPP& ipp, const ipc::CharLogin& me
     }
 }
 
-void IPCClient::handleMessage_CharZone(const IPP& ipp, const ipc::CharZone& message)
+void IPCClient::handleMessage_CharZoneOut(const IPP& ipp, const ipc::CharZoneOut& message)
 {
     TracyZoneScoped;
 
@@ -163,6 +164,13 @@ void IPCClient::handleMessage_CharZone(const IPP& ipp, const ipc::CharZone& mess
 
     std::ignore = message.charId;
     std::ignore = message.destinationZoneId;
+}
+
+void IPCClient::handleMessage_CharZoneIn(const IPP& ipp, const ipc::CharZoneIn& message)
+{
+    TracyZoneScoped;
+
+    networking_.server().parties().reattachMember(message);
 }
 
 void IPCClient::handleMessage_CharVarUpdate(const IPP& ipp, const ipc::CharVarUpdate& message)
@@ -216,14 +224,14 @@ void IPCClient::handleMessage_ChatMessageParty(const IPP& ipp, const ipc::ChatMe
 {
     TracyZoneScoped;
 
-    networking_.parties().chatMessage(message);
+    networking_.server().parties().chatMessage(message);
 }
 
 void IPCClient::handleMessage_ChatMessageAlliance(const IPP& ipp, const ipc::ChatMessageAlliance& message)
 {
     TracyZoneScoped;
 
-    networking_.parties().chatMessage(message);
+    networking_.server().parties().chatMessage(message);
 }
 
 void IPCClient::handleMessage_ChatMessageLinkshell(const IPP& ipp, const ipc::ChatMessageLinkshell& message)
@@ -307,6 +315,16 @@ void IPCClient::handleMessage_MessageStandard(const IPP& ipp, const ipc::Message
     if (CCharEntity* PChar = zoneutils::GetChar(message.recipientId))
     {
         PChar->pushPacket(std::make_unique<CMessageStandardPacket>(PChar, message.param0, message.param1, message.message));
+    }
+}
+
+void IPCClient::handleMessage_MessageBasic(const IPP& ipp, const ipc::MessageBasic& message)
+{
+    TracyZoneScoped;
+
+    if (CCharEntity* PChar = zoneutils::GetChar(message.recipientId))
+    {
+        PChar->pushPacket(std::make_unique<CMessageBasicPacket>(PChar, PChar, message.param0, message.param1, message.message));
     }
 }
 
@@ -545,7 +563,7 @@ void IPCClient::handleMessage_SendPlayerToLocation(const IPP& ipp, const ipc::Se
 void IPCClient::handleMessage_PartyUpdate(const IPP& ipp, const ipc::PartyUpdate& message)
 {
     ShowInfoFmt("PartyUpdate message received for partyId: {}", message.partyId);
-    networking_.parties().updateParty(message);
+    networking_.server().parties().updateParty(message);
 }
 
 void IPCClient::handleMessage_PartyInvite(const IPP& ipp, const ipc::PartyInvite& message)
@@ -613,7 +631,7 @@ void IPCClient::handleMessage_PartyInviteResponse(const IPP& ipp, const ipc::Par
 
     // PInviter is on this map process but PInvitee might not be. Ask DB for their current zone.
     CCharEntity* PInviter = zoneutils::GetChar(message.inviterId);
-    const auto   rset     = db::preparedStmt("SELECT pos_zone FROM chars"
+    const auto   rset     = db::preparedStmt("SELECT pos_zone FROM chars "
                                                    "WHERE charid = ?",
                                              message.inviteeId);
     if (rset && rset->rowsCount() && rset->next())
@@ -630,7 +648,19 @@ void IPCClient::handleMessage_PartyInviteResponse(const IPP& ipp, const ipc::Par
         else
         {
             // TODO: alliance
-            PInviter->getParty().ipc().AddMember(message.inviteeId, PartyMemberType::Player, zoneId);
+            // Can't use IPC helper as we may not yet have a party
+            if (!PInviter->hasParty())
+            {
+                message::send(ipc::PartyCreate{
+                .charId  = PInviter->id,
+                });
+            }
+
+            message::send(ipc::PartyAddMember{
+                .partyId = PInviter->id,
+                .charId  = message.inviteeId,
+                .type    = PartyMemberType::Player,
+            });
         }
     }
 }
@@ -641,7 +671,7 @@ void IPCClient::handleMessage_PartyDisband(const IPP& ipp, const ipc::PartyDisba
 
     // The world process takes care of removing members and forwarding packet updates through RemoveMember/PlayerKick,
     // but we need to clean up the entry in the party container at the end.
-    networking_.parties().disbandParty(message);
+    networking_.server().parties().disbandParty(message);
 }
 
 void IPCClient::handleMessage_AllianceDissolve(const IPP& ipp, const ipc::AllianceDissolve& message)
@@ -683,7 +713,7 @@ void IPCClient::handleMessage_PlayerKick(const IPP& ipp, const ipc::PlayerKick& 
 
     if (CCharEntity* PChar = zoneutils::GetChar(message.victimId))
     {
-        PChar->pushPacket<CPartyDefinePacket>(std::vector<CBattleEntity*>{}, 0, 0);
+        PChar->pushPacket<CPartyDefinePacket>(PChar, nullptr);
         PChar->pushPacket<CPartyMemberUpdatePacket>(PChar);
         PChar->pushPacket<CCharStatusPacket>(PChar);
     }
@@ -691,7 +721,19 @@ void IPCClient::handleMessage_PlayerKick(const IPP& ipp, const ipc::PlayerKick& 
 
 void IPCClient::handleMessage_PartyChangeId(const IPP& ipp, const ipc::PartyChangeId& message)
 {
-    networking_.parties().updateId(message.formerId, message.newId);
+    networking_.server().parties().updateId(message.formerId, message.newId);
+}
+
+void IPCClient::handleMessage_PartySystemSync(const IPP& ipp, const ipc::PartySystemSync& message)
+{
+    TracyZoneScoped;
+
+    // World server is requesting copies of the party system
+    // Very much experimental, to see if we can forego the DB entirely.
+    for (const auto& updateMessage : networking_.server().parties().partiesSync())
+    {
+        message::send(updateMessage);
+    }
 }
 
 void IPCClient::handleUnknownMessage(const IPP& ipp, const std::span<uint8_t> message)

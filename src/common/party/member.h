@@ -23,30 +23,35 @@
 
 #include "common/cbasetypes.h"
 
-// Set of flags used when building PartyDefine/PartyMemberUpdate packets
-// The client uses them to define how to render the party list.
-enum class PartyFlag : uint16
+enum class PartyMemberType : uint8;
+
+
+class PartyMember
 {
-    PartySecond      = 0x0001,
-    PartyThird       = 0x0002,
-    IsLeader         = 0x0004,
-    IsAllianceLeader = 0x0008,
-    IsQuartermaster  = 0x0010,
-    IsSyncTarget     = 0x0100,
+public:
+    PartyMember() = default;
+    PartyMember(const uint32 _UniqueNo, const PartyMemberType _type, const uint32 _ZoneId, std::string _Name, std::time_t _JoinedTime);
+
+    auto getType() const -> PartyMemberType;
+    auto getId() const -> uint32;
+    auto getZone() const -> uint32;
+    void setZone(const uint16 zoneId);
+    auto getName() const -> const std::string&;
+    auto getTimeSinceJoined() const -> std::chrono::seconds;
+    auto getJoinedTime() const -> std::time_t;
+
+private:
+    uint32          m_UniqueNo{};
+    std::time_t     m_JoinedTime{};
+    PartyMemberType m_Type{};
+    uint32          m_ZoneId{};
+    std::string     m_Name{};
 };
-DECLARE_FORMAT_AS_UNDERLYING(PartyFlag);
 
-inline PartyFlag operator|(PartyFlag a, PartyFlag b)
+struct PartyMemberFilter
 {
-    return static_cast<PartyFlag>(static_cast<uint16>(a) | static_cast<uint16>(b));
-}
+    std::optional<PartyMemberType> type;
+    std::optional<uint16>          zoneId;
 
-inline PartyFlag operator&(PartyFlag a, PartyFlag b)
-{
-    return static_cast<PartyFlag>(static_cast<uint16>(a) & static_cast<uint16>(b));
-}
-
-inline PartyFlag operator~(PartyFlag a)
-{
-    return static_cast<PartyFlag>(~static_cast<uint16>(a));
-}
+    bool matches(const PartyMember& member) const;
+};

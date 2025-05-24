@@ -19,8 +19,7 @@
 ===========================================================================
 */
 
-#ifndef _CHARUTILS_H
-#define _CHARUTILS_H
+#pragma once
 
 #include "common/cbasetypes.h"
 
@@ -293,5 +292,3 @@ namespace charutils
     bool isOrchestrionPlaced(CCharEntity* PChar);
     void updateMannequins(CCharEntity* PChar);
 }; // namespace charutils
-
-#endif // _CHARUTILS_H

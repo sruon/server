@@ -71,6 +71,7 @@
 #include "packets/lock_on.h"
 #include "packets/pet_sync.h"
 #include "packets/position.h"
+#include "party/char_party.h"
 #include "petskill.h"
 #include "recast_container.h"
 #include "spell.h"
@@ -1245,7 +1246,7 @@ namespace battleutils
         {
             if (PAttacker->objtype == TYPE_PC && static_cast<CCharEntity*>(PAttacker)->hasParty())
             {
-                for (const auto* PMember : static_cast<CCharEntity*>(PAttacker)->getParty().GetMembers())
+                for (const auto* PMember : static_cast<CCharEntity*>(PAttacker)->getParty().getMembers())
                 {
                     PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_DRAIN_DAZE, PMember->id);
                     PDefender->StatusEffectContainer->DelStatusEffect(EFFECT_HASTE_DAZE, PMember->id);
@@ -6812,7 +6813,7 @@ namespace battleutils
         // If the cover ability target is in a party, try to find a cover ability user
         if (static_cast<CCharEntity*>(PCoverAbilityTarget)->hasParty())
         {
-            for (auto* PMember : static_cast<CCharEntity*>(PCoverAbilityTarget)->getParty().GetMembers())
+            for (auto* PMember : static_cast<CCharEntity*>(PCoverAbilityTarget)->getParty().getMembers())
             {
                 if (coverAbilityTargetID == PMember->GetLocalVar("COVER_ABILITY_TARGET") &&
                     PMember->StatusEffectContainer->HasStatusEffect(EFFECT_COVER) &&
