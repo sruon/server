@@ -39,12 +39,12 @@ CCharParty::CCharParty(const ipc::PartyUpdate& message)
 {
     m_pIpcHelper = IpcHelper::Create(*this);
 
-    for (auto member : message.members)
+    for (const auto& member : message.members)
     {
-//        addMember(member);
+        addMember(member);
     }
 
-    BroadcastPartyPackets();
+    broadcastPartyPackets();
 }
 
 // TODO: Not sure we need this logic since the container only deletes a party when all members are gone
@@ -140,7 +140,7 @@ void CCharParty::update(const ipc::PartyUpdate& message)
             // we are merely going to clear the sync effect.
 
             // clang-format off
-            ForEveryMember([&](CCharEntity* PChar)
+            ForEveryMember([&](const CCharEntity* PChar)
             {
                 disableSync(PChar);
             });
@@ -170,13 +170,13 @@ void CCharParty::update(const ipc::PartyUpdate& message)
         // Find added IDs (in new but not in old)
         for (const uint32 id : newIds)
         {
-            if (oldIds.find(id) == oldIds.end())
+            if (!oldIds.contains(id))
             {
                 for (const auto& member : message.members)
                 {
                     if (member.getId() == id)
                     {
-//                        addMember(member);
+                        //                        addMember(member);
                         changes = true;
                         break;
                     }
@@ -187,11 +187,11 @@ void CCharParty::update(const ipc::PartyUpdate& message)
         // Find deleted IDs (in old but not in new)
         for (const uint32 id : oldIds)
         {
-            if (newIds.find(id) == newIds.end())
+            if (!newIds.contains(id))
             {
-                auto deletedMember = std::find_if(m_Members.begin(), m_Members.end(),
-                                                  [id](const auto& member)
-                                                  { return member.getId() == id; });
+                auto deletedMember = std::ranges::find_if(m_Members,
+                                                          [id](const auto& member)
+                                                          { return member.getId() == id; });
                 if (deletedMember != m_Members.end())
                 {
                     ShowInfoFmt("Removing member with ID: {}", deletedMember->getId());
@@ -226,7 +226,7 @@ void CCharParty::update(const ipc::PartyUpdate& message)
 
     if (changes)
     {
-        BroadcastPartyPackets();
+        broadcastPartyPackets();
     }
 }
 
@@ -255,7 +255,7 @@ auto CCharParty::GetFlagsForMember(const CCharEntity* PChar) const -> uint16
 
 // Recalculate latents, send party define and party update packets.
 // Can optionally be scoped to a single entity.
-void CCharParty::BroadcastPartyPackets(const CCharEntity* PSingle)
+void CCharParty::broadcastPartyPackets(const CCharEntity* PSingle)
 {
     // Retail packet flow:
     // 0xC8: Defines party layout
@@ -275,9 +275,6 @@ void CCharParty::BroadcastPartyPackets(const CCharEntity* PSingle)
             return;
         }
 
-        // TODO: Party effects
-        // auto effects = std::make_unique<CPartyEffectsPacket>();
-        // effects->AddMemberEffects(PChar)
         PChar->PLatentEffectContainer->CheckLatentsPartyJobs();
         PChar->PLatentEffectContainer->CheckLatentsPartyMembers(memberCount, trustCount);
         PChar->PLatentEffectContainer->CheckLatentsPartyAvatar();
@@ -310,7 +307,7 @@ void CCharParty::BroadcastPartyPackets(const CCharEntity* PSingle)
                 if (const auto PLeader = getLeader(); PLeader->getZone() == PChar->getZone())
                 {
                     // PLeader is on this process and in the same zone as PChar
-                    auto maybeTrust = std::find_if(PLeader->PTrusts.begin(), PLeader->PTrusts.end(),
+                    auto maybeTrust = std::ranges::find_if(PLeader->PTrusts,
                                                    [Member](const CTrustEntity* PTrust)
                                                    {
                                                        return PTrust->id == Member.getId();
@@ -371,7 +368,7 @@ auto CCharParty::getMembers(const uint16 zoneId) const -> std::vector<CCharEntit
 // This only works if the leader is on the same map process
 auto CCharParty::getLeader() const -> CCharEntity*
 {
-    if (auto found = PartyBase::getLeader())
+    if (const auto found = PartyBase::getLeader())
     {
         if (auto* PLeader = zoneutils::GetChar(found->get().getId()))
         {
@@ -386,7 +383,7 @@ auto CCharParty::getLeader() const -> CCharEntity*
 // This only works if the quartermaster is on the same map process
 auto CCharParty::getQuartermaster() const -> CCharEntity*
 {
-    if (auto found = PartyBase::getQuartermaster())
+    if (const auto found = PartyBase::getQuartermaster())
     {
         if (auto* PQm = zoneutils::GetChar(found->get().getId()))
         {
@@ -401,7 +398,7 @@ auto CCharParty::getQuartermaster() const -> CCharEntity*
 // This only works if the sync target is on the same map process
 auto CCharParty::getSyncTarget() const -> CCharEntity*
 {
-    if (auto found = PartyBase::getSyncTarget())
+    if (const auto found = PartyBase::getSyncTarget())
     {
         if (auto* PSync = zoneutils::GetChar(found->get().getId()))
         {
@@ -459,7 +456,7 @@ void CCharParty::ForEveryMemberWithTrusts(const std::function<void(CBattleEntity
         {
             if (PLeader)
             {
-                auto maybeTrust = std::find_if(PLeader->PTrusts.begin(), PLeader->PTrusts.end(),
+                auto maybeTrust = std::ranges::find_if(PLeader->PTrusts,
                                                [member](const CTrustEntity* PTrust)
                                                {
                                                    return PTrust->id == member.getId();
@@ -474,7 +471,7 @@ void CCharParty::ForEveryMemberWithTrusts(const std::function<void(CBattleEntity
     // clang-format on
 }
 
-void CCharParty::pushEffectsPacket(CCharEntity* PChar)
+void CCharParty::pushEffectsPacket(CCharEntity* PChar) const
 {
     PChar->pushPacket<CPartyEffectsPacket>(PChar, getMembers(PChar->getZone()));
 }
@@ -482,9 +479,9 @@ void CCharParty::pushEffectsPacket(CCharEntity* PChar)
 // Send a packet to all members of the group if the zone is specified as 0
 // or to the party members in the specified zone.
 // Packet for PPartyMember is not sent in both cases
-void CCharParty::pushPacket(uint32 senderID, uint16 ZoneID, const std::unique_ptr<CBasicPacket>& packet) const
+void CCharParty::pushPacket(const uint32 senderID, const uint16 ZoneID, const std::unique_ptr<CBasicPacket>& packet) const
 {
-    for (auto& member : getMembers())
+    for (const auto& member : getMembers())
     {
         if (member->id != senderID && member->status != STATUS_TYPE::DISAPPEAR && !jailutils::InPrison(member))
         {
@@ -496,9 +493,9 @@ void CCharParty::pushPacket(uint32 senderID, uint16 ZoneID, const std::unique_pt
     }
 }
 
-auto CCharParty::getMemberById(uint32 charId) const -> CCharEntity*
+auto CCharParty::getMemberById(const uint32 charId) const -> CCharEntity*
 {
-    if (auto found = PartyBase::getMemberById(charId))
+    if (const auto found = PartyBase::getMemberById(charId))
     {
         return zoneutils::GetChar(found->get().getId());
     }
@@ -508,7 +505,7 @@ auto CCharParty::getMemberById(uint32 charId) const -> CCharEntity*
 
 auto CCharParty::getMemberByName(const std::string& memberName) const -> CCharEntity*
 {
-    if (auto found = PartyBase::getMemberByName(memberName))
+    if (const auto found = PartyBase::getMemberByName(memberName))
     {
         return zoneutils::GetChar(found->get().getId());
     }
@@ -521,15 +518,14 @@ void CCharParty::setPartyId(const uint32 partyId)
     m_PartyId = partyId;
 }
 
-void CCharParty::addMember(PartyMemberData& data)
+void CCharParty::addMember(const PartyMember& data)
 {
-//    m_Members.emplace_back(data);
     m_LastJoined = timer::now();
 
-    if (data.Type == PartyMemberType::Player)
+    if (data.getType() == PartyMemberType::Player)
     {
         // Char may not be on this server and will be handled by another map process
-        if (CCharEntity* PChar = zoneutils::GetChar(data.UniqueNo))
+        if (CCharEntity* PChar = zoneutils::GetChar(data.getId()))
         {
             PChar->setParty(*this);
             // this is garbage and should be handled elsewhere
@@ -569,9 +565,9 @@ void CCharParty::addMember(PartyMemberData& data)
 
 void CCharParty::delMember(const PartyMember& member)
 {
-    const auto it = std::find_if(m_Members.begin(), m_Members.end(),
-                                 [&](const PartyMember& m)
-                                 { return m.getId() == member.getId(); });
+    const auto it = std::ranges::find_if(m_Members,
+                                         [&](const PartyMember& m)
+                                         { return m.getId() == member.getId(); });
 
     if (it != m_Members.end())
     {
@@ -582,7 +578,7 @@ void CCharParty::delMember(const PartyMember& member)
             {
                 disableSync(PChar);
                 PChar->clearParty();
-                ipc().NotifyKick(member.getId());
+                ipc().notifyKick(member.getId());
             }
         }
 

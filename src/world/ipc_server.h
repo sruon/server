@@ -83,7 +83,6 @@ public:
     void handleMessage_CharLogin(const IPP& ipp, const ipc::CharLogin& message);
     void handleMessage_CharZoneOut(const IPP& ipp, const ipc::CharZoneOut& message);
     void handleMessage_CharZoneIn(const IPP& ipp, const ipc::CharZoneIn& message);
-    void handleMessage_CharZone(const IPP& ipp, const ipc::CharZoneOut& message);
     void handleMessage_CharVarUpdate(const IPP& ipp, const ipc::CharVarUpdate& message);
     void handleMessage_ChatMessageTell(const IPP& ipp, const ipc::ChatMessageTell& message);
     void handleMessage_ChatMessageParty(const IPP& ipp, const ipc::ChatMessageParty& message);
@@ -94,8 +93,8 @@ public:
     void handleMessage_ChatMessageServerMessage(const IPP& ipp, const ipc::ChatMessageServerMessage& message);
     void handleMessage_ChatMessageCustom(const IPP& ipp, const ipc::ChatMessageCustom& message);
     void handleMessage_AllianceDissolve(const IPP& ipp, const ipc::AllianceDissolve& message);
-    void handleMessage_PlayerKick(const IPP& ipp, const ipc::PlayerKick& message);
-    void handleMessage_PartySystemSync(const IPP& ipp, const ipc::PartySystemSync& message);
+    void handleMessage_PartyKick(const IPP& ipp, const ipc::PartyKick& message);
+    void handleMessage_PartySystemSync(const IPP& ipp, const ipc::PartySystemSync& message) const;
     void handleMessage_MessageStandard(const IPP& ipp, const ipc::MessageStandard& message);
     void handleMessage_MessageBasic(const IPP& ipp, const ipc::MessageBasic& message);
     void handleMessage_MessageSystem(const IPP& ipp, const ipc::MessageSystem& message);
@@ -111,13 +110,12 @@ public:
     void handleMessage_EntityInformationRequest(const IPP& ipp, const ipc::EntityInformationRequest& message);
     void handleMessage_EntityInformationResponse(const IPP& ipp, const ipc::EntityInformationResponse& message);
     void handleMessage_SendPlayerToLocation(const IPP& ipp, const ipc::SendPlayerToLocation& message);
-    void handleMessage_PartyCreate(const IPP& ipp, const ipc::PartyCreate& message) const;
     void handleMessage_PartyAddMember(const IPP& ipp, const ipc::PartyAddMember& message) const;
-    void handleMessage_PartyRemoveMember(const IPP& ipp, const ipc::PartyRemoveMember& message);
+    void handleMessage_PartyRemoveMember(const IPP& ipp, const ipc::PartyRemoveMember& message) const;
     void handleMessage_PartyInvite(const IPP& ipp, const ipc::PartyInvite& message);
     void handleMessage_PartyInviteResponse(const IPP& ipp, const ipc::PartyInviteResponse& message);
     void handleMessage_PartyDisband(const IPP& ipp, const ipc::PartyDisband& message) const;
-    void handleMessage_PartySetLeader(const IPP& ipp, const ipc::PartySetLeader& message);
+    void handleMessage_PartySetLeader(const IPP& ipp, const ipc::PartySetLeader& message) const;
     void handleMessage_PartySetQuartermaster(const IPP& ipp, const ipc::PartySetQuartermaster& message) const;
     void handleMessage_PartySetSyncTarget(const IPP& ipp, const ipc::PartySetSyncTarget& message) const;
     void handleMessage_PartyUpdate(const IPP& ipp, const ipc::PartyUpdate& message) const;
@@ -161,5 +159,29 @@ void IPCServer::broadcastMessage(const T& message)
         const auto bytes = ipc::toBytesWithHeader<T>(message);
         const auto out   = IPPMessage{ ipp, std::vector<uint8>{ bytes.begin(), bytes.end() } };
         zmqRouterWrapper_.outgoingQueue_.enqueue(std::move(out));
+    }
+}
+
+// TODO: Templates don't get correctly instantiated if they're not here. Figure out what's the right fix.
+void IPCServer::rerouteMessageToPartyMembers(uint32 partyId, const auto& message)
+{
+    TracyZoneScoped;
+
+    for (const auto& ipp : getIPPsForParty(partyId))
+    {
+        DebugIPCFmt("Message: -> rerouting to party<{}> on {}", partyId, ipp.toString());
+        sendMessage(ipp, message);
+    }
+}
+
+void IPCServer::rerouteMessageToCharId(uint32 charId, const auto& message)
+{
+    TracyZoneScoped;
+
+    if (const auto maybeCharIPP = getIPPForCharId(charId))
+    {
+        const auto charIPP = *maybeCharIPP;
+        DebugIPCFmt("Message: -> rerouting to char<{}> on {}", charId, charIPP.toString());
+        sendMessage(charIPP, std::move(message));
     }
 }

@@ -651,16 +651,16 @@ void IPCClient::handleMessage_PartyInviteResponse(const IPP& ipp, const ipc::Par
             // Can't use IPC helper as we may not yet have a party
             if (!PInviter->hasParty())
             {
-                message::send(ipc::PartyCreate{
-                .charId  = PInviter->id,
+                message::send(ipc::PartyAddMember{
+                    .partyId = PInviter->id,
+                    .charId  = message.inviteeId,
+                    .type    = PartyMemberType::Player,
                 });
             }
-
-            message::send(ipc::PartyAddMember{
-                .partyId = PInviter->id,
-                .charId  = message.inviteeId,
-                .type    = PartyMemberType::Player,
-            });
+            else
+            {
+                PInviter->getParty().ipc().addMember(message.inviteeId, PartyMemberType::Player);
+            }
         }
     }
 }
@@ -707,7 +707,7 @@ void IPCClient::handleMessage_AllianceDissolve(const IPP& ipp, const ipc::Allian
     // clang-format on
 }
 
-void IPCClient::handleMessage_PlayerKick(const IPP& ipp, const ipc::PlayerKick& message)
+void IPCClient::handleMessage_PlayerKick(const IPP& ipp, const ipc::PartyKick& message)
 {
     TracyZoneScoped;
 

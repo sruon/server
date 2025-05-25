@@ -22,7 +22,6 @@
 #pragma once
 
 #include "cbasetypes.h"
-#include "common/party/base.h"
 
 #include "common/regional_event.h"
 
@@ -35,6 +34,7 @@
 #include <string>
 #include <vector>
 
+class PartyMember;
 enum class PartyMemberType : uint8;
 
 namespace ipc
@@ -151,38 +151,9 @@ namespace ipc
         CHAT_MESSAGE_TYPE messageType{};
     };
 
-    struct PartyInvite
-    {
-        uint32      inviteeId{};
-        uint16      inviteeTargId{};
-        uint32      inviterId{};
-        uint16      inviterTargId{};
-        std::string inviterName{};
-        INVITETYPE  inviteType{};
-    };
-
-    struct PartyInviteResponse
-    {
-        uint32 inviteeId{};
-        uint16 inviteeTargId{};
-        uint32 inviterId{};
-        uint16 inviterTargId{};
-        uint8  inviteAnswer{};
-    };
-
-    struct PartyDisband
-    {
-        uint32 partyId{};
-    };
-
     struct AllianceDissolve
     {
         uint32 allianceId{};
-    };
-
-    struct PlayerKick
-    {
-        uint32 victimId{};
     };
 
     struct MessageStandard
@@ -314,11 +285,6 @@ namespace ipc
         std::vector<PartyMember> members{};
     };
 
-    struct PartyCreate
-    {
-        uint32 charId{};
-    };
-
     struct PartyAddMember
     {
         uint32          partyId{};
@@ -363,6 +329,34 @@ namespace ipc
     struct PartySystemSync
     {
         uint8 dummy{};
+    };
+    struct PartyInvite
+    {
+        uint32      inviteeId{};
+        uint16      inviteeTargId{};
+        uint32      inviterId{};
+        uint16      inviterTargId{};
+        std::string inviterName{};
+        INVITETYPE  inviteType{};
+    };
+
+    struct PartyInviteResponse
+    {
+        uint32 inviteeId{};
+        uint16 inviteeTargId{};
+        uint32 inviterId{};
+        uint16 inviterTargId{};
+        uint8  inviteAnswer{};
+    };
+
+    struct PartyDisband
+    {
+        uint32 partyId{};
+    };
+
+    struct PartyKick
+    {
+        uint32 victimId{};
     };
 
 } // namespace ipc

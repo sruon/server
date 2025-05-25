@@ -70,7 +70,7 @@ public:
     void handleMessage_PartyInviteResponse(const IPP& ipp, const ipc::PartyInviteResponse& message);
     void handleMessage_PartyDisband(const IPP& ipp, const ipc::PartyDisband& message);
     void handleMessage_AllianceDissolve(const IPP& ipp, const ipc::AllianceDissolve& message);
-    void handleMessage_PlayerKick(const IPP& ipp, const ipc::PlayerKick& message);
+    void handleMessage_PlayerKick(const IPP& ipp, const ipc::PartyKick& message);
     void handleMessage_MessageStandard(const IPP& ipp, const ipc::MessageStandard& message);
     void handleMessage_MessageBasic(const IPP& ipp, const ipc::MessageBasic& message);
     void handleMessage_MessageSystem(const IPP& ipp, const ipc::MessageSystem& message);
@@ -86,7 +86,6 @@ public:
     void handleMessage_EntityInformationRequest(const IPP& ipp, const ipc::EntityInformationRequest& message);
     void handleMessage_EntityInformationResponse(const IPP& ipp, const ipc::EntityInformationResponse& message);
     void handleMessage_SendPlayerToLocation(const IPP& ipp, const ipc::SendPlayerToLocation& message);
-    void handleMessage_PartyCreate(const IPP& ipp, const ipc::PartyCreate& message){};
     void handleMessage_PartyAddMember(const IPP& ipp, const ipc::PartyAddMember& message){};
     void handleMessage_PartyRemoveMember(const IPP& ipp, const ipc::PartyRemoveMember& message){};
     void handleMessage_PartySetLeader(const IPP& ipp, const ipc::PartySetLeader& message){};

@@ -37,13 +37,12 @@ enum class PartyMemberType : uint8
     Trust,
 };
 
-struct PartyMemberData
+class AllianceBase
 {
-    uint32          UniqueNo;
-    std::time_t     JoinedTime;
-    PartyMemberType Type;
-    uint32          ZoneId;
-    std::string     Name;
+protected:
+    uint32                   m_AllianceId = 0;
+    std::vector<PartyMember> m_Parties;
+    bool                     dirty = false;
 };
 
 class PartyBase
@@ -84,7 +83,7 @@ public:
     auto ForEveryMember(PartyMemberFilter filter, const std::function<void(const PartyMember&)>& func) const -> void;
     auto ForEveryAllianceMember(std::function<void(const PartyMember&)> func) -> void;
 
-    auto asIpcUpdate() -> ipc::PartyUpdate;
+    auto asIpcUpdate() const -> ipc::PartyUpdate;
 
     // TODO: protected/private?
     bool reassignLeader();

@@ -31,7 +31,8 @@
 #include "conquest_system.h"
 #include "http_server.h"
 #include "ipc_server.h"
-#include "party_system.h"
+#include "party/system.h"
+#include "party/world.h"
 #include "time_server.h"
 
 namespace

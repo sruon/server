@@ -199,7 +199,7 @@ auto PartyBase::ForEveryMember(const std::function<void(const PartyMember&)>& fu
     }
 }
 
-auto PartyBase::ForEveryMember(PartyMemberFilter filter, const std::function<void(const PartyMember&)>& func) const -> void
+auto PartyBase::ForEveryMember(const PartyMemberFilter filter, const std::function<void(const PartyMember&)>& func) const -> void
 {
     for (const auto& member : getMembers(filter))
     {
@@ -252,7 +252,7 @@ auto PartyBase::ForEveryAllianceMember(std::function<void(const PartyMember&)> f
 {
 }
 
-auto PartyBase::getMemberById(uint32 UniqueNo) const -> std::optional<std::reference_wrapper<const PartyMember>>
+auto PartyBase::getMemberById(const uint32 UniqueNo) const -> std::optional<std::reference_wrapper<const PartyMember>>
 {
     for (auto& member : getMembers())
     {
@@ -278,7 +278,7 @@ auto PartyBase::getMemberByName(const std::string& memberName) const -> std::opt
     return std::nullopt;
 }
 
-auto PartyBase::asIpcUpdate() -> ipc::PartyUpdate
+auto PartyBase::asIpcUpdate() const -> ipc::PartyUpdate
 {
     return ipc::PartyUpdate{
         .partyId               = m_PartyId,

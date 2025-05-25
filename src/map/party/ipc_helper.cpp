@@ -25,7 +25,7 @@
 #include "ipc_client.h"
 
 // Tell the world server the party leader is changing
-void CCharParty::IpcHelper::SetLeader(const uint32 UniqueNo) const
+void CCharParty::IpcHelper::setLeader(const uint32 UniqueNo) const
 {
     message::send(ipc::PartySetLeader{
         .partyId = m_Party.getPartyId(),
@@ -34,7 +34,7 @@ void CCharParty::IpcHelper::SetLeader(const uint32 UniqueNo) const
 }
 
 // Tell the world server the party leader is changing
-void CCharParty::IpcHelper::SetLeader(const std::string& charName) const
+void CCharParty::IpcHelper::setLeader(const std::string& charName) const
 {
     message::send(ipc::PartySetLeader{
         .partyId  = m_Party.getPartyId(),
@@ -42,7 +42,7 @@ void CCharParty::IpcHelper::SetLeader(const std::string& charName) const
     });
 }
 
-void CCharParty::IpcHelper::ClearSyncTarget(const MsgStd Reason) const
+void CCharParty::IpcHelper::clearSyncTarget(const MsgStd Reason) const
 {
     message::send(ipc::PartySetSyncTarget{
         .partyId = m_Party.getPartyId(),
@@ -51,7 +51,7 @@ void CCharParty::IpcHelper::ClearSyncTarget(const MsgStd Reason) const
     });
 }
 
-void CCharParty::IpcHelper::SetSyncTarget(const std::string& CharName) const
+void CCharParty::IpcHelper::setSyncTarget(const std::string& CharName) const
 {
     message::send(ipc::PartySetSyncTarget{
         .partyId  = m_Party.getPartyId(),
@@ -60,7 +60,7 @@ void CCharParty::IpcHelper::SetSyncTarget(const std::string& CharName) const
 }
 
 // Tell the world server the sync target is changing
-void CCharParty::IpcHelper::SetSyncTarget(const uint32 UniqueNo) const
+void CCharParty::IpcHelper::setSyncTarget(const uint32 UniqueNo) const
 {
     message::send(ipc::PartySetSyncTarget{
         .partyId = m_Party.getPartyId(),
@@ -69,7 +69,7 @@ void CCharParty::IpcHelper::SetSyncTarget(const uint32 UniqueNo) const
 }
 
 // Tell the world server the quartermaster is changing
-void CCharParty::IpcHelper::SetQuartermaster(const uint32 UniqueNo) const
+void CCharParty::IpcHelper::setQuartermaster(const uint32 UniqueNo) const
 {
     message::send(ipc::PartySetQuartermaster{
         .partyId = m_Party.getPartyId(),
@@ -77,7 +77,7 @@ void CCharParty::IpcHelper::SetQuartermaster(const uint32 UniqueNo) const
     });
 }
 
-void CCharParty::IpcHelper::SetQuartermaster(const std::string& charName) const
+void CCharParty::IpcHelper::setQuartermaster(const std::string& charName) const
 {
     message::send(ipc::PartySetQuartermaster{
         .partyId  = m_Party.getPartyId(),
@@ -86,7 +86,7 @@ void CCharParty::IpcHelper::SetQuartermaster(const std::string& charName) const
 }
 
 // Tell the world server we'd like to add a member
-void CCharParty::IpcHelper::AddMember(const uint32 UniqueNo, const PartyMemberType Type, const uint16 ZoneId) const
+void CCharParty::IpcHelper::addMember(const uint32 UniqueNo, const PartyMemberType Type) const
 {
     message::send(ipc::PartyAddMember{
         .partyId = m_Party.getPartyId(),
@@ -96,7 +96,7 @@ void CCharParty::IpcHelper::AddMember(const uint32 UniqueNo, const PartyMemberTy
 }
 
 // Tell the world server we'd like to remove a member
-void CCharParty::IpcHelper::RemoveMember(const uint32 UniqueNo) const
+void CCharParty::IpcHelper::removeMember(const uint32 UniqueNo) const
 {
     message::send(ipc::PartyRemoveMember{
         .partyId = m_Party.getPartyId(),
@@ -105,13 +105,13 @@ void CCharParty::IpcHelper::RemoveMember(const uint32 UniqueNo) const
 }
 
 // Tell the world server we'd like to notify a member they've been removed
-void CCharParty::IpcHelper::NotifyKick(const uint32 UniqueNo) const
+void CCharParty::IpcHelper::notifyKick(const uint32 UniqueNo) const
 {
-    message::send(ipc::PlayerKick{ .victimId = UniqueNo });
+    message::send(ipc::PartyKick{ .victimId = UniqueNo });
 }
 
 // Tell the world server we'd like to disband the party
-void CCharParty::IpcHelper::Disband() const
+void CCharParty::IpcHelper::disband() const
 {
     message::send(ipc::PartyDisband{ .partyId = m_Party.getPartyId() });
 }

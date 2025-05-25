@@ -26,7 +26,8 @@
 #include "character_cache.h"
 #include "colonization_system.h"
 #include "conquest_system.h"
-#include "party_system.h"
+#include "party/system.h"
+#include "party/world.h"
 #include "world_server.h"
 
 #include <concurrentqueue.h>
@@ -116,7 +117,7 @@ auto IPCServer::getIPPForZoneId(uint16 zoneId) -> std::optional<IPP>
     return std::nullopt;
 }
 
-auto IPCServer::getIPPsForParty(uint32 partyId) -> std::vector<IPP>
+auto IPCServer::getIPPsForParty(const uint32 partyId) -> std::vector<IPP>
 {
     TracyZoneScoped;
 
@@ -131,7 +132,7 @@ auto IPCServer::getIPPsForParty(uint32 partyId) -> std::vector<IPP>
             }
         }
 
-        return {uniqueIPPs.begin(), uniqueIPPs.end()};
+        return { uniqueIPPs.begin(), uniqueIPPs.end() };
     }
 
     return {};
@@ -237,18 +238,6 @@ auto IPCServer::getIPPsForAllZones() -> std::vector<IPP>
 // Message routing
 //
 
-void IPCServer::rerouteMessageToCharId(uint32 charId, const auto& message)
-{
-    TracyZoneScoped;
-
-    if (const auto maybeCharIPP = getIPPForCharId(charId))
-    {
-        const auto charIPP = *maybeCharIPP;
-        DebugIPCFmt("Message: -> rerouting to char<{}> on {}", charId, charIPP.toString());
-        sendMessage(charIPP, std::move(message));
-    }
-}
-
 void IPCServer::rerouteMessageToCharName(const std::string& charName, const auto& message)
 {
     TracyZoneScoped;
@@ -273,16 +262,7 @@ void IPCServer::rerouteMessageToZoneId(uint16 zoneId, const auto& message)
     }
 }
 
-void IPCServer::rerouteMessageToPartyMembers(uint32 partyId, const auto& message)
-{
-    TracyZoneScoped;
 
-    for (const auto& ipp : getIPPsForParty(partyId))
-    {
-        DebugIPCFmt("Message: -> rerouting to party<{}> on {}", partyId, ipp.toString());
-        sendMessage(ipp, message);
-    }
-}
 
 void IPCServer::rerouteMessageToAllianceMembers(uint32 allianceId, const auto& message)
 {
@@ -496,8 +476,6 @@ void IPCServer::handleMessage_AllianceDissolve(const IPP& ipp, const ipc::Allian
     // worldServer_.partySystem_->handleMessage(message);
 }
 
-
-
 void IPCServer::handleMessage_MessageStandard(const IPP& ipp, const ipc::MessageStandard& message)
 {
     TracyZoneScoped;
@@ -643,13 +621,6 @@ void IPCServer::handleMessage_SendPlayerToLocation(const IPP& ipp, const ipc::Se
     rerouteMessageToCharId(message.targetId, message);
 }
 
-void IPCServer::handleMessage_PartyCreate(const IPP& ipp, const ipc::PartyCreate& message) const
-{
-    TracyZoneScoped;
-
-    worldServer_.partySystem_->handle_PartyCreate(ipp, message);
-}
-
 void IPCServer::handleMessage_PartyAddMember(const IPP& ipp, const ipc::PartyAddMember& message) const
 {
     TracyZoneScoped;
@@ -657,7 +628,7 @@ void IPCServer::handleMessage_PartyAddMember(const IPP& ipp, const ipc::PartyAdd
     worldServer_.partySystem_->handle_PartyAddMember(ipp, message);
 }
 
-void IPCServer::handleMessage_PartyRemoveMember(const IPP& ipp, const ipc::PartyRemoveMember& message)
+void IPCServer::handleMessage_PartyRemoveMember(const IPP& ipp, const ipc::PartyRemoveMember& message) const
 {
     TracyZoneScoped;
 
@@ -671,7 +642,7 @@ void IPCServer::handleMessage_PartyDisband(const IPP& ipp, const ipc::PartyDisba
     worldServer_.partySystem_->handle_PartyDisband(ipp, message);
 }
 
-void IPCServer::handleMessage_PartySetLeader(const IPP& ipp, const ipc::PartySetLeader& message)
+void IPCServer::handleMessage_PartySetLeader(const IPP& ipp, const ipc::PartySetLeader& message) const
 {
     TracyZoneScoped;
 
@@ -694,18 +665,17 @@ void IPCServer::handleMessage_PartySetSyncTarget(const IPP& ipp, const ipc::Part
 
 void IPCServer::handleMessage_PartyUpdate(const IPP& ipp, const ipc::PartyUpdate& message) const
 {
-    // TODO: Use this to backfill information if we're recovering from a crash
     worldServer_.partySystem_->handle_PartyUpdate(ipp, message);
 }
 
-void IPCServer::handleMessage_PlayerKick(const IPP& ipp, const ipc::PlayerKick& message)
+void IPCServer::handleMessage_PartyKick(const IPP& ipp, const ipc::PartyKick& message)
 {
     TracyZoneScoped;
 
     rerouteMessageToCharId(message.victimId, message);
 }
 
-void IPCServer::handleMessage_PartySystemSync(const IPP& ipp, const ipc::PartySystemSync& message)
+void IPCServer::handleMessage_PartySystemSync(const IPP& ipp, const ipc::PartySystemSync& message) const
 {
     TracyZoneScoped;
 

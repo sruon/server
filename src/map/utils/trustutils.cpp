@@ -159,14 +159,6 @@ auto trustutils::SpawnTrust(CCharEntity* PMaster, uint32 TrustID) -> CTrustEntit
         return nullptr;
     }
 
-    if (!PMaster->hasParty())
-    {
-        message::send(ipc::PartyCreate{
-            .charId = PMaster->id,
-        });
-    }
-
-
     PMaster->PTrusts.insert(PMaster->PTrusts.end(), PTrust);
     PMaster->StatusEffectContainer->CopyConfrontationEffect(PTrust);
     PTrust->setBattleID(PMaster->getBattleID());

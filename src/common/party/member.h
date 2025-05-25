@@ -25,17 +25,16 @@
 
 enum class PartyMemberType : uint8;
 
-
 class PartyMember
 {
 public:
     PartyMember() = default;
-    PartyMember(const uint32 _UniqueNo, const PartyMemberType _type, const uint32 _ZoneId, std::string _Name, std::time_t _JoinedTime);
+    PartyMember(uint32 _UniqueNo, PartyMemberType _type, uint32 _ZoneId, std::string _Name, std::time_t _JoinedTime);
 
     auto getType() const -> PartyMemberType;
     auto getId() const -> uint32;
     auto getZone() const -> uint32;
-    void setZone(const uint16 zoneId);
+    void setZone(uint16 zoneId);
     auto getName() const -> const std::string&;
     auto getTimeSinceJoined() const -> std::chrono::seconds;
     auto getJoinedTime() const -> std::time_t;

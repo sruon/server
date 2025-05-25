@@ -98,7 +98,7 @@ void PartyContainer::disbandParty(const ipc::PartyDisband& message)
 void PartyContainer::reattachMember(const ipc::CharZoneIn& message)
 {
     // Find any party that have this char in them
-    for (auto& [partyId, party] : m_Parties)
+    for (const auto& party : m_Parties | std::views::values)
     {
         for (const auto& member : party->getMembers())
         {
@@ -110,7 +110,7 @@ void PartyContainer::reattachMember(const ipc::CharZoneIn& message)
                 party->applySync(member);
 
                 // Resync packets for everyone
-                party->BroadcastPartyPackets();
+                party->broadcastPartyPackets();
                 return;
             }
         }
@@ -122,7 +122,7 @@ auto PartyContainer::partiesSync() -> std::vector<ipc::PartyUpdate>
     std::vector<ipc::PartyUpdate> parties{};
     parties.reserve(m_Parties.size());
 
-    for (auto& [partyId, party] : m_Parties)
+    for (const auto& party : m_Parties | std::views::values)
     {
         parties.emplace_back(party->asIpcUpdate());
     }

@@ -5113,7 +5113,7 @@ namespace charutils
                 PChar->jobs.exp[PChar->GetMJob()] = GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) - 1;
                 if (PChar->hasParty() && PChar->getParty().getSyncTarget() == PChar)
                 {
-                    PChar->getParty().ipc().ClearSyncTarget(MsgStd::LevelSyncRemoveIneligibleExp);
+                    PChar->getParty().ipc().clearSyncTarget(MsgStd::LevelSyncRemoveIneligibleExp);
                 }
             }
             else
@@ -7299,40 +7299,7 @@ namespace charutils
 
         if (PChar->status == STATUS_TYPE::SHUTDOWN)
         {
-            if (PChar->hasParty())
-            {
-                PChar->getParty().ipc().RemoveMember(PChar->id);
-                // if (PChar->PParty->m_PAlliance != nullptr)
-                // {
-                //     if (PChar->PParty->GetLeader() == PChar)
-                //     {
-                //         if (PChar->PParty->HasOnlyOneMember())
-                //         {
-                //             if (PChar->PParty->m_PAlliance->hasOnlyOneParty())
-                //             {
-                //                 PChar->PParty->m_PAlliance->dissolveAlliance();
-                //             }
-                //             else
-                //             {
-                //                 PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
-                //             }
-                //         }
-                //         else
-                //         { // party leader logged off - will pass party lead
-                //             PChar->PParty->RemoveMember(PChar);
-                //         }
-                //     }
-                //     else
-                //     { // not party leader - just drop from party
-                //         PChar->PParty->RemoveMember(PChar);
-                //     }
-                // }
-                // else
-                // {
-                //     // normal party - just drop group
-                //     PChar->PParty->RemoveMember(PChar);
-                // }
-            }
+            // Party removal used to be handled here but the world server processes the ZoneOut event instead.
 
             if (PChar->shouldPetPersistThroughZoning())
             {

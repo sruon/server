@@ -3476,7 +3476,7 @@ void SmallPacket0x06F(MapSession* const PSession, CCharEntity* const PChar, CBas
                 //     }
                 // }
                 ShowDebug("Removing %s from party", PChar->getName());
-                PChar->getParty().ipc().RemoveMember(PChar->id);
+                PChar->getParty().ipc().removeMember(PChar->id);
                 ShowDebug("%s is removed from party", PChar->getName());
             }
             break;
@@ -3530,7 +3530,7 @@ void SmallPacket0x070(MapSession* const PSession, CCharEntity* const PChar, CBas
     {
         case 0:
             ShowDebug("Forwarding request: %s is disbanding the party (pcmd breakup)", PChar->getName());
-            PChar->getParty().ipc().Disband();
+            PChar->getParty().ipc().disband();
             break;
         case 5:
             // Alliances not handled yet
@@ -3588,7 +3588,7 @@ void SmallPacket0x071(MapSession* const PSession, CCharEntity* const PChar, CBas
                         // }
                     }
 
-                    PChar->getParty().ipc().RemoveMember(PVictim->id);
+                    PChar->getParty().ipc().removeMember(PVictim->id);
                     ShowDebug("%s has removed %s from party", PChar->getName(), PVictim->getName());
                 }
                 else
@@ -3614,7 +3614,7 @@ void SmallPacket0x071(MapSession* const PSession, CCharEntity* const PChar, CBas
                             // }
 
                             // Notify the player they were just kicked -- they are no longer in the DB and party/alliance reloads won't notify them.
-                            message::send(ipc::PlayerKick{
+                            message::send(ipc::PartyKick{
                                 .victimId = victimId,
                             });
                         }
@@ -3819,7 +3819,7 @@ void SmallPacket0x076(MapSession* const PSession, CCharEntity* const PChar, CBas
     if (PChar->hasParty())
     {
         // Send updates just to one char
-        PChar->getParty().BroadcastPartyPackets(PChar);
+        PChar->getParty().broadcastPartyPackets(PChar);
     }
     else
     {
@@ -3853,19 +3853,19 @@ void SmallPacket0x077(MapSession* const PSession, CCharEntity* const PChar, CBas
                 switch (permission)
                 {
                     case 0: // Leader change
-                        PChar->getParty().ipc().SetLeader(memberName);
+                        PChar->getParty().ipc().setLeader(memberName);
                         break;
                     case 4: // QM
-                        PChar->getParty().ipc().SetQuartermaster(memberName);
+                        PChar->getParty().ipc().setQuartermaster(memberName);
                         break;
                     case 5: // Lottery type
-                        PChar->getParty().ipc().SetQuartermaster(static_cast<uint32>(0));
+                        PChar->getParty().ipc().setQuartermaster(static_cast<uint32>(0));
                         break;
                     case 6: // Set sync
-                        PChar->getParty().ipc().SetSyncTarget(memberName);
+                        PChar->getParty().ipc().setSyncTarget(memberName);
                         break;
                     case 7: // Remove sync
-                        PChar->getParty().ipc().ClearSyncTarget(MsgStd::LevelSyncWillBeRemoved);
+                        PChar->getParty().ipc().clearSyncTarget(MsgStd::LevelSyncWillBeRemoved);
                         break;
                     default:
                         ShowError("SmallPacket0x077 : unknown permission <%.2X>", permission);

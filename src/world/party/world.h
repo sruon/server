@@ -19,9 +19,28 @@
 ===========================================================================
 */
 
-#include "party_system.h"
+#pragma once
 
-#include <common/ipc.h>
-#include <common/ipc_structs.h>
-#include <ipc_stubs.h>
+#include "common/cbasetypes.h"
+#include "common/ipc.h"
+#include "common/party/base.h"
 
+class IPCServer;
+
+enum class PartyMemberType : uint8;
+
+class WorldParty : public PartyBase
+{
+    IPCServer* m_IpcServer;
+
+public:
+    WorldParty(const ipc::PartyUpdate& message);
+    WorldParty(uint32 _LeaderUniqueNo);
+
+    bool setMemberZone(uint32 charId, uint16 zoneId);
+    bool setLeader(uint32_t UniqueNo);
+    bool setQuartermaster(uint32_t UniqueNo);
+    bool setSyncTarget(uint32_t UniqueNo);
+    bool addMember(uint32_t UniqueNo, PartyMemberType type, uint32 ZoneId);
+    bool removeMember(uint32 UniqueNo);
+};

@@ -36,23 +36,23 @@ public:
         return std::unique_ptr<IpcHelper>(new IpcHelper(party));
     }
 
-    void SetLeader(uint32 UniqueNo) const;
-    void SetLeader(const std::string& charName) const;
+    void setLeader(uint32 UniqueNo) const;
+    void setLeader(const std::string& charName) const;
 
-    void SetSyncTarget(const std::string& CharName) const;
-    void SetSyncTarget(uint32 UniqueNo) const;
-    void ClearSyncTarget(MsgStd Reason) const;
+    void setSyncTarget(const std::string& CharName) const;
+    void setSyncTarget(uint32 UniqueNo) const;
+    void clearSyncTarget(MsgStd Reason) const;
 
-    void SetQuartermaster(uint32 UniqueNo) const;
-    void SetQuartermaster(const std::string& charName) const;
+    void setQuartermaster(uint32 UniqueNo) const;
+    void setQuartermaster(const std::string& charName) const;
 
-    void AddMember(uint32 UniqueNo, PartyMemberType Type, uint16 ZoneId) const;
+    void addMember(uint32 UniqueNo, PartyMemberType Type) const;
 
-    void RemoveMember(uint32 UniqueNo) const;
+    void removeMember(uint32 UniqueNo) const;
 
-    void Disband() const;
+    void disband() const;
 
-    void NotifyKick(uint32 UniqueNo) const;
+    void notifyKick(uint32 UniqueNo) const;
 
 protected:
     IpcHelper(const CCharParty& party)

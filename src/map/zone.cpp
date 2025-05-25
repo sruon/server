@@ -1097,13 +1097,13 @@ void CZone::CharZoneOut(CCharEntity* PChar)
         {
             if (PChar->getParty().getSyncTarget() == PChar || PChar->getParty().getLeader() == PChar)
             {
-                PChar->getParty().ipc().ClearSyncTarget(MsgStd::LevelSyncDeactivateLeftArea);
+                PChar->getParty().ipc().clearSyncTarget(MsgStd::LevelSyncDeactivateLeftArea);
             }
             if (PChar->getParty().getSyncTarget() != nullptr)
             {
                 if (PChar->getParty().getMembers(PChar->getParty().getSyncTarget()->getZone()).size() < 2)
                 {
-                    PChar->getParty().ipc().ClearSyncTarget(MsgStd::LevelSyncRemoveTooFewMembers);
+                    PChar->getParty().ipc().clearSyncTarget(MsgStd::LevelSyncRemoveTooFewMembers);
                 }
             }
         }

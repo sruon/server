@@ -25,39 +25,36 @@ Copyright (c) 2025 LandSandBoat Dev Teams
 #include <alpaca/detail/options.h>
 
 // Tell Alpaca how to serialize the PartyMember class
-namespace alpaca
+namespace alpaca::detail
 {
-    namespace detail
+    template <options O, typename Container>
+    void to_bytes(Container& bytes, std::size_t& byte_index, const PartyMember& input)
     {
-        template <options O, typename Container>
-        void to_bytes(Container& bytes, std::size_t& byte_index, const PartyMember& input)
-        {
-            to_bytes_router<O, uint32>(input.getId(), bytes, byte_index);
-            to_bytes_router<O, std::time_t>(input.getJoinedTime(), bytes, byte_index);
-            to_bytes_router<O, PartyMemberType>(input.getType(), bytes, byte_index);
-            to_bytes_router<O, uint16>(input.getZone(), bytes, byte_index);
-            to_bytes_router<O, std::string>(input.getName(), bytes, byte_index);
-        }
+        to_bytes_router<O, uint32>(input.getId(), bytes, byte_index);
+        to_bytes_router<O, std::time_t>(input.getJoinedTime(), bytes, byte_index);
+        to_bytes_router<O, PartyMemberType>(input.getType(), bytes, byte_index);
+        to_bytes_router<O, uint16>(input.getZone(), bytes, byte_index);
+        to_bytes_router<O, std::string>(input.getName(), bytes, byte_index);
+    }
 
-        template <options O, typename Container>
-        bool from_bytes(PartyMember& output, Container& bytes, std::size_t& byte_index, std::size_t& end_index,
-                        std::error_code& error_code)
-        {
-            uint32          uniqueNo{};
-            std::time_t     joinedTime{};
-            PartyMemberType type{};
-            uint16          zoneId{};
-            std::string     name{};
+    template <options O, typename Container>
+    bool from_bytes(PartyMember& output, Container& bytes, std::size_t& byte_index, std::size_t& end_index,
+                    std::error_code& error_code)
+    {
+        uint32          uniqueNo{};
+        std::time_t     joinedTime{};
+        PartyMemberType type{};
+        uint16          zoneId{};
+        std::string     name{};
 
-            from_bytes_router<O, uint32>(uniqueNo, bytes, byte_index, end_index, error_code);
-            from_bytes_router<O, std::time_t>(joinedTime, bytes, byte_index, end_index, error_code);
-            from_bytes_router<O, PartyMemberType>(type, bytes, byte_index, end_index, error_code);
-            from_bytes_router<O, uint16>(zoneId, bytes, byte_index, end_index, error_code);
-            from_bytes_router<O, std::string>(name, bytes, byte_index, end_index, error_code);
+        from_bytes_router<O, uint32>(uniqueNo, bytes, byte_index, end_index, error_code);
+        from_bytes_router<O, std::time_t>(joinedTime, bytes, byte_index, end_index, error_code);
+        from_bytes_router<O, PartyMemberType>(type, bytes, byte_index, end_index, error_code);
+        from_bytes_router<O, uint16>(zoneId, bytes, byte_index, end_index, error_code);
+        from_bytes_router<O, std::string>(name, bytes, byte_index, end_index, error_code);
 
-            output = PartyMember(uniqueNo, type, zoneId, name, joinedTime);
+        output = PartyMember(uniqueNo, type, zoneId, name, joinedTime);
 
-            return true;
-        }
-    } // namespace detail
-} // namespace alpaca
+        return true;
+    }
+} // namespace alpaca::detail

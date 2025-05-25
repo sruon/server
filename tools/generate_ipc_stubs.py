@@ -30,13 +30,9 @@ IPC_STRUCT_NAMES = [
     "ChatMessageServerMessage",
     "ChatMessageCustom",
 
-    "PartyInvite",
-    "PartyInviteResponse",
-    "PartyDisband",
 
     "AllianceDissolve",
 
-    "PlayerKick",
 
     "MessageStandard",
     "MessageBasic",
@@ -61,7 +57,6 @@ IPC_STRUCT_NAMES = [
     "SendPlayerToLocation",
 
     "PartyUpdate",
-    "PartyCreate",
     "PartyAddMember",
     "PartyRemoveMember",
     "PartySetLeader",
@@ -69,6 +64,10 @@ IPC_STRUCT_NAMES = [
     "PartySetSyncTarget",
     "PartyChangeId",
     "PartySystemSync",
+    "PartyKick",
+    "PartyInvite",
+    "PartyInviteResponse",
+    "PartyDisband",
 ]
 
 

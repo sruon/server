@@ -54,12 +54,12 @@ public:
     auto GetFlagsForMember(const CCharEntity* PChar) const -> uint16;
 
     // Packets
-    void BroadcastPartyPackets(const CCharEntity* PSingle = nullptr);
+    void broadcastPartyPackets(const CCharEntity* PSingle = nullptr);
     void chatMessage(const ipc::ChatMessageParty& message) const;
     void chatMessage(const ipc::ChatMessageAlliance& message) const;
 
     void pushPacket(uint32 senderID, uint16 ZoneID, const std::unique_ptr<CBasicPacket>& packet) const;
-    void pushEffectsPacket(CCharEntity* PChar);
+    void pushEffectsPacket(CCharEntity* PChar) const;
 
     // Members retrieval
     auto getMembers() const -> std::vector<CCharEntity*>;
@@ -84,7 +84,7 @@ private:
     void disableSync(const CCharEntity* PChar) const;
 
     void update(const ipc::PartyUpdate& message);
-    void addMember(PartyMemberData& data);
+    void addMember(const PartyMember& member);
     void delMember(const PartyMember& member);
 
     std::unique_ptr<IpcHelper> m_pIpcHelper;
