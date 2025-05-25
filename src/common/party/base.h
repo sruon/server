@@ -31,10 +31,11 @@ namespace ipc
     struct PartyUpdate;
 }
 
-enum class PartyMemberType : uint8
+struct PartyDiff
 {
-    Player,
-    Trust,
+    std::vector<PartyMemberRef>                            disappeared; // In a but not in b
+    std::vector<PartyMemberRef>                            appeared;    // In b but not in a
+    std::vector<std::pair<PartyMemberRef, PartyMemberRef>> changed;     // Different content, same UniqueNo (old, new)
 };
 
 class AllianceBase
@@ -64,9 +65,10 @@ public:
     // Members retrieval
     auto getMemberById(uint32 UniqueNo) const -> std::optional<std::reference_wrapper<const PartyMember>>;
     auto getMemberByName(const std::string& memberName) const -> std::optional<std::reference_wrapper<const PartyMember>>;
-    auto getMembers(const PartyMemberFilter& filter = {}) const -> std::vector<PartyMember>;
-    auto getPlayers() const -> std::vector<PartyMember>;
-    auto getTrusts() const -> std::vector<PartyMember>;
+    auto getMembers(const PartyMemberFilter& filter = {}) -> std::vector<std::reference_wrapper<PartyMember>>;
+    auto getMembers(const PartyMemberFilter& filter = {}) const -> std::vector<std::reference_wrapper<const PartyMember>>;
+    auto getPlayers() const -> std::vector<std::reference_wrapper<const PartyMember>>;
+    auto getTrusts() const -> std::vector<std::reference_wrapper<const PartyMember>>;
 
     auto getLeader() const -> std::optional<std::reference_wrapper<const PartyMember>>;
     auto getQuartermaster() const -> std::optional<std::reference_wrapper<const PartyMember>>;
@@ -84,6 +86,7 @@ public:
     auto ForEveryAllianceMember(std::function<void(const PartyMember&)> func) -> void;
 
     auto asIpcUpdate() const -> ipc::PartyUpdate;
+    auto diff(const ipc::PartyUpdate& other) const -> PartyDiff;
 
     // TODO: protected/private?
     bool reassignLeader();

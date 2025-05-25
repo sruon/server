@@ -23,6 +23,8 @@
 
 #include "party/world.h"
 
+class WorldServer;
+
 // Retrieve a couple of information about a character from database to make decisions.
 class PartySystem
 {

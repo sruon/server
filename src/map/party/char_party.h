@@ -23,6 +23,7 @@
 
 #include "common/cbasetypes.h"
 #include "common/ipc.h"
+#include "common/party/base.h"
 
 class CCharEntity;
 class CBattleEntity;
@@ -49,6 +50,8 @@ public:
     }
 
     ~CCharParty();
+    void refreshSync(CCharEntity* PChar) const;
+    void refreshSync() const;
 
     // Helpers
     auto GetFlagsForMember(const CCharEntity* PChar) const -> uint16;
@@ -62,8 +65,7 @@ public:
     void pushEffectsPacket(CCharEntity* PChar) const;
 
     // Members retrieval
-    auto getMembers() const -> std::vector<CCharEntity*>;
-    auto getMembers(const uint16 zoneId) const -> std::vector<CCharEntity*>;
+    auto getMembers(const PartyMemberFilter filter = {}) const -> std::vector<CCharEntity*>;
     auto getLeader() const -> CCharEntity*;
     auto getSyncTarget() const -> CCharEntity*;
     auto getQuartermaster() const -> CCharEntity*;

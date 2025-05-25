@@ -104,10 +104,13 @@ void CCharParty::IpcHelper::removeMember(const uint32 UniqueNo) const
     });
 }
 
-// Tell the world server we'd like to notify a member they've been removed
-void CCharParty::IpcHelper::notifyKick(const uint32 UniqueNo) const
+// Tell the world server we'd like to remove a member
+void CCharParty::IpcHelper::removeMember(const std::string& charName) const
 {
-    message::send(ipc::PartyKick{ .victimId = UniqueNo });
+    message::send(ipc::PartyRemoveMember{
+        .partyId  = m_Party.getPartyId(),
+        .charName = std::move(charName),
+    });
 }
 
 // Tell the world server we'd like to disband the party

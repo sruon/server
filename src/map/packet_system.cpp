@@ -3455,29 +3455,11 @@ void SmallPacket0x06F(MapSession* const PSession, CCharEntity* const PChar, CBas
         {
             case INVITE_PARTY: // party - anyone may remove themself from party regardless of leadership or alliance
             {
-                // if (PChar->PParty->m_PAlliance &&
-                //     PChar->PParty->HasOnlyOneMember()) // single member alliance parties must be removed from alliance before disband
-                // {
-                //     ShowDebug("%s party size is one", PChar->getName());
-                //
-                //     if (PChar->PParty->m_PAlliance->hasOnlyOneParty()) // if there is only 1 party then dissolve alliance
-                //     {
-                //         ShowDebug("%s alliance size is one party", PChar->getName());
-                //
-                //         PChar->PParty->m_PAlliance->dissolveAlliance();
-                //         ShowDebug("%s alliance is dissolved", PChar->getName());
-                //     }
-                //     else
-                //     {
-                //         ShowDebug("Removing %s party from alliance", PChar->getName());
-                //
-                //         PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
-                //         ShowDebug("%s party is removed from alliance", PChar->getName());
-                //     }
-                // }
-                ShowDebug("Removing %s from party", PChar->getName());
-                PChar->getParty().ipc().removeMember(PChar->id);
-                ShowDebug("%s is removed from party", PChar->getName());
+                // TODO: This should not need special handling for alliances but double check
+                if (PChar->hasParty())
+                {
+                    PChar->getParty().ipc().removeMember(PChar->id);
+                }
             }
             break;
             // case INVITE_ALLIANCE: // alliance - any party leader in alliance may remove their party
@@ -3529,8 +3511,11 @@ void SmallPacket0x070(MapSession* const PSession, CCharEntity* const PChar, CBas
     switch (data.ref<uint8>(0x04))
     {
         case 0:
-            ShowDebug("Forwarding request: %s is disbanding the party (pcmd breakup)", PChar->getName());
-            PChar->getParty().ipc().disband();
+            if (PChar->hasParty() && PChar->getParty().getLeader() == PChar)
+            {
+                ShowDebug("Forwarding request: %s is disbanding the party (pcmd breakup)", PChar->getName());
+                PChar->getParty().ipc().disband();
+            }
             break;
         case 5:
             // Alliances not handled yet
@@ -3561,65 +3546,9 @@ void SmallPacket0x071(MapSession* const PSession, CCharEntity* const PChar, CBas
     {
         case 0: // party - party leader may remove member of his own party
         {
-            // TODO: Move all of this to world server so the logic can be simplified
             if (PChar->hasParty() && PChar->getParty().getLeader() == PChar)
             {
-                CCharEntity* PVictim = PChar->getParty().getMemberByName(victimName);
-                if (PVictim)
-                {
-                    ShowDebug("%s is trying to kick %s from party", PChar->getName(), PVictim->getName());
-                    if (PVictim == PChar) // using kick on yourself, let's borrow the logic from /pcmd leave to prevent alliance crash
-                    {
-                        // if (PChar->PParty->m_PAlliance &&
-                        //     PChar->PParty->HasOnlyOneMember()) // single member alliance parties must be removed from alliance before disband
-                        // {
-                        //     if (PChar->PParty->m_PAlliance->hasOnlyOneParty()) // if there is only 1 party then dissolve alliance
-                        //     {
-                        //         ShowDebug("One party in alliance, %s wants to dissolve the alliance", PChar->getName());
-                        //         PChar->PParty->m_PAlliance->dissolveAlliance();
-                        //         ShowDebug("%s has dissolved the alliance", PChar->getName());
-                        //     }
-                        //     else
-                        //     {
-                        //         ShowDebug("%s wants to remove their party from the alliance", PChar->getName());
-                        //         PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
-                        //         ShowDebug("%s party is removed from the alliance", PChar->getName());
-                        //     }
-                        // }
-                    }
-
-                    PChar->getParty().ipc().removeMember(PVictim->id);
-                    ShowDebug("%s has removed %s from party", PChar->getName(), PVictim->getName());
-                }
-                else
-                {
-                    if (const auto victimId = charutils::getCharIdFromName(victimName))
-                    {
-                        const auto rset = db::preparedStmt("DELETE FROM accounts_parties WHERE partyid = ? AND charid = ?", PChar->id, victimId);
-                        if (rset && rset->rowsAffected())
-                        {
-                            ShowDebug("%s has removed %s from party", PChar->getName(), victimName);
-
-                            // if (PChar->PParty && PChar->PParty->m_PAlliance)
-                            // {
-                            //     message::send(ipc::AllianceReload{
-                            //         .allianceId = PChar->PParty->m_PAlliance->m_AllianceID,
-                            //     });
-                            // }
-                            // else // No alliance, notify party.
-                            // {
-                            //     message::send(ipc::PartyReload{
-                            //         .partyId = PChar->PParty->GetPartyID(),
-                            //     });
-                            // }
-
-                            // Notify the player they were just kicked -- they are no longer in the DB and party/alliance reloads won't notify them.
-                            message::send(ipc::PartyKick{
-                                .victimId = victimId,
-                            });
-                        }
-                    }
-                }
+                PChar->getParty().ipc().removeMember(victimName);
             }
         }
         break;
@@ -3862,6 +3791,16 @@ void SmallPacket0x077(MapSession* const PSession, CCharEntity* const PChar, CBas
                         PChar->getParty().ipc().setQuartermaster(static_cast<uint32>(0));
                         break;
                     case 6: // Set sync
+                        // TODO: This should be handled by the world server, but status effects are not saved reliably.
+                        for (const auto& member : PChar->getParty().getMembers({ .zoneId = PChar->getZone() }))
+                        {
+                            if (member->StatusEffectContainer->HasStatusEffect({ EFFECT_LEVEL_RESTRICTION, EFFECT_LEVEL_SYNC, EFFECT_SJ_RESTRICTION, EFFECT_CONFRONTATION, EFFECT_BATTLEFIELD }))
+                            {
+                                PChar->pushPacket<CMessageBasicPacket>(PChar, PChar, 0, 0, MsgStd::LevelSyncPreventedByStatus);
+                                return;
+                            }
+                        }
+
                         PChar->getParty().ipc().setSyncTarget(memberName);
                         break;
                     case 7: // Remove sync

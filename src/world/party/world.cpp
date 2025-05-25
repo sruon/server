@@ -53,9 +53,9 @@ bool WorldParty::setMemberZone(const uint32 charId, const uint16 zoneId)
 
     for (auto& member : getMembers())
     {
-        if (member.getId() == charId)
+        if (member.get().getId() == charId)
         {
-            member.setZone(zoneId);
+            member.get().setZone(zoneId);
             setDirty(true);
             return true;
         }
@@ -68,7 +68,7 @@ bool WorldParty::setLeader(uint32_t UniqueNo)
 {
     for (auto& member : getMembers())
     {
-        if (member.getId() == UniqueNo)
+        if (member.get().getId() == UniqueNo)
         {
             m_LeaderUniqueNo = UniqueNo;
             m_PartyId        = UniqueNo;
@@ -94,7 +94,7 @@ bool WorldParty::setQuartermaster(uint32_t UniqueNo)
 
     for (auto& member : getMembers())
     {
-        if (member.getId() == UniqueNo)
+        if (member.get().getId() == UniqueNo)
         {
             m_QuartermasterUniqueNo = UniqueNo;
             ShowInfoFmt("Quartermaster set to UniqueNo: {}", UniqueNo);
@@ -119,7 +119,7 @@ bool WorldParty::setSyncTarget(uint32_t UniqueNo)
 
     for (auto& member : getMembers())
     {
-        if (member.getId() == UniqueNo)
+        if (member.get().getId() == UniqueNo)
         {
             m_SyncTargetUniqueNo = UniqueNo;
             ShowInfoFmt("Sync target set to UniqueNo: {}", UniqueNo);
@@ -136,7 +136,7 @@ bool WorldParty::addMember(uint32_t UniqueNo, PartyMemberType type, const uint32
 {
     for (const auto& member : getMembers())
     {
-        if (member.getId() == UniqueNo)
+        if (member.get().getId() == UniqueNo)
         {
             ShowWarningFmt("Member with UniqueNo: {} already exists in the party", UniqueNo);
             return false;
@@ -170,7 +170,7 @@ bool WorldParty::removeMember(uint32 UniqueNo)
 {
     for (const auto& member : getMembers())
     {
-        if (member.getId() == UniqueNo)
+        if (member.get().getId() == UniqueNo)
         {
             std::erase_if(m_Members, [UniqueNo](const PartyMember& vecMember)
                           { return vecMember.getId() == UniqueNo; });
@@ -179,26 +179,7 @@ bool WorldParty::removeMember(uint32 UniqueNo)
             // If no eligible member, we need to disband the party
             if (m_LeaderUniqueNo == UniqueNo)
             {
-                if (!m_Members.empty())
-                {
-                    // Find member with oldest JoinedTime
-                    const auto oldest = std::ranges::min_element(m_Members,
-                                                         [](const PartyMember& a, const PartyMember& b)
-                                                         {
-                                                             return a.getTimeSinceJoined() < b.getTimeSinceJoined();
-                                                         });
-
-                    m_LeaderUniqueNo = oldest->getId();
-                    m_PartyId        = m_LeaderUniqueNo;
-                    ShowInfoFmt("Leader reassigned to UniqueNo: {}", oldest->getId());
-                }
-                else
-                {
-                    // Handle empty members case
-                    m_LeaderUniqueNo = 0; // or some default/invalid value
-                    m_PartyId        = 0;
-                    ShowInfoFmt("No members available for leader reassignment");
-                }
+                reassignLeader();
             }
 
             if (m_QuartermasterUniqueNo == UniqueNo)

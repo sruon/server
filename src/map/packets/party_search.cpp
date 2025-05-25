@@ -25,7 +25,7 @@
 
 #include "party/char_party.h"
 
-CPartySearchPacket::CPartySearchPacket(CCharEntity* PChar)
+CPartySearchPacket::CPartySearchPacket(const CCharEntity* PChar)
 {
     this->setType(0xE1);
     this->setSize(0x08);

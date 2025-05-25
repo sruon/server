@@ -104,11 +104,10 @@ namespace blueutils
         std::vector<CCharEntity*> PBlueMages;
         auto                      AddBlueMages = [&PMob, &PBlueMages](const CCharParty& PParty)
         {
-            for (const auto& member : PParty.getMembers())
+            for (const auto& member : PParty.getMembers({ .zoneId = PMob->getZone() }))
             {
                 if (member &&
-                    member->GetMJob() == JOB_BLU &&
-                    member->getZone() == PMob->getZone())
+                    member->GetMJob() == JOB_BLU)
                 {
                     PBlueMages.emplace_back(member);
                 }

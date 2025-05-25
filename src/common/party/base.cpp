@@ -134,26 +134,40 @@ auto PartyBase::getFlagsForMember(const PartyMember& PMember) const -> uint16
     return static_cast<uint16>(flags);
 }
 
-auto PartyBase::getMembers(const PartyMemberFilter& filter) const -> std::vector<PartyMember>
+auto PartyBase::getMembers(const PartyMemberFilter& filter) -> std::vector<std::reference_wrapper<PartyMember>>
 {
-    std::vector<PartyMember> result;
-    for (const auto& member : m_Members)
+    std::vector<std::reference_wrapper<PartyMember>> result;
+    for (auto& member : m_Members)
     {
         if (filter.matches(member))
         {
-            result.push_back(member);
+            result.push_back(std::ref(member));
         }
     }
 
     return result;
 }
 
-auto PartyBase::getPlayers() const -> std::vector<PartyMember>
+auto PartyBase::getMembers(const PartyMemberFilter& filter) const -> std::vector<std::reference_wrapper<const PartyMember>>
+{
+    std::vector<std::reference_wrapper<const PartyMember>> result;
+    for (const auto& member : m_Members)
+    {
+        if (filter.matches(member))
+        {
+            result.push_back(std::ref(member));
+        }
+    }
+
+    return result;
+}
+
+auto PartyBase::getPlayers() const -> std::vector<std::reference_wrapper<const PartyMember>>
 {
     return getMembers({ .type = PartyMemberType::Player });
 }
 
-auto PartyBase::getTrusts() const -> std::vector<PartyMember>
+auto PartyBase::getTrusts() const -> std::vector<std::reference_wrapper<const PartyMember>>
 {
     return getMembers({ .type = PartyMemberType::Trust });
 }
@@ -237,6 +251,10 @@ bool PartyBase::reassignLeader()
             setDirty(true);
             return true;
         }
+
+        m_LeaderUniqueNo = 0;
+        m_PartyId        = 0;
+        ShowWarningFmt("No eligible members found to reassign leader.");
     }
 
     return false;
@@ -254,28 +272,28 @@ auto PartyBase::ForEveryAllianceMember(std::function<void(const PartyMember&)> f
 
 auto PartyBase::getMemberById(const uint32 UniqueNo) const -> std::optional<std::reference_wrapper<const PartyMember>>
 {
-    for (auto& member : getMembers())
-    {
-        if (member.getId() == UniqueNo)
+    // clang-format off
+    const auto it = std::ranges::find_if(m_Members,
+        [UniqueNo](const PartyMember& member)
         {
-            return std::ref(member);
-        }
-    }
+            return member.getId() == UniqueNo;
+        });
+    // clang-format on
 
-    return std::nullopt;
+    return it != m_Members.end() ? std::make_optional(std::ref(*it)) : std::nullopt;
 }
 
 auto PartyBase::getMemberByName(const std::string& memberName) const -> std::optional<std::reference_wrapper<const PartyMember>>
 {
-    for (auto& member : getMembers())
-    {
-        if (member.getName() == memberName)
+    // clang-format off
+    const auto it = std::ranges::find_if(m_Members,
+        [&memberName](const PartyMember& member)
         {
-            return std::ref(member);
-        }
-    }
+            return member.getName() == memberName;
+        });
+    // clang-format on
 
-    return std::nullopt;
+    return it != m_Members.end() ? std::make_optional(std::ref(*it)) : std::nullopt;
 }
 
 auto PartyBase::asIpcUpdate() const -> ipc::PartyUpdate
@@ -287,4 +305,51 @@ auto PartyBase::asIpcUpdate() const -> ipc::PartyUpdate
         .syncTargetUniqueNo    = m_SyncTargetUniqueNo,
         .members               = m_Members,
     };
+}
+
+auto PartyBase::diff(const ipc::PartyUpdate& other) const -> PartyDiff
+{
+    PartyDiff result;
+
+    std::unordered_map<uint32, PartyMemberRef> oldMap{};
+    std::unordered_map<uint32, PartyMemberRef> newMap{};
+
+    for (const auto& member : getMembers())
+    {
+        oldMap.emplace(member.get().getId(), member);
+    }
+
+    for (const auto& member : other.members)
+    {
+        newMap.emplace(member.getId(), member);
+    }
+
+    for (auto& [id, oldMember] : oldMap)
+    {
+        if (!newMap.contains(id))
+        {
+            result.disappeared.emplace_back(oldMember);
+        }
+    }
+
+    for (auto& [id, newMember] : newMap)
+    {
+        if (!oldMap.contains(id))
+        {
+            result.appeared.emplace_back(newMember);
+        }
+    }
+
+    for (const auto& [id, newMember] : newMap)
+    {
+        if (auto oldIt = oldMap.find(id); oldIt != oldMap.end())
+        {
+            if (const PartyMember& oldMember = oldIt->second; oldMember != newMember)
+            {
+                result.changed.emplace_back(oldMember, newMember);
+            }
+        }
+    }
+
+    return result;
 }

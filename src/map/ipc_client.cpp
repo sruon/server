@@ -627,19 +627,8 @@ void IPCClient::handleMessage_PartyInvite(const IPP& ipp, const ipc::PartyInvite
 void IPCClient::handleMessage_PartyInviteResponse(const IPP& ipp, const ipc::PartyInviteResponse& message)
 {
     TracyZoneScoped;
-    uint16 zoneId = 0;
 
-    // PInviter is on this map process but PInvitee might not be. Ask DB for their current zone.
-    CCharEntity* PInviter = zoneutils::GetChar(message.inviterId);
-    const auto   rset     = db::preparedStmt("SELECT pos_zone FROM chars "
-                                                   "WHERE charid = ?",
-                                             message.inviteeId);
-    if (rset && rset->rowsCount() && rset->next())
-    {
-        zoneId = rset->get<uint16>("pos_zone");
-    }
-
-    if (PInviter)
+    if (CCharEntity* PInviter = zoneutils::GetChar(message.inviterId))
     {
         if (message.inviteAnswer == 0)
         {
@@ -705,18 +694,6 @@ void IPCClient::handleMessage_AllianceDissolve(const IPP& ipp, const ipc::Allian
     //     PAlliance->dissolveAlliance(false);
     // }
     // clang-format on
-}
-
-void IPCClient::handleMessage_PlayerKick(const IPP& ipp, const ipc::PartyKick& message)
-{
-    TracyZoneScoped;
-
-    if (CCharEntity* PChar = zoneutils::GetChar(message.victimId))
-    {
-        PChar->pushPacket<CPartyDefinePacket>(PChar, nullptr);
-        PChar->pushPacket<CPartyMemberUpdatePacket>(PChar);
-        PChar->pushPacket<CCharStatusPacket>(PChar);
-    }
 }
 
 void IPCClient::handleMessage_PartyChangeId(const IPP& ipp, const ipc::PartyChangeId& message)

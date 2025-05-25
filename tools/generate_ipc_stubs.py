@@ -64,7 +64,6 @@ IPC_STRUCT_NAMES = [
     "PartySetSyncTarget",
     "PartyChangeId",
     "PartySystemSync",
-    "PartyKick",
     "PartyInvite",
     "PartyInviteResponse",
     "PartyDisband",

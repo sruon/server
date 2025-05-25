@@ -20,9 +20,13 @@
 */
 
 #include "char_party.h"
+
+#include "common/party/base.h"
 #include "common/party/flags.h"
 #include "entities/trustentity.h"
+#include "job_points.h"
 #include "latent_effect_container.h"
+#include "packets/char_abilities.h"
 #include "packets/char_status.h"
 #include "packets/char_sync.h"
 #include "packets/menu_config.h"
@@ -30,6 +34,7 @@
 #include "packets/party_effects.h"
 #include "packets/party_member_update.h"
 #include "status_effect_container.h"
+#include "utils/blueutils.h"
 #include "utils/charutils.h"
 #include "utils/jailutils.h"
 #include "utils/zoneutils.h"
@@ -38,11 +43,6 @@ CCharParty::CCharParty(const ipc::PartyUpdate& message)
 : PartyBase(message)
 {
     m_pIpcHelper = IpcHelper::Create(*this);
-
-    for (const auto& member : message.members)
-    {
-        addMember(member);
-    }
 
     broadcastPartyPackets();
 }
@@ -54,6 +54,73 @@ CCharParty::~CCharParty()
     {
         ShowErrorFmt("CCharParty destructor called with members.");
         member->clearParty();
+    }
+}
+
+// If the sync target levelled up/down, recalculate everything
+// TODO: No idea why this _has so much more code_ compared to applySync
+void CCharParty::refreshSync(CCharEntity* PChar) const
+{
+    auto* PSync = getSyncTarget();
+
+    if (!PSync)
+    {
+        return;
+    }
+
+    // TODO: may need a zone check
+    uint8 syncLevel = PSync->jobs.job[PSync->GetMJob()];
+
+    if (syncLevel < 10)
+    {
+        ipc().clearSyncTarget(MsgStd::LevelSyncRemoveLowLevel);
+    }
+
+    uint8 NewMLevel = 0;
+
+    if (syncLevel < PChar->jobs.job[PChar->GetMJob()])
+    {
+        NewMLevel = syncLevel;
+    }
+    else
+    {
+        NewMLevel = PChar->jobs.job[PChar->GetMJob()];
+    }
+
+    if (PChar->GetMLevel() != NewMLevel)
+    {
+        charutils::RemoveAllEquipMods(PChar);
+        PChar->m_LevelRestriction = NewMLevel;
+        PChar->SetMLevel(NewMLevel);
+        PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
+        charutils::ApplyAllEquipMods(PChar);
+
+        blueutils::ValidateBlueSpells(PChar);
+        jobpointutils::RefreshGiftMods(PChar);
+        charutils::BuildingCharSkillsTable(PChar);
+        charutils::CalculateStats(PChar);
+        charutils::BuildingCharTraitsTable(PChar);
+        charutils::BuildingCharAbilityTable(PChar);
+        charutils::BuildingCharWeaponSkills(PChar);
+        charutils::CheckValidEquipment(PChar);
+        PChar->pushPacket<CCharAbilitiesPacket>(PChar);
+    }
+
+    PChar->pushPacket<CMessageBasicPacket>(PChar, PChar, 0, syncLevel, MsgStd::LevelSyncActivated);
+}
+
+void CCharParty::refreshSync() const
+{
+    const auto* PSync = getSyncTarget();
+
+    if (!PSync)
+    {
+        return;
+    }
+
+    for (const auto& member : getMembers({ .zoneId = PSync->getZone() }))
+    {
+        refreshSync(member);
     }
 }
 
@@ -150,79 +217,30 @@ void CCharParty::update(const ipc::PartyUpdate& message)
         changes = true;
     }
 
-    // Party size changed
-    if (message.members.size() != m_Members.size())
+    // Check if members have changed
+    auto membersDiff = diff(message);
+
+    for (const auto& member : membersDiff.appeared)
     {
-        std::unordered_set<uint32> oldIds, newIds;
-
-        // Extract old IDs
-        for (const auto& member : m_Members)
-        {
-            oldIds.insert(member.getId());
-        }
-
-        // Extract new IDs
-        for (const auto& member : message.members)
-        {
-            newIds.insert(member.getId());
-        }
-
-        // Find added IDs (in new but not in old)
-        for (const uint32 id : newIds)
-        {
-            if (!oldIds.contains(id))
-            {
-                for (const auto& member : message.members)
-                {
-                    if (member.getId() == id)
-                    {
-                        //                        addMember(member);
-                        changes = true;
-                        break;
-                    }
-                }
-            }
-        }
-
-        // Find deleted IDs (in old but not in new)
-        for (const uint32 id : oldIds)
-        {
-            if (!newIds.contains(id))
-            {
-                auto deletedMember = std::ranges::find_if(m_Members,
-                                                          [id](const auto& member)
-                                                          { return member.getId() == id; });
-                if (deletedMember != m_Members.end())
-                {
-                    ShowInfoFmt("Removing member with ID: {}", deletedMember->getId());
-                    delMember(*deletedMember);
-                    changes = true;
-                }
-            }
-        }
+        addMember(member);
+        changes = true;
     }
 
-    // Deeper party member update checks
-    // clang-format off
-    for (auto& knownMember : m_Members)
+    for (const auto& member : membersDiff.disappeared)
     {
-        for (const auto& updatedMember : message.members)
-        {
-            if (updatedMember.getId() == knownMember.getId())
-            {
-                // Check if a party member changed zone
-                if (updatedMember.getZone() != knownMember.getZone())
-                {
-                    ShowInfoFmt("Member with ID: {} changed zone from {} to {}", knownMember.getId(), knownMember.getZone(), updatedMember.getZone());
-                    knownMember.setZone(updatedMember.getZone());
-                    // Should reattach party to the new CChar if on this process
-                    // but the PChar may not yet ready...
-                    changes = true;
-                }
-            }
-        }
+        delMember(member);
+        changes = true;
     }
-    // clang-format on
+
+    for (const auto& [oldMember, newMember] : membersDiff.changed)
+    {
+        std::ranges::replace_if(m_Members,
+            [&oldMember](const PartyMember& member) {
+                return member.getId() == oldMember.get().getId();
+            },
+            newMember.get());
+        changes = true;
+    }
 
     if (changes)
     {
@@ -304,7 +322,7 @@ void CCharParty::broadcastPartyPackets(const CCharEntity* PSingle)
                 // 3. They are always attached to the leader.
                 // TODO: This is not how retail updates trusts but this is how LSB worked before the rewrite.
 
-                if (const auto PLeader = getLeader(); PLeader->getZone() == PChar->getZone())
+                if (const auto PLeader = getLeader(); PLeader && PLeader->getZone() == PChar->getZone())
                 {
                     // PLeader is on this process and in the same zone as PChar
                     auto maybeTrust = std::ranges::find_if(PLeader->PTrusts,
@@ -332,30 +350,13 @@ void CCharParty::broadcastPartyPackets(const CCharEntity* PSingle)
 
 // Returns a vector of CCharEntity present on this map server
 // This is not guaranteed to be the full set of party members.
-auto CCharParty::getMembers() const -> std::vector<CCharEntity*>
+auto CCharParty::getMembers(const PartyMemberFilter filter) const -> std::vector<CCharEntity*>
 {
     auto result = std::vector<CCharEntity*>{};
 
-    for (const auto& member : PartyBase::getMembers())
+    for (const auto& member : PartyBase::getMembers(filter))
     {
-        if (auto* PChar = zoneutils::GetChar(member.getId()))
-        {
-            result.push_back(PChar);
-        }
-    }
-
-    return result;
-}
-
-// Returns a vector of CCharEntity present on this map server in the given zone.
-// This is not guaranteed to be the full set of party members.
-auto CCharParty::getMembers(const uint16 zoneId) const -> std::vector<CCharEntity*>
-{
-    auto result = std::vector<CCharEntity*>{};
-
-    for (const auto& member : PartyBase::getMembers({ .zoneId = zoneId }))
-    {
-        if (auto* PChar = zoneutils::GetChar(member.getId()))
+        if (auto* PChar = zoneutils::GetChar(member.get().getId()))
         {
             result.push_back(PChar);
         }
@@ -368,9 +369,11 @@ auto CCharParty::getMembers(const uint16 zoneId) const -> std::vector<CCharEntit
 // This only works if the leader is on the same map process
 auto CCharParty::getLeader() const -> CCharEntity*
 {
-    if (const auto found = PartyBase::getLeader())
+    if (const auto maybeLeader = PartyBase::getLeader())
     {
-        if (auto* PLeader = zoneutils::GetChar(found->get().getId()))
+        const PartyMember& leader = maybeLeader.value();
+
+        if (auto* PLeader = zoneutils::GetChar(leader.getId()))
         {
             return PLeader;
         }
@@ -383,9 +386,11 @@ auto CCharParty::getLeader() const -> CCharEntity*
 // This only works if the quartermaster is on the same map process
 auto CCharParty::getQuartermaster() const -> CCharEntity*
 {
-    if (const auto found = PartyBase::getQuartermaster())
+    if (const auto maybeQm = PartyBase::getQuartermaster())
     {
-        if (auto* PQm = zoneutils::GetChar(found->get().getId()))
+        const PartyMember& qm = maybeQm.value();
+
+        if (auto* PQm = zoneutils::GetChar(qm.getId()))
         {
             return PQm;
         }
@@ -398,9 +403,11 @@ auto CCharParty::getQuartermaster() const -> CCharEntity*
 // This only works if the sync target is on the same map process
 auto CCharParty::getSyncTarget() const -> CCharEntity*
 {
-    if (const auto found = PartyBase::getSyncTarget())
+    if (const auto maybeSync = PartyBase::getSyncTarget())
     {
-        if (auto* PSync = zoneutils::GetChar(found->get().getId()))
+        const PartyMember& sync = maybeSync.value();
+
+        if (auto* PSync = zoneutils::GetChar(sync.getId()))
         {
             return PSync;
         }
@@ -456,24 +463,25 @@ void CCharParty::ForEveryMemberWithTrusts(const std::function<void(CBattleEntity
         {
             if (PLeader)
             {
-                auto maybeTrust = std::ranges::find_if(PLeader->PTrusts,
-                                               [member](const CTrustEntity* PTrust)
-                                               {
-                                                   return PTrust->id == member.getId();
-                                               });
+                // clang-format off
+                const auto maybeTrust = std::ranges::find_if(PLeader->PTrusts,
+                   [member](const CTrustEntity* PTrust)
+                   {
+                       return PTrust->id == member.getId();
+                   });
+                // clang-format on
                 if (maybeTrust != PLeader->PTrusts.end())
                 {
                     func(static_cast<CBattleEntity*>(*maybeTrust));
                 }
             }
-        }
-    });
+        } });
     // clang-format on
 }
 
 void CCharParty::pushEffectsPacket(CCharEntity* PChar) const
 {
-    PChar->pushPacket<CPartyEffectsPacket>(PChar, getMembers(PChar->getZone()));
+    PChar->pushPacket<CPartyEffectsPacket>(PChar, getMembers({ .zoneId = PChar->getZone() }));
 }
 
 // Send a packet to all members of the group if the zone is specified as 0
@@ -518,14 +526,15 @@ void CCharParty::setPartyId(const uint32 partyId)
     m_PartyId = partyId;
 }
 
-void CCharParty::addMember(const PartyMember& data)
+void CCharParty::addMember(const PartyMember& member)
 {
     m_LastJoined = timer::now();
+    m_Members.push_back(member);
 
-    if (data.getType() == PartyMemberType::Player)
+    if (member.getType() == PartyMemberType::Player)
     {
         // Char may not be on this server and will be handled by another map process
-        if (CCharEntity* PChar = zoneutils::GetChar(data.getId()))
+        if (CCharEntity* PChar = zoneutils::GetChar(member.getId()))
         {
             PChar->setParty(*this);
             // this is garbage and should be handled elsewhere
@@ -578,7 +587,6 @@ void CCharParty::delMember(const PartyMember& member)
             {
                 disableSync(PChar);
                 PChar->clearParty();
-                ipc().notifyKick(member.getId());
             }
         }
 

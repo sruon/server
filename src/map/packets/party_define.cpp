@@ -44,7 +44,7 @@ CPartyDefinePacket::CPartyDefinePacket(const CCharEntity* PReceiver, const CChar
 
     uint8 i = 0;
 
-    for (auto member : static_cast<const PartyBase*>(party)->getMembers())
+    for (const PartyMember& member : static_cast<const PartyBase*>(party)->getMembers())
     {
         if (member.getType() == PartyMemberType::Player)
         {

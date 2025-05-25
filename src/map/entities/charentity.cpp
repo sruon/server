@@ -79,6 +79,8 @@
 #include "modifier.h"
 #include "notoriety_container.h"
 #include "packets/char_job_extra.h"
+#include "packets/party_define.h"
+#include "packets/party_member_update.h"
 #include "packets/status_effects.h"
 #include "party/char_party.h"
 #include "petskill.h"
@@ -3409,6 +3411,12 @@ void CCharEntity::setParty(CCharParty& party)
 void CCharEntity::clearParty()
 {
     m_Party.reset();
+
+    // Send packets to update client state, so that they show solo.
+    // This replaces PlayerKick IPC
+    this->pushPacket<CPartyDefinePacket>(this, nullptr);
+    this->pushPacket<CPartyMemberUpdatePacket>(this);
+    this->pushPacket<CCharStatusPacket>(this);
 }
 
 bool CCharEntity::hasParty() const

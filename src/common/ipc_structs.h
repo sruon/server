@@ -294,8 +294,9 @@ namespace ipc
 
     struct PartyRemoveMember
     {
-        uint32 partyId{};
-        uint32 charId{};
+        uint32      partyId{};
+        uint32      charId{};
+        std::string charName{};
     };
 
     struct PartySetLeader
@@ -352,11 +353,6 @@ namespace ipc
     struct PartyDisband
     {
         uint32 partyId{};
-    };
-
-    struct PartyKick
-    {
-        uint32 victimId{};
     };
 
 } // namespace ipc

@@ -93,7 +93,6 @@ public:
     void handleMessage_ChatMessageServerMessage(const IPP& ipp, const ipc::ChatMessageServerMessage& message);
     void handleMessage_ChatMessageCustom(const IPP& ipp, const ipc::ChatMessageCustom& message);
     void handleMessage_AllianceDissolve(const IPP& ipp, const ipc::AllianceDissolve& message);
-    void handleMessage_PartyKick(const IPP& ipp, const ipc::PartyKick& message);
     void handleMessage_PartySystemSync(const IPP& ipp, const ipc::PartySystemSync& message) const;
     void handleMessage_MessageStandard(const IPP& ipp, const ipc::MessageStandard& message);
     void handleMessage_MessageBasic(const IPP& ipp, const ipc::MessageBasic& message);

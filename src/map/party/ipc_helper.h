@@ -49,10 +49,9 @@ public:
     void addMember(uint32 UniqueNo, PartyMemberType Type) const;
 
     void removeMember(uint32 UniqueNo) const;
+    void removeMember(const std::string& charName) const;
 
     void disband() const;
-
-    void notifyKick(uint32 UniqueNo) const;
 
 protected:
     IpcHelper(const CCharParty& party)

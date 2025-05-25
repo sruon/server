@@ -82,7 +82,6 @@ void PartyContainer::chatMessage(const ipc::ChatMessageAlliance& message)
 
 // A party has been disbanded.
 // The world server will emit several updates to remove each member before it gets here.
-// The world server will also make use of PlayerKick to reset their client state with packets
 // Therefore, we just need to clean up the party from our store.
 void PartyContainer::disbandParty(const ipc::PartyDisband& message)
 {

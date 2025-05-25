@@ -126,7 +126,7 @@ auto IPCServer::getIPPsForParty(const uint32 partyId) -> std::vector<IPP>
         std::set<IPP> uniqueIPPs;
         for (auto& member : Party->getMembers())
         {
-            if (const auto maybeCharIPP = getIPPForCharId(member.getId()))
+            if (const auto maybeCharIPP = getIPPForCharId(member.get().getId()))
             {
                 uniqueIPPs.insert(*maybeCharIPP);
             }
@@ -666,13 +666,6 @@ void IPCServer::handleMessage_PartySetSyncTarget(const IPP& ipp, const ipc::Part
 void IPCServer::handleMessage_PartyUpdate(const IPP& ipp, const ipc::PartyUpdate& message) const
 {
     worldServer_.partySystem_->handle_PartyUpdate(ipp, message);
-}
-
-void IPCServer::handleMessage_PartyKick(const IPP& ipp, const ipc::PartyKick& message)
-{
-    TracyZoneScoped;
-
-    rerouteMessageToCharId(message.victimId, message);
 }
 
 void IPCServer::handleMessage_PartySystemSync(const IPP& ipp, const ipc::PartySystemSync& message) const

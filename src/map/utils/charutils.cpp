@@ -4285,9 +4285,9 @@ namespace charutils
                     {
                         if (PMember->getZone() == PMob->getZone() && distance(PMember->loc.p, PMob->loc.p) < 100)
                         {
-                            if (CCharEntity* PChar = dynamic_cast<CCharEntity*>(PMember))
+                            if (auto* PMemberE = dynamic_cast<CCharEntity*>(PMember))
                             {
-                                PChar->pushPacket<CMessageBasicPacket>(PChar, PChar, 0, 0, 545);
+                                PMemberE->pushPacket<CMessageBasicPacket>(PMemberE, PMemberE, 0, 0, 545);
                             }
                         }
                     });
@@ -4948,10 +4948,8 @@ namespace charutils
                 {
                     if (PChar->getParty().getSyncTarget() == PChar)
                     {
-                        // TODO: Refresh sync
-                        // PChar->PParty->RefreshSync();
+                        PChar->getParty().refreshSync();
                     }
-                    // PChar->PParty->ReloadParty();
                 }
 
                 PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, std::make_unique<CMessageCombatPacket>(PChar, PChar, PChar->jobs.job[PChar->GetMJob()], 0, 11));
@@ -5144,8 +5142,7 @@ namespace charutils
                 {
                     if (PChar->getParty().getSyncTarget() == PChar)
                     {
-                        // TODO: Refresh sync on level up
-                        // PChar->PParty->RefreshSync();
+                        PChar->getParty().refreshSync();
                     }
                 }
 
@@ -6316,124 +6313,6 @@ namespace charutils
             Temp->Clear();
         }
     }
-
-    // void ReloadParty(CCharEntity* PChar)
-    // {
-    //     TracyZoneScoped;
-    //
-    //     int ret = _sql->Query("SELECT partyid, allianceid, partyflag & %d FROM accounts_sessions s JOIN accounts_parties p ON "
-    //                           "s.charid = p.charid WHERE p.charid = %u",
-    //                           (PARTY_SECOND | PARTY_THIRD), PChar->id);
-    //     if (ret != SQL_ERROR && _sql->NumRows() != 0 && _sql->NextRow() == SQL_SUCCESS)
-    //     {
-    //         uint32 partyid     = _sql->GetUIntData(0);
-    //         uint32 allianceid  = _sql->GetUIntData(1);
-    //         uint32 partynumber = _sql->GetUIntData(2);
-    //
-    //         // first, parties and alliances must be created or linked if the character's current party has changed
-    //         // for example, joining a party from another server
-    //         if (PChar->PParty)
-    //         {
-    //             if (PChar->PParty->GetPartyID() != partyid)
-    //             {
-    //                 PChar->PParty->SetPartyID(partyid);
-    //             }
-    //         }
-    //         else
-    //         {
-    //             // find if party exists on this server already
-    //             CParty* PParty = nullptr;
-    //             zoneutils::ForEachZone([partyid, &PParty](CZone* PZone)
-    //                                    { PZone->ForEachChar([partyid, &PParty](CCharEntity* PChar)
-    //                                                         {
-    //                     if (PChar->PParty && PChar->PParty->GetPartyID() == partyid)
-    //                     {
-    //                         PParty = PChar->PParty;
-    //                     } }); });
-    //
-    //             // create new party if it doesn't exist already
-    //             if (!PParty)
-    //             {
-    //                 PParty = new CParty(partyid);
-    //             }
-    //
-    //         }
-    //
-    //         CBattleEntity* PSyncTarget = PChar->PParty->GetSyncTarget();
-    //         if (PSyncTarget && PChar->getZone() == PSyncTarget->getZone() && !(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC)) &&
-    //             PSyncTarget->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC) &&
-    //             PSyncTarget->StatusEffectContainer->GetStatusEffect(EFFECT_LEVEL_SYNC)->GetDuration() == 0s)
-    //         {
-    //             PChar->pushPacket<CMessageBasicPacket>(PChar, PChar, 0, PSyncTarget->GetMLevel(), 540);
-    //             PChar->StatusEffectContainer->AddStatusEffect(new CStatusEffect(EFFECT_LEVEL_SYNC, EFFECT_LEVEL_SYNC, PSyncTarget->GetMLevel(), 0s, 0s), EffectNotice::Silent);
-    //             PChar->StatusEffectContainer->DelStatusEffectsByFlag(EFFECTFLAG_DISPELABLE);
-    //         }
-    //
-    //         if (allianceid != 0)
-    //         {
-    //             if (PChar->PParty->m_PAlliance)
-    //             {
-    //                 if (PChar->PParty->m_PAlliance->m_AllianceID != allianceid)
-    //                 {
-    //                     PChar->PParty->m_PAlliance->m_AllianceID = allianceid;
-    //                 }
-    //             }
-    //             else
-    //             {
-    //                 // find if the alliance exists on this server already
-    //                 // clang-format off
-    //                 CAlliance* PAlliance = nullptr;
-    //                 zoneutils::ForEachZone([allianceid, &PAlliance](CZone* PZone)
-    //                 {
-    //                     PZone->ForEachChar([allianceid, &PAlliance](CCharEntity* PChar)
-    //                     {
-    //                         if (PChar->PParty && PChar->PParty->m_PAlliance && PChar->PParty->m_PAlliance->m_AllianceID == allianceid)
-    //                         {
-    //                             PAlliance = PChar->PParty->m_PAlliance;
-    //                         }
-    //                     });
-    //                 });
-    //                 // clang-format on
-    //
-    //                 // create new alliance if it doesn't exist on this server already
-    //                 if (!PAlliance)
-    //                 {
-    //                     PAlliance = new CAlliance(allianceid);
-    //                 }
-    //
-    //                 PAlliance->pushParty(PChar->PParty, partynumber);
-    //             }
-    //         }
-    //         else if (PChar->PParty->m_PAlliance)
-    //         {
-    //             PChar->PParty->m_PAlliance->delParty(PChar->PParty);
-    //         }
-    //
-    //         // once parties and alliances have been reassembled, reload the party/parties
-    //         //PChar->PParty->ReloadParty();
-    //     }
-    //     else
-    //     {
-    //         if (PChar->PParty)
-    //         {
-    //             PChar->PParty->DelMember(PChar);
-    //         }
-    //         PChar->ReloadPartyDec();
-    //     }
-    //
-    //     // Attempt to disband party if the last trust was just released
-    //     // NOTE: Trusts are not counted as party members, so the current member count will be 1
-    //     if (PChar->PParty && PChar->PParty->HasOnlyOneMember() && PChar->PTrusts.empty())
-    //     {
-    //         destroy(PChar->PParty);
-    //         // Looks good so far, check OTHER processes to see if we should disband
-    //         // if (PChar->PParty->GetMemberCountAcrossAllProcesses() == 1)
-    //         // {
-    //         //     // PChar->PParty->DisbandParty();
-    //         //
-    //         // }
-    //     }
-    // }
 
     bool IsAidBlocked(CCharEntity* PInitiator, CCharEntity* PTarget)
     {

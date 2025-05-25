@@ -1093,20 +1093,6 @@ void CZone::CharZoneOut(CCharEntity* PChar)
 
     if (PChar->m_LevelRestriction != 0)
     {
-        if (PChar->hasParty())
-        {
-            if (PChar->getParty().getSyncTarget() == PChar || PChar->getParty().getLeader() == PChar)
-            {
-                PChar->getParty().ipc().clearSyncTarget(MsgStd::LevelSyncDeactivateLeftArea);
-            }
-            if (PChar->getParty().getSyncTarget() != nullptr)
-            {
-                if (PChar->getParty().getMembers(PChar->getParty().getSyncTarget()->getZone()).size() < 2)
-                {
-                    PChar->getParty().ipc().clearSyncTarget(MsgStd::LevelSyncRemoveTooFewMembers);
-                }
-            }
-        }
         PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_SYNC);
         PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_LEVEL_RESTRICTION);
     }

@@ -19,8 +19,8 @@
 ===========================================================================
 */
 
-#include "ipc_server.h"
 #include "party/system.h"
+#include "ipc_server.h"
 #include "party/world.h"
 
 PartySystem::PartySystem(WorldServer& worldServer)
@@ -38,7 +38,7 @@ void PartySystem::notifyIppForParty(const uint32 partyId, const auto& message, c
 {
     if (const auto it = m_Parties.find(partyId); it != m_Parties.end())
     {
-        for (const auto& member : it->second.getMembers())
+        for (const PartyMember& member : it->second.getMembers())
         {
             if (member.getZone() == zoneId)
             {
@@ -53,13 +53,14 @@ void PartySystem::notifyIppForParty(const uint32 partyId, const auto& message) c
     m_WorldServer.ipcServer_->rerouteMessageToPartyMembers(partyId, message);
 }
 
-
 void PartySystem::broadcastPartyUpdate(WorldParty& party) const
 {
     if (party.isDirty())
     {
-        for (const auto& member : party.getMembers())
+        for (auto& wrappedMember : party.getMembers())
         {
+            PartyMember& member = wrappedMember;
+
             if (member.getType() != PartyMemberType::Player)
             {
                 continue;
@@ -87,28 +88,31 @@ void PartySystem::dump()
     for (auto& [partyId, party] : m_Parties)
     {
         ShowInfoFmt("Party {}: {}/6", partyId, party.getMemberCount());
-        const auto pLeader        = party.getLeader();
-        const auto pQuarterMaster = party.getQuartermaster();
-        const auto pSyncTarget    = party.getSyncTarget();
-
-        for (const auto& member : party.getMembers())
+        for (const PartyMember& member : party.getMembers())
         {
-            if (&member == &pLeader.value().get())
+            std::string memberFlags = "";
+            if (member.getType() == PartyMemberType::Player)
             {
-                ShowInfoFmt("  Leader: {} (joined {} ago)", member.getId(), member.getTimeSinceJoined());
+                memberFlags = "Player";
             }
-            else if (&member == &pQuarterMaster.value().get())
+            else if (member.getType() == PartyMemberType::Trust)
             {
-                ShowInfoFmt("  Quartermaster: {} (joined {} ago)", member.getId(), member.getTimeSinceJoined());
+                memberFlags = "Trust";
             }
-            else if (&member == &pSyncTarget.value().get())
+            if (member.getId() == party.getLeaderId())
             {
-                ShowInfoFmt("  Sync Target: {} (joined {} ago)", member.getId(), member.getTimeSinceJoined());
+                memberFlags += ",Leader";
             }
-            else
+            if (member.getId() == party.getQuartermasterId())
             {
-                ShowInfoFmt("  Member: {} (joined {}s ago) (type {})", member.getId(), member.getTimeSinceJoined(), static_cast<uint8>(member.getType()));
+                memberFlags += ",Quartermaster";
             }
+            if (member.getId() == party.getSyncTargetId())
+            {
+                memberFlags += ",SyncTarget";
+            }
+
+            ShowInfoFmt("  Member: {} (joined {} ago) ({})", member.getId(), member.getTimeSinceJoined(), memberFlags);
         }
     }
 }
@@ -122,7 +126,7 @@ bool PartySystem::handle_CharZoneOut(const IPP& ipp, const ipc::CharZoneOut& mes
         {
             auto& party  = entry.second;
             auto members = party.getMembers();
-            return std::any_of(members.begin(), members.end(), [&](auto& member)
+            return std::any_of(members.begin(), members.end(), [&](const PartyMember& member)
             {
                 return member.getId() == message.charId;
             });
@@ -131,34 +135,22 @@ bool PartySystem::handle_CharZoneOut(const IPP& ipp, const ipc::CharZoneOut& mes
 
     if (it != m_Parties.end())
     {
-        const auto& party      = it->second;
-        const auto  syncTarget = party.getSyncTarget();
-        // Sync target is zoning out, remove sync
-        if (syncTarget && syncTarget.value().get().getId() == message.charId)
+        const auto& party = it->second;
+        if (const auto syncTarget = party.getSyncTarget())
         {
-            ShowInfoFmt("Sync target is zoning out. Removing sync target");
-            handle_PartySetSyncTarget(ipp, ipc::PartySetSyncTarget{ .partyId = party.getPartyId(), .charId = 0, .reason = MsgStd::LevelSyncDeactivateLeftArea });
-        }
-        else if (syncTarget)
-        {
-            // Someone is zoning out, check if enough members are left in the sync zone.
-            const uint16 syncZone      = syncTarget.value().get().getZone();
-            uint8        membersInZone = 0;
-
-            // clang-format off
-                party.ForEveryMember({ .zoneId = syncZone }, [&](const PartyMember& member)
-                {
-                    if (member.getId() != message.charId)
-                    {
-                        membersInZone++;
-                    }
-                });
-            // clang-format on
-
-            // Not enough players left, disable sync
-            if (membersInZone < 2)
+            if (const PartyMember& target = syncTarget.value(); target.getId() == message.charId)
             {
-                handle_PartySetSyncTarget(ipp, ipc::PartySetSyncTarget{ .partyId = party.getPartyId(), .charId = 0, .reason = MsgStd::LevelSyncRemoveTooFewMembers });
+                ShowInfoFmt("Sync target is zoning out. Removing sync target");
+                handle_PartySetSyncTarget(ipp, ipc::PartySetSyncTarget{ .partyId = party.getPartyId(), .charId = 0, .reason = MsgStd::LevelSyncDeactivateLeftArea });
+            }
+            else
+            {
+                // Someone is zoning out, check if enough members are left in the sync zone.
+                if (party.getMembers({ .zoneId = target.getZone() }).size() < 2)
+                {
+                    // Not enough players left, disable sync
+                    handle_PartySetSyncTarget(ipp, ipc::PartySetSyncTarget{ .partyId = party.getPartyId(), .charId = 0, .reason = MsgStd::LevelSyncRemoveTooFewMembers });
+                }
             }
         }
 
@@ -187,7 +179,7 @@ bool PartySystem::handle_CharZoneIn(const IPP& ipp, const ipc::CharZoneIn& messa
         {
             auto& party  = entry.second;
             auto members = party.getMembers();
-            return std::any_of(members.begin(), members.end(), [&](auto& member)
+            return std::any_of(members.begin(), members.end(), [&](const PartyMember& member)
             {
                 return member.getId() == message.charId;
             });
@@ -224,7 +216,11 @@ bool PartySystem::handle_PartyAddMember(const IPP& ipp, const ipc::PartyAddMembe
     {
         if (const auto it = m_Parties.find(message.partyId); it != m_Parties.end())
         {
-            zoneId = it->second.getLeader().value().get().getZone();
+            if (const auto maybeLeader = it->second.getLeader())
+            {
+                const PartyMember& PLeader = maybeLeader.value();
+                zoneId                     = PLeader.getZone();
+            }
         }
         else
         {
@@ -236,7 +232,15 @@ bool PartySystem::handle_PartyAddMember(const IPP& ipp, const ipc::PartyAddMembe
     // If the party does not exist, create it with the charId as the leader.
     if (getParty(message.partyId) == nullptr)
     {
+        const auto leaderInfo = getCharInfoFromId(message.partyId);
+        if (!leaderInfo)
+        {
+            ShowErrorFmt("Unable to find target leader with ID: {}", message.partyId);
+            return false;
+        }
+
         auto [it, inserted] = this->m_Parties.emplace(message.partyId, WorldParty(message.partyId));
+        modifyParty(message.partyId, &WorldParty::addMember, message.partyId, message.type, leaderInfo->zoneId);
         ShowInfoFmt("Party created: {}", message.partyId);
     }
 
@@ -258,27 +262,56 @@ bool PartySystem::handle_PartyAddMember(const IPP& ipp, const ipc::PartyAddMembe
 
 bool PartySystem::handle_PartyRemoveMember(const IPP& ipp, const ipc::PartyRemoveMember& message)
 {
+    uint32 victimId = message.charId;
+
     const auto it = m_Parties.find(message.partyId);
     if (it == m_Parties.end())
     {
         ShowErrorFmt("Party with ID {} not found", message.partyId);
         return false;
     }
-    const auto& party        = it->second;
-    const auto  syncTargetId = party.getSyncTarget() ? party.getSyncTarget().value().get().getId() : 0;
 
-    if (const auto leaderId = party.getLeader().value().get().getId(); message.charId == leaderId)
+    const auto& party        = it->second;
+    const auto  syncTargetId = party.getSyncTargetId();
+    const auto  leaderId     = party.getLeaderId();
+
+    if (victimId == 0 && !message.charName.empty())
     {
-        uint32 newLeaderId = 0;
-        // Leader is leaving, attempt to reassign lead
-        const bool assignedNewLeader = modifyParty(message.partyId, &WorldParty::reassignLeader);
-        if (!assignedNewLeader)
+        const auto victimInfo = getCharInfoFromName(message.charName);
+        if (!victimInfo)
         {
-            // Could not find any elegible leader / was last member.
-            m_WorldServer.ipcServer_->rerouteMessageToCharId(message.charId, ipc::PartyKick{ .victimId = message.charId });
+            ShowErrorFmt("Unable to find target member with name: {}", message.charName);
+            return false;
+        }
+        victimId = victimInfo->charId;
+    }
+
+    const bool res = modifyParty(message.partyId, &WorldParty::removeMember, victimId);
+    if (res)
+    {
+        // If we just removed the sync, we need to notify the party members
+        if (syncTargetId == victimId)
+        {
+            handle_PartySetSyncTarget(ipp, ipc::PartySetSyncTarget{ .partyId = party.getPartyId(), .charId = 0, .reason = MsgStd::LevelSyncRemoveLeftParty });
+        }
+    }
+
+    if (party.getMemberCount() == 0)
+    {
+        return handle_PartyDisband(ipp, ipc::PartyDisband{ .partyId = message.partyId });
+    }
+
+    // Some special handling to be done if leader left
+    if (victimId == leaderId)
+    {
+        uint32 newLeaderId = party.getLeaderId();
+
+        if (newLeaderId == 0)
+        {
+            // Could not find any eligible leader / was last member.
             return handle_PartyDisband(ipp, ipc::PartyDisband{ .partyId = message.partyId });
         }
-        newLeaderId = party.getLeader().value().get().getId();
+
         if (auto partyEntry = this->m_Parties.extract(leaderId); !partyEntry.empty())
         {
             // Insert it back under the new leader ID
@@ -290,19 +323,6 @@ bool PartySystem::handle_PartyRemoveMember(const IPP& ipp, const ipc::PartyRemov
         }
     }
 
-    const bool res = modifyParty(message.partyId, &WorldParty::removeMember, message.charId);
-    if (res)
-    {
-        // Notify the player they've been kicked.
-        m_WorldServer.ipcServer_->rerouteMessageToCharId(message.charId, ipc::PartyKick{ .victimId = message.charId });
-
-        // If we just removed the sync, we need to notify the party members
-        if (syncTargetId == message.charId)
-        {
-            handle_PartySetSyncTarget(ipp, ipc::PartySetSyncTarget{ .partyId = party.getPartyId(), .charId = 0, .reason = MsgStd::LevelSyncRemoveLeftParty });
-        }
-    }
-
     return res;
 }
 
@@ -311,12 +331,9 @@ bool PartySystem::handle_PartyDisband(const IPP& ipp, const ipc::PartyDisband& m
     if (const auto it = m_Parties.find(message.partyId); it != m_Parties.end())
     {
         // If leader requested breaking the PT, but we still have members, process them first.
-        if (const auto members = it->second.getMembers(); members.size() != 0)
+        for (const auto& member : it->second.getMembers())
         {
-            for (auto& member : members)
-            {
-                handle_PartyRemoveMember(ipp, ipc::PartyRemoveMember{ .partyId = message.partyId, .charId = member.getId() });
-            }
+                handle_PartyRemoveMember(ipp, ipc::PartyRemoveMember{ .partyId = message.partyId, .charId = member.get().getId() });
         }
     }
 
@@ -339,7 +356,7 @@ bool PartySystem::handle_PartySetLeader(const IPP& ipp, const ipc::PartySetLeade
     }
 
     auto&      party       = it->second;
-    const auto oldLeaderId = party.getLeader().value().get().getId();
+    const auto oldLeaderId = party.getLeaderId();
     uint32     newLeaderId = message.charId;
 
     // Leader packets are usually sent with names rather than IDs.
@@ -404,6 +421,7 @@ bool PartySystem::handle_PartySetQuartermaster(const IPP& ipp, const ipc::PartyS
     return modifyParty(message.partyId, &WorldParty::setQuartermaster, newQmId);
 }
 
+// A map server has forwarded a request from a party leader to enable Level Sync on their party.
 bool PartySystem::handle_PartySetSyncTarget(const IPP& ipp, const ipc::PartySetSyncTarget& message)
 {
     bool immediateDisable = false;
@@ -416,7 +434,7 @@ bool PartySystem::handle_PartySetSyncTarget(const IPP& ipp, const ipc::PartySetS
     }
 
     const auto&                       party        = it->second;
-    const auto                        oldSync      = party.getSyncTarget();
+    const auto                        maybeOldSync = party.getSyncTarget();
     uint32                            syncTargetId = message.charId;
     std::unique_ptr<CharDatabaseData> syncTargetInfo;
 
@@ -448,72 +466,73 @@ bool PartySystem::handle_PartySetSyncTarget(const IPP& ipp, const ipc::PartySetS
         syncTargetId = syncTargetInfo->charId;
 
         // Level sync rules enforcement
-        // 1. Sync target must be in the same zone as the party leader
-        if (syncTargetInfo->zoneId != party.getLeader().value().get().getZone())
+        if (const auto maybeLeader = party.getLeader())
         {
-            m_WorldServer.ipcServer_->rerouteMessageToCharId(
-                party.getLeader().value().get().getId(),
-                ipc::MessageBasic{
-                    .recipientId = party.getLeader().value().get().getId(),
-                    .message     = MsgStd::LevelSyncDesigneeInOtherArea,
-                });
+            const PartyMember& leader = maybeLeader.value();
 
-            return false;
+            // 1. Sync target must be in the same zone as the party leader
+            if (syncTargetInfo->zoneId != leader.getZone())
+            {
+                m_WorldServer.ipcServer_->rerouteMessageToCharId(
+                    leader.getId(),
+                    ipc::MessageBasic{
+                        .recipientId = leader.getId(),
+                        .message     = MsgStd::LevelSyncDesigneeInOtherArea,
+                    });
+
+                return false;
+            }
+
+            // 2. Sync target must be above level 10
+            if (syncTargetInfo->mLvl < 10)
+            {
+                m_WorldServer.ipcServer_->rerouteMessageToCharId(
+                    leader.getId(),
+                    ipc::MessageBasic{
+                        .recipientId = leader.getId(),
+                        .message     = MsgStd::LevelSyncDesigneeBelowMin,
+                        .param1      = 10,
+                    });
+
+                return false;
+            }
+
+            // 3. Certain status effects block sync
+            // TODO: Map server is authoritative for this check in SmallPacket0x077
+            // Status effects are not saved to database unless specific actions are performed, so we are unable to get a proper view from this side.
+
+            // 4. If the target is alone in the zone, the sync is IMMEDIATELY disabled.
+            // Verified to be retail accurate.
+            if (party.getMembers({ .zoneId = syncTargetInfo->zoneId }).size() < 2)
+            {
+                immediateDisable = true;
+            }
         }
-
-        // 2. Sync target must be above level 10
-        if (syncTargetInfo->mLvl < 10)
+        else
         {
-            m_WorldServer.ipcServer_->rerouteMessageToCharId(
-                party.getLeader().value().get().getId(),
-                ipc::MessageBasic{
-                    .recipientId = party.getLeader().value().get().getId(),
-                    .message     = MsgStd::LevelSyncDesigneeBelowMin,
-                    .param1      = 10,
-                });
-
+            // Unlikely we don't have a leader, but if we do, we can't apply sync.
             return false;
-        }
-
-        // 3. Certain status effects block sync
-        // TODO: This is super hard to check from this side, perhaps it should be handled when the map server receives the request from the leader
-        // for (auto& member : members)
-        // {
-        //     if (member->StatusEffectContainer->HasStatusEffect({ EFFECT_LEVEL_RESTRICTION, EFFECT_LEVEL_SYNC, EFFECT_SJ_RESTRICTION, EFFECT_CONFRONTATION, EFFECT_BATTLEFIELD }))
-        //     {
-        //         ((CCharEntity*)getLeader())->pushPacket<CMessageBasicPacket>((CCharEntity*)getLeader(), (CCharEntity*)getLeader(), 0, 0, MsgStd::LevelSyncPreventedByStatus);
-        //         return;
-        //     }
-        // }
-
-        // Final check: If the target is alone in the zone, the sync is IMMEDIATELY disabled.
-        // Verified to be retail accurate.
-        uint8 membersInZone = 0;
-        party.ForEveryMember({ .zoneId = syncTargetInfo->zoneId }, [&](const PartyMember& partyMember)
-                             { membersInZone++; });
-
-        if (membersInZone < 2)
-        {
-            immediateDisable = true;
         }
     }
 
     const bool res = modifyParty(message.partyId, &WorldParty::setSyncTarget, syncTargetId);
 
     // If a reason was provided for disabling, we need to stream it to certain party members
-    if (oldSync && syncTargetId == 0 && static_cast<uint16>(message.reason) != 0)
+    if (maybeOldSync && syncTargetId == 0 && static_cast<uint16>(message.reason) != 0)
     {
+        const PartyMember& oldSync = maybeOldSync.value();
+
         // clang-format off
-            party.ForEveryMember({ .zoneId = oldSync.value().get().getZone() }, [&](const PartyMember& member)
-            {
-                m_WorldServer.ipcServer_->rerouteMessageToCharId(member.getId(),
-                                                                 ipc::MessageBasic{
-                                                                    .recipientId = member.getId(),
-                                                                    .message     = message.reason,
-                                                                    .param0      = 30,
-                                                                    .param1     = 30,
-                                                                 });
-            });
+        party.ForEveryMember({ .zoneId = oldSync.getZone() }, [&](const PartyMember& member)
+        {
+            m_WorldServer.ipcServer_->rerouteMessageToCharId(member.getId(),
+                ipc::MessageBasic{
+                    .recipientId = member.getId(),
+                    .message     = message.reason,
+                    .param0      = 30,
+                    .param1      = 30,
+                });
+        });
         // clang-format on
     }
 
@@ -525,8 +544,12 @@ bool PartySystem::handle_PartySetSyncTarget(const IPP& ipp, const ipc::PartySetS
     return res;
 }
 
+// Updates received from the map servers.
+// This is used to recover after an eventual world server crash/restart
 bool PartySystem::handle_PartyUpdate(const IPP& ipp, const ipc::PartyUpdate& message)
 {
+    // TODO: This is incredibly naive and may not work well with multiple map servers.
+    // If this doesn't prove to work reliably, we could fallback to using the database instead.
     m_Parties.emplace(message.partyId, WorldParty(message));
 
     return true;

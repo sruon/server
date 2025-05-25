@@ -23,7 +23,11 @@
 
 #include "common/cbasetypes.h"
 
-enum class PartyMemberType : uint8;
+enum class PartyMemberType : uint8
+{
+    Player,
+    Trust,
+};
 
 class PartyMember
 {
@@ -38,6 +42,17 @@ public:
     auto getName() const -> const std::string&;
     auto getTimeSinceJoined() const -> std::chrono::seconds;
     auto getJoinedTime() const -> std::time_t;
+
+    bool operator==(const PartyMember& other) const
+    {
+        return getId() == other.getId() &&
+               getZone() == other.getZone();
+    }
+
+    bool operator!=(const PartyMember& other) const
+    {
+        return !(*this == other);
+    }
 
 private:
     uint32          m_UniqueNo{};
@@ -54,3 +69,5 @@ struct PartyMemberFilter
 
     bool matches(const PartyMember& member) const;
 };
+
+using PartyMemberRef = std::reference_wrapper<const PartyMember>;
