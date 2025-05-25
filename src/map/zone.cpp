@@ -994,8 +994,6 @@ void CZone::CharZoneIn(CCharEntity* PChar)
         PChar->StatusEffectContainer->DelStatusEffectSilent(EFFECT_ILLUSION);
     }
 
-    // TODO: Ask party system for party packets
-
     // Zone-wide treasure pool takes precendence over all others
     if (m_TreasurePool && m_TreasurePool->getPoolType() == TreasurePoolType::Zone)
     {
@@ -1073,6 +1071,8 @@ void CZone::CharZoneIn(CCharEntity* PChar)
         .charId = PChar->id,
         .zoneId = this->GetID(),
     });
+
+    // There used to be party handling here, but this is now handled by the CharZoneIn event.
 }
 
 void CZone::CharZoneOut(CCharEntity* PChar)

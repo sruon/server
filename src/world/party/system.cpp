@@ -122,15 +122,15 @@ bool PartySystem::handle_CharZoneOut(const IPP& ipp, const ipc::CharZoneOut& mes
     // Find any party with the character
     // TODO: Could use a reverse lookup map or the character cache
     // clang-format off
-        const auto it = std::ranges::find_if(m_Parties, [&](auto& entry)
+    const auto it = std::ranges::find_if(m_Parties, [&](auto& entry)
+    {
+        auto& party  = entry.second;
+        auto members = party.getMembers();
+        return std::any_of(members.begin(), members.end(), [&](const PartyMember& member)
         {
-            auto& party  = entry.second;
-            auto members = party.getMembers();
-            return std::any_of(members.begin(), members.end(), [&](const PartyMember& member)
-            {
-                return member.getId() == message.charId;
-            });
+            return member.getId() == message.charId;
         });
+    });
     // clang-format on
 
     if (it != m_Parties.end())
@@ -151,6 +151,15 @@ bool PartySystem::handle_CharZoneOut(const IPP& ipp, const ipc::CharZoneOut& mes
                     // Not enough players left, disable sync
                     handle_PartySetSyncTarget(ipp, ipc::PartySetSyncTarget{ .partyId = party.getPartyId(), .charId = 0, .reason = MsgStd::LevelSyncRemoveTooFewMembers });
                 }
+            }
+        }
+
+        // Leader is zoning out, clear all trusts
+        if (party.getLeaderId() == message.charId)
+        {
+            for (const auto& member : party.getMembers({ .type = PartyMemberType::Trust }))
+            {
+                handle_PartyRemoveMember(ipp, ipc::PartyRemoveMember{ .partyId = party.getPartyId(), .charId = member.get().getId() });
             }
         }
 
@@ -201,6 +210,22 @@ bool PartySystem::handle_CharZoneIn(const IPP& ipp, const ipc::CharZoneIn& messa
 bool PartySystem::handle_PartyAddMember(const IPP& ipp, const ipc::PartyAddMember& message)
 {
     uint16 zoneId = 0;
+
+    // If the party does not exist, create it with the charId as the leader.
+    if (getParty(message.partyId) == nullptr)
+    {
+        const auto leaderInfo = getCharInfoFromId(message.partyId);
+        if (!leaderInfo)
+        {
+            ShowErrorFmt("Unable to find target leader with ID: {}", message.partyId);
+            return false;
+        }
+
+        auto [it, inserted] = this->m_Parties.emplace(message.partyId, WorldParty(message.partyId));
+        modifyParty(message.partyId, &WorldParty::addMember, message.partyId, PartyMemberType::Player, leaderInfo->zoneId);
+        ShowInfoFmt("Party created: {}", message.partyId);
+    }
+
     if (message.type == PartyMemberType::Player)
     {
         const auto memberInfo = getCharInfoFromId(message.charId);
@@ -227,21 +252,6 @@ bool PartySystem::handle_PartyAddMember(const IPP& ipp, const ipc::PartyAddMembe
             ShowErrorFmt("Tried to add a trust but could not find leader.");
             return false;
         }
-    }
-
-    // If the party does not exist, create it with the charId as the leader.
-    if (getParty(message.partyId) == nullptr)
-    {
-        const auto leaderInfo = getCharInfoFromId(message.partyId);
-        if (!leaderInfo)
-        {
-            ShowErrorFmt("Unable to find target leader with ID: {}", message.partyId);
-            return false;
-        }
-
-        auto [it, inserted] = this->m_Parties.emplace(message.partyId, WorldParty(message.partyId));
-        modifyParty(message.partyId, &WorldParty::addMember, message.partyId, message.type, leaderInfo->zoneId);
-        ShowInfoFmt("Party created: {}", message.partyId);
     }
 
     const bool res = modifyParty(message.partyId, &WorldParty::addMember, message.charId, message.type, zoneId);
@@ -333,7 +343,7 @@ bool PartySystem::handle_PartyDisband(const IPP& ipp, const ipc::PartyDisband& m
         // If leader requested breaking the PT, but we still have members, process them first.
         for (const auto& member : it->second.getMembers())
         {
-                handle_PartyRemoveMember(ipp, ipc::PartyRemoveMember{ .partyId = message.partyId, .charId = member.get().getId() });
+            handle_PartyRemoveMember(ipp, ipc::PartyRemoveMember{ .partyId = message.partyId, .charId = member.get().getId() });
         }
     }
 

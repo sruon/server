@@ -56,7 +56,6 @@ public:
     void handleMessage_CharLogin(const IPP& ipp, const ipc::CharLogin& message);
     void handleMessage_CharZoneOut(const IPP& ipp, const ipc::CharZoneOut& message);
     void handleMessage_CharZoneIn(const IPP& ipp, const ipc::CharZoneIn& message);
-    void handleMessage_CharZone(const IPP& ipp, const ipc::CharZoneOut& message);
     void handleMessage_CharVarUpdate(const IPP& ipp, const ipc::CharVarUpdate& message);
     void handleMessage_ChatMessageTell(const IPP& ipp, const ipc::ChatMessageTell& message);
     void handleMessage_ChatMessageParty(const IPP& ipp, const ipc::ChatMessageParty& message);

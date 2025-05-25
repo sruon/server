@@ -28,10 +28,6 @@
 WorldParty::WorldParty(const ipc::PartyUpdate& message)
 : PartyBase(message)
 {
-    for (auto& member : message.members)
-    {
-        m_Members.emplace_back(member);
-    }
 }
 
 WorldParty::WorldParty(uint32 _LeaderUniqueNo)
