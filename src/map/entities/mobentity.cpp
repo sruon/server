@@ -34,7 +34,6 @@
 #include "conquest_system.h"
 #include "enmity_container.h"
 #include "entities/charentity.h"
-#include "ipc_client.h"
 #include "items.h"
 #include "lua/lua_loot.h"
 #include "lua/luautils.h"
@@ -45,6 +44,7 @@
 #include "packets/action.h"
 #include "packets/entity_update.h"
 #include "packets/pet_sync.h"
+#include "party/mob_party.h"
 #include "recast_container.h"
 #include "roe.h"
 #include "status_effect_container.h"
@@ -57,7 +57,6 @@
 #include "utils/petutils.h"
 #include "utils/zoneutils.h"
 #include "weapon_skill.h"
-#include "party/mob_party.h"
 
 #include <cstring>
 
@@ -178,7 +177,7 @@ CMobEntity::~CMobEntity()
 
     if (hasParty())
     {
-            getParty().removeMember(this);
+        getParty().removeMember(this);
     }
 }
 
