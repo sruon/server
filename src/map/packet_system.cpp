@@ -755,7 +755,16 @@ void SmallPacket0x01A(MapSession* const PSession, CCharEntity* const PChar, CBas
             // TODO: 0x0c is set to 0x1, not sure if that is relevant or not.
             if (auto* PTrust = dynamic_cast<CTrustEntity*>(PChar->GetEntity(TargID, TYPE_TRUST)))
             {
-                PChar->RemoveTrust(PTrust);
+                // Route the trust removal request through the party system
+                // Unlikely we don't have a party but...
+                if (PChar->hasParty())
+                {
+                    PChar->getParty().ipc().removeMember(PTrust->id);
+                }
+                else
+                {
+                    ShowErrorFmt("Player {} tried to release trust {} without a party?!", PChar->getName(), PTrust->getName());
+                }
             }
 
             if (!PChar->isNpcLocked())

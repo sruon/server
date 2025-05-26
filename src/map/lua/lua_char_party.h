@@ -20,7 +20,11 @@
 */
 
 #pragma once
+#include "common/cbasetypes.h"
+#include "sol/sol.hpp"
 
+enum class MsgStd : uint16;
+class CCharEntity;
 class CCharParty;
 class CLuaBaseEntity;
 
@@ -36,6 +40,35 @@ public:
         return m_PLuaCharParty;
     }
 
+    auto getMemberCount() const -> uint8;
+    auto getPartyId() const -> uint32;
+    auto getLeaderId() const -> uint32;
+    auto getQuartermasterId() const -> uint32;
+    auto getSyncTargetId() const -> uint32;
+    auto getMemberById(uint32 UniqueNo) const -> CCharEntity*;
+    auto getMemberByName(const std::string& memberName) const -> CCharEntity*;
+    auto getMembers() const -> sol::table;
+    auto getPlayers() const -> sol::table;
+    auto getTrusts() const -> sol::table;
+    auto getLeader() const -> CCharEntity*;
+    auto getQuartermaster() const -> CCharEntity*;
+    auto getSyncTarget() const -> CCharEntity*;
+    bool isFull() const;
+    auto getTimeLastMemberJoined() const -> uint32;
+    bool hasTrusts() const;
+    bool isTrustOnlyParty() const;
+    bool hasJob(uint8 job, sol::object const& zoneObj) const;
+    void refreshSync(const CLuaBaseEntity* PEntity) const;
+
+    // IPC methods
+    void setLeader(uint32 UniqueNo) const;
+    void setSyncTarget(uint32 UniqueNo) const;
+    void clearSyncTarget(MsgStd Reason) const;
+    void setQuartermaster(uint32 UniqueNo) const;
+    void addMember(uint32 UniqueNo) const;
+    void removeMember(uint32 UniqueNo) const;
+    void disband() const;
+
     friend std::ostream& operator<<(std::ostream& out, const CLuaCharParty& party);
 
     bool operator==(const CLuaCharParty& other) const
@@ -45,4 +78,3 @@ public:
 
     static void Register();
 };
-

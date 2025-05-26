@@ -548,7 +548,6 @@ public:
     auto   getParty() -> sol::table;
     auto   getPartyWithTrusts() -> sol::table;
     uint8  getPartySize(sol::object const& arg0);
-    bool   hasPartyJob(uint8 job);
     auto   getPartyMember(uint8 member, uint8 allianceparty) -> CBaseEntity*;
     auto   getPartyLeader() -> CBaseEntity*;
     uint32 getLeaderID();

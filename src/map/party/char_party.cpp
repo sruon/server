@@ -50,7 +50,7 @@ CCharParty::CCharParty(const ipc::PartyUpdate& message)
 // TODO: Not sure we need this logic since the container only deletes a party when all members are gone
 CCharParty::~CCharParty()
 {
-    for (const auto member : getMembers())
+    for (const auto member : getPlayers())
     {
         ShowErrorFmt("CCharParty destructor called with members.");
         member->clearParty();
@@ -118,7 +118,7 @@ void CCharParty::refreshSync() const
         return;
     }
 
-    for (const auto& member : getMembers({ .zoneId = PSync->getZone() }))
+    for (const auto& member : getPlayers({ .zoneId = PSync->getZone() }))
     {
         refreshSync(member);
     }
@@ -234,11 +234,8 @@ void CCharParty::update(const ipc::PartyUpdate& message)
 
     for (const auto& [oldMember, newMember] : membersDiff.changed)
     {
-        std::ranges::replace_if(m_Members,
-            [&oldMember](const PartyMember& member) {
-                return member.getId() == oldMember.get().getId();
-            },
-            newMember.get());
+        std::ranges::replace_if(m_Members, [&oldMember](const PartyMember& member)
+                                { return member.getId() == oldMember.get().getId(); }, newMember.get());
         changes = true;
     }
 
@@ -348,10 +345,46 @@ void CCharParty::broadcastPartyPackets(const CCharEntity* PSingle)
     // clang-format on
 }
 
-// Returns a vector of CCharEntity present on this map server
+// Returns a vector of CBattleEntity present on this map server
 // This is not guaranteed to be the full set of party members.
-auto CCharParty::getMembers(const PartyMemberFilter filter) const -> std::vector<CCharEntity*>
+auto CCharParty::getMembers(const PartyMemberFilter filter) const -> std::vector<CBattleEntity*>
 {
+    auto  result  = std::vector<CBattleEntity*>{};
+    auto* PLeader = getLeader();
+
+    for (const auto& member : PartyBase::getMembers(filter))
+    {
+        if (member.get().getType() == PartyMemberType::Player)
+        {
+            if (auto* PChar = zoneutils::GetChar(member.get().getId()))
+            {
+                result.push_back(PChar);
+            }
+        }
+        else if (member.get().getType() == PartyMemberType::Trust)
+        {
+            if (PLeader)
+            {
+                auto found = std::ranges::find_if(PLeader->PTrusts,
+                                                  [member](const CTrustEntity* PTrust)
+                                                  {
+                                                      return PTrust->id == member.get().getId();
+                                                  });
+
+                if (found != PLeader->PTrusts.end())
+                {
+                    result.push_back(*found);
+                }
+            }
+        }
+    }
+
+    return result;
+}
+
+auto CCharParty::getPlayers(PartyMemberFilter filter) const -> std::vector<CCharEntity*>
+{
+    filter.type = PartyMemberType::Player;
     auto result = std::vector<CCharEntity*>{};
 
     for (const auto& member : PartyBase::getMembers(filter))
@@ -481,7 +514,7 @@ void CCharParty::ForEveryMemberWithTrusts(const std::function<void(CBattleEntity
 
 void CCharParty::pushEffectsPacket(CCharEntity* PChar) const
 {
-    PChar->pushPacket<CPartyEffectsPacket>(PChar, getMembers({ .zoneId = PChar->getZone() }));
+    PChar->pushPacket<CPartyEffectsPacket>(PChar, getPlayers({ .zoneId = PChar->getZone() }));
 }
 
 // Send a packet to all members of the group if the zone is specified as 0
@@ -489,7 +522,7 @@ void CCharParty::pushEffectsPacket(CCharEntity* PChar) const
 // Packet for PPartyMember is not sent in both cases
 void CCharParty::pushPacket(const uint32 senderID, const uint16 ZoneID, const std::unique_ptr<CBasicPacket>& packet) const
 {
-    for (const auto& member : getMembers())
+    for (const auto& member : getPlayers())
     {
         if (member->id != senderID && member->status != STATUS_TYPE::DISAPPEAR && !jailutils::InPrison(member))
         {
@@ -589,6 +622,24 @@ void CCharParty::delMember(const PartyMember& member)
                 PChar->clearParty();
             }
         }
+        else if (it->getType() == PartyMemberType::Trust)
+        {
+            if (CCharEntity* PLeader = getLeader())
+            {
+                // clang-format off
+                const auto found = std::ranges::find_if(PLeader->PTrusts,
+                    [&](const CTrustEntity* PTrust)
+                    {
+                        return PTrust->id == it->getId();
+                    });
+                // clang-format on
+
+                if (found != PLeader->PTrusts.end())
+                {
+                    PLeader->RemoveTrust(*found);
+                }
+            }
+        }
 
         // but we still remove it from our list!
         m_Members.erase(it);
@@ -608,4 +659,24 @@ void CCharParty::chatMessage(const ipc::ChatMessageParty& message) const
 void CCharParty::chatMessage(const ipc::ChatMessageAlliance& message) const
 {
     pushPacket(message.senderId, 0, std::make_unique<CChatMessagePacket>(message.senderName, message.zoneId, message.messageType, message.message, message.gmLevel));
+}
+
+bool CCharParty::hasJob(const uint8 job, std::optional<uint16> zoneId) const
+{
+    PartyMemberFilter filter{};
+
+    if (zoneId.has_value())
+    {
+        filter.zoneId = zoneId.value();
+    }
+
+    for (const auto& member : getMembers(filter))
+    {
+        if (member->GetMJob() == job)
+        {
+            return true;
+        }
+    }
+
+    return false;
 }

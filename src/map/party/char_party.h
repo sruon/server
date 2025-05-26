@@ -55,6 +55,7 @@ public:
 
     // Helpers
     auto GetFlagsForMember(const CCharEntity* PChar) const -> uint16;
+    bool hasJob(uint8 job, std::optional<uint16> zoneId = std::nullopt) const;
 
     // Packets
     void broadcastPartyPackets(const CCharEntity* PSingle = nullptr);
@@ -65,7 +66,8 @@ public:
     void pushEffectsPacket(CCharEntity* PChar) const;
 
     // Members retrieval
-    auto getMembers(const PartyMemberFilter filter = {}) const -> std::vector<CCharEntity*>;
+    auto getMembers(PartyMemberFilter filter = {}) const -> std::vector<CBattleEntity*>;
+    auto getPlayers(PartyMemberFilter filter = {}) const -> std::vector<CCharEntity*>;
     auto getLeader() const -> CCharEntity*;
     auto getSyncTarget() const -> CCharEntity*;
     auto getQuartermaster() const -> CCharEntity*;

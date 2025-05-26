@@ -39,6 +39,11 @@ void PartyContainer::updateParty(const ipc::PartyUpdate& message)
     {
         ShowInfoFmt("Updating existing party with ID: {}", message.partyId);
         m_Parties[message.partyId]->update(message);
+        if (m_Parties[message.partyId]->getMemberCount() == 0)
+        {
+            ShowInfoFmt("Auto-disbanding party with ID: {}", message.partyId);
+            disbandParty(ipc::PartyDisband{ .partyId = message.partyId });
+        }
     }
 
     // Retail packet flow:
@@ -99,23 +104,22 @@ void PartyContainer::reattachMember(const ipc::CharZoneIn& message)
     // Find any party that have this char in them
     for (const auto& party : m_Parties | std::views::values)
     {
-        for (const auto& member : party->getMembers())
+        if (const auto found = party->getMemberById(message.charId))
         {
-            if (member->id == message.charId)
-            {
-                member->setParty(*party);
+            found->setParty(*party);
 
-                // Reapply sync if needed
-                party->applySync(member);
+            // Reapply sync if needed
+            party->applySync(found);
 
-                // Resync packets for everyone
-                party->broadcastPartyPackets();
-                return;
-            }
+            // Resync packets for everyone
+            party->broadcastPartyPackets();
+
+            return;
         }
     }
 }
 
+// World server is requesting a full sync of all parties.
 auto PartyContainer::partiesSync() -> std::vector<ipc::PartyUpdate>
 {
     std::vector<ipc::PartyUpdate> parties{};

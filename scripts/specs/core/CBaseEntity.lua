@@ -2322,12 +2322,6 @@ function CBaseEntity:getPartySize(arg0)
 end
 
 ---@nodiscard
----@param job integer
----@return boolean
-function CBaseEntity:hasPartyJob(job)
-end
-
----@nodiscard
 ---@param member integer
 ---@param allianceparty integer
 ---@return CBaseEntity?

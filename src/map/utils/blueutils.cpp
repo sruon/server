@@ -104,7 +104,7 @@ namespace blueutils
         std::vector<CCharEntity*> PBlueMages;
         auto                      AddBlueMages = [&PMob, &PBlueMages](const CCharParty& PParty)
         {
-            for (const auto& member : PParty.getMembers({ .zoneId = PMob->getZone() }))
+            for (const auto& member : PParty.getPlayers({ .zoneId = PMob->getZone() }))
             {
                 if (member &&
                     member->GetMJob() == JOB_BLU)

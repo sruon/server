@@ -10970,37 +10970,6 @@ uint8 CLuaBaseEntity::getPartySize(sol::object const& arg0)
 }
 
 /************************************************************************
- *  Function: hasPartyJob()
- *  Purpose : Loops over party members and returns true if job is found
- *  Example : if caster:hasPartyJob(xi.job.DRK) then
- *  Notes   : Highly useful for future addition of features
- ************************************************************************/
-
-bool CLuaBaseEntity::hasPartyJob(uint8 job)
-{
-    if (static_cast<CCharEntity*>(m_PBaseEntity)->hasParty())
-    {
-        for (auto const& PTarget : static_cast<CCharEntity*>(m_PBaseEntity)->getParty().getMembers())
-        {
-            if (PTarget->GetMJob() == job)
-            {
-                return true;
-            }
-
-            for (auto* PTrust : PTarget->PTrusts)
-            {
-                if (PTrust->GetMJob() == job)
-                {
-                    return true;
-                }
-            }
-        }
-    }
-
-    return false;
-}
-
-/************************************************************************
  *  Function: getPartyMember()
  *  Purpose : Returns the object Entity of a Party Member from another Party/Alliance
  *  Example : player:getPartyMember(4?)
@@ -19343,7 +19312,6 @@ void CLuaBaseEntity::Register()
     SOL_REGISTER("getParty", CLuaBaseEntity::getParty);
     SOL_REGISTER("getPartyWithTrusts", CLuaBaseEntity::getPartyWithTrusts);
     SOL_REGISTER("getPartySize", CLuaBaseEntity::getPartySize);
-    SOL_REGISTER("hasPartyJob", CLuaBaseEntity::hasPartyJob);
     SOL_REGISTER("getPartyMember", CLuaBaseEntity::getPartyMember);
     SOL_REGISTER("getPartyLeader", CLuaBaseEntity::getPartyLeader);
     SOL_REGISTER("getLeaderID", CLuaBaseEntity::getLeaderID);
