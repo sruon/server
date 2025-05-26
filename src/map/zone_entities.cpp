@@ -48,6 +48,7 @@
 #include "lua/luautils.h"
 
 #include "battlefield.h"
+#include "party/char_party.h"
 #include "party/mob_party.h"
 #include "utils/battleutils.h"
 #include "utils/charutils.h"
@@ -999,11 +1000,12 @@ float getSignificanceScore(CCharEntity* originChar, CCharEntity* targetChar)
             // Same party
             return CHARACTER_SYNC_PARTY_SIGNIFICANCE;
         }
-        // else if (originChar->PParty->m_PAlliance && targetChar->PParty->m_PAlliance && originChar->PParty->m_PAlliance->m_AllianceID == targetChar->PParty->m_PAlliance->m_AllianceID)
-        // {
-        //     // Same alliance
-        //     return CHARACTER_SYNC_ALLI_SIGNIFICANCE;
-        // }
+
+        if (originChar->getParty().isAllianced(targetChar->getParty()))
+        {
+            // Same alliance
+            return CHARACTER_SYNC_ALLI_SIGNIFICANCE;
+        }
     }
 
     return 0;
