@@ -554,8 +554,7 @@ public:
     uint32 getPartyLastMemberJoinedTime();
     void   forMembersInRange(float range, sol::function function);
 
-    auto  getAlliance() -> sol::table;
-    uint8 getAllianceSize();
+    auto getAlliance() -> sol::table;
 
     void disableLevelSync();
     bool isLevelSync();

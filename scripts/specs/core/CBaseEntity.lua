@@ -2354,11 +2354,6 @@ end
 function CBaseEntity:getAlliance()
 end
 
----@nodiscard
----@return integer
-function CBaseEntity:getAllianceSize()
-end
-
 ---@return nil
 function CBaseEntity:disableLevelSync()
 end

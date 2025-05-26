@@ -56,6 +56,7 @@ public:
     // Helpers
     bool hasJob(uint8 job, std::optional<uint16> zoneId = std::nullopt) const;
     bool isAllianced(CCharParty& other) const;
+    bool isPartOfAlliance() const;
 
     // Packets
     void broadcastPartyPackets(const CCharEntity* PSingle = nullptr);

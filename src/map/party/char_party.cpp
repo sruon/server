@@ -671,3 +671,9 @@ bool CCharParty::isAllianced(CCharParty& other) const
     // TODO: Implement alliance logic
     return false;
 }
+
+bool CCharParty::isPartOfAlliance() const
+{
+    // TODO: Implement alliance logic
+    return false;
+}
