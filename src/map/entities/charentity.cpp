@@ -1122,8 +1122,9 @@ bool CCharEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
         return true;
     }
 
+    // TODO: Probably need some special handling for trusts here.
     bool isSameParty      = hasParty() && &static_cast<CCharEntity*>(PInitiator)->getParty() == &getParty();
-    bool isSameAlliance   = false; // PParty && PParty->m_PAlliance && static_cast<CCharEntity*>(PInitiator)->PParty && static_cast<CCharEntity*>(PInitiator)->PParty->m_PAlliance && PParty->m_PAlliance == static_cast<CCharEntity*>(PInitiator)->PParty->m_PAlliance;
+    bool isSameAlliance   = hasParty() && getParty().isAllianced(static_cast<CCharEntity*>(PInitiator)->getParty());
     bool isPartyPetMaster = PInitiator->PMaster && static_cast<CCharEntity*>(PInitiator->PMaster)->hasParty() && &static_cast<CCharEntity*>(PInitiator->PMaster)->getParty() == &getParty();
     bool isSoloPetMaster  = !hasParty() && PInitiator->PMaster == this;
     bool targetsParty     = targetFlags & TARGET_PLAYER_PARTY;
@@ -2499,6 +2500,7 @@ void CCharEntity::OnItemFinish(CItemState& state, action_t& action)
 {
     TracyZoneScoped;
 
+    // TODO: Likely blow up if the target is not a CCharEntity
     auto* PTarget = static_cast<CCharEntity*>(state.GetTarget());
     auto* PItem   = state.GetItem();
 
