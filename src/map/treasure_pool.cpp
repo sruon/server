@@ -29,6 +29,8 @@
 #include "item_container.h"
 #include "recast_container.h"
 #include "treasure_pool.h"
+
+#include "party/char_party.h"
 #include "utils/charutils.h"
 #include "utils/itemutils.h"
 
@@ -98,10 +100,10 @@ void CTreasurePool::addMember(CCharEntity* PChar)
     {
         m_TreasurePoolType = TreasurePoolType::Party;
     }
-    // else if (m_TreasurePoolType == TreasurePoolType::Party && PChar->PParty && PChar->PParty->m_PAlliance)
-    // {
-    //     m_TreasurePoolType = TreasurePoolType::Alliance;
-    // }
+    else if (m_TreasurePoolType == TreasurePoolType::Party && PChar->hasParty() && PChar->getParty().isPartOfAlliance())
+    {
+        m_TreasurePoolType = TreasurePoolType::Alliance;
+    }
 
     updatePool(PChar);
 }

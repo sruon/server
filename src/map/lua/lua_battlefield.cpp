@@ -485,6 +485,7 @@ void CLuaBattlefield::addGroups(sol::table const& groups, bool hasMultipleArenas
 
                 if (party == nullptr)
                 {
+                    // TODO: The parties need to be stored somewhere else, maybe with the zone entities.
                     party = new CMobParty();
                     party->addMember(PMob);
                 }
