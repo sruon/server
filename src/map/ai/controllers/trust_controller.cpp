@@ -459,55 +459,55 @@ bool CTrustController::Cast(uint16 targid, SpellID spellid)
         targid = POwner->targid;
     }
 
-    // auto PTarget      = (CBattleEntity*)POwner->GetEntity(targid, TYPE_MOB | TYPE_PC | TYPE_PET | TYPE_TRUST);
-    // auto PSpellFamily = PSpell->getSpellFamily();
+    auto PTarget      = (CBattleEntity*)POwner->GetEntity(targid, TYPE_MOB | TYPE_PC | TYPE_PET | TYPE_TRUST);
+    auto PSpellFamily = PSpell->getSpellFamily();
     bool canCast      = true;
 
     // clang-format off
-    // static_cast<CCharEntity*>(POwner->PMaster)->ForPartyWithTrusts([&](CBattleEntity* PMember)
-    // {
-    //     if (PMember->objtype == TYPE_TRUST && PMember->PAI->IsCurrentState<CMagicState>())
-    //     {
-    //         auto MState = static_cast<CMagicState*>(PMember->PAI->GetCurrentState());
-    //
-    //         if (MState)
-    //         {
-    //             auto MSpell       = MState->GetSpell();
-    //             auto MTarget      = MState->GetTarget();
-    //             auto MSpellFamily = MSpell->getSpellFamily();
-    //             auto MSpellID     = MSpell->getID();
-    //
-    //             if (PSpell->isBuff())
-    //             {
-    //                 if (PSpellFamily == MSpellFamily && spellid <= MSpellID)
-    //                 {
-    //                     canCast = false;
-    //                 }
-    //             }
-    //             if (PSpell->isCure())
-    //             {
-    //                 if (PTarget == MTarget && PTarget->GetHPP() > 50)
-    //                 {
-    //                     canCast = false;
-    //                 }
-    //             }
-    //             if (PSpell->isDebuff())
-    //             {
-    //                 if (PSpellFamily == MSpellFamily && spellid <= MSpellID)
-    //                 {
-    //                     canCast = false;
-    //                 }
-    //             }
-    //             if (PSpell->isNa())
-    //             {
-    //                 if (PSpellFamily == MSpellFamily && spellid == MSpellID)
-    //                 {
-    //                     canCast = false;
-    //                 }
-    //             }
-    //         }
-    //     }
-    // });
+    static_cast<CCharEntity*>(POwner->PMaster)->ForEveryPartyMemberWithTrusts([&](const CBattleEntity* PMember)
+    {
+        if (PMember->objtype == TYPE_TRUST && PMember->PAI->IsCurrentState<CMagicState>())
+        {
+            auto MState = static_cast<CMagicState*>(PMember->PAI->GetCurrentState());
+
+            if (MState)
+            {
+                auto MSpell       = MState->GetSpell();
+                auto MTarget      = MState->GetTarget();
+                auto MSpellFamily = MSpell->getSpellFamily();
+                auto MSpellID     = MSpell->getID();
+
+                if (PSpell->isBuff())
+                {
+                    if (PSpellFamily == MSpellFamily && spellid <= MSpellID)
+                    {
+                        canCast = false;
+                    }
+                }
+                if (PSpell->isCure())
+                {
+                    if (PTarget == MTarget && PTarget->GetHPP() > 50)
+                    {
+                        canCast = false;
+                    }
+                }
+                if (PSpell->isDebuff())
+                {
+                    if (PSpellFamily == MSpellFamily && spellid <= MSpellID)
+                    {
+                        canCast = false;
+                    }
+                }
+                if (PSpell->isNa())
+                {
+                    if (PSpellFamily == MSpellFamily && spellid == MSpellID)
+                    {
+                        canCast = false;
+                    }
+                }
+            }
+        }
+    });
     // clang-format on
 
     if (!canCast)
