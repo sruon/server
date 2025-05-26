@@ -23,8 +23,8 @@
 
 #include "party_member_update.h"
 
-#include "common/party/base.h"
 #include "alliance.h"
+#include "common/party/base.h"
 #include "entities/charentity.h"
 #include "entities/trustentity.h"
 #include "party/char_party.h"
@@ -95,46 +95,38 @@ CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(CTrustEntity* PTrust, const u
     std::memcpy(buffer_.data() + 0x28, PTrust->packetName.c_str(), PTrust->packetName.size());
 }
 
-// Notifying player of a party member information (in a different zone/process)
-CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(const CCharParty& PParty, const PartyMember& PMember, const uint8 MemberNumber)
+// Notifying player of a party member information
+CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(const CCharParty& PParty, const PartyMember& Member, const CCharEntity* PRecipient, const uint8 MemberNumber)
 {
     this->setType(0xDD);
     this->setSize(0x40);
 
-    ref<uint32>(0x04) = PMember.getId();
+    // Convert to actual CCharEntity. If they're in the same zone/process, we'll send more information.
+    auto* PMember = PParty.getMemberById(Member.getId());
+
+    ref<uint32>(0x04) = Member.getId();
 
     // TODO: Alliance flags
-    ref<uint16>(0x14) = PParty.getFlagsForMember(PMember);
+    ref<uint16>(0x14) = PParty.getFlagsForMember(Member);
     ref<uint8>(0x1A)  = MemberNumber;
 
-    std::memcpy(buffer_.data() + 0x28, PMember.getName().c_str(), PMember.getName().size());
-}
-
-// Notifying player of a party member information (same zone, full packet)
-CPartyMemberUpdatePacket::CPartyMemberUpdatePacket(const CCharParty& PParty, CCharEntity* PMember, const uint8 MemberNumber)
-{
-    this->setType(0xDD);
-    this->setSize(0x40);
-
-    ref<uint32>(0x04) = PMember->id;
-
-    // TODO: Alliance flags
-    ref<uint16>(0x14) = PParty.GetFlagsForMember(PMember);
-    ref<uint32>(0x08) = PMember->health.hp;
-    ref<uint32>(0x0C) = PMember->health.mp;
-    ref<uint16>(0x10) = PMember->health.tp;
-    ref<uint16>(0x18) = PMember->targid;
-    ref<uint8>(0x1A)  = MemberNumber;
-    ref<uint8>(0x1D)  = PMember->GetHPP();
-    ref<uint8>(0x1E)  = PMember->GetMPP();
-
-    if (!PMember->isAnon())
+    if (PMember && PRecipient && PMember->getZone() == PRecipient->getZone())
     {
-        ref<uint8>(0x22) = PMember->GetMJob();
-        ref<uint8>(0x23) = PMember->GetMLevel();
-        ref<uint8>(0x24) = PMember->GetSJob();
-        ref<uint8>(0x25) = PMember->GetSLevel();
+        ref<uint32>(0x08) = PMember->health.hp;
+        ref<uint32>(0x0C) = PMember->health.mp;
+        ref<uint16>(0x10) = PMember->health.tp;
+        ref<uint16>(0x18) = PMember->targid;
+        ref<uint8>(0x1D)  = PMember->GetHPP();
+        ref<uint8>(0x1E)  = PMember->GetMPP();
+
+        if (!PMember->isAnon())
+        {
+            ref<uint8>(0x22) = PMember->GetMJob();
+            ref<uint8>(0x23) = PMember->GetMLevel();
+            ref<uint8>(0x24) = PMember->GetSJob();
+            ref<uint8>(0x25) = PMember->GetSLevel();
+        }
     }
 
-    std::memcpy(buffer_.data() + 0x28, PMember->getName().c_str(), PMember->getName().size());
+    std::memcpy(buffer_.data() + 0x28, Member.getName().c_str(), Member.getName().size());
 }

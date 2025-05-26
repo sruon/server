@@ -135,7 +135,7 @@ bool PartySystem::handle_CharZoneOut(const IPP& ipp, const ipc::CharZoneOut& mes
 
     if (it != m_Parties.end())
     {
-        const auto& party = it->second;
+        auto& party = it->second;
         if (const auto syncTarget = party.getSyncTarget())
         {
             if (const PartyMember& target = syncTarget.value(); target.getId() == message.charId)
@@ -157,10 +157,7 @@ bool PartySystem::handle_CharZoneOut(const IPP& ipp, const ipc::CharZoneOut& mes
         // Leader is zoning out, clear all trusts
         if (party.getLeaderId() == message.charId)
         {
-            for (const auto& member : party.getMembers({ .type = PartyMemberType::Trust }))
-            {
-                handle_PartyRemoveMember(ipp, ipc::PartyRemoveMember{ .partyId = party.getPartyId(), .charId = member.get().getId() });
-            }
+            party.clearTrusts();
         }
 
         if (message.destinationZoneId == 0xFFFF)

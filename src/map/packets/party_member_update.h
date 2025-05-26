@@ -38,6 +38,5 @@ class CPartyMemberUpdatePacket : public CBasicPacket
 public:
     CPartyMemberUpdatePacket(CCharEntity* PSolo);
     CPartyMemberUpdatePacket(CTrustEntity* PTrust, uint8 MemberNumber);
-    CPartyMemberUpdatePacket(const CCharParty& PParty, const PartyMember& PMember, uint8 MemberNumber);
-    CPartyMemberUpdatePacket(const CCharParty& PParty, CCharEntity* PMember, uint8 MemberNumber);
+    CPartyMemberUpdatePacket(const CCharParty& PParty, const PartyMember& PMember, const CCharEntity* PRecipient, uint8 MemberNumber);
 };

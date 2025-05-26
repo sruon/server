@@ -154,6 +154,13 @@ bool WorldParty::addMember(uint32_t UniqueNo, PartyMemberType type, const uint32
 
         m_Members.emplace_back(UniqueNo, type, ZoneId, charName, std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()));
         ShowInfoFmt("Added member {} ({}) (type {})", charName, UniqueNo, static_cast<uint8>(type));
+
+        // If we added a player (that's not the initial member), all trusts should be cleared.
+        if (type == PartyMemberType::Player && getMemberCount() > 1)
+        {
+            clearTrusts();
+        }
+
         setDirty(true);
         return true;
     }
@@ -162,34 +169,57 @@ bool WorldParty::addMember(uint32_t UniqueNo, PartyMemberType type, const uint32
     return false;
 }
 
+void WorldParty::clearTrusts()
+{
+    // Trusts can't be QM/Leader/SyncTarget, so we can safely remove them without checking.
+
+    // clang-format off
+    const auto removed = std::erase_if(m_Members, [](const auto& member)
+    {
+        return member.getType() == PartyMemberType::Trust;
+    });
+    // clang-format on
+
+    if (removed > 0)
+    {
+        setDirty(true);
+    }
+}
+
 bool WorldParty::removeMember(uint32 UniqueNo)
 {
-    for (const auto& member : getMembers())
+    // clang-format off
+    const auto it = std::ranges::find_if(m_Members,
+         [UniqueNo](const PartyMember& member)
+         {
+             return member.getId() == UniqueNo;
+         });
+    // clang-format on
+    if (it == m_Members.end())
     {
-        if (member.get().getId() == UniqueNo)
-        {
-            std::erase_if(m_Members, [UniqueNo](const PartyMember& vecMember)
-                          { return vecMember.getId() == UniqueNo; });
-
-            // Leader is being removed, pass to someone else.
-            // If no eligible member, we need to disband the party
-            if (m_LeaderUniqueNo == UniqueNo)
-            {
-                reassignLeader();
-            }
-
-            if (m_QuartermasterUniqueNo == UniqueNo)
-                setQuartermaster(0);
-
-            if (m_SyncTargetUniqueNo == UniqueNo)
-                setSyncTarget(0);
-
-            ShowInfoFmt("Removed member with UniqueNo: {}", UniqueNo);
-            setDirty(true);
-            return true;
-        }
+        ShowWarningFmt("Member with UniqueNo: {} not found in party", UniqueNo);
+        return false;
     }
 
-    ShowWarningFmt("Member with UniqueNo: {} not found in party", UniqueNo);
-    return false;
+    m_Members.erase(it);
+
+    // Handle special role reassignments
+    if (m_LeaderUniqueNo == UniqueNo)
+    {
+        reassignLeader();
+    }
+
+    if (m_QuartermasterUniqueNo == UniqueNo)
+    {
+        setQuartermaster(0);
+    }
+
+    if (m_SyncTargetUniqueNo == UniqueNo)
+    {
+        setSyncTarget(0);
+    }
+
+    ShowInfoFmt("Removed member with UniqueNo: {}", UniqueNo);
+    setDirty(true);
+    return true;
 }

@@ -218,24 +218,28 @@ void CCharParty::update(const ipc::PartyUpdate& message)
     }
 
     // Check if members have changed
-    auto membersDiff = diff(message);
+    auto [disappeared, appeared, changed] = diff(message);
 
-    for (const auto& member : membersDiff.appeared)
+    for (const auto& member : appeared)
     {
         addMember(member);
         changes = true;
     }
 
-    for (const auto& member : membersDiff.disappeared)
+    for (const auto& member : disappeared)
     {
         delMember(member);
         changes = true;
     }
 
-    for (const auto& [oldMember, newMember] : membersDiff.changed)
+    for (const auto& [oldMember, newMember] : changed)
     {
+        // clang-format off
         std::ranges::replace_if(m_Members, [&oldMember](const PartyMember& member)
-                                { return member.getId() == oldMember.get().getId(); }, newMember.get());
+        {
+            return member.getId() == oldMember.get().getId();
+        }, newMember.get());
+        // clang-format on
         changes = true;
     }
 
@@ -243,29 +247,6 @@ void CCharParty::update(const ipc::PartyUpdate& message)
     {
         broadcastPartyPackets();
     }
-}
-
-// TODO: Alliance flags
-auto CCharParty::GetFlagsForMember(const CCharEntity* PChar) const -> uint16
-{
-    auto flags = static_cast<PartyFlag>(0);
-
-    if (PChar->id == m_LeaderUniqueNo)
-    {
-        flags = flags | PartyFlag::IsLeader;
-    }
-
-    if (PChar->id == m_QuartermasterUniqueNo)
-    {
-        flags = flags | PartyFlag::IsQuartermaster;
-    }
-
-    if (PChar->id == m_SyncTargetUniqueNo)
-    {
-        flags = flags | PartyFlag::IsSyncTarget;
-    }
-
-    return static_cast<uint16>(flags);
 }
 
 // Recalculate latents, send party define and party update packets.
@@ -300,16 +281,7 @@ void CCharParty::broadcastPartyPackets(const CCharEntity* PSingle)
         {
             if (Member.getType() == PartyMemberType::Player)
             {
-                if (auto* PMemberEntity = zoneutils::GetChar(Member.getId()); PMemberEntity != nullptr && PMemberEntity->getZone() == PChar->getZone())
-                {
-                    // If party member is on this process AND in the same zone, send a full packet
-                    PChar->pushPacket<CPartyMemberUpdatePacket>(*this, PMemberEntity, i);
-                }
-                else
-                {
-                    // If party member is on a different process OR in a different zone, send a limited packet
-                    PChar->pushPacket<CPartyMemberUpdatePacket>(*this, Member, i);
-                }
+                PChar->pushPacket<CPartyMemberUpdatePacket>(*this, Member, PChar, i);
             }
             else if (Member.getType() == PartyMemberType::Trust)
             {
@@ -337,6 +309,7 @@ void CCharParty::broadcastPartyPackets(const CCharEntity* PSingle)
                     }
                 }
             }
+
             ++i;
         }
 
@@ -365,11 +338,13 @@ auto CCharParty::getMembers(const PartyMemberFilter filter) const -> std::vector
         {
             if (PLeader)
             {
+                // clang-format off
                 auto found = std::ranges::find_if(PLeader->PTrusts,
-                                                  [member](const CTrustEntity* PTrust)
-                                                  {
-                                                      return PTrust->id == member.get().getId();
-                                                  });
+                    [member](const CTrustEntity* PTrust)
+                    {
+                        return PTrust->id == member.get().getId();
+                    });
+                // clang-format on
 
                 if (found != PLeader->PTrusts.end())
                 {
@@ -399,7 +374,7 @@ auto CCharParty::getPlayers(PartyMemberFilter filter) const -> std::vector<CChar
 }
 
 // Returns the entity representing the party leader
-// This only works if the leader is on the same map process
+// Returns nullptr if the target is on a different map process.
 auto CCharParty::getLeader() const -> CCharEntity*
 {
     if (const auto maybeLeader = PartyBase::getLeader())
@@ -416,7 +391,7 @@ auto CCharParty::getLeader() const -> CCharEntity*
 }
 
 // Returns the entity representing the quartermaster
-// This only works if the quartermaster is on the same map process
+// Returns nullptr if the target is on a different map process.
 auto CCharParty::getQuartermaster() const -> CCharEntity*
 {
     if (const auto maybeQm = PartyBase::getQuartermaster())
@@ -433,7 +408,7 @@ auto CCharParty::getQuartermaster() const -> CCharEntity*
 }
 
 // Returns the entity representing the sync target
-// This only works if the sync target is on the same map process
+// Returns nullptr if the target is on a different map process.
 auto CCharParty::getSyncTarget() const -> CCharEntity*
 {
     if (const auto maybeSync = PartyBase::getSyncTarget())
@@ -449,7 +424,7 @@ auto CCharParty::getSyncTarget() const -> CCharEntity*
     return nullptr;
 }
 
-// Executes an arbitrary function for each party member present on this map process
+// Executes an arbitrary function for each (player) party member present on this map process
 void CCharParty::ForEveryMember(const std::function<void(CCharEntity*)>& func) const
 {
     // clang-format off
@@ -463,7 +438,7 @@ void CCharParty::ForEveryMember(const std::function<void(CCharEntity*)>& func) c
     // clang-format on
 }
 
-// Executes an arbitrary function for each alliance member present on this map process
+// Executes an arbitrary function for each (player) alliance member present on this map process
 void CCharParty::ForEveryAllianceMember(std::function<void(CCharEntity*)> func)
 {
     // clang-format off
@@ -489,7 +464,7 @@ void CCharParty::ForEveryMemberWithTrusts(const std::function<void(CBattleEntity
         {
             if (auto* PChar = zoneutils::GetChar(member.getId()))
             {
-                func(static_cast<CBattleEntity*>(PChar));
+                func(PChar);
             }
         }
         else if (member.getType() == PartyMemberType::Trust)
@@ -505,13 +480,14 @@ void CCharParty::ForEveryMemberWithTrusts(const std::function<void(CBattleEntity
                 // clang-format on
                 if (maybeTrust != PLeader->PTrusts.end())
                 {
-                    func(static_cast<CBattleEntity*>(*maybeTrust));
+                    func(*maybeTrust);
                 }
             }
         } });
     // clang-format on
 }
 
+// Sends PChar a packet with the party buffs.
 void CCharParty::pushEffectsPacket(CCharEntity* PChar) const
 {
     PChar->pushPacket<CPartyEffectsPacket>(PChar, getPlayers({ .zoneId = PChar->getZone() }));
@@ -534,6 +510,8 @@ void CCharParty::pushPacket(const uint32 senderID, const uint16 ZoneID, const st
     }
 }
 
+// Returns the player entity representing the party member with the given ID
+// Returns nullptr if the target is on a different map process.
 auto CCharParty::getMemberById(const uint32 charId) const -> CCharEntity*
 {
     if (const auto found = PartyBase::getMemberById(charId))
@@ -544,6 +522,8 @@ auto CCharParty::getMemberById(const uint32 charId) const -> CCharEntity*
     return nullptr;
 }
 
+// Returns the player entity representing the party member with the given name
+// Returns nullptr if the target is on a different map process.
 auto CCharParty::getMemberByName(const std::string& memberName) const -> CCharEntity*
 {
     if (const auto found = PartyBase::getMemberByName(memberName))
@@ -554,6 +534,7 @@ auto CCharParty::getMemberByName(const std::string& memberName) const -> CCharEn
     return nullptr;
 }
 
+// Sets the party ID for this party.
 void CCharParty::setPartyId(const uint32 partyId)
 {
     m_PartyId = partyId;
@@ -607,9 +588,13 @@ void CCharParty::addMember(const PartyMember& member)
 
 void CCharParty::delMember(const PartyMember& member)
 {
+    // clang-format off
     const auto it = std::ranges::find_if(m_Members,
-                                         [&](const PartyMember& m)
-                                         { return m.getId() == member.getId(); });
+    [&](const PartyMember& m)
+    {
+        return m.getId() == member.getId();
+    });
+    // clang-format on
 
     if (it != m_Members.end())
     {

@@ -902,7 +902,7 @@ void CCharEntity::RemoveTrust(CTrustEntity* PTrust)
 
 void CCharEntity::ClearTrusts()
 {
-    for (auto* PTrust : PTrusts)
+    for (const auto* PTrust : PTrusts)
     {
         if (hasParty())
         {

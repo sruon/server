@@ -42,5 +42,6 @@ public:
     bool setQuartermaster(uint32_t UniqueNo);
     bool setSyncTarget(uint32_t UniqueNo);
     bool addMember(uint32_t UniqueNo, PartyMemberType type, uint32 ZoneId);
+    void clearTrusts();
     bool removeMember(uint32 UniqueNo);
 };

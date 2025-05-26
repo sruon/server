@@ -54,7 +54,6 @@ public:
     void refreshSync() const;
 
     // Helpers
-    auto GetFlagsForMember(const CCharEntity* PChar) const -> uint16;
     bool hasJob(uint8 job, std::optional<uint16> zoneId = std::nullopt) const;
 
     // Packets
