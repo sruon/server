@@ -667,3 +667,9 @@ bool CCharParty::hasJob(const uint8 job, std::optional<uint16> zoneId) const
 
     return false;
 }
+
+bool CCharParty::isAllianced(CCharParty& other) const
+{
+    // TODO: Implement alliance logic
+    return false;
+}

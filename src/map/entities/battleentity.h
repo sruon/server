@@ -642,10 +642,6 @@ public:
     void applyPetModifiers(CPetEntity* PPet);
     void removePetModifiers(CPetEntity* PPet);
 
-
-
-
-
     virtual void addTrait(CTrait*);
     virtual void delTrait(CTrait*);
     virtual bool hasTrait(uint16);

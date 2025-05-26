@@ -117,6 +117,7 @@ void CTargetFind::findWithinArea(CBattleEntity* PTarget, AOE_RADIUS radiusType, 
         if (m_PMasterTarget->objtype == TYPE_PC)
         {
             const auto mTarget = static_cast<CCharEntity*>(m_PMasterTarget);
+
             // players will never need to add whole alliance
             m_findType = FIND_TYPE::PLAYER_PLAYER;
 
@@ -278,10 +279,10 @@ void CTargetFind::addAllInAlliance(CBattleEntity* PTarget, bool withPet)
     if (auto* PChar = dynamic_cast<CCharEntity*>(PTarget))
     {
         // clang-format off
-    //     PChar->ForAlliance([this, withPet](CBattleEntity* PMember)
-    // {
-    //     addEntity(PMember, withPet);
-    // });
+        PChar->ForEveryAllianceMember([this, withPet](CBattleEntity* PMember)
+        {
+            addEntity(PMember, withPet);
+        });
         // clang-format on
     }
 }

@@ -43,6 +43,7 @@
 #include "mob_modifier.h"
 #include "notoriety_container.h"
 #include "packets/action.h"
+#include "party/char_party.h"
 #include "recast_container.h"
 #include "roe.h"
 #include "status_effect_container.h"
@@ -1753,7 +1754,6 @@ void CBattleEntity::Die()
     if (CBaseEntity* PKiller = GetEntity(m_OwnerID.targid))
     {
         // clang-format off
-        // TODO: This will blow if no party
         static_cast<CCharEntity*>(PKiller)->ForEveryAllianceMember([this](CBattleEntity* PMember)
         {
             CCharEntity* member = static_cast<CCharEntity*>(PMember);
@@ -1962,7 +1962,8 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
         {
             if (PChar == PTargetChar || // Casting on self or ally
                 (PChar->hasParty() && PTargetChar && PTargetChar->hasParty() &&
-                 ((&PChar->getParty() == &PTargetChar->getParty())))) // || (PChar->PParty->m_PAlliance && PChar->PParty->m_PAlliance == PTargetChar->PParty->m_PAlliance))))
+                 ((&PChar->getParty() == &PTargetChar->getParty()) ||
+                     (PChar->getParty().isAllianced(PTargetChar->getParty())))))
             {
                 if (PSpell->isHeal())
                 {
