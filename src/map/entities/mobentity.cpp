@@ -57,6 +57,7 @@
 #include "utils/petutils.h"
 #include "utils/zoneutils.h"
 #include "weapon_skill.h"
+#include "party/mob_party.h"
 
 #include <cstring>
 
@@ -175,16 +176,9 @@ CMobEntity::~CMobEntity()
     destroy(PEnmityContainer);
     destroy(SpellContainer);
 
-    if (PParty)
+    if (hasParty())
     {
-        if (PParty->HasOnlyOneMember())
-        {
-            destroy(PParty);
-        }
-        else
-        {
-            PParty->DelMember(this);
-        }
+            getParty().removeMember(this);
     }
 }
 
@@ -1259,4 +1253,37 @@ bool CMobEntity::OnAttack(CAttackState& state, action_t& action)
 bool CMobEntity::isWideScannable()
 {
     return CBaseEntity::isWideScannable() && !getMobMod(MOBMOD_NO_WIDESCAN);
+}
+
+void CMobEntity::setParty(CMobParty& party)
+{
+    m_Party = std::ref(party);
+}
+
+void CMobEntity::clearParty()
+{
+    m_Party.reset();
+}
+
+bool CMobEntity::hasParty() const
+{
+    return m_Party.has_value();
+}
+
+// Check with hasParty before calling this.
+auto CMobEntity::getParty() const -> CMobParty&
+{
+    return m_Party.value();
+}
+
+void CMobEntity::ForEveryPartyMember(const std::function<void(CMobEntity*)>& func)
+{
+    if (hasParty())
+    {
+        getParty().ForEveryMember(func);
+    }
+    else
+    {
+        func(this);
+    }
 }

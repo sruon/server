@@ -291,19 +291,19 @@ void CTargetFind::addAllInParty(CBattleEntity* PTarget, bool withPet)
     // clang-format off
     if (PTarget->objtype == TYPE_PC)
     {
-        // static_cast<CCharEntity*>(PTarget)->ForPartyWithTrusts([this, withPet](CBattleEntity* PMember)
-        // {
-        //     if (!PMember->isInMogHouse())
-        //     {
-        //         addEntity(PMember, withPet);
-        //     }
-        // });
+        static_cast<CCharEntity*>(PTarget)->ForEveryPartyMemberWithTrusts([this, withPet](CBattleEntity* PMember)
+        {
+            if (!PMember->isInMogHouse())
+            {
+                addEntity(PMember, withPet);
+            }
+        });
     }
     else
     {
         if (auto* PMob = dynamic_cast<CMobEntity*>(PTarget))
         {
-            PMob->ForParty([this, withPet](CBattleEntity* PMember)
+            PMob->ForEveryPartyMember([this, withPet](CBattleEntity* PMember)
             {
                 addEntity(PMember, withPet);
             });
@@ -414,13 +414,13 @@ bool CTargetFind::isMobOwner(CBattleEntity* PTarget)
     if (auto* PChar = dynamic_cast<CCharEntity*>(m_PBattleEntity))
     {
         // clang-format off
-        // PChar->ForAlliance([&found, &PTarget](CBattleEntity* PMember)
-        // {
-        //     if (PMember->id == PTarget->m_OwnerID.id)
-        //     {
-        //         found = true;
-        //     }
-        // });
+        PChar->ForEveryAllianceMember([&found, &PTarget](CBattleEntity* PMember)
+        {
+            if (PMember->id == PTarget->m_OwnerID.id)
+            {
+                found = true;
+            }
+        });
         // clang-format on
     }
 

@@ -458,7 +458,6 @@ bool PartySystem::handle_PartySetSyncTarget(const IPP& ipp, const ipc::PartySetS
     }
     else if (syncTargetId != 0)
     {
-        // Case 1. Syncing by ID
         syncTargetInfo = getCharInfoFromId(syncTargetId);
         if (!syncTargetInfo)
         {

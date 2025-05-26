@@ -34,6 +34,7 @@
 #include "status_effect_container.h"
 #include "utils/mobutils.h"
 #include "utils/zoneutils.h"
+#include "party/mob_party.h"
 
 CLuaBattlefield::CLuaBattlefield(CBattlefield* PBattlefield)
 : m_PLuaBattlefield(PBattlefield)
@@ -477,18 +478,19 @@ void CLuaBattlefield::addGroups(sol::table const& groups, bool hasMultipleArenas
                 }
 
                 // Leave existing party first before joining this new one
-                if (PMob->PParty != nullptr)
+                if (PMob->hasParty())
                 {
-                    PMob->PParty->RemoveMember(PMob);
+                    PMob->getParty().removeMember(PMob);
                 }
 
                 if (party == nullptr)
                 {
-                    party = new CMobParty(PMob);
+                    party = new CMobParty();
+                    party->addMember(PMob);
                 }
                 else
                 {
-                    party->AddMember(PMob);
+                    party->addMember(PMob);
                 }
             }
         }

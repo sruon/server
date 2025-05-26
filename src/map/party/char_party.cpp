@@ -448,6 +448,8 @@ void CCharParty::ForEveryAllianceMember(std::function<void(CCharEntity*)> func)
           {
              func(charEntity);
           }
+
+        // TODO: May need trust fallback if no alliance
     });
     // clang-format on
 }

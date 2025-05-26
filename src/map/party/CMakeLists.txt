@@ -5,5 +5,7 @@ set(PARTY_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/ipc_helper.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/char_party.h
     ${CMAKE_CURRENT_SOURCE_DIR}/char_party.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/mob_party.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/mob_party.cpp
     PARENT_SCOPE
 )

@@ -23,13 +23,13 @@
 #define _MOBENTITY_H
 
 #include "battleentity.h"
-#include "mobparty.h"
 #include <unordered_map>
 
 // forward declaration
 class CMobSpellContainer;
 class CMobSpellList;
 class CEnmityContainer;
+class CMobParty;
 
 enum SPAWNTYPE
 {
@@ -190,8 +190,7 @@ public:
     timer::duration m_RespawnTime;  // respawn time
     timer::duration m_DropItemTime; // time until monster death animation
 
-    CMobParty* PParty = nullptr;
-    uint32     m_DropID; // dropid of items to be dropped. dropid in Database (mob_droplist)
+    uint32 m_DropID; // dropid of items to be dropped. dropid in Database (mob_droplist)
 
     uint8  m_minLevel; // lowest possible level of the mob
     uint8  m_maxLevel; // highest possible level of the mob
@@ -271,31 +270,23 @@ public:
     static constexpr float sound_range{ 8.f };
     static constexpr float sight_range{ 15.f };
     static constexpr float magic_range{ 20.f };
-    template <typename F, typename... Args>
-    void ForParty(F func, Args&&... args)
-    {
-        if (PParty)
-        {
-            for (auto PMember : PParty->members)
-            {
-                func(PMember, std::forward<Args>(args)...);
-            }
-        }
-        else
-        {
-            func(this, std::forward<Args>(args)...);
-        }
-    }
+
+    void setParty(CMobParty& party);
+    void clearParty();
+    bool hasParty() const;
+    auto getParty() const -> CMobParty&;
+    void ForEveryPartyMember(const std::function<void(CMobEntity*)>& func);
 
 protected:
     void DistributeRewards();
     void DropItems(CCharEntity* PChar);
 
 private:
-    timer::time_point              m_DespawnTimer{ timer::time_point::min() }; // Despawn Timer to despawn mob after set duration
-    std::unordered_map<int, int16> m_mobModStat;
-    std::unordered_map<int, int16> m_mobModStatSave;
-    static constexpr float         roam_home_distance{ 60.f };
+    std::optional<std::reference_wrapper<CMobParty>> m_Party;
+    timer::time_point                                m_DespawnTimer{ timer::time_point::min() }; // Despawn Timer to despawn mob after set duration
+    std::unordered_map<int, int16>                   m_mobModStat;
+    std::unordered_map<int, int16>                   m_mobModStatSave;
+    static constexpr float                           roam_home_distance{ 60.f };
 };
 
 #endif

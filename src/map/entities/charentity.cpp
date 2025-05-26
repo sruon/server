@@ -3379,6 +3379,7 @@ void CCharEntity::ForEveryPartyMember(const std::function<void(CCharEntity*)>& f
         func(this);
     }
 }
+
 void CCharEntity::ForEveryPartyMemberWithTrusts(const std::function<void(CBattleEntity*)>& func)
 {
     if (hasParty())

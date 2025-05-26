@@ -48,6 +48,7 @@
 #include "lua/luautils.h"
 
 #include "battlefield.h"
+#include "party/mob_party.h"
 #include "utils/battleutils.h"
 #include "utils/charutils.h"
 #include "utils/moduleutils.h"
@@ -356,7 +357,7 @@ void CZoneEntities::FindPartyForMob(CBaseEntity* PEntity)
     ZONE_TYPE zonetype  = m_zone->GetTypeMask();
     bool      forceLink = zonetype & ZONE_TYPE::DYNAMIS || PMob->getMobMod(MOBMOD_SUPERLINK);
 
-    if ((forceLink || PMob->m_Link || PMob->m_Type & MOBTYPE_BATTLEFIELD) && PMob->PParty == nullptr)
+    if ((forceLink || PMob->m_Link || PMob->m_Type & MOBTYPE_BATTLEFIELD) && !PMob->hasParty())
     {
         FOR_EACH_PAIR_CAST_SECOND(CMobEntity*, PCurrentMob, m_mobList)
         {
@@ -372,12 +373,13 @@ void CZoneEntities::FindPartyForMob(CBaseEntity* PEntity)
             {
                 if (PCurrentMob->PMaster == nullptr || PCurrentMob->PMaster->objtype == TYPE_MOB)
                 {
-                    PCurrentMob->PParty->AddMember(PMob);
+                    PCurrentMob->getParty().addMember(PMob);
                     return;
                 }
             }
         }
-        PMob->PParty = new CMobParty(PMob);
+        auto newParty = new CMobParty();
+        newParty->addMember(PMob);
     }
 }
 
@@ -1723,9 +1725,9 @@ void CZoneEntities::ZoneServer(timer::time_point tick)
                 POtherMob->PEnmityContainer->Clear(PMob->id);
             }
 
-            if (PMob->PParty)
+            if (PMob->hasParty())
             {
-                PMob->PParty->RemoveMember(PMob);
+                PMob->getParty().removeMember(PMob);
             }
 
             FOR_EACH_PAIR_CAST_SECOND(CCharEntity*, PChar, m_charList)
