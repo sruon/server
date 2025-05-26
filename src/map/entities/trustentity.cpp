@@ -459,6 +459,8 @@ bool CTrustEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags)
     if (targetFlags & TARGET_PLAYER_PARTY && PInitiator->allegiance == allegiance && PMaster)
     {
         // TODO: wtf is this
+        // Trust target finding?
+        // Means we must handle Mob<>Trust, Trust<>PChar, PChar<>PChar?
         return true;
         // return PInitiator->PParty == static_cast<CCharEntity*>(PMaster)->PParty;
     }

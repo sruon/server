@@ -33,6 +33,7 @@
 #include "utils/battleutils.h"
 #include "utils/zoneutils.h"
 
+#include "party/char_party.h"
 #include "time_server.h"
 
 // clang-format off
@@ -452,57 +453,43 @@ void CLatentEffectContainer::CheckLatentsHours()
 * activates them if the conditions are met.                             *
 *                                                                       *
  ************************************************************************/
-void CLatentEffectContainer::CheckLatentsPartyMembers(size_t members, size_t trustCount)
+void CLatentEffectContainer::CheckLatentsPartyMembers(const CCharParty& party)
 {
-    ProcessLatentEffects([this, members, trustCount](CLatentEffect& latentEffect) {
-        // size_t totalMembers = members + trustCount;
+    ProcessLatentEffects([this, &party](CLatentEffect& latentEffect) {
+        const size_t membersCount = party.getPlayers().size();
+        const size_t trustCount   = party.getTrusts().size();
+        const size_t totalMembers = membersCount + trustCount;
 
         switch (latentEffect.GetConditionsID())
         {
             case LATENT::PARTY_MEMBERS:
-                // if (latentEffect.GetConditionsValue() <= totalMembers)
-                // {
-                //     return latentEffect.Activate();
-                // }
-                // else
-                // {
-                //     return latentEffect.Deactivate();
-                // }
+                if (latentEffect.GetConditionsValue() <= totalMembers)
+                {
+                    return latentEffect.Activate();
+                }
+
                 return latentEffect.Deactivate();
             case LATENT::PARTY_MEMBERS_IN_ZONE:
-                // if (latentEffect.GetConditionsValue() <= totalMembers)
-                // {
-                //     auto inZone = 0;
-                //     for (size_t m = 0; m < members; ++m)
-                //     {
-                //         auto* PMember = dynamic_cast<CCharEntity*>(m_POwner->PParty->members.at(m));
-                //         if (PMember != nullptr && PMember->getZone() == m_POwner->getZone())
-                //         {
-                //             inZone++;
-                //         }
-                //     }
-                //
-                //     auto* PLeader = dynamic_cast<CCharEntity*>(m_POwner->PParty->GetLeader());
-                //     if (PLeader != nullptr && m_POwner->getZone() == PLeader->getZone())
-                //     {
-                //         inZone = inZone + static_cast<int>(trustCount);
-                //     }
-                //
-                //     if (inZone == latentEffect.GetConditionsValue())
-                //     {
-                //         return latentEffect.Activate();
-                //     }
-                //     else
-                //     {
-                //         return latentEffect.Deactivate();
-                //     }
-                // }
-                // else
-                // {
-                //     return latentEffect.Deactivate();
-                // }
-                // return latentEffect.Deactivate();
-                break;
+                if (latentEffect.GetConditionsValue() <= totalMembers)
+                {
+                    size_t inZone = party.getMembers({ .zoneId = m_POwner->getZone() }).size();
+
+                    // Add trusts if leader in zone
+                    // TODO: reconfirming this is actually accurate
+                    if (const auto* PLeader = party.getLeader(); PLeader &&
+                        m_POwner->getZone() == PLeader->getZone())
+                    {
+                        inZone = inZone + trustCount;
+                    }
+
+                    // TODO: Shouldn't this be >= ?
+                    if (inZone == latentEffect.GetConditionsValue())
+                    {
+                        return latentEffect.Activate();
+                    }
+                }
+
+                return latentEffect.Deactivate();
             default:
                 break;
         }
@@ -556,7 +543,6 @@ void CLatentEffectContainer::CheckLatentsJobLevel()
             case LATENT::JOB_LEVEL_BELOW:
             case LATENT::JOB_LEVEL_ABOVE:
                 return ProcessLatentEffect(latentEffect);
-                break;
             default:
                 break;
         }
@@ -631,7 +617,6 @@ void CLatentEffectContainer::CheckLatentsZone()
             case LATENT::NATION_CITIZEN:
             case LATENT::ZONE_HOME_NATION:
                 return ProcessLatentEffect(latentEffect);
-                break;
             default:
                 break;
         }
@@ -817,111 +802,72 @@ bool CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect, bo
             break;
         case LATENT::PARTY_MEMBERS:
         {
-            // TODO: Need rework with new PT system
-            // size_t partyCount = 0;
-            // size_t trustCount = 0;
-            // auto* PLeader = m_POwner->PParty != nullptr ? dynamic_cast<CCharEntity*>(m_POwner->PParty->GetLeader()) : nullptr;
-            // if (PLeader)
-            // {
-            //     trustCount = PLeader->PTrusts.size();
-            //     partyCount = m_POwner->PParty->members.size();
-            // }
-            //
-            // expression = latentEffect.GetConditionsValue() <= (partyCount + trustCount);
-            expression = false;
+            size_t partyCount = 0;
+            if (m_POwner->hasParty())
+            {
+                // This takes all party members, regardless of zone and their type (PC/trusts)
+                // Not sure if this is correct, but it matches earlier implementation.
+                partyCount = static_cast<PartyBase>(m_POwner->getParty()).getMembers().size();
+            }
+
+            expression = latentEffect.GetConditionsValue() <= partyCount;
             break;
         }
         case LATENT::PARTY_MEMBERS_IN_ZONE:
         {
-            // TODO: Need rework with new PT system
-            // auto inZone = 0;
-            // if (m_POwner->PParty && dynamic_cast<CCharEntity*>(m_POwner->PParty->GetLeader()))
-            // {
-            //     for (auto* member : m_POwner->PParty->members)
-            //     {
-            //         if (member->getZone() == m_POwner->getZone())
-            //         {
-            //             ++inZone;
-            //         }
-            //     }
-            //
-            //     auto PLeader = (CCharEntity*)m_POwner->PParty->GetLeader();
-            //     if (m_POwner->getZone() == PLeader->getZone())
-            //     {
-            //         inZone = inZone + static_cast<int>(PLeader->PTrusts.size());
-            //     }
-            // }
-            //
-            // expression = latentEffect.GetConditionsValue() <= inZone;
-            expression = false;
+            size_t inZone = 0;
+            if (m_POwner->hasParty())
+            {
+                // Once again, this takes all party members incl. trusts.
+                // Not sure if this is correct, but it matches earlier implementation.
+                inZone = static_cast<PartyBase>(m_POwner->getParty()).getMembers({ .zoneId = m_POwner->getZone() }).size();
+            }
+
+            expression = latentEffect.GetConditionsValue() <= inZone;
             break;
         }
         case LATENT::AVATAR_IN_PARTY:
-            // TODO: Need rework with new PT system
-            // if (m_POwner->PParty != nullptr)
-            // {
-            //     for (auto* member : m_POwner->PParty->members)
-            //     {
-            //         if (member->PPet != nullptr && member->PPet->objtype == TYPE_PET)
-            //         {
-            //             auto* PPet = static_cast<CPetEntity*>(member->PPet);
-            //             if (
-            //                     !PPet->isDead() && PPet->m_PetID < 21 && // is a live avatar
-            //                     (PPet->m_PetID == latentEffect.GetConditionsValue() || latentEffect.GetConditionsValue() == 21)
-            //                 )
-            //             {
-            //                 expression = true;
-            //                 break;
-            //             }
-            //         }
-            //     }
-            // }
-            // else if (m_POwner->PParty == nullptr && m_POwner->PPet != nullptr)
-            // {
-            //     auto* PPet = (CPetEntity*)m_POwner->PPet;
-            //     if (
-            //             !PPet->isDead() && PPet->m_PetID < 21 && // is a live avatar
-            //             (PPet->m_PetID == latentEffect.GetConditionsValue() || latentEffect.GetConditionsValue() == 21)
-            //         )
-            //     {
-            //         expression = true;
-            //     }
-            // }
-            expression = false;
+            // Once again this matches the earlier implementation, but I suspect it's wrong:
+            // - Should probably be scoped to current zone
+            // - Might include alliance members?
+            // Retest with Sacrifice Torque and document
+            if (m_POwner->hasParty())
+            {
+                m_POwner->ForEveryPartyMember([&](const CCharEntity* PMember)
+                {
+                    if (PMember->PPet != nullptr && PMember->PPet->objtype == TYPE_PET)
+                    {
+                        auto* PPet = static_cast<CPetEntity*>(PMember->PPet);
+                        if (!PPet->isDead() && PPet->m_PetID < 21 && // is a live avatar
+                            (PPet->m_PetID == latentEffect.GetConditionsValue() ||
+                            latentEffect.GetConditionsValue() == 21))
+                        {
+                            expression = true;
+                        }
+                    }
+                });
+            }
+            else if (!m_POwner->hasParty() && m_POwner->PPet)
+            {
+                auto* PPet = static_cast<CPetEntity*>(m_POwner->PPet);
+                if (!PPet->isDead() && PPet->m_PetID < 21 && // is a live avatar
+                    (PPet->m_PetID == latentEffect.GetConditionsValue() ||
+                    latentEffect.GetConditionsValue() == 21))
+                {
+                    expression = true;
+                }
+            }
             break;
         case LATENT::JOB_IN_PARTY:
-            // if (m_POwner->PParty != nullptr)
-            // {
-            //     for (auto* member : m_POwner->PParty->members)
-            //     {
-            //         if (member->id != m_POwner->id)
-            //         {
-            //             if (member->GetMJob() == latentEffect.GetConditionsValue())
-            //             {
-            //                 expression = true;
-            //                 break;
-            //             }
-            //         }
-            //     }
-            //
-            //     auto leader = (CCharEntity*)m_POwner->PParty->GetLeader();
-            //
-            //     if (leader == nullptr)
-            //     {
-            //         expression = false;
-            //         break;
-            //     }
-            //
-            //     for (auto* trust : leader->PTrusts)
-            //     {
-            //         if (trust->GetMJob() == latentEffect.GetConditionsValue())
-            //         {
-            //             expression = true;
-            //             break;
-            //         }
-            //     }
-            // }
-            expression = false;
+            // Matches existing implementation, but I suspect it's wrong:
+            // - Should probably be scoped to current zone
+            // - Need confirmation trusts are actually included
+            // Retest with Stormer Earring and document
+            if (m_POwner->hasParty())
+            {
+                expression = m_POwner->getParty().hasJob(latentEffect.GetConditionsValue());
+            }
+
             break;
         case LATENT::ZONE:
             expression = latentEffect.GetConditionsValue() == m_POwner->getZone();

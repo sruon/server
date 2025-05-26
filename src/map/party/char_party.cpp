@@ -260,8 +260,6 @@ void CCharParty::broadcastPartyPackets(const CCharEntity* PSingle)
     // 0x67: Entity status
     // 0xDF: Char update with trust data
     // 0x0E: Several NPC updates with name etc
-    const size_t memberCount = this->getPlayers().size();
-    const size_t trustCount  = this->getTrusts().size();
 
     // clang-format off
     ForEveryMember([&](CCharEntity* PChar)
@@ -272,7 +270,7 @@ void CCharParty::broadcastPartyPackets(const CCharEntity* PSingle)
         }
 
         PChar->PLatentEffectContainer->CheckLatentsPartyJobs();
-        PChar->PLatentEffectContainer->CheckLatentsPartyMembers(memberCount, trustCount);
+        PChar->PLatentEffectContainer->CheckLatentsPartyMembers(*this);
         PChar->PLatentEffectContainer->CheckLatentsPartyAvatar();
         PChar->pushPacket<CPartyDefinePacket>(PChar, this);
         uint8 i = 0;
