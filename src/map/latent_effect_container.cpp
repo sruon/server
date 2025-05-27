@@ -456,37 +456,16 @@ void CLatentEffectContainer::CheckLatentsHours()
 void CLatentEffectContainer::CheckLatentsPartyMembers(const CCharParty& party)
 {
     ProcessLatentEffects([this, &party](CLatentEffect& latentEffect) {
-        const size_t membersCount = party.getPlayers().size();
-        const size_t trustCount   = party.getTrusts().size();
-        const size_t totalMembers = membersCount + trustCount;
+        const size_t membersCount = party.getMembers({ .zoneId = m_POwner->getZone() }).size();
 
         switch (latentEffect.GetConditionsID())
         {
+            // TODO: Retest with the right items to make sure this is not off by one
             case LATENT::PARTY_MEMBERS:
-                if (latentEffect.GetConditionsValue() <= totalMembers)
+            case LATENT::PARTY_MEMBERS_IN_ZONE:
+                if (latentEffect.GetConditionsValue() <= membersCount)
                 {
                     return latentEffect.Activate();
-                }
-
-                return latentEffect.Deactivate();
-            case LATENT::PARTY_MEMBERS_IN_ZONE:
-                if (latentEffect.GetConditionsValue() <= totalMembers)
-                {
-                    size_t inZone = party.getMembers({ .zoneId = m_POwner->getZone() }).size();
-
-                    // Add trusts if leader in zone
-                    // TODO: reconfirming this is actually accurate
-                    if (const auto* PLeader = party.getLeader(); PLeader &&
-                        m_POwner->getZone() == PLeader->getZone())
-                    {
-                        inZone = inZone + trustCount;
-                    }
-
-                    // TODO: Shouldn't this be >= ?
-                    if (inZone == latentEffect.GetConditionsValue())
-                    {
-                        return latentEffect.Activate();
-                    }
                 }
 
                 return latentEffect.Deactivate();
@@ -801,25 +780,12 @@ bool CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect, bo
             expression = !m_POwner->StatusEffectContainer->HasStatusEffect(EFFECT_FOOD);
             break;
         case LATENT::PARTY_MEMBERS:
-        {
-            size_t partyCount = 0;
-            if (m_POwner->hasParty())
-            {
-                // This takes all party members, regardless of zone and their type (PC/trusts)
-                // Not sure if this is correct, but it matches earlier implementation.
-                partyCount = static_cast<PartyBase>(m_POwner->getParty()).getMembers().size();
-            }
-
-            expression = latentEffect.GetConditionsValue() <= partyCount;
-            break;
-        }
         case LATENT::PARTY_MEMBERS_IN_ZONE:
         {
+            // Confirmed to include trusts and party members in the current zone only.
             size_t inZone = 0;
             if (m_POwner->hasParty())
             {
-                // Once again, this takes all party members incl. trusts.
-                // Not sure if this is correct, but it matches earlier implementation.
                 inZone = static_cast<PartyBase>(m_POwner->getParty()).getMembers({ .zoneId = m_POwner->getZone() }).size();
             }
 
@@ -831,6 +797,7 @@ bool CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect, bo
             // - Should probably be scoped to current zone
             // - Might include alliance members?
             // Retest with Sacrifice Torque and document
+            // TODO: Sacrifice Torque is only for self. Need to test with WTB items.
             if (m_POwner->hasParty())
             {
                 m_POwner->ForEveryPartyMember([&](const CCharEntity* PMember)
@@ -859,13 +826,26 @@ bool CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect, bo
             }
             break;
         case LATENT::JOB_IN_PARTY:
-            // Matches existing implementation, but I suspect it's wrong:
-            // - Should probably be scoped to current zone
-            // - Need confirmation trusts are actually included
-            // Retest with Stormer Earring and document
+            // Retested on retail (Stormer Earring):
+            // - This includes Trusts
+            // - This is scoped to the current zone
+            // - This does not include self
+            // - This does not include alliance members
             if (m_POwner->hasParty())
             {
-                expression = m_POwner->getParty().hasJob(latentEffect.GetConditionsValue());
+                m_POwner->getParty().ForEveryMemberWithTrusts([&](CBattleEntity* PMember)
+                {
+                    if (PMember->id == m_POwner->id)
+                    {
+                        return;
+                    }
+
+                    if (PMember->GetMJob() == latentEffect.GetConditionsValue() &&
+                        PMember->getZone() == m_POwner->getZone())
+                    {
+                        expression = true;
+                    }
+                });
             }
 
             break;
