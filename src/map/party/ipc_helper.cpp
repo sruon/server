@@ -109,7 +109,7 @@ void CCharParty::IpcHelper::removeMember(const std::string& charName) const
 {
     message::send(ipc::PartyRemoveMember{
         .partyId  = m_Party.getPartyId(),
-        .charName = std::move(charName),
+        .charName = charName,
     });
 }
 

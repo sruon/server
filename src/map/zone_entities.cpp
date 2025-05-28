@@ -354,6 +354,7 @@ void CZoneEntities::FindPartyForMob(CBaseEntity* PEntity)
 
     CMobEntity* PMob = static_cast<CMobEntity*>(PEntity);
 
+    // TODO: don't understand the mob partying logic, will need to revisit.
     // force all mobs in a burning circle to link
     ZONE_TYPE zonetype  = m_zone->GetTypeMask();
     bool      forceLink = zonetype & ZONE_TYPE::DYNAMIS || PMob->getMobMod(MOBMOD_SUPERLINK);
@@ -374,13 +375,22 @@ void CZoneEntities::FindPartyForMob(CBaseEntity* PEntity)
             {
                 if (PCurrentMob->PMaster == nullptr || PCurrentMob->PMaster->objtype == TYPE_MOB)
                 {
-                    PCurrentMob->getParty().addMember(PMob);
+                    if (PCurrentMob->hasParty())
+                    {
+                        PCurrentMob->getParty().addMember(PMob);
+                    }
+                    else
+                    {
+                        m_mobParties.emplace_back();
+                        m_mobParties.back().addMember(PCurrentMob);
+                        m_mobParties.back().addMember(PMob);
+                    }
                     return;
                 }
             }
         }
-        auto newParty = new CMobParty();
-        newParty->addMember(PMob);
+        m_mobParties.emplace_back();
+        m_mobParties.back().addMember(PMob);
     }
 }
 
