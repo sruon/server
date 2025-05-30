@@ -39,6 +39,12 @@
 #include "utils/jailutils.h"
 #include "utils/zoneutils.h"
 
+CCharParty::CCharParty(const uint32 leaderId)
+: PartyBase(leaderId)
+{
+    m_pIpcHelper = IpcHelper::Create(*this);
+}
+
 CCharParty::CCharParty(const ipc::PartyUpdate& message)
 : PartyBase(message)
 {

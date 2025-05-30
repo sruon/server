@@ -31,7 +31,7 @@ class PartyContainer
 public:
     void updateParty(const ipc::PartyUpdate& message);
     void updateId(uint32 old, uint32 newId);
-    void disbandParty(const ipc::PartyDisband& message);
+    void disbandParty(uint32 partyId);
     void reattachMember(const ipc::CharZoneIn& message);
 
     void chatMessage(const ipc::ChatMessageParty& message);

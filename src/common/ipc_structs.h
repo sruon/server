@@ -23,6 +23,7 @@
 
 #include "cbasetypes.h"
 
+#include "common/party/events.h"
 #include "common/regional_event.h"
 
 #include "map/packets/chat_message.h"
@@ -32,6 +33,7 @@
 #include <cstdint>
 #include <iostream>
 #include <string>
+#include <variant>
 #include <vector>
 
 class PartyMember;
@@ -353,6 +355,19 @@ namespace ipc
     struct PartyDisband
     {
         uint32 partyId{};
+    };
+
+    struct PartyEvent
+    {
+        uint32 partyId{};
+        std::variant<
+            MemberAddMessage,
+            MemberRemoveMessage,
+            LeaderSetMessage,
+            QuartermasterSetMessage,
+            SyncTargetSetMessage,
+            DisbandMessage>
+            payload{};
     };
 
 } // namespace ipc

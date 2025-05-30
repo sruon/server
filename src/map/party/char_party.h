@@ -29,7 +29,7 @@ class CCharEntity;
 class CBattleEntity;
 enum class PartyFlag : uint16;
 
-// This is a read-only view of a party of CCharEntity
+// This is a read-only view of a party of CCharEntity (and CTrustEntity) members.
 // Updates are only permitted through the IPC interface
 // The nested IpcHelper class is used to send messages to the world server
 // Keep in mind that several map processes _may_ be performing similar operations.
@@ -47,6 +47,11 @@ public:
     static std::unique_ptr<CCharParty> Create(const ipc::PartyUpdate& message)
     {
         return std::unique_ptr<CCharParty>(new CCharParty(message));
+    }
+
+    static std::unique_ptr<CCharParty> Create(const uint32 leaderId)
+    {
+        return std::unique_ptr<CCharParty>(new CCharParty(leaderId));
     }
 
     ~CCharParty();
@@ -81,6 +86,7 @@ public:
     void ForEveryAllianceMember(std::function<void(CCharEntity*)> func);
 
 private:
+    CCharParty(uint32 leaderId);
     CCharParty(const ipc::PartyUpdate& message);
 
     void setPartyId(uint32 partyId);

@@ -22,31 +22,44 @@
 #pragma once
 
 #include "common/cbasetypes.h"
-#include "common/ipc.h"
-#include "common/party/base.h"
+#include "map/packets/message_standard.h"
 
-class IPCServer;
-
+class PartyMember;
 enum class PartyMemberType : uint8;
 
-class WorldParty : public PartyBase
+// TODO: Would like to indicate direction of each messages, M2W/W2M/BI - need to figure out something clean
+// Conquest uses an enum but with std::variant we don't really need a type field.
+struct DisbandMessage
 {
-    IPCServer* m_IpcServer;
+};
 
-public:
-    WorldParty(const ipc::PartyUpdate& message);
-    WorldParty(uint32 _LeaderUniqueNo);
+struct SyncTargetSetMessage
+{
+    uint32      charId{};
+    std::string charName{};
+    MsgStd      reason{};
+};
 
-    bool setMemberZone(uint32 charId, uint16 zoneId);
-    bool setLeader(const std::string& charName);
-    bool setLeader(uint32_t UniqueNo);
-    bool setQuartermaster(const std::string& charName);
-    bool setQuartermaster(uint32_t UniqueNo);
-    bool setSyncTarget(const std::string& charName);
-    bool setSyncTarget(uint32_t UniqueNo);
-    bool addMember(uint32_t UniqueNo, PartyMemberType type);
-    void clearTrusts();
-    bool removeMember(const std::string& charName);
-    bool removeMember(uint32 UniqueNo);
-    bool disband();
+struct QuartermasterSetMessage
+{
+    uint32      charId{};
+    std::string charName{};
+};
+
+struct LeaderSetMessage
+{
+    uint32      charId{};
+    std::string charName{};
+};
+
+struct MemberRemoveMessage
+{
+    uint32      charId{};
+    std::string charName{};
+};
+
+struct MemberAddMessage
+{
+    uint32          charId{};
+    PartyMemberType type{};
 };

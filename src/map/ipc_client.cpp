@@ -640,11 +640,12 @@ void IPCClient::handleMessage_PartyInviteResponse(const IPP& ipp, const ipc::Par
             // Can't use IPC helper as we may not yet have a party
             if (!PInviter->hasParty())
             {
-                message::send(ipc::PartyAddMember{
+                message::send(ipc::PartyEvent{
                     .partyId = PInviter->id,
-                    .charId  = message.inviteeId,
-                    .type    = PartyMemberType::Player,
-                });
+                    .payload = MemberAddMessage{
+                        .charId = message.inviteeId,
+                        .type   = PartyMemberType::Player,
+                    } });
             }
             else
             {
@@ -652,15 +653,6 @@ void IPCClient::handleMessage_PartyInviteResponse(const IPP& ipp, const ipc::Par
             }
         }
     }
-}
-
-void IPCClient::handleMessage_PartyDisband(const IPP& ipp, const ipc::PartyDisband& message)
-{
-    TracyZoneScoped;
-
-    // The world process takes care of removing members and forwarding packet updates through RemoveMember/PlayerKick,
-    // but we need to clean up the entry in the party container at the end.
-    networking_.server().parties().disbandParty(message);
 }
 
 void IPCClient::handleMessage_AllianceDissolve(const IPP& ipp, const ipc::AllianceDissolve& message)
@@ -711,6 +703,23 @@ void IPCClient::handleMessage_PartySystemSync(const IPP& ipp, const ipc::PartySy
     {
         message::send(updateMessage);
     }
+}
+
+void IPCClient::handleMessage_PartyEvent(const IPP& ipp, const ipc::PartyEvent& message)
+{
+    // Only a handful of events matter in this direction:
+    // - Full party updates
+    // - Party disband
+    std::visit([&]<typename MessageType>(const MessageType& msg)
+               {
+                   using T = std::decay_t<MessageType>;
+
+                   if constexpr (std::is_same_v<T, DisbandMessage>)
+                   {
+                       networking_.server().parties().disbandParty(message.partyId);
+                   }
+               },
+               message.payload);
 }
 
 void IPCClient::handleUnknownMessage(const IPP& ipp, const std::span<uint8_t> message)

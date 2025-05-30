@@ -57,16 +57,11 @@ IPC_STRUCT_NAMES = [
     "SendPlayerToLocation",
 
     "PartyUpdate",
-    "PartyAddMember",
-    "PartyRemoveMember",
-    "PartySetLeader",
-    "PartySetQuartermaster",
-    "PartySetSyncTarget",
     "PartyChangeId",
     "PartySystemSync",
     "PartyInvite",
     "PartyInviteResponse",
-    "PartyDisband",
+    "PartyEvent",
 ]
 
 

@@ -32,6 +32,7 @@ set(COMMON_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/party/flags.h
     ${CMAKE_CURRENT_SOURCE_DIR}/party/base.h
     ${CMAKE_CURRENT_SOURCE_DIR}/party/base.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/party/events.h
     ${CMAKE_CURRENT_SOURCE_DIR}/party/member.h
     ${CMAKE_CURRENT_SOURCE_DIR}/party/member_serialization.h
     ${CMAKE_CURRENT_SOURCE_DIR}/party/member.cpp

@@ -39,7 +39,7 @@ public:
     void setLeader(uint32 UniqueNo) const;
     void setLeader(const std::string& charName) const;
 
-    void setSyncTarget(const std::string& CharName) const;
+    void setSyncTarget(const std::string& charName) const;
     void setSyncTarget(uint32 UniqueNo) const;
     void clearSyncTarget(MsgStd Reason) const;
 

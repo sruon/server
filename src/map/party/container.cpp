@@ -32,18 +32,19 @@ void PartyContainer::updateParty(const ipc::PartyUpdate& message)
     {
         ShowInfoFmt("Creating new party with ID: {}", message.partyId);
         // Party doesn't exist, create a new one
-        auto newParty              = CCharParty::Create(message);
+        auto newParty              = CCharParty::Create(message.partyId);
         m_Parties[message.partyId] = std::move(newParty);
     }
     else
     {
         ShowInfoFmt("Updating existing party with ID: {}", message.partyId);
-        m_Parties[message.partyId]->update(message);
-        if (m_Parties[message.partyId]->getMemberCount() == 0)
-        {
-            ShowInfoFmt("Auto-disbanding party with ID: {}", message.partyId);
-            disbandParty(ipc::PartyDisband{ .partyId = message.partyId });
-        }
+    }
+
+    m_Parties[message.partyId]->update(message);
+    if (m_Parties[message.partyId]->getMemberCount() == 0)
+    {
+        ShowInfoFmt("Auto-disbanding party with ID: {}", message.partyId);
+        disbandParty(message.partyId);
     }
 
     // Retail packet flow:
@@ -88,11 +89,11 @@ void PartyContainer::chatMessage(const ipc::ChatMessageAlliance& message)
 // A party has been disbanded.
 // The world server will emit several updates to remove each member before it gets here.
 // Therefore, we just need to clean up the party from our store.
-void PartyContainer::disbandParty(const ipc::PartyDisband& message)
+void PartyContainer::disbandParty(uint32 partyId)
 {
-    if (const auto it = m_Parties.find(message.partyId); it != m_Parties.end())
+    if (const auto it = m_Parties.find(partyId); it != m_Parties.end())
     {
-        ShowInfoFmt("Removing party ID {} from party container", message.partyId);
+        ShowInfoFmt("Removing party ID {} from party container", partyId);
         m_Parties.erase(it);
     }
 }

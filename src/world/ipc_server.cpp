@@ -262,8 +262,6 @@ void IPCServer::rerouteMessageToZoneId(uint16 zoneId, const auto& message)
     }
 }
 
-
-
 void IPCServer::rerouteMessageToAllianceMembers(uint32 allianceId, const auto& message)
 {
     TracyZoneScoped;
@@ -370,7 +368,7 @@ void IPCServer::handleMessage_CharZoneOut(const IPP& ipp, const ipc::CharZoneOut
         }
     }
 
-    worldServer_.partySystem_->handle_CharZoneOut(ipp, message);
+    worldServer_.partySystem_->onCharZoneOut(ipp, message);
 }
 
 void IPCServer::handleMessage_CharZoneIn(const IPP& ipp, const ipc::CharZoneIn& message)
@@ -380,7 +378,7 @@ void IPCServer::handleMessage_CharZoneIn(const IPP& ipp, const ipc::CharZoneIn& 
     // We're notified when the map server has zoned a character in.
     // Check with the party system if any changes need to be performed.
     // This will also implicitely send a full party update to the new IPP if we just switched process
-    worldServer_.partySystem_->handle_CharZoneIn(ipp, message);
+    worldServer_.partySystem_->onCharZoneIn(ipp, message);
 
     // Send the message back so the map servers can reattach the char to their party now that they have a full update.
     rerouteMessageToZoneId(message.zoneId, message);
@@ -621,48 +619,6 @@ void IPCServer::handleMessage_SendPlayerToLocation(const IPP& ipp, const ipc::Se
     rerouteMessageToCharId(message.targetId, message);
 }
 
-void IPCServer::handleMessage_PartyAddMember(const IPP& ipp, const ipc::PartyAddMember& message) const
-{
-    TracyZoneScoped;
-
-    worldServer_.partySystem_->handle_PartyAddMember(ipp, message);
-}
-
-void IPCServer::handleMessage_PartyRemoveMember(const IPP& ipp, const ipc::PartyRemoveMember& message) const
-{
-    TracyZoneScoped;
-
-    worldServer_.partySystem_->handle_PartyRemoveMember(ipp, message);
-}
-
-void IPCServer::handleMessage_PartyDisband(const IPP& ipp, const ipc::PartyDisband& message) const
-{
-    TracyZoneScoped;
-
-    worldServer_.partySystem_->handle_PartyDisband(ipp, message);
-}
-
-void IPCServer::handleMessage_PartySetLeader(const IPP& ipp, const ipc::PartySetLeader& message) const
-{
-    TracyZoneScoped;
-
-    worldServer_.partySystem_->handle_PartySetLeader(ipp, message);
-}
-
-void IPCServer::handleMessage_PartySetQuartermaster(const IPP& ipp, const ipc::PartySetQuartermaster& message) const
-{
-    TracyZoneScoped;
-
-    worldServer_.partySystem_->handle_PartySetQuartermaster(ipp, message);
-}
-
-void IPCServer::handleMessage_PartySetSyncTarget(const IPP& ipp, const ipc::PartySetSyncTarget& message) const
-{
-    TracyZoneScoped;
-
-    worldServer_.partySystem_->handle_PartySetSyncTarget(ipp, message);
-}
-
 void IPCServer::handleMessage_PartyUpdate(const IPP& ipp, const ipc::PartyUpdate& message) const
 {
     worldServer_.partySystem_->handle_PartyUpdate(ipp, message);
@@ -673,6 +629,140 @@ void IPCServer::handleMessage_PartySystemSync(const IPP& ipp, const ipc::PartySy
     TracyZoneScoped;
 
     // Unused on this side, this notifies the Map servers we'd like copies of the party system
+}
+
+void IPCServer::handleMessage_PartyEvent(const IPP& ipp, const ipc::PartyEvent& message)
+{
+    TracyZoneScoped;
+
+    ShowInfo("Received PartyEvent message.");
+
+    auto party = worldServer_.partySystem_->getParty(message.partyId);
+
+    std::visit([&]<typename MessageType>(const MessageType& msg)
+               {
+                   using T = std::decay_t<MessageType>;
+
+                   if constexpr (std::is_same_v<T, LeaderSetMessage>)
+                   {
+                       if (party)
+                       {
+                           if (!msg.charName.empty())
+                           {
+                               party->setLeader(msg.charName);
+                           }
+                           else
+                           {
+                               party->setLeader(msg.charId);
+                           }
+                       }
+                   }
+                   else if constexpr (std::is_same_v<T, MemberAddMessage>)
+                   {
+                       if (!party)
+                       {
+                           if (worldServer_.partySystem_->createParty(message.partyId))
+                           {
+                               party = worldServer_.partySystem_->getParty(message.partyId);
+                               party->addMember(message.partyId, PartyMemberType::Player);
+                           }
+                           else
+                           {
+                               ShowErrorFmt("Failed to create party with ID {}", message.partyId);
+                               return;
+                           }
+                       }
+
+                       party->addMember(msg.charId, msg.type);
+                   }
+                   else if constexpr (std::is_same_v<T, MemberRemoveMessage>)
+                   {
+                       if (party)
+                       {
+                           if (!msg.charName.empty())
+                           {
+                               party->removeMember(msg.charName);
+                           }
+                           else
+                           {
+                               party->removeMember(msg.charId);
+                           }
+                       }
+                   }
+                   else if constexpr (std::is_same_v<T, QuartermasterSetMessage>)
+                   {
+                       if (party)
+                       {
+                           if (!msg.charName.empty())
+                           {
+                               party->setQuartermaster(msg.charName);
+                           }
+                           else
+                           {
+                               party->setQuartermaster(msg.charId);
+                           }
+                       }
+                   }
+                   else if constexpr (std::is_same_v<T, SyncTargetSetMessage>)
+                   {
+                       // TODO: Forward reason
+                       if (party)
+                       {
+                           if (!msg.charName.empty())
+                           {
+                               party->setSyncTarget(msg.charName);
+                           }
+                           else
+                           {
+                               party->setSyncTarget(msg.charId);
+                           }
+                       }
+                   }
+                   else if constexpr (std::is_same_v<T, DisbandMessage>)
+                   {
+                       if (party)
+                       {
+                           // Remove individual members from the party
+                           party->disband();
+
+                           // Remove the party from the system
+                           if (worldServer_.partySystem_->removeParty(message.partyId))
+                           {
+                               // Notify map servers that the party should no longer be tracked
+                               broadcastMessage(ipc::PartyEvent{
+                                   .partyId = message.partyId,
+                                   .payload = DisbandMessage{},
+                               });
+                           }
+                       }
+                   } },
+               message.payload);
+
+    if (party && party->isDirty())
+    {
+        rerouteMessageToPartyMembers(party->getPartyId(), party->asIpcUpdate());
+
+        // Temporary hack to make the search server work until I can wire ZMQ events to it.
+        for (auto& wrappedMember : party->getMembers())
+        {
+            PartyMember& member = wrappedMember;
+
+            if (member.getType() != PartyMemberType::Player)
+            {
+                continue;
+            }
+
+            db::preparedStmt("INSERT INTO accounts_parties (charid, partyid, allianceid, partyflag) VALUES (?, ?, ?, ?)"
+                             "ON DUPLICATE KEY UPDATE "
+                             "partyid = VALUES(partyid), "
+                             "partyflag = VALUES(partyflag)",
+                             member.getId(),
+                             party->getPartyId(),
+                             0,
+                             party->getFlagsForMember(party->getLeader().value()));
+        }
+        party->setDirty(false);
+    }
 }
 
 void IPCServer::handleUnknownMessage(const IPP& ipp, const std::span<uint8_t> message)
