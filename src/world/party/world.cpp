@@ -82,6 +82,7 @@ auto getCharInfoFromName(const std::string& name) -> std::unique_ptr<CharDatabas
     return nullptr;
 }
 
+// Construct a new party from a PartyFullUpdateMessage sent by a map server.
 WorldParty::WorldParty(const PartyFullUpdateMessage& message, IPCServer* ipcServer)
 : PartyBase(message)
 , m_IpcServer(ipcServer)
@@ -89,32 +90,12 @@ WorldParty::WorldParty(const PartyFullUpdateMessage& message, IPCServer* ipcServ
     debug("Party created from PartyFullUpdateMessage");
 }
 
+// Construct a new party from a LeaderUniqueNo.
 WorldParty::WorldParty(uint32 _LeaderUniqueNo, IPCServer* ipcServer)
 : PartyBase(_LeaderUniqueNo)
 , m_IpcServer(ipcServer)
 {
     debug("Party created from LeaderUniqueNo: {}", _LeaderUniqueNo);
-}
-
-bool WorldParty::notifyIppForPartyMember(const uint32 memberId, const auto& message)
-{
-    if (const auto& member = getMemberById(memberId))
-    {
-        m_IpcServer->rerouteMessageToCharId(member.value().get().getId(), message);
-        return true;
-    }
-
-    return true;
-}
-
-bool WorldParty::notifyIppForPartyMembers(const auto& message)
-{
-    for (const auto& member : getMembers({ .type = PartyMemberType::Player }))
-    {
-        m_IpcServer->rerouteMessageToCharId(member.get().getId(), message);
-    }
-
-    return true;
 }
 
 bool WorldParty::setMemberZone(const uint32 charId, const uint16 zoneId)

@@ -5,7 +5,4 @@
 - Cannot summon trusts where disabled
 - Trusts show only when in same zone
 - Party buffs show when in same zone
-
-TODO:
-- Level sync should not be applied if less than 2 in zone
-- Treasure Pool
+- <Add the missing billion tests here>

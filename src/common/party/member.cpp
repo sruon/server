@@ -60,7 +60,6 @@ auto PartyMember::getName() const -> const std::string&
 
 auto PartyMember::getTimeSinceJoined() const -> std::chrono::seconds
 {
-    // TODO: Should be steady_clock but alpaca only deals with time_t hmmmmmm
     const auto joinedTimePoint = std::chrono::system_clock::from_time_t(m_JoinedTime);
     return std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now() - joinedTimePoint);
 }

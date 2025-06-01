@@ -103,6 +103,7 @@ bool PartyBase::hasTrusts() const
     // clang-format on
 }
 
+// If this party only contains the leader and trusts, it is considered a trust-only party.
 bool PartyBase::isTrustOnlyParty() const
 {
     for (auto& member : m_Members)
@@ -144,6 +145,7 @@ auto PartyBase::getFlagsForMember(const PartyMember& PMember) const -> uint16
     return static_cast<uint16>(flags);
 }
 
+// Returns all members of the party, filtered by the given filter.
 auto PartyBase::getMembers(const PartyMemberFilter& filter) -> std::vector<std::reference_wrapper<PartyMember>>
 {
     std::vector<std::reference_wrapper<PartyMember>> result;
@@ -158,6 +160,7 @@ auto PartyBase::getMembers(const PartyMemberFilter& filter) -> std::vector<std::
     return result;
 }
 
+// Returns all members of the party, filtered by the given filter.
 auto PartyBase::getMembers(const PartyMemberFilter& filter) const -> std::vector<std::reference_wrapper<const PartyMember>>
 {
     std::vector<std::reference_wrapper<const PartyMember>> result;
@@ -172,16 +175,19 @@ auto PartyBase::getMembers(const PartyMemberFilter& filter) const -> std::vector
     return result;
 }
 
+// Returns actual players of the party.
 auto PartyBase::getPlayers() const -> std::vector<std::reference_wrapper<const PartyMember>>
 {
     return getMembers({ .type = PartyMemberType::Player });
 }
 
+// Returns the trust members of the party.
 auto PartyBase::getTrusts() const -> std::vector<std::reference_wrapper<const PartyMember>>
 {
     return getMembers({ .type = PartyMemberType::Trust });
 }
 
+// Returns the leader, if any.
 auto PartyBase::getLeader() const -> std::optional<std::reference_wrapper<const PartyMember>>
 {
     // A party should technically _always_ have a leader,
@@ -195,6 +201,7 @@ auto PartyBase::getLeader() const -> std::optional<std::reference_wrapper<const 
     return getMemberById(m_LeaderUniqueNo);
 }
 
+// Returns the quartermaster, if any.
 auto PartyBase::getQuartermaster() const -> std::optional<std::reference_wrapper<const PartyMember>>
 {
     if (m_QuartermasterUniqueNo == 0)
@@ -205,6 +212,7 @@ auto PartyBase::getQuartermaster() const -> std::optional<std::reference_wrapper
     return getMemberById(m_QuartermasterUniqueNo);
 }
 
+// Returns the sync target member, if any.
 auto PartyBase::getSyncTarget() const -> std::optional<std::reference_wrapper<const PartyMember>>
 {
     if (m_SyncTargetUniqueNo == 0)
@@ -215,6 +223,7 @@ auto PartyBase::getSyncTarget() const -> std::optional<std::reference_wrapper<co
     return getMemberById(m_SyncTargetUniqueNo);
 }
 
+// Executes an arbitrary function for each party member
 auto PartyBase::ForEveryMember(const std::function<void(const PartyMember&)>& func) const -> void
 {
     for (const auto& member : getMembers())
@@ -223,6 +232,7 @@ auto PartyBase::ForEveryMember(const std::function<void(const PartyMember&)>& fu
     }
 }
 
+// Executes an arbitrary function for each party member that matches the given filter
 auto PartyBase::ForEveryMember(const PartyMemberFilter filter, const std::function<void(const PartyMember&)>& func) const -> void
 {
     for (const auto& member : getMembers(filter))
@@ -231,6 +241,7 @@ auto PartyBase::ForEveryMember(const PartyMemberFilter filter, const std::functi
     }
 }
 
+// Reassigns the party leader to the oldest member that is not the current leader
 bool PartyBase::reassignLeader()
 {
     if (!m_Members.empty())
@@ -270,16 +281,18 @@ bool PartyBase::reassignLeader()
     return false;
 }
 
+// Returns the number of members in the party
 size_t PartyBase::getMemberCount() const
 {
     return m_Members.size();
 }
 
-// Executes an arbitrary function for each alliance member present on this map process
+// Executes an arbitrary function for each alliance member
 auto PartyBase::ForEveryAllianceMember(std::function<void(const PartyMember&)> func) -> void
 {
 }
 
+// Returns the member with the given ID, if it exists in the party
 auto PartyBase::getMemberById(const uint32 UniqueNo) -> std::optional<std::reference_wrapper<PartyMember>>
 {
     // clang-format off
@@ -293,6 +306,7 @@ auto PartyBase::getMemberById(const uint32 UniqueNo) -> std::optional<std::refer
     return it != m_Members.end() ? std::make_optional(std::ref(*it)) : std::nullopt;
 }
 
+// Returns the member with the given ID, if it exists in the party
 auto PartyBase::getMemberById(const uint32 UniqueNo) const -> std::optional<std::reference_wrapper<const PartyMember>>
 {
     // clang-format off
@@ -306,6 +320,7 @@ auto PartyBase::getMemberById(const uint32 UniqueNo) const -> std::optional<std:
     return it != m_Members.end() ? std::make_optional(std::ref(*it)) : std::nullopt;
 }
 
+// Returns the member with the given name, if it exists in the party
 auto PartyBase::getMemberByName(const std::string& memberName) const -> std::optional<std::reference_wrapper<const PartyMember>>
 {
     // clang-format off
@@ -319,6 +334,7 @@ auto PartyBase::getMemberByName(const std::string& memberName) const -> std::opt
     return it != m_Members.end() ? std::make_optional(std::ref(*it)) : std::nullopt;
 }
 
+// Converts the party to an IPC update message
 auto PartyBase::asIpcUpdate() const -> ipc::PartyEvent
 {
     return ipc::PartyEvent{
@@ -333,6 +349,11 @@ auto PartyBase::asIpcUpdate() const -> ipc::PartyEvent
     };
 }
 
+// Compares the current party with another PartyFullUpdateMessage
+// Spits out a PartyDiff containing:
+// - Members that disappeared
+// - Members that appeared
+// - Members that changed
 auto PartyBase::diff(const PartyFullUpdateMessage& other) const -> PartyDiff
 {
     PartyDiff result;

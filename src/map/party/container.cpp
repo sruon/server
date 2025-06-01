@@ -60,7 +60,7 @@ void PartyContainer::updateParty(const PartyFullUpdateMessage& message)
 
 // A character session is being terminated from this map process.
 // If they're part of a party, check if we still need to track the party.
-void PartyContainer::onKillSession(uint32 charId)
+void PartyContainer::onKillSession(const uint32 charId)
 {
     for (const auto& party : m_Parties | std::views::values)
     {

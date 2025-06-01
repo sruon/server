@@ -34,25 +34,6 @@ WorldParty* PartySystem::getParty(const uint32 partyId)
     return it != m_Parties.end() ? &it->second : nullptr;
 }
 
-void PartySystem::notifyIppForParty(const uint32 partyId, const auto& message, const uint16 zoneId) const
-{
-    if (const auto it = m_Parties.find(partyId); it != m_Parties.end())
-    {
-        for (const PartyMember& member : it->second.getMembers())
-        {
-            if (member.getZone() == zoneId)
-            {
-                m_WorldServer.ipcServer_->rerouteMessageToCharId(member.getId(), message);
-            }
-        }
-    }
-}
-
-void PartySystem::notifyIppForParty(const uint32 partyId, const auto& message) const
-{
-    m_WorldServer.ipcServer_->rerouteMessageToPartyMembers(partyId, message);
-}
-
 // Temporary debug function. To be extracted as a world server on-demand command later.
 void PartySystem::dump()
 {
@@ -181,6 +162,7 @@ bool PartySystem::onPartyEvent(const IPP& ipp, const ipc::PartyEvent& message)
                 if (removeParty(message.partyId))
                 {
                     // Notify map servers that the party should no longer be tracked
+                    // TODO: May not be needed as the map process autoforgets when memberCount is 0
                     m_WorldServer.ipcServer_->broadcastMessage(ipc::PartyEvent{
                         .partyId = message.partyId,
                         .payload = DisbandMessage{},
@@ -202,6 +184,8 @@ bool PartySystem::onPartyEvent(const IPP& ipp, const ipc::PartyEvent& message)
     {
         if (party->isDirty())
         {
+            // TODO: This doesn't work if we just removed a party member that was alone on a map process.
+            // Need to account for "old" IPPs somehow.
             m_WorldServer.ipcServer_->rerouteMessageToPartyMembers(party->getPartyId(), party->asIpcUpdate());
         }
 
@@ -234,7 +218,6 @@ bool PartySystem::onPartyEvent(const IPP& ipp, const ipc::PartyEvent& message)
 bool PartySystem::onCharZoneOut(const IPP& ipp, const ipc::CharZoneOut& message)
 {
     // Find any party with the character
-    // TODO: Could use a reverse lookup map or the character cache
     const auto it = std::ranges::find_if(m_Parties,
                                          [&](auto& entry)
     {
@@ -259,9 +242,7 @@ bool PartySystem::onCharZoneOut(const IPP& ipp, const ipc::CharZoneOut& message)
 
 bool PartySystem::onCharZoneIn(const IPP& ipp, const ipc::CharZoneIn& message)
 {
-    // TODO: Check if the IPP is new and force a full update if so.
     // Find any party with the character
-    // TODO: Could use a reverse lookup map or the character cache
     // clang-format off
         const auto it = std::ranges::find_if(m_Parties, [&](auto& entry)
         {
@@ -278,10 +259,7 @@ bool PartySystem::onCharZoneIn(const IPP& ipp, const ipc::CharZoneIn& message)
     {
         auto& party = it->second;
         party.setMemberZone(message.charId, message.zoneId);
-        // force update the new IPP so the new server knows about the party
-        // TODO: Keep better track of IPPs so we can send only if this is a new one.
-        // TODO: would rather handle it outside of this class
-        notifyIppForParty(party.getPartyId(), party.asIpcUpdate());
+        m_WorldServer.ipcServer_->rerouteMessageToPartyMembers(party.getPartyId(), party.asIpcUpdate());
         return true;
     }
 

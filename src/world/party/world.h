@@ -29,6 +29,8 @@ class IPCServer;
 
 enum class PartyMemberType : uint8;
 
+// Authoritative party class.
+// World server makes the decisions and forwards updates to each map process.
 class WorldParty : public PartyBase
 {
     IPCServer* m_IpcServer;
@@ -37,20 +39,22 @@ public:
     WorldParty(const PartyFullUpdateMessage& message, IPCServer* ipcServer);
     WorldParty(uint32 _LeaderUniqueNo, IPCServer* ipcServer);
 
-    bool notifyIppForPartyMember(uint32 memberId, const auto& message);
-    bool notifyIppForPartyMembers(const auto& message);
-
     bool setMemberZone(uint32 charId, uint16 zoneId);
+
     bool setLeader(const std::string& charName);
     bool setLeader(uint32_t UniqueNo);
+
     bool setQuartermaster(const std::string& charName);
     bool setQuartermaster(uint32_t UniqueNo);
+
     bool setSyncTarget(const std::string& charName);
     bool clearSyncTarget(std::optional<MsgStd> reason);
     bool setSyncTarget(uint32_t UniqueNo);
+
     bool addMember(uint32_t UniqueNo, PartyMemberType type);
-    void clearTrusts();
+
     bool removeMember(const std::string& charName);
     bool removeMember(uint32 UniqueNo);
+    void clearTrusts();
     bool disband();
 };

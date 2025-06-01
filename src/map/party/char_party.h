@@ -31,7 +31,6 @@ enum class PartyFlag : uint16;
 
 // This is a read-only view of a party of CCharEntity (and CTrustEntity) members.
 // Updates are only permitted through the IPC interface
-// The nested IpcHelper class is used to send messages to the world server
 // Keep in mind that several map processes _may_ be performing similar operations.
 // Therefore, operations should be strictly limited to players on this process.
 // Nevertheless, the underlying data has knowledge of all members across all processes and can be used to make decisions.
