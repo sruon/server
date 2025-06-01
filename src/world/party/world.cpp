@@ -410,14 +410,8 @@ bool WorldParty::removeMember(const std::string& charName)
 
 bool WorldParty::removeMember(uint32 UniqueNo)
 {
-    // clang-format off
-    const auto it = std::ranges::find_if(m_Members,
-         [UniqueNo](const PartyMember& member)
-         {
-             return member.getId() == UniqueNo;
-         });
-    // clang-format on
-    if (it == m_Members.end())
+    auto victimMember = getMemberById(UniqueNo);
+    if (!victimMember)
     {
         debug("Member {} not found in party", UniqueNo);
         return false;
@@ -428,7 +422,10 @@ bool WorldParty::removeMember(uint32 UniqueNo)
         clearSyncTarget(MsgStd::LevelSyncRemoveLeftParty);
     }
 
-    m_Members.erase(it);
+    std::erase_if(m_Members, [UniqueNo](const PartyMember& member)
+    {
+        return member.getId() == UniqueNo;
+    });
 
     // Handle special role reassignments
     if (m_LeaderUniqueNo == UniqueNo)
@@ -444,6 +441,14 @@ bool WorldParty::removeMember(uint32 UniqueNo)
 
     debug("Removed member {}", UniqueNo);
     setDirty(true);
+
+    // Special case: If we removed the last trust member, and only leader is left, the party is automatically disbanded.
+    if (victimMember.value().get().getType() == PartyMemberType::Trust && getMemberCount() == 1)
+    {
+        debug("Autodisbanding party after removing last trust member");
+        return disband();
+    }
+
     return true;
 }
 

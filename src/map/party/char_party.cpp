@@ -582,7 +582,12 @@ void CCharParty::addMember(const PartyMember& member)
             }
 
             // You lose all your summoned trusts upon joining a party
-            PChar->ClearTrusts();
+            // escape hatch for leaders since first trust may exist before we even join the PT
+            // TODO: Route Trust summons through the party system
+            if (member.getId() != m_LeaderUniqueNo)
+            {
+                PChar->ClearTrusts();
+            }
 
             PChar->m_charHistory.joinedParties++;
         }
@@ -674,4 +679,10 @@ bool CCharParty::isPartOfAlliance() const
 {
     // TODO: Implement alliance logic
     return false;
+}
+
+// Returns the number of actual players on this map process.
+size_t CCharParty::getMemberCountOnSelf() const
+{
+    return getPlayers().size();
 }

@@ -41,9 +41,11 @@ void PartyContainer::updateParty(const PartyFullUpdateMessage& message)
     }
 
     m_Parties[message.partyId]->update(message);
+
+    // If the party is empty, remove it.
     if (m_Parties[message.partyId]->getMemberCount() == 0)
     {
-        ShowInfoFmt("Auto-disbanding party with ID: {}", message.partyId);
+        ShowInfoFmt("No longer tracking party {} because it is empty.", message.partyId);
         disbandParty(message.partyId);
     }
 
@@ -54,6 +56,25 @@ void PartyContainer::updateParty(const PartyFullUpdateMessage& message)
     // 0x67: Entity status
     // 0xDF: Char update with trust data
     // 0x0E: Several NPC updates with name etc
+}
+
+// A character session is being terminated from this map process.
+// If they're part of a party, check if we still need to track the party.
+void PartyContainer::onKillSession(uint32 charId)
+{
+    for (const auto& party : m_Parties | std::views::values)
+    {
+        if (static_cast<PartyBase*>(party.get())->getMemberById(charId))
+        {
+            if (party->getMemberCountOnSelf() == 0)
+            {
+                ShowInfoFmt("No longer tracking party {} because it has no players on this process.", party->getPartyId());
+                disbandParty(party->getPartyId());
+            }
+
+            return;
+        }
+    }
 }
 
 // If the leader changes, so does the unique party ID.

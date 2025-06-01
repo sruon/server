@@ -58,6 +58,7 @@ public:
     bool hasJob(uint8 job, std::optional<uint16> zoneId = std::nullopt) const;
     bool isAllianced(CCharParty& other) const;
     bool isPartOfAlliance() const;
+    auto getMemberCountOnSelf() const -> size_t;
 
     // Packets
     void broadcastPartyPackets(const CCharEntity* PSingle = nullptr);
@@ -110,4 +111,3 @@ private:
     // Allow only PartyContainer to call update() to enforce the read-only nature
     friend class PartyContainer;
 };
-

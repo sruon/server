@@ -53,6 +53,4 @@ public:
     bool removeMember(const std::string& charName);
     bool removeMember(uint32 UniqueNo);
     bool disband();
-
-
 };

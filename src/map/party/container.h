@@ -33,6 +33,7 @@ public:
     void updateId(uint32 old, uint32 newId);
     void disbandParty(uint32 partyId);
     void reattachMember(const ipc::CharZoneIn& message);
+    void onKillSession(uint32 charId);
 
     void chatMessage(const ipc::ChatMessageParty& message);
     void chatMessage(const ipc::ChatMessageAlliance& message);

@@ -411,6 +411,8 @@ void IPCClient::handleMessage_KillSession(const IPP& ipp, const ipc::KillSession
         {
             ShowDebugFmt("KillSession for charid {} not needed", message.victimId);
         }
+
+        networking_.server().parties().onKillSession(message.victimId);
     }
 }
 
