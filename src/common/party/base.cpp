@@ -24,7 +24,7 @@
 #include "common/party/flags.h"
 #include "common/party/member.h"
 
-PartyBase::PartyBase(const ipc::PartyUpdate& message)
+PartyBase::PartyBase(const PartyFullUpdateMessage& message)
 : m_PartyId(message.partyId)
 , m_LeaderUniqueNo(message.leaderUniqueNo)
 , m_QuartermasterUniqueNo(message.quartermasterUniqueNo)
@@ -75,6 +75,16 @@ auto PartyBase::getSyncTargetId() const -> uint32
 auto PartyBase::isFull() const -> bool
 {
     return m_Members.size() >= 6;
+}
+
+auto PartyBase::getSyncZone() const -> std::optional<uint16>
+{
+    if (const auto syncTarget = getSyncTarget())
+    {
+        return syncTarget->get().getZone();
+    }
+
+    return std::nullopt;
 }
 
 auto PartyBase::getTimeLastMemberJoined() const -> timer::time_point
@@ -247,7 +257,7 @@ bool PartyBase::reassignLeader()
         {
             m_LeaderUniqueNo = oldest->getId();
             m_PartyId        = oldest->getId();
-            ShowInfoFmt("Leader reassigned to UniqueNo: {}", oldest->getId());
+            debug("Leader reassigned to {}", oldest->getId());
             setDirty(true);
             return true;
         }
@@ -268,6 +278,19 @@ size_t PartyBase::getMemberCount() const
 // Executes an arbitrary function for each alliance member present on this map process
 auto PartyBase::ForEveryAllianceMember(std::function<void(const PartyMember&)> func) -> void
 {
+}
+
+auto PartyBase::getMemberById(const uint32 UniqueNo) -> std::optional<std::reference_wrapper<PartyMember>>
+{
+    // clang-format off
+    const auto it = std::ranges::find_if(m_Members,
+        [UniqueNo](const PartyMember& member)
+        {
+            return member.getId() == UniqueNo;
+        });
+    // clang-format on
+
+    return it != m_Members.end() ? std::make_optional(std::ref(*it)) : std::nullopt;
 }
 
 auto PartyBase::getMemberById(const uint32 UniqueNo) const -> std::optional<std::reference_wrapper<const PartyMember>>
@@ -296,18 +319,21 @@ auto PartyBase::getMemberByName(const std::string& memberName) const -> std::opt
     return it != m_Members.end() ? std::make_optional(std::ref(*it)) : std::nullopt;
 }
 
-auto PartyBase::asIpcUpdate() const -> ipc::PartyUpdate
+auto PartyBase::asIpcUpdate() const -> ipc::PartyEvent
 {
-    return ipc::PartyUpdate{
-        .partyId               = m_PartyId,
-        .leaderUniqueNo        = m_LeaderUniqueNo,
-        .quartermasterUniqueNo = m_QuartermasterUniqueNo,
-        .syncTargetUniqueNo    = m_SyncTargetUniqueNo,
-        .members               = m_Members,
+    return ipc::PartyEvent{
+        .partyId = m_PartyId,
+        .payload = PartyFullUpdateMessage{
+            .partyId               = m_PartyId,
+            .leaderUniqueNo        = m_LeaderUniqueNo,
+            .quartermasterUniqueNo = m_QuartermasterUniqueNo,
+            .syncTargetUniqueNo    = m_SyncTargetUniqueNo,
+            .members               = m_Members,
+        }
     };
 }
 
-auto PartyBase::diff(const ipc::PartyUpdate& other) const -> PartyDiff
+auto PartyBase::diff(const PartyFullUpdateMessage& other) const -> PartyDiff
 {
     PartyDiff result;
 

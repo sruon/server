@@ -40,11 +40,7 @@ class CCharParty : public PartyBase
 public:
     DISALLOW_COPY_AND_MOVE(CCharParty);
 
-    // All map->world communications go through the IpcHelper
-    class IpcHelper;
-    auto ipc() const -> const IpcHelper&;
-
-    static std::unique_ptr<CCharParty> Create(const ipc::PartyUpdate& message)
+    static std::unique_ptr<CCharParty> Create(const PartyFullUpdateMessage& message)
     {
         return std::unique_ptr<CCharParty>(new CCharParty(message));
     }
@@ -85,23 +81,33 @@ public:
     void ForEveryMemberWithTrusts(const std::function<void(CBattleEntity*)>& func) const;
     void ForEveryAllianceMember(std::function<void(CCharEntity*)> func);
 
+    // IPC driven updates
+    void setLeader(uint32 UniqueNo) const;
+    void setLeader(const std::string& charName) const;
+    void setSyncTarget(const std::string& charName) const;
+    void setSyncTarget(uint32 UniqueNo) const;
+    void clearSyncTarget(MsgStd Reason) const;
+    void setQuartermaster(uint32 UniqueNo) const;
+    void setQuartermaster(const std::string& charName) const;
+    void addMember(uint32 UniqueNo, PartyMemberType Type) const;
+    void removeMember(uint32 UniqueNo) const;
+    void removeMember(const std::string& charName) const;
+    void disband() const;
+
 private:
     CCharParty(uint32 leaderId);
-    CCharParty(const ipc::PartyUpdate& message);
+    CCharParty(const PartyFullUpdateMessage& message);
 
     void setPartyId(uint32 partyId);
 
     void applySync(CCharEntity* PChar) const;
     void disableSync(const CCharEntity* PChar) const;
 
-    void update(const ipc::PartyUpdate& message);
+    void update(const PartyFullUpdateMessage& message);
     void addMember(const PartyMember& member);
     void delMember(const PartyMember& member);
-
-    std::unique_ptr<IpcHelper> m_pIpcHelper;
 
     // Allow only PartyContainer to call update() to enforce the read-only nature
     friend class PartyContainer;
 };
 
-#include "ipc_helper.h"

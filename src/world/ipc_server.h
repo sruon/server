@@ -112,7 +112,6 @@ public:
     void handleMessage_SendPlayerToLocation(const IPP& ipp, const ipc::SendPlayerToLocation& message);
     void handleMessage_PartyInvite(const IPP& ipp, const ipc::PartyInvite& message);
     void handleMessage_PartyInviteResponse(const IPP& ipp, const ipc::PartyInviteResponse& message);
-    void handleMessage_PartyUpdate(const IPP& ipp, const ipc::PartyUpdate& message) const;
     void handleMessage_PartyChangeId(const IPP& ipp, const ipc::PartyChangeId& message) const {}
     void handleMessage_PartyEvent(const IPP& ipp, const ipc::PartyEvent& message) const;
     void handleUnknownMessage(const IPP& ipp, const std::span<uint8_t> message);
@@ -157,7 +156,6 @@ void IPCServer::broadcastMessage(const T& message)
     }
 }
 
-// TODO: Templates don't get correctly instantiated if they're not here. Figure out what's the right fix.
 void IPCServer::rerouteMessageToPartyMembers(uint32 partyId, const auto& message)
 {
     TracyZoneScoped;
@@ -166,17 +164,5 @@ void IPCServer::rerouteMessageToPartyMembers(uint32 partyId, const auto& message
     {
         DebugIPCFmt("Message: -> rerouting to party<{}> on {}", partyId, ipp.toString());
         sendMessage(ipp, message);
-    }
-}
-
-void IPCServer::rerouteMessageToCharId(uint32 charId, const auto& message)
-{
-    TracyZoneScoped;
-
-    if (const auto maybeCharIPP = getIPPForCharId(charId))
-    {
-        const auto charIPP = *maybeCharIPP;
-        DebugIPCFmt("Message: -> rerouting to char<{}> on {}", charId, charIPP.toString());
-        sendMessage(charIPP, std::move(message));
     }
 }

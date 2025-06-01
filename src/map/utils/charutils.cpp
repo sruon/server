@@ -5111,7 +5111,7 @@ namespace charutils
                 PChar->jobs.exp[PChar->GetMJob()] = GetExpNEXTLevel(PChar->jobs.job[PChar->GetMJob()]) - 1;
                 if (PChar->hasParty() && PChar->getParty().getSyncTarget() == PChar)
                 {
-                    PChar->getParty().ipc().clearSyncTarget(MsgStd::LevelSyncRemoveIneligibleExp);
+                    PChar->getParty().clearSyncTarget(MsgStd::LevelSyncRemoveIneligibleExp);
                 }
             }
             else

@@ -560,12 +560,6 @@ void IPCClient::handleMessage_SendPlayerToLocation(const IPP& ipp, const ipc::Se
     }
 }
 
-void IPCClient::handleMessage_PartyUpdate(const IPP& ipp, const ipc::PartyUpdate& message)
-{
-    ShowInfoFmt("PartyUpdate message received for partyId: {}", message.partyId);
-    networking_.server().parties().updateParty(message);
-}
-
 void IPCClient::handleMessage_PartyInvite(const IPP& ipp, const ipc::PartyInvite& message)
 {
     TracyZoneScoped;
@@ -649,7 +643,7 @@ void IPCClient::handleMessage_PartyInviteResponse(const IPP& ipp, const ipc::Par
             }
             else
             {
-                PInviter->getParty().ipc().addMember(message.inviteeId, PartyMemberType::Player);
+                PInviter->getParty().addMember(message.inviteeId, PartyMemberType::Player);
             }
         }
     }
@@ -717,6 +711,10 @@ void IPCClient::handleMessage_PartyEvent(const IPP& ipp, const ipc::PartyEvent& 
                    if constexpr (std::is_same_v<T, DisbandMessage>)
                    {
                        networking_.server().parties().disbandParty(message.partyId);
+                   }
+                   else if constexpr (std::is_same_v<T, PartyFullUpdateMessage>)
+                   {
+                       networking_.server().parties().updateParty(msg);
                    }
                },
                message.payload);

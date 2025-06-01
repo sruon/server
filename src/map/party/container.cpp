@@ -26,7 +26,7 @@
 
 // Bulk of the logic for party lives in this scope.
 // We receive full party updates from the world server and process them accordingly.
-void PartyContainer::updateParty(const ipc::PartyUpdate& message)
+void PartyContainer::updateParty(const PartyFullUpdateMessage& message)
 {
     if (const auto it = m_Parties.find(message.partyId); it == m_Parties.end())
     {
@@ -121,9 +121,9 @@ void PartyContainer::reattachMember(const ipc::CharZoneIn& message)
 }
 
 // World server is requesting a full sync of all parties.
-auto PartyContainer::partiesSync() -> std::vector<ipc::PartyUpdate>
+auto PartyContainer::partiesSync() -> std::vector<ipc::PartyEvent>
 {
-    std::vector<ipc::PartyUpdate> parties{};
+    std::vector<ipc::PartyEvent> parties{};
     parties.reserve(m_Parties.size());
 
     for (const auto& party : m_Parties | std::views::values)

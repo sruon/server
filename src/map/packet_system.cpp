@@ -759,7 +759,7 @@ void SmallPacket0x01A(MapSession* const PSession, CCharEntity* const PChar, CBas
                 // Unlikely we don't have a party but...
                 if (PChar->hasParty())
                 {
-                    PChar->getParty().ipc().removeMember(PTrust->id);
+                    PChar->getParty().removeMember(PTrust->id);
                 }
                 else
                 {
@@ -3467,7 +3467,7 @@ void SmallPacket0x06F(MapSession* const PSession, CCharEntity* const PChar, CBas
                 // TODO: This should not need special handling for alliances but double check
                 if (PChar->hasParty())
                 {
-                    PChar->getParty().ipc().removeMember(PChar->id);
+                    PChar->getParty().removeMember(PChar->id);
                 }
             }
             break;
@@ -3523,7 +3523,7 @@ void SmallPacket0x070(MapSession* const PSession, CCharEntity* const PChar, CBas
             if (PChar->hasParty() && PChar->getParty().getLeader() == PChar)
             {
                 ShowDebug("Forwarding request: %s is disbanding the party (pcmd breakup)", PChar->getName());
-                PChar->getParty().ipc().disband();
+                PChar->getParty().disband();
             }
             break;
         case 5:
@@ -3557,7 +3557,7 @@ void SmallPacket0x071(MapSession* const PSession, CCharEntity* const PChar, CBas
         {
             if (PChar->hasParty() && PChar->getParty().getLeader() == PChar)
             {
-                PChar->getParty().ipc().removeMember(victimName);
+                PChar->getParty().removeMember(victimName);
             }
         }
         break;
@@ -3791,13 +3791,13 @@ void SmallPacket0x077(MapSession* const PSession, CCharEntity* const PChar, CBas
                 switch (permission)
                 {
                     case 0: // Leader change
-                        PChar->getParty().ipc().setLeader(memberName);
+                        PChar->getParty().setLeader(memberName);
                         break;
                     case 4: // QM
-                        PChar->getParty().ipc().setQuartermaster(memberName);
+                        PChar->getParty().setQuartermaster(memberName);
                         break;
                     case 5: // Lottery type
-                        PChar->getParty().ipc().setQuartermaster(static_cast<uint32>(0));
+                        PChar->getParty().setQuartermaster(static_cast<uint32>(0));
                         break;
                     case 6: // Set sync
                         // TODO: This should be handled by the world server, but status effects are not saved reliably.
@@ -3810,10 +3810,10 @@ void SmallPacket0x077(MapSession* const PSession, CCharEntity* const PChar, CBas
                             }
                         }
 
-                        PChar->getParty().ipc().setSyncTarget(memberName);
+                        PChar->getParty().setSyncTarget(memberName);
                         break;
                     case 7: // Remove sync
-                        PChar->getParty().ipc().clearSyncTarget(MsgStd::LevelSyncWillBeRemoved);
+                        PChar->getParty().clearSyncTarget(MsgStd::LevelSyncWillBeRemoved);
                         break;
                     default:
                         ShowError("SmallPacket0x077 : unknown permission <%.2X>", permission);

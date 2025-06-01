@@ -888,7 +888,7 @@ void CCharEntity::RemoveTrust(CTrustEntity* PTrust)
     {
         if (hasParty())
         {
-            getParty().ipc().removeMember(PTrust->id);
+            getParty().removeMember(PTrust->id);
         }
 
         if (PTrust->animation == ANIMATION_DESPAWN)
@@ -906,11 +906,12 @@ void CCharEntity::ClearTrusts()
     {
         if (hasParty())
         {
-            getParty().ipc().removeMember(PTrust->id);
+            getParty().removeMember(PTrust->id);
         }
 
         PTrust->PAI->Despawn();
     }
+
     PTrusts.clear();
 }
 

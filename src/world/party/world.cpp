@@ -24,6 +24,7 @@
 #include "common/database.h"
 #include "common/ipc_structs.h"
 #include "common/logging.h"
+#include "ipc_server.h"
 
 struct CharDatabaseData
 {
@@ -81,61 +82,82 @@ auto getCharInfoFromName(const std::string& name) -> std::unique_ptr<CharDatabas
     return nullptr;
 }
 
-WorldParty::WorldParty(const ipc::PartyUpdate& message)
+WorldParty::WorldParty(const PartyFullUpdateMessage& message, IPCServer* ipcServer)
 : PartyBase(message)
+, m_IpcServer(ipcServer)
 {
+    debug("Party created from PartyFullUpdateMessage");
 }
 
-WorldParty::WorldParty(uint32 _LeaderUniqueNo)
+WorldParty::WorldParty(uint32 _LeaderUniqueNo, IPCServer* ipcServer)
 : PartyBase(_LeaderUniqueNo)
+, m_IpcServer(ipcServer)
 {
+    debug("Party created from LeaderUniqueNo: {}", _LeaderUniqueNo);
+}
+
+bool WorldParty::notifyIppForPartyMember(const uint32 memberId, const auto& message)
+{
+    if (const auto& member = getMemberById(memberId))
+    {
+        m_IpcServer->rerouteMessageToCharId(member.value().get().getId(), message);
+        return true;
+    }
+
+    return true;
+}
+
+bool WorldParty::notifyIppForPartyMembers(const auto& message)
+{
+    for (const auto& member : getMembers({ .type = PartyMemberType::Player }))
+    {
+        m_IpcServer->rerouteMessageToCharId(member.get().getId(), message);
+    }
+
+    return true;
 }
 
 bool WorldParty::setMemberZone(const uint32 charId, const uint16 zoneId)
 {
-    // if (const auto syncTarget = party.getSyncTarget())
-    //     {
-    //         if (const PartyMember& target = syncTarget.value(); target.getId() == message.charId)
-    //         {
-    //             ShowInfoFmt("Sync target is zoning out. Removing sync target");
-    //             handle_PartySetSyncTarget(ipp, ipc::PartySetSyncTarget{ .partyId = party.getPartyId(), .charId = 0, .reason = MsgStd::LevelSyncDeactivateLeftArea });
-    //         }
-    //         else
-    //         {
-    //             // Someone is zoning out, check if enough members are left in the sync zone.
-    //             if (party.getMembers({ .zoneId = target.getZone() }).size() < 2)
-    //             {
-    //                 // Not enough players left, disable sync
-    //                 handle_PartySetSyncTarget(ipp, ipc::PartySetSyncTarget{ .partyId = party.getPartyId(), .charId = 0, .reason = MsgStd::LevelSyncRemoveTooFewMembers });
-    //             }
-    //         }
-    //     }
-    //
-    //     // Leader is zoning out, clear all trusts
-    //     if (party.getLeaderId() == message.charId)
-    //     {
-    //         party.clearTrusts();
-    //     }
-    //
-    //     if (message.destinationZoneId == 0xFFFF)
-    //     {
-    //         // Character is shutting down / logging out
-    //         return handle_PartyRemoveMember(ipp, ipc::PartyRemoveMember{ .partyId = party.getPartyId(), .charId = message.charId });
-    //     }
-    //
-    //     // May need to reenable if we get odd behavior in the timeframe between a char zoning out and zoning in.
-    //     return modifyParty(party.getPartyId(), &WorldParty::setMemberZone, message.charId, message.destinationZoneId);
-    //     // return true;
-    // }
+    // Map server is notifying us that a character is zoning out or in
+    // Before updating the zone, we'll handle special cases:
 
+    // 1. If the character is the leader, we clear all trusts
     if (getLeaderId() == charId)
     {
+        debug("Leader is zoning out, clearing trusts");
         clearTrusts();
     }
 
-    if (getSyncTargetId() == charId)
+    size_t syncZoneMemberCount = 0;
+
+    if (getSyncTargetId() != 0)
     {
-        setSyncTarget(0);
+        if (const auto maybeOldSync = getSyncTarget())
+        {
+            syncZoneMemberCount = getMembers({ .type = PartyMemberType::Player, .zoneId = maybeOldSync->get().getZone() }).size();
+        }
+    }
+
+    if (getSyncTargetId() == charId || getLeaderId() == charId)
+    {
+        // 2. If party is synced and the sync target/leader is zoning out, disable sync
+        debug("Removing sync target due to leader or sync target zoning out");
+        clearSyncTarget(MsgStd::LevelSyncDeactivateLeftArea);
+    }
+    else if (getSyncTargetId() && syncZoneMemberCount < 2)
+    {
+        // 3. Anyone else zoning out of the sync zone, check if >= 2 members remain in the sync zone
+        if (const auto maybeOldSync = getSyncTarget())
+        {
+            // TODO: Is the zoning character still in the sync zone?
+            const auto syncZoneCount = getMembers({ .type = PartyMemberType::Player, .zoneId = maybeOldSync->get().getZone() }).size();
+            if (syncZoneCount < 2)
+            {
+                debug("Removing sync target due to too few members in sync zone: {}", syncZoneCount);
+                clearSyncTarget(MsgStd::LevelSyncRemoveTooFewMembers);
+            }
+        }
     }
 
     if (zoneId == 0xFFFF) // Logging out
@@ -143,14 +165,12 @@ bool WorldParty::setMemberZone(const uint32 charId, const uint16 zoneId)
         return removeMember(charId);
     }
 
-    for (auto& member : getMembers())
+    if (const auto& member = getMemberById(charId))
     {
-        if (member.get().getId() == charId)
-        {
-            member.get().setZone(zoneId);
-            setDirty(true);
-            return true;
-        }
+        debug("Setting zone for member {} to {}", charId, zoneId);
+        member->get().setZone(zoneId);
+        setDirty(true);
+        return true;
     }
 
     return false;
@@ -163,7 +183,7 @@ bool WorldParty::setLeader(const std::string& charName)
         return setLeader(existingMember->get().getId());
     }
 
-    ShowErrorFmt("Unable to find target member with name: {}", charName);
+    debug("Unable to find target member with name: {}", charName);
     return false;
 }
 
@@ -176,14 +196,14 @@ bool WorldParty::setLeader(uint32_t UniqueNo)
     {
         m_LeaderUniqueNo = UniqueNo;
         m_PartyId        = UniqueNo;
-        ShowInfoFmt("Leader set to UniqueNo: {}, changed PartyId", UniqueNo);
+        debug("Leader set to {}, changed PartyId", UniqueNo);
         // Changing leader dismisses trusts
         clearTrusts();
         setDirty(true);
         return true;
     }
 
-    ShowWarningFmt("Member with UniqueNo: {} not found in party", UniqueNo);
+    debug("Member {} not found in party", UniqueNo);
     return false;
 }
 
@@ -194,7 +214,7 @@ bool WorldParty::setQuartermaster(const std::string& charName)
         return setQuartermaster(existingMember->get().getId());
     }
 
-    ShowErrorFmt("Unable to find target member with name: {}", charName);
+    debug("Unable to find target member with name: {}", charName);
     return false;
 }
 
@@ -203,23 +223,20 @@ bool WorldParty::setQuartermaster(uint32_t UniqueNo)
     if (UniqueNo == 0)
     {
         m_QuartermasterUniqueNo = 0;
-        ShowInfo("Quartermaster removed");
+        debug("Quartermaster removed");
         setDirty(true);
         return true;
     }
 
-    for (auto& member : getMembers())
+    if (getMemberById(UniqueNo))
     {
-        if (member.get().getId() == UniqueNo)
-        {
-            m_QuartermasterUniqueNo = UniqueNo;
-            ShowInfoFmt("Quartermaster set to UniqueNo: {}", UniqueNo);
-            setDirty(true);
-            return true;
-        }
+        m_QuartermasterUniqueNo = UniqueNo;
+        debug("Quartermaster set to {}", UniqueNo);
+        setDirty(true);
+        return true;
     }
 
-    ShowWarningFmt("Member with UniqueNo: {} not found in party", UniqueNo);
+    debug("Member {} not found in party", UniqueNo);
     return false;
 }
 
@@ -230,7 +247,37 @@ bool WorldParty::setSyncTarget(const std::string& charName)
         return setSyncTarget(existingMember->get().getId());
     }
 
-    ShowErrorFmt("Unable to find target member with name: {}", charName);
+    debug("Unable to find target member with name: {}", charName);
+    return false;
+}
+
+bool WorldParty::clearSyncTarget(const std::optional<MsgStd> reason)
+{
+    if (m_SyncTargetUniqueNo)
+    {
+        if (reason)
+        {
+            if (const auto syncZone = getSyncZone())
+            {
+                for (const auto& member : getMembers({ .type = PartyMemberType::Player, .zoneId = syncZone }))
+                {
+                    m_IpcServer->rerouteMessageToCharId(
+                        member.get().getId(),
+                        ipc::MessageBasic{
+                            .recipientId = member.get().getId(),
+                            .message     = *reason,
+                            .param1      = 30,
+                        });
+                }
+            }
+        }
+
+        m_SyncTargetUniqueNo = 0;
+        debug("Sync target removed");
+        setDirty(true);
+        return true;
+    }
+
     return false;
 }
 
@@ -238,38 +285,39 @@ bool WorldParty::setSyncTarget(uint32_t UniqueNo)
 {
     if (UniqueNo == 0)
     {
-        m_SyncTargetUniqueNo = 0;
-        //  // Level sync rules enforcement
-        // if (const auto maybeLeader = party.getLeader())
-        // {
-        //     const PartyMember& leader = maybeLeader.value();
+        return clearSyncTarget(std::nullopt);
+    }
+
+    if (const auto syncTarget = getMemberById(UniqueNo))
+    {
+        const auto syncTargetInfo = getCharInfoFromId(UniqueNo);
 
         // 1. Sync target must be in the same zone as the party leader
-        // if (syncTargetInfo->zoneId != leader.getZone())
-        // {
-        //     m_WorldServer.ipcServer_->rerouteMessageToCharId(
-        //         leader.getId(),
-        //         ipc::MessageBasic{
-        //             .recipientId = leader.getId(),
-        //             .message     = MsgStd::LevelSyncDesigneeInOtherArea,
-        //         });
-        //
-        //     return false;
-        // }
+        if (syncTarget->get().getZone() != getLeader().value().get().getZone())
+        {
+            m_IpcServer->rerouteMessageToCharId(
+                getLeaderId(),
+                ipc::MessageBasic{
+                    .recipientId = getLeaderId(),
+                    .message     = MsgStd::LevelSyncDesigneeInOtherArea,
+                });
+
+            return false;
+        }
 
         // 2. Sync target must be above level 10
-        // if (syncTargetInfo->mLvl < 10)
-        // {
-        //     m_WorldServer.ipcServer_->rerouteMessageToCharId(
-        //         leader.getId(),
-        //         ipc::MessageBasic{
-        //             .recipientId = leader.getId(),
-        //             .message     = MsgStd::LevelSyncDesigneeBelowMin,
-        //             .param1      = 10,
-        //         });
-        //
-        //     return false;
-        // }
+        if (syncTargetInfo->mLvl < 10)
+        {
+            m_IpcServer->rerouteMessageToCharId(
+                getLeaderId(),
+                ipc::MessageBasic{
+                    .recipientId = getLeaderId(),
+                    .message     = MsgStd::LevelSyncDesigneeBelowMin,
+                    .param1      = 10,
+                });
+
+            return false;
+        }
 
         // 3. Certain status effects block sync
         // TODO: Map server is authoritative for this check in SmallPacket0x077
@@ -277,45 +325,15 @@ bool WorldParty::setSyncTarget(uint32_t UniqueNo)
 
         // 4. If the target is alone in the zone, the sync is IMMEDIATELY disabled.
         // Verified to be retail accurate.
-        // if (party.getMembers({ .zoneId = syncTargetInfo->zoneId }).size() < 2)
-        // {
-        //     immediateDisable = true;
-        // }
-        // // If a reason was provided for disabling, we need to stream it to certain party members
-        //    if (maybeOldSync && syncTargetId == 0 && static_cast<uint16>(message.reason) != 0)
-        //    {
-        //        const PartyMember& oldSync = maybeOldSync.value();
-        //
-        //        // clang-format off
-        //        party.ForEveryMember({ .zoneId = oldSync.getZone() }, [&](const PartyMember& member)
-        //        {
-        //            m_WorldServer.ipcServer_->rerouteMessageToCharId(member.getId(),
-        //                ipc::MessageBasic{
-        //                    .recipientId = member.getId(),
-        //                    .message     = message.reason,
-        //                    .param0      = 30,
-        //                    .param1      = 30,
-        //                });
-        //        });
-        //        // clang-format on
-        //    }
-        ShowInfo("Sync target removed");
+        // TODO
+
+        m_SyncTargetUniqueNo = UniqueNo;
+        debug("Sync target set to {}", UniqueNo);
         setDirty(true);
         return true;
     }
 
-    for (auto& member : getMembers())
-    {
-        if (member.get().getId() == UniqueNo)
-        {
-            m_SyncTargetUniqueNo = UniqueNo;
-            ShowInfoFmt("Sync target set to UniqueNo: {}", UniqueNo);
-            setDirty(true);
-            return true;
-        }
-    }
-
-    ShowWarningFmt("Member with UniqueNo: {} not found in party", UniqueNo);
+    debug("Member {} not found in party", UniqueNo);
     return false;
 }
 
@@ -323,7 +341,7 @@ bool WorldParty::addMember(uint32_t UniqueNo, PartyMemberType type)
 {
     if (getMemberById(UniqueNo))
     {
-        ShowWarningFmt("Member with UniqueNo: {} already exists in the party", UniqueNo);
+        debug("Member {} already exists in the party", UniqueNo);
         return false;
     }
 
@@ -334,11 +352,11 @@ bool WorldParty::addMember(uint32_t UniqueNo, PartyMemberType type)
             const auto newMemberInfo = getCharInfoFromId(UniqueNo);
             if (!newMemberInfo)
             {
-                ShowErrorFmt("Unable to find target member with ID: {}", UniqueNo);
+                debug("Unable to find target member {}", UniqueNo);
                 return false;
             }
             m_Members.emplace_back(UniqueNo, type, newMemberInfo->zoneId, newMemberInfo->charName, std::chrono::system_clock::to_time_t(std::chrono::system_clock::now()));
-            ShowInfoFmt("Added player {} ({}) (type {})", newMemberInfo->charName, UniqueNo, static_cast<uint8>(type));
+            debug("Added player {} ({}) (type {})", newMemberInfo->charName, UniqueNo, static_cast<uint8>(type));
 
             // Adding a player dismisses all trusts, regardless of the state of the party.
             clearTrusts();
@@ -358,7 +376,7 @@ bool WorldParty::addMember(uint32_t UniqueNo, PartyMemberType type)
         return true;
     }
 
-    ShowWarningFmt("Party is full, cannot add member with UniqueNo: {}", UniqueNo);
+    debug("Party is full, cannot add member {}", UniqueNo);
     return false;
 }
 
@@ -386,7 +404,7 @@ bool WorldParty::removeMember(const std::string& charName)
         return removeMember(existingMember->get().getId());
     }
 
-    ShowErrorFmt("Unable to find target member with name: {}", charName);
+    debug("Unable to find target member with name: {}", charName);
     return false;
 }
 
@@ -401,8 +419,13 @@ bool WorldParty::removeMember(uint32 UniqueNo)
     // clang-format on
     if (it == m_Members.end())
     {
-        ShowWarningFmt("Member with UniqueNo: {} not found in party", UniqueNo);
+        debug("Member {} not found in party", UniqueNo);
         return false;
+    }
+
+    if (m_SyncTargetUniqueNo == UniqueNo)
+    {
+        clearSyncTarget(MsgStd::LevelSyncRemoveLeftParty);
     }
 
     m_Members.erase(it);
@@ -419,13 +442,7 @@ bool WorldParty::removeMember(uint32 UniqueNo)
         setQuartermaster(0);
     }
 
-    if (m_SyncTargetUniqueNo == UniqueNo)
-    {
-        // TODO: MsgStd::LevelSyncRemoveLeftParty
-        setSyncTarget(0);
-    }
-
-    ShowInfoFmt("Removed member with UniqueNo: {}", UniqueNo);
+    debug("Removed member {}", UniqueNo);
     setDirty(true);
     return true;
 }

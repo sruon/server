@@ -29,14 +29,14 @@ class CCharParty;
 class PartyContainer
 {
 public:
-    void updateParty(const ipc::PartyUpdate& message);
+    void updateParty(const PartyFullUpdateMessage& message);
     void updateId(uint32 old, uint32 newId);
     void disbandParty(uint32 partyId);
     void reattachMember(const ipc::CharZoneIn& message);
 
     void chatMessage(const ipc::ChatMessageParty& message);
     void chatMessage(const ipc::ChatMessageAlliance& message);
-    auto partiesSync() -> std::vector<ipc::PartyUpdate>;
+    auto partiesSync() -> std::vector<ipc::PartyEvent>;
 
 private:
     std::unordered_map<uint32, std::unique_ptr<CCharParty>> m_Parties;

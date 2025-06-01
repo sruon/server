@@ -56,7 +56,6 @@ IPC_STRUCT_NAMES = [
 
     "SendPlayerToLocation",
 
-    "PartyUpdate",
     "PartyChangeId",
     "PartySystemSync",
     "PartyInvite",

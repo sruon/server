@@ -42,14 +42,11 @@
 CCharParty::CCharParty(const uint32 leaderId)
 : PartyBase(leaderId)
 {
-    m_pIpcHelper = IpcHelper::Create(*this);
 }
 
-CCharParty::CCharParty(const ipc::PartyUpdate& message)
+CCharParty::CCharParty(const PartyFullUpdateMessage& message)
 : PartyBase(message)
 {
-    m_pIpcHelper = IpcHelper::Create(*this);
-
     broadcastPartyPackets();
 }
 
@@ -79,7 +76,7 @@ void CCharParty::refreshSync(CCharEntity* PChar) const
 
     if (syncLevel < 10)
     {
-        ipc().clearSyncTarget(MsgStd::LevelSyncRemoveLowLevel);
+        clearSyncTarget(MsgStd::LevelSyncRemoveLowLevel);
     }
 
     uint8 NewMLevel = 0;
@@ -162,7 +159,7 @@ void CCharParty::disableSync(const CCharEntity* PChar) const
 // Receives party updates from the world server
 // Determines changes, if any, and updates the party.
 // This may trigger additional IPC messages.
-void CCharParty::update(const ipc::PartyUpdate& message)
+void CCharParty::update(const PartyFullUpdateMessage& message)
 {
     bool changes = false;
 
@@ -635,11 +632,6 @@ void CCharParty::delMember(const PartyMember& member)
         // but we still remove it from our list!
         m_Members.erase(it);
     }
-}
-
-const CCharParty::IpcHelper& CCharParty::ipc() const
-{
-    return *m_pIpcHelper;
 }
 
 void CCharParty::chatMessage(const ipc::ChatMessageParty& message) const

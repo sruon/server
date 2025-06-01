@@ -278,7 +278,7 @@ void CLuaCharParty::refreshSync(const CLuaBaseEntity* PEntity) const
  ************************************************************************/
 void CLuaCharParty::setLeader(const uint32 UniqueNo) const
 {
-    m_PLuaCharParty->ipc().setLeader(UniqueNo);
+    m_PLuaCharParty->setLeader(UniqueNo);
 }
 
 /************************************************************************
@@ -289,7 +289,7 @@ void CLuaCharParty::setLeader(const uint32 UniqueNo) const
  ************************************************************************/
 void CLuaCharParty::setSyncTarget(const uint32 UniqueNo) const
 {
-    m_PLuaCharParty->ipc().setSyncTarget(UniqueNo);
+    m_PLuaCharParty->setSyncTarget(UniqueNo);
 }
 
 /************************************************************************
@@ -300,7 +300,7 @@ void CLuaCharParty::setSyncTarget(const uint32 UniqueNo) const
  ************************************************************************/
 void CLuaCharParty::clearSyncTarget(const MsgStd Reason) const
 {
-    m_PLuaCharParty->ipc().clearSyncTarget(Reason);
+    m_PLuaCharParty->clearSyncTarget(Reason);
 }
 
 /************************************************************************
@@ -311,7 +311,7 @@ void CLuaCharParty::clearSyncTarget(const MsgStd Reason) const
  ************************************************************************/
 void CLuaCharParty::setQuartermaster(const uint32 UniqueNo) const
 {
-    m_PLuaCharParty->ipc().setQuartermaster(UniqueNo);
+    m_PLuaCharParty->setQuartermaster(UniqueNo);
 }
 
 /************************************************************************
@@ -322,7 +322,7 @@ void CLuaCharParty::setQuartermaster(const uint32 UniqueNo) const
  ************************************************************************/
 void CLuaCharParty::addMember(const uint32 UniqueNo) const
 {
-    m_PLuaCharParty->ipc().addMember(UniqueNo, PartyMemberType::Player);
+    m_PLuaCharParty->addMember(UniqueNo, PartyMemberType::Player);
 }
 
 /************************************************************************
@@ -333,7 +333,7 @@ void CLuaCharParty::addMember(const uint32 UniqueNo) const
  ************************************************************************/
 void CLuaCharParty::removeMember(const uint32 UniqueNo) const
 {
-    m_PLuaCharParty->ipc().removeMember(UniqueNo);
+    m_PLuaCharParty->removeMember(UniqueNo);
 }
 
 /************************************************************************
@@ -344,7 +344,7 @@ void CLuaCharParty::removeMember(const uint32 UniqueNo) const
  ************************************************************************/
 void CLuaCharParty::disband() const
 {
-    m_PLuaCharParty->ipc().disband();
+    m_PLuaCharParty->disband();
 }
 
 //==========================================================//

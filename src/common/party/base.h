@@ -24,12 +24,14 @@
 #include "common/cbasetypes.h"
 #include "common/party/member.h"
 #include "common/timer.h"
+#include "events.h"
 #include <functional>
 
 namespace ipc
 {
+    struct PartyEvent;
     struct PartyUpdate;
-}
+} // namespace ipc
 
 struct PartyDiff
 {
@@ -63,6 +65,7 @@ public:
     auto getSyncTargetId() const -> uint32;
 
     // Members retrieval
+    auto getMemberById(uint32 UniqueNo) -> std::optional<std::reference_wrapper<PartyMember>>;
     auto getMemberById(uint32 UniqueNo) const -> std::optional<std::reference_wrapper<const PartyMember>>;
     auto getMemberByName(const std::string& memberName) const -> std::optional<std::reference_wrapper<const PartyMember>>;
     auto getMembers(const PartyMemberFilter& filter = {}) -> std::vector<std::reference_wrapper<PartyMember>>;
@@ -79,21 +82,29 @@ public:
     auto getTimeLastMemberJoined() const -> timer::time_point;
     bool hasTrusts() const;
     bool isTrustOnlyParty() const;
+    auto getSyncZone() const -> std::optional<uint16>;
 
     // Iterators
     auto ForEveryMember(const std::function<void(const PartyMember&)>& func) const -> void;
     auto ForEveryMember(PartyMemberFilter filter, const std::function<void(const PartyMember&)>& func) const -> void;
     auto ForEveryAllianceMember(std::function<void(const PartyMember&)> func) -> void;
 
-    auto asIpcUpdate() const -> ipc::PartyUpdate;
-    auto diff(const ipc::PartyUpdate& other) const -> PartyDiff;
+    auto asIpcUpdate() const -> ipc::PartyEvent;
+    auto diff(const PartyFullUpdateMessage& other) const -> PartyDiff;
 
     // TODO: protected/private?
     bool reassignLeader();
 
 protected:
-    PartyBase(const ipc::PartyUpdate& message);
+    PartyBase(const PartyFullUpdateMessage& message);
     PartyBase(uint32 _LeaderUniqueNo);
+
+    template <typename... Args>
+    void debug(const std::string& message, Args&&... args)
+    {
+        DebugPartyFmt("[Party][{}] {}", getPartyId(),
+                      std::vformat(message, std::make_format_args(args...)));
+    }
 
     uint32                   m_PartyId               = 0;
     uint32                   m_LeaderUniqueNo        = 0;

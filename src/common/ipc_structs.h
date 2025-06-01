@@ -278,51 +278,6 @@ namespace ipc
         uint32 moghouseId{};
     };
 
-    struct PartyUpdate
-    {
-        uint32                   partyId{};
-        uint32                   leaderUniqueNo{};
-        uint32                   quartermasterUniqueNo{};
-        uint32                   syncTargetUniqueNo{};
-        std::vector<PartyMember> members{};
-    };
-
-    struct PartyAddMember
-    {
-        uint32          partyId{};
-        uint32          charId{};
-        PartyMemberType type{};
-    };
-
-    struct PartyRemoveMember
-    {
-        uint32      partyId{};
-        uint32      charId{};
-        std::string charName{};
-    };
-
-    struct PartySetLeader
-    {
-        uint32      partyId{};
-        uint32      charId{};
-        std::string charName{};
-    };
-
-    struct PartySetQuartermaster
-    {
-        uint32      partyId{};
-        uint32      charId{};
-        std::string charName{};
-    };
-
-    struct PartySetSyncTarget
-    {
-        uint32      partyId{};
-        uint32      charId{};
-        std::string charName{};
-        MsgStd      reason{};
-    };
-
     struct PartyChangeId
     {
         uint32 formerId{};
@@ -361,6 +316,7 @@ namespace ipc
     {
         uint32 partyId{};
         std::variant<
+            PartyFullUpdateMessage,
             MemberAddMessage,
             MemberRemoveMessage,
             LeaderSetMessage,

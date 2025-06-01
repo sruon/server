@@ -63,3 +63,12 @@ struct MemberAddMessage
     uint32          charId{};
     PartyMemberType type{};
 };
+
+struct PartyFullUpdateMessage
+{
+    uint32                   partyId{};
+    uint32                   leaderUniqueNo{};
+    uint32                   quartermasterUniqueNo{};
+    uint32                   syncTargetUniqueNo{};
+    std::vector<PartyMember> members{};
+};

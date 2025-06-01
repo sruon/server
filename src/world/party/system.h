@@ -39,11 +39,13 @@ public:
     void notifyIppForParty(uint32 partyId, const auto& message, uint16 zoneId) const;
     void notifyIppForParty(uint32 partyId, const auto& message) const;
 
+    bool onPartyEvent(const IPP& ipp, const ipc::PartyEvent& message);
     bool onCharZoneOut(const IPP& ipp, const ipc::CharZoneOut& message);
     bool onCharZoneIn(const IPP& ipp, const ipc::CharZoneIn& message);
+    bool onSync(const PartyFullUpdateMessage& message);
+
     bool createParty(uint32 leader);
     bool removeParty(uint32 partyId);
-    bool handle_PartyUpdate(const IPP& ipp, const ipc::PartyUpdate& message);
 
     void dump();
 

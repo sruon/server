@@ -83,7 +83,6 @@ public:
     void handleMessage_EntityInformationRequest(const IPP& ipp, const ipc::EntityInformationRequest& message);
     void handleMessage_EntityInformationResponse(const IPP& ipp, const ipc::EntityInformationResponse& message);
     void handleMessage_SendPlayerToLocation(const IPP& ipp, const ipc::SendPlayerToLocation& message);
-    void handleMessage_PartyUpdate(const IPP& ipp, const ipc::PartyUpdate& message);
     void handleMessage_PartyChangeId(const IPP& ipp, const ipc::PartyChangeId& message);
     void handleMessage_PartySystemSync(const IPP& ipp, const ipc::PartySystemSync& message);
     void handleMessage_PartyEvent(const IPP& ipp, const ipc::PartyEvent& message);
