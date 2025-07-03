@@ -26,10 +26,10 @@
 // https://github.com/atom0s/XiPackets/tree/main/world/client/0x00D8
 // This packet is sent by the client when interacting with or changing parameters related to a private dungeon system, such as the Moblin Maze Mongers tablet item.
 GP_CLI_PACKET(GP_CLI_COMMAND_DUNGEON_PARAM,
-              uint16_t ActIndex;     // PS2: ActIndex
-              uint16_t Param1;       // PS2: Param1
-              uint8_t  Param2;       // PS2: Param2
-              uint8_t  padding00[3]; // PS2: padding00
-              uint32_t UniqueNo;     // PS2: UniqueNo
-              uint8_t  Data[24];     // PS2: Data
+              uint16_t ActIndex;     // The clients target index.
+              uint16_t Param1;       // This value is populated from an event VM script.
+              uint8_t  Param2;       // This value is populated from an event VM script.
+              uint8_t  padding00[3]; // Padding; unused.
+              uint32_t UniqueNo;     // The clients server id.
+              uint8_t  Data[24];     // This array holds the various bit packed data related to the dungeon information being updated.
 );

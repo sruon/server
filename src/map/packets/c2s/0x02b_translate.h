@@ -32,8 +32,8 @@ enum class GP_CLI_COMMAND_TRANSLATE_INDEX : uint8_t
 // https://github.com/atom0s/XiPackets/tree/main/world/client/0x002B
 // This packet is sent by the client when using the /translate command.
 GP_CLI_PACKET(GP_CLI_COMMAND_TRANSLATE,
-              uint8_t  FromIndex; // PS2: FromIndex
-              uint8_t  ToIndex;   // PS2: ToIndex
-              uint16_t padding00; // PS2: padding00
-              uint8_t  Name[64];  // PS2: Name
+              uint8_t  FromIndex;
+              uint8_t  ToIndex;
+              uint16_t padding00;
+              uint8_t  Name[64]; // Variable length
 );

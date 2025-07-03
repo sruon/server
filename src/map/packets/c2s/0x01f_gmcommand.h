@@ -23,17 +23,9 @@
 
 #include "base.h"
 
-enum class GP_CLI_COMMAND_PARTY_REQUEST_KIND : uint8_t
-{
-    Add    = 0x00, // Request to join the target players party.
-    Remove = 0x01, // Remove request to join the target players party.
-};
-
-// https://github.com/atom0s/XiPackets/tree/main/world/client/0x011C
-// This packet is sent by the client when using the party request command. (/partyrequestcmd)
-GP_CLI_PACKET(GP_CLI_COMMAND_PARTY_REQUEST,
-              uint32_t UniqueNo;  // The server id of the player whos party the client is requesting to join.
-              uint16_t ActIndex;  // The target index of the player whos party the client is requesting to join.
-              uint8_t  Kind;      // The packet kind.
-              uint8_t  padding00; // Padding; unused.
+// https://github.com/atom0s/XiPackets/tree/main/world/client/0x001F
+// This packet is sent by the client in response to a remote GM command execution request.
+GP_CLI_PACKET(GP_CLI_COMMAND_GMCOMMAND,
+              uint32_t GMUniqueNo;   // PS2: GMUniqueNo
+              uint8_t  Command[128]; // PS2: Command -- unknown max size
 );

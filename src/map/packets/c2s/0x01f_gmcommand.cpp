@@ -19,21 +19,19 @@
 ===========================================================================
 */
 
-#pragma once
+#include "0x01f_gmcommand.h"
 
-#include "base.h"
+#include "entities/charentity.h"
 
-enum class GP_CLI_COMMAND_PARTY_REQUEST_KIND : uint8_t
+auto GP_CLI_COMMAND_GMCOMMAND::validate(MapSession* PSession, const CCharEntity* PChar) const -> PacketValidationResult
 {
-    Add    = 0x00, // Request to join the target players party.
-    Remove = 0x01, // Remove request to join the target players party.
-};
+    // Unimplemented
+    return PacketValidator();
+}
 
-// https://github.com/atom0s/XiPackets/tree/main/world/client/0x011C
-// This packet is sent by the client when using the party request command. (/partyrequestcmd)
-GP_CLI_PACKET(GP_CLI_COMMAND_PARTY_REQUEST,
-              uint32_t UniqueNo;  // The server id of the player whos party the client is requesting to join.
-              uint16_t ActIndex;  // The target index of the player whos party the client is requesting to join.
-              uint8_t  Kind;      // The packet kind.
-              uint8_t  padding00; // Padding; unused.
-);
+void GP_CLI_COMMAND_GMCOMMAND::process(MapSession* PSession, CCharEntity* PChar) const
+{
+    auto commandStr = asStringFromUntrustedSource(Command, sizeof(Command));
+    ShowDebugFmt("GP_CLI_COMMAND_GMCOMMAND: Not implemented. GMUniqueNo: {}, Command: '{}'",
+                 GMUniqueNo, commandStr);
+}
