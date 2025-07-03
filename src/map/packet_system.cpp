@@ -73,6 +73,7 @@
 #include "packets/bazaar_message.h"
 #include "packets/blacklist_edit_response.h"
 #include "packets/c2s/0x02b_translate.h"
+#include "packets/c2s/0x02c_itemsearch.h"
 #include "packets/c2s/0x041_trophy_entry.h"
 #include "packets/c2s/0x058_recipe.h"
 #include "packets/c2s/0x066_fishing.h"
@@ -5647,6 +5648,7 @@ void PacketParserInitialize()
     PacketSize[0x028] = 0x06; PacketParser[0x028] = &SmallPacket0x028;
     PacketSize[0x029] = 0x06; PacketParser[0x029] = &SmallPacket0x029;
     PacketSize[0x02B] = 0x00; PacketParser[0x02B] = &ValidatedPacketHandler<GP_CLI_COMMAND_TRANSLATE>;
+    PacketSize[0x02C] = 0x00; PacketParser[0x02C] = &ValidatedPacketHandler<GP_CLI_COMMAND_ITEMSEARCH>;
     PacketSize[0x032] = 0x06; PacketParser[0x032] = &SmallPacket0x032;
     PacketSize[0x033] = 0x06; PacketParser[0x033] = &SmallPacket0x033;
     PacketSize[0x034] = 0x06; PacketParser[0x034] = &SmallPacket0x034;
