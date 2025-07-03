@@ -125,6 +125,7 @@
 #include "packets/c2s/0x118_unity_toggle.h"
 #include "packets/c2s/0x119_emote_list.h"
 #include "packets/c2s/0x11b_mastery_display.h"
+#include "packets/c2s/0x11c_party_request.h"
 #include "packets/c2s/0x11d_jump.h"
 #include "packets/char_abilities.h"
 #include "packets/char_appearance.h"
@@ -5757,6 +5758,7 @@ void PacketParserInitialize()
     PacketSize[0x118] = 0x00; PacketParser[0x118] = &ValidatedPacketHandler<GP_CLI_COMMAND_UNITY_TOGGLE>;
     PacketSize[0x119] = 0x00; PacketParser[0x119] = &ValidatedPacketHandler<GP_CLI_COMMAND_EMOTE_LIST>;
     PacketSize[0x11B] = 0x00; PacketParser[0x11B] = &ValidatedPacketHandler<GP_CLI_COMMAND_MASTERY_DISPLAY>;
+    PacketSize[0x11C] = 0x08; PacketParser[0x11C] = &ValidatedPacketHandler<GP_CLI_COMMAND_PARTY_REQUEST>;
     PacketSize[0x11D] = 0x00; PacketParser[0x11D] = &ValidatedPacketHandler<GP_CLI_COMMAND_JUMP>;
     // clang-format on
 }

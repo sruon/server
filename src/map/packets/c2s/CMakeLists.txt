@@ -107,6 +107,8 @@ set(PACKET_C2S_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/0x119_emote_list.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x11b_mastery_display.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x11b_mastery_display.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x11c_party_request.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x11c_party_request.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x11d_jump.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x11d_jump.h
     PARENT_SCOPE
