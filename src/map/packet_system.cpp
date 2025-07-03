@@ -75,6 +75,7 @@
 #include "packets/c2s/0x041_trophy_entry.h"
 #include "packets/c2s/0x058_recipe.h"
 #include "packets/c2s/0x066_fishing.h"
+#include "packets/c2s/0x0bf_job_points_spend.h"
 #include "packets/c2s/0x0c0_job_points_req.h"
 #include "packets/c2s/0x0d2_map_group.h"
 #include "packets/c2s/0x0d3_faq_gmcall.h"
@@ -153,7 +154,6 @@
 #include "packets/inventory_item.h"
 #include "packets/inventory_size.h"
 #include "packets/jobpoint_details.h"
-#include "packets/jobpoint_update.h"
 #include "packets/linkshell_equip.h"
 #include "packets/macroequipset.h"
 #include "packets/menu_config.h"
@@ -167,7 +167,6 @@
 #include "packets/monipulator2.h"
 #include "packets/party_define.h"
 #include "packets/party_invite.h"
-#include "packets/party_map.h"
 #include "packets/party_search.h"
 #include "packets/position.h"
 #include "packets/release.h"
@@ -4946,29 +4945,6 @@ void SmallPacket0x0BE(MapSession* const PSession, CCharEntity* const PChar, CBas
 }
 
 /************************************************************************
- *                                                                        *
- *  Increase Job Point                                                    *
- *                                                                        *
- ************************************************************************/
-
-void SmallPacket0x0BF(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    if (PChar->m_moghouseID)
-    {
-        JOBPOINT_TYPE jpType = static_cast<JOBPOINT_TYPE>(data.ref<uint16>(0x04));
-
-        if (PChar->PJobPoints->IsJobPointExist(jpType))
-        {
-            PChar->PJobPoints->RaiseJobPoint(jpType);
-            PChar->pushPacket<CMenuJobPointsPacket>(PChar);
-            PChar->pushPacket<CJobPointUpdatePacket>(PChar, jpType);
-        }
-    }
-}
-
-/************************************************************************
  *                                                                       *
  *  Create Linkpearl                                                     *
  *                                                                       *
@@ -5721,7 +5697,7 @@ void PacketParserInitialize()
     PacketSize[0x0B5] = 0x00; PacketParser[0x0B5] = &SmallPacket0x0B5;
     PacketSize[0x0B6] = 0x00; PacketParser[0x0B6] = &SmallPacket0x0B6;
     PacketSize[0x0BE] = 0x00; PacketParser[0x0BE] = &SmallPacket0x0BE;
-    PacketSize[0x0BF] = 0x00; PacketParser[0x0BF] = &SmallPacket0x0BF;
+    PacketSize[0x0BF] = 0x04; PacketParser[0x0BF] = &ValidatedPacketHandler<GP_CLI_COMMAND_JOB_POINTS_SPEND>;
     PacketSize[0x0C0] = 0x00; PacketParser[0x0C0] = &ValidatedPacketHandler<GP_CLI_COMMAND_JOB_POINTS_REQ>;
     PacketSize[0x0C3] = 0x00; PacketParser[0x0C3] = &SmallPacket0x0C3;
     PacketSize[0x0C4] = 0x0E; PacketParser[0x0C4] = &SmallPacket0x0C4;

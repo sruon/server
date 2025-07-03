@@ -23,6 +23,9 @@
 
 #include "base.h"
 
-// https://github.com/atom0s/XiPackets/tree/main/world/client/0x00C0
-// This packet is sent by the client when requesting job points information.
-GP_CLI_PACKET(GP_CLI_COMMAND_JOB_POINTS_REQ);
+// https://github.com/atom0s/XiPackets/tree/main/world/client/0x00BF
+// This packet is sent by the client when spending job points.
+GP_CLI_PACKET(GP_CLI_COMMAND_JOB_POINTS_SPEND,
+              uint16_t Index;     // PS2: Index
+              uint16_t padding00; // PS2: padding00
+);
