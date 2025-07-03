@@ -23,6 +23,8 @@ set(PACKET_C2S_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/0x0d4_faq_gmparam.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x0d5_ack_gmmsg.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x0d5_ack_gmmsg.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x0d8_dungeon_param.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x0d8_dungeon_param.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x0de_inspect_message.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x0de_inspect_message.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x0e0_set_usermsg.cpp

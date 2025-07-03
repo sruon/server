@@ -83,6 +83,7 @@
 #include "packets/c2s/0x0d3_faq_gmcall.h"
 #include "packets/c2s/0x0d4_faq_gmparam.h"
 #include "packets/c2s/0x0d5_ack_gmmsg.h"
+#include "packets/c2s/0x0d8_dungeon_param.h"
 #include "packets/c2s/0x0de_inspect_message.h"
 #include "packets/c2s/0x0e0_set_usermsg.h"
 #include "packets/c2s/0x0e1_get_lsmsg.h"
@@ -5712,6 +5713,7 @@ void PacketParserInitialize()
     PacketSize[0x0D3] = 0x00; PacketParser[0x0D3] = &ValidatedPacketHandler<GP_CLI_COMMAND_FAQ_GMCALL>;
     PacketSize[0x0D4] = 0x04; PacketParser[0x0D4] = &ValidatedPacketHandler<GP_CLI_COMMAND_FAQ_GMPARAM>;
     PacketSize[0x0D5] = 0x08; PacketParser[0x0D5] = &ValidatedPacketHandler<GP_CLI_COMMAND_ACK_GMMSG>;
+    PacketSize[0x0D8] = 0x00; PacketParser[0x0D8] = &ValidatedPacketHandler<GP_CLI_COMMAND_DUNGEON_PARAM>;
     PacketSize[0x0DB] = 0x00; PacketParser[0x0DB] = &SmallPacket0x0DB;
     PacketSize[0x0DC] = 0x0A; PacketParser[0x0DC] = &SmallPacket0x0DC;
     PacketSize[0x0DD] = 0x08; PacketParser[0x0DD] = &SmallPacket0x0DD;
