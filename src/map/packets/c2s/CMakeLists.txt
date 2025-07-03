@@ -11,6 +11,8 @@ set(PACKET_C2S_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/0x058_recipe.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x058_recipe.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x066_fishing.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x0b7_assist_channel.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x0b7_assist_channel.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x0bf_job_points_spend.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x0bf_job_points_spend.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x0c0_job_points_req.cpp
