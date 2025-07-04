@@ -75,6 +75,7 @@
 #include "packets/c2s/0x041_trophy_entry.h"
 #include "packets/c2s/0x058_recipe.h"
 #include "packets/c2s/0x066_fishing.h"
+#include "packets/c2s/0x0ad_guild_selllist.h"
 #include "packets/c2s/0x0b5_chat_std.h"
 #include "packets/c2s/0x0b6_chat_name.h"
 #include "packets/c2s/0x0b7_assist_channel.h"
@@ -156,7 +157,6 @@
 #include "packets/guild_menu_buy.h"
 #include "packets/guild_menu_buy_update.h"
 #include "packets/guild_menu_sell.h"
-#include "packets/guild_menu_sell_update.h"
 #include "packets/inventory_assign.h"
 #include "packets/inventory_count.h"
 #include "packets/inventory_finish.h"
@@ -4511,22 +4511,6 @@ void SmallPacket0x0AC(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *  Guild Item Vendor Stock Request                                      *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x0AD(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    if (PChar->PGuildShop != nullptr)
-    {
-        PChar->pushPacket<CGuildMenuSellPacket>(PChar, PChar->PGuildShop);
-    }
-}
-
-/************************************************************************
- *                                                                       *
  *  Create Linkpearl                                                     *
  *                                                                       *
  ************************************************************************/
@@ -4910,7 +4894,7 @@ void PacketParserInitialize()
     PacketSize[0x0AA] = 0x00; PacketParser[0x0AA] = &SmallPacket0x0AA;
     PacketSize[0x0AB] = 0x00; PacketParser[0x0AB] = &SmallPacket0x0AB;
     PacketSize[0x0AC] = 0x00; PacketParser[0x0AC] = &SmallPacket0x0AC;
-    PacketSize[0x0AD] = 0x00; PacketParser[0x0AD] = &SmallPacket0x0AD;
+    PacketSize[0x0AD] = 0x00; PacketParser[0x0AD] = &ValidatedPacketHandler<GP_CLI_COMMAND_GUILD_SELLLIST>;
     PacketSize[0x0B5] = 0x00; PacketParser[0x0B5] = &ValidatedPacketHandler<GP_CLI_COMMAND_CHAT_STD>;
     PacketSize[0x0B6] = 0x00; PacketParser[0x0B6] = &ValidatedPacketHandler<GP_CLI_COMMAND_CHAT_NAME>;
     PacketSize[0x0B7] = 0x00; PacketParser[0x0B7] = &ValidatedPacketHandler<GP_CLI_COMMAND_ASSIST_CHANNEL>;
