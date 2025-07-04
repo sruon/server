@@ -78,6 +78,7 @@
 #include "packets/c2s/0x041_trophy_entry.h"
 #include "packets/c2s/0x058_recipe.h"
 #include "packets/c2s/0x066_fishing.h"
+#include "packets/c2s/0x084_shop_sell_req.h"
 #include "packets/c2s/0x085_shop_sell_set.h"
 #include "packets/c2s/0x09b_chocobo_race_req.h"
 #include "packets/c2s/0x0aa_guild_buy.h"
@@ -3978,34 +3979,6 @@ void SmallPacket0x083(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *  Vendor Item Appraise                                                 *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x084(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    if (PChar->animation != ANIMATION_SYNTH && (PChar->CraftContainer && PChar->CraftContainer->getItemsCount() == 0))
-    {
-        uint32 quantity = data.ref<uint32>(0x04);
-        uint16 itemID   = data.ref<uint16>(0x08);
-        uint8  slotID   = data.ref<uint8>(0x0A);
-
-        CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slotID);
-        if ((PItem != nullptr) && (PItem->getID() == itemID) && !(PItem->getFlag() & ITEM_FLAG_NOSALE))
-        {
-            quantity = std::min(quantity, PItem->getQuantity());
-            // Store item-to-sell in the last slot of the shop container
-            PChar->Container->setItem(PChar->Container->getExSize(), itemID, slotID, quantity);
-            PChar->pushPacket<CShopAppraisePacket>(slotID, PItem->getBasePrice());
-        }
-        return;
-    }
-}
-
-/************************************************************************
- *                                                                       *
  *  Begin Synthesis                                                      *
  *                                                                       *
  ************************************************************************/
@@ -4480,7 +4453,7 @@ void PacketParserInitialize()
     PacketSize[0x077] = 0x00; PacketParser[0x077] = &SmallPacket0x077;
     PacketSize[0x078] = 0x00; PacketParser[0x078] = &SmallPacket0x078;
     PacketSize[0x083] = 0x08; PacketParser[0x083] = &SmallPacket0x083;
-    PacketSize[0x084] = 0x06; PacketParser[0x084] = &SmallPacket0x084;
+    PacketSize[0x084] = 0x0C; PacketParser[0x084] = &ValidatedPacketHandler<GP_CLI_COMMAND_SHOP_SELL_REQ>;
     PacketSize[0x085] = 0x06; PacketParser[0x085] = &ValidatedPacketHandler<GP_CLI_COMMAND_SHOP_SELL_SET>;
     PacketSize[0x096] = 0x12; PacketParser[0x096] = &SmallPacket0x096;
     PacketSize[0x09B] = 0x0C; PacketParser[0x09B] = &ValidatedPacketHandler<GP_CLI_COMMAND_CHOCOBO_RACE_REQ>;
