@@ -42,7 +42,6 @@
 #include "map_networking.h"
 #include "map_server.h"
 #include "map_session.h"
-#include "mob_modifier.h"
 #include "monstrosity.h"
 #include "packet_system.h"
 
@@ -79,6 +78,7 @@
 #include "packets/c2s/0x058_recipe.h"
 #include "packets/c2s/0x066_fishing.h"
 #include "packets/c2s/0x0b7_assist_channel.h"
+#include "packets/c2s/0x0be_merits.h"
 #include "packets/c2s/0x0bf_job_points_spend.h"
 #include "packets/c2s/0x0c0_job_points_req.h"
 #include "packets/c2s/0x0d2_map_group.h"
@@ -135,7 +135,6 @@
 #include "packets/c2s/0x11d_jump.h"
 #include "packets/char_abilities.h"
 #include "packets/char_appearance.h"
-#include "packets/char_check.h"
 #include "packets/char_emotion.h"
 #include "packets/char_equip.h"
 #include "packets/char_health.h"
@@ -4877,85 +4876,6 @@ void SmallPacket0x0B6(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *  Merit Mode (Setting of exp or limit points mode.)                    *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x0BE(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    uint8 operation = data.ref<uint8>(0x05);
-
-    switch (data.ref<uint8>(0x04))
-    {
-        case 2: // change mode
-        {
-            // TODO: you can switch mode anywhere except in besieged & under level restriction
-            if (db::preparedStmt("UPDATE char_exp SET mode = ? WHERE charid = ? LIMIT 1", operation, PChar->id))
-            {
-                PChar->MeritMode = operation;
-                PChar->pushPacket<CMenuMeritPacket>(PChar);
-                PChar->pushPacket<CMonipulatorPacket1>(PChar);
-                PChar->pushPacket<CMonipulatorPacket2>(PChar);
-            }
-        }
-        break;
-        case 3: // change merit
-        {
-            if (PChar->m_moghouseID)
-            {
-                MERIT_TYPE merit = (MERIT_TYPE)(data.ref<uint16>(0x06) << 1);
-
-                if (PChar->PMeritPoints->IsMeritExist(merit))
-                {
-                    const Merit_t* PMerit = PChar->PMeritPoints->GetMerit(merit);
-
-                    switch (operation)
-                    {
-                        case 0:
-                            PChar->PMeritPoints->LowerMerit(merit);
-                            PChar->pushPacket<CMessageBasicPacket>(PChar, PChar, data.ref<uint16>(0x06), PMerit->count, MSGBASIC_MERIT_DECREASE);
-                            break;
-                        case 1:
-                            PChar->PMeritPoints->RaiseMerit(merit);
-                            PChar->pushPacket<CMessageBasicPacket>(PChar, PChar, data.ref<uint16>(0x06), PMerit->count, MSGBASIC_MERIT_INCREASE);
-                            break;
-                    }
-                    PChar->pushPacket<CMenuMeritPacket>(PChar);
-                    PChar->pushPacket<CMonipulatorPacket1>(PChar);
-                    PChar->pushPacket<CMonipulatorPacket2>(PChar);
-                    PChar->pushPacket<CMeritPointsCategoriesPacket>(PChar, merit);
-
-                    charutils::SaveCharExp(PChar, PChar->GetMJob());
-                    PChar->PMeritPoints->SaveMeritPoints(PChar->id);
-
-                    charutils::BuildingCharSkillsTable(PChar);
-                    charutils::CalculateStats(PChar);
-                    charutils::CheckValidEquipment(PChar);
-                    charutils::BuildingCharAbilityTable(PChar);
-                    charutils::BuildingCharTraitsTable(PChar);
-
-                    PChar->UpdateHealth();
-                    PChar->addHP(PChar->GetMaxHP());
-                    PChar->addMP(PChar->GetMaxMP());
-                    PChar->pushPacket<CCharStatusPacket>(PChar);
-                    PChar->pushPacket<CCharStatsPacket>(PChar);
-                    PChar->pushPacket<CCharSkillsPacket>(PChar);
-                    PChar->pushPacket<CCharRecastPacket>(PChar);
-                    PChar->pushPacket<CCharAbilitiesPacket>(PChar);
-                    PChar->pushPacket<CCharJobExtraPacket>(PChar, true);
-                    PChar->pushPacket<CCharJobExtraPacket>(PChar, true);
-                    PChar->pushPacket<CCharSyncPacket>(PChar);
-                }
-            }
-        }
-        break;
-    }
-}
-
-/************************************************************************
- *                                                                       *
  *  Create Linkpearl                                                     *
  *                                                                       *
  ************************************************************************/
@@ -5343,7 +5263,7 @@ void PacketParserInitialize()
     PacketSize[0x0B5] = 0x00; PacketParser[0x0B5] = &SmallPacket0x0B5;
     PacketSize[0x0B6] = 0x00; PacketParser[0x0B6] = &SmallPacket0x0B6;
     PacketSize[0x0B7] = 0x00; PacketParser[0x0B7] = &ValidatedPacketHandler<GP_CLI_COMMAND_ASSIST_CHANNEL>;
-    PacketSize[0x0BE] = 0x00; PacketParser[0x0BE] = &SmallPacket0x0BE;
+    PacketSize[0x0BE] = 0x0C; PacketParser[0x0BE] = &ValidatedPacketHandler<GP_CLI_COMMAND_MERITS>;
     PacketSize[0x0BF] = 0x04; PacketParser[0x0BF] = &ValidatedPacketHandler<GP_CLI_COMMAND_JOB_POINTS_SPEND>;
     PacketSize[0x0C0] = 0x00; PacketParser[0x0C0] = &ValidatedPacketHandler<GP_CLI_COMMAND_JOB_POINTS_REQ>;
     PacketSize[0x0C3] = 0x00; PacketParser[0x0C3] = &SmallPacket0x0C3;
