@@ -29,6 +29,8 @@ set(PACKET_C2S_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/0x0d5_ack_gmmsg.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x0d8_dungeon_param.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x0d8_dungeon_param.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x0dc_config.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x0dc_config.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x0dd_equip_inspect.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x0dd_equip_inspect.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x0de_inspect_message.cpp

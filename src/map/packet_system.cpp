@@ -86,6 +86,7 @@
 #include "packets/c2s/0x0d4_faq_gmparam.h"
 #include "packets/c2s/0x0d5_ack_gmmsg.h"
 #include "packets/c2s/0x0d8_dungeon_param.h"
+#include "packets/c2s/0x0dc_config.h"
 #include "packets/c2s/0x0dd_equip_inspect.h"
 #include "packets/c2s/0x0de_inspect_message.h"
 #include "packets/c2s/0x0e0_set_usermsg.h"
@@ -5270,127 +5271,7 @@ void SmallPacket0x0DB(MapSession* const PSession, CCharEntity* const PChar, CBas
     PChar->pushPacket<CMenuConfigPacket>(PChar);
 }
 
-// https://github.com/atom0s/XiPackets/blob/main/world/client/0x00DC/README.md
-struct GP_CLI_CONFIG
-{
-    uint16_t id : 9;
-    uint16_t size : 7;
-    uint16_t sync;
-    uint8_t  InviteFlg : 1;           // PS2: InviteFlg
-    uint8_t  AwayFlg : 1;             // PS2: AwayFlg
-    uint8_t  AnonymityFlg : 1;        // PS2: AnonymityFlg
-    uint8_t  Language : 2;            // PS2: Language
-    uint8_t  unused05 : 3;            // PS2: GmLevel
-    uint8_t  unused08 : 1;            // PS2: InvisFlg
-    uint8_t  unused09 : 1;            // PS2: InvulFlg
-    uint8_t  unused10 : 1;            // PS2: IgnoreFlg
-    uint8_t  unused11 : 2;            // PS2: SysMesFilterLevel
-    uint8_t  unused13 : 1;            // PS2: GmNoPrintFlg
-    uint8_t  AutoTargetOffFlg : 1;    // PS2: AutoTargetOffFlg
-    uint8_t  AutoPartyFlg : 1;        // PS2: AutoPartyFlg
-    uint8_t  unused16 : 8;            // PS2: JailNo
-    uint8_t  unused24 : 1;            // PS2: (New; previously padding byte.)
-    uint8_t  MentorFlg : 1;           // PS2: (New; previously padding byte.)
-    uint8_t  NewAdventurerOffFlg : 1; // PS2: (New; previously padding byte.)
-    uint8_t  DisplayHeadOffFlg : 1;   // PS2: (New; previously padding byte.)
-    uint8_t  unused28 : 1;            // PS2: (New; previously padding byte.)
-    uint8_t  RecruitFlg : 1;          // PS2: (New; previously padding byte.)
-    uint8_t  unused30 : 2;            // PS2: (New; previously padding byte.)
-    uint32_t unused00;                // PS2: (Other misc data.)
-    uint32_t unused01;                // PS2: (Other misc data.)
-    uint8_t  SetFlg;                  // Ps2: SetFlg
-    uint8_t  padding00[3];            // PS2: (New; did not exist.)
-};
 
-void SmallPacket0x0DC(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    auto configUpdateData = data.as<GP_CLI_CONFIG>();
-
-    bool value = configUpdateData->SetFlg == 1; // 1 == on, 2 == off. What?
-
-    bool updated = false;
-
-    if (configUpdateData->InviteFlg)
-    {
-        updated = true;
-
-        PChar->playerConfig.InviteFlg = value;
-    }
-
-    if (configUpdateData->AwayFlg)
-    {
-        updated = true;
-
-        PChar->playerConfig.AwayFlg = value;
-    }
-
-    if (configUpdateData->AnonymityFlg)
-    {
-        updated = true;
-
-        PChar->playerConfig.AnonymityFlg = value;
-        PChar->pushPacket<CMessageSystemPacket>(0, 0, value ? MsgStd::CharacterInfoHidden : MsgStd::CharacterInfoShown);
-    }
-
-    if (configUpdateData->AutoTargetOffFlg)
-    {
-        updated = true;
-
-        PChar->playerConfig.AutoTargetOffFlg = value;
-    }
-
-    if (configUpdateData->AutoPartyFlg)
-    {
-        updated = true;
-
-        PChar->playerConfig.AutoPartyFlg = value;
-    }
-
-    if (configUpdateData->MentorFlg)
-    {
-        updated = true;
-
-        PChar->playerConfig.MentorFlg = value;
-    }
-
-    if (configUpdateData->NewAdventurerOffFlg)
-    {
-        updated = true;
-
-        PChar->playerConfig.NewAdventurerOffFlg = value;
-    }
-
-    if (configUpdateData->DisplayHeadOffFlg)
-    {
-        updated = true;
-
-        PChar->playerConfig.DisplayHeadOffFlg = value;
-
-        // TODO: if you have no headgear you blink anyway. Check if retail does this.
-        PChar->pushPacket<CCharAppearancePacket>(PChar);
-        PChar->pushPacket<CMessageStandardPacket>(value ? MsgStd::HeadgearHide : MsgStd::HeadgearShow);
-    }
-
-    if (configUpdateData->RecruitFlg)
-    {
-        updated = true;
-
-        PChar->playerConfig.RecruitFlg = value;
-    }
-
-    if (updated)
-    {
-        PChar->updatemask |= UPDATE_HP;
-
-        charutils::SaveCharStats(PChar);
-        charutils::SavePlayerSettings(PChar);
-        PChar->pushPacket<CMenuConfigPacket>(PChar);
-        PChar->pushPacket<CCharStatusPacket>(PChar);
-        PChar->pushPacket<CCharSyncPacket>(PChar);
-    }
-}
 
 /************************************************************************
  *                                                                       *
@@ -5556,7 +5437,7 @@ void PacketParserInitialize()
     PacketSize[0x0D5] = 0x08; PacketParser[0x0D5] = &ValidatedPacketHandler<GP_CLI_COMMAND_ACK_GMMSG>;
     PacketSize[0x0D8] = 0x00; PacketParser[0x0D8] = &ValidatedPacketHandler<GP_CLI_COMMAND_DUNGEON_PARAM>;
     PacketSize[0x0DB] = 0x00; PacketParser[0x0DB] = &SmallPacket0x0DB;
-    PacketSize[0x0DC] = 0x0A; PacketParser[0x0DC] = &SmallPacket0x0DC;
+    PacketSize[0x0DC] = 0x14; PacketParser[0x0DC] = &ValidatedPacketHandler<GP_CLI_COMMAND_CONFIG>;
     PacketSize[0x0DD] = 0x0C; PacketParser[0x0DD] = &ValidatedPacketHandler<GP_CLI_COMMAND_EQUIP_INSPECT>;
     PacketSize[0x0DE] = 0x40; PacketParser[0x0DE] = &ValidatedPacketHandler<GP_CLI_COMMAND_INSPECT_MESSAGE>;
     PacketSize[0x0E0] = 0x00; PacketParser[0x0E0] = &ValidatedPacketHandler<GP_CLI_COMMAND_SET_USERMSG>;
