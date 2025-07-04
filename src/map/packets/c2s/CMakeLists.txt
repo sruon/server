@@ -8,6 +8,8 @@ set(PACKET_C2S_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/0x02b_translate.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x02c_itemsearch.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x02c_itemsearch.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x0a2_dice.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x0a2_dice.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x041_trophy_entry.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x041_trophy_entry.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x058_recipe.cpp

@@ -72,6 +72,7 @@
 #include "packets/c2s/0x01f_gmcommand.h"
 #include "packets/c2s/0x02b_translate.h"
 #include "packets/c2s/0x02c_itemsearch.h"
+#include "packets/c2s/0x0a2_dice.h"
 #include "packets/c2s/0x041_trophy_entry.h"
 #include "packets/c2s/0x058_recipe.h"
 #include "packets/c2s/0x066_fishing.h"
@@ -4362,21 +4363,6 @@ void SmallPacket0x09B(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *  Dice Roll                                                            *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x0A2(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    uint16 diceroll = xirand::GetRandomNumber(1000);
-
-    PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, std::make_unique<CMessageStandardPacket>(PChar, diceroll, MsgStd::DiceRoll));
-}
-
-/************************************************************************
- *                                                                       *
  *  Create Linkpearl                                                     *
  *                                                                       *
  ************************************************************************/
@@ -4756,7 +4742,7 @@ void PacketParserInitialize()
     PacketSize[0x09B] = 0x00; PacketParser[0x09B] = &SmallPacket0x09B;
     PacketSize[0x0A0] = 0x00; PacketParser[0x0A0] = &SmallPacket0xFFF_NOT_IMPLEMENTED;
     PacketSize[0x0A1] = 0x00; PacketParser[0x0A1] = &SmallPacket0xFFF_NOT_IMPLEMENTED;
-    PacketSize[0x0A2] = 0x00; PacketParser[0x0A2] = &SmallPacket0x0A2;
+    PacketSize[0x0A2] = 0x08; PacketParser[0x0A2] = &ValidatedPacketHandler<GP_CLI_COMMAND_DICE>;
     PacketSize[0x0AA] = 0x00; PacketParser[0x0AA] = &ValidatedPacketHandler<GP_CLI_COMMAND_GUILD_BUY>;
     PacketSize[0x0AB] = 0x00; PacketParser[0x0AB] = &ValidatedPacketHandler<GP_CLI_COMMAND_GUILD_BUYLIST>;
     PacketSize[0x0AC] = 0x00; PacketParser[0x0AC] = &ValidatedPacketHandler<GP_CLI_COMMAND_GUILD_SELL>;
