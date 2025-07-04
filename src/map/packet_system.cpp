@@ -78,6 +78,7 @@
 #include "packets/c2s/0x041_trophy_entry.h"
 #include "packets/c2s/0x058_recipe.h"
 #include "packets/c2s/0x066_fishing.h"
+#include "packets/c2s/0x077_group_change2.h"
 #include "packets/c2s/0x078_group_checkid.h"
 #include "packets/c2s/0x083_shop_buy.h"
 #include "packets/c2s/0x084_shop_sell_req.h"
@@ -165,7 +166,6 @@
 #include "packets/cs_position.h"
 #include "packets/downloading_data.h"
 #include "packets/fish_ranking.h"
-#include "packets/guild_menu_buy_update.h"
 #include "packets/inventory_assign.h"
 #include "packets/inventory_count.h"
 #include "packets/inventory_finish.h"
@@ -185,15 +185,12 @@
 #include "packets/monipulator2.h"
 #include "packets/party_define.h"
 #include "packets/party_invite.h"
-#include "packets/party_search.h"
 #include "packets/position.h"
 #include "packets/release.h"
 #include "packets/roe_questlog.h"
 #include "packets/roe_sparkupdate.h"
 #include "packets/roe_update.h"
 #include "packets/server_message.h"
-#include "packets/shop_appraise.h"
-#include "packets/shop_buy.h"
 #include "packets/status_effects.h"
 #include "packets/trade_action.h"
 #include "packets/trade_item.h"
@@ -3837,82 +3834,6 @@ void SmallPacket0x076(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *  Group Permission Change                                              *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x077(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    const auto memberName = db::escapeString(asStringFromUntrustedSource(data[0x04], 15));
-    const auto type       = data.ref<uint8>(0x14);
-    const auto permission = data.ref<uint8>(0x15);
-
-    switch (type)
-    {
-        case 0: // party
-        {
-            if (PChar->PParty != nullptr && PChar->PParty->GetLeader() == PChar)
-            {
-                ShowDebug(fmt::format("(Party) Altering permissions of {} to {}", memberName, permission));
-                PChar->PParty->AssignPartyRole(memberName, permission);
-            }
-        }
-        break;
-        case 1: // linkshell
-        {
-            CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK1);
-            if (PChar->PLinkshell1 && PItemLinkshell)
-            {
-                message::send(ipc::LinkshellRankChange{
-                    .requesterId   = PChar->id,
-                    .requesterRank = PItemLinkshell->GetLSType(),
-                    .memberName    = memberName,
-                    .linkshellId   = PChar->PLinkshell1->getID(),
-                    .newRank       = permission,
-                });
-            }
-        }
-        break;
-        case 2: // linkshell2
-        {
-            CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK2);
-            if (PChar->PLinkshell2 && PItemLinkshell)
-            {
-                message::send(ipc::LinkshellRankChange{
-                    .requesterId   = PChar->id,
-                    .requesterRank = PItemLinkshell->GetLSType(),
-                    .memberName    = memberName,
-                    .linkshellId   = PChar->PLinkshell2->getID(),
-                    .newRank       = permission,
-                });
-            }
-        }
-        break;
-        case 5: // alliance
-        {
-            if (PChar->PParty && PChar->PParty->m_PAlliance && PChar->PParty->GetLeader() == PChar &&
-                PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty)
-            {
-                ShowDebug(fmt::format("(Alliance) Changing leader to {}", memberName));
-                PChar->PParty->m_PAlliance->assignAllianceLeader(memberName);
-
-                message::send(ipc::AllianceReload{
-                    .allianceId = PChar->PParty->m_PAlliance->m_AllianceID,
-                });
-            }
-        }
-        break;
-        default:
-        {
-            ShowError("SmallPacket0x077 : changing role packet with unknown byte <%.2X>", data.ref<uint8>(0x14));
-        }
-    }
-}
-
-/************************************************************************
- *                                                                       *
  *  Begin Synthesis                                                      *
  *                                                                       *
  ************************************************************************/
@@ -4384,7 +4305,7 @@ void PacketParserInitialize()
     PacketSize[0x071] = 0x00; PacketParser[0x071] = &SmallPacket0x071;
     PacketSize[0x074] = 0x00; PacketParser[0x074] = &SmallPacket0x074;
     PacketSize[0x076] = 0x00; PacketParser[0x076] = &SmallPacket0x076;
-    PacketSize[0x077] = 0x00; PacketParser[0x077] = &SmallPacket0x077;
+    PacketSize[0x077] = 0x16; PacketParser[0x077] = &ValidatedPacketHandler<GP_CLI_COMMAND_GROUP_CHANGE2>;
     PacketSize[0x078] = 0x04; PacketParser[0x078] = &ValidatedPacketHandler<GP_CLI_COMMAND_GROUP_CHECKID>;
     PacketSize[0x083] = 0x10; PacketParser[0x083] = &ValidatedPacketHandler<GP_CLI_COMMAND_SHOP_BUY>;
     PacketSize[0x084] = 0x0C; PacketParser[0x084] = &ValidatedPacketHandler<GP_CLI_COMMAND_SHOP_SELL_REQ>;
