@@ -13,6 +13,10 @@ set(PACKET_C2S_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/0x058_recipe.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x058_recipe.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x066_fishing.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x0b5_chat_std.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x0b5_chat_std.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x0b6_chat_name.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x0b6_chat_name.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x0b7_assist_channel.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x0b7_assist_channel.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x0be_merits.cpp
