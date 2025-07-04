@@ -78,6 +78,7 @@
 #include "packets/c2s/0x041_trophy_entry.h"
 #include "packets/c2s/0x058_recipe.h"
 #include "packets/c2s/0x066_fishing.h"
+#include "packets/c2s/0x083_shop_buy.h"
 #include "packets/c2s/0x084_shop_sell_req.h"
 #include "packets/c2s/0x085_shop_sell_set.h"
 #include "packets/c2s/0x09b_chocobo_race_req.h"
@@ -3924,61 +3925,6 @@ void SmallPacket0x078(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *  Vender Item Purchase                                                 *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x083(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    uint8 quantity   = data.ref<uint8>(0x04);
-    uint8 shopSlotID = data.ref<uint8>(0x0A);
-
-    // Prevent users from buying from invalid container slots
-    if (shopSlotID > PChar->Container->getExSize() - 1)
-    {
-        ShowError("User '%s' attempting to buy vendor item from an invalid slot!", PChar->getName());
-        return;
-    }
-
-    uint16 itemID = PChar->Container->getItemID(shopSlotID);
-    uint32 price  = PChar->Container->getQuantity(shopSlotID); // We used the "quantity" to store the item's sale price
-
-    CItem* PItem = itemutils::GetItemPointer(itemID);
-    if (PItem == nullptr)
-    {
-        ShowWarning("User '%s' attempting to buy an invalid item from vendor!", PChar->getName());
-        return;
-    }
-
-    // Prevent purchasing larger stacks than the actual stack size in database.
-    if (quantity > PItem->getStackSize())
-    {
-        quantity = PItem->getStackSize();
-    }
-
-    CItem* gil = PChar->getStorage(LOC_INVENTORY)->GetItem(0);
-
-    if ((gil != nullptr) && gil->isType(ITEM_CURRENCY))
-    {
-        if (gil->getQuantity() >= (price * quantity) && gil->getReserve() == 0)
-        {
-            uint8 SlotID = charutils::AddItem(PChar, LOC_INVENTORY, itemID, quantity);
-
-            if (SlotID != ERROR_SLOTID)
-            {
-                charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -(int32)(price * quantity));
-                ShowInfo("User '%s' purchased %u of item of ID %u [from VENDOR] ", PChar->getName(), quantity, itemID);
-                PChar->pushPacket<CShopBuyPacket>(shopSlotID, quantity);
-                PChar->pushPacket<CInventoryFinishPacket>();
-            }
-        }
-    }
-}
-
-/************************************************************************
- *                                                                       *
  *  Begin Synthesis                                                      *
  *                                                                       *
  ************************************************************************/
@@ -4451,8 +4397,8 @@ void PacketParserInitialize()
     PacketSize[0x074] = 0x00; PacketParser[0x074] = &SmallPacket0x074;
     PacketSize[0x076] = 0x00; PacketParser[0x076] = &SmallPacket0x076;
     PacketSize[0x077] = 0x00; PacketParser[0x077] = &SmallPacket0x077;
-    PacketSize[0x078] = 0x00; PacketParser[0x078] = &SmallPacket0x078;
-    PacketSize[0x083] = 0x08; PacketParser[0x083] = &SmallPacket0x083;
+    PacketSize[0x078] = 0x04; PacketParser[0x078] = &ValidatedPacketHandler<GP_CLI_COMMAND_GROUP_CHECKID>;
+    PacketSize[0x083] = 0x10; PacketParser[0x083] = &ValidatedPacketHandler<GP_CLI_COMMAND_SHOP_BUY>;
     PacketSize[0x084] = 0x0C; PacketParser[0x084] = &ValidatedPacketHandler<GP_CLI_COMMAND_SHOP_SELL_REQ>;
     PacketSize[0x085] = 0x06; PacketParser[0x085] = &ValidatedPacketHandler<GP_CLI_COMMAND_SHOP_SELL_SET>;
     PacketSize[0x096] = 0x12; PacketParser[0x096] = &SmallPacket0x096;
