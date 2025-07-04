@@ -19,6 +19,8 @@ set(PACKET_C2S_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/0x058_recipe.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x058_recipe.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x066_fishing.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x078_group_checkid.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x078_group_checkid.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x083_shop_buy.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x083_shop_buy.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x084_shop_sell_req.cpp

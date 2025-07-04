@@ -78,6 +78,7 @@
 #include "packets/c2s/0x041_trophy_entry.h"
 #include "packets/c2s/0x058_recipe.h"
 #include "packets/c2s/0x066_fishing.h"
+#include "packets/c2s/0x078_group_checkid.h"
 #include "packets/c2s/0x083_shop_buy.h"
 #include "packets/c2s/0x084_shop_sell_req.h"
 #include "packets/c2s/0x085_shop_sell_set.h"
@@ -3908,19 +3909,6 @@ void SmallPacket0x077(MapSession* const PSession, CCharEntity* const PChar, CBas
             ShowError("SmallPacket0x077 : changing role packet with unknown byte <%.2X>", data.ref<uint8>(0x14));
         }
     }
-}
-
-/************************************************************************
- *                                                                       *
- *  Party Search                                                         *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x078(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    PChar->pushPacket<CPartySearchPacket>(PChar);
 }
 
 /************************************************************************
