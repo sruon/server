@@ -86,6 +86,7 @@
 #include "packets/c2s/0x0d4_faq_gmparam.h"
 #include "packets/c2s/0x0d5_ack_gmmsg.h"
 #include "packets/c2s/0x0d8_dungeon_param.h"
+#include "packets/c2s/0x0db_config_language.h"
 #include "packets/c2s/0x0dc_config.h"
 #include "packets/c2s/0x0dd_equip_inspect.h"
 #include "packets/c2s/0x0de_inspect_message.h"
@@ -5209,89 +5210,6 @@ void SmallPacket0x0CB(MapSession* const PSession, CCharEntity* const PChar, CBas
 }
 
 /************************************************************************
- *                                                                       *
- *  Set Chat Filters / Preferred Language                                *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x0DB(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    // https://github.com/atom0s/XiPackets/tree/main/world/client/0x00DB
-    struct packet_c2s_0DB_t
-    {
-        uint16_t id : 9;
-        uint16_t size : 7;
-        uint16_t sync;
-        uint8_t  unknown04;    // Set to 0.
-        uint8_t  unknown05;    // Set to 0.
-        uint8_t  Kind;         // The packet kind.
-        uint8_t  padding00;    // Padding; unused.
-        uint32_t ConfigSys[3]; // The players current PTR_pGlobalNowZone->ConfigSys values.
-        uint32_t padding01[4]; // Padding; unused. (Space for future information?)
-        uint32_t Param;        // Packet parameter.
-    } packet = {};
-
-    std::memcpy(&packet, data, sizeof(packet_c2s_0DB_t));
-
-    uint32_t oldPlayerConfig = {};
-    uint32_t oldChatFilter1  = {};
-    uint32_t oldChatFilter2  = {};
-
-    std::memcpy(&oldPlayerConfig, &PChar->playerConfig, sizeof(uint32_t));
-    std::memcpy(&oldChatFilter1, &PChar->playerConfig.MessageFilter, sizeof(uint32_t));
-    std::memcpy(&oldChatFilter2, &PChar->playerConfig.MessageFilter2, sizeof(uint32_t));
-
-    // Player updated their search language(s).
-    if (packet.Kind == 1)
-    {
-        uint8 oldLanguages     = PChar->search.language;
-        PChar->search.language = packet.Param;
-        if (oldLanguages != PChar->search.language)
-        {
-            charutils::SaveLanguages(PChar);
-        }
-    }
-
-    // This used to cause problems with the new adventurer icon just showing up for no reason. This was because 0x00A was not sending the saved SAVE_CONF in the db.
-    if (oldPlayerConfig != packet.ConfigSys[0])
-    {
-        std::memcpy(&PChar->playerConfig, &packet.ConfigSys[0], sizeof(uint32_t));
-        charutils::SavePlayerSettings(PChar);
-    }
-
-    if (oldChatFilter1 != packet.ConfigSys[1] || oldChatFilter2 != packet.ConfigSys[2])
-    {
-        std::memcpy(&PChar->playerConfig.MessageFilter, &packet.ConfigSys[1], sizeof(uint32_t));
-        std::memcpy(&PChar->playerConfig.MessageFilter2, &packet.ConfigSys[2], sizeof(uint32_t));
-        charutils::SaveChatFilterFlags(PChar); // Do we even need to save chat filter flags? When the client logs in, they send the chat filters.
-    }
-
-    PChar->pushPacket<CMenuConfigPacket>(PChar);
-}
-
-
-
-/************************************************************************
- *                                                                       *
- *  Check Target                                                         *
- *                                                                       *
- *  170 - <target> seems It seems to have high evasion and defense.      *
- *  171 - <target> seems It seems to have high evasion.                  *
- *  172 - <target> seems It seems to have high evasion but low defense.  *
- *  173 - <target> seems It seems to have high defense.                  *
- *  174 - <target> seems                                                 *
- *  175 - <target> seems It seems to have low defense.                   *
- *  176 - <target> seems It seems to have low evasion but high defense.  *
- *  177 - <target> seems It seems to have low evasion.                   *
- *  178 - <target> seems It seems to have low evasion and defense.       *
- *                                                                       *
- ************************************************************************/
-
-
-
-/************************************************************************
  *                                                                        *
  *  Roe Quest Log Request                                                 *
  *                                                                        *
@@ -5436,7 +5354,7 @@ void PacketParserInitialize()
     PacketSize[0x0D4] = 0x04; PacketParser[0x0D4] = &ValidatedPacketHandler<GP_CLI_COMMAND_FAQ_GMPARAM>;
     PacketSize[0x0D5] = 0x08; PacketParser[0x0D5] = &ValidatedPacketHandler<GP_CLI_COMMAND_ACK_GMMSG>;
     PacketSize[0x0D8] = 0x00; PacketParser[0x0D8] = &ValidatedPacketHandler<GP_CLI_COMMAND_DUNGEON_PARAM>;
-    PacketSize[0x0DB] = 0x00; PacketParser[0x0DB] = &SmallPacket0x0DB;
+    PacketSize[0x0DB] = 0x28; PacketParser[0x0DB] = &ValidatedPacketHandler<GP_CLI_COMMAND_CONFIG_LANGUAGE>;
     PacketSize[0x0DC] = 0x14; PacketParser[0x0DC] = &ValidatedPacketHandler<GP_CLI_COMMAND_CONFIG>;
     PacketSize[0x0DD] = 0x0C; PacketParser[0x0DD] = &ValidatedPacketHandler<GP_CLI_COMMAND_EQUIP_INSPECT>;
     PacketSize[0x0DE] = 0x40; PacketParser[0x0DE] = &ValidatedPacketHandler<GP_CLI_COMMAND_INSPECT_MESSAGE>;
