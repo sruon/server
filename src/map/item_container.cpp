@@ -192,15 +192,16 @@ CItem* CItemContainer::GetItem(uint8 slotID) const
     return nullptr;
 }
 
-uint8 CItemContainer::SearchItem(uint16 ItemID)
+auto CItemContainer::SearchItem(const uint16 itemId) const -> uint8
 {
     for (uint8 SlotID = 0; SlotID <= m_size; ++SlotID)
     {
-        if ((m_ItemList[SlotID] != nullptr) && (m_ItemList[SlotID]->getID() == ItemID))
+        if ((m_ItemList[SlotID] != nullptr) && (m_ItemList[SlotID]->getID() == itemId))
         {
             return SlotID;
         }
     }
+
     return ERROR_SLOTID;
 }
 

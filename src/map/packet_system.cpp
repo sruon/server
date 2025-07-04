@@ -75,6 +75,7 @@
 #include "packets/c2s/0x041_trophy_entry.h"
 #include "packets/c2s/0x058_recipe.h"
 #include "packets/c2s/0x066_fishing.h"
+#include "packets/c2s/0x0ac_guild_sell.h"
 #include "packets/c2s/0x0ad_guild_selllist.h"
 #include "packets/c2s/0x0b5_chat_std.h"
 #include "packets/c2s/0x0b6_chat_name.h"
@@ -156,7 +157,6 @@
 #include "packets/fish_ranking.h"
 #include "packets/guild_menu_buy.h"
 #include "packets/guild_menu_buy_update.h"
-#include "packets/guild_menu_sell.h"
 #include "packets/inventory_assign.h"
 #include "packets/inventory_count.h"
 #include "packets/inventory_finish.h"
@@ -4445,71 +4445,6 @@ void SmallPacket0x0AB(MapSession* const PSession, CCharEntity* const PChar, CBas
 }
 
 /************************************************************************
- *                                                                        *
- *  Sell items to guild                                                  *
- *                                                                        *
- ************************************************************************/
-
-void SmallPacket0x0AC(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    if (PChar->animation != ANIMATION_SYNTH && (PChar->CraftContainer && PChar->CraftContainer->getItemsCount() == 0))
-    {
-        if (PChar->PGuildShop != nullptr)
-        {
-            uint16     itemID     = data.ref<uint16>(0x04);
-            uint8      slot       = data.ref<uint8>(0x06);
-            uint8      quantity   = data.ref<uint8>(0x07);
-            uint8      shopSlotID = PChar->PGuildShop->SearchItem(itemID);
-            CItemShop* shopItem   = (CItemShop*)PChar->PGuildShop->GetItem(shopSlotID);
-            CItem*     charItem   = PChar->getStorage(LOC_INVENTORY)->GetItem(slot);
-            uint32     basePrice  = shopItem->getBasePrice();
-
-            if (PChar->PGuildShop->GetItem(shopSlotID)->getQuantity() + quantity > PChar->PGuildShop->GetItem(shopSlotID)->getStackSize())
-            {
-                quantity = PChar->PGuildShop->GetItem(shopSlotID)->getStackSize() - PChar->PGuildShop->GetItem(shopSlotID)->getQuantity();
-            }
-
-            // TODO: add all sellable items to guild table
-            if (quantity != 0 && shopItem && charItem && charItem->getQuantity() >= quantity)
-            {
-                if (charutils::UpdateItem(PChar, LOC_INVENTORY, slot, -quantity) == itemID)
-                {
-                    if (settings::get<bool>("map.AUDIT_PLAYER_VENDOR"))
-                    {
-                        Async::getInstance()->submit(
-                            [itemid      = charItem->getID(),
-                             quantity    = quantity,
-                             seller      = PChar->id,
-                             seller_name = PChar->getName(),
-                             baseprice   = basePrice,
-                             totalprice  = basePrice * quantity,
-                             time        = static_cast<uint32>(time(nullptr))]()
-                            {
-                                const auto query = "INSERT INTO audit_vendor(itemid, quantity, seller, seller_name, baseprice, totalprice, date) VALUES (?, ?, ?, ?, ?, ?, ?)";
-                                if (!db::preparedStmt(query, itemid, quantity, seller, seller_name, baseprice, totalprice, time))
-                                {
-                                    ShowErrorFmt("Failed to log vendor sale (item: {}, quantity: {}, seller: {}, baseprice: {}, totalprice: {}, time: {})",
-                                                 itemid, quantity, seller, baseprice, totalprice, time);
-                                }
-                            });
-                    }
-                    charutils::UpdateItem(PChar, LOC_INVENTORY, 0, shopItem->getSellPrice() * quantity);
-                    ShowInfo("SmallPacket0x0AC: Player '%s' sold %u of itemID %u [to GUILD] ", PChar->getName(), quantity, itemID);
-                    PChar->PGuildShop->GetItem(shopSlotID)->setQuantity(PChar->PGuildShop->GetItem(shopSlotID)->getQuantity() + quantity);
-                    PChar->pushPacket<CGuildMenuSellUpdatePacket>(PChar, PChar->PGuildShop->GetItem(PChar->PGuildShop->SearchItem(itemID))->getQuantity(),
-                                                                  itemID, quantity);
-                    PChar->pushPacket<CInventoryFinishPacket>();
-                }
-            }
-            // TODO: error messages!
-        }
-        return;
-    }
-}
-
-/************************************************************************
  *                                                                       *
  *  Create Linkpearl                                                     *
  *                                                                       *
@@ -4893,7 +4828,7 @@ void PacketParserInitialize()
     PacketSize[0x0A2] = 0x00; PacketParser[0x0A2] = &SmallPacket0x0A2;
     PacketSize[0x0AA] = 0x00; PacketParser[0x0AA] = &SmallPacket0x0AA;
     PacketSize[0x0AB] = 0x00; PacketParser[0x0AB] = &SmallPacket0x0AB;
-    PacketSize[0x0AC] = 0x00; PacketParser[0x0AC] = &SmallPacket0x0AC;
+    PacketSize[0x0AC] = 0x00; PacketParser[0x0AC] = &ValidatedPacketHandler<GP_CLI_COMMAND_GUILD_SELL>;
     PacketSize[0x0AD] = 0x00; PacketParser[0x0AD] = &ValidatedPacketHandler<GP_CLI_COMMAND_GUILD_SELLLIST>;
     PacketSize[0x0B5] = 0x00; PacketParser[0x0B5] = &ValidatedPacketHandler<GP_CLI_COMMAND_CHAT_STD>;
     PacketSize[0x0B6] = 0x00; PacketParser[0x0B6] = &ValidatedPacketHandler<GP_CLI_COMMAND_CHAT_NAME>;

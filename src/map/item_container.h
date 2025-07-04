@@ -67,7 +67,7 @@ public:
     uint8  AddBuff(int8 buff); // increase/decrease storage size
     uint8  AddSize(int8 size); // increase/decrease container size
     uint8  SetSize(uint8 size);
-    uint8  SearchItem(uint16 ItemID);
+    auto   SearchItem(uint16 itemId) const -> uint8;
     auto   SearchItems(uint16 ItemID) -> std::vector<uint8>;
     uint8  SearchItemWithSpace(uint16 ItemID, uint32 quantity); // search for item that has space to accomodate x items added
 

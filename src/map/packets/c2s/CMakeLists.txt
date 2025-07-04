@@ -13,6 +13,8 @@ set(PACKET_C2S_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/0x058_recipe.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x058_recipe.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x066_fishing.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x0ac_guild_sell.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x0ac_guild_sell.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x0ad_guild_selllist.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x0ad_guild_selllist.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x0b5_chat_std.cpp
