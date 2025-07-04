@@ -78,6 +78,7 @@
 #include "packets/c2s/0x041_trophy_entry.h"
 #include "packets/c2s/0x058_recipe.h"
 #include "packets/c2s/0x066_fishing.h"
+#include "packets/c2s/0x085_shop_sell_set.h"
 #include "packets/c2s/0x09b_chocobo_race_req.h"
 #include "packets/c2s/0x0aa_guild_buy.h"
 #include "packets/c2s/0x0ab_guild_buylist.h"
@@ -4005,103 +4006,6 @@ void SmallPacket0x084(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *  Vender Item Sell                                                     *
- *  Player selling an item to a vendor.                                  *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x085(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    // Retrieve item-to-sell from last slot of the shop's container
-    uint32 quantity = PChar->Container->getQuantity(PChar->Container->getExSize());
-    uint16 itemID   = PChar->Container->getItemID(PChar->Container->getExSize());
-    uint8  slotID   = PChar->Container->getInvSlotID(PChar->Container->getExSize());
-
-    CItem* PGilItem = PChar->getStorage(LOC_INVENTORY)->GetItem(0);
-
-    const bool gilIsValid = PGilItem != nullptr && PGilItem->isType(ITEM_CURRENCY);
-    if (!gilIsValid)
-    {
-        ShowWarning("SmallPacket0x085: Player %s trying to sell an item without valid gil!", PChar->getName());
-        return;
-    }
-
-    CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slotID);
-    if (!PItem)
-    {
-        ShowWarning("SmallPacket0x085: Player %s trying to sell an invalid item!", PChar->getName());
-        return;
-    }
-
-    if (PChar->animation == ANIMATION_SYNTH || (PChar->CraftContainer && PChar->CraftContainer->getItemsCount() > 0))
-    {
-        ShowWarning("SmallPacket0x085: Player %s trying to sell while in the middle of a synth!", PChar->getName());
-        return;
-    }
-
-    if (quantity < 1 || quantity > PItem->getStackSize()) // Possible exploit
-    {
-        ShowWarning("SmallPacket0x085: Player %s trying to sell invalid quantity %u of itemID %u [to VENDOR] ", PChar->getName(), quantity, PItem->getID());
-        return;
-    }
-
-    if (quantity > PItem->getQuantity())
-    {
-        ShowWarning("SmallPacket0x085: Player %s trying to sell more items than they have in stack (%u/%u) of itemID %u [to VENDOR] ", PChar->getName(), quantity, PItem->getQuantity());
-        return;
-    }
-
-    if (itemID != PItem->getID())
-    {
-        ShowWarning("SmallPacket0x085: Player %s trying to sell an item different than the original ID (original: %u, current %u) [to VENDOR] ", PChar->getName(), itemID, PItem->getID());
-        return;
-    }
-
-    if (PItem->isSubType(ITEM_LOCKED)) // Possible exploit
-    {
-        ShowWarning("SmallPacket0x085: Player %s trying to sell %u of a LOCKED item! ID %i [to VENDOR] ", PChar->getName(), quantity, PItem->getID());
-        return;
-    }
-
-    if (PItem->getReserve() > 0) // Usually caused by bug during synth, trade, etc. reserving the item. We don't want such items sold in this state.
-    {
-        ShowError("SmallPacket0x085: Player %s trying to sell %u of a RESERVED(%u) item! ID %i [to VENDOR] ", PChar->getName(), quantity, PItem->getReserve(), PItem->getID());
-        return;
-    }
-
-    const auto cost = quantity * PItem->getBasePrice();
-
-    if (settings::get<bool>("map.AUDIT_PLAYER_VENDOR"))
-    {
-        Async::getInstance()->submit(
-            [itemid      = PItem->getID(),
-             quantity    = quantity,
-             seller      = PChar->id,
-             seller_name = PChar->getName(),
-             baseprice   = PItem->getBasePrice(),
-             totalprice  = cost,
-             time        = earth_time::timestamp()]()
-            {
-                const auto query = "INSERT INTO audit_vendor(itemid, quantity, seller, seller_name, baseprice, totalprice, date) VALUES (?, ?, ?, ?, ?, ?, ?)";
-                if (!db::preparedStmt(query, itemid, quantity, seller, seller_name, baseprice, totalprice, time))
-                {
-                    ShowErrorFmt("Failed to log vendor sale (item: {}, quantity: {}, seller: {}, totalprice: {}, time: {})", itemid, quantity, seller, totalprice, time);
-                }
-            });
-    }
-
-    charutils::UpdateItem(PChar, LOC_INVENTORY, 0, cost);
-    charutils::UpdateItem(PChar, LOC_INVENTORY, slotID, -(int32)quantity);
-    ShowInfo("SmallPacket0x085: Player '%s' sold %u of itemID %u (Total: %u gil) [to VENDOR] ", PChar->getName(), quantity, itemID, cost);
-    PChar->pushPacket<CMessageStandardPacket>(nullptr, itemID, quantity, MsgStd::Sell);
-    PChar->pushPacket<CInventoryFinishPacket>();
-    PChar->Container->setItem(PChar->Container->getSize() - 1, 0, -1, 0);
-}
-
-/************************************************************************
- *                                                                       *
  *  Begin Synthesis                                                      *
  *                                                                       *
  ************************************************************************/
@@ -4577,7 +4481,7 @@ void PacketParserInitialize()
     PacketSize[0x078] = 0x00; PacketParser[0x078] = &SmallPacket0x078;
     PacketSize[0x083] = 0x08; PacketParser[0x083] = &SmallPacket0x083;
     PacketSize[0x084] = 0x06; PacketParser[0x084] = &SmallPacket0x084;
-    PacketSize[0x085] = 0x04; PacketParser[0x085] = &SmallPacket0x085;
+    PacketSize[0x085] = 0x06; PacketParser[0x085] = &ValidatedPacketHandler<GP_CLI_COMMAND_SHOP_SELL_SET>;
     PacketSize[0x096] = 0x12; PacketParser[0x096] = &SmallPacket0x096;
     PacketSize[0x09B] = 0x0C; PacketParser[0x09B] = &ValidatedPacketHandler<GP_CLI_COMMAND_CHOCOBO_RACE_REQ>;
     PacketSize[0x0A0] = 0x00; PacketParser[0x0A0] = &ValidatedPacketHandler<GP_CLI_COMMAND_SWITCH_PROPOSAL>;
