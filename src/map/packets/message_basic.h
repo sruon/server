@@ -134,6 +134,10 @@ enum MSGBASIC_ID : uint16
     MSGBASIC_CANNOT_USE_IN_AREA = 316, // That action cannot be used in this area.
     MSGBASIC_YOUR_MOUNT_REFUSES = 339, // Your mount senses a hostile presence and refuses to come to your side.
 
+    // Check
+    MSGBASIC_CHECK_DEFAULT = 174, // Even defense / even evasion. Does not print.
+    MSGBASIC_CHECK_ITG     = 249, // <mob> strength is impossible to gauge!
+
     // Checkparam
     MSGBASIC_CHECKPARAM_NAME      = 733,
     MSGBASIC_CHECKPARAM_ILVL      = 731,

@@ -86,6 +86,7 @@
 #include "packets/c2s/0x0d4_faq_gmparam.h"
 #include "packets/c2s/0x0d5_ack_gmmsg.h"
 #include "packets/c2s/0x0d8_dungeon_param.h"
+#include "packets/c2s/0x0dd_equip_inspect.h"
 #include "packets/c2s/0x0de_inspect_message.h"
 #include "packets/c2s/0x0e0_set_usermsg.h"
 #include "packets/c2s/0x0e1_get_lsmsg.h"
@@ -5407,171 +5408,7 @@ void SmallPacket0x0DC(MapSession* const PSession, CCharEntity* const PChar, CBas
  *                                                                       *
  ************************************************************************/
 
-void SmallPacket0x0DD(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
 
-    uint32 id     = data.ref<uint32>(0x04);
-    uint16 targid = data.ref<uint16>(0x08);
-    uint8  type   = data.ref<uint8>(0x0C);
-
-    // checkparam
-    if (type == 0x02)
-    {
-        if (PChar->id == id)
-        {
-            PChar->pushPacket<CMessageBasicPacket>(PChar, PChar, 0, 0, MSGBASIC_CHECKPARAM_NAME);
-            PChar->pushPacket<CMessageBasicPacket>(PChar, PChar, 0, 0, MSGBASIC_CHECKPARAM_ILVL);
-            PChar->pushPacket<CMessageBasicPacket>(PChar, PChar, PChar->ACC(0, 0), PChar->ATT(SLOT_MAIN), MSGBASIC_CHECKPARAM_PRIMARY);
-            if (PChar->getEquip(SLOT_SUB) && PChar->getEquip(SLOT_SUB)->isType(ITEM_WEAPON))
-            {
-                PChar->pushPacket<CMessageBasicPacket>(PChar, PChar, PChar->ACC(1, 0), PChar->ATT(SLOT_SUB), MSGBASIC_CHECKPARAM_AUXILIARY);
-            }
-            else
-            {
-                PChar->pushPacket<CMessageBasicPacket>(PChar, PChar, 0, 0, MSGBASIC_CHECKPARAM_AUXILIARY);
-            }
-            if (PChar->getEquip(SLOT_RANGED) && PChar->getEquip(SLOT_RANGED)->isType(ITEM_WEAPON))
-            {
-                int skill      = ((CItemWeapon*)PChar->getEquip(SLOT_RANGED))->getSkillType();
-                int bonusSkill = ((CItemWeapon*)PChar->getEquip(SLOT_RANGED))->getILvlSkill();
-                PChar->pushPacket<CMessageBasicPacket>(PChar, PChar, PChar->RACC(skill, bonusSkill), PChar->RATT(skill, bonusSkill), MSGBASIC_CHECKPARAM_RANGE);
-            }
-            else if (PChar->getEquip(SLOT_AMMO) && PChar->getEquip(SLOT_AMMO)->isType(ITEM_WEAPON))
-            {
-                int skill      = ((CItemWeapon*)PChar->getEquip(SLOT_AMMO))->getSkillType();
-                int bonusSkill = ((CItemWeapon*)PChar->getEquip(SLOT_AMMO))->getILvlSkill();
-                PChar->pushPacket<CMessageBasicPacket>(PChar, PChar, PChar->RACC(skill, bonusSkill), PChar->RATT(skill, bonusSkill), MSGBASIC_CHECKPARAM_RANGE);
-            }
-            else
-            {
-                PChar->pushPacket<CMessageBasicPacket>(PChar, PChar, 0, 0, MSGBASIC_CHECKPARAM_RANGE);
-            }
-            PChar->pushPacket<CMessageBasicPacket>(PChar, PChar, PChar->EVA(), PChar->DEF(), MSGBASIC_CHECKPARAM_DEFENSE);
-        }
-        else if (PChar->PPet && PChar->PPet->id == id)
-        {
-            PChar->pushPacket<CMessageBasicPacket>(PChar, PChar->PPet, 0, 0, MSGBASIC_CHECKPARAM_NAME);
-            PChar->pushPacket<CMessageBasicPacket>(PChar, PChar->PPet, PChar->PPet->ACC(0, 0), PChar->PPet->ATT(SLOT_MAIN), MSGBASIC_CHECKPARAM_PRIMARY);
-            if (PChar->getEquip(SLOT_SUB) && PChar->getEquip(SLOT_SUB)->isType(ITEM_WEAPON))
-            {
-                PChar->pushPacket<CMessageBasicPacket>(PChar, PChar->PPet, PChar->PPet->ACC(1, 0), PChar->PPet->ATT(SLOT_MAIN), MSGBASIC_CHECKPARAM_AUXILIARY);
-            }
-            else
-            {
-                PChar->pushPacket<CMessageBasicPacket>(PChar, PChar->PPet, 0, 0, MSGBASIC_CHECKPARAM_AUXILIARY);
-            }
-            if (PChar->getEquip(SLOT_RANGED) && PChar->getEquip(SLOT_RANGED)->isType(ITEM_WEAPON))
-            {
-                int skill = ((CItemWeapon*)PChar->getEquip(SLOT_RANGED))->getSkillType();
-                PChar->pushPacket<CMessageBasicPacket>(PChar, PChar->PPet, PChar->PPet->RACC(skill), PChar->PPet->RATT(skill), MSGBASIC_CHECKPARAM_RANGE);
-            }
-            else if (PChar->getEquip(SLOT_AMMO) && PChar->getEquip(SLOT_AMMO)->isType(ITEM_WEAPON))
-            {
-                int skill = ((CItemWeapon*)PChar->getEquip(SLOT_AMMO))->getSkillType();
-                PChar->pushPacket<CMessageBasicPacket>(PChar, PChar->PPet, PChar->PPet->RACC(skill), PChar->PPet->RATT(skill), MSGBASIC_CHECKPARAM_RANGE);
-            }
-            else
-            {
-                PChar->pushPacket<CMessageBasicPacket>(PChar, PChar->PPet, 0, 0, MSGBASIC_CHECKPARAM_RANGE);
-            }
-            PChar->pushPacket<CMessageBasicPacket>(PChar, PChar->PPet, PChar->PPet->EVA(), PChar->PPet->DEF(), MSGBASIC_CHECKPARAM_DEFENSE);
-        }
-    }
-    else
-    {
-        if (jailutils::InPrison(PChar))
-        {
-            PChar->pushPacket<CMessageBasicPacket>(PChar, PChar, 0, 0, MSGBASIC_CANNOT_USE_IN_AREA);
-            return;
-        }
-
-        CBaseEntity* PEntity = PChar->GetEntity(targid, TYPE_MOB | TYPE_PC);
-
-        if (PEntity == nullptr || PEntity->id != id)
-        {
-            return;
-        }
-
-        switch (PEntity->objtype)
-        {
-            case TYPE_MOB:
-            {
-                CMobEntity* PTarget = (CMobEntity*)PEntity;
-
-                if (PTarget->m_Type & MOBTYPE_NOTORIOUS || PTarget->m_Type & MOBTYPE_BATTLEFIELD || PTarget->getMobMod(MOBMOD_CHECK_AS_NM) > 0)
-                {
-                    PChar->pushPacket<CMessageBasicPacket>(PChar, PTarget, 0, 0, 249);
-                }
-                else
-                {
-                    uint8          mobLvl   = PTarget->GetMLevel();
-                    EMobDifficulty mobCheck = charutils::CheckMob(PChar->GetMLevel(), mobLvl);
-
-                    // Calculate main /check message (64 is Too Weak)
-                    int32 MessageValue = 64 + (uint8)mobCheck;
-
-                    // Grab mob and player stats for extra messaging
-                    uint16 charAcc = PChar->ACC(SLOT_MAIN, (uint8)0);
-                    uint16 charAtt = PChar->ATT(SLOT_MAIN);
-                    uint16 mobEva  = PTarget->EVA();
-                    uint16 mobDef  = PTarget->DEF();
-
-                    // Calculate +/- message
-                    uint16 MessageID = 174; // Default even def/eva
-
-                    // Offsetting the message ID by a certain amount for each stat gives us the correct message
-                    // Defense is +/- 1
-                    // Evasion is +/- 3
-                    if (mobDef > charAtt)
-                    { // High Defesne
-                        MessageID -= 1;
-                    }
-                    else if ((mobDef * 1.25) <= charAtt)
-                    { // Low Defense
-                        MessageID += 1;
-                    }
-
-                    if ((mobEva - 30) > charAcc)
-                    { // High Evasion
-                        MessageID -= 3;
-                    }
-                    else if ((mobEva + 10) <= charAcc)
-                    {
-                        MessageID += 3;
-                    }
-
-                    PChar->pushPacket<CMessageBasicPacket>(PChar, PTarget, mobLvl, MessageValue, MessageID);
-                }
-            }
-            break;
-            case TYPE_PC:
-            {
-                CCharEntity* PTarget = (CCharEntity*)PEntity;
-
-                if (PTarget->m_PMonstrosity)
-                {
-                    PChar->pushPacket<CMessageStandardPacket>(PTarget, 0, 0, MsgStd::MonstrosityCheckOut);
-                    PTarget->pushPacket<CMessageStandardPacket>(PChar, 0, 0, MsgStd::MonstrosityCheckIn);
-                    return;
-                }
-
-                if (!PChar->m_isGMHidden || (PChar->m_isGMHidden && PTarget->m_GMlevel >= PChar->m_GMlevel))
-                {
-                    PTarget->pushPacket<CMessageStandardPacket>(PChar, 0, 0, MsgStd::Examine);
-                }
-
-                PChar->pushPacket<CBazaarMessagePacket>(PTarget);
-                PChar->pushPacket<CCheckPacket>(PChar, PTarget);
-            }
-            break;
-            default:
-            {
-                break;
-            }
-        }
-    }
-}
 
 /************************************************************************
  *                                                                        *
@@ -5720,7 +5557,7 @@ void PacketParserInitialize()
     PacketSize[0x0D8] = 0x00; PacketParser[0x0D8] = &ValidatedPacketHandler<GP_CLI_COMMAND_DUNGEON_PARAM>;
     PacketSize[0x0DB] = 0x00; PacketParser[0x0DB] = &SmallPacket0x0DB;
     PacketSize[0x0DC] = 0x0A; PacketParser[0x0DC] = &SmallPacket0x0DC;
-    PacketSize[0x0DD] = 0x08; PacketParser[0x0DD] = &SmallPacket0x0DD;
+    PacketSize[0x0DD] = 0x0C; PacketParser[0x0DD] = &ValidatedPacketHandler<GP_CLI_COMMAND_EQUIP_INSPECT>;
     PacketSize[0x0DE] = 0x40; PacketParser[0x0DE] = &ValidatedPacketHandler<GP_CLI_COMMAND_INSPECT_MESSAGE>;
     PacketSize[0x0E0] = 0x00; PacketParser[0x0E0] = &ValidatedPacketHandler<GP_CLI_COMMAND_SET_USERMSG>;
     PacketSize[0x0E1] = 0x00; PacketParser[0x0E1] = &ValidatedPacketHandler<GP_CLI_COMMAND_GET_LSMSG>;
