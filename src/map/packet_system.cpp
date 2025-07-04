@@ -75,6 +75,7 @@
 #include "packets/c2s/0x041_trophy_entry.h"
 #include "packets/c2s/0x058_recipe.h"
 #include "packets/c2s/0x066_fishing.h"
+#include "packets/c2s/0x0aa_guild_buy.h"
 #include "packets/c2s/0x0ab_guild_buylist.h"
 #include "packets/c2s/0x0ac_guild_sell.h"
 #include "packets/c2s/0x0ad_guild_selllist.h"
@@ -4360,60 +4361,6 @@ void SmallPacket0x09B(MapSession* const PSession, CCharEntity* const PChar, CBas
 }
 
 /************************************************************************
- *                                                                        *
- *  Guild Purchase                                                        *
- *                                                                        *
- ************************************************************************/
-
-void SmallPacket0x0AA(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    uint16 itemID   = data.ref<uint16>(0x04);
-    uint8  quantity = data.ref<uint8>(0x07);
-
-    if (!PChar->PGuildShop)
-    {
-        return;
-    }
-
-    CItem* PItem = itemutils::GetItemPointer(itemID);
-    if (PItem == nullptr)
-    {
-        ShowWarning("User '%s' attempting to buy an invalid item from guild vendor!", PChar->getName());
-        return;
-    }
-
-    uint8      shopSlotID = PChar->PGuildShop->SearchItem(itemID);
-    CItemShop* item       = (CItemShop*)PChar->PGuildShop->GetItem(shopSlotID);
-    CItem*     gil        = PChar->getStorage(LOC_INVENTORY)->GetItem(0);
-
-    // Prevent purchasing larger stacks than the actual stack size in database.
-    if (quantity > PItem->getStackSize())
-    {
-        quantity = PItem->getStackSize();
-    }
-
-    if (((gil != nullptr) && gil->isType(ITEM_CURRENCY)) && gil->getReserve() == 0 && item != nullptr && item->getQuantity() >= quantity)
-    {
-        if (gil->getQuantity() > (item->getBasePrice() * quantity))
-        {
-            uint8 SlotID = charutils::AddItem(PChar, LOC_INVENTORY, itemID, quantity);
-
-            if (SlotID != ERROR_SLOTID)
-            {
-                charutils::UpdateItem(PChar, LOC_INVENTORY, 0, -(int32)(item->getBasePrice() * quantity));
-                ShowInfo("SmallPacket0x0AA: Player '%s' purchased %u of itemID %u [from GUILD] ", PChar->getName(), quantity, itemID);
-                PChar->PGuildShop->GetItem(shopSlotID)->setQuantity(PChar->PGuildShop->GetItem(shopSlotID)->getQuantity() - quantity);
-                PChar->pushPacket<CGuildMenuBuyUpdatePacket>(PChar, PChar->PGuildShop->GetItem(PChar->PGuildShop->SearchItem(itemID))->getQuantity(), itemID, quantity);
-                PChar->pushPacket<CInventoryFinishPacket>();
-            }
-        }
-    }
-    // TODO: error messages!
-}
-
-/************************************************************************
  *                                                                       *
  *  Dice Roll                                                            *
  *                                                                       *
@@ -4810,7 +4757,7 @@ void PacketParserInitialize()
     PacketSize[0x0A0] = 0x00; PacketParser[0x0A0] = &SmallPacket0xFFF_NOT_IMPLEMENTED;
     PacketSize[0x0A1] = 0x00; PacketParser[0x0A1] = &SmallPacket0xFFF_NOT_IMPLEMENTED;
     PacketSize[0x0A2] = 0x00; PacketParser[0x0A2] = &SmallPacket0x0A2;
-    PacketSize[0x0AA] = 0x00; PacketParser[0x0AA] = &SmallPacket0x0AA;
+    PacketSize[0x0AA] = 0x00; PacketParser[0x0AA] = &ValidatedPacketHandler<GP_CLI_COMMAND_GUILD_BUY>;
     PacketSize[0x0AB] = 0x00; PacketParser[0x0AB] = &ValidatedPacketHandler<GP_CLI_COMMAND_GUILD_BUYLIST>;
     PacketSize[0x0AC] = 0x00; PacketParser[0x0AC] = &ValidatedPacketHandler<GP_CLI_COMMAND_GUILD_SELL>;
     PacketSize[0x0AD] = 0x00; PacketParser[0x0AD] = &ValidatedPacketHandler<GP_CLI_COMMAND_GUILD_SELLLIST>;
