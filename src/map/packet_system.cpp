@@ -73,6 +73,7 @@
 #include "packets/c2s/0x02b_translate.h"
 #include "packets/c2s/0x02c_itemsearch.h"
 #include "packets/c2s/0x041_trophy_entry.h"
+#include "packets/c2s/0x052_equipset_check.h"
 #include "packets/c2s/0x053_lockstyle.h"
 #include "packets/c2s/0x058_recipe.h"
 #include "packets/c2s/0x059_effectend.h"
@@ -2502,28 +2503,6 @@ void SmallPacket0x051(MapSession* const PSession, CCharEntity* const PChar, CBas
 }
 
 /************************************************************************
- *                                                                        *
- *  Add Equipment to set                                                 *
- *                                                                        *
- ************************************************************************/
-
-void SmallPacket0x052(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-    // Im guessing this is here to check if you can use A Item, as it seems useless to have this sent to server
-    // as It will check requirements when it goes to equip the items anyway
-    // 0x05 is slot of updated item
-    // 0x08 is info for updated item
-    // 0x0C is first slot every 4 bytes is another set, in (01-equip 0-2 remve),(container),(ID),(ID)
-    // in this list the slot of whats being updated is old value, replace with new in 116
-    // Should Push 0x116 (size 68) in responce
-    // 0x04 is start, contains 16 4 byte parts repersently each slot in order
-    PChar->pushPacket<CAddtoEquipSet>(PChar, data);
-}
-
-
-
-/************************************************************************
  *                                                                       *
  *  Key Items (Mark As Seen)                                             *
  *                                                                       *
@@ -3291,7 +3270,7 @@ void PacketParserInitialize()
     PacketSize[0x04E] = 0x1E; PacketParser[0x04E] = &SmallPacket0x04E;
     PacketSize[0x050] = 0x04; PacketParser[0x050] = &SmallPacket0x050;
     PacketSize[0x051] = 0x24; PacketParser[0x051] = &SmallPacket0x051;
-    PacketSize[0x052] = 0x26; PacketParser[0x052] = &SmallPacket0x052;
+    PacketSize[0x052] = 0x4C; PacketParser[0x052] = &ValidatedPacketHandler<GP_CLI_COMMAND_EQUIPSET_CHECK>;
     PacketSize[0x053] = 0x88; PacketParser[0x053] = &ValidatedPacketHandler<GP_CLI_COMMAND_LOCKSTYLE>;
     PacketSize[0x058] = 0x0A; PacketParser[0x058] = &ValidatedPacketHandler<GP_CLI_COMMAND_RECIPE>;
     PacketSize[0x059] = 0x10; PacketParser[0x059] = &ValidatedPacketHandler<GP_CLI_COMMAND_EFFECTEND>;
