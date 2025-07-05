@@ -39,6 +39,8 @@ set(PACKET_C2S_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/0x063_dig.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x063_dig.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x066_fishing.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x070_group_breakup.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x070_group_breakup.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x071_group_strike.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x071_group_strike.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x074_group_solicit_res.cpp

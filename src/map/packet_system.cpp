@@ -85,6 +85,7 @@
 #include "packets/c2s/0x061_clistatus.h"
 #include "packets/c2s/0x063_dig.h"
 #include "packets/c2s/0x066_fishing.h"
+#include "packets/c2s/0x070_group_breakup.h"
 #include "packets/c2s/0x071_group_strike.h"
 #include "packets/c2s/0x074_group_solicit_res.h"
 #include "packets/c2s/0x076_group_list_req.h"
@@ -2839,45 +2840,6 @@ void SmallPacket0x06F(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *  Party / Alliance Command 'Breakup'                                   *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x070(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    if (PChar->PParty && PChar->PParty->GetLeader() == PChar)
-    {
-        switch (data.ref<uint8>(0x04))
-        {
-            case 0: // party - party leader may disband party if not an alliance member
-                if (PChar->PParty->m_PAlliance == nullptr)
-                {
-                    ShowDebug("%s is disbanding the party (pcmd breakup)", PChar->getName());
-                    PChar->PParty->DisbandParty();
-                    ShowDebug("%s party has been disbanded (pcmd breakup)", PChar->getName());
-                }
-                break;
-
-            case 5: // alliance - only alliance leader may dissolve the entire alliance
-                if (PChar->PParty->m_PAlliance && PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty)
-                {
-                    ShowDebug("%s is disbanding the alliance (acmd breakup)", PChar->getName());
-                    PChar->PParty->m_PAlliance->dissolveAlliance();
-                    ShowDebug("%s alliance has been disbanded (acmd breakup)", PChar->getName());
-                }
-                break;
-
-            default:
-                ShowError("SmallPacket0x070 : unknown byte <%.2X>", data.ref<uint8>(0x04));
-                break;
-        }
-    }
-}
-
-/************************************************************************
- *                                                                       *
  *  Begin Synthesis                                                      *
  *                                                                       *
  ************************************************************************/
@@ -3345,7 +3307,7 @@ void PacketParserInitialize()
     PacketSize[0x066] = 0x0A; PacketParser[0x066] = &ValidatedPacketHandler<GP_CLI_COMMAND_FISHING>;
     PacketSize[0x06E] = 0x06; PacketParser[0x06E] = &SmallPacket0x06E;
     PacketSize[0x06F] = 0x00; PacketParser[0x06F] = &SmallPacket0x06F;
-    PacketSize[0x070] = 0x00; PacketParser[0x070] = &SmallPacket0x070;
+    PacketSize[0x070] = 0x06; PacketParser[0x070] = &ValidatedPacketHandler<GP_CLI_COMMAND_GROUP_BREAKUP>;
     PacketSize[0x071] = 0x1C; PacketParser[0x071] = &ValidatedPacketHandler<GP_CLI_COMMAND_GROUP_STRIKE>;
     PacketSize[0x074] = 0x06; PacketParser[0x074] = &ValidatedPacketHandler<GP_CLI_COMMAND_GROUP_SOLICIT_RES>;
     PacketSize[0x076] = 0x06; PacketParser[0x076] = &ValidatedPacketHandler<GP_CLI_COMMAND_GROUP_LIST_REQ>;
