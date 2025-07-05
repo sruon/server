@@ -611,7 +611,7 @@ public:
     void onTriggerAreaLeave(uint32 triggerAreaId);
     void clearTriggerAreas();
 
-    bool isInEvent();
+    auto isInEvent() const -> bool;
     bool isNpcLocked();
     void queueEvent(EventInfo* eventToQueue);
     void endCurrentEvent();

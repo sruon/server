@@ -77,6 +77,7 @@
 #include "packets/c2s/0x0a2_dice.h"
 #include "packets/c2s/0x041_trophy_entry.h"
 #include "packets/c2s/0x058_recipe.h"
+#include "packets/c2s/0x05c_eventendxzy.h"
 #include "packets/c2s/0x05d_motion.h"
 #include "packets/c2s/0x05e_maprect.h"
 #include "packets/c2s/0x060_passwards.h"
@@ -2725,87 +2726,6 @@ void SmallPacket0x05B(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *  Event Update (Update Player Position)                                *
- *                                                                       *
- ************************************************************************/
-
-// https://github.com/atom0s/XiPackets/blob/main/world/client/0x005C/README.md
-struct GP_CLI_EVENTENDXZY
-{
-    uint16_t id : 9;
-    uint16_t size : 7;
-    uint16_t sync;
-    float    x;         // PS2: x
-    float    y;         // PS2: y
-    float    z;         // PS2: z
-    uint32_t UniqueNo;  // PS2: UniqueNo
-    uint32_t EndPara;   // PS2: EndPara
-    uint16_t EventNum;  // PS2: EventNum
-    uint16_t EventPara; // PS2: EventPara
-    uint16_t ActIndex;  // PS2: ActIndex
-    uint8_t  Mode;      // PS2: Mode
-    uint8_t  dir;       // PS2: dir
-};
-
-void SmallPacket0x05C(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    if (!PChar->isInEvent())
-        return;
-
-    auto eventData = data.as<GP_CLI_EVENTENDXZY>();
-
-    auto Result  = eventData->EndPara;
-    auto EventID = eventData->EventPara;
-
-    if (PChar->currentEvent->eventId == EventID)
-    {
-        bool updatePosition = false;
-
-        if (eventData->Mode == 1) // This value is always set to 1.
-        {
-            // TODO: Currently the return value for onEventUpdate in Interaction Framework is not received.  Remove
-            // the localVar check when this is resolved.
-
-            int32  updateResult     = luautils::OnEventUpdate(PChar, EventID, Result);
-            uint32 noPositionUpdate = PChar->GetLocalVar("noPosUpdate");
-            updatePosition          = noPositionUpdate == 0 ? updateResult == 1 : false;
-
-            PChar->SetLocalVar("noPosUpdate", 0);
-        }
-        else
-        {
-            PChar->m_Substate = CHAR_SUBSTATE::SUBSTATE_NONE;
-            updatePosition    = luautils::OnEventFinish(PChar, EventID, Result) == 1;
-            if (PChar->currentEvent->eventId == EventID)
-            {
-                PChar->endCurrentEvent();
-            }
-        }
-
-        if (updatePosition)
-        {
-            position_t newPos = {
-                eventData->x,
-                eventData->y,
-                eventData->z,
-                0,
-                eventData->dir,
-            };
-            PChar->pushPacket<CCSPositionPacket>(PChar, newPos, POSMODE::EVENT);
-            PChar->pushPacket<CPositionPacket>(PChar, newPos, POSMODE::NORMAL);
-        }
-        else
-        {
-            PChar->pushPacket<CCSPositionPacket>(PChar, PChar->loc.p, POSMODE::CLEAR);
-        }
-    }
-    PChar->pushPacket<CReleasePacket>(PChar, RELEASE_TYPE::EVENT);
-}
-
-/************************************************************************
- *                                                                       *
  *  Key Items (Mark As Seen)                                             *
  *                                                                       *
  ************************************************************************/
@@ -3617,7 +3537,7 @@ void PacketParserInitialize()
     PacketSize[0x059] = 0x00; PacketParser[0x059] = &SmallPacket0x059;
     PacketSize[0x05A] = 0x02; PacketParser[0x05A] = &SmallPacket0x05A;
     PacketSize[0x05B] = 0x0A; PacketParser[0x05B] = &SmallPacket0x05B;
-    PacketSize[0x05C] = 0x00; PacketParser[0x05C] = &SmallPacket0x05C;
+    PacketSize[0x05C] = 0x20; PacketParser[0x05C] = &ValidatedPacketHandler<GP_CLI_COMMAND_EVENTENDXZY>;
     PacketSize[0x05D] = 0x10; PacketParser[0x05D] = &ValidatedPacketHandler<GP_CLI_COMMAND_MOTION>;
     PacketSize[0x05E] = 0x18; PacketParser[0x05E] = &ValidatedPacketHandler<GP_CLI_COMMAND_MAPRECT>;
     PacketSize[0x060] = 0x1C; PacketParser[0x060] = &ValidatedPacketHandler<GP_CLI_COMMAND_PASSWARDS>;

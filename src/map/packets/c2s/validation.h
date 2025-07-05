@@ -166,7 +166,7 @@ public:
     // Character must not have any status effect preventing action (Sleep, Stun, Terror etc..)
     auto isNotPreventedAction(const CCharEntity* PChar) -> PacketValidator&;
     // Character must be in an event
-    auto isInEvent(const CCharEntity* PChar) -> PacketValidator&;
+    auto isInEvent(const CCharEntity* PChar, std::optional<uint16_t> eventId = std::nullopt) -> PacketValidator&;
 
     // Custom validation function
     template <typename Func>

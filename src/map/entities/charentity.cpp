@@ -3195,7 +3195,7 @@ void CCharEntity::clearTriggerAreas()
     charTriggerAreaIDs.clear();
 }
 
-bool CCharEntity::isInEvent()
+auto CCharEntity::isInEvent() const -> bool
 {
     return currentEvent->eventId != -1;
 }

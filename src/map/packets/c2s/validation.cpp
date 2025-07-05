@@ -56,11 +56,18 @@ auto PacketValidator::isNotPreventedAction(const CCharEntity* PChar) -> PacketVa
     return *this;
 }
 
-auto PacketValidator::isInEvent(const CCharEntity* PChar) -> PacketValidator&
+auto PacketValidator::isInEvent(const CCharEntity* PChar, const std::optional<uint16_t> eventId) -> PacketValidator&
 {
-    if (!PChar->currentEvent)
+    if (!PChar->isInEvent())
     {
         result_.addError("Character is not in an event.");
+    }
+    else if (eventId.has_value())
+    {
+        if (PChar->currentEvent->eventId != eventId.value())
+        {
+            result_.addError("Character is in an event, but not the expected one.");
+        }
     }
 
     return *this;

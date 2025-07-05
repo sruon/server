@@ -18,6 +18,8 @@ set(PACKET_C2S_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/0x041_trophy_entry.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x058_recipe.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x058_recipe.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x05c_eventendxzy.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x05c_eventendxzy.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x05d_motion.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x05d_motion.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x05e_maprect.cpp
