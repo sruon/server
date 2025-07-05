@@ -83,9 +83,9 @@ enum class Emote : uint8
 
 enum class EmoteMode : uint8
 {
-    ALL    = 0,
-    TEXT   = 1,
-    MOTION = 2
+    Both   = 0,
+    Text   = 1,
+    Motion = 2
 };
 
 class CCharEntity;

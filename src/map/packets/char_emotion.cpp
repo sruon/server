@@ -70,7 +70,7 @@ CCharEmotionPacket::CCharEmotionPacket(CCharEntity* PChar, uint32 TargetID, uint
     else if (EmoteID == Emote::BELL)
     {
         // No emote text for /bell
-        emoteMode = EmoteMode::MOTION;
+        emoteMode = EmoteMode::Motion;
 
         ref<uint8>(0x12) = (extra - 0x06);
     }

@@ -91,4 +91,8 @@ enum ITEMID : uint16
     TWILIGHT_CRYSTAL    = 4245,
     RANKA               = 8803,
     FURUSUMI            = 8804,
+    DREAM_BELL          = 18863,
+    DREAM_BELL_P1       = 18864,
+    LADY_BELL           = 18868,
+    LADY_BELL_P1        = 18869,
 };

@@ -77,6 +77,7 @@
 #include "packets/c2s/0x0a2_dice.h"
 #include "packets/c2s/0x041_trophy_entry.h"
 #include "packets/c2s/0x058_recipe.h"
+#include "packets/c2s/0x05d_motion.h"
 #include "packets/c2s/0x05e_maprect.h"
 #include "packets/c2s/0x060_passwards.h"
 #include "packets/c2s/0x061_clistatus.h"
@@ -2805,87 +2806,6 @@ void SmallPacket0x05C(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *  Emote (/jobemote [job])                                              *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x05D(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-    if (jailutils::InPrison(PChar))
-    {
-        PChar->pushPacket<CMessageBasicPacket>(PChar, PChar, 0, 0, MSGBASIC_CANNOT_USE_IN_AREA);
-        return;
-    }
-
-    auto const& TargetID    = data.ref<uint32>(0x04);
-    auto const& TargetIndex = data.ref<uint16>(0x08);
-    auto const& EmoteID     = data.ref<Emote>(0x0A);
-    auto const& emoteMode   = data.ref<EmoteMode>(0x0B);
-
-    // Invalid Emote ID.
-    if (EmoteID < Emote::POINT || EmoteID > Emote::AIM)
-    {
-        return;
-    }
-
-    // Invalid Emote Mode.
-    if (emoteMode < EmoteMode::ALL || emoteMode > EmoteMode::MOTION)
-    {
-        return;
-    }
-
-    const auto extra = data.ref<uint16>(0x0C);
-
-    // Attempting to use bell emote without a bell.
-    if (EmoteID == Emote::BELL)
-    {
-        auto IsBell = [](uint16 itemId)
-        {
-            // Dream Bell, Dream Bell +1, Lady Bell, Lady Bell +1
-            return (itemId == 18863 || itemId == 18864 || itemId == 18868 || itemId == 18869);
-        };
-
-        // This is the actual observed behavior. Even with a different weapon type equipped,
-        // having a bell in the lockstyle is sufficient. On the other hand, if any other
-        // weapon is lockstyle'd over an equipped bell, the emote will be rejected.
-        // For what it's worth, geomancer bells don't count as a bell for this emote.
-
-        // Look for a bell in the style.
-        auto mainWeapon = PChar->styleItems[SLOT_MAIN];
-        if (mainWeapon == 0)
-        {
-            // Nothing equipped in the style, look at what's actually equipped.
-            mainWeapon = PChar->getEquip(SLOT_MAIN) != nullptr
-                             ? PChar->getEquip(SLOT_MAIN)->getID()
-                             : 0;
-        }
-
-        if (!IsBell(mainWeapon))
-        {
-            // Bell not found.
-            return;
-        }
-
-        if (extra < 0x06 || extra > 0x1e)
-        {
-            // Invalid note.
-            return;
-        }
-    }
-    // Attempting to use locked job emote.
-    else if (EmoteID == Emote::JOB && extra && !(PChar->jobs.unlocked & (1 << (extra - 0x1E))))
-    {
-        return;
-    }
-
-    PChar->loc.zone->PushPacket(PChar, CHAR_INRANGE_SELF, std::make_unique<CCharEmotionPacket>(PChar, TargetID, TargetIndex, EmoteID, emoteMode, extra));
-
-    luautils::OnPlayerEmote(PChar, EmoteID);
-}
-
-/************************************************************************
- *                                                                       *
  *  Key Items (Mark As Seen)                                             *
  *                                                                       *
  ************************************************************************/
@@ -3698,7 +3618,7 @@ void PacketParserInitialize()
     PacketSize[0x05A] = 0x02; PacketParser[0x05A] = &SmallPacket0x05A;
     PacketSize[0x05B] = 0x0A; PacketParser[0x05B] = &SmallPacket0x05B;
     PacketSize[0x05C] = 0x00; PacketParser[0x05C] = &SmallPacket0x05C;
-    PacketSize[0x05D] = 0x08; PacketParser[0x05D] = &SmallPacket0x05D;
+    PacketSize[0x05D] = 0x10; PacketParser[0x05D] = &ValidatedPacketHandler<GP_CLI_COMMAND_MOTION>;
     PacketSize[0x05E] = 0x18; PacketParser[0x05E] = &ValidatedPacketHandler<GP_CLI_COMMAND_MAPRECT>;
     PacketSize[0x060] = 0x1C; PacketParser[0x060] = &ValidatedPacketHandler<GP_CLI_COMMAND_PASSWARDS>;
     PacketSize[0x061] = 0x06; PacketParser[0x061] = &ValidatedPacketHandler<GP_CLI_COMMAND_CLISTATUS>;
