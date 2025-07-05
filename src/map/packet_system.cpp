@@ -77,6 +77,7 @@
 #include "packets/c2s/0x0a2_dice.h"
 #include "packets/c2s/0x041_trophy_entry.h"
 #include "packets/c2s/0x058_recipe.h"
+#include "packets/c2s/0x061_clistatus.h"
 #include "packets/c2s/0x063_dig.h"
 #include "packets/c2s/0x066_fishing.h"
 #include "packets/c2s/0x071_group_strike.h"
@@ -154,14 +155,10 @@
 #include "packets/char_appearance.h"
 #include "packets/char_emotion.h"
 #include "packets/char_equip.h"
-#include "packets/char_health.h"
-#include "packets/char_job_extra.h"
 #include "packets/char_jobs.h"
 #include "packets/char_mounts.h"
 #include "packets/char_recast.h"
-#include "packets/char_skills.h"
 #include "packets/char_spells.h"
-#include "packets/char_stats.h"
 #include "packets/char_status.h"
 #include "packets/char_sync.h"
 #include "packets/chat_message.h"
@@ -180,14 +177,10 @@
 #include "packets/macroequipset.h"
 #include "packets/menu_config.h"
 #include "packets/menu_jobpoints.h"
-#include "packets/menu_merit.h"
 #include "packets/merit_points_categories.h"
 #include "packets/message_basic.h"
 #include "packets/message_standard.h"
 #include "packets/message_system.h"
-#include "packets/monipulator1.h"
-#include "packets/monipulator2.h"
-#include "packets/party_define.h"
 #include "packets/party_invite.h"
 #include "packets/position.h"
 #include "packets/release.h"
@@ -195,7 +188,6 @@
 #include "packets/roe_sparkupdate.h"
 #include "packets/roe_update.h"
 #include "packets/server_message.h"
-#include "packets/status_effects.h"
 #include "packets/trade_action.h"
 #include "packets/trade_item.h"
 #include "packets/trade_request.h"
@@ -3122,36 +3114,6 @@ void SmallPacket0x060(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *                                                                       *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x061(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-    PChar->pushPacket<CCharStatusPacket>(PChar);
-    PChar->pushPacket<CCharHealthPacket>(PChar);
-    PChar->pushPacket<CCharStatsPacket>(PChar);
-    PChar->pushPacket<CCharSkillsPacket>(PChar);
-    PChar->pushPacket<CCharRecastPacket>(PChar);
-    PChar->pushPacket<CMenuMeritPacket>(PChar);
-    PChar->pushPacket<CMonipulatorPacket1>(PChar);
-    PChar->pushPacket<CMonipulatorPacket2>(PChar);
-
-    if (charutils::hasKeyItem(PChar, 2544))
-    {
-        // Only send Job Points Packet if the player has unlocked them
-        PChar->pushPacket<CMenuJobPointsPacket>(PChar);
-        PChar->pushPacket<CJobPointDetailsPacket>(PChar);
-    }
-
-    PChar->pushPacket<CCharJobExtraPacket>(PChar, true);
-    PChar->pushPacket<CCharJobExtraPacket>(PChar, false);
-    PChar->pushPacket<CStatusEffectPacket>(PChar);
-}
-
-/************************************************************************
- *                                                                       *
  *  Key Items (Mark As Seen)                                             *
  *                                                                       *
  ************************************************************************/
@@ -3967,7 +3929,7 @@ void PacketParserInitialize()
     PacketSize[0x05D] = 0x08; PacketParser[0x05D] = &SmallPacket0x05D;
     PacketSize[0x05E] = 0x0C; PacketParser[0x05E] = &SmallPacket0x05E;
     PacketSize[0x060] = 0x00; PacketParser[0x060] = &SmallPacket0x060;
-    PacketSize[0x061] = 0x04; PacketParser[0x061] = &SmallPacket0x061;
+    PacketSize[0x061] = 0x06; PacketParser[0x061] = &ValidatedPacketHandler<GP_CLI_COMMAND_CLISTATUS>;
     PacketSize[0x063] = 0x10; PacketParser[0x063] = &ValidatedPacketHandler<GP_CLI_COMMAND_DIG>;
     PacketSize[0x064] = 0x26; PacketParser[0x064] = &SmallPacket0x064;
     PacketSize[0x066] = 0x0A; PacketParser[0x066] = &ValidatedPacketHandler<GP_CLI_COMMAND_FISHING>;
