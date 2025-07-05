@@ -73,6 +73,7 @@
 #include "packets/c2s/0x02b_translate.h"
 #include "packets/c2s/0x02c_itemsearch.h"
 #include "packets/c2s/0x041_trophy_entry.h"
+#include "packets/c2s/0x053_lockstyle.h"
 #include "packets/c2s/0x058_recipe.h"
 #include "packets/c2s/0x059_effectend.h"
 #include "packets/c2s/0x05a_reqconquest.h"
@@ -2519,117 +2520,7 @@ void SmallPacket0x052(MapSession* const PSession, CCharEntity* const PChar, CBas
     PChar->pushPacket<CAddtoEquipSet>(PChar, data);
 }
 
-/************************************************************************
- *                                                                        *
- *  LockStyleSet                                                          *
- *                                                                        *
- ************************************************************************/
-void SmallPacket0x053(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-    uint8 count = data.ref<uint8>(0x04);
-    uint8 type  = data.ref<uint8>(0x05);
 
-    if (type == 0 && PChar->getStyleLocked())
-    {
-        charutils::SetStyleLock(PChar, false);
-        PChar->RequestPersist(CHAR_PERSIST::EQUIP);
-    }
-    else if (type == 1)
-    {
-        // The client sends this when logging in and zoning.
-        PChar->setStyleLocked(true);
-    }
-    else if (type == 2)
-    {
-        PChar->pushPacket<CMessageStandardPacket>(PChar->getStyleLocked() ? MsgStd::StyleLockIsOn : MsgStd::StyleLockIsOff);
-    }
-    else if (type == 3)
-    {
-        charutils::SetStyleLock(PChar, true);
-
-        // Build new lockstyle
-        for (int i = 0; i < count; i++)
-        {
-            uint8  equipSlotId = data.ref<uint8>(0x09 + 0x08 * i);
-            uint16 itemId      = data.ref<uint16>(0x0C + 0x08 * i);
-
-            // Skip non-visible items
-            if (equipSlotId > SLOT_FEET)
-            {
-                continue;
-            }
-
-            CItemEquipment* PItem = dynamic_cast<CItemEquipment*>(itemutils::GetItemPointer(itemId));
-            if (PItem == nullptr || !(PItem->isType(ITEM_WEAPON) || PItem->isType(ITEM_EQUIPMENT)))
-            {
-                itemId = 0;
-            }
-            else if ((PItem->getEquipSlotId() & (1 << equipSlotId)) == 0) // item doesnt fit in slot
-            {
-                itemId = 0;
-            }
-
-            PChar->styleItems[equipSlotId] = itemId;
-        }
-
-        // Check if we need to remove conflicting slots. Essentially, packet injection shenanigan detector.
-        for (int i = 0; i < 10; i++)
-        {
-            CItemEquipment* PItemEquipment = dynamic_cast<CItemEquipment*>(itemutils::GetItemPointer(PChar->styleItems[i]));
-
-            if (PItemEquipment)
-            {
-                auto removeSlotID = PItemEquipment->getRemoveSlotId();
-
-                for (uint8 x = 0; x < sizeof(removeSlotID) * 8; ++x)
-                {
-                    if (removeSlotID & (1 << x))
-                    {
-                        PChar->styleItems[x] = 0;
-                    }
-                }
-            }
-        }
-
-        for (int i = 0; i < 10; i++)
-        {
-            // variable initialized here due to case/switch optimization throwing warnings inside the case
-            CItemEquipment* PItem = PChar->getEquip((SLOTTYPE)i);
-
-            switch (i)
-            {
-                case SLOT_MAIN:
-                case SLOT_SUB:
-                case SLOT_RANGED:
-                case SLOT_AMMO:
-                    charutils::UpdateWeaponStyle(PChar, i, PItem);
-                    break;
-                case SLOT_HEAD:
-                case SLOT_BODY:
-                case SLOT_HANDS:
-                case SLOT_LEGS:
-                case SLOT_FEET:
-                    charutils::UpdateArmorStyle(PChar, i);
-                    break;
-            }
-        }
-        charutils::UpdateRemovedSlotsLookForLockStyle(PChar);
-        PChar->RequestPersist(CHAR_PERSIST::EQUIP);
-    }
-    else if (type == 4)
-    {
-        charutils::SetStyleLock(PChar, true);
-        charutils::UpdateRemovedSlotsLookForLockStyle(PChar);
-        PChar->RequestPersist(CHAR_PERSIST::EQUIP);
-    }
-
-    if (type != 1 && type != 2)
-    {
-        PChar->pushPacket<CCharAppearancePacket>(PChar);
-        PChar->pushPacket<CCharSyncPacket>(PChar);
-    }
-}
 
 /************************************************************************
  *                                                                       *
@@ -3439,7 +3330,7 @@ void PacketParserInitialize()
     PacketSize[0x050] = 0x04; PacketParser[0x050] = &SmallPacket0x050;
     PacketSize[0x051] = 0x24; PacketParser[0x051] = &SmallPacket0x051;
     PacketSize[0x052] = 0x26; PacketParser[0x052] = &SmallPacket0x052;
-    PacketSize[0x053] = 0x44; PacketParser[0x053] = &SmallPacket0x053;
+    PacketSize[0x053] = 0x88; PacketParser[0x053] = &ValidatedPacketHandler<GP_CLI_COMMAND_LOCKSTYLE>;
     PacketSize[0x058] = 0x0A; PacketParser[0x058] = &ValidatedPacketHandler<GP_CLI_COMMAND_RECIPE>;
     PacketSize[0x059] = 0x10; PacketParser[0x059] = &ValidatedPacketHandler<GP_CLI_COMMAND_EFFECTEND>;
     PacketSize[0x05A] = 0x00; PacketParser[0x05A] = &ValidatedPacketHandler<GP_CLI_COMMAND_REQCONQUEST>;

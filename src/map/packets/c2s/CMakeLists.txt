@@ -16,6 +16,8 @@ set(PACKET_C2S_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/0x0a2_dice.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x041_trophy_entry.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x041_trophy_entry.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x053_lockstyle.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x053_lockstyle.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x058_recipe.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x058_recipe.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x059_effectend.cpp
