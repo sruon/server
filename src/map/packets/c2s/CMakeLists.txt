@@ -20,6 +20,8 @@ set(PACKET_C2S_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/0x058_recipe.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x05a_reqconquest.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x05a_reqconquest.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x05b_eventend.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x05b_eventend.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x05c_eventendxzy.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x05c_eventendxzy.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x05d_motion.cpp

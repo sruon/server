@@ -78,6 +78,7 @@
 #include "packets/c2s/0x041_trophy_entry.h"
 #include "packets/c2s/0x058_recipe.h"
 #include "packets/c2s/0x05a_reqconquest.h"
+#include "packets/c2s/0x05b_eventend.h"
 #include "packets/c2s/0x05c_eventendxzy.h"
 #include "packets/c2s/0x05d_motion.h"
 #include "packets/c2s/0x05e_maprect.h"
@@ -2647,69 +2648,6 @@ void SmallPacket0x059(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *  Event Update (Completion or Update)                                  *
- *                                                                       *
- ************************************************************************/
-
-// https://github.com/atom0s/XiPackets/blob/main/world/client/0x005B/README.md
-struct GP_CLI_EVENTEND
-{
-    uint16_t id : 9;
-    uint16_t size : 7;
-    uint16_t sync;
-    uint32_t UniqueNo;  // PS2: UniqueNo
-    uint32_t EndPara;   // PS2: EndPara
-    uint16_t ActIndex;  // PS2: ActIndex
-    uint16_t Mode;      // PS2: Mode
-    uint16_t EventNum;  // PS2: EventNum
-    uint16_t EventPara; // PS2: EventPara
-};
-
-void SmallPacket0x05B(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    if (!PChar->isInEvent())
-        return;
-
-    auto eventData = data.as<GP_CLI_EVENTEND>();
-
-    auto Result  = eventData->EndPara;
-    auto EventID = eventData->EventPara;
-
-    if (PChar->currentEvent->eventId == EventID)
-    {
-        if (PChar->currentEvent->option != 0)
-        {
-            Result = PChar->currentEvent->option;
-        }
-
-        if (eventData->Mode == 1) // This mode is used when updating a pending event tag.
-        {
-            // If optional cutscene is started, we check to see if the selected option should lock the player
-            if (Result != -1 && PChar->currentEvent->hasCutsceneOption(Result))
-            {
-                PChar->setLocked(true);
-            }
-            luautils::OnEventUpdate(PChar, EventID, Result);
-        }
-        else
-        {
-            luautils::OnEventFinish(PChar, EventID, Result);
-            // reset if this event did not initiate another event
-            if (PChar->currentEvent->eventId == EventID)
-            {
-                PChar->endCurrentEvent();
-            }
-        }
-    }
-
-    PChar->pushPacket<CReleasePacket>(PChar, RELEASE_TYPE::EVENT);
-    PChar->updatemask |= UPDATE_HP;
-}
-
-/************************************************************************
- *                                                                       *
  *  Key Items (Mark As Seen)                                             *
  *                                                                       *
  ************************************************************************/
@@ -3519,8 +3457,8 @@ void PacketParserInitialize()
     PacketSize[0x053] = 0x44; PacketParser[0x053] = &SmallPacket0x053;
     PacketSize[0x058] = 0x0A; PacketParser[0x058] = &ValidatedPacketHandler<GP_CLI_COMMAND_RECIPE>;
     PacketSize[0x059] = 0x00; PacketParser[0x059] = &SmallPacket0x059;
-    PacketSize[0x05B] = 0x0A; PacketParser[0x05B] = &SmallPacket0x05B;
     PacketSize[0x05A] = 0x00; PacketParser[0x05A] = &ValidatedPacketHandler<GP_CLI_COMMAND_REQCONQUEST>;
+    PacketSize[0x05B] = 0x14; PacketParser[0x05B] = &ValidatedPacketHandler<GP_CLI_COMMAND_EVENTEND>;
     PacketSize[0x05C] = 0x20; PacketParser[0x05C] = &ValidatedPacketHandler<GP_CLI_COMMAND_EVENTENDXZY>;
     PacketSize[0x05D] = 0x10; PacketParser[0x05D] = &ValidatedPacketHandler<GP_CLI_COMMAND_MOTION>;
     PacketSize[0x05E] = 0x18; PacketParser[0x05E] = &ValidatedPacketHandler<GP_CLI_COMMAND_MAPRECT>;
