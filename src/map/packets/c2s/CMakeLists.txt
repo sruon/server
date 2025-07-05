@@ -18,6 +18,8 @@ set(PACKET_C2S_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/0x041_trophy_entry.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x058_recipe.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x058_recipe.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x059_effectend.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x059_effectend.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x05a_reqconquest.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x05a_reqconquest.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x05b_eventend.cpp
