@@ -77,6 +77,7 @@
 #include "packets/c2s/0x0a2_dice.h"
 #include "packets/c2s/0x041_trophy_entry.h"
 #include "packets/c2s/0x058_recipe.h"
+#include "packets/c2s/0x05a_reqconquest.h"
 #include "packets/c2s/0x05c_eventendxzy.h"
 #include "packets/c2s/0x05d_motion.h"
 #include "packets/c2s/0x05e_maprect.h"
@@ -2646,23 +2647,6 @@ void SmallPacket0x059(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *  Map Update (Conquest, Besieged, Campaign)                            *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x05A(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-    PChar->pushPacket<CConquestPacket>(PChar);
-
-    // TODO: This is unstable across multiple processes. Fix me.
-    // CampaignState state = campaign::GetCampaignState();
-    // PChar->pushPacket<CCampaignPacket>(PChar, state, 0);
-    // PChar->pushPacket<CCampaignPacket>(PChar, state, 1);
-}
-
-/************************************************************************
- *                                                                       *
  *  Event Update (Completion or Update)                                  *
  *                                                                       *
  ************************************************************************/
@@ -3535,8 +3519,8 @@ void PacketParserInitialize()
     PacketSize[0x053] = 0x44; PacketParser[0x053] = &SmallPacket0x053;
     PacketSize[0x058] = 0x0A; PacketParser[0x058] = &ValidatedPacketHandler<GP_CLI_COMMAND_RECIPE>;
     PacketSize[0x059] = 0x00; PacketParser[0x059] = &SmallPacket0x059;
-    PacketSize[0x05A] = 0x02; PacketParser[0x05A] = &SmallPacket0x05A;
     PacketSize[0x05B] = 0x0A; PacketParser[0x05B] = &SmallPacket0x05B;
+    PacketSize[0x05A] = 0x00; PacketParser[0x05A] = &ValidatedPacketHandler<GP_CLI_COMMAND_REQCONQUEST>;
     PacketSize[0x05C] = 0x20; PacketParser[0x05C] = &ValidatedPacketHandler<GP_CLI_COMMAND_EVENTENDXZY>;
     PacketSize[0x05D] = 0x10; PacketParser[0x05D] = &ValidatedPacketHandler<GP_CLI_COMMAND_MOTION>;
     PacketSize[0x05E] = 0x18; PacketParser[0x05E] = &ValidatedPacketHandler<GP_CLI_COMMAND_MAPRECT>;
