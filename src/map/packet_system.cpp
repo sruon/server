@@ -77,6 +77,7 @@
 #include "packets/c2s/0x0a2_dice.h"
 #include "packets/c2s/0x041_trophy_entry.h"
 #include "packets/c2s/0x058_recipe.h"
+#include "packets/c2s/0x060_passwards.h"
 #include "packets/c2s/0x061_clistatus.h"
 #include "packets/c2s/0x063_dig.h"
 #include "packets/c2s/0x066_fishing.h"
@@ -3093,27 +3094,6 @@ void SmallPacket0x05E(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *  Event Update (String Update)                                         *
- *  Player sends string for event update.                                *
- *                                                                       *
- ************************************************************************/
-
-// zone 245 cs 0x00C7 Password
-
-void SmallPacket0x060(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    // TODO: This isn't going near the db, does this need to be escaped? It contains binary data?
-    const auto updateString = asStringFromUntrustedSource(data[0x0C]);
-    luautils::OnEventUpdate(PChar, updateString);
-
-    PChar->pushPacket<CReleasePacket>(PChar, RELEASE_TYPE::EVENT);
-    PChar->pushPacket<CReleasePacket>(PChar, RELEASE_TYPE::PLAYERINPUT);
-}
-
-/************************************************************************
- *                                                                       *
  *  Key Items (Mark As Seen)                                             *
  *                                                                       *
  ************************************************************************/
@@ -3928,7 +3908,7 @@ void PacketParserInitialize()
     PacketSize[0x05C] = 0x00; PacketParser[0x05C] = &SmallPacket0x05C;
     PacketSize[0x05D] = 0x08; PacketParser[0x05D] = &SmallPacket0x05D;
     PacketSize[0x05E] = 0x0C; PacketParser[0x05E] = &SmallPacket0x05E;
-    PacketSize[0x060] = 0x00; PacketParser[0x060] = &SmallPacket0x060;
+    PacketSize[0x060] = 0x1C; PacketParser[0x060] = &ValidatedPacketHandler<GP_CLI_COMMAND_PASSWARDS>;
     PacketSize[0x061] = 0x06; PacketParser[0x061] = &ValidatedPacketHandler<GP_CLI_COMMAND_CLISTATUS>;
     PacketSize[0x063] = 0x10; PacketParser[0x063] = &ValidatedPacketHandler<GP_CLI_COMMAND_DIG>;
     PacketSize[0x064] = 0x26; PacketParser[0x064] = &SmallPacket0x064;

@@ -55,3 +55,13 @@ auto PacketValidator::isNotPreventedAction(const CCharEntity* PChar) -> PacketVa
 
     return *this;
 }
+
+auto PacketValidator::isInEvent(const CCharEntity* PChar) -> PacketValidator&
+{
+    if (!PChar->currentEvent)
+    {
+        result_.addError("Character is not in an event.");
+    }
+
+    return *this;
+}
