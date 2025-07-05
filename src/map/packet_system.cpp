@@ -78,6 +78,7 @@
 #include "packets/c2s/0x041_trophy_entry.h"
 #include "packets/c2s/0x058_recipe.h"
 #include "packets/c2s/0x066_fishing.h"
+#include "packets/c2s/0x076_group_list_req.h"
 #include "packets/c2s/0x077_group_change2.h"
 #include "packets/c2s/0x078_group_checkid.h"
 #include "packets/c2s/0x083_shop_buy.h"
@@ -3813,27 +3814,6 @@ void SmallPacket0x074(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *  Party List Request                                                   *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x076(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    if (PChar->PParty)
-    {
-        PChar->PParty->ReloadPartyMembers(PChar);
-    }
-    else
-    {
-        // previous CPartyDefine was dropped or otherwise didn't work?
-        PChar->pushPacket<CPartyDefinePacket>(nullptr, false);
-    }
-}
-
-/************************************************************************
- *                                                                       *
  *  Begin Synthesis                                                      *
  *                                                                       *
  ************************************************************************/
@@ -4304,7 +4284,7 @@ void PacketParserInitialize()
     PacketSize[0x070] = 0x00; PacketParser[0x070] = &SmallPacket0x070;
     PacketSize[0x071] = 0x00; PacketParser[0x071] = &SmallPacket0x071;
     PacketSize[0x074] = 0x00; PacketParser[0x074] = &SmallPacket0x074;
-    PacketSize[0x076] = 0x00; PacketParser[0x076] = &SmallPacket0x076;
+    PacketSize[0x076] = 0x06; PacketParser[0x076] = &ValidatedPacketHandler<GP_CLI_COMMAND_GROUP_LIST_REQ>;
     PacketSize[0x077] = 0x16; PacketParser[0x077] = &ValidatedPacketHandler<GP_CLI_COMMAND_GROUP_CHANGE2>;
     PacketSize[0x078] = 0x04; PacketParser[0x078] = &ValidatedPacketHandler<GP_CLI_COMMAND_GROUP_CHECKID>;
     PacketSize[0x083] = 0x10; PacketParser[0x083] = &ValidatedPacketHandler<GP_CLI_COMMAND_SHOP_BUY>;
