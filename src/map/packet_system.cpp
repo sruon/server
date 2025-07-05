@@ -78,6 +78,7 @@
 #include "packets/c2s/0x041_trophy_entry.h"
 #include "packets/c2s/0x058_recipe.h"
 #include "packets/c2s/0x066_fishing.h"
+#include "packets/c2s/0x071_group_strike.h"
 #include "packets/c2s/0x074_group_solicit_res.h"
 #include "packets/c2s/0x076_group_list_req.h"
 #include "packets/c2s/0x077_group_change2.h"
@@ -3515,187 +3516,6 @@ void SmallPacket0x070(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *  Party / Linkshell / Alliance Command 'Kick'                          *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x071(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    const auto type       = data.ref<uint8>(0x0A);
-    const auto victimName = db::escapeString(asStringFromUntrustedSource(data[0x0C], 15));
-
-    switch (type)
-    {
-        case 0: // party - party leader may remove member of his own party
-        {
-            if (PChar->PParty && PChar->PParty->GetLeader() == PChar)
-            {
-                CCharEntity* PVictim = dynamic_cast<CCharEntity*>(PChar->PParty->GetMemberByName(victimName));
-                if (PVictim)
-                {
-                    ShowDebug("%s is trying to kick %s from party", PChar->getName(), PVictim->getName());
-                    if (PVictim == PChar) // using kick on yourself, let's borrow the logic from /pcmd leave to prevent alliance crash
-                    {
-                        if (PChar->PParty->m_PAlliance &&
-                            PChar->PParty->HasOnlyOneMember()) // single member alliance parties must be removed from alliance before disband
-                        {
-                            if (PChar->PParty->m_PAlliance->hasOnlyOneParty()) // if there is only 1 party then dissolve alliance
-                            {
-                                ShowDebug("One party in alliance, %s wants to dissolve the alliance", PChar->getName());
-                                PChar->PParty->m_PAlliance->dissolveAlliance();
-                                ShowDebug("%s has dissolved the alliance", PChar->getName());
-                            }
-                            else
-                            {
-                                ShowDebug("%s wants to remove their party from the alliance", PChar->getName());
-                                PChar->PParty->m_PAlliance->removeParty(PChar->PParty);
-                                ShowDebug("%s party is removed from the alliance", PChar->getName());
-                            }
-                        }
-                    }
-
-                    PChar->PParty->RemoveMember(PVictim);
-                    ShowDebug("%s has removed %s from party", PChar->getName(), PVictim->getName());
-                }
-                else
-                {
-                    if (const auto victimId = charutils::getCharIdFromName(victimName))
-                    {
-                        const auto rset = db::preparedStmt("DELETE FROM accounts_parties WHERE partyid = ? AND charid = ?", PChar->id, victimId);
-                        if (rset && rset->rowsAffected())
-                        {
-                            ShowDebug("%s has removed %s from party", PChar->getName(), victimName);
-
-                            if (PChar->PParty && PChar->PParty->m_PAlliance)
-                            {
-                                message::send(ipc::AllianceReload{
-                                    .allianceId = PChar->PParty->m_PAlliance->m_AllianceID,
-                                });
-                            }
-                            else // No alliance, notify party.
-                            {
-                                message::send(ipc::PartyReload{
-                                    .partyId = PChar->PParty->GetPartyID(),
-                                });
-                            }
-
-                            // Notify the player they were just kicked -- they are no longer in the DB and party/alliance reloads won't notify them.
-                            message::send(ipc::PlayerKick{
-                                .victimId = victimId,
-                            });
-                        }
-                    }
-                }
-            }
-        }
-        break;
-        case 1: // linkshell
-        {
-            // Ensure the player has a linkshell equipped
-            CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK1);
-            if (PChar->PLinkshell1 && PItemLinkshell)
-            {
-                message::send(ipc::LinkshellRemove{
-                    .requesterId   = PChar->id,
-                    .requesterRank = PItemLinkshell->GetLSType(),
-                    .victimName    = victimName,
-                    .linkshellId   = PChar->PLinkshell1->getID(),
-                });
-            }
-        }
-        break;
-        case 2: // linkshell2
-        {
-            // Ensure the player has a linkshell equipped
-            CItemLinkshell* PItemLinkshell = (CItemLinkshell*)PChar->getEquip(SLOT_LINK2);
-            if (PChar->PLinkshell2 && PItemLinkshell)
-            {
-                message::send(ipc::LinkshellRemove{
-                    .requesterId   = PChar->id,
-                    .requesterRank = PItemLinkshell->GetLSType(),
-                    .victimName    = victimName,
-                    .linkshellId   = PChar->PLinkshell2->getID(),
-                });
-            }
-        }
-        break;
-        case 5: // alliance - alliance leader may kick a party by using that party's leader as kick parameter
-        {
-            if (PChar->PParty && PChar->PParty->GetLeader() == PChar && PChar->PParty->m_PAlliance)
-            {
-                CCharEntity* PVictim = nullptr;
-                for (std::size_t i = 0; i < PChar->PParty->m_PAlliance->partyList.size(); ++i)
-                {
-                    PVictim = dynamic_cast<CCharEntity*>(PChar->PParty->m_PAlliance->partyList[i]->GetMemberByName(victimName));
-                    if (PVictim && PVictim->PParty && PVictim->PParty->m_PAlliance) // victim is in this party
-                    {
-                        ShowDebug("%s is trying to kick %s party from alliance", PChar->getName(), PVictim->getName());
-                        // if using kick on yourself, or alliance leader using kick on another party leader - remove the party
-                        if (PVictim == PChar || (PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty && PVictim->PParty->GetLeader() == PVictim))
-                        {
-                            if (PVictim->PParty->m_PAlliance->hasOnlyOneParty()) // if there is only 1 party then dissolve alliance
-                            {
-                                ShowDebug("One party in alliance, %s wants to dissolve the alliance", PChar->getName());
-                                PVictim->PParty->m_PAlliance->dissolveAlliance();
-                                ShowDebug("%s has dissolved the alliance", PChar->getName());
-                            }
-                            else
-                            {
-                                PVictim->PParty->m_PAlliance->removeParty(PVictim->PParty);
-                                ShowDebug("%s has removed %s party from alliance", PChar->getName(), PVictim->getName());
-                            }
-                        }
-                        break; // we're done, break the for
-                    }
-                }
-                if (!PVictim && PChar->PParty->m_PAlliance->getMainParty() == PChar->PParty)
-                {
-                    uint32 allianceID = PChar->PParty->m_PAlliance->m_AllianceID;
-
-                    if (const auto victimId = charutils::getCharIdFromName(victimName))
-                    {
-                        const auto rset = db::preparedStmt(
-                            "SELECT partyid FROM accounts_parties WHERE charid = ? AND allianceid = ? AND partyflag & ?",
-                            victimId, PChar->PParty->m_PAlliance->m_AllianceID, PARTY_LEADER | PARTY_SECOND | PARTY_THIRD);
-
-                        FOR_DB_SINGLE_RESULT(rset)
-                        {
-                            uint32 partyid = rset->get<uint32>("partyid");
-
-                            const auto rset2 = db::preparedStmt("UPDATE accounts_parties SET allianceid = 0, partyflag = partyflag & ~? WHERE partyid = ?",
-                                                                PARTY_SECOND | PARTY_THIRD, partyid);
-                            if (rset2 && rset2->rowsAffected())
-                            {
-                                ShowDebug("%s has removed %s party from alliance", PChar->getName(), victimName);
-
-                                // notify party they were removed
-                                message::send(ipc::PartyReload{
-                                    .partyId = partyid,
-                                });
-
-                                // notify alliance a party was removed
-                                message::send(ipc::AllianceReload{
-                                    .allianceId = allianceID,
-                                });
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        break;
-        default:
-        {
-            ShowError("SmallPacket0x071 : unknown byte <%.2X>", data.ref<uint8>(0x0A));
-        }
-        break;
-    }
-}
-
-/************************************************************************
- *                                                                       *
  *  Begin Synthesis                                                      *
  *                                                                       *
  ************************************************************************/
@@ -4164,7 +3984,7 @@ void PacketParserInitialize()
     PacketSize[0x06E] = 0x06; PacketParser[0x06E] = &SmallPacket0x06E;
     PacketSize[0x06F] = 0x00; PacketParser[0x06F] = &SmallPacket0x06F;
     PacketSize[0x070] = 0x00; PacketParser[0x070] = &SmallPacket0x070;
-    PacketSize[0x071] = 0x00; PacketParser[0x071] = &SmallPacket0x071;
+    PacketSize[0x071] = 0x1C; PacketParser[0x071] = &ValidatedPacketHandler<GP_CLI_COMMAND_GROUP_STRIKE>;
     PacketSize[0x074] = 0x06; PacketParser[0x074] = &ValidatedPacketHandler<GP_CLI_COMMAND_GROUP_SOLICIT_RES>;
     PacketSize[0x076] = 0x06; PacketParser[0x076] = &ValidatedPacketHandler<GP_CLI_COMMAND_GROUP_LIST_REQ>;
     PacketSize[0x077] = 0x16; PacketParser[0x077] = &ValidatedPacketHandler<GP_CLI_COMMAND_GROUP_CHANGE2>;
