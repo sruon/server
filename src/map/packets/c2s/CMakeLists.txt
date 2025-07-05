@@ -19,6 +19,8 @@ set(PACKET_C2S_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/0x058_recipe.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x058_recipe.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x066_fishing.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x074_group_solicit_res.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x074_group_solicit_res.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x076_group_list_req.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x076_group_list_req.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x077_group_change2.cpp

@@ -78,6 +78,7 @@
 #include "packets/c2s/0x041_trophy_entry.h"
 #include "packets/c2s/0x058_recipe.h"
 #include "packets/c2s/0x066_fishing.h"
+#include "packets/c2s/0x074_group_solicit_res.h"
 #include "packets/c2s/0x076_group_list_req.h"
 #include "packets/c2s/0x077_group_change2.h"
 #include "packets/c2s/0x078_group_checkid.h"
@@ -3695,125 +3696,6 @@ void SmallPacket0x071(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *  Party Invite Response (Accept, Decline, Leave)                       *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x074(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    CCharEntity* PInviter = zoneutils::GetCharFromWorld(PChar->InvitePending.id, PChar->InvitePending.targid);
-
-    uint8 InviteAnswer = data.ref<uint8>(0x04);
-
-    if (PInviter != nullptr)
-    {
-        if (InviteAnswer == 0)
-        {
-            ShowDebug("%s declined party invite from %s", PChar->getName(), PInviter->getName());
-
-            // invitee declined invite
-            PInviter->pushPacket<CMessageStandardPacket>(PInviter, 0, 0, MsgStd::InvitationDeclined);
-            PChar->InvitePending.clean();
-            return;
-        }
-
-        // check for alliance invite
-        if (PChar->PParty != nullptr && PInviter->PParty != nullptr)
-        {
-            // both invitee and and inviter are party leaders
-            if (PInviter->PParty->GetLeader() == PInviter && PChar->PParty->GetLeader() == PChar)
-            {
-                ShowDebug("%s invited %s to an alliance", PInviter->getName(), PChar->getName());
-
-                // the inviter already has an alliance and wants to add another party - only add if they have room for another party
-                if (PInviter->PParty->m_PAlliance)
-                {
-                    // break if alliance is full or the inviter is not the leader
-                    if (PInviter->PParty->m_PAlliance->isFull() || PInviter->PParty->m_PAlliance->getMainParty() != PInviter->PParty)
-                    {
-                        ShowDebug("Alliance is full, invite to %s cancelled", PChar->getName());
-                        PChar->pushPacket<CMessageStandardPacket>(PChar, 0, 0, MsgStd::CannotBeProcessed);
-                        PChar->InvitePending.clean();
-                        return;
-                    }
-
-                    // alliance is not full, add the new party
-                    PInviter->PParty->m_PAlliance->addParty(PChar->PParty);
-                    PChar->InvitePending.clean();
-                    ShowDebug("%s party added to %s alliance", PChar->getName(), PInviter->getName());
-                    return;
-                }
-                else if (PChar->PParty->HasTrusts() || PInviter->PParty->HasTrusts())
-                {
-                    // Cannot form alliance if you have Trusts
-                    PChar->pushPacket<CMessageStandardPacket>(PChar, 0, 0, MsgStd::TrustCannotJoinAlliance);
-                    return;
-                }
-                else
-                {
-                    // party leaders have no alliance - create a new one!
-                    ShowDebug("Creating new alliance");
-                    PInviter->PParty->m_PAlliance = new CAlliance(PInviter);
-                    PInviter->PParty->m_PAlliance->addParty(PChar->PParty);
-                    PChar->InvitePending.clean();
-                    ShowDebug("%s party added to %s alliance", PChar->getName(), PInviter->getName());
-                    return;
-                }
-            }
-        }
-
-        // the rest is for a standard party invitation
-        if (PChar->PParty == nullptr)
-        {
-            if (!(PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC) && PChar->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_RESTRICTION)))
-            {
-                ShowDebug("%s is not under lvl sync or restriction", PChar->getName());
-                if (PInviter->PParty == nullptr)
-                {
-                    ShowDebug("Creating new party");
-                    PInviter->PParty = new CParty(PInviter);
-                }
-                if (PInviter->PParty->GetLeader() == PInviter)
-                {
-                    if (PInviter->PParty->IsFull())
-                    { // someone else accepted invitation
-                        // PInviter->pushPacket<CMessageStandardPacket>(PInviter, 0, 0, 14); Don't think retail sends error packet to inviter on full pt
-                        ShowDebug("Someone else accepted party invite, %s cannot be added to party", PChar->getName());
-                        PChar->pushPacket<CMessageStandardPacket>(PChar, 0, 0, MsgStd::CannotBeProcessed);
-                    }
-                    else
-                    {
-                        ShowDebug("Added %s to %s's party", PChar->getName(), PInviter->getName());
-                        PInviter->PParty->AddMember(PChar);
-                    }
-                }
-            }
-            else
-            {
-                PChar->pushPacket<CMessageStandardPacket>(PChar, 0, 0, MsgStd::CannotJoinLevelSync);
-            }
-        }
-    }
-    else
-    {
-        message::send(ipc::PartyInviteResponse{
-            .inviteeId     = PChar->id,
-            .inviteeTargId = PChar->targid,
-            .inviterId     = PChar->InvitePending.id,
-            .inviterTargId = PChar->InvitePending.targid,
-            .inviteAnswer  = InviteAnswer,
-        });
-
-        PChar->InvitePending.clean();
-    }
-
-    PChar->InvitePending.clean();
-}
-
-/************************************************************************
- *                                                                       *
  *  Begin Synthesis                                                      *
  *                                                                       *
  ************************************************************************/
@@ -4283,7 +4165,7 @@ void PacketParserInitialize()
     PacketSize[0x06F] = 0x00; PacketParser[0x06F] = &SmallPacket0x06F;
     PacketSize[0x070] = 0x00; PacketParser[0x070] = &SmallPacket0x070;
     PacketSize[0x071] = 0x00; PacketParser[0x071] = &SmallPacket0x071;
-    PacketSize[0x074] = 0x00; PacketParser[0x074] = &SmallPacket0x074;
+    PacketSize[0x074] = 0x06; PacketParser[0x074] = &ValidatedPacketHandler<GP_CLI_COMMAND_GROUP_SOLICIT_RES>;
     PacketSize[0x076] = 0x06; PacketParser[0x076] = &ValidatedPacketHandler<GP_CLI_COMMAND_GROUP_LIST_REQ>;
     PacketSize[0x077] = 0x16; PacketParser[0x077] = &ValidatedPacketHandler<GP_CLI_COMMAND_GROUP_CHANGE2>;
     PacketSize[0x078] = 0x04; PacketParser[0x078] = &ValidatedPacketHandler<GP_CLI_COMMAND_GROUP_CHECKID>;
