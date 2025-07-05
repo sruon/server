@@ -18,6 +18,8 @@ set(PACKET_C2S_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/0x041_trophy_entry.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x058_recipe.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x058_recipe.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x063_dig.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x063_dig.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x066_fishing.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x071_group_strike.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x071_group_strike.h

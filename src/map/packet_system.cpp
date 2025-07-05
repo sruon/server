@@ -77,6 +77,7 @@
 #include "packets/c2s/0x0a2_dice.h"
 #include "packets/c2s/0x041_trophy_entry.h"
 #include "packets/c2s/0x058_recipe.h"
+#include "packets/c2s/0x063_dig.h"
 #include "packets/c2s/0x066_fishing.h"
 #include "packets/c2s/0x071_group_strike.h"
 #include "packets/c2s/0x074_group_solicit_res.h"
@@ -3151,17 +3152,6 @@ void SmallPacket0x061(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *  Chocobo Digging                                                      *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x063(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-}
-
-/************************************************************************
- *                                                                       *
  *  Key Items (Mark As Seen)                                             *
  *                                                                       *
  ************************************************************************/
@@ -3978,7 +3968,7 @@ void PacketParserInitialize()
     PacketSize[0x05E] = 0x0C; PacketParser[0x05E] = &SmallPacket0x05E;
     PacketSize[0x060] = 0x00; PacketParser[0x060] = &SmallPacket0x060;
     PacketSize[0x061] = 0x04; PacketParser[0x061] = &SmallPacket0x061;
-    PacketSize[0x063] = 0x00; PacketParser[0x063] = &SmallPacket0x063;
+    PacketSize[0x063] = 0x10; PacketParser[0x063] = &ValidatedPacketHandler<GP_CLI_COMMAND_DIG>;
     PacketSize[0x064] = 0x26; PacketParser[0x064] = &SmallPacket0x064;
     PacketSize[0x066] = 0x0A; PacketParser[0x066] = &ValidatedPacketHandler<GP_CLI_COMMAND_FISHING>;
     PacketSize[0x06E] = 0x06; PacketParser[0x06E] = &SmallPacket0x06E;
