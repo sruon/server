@@ -65,7 +65,6 @@
 #include "lua/luautils.h"
 
 #include "packets/basic.h"
-#include "packets/blacklist_edit_response.h"
 #include "packets/c2s/0x00c_gameok.h"
 #include "packets/c2s/0x00d_netend.h"
 #include "packets/c2s/0x00f_clstat.h"
@@ -1811,58 +1810,6 @@ void SmallPacket0x03C(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *  Incoming Blacklist Command                                           *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x03D(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    const auto name = db::escapeString(asStringFromUntrustedSource(data[0x08], 15));
-    const auto cmd  = data.ref<uint8>(0x18);
-
-    const auto sendFailPacket = [&]()
-    {
-        PChar->pushPacket<CBlacklistEditResponsePacket>(0, "", 0x02);
-    };
-
-    const auto [charid, accid] = charutils::getCharIdAndAccountIdFromName(name);
-    if (!charid)
-    {
-        sendFailPacket();
-        return;
-    }
-
-    // User is trying to add someone to their blacklist
-    if (cmd == 0x00)
-    {
-        // Attempt to add this person
-        if (blacklistutils::AddBlacklisted(PChar->id, charid))
-        {
-            PChar->pushPacket<CBlacklistEditResponsePacket>(accid, name, cmd);
-        }
-        else
-        {
-            sendFailPacket();
-        }
-    }
-    else if (cmd == 0x01) // User is trying to remove someone from their blacklist
-    {
-        // Attempt to remove this person
-        if (blacklistutils::DeleteBlacklisted(PChar->id, charid))
-        {
-            PChar->pushPacket<CBlacklistEditResponsePacket>(accid, name, cmd);
-        }
-        else
-        {
-            sendFailPacket();
-        }
-    }
-}
-
-/************************************************************************
- *                                                                       *
  *  Server Message Request                                               *
  *                                                                       *
  ************************************************************************/
@@ -2615,7 +2562,7 @@ void PacketParserInitialize()
     PacketSize[0x03A] = 0x04; PacketParser[0x03A] = &SmallPacket0x03A;
     PacketSize[0x03B] = 0x10; PacketParser[0x03B] = &SmallPacket0x03B;
     PacketSize[0x03C] = 0x00; PacketParser[0x03C] = &SmallPacket0x03C;
-    PacketSize[0x03D] = 0x00; PacketParser[0x03D] = &SmallPacket0x03D;
+    PacketSize[0x03D] = 0x1C; PacketParser[0x03D] = &ValidatedPacketHandler<GP_CLI_COMMAND_BLACK_EDIT>;
     PacketSize[0x041] = 0x00; PacketParser[0x041] = &ValidatedPacketHandler<GP_CLI_COMMAND_TROPHY_ENTRY>;
     PacketSize[0x042] = 0x06; PacketParser[0x042] = &ValidatedPacketHandler<GP_CLI_COMMAND_TROPHY_ABSENCE>;
     PacketSize[0x04B] = 0x00; PacketParser[0x04B] = &SmallPacket0x04B;

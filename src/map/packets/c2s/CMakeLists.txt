@@ -28,6 +28,8 @@ set(PACKET_C2S_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/0x017_charreq2.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x037_item_use.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x037_item_use.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x03d_black_edit.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x03d_black_edit.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x0a0_switch_proposal.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x0a0_switch_proposal.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x0a1_switch_vote.cpp
