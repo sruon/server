@@ -72,6 +72,7 @@
 #include "packets/c2s/0x00f_clstat.h"
 #include "packets/c2s/0x011_zone_transition.h"
 #include "packets/c2s/0x01b_friendpass.h"
+#include "packets/c2s/0x01c_unknown.h"
 #include "packets/c2s/0x015_pos.h"
 #include "packets/c2s/0x016_charreq.h"
 #include "packets/c2s/0x017_charreq2.h"
@@ -854,19 +855,6 @@ void SmallPacket0x01A(MapSession* const PSession, CCharEntity* const PChar, CBas
         }
         break;
     }
-}
-
-/************************************************************************
- *                                                                       *
- *  Unknown Packet                                                       *
- *  Assumed to be when a client is requesting missing information.       *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x01C(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-    PrintPacket(data);
 }
 
 /************************************************************************
@@ -2638,7 +2626,7 @@ void PacketParserInitialize()
     PacketSize[0x017] = 0x14; PacketParser[0x017] = &ValidatedPacketHandler<GP_CLI_COMMAND_CHARREQ2>;
     PacketSize[0x01A] = 0x0E; PacketParser[0x01A] = &SmallPacket0x01A;
     PacketSize[0x01B] = 0x1C; PacketParser[0x01B] = &ValidatedPacketHandler<GP_CLI_COMMAND_FRIENDPASS>;
-    PacketSize[0x01C] = 0x00; PacketParser[0x01C] = &SmallPacket0x01C;
+    PacketSize[0x01C] = 0x0C; PacketParser[0x01C] = &ValidatedPacketHandler<GP_CLI_COMMAND_UNKNOWN>;
     PacketSize[0x01E] = 0x00; PacketParser[0x01E] = &SmallPacket0x01E;
     PacketSize[0x01F] = 0x00; PacketParser[0x01F] = &ValidatedPacketHandler<GP_CLI_COMMAND_GMCOMMAND>;
     PacketSize[0x028] = 0x06; PacketParser[0x028] = &SmallPacket0x028;
