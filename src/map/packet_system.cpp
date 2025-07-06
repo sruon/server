@@ -71,6 +71,7 @@
 #include "packets/c2s/0x00c_gameok.h"
 #include "packets/c2s/0x00d_netend.h"
 #include "packets/c2s/0x00f_clstat.h"
+#include "packets/c2s/0x011_zone_transition.h"
 #include "packets/c2s/0x01f_gmcommand.h"
 #include "packets/c2s/0x02b_translate.h"
 #include "packets/c2s/0x02c_itemsearch.h"
@@ -170,7 +171,6 @@
 #include "packets/c2s/0x11b_mastery_display.h"
 #include "packets/c2s/0x11c_party_request.h"
 #include "packets/c2s/0x11d_jump.h"
-#include "packets/char_equip.h"
 #include "packets/char_recast.h"
 #include "packets/char_status.h"
 #include "packets/char_sync.h"
@@ -364,33 +364,6 @@ void SmallPacket0x00A(MapSession* const PSession, CCharEntity* const PChar, CBas
         PChar->pushPacket<CZoneInPacket>(PChar, PChar->currentEvent);
         PChar->pushPacket<CZoneVisitedPacket>(PChar);
     }
-}
-
-/************************************************************************
- *                                                                       *
- *  Player Zone Transition Confirmation                                  *
- *  First packet sent after transitioning zones or entering the game.    *
- *  Client confirming the zoning was successful, equips gear.            *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x011(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    PSession->blowfish.status = BLOWFISH_ACCEPTED;
-    PChar->status             = STATUS_TYPE::NORMAL;
-    PChar->health.tp          = 0;
-
-    for (uint8 i = 0; i < 16; ++i)
-    {
-        if (PChar->equip[i] != 0)
-        {
-            PChar->pushPacket<CEquipPacket>(PChar->equip[i], i, PChar->equipLoc[i]);
-        }
-    }
-
-    PChar->PAI->QueueAction(queueAction_t(4000ms, false, zoneutils::AfterZoneIn));
 }
 
 /************************************************************************
@@ -2870,7 +2843,7 @@ void PacketParserInitialize()
     PacketSize[0x00C] = 0x0C; PacketParser[0x00C] = &ValidatedPacketHandler<GP_CLI_COMMAND_GAMEOK>;
     PacketSize[0x00D] = 0x08; PacketParser[0x00D] = &ValidatedPacketHandler<GP_CLI_COMMAND_NETEND>;
     PacketSize[0x00F] = 0x24; PacketParser[0x00F] = &ValidatedPacketHandler<GP_CLI_COMMAND_CLSTAT>;
-    PacketSize[0x011] = 0x00; PacketParser[0x011] = &SmallPacket0x011;
+    PacketSize[0x011] = 0x06; PacketParser[0x011] = &ValidatedPacketHandler<GP_CLI_COMMAND_ZONE_TRANSITION>;
     PacketSize[0x015] = 0x10; PacketParser[0x015] = &SmallPacket0x015;
     PacketSize[0x016] = 0x04; PacketParser[0x016] = &SmallPacket0x016;
     PacketSize[0x017] = 0x00; PacketParser[0x017] = &SmallPacket0x017;

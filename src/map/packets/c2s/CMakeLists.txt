@@ -14,6 +14,8 @@ set(PACKET_C2S_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/0x00d_netend.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x00f_clstat.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x00f_clstat.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x011_zone_transition.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x011_zone_transition.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x037_item_use.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x037_item_use.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x0a0_switch_proposal.cpp
