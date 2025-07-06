@@ -96,6 +96,7 @@
 #include "packets/c2s/0x083_shop_buy.h"
 #include "packets/c2s/0x084_shop_sell_req.h"
 #include "packets/c2s/0x085_shop_sell_set.h"
+#include "packets/c2s/0x096_combine_ask.h"
 #include "packets/c2s/0x09b_chocobo_race_req.h"
 #include "packets/c2s/0x0a0_switch_proposal.h"
 #include "packets/c2s/0x0a1_switch_vote.h"
@@ -2786,107 +2787,6 @@ void SmallPacket0x06F(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *  Begin Synthesis                                                      *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x096(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    if (jailutils::InPrison(PChar))
-    {
-        // Prevent crafting in prison
-        PChar->pushPacket<CMessageBasicPacket>(PChar, PChar, 0, 0, MSGBASIC_CANNOT_USE_IN_AREA);
-        return;
-    }
-
-    // If the player is already crafting, don't allow them to craft.
-    // This prevents packet injection based multi-craft, or time-based exploits.
-    if (PChar->animation == ANIMATION_SYNTH || (PChar->CraftContainer && PChar->CraftContainer->getItemsCount() > 0))
-    {
-        return;
-    }
-
-    // Force full synth duration wait no matter the synth animation length
-    // Thus players can synth on whatever fps they want
-    if (PChar->m_LastSynthTime + 15s > timer::now())
-    {
-        PChar->pushPacket<CMessageBasicPacket>(PChar, PChar, 0, 0, 94);
-        return;
-    }
-
-    // NOTE: This section is intended to be temporary to ensure that duping shenanigans aren't possible.
-    // It should be replaced by something more robust or more stateful as soon as is reasonable
-    CCharEntity* PTarget = (CCharEntity*)PChar->GetEntity(PChar->TradePending.targid, TYPE_PC);
-
-    // Clear pending trades on synthesis start
-    if (PTarget && PChar->TradePending.id == PTarget->id)
-    {
-        PChar->TradePending.clean();
-        PTarget->TradePending.clean();
-    }
-
-    // Clears out trade session and blocks synthesis at any point in trade process after accepting
-    // trade request.
-    if (PChar->UContainer->GetType() != UCONTAINER_EMPTY)
-    {
-        if (PTarget)
-        {
-            ShowDebug("%s trade request with %s was canceled because %s tried to craft.",
-                      PChar->getName(), PTarget->getName(), PChar->getName());
-
-            PTarget->TradePending.clean();
-            PTarget->UContainer->Clean();
-            PTarget->pushPacket<CTradeActionPacket>(PChar, 0x01);
-            PChar->pushPacket<CTradeActionPacket>(PTarget, 0x01);
-        }
-        PChar->pushPacket<CMessageStandardPacket>(MsgStd::CannotBeProcessed);
-        PChar->TradePending.clean();
-        PChar->UContainer->Clean();
-        return;
-    }
-    // End temporary additions
-
-    PChar->CraftContainer->Clean();
-
-    uint16 ItemID    = data.ref<uint32>(0x06);
-    uint8  invSlotID = data.ref<uint8>(0x08);
-
-    uint8 numItems = data.ref<uint8>(0x09);
-
-    auto PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
-    if (!PItem || ItemID != PItem->getID() || PItem->getQuantity() == 0 || numItems > 8)
-    {
-        // Detect invalid crystal usage
-        // Prevent crafting exploit to crash on container size > 8
-        PChar->pushPacket<CMessageBasicPacket>(PChar, PChar, 0, 0, MSGBASIC_CANNOT_USE_IN_AREA);
-        return;
-    }
-
-    PChar->CraftContainer->setItem(0, ItemID, invSlotID, 0);
-
-    std::vector<uint8> slotQty(MAX_CONTAINER_SIZE);
-    for (int32 SlotID = 0; SlotID < numItems; ++SlotID)
-    {
-        ItemID    = data.ref<uint16>(0x0A + SlotID * 2);
-        invSlotID = data.ref<uint8>(0x1A + SlotID);
-
-        slotQty[invSlotID]++;
-
-        auto* PSlotItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
-
-        if (PSlotItem && PSlotItem->getID() == ItemID && slotQty[invSlotID] <= (PSlotItem->getQuantity() - PSlotItem->getReserve()))
-        {
-            PChar->CraftContainer->setItem(SlotID + 1, ItemID, invSlotID, 1);
-        }
-    }
-
-    synthutils::startSynth(PChar);
-}
-
-/************************************************************************
- *                                                                       *
  *  Create Linkpearl                                                     *
  *                                                                       *
  ************************************************************************/
@@ -3262,7 +3162,7 @@ void PacketParserInitialize()
     PacketSize[0x083] = 0x10; PacketParser[0x083] = &ValidatedPacketHandler<GP_CLI_COMMAND_SHOP_BUY>;
     PacketSize[0x084] = 0x0C; PacketParser[0x084] = &ValidatedPacketHandler<GP_CLI_COMMAND_SHOP_SELL_REQ>;
     PacketSize[0x085] = 0x06; PacketParser[0x085] = &ValidatedPacketHandler<GP_CLI_COMMAND_SHOP_SELL_SET>;
-    PacketSize[0x096] = 0x12; PacketParser[0x096] = &SmallPacket0x096;
+    PacketSize[0x096] = 0x22; PacketParser[0x096] = &ValidatedPacketHandler<GP_CLI_COMMAND_COMBINE_ASK>;
     PacketSize[0x09B] = 0x0C; PacketParser[0x09B] = &ValidatedPacketHandler<GP_CLI_COMMAND_CHOCOBO_RACE_REQ>;
     PacketSize[0x0A0] = 0x00; PacketParser[0x0A0] = &ValidatedPacketHandler<GP_CLI_COMMAND_SWITCH_PROPOSAL>;
     PacketSize[0x0A1] = 0x00; PacketParser[0x0A1] = &ValidatedPacketHandler<GP_CLI_COMMAND_SWITCH_VOTE>;

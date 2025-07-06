@@ -63,6 +63,8 @@ set(PACKET_C2S_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/0x085_shop_sell_set.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x09b_chocobo_race_req.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x09b_chocobo_race_req.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x096_combine_ask.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x096_combine_ask.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x0aa_guild_buy.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x0aa_guild_buy.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x0ab_guild_buylist.cpp
