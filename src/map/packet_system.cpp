@@ -73,6 +73,7 @@
 #include "packets/c2s/0x02b_translate.h"
 #include "packets/c2s/0x02c_itemsearch.h"
 #include "packets/c2s/0x041_trophy_entry.h"
+#include "packets/c2s/0x04d_pbx.h"
 #include "packets/c2s/0x04e_auc.h"
 #include "packets/c2s/0x050_equip_set.h"
 #include "packets/c2s/0x051_equipset_set.h"
@@ -2395,19 +2396,6 @@ void SmallPacket0x04B(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *  Delivery Box                                                         *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x04D(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    dboxutils::HandlePacket(PChar, data);
-}
-
-/************************************************************************
- *                                                                       *
  *  Party Invite                                                         *
  *                                                                       *
  ************************************************************************/
@@ -3037,7 +3025,7 @@ void PacketParserInitialize()
     PacketSize[0x041] = 0x00; PacketParser[0x041] = &ValidatedPacketHandler<GP_CLI_COMMAND_TROPHY_ENTRY>;
     PacketSize[0x042] = 0x00; PacketParser[0x042] = &SmallPacket0x042;
     PacketSize[0x04B] = 0x00; PacketParser[0x04B] = &SmallPacket0x04B;
-    PacketSize[0x04D] = 0x00; PacketParser[0x04D] = &SmallPacket0x04D;
+    PacketSize[0x04D] = 0x20; PacketParser[0x04D] = &ValidatedPacketHandler<GP_CLI_COMMAND_PBX>;
     PacketSize[0x04E] = 0x3C; PacketParser[0x04E] = &ValidatedPacketHandler<GP_CLI_COMMAND_AUC>;
     PacketSize[0x050] = 0x08; PacketParser[0x050] = &ValidatedPacketHandler<GP_CLI_COMMAND_EQUIP_SET>;
     PacketSize[0x051] = 0x48; PacketParser[0x051] = &ValidatedPacketHandler<GP_CLI_COMMAND_EQUIPSET_SET>;

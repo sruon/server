@@ -26,11 +26,12 @@
 
 #include "packets/basic.h"
 
+struct GP_CLI_COMMAND_PBX;
 class CCharEntity;
 
 namespace dboxutils
 {
-    void HandlePacket(CCharEntity* PChar, CBasicPacket& data);
+    void HandlePacket(CCharEntity* PChar, const GP_CLI_COMMAND_PBX& data);
 
     void SendOldItems(CCharEntity* PChar, uint8 action, uint8 boxtype);
     void AddItemsToBeSent(CCharEntity* PChar, uint8 action, uint8 boxtype, uint8 slotID, uint8 invslot, uint32 quantity, const std::string& recieverName);

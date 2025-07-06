@@ -40,19 +40,19 @@
 #include "utils/jailutils.h"
 #include "utils/zoneutils.h"
 
+#include "packets/c2s/0x04d_pbx.h"
 #include "trade_container.h"
 #include "universal_container.h"
 
-void dboxutils::HandlePacket(CCharEntity* PChar, CBasicPacket& data)
+void dboxutils::HandlePacket(CCharEntity* PChar, const GP_CLI_COMMAND_PBX& data)
 {
     TracyZoneScoped;
 
     const auto charName = PChar->getName();
 
     // TODO: Validate all of these to make sure they're within sane bounds.
-    const auto action  = data.ref<uint8>(0x04);
-    const auto boxtype = data.ref<uint8>(0x05);
-    const auto slotID  = data.ref<uint8>(0x06);
+    const auto boxtype = data.BoxNo;
+    const auto slotID  = data.PostWorkNo;
 
     if (jailutils::InPrison(PChar)) // If jailed, no mailbox menu for you.
     {
@@ -78,109 +78,105 @@ void dboxutils::HandlePacket(CCharEntity* PChar, CBasicPacket& data)
         return;
     }
 
-    switch (action)
+    switch (static_cast<GP_CLI_COMMAND_PBX_COMMAND>(data.Command))
     {
-        case 0x01:
+        case GP_CLI_COMMAND_PBX_COMMAND::Work:
         {
-            DebugDeliveryBoxFmt("DBOX: SendOldItems (action: {:02X}): player: {}, boxtype: {}", action, charName, PChar->id, boxtype);
-            SendOldItems(PChar, action, boxtype);
+            DebugDeliveryBoxFmt("DBOX: SendOldItems (action: {:02X}): player: {}, boxtype: {}", data.Command, charName, PChar->id, boxtype);
+            SendOldItems(PChar, data.Command, boxtype);
         }
         break;
-        case 0x02:
+        case GP_CLI_COMMAND_PBX_COMMAND::Set:
         {
-            const uint8  invslot      = data.ref<uint8>(0x07);
-            const uint32 quantity     = data.ref<uint32>(0x08);
-            const auto   recieverName = db::escapeString(asStringFromUntrustedSource(data[0x10], 15));
+            const uint8  invslot      = data.ItemWorkNo;
+            const uint32 quantity     = data.ItemStacks;
+            const auto   receiverName = db::escapeString(asStringFromUntrustedSource(data.TargetName, sizeof(data.TargetName)));
 
             DebugDeliveryBoxFmt("DBOX: AddItemsToBeSent (action: {:02X}): player: {} ({}), boxtype: {}, slotID: {}, invslot: {}, quantity: {}, recieverName: {}",
-                                action, charName, PChar->id, boxtype, slotID, invslot, quantity, recieverName);
-            AddItemsToBeSent(PChar, action, boxtype, slotID, invslot, quantity, recieverName);
+                                data.Command, charName, PChar->id, boxtype, slotID, invslot, quantity, receiverName);
+            AddItemsToBeSent(PChar, data.Command, boxtype, slotID, invslot, quantity, receiverName);
         }
         break;
-        case 0x03:
+        case GP_CLI_COMMAND_PBX_COMMAND::Send:
         {
-            DebugDeliveryBoxFmt("DBOX: SendConfirmation (action: {:02X}): player: {} ({}), boxtype: {}, slotID: {}", action, charName, PChar->id, boxtype, slotID);
-            SendConfirmation(PChar, action, boxtype, slotID);
+            DebugDeliveryBoxFmt("DBOX: SendConfirmation (action: {:02X}): player: {} ({}), boxtype: {}, slotID: {}", data.Command, charName, PChar->id, boxtype, slotID);
+            SendConfirmation(PChar, data.Command, boxtype, slotID);
         }
         break;
-        case 0x04:
+        case GP_CLI_COMMAND_PBX_COMMAND::Cancel:
         {
-            DebugDeliveryBoxFmt("DBOX: CancelSendingItem (action: {:02X}): player: {} ({}), boxtype: {}, slotID: {}", action, charName, PChar->id, boxtype, slotID);
-            CancelSendingItem(PChar, action, boxtype, slotID);
+            DebugDeliveryBoxFmt("DBOX: CancelSendingItem (action: {:02X}): player: {} ({}), boxtype: {}, slotID: {}", data.Command, charName, PChar->id, boxtype, slotID);
+            CancelSendingItem(PChar, data.Command, boxtype, slotID);
         }
         break;
-        case 0x05:
+        case GP_CLI_COMMAND_PBX_COMMAND::Check:
         {
-            DebugDeliveryBoxFmt("DBOX: SendClientNewItemCount (action: {:02X}): player: {} ({}), boxtype: {}, slotID: {}", action, charName, PChar->id, boxtype, slotID);
-            SendClientNewItemCount(PChar, action, boxtype, slotID);
+            DebugDeliveryBoxFmt("DBOX: SendClientNewItemCount (action: {:02X}): player: {} ({}), boxtype: {}, slotID: {}", data.Command, charName, PChar->id, boxtype, slotID);
+            SendClientNewItemCount(PChar, data.Command, boxtype, slotID);
         }
         break;
-        case 0x06:
+        case GP_CLI_COMMAND_PBX_COMMAND::Recv:
         {
-            DebugDeliveryBoxFmt("DBOX: SendNewItems (action: {:02X}): player: {} ({}), boxtype: {}, slotID: {}", action, charName, PChar->id, boxtype, slotID);
-            SendNewItems(PChar, action, boxtype, slotID);
+            DebugDeliveryBoxFmt("DBOX: SendNewItems (action: {:02X}): player: {} ({}), boxtype: {}, slotID: {}", data.Command, charName, PChar->id, boxtype, slotID);
+            SendNewItems(PChar, data.Command, boxtype, slotID);
         }
         break;
-        case 0x07:
+        case GP_CLI_COMMAND_PBX_COMMAND::Confirm:
         {
-            DebugDeliveryBoxFmt("DBOX: RemoveDeliveredItemFromSendingBox (action: {:02X}): player: {} ({}), boxtype: {}, slotID: {}", action, charName, PChar->id, boxtype, slotID);
-            RemoveDeliveredItemFromSendingBox(PChar, action, boxtype, slotID);
+            DebugDeliveryBoxFmt("DBOX: RemoveDeliveredItemFromSendingBox (action: {:02X}): player: {} ({}), boxtype: {}, slotID: {}", data.Command, charName, PChar->id, boxtype, slotID);
+            RemoveDeliveredItemFromSendingBox(PChar, data.Command, boxtype, slotID);
         }
         break;
-        case 0x08:
+        case GP_CLI_COMMAND_PBX_COMMAND::Accept:
         {
-            DebugDeliveryBoxFmt("DBOX: UpdateDeliveryCellBeforeRemoving (action: {:02X}): player: {} ({}), boxtype: {}, slotID: {}", action, charName, PChar->id, boxtype, slotID);
-            UpdateDeliveryCellBeforeRemoving(PChar, action, boxtype, slotID);
+            DebugDeliveryBoxFmt("DBOX: UpdateDeliveryCellBeforeRemoving (action: {:02X}): player: {} ({}), boxtype: {}, slotID: {}", data.Command, charName, PChar->id, boxtype, slotID);
+            UpdateDeliveryCellBeforeRemoving(PChar, data.Command, boxtype, slotID);
         }
         break;
-        case 0x09:
+        case GP_CLI_COMMAND_PBX_COMMAND::Reject:
         {
-            DebugDeliveryBoxFmt("DBOX: ReturnToSender (action: {:02X}): player: {} ({}), boxtype: {}, slotID: {}", action, charName, PChar->id, boxtype, slotID);
-            ReturnToSender(PChar, action, boxtype, slotID);
+            DebugDeliveryBoxFmt("DBOX: ReturnToSender (action: {:02X}): player: {} ({}), boxtype: {}, slotID: {}", data.Command, charName, PChar->id, boxtype, slotID);
+            ReturnToSender(PChar, data.Command, boxtype, slotID);
         }
         break;
-        case 0x0A:
+        case GP_CLI_COMMAND_PBX_COMMAND::Get:
         {
-            DebugDeliveryBoxFmt("DBOX: TakeItemFromCell (action: {:02X}): player: {} ({}), boxtype: {}, slotID: {}", action, charName, PChar->id, boxtype, slotID);
-            TakeItemFromCell(PChar, action, boxtype, slotID);
+            DebugDeliveryBoxFmt("DBOX: TakeItemFromCell (action: {:02X}): player: {} ({}), boxtype: {}, slotID: {}", data.Command, charName, PChar->id, boxtype, slotID);
+            TakeItemFromCell(PChar, data.Command, boxtype, slotID);
         }
         break;
-        case 0x0B:
+        case GP_CLI_COMMAND_PBX_COMMAND::Clear:
         {
-            DebugDeliveryBoxFmt("DBOX: RemoveItemFromCell (action: {:02X}): player: {} ({}), boxtype: {}, slotID: {}", action, charName, PChar->id, boxtype, slotID);
-            RemoveItemFromCell(PChar, action, boxtype, slotID);
+            DebugDeliveryBoxFmt("DBOX: RemoveItemFromCell (action: {:02X}): player: {} ({}), boxtype: {}, slotID: {}", data.Command, charName, PChar->id, boxtype, slotID);
+            RemoveItemFromCell(PChar, data.Command, boxtype, slotID);
         }
         break;
-        case 0x0C:
+        case GP_CLI_COMMAND_PBX_COMMAND::Query:
         {
-            const auto recieverName = db::escapeString(asStringFromUntrustedSource(data[0x10], 15));
+            const auto receiverName = db::escapeString(asStringFromUntrustedSource(data.TargetName, sizeof(data.TargetName)));
 
-            DebugDeliveryBoxFmt("DBOX: ConfirmNameBeforeSending (action: {:02X}): player: {} ({}), boxtype: {}, recieverName: {}", action, charName, PChar->id, boxtype, recieverName);
-            ConfirmNameBeforeSending(PChar, action, boxtype, recieverName);
+            DebugDeliveryBoxFmt("DBOX: ConfirmNameBeforeSending (action: {:02X}): player: {} ({}), boxtype: {}, recieverName: {}", data.Command, charName, PChar->id, boxtype, receiverName);
+            ConfirmNameBeforeSending(PChar, data.Command, boxtype, receiverName);
         }
         break;
-        case 0x0D:
+        case GP_CLI_COMMAND_PBX_COMMAND::DeliOpen:
         {
-            DebugDeliveryBoxFmt("DBOX: OpenSendBox (action: {:02X}): player: {} ({}), boxtype: {}", action, charName, PChar->id, boxtype);
-            OpenSendBox(PChar, action, boxtype);
+            DebugDeliveryBoxFmt("DBOX: OpenSendBox (action: {:02X}): player: {} ({}), boxtype: {}", data.Command, charName, PChar->id, boxtype);
+            OpenSendBox(PChar, data.Command, boxtype);
         }
         break;
-        case 0x0E:
+        case GP_CLI_COMMAND_PBX_COMMAND::PostOpen:
         {
-            DebugDeliveryBoxFmt("DBOX: OpenRecvBox (action: {:02X}): player: {} ({}), boxtype: {}", action, charName, PChar->id, boxtype);
-            OpenRecvBox(PChar, action, boxtype);
+            DebugDeliveryBoxFmt("DBOX: OpenRecvBox (action: {:02X}): player: {} ({}), boxtype: {}", data.Command, charName, PChar->id, boxtype);
+            OpenRecvBox(PChar, data.Command, boxtype);
         }
         break;
-        case 0x0F:
+        case GP_CLI_COMMAND_PBX_COMMAND::PostClose:
         {
-            DebugDeliveryBoxFmt("DBOX: CloseMailWindow (action: {:02X}): player: {} ({}), boxtype: {}", action, charName, PChar->id, boxtype);
-            CloseMailWindow(PChar, action, boxtype);
+            DebugDeliveryBoxFmt("DBOX: CloseMailWindow (action: {:02X}): player: {} ({}), boxtype: {}", data.Command, charName, PChar->id, boxtype);
+            CloseMailWindow(PChar, data.Command, boxtype);
         }
         break;
-        default:
-        {
-            ShowErrorFmt("DBOX: Unhandled action: {:02X}, from player {} ({})", action, charName, PChar->id);
-        }
     }
 }
 
