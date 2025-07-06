@@ -73,6 +73,7 @@
 #include "packets/c2s/0x02b_translate.h"
 #include "packets/c2s/0x02c_itemsearch.h"
 #include "packets/c2s/0x041_trophy_entry.h"
+#include "packets/c2s/0x050_equip_set.h"
 #include "packets/c2s/0x051_equipset_set.h"
 #include "packets/c2s/0x052_equipset_check.h"
 #include "packets/c2s/0x053_lockstyle.h"
@@ -214,7 +215,6 @@
 #include "utils/itemutils.h"
 #include "utils/jailutils.h"
 #include "utils/petutils.h"
-#include "utils/synthutils.h"
 #include "utils/zoneutils.h"
 
 uint8 PacketSize[512];
@@ -2420,61 +2420,6 @@ void SmallPacket0x04E(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *  Equipment Change                                                     *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x050(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-    if (PChar->status != STATUS_TYPE::NORMAL)
-    {
-        return;
-    }
-
-    uint8 slotID      = data.ref<uint8>(0x04); // inventory slot
-    uint8 equipSlotID = data.ref<uint8>(0x05); // charequip slot
-    uint8 containerID = data.ref<uint8>(0x06); // container id
-
-    bool isAdditionalContainer =
-        containerID == LOC_MOGSATCHEL ||
-        containerID == LOC_MOGSACK ||
-        containerID == LOC_MOGCASE;
-
-    bool isEquippableInventory =
-        containerID == LOC_INVENTORY ||
-        containerID == LOC_WARDROBE ||
-        containerID == LOC_WARDROBE2 ||
-        containerID == LOC_WARDROBE3 ||
-        containerID == LOC_WARDROBE4 ||
-        containerID == LOC_WARDROBE5 ||
-        containerID == LOC_WARDROBE6 ||
-        containerID == LOC_WARDROBE7 ||
-        containerID == LOC_WARDROBE8 ||
-        (settings::get<bool>("main.EQUIP_FROM_OTHER_CONTAINERS") &&
-         isAdditionalContainer);
-
-    bool isLinkshell =
-        equipSlotID == SLOT_LINK1 ||
-        equipSlotID == SLOT_LINK2;
-
-    // Sanity check
-    if (!isEquippableInventory && !isLinkshell)
-    {
-        return;
-    }
-
-    charutils::EquipItem(PChar, slotID, equipSlotID, containerID); // current
-    PChar->RequestPersist(CHAR_PERSIST::EQUIP);
-    luautils::CheckForGearSet(PChar); // check for gear set on gear change
-    PChar->UpdateHealth();
-    PChar->retriggerLatents = true; // retrigger all latents later because our gear has changed
-}
-
-
-
-/************************************************************************
- *                                                                       *
  *  Party Invite                                                         *
  *                                                                       *
  ************************************************************************/
@@ -3106,7 +3051,7 @@ void PacketParserInitialize()
     PacketSize[0x04B] = 0x00; PacketParser[0x04B] = &SmallPacket0x04B;
     PacketSize[0x04D] = 0x00; PacketParser[0x04D] = &SmallPacket0x04D;
     PacketSize[0x04E] = 0x1E; PacketParser[0x04E] = &SmallPacket0x04E;
-    PacketSize[0x050] = 0x04; PacketParser[0x050] = &SmallPacket0x050;
+    PacketSize[0x050] = 0x08; PacketParser[0x050] = &ValidatedPacketHandler<GP_CLI_COMMAND_EQUIP_SET>;
     PacketSize[0x051] = 0x48; PacketParser[0x051] = &ValidatedPacketHandler<GP_CLI_COMMAND_EQUIPSET_SET>;
     PacketSize[0x052] = 0x4C; PacketParser[0x052] = &ValidatedPacketHandler<GP_CLI_COMMAND_EQUIPSET_CHECK>;
     PacketSize[0x053] = 0x88; PacketParser[0x053] = &ValidatedPacketHandler<GP_CLI_COMMAND_LOCKSTYLE>;
