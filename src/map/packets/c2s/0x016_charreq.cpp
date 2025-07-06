@@ -22,6 +22,7 @@
 #include "0x016_charreq.h"
 
 #include "entities/charentity.h"
+#include "entities/npcentity.h"
 #include "packets/char_status.h"
 #include "utils/zoneutils.h"
 
@@ -52,7 +53,7 @@ void GP_CLI_COMMAND_CHARREQ::process(MapSession* PSession, CCharEntity* PChar) c
                 }
                 else
                 {
-                    ShowError(fmt::format("Player {} requested information about a hidden GM ({}) using targid {}", PChar->getName(), PCharEntity->getName(), targid));
+                    ShowError(fmt::format("Player {} requested information about a hidden GM ({}) using targid {}", PChar->getName(), PCharEntity->getName(), ActIndex));
                 }
             }
         }

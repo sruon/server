@@ -77,6 +77,7 @@
 #include "packets/c2s/0x01f_gmcommand.h"
 #include "packets/c2s/0x02b_translate.h"
 #include "packets/c2s/0x02c_itemsearch.h"
+#include "packets/c2s/0x034_item_trade_list.h"
 #include "packets/c2s/0x036_item_transfer.h"
 #include "packets/c2s/0x037_item_use.h"
 #include "packets/c2s/0x03c_black_list.h"
@@ -197,7 +198,6 @@
 #include "packets/roe_sparkupdate.h"
 #include "packets/roe_update.h"
 #include "packets/trade_action.h"
-#include "packets/trade_item.h"
 #include "packets/trade_request.h"
 #include "packets/trade_update.h"
 #include "packets/zone_in.h"
@@ -1348,126 +1348,6 @@ void SmallPacket0x033(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *  Update Trade Item Slot                                               *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x034(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    // MONs can't trade
-    if (PChar->m_PMonstrosity != nullptr)
-    {
-        return;
-    }
-
-    uint32 quantity    = data.ref<uint32>(0x04);
-    uint16 itemID      = data.ref<uint16>(0x08);
-    uint8  invSlotID   = data.ref<uint8>(0x0A);
-    uint8  tradeSlotID = data.ref<uint8>(0x0B);
-
-    CCharEntity* PTarget = (CCharEntity*)PChar->GetEntity(PChar->TradePending.targid, TYPE_PC);
-
-    if (PTarget != nullptr && PTarget->id == PChar->TradePending.id)
-    {
-        if (!PChar->UContainer->IsSlotEmpty(tradeSlotID))
-        {
-            CItem* PCurrentSlotItem = PChar->UContainer->GetItem(tradeSlotID);
-            if (quantity != 0)
-            {
-                ShowError("SmallPacket0x034: Player %s trying to update trade quantity of a RESERVED item! [Item: %i | Trade Slot: %i] ",
-                          PChar->getName(), PCurrentSlotItem->getID(), tradeSlotID);
-            }
-            PCurrentSlotItem->setReserve(0);
-            PChar->UContainer->ClearSlot(tradeSlotID);
-        }
-
-        CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
-        // We used to disable Rare/Ex items being added to the container, but that is handled properly else where now
-        if (PItem != nullptr && PItem->getID() == itemID && quantity + PItem->getReserve() <= PItem->getQuantity())
-        {
-            // whoever commented above lied about ex items
-            if (PItem->getFlag() & ITEM_FLAG_EX)
-            {
-                return;
-            }
-
-            if (PItem->isSubType(ITEM_LOCKED))
-            {
-                return;
-            }
-
-            // If item count is zero remove from container
-            if (quantity > 0)
-            {
-                if (PItem->isType(ITEM_LINKSHELL))
-                {
-                    CItemLinkshell* PItemLinkshell  = static_cast<CItemLinkshell*>(PItem);
-                    CItemLinkshell* PItemLinkshell1 = (CItemLinkshell*)PChar->getEquip(SLOT_LINK1);
-                    CItemLinkshell* PItemLinkshell2 = (CItemLinkshell*)PChar->getEquip(SLOT_LINK2);
-                    if ((!PItemLinkshell1 && !PItemLinkshell2) || ((!PItemLinkshell1 || PItemLinkshell1->GetLSID() != PItemLinkshell->GetLSID()) &&
-                                                                   (!PItemLinkshell2 || PItemLinkshell2->GetLSID() != PItemLinkshell->GetLSID())))
-                    {
-                        PChar->pushPacket<CMessageStandardPacket>(MsgStd::LinkshellEquipBeforeUsing);
-                        PItem->setReserve(0);
-                        PChar->UContainer->SetItem(tradeSlotID, nullptr);
-                    }
-                    else
-                    {
-                        ShowInfo("%s->%s trade updating trade slot id %d with item %s, quantity %d", PChar->getName(), PTarget->getName(),
-                                 tradeSlotID, PItem->getName(), quantity);
-                        PItem->setReserve(quantity + PItem->getReserve());
-                        PChar->UContainer->SetItem(tradeSlotID, PItem);
-                    }
-                }
-                else
-                {
-                    ShowInfo("%s->%s trade updating trade slot id %d with item %s, quantity %d", PChar->getName(), PTarget->getName(),
-                             tradeSlotID, PItem->getName(), quantity);
-                    PItem->setReserve(quantity + PItem->getReserve());
-                    PChar->UContainer->SetItem(tradeSlotID, PItem);
-                }
-
-                if (settings::get<bool>("map.AUDIT_PLAYER_TRADES"))
-                {
-                    Async::getInstance()->submit(
-                        [itemID        = PItem->getID(),
-                         quantity      = quantity,
-                         sender        = PChar->id,
-                         sender_name   = PChar->getName(),
-                         receiver      = PTarget->id,
-                         receiver_name = PTarget->getName(),
-                         date          = earth_time::timestamp()]()
-                        {
-                            const auto query = "INSERT INTO audit_trade(itemid, quantity, sender, sender_name, receiver, receiver_name, date) VALUES (?, ?, ?, ?, ?, ?, ?)";
-                            if (!db::preparedStmt(query, itemID, quantity, sender, sender_name, receiver, receiver_name, date))
-                            {
-                                ShowErrorFmt("Failed to log trade transaction (item: {}, quantity: {}, sender: {}, receiver: {}, date: {})", itemID, quantity, sender, receiver, date);
-                            }
-                        });
-                }
-            }
-            else
-            {
-                ShowInfo("%s->%s trade updating trade slot id %d with item %s, quantity 0", PChar->getName(), PTarget->getName(),
-                         tradeSlotID, PItem->getName());
-                PItem->setReserve(0);
-                PChar->UContainer->SetItem(tradeSlotID, nullptr);
-            }
-            ShowDebug("%s->%s trade pushing packet to %s", PChar->getName(), PTarget->getName(), PChar->getName());
-            PChar->pushPacket<CTradeItemPacket>(PItem, tradeSlotID);
-            ShowDebug("%s->%s trade pushing packet to %s", PChar->getName(), PTarget->getName(), PTarget->getName());
-            PTarget->pushPacket<CTradeUpdatePacket>(PItem, tradeSlotID);
-
-            PChar->UContainer->UnLock();
-            PTarget->UContainer->UnLock();
-        }
-    }
-}
-
-/************************************************************************
- *                                                                       *
  *  Sort Inventory                                                       *
  *                                                                       *
  ************************************************************************/
@@ -2324,7 +2204,7 @@ void PacketParserInitialize()
     PacketSize[0x02C] = 0x00; PacketParser[0x02C] = &ValidatedPacketHandler<GP_CLI_COMMAND_ITEMSEARCH>;
     PacketSize[0x032] = 0x06; PacketParser[0x032] = &SmallPacket0x032;
     PacketSize[0x033] = 0x06; PacketParser[0x033] = &SmallPacket0x033;
-    PacketSize[0x034] = 0x06; PacketParser[0x034] = &SmallPacket0x034;
+    PacketSize[0x034] = 0x0C; PacketParser[0x034] = &ValidatedPacketHandler<GP_CLI_COMMAND_ITEM_TRADE_LIST>;
     PacketSize[0x036] = 0x40; PacketParser[0x036] = &ValidatedPacketHandler<GP_CLI_COMMAND_ITEM_TRANSFER>;
     PacketSize[0x037] = 0x14; PacketParser[0x037] = &ValidatedPacketHandler<GP_CLI_COMMAND_ITEM_USE>;
     PacketSize[0x03A] = 0x04; PacketParser[0x03A] = &SmallPacket0x03A;
