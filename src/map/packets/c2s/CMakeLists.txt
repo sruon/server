@@ -95,6 +95,8 @@ set(PACKET_C2S_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/0x064_scenarioitem.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x064_scenarioitem.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x066_fishing.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x06e_group_solicit_req.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x06e_group_solicit_req.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x070_group_breakup.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x070_group_breakup.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x071_group_strike.cpp

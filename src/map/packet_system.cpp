@@ -107,6 +107,7 @@
 #include "packets/c2s/0x063_dig.h"
 #include "packets/c2s/0x064_scenarioitem.h"
 #include "packets/c2s/0x066_fishing.h"
+#include "packets/c2s/0x06e_group_solicit_req.h"
 #include "packets/c2s/0x070_group_breakup.h"
 #include "packets/c2s/0x071_group_strike.h"
 #include "packets/c2s/0x074_group_solicit_res.h"
@@ -205,12 +206,10 @@
 #include "packets/zone_visited.h"
 
 #include "utils/battleutils.h"
-#include "utils/blacklistutils.h"
 #include "utils/charutils.h"
 #include "utils/fishingutils.h"
 #include "utils/gardenutils.h"
 #include "utils/itemutils.h"
-#include "utils/jailutils.h"
 #include "utils/zoneutils.h"
 
 uint8 PacketSize[512];
@@ -898,216 +897,6 @@ void SmallPacket0x01E(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *  Party Invite                                                         *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x06E(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    // Alias for clarity
-    auto* PInviter = PChar;
-
-    uint32 inviteeCharId = data.ref<uint32>(0x04);
-    uint16 inviteeTargId = data.ref<uint16>(0x08);
-
-    // cannot invite yourself
-    if (PInviter->id == inviteeCharId)
-    {
-        return;
-    }
-
-    if (jailutils::InPrison(PInviter))
-    {
-        // Initiator is in prison.  Send error message.
-        PInviter->pushPacket<CMessageBasicPacket>(PInviter, PInviter, 0, 0, MSGBASIC_CANNOT_USE_IN_AREA);
-        return;
-    }
-
-    // Block invite if target has blacklisted the initiator
-    if (blacklistutils::IsBlacklisted(inviteeCharId, PInviter->id))
-    {
-        return;
-    }
-
-    switch (data.ref<uint8>(0x0A))
-    {
-        case INVITE_PARTY: // party - must by party leader or solo
-        {
-            if (PInviter->PParty == nullptr || PInviter->PParty->GetLeader() == PInviter)
-            {
-                if (PInviter->PParty && PInviter->PParty->IsFull())
-                {
-                    PInviter->pushPacket<CMessageStandardPacket>(PInviter, 0, 0, MsgStd::CannotInvite);
-                    break;
-                }
-
-                CCharEntity* PInvitee = nullptr;
-
-                if (inviteeTargId != 0)
-                {
-                    CBaseEntity* PEntity = PInviter->GetEntity(inviteeTargId, TYPE_PC);
-                    if (PEntity && PEntity->id == inviteeCharId)
-                    {
-                        PInvitee = (CCharEntity*)PEntity;
-                    }
-                }
-                else
-                {
-                    PInvitee = zoneutils::GetChar(inviteeCharId);
-                }
-
-                if (PInvitee)
-                {
-                    ShowDebug("%s sent party invite to %s", PInviter->getName(), PInvitee->getName());
-
-                    // make sure invitee isn't dead or in jail, they aren't a party member and don't already have an invite pending, and your party is not full
-                    if (PInvitee->isDead() || jailutils::InPrison(PInvitee) || PInvitee->InvitePending.id != 0 || PInvitee->PParty != nullptr)
-                    {
-                        ShowDebug("%s is dead, in jail, has a pending invite, or is already in a party", PInvitee->getName());
-                        PInviter->pushPacket<CMessageStandardPacket>(PInviter, 0, 0, MsgStd::CannotInvite);
-                        break;
-                    }
-
-                    // check /blockaid
-                    if (PInvitee->getBlockingAid())
-                    {
-                        ShowDebug("%s is blocking party invites", PInvitee->getName());
-                        // Target is blocking assistance
-                        PInviter->pushPacket<CMessageSystemPacket>(0, 0, MsgStd::TargetIsCurrentlyBlocking);
-                        // Interaction was blocked
-                        PInvitee->pushPacket<CMessageSystemPacket>(0, 0, MsgStd::BlockedByBlockaid);
-                        // You cannot invite that person at this time.
-                        PInviter->pushPacket<CMessageSystemPacket>(0, 0, MsgStd::CannotInvite);
-                        break;
-                    }
-
-                    if (PInvitee->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))
-                    {
-                        ShowDebug("%s has level sync, unable to send invite", PInvitee->getName());
-                        PInviter->pushPacket<CMessageStandardPacket>(PInviter, 0, 0, MsgStd::CannotInviteLevelSync);
-                        break;
-                    }
-
-                    PInvitee->InvitePending.id     = PInviter->id;
-                    PInvitee->InvitePending.targid = PInviter->targid;
-
-                    PInvitee->pushPacket<CPartyInvitePacket>(inviteeCharId, inviteeTargId, PInviter->getName(), INVITE_PARTY);
-
-                    ShowDebug("Sent party invite packet to %s", PInvitee->getName());
-
-                    if (PInviter->PParty && PInviter->PParty->GetSyncTarget())
-                    {
-                        PInvitee->pushPacket<CMessageStandardPacket>(PInvitee, 0, 0, MsgStd::LevelSyncWarning);
-                    }
-                }
-                else
-                {
-                    // on another server (hopefully)
-                    message::send(ipc::PartyInvite{
-                        .inviteeId     = inviteeCharId,
-                        .inviteeTargId = inviteeTargId,
-                        .inviterId     = PInviter->id,
-                        .inviterTargId = PInviter->targid,
-                        .inviterName   = PInviter->getName(),
-                        .inviteType    = INVITE_PARTY,
-                    });
-                }
-            }
-            else // in party but not leader, cannot invite
-            {
-                ShowDebug("%s is not party leader, cannot send invite", PInviter->getName());
-                PInviter->pushPacket<CMessageStandardPacket>(PInviter, 0, 0, MsgStd::NotPartyLeader);
-            }
-        }
-        break;
-        case INVITE_ALLIANCE: // alliance - must be unallied party leader or alliance leader of a non-full alliance
-        {
-            if (PInviter->PParty && PInviter->PParty->GetLeader() == PInviter &&
-                (PInviter->PParty->m_PAlliance == nullptr ||
-                 (PInviter->PParty->m_PAlliance->getMainParty() == PInviter->PParty && !PInviter->PParty->m_PAlliance->isFull())))
-            {
-                CCharEntity* PInvitee = nullptr;
-
-                if (inviteeTargId != 0)
-                {
-                    CBaseEntity* PEntity = PInviter->GetEntity(inviteeTargId, TYPE_PC);
-                    if (PEntity && PEntity->id == inviteeCharId)
-                    {
-                        PInvitee = (CCharEntity*)PEntity;
-                    }
-                }
-                else
-                {
-                    PInvitee = zoneutils::GetChar(inviteeCharId);
-                }
-
-                if (PInvitee)
-                {
-                    ShowDebug("%s sent alliance invite to %s", PInviter->getName(), PInvitee->getName());
-
-                    // check /blockaid
-                    if (PInvitee->getBlockingAid())
-                    {
-                        ShowDebug("%s is blocking alliance invites", PInvitee->getName());
-                        // Target is blocking assistance
-                        PInviter->pushPacket<CMessageSystemPacket>(0, 0, MsgStd::TargetIsCurrentlyBlocking);
-                        // Interaction was blocked
-                        PInvitee->pushPacket<CMessageSystemPacket>(0, 0, MsgStd::BlockedByBlockaid);
-                        // You cannot invite that person at this time.
-                        PInviter->pushPacket<CMessageSystemPacket>(0, 0, MsgStd::CannotInvite);
-                        break;
-                    }
-
-                    // make sure intvitee isn't dead or in jail, they are an unallied party leader and don't already have an invite pending
-                    if (PInvitee->isDead() || jailutils::InPrison(PInvitee) || PInvitee->InvitePending.id != 0 || PInvitee->PParty == nullptr ||
-                        PInvitee->PParty->GetLeader() != PInvitee || PInvitee->PParty->m_PAlliance)
-                    {
-                        ShowDebug("%s is dead, in jail, has a pending invite, or is already in a party/alliance", PInvitee->getName());
-                        PInviter->pushPacket<CMessageStandardPacket>(PInviter, 0, 0, MsgStd::CannotInvite);
-                        break;
-                    }
-
-                    if (PInvitee->StatusEffectContainer->HasStatusEffect(EFFECT_LEVEL_SYNC))
-                    {
-                        ShowDebug("%s has level sync, unable to send invite", PInvitee->getName());
-                        PInviter->pushPacket<CMessageStandardPacket>(PInviter, 0, 0, MsgStd::CannotInviteLevelSync);
-                        break;
-                    }
-
-                    PInvitee->InvitePending.id     = PInviter->id;
-                    PInvitee->InvitePending.targid = PInviter->targid;
-
-                    PInvitee->pushPacket<CPartyInvitePacket>(inviteeCharId, inviteeTargId, PInviter->getName(), INVITE_ALLIANCE);
-
-                    ShowDebug("Sent party invite packet to %s", PInvitee->getName());
-                }
-                else
-                {
-                    // on another server (hopefully)
-                    message::send(ipc::PartyInvite{
-                        .inviteeId     = inviteeCharId,
-                        .inviteeTargId = inviteeTargId,
-                        .inviterId     = PInviter->id,
-                        .inviterTargId = PInviter->targid,
-                        .inviterName   = PInviter->getName(),
-                        .inviteType    = INVITE_ALLIANCE,
-                    });
-                }
-            }
-        }
-        break;
-        default:
-        {
-            ShowError("SmallPacket0x06E : unknown byte <%.2X>", data.ref<uint8>(0x0A));
-        }
-        break;
-    }
-}
-
-/************************************************************************
- *                                                                       *
  *  Party / Alliance Command 'Leave'                                     *
  *                                                                       *
  ************************************************************************/
@@ -1545,7 +1334,7 @@ void PacketParserInitialize()
     PacketSize[0x063] = 0x10; PacketParser[0x063] = &ValidatedPacketHandler<GP_CLI_COMMAND_DIG>;
     PacketSize[0x064] = 0x4C; PacketParser[0x064] = &ValidatedPacketHandler<GP_CLI_COMMAND_SCENARIOITEM>;
     PacketSize[0x066] = 0x0A; PacketParser[0x066] = &ValidatedPacketHandler<GP_CLI_COMMAND_FISHING>;
-    PacketSize[0x06E] = 0x06; PacketParser[0x06E] = &SmallPacket0x06E;
+    PacketSize[0x06E] = 0x0C; PacketParser[0x06E] = &ValidatedPacketHandler<GP_CLI_COMMAND_GROUP_SOLICIT_REQ>;
     PacketSize[0x06F] = 0x00; PacketParser[0x06F] = &SmallPacket0x06F;
     PacketSize[0x070] = 0x06; PacketParser[0x070] = &ValidatedPacketHandler<GP_CLI_COMMAND_GROUP_BREAKUP>;
     PacketSize[0x071] = 0x1C; PacketParser[0x071] = &ValidatedPacketHandler<GP_CLI_COMMAND_GROUP_STRIKE>;
