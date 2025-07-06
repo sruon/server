@@ -42,6 +42,8 @@ set(PACKET_C2S_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/0x041_trophy_entry.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x042_trophy_absence.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x042_trophy_absence.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x04b_fragments.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x04b_fragments.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x04d_pbx.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x04d_pbx.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x04e_auc.cpp

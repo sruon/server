@@ -82,6 +82,7 @@
 #include "packets/c2s/0x03d_black_edit.h"
 #include "packets/c2s/0x041_trophy_entry.h"
 #include "packets/c2s/0x042_trophy_absence.h"
+#include "packets/c2s/0x04b_fragments.h"
 #include "packets/c2s/0x04d_pbx.h"
 #include "packets/c2s/0x04e_auc.h"
 #include "packets/c2s/0x050_equip_set.h"
@@ -1802,133 +1803,6 @@ void SmallPacket0x03B(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *  Server Message Request                                               *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x04B(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-    uint8  msgChunk      = data.ref<uint8>(0x04);  // The current chunk of the message to send (1 = start, 2 = rest of message)
-    uint8  msgType       = data.ref<uint8>(0x06);  // 1 = Server message, 2 = Fishing Rank
-    uint8  msgLanguage   = data.ref<uint8>(0x07);  // Language request id (2 = English, 4 = French)
-    uint32 msgTimestamp  = data.ref<uint32>(0x08); // The message timestamp being requested
-    uint32 msgOffset     = data.ref<uint32>(0x10); // The offset to start obtaining the server message
-    uint32 msgRequestLen = data.ref<uint32>(0x14); // The total requested size of send to the client
-
-    // uint8  msgUnknown1  = data.ref<uint8>(0x05);  // Unknown always 0
-    // uint32 msgSizeTotal = data.ref<uint32>(0x0C); // The total length of the requested server message
-
-    if (msgType == 1) // Standard Server Message
-    {
-        std::string loginMessage = luautils::GetServerMessage(msgLanguage);
-
-        PChar->pushPacket<CServerMessagePacket>(loginMessage, msgLanguage, msgTimestamp, msgOffset);
-        PChar->pushPacket<CCharSyncPacket>(PChar);
-
-        // TODO: kill player til theyre dead and bsod
-        const auto rset = db::preparedStmt("SELECT version_mismatch FROM accounts_sessions WHERE charid = (?)", PChar->id);
-        if (rset && rset->rowsCount() > 0 && rset->next())
-        {
-            if (rset->get<bool>("version_mismatch"))
-            {
-                PChar->pushPacket<CChatMessagePacket>(PChar, CHAT_MESSAGE_TYPE::MESSAGE_SYSTEM_1, "Server does not support this client version.");
-            }
-        }
-    }
-    else if (msgType == 2) // Fish Ranking Packet
-    {
-        // The Message Chunk acts as a "sub-type" for the request
-        // 1 = First packet of ranking table
-        // 2 = Subsequent packet of ranking table
-        // 10 = ???
-        // 11 = ??? Prepare to withdraw?
-        // 12 = Response to a fish submission (No ranking or score - both 0) - Before ranking
-        // 13 = Fish Rank Self, including the score and rank (???) following fish submission (How is it ranked??)
-
-        // Create a holding vector for entries to be transmitted
-        std::vector<FishingContestEntry> entries;
-
-        int   maxFakes     = settings::get<int>("main.MAX_FAKE_ENTRIES");
-        uint8 realEntries  = fishingcontest::FishingRankEntryCount();
-        uint8 fakeEntries  = realEntries >= maxFakes ? 0 : maxFakes - realEntries;
-        uint8 totalEntries = realEntries + fakeEntries;
-        uint8 entryVal     = 0;
-        uint8 blockSize    = sizeof(FishingContestEntry); // Should be 36
-
-        FishingContestEntry selfEntry = {};
-
-        // Every packet has 6 blocks in it.  The first is always the "self" block of the requesting player
-        // The next five blocks are the next entries in the leaderboard
-        // Add the "Self" block for 0x1C - Either player data, or empty, depending on the chunk
-        if (msgChunk != 2)
-        {
-            // Client requesting the fish ranking menu header - All empty timestamps
-            // In either case, we need the "Fish Rank Self" block
-            FishingContestEntry* PEntry = fishingcontest::GetPlayerEntry(PChar);
-
-            // For any chunk, we include at least the char name and the total number of entries
-            std::strncpy(selfEntry.name, PChar->name.c_str(), PChar->name.size());
-            selfEntry.resultCount = totalEntries;
-
-            if (PEntry != nullptr)
-            {
-                selfEntry.mjob        = PEntry->mjob;
-                selfEntry.sjob        = PEntry->sjob;
-                selfEntry.mlvl        = PEntry->mlvl;
-                selfEntry.slvl        = PEntry->slvl;
-                selfEntry.race        = PEntry->race;
-                selfEntry.allegiance  = PEntry->allegiance;
-                selfEntry.fishRank    = PEntry->fishRank;
-                selfEntry.score       = PEntry->score;
-                selfEntry.submitTime  = PEntry->submitTime;
-                selfEntry.contestRank = PEntry->contestRank;
-                selfEntry.share       = PEntry->share;
-                selfEntry.dataset_b   = PEntry->dataset_b;
-            }
-            else // Builds header entry if the player has no submission
-            {
-                selfEntry.mjob       = static_cast<uint8>(PChar->GetMJob());
-                selfEntry.sjob       = static_cast<uint8>(PChar->GetSJob());
-                selfEntry.mlvl       = PChar->GetMLevel();
-                selfEntry.slvl       = PChar->GetSLevel();
-                selfEntry.race       = PChar->mainlook.race;
-                selfEntry.allegiance = static_cast<uint8>(PChar->allegiance);
-                selfEntry.fishRank   = PChar->RealSkills.rank[SKILLTYPE::SKILL_FISHING];
-                selfEntry.submitTime = earth_time::vanadiel_timestamp();
-            }
-        }
-
-        entries.push_back(selfEntry); // Adds empty entry if this isn't the first packet
-
-        // Add the next five blocks until we are out of entries
-        if (msgChunk == 1 || msgChunk == 2)
-        {
-            while (entries.size() <= (msgRequestLen / blockSize))
-            {
-                // Create a copy of the ranking entry and hold it in the local entry vector
-                // This vector is cleared once the packets are sent
-                uint8                position    = msgOffset / blockSize + entryVal++;
-                FishingContestEntry* packetEntry = fishingcontest::GetFishRankEntry(position);
-                if (packetEntry != nullptr)
-                {
-                    packetEntry->resultCount = totalEntries;
-                    entries.push_back(*packetEntry);
-                }
-                else
-                {
-                    entries.emplace_back(FishingContestEntry{}); // Safety if there is no pointer but we need to fill the vector
-                }
-            }
-        }
-
-        PChar->pushPacket<CFishRankingPacket>(entries, msgLanguage, msgTimestamp, msgOffset, totalEntries, msgChunk);
-        entries.clear();
-    }
-}
-
-/************************************************************************
- *                                                                       *
  *  Party Invite                                                         *
  *                                                                       *
  ************************************************************************/
@@ -2557,7 +2431,7 @@ void PacketParserInitialize()
     PacketSize[0x03D] = 0x1C; PacketParser[0x03D] = &ValidatedPacketHandler<GP_CLI_COMMAND_BLACK_EDIT>;
     PacketSize[0x041] = 0x00; PacketParser[0x041] = &ValidatedPacketHandler<GP_CLI_COMMAND_TROPHY_ENTRY>;
     PacketSize[0x042] = 0x06; PacketParser[0x042] = &ValidatedPacketHandler<GP_CLI_COMMAND_TROPHY_ABSENCE>;
-    PacketSize[0x04B] = 0x00; PacketParser[0x04B] = &SmallPacket0x04B;
+    PacketSize[0x04B] = 0x18; PacketParser[0x04B] = &ValidatedPacketHandler<GP_CLI_COMMAND_FRAGMENTS>;
     PacketSize[0x04D] = 0x20; PacketParser[0x04D] = &ValidatedPacketHandler<GP_CLI_COMMAND_PBX>;
     PacketSize[0x04E] = 0x3C; PacketParser[0x04E] = &ValidatedPacketHandler<GP_CLI_COMMAND_AUC>;
     PacketSize[0x050] = 0x08; PacketParser[0x050] = &ValidatedPacketHandler<GP_CLI_COMMAND_EQUIP_SET>;
