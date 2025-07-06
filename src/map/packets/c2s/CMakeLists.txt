@@ -16,6 +16,8 @@ set(PACKET_C2S_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/0x00f_clstat.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x011_zone_transition.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x011_zone_transition.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x01b_friendpass.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x01b_friendpass.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x015_pos.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x015_pos.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x016_charreq.cpp

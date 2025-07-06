@@ -71,6 +71,7 @@
 #include "packets/c2s/0x00d_netend.h"
 #include "packets/c2s/0x00f_clstat.h"
 #include "packets/c2s/0x011_zone_transition.h"
+#include "packets/c2s/0x01b_friendpass.h"
 #include "packets/c2s/0x015_pos.h"
 #include "packets/c2s/0x016_charreq.h"
 #include "packets/c2s/0x017_charreq2.h"
@@ -199,7 +200,6 @@
 #include "packets/trade_item.h"
 #include "packets/trade_request.h"
 #include "packets/trade_update.h"
-#include "packets/world_pass.h"
 #include "packets/zone_in.h"
 #include "packets/zone_visited.h"
 
@@ -854,49 +854,6 @@ void SmallPacket0x01A(MapSession* const PSession, CCharEntity* const PChar, CBas
         }
         break;
     }
-}
-
-/************************************************************************
- *                                                                       *
- *  World Pass                                                           *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x01B(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    // https://github.com/atom0s/XiPackets/tree/main/world/client/0x001B
-    struct GP_CLI_FRIENDPASS
-    {
-        uint16_t id : 9;
-        uint16_t size : 7;
-        uint16_t sync;
-        uint16_t Para;      // PS2: Para
-        uint16_t padding00; // PS2: Dammy
-    };
-
-    auto* packet = data.as<GP_CLI_FRIENDPASS>();
-    switch (packet->Para)
-    {
-        case 0: // 0: Client has requested to begin the purchase of a world pass.
-            // TODO
-            break;
-        case 1: // 1: Client has confirmed the purchase of a world pass.
-            // TODO
-            break;
-        case 2: // 2: Client has requested to begin the purchase of a gold world pass.
-            // TODO
-            break;
-        case 3: // 3: Client has confirmed the purchase of a gold world pass.
-            // TODO
-            break;
-        default:
-            ShowWarning("SmallPacket0x01B: Unknown Para value %u", packet->Para);
-            break;
-    }
-
-    PChar->pushPacket<CWorldPassPacket>(data.ref<uint8>(0x04) & 1 ? (uint32)xirand::GetRandomNumber(9999999999) : 0);
 }
 
 /************************************************************************
@@ -2680,7 +2637,7 @@ void PacketParserInitialize()
     PacketSize[0x016] = 0x08; PacketParser[0x016] = &ValidatedPacketHandler<GP_CLI_COMMAND_CHARREQ>;
     PacketSize[0x017] = 0x14; PacketParser[0x017] = &ValidatedPacketHandler<GP_CLI_COMMAND_CHARREQ2>;
     PacketSize[0x01A] = 0x0E; PacketParser[0x01A] = &SmallPacket0x01A;
-    PacketSize[0x01B] = 0x00; PacketParser[0x01B] = &SmallPacket0x01B;
+    PacketSize[0x01B] = 0x1C; PacketParser[0x01B] = &ValidatedPacketHandler<GP_CLI_COMMAND_FRIENDPASS>;
     PacketSize[0x01C] = 0x00; PacketParser[0x01C] = &SmallPacket0x01C;
     PacketSize[0x01E] = 0x00; PacketParser[0x01E] = &SmallPacket0x01E;
     PacketSize[0x01F] = 0x00; PacketParser[0x01F] = &ValidatedPacketHandler<GP_CLI_COMMAND_GMCOMMAND>;
