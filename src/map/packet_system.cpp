@@ -77,6 +77,7 @@
 #include "packets/c2s/0x01f_gmcommand.h"
 #include "packets/c2s/0x02b_translate.h"
 #include "packets/c2s/0x02c_itemsearch.h"
+#include "packets/c2s/0x036_item_transfer.h"
 #include "packets/c2s/0x037_item_use.h"
 #include "packets/c2s/0x03c_black_list.h"
 #include "packets/c2s/0x03d_black_edit.h"
@@ -179,11 +180,8 @@
 #include "packets/c2s/0x11d_jump.h"
 #include "packets/char_recast.h"
 #include "packets/char_status.h"
-#include "packets/char_sync.h"
-#include "packets/chat_message.h"
 #include "packets/chocobo_digging.h"
 #include "packets/downloading_data.h"
-#include "packets/fish_ranking.h"
 #include "packets/inventory_assign.h"
 #include "packets/inventory_count.h"
 #include "packets/inventory_finish.h"
@@ -198,7 +196,6 @@
 #include "packets/roe_questlog.h"
 #include "packets/roe_sparkupdate.h"
 #include "packets/roe_update.h"
-#include "packets/server_message.h"
 #include "packets/trade_action.h"
 #include "packets/trade_item.h"
 #include "packets/trade_request.h"
@@ -1471,101 +1468,6 @@ void SmallPacket0x034(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *  Trade Complete                                                       *
- *  Sent to complete the trade.                                          *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x036(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    // If PChar is invisible don't allow the trade
-    if (PChar->StatusEffectContainer->HasStatusEffectByFlag(EFFECTFLAG_INVISIBLE))
-    {
-        // "You cannot use that command while invisible."
-        PChar->pushPacket<CMessageSystemPacket>(0, 0, MsgStd::CannotWhileInvisible);
-        return;
-    }
-
-    // MONs can't trade
-    if (PChar->m_PMonstrosity != nullptr)
-    {
-        return;
-    }
-
-    uint32 npcid  = data.ref<uint32>(0x04);
-    uint16 targid = data.ref<uint16>(0x3A);
-
-    CBaseEntity* PNpc = PChar->GetEntity(targid, TYPE_NPC | TYPE_MOB);
-
-    // Only allow trading with mobs if it's status is an NPC
-    if (PNpc != nullptr && PNpc->objtype == TYPE_MOB && PNpc->status != STATUS_TYPE::NORMAL)
-    {
-        return;
-    }
-
-    if ((PNpc != nullptr) && (PNpc->id == npcid))
-    {
-        if (distance(PChar->loc.p, PNpc->loc.p) > 6.0f) // Tested as around 6.0' on retail
-        {
-            ShowError("Player %s trying to trade NPC %s from too far away! ", PChar->getName(), PNpc->getName());
-            return;
-        }
-
-        uint8 numItems = data.ref<uint8>(0x3C);
-
-        PChar->TradeContainer->Clean();
-
-        for (int32 slotID = 0; slotID < numItems; ++slotID)
-        {
-            uint8  invSlotID = data.ref<uint8>(0x30 + slotID);
-            uint32 Quantity  = data.ref<uint32>(0x08 + slotID * 4);
-
-            CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(invSlotID);
-
-            if (PItem == nullptr || PItem->getQuantity() < Quantity)
-            {
-                ShowError("Player %s trying to trade NPC %s with invalid item! ", PChar->getName(), PNpc->getName());
-                return;
-            }
-
-            if (PItem->getReserve() > 0)
-            {
-                ShowError("Player %s trying to trade NPC %s with reserved item! ", PChar->getName(), PNpc->getName());
-                return;
-            }
-
-            if (settings::get<bool>("map.AUDIT_PLAYER_TRADES"))
-            {
-                Async::getInstance()->submit(
-                    [itemID        = PItem->getID(),
-                     quantity      = Quantity,
-                     sender        = PChar->id,
-                     sender_name   = PChar->getName(),
-                     receiver      = PNpc->id,
-                     receiver_name = PNpc->getName(),
-                     date          = earth_time::timestamp()]()
-                    {
-                        const auto query = "INSERT INTO audit_trade(itemid, quantity, sender, sender_name, receiver, receiver_name, date) VALUES (?, ?, ?, ?, ?, ?, ?)";
-                        if (!db::preparedStmt(query, itemID, quantity, sender, sender_name, receiver, receiver_name, date))
-                        {
-                            ShowErrorFmt("Failed to log trade transaction (item: {}, quantity: {}, sender: {}, receiver: {}, date: {})", itemID, quantity, sender, receiver, date);
-                        }
-                    });
-            }
-
-            PItem->setReserve(Quantity);
-            PChar->TradeContainer->setItem(slotID, PItem->getID(), invSlotID, Quantity, PItem);
-        }
-
-        luautils::OnTrade(PChar, PNpc);
-        PChar->TradeContainer->unreserveUnconfirmed();
-    }
-}
-
-/************************************************************************
- *                                                                       *
  *  Sort Inventory                                                       *
  *                                                                       *
  ************************************************************************/
@@ -2423,7 +2325,7 @@ void PacketParserInitialize()
     PacketSize[0x032] = 0x06; PacketParser[0x032] = &SmallPacket0x032;
     PacketSize[0x033] = 0x06; PacketParser[0x033] = &SmallPacket0x033;
     PacketSize[0x034] = 0x06; PacketParser[0x034] = &SmallPacket0x034;
-    PacketSize[0x036] = 0x20; PacketParser[0x036] = &SmallPacket0x036;
+    PacketSize[0x036] = 0x40; PacketParser[0x036] = &ValidatedPacketHandler<GP_CLI_COMMAND_ITEM_TRANSFER>;
     PacketSize[0x037] = 0x14; PacketParser[0x037] = &ValidatedPacketHandler<GP_CLI_COMMAND_ITEM_USE>;
     PacketSize[0x03A] = 0x04; PacketParser[0x03A] = &SmallPacket0x03A;
     PacketSize[0x03B] = 0x10; PacketParser[0x03B] = &SmallPacket0x03B;

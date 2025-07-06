@@ -26,6 +26,8 @@ set(PACKET_C2S_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/0x016_charreq.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x017_charreq2.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x017_charreq2.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x036_item_transfer.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x036_item_transfer.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x037_item_use.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x037_item_use.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x03c_black_list.cpp
