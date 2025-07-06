@@ -32,6 +32,8 @@ set(PACKET_C2S_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/0x036_item_transfer.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x037_item_use.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x037_item_use.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x03b_mannequin_set.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x03b_mannequin_set.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x03c_black_list.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x03c_black_list.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x03d_black_edit.cpp

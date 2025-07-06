@@ -80,6 +80,7 @@
 #include "packets/c2s/0x034_item_trade_list.h"
 #include "packets/c2s/0x036_item_transfer.h"
 #include "packets/c2s/0x037_item_use.h"
+#include "packets/c2s/0x03b_mannequin_set.h"
 #include "packets/c2s/0x03c_black_list.h"
 #include "packets/c2s/0x03d_black_edit.h"
 #include "packets/c2s/0x041_trophy_entry.h"
@@ -1421,170 +1422,6 @@ void SmallPacket0x03A(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *  Mannequin Equip                                                      *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x03B(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-    TracyZoneCString("Mannequin Equip");
-
-    // What are you doing?
-    uint8 action = data.ref<uint8>(0x04);
-
-    // Where is the mannequin?
-    uint8 mannequinStorageLoc     = data.ref<uint8>(0x08);
-    uint8 mannequinStorageLocSlot = data.ref<uint8>(0x0C);
-
-    // Which slot on the mannequin?
-    uint8 mannequinInternalSlot = data.ref<uint8>(0x0D);
-
-    // Where is the item that is being equipped/unequipped?
-    uint8 itemStorageLoc     = data.ref<uint8>(0x10);
-    uint8 itemStorageLocSlot = data.ref<uint8>(0x14);
-
-    // Validation
-    if (action != 1 && action != 2 && action != 5)
-    {
-        ShowWarning("SmallPacket0x03B: Invalid action passed to Mannequin Equip packet %u by %s", action, PChar->getName());
-        return;
-    }
-
-    if (mannequinStorageLoc != LOC_MOGSAFE && mannequinStorageLoc != LOC_MOGSAFE2)
-    {
-        ShowWarning("SmallPacket0x03B: Invalid mannequin location passed to Mannequin Equip packet %u by %s", mannequinStorageLoc, PChar->getName());
-        return;
-    }
-
-    if (itemStorageLoc != LOC_STORAGE && action == 1) // Only valid for direct equip/unequip
-    {
-        ShowWarning("SmallPacket0x03B: Invalid item location passed to Mannequin Equip packet %u by %s", itemStorageLoc, PChar->getName());
-        return;
-    }
-
-    if (mannequinInternalSlot >= 8)
-    {
-        ShowWarning("SmallPacket0x03B: Invalid mannequin equipment index passed to Mannequin Equip packet %u (range: 0-7) by %s", mannequinInternalSlot, PChar->getName());
-        return;
-    }
-
-    auto* PMannequin = PChar->getStorage(mannequinStorageLoc)->GetItem(mannequinStorageLocSlot);
-    if (PMannequin == nullptr)
-    {
-        ShowWarning("SmallPacket0x03B: Unable to load mannequin from slot %u in location %u by %s", mannequinStorageLocSlot, mannequinStorageLoc, PChar->getName());
-        return;
-    }
-
-    auto setStatusOfStorageItemAtSlot = [](CCharEntity* PChar, uint8 slot, uint8 status) -> void
-    {
-        if (PChar == nullptr || slot == 0)
-        {
-            return;
-        }
-
-        auto* PItem = PChar->getStorage(LOC_STORAGE)->GetItem(slot);
-        if (PItem == nullptr)
-        {
-            return;
-        }
-
-        PChar->pushPacket<CInventoryAssignPacket>(PItem, status);
-    };
-
-    switch (action)
-    {
-        case 1: // Equip
-        {
-            // Action 1 Unequip Hack: Does this need to exist?
-            if (PMannequin->m_extra[10 + mannequinInternalSlot] == itemStorageLocSlot)
-            {
-                setStatusOfStorageItemAtSlot(PChar, itemStorageLocSlot, INV_NORMAL);
-                PMannequin->m_extra[10 + mannequinInternalSlot] = 0;
-            }
-            else // Regular Logic
-            {
-                setStatusOfStorageItemAtSlot(PChar, itemStorageLocSlot, INV_MANNEQUIN);
-                PMannequin->m_extra[10 + mannequinInternalSlot] = itemStorageLocSlot;
-            }
-            break;
-        }
-        case 2: // Unequip
-        {
-            setStatusOfStorageItemAtSlot(PChar, itemStorageLocSlot, INV_NORMAL);
-            PMannequin->m_extra[10 + mannequinInternalSlot] = 0;
-            break;
-        }
-        case 5: // Unequip All
-        {
-            for (uint8 i = 0; i < 8; ++i)
-            {
-                if (PMannequin->m_extra[10 + i] > 0)
-                {
-                    setStatusOfStorageItemAtSlot(PChar, PMannequin->m_extra[10 + i], INV_NORMAL);
-                }
-                PMannequin->m_extra[10 + i] = 0;
-            }
-            break;
-        }
-    }
-
-    // Build Mannequin model id list
-    auto getModelIdFromStorageSlot = [](CCharEntity* PChar, uint8 slot) -> uint16
-    {
-        uint16 modelId = 0x0000;
-
-        if (slot == 0)
-        {
-            return modelId;
-        }
-
-        auto* PItem = PChar->getStorage(LOC_STORAGE)->GetItem(slot);
-        if (PItem == nullptr)
-        {
-            return modelId;
-        }
-
-        if (auto* PItemEquipment = dynamic_cast<CItemEquipment*>(PItem))
-        {
-            modelId = PItemEquipment->getModelId();
-        }
-
-        return modelId;
-    };
-
-    uint16 mainId  = getModelIdFromStorageSlot(PChar, PMannequin->m_extra[10 + 0]);
-    uint16 subId   = getModelIdFromStorageSlot(PChar, PMannequin->m_extra[10 + 1]);
-    uint16 rangeId = getModelIdFromStorageSlot(PChar, PMannequin->m_extra[10 + 2]);
-    uint16 headId  = getModelIdFromStorageSlot(PChar, PMannequin->m_extra[10 + 3]);
-    uint16 bodyId  = getModelIdFromStorageSlot(PChar, PMannequin->m_extra[10 + 4]);
-    uint16 handsId = getModelIdFromStorageSlot(PChar, PMannequin->m_extra[10 + 5]);
-    uint16 legId   = getModelIdFromStorageSlot(PChar, PMannequin->m_extra[10 + 6]);
-    uint16 feetId  = getModelIdFromStorageSlot(PChar, PMannequin->m_extra[10 + 7]);
-
-    // TODO: (?)
-    // 10 + 8 = Race
-    // 10 + 9 = Pose
-
-    const auto rset = db::preparedStmt("UPDATE char_inventory "
-                                       "SET "
-                                       "extra = ? "
-                                       "WHERE location = ? AND slot = ? AND charid = ?",
-                                       PMannequin->m_extra, mannequinStorageLoc, mannequinStorageLocSlot, PChar->id);
-    if (rset)
-    {
-        PChar->pushPacket<CInventoryItemPacket>(PMannequin, mannequinStorageLoc, mannequinStorageLocSlot);
-        PChar->pushPacket<CInventoryCountPacket>(mannequinStorageLoc, mannequinStorageLocSlot, headId, bodyId, handsId, legId, feetId, mainId, subId, rangeId);
-        PChar->pushPacket<CInventoryFinishPacket>();
-    }
-    else
-    {
-        ShowError("SmallPacket0x03B: Problem writing Mannequin to database!");
-    }
-}
-
-/************************************************************************
- *                                                                       *
  *  Party Invite                                                         *
  *                                                                       *
  ************************************************************************/
@@ -2208,7 +2045,7 @@ void PacketParserInitialize()
     PacketSize[0x036] = 0x40; PacketParser[0x036] = &ValidatedPacketHandler<GP_CLI_COMMAND_ITEM_TRANSFER>;
     PacketSize[0x037] = 0x14; PacketParser[0x037] = &ValidatedPacketHandler<GP_CLI_COMMAND_ITEM_USE>;
     PacketSize[0x03A] = 0x04; PacketParser[0x03A] = &SmallPacket0x03A;
-    PacketSize[0x03B] = 0x10; PacketParser[0x03B] = &SmallPacket0x03B;
+    PacketSize[0x03B] = 0x20; PacketParser[0x03B] = &ValidatedPacketHandler<GP_CLI_COMMAND_MANNEQUIN_SET>;
     PacketSize[0x03C] = 0x1C; PacketParser[0x03C] = &ValidatedPacketHandler<GP_CLI_COMMAND_BLACK_LIST>;
     PacketSize[0x03D] = 0x1C; PacketParser[0x03D] = &ValidatedPacketHandler<GP_CLI_COMMAND_BLACK_EDIT>;
     PacketSize[0x041] = 0x00; PacketParser[0x041] = &ValidatedPacketHandler<GP_CLI_COMMAND_TROPHY_ENTRY>;
