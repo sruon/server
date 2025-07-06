@@ -72,3 +72,13 @@ auto PacketValidator::isInEvent(const CCharEntity* PChar, const std::optional<ui
 
     return *this;
 }
+
+auto PacketValidator::isNotMonstrosity(const CCharEntity* PChar) -> PacketValidator&
+{
+    if (PChar->m_PMonstrosity != nullptr)
+    {
+        result_.addError("Player is a MON");
+    }
+
+    return *this;
+}

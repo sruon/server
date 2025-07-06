@@ -167,6 +167,8 @@ public:
     auto isNotPreventedAction(const CCharEntity* PChar) -> PacketValidator&;
     // Character must be in an event
     auto isInEvent(const CCharEntity* PChar, std::optional<uint16_t> eventId = std::nullopt) -> PacketValidator&;
+    // Character must not be a MON
+    auto isNotMonstrosity(const CCharEntity* PChar) -> PacketValidator&;
 
     // Custom validation function
     template <typename Func>

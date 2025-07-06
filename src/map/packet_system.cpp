@@ -72,6 +72,7 @@
 #include "packets/c2s/0x01f_gmcommand.h"
 #include "packets/c2s/0x02b_translate.h"
 #include "packets/c2s/0x02c_itemsearch.h"
+#include "packets/c2s/0x037_item_use.h"
 #include "packets/c2s/0x041_trophy_entry.h"
 #include "packets/c2s/0x04d_pbx.h"
 #include "packets/c2s/0x04e_auc.h"
@@ -1902,48 +1903,6 @@ void SmallPacket0x036(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *  Item Usage                                                           *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x037(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    // MONs can't use usable items
-    if (PChar->m_PMonstrosity != nullptr)
-    {
-        return;
-    }
-
-    uint16 TargetID  = data.ref<uint16>(0x0C);
-    uint8  SlotID    = data.ref<uint8>(0x0E);
-    uint8  StorageID = data.ref<uint8>(0x10);
-
-    if (StorageID >= CONTAINER_ID::MAX_CONTAINER_ID)
-    {
-        ShowError("Invalid storage ID passed to packet %u by %s", StorageID, PChar->getName());
-        return;
-    }
-
-    if (PChar->m_moghouseID)
-    {
-        ShowError("Player trying to use item in moghouse %s", PChar->getName());
-        return;
-    }
-
-    if (PChar->UContainer->GetType() != UCONTAINER_USEITEM)
-    {
-        PChar->PAI->UseItem(TargetID, StorageID, SlotID);
-    }
-    else
-    {
-        PChar->pushPacket<CMessageBasicPacket>(PChar, PChar, 0, 0, 56);
-    }
-}
-
-/************************************************************************
- *                                                                       *
  *  Sort Inventory                                                       *
  *                                                                       *
  ************************************************************************/
@@ -3017,7 +2976,7 @@ void PacketParserInitialize()
     PacketSize[0x033] = 0x06; PacketParser[0x033] = &SmallPacket0x033;
     PacketSize[0x034] = 0x06; PacketParser[0x034] = &SmallPacket0x034;
     PacketSize[0x036] = 0x20; PacketParser[0x036] = &SmallPacket0x036;
-    PacketSize[0x037] = 0x0A; PacketParser[0x037] = &SmallPacket0x037;
+    PacketSize[0x037] = 0x14; PacketParser[0x037] = &ValidatedPacketHandler<GP_CLI_COMMAND_ITEM_USE>;
     PacketSize[0x03A] = 0x04; PacketParser[0x03A] = &SmallPacket0x03A;
     PacketSize[0x03B] = 0x10; PacketParser[0x03B] = &SmallPacket0x03B;
     PacketSize[0x03C] = 0x00; PacketParser[0x03C] = &SmallPacket0x03C;
