@@ -10,6 +10,8 @@ set(PACKET_C2S_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/0x02c_itemsearch.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x00d_netend.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x00d_netend.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x00f_clstat.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x00f_clstat.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x037_item_use.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x037_item_use.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x0a0_switch_proposal.cpp
