@@ -72,6 +72,7 @@
 #include "packets/c2s/0x00d_netend.h"
 #include "packets/c2s/0x00f_clstat.h"
 #include "packets/c2s/0x011_zone_transition.h"
+#include "packets/c2s/0x016_charreq.h"
 #include "packets/c2s/0x01f_gmcommand.h"
 #include "packets/c2s/0x02b_translate.h"
 #include "packets/c2s/0x02c_itemsearch.h"
@@ -447,74 +448,6 @@ void SmallPacket0x015(MapSession* const PSession, CCharEntity* const PChar, CBas
             }
         });
         // clang-format on
-    }
-}
-
-/************************************************************************
- *                                                                       *
- *  Entity Information Request (Event NPC Information Request)           *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x016(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    uint16 targid = data.ref<uint16>(0x04);
-
-    if (targid == PChar->targid)
-    {
-        PChar->updateEntityPacket(PChar, ENTITY_SPAWN, UPDATE_ALL_CHAR);
-        PChar->pushPacket<CCharStatusPacket>(PChar);
-    }
-    else
-    {
-        CBaseEntity* PEntity = PChar->GetEntity(targid, TYPE_NPC | TYPE_PC);
-
-        if (PEntity && PEntity->objtype == TYPE_PC)
-        {
-            // Char we want an update for
-            CCharEntity* PCharEntity = dynamic_cast<CCharEntity*>(PEntity);
-            if (PCharEntity)
-            {
-                if (!PCharEntity->m_isGMHidden)
-                {
-                    PChar->updateEntityPacket(PCharEntity, ENTITY_SPAWN, UPDATE_ALL_CHAR);
-                }
-                else
-                {
-                    ShowError(fmt::format("Player {} requested information about a hidden GM ({}) using targid {}", PChar->getName(), PCharEntity->getName(), targid));
-                }
-            }
-        }
-        else
-        {
-            if (!PEntity)
-            {
-                PEntity = zoneutils::GetTrigger(targid, PChar->getZone());
-
-                // PEntity->id will now be the full id of the entity we could not find
-                ShowWarning(fmt::format("Server missing npc_list.sql entry <{}> in zone <{} ({})>",
-                                        PEntity->id, zoneutils::GetZone(PChar->getZone())->getName(), PChar->getZone()));
-            }
-
-            // Special case for onZoneIn cutscenes in Mog House
-            if (PChar->m_moghouseID &&
-                PEntity->status == STATUS_TYPE::DISAPPEAR &&
-                PEntity->loc.p.z == 1.5 &&
-                PEntity->look.face == 0x52)
-            {
-                // Using the same logic as in ZoneEntities::SpawnConditionalNPCs:
-                // Change the status of the entity, send the packet, change it back to disappear
-                PEntity->status = STATUS_TYPE::NORMAL;
-                PChar->updateEntityPacket(PEntity, ENTITY_SPAWN, UPDATE_ALL_MOB);
-                PEntity->status = STATUS_TYPE::DISAPPEAR;
-            }
-            else
-            {
-                PChar->updateEntityPacket(PEntity, ENTITY_SPAWN, UPDATE_ALL_MOB);
-            }
-        }
     }
 }
 
@@ -2845,7 +2778,7 @@ void PacketParserInitialize()
     PacketSize[0x00F] = 0x24; PacketParser[0x00F] = &ValidatedPacketHandler<GP_CLI_COMMAND_CLSTAT>;
     PacketSize[0x011] = 0x06; PacketParser[0x011] = &ValidatedPacketHandler<GP_CLI_COMMAND_ZONE_TRANSITION>;
     PacketSize[0x015] = 0x10; PacketParser[0x015] = &SmallPacket0x015;
-    PacketSize[0x016] = 0x04; PacketParser[0x016] = &SmallPacket0x016;
+    PacketSize[0x016] = 0x08; PacketParser[0x016] = &ValidatedPacketHandler<GP_CLI_COMMAND_CHARREQ>;
     PacketSize[0x017] = 0x00; PacketParser[0x017] = &SmallPacket0x017;
     PacketSize[0x01A] = 0x0E; PacketParser[0x01A] = &SmallPacket0x01A;
     PacketSize[0x01B] = 0x00; PacketParser[0x01B] = &SmallPacket0x01B;
