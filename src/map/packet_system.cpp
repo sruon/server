@@ -1,4 +1,4 @@
-﻿/*
+/*
 ===========================================================================
 
   Copyright (c) 2010-2015 Darkstar Dev Teams
@@ -74,6 +74,7 @@
 #include "packets/c2s/0x01c_unknown.h"
 #include "packets/c2s/0x01f_gmcommand.h"
 #include "packets/c2s/0x028_item_dump.h"
+#include "packets/c2s/0x029_item_move.h"
 #include "packets/c2s/0x02b_translate.h"
 #include "packets/c2s/0x02c_itemsearch.h"
 #include "packets/c2s/0x032_item_trade_req.h"
@@ -897,143 +898,6 @@ void SmallPacket0x01E(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *  Item Movement (Between Containers)                                   *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x029(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    uint32 quantity       = data.ref<uint8>(0x04);
-    uint8  FromLocationID = data.ref<uint8>(0x08);
-    uint8  ToLocationID   = data.ref<uint8>(0x09);
-    uint8  FromSlotID     = data.ref<uint8>(0x0A);
-    uint8  ToSlotID       = data.ref<uint8>(0x0B);
-
-    if (ToLocationID >= CONTAINER_ID::MAX_CONTAINER_ID || FromLocationID >= CONTAINER_ID::MAX_CONTAINER_ID)
-    {
-        return;
-    }
-
-    CItem* PItem = PChar->getStorage(FromLocationID)->GetItem(FromSlotID);
-
-    if (PItem == nullptr || PItem->isSubType(ITEM_LOCKED))
-    {
-        if (PItem == nullptr)
-        {
-            ShowWarning("SmallPacket0x29: Trying to move nullptr item from location %u slot %u to location %u slot %u of quan %u ",
-                        FromLocationID, FromSlotID, ToLocationID, ToSlotID, quantity);
-        }
-        else
-        {
-            ShowWarning("SmallPacket0x29: Trying to move LOCKED item %i from location %u slot %u to location %u slot %u of quan %u ",
-                        PItem->getID(), FromLocationID, FromSlotID, ToLocationID, ToSlotID, quantity);
-        }
-
-        uint8 size = PChar->getStorage(FromLocationID)->GetSize();
-        for (uint8 slotID = 0; slotID <= size; ++slotID)
-        {
-            CItem* PSlotItem = PChar->getStorage(FromLocationID)->GetItem(slotID);
-            if (PSlotItem != nullptr)
-            {
-                PChar->pushPacket<CInventoryItemPacket>(PSlotItem, FromLocationID, slotID);
-            }
-        }
-        PChar->pushPacket<CInventoryFinishPacket>();
-
-        return;
-    }
-
-    if (PItem->getQuantity() - PItem->getReserve() < quantity)
-    {
-        ShowWarning("SmallPacket0x29: Trying to move too much quantity from location %u slot %u", FromLocationID, FromSlotID);
-        return;
-    }
-
-    uint32 NewQuantity = PItem->getQuantity() - quantity;
-
-    if (NewQuantity != 0) // split item stack
-    {
-        if (charutils::AddItem(PChar, ToLocationID, PItem->getID(), quantity) != ERROR_SLOTID)
-        {
-            charutils::UpdateItem(PChar, FromLocationID, FromSlotID, -(int32)quantity);
-        }
-    }
-    else // move stack / combine items into stack
-    {
-        if (ToSlotID < 82) // 80 + 1
-        {
-            ShowDebug("SmallPacket0x29: Trying to unite items", FromLocationID, FromSlotID);
-            CItem* PItem2 = PChar->getStorage(ToLocationID)->GetItem(ToSlotID);
-
-            if ((PItem2 != nullptr) && (PItem2->getID() == PItem->getID()) && (PItem2->getQuantity() < PItem2->getStackSize()) &&
-                !PItem2->isSubType(ITEM_LOCKED) && (PItem2->getReserve() == 0))
-            {
-                uint32 totalQty = PItem->getQuantity() + PItem2->getQuantity();
-                uint32 moveQty  = 0;
-
-                if (totalQty >= PItem2->getStackSize())
-                {
-                    moveQty = PItem2->getStackSize() - PItem2->getQuantity();
-                }
-                else
-                {
-                    moveQty = PItem->getQuantity();
-                }
-                if (moveQty > 0)
-                {
-                    charutils::UpdateItem(PChar, ToLocationID, ToSlotID, moveQty);
-                    charutils::UpdateItem(PChar, FromLocationID, FromSlotID, -(int32)moveQty);
-                }
-            }
-
-            return;
-        }
-
-        uint8 NewSlotID = PChar->getStorage(ToLocationID)->InsertItem(PItem);
-
-        if (NewSlotID != ERROR_SLOTID)
-        {
-            const auto rset = db::preparedStmt("UPDATE char_inventory SET location = ?, slot = ? WHERE charid = ? AND location = ? AND slot = ?",
-                                               ToLocationID, NewSlotID, PChar->id, FromLocationID, FromSlotID);
-            if (rset && rset->rowsAffected())
-            {
-                PChar->getStorage(FromLocationID)->InsertItem(nullptr, FromSlotID);
-
-                PChar->pushPacket<CInventoryItemPacket>(nullptr, FromLocationID, FromSlotID);
-                PChar->pushPacket<CInventoryItemPacket>(PItem, ToLocationID, NewSlotID);
-            }
-            else
-            {
-                PChar->getStorage(ToLocationID)->InsertItem(nullptr, NewSlotID);
-                PChar->getStorage(FromLocationID)->InsertItem(PItem, FromSlotID);
-            }
-        }
-        else
-        {
-            // Client assumed the location was not full when it is
-            // Resend the packets to inform the client of the storage sizes
-            uint8 size = PChar->getStorage(ToLocationID)->GetSize();
-            for (uint8 slotID = 0; slotID <= size; ++slotID)
-            {
-                CItem* PSlotItem = PChar->getStorage(ToLocationID)->GetItem(slotID);
-                if (PSlotItem != nullptr)
-                {
-                    PChar->pushPacket<CInventoryItemPacket>(PSlotItem, ToLocationID, slotID);
-                }
-            }
-            PChar->pushPacket<CInventoryFinishPacket>();
-
-            ShowError("SmallPacket0x29: Location %u Slot %u is full", ToLocationID, ToSlotID);
-            return;
-        }
-    }
-    PChar->pushPacket<CInventoryFinishPacket>();
-}
-
-/************************************************************************
- *                                                                       *
  *  Party Invite                                                         *
  *                                                                       *
  ************************************************************************/
@@ -1648,7 +1512,7 @@ void PacketParserInitialize()
     PacketSize[0x01E] = 0x00; PacketParser[0x01E] = &SmallPacket0x01E;
     PacketSize[0x01F] = 0x00; PacketParser[0x01F] = &ValidatedPacketHandler<GP_CLI_COMMAND_GMCOMMAND>;
     PacketSize[0x028] = 0x0C; PacketParser[0x028] = &ValidatedPacketHandler<GP_CLI_COMMAND_ITEM_DUMP>;
-    PacketSize[0x029] = 0x06; PacketParser[0x029] = &SmallPacket0x029;
+    PacketSize[0x029] = 0x0C; PacketParser[0x029] = &ValidatedPacketHandler<GP_CLI_COMMAND_ITEM_MOVE>;
     PacketSize[0x02B] = 0x00; PacketParser[0x02B] = &ValidatedPacketHandler<GP_CLI_COMMAND_TRANSLATE>;
     PacketSize[0x02C] = 0x00; PacketParser[0x02C] = &ValidatedPacketHandler<GP_CLI_COMMAND_ITEMSEARCH>;
     PacketSize[0x032] = 0x0C; PacketParser[0x032] = &ValidatedPacketHandler<GP_CLI_COMMAND_ITEM_TRADE_REQ>;
