@@ -8,6 +8,8 @@ set(PACKET_C2S_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/0x02b_translate.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x02c_itemsearch.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x02c_itemsearch.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x00c_gameok.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x00c_gameok.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x00d_netend.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x00d_netend.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x00f_clstat.cpp

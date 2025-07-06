@@ -67,13 +67,13 @@
 #include "lua/luautils.h"
 
 #include "packets/basic.h"
-#include "packets/bazaar_message.h"
 #include "packets/blacklist_edit_response.h"
+#include "packets/c2s/0x00c_gameok.h"
+#include "packets/c2s/0x00d_netend.h"
+#include "packets/c2s/0x00f_clstat.h"
 #include "packets/c2s/0x01f_gmcommand.h"
 #include "packets/c2s/0x02b_translate.h"
 #include "packets/c2s/0x02c_itemsearch.h"
-#include "packets/c2s/0x00d_netend.h"
-#include "packets/c2s/0x00f_clstat.h"
 #include "packets/c2s/0x037_item_use.h"
 #include "packets/c2s/0x041_trophy_entry.h"
 #include "packets/c2s/0x04d_pbx.h"
@@ -170,12 +170,8 @@
 #include "packets/c2s/0x11b_mastery_display.h"
 #include "packets/c2s/0x11c_party_request.h"
 #include "packets/c2s/0x11d_jump.h"
-#include "packets/char_abilities.h"
 #include "packets/char_equip.h"
-#include "packets/char_jobs.h"
-#include "packets/char_mounts.h"
 #include "packets/char_recast.h"
-#include "packets/char_spells.h"
 #include "packets/char_status.h"
 #include "packets/char_sync.h"
 #include "packets/chat_message.h"
@@ -186,12 +182,8 @@
 #include "packets/inventory_count.h"
 #include "packets/inventory_finish.h"
 #include "packets/inventory_item.h"
-#include "packets/inventory_size.h"
-#include "packets/jobpoint_details.h"
 #include "packets/linkshell_equip.h"
-#include "packets/menu_config.h"
 #include "packets/menu_jobpoints.h"
-#include "packets/merit_points_categories.h"
 #include "packets/message_basic.h"
 #include "packets/message_standard.h"
 #include "packets/message_system.h"
@@ -210,16 +202,13 @@
 #include "packets/zone_in.h"
 #include "packets/zone_visited.h"
 
-#include "utils/auctionutils.h"
 #include "utils/battleutils.h"
 #include "utils/blacklistutils.h"
 #include "utils/charutils.h"
-#include "utils/dboxutils.h"
 #include "utils/fishingutils.h"
 #include "utils/gardenutils.h"
 #include "utils/itemutils.h"
 #include "utils/jailutils.h"
-#include "utils/petutils.h"
 #include "utils/zoneutils.h"
 
 uint8 PacketSize[512];
@@ -374,46 +363,6 @@ void SmallPacket0x00A(MapSession* const PSession, CCharEntity* const PChar, CBas
         PChar->pushPacket<CDownloadingDataPacket>();
         PChar->pushPacket<CZoneInPacket>(PChar, PChar->currentEvent);
         PChar->pushPacket<CZoneVisitedPacket>(PChar);
-    }
-}
-
-// https://github.com/atom0s/XiPackets/tree/main/world/client/0x000C
-/************************************************************************
- *  GP_CLI_COMMAND_GAMEOK                                                *
- *  Client is ready to receive packets from the server.                  *
- *  Before this packet is sent, all commands are blocked locally.        *
- ************************************************************************/
-
-void SmallPacket0x00C(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    PChar->pushPacket<CInventorySizePacket>(PChar);
-    PChar->pushPacket<CMenuConfigPacket>(PChar);
-    PChar->pushPacket<CCharJobsPacket>(PChar);
-
-    if (charutils::hasKeyItem(PChar, 2544))
-    {
-        // Only send Job Points Packet if the player has unlocked them
-        PChar->pushPacket<CJobPointDetailsPacket>(PChar);
-    }
-
-    // TODO: While in mog house; treasure pool is not created.
-    if (PChar->PTreasurePool != nullptr)
-    {
-        PChar->PTreasurePool->updatePool(PChar);
-    }
-    PChar->loc.zone->SpawnTransport(PChar);
-
-    // respawn any pets from last zone
-    if (PChar->loc.zone->CanUseMisc(MISC_PET) && !PChar->m_moghouseID)
-    {
-        if (PChar->shouldPetPersistThroughZoning())
-        {
-            petutils::SpawnPet(PChar, PChar->petZoningInfo.petID, true);
-        }
-
-        PChar->resetPetZoningInfo();
     }
 }
 
@@ -2918,7 +2867,7 @@ void PacketParserInitialize()
     }
     // clang-format off
     PacketSize[0x00A] = 0x2E; PacketParser[0x00A] = &SmallPacket0x00A;
-    PacketSize[0x00C] = 0x00; PacketParser[0x00C] = &SmallPacket0x00C;
+    PacketSize[0x00C] = 0x0C; PacketParser[0x00C] = &ValidatedPacketHandler<GP_CLI_COMMAND_GAMEOK>;
     PacketSize[0x00D] = 0x08; PacketParser[0x00D] = &ValidatedPacketHandler<GP_CLI_COMMAND_NETEND>;
     PacketSize[0x00F] = 0x24; PacketParser[0x00F] = &ValidatedPacketHandler<GP_CLI_COMMAND_CLSTAT>;
     PacketSize[0x011] = 0x00; PacketParser[0x011] = &SmallPacket0x011;
