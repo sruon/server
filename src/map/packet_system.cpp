@@ -78,6 +78,7 @@
 #include "packets/c2s/0x02b_translate.h"
 #include "packets/c2s/0x02c_itemsearch.h"
 #include "packets/c2s/0x037_item_use.h"
+#include "packets/c2s/0x03c_black_list.h"
 #include "packets/c2s/0x03d_black_edit.h"
 #include "packets/c2s/0x041_trophy_entry.h"
 #include "packets/c2s/0x042_trophy_absence.h"
@@ -1799,15 +1800,6 @@ void SmallPacket0x03B(MapSession* const PSession, CCharEntity* const PChar, CBas
     }
 }
 
-// GP_CLI_COMMAND_BLACK_LIST
-// https://github.com/atom0s/XiPackets/tree/main/world/client/0x003C
-// Client is asking for blist because it wasn't initialized correctly?
-void SmallPacket0x03C(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-    blacklistutils::SendBlacklist(PChar);
-}
-
 /************************************************************************
  *                                                                       *
  *  Server Message Request                                               *
@@ -2561,7 +2553,7 @@ void PacketParserInitialize()
     PacketSize[0x037] = 0x14; PacketParser[0x037] = &ValidatedPacketHandler<GP_CLI_COMMAND_ITEM_USE>;
     PacketSize[0x03A] = 0x04; PacketParser[0x03A] = &SmallPacket0x03A;
     PacketSize[0x03B] = 0x10; PacketParser[0x03B] = &SmallPacket0x03B;
-    PacketSize[0x03C] = 0x00; PacketParser[0x03C] = &SmallPacket0x03C;
+    PacketSize[0x03C] = 0x1C; PacketParser[0x03C] = &ValidatedPacketHandler<GP_CLI_COMMAND_BLACK_LIST>;
     PacketSize[0x03D] = 0x1C; PacketParser[0x03D] = &ValidatedPacketHandler<GP_CLI_COMMAND_BLACK_EDIT>;
     PacketSize[0x041] = 0x00; PacketParser[0x041] = &ValidatedPacketHandler<GP_CLI_COMMAND_TROPHY_ENTRY>;
     PacketSize[0x042] = 0x06; PacketParser[0x042] = &ValidatedPacketHandler<GP_CLI_COMMAND_TROPHY_ABSENCE>;
