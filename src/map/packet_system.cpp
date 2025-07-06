@@ -33,7 +33,6 @@
 
 #include "alliance.h"
 #include "enmity_container.h"
-#include "fishingcontest.h"
 #include "ipc_client.h"
 #include "item_container.h"
 #include "latent_effect_container.h"
@@ -77,6 +76,7 @@
 #include "packets/c2s/0x01f_gmcommand.h"
 #include "packets/c2s/0x02b_translate.h"
 #include "packets/c2s/0x02c_itemsearch.h"
+#include "packets/c2s/0x033_item_trade_res.h"
 #include "packets/c2s/0x034_item_trade_list.h"
 #include "packets/c2s/0x036_item_transfer.h"
 #include "packets/c2s/0x037_item_use.h"
@@ -185,7 +185,6 @@
 #include "packets/chocobo_digging.h"
 #include "packets/downloading_data.h"
 #include "packets/inventory_assign.h"
-#include "packets/inventory_count.h"
 #include "packets/inventory_finish.h"
 #include "packets/inventory_item.h"
 #include "packets/linkshell_equip.h"
@@ -1240,115 +1239,6 @@ void SmallPacket0x032(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *  Trade Request Action                                                 *
- *  Trade Accept / Request Accept / Cancel                               *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x033(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    // MONs can't trade
-    if (PChar->m_PMonstrosity != nullptr)
-    {
-        return;
-    }
-
-    CCharEntity* PTarget = (CCharEntity*)PChar->GetEntity(PChar->TradePending.targid, TYPE_PC);
-
-    if (PTarget != nullptr && PChar->TradePending.id == PTarget->id)
-    {
-        uint16 action = data.ref<uint8>(0x04);
-
-        switch (action)
-        {
-            case 0x00: // request accepted
-            {
-                ShowDebug("%s accepted trade request from %s", PTarget->getName(), PChar->getName());
-                if (PChar->TradePending.id == PTarget->id && PTarget->TradePending.id == PChar->id)
-                {
-                    if (PChar->UContainer->IsContainerEmpty() && PTarget->UContainer->IsContainerEmpty())
-                    {
-                        if (distance(PChar->loc.p, PTarget->loc.p) < 6)
-                        {
-                            PChar->UContainer->SetType(UCONTAINER_TRADE);
-                            PChar->pushPacket<CTradeActionPacket>(PTarget, action);
-
-                            PTarget->UContainer->SetType(UCONTAINER_TRADE);
-                            PTarget->pushPacket<CTradeActionPacket>(PChar, action);
-                            return;
-                        }
-                    }
-                    PChar->TradePending.clean();
-                    PTarget->TradePending.clean();
-
-                    ShowDebug("Trade: UContainer is not empty");
-                }
-            }
-            break;
-            case 0x01: // trade cancelled
-            {
-                ShowDebug("%s cancelled trade with %s", PTarget->getName(), PChar->getName());
-                if (PChar->TradePending.id == PTarget->id && PTarget->TradePending.id == PChar->id)
-                {
-                    if (PTarget->UContainer->GetType() == UCONTAINER_TRADE)
-                    {
-                        PTarget->UContainer->Clean();
-                    }
-                }
-                if (PChar->UContainer->GetType() == UCONTAINER_TRADE)
-                {
-                    PChar->UContainer->Clean();
-                }
-
-                PTarget->TradePending.clean();
-                PTarget->pushPacket<CTradeActionPacket>(PChar, action);
-
-                PChar->TradePending.clean();
-            }
-            break;
-            case 0x02: // trade accepted
-            {
-                ShowDebug("%s accepted trade with %s", PTarget->getName(), PChar->getName());
-                if (PChar->TradePending.id == PTarget->id && PTarget->TradePending.id == PChar->id)
-                {
-                    PChar->UContainer->SetLock();
-                    PTarget->pushPacket<CTradeActionPacket>(PChar, action);
-
-                    if (PTarget->UContainer->IsLocked())
-                    {
-                        if (charutils::CanTrade(PChar, PTarget) && charutils::CanTrade(PTarget, PChar))
-                        {
-                            charutils::DoTrade(PChar, PTarget);
-                            PTarget->pushPacket<CTradeActionPacket>(PTarget, 9);
-
-                            charutils::DoTrade(PTarget, PChar);
-                            PChar->pushPacket<CTradeActionPacket>(PChar, 9);
-                        }
-                        else
-                        {
-                            // Failed to trade
-                            // Either players containers are full or illegal item trade attempted
-                            ShowDebug("%s->%s trade failed (full inventory or illegal items)", PChar->getName(), PTarget->getName());
-                            PChar->pushPacket<CTradeActionPacket>(PTarget, 1);
-                            PTarget->pushPacket<CTradeActionPacket>(PChar, 1);
-                        }
-                        PChar->TradePending.clean();
-                        PChar->UContainer->Clean();
-
-                        PTarget->TradePending.clean();
-                        PTarget->UContainer->Clean();
-                    }
-                }
-            }
-            break;
-        }
-    }
-}
-
-/************************************************************************
- *                                                                       *
  *  Sort Inventory                                                       *
  *                                                                       *
  ************************************************************************/
@@ -2040,7 +1930,7 @@ void PacketParserInitialize()
     PacketSize[0x02B] = 0x00; PacketParser[0x02B] = &ValidatedPacketHandler<GP_CLI_COMMAND_TRANSLATE>;
     PacketSize[0x02C] = 0x00; PacketParser[0x02C] = &ValidatedPacketHandler<GP_CLI_COMMAND_ITEMSEARCH>;
     PacketSize[0x032] = 0x06; PacketParser[0x032] = &SmallPacket0x032;
-    PacketSize[0x033] = 0x06; PacketParser[0x033] = &SmallPacket0x033;
+    PacketSize[0x033] = 0x0C; PacketParser[0x033] = &ValidatedPacketHandler<GP_CLI_COMMAND_ITEM_TRADE_RES>;
     PacketSize[0x034] = 0x0C; PacketParser[0x034] = &ValidatedPacketHandler<GP_CLI_COMMAND_ITEM_TRADE_LIST>;
     PacketSize[0x036] = 0x40; PacketParser[0x036] = &ValidatedPacketHandler<GP_CLI_COMMAND_ITEM_TRANSFER>;
     PacketSize[0x037] = 0x14; PacketParser[0x037] = &ValidatedPacketHandler<GP_CLI_COMMAND_ITEM_USE>;
