@@ -73,6 +73,7 @@
 #include "packets/c2s/0x02b_translate.h"
 #include "packets/c2s/0x02c_itemsearch.h"
 #include "packets/c2s/0x041_trophy_entry.h"
+#include "packets/c2s/0x051_equipset_set.h"
 #include "packets/c2s/0x052_equipset_check.h"
 #include "packets/c2s/0x053_lockstyle.h"
 #include "packets/c2s/0x058_recipe.h"
@@ -2470,37 +2471,7 @@ void SmallPacket0x050(MapSession* const PSession, CCharEntity* const PChar, CBas
     PChar->retriggerLatents = true; // retrigger all latents later because our gear has changed
 }
 
-/************************************************************************
- *                                                                       *
- *  Equip Macro Set                                                      *
- *                                                                       *
- ************************************************************************/
 
-void SmallPacket0x051(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-    if (PChar->status != STATUS_TYPE::NORMAL)
-    {
-        return;
-    }
-
-    for (uint8 i = 0; i < data.ref<uint8>(0x04); i++)
-    {
-        uint8 slotID      = data.ref<uint8>(0x08 + (0x04 * i)); // inventory slot
-        uint8 equipSlotID = data.ref<uint8>(0x09 + (0x04 * i)); // charequip slot
-        uint8 containerID = data.ref<uint8>(0x0A + (0x04 * i)); // container id
-        if (containerID == LOC_INVENTORY || containerID == LOC_WARDROBE || containerID == LOC_WARDROBE2 || containerID == LOC_WARDROBE3 ||
-            containerID == LOC_WARDROBE4 || containerID == LOC_WARDROBE5 || containerID == LOC_WARDROBE6 || containerID == LOC_WARDROBE7 ||
-            containerID == LOC_WARDROBE8)
-        {
-            charutils::EquipItem(PChar, slotID, equipSlotID, containerID);
-        }
-    }
-    PChar->RequestPersist(CHAR_PERSIST::EQUIP);
-    luautils::CheckForGearSet(PChar); // check for gear set on gear change
-    PChar->UpdateHealth();
-    PChar->retriggerLatents = true; // retrigger all latents later because our gear has changed
-}
 
 /************************************************************************
  *                                                                       *
@@ -3136,7 +3107,7 @@ void PacketParserInitialize()
     PacketSize[0x04D] = 0x00; PacketParser[0x04D] = &SmallPacket0x04D;
     PacketSize[0x04E] = 0x1E; PacketParser[0x04E] = &SmallPacket0x04E;
     PacketSize[0x050] = 0x04; PacketParser[0x050] = &SmallPacket0x050;
-    PacketSize[0x051] = 0x24; PacketParser[0x051] = &SmallPacket0x051;
+    PacketSize[0x051] = 0x48; PacketParser[0x051] = &ValidatedPacketHandler<GP_CLI_COMMAND_EQUIPSET_SET>;
     PacketSize[0x052] = 0x4C; PacketParser[0x052] = &ValidatedPacketHandler<GP_CLI_COMMAND_EQUIPSET_CHECK>;
     PacketSize[0x053] = 0x88; PacketParser[0x053] = &ValidatedPacketHandler<GP_CLI_COMMAND_LOCKSTYLE>;
     PacketSize[0x058] = 0x0A; PacketParser[0x058] = &ValidatedPacketHandler<GP_CLI_COMMAND_RECIPE>;
