@@ -16,6 +16,8 @@ set(PACKET_C2S_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/0x0a2_dice.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x041_trophy_entry.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x041_trophy_entry.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x04e_auc.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x04e_auc.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x050_equip_set.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x050_equip_set.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x051_equipset_set.cpp

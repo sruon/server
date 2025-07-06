@@ -30,6 +30,7 @@
 #include "entities/charentity.h"
 
 #include "packets/auction_house.h"
+#include "packets/c2s/0x04e_auc.h"
 #include "packets/inventory_finish.h"
 
 #include "utils/charutils.h"
@@ -37,19 +38,19 @@
 #include "utils/jailutils.h"
 #include "utils/zoneutils.h"
 
-void auctionutils::HandlePacket(CCharEntity* PChar, CBasicPacket& data)
+void auctionutils::HandlePacket(CCharEntity* PChar, const GP_CLI_COMMAND_AUC& data)
 {
     TracyZoneScoped;
 
     const auto playerName = PChar->getName();
 
+    // TODO: These are not supposed to be global to all commands
     // TODO: Validate all of these to make sure they're within sane bounds.
-    const auto action   = data.ref<uint8>(0x04);
-    const auto slotid   = data.ref<uint8>(0x05);
-    const auto price    = data.ref<uint32>(0x08);
-    const auto slot     = data.ref<uint8>(0x0C);
-    const auto itemid   = data.ref<uint16>(0x0E);
-    const auto quantity = data.ref<uint8>(0x10);
+    const auto slotid   = data.AucWorkIndex;
+    const auto price    = data.Param.param.Bid.BidPrice;
+    const auto slot     = data.Parcel.ItemIndex;
+    const auto itemid   = data.Parcel.ItemNo;
+    const auto quantity = data.Parcel.ItemQuantity;
 
     if (jailutils::InPrison(PChar)) // If jailed, no AH menu for you.
     {
@@ -62,56 +63,53 @@ void auctionutils::HandlePacket(CCharEntity* PChar, CBasicPacket& data)
         return;
     }
 
-    switch (action)
+    switch (static_cast<GP_CLI_COMMAND_AUC_COMMAND>(data.Command))
     {
-        case 0x04:
+        case GP_CLI_COMMAND_AUC_COMMAND::AskCommit:
         {
-            DebugAuctionsFmt("AH: SellingItems (action: {:02X}): player: {}, price: {}, slot: {}, itemid: {}, quantity: {}", action, playerName, price, slot, itemid, quantity);
-            SellingItems(PChar, action, price, slot, itemid, quantity);
+            // Use Params.param.AskCommit here
+            DebugAuctionsFmt("AH: SellingItems (action: {:02X}): player: {}, price: {}, slot: {}, itemid: {}, quantity: {}", data.Command, playerName, price, slot, itemid, quantity);
+            SellingItems(PChar, data.Command, price, slot, itemid, quantity);
         }
         break;
-        case 0x05:
+        case GP_CLI_COMMAND_AUC_COMMAND::Info:
         {
-            DebugAuctionsFmt("AH: OpenListOfSales (action: {:02X}): player: {}, itemid: {}", action, playerName, itemid);
-            OpenListOfSales(PChar, action, itemid);
+            // No Params set here.
+            DebugAuctionsFmt("AH: OpenListOfSales (action: {:02X}): player: {}, itemid: {}", data.Command, playerName, itemid);
+            OpenListOfSales(PChar, data.Command);
             [[fallthrough]];
         }
         // FALLTHROUGH!
-        case 0x0A:
+        case GP_CLI_COMMAND_AUC_COMMAND::WorkCheck:
         {
-            DebugAuctionsFmt("AH: RetrieveListOfItemsSoldByPlayer (action: {:02X}): player: {}", action, playerName);
+            // No Params set here.
+            DebugAuctionsFmt("AH: RetrieveListOfItemsSoldByPlayer (action: {:02X}): player: {}", data.Command, playerName);
             RetrieveListOfItemsSoldByPlayer(PChar);
         }
         break;
-        case 0x0B:
+        case GP_CLI_COMMAND_AUC_COMMAND::LotIn:
         {
-            DebugAuctionsFmt("AH: ProofOfPurchase (action: {:02X}): player: {}, price: {}, slot: {}, itemid: {}, quantity: {}", action, playerName, price, slot, itemid, quantity);
-            ProofOfPurchase(PChar, action, price, slot, quantity);
+            // Use Params.param.LotIn here
+            DebugAuctionsFmt("AH: ProofOfPurchase (action: {:02X}): player: {}, price: {}, slot: {}, itemid: {}, quantity: {}", data.Command, playerName, price, slot, itemid, quantity);
+            ProofOfPurchase(PChar, data.Command, price, slot, quantity);
         }
         break;
-        case 0x0E:
+        case GP_CLI_COMMAND_AUC_COMMAND::Bid:
         {
-            const auto itemIdFrom0x0C = data.ref<uint16>(0x0C);
-
-            DebugAuctionsFmt("AH: PurchasingItems (action: {:02X}): player: {}, price: {}, slot: {}, itemid: {}, quantity: {}", action, playerName, price, slot, itemIdFrom0x0C, quantity);
-            PurchasingItems(PChar, action, price, itemIdFrom0x0C, quantity);
+            DebugAuctionsFmt("AH: PurchasingItems (action: {:02X}): player: {}, price: {}, slot: {}, itemid: {}, quantity: {}", data.Command, playerName, price, slot, data.Param.param.Bid.ItemNo, quantity);
+            PurchasingItems(PChar, data.Command, price, data.Param.param.Bid.ItemNo, quantity);
         }
         break;
-        case 0x0C:
+        case GP_CLI_COMMAND_AUC_COMMAND::LotCancel:
         {
-            DebugAuctionsFmt("AH: CancelSale (action: {:02X}): player: {}, slotid: {}", action, playerName, slotid);
-            CancelSale(PChar, action, slotid);
+            DebugAuctionsFmt("AH: CancelSale (action: {:02X}): player: {}, slotid: {}", data.Command, playerName, slotid);
+            CancelSale(PChar, data.Command, slotid);
         }
         break;
-        case 0x0D:
+        case GP_CLI_COMMAND_AUC_COMMAND::LotCheck:
         {
-            DebugAuctionsFmt("AH: UpdateSaleListByPlayer (action: {:02X}): player: {}, slotid: {}", action, playerName, slotid);
-            UpdateSaleListByPlayer(PChar, action, slotid);
-        }
-        break;
-        default:
-        {
-            ShowErrorFmt("AH: Unhandled action: {:02X}, from player {}", action, playerName);
+            DebugAuctionsFmt("AH: UpdateSaleListByPlayer (action: {:02X}): player: {}, slotid: {}", data.Command, playerName, slotid);
+            UpdateSaleListByPlayer(PChar, data.Command, slotid);
         }
         break;
     }
@@ -148,7 +146,7 @@ void auctionutils::SellingItems(CCharEntity* PChar, uint8 action, uint32 price, 
     }
 }
 
-void auctionutils::OpenListOfSales(CCharEntity* PChar, uint8 action, uint16 itemid)
+void auctionutils::OpenListOfSales(CCharEntity* PChar, uint8 action)
 {
     TracyZoneScoped;
 

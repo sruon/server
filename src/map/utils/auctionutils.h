@@ -26,14 +26,15 @@
 
 #include "packets/basic.h"
 
+struct GP_CLI_COMMAND_AUC;
 class CCharEntity;
 
 namespace auctionutils
 {
-    void HandlePacket(CCharEntity* PChar, CBasicPacket& data);
+    void HandlePacket(CCharEntity* PChar, const GP_CLI_COMMAND_AUC& data);
 
     void SellingItems(CCharEntity* PChar, uint8 action, uint32 price, uint8 slot, uint16 itemid, uint8 quantity);
-    void OpenListOfSales(CCharEntity* PChar, uint8 action, uint16 itemid);
+    void OpenListOfSales(CCharEntity* PChar, uint8 action);
     void RetrieveListOfItemsSoldByPlayer(CCharEntity* PChar);
     void ProofOfPurchase(CCharEntity* PChar, uint8 action, uint32 price, uint8 slot, uint8 quantity);
     bool PurchasingItems(CCharEntity* PChar, uint8 action, uint32 price, uint16 itemid, uint8 quantity);
