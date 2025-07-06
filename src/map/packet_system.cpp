@@ -50,7 +50,6 @@
 #include "spell.h"
 #include "status_effect_container.h"
 #include "trade_container.h"
-#include "universal_container.h"
 #include "zone.h"
 
 #include "ai/ai_container.h"
@@ -82,6 +81,7 @@
 #include "packets/c2s/0x034_item_trade_list.h"
 #include "packets/c2s/0x036_item_transfer.h"
 #include "packets/c2s/0x037_item_use.h"
+#include "packets/c2s/0x03a_item_stack.h"
 #include "packets/c2s/0x03b_mannequin_set.h"
 #include "packets/c2s/0x03c_black_list.h"
 #include "packets/c2s/0x03d_black_edit.h"
@@ -199,8 +199,6 @@
 #include "packets/roe_questlog.h"
 #include "packets/roe_sparkupdate.h"
 #include "packets/roe_update.h"
-#include "packets/trade_action.h"
-#include "packets/trade_request.h"
 #include "packets/trade_update.h"
 #include "packets/zone_in.h"
 #include "packets/zone_visited.h"
@@ -1036,79 +1034,6 @@ void SmallPacket0x029(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *  Sort Inventory                                                       *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x03A(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-    TracyZoneCString("Sort Inventory");
-
-    uint8 container = data.ref<uint8>(0x04);
-
-    if (container >= CONTAINER_ID::MAX_CONTAINER_ID)
-    {
-        ShowWarning("SmallPacket0x03A: Invalid container ID passed to packet %u by %s", container, PChar->getName());
-        return;
-    }
-
-    CItemContainer* PItemContainer = PChar->getStorage(container);
-
-    uint8 size = PItemContainer->GetSize();
-
-    if (timer::now() < PItemContainer->LastSortingTime + 1s)
-    {
-        if (settings::get<uint8>("map.LIGHTLUGGAGE_BLOCK") == (int32)(++PItemContainer->SortingPacket))
-        {
-            ShowWarning("lightluggage detected: <%s> will be removed from server", PChar->getName());
-            charutils::ForceLogout(PChar);
-        }
-        return;
-    }
-    else
-    {
-        PItemContainer->SortingPacket   = 0;
-        PItemContainer->LastSortingTime = timer::now();
-    }
-    for (uint8 slotID = 1; slotID <= size; ++slotID)
-    {
-        CItem* PItem = PItemContainer->GetItem(slotID);
-
-        if ((PItem != nullptr) && (PItem->getQuantity() < PItem->getStackSize()) && !PItem->isSubType(ITEM_LOCKED) && (PItem->getReserve() == 0))
-        {
-            for (uint8 slotID2 = slotID + 1; slotID2 <= size; ++slotID2)
-            {
-                CItem* PItem2 = PItemContainer->GetItem(slotID2);
-
-                if ((PItem2 != nullptr) && (PItem2->getID() == PItem->getID()) && (PItem2->getQuantity() < PItem2->getStackSize()) &&
-                    !PItem2->isSubType(ITEM_LOCKED) && (PItem2->getReserve() == 0))
-                {
-                    uint32 totalQty = PItem->getQuantity() + PItem2->getQuantity();
-                    uint32 moveQty  = 0;
-
-                    if (totalQty >= PItem->getStackSize())
-                    {
-                        moveQty = PItem->getStackSize() - PItem->getQuantity();
-                    }
-                    else
-                    {
-                        moveQty = PItem2->getQuantity();
-                    }
-                    if (moveQty > 0)
-                    {
-                        charutils::UpdateItem(PChar, (uint8)PItemContainer->GetID(), slotID, moveQty);
-                        charutils::UpdateItem(PChar, (uint8)PItemContainer->GetID(), slotID2, -(int32)moveQty);
-                    }
-                }
-            }
-        }
-    }
-    PChar->pushPacket<CInventoryFinishPacket>();
-}
-
-/************************************************************************
- *                                                                       *
  *  Party Invite                                                         *
  *                                                                       *
  ************************************************************************/
@@ -1731,7 +1656,7 @@ void PacketParserInitialize()
     PacketSize[0x034] = 0x0C; PacketParser[0x034] = &ValidatedPacketHandler<GP_CLI_COMMAND_ITEM_TRADE_LIST>;
     PacketSize[0x036] = 0x40; PacketParser[0x036] = &ValidatedPacketHandler<GP_CLI_COMMAND_ITEM_TRANSFER>;
     PacketSize[0x037] = 0x14; PacketParser[0x037] = &ValidatedPacketHandler<GP_CLI_COMMAND_ITEM_USE>;
-    PacketSize[0x03A] = 0x04; PacketParser[0x03A] = &SmallPacket0x03A;
+    PacketSize[0x03A] = 0x08; PacketParser[0x03A] = &ValidatedPacketHandler<GP_CLI_COMMAND_ITEM_STACK>;
     PacketSize[0x03B] = 0x20; PacketParser[0x03B] = &ValidatedPacketHandler<GP_CLI_COMMAND_MANNEQUIN_SET>;
     PacketSize[0x03C] = 0x1C; PacketParser[0x03C] = &ValidatedPacketHandler<GP_CLI_COMMAND_BLACK_LIST>;
     PacketSize[0x03D] = 0x1C; PacketParser[0x03D] = &ValidatedPacketHandler<GP_CLI_COMMAND_BLACK_EDIT>;
