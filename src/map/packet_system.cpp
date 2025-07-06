@@ -74,6 +74,7 @@
 #include "packets/c2s/0x01b_friendpass.h"
 #include "packets/c2s/0x01c_unknown.h"
 #include "packets/c2s/0x01f_gmcommand.h"
+#include "packets/c2s/0x028_item_dump.h"
 #include "packets/c2s/0x02b_translate.h"
 #include "packets/c2s/0x02c_itemsearch.h"
 #include "packets/c2s/0x032_item_trade_req.h"
@@ -894,83 +895,6 @@ void SmallPacket0x01E(MapSession* const PSession, CCharEntity* const PChar, CBas
     // clang-format on
     auto str = std::string(chars.begin(), chars.end());
     luautils::OnPlayerVolunteer(PChar, str);
-}
-
-/************************************************************************
- *                                                                       *
- *  Item Movement (Disposal)                                             *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x028(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    int32 quantity  = data.ref<uint8>(0x04);
-    uint8 container = data.ref<uint8>(0x08);
-    uint8 slotID    = data.ref<uint8>(0x09);
-
-    CItem* PItem = PChar->getStorage(container)->GetItem(slotID);
-    if (PItem == nullptr)
-    {
-        return;
-    }
-
-    uint16 ItemID = PItem->getID();
-
-    if (container >= CONTAINER_ID::MAX_CONTAINER_ID)
-    {
-        ShowWarning("SmallPacket0x028: Invalid container ID passed to packet %u by %s", container, PChar->getName());
-        return;
-    }
-
-    if (PItem->isSubType(ITEM_LOCKED))
-    {
-        ShowWarning("SmallPacket0x028: Attempt of removal of LOCKED item from slot %u", slotID);
-        return;
-    }
-
-    if (PItem->isStorageSlip())
-    {
-        int slipData = 0;
-        for (int i = 0; i < CItem::extra_size; i++)
-        {
-            slipData += PItem->m_extra[i];
-        }
-
-        if (slipData != 0)
-        {
-            PChar->pushPacket<CMessageStandardPacket>(MsgStd::CannotBeProcessed);
-            return;
-        }
-    }
-
-    // Break linkshell if the main shell was disposed of.
-    CItemLinkshell* ItemLinkshell = dynamic_cast<CItemLinkshell*>(PItem);
-    if (ItemLinkshell)
-    {
-        if (ItemLinkshell->GetLSType() == LSTYPE_LINKSHELL)
-        {
-            uint32      lsid       = ItemLinkshell->GetLSID();
-            CLinkshell* PLinkshell = linkshell::GetLinkshell(lsid);
-            if (!PLinkshell)
-            {
-                PLinkshell = linkshell::LoadLinkshell(lsid);
-            }
-            PLinkshell->BreakLinkshell();
-            linkshell::UnloadLinkshell(lsid);
-        }
-    }
-
-    // Linkshells (other than Linkpearls and Pearlsacks) and temporary items cannot be stored in the Recycle Bin.
-    if (!settings::get<bool>("map.ENABLE_ITEM_RECYCLE_BIN") || ItemID == ITEMID::LINKSHELL || container == CONTAINER_ID::LOC_TEMPITEMS)
-    {
-        charutils::DropItem(PChar, container, slotID, quantity, ItemID);
-        return;
-    }
-
-    // Otherwise, to the recycle bin!
-    charutils::AddItemToRecycleBin(PChar, container, slotID, quantity);
 }
 
 /************************************************************************
@@ -1798,7 +1722,7 @@ void PacketParserInitialize()
     PacketSize[0x01C] = 0x0C; PacketParser[0x01C] = &ValidatedPacketHandler<GP_CLI_COMMAND_UNKNOWN>;
     PacketSize[0x01E] = 0x00; PacketParser[0x01E] = &SmallPacket0x01E;
     PacketSize[0x01F] = 0x00; PacketParser[0x01F] = &ValidatedPacketHandler<GP_CLI_COMMAND_GMCOMMAND>;
-    PacketSize[0x028] = 0x06; PacketParser[0x028] = &SmallPacket0x028;
+    PacketSize[0x028] = 0x0C; PacketParser[0x028] = &ValidatedPacketHandler<GP_CLI_COMMAND_ITEM_DUMP>;
     PacketSize[0x029] = 0x06; PacketParser[0x029] = &SmallPacket0x029;
     PacketSize[0x02B] = 0x00; PacketParser[0x02B] = &ValidatedPacketHandler<GP_CLI_COMMAND_TRANSLATE>;
     PacketSize[0x02C] = 0x00; PacketParser[0x02C] = &ValidatedPacketHandler<GP_CLI_COMMAND_ITEMSEARCH>;

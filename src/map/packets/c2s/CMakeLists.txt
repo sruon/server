@@ -4,6 +4,8 @@ set(PACKET_C2S_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/validation.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x01f_gmcommand.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x01f_gmcommand.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x028_item_dump.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x028_item_dump.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x02b_translate.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x02b_translate.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x02c_itemsearch.cpp
