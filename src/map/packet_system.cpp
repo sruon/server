@@ -51,7 +51,6 @@
 #include "spell.h"
 #include "status_effect_container.h"
 #include "trade_container.h"
-#include "treasure_pool.h"
 #include "universal_container.h"
 #include "zone.h"
 
@@ -71,16 +70,18 @@
 #include "packets/c2s/0x00d_netend.h"
 #include "packets/c2s/0x00f_clstat.h"
 #include "packets/c2s/0x011_zone_transition.h"
-#include "packets/c2s/0x01b_friendpass.h"
-#include "packets/c2s/0x01c_unknown.h"
 #include "packets/c2s/0x015_pos.h"
 #include "packets/c2s/0x016_charreq.h"
 #include "packets/c2s/0x017_charreq2.h"
+#include "packets/c2s/0x01b_friendpass.h"
+#include "packets/c2s/0x01c_unknown.h"
 #include "packets/c2s/0x01f_gmcommand.h"
 #include "packets/c2s/0x02b_translate.h"
 #include "packets/c2s/0x02c_itemsearch.h"
 #include "packets/c2s/0x037_item_use.h"
+#include "packets/c2s/0x03d_black_edit.h"
 #include "packets/c2s/0x041_trophy_entry.h"
+#include "packets/c2s/0x042_trophy_absence.h"
 #include "packets/c2s/0x04d_pbx.h"
 #include "packets/c2s/0x04e_auc.h"
 #include "packets/c2s/0x050_equip_set.h"
@@ -1862,33 +1863,6 @@ void SmallPacket0x03D(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *  Treasure Pool (Pass Item)                                            *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x042(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    uint8 SlotID = data.ref<uint8>(0x04);
-
-    if (SlotID >= TREASUREPOOL_SIZE)
-    {
-        ShowWarning("SmallPacket0x042: Invalid slot ID passed to packet %u by %s", SlotID, PChar->getName());
-        return;
-    }
-
-    if (PChar->PTreasurePool != nullptr)
-    {
-        if (!PChar->PTreasurePool->hasPassedItem(PChar, SlotID))
-        {
-            PChar->PTreasurePool->passItem(PChar, SlotID);
-        }
-    }
-}
-
-/************************************************************************
- *                                                                       *
  *  Server Message Request                                               *
  *                                                                       *
  ************************************************************************/
@@ -2643,7 +2617,7 @@ void PacketParserInitialize()
     PacketSize[0x03C] = 0x00; PacketParser[0x03C] = &SmallPacket0x03C;
     PacketSize[0x03D] = 0x00; PacketParser[0x03D] = &SmallPacket0x03D;
     PacketSize[0x041] = 0x00; PacketParser[0x041] = &ValidatedPacketHandler<GP_CLI_COMMAND_TROPHY_ENTRY>;
-    PacketSize[0x042] = 0x00; PacketParser[0x042] = &SmallPacket0x042;
+    PacketSize[0x042] = 0x06; PacketParser[0x042] = &ValidatedPacketHandler<GP_CLI_COMMAND_TROPHY_ABSENCE>;
     PacketSize[0x04B] = 0x00; PacketParser[0x04B] = &SmallPacket0x04B;
     PacketSize[0x04D] = 0x20; PacketParser[0x04D] = &ValidatedPacketHandler<GP_CLI_COMMAND_PBX>;
     PacketSize[0x04E] = 0x3C; PacketParser[0x04E] = &ValidatedPacketHandler<GP_CLI_COMMAND_AUC>;
