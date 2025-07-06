@@ -59,7 +59,6 @@
 
 #include "entities/charentity.h"
 #include "entities/mobentity.h"
-#include "entities/npcentity.h"
 #include "entities/trustentity.h"
 
 #include "items/item_shop.h"
@@ -72,6 +71,7 @@
 #include "packets/c2s/0x00d_netend.h"
 #include "packets/c2s/0x00f_clstat.h"
 #include "packets/c2s/0x011_zone_transition.h"
+#include "packets/c2s/0x015_pos.h"
 #include "packets/c2s/0x016_charreq.h"
 #include "packets/c2s/0x017_charreq2.h"
 #include "packets/c2s/0x01f_gmcommand.h"
@@ -199,7 +199,6 @@
 #include "packets/trade_item.h"
 #include "packets/trade_request.h"
 #include "packets/trade_update.h"
-#include "packets/wide_scan_track.h"
 #include "packets/world_pass.h"
 #include "packets/zone_in.h"
 #include "packets/zone_visited.h"
@@ -365,90 +364,6 @@ void SmallPacket0x00A(MapSession* const PSession, CCharEntity* const PChar, CBas
         PChar->pushPacket<CDownloadingDataPacket>();
         PChar->pushPacket<CZoneInPacket>(PChar, PChar->currentEvent);
         PChar->pushPacket<CZoneVisitedPacket>(PChar);
-    }
-}
-
-/************************************************************************
- *                                                                       *
- *  Player Sync                                                          *
- *  Updates the players position and other important information.        *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x015(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-    TracyZoneCString("Player Sync");
-
-    if (PChar->status != STATUS_TYPE::SHUTDOWN && PChar->status != STATUS_TYPE::DISAPPEAR && !PChar->pendingPositionUpdate)
-    {
-        float  newX        = data.ref<float>(0x04);
-        float  newY        = data.ref<float>(0x08);
-        float  newZ        = data.ref<float>(0x0C);
-        uint16 newTargID   = data.ref<uint16>(0x16);
-        uint8  newRotation = data.ref<uint8>(0x14);
-
-        // clang-format off
-        bool moved =
-            PChar->loc.p.x != newX ||
-            PChar->loc.p.y != newY ||
-            PChar->loc.p.z != newZ ||
-            PChar->m_TargID != newTargID ||
-            PChar->loc.p.rotation != newRotation;
-        // clang-format on
-
-        // Cache previous location
-        PChar->m_previousLocation = PChar->loc;
-
-        if (!PChar->isCharmed)
-        {
-            PChar->loc.p.x = newX;
-            PChar->loc.p.y = newY;
-            PChar->loc.p.z = newZ;
-
-            PChar->loc.p.moving   = data.ref<uint16>(0x12);
-            PChar->loc.p.rotation = newRotation;
-
-            PChar->m_TargID = newTargID;
-        }
-
-        if (moved)
-        {
-            PChar->updatemask |= UPDATE_POS; // Indicate that we want to update this PChar's PChar->loc or targID
-
-            // Calculate rough amount of steps taken
-            if (PChar->m_previousLocation.zone->GetID() == PChar->loc.zone->GetID())
-            {
-                float distanceTravelled = distance(PChar->m_previousLocation.p, PChar->loc.p);
-                PChar->m_charHistory.distanceTravelled += static_cast<uint32>(distanceTravelled);
-            }
-        }
-
-        // Request updates for all entity types
-        PChar->loc.zone->SpawnNPCs(PChar); // Some NPCs can move, some rotate when other players talk to them, always request NPC updates.
-        PChar->loc.zone->SpawnMOBs(PChar);
-        PChar->loc.zone->SpawnPETs(PChar);
-        PChar->loc.zone->SpawnTRUSTs(PChar);
-        PChar->requestedInfoSync = true; // Ask to update PCs during CZoneEntities::ZoneServer
-
-        // clang-format off
-        PChar->WideScanTarget.apply([&](const auto& wideScanTarget)
-        {
-            if (const auto* PWideScanEntity = PChar->GetEntity(wideScanTarget.targid, TYPE_MOB | TYPE_NPC))
-            {
-                PChar->pushPacket<CWideScanTrackPacket>(PWideScanEntity);
-
-                if (PWideScanEntity->status == STATUS_TYPE::DISAPPEAR)
-                {
-                    PChar->WideScanTarget = std::nullopt;
-                }
-            }
-            else
-            {
-                PChar->WideScanTarget = std::nullopt;
-            }
-        });
-        // clang-format on
     }
 }
 
@@ -2761,7 +2676,7 @@ void PacketParserInitialize()
     PacketSize[0x00D] = 0x08; PacketParser[0x00D] = &ValidatedPacketHandler<GP_CLI_COMMAND_NETEND>;
     PacketSize[0x00F] = 0x24; PacketParser[0x00F] = &ValidatedPacketHandler<GP_CLI_COMMAND_CLSTAT>;
     PacketSize[0x011] = 0x06; PacketParser[0x011] = &ValidatedPacketHandler<GP_CLI_COMMAND_ZONE_TRANSITION>;
-    PacketSize[0x015] = 0x10; PacketParser[0x015] = &SmallPacket0x015;
+    PacketSize[0x015] = 0x20; PacketParser[0x015] = &ValidatedPacketHandler<GP_CLI_COMMAND_POS>;
     PacketSize[0x016] = 0x08; PacketParser[0x016] = &ValidatedPacketHandler<GP_CLI_COMMAND_CHARREQ>;
     PacketSize[0x017] = 0x14; PacketParser[0x017] = &ValidatedPacketHandler<GP_CLI_COMMAND_CHARREQ2>;
     PacketSize[0x01A] = 0x0E; PacketParser[0x01A] = &SmallPacket0x01A;
