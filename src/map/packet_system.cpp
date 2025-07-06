@@ -85,6 +85,7 @@
 #include "packets/c2s/0x060_passwards.h"
 #include "packets/c2s/0x061_clistatus.h"
 #include "packets/c2s/0x063_dig.h"
+#include "packets/c2s/0x064_scenarioitem.h"
 #include "packets/c2s/0x066_fishing.h"
 #include "packets/c2s/0x070_group_breakup.h"
 #include "packets/c2s/0x071_group_strike.h"
@@ -162,7 +163,6 @@
 #include "packets/c2s/0x11c_party_request.h"
 #include "packets/c2s/0x11d_jump.h"
 #include "packets/char_abilities.h"
-#include "packets/char_appearance.h"
 #include "packets/char_equip.h"
 #include "packets/char_jobs.h"
 #include "packets/char_mounts.h"
@@ -181,7 +181,6 @@
 #include "packets/inventory_size.h"
 #include "packets/jobpoint_details.h"
 #include "packets/linkshell_equip.h"
-#include "packets/macroequipset.h"
 #include "packets/menu_config.h"
 #include "packets/menu_jobpoints.h"
 #include "packets/merit_points_categories.h"
@@ -2504,38 +2503,6 @@ void SmallPacket0x051(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *  Key Items (Mark As Seen)                                             *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x064(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-    uint8 KeyTable = data.ref<uint8>(0x4A);
-
-    if (KeyTable >= PChar->keys.tables.size())
-    {
-        return;
-    }
-
-    for (int i = 0; i < 0x40; i++)
-    {
-        // copy each bit of byte into std::bit location
-        PChar->keys.tables[KeyTable].seenList.set(i * 8 + 0, *data[0x08 + i] & 0x01);
-        PChar->keys.tables[KeyTable].seenList.set(i * 8 + 1, *data[0x08 + i] & 0x02);
-        PChar->keys.tables[KeyTable].seenList.set(i * 8 + 2, *data[0x08 + i] & 0x04);
-        PChar->keys.tables[KeyTable].seenList.set(i * 8 + 3, *data[0x08 + i] & 0x08);
-        PChar->keys.tables[KeyTable].seenList.set(i * 8 + 4, *data[0x08 + i] & 0x10);
-        PChar->keys.tables[KeyTable].seenList.set(i * 8 + 5, *data[0x08 + i] & 0x20);
-        PChar->keys.tables[KeyTable].seenList.set(i * 8 + 6, *data[0x08 + i] & 0x40);
-        PChar->keys.tables[KeyTable].seenList.set(i * 8 + 7, *data[0x08 + i] & 0x80);
-    }
-
-    charutils::SaveKeyItems(PChar);
-}
-
-/************************************************************************
- *                                                                       *
  *  Party Invite                                                         *
  *                                                                       *
  ************************************************************************/
@@ -3282,7 +3249,7 @@ void PacketParserInitialize()
     PacketSize[0x060] = 0x1C; PacketParser[0x060] = &ValidatedPacketHandler<GP_CLI_COMMAND_PASSWARDS>;
     PacketSize[0x061] = 0x06; PacketParser[0x061] = &ValidatedPacketHandler<GP_CLI_COMMAND_CLISTATUS>;
     PacketSize[0x063] = 0x10; PacketParser[0x063] = &ValidatedPacketHandler<GP_CLI_COMMAND_DIG>;
-    PacketSize[0x064] = 0x26; PacketParser[0x064] = &SmallPacket0x064;
+    PacketSize[0x064] = 0x4C; PacketParser[0x064] = &ValidatedPacketHandler<GP_CLI_COMMAND_SCENARIOITEM>;
     PacketSize[0x066] = 0x0A; PacketParser[0x066] = &ValidatedPacketHandler<GP_CLI_COMMAND_FISHING>;
     PacketSize[0x06E] = 0x06; PacketParser[0x06E] = &SmallPacket0x06E;
     PacketSize[0x06F] = 0x00; PacketParser[0x06F] = &SmallPacket0x06F;

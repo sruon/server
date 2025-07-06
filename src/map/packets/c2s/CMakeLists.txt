@@ -40,6 +40,8 @@ set(PACKET_C2S_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/0x061_clistatus.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x063_dig.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x063_dig.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x064_scenarioitem.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x064_scenarioitem.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x066_fishing.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x070_group_breakup.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x070_group_breakup.h
