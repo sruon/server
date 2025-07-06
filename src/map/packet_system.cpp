@@ -76,6 +76,7 @@
 #include "packets/c2s/0x01f_gmcommand.h"
 #include "packets/c2s/0x02b_translate.h"
 #include "packets/c2s/0x02c_itemsearch.h"
+#include "packets/c2s/0x032_item_trade_req.h"
 #include "packets/c2s/0x033_item_trade_res.h"
 #include "packets/c2s/0x034_item_trade_list.h"
 #include "packets/c2s/0x036_item_transfer.h"
@@ -1111,134 +1112,6 @@ void SmallPacket0x029(MapSession* const PSession, CCharEntity* const PChar, CBas
 
 /************************************************************************
  *                                                                       *
- *  Trade Request                                                        *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x032(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    // MONs can't trade
-    if (PChar->m_PMonstrosity != nullptr)
-    {
-        return;
-    }
-
-    uint32 charid = data.ref<uint32>(0x04);
-    uint16 targid = data.ref<uint16>(0x08);
-
-    CCharEntity* PTarget = (CCharEntity*)PChar->GetEntity(targid, TYPE_PC);
-
-    if ((PTarget != nullptr) && (PTarget->id == charid))
-    {
-        ShowDebug("%s initiated trade request with %s", PChar->getName(), PTarget->getName());
-
-        // If the player is the same as the target, don't allow the trade
-        if (PChar->id == PTarget->id)
-        {
-            PChar->pushPacket<CMessageBasicPacket>(PChar, PChar, 0, 0, 155);
-            return;
-        }
-
-        if (distance(PChar->loc.p, PTarget->loc.p) > 6.0f) // Tested as around 6.0' on retail
-        {
-            ShowWarning("%s trade request with %s was blocked. They are too far away!", PChar->getName(), PTarget->getName());
-            PChar->pushPacket<CTradeActionPacket>(PTarget, 0x07);
-            return;
-        }
-
-        // You must either both be outside (your_id == their_id == 0),
-        // or in the same moghouse by invite (your_id == their_id)
-        if (PChar->m_moghouseID != PTarget->m_moghouseID)
-        {
-            ShowError("%s trade request with %s was blocked. They have mismatching moghouse IDs!", PChar->getName(), PTarget->getName());
-            PChar->pushPacket<CTradeActionPacket>(PTarget, 0x07);
-            return;
-        }
-
-        // If either player is in prison don't allow the trade.
-        if (jailutils::InPrison(PChar) || jailutils::InPrison(PTarget))
-        {
-            ShowError("%s trade request with %s was blocked. They are in prison!", PChar->getName(), PTarget->getName());
-            PChar->pushPacket<CTradeActionPacket>(PTarget, 0x07);
-            return;
-        }
-
-        // If either player is crafting, don't allow the trade request.
-        if (PChar->animation == ANIMATION_SYNTH || (PChar->CraftContainer && PChar->CraftContainer->getItemsCount() > 0) ||
-            PTarget->animation == ANIMATION_SYNTH || (PTarget->CraftContainer && PTarget->CraftContainer->getItemsCount() > 0))
-        {
-            ShowError("%s trade request with %s was blocked. They are synthing!", PChar->getName(), PTarget->getName());
-            PChar->pushPacket<CTradeActionPacket>(PTarget, 0x07);
-            return;
-        }
-
-        // check /blockaid
-        if (charutils::IsAidBlocked(PChar, PTarget))
-        {
-            ShowDebug("%s is blocking trades", PTarget->getName());
-            // Target is blocking assistance
-            PChar->pushPacket<CMessageSystemPacket>(0, 0, MsgStd::TargetIsCurrentlyBlocking);
-            // Interaction was blocked
-            PTarget->pushPacket<CMessageSystemPacket>(0, 0, MsgStd::BlockedByBlockaid);
-            PChar->pushPacket<CTradeActionPacket>(PTarget, 0x07);
-            return;
-        }
-
-        if (PTarget->TradePending.id == PChar->id)
-        {
-            ShowDebug("%s has already sent a trade request to %s", PChar->getName(), PTarget->getName());
-            return;
-        }
-
-        if (!PTarget->UContainer->IsContainerEmpty())
-        {
-            PChar->pushPacket<CTradeActionPacket>(PTarget, 0x07);
-            ShowDebug("%s's UContainer is not empty. %s cannot trade with them at this time", PTarget->getName(), PChar->getName());
-            return;
-        }
-
-        timer::time_point currentTime     = timer::now();
-        auto              lastTargetTrade = currentTime - PTarget->lastTradeInvite;
-        if ((PTarget->TradePending.targid != 0 && lastTargetTrade < 60s) || PTarget->UContainer->GetType() == UCONTAINER_TRADE)
-        {
-            // Can't trade with someone who's already got a pending trade before timeout
-            PChar->pushPacket<CTradeActionPacket>(PTarget, 0x07);
-            return;
-        }
-
-        // This block usually doesn't trigger,
-        // The client is generally forced to send a trade cancel packet via a cancel yes/no menu,
-        // resulting in an outgoing 0x033 with 0x04 set to 0x01 for their old trade target, but sometimes the menu does not happen and a cancel is sent instead.
-        if (PChar->TradePending.id != 0)
-        {
-            // Tell previous trader we don't want their business
-            CCharEntity* POldTradeTarget = (CCharEntity*)PChar->GetEntity(PChar->TradePending.id, TYPE_PC);
-            if (POldTradeTarget && POldTradeTarget->id == PChar->TradePending.id)
-            {
-                POldTradeTarget->TradePending.clean();
-                PChar->TradePending.clean();
-
-                POldTradeTarget->pushPacket<CTradeActionPacket>(PChar, 0x07);
-                PChar->pushPacket<CTradeActionPacket>(POldTradeTarget, 0x07);
-                return;
-            }
-        }
-
-        PChar->lastTradeInvite     = currentTime;
-        PChar->TradePending.id     = charid;
-        PChar->TradePending.targid = targid;
-
-        PTarget->lastTradeInvite     = currentTime;
-        PTarget->TradePending.id     = PChar->id;
-        PTarget->TradePending.targid = PChar->targid;
-        PTarget->pushPacket<CTradeRequestPacket>(PChar);
-    }
-}
-
-/************************************************************************
- *                                                                       *
  *  Sort Inventory                                                       *
  *                                                                       *
  ************************************************************************/
@@ -1929,7 +1802,7 @@ void PacketParserInitialize()
     PacketSize[0x029] = 0x06; PacketParser[0x029] = &SmallPacket0x029;
     PacketSize[0x02B] = 0x00; PacketParser[0x02B] = &ValidatedPacketHandler<GP_CLI_COMMAND_TRANSLATE>;
     PacketSize[0x02C] = 0x00; PacketParser[0x02C] = &ValidatedPacketHandler<GP_CLI_COMMAND_ITEMSEARCH>;
-    PacketSize[0x032] = 0x06; PacketParser[0x032] = &SmallPacket0x032;
+    PacketSize[0x032] = 0x0C; PacketParser[0x032] = &ValidatedPacketHandler<GP_CLI_COMMAND_ITEM_TRADE_REQ>;
     PacketSize[0x033] = 0x0C; PacketParser[0x033] = &ValidatedPacketHandler<GP_CLI_COMMAND_ITEM_TRADE_RES>;
     PacketSize[0x034] = 0x0C; PacketParser[0x034] = &ValidatedPacketHandler<GP_CLI_COMMAND_ITEM_TRADE_LIST>;
     PacketSize[0x036] = 0x40; PacketParser[0x036] = &ValidatedPacketHandler<GP_CLI_COMMAND_ITEM_TRANSFER>;

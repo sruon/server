@@ -26,6 +26,8 @@ set(PACKET_C2S_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/0x016_charreq.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x017_charreq2.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x017_charreq2.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x032_item_trade_req.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x032_item_trade_req.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x033_item_trade_res.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x033_item_trade_res.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x034_item_trade_list.cpp
