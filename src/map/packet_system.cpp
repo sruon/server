@@ -72,6 +72,7 @@
 #include "packets/c2s/0x01f_gmcommand.h"
 #include "packets/c2s/0x02b_translate.h"
 #include "packets/c2s/0x02c_itemsearch.h"
+#include "packets/c2s/0x00d_netend.h"
 #include "packets/c2s/0x037_item_use.h"
 #include "packets/c2s/0x041_trophy_entry.h"
 #include "packets/c2s/0x04d_pbx.h"
@@ -413,20 +414,6 @@ void SmallPacket0x00C(MapSession* const PSession, CCharEntity* const PChar, CBas
 
         PChar->resetPetZoningInfo();
     }
-}
-
-/************************************************************************
- *  Player Leaving Zone (Dezone)                                         *
- *  It is not reliable to recieve this packet, so do nothing.            *
- ************************************************************************/
-
-void SmallPacket0x00D(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    std::ignore = data;
-    std::ignore = PSession;
-    std::ignore = PChar;
 }
 
 /************************************************************************
@@ -2957,7 +2944,7 @@ void PacketParserInitialize()
     // clang-format off
     PacketSize[0x00A] = 0x2E; PacketParser[0x00A] = &SmallPacket0x00A;
     PacketSize[0x00C] = 0x00; PacketParser[0x00C] = &SmallPacket0x00C;
-    PacketSize[0x00D] = 0x04; PacketParser[0x00D] = &SmallPacket0x00D;
+    PacketSize[0x00D] = 0x08; PacketParser[0x00D] = &ValidatedPacketHandler<GP_CLI_COMMAND_NETEND>;
     PacketSize[0x00F] = 0x00; PacketParser[0x00F] = &SmallPacket0x00F;
     PacketSize[0x011] = 0x00; PacketParser[0x011] = &SmallPacket0x011;
     PacketSize[0x015] = 0x10; PacketParser[0x015] = &SmallPacket0x015;
