@@ -73,6 +73,7 @@
 #include "packets/c2s/0x00f_clstat.h"
 #include "packets/c2s/0x011_zone_transition.h"
 #include "packets/c2s/0x016_charreq.h"
+#include "packets/c2s/0x017_charreq2.h"
 #include "packets/c2s/0x01f_gmcommand.h"
 #include "packets/c2s/0x02b_translate.h"
 #include "packets/c2s/0x02c_itemsearch.h"
@@ -449,23 +450,6 @@ void SmallPacket0x015(MapSession* const PSession, CCharEntity* const PChar, CBas
         });
         // clang-format on
     }
-}
-
-/************************************************************************
- *                                                                       *
- *  Invalid NPC Information Response                                     *
- *                                                                       *
- ************************************************************************/
-
-void SmallPacket0x017(MapSession* const PSession, CCharEntity* const PChar, CBasicPacket& data)
-{
-    TracyZoneScoped;
-
-    uint16 targid = data.ref<uint16>(0x04);
-    uint32 npcid  = data.ref<uint32>(0x08);
-    uint8  type   = data.ref<uint8>(0x12);
-
-    ShowWarning("SmallPacket0x17: Incorrect NPC(%u,%u) type(%u)", targid, npcid, type);
 }
 
 /************************************************************************
@@ -2779,7 +2763,7 @@ void PacketParserInitialize()
     PacketSize[0x011] = 0x06; PacketParser[0x011] = &ValidatedPacketHandler<GP_CLI_COMMAND_ZONE_TRANSITION>;
     PacketSize[0x015] = 0x10; PacketParser[0x015] = &SmallPacket0x015;
     PacketSize[0x016] = 0x08; PacketParser[0x016] = &ValidatedPacketHandler<GP_CLI_COMMAND_CHARREQ>;
-    PacketSize[0x017] = 0x00; PacketParser[0x017] = &SmallPacket0x017;
+    PacketSize[0x017] = 0x14; PacketParser[0x017] = &ValidatedPacketHandler<GP_CLI_COMMAND_CHARREQ2>;
     PacketSize[0x01A] = 0x0E; PacketParser[0x01A] = &SmallPacket0x01A;
     PacketSize[0x01B] = 0x00; PacketParser[0x01B] = &SmallPacket0x01B;
     PacketSize[0x01C] = 0x00; PacketParser[0x01C] = &SmallPacket0x01C;
