@@ -101,6 +101,7 @@
 #include "battleutils.h"
 #include "blueutils.h"
 #include "charutils.h"
+#include "enums/key_items.h"
 #include "itemutils.h"
 #include "petutils.h"
 #include "puppetutils.h"
@@ -117,6 +118,40 @@
 static constexpr int32                               ExpTableRowCount = 60;
 std::array<std::array<uint16, 20>, ExpTableRowCount> g_ExpTable;
 std::array<uint16, 100>                              g_ExpPerLevel;
+
+namespace
+{
+    // Key items granting an increase to the rate of skillups
+    const std::set skillupIncreaseKeyItems = {
+        KeyItem::RHAPSODY_IN_WHITE,
+        KeyItem::RHAPSODY_IN_CRIMSON,
+        KeyItem::RHAPSODY_IN_FUCHSIA
+    };
+
+    // Key items granting an increase to earned experience points
+    const std::set experienceBonusKeyItems = {
+        KeyItem::RHAPSODY_IN_WHITE,
+        KeyItem::RHAPSODY_IN_UMBER,
+        KeyItem::RHAPSODY_IN_AZURE,
+        KeyItem::RHAPSODY_IN_CRIMSON,
+        KeyItem::RHAPSODY_IN_EMERALD,
+        KeyItem::RHAPSODY_IN_MAUVE,
+    };
+
+    // Key items granting an increase to earned capacity points
+    const std::set capacityBonusKeyItems = {
+        KeyItem::RHAPSODY_IN_FUCHSIA,
+        KeyItem::RHAPSODY_IN_PUCE,
+        KeyItem::RHAPSODY_IN_OCHRE,
+    };
+
+    // Key items reducing the time for traverser stones
+    const std::set traverserStoneReductionKeyItems = {
+        KeyItem::AZURE_ABYSSITE_OF_CELERITY,
+        KeyItem::CRIMSON_ABYSSITE_OF_CELERITY,
+        KeyItem::IVORY_ABYSSITE_OF_CELERITY
+    };
+} // namespace
 
 namespace charutils
 {
@@ -813,7 +848,7 @@ namespace charutils
         }
 
         // TODO: Remove raw new's
-        PChar->PMeritPoints = new CMeritPoints(PChar);
+        PChar->PMeritPoints = std::make_unique<CMeritPoints>(PChar);
         PChar->PMeritPoints->SetMeritPoints(meritPoints);
         PChar->PMeritPoints->SetLimitPoints(limitPoints);
         PChar->PJobPoints = new CJobPoints(PChar);
@@ -3596,17 +3631,15 @@ namespace charutils
                 CapSkill = CapSkill * 10;
 
                 int16 rovBonus = 1;
-                for (auto i = 2884; i <= 2890; i += 3) // RHAPSODY KI
+
+                for (const auto skillupIncreaseKeyItem : skillupIncreaseKeyItems)
                 {
-                    if (hasKeyItem(PChar, i))
+                    if (hasKeyItem(PChar, skillupIncreaseKeyItem))
                     {
                         rovBonus += 1;
                     }
-                    else
-                    {
-                        break; // No need to check further as you can't get KI out of order, so break out.
-                    }
                 }
+
                 SkillAmount *= rovBonus;
                 if (SkillAmount > 9)
                 {
@@ -3692,69 +3725,74 @@ namespace charutils
      *                                                                       *
      ************************************************************************/
 
-    bool hasKeyItem(CCharEntity* PChar, uint16 KeyItemID)
+    auto hasKeyItem(CCharEntity* PChar, KeyItem keyItemId) -> bool
     {
-        auto table = KeyItemID / 512;
+        const auto keyItemTable = static_cast<uint16_t>(keyItemId) / 512;
+        const auto keyItemIndex = static_cast<uint16_t>(keyItemId) % 512;
 
-        if (table >= MAX_KEYS_TABLE)
+        if (keyItemTable >= MAX_KEYS_TABLE)
         {
-            ShowWarning("Attempt to check for keyItem out of range (%d)!", KeyItemID);
+            ShowWarning("Attempt to check for keyItem out of range (%d)!", static_cast<uint16_t>(keyItemId));
             return false;
         }
 
-        return PChar->keys.tables[table].keyList[KeyItemID % 512];
+        return PChar->keys.tables[keyItemTable].keyList[keyItemIndex];
     }
 
-    bool seenKeyItem(CCharEntity* PChar, uint16 KeyItemID)
+    auto seenKeyItem(CCharEntity* PChar, KeyItem keyItemId) -> bool
     {
-        auto table = KeyItemID / 512;
+        const auto keyItemTable = static_cast<uint16_t>(keyItemId) / 512;
+        const auto keyItemIndex = static_cast<uint16_t>(keyItemId) % 512;
 
-        if (table >= MAX_KEYS_TABLE)
+        if (keyItemTable >= MAX_KEYS_TABLE)
         {
-            ShowWarning("Attempt to see for keyItem out of range (%d)!", KeyItemID);
+            ShowWarning("Attempt to see for keyItem out of range (%d)!", static_cast<uint16_t>(keyItemId));
             return false;
         }
 
-        return PChar->keys.tables[table].seenList[KeyItemID % 512];
+        return PChar->keys.tables[keyItemTable].seenList[keyItemIndex];
     }
 
-    void unseenKeyItem(CCharEntity* PChar, uint16 KeyItemID)
+    void unseenKeyItem(CCharEntity* PChar, KeyItem keyItemId)
     {
-        auto table = KeyItemID / 512;
+        const auto keyItemTable = static_cast<uint16_t>(keyItemId) / 512;
+        const auto keyItemIndex = static_cast<uint16_t>(keyItemId) % 512;
 
-        if (table >= MAX_KEYS_TABLE)
+        if (keyItemTable >= MAX_KEYS_TABLE)
         {
-            ShowWarning("Attempt to unsee for keyItem out of range (%d)!", KeyItemID);
+            ShowWarning("Attempt to unsee for keyItem out of range (%d)!", static_cast<uint16_t>(keyItemId));
             return;
         }
 
-        PChar->keys.tables[table].seenList[KeyItemID % 512] = false;
+        PChar->keys.tables[keyItemTable].seenList[keyItemIndex] = false;
     }
 
-    void addKeyItem(CCharEntity* PChar, uint16 KeyItemID)
+    void addKeyItem(CCharEntity* PChar, KeyItem keyItemId)
     {
-        auto table = KeyItemID / 512;
+        const auto keyItemTable = static_cast<uint16_t>(keyItemId) / 512;
+        const auto keyItemIndex = static_cast<uint16_t>(keyItemId) % 512;
 
-        if (table >= MAX_KEYS_TABLE)
+        if (keyItemTable >= MAX_KEYS_TABLE)
         {
-            ShowWarning("Attempt to add for keyItem out of range (%d)!", KeyItemID);
+            ShowWarning("Attempt to add for keyItem out of range (%d)!", static_cast<uint16_t>(keyItemId));
             return;
         }
 
-        PChar->keys.tables[table].keyList[KeyItemID % 512] = true;
+        PChar->keys.tables[keyItemTable].keyList[keyItemIndex] = true;
     }
 
-    void delKeyItem(CCharEntity* PChar, uint16 KeyItemID)
+    void delKeyItem(CCharEntity* PChar, KeyItem keyItemId)
     {
-        auto table = KeyItemID / 512;
+        const auto keyItemTable = static_cast<uint16_t>(keyItemId) / 512;
+        const auto keyItemIndex = static_cast<uint16_t>(keyItemId) % 512;
 
-        if (table >= MAX_KEYS_TABLE)
+        if (keyItemTable >= MAX_KEYS_TABLE)
         {
-            ShowWarning("Attempt to delete keyItem out of range (%d)!", KeyItemID);
+            ShowWarning("Attempt to delete keyItem out of range (%d)!", static_cast<uint16_t>(keyItemId));
             return;
         }
 
-        PChar->keys.tables[table].keyList[KeyItemID % 512] = false;
+        PChar->keys.tables[keyItemTable].keyList[keyItemIndex] = false;
     }
 
     /************************************************************************
@@ -4710,7 +4748,7 @@ namespace charutils
                 return;
             }
 
-            if (!hasKeyItem(PMember, 2544) || PMember->GetMLevel() < 99)
+            if (!hasKeyItem(PMember, KeyItem::JOB_BREAKER) || PMember->GetMLevel() < 99)
             {
                 // Do not grant Capacity points without Job Breaker or Level 99
                 return;
@@ -4805,9 +4843,9 @@ namespace charutils
         }
 
         // RoV Key Items - Fuchsia, Puce, Ochre (30%)
-        for (uint16 rovKeyItem = 2890; rovKeyItem <= 2892; rovKeyItem++)
+        for (auto capacityBonusKeyItem : capacityBonusKeyItems)
         {
-            if (hasKeyItem(PChar, rovKeyItem))
+            if (hasKeyItem(PChar, capacityBonusKeyItem))
             {
                 rawBonus += 30;
             }
@@ -6022,15 +6060,11 @@ namespace charutils
         }
 
         int16 rovBonus = 0;
-        for (auto i = 2884; i <= 2889; ++i) // RHAPSODY KI are sequential, so start at WHITE and end at MAUVE, last 3 are CP
+        for (const auto experienceBonusKeyItem : experienceBonusKeyItems)
         {
-            if (hasKeyItem(PChar, i))
+            if (hasKeyItem(PChar, experienceBonusKeyItem))
             {
                 rovBonus += 30;
-            }
-            else
-            {
-                break; // No need to check further as you can't get KI out of order, so break out.
             }
         }
 
@@ -7007,13 +7041,14 @@ namespace charutils
 
         // Handle reduction for Celerity Key Items
         earth_time::duration stoneWaitHours = 20h;
-        for (int keyItem = 1385; keyItem <= 1387; ++keyItem)
+        for (const auto traverserStoneReductionKeyItem : traverserStoneReductionKeyItems)
         {
-            if (hasKeyItem(PChar, keyItem))
+            if (hasKeyItem(PChar, traverserStoneReductionKeyItem))
             {
                 stoneWaitHours -= 4h;
             }
         }
+
         earth_time::duration elapsedSinceEpoch = earth_time::now() - traverserEpoch;
         uint32               stonesGenerated   = std::chrono::floor<std::chrono::hours>(elapsedSinceEpoch) / stoneWaitHours;
 

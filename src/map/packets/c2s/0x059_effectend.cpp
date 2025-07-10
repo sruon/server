@@ -23,7 +23,7 @@
 
 auto GP_CLI_COMMAND_EFFECTEND::validate(MapSession* PSession, const CCharEntity* PChar) const -> PacketValidationResult
 {
-    // No validation since we explicitly ignore this packet.
+    // Packet explicitly ignored.
     return PacketValidator();
 }
 

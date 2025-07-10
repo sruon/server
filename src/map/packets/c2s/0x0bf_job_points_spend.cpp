@@ -29,7 +29,7 @@ auto GP_CLI_COMMAND_JOB_POINTS_SPEND::validate(MapSession* PSession, const CChar
 {
     return PacketValidator()
         .mustNotEqual(PChar->m_moghouseID, 0, "Character not in a mog house.")
-        .mustEqual(PChar->PJobPoints->IsJobPointExist(static_cast<JOBPOINT_TYPE>(Index)), true, "Job point does not exist.");
+        .mustEqual(PChar->PJobPoints && PChar->PJobPoints->IsJobPointExist(static_cast<JOBPOINT_TYPE>(Index)), true, "Job point does not exist.");
 }
 
 void GP_CLI_COMMAND_JOB_POINTS_SPEND::process(MapSession* PSession, CCharEntity* PChar) const

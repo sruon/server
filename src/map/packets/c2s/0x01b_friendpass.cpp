@@ -26,13 +26,13 @@
 
 auto GP_CLI_COMMAND_FRIENDPASS::validate(MapSession* PSession, const CCharEntity* PChar) const -> PacketValidationResult
 {
+    // Not implemented.
     return PacketValidator()
         .oneOf<GP_CLI_COMMAND_FRIENDPASS_PARA>(Para);
 }
 
 void GP_CLI_COMMAND_FRIENDPASS::process(MapSession* PSession, CCharEntity* PChar) const
 {
-    // TODO: Implement me.
     switch (static_cast<GP_CLI_COMMAND_FRIENDPASS_PARA>(Para))
     {
         case GP_CLI_COMMAND_FRIENDPASS_PARA::BeginPurchase:

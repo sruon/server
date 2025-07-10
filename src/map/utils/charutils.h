@@ -26,9 +26,9 @@
 
 #include "entities/charentity.h"
 #include "items/item_equipment.h"
-#include "trait.h"
 #include "zone.h"
 
+enum class KeyItem : uint16_t;
 class CPetEntity;
 class CMobEntity;
 class CMeritPoints;
@@ -134,11 +134,11 @@ namespace charutils
     void   AddItemToRecycleBin(CCharEntity* PChar, uint32 container, uint8 slotID, uint8 quantity);
     void   EmptyRecycleBin(CCharEntity* PChar);
 
-    bool hasKeyItem(CCharEntity* PChar, uint16 KeyItemID);    // checking the presence of a key item
-    bool seenKeyItem(CCharEntity* PChar, uint16 KeyItemID);   // checking whether the description of the key item has been read
-    void unseenKeyItem(CCharEntity* PChar, uint16 KeyItemID); // attempt to remove keyitem from seen list
-    void addKeyItem(CCharEntity* PChar, uint16 KeyItemID);    // add a key item
-    void delKeyItem(CCharEntity* PChar, uint16 KeyItemID);    // delete a key item
+    auto hasKeyItem(CCharEntity* PChar, KeyItem keyItemId) -> bool;  // checking the presence of a key item
+    auto seenKeyItem(CCharEntity* PChar, KeyItem keyItemId) -> bool; // checking whether the description of the key item has been read
+    void unseenKeyItem(CCharEntity* PChar, KeyItem keyItemId);       // attempt to remove keyitem from seen list
+    void addKeyItem(CCharEntity* PChar, KeyItem keyItemId);          // add a key item
+    void delKeyItem(CCharEntity* PChar, KeyItem keyItemId);          // delete a key item
 
     int32 hasSpell(CCharEntity* PChar, uint16 SpellID); // checking for the presence of a spell
     int32 addSpell(CCharEntity* PChar, uint16 SpellID); // add a spell

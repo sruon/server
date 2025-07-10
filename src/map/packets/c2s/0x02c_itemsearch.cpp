@@ -25,7 +25,7 @@
 
 auto GP_CLI_COMMAND_ITEMSEARCH::validate(MapSession* PSession, const CCharEntity* PChar) const -> PacketValidationResult
 {
-    // Unimplemented
+    // Not implemented.
     return PacketValidator()
         .oneOf<GP_CLI_COMMAND_ITEMSEARCH_LANGUAGE>(Language);
 }

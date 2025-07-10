@@ -66,6 +66,7 @@
 #include "char_recast_container.h"
 #include "charentity.h"
 #include "conquest_system.h"
+#include "enums/key_items.h"
 #include "ipc_client.h"
 #include "item_container.h"
 #include "items/item_furnishing.h"
@@ -364,7 +365,6 @@ CCharEntity::~CCharEntity()
     destroy(Container);
     destroy(UContainer);
     destroy(CraftContainer);
-    destroy(PMeritPoints);
     destroy(PJobPoints);
     destroy(PLatentEffectContainer);
 
@@ -2870,13 +2870,13 @@ void CCharEntity::UpdateMoghancement()
         // Remove the previous moghancement
         if (m_moghancementID != 0)
         {
-            charutils::delKeyItem(this, m_moghancementID);
+            charutils::delKeyItem(this, static_cast<KeyItem>(m_moghancementID));
         }
 
         // Add the new moghancement
         if (newMoghancementID != 0)
         {
-            charutils::addKeyItem(this, newMoghancementID);
+            charutils::addKeyItem(this, static_cast<KeyItem>(newMoghancementID));
         }
 
         // Send only one key item packet if they are in the same key item table
@@ -2884,17 +2884,17 @@ void CCharEntity::UpdateMoghancement()
         uint8 currentTable = m_moghancementID >> 9;
         if (newTable == currentTable)
         {
-            pushPacket<CKeyItemsPacket>(this, (KEYS_TABLE)newTable);
+            pushPacket<CKeyItemsPacket>(this, static_cast<KEYS_TABLE>(newTable));
         }
         else
         {
             if (newTable != 0)
             {
-                pushPacket<CKeyItemsPacket>(this, (KEYS_TABLE)newTable);
+                pushPacket<CKeyItemsPacket>(this, static_cast<KEYS_TABLE>(newTable));
             }
             if (currentTable != 0)
             {
-                pushPacket<CKeyItemsPacket>(this, (KEYS_TABLE)currentTable);
+                pushPacket<CKeyItemsPacket>(this, static_cast<KEYS_TABLE>(currentTable));
             }
         }
         charutils::SaveKeyItems(this);

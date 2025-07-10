@@ -25,7 +25,7 @@
 
 auto GP_CLI_COMMAND_ASSIST_CHANNEL::validate(MapSession* PSession, const CCharEntity* PChar) const -> PacketValidationResult
 {
-    // Unimplemented
+    // Not implemented.
     return PacketValidator()
         .oneOf<GP_CLI_COMMAND_ASSIST_CHANNEL_KIND>(Kind);
 }

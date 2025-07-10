@@ -26,6 +26,7 @@
 #include "luautils.h"
 #include "packets/message_standard.h"
 #include "packets/position.h"
+#include "utils/charutils.h"
 
 class CBaseEntity;
 class CCharEntity;
@@ -432,11 +433,11 @@ public:
     bool  hasCompletedAssault(uint8 missionID);
     void  completeAssault(uint8 missionID);
 
-    void addKeyItem(uint16 keyItemID);
-    bool hasKeyItem(uint16 keyItemID);
-    void delKeyItem(uint16 keyItemID);
-    bool seenKeyItem(uint16 keyItemID);
-    void unseenKeyItem(uint16 keyItemID); // Attempt to remove the keyitem from the seen key item collection, only works on logout
+    void addKeyItem(KeyItem keyItemID) const;
+    auto hasKeyItem(KeyItem keyItemID) const -> bool;
+    void delKeyItem(KeyItem keyItemID) const;
+    auto seenKeyItem(KeyItem keyItemID) const -> bool;
+    void unseenKeyItem(KeyItem keyItemID) const; // Attempt to remove the keyitem from the seen key item collection, only works on logout
 
     // Player Points
     void  addExp(uint32 exp);
@@ -516,7 +517,7 @@ public:
 
     // Skills and Abilities
     void capSkill(uint8 skill);
-    void capAllSkills();
+    void capAllSkills() const;
 
     uint16 getSkillLevel(uint16 skillId);
     void   setSkillLevel(uint8 SkillID, uint16 SkillAmount);

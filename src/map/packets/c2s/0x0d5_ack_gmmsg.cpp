@@ -25,7 +25,7 @@
 
 auto GP_CLI_COMMAND_ACK_GMMSG::validate(MapSession* PSession, const CCharEntity* PChar) const -> PacketValidationResult
 {
-    // Unimplemented.
+    // Not implemented.
     return PacketValidator();
 }
 

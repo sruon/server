@@ -47,7 +47,7 @@ void GP_CLI_COMMAND_SITCHAIR::process(MapSession* PSession, CCharEntity* PChar) 
     uint8 chairId = ChairId + ANIMATION_SITCHAIR_0;
 
     // Validate key item ownership for 64 through 83
-    if (chairId != ANIMATION_SITCHAIR_0 && !charutils::hasKeyItem(PChar, chairId + 0xACA))
+    if (chairId != ANIMATION_SITCHAIR_0 && !charutils::hasKeyItem(PChar, static_cast<KeyItem>(chairId + 0xACA)))
     {
         chairId = ANIMATION_SITCHAIR_0;
     }

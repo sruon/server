@@ -25,6 +25,7 @@
 
 auto GP_CLI_COMMAND_SWITCH_PROPOSAL::validate(MapSession* PSession, const CCharEntity* PChar) const -> PacketValidationResult
 {
+    // Not implemented.
     return PacketValidator()
         .oneOf<GP_CLI_COMMAND_SWITCH_PROPOSAL_KIND>(Kind);
 }

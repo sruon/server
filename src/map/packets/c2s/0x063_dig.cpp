@@ -23,16 +23,14 @@
 
 #include "entities/charentity.h"
 
+
 auto GP_CLI_COMMAND_DIG::validate(MapSession* PSession, const CCharEntity* PChar) const -> PacketValidationResult
 {
-    return PacketValidator()
-        .mustEqual(para, 0, "para not 0")
-        .mustEqual(mode, 0x11, "mode not 0x11")
-        .mustEqual(UniqueNo, PChar->id, "UniqueNo mismatch.")
-        .mustEqual(ActIndex, PChar->targid, "Targid mismatch.");
+    // Packet explicitly ignored.
+    return PacketValidator();
 }
 
 void GP_CLI_COMMAND_DIG::process(MapSession* PSession, CCharEntity* PChar) const
 {
-    ShowDebug("GP_CLI_COMMAND_DIG: Not implemented.");
+    // Do nothing.
 }

@@ -25,7 +25,7 @@
 
 auto GP_CLI_COMMAND_FAQ_GMPARAM::validate(MapSession* PSession, const CCharEntity* PChar) const -> PacketValidationResult
 {
-    // Unimplemented packet
+    // Not implemented.
     return PacketValidator();
 }
 

@@ -29,5 +29,5 @@ auto GP_CLI_COMMAND_NETEND::validate(MapSession* PSession, const CCharEntity* PC
 
 void GP_CLI_COMMAND_NETEND::process(MapSession* PSession, CCharEntity* PChar) const
 {
-    // No processing needed - client is logging out
+    // Do nothing.
 }

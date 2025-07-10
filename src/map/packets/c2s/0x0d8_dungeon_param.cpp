@@ -25,7 +25,7 @@
 
 auto GP_CLI_COMMAND_DUNGEON_PARAM::validate(MapSession* PSession, const CCharEntity* PChar) const -> PacketValidationResult
 {
-    // Unimplemented
+    // Not implemented.
     return PacketValidator()
         .mustEqual(PChar->id, UniqueNo, "Character ID mismatch")
         .mustEqual(PChar->targid, ActIndex, "Targid mismatch");
