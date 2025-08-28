@@ -21,35 +21,28 @@
 
 #include "menu_unity.h"
 
-#include "common/database.h"
-#include "common/logging.h"
-#include "common/sql.h"
 #include "map_engine.h"
 
 #include "entities/charentity.h"
-#include "utils/charutils.h"
 
 CMenuUnityPacket::CMenuUnityPacket(CCharEntity* PChar)
 {
-    const char* Query = "SELECT leader, members_current, points_current, members_prev, points_prev FROM unity_system";
-    int32       ret   = _sql->Query(Query);
+    const auto query = "SELECT leader, members_current, points_current, members_prev, points_prev FROM unity_system";
+    const auto rset  = db::preparedStmt(query);
 
-    std::pair<int32, double> unity_current[11];
-    std::pair<int32, double> unity_previous[11];
+    std::pair<int32, double> unityCurrent[11];
+    std::pair<int32, double> unityPrevious[11];
 
-    if (ret != SQL_ERROR && _sql->NumRows() != 0)
+    FOR_DB_MULTIPLE_RESULTS(rset)
     {
-        while (_sql->NextRow() == SQL_SUCCESS)
-        {
-            int unity_leader = _sql->GetIntData(0) - 1;
+        const auto unityLeader = rset->get<int>("leader") - 1;
 
-            if (unity_leader >= 0 && unity_leader < 11)
-            {
-                unity_current[unity_leader].first   = _sql->GetIntData(1);
-                unity_current[unity_leader].second  = _sql->GetIntData(2);
-                unity_previous[unity_leader].first  = _sql->GetIntData(3);
-                unity_previous[unity_leader].second = _sql->GetIntData(4);
-            }
+        if (unityLeader >= 0 && unityLeader < 11)
+        {
+            unityCurrent[unityLeader].first   = rset->get<int>("members_current");
+            unityCurrent[unityLeader].second  = rset->get<double>("points_current");
+            unityPrevious[unityLeader].first  = rset->get<int>("members_prev");
+            unityPrevious[unityLeader].second = rset->get<double>("points_prev");
         }
     }
 
@@ -74,7 +67,7 @@ CMenuUnityPacket::CMenuUnityPacket(CCharEntity* PChar)
 
     for (uint8 i = 0; i < 11; i++)
     {
-        ref<uint32>(i * 4 + 0x10) = unity_previous[i].first;
+        ref<uint32>(i * 4 + 0x10) = unityPrevious[i].first;
     }
 
     PChar->pushPacket(this->copy());
@@ -90,7 +83,7 @@ CMenuUnityPacket::CMenuUnityPacket(CCharEntity* PChar)
 
     for (uint8 i = 0; i < 11; i++)
     {
-        ref<uint32>(i * 4 + 0x10) = unity_previous[i].second;
+        ref<uint32>(i * 4 + 0x10) = unityPrevious[i].second;
     }
 
     PChar->pushPacket(this->copy());
@@ -130,7 +123,7 @@ CMenuUnityPacket::CMenuUnityPacket(CCharEntity* PChar)
 
     for (uint8 i = 0; i < 11; i++)
     {
-        ref<uint32>(i * 4 + 0x10) = unity_current[i].first;
+        ref<uint32>(i * 4 + 0x10) = unityCurrent[i].first;
     }
 
     PChar->pushPacket(this->copy());
@@ -147,7 +140,7 @@ CMenuUnityPacket::CMenuUnityPacket(CCharEntity* PChar)
 
     for (uint8 i = 0; i < 11; i++)
     {
-        ref<uint32>(i * 4 + 0x10) = unity_current[i].second;
+        ref<uint32>(i * 4 + 0x10) = unityCurrent[i].second;
     }
 
     PChar->pushPacket(this->copy());

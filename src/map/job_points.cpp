@@ -32,37 +32,34 @@ CJobPoints::CJobPoints(CCharEntity* PChar)
 
 void CJobPoints::LoadJobPoints()
 {
-    if (
-        _sql->Query("SELECT charid, jobid, capacity_points, job_points, job_points_spent, "
-                    "jptype0, jptype1, jptype2, jptype3, jptype4, jptype5, jptype6, jptype7, jptype8, jptype9 "
-                    "FROM char_job_points WHERE charid = %u ORDER BY jobid ASC",
-                    m_PChar->id) != SQL_ERROR)
+    const auto query = "SELECT charid, jobid, capacity_points, job_points, job_points_spent, "
+                       "jptype0, jptype1, jptype2, jptype3, jptype4, jptype5, jptype6, jptype7, jptype8, jptype9 "
+                       "FROM char_job_points WHERE charid = ? ORDER BY jobid ASC";
+    
+    const auto rset = db::preparedStmt(query, m_PChar->id);
+    
+    FOR_DB_MULTIPLE_RESULTS(rset)
     {
-        for (uint64 i = 0; i < _sql->NumRows(); i++)
+        uint32      jobId       = rset->get<uint32>("jobid");
+        uint16      jobCategory = JobPointsCategoryByJobId(jobId);
+        JobPoints_t currentJob  = {};
+
+        currentJob.jobId          = jobId;
+        currentJob.jobCategory    = jobCategory;
+        currentJob.capacityPoints = rset->get<uint32>("capacity_points");
+        currentJob.currentJp      = rset->get<uint32>("job_points");
+        currentJob.totalJpSpent   = rset->get<uint32>("job_points_spent");
+
+        for (uint8 j = 0; j < JOBPOINTS_JPTYPE_PER_CATEGORY; j++)
         {
-            if (_sql->NextRow() == SQL_SUCCESS)
-            {
-                uint32      jobId       = _sql->GetUIntData(1);
-                uint16      jobCategory = JobPointsCategoryByJobId(jobId);
-                JobPoints_t currentJob  = {};
-
-                currentJob.jobId          = jobId;
-                currentJob.jobCategory    = jobCategory;
-                currentJob.capacityPoints = _sql->GetUIntData(2);
-                currentJob.currentJp      = _sql->GetUIntData(3);
-                currentJob.totalJpSpent   = _sql->GetUIntData(4);
-
-                for (uint8 j = 0; j < JOBPOINTS_JPTYPE_PER_CATEGORY; j++)
-                {
-                    JobPointType_t currentType = {};
-                    currentType.id             = currentJob.jobCategory + j;
-                    currentType.value          = _sql->GetUIntData(JOBPOINTS_SQL_COLUMN_OFFSET + j);
-                    std::memcpy(&currentJob.job_point_types[j], &currentType, sizeof(JobPointType_t));
-                }
-
-                std::memcpy(&m_jobPoints[jobId], &currentJob, sizeof(JobPoints_t));
-            }
+            JobPointType_t currentType = {};
+            currentType.id             = currentJob.jobCategory + j;
+            std::string columnName = fmt::format("jptype{}", j);
+            currentType.value          = rset->get<uint32>(columnName);
+            std::memcpy(&currentJob.job_point_types[j], &currentType, sizeof(JobPointType_t));
         }
+
+        std::memcpy(&m_jobPoints[jobId], &currentJob, sizeof(JobPoints_t));
     }
 }
 
@@ -111,8 +108,9 @@ void CJobPoints::RaiseJobPoint(JOBPOINT_TYPE jpType)
         job->totalJpSpent += cost;
         jobPoint->value++;
 
-        _sql->Query("UPDATE char_job_points SET jptype%u='%u', job_points='%u', job_points_spent='%u' WHERE charid='%u' AND jobid='%u'",
-                    JobPointTypeIndex(jobPoint->id), jobPoint->value, job->currentJp, job->totalJpSpent, m_PChar->id, job->jobId);
+        const auto updateQuery = fmt::format("UPDATE char_job_points SET jptype{}=?, job_points=?, job_points_spent=? WHERE charid=? AND jobid=?",
+                                             JobPointTypeIndex(jobPoint->id));
+        db::preparedStmt(updateQuery, jobPoint->value, job->currentJp, job->totalJpSpent, m_PChar->id, job->jobId);
 
         jobpointutils::RefreshGiftMods(m_PChar);
     }
@@ -125,12 +123,12 @@ uint16 CJobPoints::GetJobPoints()
 
 uint16 CJobPoints::GetJobPointsByJob(uint8 jobID)
 {
-    const char* Query = "SELECT job_points FROM char_job_points WHERE charid='%u' AND jobid='%u'";
-    int         ret   = _sql->Query(Query, m_PChar->id, jobID);
+    const auto query = "SELECT job_points FROM char_job_points WHERE charid=? AND jobid=?";
+    const auto rset = db::preparedStmt(query, m_PChar->id, jobID);
 
-    if (ret != SQL_ERROR && _sql->NextRow() == SQL_SUCCESS)
+    FOR_DB_SINGLE_RESULT(rset)
     {
-        return _sql->GetUIntData(0);
+        return rset->get<uint16>("job_points");
     }
 
     return 0;
@@ -141,8 +139,8 @@ void CJobPoints::SetJobPoints(int16 amount)
     uint8 currentJob = static_cast<uint8>(m_PChar->GetMJob());
     amount           = std::clamp<int16>(amount, 0, 500);
 
-    _sql->Query("INSERT INTO char_job_points SET charid='%u', jobid='%u', job_points='%u' ON DUPLICATE KEY UPDATE job_points='%u'",
-                m_PChar->id, currentJob, amount, amount);
+    const auto insertQuery = "INSERT INTO char_job_points SET charid=?, jobid=?, job_points=? ON DUPLICATE KEY UPDATE job_points=?";
+    db::preparedStmt(insertQuery, m_PChar->id, currentJob, amount, amount);
 
     LoadJobPoints();
 }
@@ -155,8 +153,8 @@ void CJobPoints::AddJobPoints(uint8 jobID, uint16 amount)
         return;
     }
     amount = std::clamp<int16>(amount, 0, 500);
-    _sql->Query("INSERT INTO char_job_points SET charid='%u', jobid='%u', job_points='%d' ON DUPLICATE KEY UPDATE job_points=job_points +'%d'",
-                m_PChar->id, jobID, amount, amount);
+    const auto addQuery = "INSERT INTO char_job_points SET charid=?, jobid=?, job_points=? ON DUPLICATE KEY UPDATE job_points=job_points+?";
+    db::preparedStmt(addQuery, m_PChar->id, jobID, amount, amount);
 
     LoadJobPoints();
 }
@@ -171,8 +169,8 @@ void CJobPoints::DelJobPoints(uint8 jobID, int16 amount)
         return;
     }
 
-    _sql->Query("UPDATE char_job_points SET job_points='%u' WHERE charid='%u' AND jobid='%u'",
-                currentAmount - amount, m_PChar->id, jobID);
+    const auto updateQuery = "UPDATE char_job_points SET job_points=? WHERE charid=? AND jobid=?";
+    db::preparedStmt(updateQuery, currentAmount - amount, m_PChar->id, jobID);
 
     LoadJobPoints();
 }
@@ -230,8 +228,8 @@ void CJobPoints::SetCapacityPoints(uint16 amount)
     amount                                 = std::clamp<int16>(amount, 0, 30000);
     m_jobPoints[currentJob].capacityPoints = amount;
 
-    _sql->Query("INSERT INTO char_job_points SET charid='%u', jobid='%u', capacity_points='%u' ON DUPLICATE KEY UPDATE capacity_points='%u'",
-                m_PChar->id, currentJob, amount, amount);
+    const auto insertCapQuery = "INSERT INTO char_job_points SET charid=?, jobid=?, capacity_points=? ON DUPLICATE KEY UPDATE capacity_points=?";
+    db::preparedStmt(insertCapQuery, m_PChar->id, currentJob, amount, amount);
 }
 
 uint8 CJobPoints::GetJobPointValue(JOBPOINT_TYPE jpType)
@@ -250,19 +248,19 @@ namespace jobpointutils
 
     void LoadGifts()
     {
-        if (_sql->Query("SELECT jobid, jp_needed, modid, value FROM job_point_gifts ORDER BY jp_needed ASC") != SQL_ERROR)
+        const auto query = "SELECT jobid, jp_needed, modid, value FROM job_point_gifts ORDER BY jp_needed ASC";
+        const auto rset = db::preparedStmt(query);
+        
+        FOR_DB_MULTIPLE_RESULTS(rset)
         {
-            while (_sql->NextRow() == SQL_SUCCESS)
-            {
-                JobPointGifts_t gift = {};
+            JobPointGifts_t gift = {};
 
-                uint8 jobId     = _sql->GetUIntData(0);
-                gift.jpRequired = _sql->GetUIntData(1);
-                gift.modId      = _sql->GetUIntData(2);
-                gift.value      = _sql->GetUIntData(3);
+            uint8 jobId     = rset->get<uint8>("jobid");
+            gift.jpRequired = rset->get<uint32>("jp_needed");
+            gift.modId      = rset->get<uint32>("modid");
+            gift.value      = rset->get<uint32>("value");
 
-                jpGifts[jobId].emplace_back(gift);
-            }
+            jpGifts[jobId].emplace_back(gift);
         }
     }
 

@@ -26,9 +26,7 @@
 #include <array>
 #include <cstring>
 
-#include "common/database.h"
 #include "common/logging.h"
-#include "common/sql.h"
 
 #include "entities/battleentity.h"
 #include "lua/luautils.h"
@@ -115,47 +113,47 @@ namespace itemutils
 
     CItem* CreateItem(uint16 ItemID)
     {
-        if ((ItemID >= 0x0200) && (ItemID <= 0x0206))
+        if ((ItemID >= 512) && (ItemID <= 518))
         {
             return new CItemLinkshell(ItemID);
         }
 
-        if ((ItemID >= 0x01D8) && (ItemID <= 0x0DFF))
+        if ((ItemID >= 472) && (ItemID <= 3583))
         {
             return new CItemGeneral(ItemID);
         }
 
-        if (ItemID <= 0x0FFF)
+        if (ItemID <= 4095)
         {
             return new CItemFurnishing(ItemID);
         }
 
-        if (ItemID <= 0x1FFF)
+        if (ItemID <= 8191)
         {
             return new CItemUsable(ItemID);
         }
 
-        if (ItemID <= 0x27FF)
+        if (ItemID <= 10239)
         {
             return new CItemPuppet(ItemID);
         }
 
-        if (ItemID <= 0x3FFF)
+        if (ItemID <= 16383)
         {
             return new CItemEquipment(ItemID);
         }
 
-        if (ItemID <= 0x5FFF)
+        if (ItemID <= 24575)
         {
             return new CItemWeapon(ItemID);
         }
 
-        if (ItemID <= 0x6FFF)
+        if (ItemID <= 28671)
         {
             return new CItemEquipment(ItemID);
         }
 
-        if (ItemID <= 0x7FFF)
+        if (ItemID <= 32767)
         {
             return new CItemGeneral(ItemID);
         }
@@ -346,142 +344,98 @@ namespace itemutils
 
     void LoadItemList()
     {
-        const char* Query = "SELECT "
-                            "b.itemId,"    //  0
-                            "b.name,"      //  1
-                            "b.stackSize," //  2
-                            "b.flags,"     //  3
-                            "b.aH,"        //  4
-                            "b.BaseSell,"  //  5
-                            "b.subid,"     //  6
+        const auto query = "SELECT "
+                           "b.itemId, b.name, b.stackSize, b.flags, b.aH, b.BaseSell, b.subid, "
+                           "u.validTargets, u.activation, u.animation, u.animationTime, u.maxCharges, u.useDelay, u.reuseDelay, u.aoe, "
+                           "a.level, a.ilevel, a.jobs, a.MId, a.shieldSize, a.scriptType, a.slot, a.rslot, a.su_level, a.rslotlook, "
+                           "w.skill, w.subskill, w.ilvl_skill, w.ilvl_parry, w.ilvl_macc, w.delay, w.dmg, w.dmgType, w.hit, w.unlock_points, "
+                           "f.storage, f.moghancement, f.element, f.aura, "
+                           "p.slot AS puppet_slot, p.element AS puppet_element "
+                           "FROM item_basic AS b "
+                           "LEFT JOIN item_usable AS u USING (itemId) "
+                           "LEFT JOIN item_equipment AS a USING (itemId) "
+                           "LEFT JOIN item_weapon AS w USING (itemId) "
+                           "LEFT JOIN item_furnishing AS f USING (itemId) "
+                           "LEFT JOIN item_puppet AS p USING (itemId) "
+                           "WHERE itemId < ?";
 
-                            "u.validTargets,"  //  7
-                            "u.activation,"    //  8
-                            "u.animation,"     //  9
-                            "u.animationTime," // 10
-                            "u.maxCharges,"    // 11
-                            "u.useDelay,"      // 12
-                            "u.reuseDelay,"    // 13
-                            "u.aoe,"           // 14
-
-                            "a.level,"      // 15
-                            "a.ilevel,"     // 16
-                            "a.jobs,"       // 17
-                            "a.MId,"        // 18
-                            "a.shieldSize," // 19
-                            "a.scriptType," // 20
-                            "a.slot,"       // 21
-                            "a.rslot,"      // 22
-                            "a.su_level,"   // 23
-                            "a.rslotlook,"  // 24
-
-                            "w.skill,"         // 25
-                            "w.subskill,"      // 26
-                            "w.ilvl_skill,"    // 27
-                            "w.ilvl_parry,"    // 28
-                            "w.ilvl_macc,"     // 29
-                            "w.delay,"         // 30
-                            "w.dmg,"           // 31
-                            "w.dmgType,"       // 32
-                            "w.hit,"           // 33
-                            "w.unlock_points," // 34
-
-                            "f.storage,"      // 35
-                            "f.moghancement," // 36
-                            "f.element,"      // 37
-                            "f.aura,"         // 38
-
-                            "p.slot,"    // 39
-                            "p.element " // 40
-
-                            "FROM item_basic AS b "
-                            "LEFT JOIN item_usable AS u USING (itemId) "
-                            "LEFT JOIN item_equipment  AS a USING (itemId) "
-                            "LEFT JOIN item_weapon AS w USING (itemId) "
-                            "LEFT JOIN item_furnishing AS f USING (itemId) "
-                            "LEFT JOIN item_puppet AS p USING (itemId) "
-                            "WHERE itemId < %u";
-
-        int32 ret = _sql->Query(Query, MAX_ITEMID);
-
-        if (ret != SQL_ERROR && _sql->NumRows() != 0)
+        const auto rset = db::preparedStmt(query, MAX_ITEMID);
+        FOR_DB_MULTIPLE_RESULTS(rset)
         {
-            while (_sql->NextRow() == SQL_SUCCESS)
-            {
-                CItem* PItem = CreateItem(_sql->GetUIntData(0));
+            CItem* PItem = CreateItem(rset->get<uint32>("itemId"));
 
-                if (PItem != nullptr)
-                {
-                    PItem->setName(_sql->GetStringData(1));
-                    PItem->setStackSize(_sql->GetUIntData(2));
-                    PItem->setFlag(_sql->GetUIntData(3));
-                    PItem->setAHCat(_sql->GetUIntData(4));
-                    PItem->setBasePrice(_sql->GetUIntData(5));
-                    PItem->setSubID(_sql->GetUIntData(6));
+            if (PItem != nullptr)
+            {
+                PItem->setName(rset->get<std::string>("name"));
+                PItem->setStackSize(rset->get<uint32>("stackSize"));
+                PItem->setFlag(rset->get<uint32>("flags"));
+                PItem->setAHCat(rset->get<uint32>("aH"));
+                PItem->setBasePrice(rset->get<uint32>("BaseSell"));
+                PItem->setSubID(rset->get<uint32>("subid"));
 
                     if (PItem->isType(ITEM_GENERAL))
                     {
                         // TODO
                     }
 
-                    if (PItem->isType(ITEM_USABLE))
-                    {
-                        ((CItemUsable*)PItem)->setValidTarget(_sql->GetUIntData(7));
-                        ((CItemUsable*)PItem)->setActivationTime(std::chrono::seconds(_sql->GetUIntData(8)));
-                        ((CItemUsable*)PItem)->setAnimationID(_sql->GetUIntData(9));
-                        ((CItemUsable*)PItem)->setAnimationTime(std::chrono::seconds(_sql->GetUIntData(10)));
-                        ((CItemUsable*)PItem)->setMaxCharges(_sql->GetUIntData(11));
-                        ((CItemUsable*)PItem)->setCurrentCharges(_sql->GetUIntData(11));
-                        ((CItemUsable*)PItem)->setUseDelay(std::chrono::seconds(_sql->GetUIntData(12)));
-                        ((CItemUsable*)PItem)->setReuseDelay(std::chrono::seconds(_sql->GetUIntData(13)));
-                        ((CItemUsable*)PItem)->setAoE(_sql->GetUIntData(14));
-                    }
-                    if (PItem->isType(ITEM_PUPPET))
-                    {
-                        ((CItemPuppet*)PItem)->setEquipSlot(_sql->GetUIntData(39));
-                        ((CItemPuppet*)PItem)->setElementSlots(_sql->GetUIntData(40));
+                if (PItem->isType(ITEM_USABLE))
+                {
+                    static_cast<CItemUsable*>(PItem)->setValidTarget(rset->get<uint32>("validTargets"));
+                    static_cast<CItemUsable*>(PItem)->setActivationTime(std::chrono::seconds(rset->get<uint32>("activation")));
+                    static_cast<CItemUsable*>(PItem)->setAnimationID(rset->get<uint32>("animation"));
+                    static_cast<CItemUsable*>(PItem)->setAnimationTime(std::chrono::seconds(rset->get<uint32>("animationTime")));
+                    static_cast<CItemUsable*>(PItem)->setMaxCharges(rset->get<uint32>("maxCharges"));
+                    static_cast<CItemUsable*>(PItem)->setCurrentCharges(rset->get<uint32>("maxCharges"));
+                    static_cast<CItemUsable*>(PItem)->setUseDelay(std::chrono::seconds(rset->get<uint32>("useDelay")));
+                    static_cast<CItemUsable*>(PItem)->setReuseDelay(std::chrono::seconds(rset->get<uint32>("reuseDelay")));
+                    static_cast<CItemUsable*>(PItem)->setAoE(rset->get<uint32>("aoe"));
+                }
+                if (PItem->isType(ITEM_PUPPET))
+                {
+                    static_cast<CItemPuppet*>(PItem)->setEquipSlot(rset->get<uint32>("puppet_slot"));
+                    static_cast<CItemPuppet*>(PItem)->setElementSlots(rset->get<uint32>("puppet_element"));
 
                         // If this is a PUP attachment, load the appropriate script as well
                         auto attachmentFile = fmt::format("./scripts/actions/abilities/pets/attachments/{}.lua", PItem->getName());
                         luautils::CacheLuaObjectFromFile(attachmentFile);
                     }
 
-                    if (PItem->isType(ITEM_EQUIPMENT))
-                    {
-                        ((CItemEquipment*)PItem)->setReqLvl(_sql->GetUIntData(15));
-                        ((CItemEquipment*)PItem)->setILvl(_sql->GetUIntData(16));
-                        ((CItemEquipment*)PItem)->setJobs(_sql->GetUIntData(17));
-                        ((CItemEquipment*)PItem)->setModelId(_sql->GetUIntData(18));
-                        ((CItemEquipment*)PItem)->setShieldSize(_sql->GetUIntData(19));
-                        ((CItemEquipment*)PItem)->setScriptType(_sql->GetUIntData(20));
-                        ((CItemEquipment*)PItem)->setEquipSlotId(_sql->GetUIntData(21));
-                        ((CItemEquipment*)PItem)->setRemoveSlotId(_sql->GetUIntData(22));
-                        ((CItemEquipment*)PItem)->setRemoveSlotLookId(_sql->GetUIntData(24));
-                        ((CItemEquipment*)PItem)->setSuperiorLevel(_sql->GetUIntData(23));
+                if (PItem->isType(ITEM_EQUIPMENT))
+                {
+                    static_cast<CItemEquipment*>(PItem)->setReqLvl(rset->get<uint32>("level"));
+                    static_cast<CItemEquipment*>(PItem)->setILvl(rset->get<uint32>("ilevel"));
+                    static_cast<CItemEquipment*>(PItem)->setJobs(rset->get<uint32>("jobs"));
+                    static_cast<CItemEquipment*>(PItem)->setModelId(rset->get<uint32>("MId"));
+                    static_cast<CItemEquipment*>(PItem)->setShieldSize(rset->get<uint32>("shieldSize"));
+                    static_cast<CItemEquipment*>(PItem)->setScriptType(rset->get<uint32>("scriptType"));
+                    static_cast<CItemEquipment*>(PItem)->setEquipSlotId(rset->get<uint32>("slot"));
+                    static_cast<CItemEquipment*>(PItem)->setRemoveSlotId(rset->get<uint32>("rslot"));
+                    static_cast<CItemEquipment*>(PItem)->setRemoveSlotLookId(rset->get<uint32>("rslotlook"));
+                    static_cast<CItemEquipment*>(PItem)->setSuperiorLevel(rset->get<uint32>("su_level"));
 
-                        if (((CItemEquipment*)PItem)->getValidTarget() != 0)
+                        if (static_cast<CItemEquipment*>(PItem)->getValidTarget() != 0)
                         {
                             ((CItemEquipment*)PItem)->setSubType(ITEM_CHARGED);
                         }
                     }
 
-                    if (PItem->isType(ITEM_WEAPON))
-                    {
-                        ((CItemWeapon*)PItem)->setSkillType(_sql->GetUIntData(25));
-                        ((CItemWeapon*)PItem)->setSubSkillType(_sql->GetUIntData(26));
-                        ((CItemWeapon*)PItem)->setILvlSkill(_sql->GetUIntData(27));
-                        ((CItemWeapon*)PItem)->setILvlParry(_sql->GetUIntData(28));
-                        ((CItemWeapon*)PItem)->setILvlMacc(_sql->GetUIntData(29));
-                        ((CItemWeapon*)PItem)->setBaseDelay(_sql->GetUIntData(30));
-                        ((CItemWeapon*)PItem)->setDelay((_sql->GetIntData(30) * 1000) / 60);
-                        ((CItemWeapon*)PItem)->setDamage(_sql->GetUIntData(31));
-                        ((CItemWeapon*)PItem)->setDmgType(static_cast<DAMAGE_TYPE>(_sql->GetUIntData(32)));
-                        ((CItemWeapon*)PItem)->setMaxHit(_sql->GetUIntData(33));
-                        ((CItemWeapon*)PItem)->setTotalUnlockPointsNeeded(_sql->GetUIntData(34));
+                if (PItem->isType(ITEM_WEAPON))
+                {
+                    static_cast<CItemWeapon*>(PItem)->setSkillType(rset->get<uint32>("skill"));
+                    static_cast<CItemWeapon*>(PItem)->setSubSkillType(rset->get<uint32>("subskill"));
+                    static_cast<CItemWeapon*>(PItem)->setILvlSkill(rset->get<uint32>("ilvl_skill"));
+                    static_cast<CItemWeapon*>(PItem)->setILvlParry(rset->get<uint32>("ilvl_parry"));
+                    static_cast<CItemWeapon*>(PItem)->setILvlMacc(rset->get<uint32>("ilvl_macc"));
+                    static_cast<CItemWeapon*>(PItem)->setBaseDelay(rset->get<uint32>("delay"));
+                    static_cast<CItemWeapon*>(PItem)->setDelay((rset->get<int32>("delay") * 1000) / 60);
+                    static_cast<CItemWeapon*>(PItem)->setDamage(rset->get<uint32>("dmg"));
+                    static_cast<CItemWeapon*>(PItem)->setDmgType(static_cast<DAMAGE_TYPE>(rset->get<int32>("dmgType")));
+                    static_cast<CItemWeapon*>(PItem)->setMaxHit(rset->get<uint32>("hit"));
+                    static_cast<CItemWeapon*>(PItem)->setTotalUnlockPointsNeeded(rset->get<uint32>("unlock_points"));
 
-                        int  dmg   = _sql->GetUIntData(31);
-                        int  delay = _sql->GetIntData(30);
-                        bool isH2H = ((CItemWeapon*)PItem)->getSkillType() == SKILL_HAND_TO_HAND;
+                    int  dmg   = rset->get<uint32>("dmg");
+                    int  delay = rset->get<int32>("delay");
+                        bool isH2H = static_cast<CItemWeapon*>(PItem)->getSkillType() == SKILL_HAND_TO_HAND;
 
                         if ((dmg > 0 || isH2H) && delay > 0) // avoid division by zero for items not yet implemented. Zero dmg h2h weapons don't actually have zero dmg for the purposes of DPS.
                         {
@@ -501,80 +455,71 @@ namespace itemutils
                             // https://www.bg-wiki.com/ffxi/Falcata, https://www.bg-wiki.com/ffxi/Machine_Crossbow
                             dps = round(dps * 100) / 100;
 
-                            ((CItemWeapon*)PItem)->setDPS(dps);
+                            static_cast<CItemWeapon*>(PItem)->setDPS(dps);
                         }
                     }
 
-                    if (PItem->isType(ITEM_FURNISHING))
-                    {
-                        ((CItemFurnishing*)PItem)->setStorage(_sql->GetUIntData(35));
-                        ((CItemFurnishing*)PItem)->setMoghancement(_sql->GetUIntData(36));
-                        ((CItemFurnishing*)PItem)->setElement(_sql->GetUIntData(37));
-                        ((CItemFurnishing*)PItem)->setAura(_sql->GetUIntData(38));
-                    }
+                if (PItem->isType(ITEM_FURNISHING))
+                {
+                    static_cast<CItemFurnishing*>(PItem)->setStorage(rset->get<uint32>("storage"));
+                    static_cast<CItemFurnishing*>(PItem)->setMoghancement(rset->get<uint32>("moghancement"));
+                    static_cast<CItemFurnishing*>(PItem)->setElement(rset->get<uint32>("element"));
+                    static_cast<CItemFurnishing*>(PItem)->setAura(rset->get<uint32>("aura"));
+                }
 
                     g_pItemList[PItem->getID()] = PItem;
 
                     auto filename = fmt::format("./scripts/items/{}.lua", PItem->getName());
                     luautils::CacheLuaObjectFromFile(filename);
-                }
             }
         }
 
-        ret = _sql->Query(
-            "SELECT itemId, modId, value FROM item_mods WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_equipment USING (itemId))");
+        const auto modsQuery = "SELECT itemId, modId, value FROM item_mods WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_equipment USING (itemId))";
+        const auto modsRset = db::preparedStmt(modsQuery);
 
-        if (ret != SQL_ERROR && _sql->NumRows() != 0)
+        FOR_DB_MULTIPLE_RESULTS(modsRset)
         {
-            while (_sql->NextRow() == SQL_SUCCESS)
-            {
-                uint16 ItemID = (uint16)_sql->GetUIntData(0);
-                Mod    modID  = static_cast<Mod>(_sql->GetUIntData(1));
-                int16  value  = (int16)_sql->GetIntData(2);
+            uint16 ItemID = modsRset->get<uint16>("itemId");
+            Mod    modID  = static_cast<Mod>(modsRset->get<int32>("modId"));
+            int16  value  = modsRset->get<int16>("value");
 
-                if ((g_pItemList[ItemID] != nullptr) && g_pItemList[ItemID]->isType(ITEM_EQUIPMENT))
-                {
-                    ((CItemEquipment*)g_pItemList[ItemID])->addModifier(CModifier(modID, value));
-                }
+            if ((g_pItemList[ItemID] != nullptr) && g_pItemList[ItemID]->isType(ITEM_EQUIPMENT))
+            {
+                static_cast<CItemEquipment*>(g_pItemList[ItemID])->addModifier(CModifier(modID, value));
             }
         }
 
-        ret = _sql->Query(
-            "SELECT itemId, modId, value, petType FROM item_mods_pet WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_equipment USING (itemId))");
+        const auto petModsQuery = "SELECT itemId, modId, value, petType FROM item_mods_pet WHERE itemId IN (SELECT itemId FROM item_basic LEFT JOIN item_equipment USING (itemId))";
+        const auto petModsRset = db::preparedStmt(petModsQuery);
 
-        if (ret != SQL_ERROR && _sql->NumRows() != 0)
+        FOR_DB_MULTIPLE_RESULTS(petModsRset)
         {
-            while (_sql->NextRow() == SQL_SUCCESS)
-            {
-                uint16     ItemID  = (uint16)_sql->GetUIntData(0);
-                Mod        modID   = static_cast<Mod>(_sql->GetUIntData(1));
-                int16      value   = (int16)_sql->GetIntData(2);
-                PetModType petType = static_cast<PetModType>(_sql->GetIntData(3));
+            uint16     ItemID  = petModsRset->get<uint16>("itemId");
+            Mod        modID   = static_cast<Mod>(petModsRset->get<int32>("modId"));
+            int16      value   = petModsRset->get<int16>("value");
+            PetModType petType = static_cast<PetModType>(petModsRset->get<int32>("petType"));
 
-                if ((g_pItemList[ItemID]) && g_pItemList[ItemID]->isType(ITEM_EQUIPMENT))
-                {
-                    ((CItemEquipment*)g_pItemList[ItemID])->addPetModifier(CPetModifier(modID, petType, value));
-                }
+            if ((g_pItemList[ItemID]) && g_pItemList[ItemID]->isType(ITEM_EQUIPMENT))
+            {
+                static_cast<CItemEquipment*>(g_pItemList[ItemID])->addPetModifier(CPetModifier(modID, petType, value));
             }
         }
 
-        ret = _sql->Query("SELECT itemId, modId, value, latentId, latentParam FROM item_latents WHERE itemId IN (SELECT itemId FROM item_basic LEFT "
-                          "JOIN item_equipment USING (itemId))");
+        const auto latentsQuery = "SELECT itemId, modId, value, latentId, latentParam FROM item_latents WHERE itemId IN (SELECT itemId FROM item_basic LEFT "
+                                  "JOIN item_equipment USING (itemId))";
+        const auto latentsRset = db::preparedStmt(latentsQuery);
 
-        if (ret != SQL_ERROR && _sql->NumRows() != 0)
+        FOR_DB_MULTIPLE_RESULTS(latentsRset)
         {
-            while (_sql->NextRow() == SQL_SUCCESS)
-            {
-                uint16 ItemID      = (uint16)_sql->GetUIntData(0);
-                Mod    modID       = static_cast<Mod>(_sql->GetUIntData(1));
-                int16  value       = (int16)_sql->GetIntData(2);
-                LATENT latentId    = static_cast<LATENT>(_sql->GetIntData(3));
-                uint16 latentParam = (uint16)_sql->GetIntData(4);
+            uint16 ItemID      = latentsRset->get<uint16>("itemId");
+            Mod    modID       = static_cast<Mod>(latentsRset->get<int32>("modId"));
+            int16  value       = latentsRset->get<int16>("value");
+            LATENT latentId    = static_cast<LATENT>(latentsRset->get<int32>("latentId"));
+            uint16 latentParam = latentsRset->get<uint16>("latentParam");
 
-                if ((g_pItemList[ItemID] != nullptr) && g_pItemList[ItemID]->isType(ITEM_EQUIPMENT))
-                {
-                    ((CItemEquipment*)g_pItemList[ItemID])->addLatent(latentId, latentParam, modID, value);
-                }
+            if ((g_pItemList[ItemID] != nullptr) && g_pItemList[ItemID]->isType(ITEM_EQUIPMENT))
+            {
+                static_cast<CItemEquipment*>(g_pItemList[ItemID])->addLatent(latentId, latentParam, modID, value);
             }
         }
     }
@@ -587,40 +532,38 @@ namespace itemutils
 
     void LoadDropList()
     {
-        int32 ret = _sql->Query("SELECT dropId, itemId, dropType, itemRate, groupId, groupRate FROM mob_droplist WHERE dropid < %u", MAX_DROPID);
+        const auto query = "SELECT dropId, itemId, dropType, itemRate, groupId, groupRate FROM mob_droplist WHERE dropid < ?";
+        const auto rset = db::preparedStmt(query, MAX_DROPID);
 
-        if (ret != SQL_ERROR && _sql->NumRows() != 0)
+        FOR_DB_MULTIPLE_RESULTS(rset)
         {
-            while (_sql->NextRow() == SQL_SUCCESS)
+            uint16 DropID = rset->get<uint16>("dropId");
+
+            if (g_pDropList[DropID] == nullptr)
             {
-                uint16 DropID = (uint16)_sql->GetUIntData(0);
+                g_pDropList[DropID] = new DropList_t;
+            }
 
-                if (g_pDropList[DropID] == nullptr)
+            DropList_t* dropList = g_pDropList[DropID];
+
+            uint16 ItemID   = rset->get<uint16>("itemId");
+            uint8  DropType = rset->get<uint8>("dropType");
+            uint16 DropRate = rset->get<uint16>("itemRate");
+
+            if (DropType == DROP_GROUPED)
+            {
+                uint8  GroupId   = rset->get<uint8>("groupId");
+                uint16 GroupRate = rset->get<uint16>("groupRate");
+                while (GroupId > dropList->Groups.size())
                 {
-                    g_pDropList[DropID] = new DropList_t;
+                    dropList->Groups.emplace_back(GroupRate);
                 }
-
-                DropList_t* dropList = g_pDropList[DropID];
-
-                uint16 ItemID   = (uint16)_sql->GetIntData(1);
-                uint8  DropType = (uint8)_sql->GetIntData(2);
-                uint16 DropRate = (uint16)_sql->GetIntData(3);
-
-                if (DropType == DROP_GROUPED)
-                {
-                    uint8  GroupId   = (uint8)_sql->GetIntData(4);
-                    uint16 GroupRate = (uint16)_sql->GetIntData(5);
-                    while (GroupId > dropList->Groups.size())
-                    {
-                        dropList->Groups.emplace_back(GroupRate);
-                    }
-                    dropList->Groups[GroupId - 1].GroupRate = GroupRate; // a bit redundant but it prevents any ordering issues.
-                    dropList->Groups[GroupId - 1].Items.emplace_back(DropType, ItemID, DropRate);
-                }
-                else
-                {
-                    dropList->Items.emplace_back(DropType, ItemID, DropRate);
-                }
+                dropList->Groups[GroupId - 1].GroupRate = GroupRate; // a bit redundant but it prevents any ordering issues.
+                dropList->Groups[GroupId - 1].Items.emplace_back(DropType, ItemID, DropRate);
+            }
+            else
+            {
+                dropList->Items.emplace_back(DropType, ItemID, DropRate);
             }
         }
 

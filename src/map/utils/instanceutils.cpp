@@ -23,13 +23,11 @@
 
 #include "common/database.h"
 #include "common/logging.h"
-#include "common/sql.h"
 
 #include "lua/luautils.h"
 
 #include "instance_loader.h"
 #include "map_engine.h"
-#include "map_networking.h"
 #include "zoneutils.h"
 
 #include <queue>
@@ -41,60 +39,47 @@ namespace instanceutils
 
     void LoadInstanceList(IPP mapIPP)
     {
-        const char query[] =
+        const auto query = 
             "SELECT "
-            "instanceid,"                // 0
-            "instance_name,"             // 1
-            "instance_zone,"             // 2
-            "entrance_zone,"             // 3
-            "time_limit,"                // 4
-            "start_x,"                   // 5
-            "start_y,"                   // 6
-            "start_z,"                   // 7
-            "start_rot,"                 // 8
-            "instance_list.music_day,"   // 9
-            "instance_list.music_night," // 10
-            "instance_list.battlesolo,"  // 11
-            "instance_list.battlemulti," // 12
-            "zone_settings.name "        // 13
+            "instanceid, instance_name, instance_zone, entrance_zone, time_limit, "
+            "start_x, start_y, start_z, start_rot, "
+            "instance_list.music_day, instance_list.music_night, "
+            "instance_list.battlesolo, instance_list.battlemulti, "
+            "zone_settings.name "
             "FROM instance_list INNER JOIN zone_settings "
             "ON instance_zone = zone_settings.zoneid "
-            "WHERE IF(%d <> 0, '%s' = zoneip AND %d = zoneport, TRUE)";
+            "WHERE IF(? <> 0, ? = zoneip AND ? = zoneport, TRUE)";
 
-        int32 ret = _sql->Query(query, mapIPP.getIP(), mapIPP.getIPString(), mapIPP.getPort());
-
-        if (ret != SQL_ERROR && _sql->NumRows() != 0)
+        const auto rset = db::preparedStmt(query, mapIPP.getIP(), mapIPP.getIPString(), mapIPP.getPort());
+        FOR_DB_MULTIPLE_RESULTS(rset)
         {
-            while (_sql->NextRow() == SQL_SUCCESS)
-            {
-                InstanceData_t data;
+            InstanceData_t data;
 
-                // Main data
-                data.id            = static_cast<uint32>(_sql->GetIntData(0));
-                data.instance_name = reinterpret_cast<const char*>(_sql->GetData(1));
-                data.instance_zone = static_cast<uint16>(_sql->GetIntData(2));
-                data.entrance_zone = static_cast<uint16>(_sql->GetIntData(3));
-                data.time_limit    = static_cast<uint16>(_sql->GetIntData(4));
-                data.start_x       = _sql->GetFloatData(5);
-                data.start_y       = _sql->GetFloatData(6);
-                data.start_z       = _sql->GetFloatData(7);
-                data.start_rot     = static_cast<uint16>(_sql->GetIntData(8));
-                data.music_day     = static_cast<uint16>(_sql->GetIntData(9));
-                data.music_night   = static_cast<uint16>(_sql->GetIntData(10));
-                data.battlesolo    = static_cast<uint16>(_sql->GetIntData(11));
-                data.battlemulti   = static_cast<uint16>(_sql->GetIntData(12));
+            // Main data
+            data.id            = rset->get<uint32>("instanceid");
+            data.instance_name = rset->get<std::string>("instance_name");
+            data.instance_zone = rset->get<uint16>("instance_zone");
+            data.entrance_zone = rset->get<uint16>("entrance_zone");
+            data.time_limit    = rset->get<uint16>("time_limit");
+            data.start_x       = rset->get<float>("start_x");
+            data.start_y       = rset->get<float>("start_y");
+            data.start_z       = rset->get<float>("start_z");
+            data.start_rot     = rset->get<uint16>("start_rot");
+            data.music_day     = rset->get<uint16>("music_day");
+            data.music_night   = rset->get<uint16>("music_night");
+            data.battlesolo    = rset->get<uint16>("battlesolo");
+            data.battlemulti   = rset->get<uint16>("battlemulti");
 
-                // Meta data
-                data.instance_zone_name = zoneutils::GetZone(data.instance_zone)->getName();
-                data.entrance_zone_name = _sql->GetStringData(13);
-                data.filename           = fmt::format("./scripts/zones/{}/instances/{}.lua", data.instance_zone_name, data.instance_name);
+            // Meta data
+            data.instance_zone_name = zoneutils::GetZone(data.instance_zone)->getName();
+            data.entrance_zone_name = rset->get<std::string>("name");
+            data.filename           = fmt::format("./scripts/zones/{}/instances/{}.lua", data.instance_zone_name, data.instance_name);
 
-                // Add to data cache
-                InstanceData[data.id] = data;
+            // Add to data cache
+            InstanceData[data.id] = data;
 
-                // Add to Lua cache
-                luautils::CacheLuaObjectFromFile(data.filename);
-            }
+            // Add to Lua cache
+            luautils::CacheLuaObjectFromFile(data.filename);
         }
     }
 

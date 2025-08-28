@@ -550,13 +550,13 @@ class CMeritPoints
 public:
     CMeritPoints(CCharEntity* PChar);
 
-    uint16 GetLimitPoints() const;
-    uint8  GetMeritPoints() const;
-    int32  GetMeritValue(MERIT_TYPE merit, CCharEntity* PChar);
-    uint16 GetMeritCountInSameCategory(MERIT_TYPE merit);
+    auto GetLimitPoints() const -> uint16;
+    auto GetMeritPoints() const -> uint8;
+    auto GetMeritValue(MERIT_TYPE merit, const CCharEntity* PChar) const -> int32;
+    auto GetMeritCountInSameCategory(MERIT_TYPE merit) const -> uint16;
 
-    bool AddLimitPoints(uint16 points);
-    bool IsMeritExist(MERIT_TYPE merit);
+    auto AddLimitPoints(uint16 points) -> bool;
+    auto IsMeritExist(MERIT_TYPE merit) const -> bool;
 
     void RaiseMerit(MERIT_TYPE merit);
     void LowerMerit(MERIT_TYPE merit);
@@ -564,8 +564,8 @@ public:
     void SetLimitPoints(uint16 points); // used for loading player limit points on login
     void SetMeritPoints(uint16 points); // used for loading player merit points on login
 
-    const Merit_t* GetMerit(MERIT_TYPE merit);
-    const Merit_t* GetMeritByIndex(uint16 index);
+    auto GetMerit(MERIT_TYPE merit) const -> const Merit_t*;
+    auto GetMeritByIndex(uint16 index) const -> const Merit_t*;
 
     void LoadMeritPoints(uint32 charid);
     void SaveMeritPoints(uint32 charid);
@@ -576,7 +576,7 @@ private:
     CCharEntity* m_PChar;
     Merit_t      merits[MERITS_COUNT]{};
 
-    Merit_t* GetMeritPointer(MERIT_TYPE merit);
+    Merit_t* GetMeritPointer(MERIT_TYPE merit) const;
     Merit_t* Categories[MCATEGORY_COUNT / 64 - 1]{}; // 51 pointers to the first merit of each category
 };
 

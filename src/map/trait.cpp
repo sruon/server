@@ -55,58 +55,55 @@ namespace traits
      ************************************************************************/
     void LoadTraitsList()
     {
-        const char* Query = "SELECT traitid, job, level, rank, modifier, value, content_tag, meritid "
-                            "FROM traits "
-                            "WHERE traitid < %u "
-                            "ORDER BY job, traitid ASC, rank DESC";
+        const auto query = "SELECT traitid, job, level, rank, modifier, value, content_tag, meritid "
+                           "FROM traits "
+                           "WHERE traitid < ? "
+                           "ORDER BY job, traitid ASC, rank DESC";
 
-        int32 ret = _sql->Query(Query, MAX_TRAIT_ID);
+        const auto rset = db::preparedStmt(query, MAX_TRAIT_ID);
 
-        if (ret != SQL_ERROR && _sql->NumRows() != 0)
+        FOR_DB_MULTIPLE_RESULTS(rset)
         {
-            while (_sql->NextRow() == SQL_SUCCESS)
+            std::string contentTag;
+            if (!rset->isNull("content_tag"))
             {
-                // const auto contentTag = rset->getOrDefault<std::string>("content_tag", "");
-                const auto contentTag = _sql->GetStringData(6);
-                if (!luautils::IsContentEnabled(contentTag))
-                {
-                    continue;
-                }
-
-                CTrait* PTrait = new CTrait(_sql->GetIntData(0));
-
-                PTrait->setJob(_sql->GetIntData(1));
-                PTrait->setLevel(_sql->GetIntData(2));
-                PTrait->setRank(_sql->GetIntData(3));
-                PTrait->setMod(static_cast<Mod>(_sql->GetIntData(4)));
-                PTrait->setValue(_sql->GetIntData(5));
-                PTrait->setMeritId(_sql->GetIntData(7));
-
-                PTraitsList[PTrait->getJob()].emplace_back(PTrait);
+                contentTag = rset->get<std::string>("content_tag");
             }
+            if (!luautils::IsContentEnabled(contentTag))
+            {
+                continue;
+            }
+
+            CTrait* PTrait = new CTrait(rset->get<int32>("traitid"));
+
+            PTrait->setJob(rset->get<int32>("job"));
+            PTrait->setLevel(rset->get<int32>("level"));
+            PTrait->setRank(rset->get<int32>("rank"));
+            PTrait->setMod(static_cast<Mod>(rset->get<int32>("modifier")));
+            PTrait->setValue(rset->get<int32>("value"));
+            PTrait->setMeritId(rset->get<int32>("meritid"));
+
+            PTraitsList[PTrait->getJob()].emplace_back(PTrait);
         }
 
-        Query = "SELECT trait_category, trait_points_needed, traitid, modifier, value "
-                "FROM blue_traits "
-                "WHERE traitid < %u "
-                "ORDER BY trait_category ASC, trait_points_needed DESC";
+        const auto blueQuery = "SELECT trait_category, trait_points_needed, traitid, modifier, value "
+                               "FROM blue_traits "
+                               "WHERE traitid < ? "
+                               "ORDER BY trait_category ASC, trait_points_needed DESC";
 
-        ret = _sql->Query(Query, MAX_TRAIT_ID);
+        const auto blueRset = db::preparedStmt(blueQuery, MAX_TRAIT_ID);
 
-        if (ret != SQL_ERROR && _sql->NumRows() != 0)
+        FOR_DB_MULTIPLE_RESULTS(blueRset)
         {
-            while (_sql->NextRow() == SQL_SUCCESS)
-            {
-                CBlueTrait* PTrait = new CBlueTrait(_sql->GetIntData(0), _sql->GetIntData(2));
+            CBlueTrait* PTrait = new CBlueTrait(blueRset->get<int32>("trait_category"), blueRset->get<int32>("traitid"));
 
-                PTrait->setJob(JOB_BLU);
-                PTrait->setRank(1);
-                PTrait->setPoints(_sql->GetIntData(1));
-                PTrait->setMod(static_cast<Mod>(_sql->GetIntData(3)));
-                PTrait->setValue(_sql->GetIntData(4));
+            PTrait->setJob(JOB_BLU);
+            PTrait->setRank(1);
+            PTrait->setPoints(blueRset->get<int32>("trait_points_needed"));
+            PTrait->setMod(static_cast<Mod>(blueRset->get<int32>("modifier")));
+            PTrait->setValue(blueRset->get<int32>("value"));
 
-                PTraitsList[JOB_BLU].emplace_back(PTrait);
-            }
+            PTraitsList[JOB_BLU].emplace_back(PTrait);
         }
     }
 

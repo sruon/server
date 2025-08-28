@@ -26,7 +26,6 @@
 #include "common/lua.h"
 #include "common/mmo.h"
 
-#include "common/sql.h"
 #include "common/zmq_dealer_wrapper.h"
 
 #include <nonstd/jthread.hpp>

@@ -452,20 +452,18 @@ namespace spell
     // Load a list of spells
     void LoadSpellList()
     {
-        const char* Query = "SELECT spellid, name, jobs, `group`, family, validTargets, skill, castTime, recastTime, animation, animationTime, mpCost, "
-                            "AOE, base, element, zonemisc, multiplier, message, magicBurstMessage, CE, VE, requirements, content_tag, spell_range "
-                            "FROM spell_list";
+        const auto query = "SELECT spellid, name, jobs, `group`, family, validTargets, skill, castTime, recastTime, animation, animationTime, mpCost, "
+                           "AOE, base, element, zonemisc, multiplier, message, magicBurstMessage, CE, VE, requirements, content_tag, spell_range "
+                           "FROM spell_list";
 
-        int32 ret = _sql->Query(Query);
+        const auto rset = db::preparedStmt(query);
 
-        if (ret != SQL_ERROR && _sql->NumRows() != 0)
+        FOR_DB_MULTIPLE_RESULTS(rset)
         {
-            while (_sql->NextRow() == SQL_SUCCESS)
-            {
                 CSpell* PSpell = nullptr;
-                SpellID id     = (SpellID)_sql->GetUIntData(0);
+                SpellID id     = static_cast<SpellID>(rset->get<int32>("spellid"));
 
-                if ((SPELLGROUP)_sql->GetIntData(3) == SPELLGROUP_BLUE)
+                if (static_cast<SPELLGROUP>(rset->get<int32>("group")) == SPELLGROUP_BLUE)
                 {
                     PSpell = new CBlueSpell(id);
                 }
@@ -474,30 +472,34 @@ namespace spell
                     PSpell = new CSpell(id);
                 }
 
-                PSpell->setName(_sql->GetStringData(1));
-                PSpell->setJob(_sql->GetData(2));
-                PSpell->setSpellGroup((SPELLGROUP)_sql->GetIntData(3));
-                PSpell->setSpellFamily((SPELLFAMILY)_sql->GetIntData(4));
-                PSpell->setValidTarget(_sql->GetIntData(5));
-                PSpell->setSkillType(_sql->GetIntData(6));
-                PSpell->setCastTime(std::chrono::milliseconds(_sql->GetIntData(7)));
-                PSpell->setRecastTime(std::chrono::milliseconds(_sql->GetIntData(8)));
-                PSpell->setAnimationID(_sql->GetIntData(9));
-                PSpell->setAnimationTime(std::chrono::milliseconds(_sql->GetIntData(10)));
-                PSpell->setMPCost(_sql->GetIntData(11));
-                PSpell->setAOE(_sql->GetIntData(12));
-                PSpell->setBase(_sql->GetIntData(13));
-                PSpell->setElement(_sql->GetIntData(14));
-                PSpell->setZoneMisc(_sql->GetIntData(15));
-                PSpell->setMultiplier((float)_sql->GetIntData(16));
-                PSpell->setMessage(_sql->GetIntData(17));
-                PSpell->setMagicBurstMessage(_sql->GetIntData(18));
-                PSpell->setCE(_sql->GetIntData(19));
-                PSpell->setVE(_sql->GetIntData(20));
-                PSpell->setRequirements(_sql->GetIntData(21));
-                PSpell->setContentTag(_sql->GetStringData(22));
+                PSpell->setName(rset->get<std::string>("name"));
+                auto jobsBlob = rset->get<std::string>("jobs");
+                PSpell->setJob(reinterpret_cast<int8*>(const_cast<char*>(jobsBlob.data())));
+                PSpell->setSpellGroup(static_cast<SPELLGROUP>(rset->get<int32>("group")));
+                PSpell->setSpellFamily(static_cast<SPELLFAMILY>(rset->get<int32>("family")));
+                PSpell->setValidTarget(rset->get<int32>("validTargets"));
+                PSpell->setSkillType(rset->get<int32>("skill"));
+                PSpell->setCastTime(std::chrono::milliseconds(rset->get<int32>("castTime")));
+                PSpell->setRecastTime(std::chrono::milliseconds(rset->get<int32>("recastTime")));
+                PSpell->setAnimationID(rset->get<int32>("animation"));
+                PSpell->setAnimationTime(std::chrono::milliseconds(rset->get<int32>("animationTime")));
+                PSpell->setMPCost(rset->get<int32>("mpCost"));
+                PSpell->setAOE(rset->get<int32>("AOE"));
+                PSpell->setBase(rset->get<int32>("base"));
+                PSpell->setElement(rset->get<int32>("element"));
+                PSpell->setZoneMisc(rset->get<int32>("zonemisc"));
+                PSpell->setMultiplier(rset->get<float>("multiplier"));
+                PSpell->setMessage(rset->get<int32>("message"));
+                PSpell->setMagicBurstMessage(rset->get<int32>("magicBurstMessage"));
+                PSpell->setCE(rset->get<int32>("CE"));
+                PSpell->setVE(rset->get<int32>("VE"));
+                PSpell->setRequirements(rset->get<int32>("requirements"));
+                if (!rset->isNull("content_tag"))
+                {
+                    PSpell->setContentTag(rset->get<std::string>("content_tag"));
+                }
 
-                PSpell->setRange(static_cast<float>(_sql->GetIntData(23)) / 10);
+                PSpell->setRange(static_cast<float>(rset->get<int32>("spell_range")) / 10);
 
                 if (PSpell->getAOE())
                 {
@@ -561,29 +563,28 @@ namespace spell
                 filename = fmt::format("./scripts/actions/spells/{}/{}.lua", switchKey, PSpell->getName());
 
                 luautils::CacheLuaObjectFromFile(filename);
-            }
         }
 
-        const char* blueQuery = "SELECT blue_spell_list.spellid, blue_spell_list.mob_skill_id, blue_spell_list.set_points, "
-                                "blue_spell_list.trait_category, blue_spell_list.trait_category_weight, blue_spell_list.primary_sc, "
-                                "blue_spell_list.secondary_sc, blue_spell_list.tertiary_sc, spell_list.content_tag "
-                                "FROM blue_spell_list JOIN spell_list on blue_spell_list.spellid = spell_list.spellid";
+        const auto blueQuery = "SELECT blue_spell_list.spellid, blue_spell_list.mob_skill_id, blue_spell_list.set_points, "
+                               "blue_spell_list.trait_category, blue_spell_list.trait_category_weight, blue_spell_list.primary_sc, "
+                               "blue_spell_list.secondary_sc, blue_spell_list.tertiary_sc, spell_list.content_tag "
+                               "FROM blue_spell_list JOIN spell_list on blue_spell_list.spellid = spell_list.spellid";
 
-        ret = _sql->Query(blueQuery);
-
-        if (ret != SQL_ERROR && _sql->NumRows() != 0)
+        const auto blueRset = db::preparedStmt(blueQuery);
+        FOR_DB_MULTIPLE_RESULTS(blueRset)
         {
-            while (_sql->NextRow() == SQL_SUCCESS)
-            {
-                // const auto contentTag = rset->getOrDefault<std::string>("content_tag", "");
-                const auto contentTag = _sql->GetStringData(8);
+                std::string contentTag;
+                if (!blueRset->isNull("content_tag"))
+                {
+                    contentTag = blueRset->get<std::string>("content_tag");
+                }
                 if (!luautils::IsContentEnabled(contentTag))
                 {
                     continue;
                 }
 
                 // Sanity check the spell ID
-                uint16 spellId = _sql->GetIntData(0);
+                uint16 spellId = blueRset->get<uint16>("spellid");
 
                 if (PSpellList[spellId] == nullptr)
                 {
@@ -591,53 +592,52 @@ namespace spell
                     continue;
                 }
 
-                ((CBlueSpell*)PSpellList[spellId])->setMonsterSkillId(_sql->GetIntData(1));
-                ((CBlueSpell*)PSpellList[spellId])->setSetPoints(_sql->GetIntData(2));
-                ((CBlueSpell*)PSpellList[spellId])->setTraitCategory(_sql->GetIntData(3));
-                ((CBlueSpell*)PSpellList[spellId])->setTraitWeight(_sql->GetIntData(4));
-                ((CBlueSpell*)PSpellList[spellId])->setPrimarySkillchain(_sql->GetIntData(5));
-                ((CBlueSpell*)PSpellList[spellId])->setSecondarySkillchain(_sql->GetIntData(6));
-                ((CBlueSpell*)PSpellList[spellId])->setTertiarySkillchain(_sql->GetIntData(7));
-                PMobSkillToBlueSpell.insert(std::make_pair(_sql->GetIntData(1), spellId));
+                uint16 mobSkillId = blueRset->get<uint16>("mob_skill_id");
+                ((CBlueSpell*)PSpellList[spellId])->setMonsterSkillId(mobSkillId);
+                ((CBlueSpell*)PSpellList[spellId])->setSetPoints(blueRset->get<int32>("set_points"));
+                ((CBlueSpell*)PSpellList[spellId])->setTraitCategory(blueRset->get<int32>("trait_category"));
+                ((CBlueSpell*)PSpellList[spellId])->setTraitWeight(blueRset->get<int32>("trait_category_weight"));
+                ((CBlueSpell*)PSpellList[spellId])->setPrimarySkillchain(blueRset->get<int32>("primary_sc"));
+                ((CBlueSpell*)PSpellList[spellId])->setSecondarySkillchain(blueRset->get<int32>("secondary_sc"));
+                ((CBlueSpell*)PSpellList[spellId])->setTertiarySkillchain(blueRset->get<int32>("tertiary_sc"));
+                PMobSkillToBlueSpell.insert(std::make_pair(mobSkillId, spellId));
+        }
+        
+        const auto modQuery = "SELECT spellId, modId, value FROM blue_spell_mods WHERE spellId IN (SELECT spellId FROM spell_list LEFT JOIN blue_spell_list USING (spellId))";
+        const auto modRset = db::preparedStmt(modQuery);
+
+        FOR_DB_MULTIPLE_RESULTS(modRset)
+        {
+            uint16 spellId = modRset->get<uint16>("spellId");
+            Mod    modID   = static_cast<Mod>(modRset->get<int32>("modId"));
+            int16  value   = modRset->get<int16>("value");
+
+            if (PSpellList[spellId])
+            {
+                ((CBlueSpell*)PSpellList[spellId])->addModifier(CModifier(modID, value));
             }
         }
-        ret = _sql->Query(
-            "SELECT spellId, modId, value FROM blue_spell_mods WHERE spellId IN (SELECT spellId FROM spell_list LEFT JOIN blue_spell_list USING (spellId))");
 
-        if (ret != SQL_ERROR && _sql->NumRows() != 0)
+        const auto meritQuery = "SELECT spellId, meritId, content_tag FROM spell_list INNER JOIN merits ON spell_list.name = merits.name";
+        const auto meritRset = db::preparedStmt(meritQuery);
+
+        FOR_DB_MULTIPLE_RESULTS(meritRset)
         {
-            while (_sql->NextRow() == SQL_SUCCESS)
+            std::string contentTag;
+            if (!meritRset->isNull("content_tag"))
             {
-                uint16 spellId = (uint16)_sql->GetUIntData(0);
-                Mod    modID   = static_cast<Mod>(_sql->GetUIntData(1));
-                int16  value   = (int16)_sql->GetIntData(2);
-
-                if (PSpellList[spellId])
-                {
-                    ((CBlueSpell*)PSpellList[spellId])->addModifier(CModifier(modID, value));
-                }
+                contentTag = meritRset->get<std::string>("content_tag");
             }
-        }
-
-        ret = _sql->Query("SELECT spellId, meritId, content_tag FROM spell_list INNER JOIN merits ON spell_list.name = merits.name");
-
-        if (ret != SQL_ERROR && _sql->NumRows() != 0)
-        {
-            while (_sql->NextRow() == SQL_SUCCESS)
+            if (!luautils::IsContentEnabled(contentTag))
             {
-                // const auto contentTag = rset->getOrDefault<std::string>("content_tag", "");
-                const auto contentTag = _sql->GetStringData(2);
-                if (!luautils::IsContentEnabled(contentTag))
-                {
-                    continue;
-                }
+                continue;
+            }
 
-                uint16 spellId = (uint16)_sql->GetUIntData(0);
+            uint16 spellId = meritRset->get<uint16>("spellId");
 
-                if (PSpellList[spellId])
-                {
-                    PSpellList[spellId]->setMeritId(_sql->GetUIntData(1));
-                }
+            if (PSpellList[spellId])
+            {
+                PSpellList[spellId]->setMeritId(meritRset->get<uint32>("meritId"));
             }
         }
     }
