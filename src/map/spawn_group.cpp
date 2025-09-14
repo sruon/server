@@ -18,6 +18,7 @@
 
 ===========================================================================
 */
+
 #include "spawn_group.h"
 
 #include "navmesh.h"
@@ -26,9 +27,7 @@
 #include "entities/baseentity.h"
 #include "utils/zoneutils.h"
 
-#include <cstdlib>
-
-spawnGroup::spawnGroup(uint32_t _maxSpawns, uint16_t _zoneId, uint32_t _groupId)
+spawnGroup::spawnGroup(const uint32_t _maxSpawns, const uint16_t _zoneId, const uint32_t _groupId)
 {
     maxSpawns = _maxSpawns;
     zoneId    = _zoneId;
@@ -36,14 +35,14 @@ spawnGroup::spawnGroup(uint32_t _maxSpawns, uint16_t _zoneId, uint32_t _groupId)
 }
 
 // Add member, used on db load
-void spawnGroup::addMember(uint16_t targid)
+void spawnGroup::addMember(const uint16_t targid)
 {
     members.push_back(targid);
 }
 
 // Used when a mob despawns. A mob will feed in its own targid
 // The targid will be removed from the list of mobs that are allowed to spawn, and then replaced with another random available targid (including itself)
-uint16_t spawnGroup::removeAndReplaceWithRandomMember(uint16_t targid)
+auto spawnGroup::removeAndReplaceWithRandomMember(const uint16_t targid) -> uint16_t
 {
     mobsInPoolAllowedToSpawn.erase(targid); // Remove input targid
 
@@ -54,9 +53,9 @@ uint16_t spawnGroup::removeAndReplaceWithRandomMember(uint16_t targid)
 // Randomly select from the members vector after shuffling but only unique members (uniqueness is checked)
 // return the last targid filled in so the CMobEntity can know which mob to eventually try to respawn
 // return value is not used on db load
-uint16_t spawnGroup::fillSpawnPool()
+auto spawnGroup::fillSpawnPool() -> uint16_t
 {
-    std::shuffle(members.begin(), members.end(), xirand::rng());
+    std::ranges::shuffle(members, xirand::rng());
     uint32_t lastTargId = 0;
 
     for (auto member : members)
@@ -88,12 +87,12 @@ void spawnGroup::resetPool()
 
 // Check if targid is in spawn pool.
 // CMobEntity will use this to check if it can respawn, or the zone time/day change for night/day only mobs.
-bool spawnGroup::isInSpawnPool(uint16_t targid) const
+auto spawnGroup::isInSpawnPool(const uint16_t targid) const -> bool
 {
     return mobsInPoolAllowedToSpawn.contains(targid);
 }
 
-uint32_t spawnGroup::getGroupID()
+auto spawnGroup::getGroupID() const -> uint32_t
 {
     return groupId;
 }
@@ -101,17 +100,17 @@ uint32_t spawnGroup::getGroupID()
 // If there's less total spawns than members then this group is not valid
 // if mob spawn total spawns is the same as member size then this group is not valid
 // if a mob isn't in a valid position then this group is not valid
-bool spawnGroup::isValid(CZone* zone)
+auto spawnGroup::isValid(CZone* zone) -> bool
 {
     if (members.size() < maxSpawns)
     {
-        ShowError(fmt::format("Mob spawn group {} in zone {} has less members than it does max spawns.", groupId, zoneId));
+        ShowErrorFmt("Mob spawn group {} in zone {} has less members than it does max spawns.", groupId, zoneId);
         return false;
     }
 
     if (members.size() == maxSpawns)
     {
-        ShowError(fmt::format("Mob spawn group {} in zone {} has the same size of members as it does max spawn mobs.", groupId, zoneId));
+        ShowErrorFmt("Mob spawn group {} in zone {} has the same size of members as it does max spawn mobs.", groupId, zoneId);
 
         return false;
     }
@@ -120,17 +119,17 @@ bool spawnGroup::isValid(CZone* zone)
     {
         if (const CBaseEntity* PMob = zone->GetEntity(member, TYPE_MOB))
         {
-            auto PNavMesh = PMob->loc.zone->m_navMesh.get();
+            const auto PNavMesh = PMob->loc.zone->m_navMesh.get();
             if (PNavMesh && !PNavMesh->validPosition(PMob->loc.p))
             {
-                ShowError(fmt::format("Mob {} ID {} in zone {} is in a spawn group without a valid position. This could have very bad side effects!", PMob->packetName, PMob->id, zone->GetID()));
+                ShowErrorFmt("Mob {} ID {} in zone {} is in a spawn group without a valid position. This could have very bad side effects!", PMob->packetName, PMob->id, zone->GetID());
 
                 return false;
             }
 
             if (PMob->loc.p.x == 0 && PMob->loc.p.y == 0 && PMob->loc.p.z == 0)
             {
-                ShowError(fmt::format("Mob {} ID {} in zone {} is in a spawn group with a position of (0,0,0). That is probably not valid!", PMob->packetName, PMob->id, zone->GetID()));
+                ShowErrorFmt("Mob {} ID {} in zone {} is in a spawn group with a position of (0,0,0). That is probably not valid!", PMob->packetName, PMob->id, zone->GetID());
 
                 return false;
             }
