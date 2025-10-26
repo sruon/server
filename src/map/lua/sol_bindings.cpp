@@ -26,9 +26,9 @@
 #include "lua_ability.h"
 SOL_BIND_DEF(CLuaAbility, CAbility);
 
-#include "packets/action.h"
+#include "action/action.h"
 #include "lua_action.h"
-SOL_BIND_DEF(CLuaAction, action_t);
+SOL_BIND_DEF(CLuaAction, Action);
 
 #include "attackround.h"
 #include "lua_attack.h"

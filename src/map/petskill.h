@@ -24,7 +24,9 @@
 
 #include "common/cbasetypes.h"
 #include "common/mmo.h"
+#include "entities/mobentity.h"
 
+enum class Knockback : uint8_t;
 class CPetSkill
 {
 public:
@@ -47,20 +49,20 @@ public:
     uint8           getFlag() const;
     timer::duration getAnimationTime() const;
     timer::duration getActivationTime() const;
-    uint16          getMsg() const;
+    MSGBASIC_ID     getMsg() const;
     uint8           getSkillFinishCategory() const;
-    uint16          getAoEMsg() const;
+    MSGBASIC_ID     getAoEMsg() const;
     uint16          getValidTargets() const;
     int16           getTP() const;
     auto            getHP() const -> int32;
     uint8           getHPP() const;
     uint16          getTotalTargets() const;
     uint32          getPrimaryTargetID() const;
-    auto            getFinalAnimationSub() -> std::optional<uint8>;
+    auto            getFinalAnimationSub() const -> std::optional<uint8>;
     uint16          getMsgForAction() const;
     float           getRadius() const;
     int16           getParam() const;
-    uint8           getKnockback() const;
+    auto            getKnockback() const -> Knockback;
     uint8           getPrimarySkillchain() const;
     uint8           getSecondarySkillchain() const;
     uint8           getTertiarySkillchain() const;

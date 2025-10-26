@@ -21,12 +21,11 @@
 
 #include "mobutils.h"
 
-#include "common/database.h"
-#include "common/logging.h"
-#include "common/utils.h"
-
+#include "action/action.h"
 #include "battlefield.h"
 #include "battleutils.h"
+#include "common/database.h"
+#include "common/logging.h"
 #include "grades.h"
 #include "items/item_weapon.h"
 #include "lua/luautils.h"
@@ -34,11 +33,12 @@
 #include "mob_modifier.h"
 #include "mob_spell_container.h"
 #include "mob_spell_list.h"
-#include "packets/action.h"
+#include "packets/s2c/0x028_battle2.h"
 #include "status_effect_container.h"
 #include "trait.h"
 #include "zone_entities.h"
 #include "zoneutils.h"
+
 #include <vector>
 
 namespace mobutils
@@ -1925,31 +1925,8 @@ namespace mobutils
 
     void WeaknessTrigger(CBaseEntity* PTarget, WeaknessType level)
     {
-        uint16 animationID = 0;
-        switch (level)
-        {
-            case WeaknessType::RED:
-                animationID = 1806;
-                break;
-            case WeaknessType::YELLOW:
-                animationID = 1807;
-                break;
-            case WeaknessType::BLUE:
-                animationID = 1808;
-                break;
-            case WeaknessType::WHITE:
-                animationID = 1946;
-                break;
-        }
-        action_t action;
-        action.actiontype      = ACTION_MOBABILITY_FINISH;
-        action.id              = PTarget->id;
-        actionList_t& list     = action.getNewActionList();
-        list.ActionTargetID    = PTarget->id;
-        actionTarget_t& target = list.getNewActionTarget();
-        target.animation       = animationID;
-        target.param           = 2582;
-        PTarget->loc.zone->PushPacket(PTarget, CHAR_INRANGE, std::make_unique<CActionPacket>(action));
+        Action action = Actions::WeaknessTrigger(PTarget, level);
+        PTarget->loc.zone->PushPacket(PTarget, CHAR_INRANGE, std::make_unique<GP_SERV_COMMAND_BATTLE2>(action));
     }
 
 }; // namespace mobutils

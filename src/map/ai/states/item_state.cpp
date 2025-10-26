@@ -25,15 +25,17 @@
 #include "entities/battleentity.h"
 #include "entities/charentity.h"
 
+#include "action/action.h"
+#include "enums/four_cc.h"
 #include "enums/item_lockflg.h"
 #include "item_container.h"
 #include "status_effect_container.h"
 #include "universal_container.h"
 
-#include "packets/action.h"
 #include "packets/s2c/0x01d_item_same.h"
 #include "packets/s2c/0x01f_item_list.h"
 #include "packets/s2c/0x020_item_attr.h"
+#include "packets/s2c/0x028_battle2.h"
 #include "packets/s2c/0x029_battle_message.h"
 
 #include "utils/battleutils.h"
@@ -120,24 +122,10 @@ CItemState::CItemState(CCharEntity* PEntity, const uint16 targid, const uint8 lo
     m_castTime      = m_PItem->getActivationTime();
     m_animationTime = m_PItem->getAnimationTime();
 
-    action_t action;
-    action.id         = m_PEntity->id;
-    action.actiontype = ACTION_ITEM_START;
+    auto action = Actions::ItemStart(m_PEntity, m_PItem, PTarget);
 
-    actionList_t& actionList  = action.getNewActionList();
-    actionList.ActionTargetID = PTarget->id;
-
-    actionTarget_t& actionTarget = actionList.getNewActionTarget();
-
-    actionTarget.reaction   = REACTION::NONE;
-    actionTarget.speceffect = SPECEFFECT::NONE;
-    actionTarget.animation  = 0;
-    actionTarget.param      = m_PItem->getID();
-    actionTarget.messageID  = 28;
-    actionTarget.knockback  = 0;
-
-    m_PEntity->PAI->EventHandler.triggerListener("ITEM_START", PTarget, m_PItem, &action);
-    m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, std::make_unique<CActionPacket>(action));
+    m_PEntity->PAI->EventHandler.triggerListener("ITEM_START", PTarget, m_PItem, action);
+    m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, std::make_unique<GP_SERV_COMMAND_BATTLE2>(action));
 
     m_PItem->setSubType(ITEM_LOCKED);
 
@@ -183,17 +171,25 @@ auto CItemState::Update(const timer::time_point tick) -> bool
         m_interruptable = false;
         UpdateTarget(m_PEntity->IsValidTarget(m_targid, m_PItem->getValidTarget(), m_errorMsg));
 
-        action_t action;
+        TryInterrupt(static_cast<CBattleEntity*>(GetTarget()));
 
-        // attempt to interrupt
-        InterruptItem(action);
-
-        if (!m_interrupted)
+        if (m_interrupted)
         {
-            FinishItem(action);
+            Action action = Actions::ItemInterrupt(m_PEntity);
+            m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, std::make_unique<GP_SERV_COMMAND_BATTLE2>(action));
+
+            if (this->HasErrorMsg())
+            {
+                m_PEntity->pushPacket(m_errorMsg->copy());
+            }
         }
-        m_PEntity->PAI->EventHandler.triggerListener("ITEM_USE", m_PEntity, m_PItem, &action);
-        m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, std::make_unique<CActionPacket>(action));
+        else
+        {
+            Action action = Actions::ItemFinish(m_PEntity, m_PItem);
+            m_PEntity->OnItemFinish(*this, action);
+            m_PEntity->PAI->EventHandler.triggerListener("ITEM_USE", m_PEntity, m_PItem, &action);
+            m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, std::make_unique<GP_SERV_COMMAND_BATTLE2>(action));
+        }
         Complete();
     }
     else if (IsCompleted() && tick > GetEntryTime() + m_castTime + m_animationTime)
@@ -282,43 +278,6 @@ void CItemState::TryInterrupt(CBattleEntity* PTarget)
 auto CItemState::GetItem() const -> CItemUsable*
 {
     return m_PItem;
-}
-
-void CItemState::InterruptItem(action_t& action)
-{
-    TryInterrupt(static_cast<CBattleEntity*>(GetTarget()));
-
-    if (m_interrupted)
-    {
-        action.id         = m_PEntity->id;
-        action.actiontype = ACTION_ITEM_INTERRUPT;
-
-        actionList_t& actionList  = action.getNewActionList();
-        actionList.ActionTargetID = (m_PEntity->IsValidTarget(m_targid, m_PItem->getValidTarget(), m_errorMsg) ? GetTarget() && GetTarget()->id : 0);
-
-        actionTarget_t& actionTarget = actionList.getNewActionTarget();
-
-        actionTarget.reaction   = REACTION::NONE;
-        actionTarget.speceffect = SPECEFFECT::NONE;
-        actionTarget.animation  = 54;
-        actionTarget.param      = 0;
-        actionTarget.messageID  = 0;
-        actionTarget.knockback  = 0;
-
-        if (this->HasErrorMsg())
-        {
-            m_PEntity->pushPacket(m_errorMsg->copy());
-        }
-        else
-        {
-            throw CStateInitException(std::make_unique<CBasicPacket>());
-        }
-    }
-}
-
-void CItemState::FinishItem(action_t& action)
-{
-    m_PEntity->OnItemFinish(*this, action);
 }
 
 auto CItemState::HasMoved() const -> bool

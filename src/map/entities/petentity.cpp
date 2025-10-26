@@ -41,6 +41,12 @@
 #include "common/utils.h"
 #include "petentity.h"
 
+#include "action/action.h"
+#include "enums/action/animation.h"
+#include "enums/action/category.h"
+#include "enums/action/proc_skillchain.h"
+#include "enums/action/resolution.h"
+#include "enums/four_cc.h"
 #include "packets/s2c/0x029_battle_message.h"
 
 CPetEntity::CPetEntity(PET_TYPE petType)
@@ -294,7 +300,7 @@ void CPetEntity::loadPetZoningInfo()
     }
 }
 
-void CPetEntity::OnAbility(CAbilityState& state, action_t& action)
+void CPetEntity::OnAbility(CAbilityState& state, Action& action)
 {
     auto* PAbility = state.GetAbility();
     auto* PTarget  = static_cast<CBattleEntity*>(state.GetTarget());
@@ -315,46 +321,43 @@ void CPetEntity::OnAbility(CAbilityState& state, action_t& action)
             return;
         }
 
-        action.id                    = this->id;
-        action.actiontype            = PAbility->getActionType();
-        action.actionid              = PAbility->getID();
-        actionList_t& actionList     = action.getNewActionList();
-        actionList.ActionTargetID    = PTarget->id;
-        actionTarget_t& actionTarget = actionList.getNewActionTarget();
-        actionTarget.reaction        = REACTION::NONE;
-        actionTarget.speceffect      = SPECEFFECT::RECOIL;
-        actionTarget.animation       = PAbility->getAnimationID();
-        actionTarget.param           = 0;
-        auto prevMsg                 = actionTarget.messageID;
+        action.setCategory(PAbility->getActionType());
+        action.setArgument(PAbility->getID());
 
-        int32 value = luautils::OnUseAbility(this, PTarget, PAbility, &action);
-        if (prevMsg == actionTarget.messageID)
+        auto& target = action.addTarget(PTarget);
+        auto& result = target.addResult({
+            .resolution = ActionResolution::Hit,
+            .subKind    = static_cast<ActionAnimation>(PAbility->getAnimationID()),
+        });
+
+        auto prevMsg = result.message();
+
+        int32 value = luautils::OnUseAbility(this, PTarget, PAbility, action);
+
+        if (prevMsg == result.message())
         {
-            actionTarget.messageID = PAbility->getMessage();
+            result.setMessage(PAbility->getMessage());
         }
-        if (actionTarget.messageID == 0)
+        if (result.message() == 0)
         {
-            actionTarget.messageID = MSGBASIC_USES_JA;
+            result.setMessage(MSGBASIC_USES_JA);
         }
-        actionTarget.param = value;
+        result.setValue(value);
 
         if (value < 0)
         {
-            actionTarget.messageID = ability::GetAbsorbMessage(actionTarget.messageID);
-            actionTarget.param     = -value;
+            result.setMessage(ability::GetAbsorbMessage(result.message()));
+            result.setValue(-value);
         }
     }
     else // Can't target anything, just cancel the animation.
     {
-        action.actiontype         = ACTION_MOBABILITY_INTERRUPT;
-        action.actionid           = 28787; // Some hardcoded magic for interrupts
-        actionList_t& actionList  = action.getNewActionList();
-        actionList.ActionTargetID = id;
-
-        actionTarget_t& actionTarget = actionList.getNewActionTarget();
-        actionTarget.animation       = 0x1FC;
-        actionTarget.messageID       = 0;
-        actionTarget.reaction        = REACTION::ABILITY | REACTION::HIT;
+        action.setCategory(ActionCategory::SkillStart);
+        action.setArgument(FourCC::UntestedInterrupt);
+        action.addTarget(id).addResult({
+            .resolution = ActionResolution::Hit,
+            .subKind    = ActionAnimation::SkillInterrupt,
+        });
     }
 }
 
@@ -384,7 +387,7 @@ bool CPetEntity::CanAttack(CBattleEntity* PTarget, std::unique_ptr<CBasicPacket>
     return CBattleEntity::CanAttack(PTarget, errMsg);
 }
 
-void CPetEntity::OnPetSkillFinished(CPetSkillState& state, action_t& action)
+void CPetEntity::OnPetSkillFinished(CPetSkillState& state, Action& action)
 {
     TracyZoneScoped;
     auto* PSkill  = state.GetPetSkill();
@@ -429,16 +432,15 @@ void CPetEntity::OnPetSkillFinished(CPetSkillState& state, action_t& action)
         findFlags |= FINDFLAGS_DEAD;
     }
 
-    action.id         = id;
-    action.actiontype = (ACTIONTYPE)PSkill->getSkillFinishCategory();
+    action.setCategory(static_cast<ActionCategory>(PSkill->getSkillFinishCategory()));
     if (PSkill->getMobSkillID() > 0)
     {
         // jug pet skills emulate mob skills but still have the same flow as wyvern and smn pet skills
-        action.actionid = PSkill->getMobSkillID();
+        action.setArgument(PSkill->getMobSkillID());
     }
     else
     {
-        action.actionid = PSkill->getID();
+        action.setArgument(PSkill->getID());
     }
 
     if (PAI->TargetFind->isWithinRange(&PTarget->loc.p, distance))
@@ -478,32 +480,29 @@ void CPetEntity::OnPetSkillFinished(CPetSkillState& state, action_t& action)
     }
     else // Out of range
     {
-        action.actiontype         = ACTION_MOBABILITY_INTERRUPT;
-        actionList_t& actionList  = action.getNewActionList();
-        actionList.ActionTargetID = PTarget->id;
+        action.setCategory(ActionCategory::SkillStart);
+        action.setArgument(FourCC::SkillInterrupt);
+        action.addTarget(PTarget)
+            .addResult({
+                .subKind = ActionAnimation::SkillInterrupt,
+                .message = MSGBASIC_TOO_FAR_AWAY,
+            });
 
-        actionTarget_t& actionTarget = actionList.getNewActionTarget();
-        actionTarget.animation       = 0x1FC; // Hardcoded magic sent from the server
-        actionTarget.messageID       = MSGBASIC_TOO_FAR_AWAY;
-        actionTarget.speceffect      = SPECEFFECT::BLOOD;
         return;
     }
 
-    uint16 targets = (uint16)PAI->TargetFind->m_targets.size();
+    const uint16 targets = static_cast<uint16>(PAI->TargetFind->m_targets.size());
 
     // No targets, perhaps something like Super Jump or otherwise untargetable
     if (targets == 0)
     {
-        action.actiontype         = ACTION_MOBABILITY_INTERRUPT;
-        action.actionid           = 28787; // Some hardcoded magic for interrupts
-        actionList_t& actionList  = action.getNewActionList();
-        actionList.ActionTargetID = id;
-
-        actionTarget_t& actionTarget = actionList.getNewActionTarget();
-        actionTarget.animation       = 0x1FC;
-        actionTarget.messageID       = 0;
-        actionTarget.reaction        = REACTION::ABILITY | REACTION::HIT;
-
+        action.setCategory(ActionCategory::SkillStart);
+        action.setArgument(FourCC::UntestedInterrupt);
+        action.addTarget(id)
+            .addResult({
+                .resolution = ActionResolution::Hit,
+                .subKind    = ActionAnimation::SkillInterrupt,
+            });
         return;
     }
 
@@ -513,29 +512,22 @@ void CPetEntity::OnPetSkillFinished(CPetSkillState& state, action_t& action)
     PSkill->setHP(health.hp);
     PSkill->setHPP(GetHPP());
 
-    uint16 msg            = 0;
-    uint16 defaultMessage = PSkill->getMsg();
+    MSGBASIC_ID       msg            = MSGBASIC_NONE;
+    const MSGBASIC_ID defaultMessage = PSkill->getMsg();
 
     bool first{ true };
     for (auto&& PTargetFound : PAI->TargetFind->m_targets)
     {
-        actionList_t& list = action.getNewActionList();
-
-        list.ActionTargetID = PTargetFound->id;
-
-        actionTarget_t& target = list.getNewActionTarget();
-
-        list.ActionTargetID = PTargetFound->id;
-        target.reaction     = REACTION::HIT;
-        target.speceffect   = SPECEFFECT::HIT;
-        target.animation    = PSkill->getAnimationID();
-        target.messageID    = PSkill->getMsg();
+        auto& result = action.addTarget(PTargetFound)
+                           .addResult({
+                               .resolution = ActionResolution::Hit,
+                               .subKind    = static_cast<ActionAnimation>(PSkill->getAnimationID()),
+                               .message    = PSkill->getMsg(),
+                           });
 
         // reset the skill's message back to default
         PSkill->setMsg(defaultMessage);
         int32 damage = 0;
-
-        target.animation = PSkill->getAnimationID();
 
         /* if (petType == PET_TYPE::AUTOMATON) // TODO: figure out Automaton
         {
@@ -543,7 +535,7 @@ void CPetEntity::OnPetSkillFinished(CPetSkillState& state, action_t& action)
         }
         else*/
         {
-            damage = luautils::OnPetAbility(PTargetFound, this, PSkill, PMaster, &action);
+            damage = luautils::OnPetAbility(PTargetFound, this, PSkill, PMaster, action);
         }
 
         // primary target will have msg == 0
@@ -562,50 +554,57 @@ void CPetEntity::OnPetSkillFinished(CPetSkillState& state, action_t& action)
         {
             // TODO: verify this message does/does not vary depending on mob/avatar/automaton use
             //       furthermore, this likely needs to be PSkill->setMsg(MSGBASIC_SKILL_RECOVERS_HP) and happen before the above code
-            msg          = MSGBASIC_SKILL_RECOVERS_HP;
-            target.param = std::clamp(-damage, 0, PTargetFound->GetMaxHP() - PTargetFound->health.hp);
+            msg = MSGBASIC_SKILL_RECOVERS_HP;
+            result.setValue(std::clamp(-damage, 0, PTargetFound->GetMaxHP() - PTargetFound->health.hp));
         }
         else
         {
-            target.param = damage;
+            result.setValue(damage);
         }
 
-        target.messageID = msg;
+        result.setMessage(msg);
 
         if (PSkill->hasMissMsg())
         {
-            target.reaction   = REACTION::MISS;
-            target.speceffect = SPECEFFECT::NONE;
+            result.setResolution(ActionResolution::Miss);
+            // todo check
+            // target.speceffect = SPECEFFECT::NONE;
         }
         else
         {
-            target.reaction   = REACTION::HIT;
-            target.speceffect = SPECEFFECT::HIT;
+            result.setResolution(ActionResolution::Hit);
+            // todo check
+            // target.speceffect = SPECEFFECT::HIT;
         }
 
-        // TODO: Should this be reaction and not speceffect?
-        if (target.speceffect == SPECEFFECT::HIT) // Formerly bitwise and, though nothing in this function adds additional bits to the field
+        if (result.resolution() == ActionResolution::Hit)
         {
-            target.speceffect = SPECEFFECT::RECOIL;
-            target.knockback  = PSkill->getKnockback();
+            // TODO: Check
+            // target.speceffect = SPECEFFECT::RECOIL;
+            result.setKnockback(PSkill->getKnockback());
             if (first && PTargetFound->health.hp > 0 && PSkill->getPrimarySkillchain() != 0)
             {
-                SUBEFFECT effect = battleutils::GetSkillChainEffect(PTargetFound, PSkill->getPrimarySkillchain(), PSkill->getSecondarySkillchain(),
-                                                                    PSkill->getTertiarySkillchain());
-                if (effect != SUBEFFECT_NONE)
+                auto effect = battleutils::GetSkillChainEffect(PTargetFound, PSkill->getPrimarySkillchain(), PSkill->getSecondarySkillchain(),
+                                                               PSkill->getTertiarySkillchain());
+                if (effect != ActionProcSkillChain::None)
                 {
-                    int32 skillChainDamage = battleutils::TakeSkillchainDamage(this, PTargetFound, target.param, nullptr);
+                    int32 skillChainDamage = battleutils::TakeSkillchainDamage(this, PTargetFound, result.value(), nullptr);
                     if (skillChainDamage < 0)
                     {
-                        target.addEffectParam   = -skillChainDamage;
-                        target.addEffectMessage = 384 + effect;
+                        result.addProc(ProcSpec{
+                            .type    = effect,
+                            .value   = -skillChainDamage,
+                            .message = static_cast<MSGBASIC_ID>(384 + static_cast<uint8_t>(effect)),
+                        });
                     }
                     else
                     {
-                        target.addEffectParam   = skillChainDamage;
-                        target.addEffectMessage = 287 + effect;
+                        result.addProc(ProcSpec{
+                            .type    = effect,
+                            .value   = skillChainDamage,
+                            .message = static_cast<MSGBASIC_ID>(287 + static_cast<uint8_t>(effect)),
+                        });
                     }
-                    target.additionalEffect = effect;
                 }
 
                 first = false;

@@ -170,14 +170,14 @@ public:
     }
     virtual void Die() override;
 
-    virtual void OnWeaponSkillFinished(CWeaponSkillState&, action_t&) override;
-    virtual void OnMobSkillFinished(CMobSkillState&, action_t&) override;
+    virtual void OnWeaponSkillFinished(CWeaponSkillState&, Action&) override;
+    virtual void OnMobSkillFinished(CMobSkillState&, Action&) override;
     virtual void OnEngage(CAttackState&) override;
 
-    virtual bool OnAttack(CAttackState&, action_t&) override;
+    virtual bool OnAttack(CAttackState&, Action&) override;
     virtual bool CanAttack(CBattleEntity* PTarget, std::unique_ptr<CBasicPacket>& errMsg) override;
-    virtual void OnCastFinished(CMagicState&, action_t&) override;
-    virtual void OnCastInterrupted(CMagicState&, action_t&, MSGBASIC_ID msg, bool blockedCast) override;
+    virtual void OnCastFinished(CMagicState&, Action&) override;
+    virtual void OnCastInterrupted(CMagicState&, Action&, MSGBASIC_ID msg, bool blockedCast) override;
 
     virtual void OnDisengage(CAttackState&) override;
     virtual void OnDeathTimer() override;

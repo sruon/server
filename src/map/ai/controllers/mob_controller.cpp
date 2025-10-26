@@ -1432,7 +1432,7 @@ void CMobController::ClearFollowTarget()
     m_followType  = FollowType::None;
 }
 
-void CMobController::OnCastStopped(CMagicState& state, action_t& action)
+void CMobController::OnCastStopped(CMagicState& state, Action& action)
 {
     int32 magicCool = PMob->getBigMobMod(MOBMOD_MAGIC_COOL);
     m_nextMagicTime = m_Tick + std::chrono::milliseconds(xirand::GetRandomNumber(magicCool / 2, magicCool));

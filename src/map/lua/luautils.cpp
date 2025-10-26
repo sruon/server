@@ -31,7 +31,6 @@
 #include "common/vana_time.h"
 #include "common/version.h"
 
-#include "lua_action.h"
 #include "lua_battlefield.h"
 #include "lua_instance.h"
 #include "lua_item.h"
@@ -53,7 +52,6 @@
 
 #include "items/item_puppet.h"
 
-#include "packets/action.h"
 #include "packets/s2c/0x017_chat_std.h"
 #include "packets/s2c/0x05a_motionmes.h"
 #include "packets/s2c/0x0f9_res.h"
@@ -73,15 +71,18 @@
 #include "battlefield.h"
 #include "conquest_system.h"
 #include "daily_system.h"
+#include "enums/action/proc_add_effect.h"
 #include "fishingcontest.h"
 #include "instance.h"
 #include "ipc_client.h"
 #include "items/item_furnishing.h"
+#include "lua_action.h"
 #include "map_engine.h"
 #include "mob_modifier.h"
 #include "mobskill.h"
 #include "monstrosity.h"
 #include "navmesh.h"
+#include "packets/s2c/0x028_battle2.h"
 #include "packets/s2c/0x039_mapschedulor.h"
 #include "petskill.h"
 #include "roe.h"
@@ -96,7 +97,6 @@
 
 #include <array>
 #include <filesystem>
-#include <numeric>
 #include <optional>
 #include <string>
 #include <unordered_map>
@@ -967,15 +967,15 @@ namespace luautils
                     return;
                 }
 
-                const auto zoneName = PEntity->loc.zone->getName();
-                const auto name     = PEntity->getName();
+                const auto  zoneName = PEntity->loc.zone->getName();
+                const auto& name     = PEntity->getName();
                 CacheLuaObjectFromFile(fmt::format("./scripts/zones/{}/npcs/{}.lua", zoneName, name));
             }
             break;
             case TYPE_MOB:
             {
-                const auto zoneName = PEntity->loc.zone->getName();
-                const auto name     = PEntity->getName();
+                const auto  zoneName = PEntity->loc.zone->getName();
+                const auto& name     = PEntity->getName();
                 CacheLuaObjectFromFile(fmt::format("./scripts/zones/{}/mobs/{}.lua", zoneName, name));
             }
             break;
@@ -2389,7 +2389,7 @@ namespace luautils
     }
 
     // Used by mobs
-    void OnAdditionalEffect(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action, int32 damage)
+    void OnAdditionalEffect(CBattleEntity* PAttacker, CBattleEntity* PDefender, ActionResult& battleResult, int32 damage)
     {
         TracyZoneScoped;
 
@@ -2414,13 +2414,24 @@ namespace luautils
             return;
         }
 
-        Action->additionalEffect = (SUBEFFECT)(result.get_type(0) == sol::type::number ? result.get<int32>(0) : 0);
-        Action->addEffectMessage = result.get_type(1) == sol::type::number ? result.get<int32>(1) : 0;
-        Action->addEffectParam   = result.get_type(2) == sol::type::number ? result.get<int32>(2) : 0;
+        if (result.get_type(0) == sol::type::number)
+        {
+            const auto        procKind    = result.get<ActionProcAddEffect>(0);
+            const uint16_t    procValue   = result.get_type(1) == sol::type::number ? result.get<uint16_t>(1) : 0;
+            const MSGBASIC_ID procMessage = result.get_type(2) == sol::type::number ? result.get<MSGBASIC_ID>(2) : MSGBASIC_NONE;
+            if (procKind != ActionProcAddEffect::None)
+            {
+                battleResult.addProc(ProcSpec{
+                    .type = procKind,
+                    .value = static_cast<int32_t>(procValue),
+                    .message = procMessage,
+                });
+            }
+        }
     }
 
     // Used by mobs
-    void OnSpikesDamage(CBattleEntity* PDefender, CBattleEntity* PAttacker, actionTarget_t* Action, int32 damage)
+    void OnSpikesDamage(CBattleEntity* PDefender, CBattleEntity* PAttacker, ActionResult& battleResult, int32 damage)
     {
         TracyZoneScoped;
 
@@ -2441,13 +2452,24 @@ namespace luautils
             return;
         }
 
-        Action->spikesEffect  = (SUBEFFECT)(result.get_type(0) == sol::type::number ? result.get<int32>(0) : 0);
-        Action->spikesMessage = result.get_type(1) == sol::type::number ? result.get<int32>(1) : 0;
-        Action->spikesParam   = result.get_type(2) == sol::type::number ? result.get<int32>(2) : 0;
+        if (result.get_type(0) == sol::type::number)
+        {
+            const auto        reactKind    = result.get<ActionReactKind>(0);
+            const int16_t     reactValue   = result.get_type(1) == sol::type::number ? result.get<int16_t>(1) : 0;
+            const MSGBASIC_ID reactMessage = result.get_type(2) == sol::type::number ? result.get<MSGBASIC_ID>(2) : MSGBASIC_NONE;
+            if (reactKind != ActionReactKind::None)
+            {
+                battleResult.addReaction(ReactSpec{
+                    .type    = static_cast<ActionReactKind>(reactKind),
+                    .value   = static_cast<int16_t>(reactValue),
+                    .message = reactMessage,
+                });
+            }
+        }
     }
 
     // Used by items
-    int32 additionalEffectAttack(CBattleEntity* PAttacker, CBattleEntity* PDefender, CItemWeapon* PItem, actionTarget_t* Action, int32 baseAttackDamage)
+    int32 additionalEffectAttack(CBattleEntity* PAttacker, CBattleEntity* PDefender, CItemWeapon* PItem, ActionResult& battleResult, int32 baseAttackDamage)
     {
         TracyZoneScoped;
 
@@ -2470,16 +2492,27 @@ namespace luautils
             return -1;
         }
 
-        Action->additionalEffect = (SUBEFFECT)(result.get_type(0) == sol::type::number ? result.get<int32>(0) : 0);
-        Action->addEffectMessage = result.get_type(1) == sol::type::number ? result.get<int32>(1) : 0;
-        Action->addEffectParam   = result.get_type(2) == sol::type::number ? result.get<int32>(2) : 0;
+        if (result.get_type(0) == sol::type::number)
+        {
+            const auto        procKind    = result.get<ActionProcAddEffect>(0);
+            const uint16_t    procValue   = result.get_type(2) == sol::type::number ? result.get<uint16_t>(2) : 0;
+            const MSGBASIC_ID procMessage = result.get_type(1) == sol::type::number ? result.get<MSGBASIC_ID>(1) : MSGBASIC_NONE;
+            if (procKind != ActionProcAddEffect::None)
+            {
+                battleResult.addProc(ProcSpec{
+                    .type    = procKind,
+                    .value   = procValue,
+                    .message = procMessage,
+                });
+            }
+        }
 
         return 0;
     }
 
     // NOTE: This is currently unused
     // future use: migrating items to scripts\globals\additional_effects.lua
-    void additionalEffectSpikes(CBattleEntity* PDefender, CBattleEntity* PAttacker, CItemEquipment* PItem, actionTarget_t* Action, int32 baseAttackDamage)
+    void additionalEffectSpikes(CBattleEntity* PDefender, CBattleEntity* PAttacker, CItemEquipment* PItem, ActionResult& battleResult, int32 baseAttackDamage)
     {
         TracyZoneScoped;
 
@@ -2497,9 +2530,20 @@ namespace luautils
             return;
         }
 
-        Action->additionalEffect = (SUBEFFECT)(result.get_type(0) == sol::type::number ? result.get<int32>(0) : 0);
-        Action->addEffectMessage = result.get_type(1) == sol::type::number ? result.get<int32>(1) : 0;
-        Action->addEffectParam   = result.get_type(2) == sol::type::number ? result.get<int32>(2) : 0;
+        if (result.get_type(0) == sol::type::number)
+        {
+            const auto        procKind    = result.get<ActionProcAddEffect>(0);
+            const uint16_t    procValue   = result.get_type(2) == sol::type::number ? result.get<uint16_t>(2) : 0;
+            const MSGBASIC_ID procMessage = result.get_type(1) == sol::type::number ? result.get<MSGBASIC_ID>(1) : MSGBASIC_NONE;
+            if (procKind != ActionProcAddEffect::None)
+            {
+                battleResult.addProc(ProcSpec{
+                    .type    = procKind,
+                    .value   = static_cast<int32_t>(procValue),
+                    .message = procMessage,
+                });
+            }
+        }
     }
 
     void OnEffectGain(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
@@ -2698,7 +2742,7 @@ namespace luautils
     // We use the subject. The return value is the message number or 0.
     // It is also necessary to somehow pass the message parameter (for example,
     // number of recovered MP)
-    int32 OnItemUse(CBaseEntity* PUser, CBaseEntity* PTarget, CItem* PItem, action_t& action)
+    int32 OnItemUse(CBaseEntity* PUser, CBaseEntity* PTarget, CItem* PItem, Action& action)
     {
         TracyZoneScoped;
 
@@ -3762,7 +3806,7 @@ namespace luautils
         }
     }
 
-    std::tuple<int32, uint8, uint8> OnUseWeaponSkill(CBattleEntity* PChar, CBaseEntity* PMob, CWeaponSkill* wskill, uint16 tp, bool primary, action_t& action,
+    std::tuple<int32, uint8, uint8> OnUseWeaponSkill(CBattleEntity* PChar, CBaseEntity* PMob, CWeaponSkill* wskill, uint16 tp, bool primary, Action& action,
                                                      CBattleEntity* taChar)
     {
         TracyZoneScoped;
@@ -3775,7 +3819,7 @@ namespace luautils
             return std::tuple<int32, uint8, uint8>();
         }
 
-        auto result = onUseWeaponSkill(PChar, PMob, wskill->getID(), tp, primary, &action, taChar);
+        auto result = onUseWeaponSkill(PChar, PMob, wskill->getID(), tp, primary, action, taChar);
         if (!result.valid())
         {
             sol::error err = result;
@@ -3790,7 +3834,7 @@ namespace luautils
 
         if (criticalHit)
         {
-            luautils::OnCriticalHit((CBattleEntity*)PMob, PChar);
+            luautils::OnCriticalHit(static_cast<CBattleEntity*>(PMob), PChar);
         }
 
         return std::make_tuple(dmg, tpHitsLanded, extraHitsLanded);
@@ -3828,7 +3872,7 @@ namespace luautils
         return 0;
     }
 
-    int32 OnMobWeaponSkill(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill, action_t* action)
+    int32 OnMobWeaponSkill(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill, Action& action)
     {
         TracyZoneScoped;
 
@@ -3947,7 +3991,7 @@ namespace luautils
         return result.get_type(0) == sol::type::number ? result.get<int32>(0) : -5;
     }
 
-    int32 OnAutomatonAbility(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill, CBaseEntity* PMobMaster, action_t* action)
+    int32 OnAutomatonAbility(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill, CBaseEntity* PMobMaster, Action& action)
     {
         auto filename = fmt::format("./scripts/actions/abilities/pets/automaton/{}.lua", PMobSkill->getName());
 
@@ -4209,7 +4253,7 @@ namespace luautils
         return result0 ? result0 : 0; // Default to no Message
     }
 
-    int32 OnPetAbility(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill, CBaseEntity* PMobMaster, action_t* action)
+    int32 OnPetAbility(CBaseEntity* PTarget, CBaseEntity* PMob, CMobSkill* PMobSkill, CBaseEntity* PMobMaster, Action& action)
     {
         TracyZoneScoped;
 
@@ -4247,7 +4291,7 @@ namespace luautils
         return result.get_type(0) == sol::type::number ? result.get<int32>(0) : 0;
     }
 
-    int32 OnPetAbility(CBaseEntity* PTarget, CPetEntity* PPet, CPetSkill* PPetSkill, CBaseEntity* PMobMaster, action_t* action)
+    int32 OnPetAbility(CBaseEntity* PTarget, CPetEntity* PPet, CPetSkill* PPetSkill, CBaseEntity* PMobMaster, Action& action)
     {
         TracyZoneScoped;
 
@@ -4279,7 +4323,7 @@ namespace luautils
         return result.get_type(0) == sol::type::number ? result.get<int32>(0) : 0;
     }
 
-    int32 OnUseAbility(CBattleEntity* PUser, CBattleEntity* PTarget, CAbility* PAbility, action_t* action)
+    int32 OnUseAbility(CBattleEntity* PUser, CBattleEntity* PTarget, CAbility* PAbility, Action& action)
     {
         TracyZoneScoped;
 
@@ -4311,7 +4355,7 @@ namespace luautils
         return result.get_type(0) == sol::type::number ? result.get<int32>(0) : 0;
     }
 
-    int32 OnSteal(CBattleEntity* PChar, CBattleEntity* PMob, CAbility* PAbility, action_t* action)
+    int32 OnSteal(CBattleEntity* PChar, CBattleEntity* PMob, CAbility* PAbility, Action& action)
     {
         TracyZoneScoped;
 

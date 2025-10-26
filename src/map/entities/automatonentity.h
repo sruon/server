@@ -84,8 +84,8 @@ public:
 
     virtual bool ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags) override;
 
-    virtual void OnMobSkillFinished(CMobSkillState&, action_t&) override;
-    virtual void OnCastFinished(CMagicState&, action_t&) override;
+    virtual void OnMobSkillFinished(CMobSkillState&, Action&) override;
+    virtual void OnCastFinished(CMagicState&, Action&) override;
 
 private:
     std::array<uint8, 8> m_Burden{};

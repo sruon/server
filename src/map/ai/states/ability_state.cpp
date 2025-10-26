@@ -22,12 +22,14 @@
 #include "ability_state.h"
 
 #include "ability.h"
+#include "action/action.h"
 #include "ai/ai_container.h"
 #include "common/utils.h"
 #include "enmity_container.h"
 #include "entities/charentity.h"
 #include "entities/mobentity.h"
-#include "packets/action.h"
+#include "enums/action/resolution.h"
+#include "packets/s2c/0x028_battle2.h"
 #include "packets/s2c/0x029_battle_message.h"
 #include "recast_container.h"
 #include "status_effect_container.h"
@@ -63,17 +65,9 @@ CAbilityState::CAbilityState(CBattleEntity* PEntity, uint16 targid, uint16 abili
 
     if (m_castTime > 0s && CanUseAbility())
     {
-        action_t action;
-        action.id              = PEntity->id;
-        action.actiontype      = ACTION_WEAPONSKILL_START;
-        auto& list             = action.getNewActionList();
-        list.ActionTargetID    = PTarget->id;
-        auto& actionTarget     = list.getNewActionTarget();
-        actionTarget.reaction  = REACTION::HIT | REACTION::ABILITY; // TODO: not all abilities are HIT + Ability (provoke/chi blast has been observed as only REACTION:ABILITY)
-        actionTarget.animation = 121;
-        actionTarget.messageID = 326;
-        actionTarget.param     = PAbility->getID();
-        PEntity->loc.zone->PushPacket(PEntity, CHAR_INRANGE_SELF, std::make_unique<CActionPacket>(action));
+        auto action = Actions::SkillStart(PEntity, PAbility, PTarget);
+
+        PEntity->loc.zone->PushPacket(PEntity, CHAR_INRANGE_SELF, std::make_unique<GP_SERV_COMMAND_BATTLE2>(action));
         m_PEntity->PAI->EventHandler.triggerListener("ABILITY_START", m_PEntity, PAbility);
 
         // face toward target
@@ -132,10 +126,10 @@ bool CAbilityState::Update(timer::time_point tick)
     {
         if (CanUseAbility())
         {
-            action_t action;
+            auto action = Actions::AbilityFinish(m_PEntity, m_PAbility.get());
             m_PEntity->OnAbility(*this, action);
             m_PEntity->PAI->EventHandler.triggerListener("ABILITY_USE", m_PEntity, GetTarget(), m_PAbility.get(), &action);
-            m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, std::make_unique<CActionPacket>(action));
+            m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, std::make_unique<GP_SERV_COMMAND_BATTLE2>(action));
             if (auto* target = GetTarget())
             {
                 target->PAI->EventHandler.triggerListener("ABILITY_TAKE", target, m_PEntity, m_PAbility.get(), &action);
@@ -143,21 +137,9 @@ bool CAbilityState::Update(timer::time_point tick)
         }
         else if (m_castTime > 0s) // Instant abilities do not need to be interrupted
         {
-            CBaseEntity* PTarget = GetTarget();
+            Action action = Actions::SkillInterrupt(m_PEntity);
 
-            action_t action;
-            action.id         = m_PEntity->id;
-            action.actiontype = ACTION_JOBABILITY_INTERRUPT;
-            action.actionid   = 28787;
-
-            actionList_t& actionList  = action.getNewActionList();
-            actionList.ActionTargetID = PTarget ? PTarget->id : m_PEntity->id;
-
-            actionTarget_t& actionTarget = actionList.getNewActionTarget();
-            actionTarget.animation       = 0x1FC;
-            actionTarget.reaction        = REACTION::MISS;
-
-            m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, std::make_unique<CActionPacket>(action));
+            m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, std::make_unique<GP_SERV_COMMAND_BATTLE2>(action));
         }
         Complete();
     }
@@ -215,17 +197,6 @@ bool CAbilityState::CanUseAbility()
                 return false;
             }
 
-            // TODO: Remove this when all pet abilities are moved to PetSkill system.
-            if (PAbility->getID() >= ABILITY_HEALING_RUBY && !battleutils::GetPetSkill(PAbility->getID()))
-            {
-                // Blood pact MP costs are stored under animation ID
-                if (PChar->health.mp < PAbility->getAnimationID())
-                {
-                    PChar->pushPacket<GP_SERV_COMMAND_BATTLE_MESSAGE>(PChar, PTarget, 0, 0, MSGBASIC_UNABLE_TO_USE_JA);
-                    return false;
-                }
-            }
-
             CBaseEntity* PMsgTarget = PChar;
             int32        errNo      = luautils::OnAbilityCheck(PChar, PTarget, PAbility, &PMsgTarget);
             if (errNo != 0)
@@ -272,23 +243,17 @@ bool CAbilityState::CanUseAbility()
             {
                 // Create this action packet that also sort of looks like an animation cancel packet to emit a red "Target is too far away" message.
                 // Captured from a red "<target> is too far away" message from healing breath IV
-                action_t action;
+                Action action = Actions::AbilityInterrupt(m_PEntity);
+                auto   target = action.addTarget(PTarget ? PTarget : m_PEntity);
+                if (tooFarAway)
+                {
+                    target.addResult({
+                        .resolution = ActionResolution::Miss,
+                        .message    = MSGBASIC_TOO_FAR_AWAY_RED,
+                    });
+                }
 
-                action.id         = m_PEntity->id;
-                action.actiontype = ACTION_MAGIC_FINISH;
-                action.actionid   = 0;
-
-                actionList_t& actionList  = action.getNewActionList();
-                actionList.ActionTargetID = PTarget ? PTarget->id : m_PEntity->id;
-
-                actionTarget_t& actionTarget = actionList.getNewActionTarget();
-                actionTarget.animation       = 0x1FC;
-                actionTarget.reaction        = REACTION::MISS;
-                actionTarget.speceffect      = static_cast<SPECEFFECT>(0x24);
-                actionTarget.param           = 0; // Observed as 639 on retail, but I'm not sure that it actually does anything.
-                actionTarget.messageID       = tooFarAway ? MSGBASIC_TOO_FAR_AWAY_RED : 0;
-
-                m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, std::make_unique<CActionPacket>(action));
+                m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, std::make_unique<GP_SERV_COMMAND_BATTLE2>(action));
             }
             return false;
         }

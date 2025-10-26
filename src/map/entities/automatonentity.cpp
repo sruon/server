@@ -21,13 +21,13 @@
 
 #include "automatonentity.h"
 
+#include "action/action.h"
 #include "ai/ai_container.h"
 #include "ai/controllers/automaton_controller.h"
 #include "ai/states/magic_state.h"
 #include "ai/states/mobskill_state.h"
 #include "common/tracy.h"
 #include "common/utils.h"
-#include "packets/action.h"
 #include "recast_container.h"
 #include "status_effect_container.h"
 #include "utils/mobutils.h"
@@ -173,14 +173,14 @@ bool CAutomatonEntity::ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags
     return CPetEntity::ValidTarget(PInitiator, targetFlags);
 }
 
-void CAutomatonEntity::OnCastFinished(CMagicState& state, action_t& action)
+void CAutomatonEntity::OnCastFinished(CMagicState& state, Action& action)
 {
     CMobEntity::OnCastFinished(state, action);
 
     auto* PSpell  = state.GetSpell();
     auto* PTarget = static_cast<CBattleEntity*>(state.GetTarget());
 
-    PRecastContainer->Add(RECAST_MAGIC, static_cast<uint16>(PSpell->getID()), action.recast);
+    PRecastContainer->Add(RECAST_MAGIC, static_cast<uint16>(PSpell->getID()), action.recast());
 
     if (PSpell->tookEffect())
     {
@@ -188,7 +188,7 @@ void CAutomatonEntity::OnCastFinished(CMagicState& state, action_t& action)
     }
 }
 
-void CAutomatonEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
+void CAutomatonEntity::OnMobSkillFinished(CMobSkillState& state, Action& action)
 {
     CMobEntity::OnMobSkillFinished(state, action);
 

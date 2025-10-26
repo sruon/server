@@ -21,12 +21,12 @@
 
 #include "attack_state.h"
 
-#include "entities/battleentity.h"
-
+#include "action/action.h"
 #include "ai/ai_container.h"
-#include "packets/action.h"
+#include "entities/battleentity.h"
+#include "enums/action/category.h"
+#include "packets/s2c/0x028_battle2.h"
 #include "packets/s2c/0x058_assist.h"
-#include "utils/battleutils.h"
 
 CAttackState::CAttackState(CBattleEntity* PEntity, uint16 targid)
 : CState(PEntity, targid)
@@ -71,13 +71,13 @@ bool CAttackState::Update(timer::time_point tick)
             {
                 return true;
             }
-            action_t action;
+            auto action = Actions::BasicAttack(m_PEntity);
             if (m_PEntity->OnAttack(*this, action))
             {
-                // CMobEntity::OnAttack(...) can generate it's own action with a mobmod, and that leaves this action.actionType = 0, which is never valid. Skip sending the packet.
-                if (action.actiontype != ACTION_NONE)
+                // CMobEntity::OnAttack(...) can generate it's own action with a mobmod, and that leaves this action.category = None, which is never valid. Skip sending the packet.
+                if (action.category() != ActionCategory::None)
                 {
-                    m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, std::make_unique<CActionPacket>(action));
+                    m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, std::make_unique<GP_SERV_COMMAND_BATTLE2>(action));
                 }
             }
         }

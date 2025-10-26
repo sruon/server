@@ -43,7 +43,6 @@
 #include "mob_spell_container.h"
 #include "mob_spell_list.h"
 #include "mobskill.h"
-#include "packets/action.h"
 #include "packets/entity_update.h"
 #include "packets/pet_sync.h"
 #include "packets/s2c/0x029_battle_message.h"
@@ -691,7 +690,7 @@ void CMobEntity::Spawn()
     }
 }
 
-void CMobEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& action)
+void CMobEntity::OnWeaponSkillFinished(CWeaponSkillState& state, Action& action)
 {
     TracyZoneScoped;
     CBattleEntity::OnWeaponSkillFinished(state, action);
@@ -699,7 +698,7 @@ void CMobEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& actio
     TapDeaggroTime();
 }
 
-void CMobEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
+void CMobEntity::OnMobSkillFinished(CMobSkillState& state, Action& action)
 {
     TracyZoneScoped;
 
@@ -1296,7 +1295,7 @@ void CMobEntity::OnDisengage(CAttackState& state)
     luautils::OnMobDisengage(this);
 }
 
-void CMobEntity::OnCastFinished(CMagicState& state, action_t& action)
+void CMobEntity::OnCastFinished(CMagicState& state, Action& action)
 {
     TracyZoneScoped;
     CBattleEntity::OnCastFinished(state, action);
@@ -1310,7 +1309,7 @@ void CMobEntity::OnCastFinished(CMagicState& state, action_t& action)
     TapDeaggroTime();
 }
 
-void CMobEntity::OnCastInterrupted(CMagicState& state, action_t& action, MSGBASIC_ID msg, bool blockedCast)
+void CMobEntity::OnCastInterrupted(CMagicState& state, Action& action, MSGBASIC_ID msg, bool blockedCast)
 {
     TracyZoneScoped;
     CBattleEntity::OnCastInterrupted(state, action, msg, blockedCast);
@@ -1322,7 +1321,7 @@ void CMobEntity::OnCastInterrupted(CMagicState& state, action_t& action, MSGBASI
     }
 }
 
-bool CMobEntity::OnAttack(CAttackState& state, action_t& action)
+bool CMobEntity::OnAttack(CAttackState& state, Action& action)
 {
     TracyZoneScoped;
     TapDeaggroTime();

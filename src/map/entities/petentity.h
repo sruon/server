@@ -68,9 +68,9 @@ public:
     virtual void      Spawn() override;
     bool              shouldPersistThroughZone(); // if true, zoning should not cause a currently active pet to despawn
     void              loadPetZoningInfo();        // loads info from previous zone (hp / mp / tp / spawn time). This MUST be called after Spawn()
-    virtual void      OnAbility(CAbilityState&, action_t&) override;
+    virtual void      OnAbility(CAbilityState&, Action&) override;
     virtual bool      ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags) override;
-    void              OnPetSkillFinished(CPetSkillState& state, action_t& action);
+    void              OnPetSkillFinished(CPetSkillState& state, Action& action);
     virtual bool      CanAttack(CBattleEntity* PTarget, std::unique_ptr<CBasicPacket>& errMsg) override;
 
 private:

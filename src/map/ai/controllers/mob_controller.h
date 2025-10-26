@@ -61,7 +61,7 @@ public:
     void         ClearFollowTarget();
     auto         CheckHide(const CBattleEntity* PTarget) const -> bool;
 
-    void OnCastStopped(CMagicState& state, action_t& action);
+    void OnCastStopped(CMagicState& state, Action& action);
 
 protected:
     virtual auto TryDeaggro() -> bool;

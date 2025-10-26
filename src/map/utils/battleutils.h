@@ -29,6 +29,11 @@
 
 #include "entities/battleentity.h"
 
+class ActionResult;
+enum class ActionProcSkillChain : uint8_t;
+struct action_result_t;
+struct action_t;
+enum class ActionReactKind : uint8_t;
 enum class Weather : uint16_t;
 class CMobEntity;
 class CAbility;
@@ -39,7 +44,6 @@ class CPetSkill;
 class CSpell;
 class CTrait;
 class CWeaponSkill;
-struct actionTarget_t;
 enum class PHYSICAL_ATTACK_TYPE;
 
 enum ENSPELL
@@ -129,10 +133,10 @@ namespace battleutils
     void FreeMobSkillList();
     void FreePetSkillList();
 
-    SUBEFFECT            GetSkillChainEffect(CBattleEntity* PDefender, uint8 primary, uint8 secondary, uint8 tertiary);
+    auto                 GetSkillChainEffect(CBattleEntity* PDefender, uint8 primary, uint8 secondary, uint8 tertiary) -> ActionProcSkillChain;
     SKILLCHAIN_ELEMENT   FormSkillchain(const std::list<SKILLCHAIN_ELEMENT>& resonance, const std::list<SKILLCHAIN_ELEMENT>& skill);
     uint8                GetSkillchainTier(SKILLCHAIN_ELEMENT skillchain);
-    uint8                GetSkillchainSubeffect(SKILLCHAIN_ELEMENT skillchain);
+    ActionProcSkillChain GetSkillchainSubeffect(SKILLCHAIN_ELEMENT skillchain);
     int16                GetSkillchainMinimumResistance(SKILLCHAIN_ELEMENT element, CBattleEntity* PDefender, ELEMENT& appliedEle);
     std::vector<ELEMENT> GetSkillchainMagicElement(SKILLCHAIN_ELEMENT skillchain);
     Mod                  GetResistanceRankModFromElement(ELEMENT& element);
@@ -166,13 +170,12 @@ namespace battleutils
 
     bool  TryInterruptSpell(CBattleEntity* PAttacker, CBattleEntity* PDefender, CSpell* PSpell);
     float GetRangedDamageRatio(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isCritical, int16 bonusRangedAttack);
-    void  HandleRangedAdditionalEffect(CCharEntity* PAttacker, CBattleEntity* PDefender, apAction_t* Action);
-    int32 CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action, uint16 damageTaken);
-    bool  HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action, int32 damage);
-    bool  HandleParrySpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action, int32 damage);
-    bool  HandleSpikesEquip(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action, uint8 damage, SUBEFFECT spikesType, uint8 chance);
-    void  HandleSpikesStatusEffect(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action);
-    void  HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, actionTarget_t* Action, bool isFirstSwing, CItemWeapon* weapon, int32 damage, CAttack& attack);
+    int32 CalculateSpikeDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, ActionResult& action, uint16 damageTaken);
+    bool  HandleSpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, ActionResult& battleResult, int32 damage);
+    bool  HandleParrySpikesDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, ActionResult& action, int32 damage);
+    bool  HandleSpikesEquip(CBattleEntity* PAttacker, CBattleEntity* PDefender, ActionResult& action, uint8 damage, ActionReactKind spikesType, uint8 chance);
+    void  HandleSpikesStatusEffect(CBattleEntity* PAttacker, CBattleEntity* PDefender, ActionResult& action);
+    void  HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, ActionResult& action, bool isFirstSwing, CItemWeapon* weapon, int32 damage, CAttack& attack);
     uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isBarrage);
     uint8 GetRangedHitRate(CBattleEntity* PAttacker, CBattleEntity* PDefender, bool isBarrage, int16 accBonus);
     int32 CalculateEnspellDamage(CBattleEntity* PAttacker, CBattleEntity* PDefender, uint8 Tier, uint8 element);
@@ -265,7 +268,7 @@ namespace battleutils
     int32           GetMeritValue(CBattleEntity*, MERIT_TYPE);
 
     int32       GetScaledItemModifier(CBattleEntity*, CItemEquipment*, Mod);
-    DAMAGE_TYPE GetSpikesDamageType(SUBEFFECT spikesType);
+    DAMAGE_TYPE GetSpikesDamageType(ActionReactKind spikesType);
     DAMAGE_TYPE GetEnspellDamageType(ENSPELL enspellType);
     DAMAGE_TYPE GetRuneEnhancementDamageType(EFFECT runeEffect);
     ELEMENT     GetRuneEnhancementElement(EFFECT runeEffect);

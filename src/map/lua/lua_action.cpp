@@ -1,4 +1,4 @@
-﻿/*
+/*
 ===========================================================================
 
   Copyright (c) 2010-2015 Darkstar Dev Teams
@@ -20,35 +20,29 @@
 */
 
 #include "lua_action.h"
-#include "packets/action.h"
 
-CLuaAction::CLuaAction(action_t* Action)
+#include "action/action.h"
+
+CLuaAction::CLuaAction(Action* Action)
 : m_PLuaAction(Action)
 {
     if (Action == nullptr)
     {
-        ShowError("CLuaAction created with nullptr instead of valid action_t*!");
+        ShowError("CLuaAction created with nullptr instead of valid Action*!");
     }
 }
 
 void CLuaAction::ID(uint32 actionTargetID, uint32 newActionTargetID)
 {
-    for (auto&& actionList : m_PLuaAction->actionLists)
-    {
-        if (actionList.ActionTargetID == actionTargetID)
-        {
-            actionList.ActionTargetID = newActionTargetID;
-            return;
-        }
-    }
+    m_PLuaAction->target(actionTargetID).setTargetId(newActionTargetID);
 }
 
 // Get the first (primary) target's long ID, if available.
-uint32 CLuaAction::getPrimaryTargetID()
+uint32 CLuaAction::getPrimaryTargetID() const
 {
-    if (!m_PLuaAction->actionLists.empty())
+    if (m_PLuaAction->targetCount() > 0)
     {
-        return m_PLuaAction->actionLists[0].ActionTargetID;
+        return m_PLuaAction->target().targetId();
     }
 
     return 0;
@@ -56,190 +50,135 @@ uint32 CLuaAction::getPrimaryTargetID()
 
 void CLuaAction::setRecast(uint16 recast)
 {
-    m_PLuaAction->recast = std::chrono::seconds(recast);
+    m_PLuaAction->setRecast(std::chrono::seconds(recast));
 }
 
 uint16 CLuaAction::getRecast()
 {
-    return static_cast<uint16>(timer::count_seconds(m_PLuaAction->recast));
+    return static_cast<uint16>(m_PLuaAction->info());
 }
 
 void CLuaAction::actionID(uint16 actionid)
 {
-    m_PLuaAction->actionid = actionid;
+    m_PLuaAction->setArgument(static_cast<uint32_t>(actionid));
 }
 
 uint16 CLuaAction::getParam(uint32 actionTargetID)
 {
-    for (auto&& actionList : m_PLuaAction->actionLists)
-    {
-        if (actionList.ActionTargetID == actionTargetID)
-        {
-            return actionList.actionTargets[0].param;
-        }
-    }
-
-    return 0;
+    return static_cast<uint16>(m_PLuaAction->target(actionTargetID).result(0).value());
 }
 
 void CLuaAction::param(uint32 actionTargetID, int32 param)
 {
-    for (auto&& actionList : m_PLuaAction->actionLists)
-    {
-        if (actionList.ActionTargetID == actionTargetID)
-        {
-            actionList.actionTargets[0].param = param;
-            return;
-        }
-    }
+    m_PLuaAction->target(actionTargetID).result(0).setValue(param);
 }
 
 void CLuaAction::messageID(uint32 actionTargetID, uint16 messageID)
 {
-    for (auto&& actionList : m_PLuaAction->actionLists)
-    {
-        if (actionList.ActionTargetID == actionTargetID)
-        {
-            actionList.actionTargets[0].messageID = messageID;
-            return;
-        }
-    }
+    m_PLuaAction->target(actionTargetID).result(0).setMessage(static_cast<MSGBASIC_ID>(messageID));
 }
 
 std::optional<uint16> CLuaAction::getMsg(uint32 actionTargetID)
 {
-    for (auto&& actionList : m_PLuaAction->actionLists)
-    {
-        if (actionList.ActionTargetID == actionTargetID)
-        {
-            return actionList.actionTargets[0].messageID;
-        }
-    }
-
-    return std::nullopt;
+    return static_cast<uint16>(m_PLuaAction->target(actionTargetID).result(0).message());
 }
 
-std::optional<uint16> CLuaAction::getAnimation(uint32 actionTargetID)
+auto CLuaAction::getAnimation(const uint32 actionTargetID) const -> ActionSubKind
 {
-    for (auto&& actionList : m_PLuaAction->actionLists)
-    {
-        if (actionList.ActionTargetID == actionTargetID)
-        {
-            return actionList.actionTargets[0].animation;
-        }
-    }
-
-    return std::nullopt;
+    return m_PLuaAction->target(actionTargetID).result(0).subKind();
 }
 
-void CLuaAction::setAnimation(uint32 actionTargetID, uint16 animation)
+void CLuaAction::setAnimation(const uint32 actionTargetID, const ActionSubKind animation) const
 {
-    for (auto&& actionList : m_PLuaAction->actionLists)
-    {
-        if (actionList.ActionTargetID == actionTargetID)
-        {
-            actionList.actionTargets[0].animation = animation;
-            return;
-        }
-    }
+    m_PLuaAction->target(actionTargetID).result(0).setSubKind(animation);
 }
 
 auto CLuaAction::getCategory() -> uint8
 {
-    return m_PLuaAction->actiontype;
+    return static_cast<uint8>(m_PLuaAction->category());
 }
 
 void CLuaAction::setCategory(uint8 category)
 {
-    m_PLuaAction->actiontype = static_cast<ACTIONTYPE>(category);
+    m_PLuaAction->setCategory(static_cast<ActionCategory>(category));
 }
 
 void CLuaAction::speceffect(uint32 actionTargetID, uint8 speceffect)
 {
-    for (auto&& actionList : m_PLuaAction->actionLists)
-    {
-        if (actionList.ActionTargetID == actionTargetID)
-        {
-            actionList.actionTargets[0].speceffect = static_cast<SPECEFFECT>(speceffect);
-            return;
-        }
-    }
+    auto& result = m_PLuaAction->target(actionTargetID).result(0);
+    // TODO: Hella wrong (same as old implementation)
+    result.setInfo(static_cast<ActionInfo>(speceffect & 0x1F));
+    result.setDistortion(static_cast<HitDistortion>(speceffect >> 5 & 0x03));
 }
 
 void CLuaAction::reaction(uint32 actionTargetID, uint8 reaction)
 {
-    for (auto&& actionList : m_PLuaAction->actionLists)
-    {
-        if (actionList.ActionTargetID == actionTargetID)
-        {
-            actionList.actionTargets[0].reaction = static_cast<REACTION>(reaction);
-            return;
-        }
-    }
+    m_PLuaAction->target(actionTargetID).result(0).addReaction({
+        .type = static_cast<ActionReactKind>(reaction),
+    });
 }
 
 void CLuaAction::modifier(uint32 actionTargetID, uint8 modifier)
 {
-    for (auto&& actionList : m_PLuaAction->actionLists)
-    {
-        if (actionList.ActionTargetID == actionTargetID)
-        {
-            actionList.actionTargets[0].modifier = static_cast<MODIFIER>(modifier);
-            return;
-        }
-    }
+    m_PLuaAction->target(actionTargetID).result(0).setModifier(static_cast<ActionModifier>(modifier));
 }
 
 void CLuaAction::additionalEffect(uint32 actionTargetID, uint16 additionalEffect)
 {
-    for (auto&& actionList : m_PLuaAction->actionLists)
+    auto& result = m_PLuaAction->target(actionTargetID).result(0);
+
+    ProcSpec procSpec;
+    if (result.hasProc())
     {
-        if (actionList.ActionTargetID == actionTargetID)
-        {
-            actionList.actionTargets[0].additionalEffect = static_cast<SUBEFFECT>(additionalEffect);
-            return;
-        }
+        procSpec = result.proc();
     }
+    procSpec.type = static_cast<ActionProcAddEffect>(additionalEffect);
+    result.addProc(procSpec);
 }
 
 void CLuaAction::addEffectParam(uint32 actionTargetID, int32 addEffectParam)
 {
-    for (auto&& actionList : m_PLuaAction->actionLists)
+    auto& result = m_PLuaAction->target(actionTargetID).result(0);
+
+    if (result.hasProc())
     {
-        if (actionList.ActionTargetID == actionTargetID)
-        {
-            actionList.actionTargets[0].addEffectParam = addEffectParam;
-            return;
-        }
+        auto procSpec  = result.proc();
+        procSpec.value = addEffectParam;
+        result.addProc(procSpec);
+    }
+    else
+    {
+        ShowWarning("Setting action proc_value on action without proc_kind");
     }
 }
 
 void CLuaAction::addEffectMessage(uint32 actionTargetID, uint16 addEffectMessage)
 {
-    for (auto&& actionList : m_PLuaAction->actionLists)
+    auto& result = m_PLuaAction->target(actionTargetID).result(0);
+
+    if (result.hasProc())
     {
-        if (actionList.ActionTargetID == actionTargetID)
-        {
-            actionList.actionTargets[0].addEffectMessage = addEffectMessage;
-            return;
-        }
+        auto procSpec    = result.proc();
+        procSpec.message = static_cast<MSGBASIC_ID>(addEffectMessage);
+        result.addProc(procSpec);
+    }
+    else
+    {
+        ShowWarning("Setting action proc_message on action without proc_kind");
     }
 }
 
 bool CLuaAction::addAdditionalTarget(uint32 actionTargetID)
 {
-    for (auto&& actionList : m_PLuaAction->actionLists)
+    for (size_t i = 0; i < m_PLuaAction->targetCount(); ++i)
     {
-        if (actionList.ActionTargetID == actionTargetID)
+        if (m_PLuaAction->target(i).targetId() == actionTargetID)
         {
             return false;
         }
     }
 
-    auto& newAction          = m_PLuaAction->getNewActionList();
-    newAction.ActionTargetID = actionTargetID;
-    newAction.getNewActionTarget();
-
+    m_PLuaAction->addTarget(actionTargetID, {});
     return true;
 }
 
@@ -272,7 +211,7 @@ void CLuaAction::Register()
 
 std::ostream& operator<<(std::ostream& os, const CLuaAction& action)
 {
-    std::string id = action.m_PLuaAction ? std::to_string(action.m_PLuaAction->id) : "nullptr";
+    std::string id = action.m_PLuaAction ? std::to_string(action.m_PLuaAction->actorId()) : "nullptr";
     return os << "CLuaAction(" << id << ")";
 }
 

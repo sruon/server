@@ -1,4 +1,4 @@
-﻿/*
+/*
 ===========================================================================
 
   Copyright (c) 2010-2015 Darkstar Dev Teams
@@ -19,22 +19,24 @@
 ===========================================================================
 */
 
-#ifndef _LUAACTION_H
-#define _LUAACTION_H
+#pragma once
 
+#include "action/action_result.h"
 #include "common/cbasetypes.h"
 #include "luautils.h"
 
-struct action_t;
-struct actionList_t;
+#include <optional>
+
+class Action;
+
 class CLuaAction
 {
-    action_t* m_PLuaAction;
+    Action* m_PLuaAction;
 
 public:
-    CLuaAction(action_t*);
+    CLuaAction(Action*);
 
-    action_t* GetAction() const
+    Action* GetAction() const
     {
         return m_PLuaAction;
     }
@@ -42,7 +44,7 @@ public:
     friend std::ostream& operator<<(std::ostream& out, const CLuaAction& action);
 
     void   ID(uint32 actionTargetID, uint32 newActionTargetID);
-    uint32 getPrimaryTargetID();
+    uint32 getPrimaryTargetID() const;
     void   setRecast(uint16 recast);
     uint16 getRecast();
     void   actionID(uint16 actionid);
@@ -50,8 +52,8 @@ public:
     void   param(uint32 actionTargetID, int32 param);
     void   messageID(uint32 actionTargetID, uint16 messageID);
     auto   getMsg(uint32 actionTargetID) -> std::optional<uint16>;
-    auto   getAnimation(uint32 actionTargetID) -> std::optional<uint16>;
-    void   setAnimation(uint32 actionTargetID, uint16 animation);
+    auto   getAnimation(uint32 actionTargetID) const -> ActionSubKind;
+    void   setAnimation(uint32 actionTargetID, ActionSubKind animation) const;
     auto   getCategory() -> uint8;
     void   setCategory(uint8 category);
     void   speceffect(uint32 actionTargetID, uint8 speceffect);
@@ -70,4 +72,3 @@ public:
     static void Register();
 };
 
-#endif

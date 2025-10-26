@@ -29,6 +29,7 @@
 
 #define MAX_WEAPONSKILL_ID 256
 
+enum class ActionAnimation : uint16_t;
 class CWeaponSkill
 {
 public:
@@ -41,13 +42,13 @@ public:
     uint8  getElement() const;
     bool   isElemental() const;
 
-    bool            isAoE() const;
-    bool            mainOnly() const; // can only be used as main job
-    uint8           getAoe() const;
-    uint8           getAnimationId() const;
-    timer::duration getAnimationTime();
-    uint8           getType() const;
-    uint8           getUnlockId() const;
+    bool  isAoE() const;
+    bool  mainOnly() const; // can only be used as main job
+    uint8 getAoe() const;
+    auto  getAnimationId() const -> ActionAnimation;
+    auto  getAnimationTime() const -> timer::duration;
+    uint8 getType() const;
+    uint8 getUnlockId() const;
 
     void setID(uint16 id);
     void setJob(const std::array<uint8, MAX_JOBTYPE>& jobs);

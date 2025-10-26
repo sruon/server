@@ -74,7 +74,7 @@ public:
             PHYSICAL_ATTACK_DIRECTION direction,
             CAttackRound*             attackRound);
 
-    auto GetAnimationID() -> uint16;
+    auto GetAnimationID() const -> AttackAnimation;
     auto GetAttackType() const -> PHYSICAL_ATTACK_TYPE;
     auto SetAttackType(PHYSICAL_ATTACK_TYPE type) -> void;
     auto GetAttackDirection() const -> PHYSICAL_ATTACK_DIRECTION;

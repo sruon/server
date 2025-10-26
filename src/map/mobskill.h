@@ -24,9 +24,13 @@
 
 #include "common/cbasetypes.h"
 #include "common/mmo.h"
+#include "entities/mobentity.h"
+#include "enums/action/animation.h"
+#include "packets/s2c/0x028_battle2.h"
 
 #include <vector>
 
+enum class Knockback : uint8_t;
 class CBattleEntity;
 
 enum SKILLFLAG
@@ -66,14 +70,14 @@ public:
     bool isBloodPactRage() const;
 
     uint16          getID() const;
-    uint16          getAnimationID() const;
+    auto            getAnimationID() const -> ActionAnimation;
     uint8           getAoe() const;
     float           getDistance() const;
     uint8           getFlag() const;
     timer::duration getAnimationTime() const;
     timer::duration getActivationTime() const;
-    uint16          getMsg() const;
-    uint16          getAoEMsg() const;
+    MSGBASIC_ID     getMsg() const;
+    MSGBASIC_ID     getAoEMsg() const;
     uint16          getValidTargets() const;
     int16           getTP() const;
     auto            getHP() const -> int32;
@@ -85,7 +89,7 @@ public:
     uint16          getMsgForAction() const;
     float           getRadius() const;
     int16           getParam() const;
-    uint8           getKnockback() const;
+    auto            getKnockback() const -> Knockback;
     uint8           getPrimarySkillchain() const;
     uint8           getSecondarySkillchain() const;
     uint8           getTertiarySkillchain() const;

@@ -632,21 +632,21 @@ public:
 
     /* State callbacks */
     virtual bool           CanAttack(CBattleEntity* PTarget, std::unique_ptr<CBasicPacket>& errMsg) override;
-    virtual bool           OnAttack(CAttackState&, action_t&) override;
+    virtual bool           OnAttack(CAttackState&, Action&) override;
     virtual bool           OnAttackError(CAttackState&) override;
     virtual CBattleEntity* IsValidTarget(uint16 targid, uint16 validTargetFlags, std::unique_ptr<CBasicPacket>& errMsg) override;
     virtual void           OnChangeTarget(CBattleEntity* PNewTarget) override;
     virtual void           OnEngage(CAttackState&) override;
     virtual void           OnDisengage(CAttackState&) override;
-    virtual void           OnCastFinished(CMagicState&, action_t&) override;
-    virtual void           OnCastInterrupted(CMagicState&, action_t&, MSGBASIC_ID msg, bool blockedCast) override;
-    virtual void           OnWeaponSkillFinished(CWeaponSkillState&, action_t&) override;
-    virtual void           OnAbility(CAbilityState&, action_t&) override;
-    virtual void           OnRangedAttack(CRangeState&, action_t&) override;
+    virtual void           OnCastFinished(CMagicState&, Action&) override;
+    virtual void           OnCastInterrupted(CMagicState&, Action&, MSGBASIC_ID msg, bool blockedCast) override;
+    virtual void           OnWeaponSkillFinished(CWeaponSkillState&, Action&) override;
+    virtual void           OnAbility(CAbilityState&, Action&) override;
+    virtual void           OnRangedAttack(CRangeState&, Action&) override;
     virtual void           OnDeathTimer() override;
     virtual void           OnRaise() override;
 
-    virtual void OnItemFinish(CItemState&, action_t&);
+    virtual void OnItemFinish(CItemState&, Action&);
 
     auto getCharVar(std::string const& varName) const -> int32;
     auto getCharVarsWithPrefix(std::string const& prefix) -> std::vector<std::pair<std::string, int32>>;

@@ -91,7 +91,7 @@ public:
 
     // Packets, Events, and Flags
     void injectPacket(std::string const& filename); // Send the character a packet kept in a file
-    void injectActionPacket(uint32 inTargetID, uint16 inCategory, uint16 inAnimationID, uint16 inSpecEffect, uint16 inReaction, uint16 inMessage, uint16 inActionParam, uint16 inParam);
+    void injectActionPacket(uint32 inTargetID, uint16 inCategory, ActionAnimation inAnimationID, uint16 inSpecEffect, uint16 inReaction, MSGBASIC_ID inMessage, uint16 inActionParam, uint16 inParam) const;
     void entityVisualPacket(std::string const& command, sol::object const& entity) const;
     void entityAnimationPacket(const char* command, sol::object const& target);
     void sendDebugPacket(sol::table const& packetData);

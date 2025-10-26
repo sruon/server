@@ -1,0 +1,13 @@
+set(ACTION_SOURCES
+    ${CMAKE_CURRENT_SOURCE_DIR}/action.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/action.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/action_proc.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/action_proc.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/action_target.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/action_target.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/action_react.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/action_react.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/action_result.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/action_result.h
+    PARENT_SCOPE
+)

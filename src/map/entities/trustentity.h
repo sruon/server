@@ -42,14 +42,14 @@ public:
     void FadeOut() override;
     void Die() override;
     void Spawn() override;
-    void OnAbility(CAbilityState&, action_t&) override;
-    void OnRangedAttack(CRangeState&, action_t&) override;
+    void OnAbility(CAbilityState&, Action&) override;
+    void OnRangedAttack(CRangeState&, Action&) override;
     bool ValidTarget(CBattleEntity* PInitiator, uint16 targetFlags) override;
     void OnDespawn(CDespawnState&) override;
 
-    void OnCastFinished(CMagicState& state, action_t& action) override;
-    void OnMobSkillFinished(CMobSkillState& state, action_t& action) override;
-    void OnWeaponSkillFinished(CWeaponSkillState& state, action_t& action) override;
+    void OnCastFinished(CMagicState& state, Action& action) override;
+    void OnMobSkillFinished(CMobSkillState& state, Action& action) override;
+    void OnWeaponSkillFinished(CWeaponSkillState& state, Action& action) override;
 
     uint32 m_TrustID{};
 };

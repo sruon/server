@@ -21,15 +21,14 @@
 
 #include "range_state.h"
 
+#include "action/action.h"
 #include "ai/ai_container.h"
 #include "entities/charentity.h"
-#include "entities/trustentity.h"
 #include "items/item_weapon.h"
-#include "packets/action.h"
+#include "packets/s2c/0x028_battle2.h"
 #include "packets/s2c/0x029_battle_message.h"
 #include "status_effect_container.h"
 #include "utils/battleutils.h"
-#include "utils/charutils.h"
 
 CRangeState::CRangeState(CBattleEntity* PEntity, uint16 targid)
 : CState(PEntity, targid)
@@ -70,14 +69,14 @@ CRangeState::CRangeState(CBattleEntity* PEntity, uint16 targid)
     // https://www.bg-wiki.com/ffxi/Delay#Ranged_Delay
     // GetRangedDelayReduction is 2 of the 3 steps of `Ranged Weapon Delay x (1 - Snapshot) x (1 - Velocity Shot) x (1 - Rapid Shot)`
     // If Rapid Shot fires it will do the third multiplicative step
-    auto delay = m_PEntity->GetRangedWeaponDelay(false);
-    delay      = battleutils::GetRangedDelayReduction(m_PEntity, delay);
+    auto delay        = m_PEntity->GetRangedWeaponDelay(false);
+    delay             = battleutils::GetRangedDelayReduction(m_PEntity, delay);
+    const auto weapon = dynamic_cast<CItemWeapon*>(m_PEntity->m_Weapons[SLOT_RANGED]);
 
     // Rapid Shot
     if (m_PEntity->objtype == TYPE_PC || m_PEntity->objtype == TYPE_TRUST)
     {
-        CItemWeapon* weapon     = dynamic_cast<CItemWeapon*>(m_PEntity->m_Weapons[SLOT_RANGED]);
-        bool         isThrowing = weapon && weapon->isThrowing();
+        const bool isThrowing = weapon && weapon->isThrowing();
         // Don't apply Rapid Shot to throwing weapons
         if (!isThrowing)
         {
@@ -106,19 +105,9 @@ CRangeState::CRangeState(CBattleEntity* PEntity, uint16 targid)
     m_aimTime  = std::chrono::milliseconds(delay);
     m_startPos = m_PEntity->loc.p;
 
-    action_t action;
-    action.id         = m_PEntity->id;
-    action.actiontype = ACTION_RANGED_START;
-
-    actionList_t& actionList  = action.getNewActionList();
-    actionList.ActionTargetID = PTarget->id;
-
-    actionTarget_t& actionTarget = actionList.getNewActionTarget();
-    actionTarget.animation       = ANIMATION_RANGED;
-
-    m_PEntity->PAI->EventHandler.triggerListener("RANGE_START", m_PEntity, &action);
-
-    m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, std::make_unique<CActionPacket>(action));
+    auto action = Actions::RangedStart(m_PEntity, PEntity);
+    m_PEntity->PAI->EventHandler.triggerListener("RANGE_START", m_PEntity, action);
+    m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, std::make_unique<GP_SERV_COMMAND_BATTLE2>(action));
 }
 
 void CRangeState::SpendCost()
@@ -142,18 +131,10 @@ bool CRangeState::Update(timer::time_point tick)
             m_errorMsg = std::make_unique<GP_SERV_COMMAND_BATTLE_MESSAGE>(m_PEntity, m_PEntity, 0, 0, MSGBASIC_MOVE_AND_INTERRUPT);
         }
 
-        action_t action;
-        auto*    cast_errorMsg = dynamic_cast<GP_SERV_COMMAND_BATTLE_MESSAGE*>(m_errorMsg.get());
+        auto* cast_errorMsg = dynamic_cast<GP_SERV_COMMAND_BATTLE_MESSAGE*>(m_errorMsg.get());
         if (m_errorMsg && (!cast_errorMsg || cast_errorMsg->getMessageId() != MSGBASIC_CANNOT_SEE))
         {
-            action.id         = m_PEntity->id;
-            action.actiontype = ACTION_RANGED_INTERRUPT;
-
-            actionList_t& actionList  = action.getNewActionList();
-            actionList.ActionTargetID = PTarget ? PTarget->id : m_PEntity->id;
-
-            actionTarget_t& actionTarget = actionList.getNewActionTarget();
-            actionTarget.animation       = ANIMATION_RANGED;
+            Action interruptAction = Actions::RangedInterrupt(m_PEntity, PTarget ? PTarget : m_PEntity);
 
             if (auto* PChar = dynamic_cast<CCharEntity*>(m_PEntity))
             {
@@ -161,15 +142,16 @@ bool CRangeState::Update(timer::time_point tick)
             }
             // reset aim time so interrupted players only have to wait the correct 2.7s until next shot
             m_aimTime = 0s;
-            m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, std::make_unique<CActionPacket>(action));
-            m_PEntity->PAI->EventHandler.triggerListener("RANGE_STATE_EXIT", m_PEntity, nullptr, &action);
+            m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, std::make_unique<GP_SERV_COMMAND_BATTLE2>(interruptAction));
+            m_PEntity->PAI->EventHandler.triggerListener("RANGE_STATE_EXIT", m_PEntity, nullptr, &interruptAction);
         }
         else
         {
             m_errorMsg.reset();
 
+            Action action = Actions::RangedFinish(m_PEntity);
             m_PEntity->OnRangedAttack(*this, action);
-            m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, std::make_unique<CActionPacket>(action));
+            m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, std::make_unique<GP_SERV_COMMAND_BATTLE2>(action));
             m_PEntity->PAI->EventHandler.triggerListener("RANGE_STATE_EXIT", m_PEntity, PTarget, &action);
         }
 

@@ -31,7 +31,6 @@
 #include "entities/mobentity.h"
 #include "entities/trustentity.h"
 #include "mob_modifier.h"
-#include "packets/action.h"
 #include "status_effect_container.h"
 #include "utils/zoneutils.h"
 

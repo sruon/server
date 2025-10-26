@@ -27,8 +27,6 @@ class CBattleEntity;
 class CCharEntity;
 class CItemUsable;
 
-struct action_t;
-
 class CItemState : public CState
 {
 public:
@@ -51,9 +49,6 @@ public:
     void TryInterrupt(CBattleEntity* PTarget) override;
 
     CItemUsable* GetItem() const;
-
-    void InterruptItem(action_t& action);
-    void FinishItem(action_t& action);
 
 protected:
     bool HasMoved() const;

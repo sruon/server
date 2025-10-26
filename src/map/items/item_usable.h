@@ -26,6 +26,7 @@
 
 #include "item.h"
 
+enum class ActionAnimation : uint16_t;
 class CItemUsable : public CItem
 {
 public:
@@ -35,7 +36,7 @@ public:
     timer::duration   getUseDelay() const;
     uint8             getCurrentCharges();
     uint8             getMaxCharges() const;
-    uint16            getAnimationID() const;
+    auto              getAnimationID() const -> ActionAnimation;
     timer::duration   getAnimationTime() const;
     timer::duration   getActivationTime() const;
     uint16            getValidTarget() const;

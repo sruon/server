@@ -289,7 +289,7 @@ uint8 CAttack::GetWeaponSlot()
  *  Returns the animation ID.                                           *
  *                                                                      *
  ************************************************************************/
-uint16 CAttack::GetAnimationID()
+auto CAttack::GetAnimationID() const -> AttackAnimation
 {
     AttackAnimation animation{};
 
@@ -310,7 +310,7 @@ uint16 CAttack::GetAnimationID()
         animation = this->m_attackDirection == RIGHTATTACK ? AttackAnimation::RIGHTATTACK : AttackAnimation::LEFTATTACK;
     }
 
-    return (uint16)animation;
+    return animation;
 }
 
 /************************************************************************

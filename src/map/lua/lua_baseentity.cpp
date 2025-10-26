@@ -35,6 +35,7 @@
 #include "common/utils.h"
 
 #include "ability.h"
+#include "action/action.h"
 #include "alliance.h"
 #include "aman.h"
 #include "battlefield.h"
@@ -93,12 +94,12 @@
 #include "entities/npcentity.h"
 #include "entities/petentity.h"
 #include "entities/trustentity.h"
+#include "enums/action/animation.h"
 #include "enums/chat_message_area.h"
 #include "enums/item_lockflg.h"
 #include "items/item_furnishing.h"
 #include "items/item_linkshell.h"
 
-#include "packets/action.h"
 #include "packets/char_status.h"
 #include "packets/char_sync.h"
 #include "packets/entity_update.h"
@@ -110,6 +111,7 @@
 #include "packets/s2c/0x01f_item_list.h"
 #include "packets/s2c/0x020_item_attr.h"
 #include "packets/s2c/0x027_talknumwork2.h"
+#include "packets/s2c/0x028_battle2.h"
 #include "packets/s2c/0x029_battle_message.h"
 #include "packets/s2c/0x02a_talknumwork.h"
 #include "packets/s2c/0x02d_battle_message2.h"
@@ -908,28 +910,31 @@ void CLuaBaseEntity::injectPacket(std::string const& filename)
  *  Notes   : Used for very special cases, like JoL or Plouton generating action packets that only play animations, and don't actually use abilities.
  *            There are no safeties, You can crash a client with malformed parameters. You have been warned.
  ************************************************************************/
-void CLuaBaseEntity::injectActionPacket(uint32 inTargetID, uint16 inCategory, uint16 inAnimationID, uint16 inSpecEffect, uint16 inReaction, uint16 inMessage, uint16 inActionParam, uint16 inParam)
+void CLuaBaseEntity::injectActionPacket(const uint32 inTargetID, uint16 inCategory, const ActionAnimation inAnimationID, uint16 inSpecEffect, uint16 inReaction, const MSGBASIC_ID inMessage, uint16 inActionParam, const uint16 inParam) const
 {
-    SPECEFFECT speceffect = static_cast<SPECEFFECT>(inSpecEffect);
-    REACTION   reaction   = static_cast<REACTION>(inReaction);
-    ACTIONTYPE actiontype = static_cast<ACTIONTYPE>(inCategory);
+    auto action = Action(m_PBaseEntity,
+                         {
+                             .category = static_cast<ActionCategory>(inCategory),
+                             .argument = inActionParam,
+                         });
 
-    action_t Action;
+    auto result = action.addTarget(inTargetID)
+                      .addResult({
+                          .subKind = inAnimationID,
+                          .value   = inParam,
+                          .message = inMessage,
+                      });
 
-    Action.id       = m_PBaseEntity->id;
-    Action.actionid = inActionParam;
+    if (inReaction)
+    {
+        result.addReaction(ReactSpec{
+            .type    = static_cast<ActionReactKind>(inReaction),
+            .value   = 0,
+            .message = MSGBASIC_NONE,
+        });
+    }
 
-    Action.actiontype      = actiontype;
-    actionList_t& list     = Action.getNewActionList();
-    list.ActionTargetID    = inTargetID;
-    actionTarget_t& target = list.getNewActionTarget();
-    target.animation       = inAnimationID;
-    target.param           = inParam;
-    target.messageID       = inMessage;
-    target.speceffect      = speceffect;
-    target.reaction        = reaction;
-
-    m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE_SELF, std::make_unique<CActionPacket>(Action));
+    m_PBaseEntity->loc.zone->PushPacket(m_PBaseEntity, CHAR_INRANGE_SELF, std::make_unique<GP_SERV_COMMAND_BATTLE2>(action));
 }
 
 /************************************************************************
@@ -18505,11 +18510,11 @@ void CLuaBaseEntity::restoreFromChest(CLuaBaseEntity* PLuaBaseEntity, uint32 res
     {
         CBaseEntity* PTarget = PLuaBaseEntity->GetBaseEntity();
 
-        uint16 animationID  = 0;
-        int    messageParam = 0;
-        int    messageID    = 0;
-        int    addedHP      = 0;
-        int    addedMP      = 0;
+        ActionAnimation animationID{ ActionAnimation::None };
+        int             messageParam = 0;
+        MSGBASIC_ID     messageID    = MSGBASIC_NONE;
+        int             addedHP      = 0;
+        int             addedMP      = 0;
 
         if (PChar->animation != ANIMATION_DEATH)
         {
@@ -18520,26 +18525,24 @@ void CLuaBaseEntity::restoreFromChest(CLuaBaseEntity* PLuaBaseEntity, uint32 res
             {
                 case 1:
                     messageParam = addedHP;
-                    messageID    = 587;
-                    animationID  = 772;
+                    messageID    = MSGBASIC_TARGET_REGAINS_HP;
+                    animationID  = ActionAnimation::RegainHP;
                     break;
                 case 2:
                     messageParam = addedMP;
-                    messageID    = 588;
-                    animationID  = 773;
+                    messageID    = MSGBASIC_TARGET_REGAINS_MP;
+                    animationID  = ActionAnimation::RegainMP;
                     break;
             }
 
-            action_t Action;
-            Action.id              = PTarget->id;
-            Action.actiontype      = ACTION_MOBABILITY_FINISH;
-            actionList_t& list     = Action.getNewActionList();
-            list.ActionTargetID    = PChar->id;
-            actionTarget_t& target = list.getNewActionTarget();
-            target.animation       = animationID;
-            target.messageID       = messageID;
-            target.param           = messageParam;
-            PTarget->loc.zone->PushPacket(PTarget, CHAR_INRANGE, std::make_unique<CActionPacket>(Action));
+            Action action = Actions::MobSkillFinish(PTarget, nullptr);
+            action.addTarget(PChar)
+                .addResult({
+                    .subKind = animationID,
+                    .value   = messageParam,
+                    .message = messageID,
+                });
+            PTarget->loc.zone->PushPacket(PTarget, CHAR_INRANGE, std::make_unique<GP_SERV_COMMAND_BATTLE2>(action));
         }
     }
 }

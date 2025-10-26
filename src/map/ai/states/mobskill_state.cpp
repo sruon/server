@@ -20,12 +20,14 @@
 */
 
 #include "mobskill_state.h"
+#include "action/action.h"
 #include "ai/ai_container.h"
 #include "enmity_container.h"
 #include "entities/battleentity.h"
 #include "entities/mobentity.h"
+#include "enums/action/category.h"
 #include "mobskill.h"
-#include "packets/action.h"
+#include "packets/s2c/0x028_battle2.h"
 #include "status_effect_container.h"
 #include "utils/battleutils.h"
 
@@ -72,35 +74,22 @@ CMobSkillState::CMobSkillState(CBattleEntity* PEntity, uint16 targid, uint16 wsi
 
     if (m_castTime > 0s)
     {
-        action_t action;
-        action.id         = m_PEntity->id;
-        action.actiontype = ACTION_MOBABILITY_START;
-
-        actionList_t& actionList  = action.getNewActionList();
-        actionList.ActionTargetID = PTarget->id;
-
-        actionTarget_t& actionTarget = actionList.getNewActionTarget();
-
-        actionTarget.reaction   = REACTION::NONE;
-        actionTarget.speceffect = SPECEFFECT::NONE;
-        actionTarget.animation  = 0;
-        actionTarget.param      = m_PSkill->getID();
-        actionTarget.messageID  = 43;
-
+        ActionCategory cmd_no    = ActionCategory::SkillStart;
+        MSGBASIC_ID    messageId = MSGBASIC_READIES_WS;
         if ((m_PSkill->getValidTargets() & TARGET_ANY_ALLEGIANCE) && (m_PSkill->getValidTargets() & TARGET_SELF))
         {
             // This ability targets self for aoe skills (such as Frozen Mist)
-            action.actiontype         = ACTION_WEAPONSKILL_START;
-            actionList.ActionTargetID = action.id;
+            cmd_no = ActionCategory::SkillStart;
         }
 
         // Don't emit message
         if (m_PSkill->getFlag() & SKILLFLAG_NO_START_MSG)
         {
-            actionTarget.messageID = 0;
+            messageId = MSGBASIC_NONE;
         }
 
-        m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, std::make_unique<CActionPacket>(action));
+        auto action = Actions::MobSkillStart(m_PEntity, m_PSkill.get(), PTarget, cmd_no, messageId);
+        m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, std::make_unique<GP_SERV_COMMAND_BATTLE2>(action));
 
         // face toward target // TODO : add force param to turnTowardsTarget on certain TP moves like Petro Eyes
         battleutils::turnTowardsTarget(m_PEntity, PTarget);
@@ -159,22 +148,23 @@ bool CMobSkillState::Update(timer::time_point tick)
 
     if (m_PEntity && m_PEntity->isAlive() && (tick >= GetEntryTime() + m_castTime && !IsCompleted()))
     {
-        action_t action;
+        Action action = Actions::MobSkillFinish(m_PEntity, m_PSkill.get());
         m_PEntity->OnMobSkillFinished(*this, action);
 
         // Zero message ID
         if (m_PSkill->getFlag() & SKILLFLAG_NO_FINISH_MSG)
         {
-            for (auto&& act : action.actionLists)
+            for (size_t i = 0; i < action.targetCount(); ++i)
             {
-                for (auto&& targ : act.actionTargets)
+                auto& target = action.target(i);
+                for (size_t j = 0; j < target.resultCount(); ++j)
                 {
-                    targ.messageID = 0;
+                    target.result(j).setMessage(MSGBASIC_NONE);
                 }
             }
         }
 
-        m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, std::make_unique<CActionPacket>(action));
+        m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, std::make_unique<GP_SERV_COMMAND_BATTLE2>(action));
 
         m_finishTime = tick + m_PSkill->getAnimationTime();
         Complete();
@@ -209,19 +199,10 @@ void CMobSkillState::Cleanup(timer::time_point tick)
 {
     if (m_PEntity && m_PEntity->isAlive() && !IsCompleted())
     {
-        action_t action;
-        action.id         = m_PEntity->id;
-        action.actiontype = ACTION_MOBABILITY_INTERRUPT;
-        action.actionid   = 28787;
+        // Mob skill interrupt action
+        Action action = Actions::SkillInterrupt(m_PEntity);
 
-        actionList_t& actionList  = action.getNewActionList();
-        actionList.ActionTargetID = m_PEntity->id;
-
-        actionTarget_t& actionTarget = actionList.getNewActionTarget();
-        actionTarget.animation       = 0x1FC; // Not perfectly accurate, this animation ID can change from time to time for unknown reasons.
-        actionTarget.reaction        = REACTION::HIT;
-
-        m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, std::make_unique<CActionPacket>(action));
+        m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, std::make_unique<GP_SERV_COMMAND_BATTLE2>(action));
 
         // On retail testing, mobs lose 33% of their TP at 2900 or higher TP
         // But lose 25% at < 2900 TP.
