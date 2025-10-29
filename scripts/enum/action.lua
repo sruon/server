@@ -46,3 +46,64 @@ xi.action =
     RAISE_MENU_SELECTION  = 37,
     JOBABILITY_INTERRUPT  = 38,
 }
+
+xi.battle = {}
+
+---@enum xi.battle.resolution
+xi.battle.resolution =
+{
+    HIT   = 0,
+    MISS  = 1,
+    GUARD = 2,
+    PARRY = 3,
+    BLOCK = 4,
+}
+
+---@enum xi.battle.category
+xi.battle.category =
+{
+    NONE                = 0,
+    BASIC_ATTACK        = 1,
+    RANGED_FINISH       = 2,
+    SKILL_FINISH        = 3,
+    MAGIC_FINISH        = 4,
+    ITEM_FINISH         = 5,
+    ABILITY_FINISH      = 6,
+    SKILL_START         = 7,
+    MAGIC_START         = 8,
+    ITEM_START          = 9,
+    ABILITY_START       = 10,
+    MONSTERSKILL_FINISH = 11,
+    RANGED_START        = 12,
+    UNKNOWN             = 13,
+    DANCER              = 14,
+    RUNE_FENCER         = 15,
+}
+
+xi.battle.fourCC =
+{
+    ATTACK                   = 0x306B7461, -- "atk0"
+    SKILL_USE                = 0x65746163, -- "cate"
+    SKILL_INTERRUPT          = 0x65747073, -- "spte"
+    ITEM_USE                 = 0x74696163, -- "cait"
+    ITEM_INTERRUPT           = 0x74697073, -- "spit"
+    RANGE_START              = 0x676C6163, -- "calg"
+    RANGE_INTERRUPT          = 0x676C7073, -- "splg"
+    RANGE_FINISH             = 0x676C6873, -- "shlg"
+    WHITE_MAGIC_CAST         = 0x68776163, -- "cawh"
+    BLACK_MAGIC_CAST         = 0x6B626163, -- "cabk"
+    BLUE_MAGIC_CAST          = 0x6C626163, -- "cabl"
+    SONG_MAGIC_CAST          = 0x6F736163, -- "caso"
+    NINJUTSU_MAGIC_CAST      = 0x6A6E6163, -- "canj"
+    SUMMON_MAGIC_CAST        = 0x6D736163, -- "casm"
+    GEOMANCY_MAGIC_CAST      = 0x65676163, -- "cage"
+    TRUST_MAGIC_CAST         = 0x61666163, -- "cafa"
+    WHITE_MAGIC_INTERRUPT    = 0x68777073, -- "spwh"
+    BLACK_MAGIC_INTERRUPT    = 0x6B627073, -- "spbk"
+    BLUE_MAGIC_INTERRUPT     = 0x6C627073, -- "spbl"
+    SONG_MAGIC_INTERRUPT     = 0x6F737073, -- "spso"
+    NINJUTSU_MAGIC_INTERRUPT = 0x6A6E7073, -- "spnj"
+    SUMMON_MAGIC_INTERRUPT   = 0x6D737073, -- "spsm"
+    GEOMANCY_MAGIC_INTERRUPT = 0x65677073, -- "spge"
+    TRUST_MAGIC_INTERRUPT    = 0x61667073, -- "spfa"
+}
