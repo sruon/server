@@ -847,13 +847,13 @@ int16 CBattleEntity::addTP(int16 tp)
 
         tp = (int16)(tp * TPMulti);
     }
+    int16 cap = std::clamp(health.tp + tp, 0, 3000);
+    tp        = health.tp - cap;
+    health.tp = cap;
     if (tp != 0)
     {
         updatemask |= UPDATE_HP;
     }
-    int16 cap = std::clamp(health.tp + tp, 0, 3000);
-    tp        = health.tp - cap;
-    health.tp = cap;
     return abs(tp);
 }
 

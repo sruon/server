@@ -24,6 +24,7 @@
 #include "entities/charentity.h"
 #include "entities/npcentity.h"
 #include "packets/char_status.h"
+#include "packets/s2c/0x00d_char_pc.h"
 #include "utils/zoneutils.h"
 
 auto GP_CLI_COMMAND_CHARREQ::validate(MapSession* PSession, const CCharEntity* PChar) const -> PacketValidationResult
@@ -35,7 +36,7 @@ void GP_CLI_COMMAND_CHARREQ::process(MapSession* PSession, CCharEntity* PChar) c
 {
     if (ActIndex == PChar->targid)
     {
-        PChar->updateEntityPacket(PChar, ENTITY_SPAWN, UPDATE_ALL_CHAR);
+        PChar->queueEntityUpdate(PChar, sendflags_t::spawn());
         PChar->pushPacket<CCharStatusPacket>(PChar);
     }
     else
@@ -49,7 +50,7 @@ void GP_CLI_COMMAND_CHARREQ::process(MapSession* PSession, CCharEntity* PChar) c
             {
                 if (!PCharEntity->m_isGMHidden)
                 {
-                    PChar->updateEntityPacket(PCharEntity, ENTITY_SPAWN, UPDATE_ALL_CHAR);
+                    PChar->queueEntityUpdate(PCharEntity, sendflags_t::spawn());
                 }
                 else
                 {

@@ -41,6 +41,7 @@
 #include "automatonentity.h"
 #include "battleentity.h"
 #include "packets/s2c/base.h"
+#include "packets/s2c/0x00d_char_pc.h"
 #include "petentity.h"
 
 #include "utils/fishingutils.h"
@@ -449,6 +450,9 @@ public:
 
     void   pushPacket(std::unique_ptr<CBasicPacket>&&);                                   // Push packet to packet list
     void   updateEntityPacket(CBaseEntity* PEntity, ENTITYUPDATE type, uint8 updatemask); // Push or update an entity update packet
+    void   queueEntityUpdate(CCharEntity* PEntity, sendflags_t flags);                    // Queue entity update flags for deferred packet creation
+    void   despawnEntity(CCharEntity* PEntity);                                           // Immediately send despawn packet and clear pending
+    void   flushPendingEntityUpdates();                                                   // Convert pending entity flags to packets
     bool   isPacketListEmpty();
     auto   popPacket() -> std::unique_ptr<CBasicPacket>; // Get first packet from PacketList
     size_t getPacketCount();
@@ -707,8 +711,9 @@ private:
     timer::time_point nextDataPersistTime{};
 
     // TODO: Don't use raw ptrs for this, but don't duplicate whole packets with unique_ptr either.
-    std::deque<std::unique_ptr<CBasicPacket>> PacketList;          // The list of packets to be sent to the character during the next network cycle
-    std::unordered_map<uint32, CBasicPacket*> EntityUpdatePackets; // Keep track of entity update packets by ID, such that they can be updated
+    std::deque<std::unique_ptr<CBasicPacket>> PacketList;            // The list of packets to be sent to the character during the next network cycle
+    std::unordered_map<uint32, CBasicPacket*> EntityUpdatePackets;   // Keep track of entity update packets by ID, such that they can be updated
+    std::unordered_map<uint32, sendflags_t> PendingEntityFlags; // Accumulated sendflags per entity ID, for deferred packet creation
 };
 
 #endif

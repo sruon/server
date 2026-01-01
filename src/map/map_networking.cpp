@@ -598,6 +598,8 @@ int32 MapNetworking::send_parse(uint8* buff, size_t* buffsize, MapSession* map_s
     auto* PChar = map_session_data->PChar.get();
     TracyZoneString(PChar->name);
 
+    PChar->flushPendingEntityUpdates();
+
     std::unique_ptr<CBasicPacket> PSmallPacket = nullptr;
 
     uint32 PacketSize               = UINT32_MAX;

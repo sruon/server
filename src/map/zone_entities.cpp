@@ -47,6 +47,7 @@
 
 #include "battlefield.h"
 #include "enums/weather.h"
+#include "packets/s2c/0x00d_char_pc.h"
 #include "packets/s2c/0x05f_music.h"
 #include "utils/battleutils.h"
 #include "utils/charutils.h"
@@ -171,7 +172,7 @@ void CZoneEntities::TryAddToNearbySpawnLists(CBaseEntity* PEntity)
                         }
 
                         PCurrentChar->SpawnPCList[PEntity->id] = PEntity;
-                        PCurrentChar->updateEntityPacket(PChar, ENTITY_SPAWN, UPDATE_ALL_CHAR);
+                        PCurrentChar->queueEntityUpdate(PChar, sendflags_t::spawn());
                         break;
                     }
                     case TYPE_MOB:
@@ -746,8 +747,8 @@ void CZoneEntities::DespawnPC(CCharEntity* PChar)
 
         if (isInSpawnList)
         {
+            PCurrentChar->despawnEntity(PChar);
             PCurrentChar->SpawnPCList.erase(itr);
-            PCurrentChar->updateEntityPacket(PChar, ENTITY_DESPAWN, UPDATE_NONE);
         }
     }
 }
@@ -1060,7 +1061,7 @@ void CZoneEntities::SpawnPCs(CCharEntity* PChar)
         auto  bonus             = bonusIter == scoreBonus.end() ? 0 : bonusIter->second;
         float totalScore        = significanceScore + bonus - charDistance + CHARACTER_SYNC_DISTANCE_SWAP_THRESHOLD;
 
-        if (significanceScore < CHARACTER_SYNC_ALLI_SIGNIFICANCE)
+        if (significanceScore < CHARACTER_SYNC_ALLI_SIGNIFICANCE && PCurrentChar->targid != PChar->m_TargID)
         {
             // Is spawned and should be considered for removal if necessary
             if (spawnedCharacters.size() < CHARACTER_SYNC_LIMIT_MAX)
@@ -1077,7 +1078,7 @@ void CZoneEntities::SpawnPCs(CCharEntity* PChar)
 
     for (const auto& removeChar : toRemove)
     {
-        PChar->updateEntityPacket(removeChar, ENTITY_DESPAWN, UPDATE_NONE);
+        PChar->despawnEntity(removeChar);
         PChar->SpawnPCList.erase(removeChar->id);
     }
 
@@ -1156,8 +1157,8 @@ void CZoneEntities::SpawnPCs(CCharEntity* PChar)
                 if (candidateScore > spawnedCharacters.top().first)
                 {
                     CCharEntity* spawnedChar = spawnedCharacters.top().second;
+                    PChar->despawnEntity(spawnedChar);
                     PChar->SpawnPCList.erase(spawnedChar->id);
-                    PChar->updateEntityPacket(spawnedChar, ENTITY_DESPAWN, UPDATE_NONE);
                     spawnedCharacters.pop();
                     ++swapCount;
                 }
@@ -1171,7 +1172,7 @@ void CZoneEntities::SpawnPCs(CCharEntity* PChar)
 
             // Spawn best candidate character
             PChar->SpawnPCList[candidateChar->id] = candidateChar;
-            PChar->updateEntityPacket(candidateChar, ENTITY_SPAWN, UPDATE_ALL_CHAR);
+            PChar->queueEntityUpdate(candidateChar, sendflags_t::spawn());
             PChar->pushPacket<CCharSyncPacket>(candidateChar);
         }
     }
@@ -1479,6 +1480,8 @@ void CZoneEntities::UpdateEntityPacket(CBaseEntity* PEntity, ENTITYUPDATE type, 
         }
     }
 
+    auto* PCharEntity = dynamic_cast<CCharEntity*>(PEntity);
+
     FOR_EACH_PAIR_CAST_SECOND(CCharEntity*, PCurrentChar, m_charList)
     {
         if (PCurrentChar == PEntity)
@@ -1488,7 +1491,14 @@ void CZoneEntities::UpdateEntityPacket(CBaseEntity* PEntity, ENTITYUPDATE type, 
 
         if (alwaysInclude || type == ENTITY_SPAWN || type == ENTITY_DESPAWN || charutils::hasEntitySpawned(PCurrentChar, PEntity))
         {
-            PCurrentChar->updateEntityPacket(PEntity, type, updatemask);
+            if (PCharEntity)
+            {
+                PCurrentChar->queueEntityUpdate(PCharEntity, sendflags_t::fromUpdateMask(updatemask));
+            }
+            else
+            {
+                PCurrentChar->updateEntityPacket(PEntity, type, updatemask);
+            }
         }
     }
 }
