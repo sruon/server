@@ -39,7 +39,7 @@
 #include "entities/trustentity.h"
 
 #include "packets/char_sync.h"
-#include "packets/entity_update.h"
+#include "packets/s2c/0x00e_char_npc.h"
 #include "packets/s2c/0x0f4_tracking_list.h"
 #include "packets/s2c/0x0f6_tracking_state.h"
 
@@ -157,7 +157,7 @@ void CZoneEntities::TryAddToNearbySpawnLists(CBaseEntity* PEntity)
             if (PEntity->objtype == TYPE_NPC)
             {
                 PCurrentChar->SpawnNPCList[PEntity->id] = PEntity;
-                PCurrentChar->updateEntityPacket(PEntity, ENTITY_SPAWN, UPDATE_ALL_MOB);
+                PCurrentChar->queueEntityUpdate(PEntity, sendflags_t::spawn());
             }
             else if (isWithinVerticalDistance(PEntity, PCurrentChar))
             {
@@ -178,25 +178,25 @@ void CZoneEntities::TryAddToNearbySpawnLists(CBaseEntity* PEntity)
                     case TYPE_MOB:
                     {
                         PCurrentChar->SpawnMOBList[PEntity->id] = PEntity;
-                        PCurrentChar->updateEntityPacket(PEntity, ENTITY_SPAWN, UPDATE_ALL_MOB);
+                        PCurrentChar->queueEntityUpdate(PEntity, sendflags_t::spawn());
                         break;
                     }
                     case TYPE_PET:
                     {
                         PCurrentChar->SpawnPETList[PEntity->id] = PEntity;
-                        PCurrentChar->updateEntityPacket(PEntity, ENTITY_SPAWN, UPDATE_ALL_MOB);
+                        PCurrentChar->queueEntityUpdate(PEntity, sendflags_t::spawn());
                         break;
                     }
                     case TYPE_TRUST:
                     {
                         PCurrentChar->SpawnTRUSTList[PEntity->id] = PEntity;
-                        PCurrentChar->updateEntityPacket(PEntity, ENTITY_SPAWN, UPDATE_ALL_MOB);
+                        PCurrentChar->queueEntityUpdate(PEntity, sendflags_t::spawn());
                         break;
                     }
                     // case TYPE_FELLOW:
                     // {
                     //     PCurrentChar->SpawnFellowList[PEntity->id] = PEntity;
-                    //     PCurrentChar->updateEntityPacket(PEntity, ENTITY_SPAWN, UPDATE_ALL_MOB);
+                    //     PCurrentChar->queueEntityUpdate(PEntity, sendflags_t::spawn());
                     //     break;
                     // }
                     default:
@@ -256,7 +256,7 @@ void CZoneEntities::InsertNPC(CBaseEntity* PNpc)
     {
         PNpc->loc.zone = m_zone;
 
-        if (PNpc->look.size == MODEL_SHIP)
+        if (static_cast<ModelType>(PNpc->look.size) == ModelType::Ship)
         {
             if (m_TransportList.contains(PNpc->targid))
             {
@@ -521,7 +521,7 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
                 if (itr != PCurrentChar->SpawnPETList.end())
                 {
                     PCurrentChar->SpawnPETList.erase(itr);
-                    PCurrentChar->updateEntityPacket(PChar->PPet, ENTITY_DESPAWN, UPDATE_NONE);
+                    PCurrentChar->despawnEntity(PChar->PPet);
                 }
             }
 
@@ -535,7 +535,7 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
         FOR_EACH_PAIR_CAST_SECOND(CCharEntity*, PCurrentChar, m_charList)
         {
             // inform other players of the trusts removal
-            PCurrentChar->updateEntityPacket(PTrust, ENTITY_DESPAWN, UPDATE_NONE);
+            PCurrentChar->despawnEntity(PTrust);
         }
     }
     PChar->ClearTrusts();
@@ -773,7 +773,7 @@ void CZoneEntities::SpawnMOBs(CCharEntity* PChar)
             if (!isInSpawnList)
             {
                 spawnList.insert(itr, SpawnIDList_t::value_type(id, PCurrentMob));
-                PChar->updateEntityPacket(PCurrentMob, ENTITY_SPAWN, UPDATE_ALL_MOB);
+                PChar->queueEntityUpdate(PCurrentMob, sendflags_t::spawn());
             }
         };
 
@@ -782,7 +782,7 @@ void CZoneEntities::SpawnMOBs(CCharEntity* PChar)
             if (isInSpawnList)
             {
                 spawnList.erase(itr);
-                PChar->updateEntityPacket(PCurrentMob, ENTITY_DESPAWN, UPDATE_NONE);
+                PChar->despawnEntity(PCurrentMob);
             }
         };
 
@@ -855,7 +855,7 @@ void CZoneEntities::SpawnPETs(CCharEntity* PChar)
             if (!isInSpawnList)
             {
                 spawnList.insert(itr, SpawnIDList_t::value_type(id, PCurrentEntity));
-                PChar->updateEntityPacket(PCurrentEntity, ENTITY_SPAWN, UPDATE_ALL_MOB);
+                PChar->queueEntityUpdate(PCurrentEntity, sendflags_t::spawn());
             }
         };
 
@@ -864,7 +864,7 @@ void CZoneEntities::SpawnPETs(CCharEntity* PChar)
             if (isInSpawnList)
             {
                 spawnList.erase(itr);
-                PChar->updateEntityPacket(PCurrentEntity, ENTITY_DESPAWN, UPDATE_NONE);
+                PChar->despawnEntity(PCurrentEntity);
             }
         };
 
@@ -907,7 +907,7 @@ void CZoneEntities::SpawnNPCs(CCharEntity* PChar)
             if (!isInSpawnList)
             {
                 spawnList.insert(itr, SpawnIDList_t::value_type(id, PCurrentEntity));
-                PChar->updateEntityPacket(PCurrentEntity, ENTITY_SPAWN, UPDATE_ALL_MOB);
+                PChar->queueEntityUpdate(PCurrentEntity, sendflags_t::spawn());
             }
         };
 
@@ -916,7 +916,7 @@ void CZoneEntities::SpawnNPCs(CCharEntity* PChar)
             if (isInSpawnList)
             {
                 spawnList.erase(itr);
-                PChar->updateEntityPacket(PCurrentEntity, ENTITY_DESPAWN, UPDATE_NONE);
+                PChar->despawnEntity(PCurrentEntity);
             }
         };
 
@@ -955,7 +955,7 @@ void CZoneEntities::SpawnTRUSTs(CCharEntity* PChar)
             if (!isInSpawnList)
             {
                 spawnList.insert(itr, SpawnIDList_t::value_type(id, PCurrentEntity));
-                PChar->updateEntityPacket(PCurrentEntity, ENTITY_SPAWN, UPDATE_ALL_MOB);
+                PChar->queueEntityUpdate(PCurrentEntity, sendflags_t::spawn());
             }
         };
 
@@ -964,7 +964,7 @@ void CZoneEntities::SpawnTRUSTs(CCharEntity* PChar)
             if (isInSpawnList)
             {
                 spawnList.erase(itr);
-                PChar->updateEntityPacket(PCurrentEntity, ENTITY_DESPAWN, UPDATE_NONE);
+                PChar->despawnEntity(PCurrentEntity);
             }
         };
 
@@ -1214,7 +1214,7 @@ void CZoneEntities::SpawnConditionalNPCs(CCharEntity* PChar)
             PEntity->status = STATUS_TYPE::DISAPPEAR;
         }
 
-        PChar->updateEntityPacket(PEntity, ENTITY_SPAWN, UPDATE_ALL_MOB);
+        PChar->queueEntityUpdate(PEntity, sendflags_t::spawn());
         PEntity->status = STATUS_TYPE::DISAPPEAR;
     };
 
@@ -1242,7 +1242,7 @@ void CZoneEntities::SpawnTransport(CCharEntity* PChar)
 
     FOR_EACH_PAIR_CAST_SECOND(CNpcEntity*, PEntity, m_TransportList)
     {
-        PChar->updateEntityPacket(PEntity, ENTITY_SPAWN, UPDATE_ALL_MOB);
+        PChar->queueEntityUpdate(PEntity, sendflags_t::spawn());
     }
 }
 
@@ -1497,7 +1497,18 @@ void CZoneEntities::UpdateEntityPacket(CBaseEntity* PEntity, ENTITYUPDATE type, 
             }
             else
             {
-                PCurrentChar->updateEntityPacket(PEntity, type, updatemask);
+                if (type == ENTITY_DESPAWN)
+                {
+                    PCurrentChar->despawnEntity(PEntity);
+                }
+                else if (type == ENTITY_SPAWN)
+                {
+                    PCurrentChar->queueEntityUpdate(PEntity, sendflags_t::spawn());
+                }
+                else
+                {
+                    PCurrentChar->queueEntityUpdate(PEntity, sendflags_t::fromUpdateMask(updatemask));
+                }
             }
         }
     }

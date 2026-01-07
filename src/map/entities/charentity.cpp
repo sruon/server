@@ -28,7 +28,7 @@
 #include "packets/basic.h"
 #include "packets/char_status.h"
 #include "packets/char_sync.h"
-#include "packets/entity_update.h"
+#include "packets/s2c/0x00e_char_npc.h"
 #include "packets/s2c/0x01d_item_same.h"
 #include "packets/s2c/0x02a_talknumwork.h"
 #include "packets/s2c/0x032_event.h"
@@ -79,6 +79,7 @@
 #include "modifier.h"
 #include "notoriety_container.h"
 #include "packets/s2c/0x00d_char_pc.h"
+#include "packets/s2c/0x00e_char_npc.h"
 #include "packets/s2c/0x028_battle2.h"
 #include "packets/s2c/0x029_battle_message.h"
 #include "packets/s2c/0x063_miscdata_status_icons.h"
@@ -415,6 +416,7 @@ void CCharEntity::clearPacketList()
         std::ignore = popPacket();
     }
     PendingEntityFlags.clear();
+    PendingNpcEntityFlags.clear();
 }
 
 void CCharEntity::pushPacket(std::unique_ptr<CBasicPacket>&& packet)
@@ -444,51 +446,66 @@ void CCharEntity::pushPacket(std::unique_ptr<CBasicPacket>&& packet)
 
 void CCharEntity::updateEntityPacket(CBaseEntity* PEntity, ENTITYUPDATE type, uint8 updatemask)
 {
-    auto       itr              = EntityUpdatePackets.find(PEntity->id);
-    const bool hasPendingPacket = itr != EntityUpdatePackets.end() && itr->second != nullptr;
-    auto*      PChar            = dynamic_cast<CCharEntity*>(PEntity);
-    if (hasPendingPacket)
+    // Convert legacy type/updatemask to sendflags_t
+    sendflags_t flags{};
+    switch (type)
     {
-        // Found existing packet update for the given entity, so we update it instead of pushing new
-        auto& packet = itr->second;
-        if (PChar)
-        {
-            assert(false);
-        }
-        else
-        {
-            static_cast<CEntityUpdatePacket*>(packet)->updateWith(PEntity, type, updatemask);
-        }
+        case ENTITY_SPAWN:
+        case ENTITY_SHOW:
+            flags = sendflags_t::spawn();
+            break;
+        case ENTITY_DESPAWN:
+        case ENTITY_HIDE:
+            flags = sendflags_t::despawn();
+            break;
+        case ENTITY_UPDATE:
+            flags = sendflags_t::fromUpdateMask(updatemask);
+            break;
+    }
+
+    // Use the new packet system
+    auto packet = GP_SERV_COMMAND_CHAR_NPC::create(flags, PEntity);
+    std::visit([this](auto& pkt)
+               {
+                   pushPacket(std::make_unique<std::decay_t<decltype(pkt)>>(std::move(pkt)));
+               },
+               packet);
+}
+
+void CCharEntity::queueEntityUpdate(const CBaseEntity* PEntity, const sendflags_t flags)
+{
+    if (PEntity->objtype == TYPE_PC)
+    {
+        PendingEntityFlags[PEntity->id] |= flags;
     }
     else
     {
-        // No existing packet update for the given entity, so we push new packet
-        if (PChar)
-        {
-            assert(false);
-        }
-        else
-        {
-            auto packet                      = std::make_unique<CEntityUpdatePacket>(PEntity, type, updatemask);
-            EntityUpdatePackets[PEntity->id] = packet.get();
-            PacketList.emplace_back(std::move(packet));
-        }
+        PendingNpcEntityFlags[PEntity->id] |= flags;
     }
 }
 
-void CCharEntity::queueEntityUpdate(CCharEntity* PEntity, const sendflags_t flags)
+void CCharEntity::despawnEntity(CBaseEntity* PEntity)
 {
-    PendingEntityFlags[PEntity->id] |= flags;
-}
-
-void CCharEntity::despawnEntity(CCharEntity* PEntity)
-{
-    pushPacket<GP_SERV_COMMAND_CHAR_PC>(sendflags_t::despawn(), PEntity);
-    PendingEntityFlags.erase(PEntity->id);
+    if (PEntity->objtype == TYPE_PC)
+    {
+        pushPacket<GP_SERV_COMMAND_CHAR_PC>(sendflags_t::despawn(), static_cast<CCharEntity*>(PEntity));
+        PendingEntityFlags.erase(PEntity->id);
+    }
+    else
+    {
+        auto packet = GP_SERV_COMMAND_CHAR_NPC::create(sendflags_t::despawn(), PEntity);
+        std::visit([this](auto& pkt)
+                   {
+                       pushPacket(std::make_unique<std::decay_t<decltype(pkt)>>(std::move(pkt)));
+                   },
+                   packet);
+        PendingNpcEntityFlags.erase(PEntity->id);
+    }
 }
 
 void CCharEntity::flushPendingEntityUpdates()
 {
+    // Flush PC entity updates
     for (const auto& [entityId, flags] : PendingEntityFlags)
     {
         CCharEntity* PEntity = nullptr;
@@ -508,6 +525,41 @@ void CCharEntity::flushPendingEntityUpdates()
         }
     }
     PendingEntityFlags.clear();
+
+    // Flush NPC/MOB/PET/TRUST entity updates
+    for (const auto& [entityId, flags] : PendingNpcEntityFlags)
+    {
+        CBaseEntity* PEntity = nullptr;
+
+        // Search all spawn lists for the entity
+        if (auto it = SpawnMOBList.find(entityId); it != SpawnMOBList.end())
+        {
+            PEntity = it->second;
+        }
+        else if (auto it = SpawnPETList.find(entityId); it != SpawnPETList.end())
+        {
+            PEntity = it->second;
+        }
+        else if (auto it = SpawnTRUSTList.find(entityId); it != SpawnTRUSTList.end())
+        {
+            PEntity = it->second;
+        }
+        else if (auto it = SpawnNPCList.find(entityId); it != SpawnNPCList.end())
+        {
+            PEntity = it->second;
+        }
+
+        if (PEntity)
+        {
+            auto packet = GP_SERV_COMMAND_CHAR_NPC::create(flags, PEntity);
+            std::visit([this](auto& pkt)
+                       {
+                           pushPacket(std::make_unique<std::decay_t<decltype(pkt)>>(std::move(pkt)));
+                       },
+                       packet);
+        }
+    }
+    PendingNpcEntityFlags.clear();
 }
 
 auto CCharEntity::popPacket() -> std::unique_ptr<CBasicPacket>
@@ -518,11 +570,6 @@ auto CCharEntity::popPacket() -> std::unique_ptr<CBasicPacket>
     // Clean up pending
     switch (PPacket->getType())
     {
-        case 0x0D: // Char update
-            [[fallthrough]];
-        case 0x0E: // Entity update
-            EntityUpdatePackets.erase(PPacket->ref<uint32>(0x04));
-            break;
         case 0x5B: // Position update
             if (PPacket->ref<uint32>(0x10) == this->id)
             {
@@ -1174,13 +1221,40 @@ void CCharEntity::PostTick()
         updatemask        = 0;
     }
 
-    // Keepalive for targeted PC
+    // Keepalive for targeted entity
     if (m_TargID != 0 && m_TargID != targid)
     {
-        if (auto* PTarget = dynamic_cast<CCharEntity*>(GetEntity(m_TargID, TYPE_PC)))
+        if (auto* PTarget = GetEntity(m_TargID))
         {
-            if (SpawnPCList.contains(PTarget->id) &&
-                !PendingEntityFlags.contains(PTarget->id))
+            bool inSpawnList = false;
+            bool hasPending  = false;
+            switch (PTarget->objtype)
+            {
+                case TYPE_PC:
+                    inSpawnList = SpawnPCList.contains(PTarget->id);
+                    hasPending  = PendingEntityFlags.contains(PTarget->id);
+                    break;
+                case TYPE_NPC:
+                    inSpawnList = SpawnNPCList.contains(PTarget->id);
+                    hasPending  = PendingNpcEntityFlags.contains(PTarget->id);
+                    break;
+                case TYPE_MOB:
+                    inSpawnList = SpawnMOBList.contains(PTarget->id);
+                    hasPending  = PendingNpcEntityFlags.contains(PTarget->id);
+                    break;
+                case TYPE_PET:
+                    inSpawnList = SpawnPETList.contains(PTarget->id);
+                    hasPending  = PendingNpcEntityFlags.contains(PTarget->id);
+                    break;
+                case TYPE_TRUST:
+                    inSpawnList = SpawnTRUSTList.contains(PTarget->id);
+                    hasPending  = PendingNpcEntityFlags.contains(PTarget->id);
+                    break;
+                default:
+                    break;
+            }
+
+            if (inSpawnList && !hasPending)
             {
                 queueEntityUpdate(PTarget, sendflags_t{});
             }

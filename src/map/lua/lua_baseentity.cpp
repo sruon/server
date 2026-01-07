@@ -101,7 +101,7 @@
 
 #include "packets/char_status.h"
 #include "packets/char_sync.h"
-#include "packets/entity_update.h"
+#include "packets/s2c/0x00e_char_npc.h"
 #include "packets/s2c/0x009_message.h"
 #include "packets/s2c/0x017_chat_std.h"
 #include "packets/s2c/0x01b_job_info.h"
@@ -5770,7 +5770,7 @@ void CLuaBaseEntity::setLook(const sol::table& look)
 {
     if (auto* PNpc = dynamic_cast<CNpcEntity*>(m_PBaseEntity))
     {
-        PNpc->look.size = MODEL_EQUIPPED;
+        PNpc->look.size = static_cast<uint8>(ModelType::Equipped);
         PNpc->look.face = look.get_or<uint32>("face", 0);
         PNpc->look.race = look.get_or<uint32>("race", 0);
         return;

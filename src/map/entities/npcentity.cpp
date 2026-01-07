@@ -25,7 +25,6 @@
 
 #include "common/task_manager.h"
 
-#include "packets/entity_update.h"
 
 #include "utils/zoneutils.h"
 

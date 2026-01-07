@@ -450,8 +450,8 @@ public:
 
     void   pushPacket(std::unique_ptr<CBasicPacket>&&);                                   // Push packet to packet list
     void   updateEntityPacket(CBaseEntity* PEntity, ENTITYUPDATE type, uint8 updatemask); // Push or update an entity update packet
-    void   queueEntityUpdate(CCharEntity* PEntity, sendflags_t flags);                    // Queue entity update flags for deferred packet creation
-    void   despawnEntity(CCharEntity* PEntity);                                           // Immediately send despawn packet and clear pending
+    void   queueEntityUpdate(const CBaseEntity* PEntity, sendflags_t flags);                    // Queue entity update flags for deferred packet creation
+    void   despawnEntity(CBaseEntity* PEntity);                                           // Immediately send despawn packet and clear pending
     void   flushPendingEntityUpdates();                                                   // Convert pending entity flags to packets
     bool   isPacketListEmpty();
     auto   popPacket() -> std::unique_ptr<CBasicPacket>; // Get first packet from PacketList
@@ -710,10 +710,9 @@ private:
     uint8             dataToPersist = 0;
     timer::time_point nextDataPersistTime{};
 
-    // TODO: Don't use raw ptrs for this, but don't duplicate whole packets with unique_ptr either.
-    std::deque<std::unique_ptr<CBasicPacket>> PacketList;            // The list of packets to be sent to the character during the next network cycle
-    std::unordered_map<uint32, CBasicPacket*> EntityUpdatePackets;   // Keep track of entity update packets by ID, such that they can be updated
-    std::unordered_map<uint32, sendflags_t> PendingEntityFlags; // Accumulated sendflags per entity ID, for deferred packet creation
+    std::deque<std::unique_ptr<CBasicPacket>> PacketList;              // The list of packets to be sent to the character during the next network cycle
+    std::unordered_map<uint32, sendflags_t>   PendingEntityFlags;     // Accumulated sendflags per PC entity ID, for deferred packet creation
+    std::unordered_map<uint32, sendflags_t>   PendingNpcEntityFlags;  // Accumulated sendflags per NPC/MOB/PET/TRUST entity ID
 };
 
 #endif

@@ -1,7 +1,7 @@
-﻿/*
+/*
 ===========================================================================
 
-  Copyright (c) 2010-2015 Darkstar Dev Teams
+  Copyright (c) 2025 LandSandBoat Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -19,32 +19,20 @@
 ===========================================================================
 */
 
-#ifndef _CENTITYUPDATEPACKET_H
-#define _CENTITYUPDATEPACKET_H
+#pragma once
 
 #include "common/cbasetypes.h"
 
-#include "basic.h"
-
-enum MODELTYPE
+// Model type determines SubKind for NPC entities (look.size field)
+// Maps directly to packet 0x00E SubKind values
+enum class ModelType : uint8
 {
-    MODEL_STANDARD  = 0,
-    MODEL_EQUIPPED  = 1,
-    MODEL_DOOR      = 2,
-    MODEL_ELEVATOR  = 3,
-    MODEL_SHIP      = 4,
-    MODEL_UNK_5     = 5,
-    MODEL_AUTOMATON = 6,
-    MODEL_CHOCOBO   = 7,
+    Standard  = 0,
+    Equipped  = 1,
+    Door      = 2,
+    Elevator  = 3,
+    Ship      = 4,
+    Unk5      = 5,
+    Automaton = 6,
+    Chocobo   = 7,
 };
-
-class CBaseEntity;
-
-class CEntityUpdatePacket : public CBasicPacket
-{
-public:
-    CEntityUpdatePacket(CBaseEntity* PEntity, ENTITYUPDATE type, uint8 updatemask);
-    void updateWith(CBaseEntity* PEntity, ENTITYUPDATE type, uint8 updatemask);
-};
-
-#endif

@@ -30,7 +30,6 @@
 #include "mob_modifier.h"
 #include "mob_spell_container.h"
 #include "mob_spell_list.h"
-#include "packets/entity_update.h"
 #include "packets/pet_sync.h"
 #include "status_effect_container.h"
 #include "utils/battleutils.h"

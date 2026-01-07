@@ -37,7 +37,6 @@
 #include "mob_spell_container.h"
 #include "mob_spell_list.h"
 #include "packets/entity_set_name.h"
-#include "packets/entity_update.h"
 #include "packets/s2c/0x029_battle_message.h"
 #include "packets/s2c/0x0df_group_attr.h"
 #include "recast_container.h"

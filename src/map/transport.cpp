@@ -28,7 +28,6 @@
 #include <cstdlib>
 
 #include "entities/charentity.h"
-#include "packets/entity_update.h"
 #include "utils/zoneutils.h"
 #include "zone.h"
 

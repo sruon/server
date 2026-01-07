@@ -30,7 +30,6 @@
 #include "entities/charentity.h"
 #include "entities/mobentity.h"
 #include "notoriety_container.h"
-#include "packets/entity_update.h"
 #include "status_effect_container.h"
 #include "utils/battleutils.h"
 #include "utils/zoneutils.h"

@@ -51,7 +51,7 @@
 
 #include "mob_modifier.h"
 #include "packets/char_status.h"
-#include "packets/entity_update.h"
+#include "packets/s2c/0x00e_char_npc.h"
 #include "packets/pet_sync.h"
 #include "packets/s2c/0x0ac_command_data.h"
 
@@ -576,7 +576,7 @@ void LoadAutomatonStats(CCharEntity* PMaster, CPetEntity* PPet, Pet_t* petStats,
         PAutomaton->m_Equip = PMaster->automatonInfo.m_Equip;
         PPet->look          = PMaster->automatonInfo.automatonLook;
         PPet->name          = PMaster->automatonInfo.m_automatonName;
-        PPet->look.size     = MODEL_AUTOMATON;
+        PPet->look.size     = static_cast<uint8>(ModelType::Automaton);
 
         static_cast<CItemWeapon*>(PPet->m_Weapons[SLOT_MAIN])->setSkillType(SKILL_AUTOMATON_MELEE);
         static_cast<CItemWeapon*>(PPet->m_Weapons[SLOT_MAIN])->setDelay((uint16)(floor(1000.0f * (petStats->cmbDelay / 60.0f)))); // every pet should use this eventually

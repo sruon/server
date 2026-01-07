@@ -12,6 +12,8 @@ set(PACKET_S2C_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/0x00b_logout.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x00d_char_pc.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x00d_char_pc.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x00e_char_npc.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/0x00e_char_npc.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/0x012_gm.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x013_gmcommand.h
     ${CMAKE_CURRENT_SOURCE_DIR}/0x017_chat_std.h
