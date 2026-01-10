@@ -46,18 +46,13 @@ void Transport_Ship::setVisible(bool visible) const
         this->npc->loc.p.moving           = 8; // Retail verified: MovTime=8 always
         this->npc->loc.p.flags.GroundFlag = true;
 
-        // Retail moves ships to "away" positions when invisible
-        // Based on Port Jeuno retail captures:
-        //   dock Z=117  -> away Z=190   (positive side)
-        //   dock Z=-117 -> away Z=-190  (negative side)
-        //   dock X<-30  -> away X=dock.x+40 (moves toward center)
-        //   dock X>-30  -> away X=dock.x-40 (moves toward center)
-        float awayZ = (this->dock.p.z > 0) ? 190.0f : -190.0f;
-        float awayX = (this->dock.p.x < -30.0f) ? (this->dock.p.x + 40.0f) : (this->dock.p.x - 40.0f);
-
-        this->npc->loc.p.x = awayX;
-        this->npc->loc.p.z = awayZ;
-        // Y (height) stays the same as dock
+        // Move to away position if defined (from transport table)
+        if (this->away.x != 0.0f || this->away.y != 0.0f || this->away.z != 0.0f)
+        {
+            this->npc->loc.p.x = this->away.x;
+            this->npc->loc.p.y = this->away.y;
+            this->npc->loc.p.z = this->away.z;
+        }
     }
 }
 
@@ -146,7 +141,8 @@ void CTransportHandler::InitializeTransport(IPP mapIPP)
     auto rset = db::preparedStmt("SELECT id, transport, door, dock_x, "
                                  "dock_y, dock_z, dock_rot, boundary, "
                                  "zone, anim_arrive, anim_depart, time_offset, "
-                                 "time_interval, time_waiting, time_anim_arrive, time_anim_depart "
+                                 "time_interval, time_waiting, time_anim_arrive, time_anim_depart, "
+                                 "away_x, away_y, away_z "
                                  "FROM transport "
                                  "LEFT JOIN zone_settings ON ((transport >> 12) & 0xFFF) = zoneid "
                                  "WHERE IF(? <> 0, ? = zoneip AND ? = zoneport, TRUE)",
@@ -166,6 +162,10 @@ void CTransportHandler::InitializeTransport(IPP mapIPP)
         zoneTown.ship.dock.p.rotation = rset->get<uint8>("dock_rot");
         zoneTown.ship.dock.boundary   = rset->get<uint16>("boundary");
         zoneTown.ship.dock.prevzone   = rset->get<uint8>("zone");
+
+        zoneTown.ship.away.x = rset->get<float>("away_x");
+        zoneTown.ship.away.y = rset->get<float>("away_y");
+        zoneTown.ship.away.z = rset->get<float>("away_z");
 
         auto npcDoorId   = rset->get<uint32>("door");
         zoneTown.npcDoor = nullptr;

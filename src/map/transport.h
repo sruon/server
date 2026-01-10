@@ -75,6 +75,7 @@ struct Transport_Ship : Transport_Time
 
     CBaseEntity* npc;
     location_t   dock;
+    position_t   away; // Position when ship is invisible (between routes)
 
     void setVisible(bool) const;
     void animateSetup(uint8, vanadiel_time::time_point) const;
