@@ -169,7 +169,8 @@ Equipped::Equipped(const sendflags_t SendFlg, const CNpcEntity* PNpc)
     packet.SubKind = static_cast<uint16_t>(SubKind::Equipped);
     if (SendFlg.Model)
     {
-        std::memcpy(packet.GrapIDTbl, &PNpc->look, sizeof(packet.GrapIDTbl));
+        // Skip look.size - GrapIDTbl starts at modelid (face/race)
+        std::memcpy(packet.GrapIDTbl, &PNpc->look.modelid, sizeof(packet.GrapIDTbl));
     }
 
     if (SendFlg.Name)
@@ -359,7 +360,8 @@ EquippedMisc::EquippedMisc(const sendflags_t SendFlg, const CNpcEntity* PNpc)
     packet.SubKind = static_cast<uint16_t>(SubKind::EquippedMisc);
     if (SendFlg.Model)
     {
-        std::memcpy(packet.GrapIDTbl, &PNpc->look, sizeof(packet.GrapIDTbl));
+        // Skip look.size - GrapIDTbl starts at modelid (face/race)
+        std::memcpy(packet.GrapIDTbl, &PNpc->look.modelid, sizeof(packet.GrapIDTbl));
     }
 
     if (SendFlg.Name)
