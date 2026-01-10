@@ -55,6 +55,7 @@ CBaseEntity::CBaseEntity()
 , m_nextUpdateTimer(timer::now())
 {
     TracyZoneScoped;
+    render.init(&updatemask);
     speed          = baseSpeed;
     animationSpeed = static_cast<uint8>(std::clamp<float>((baseSpeed / settings::get<float>("map.ANIMATION_SPEED_DIVISOR")), std::numeric_limits<uint8>::min(), std::numeric_limits<uint8>::max()));
 }
@@ -131,39 +132,27 @@ uint8 CBaseEntity::UpdateSpeed(bool run)
 
 void CBaseEntity::HideName(bool hide)
 {
-    if (hide)
-    {
-        // I totally guessed this number
-        namevis |= FLAG_HIDE_NAME;
-    }
-    else
-    {
-        namevis &= ~FLAG_HIDE_NAME;
-    }
-    updatemask |= UPDATE_HP;
-}
-
-void CBaseEntity::GhostPhase(bool ghost)
-{
-    if (ghost)
-    {
-        namevis |= VIS_GHOST_PHASE;
-    }
-    else
-    {
-        namevis &= ~VIS_GHOST_PHASE;
-    }
-    updatemask |= UPDATE_HP;
+    render.setHiddenName(hide);
 }
 
 bool CBaseEntity::IsNameHidden() const
 {
-    return namevis & FLAG_HIDE_NAME;
+    return render.isNameHidden();
+}
+
+void CBaseEntity::SetHideFlag(bool hide)
+{
+    render.setHidden(hide);
+}
+
+bool CBaseEntity::GetHideFlag() const
+{
+    return render.isHidden();
 }
 
 bool CBaseEntity::GetUntargetable() const
 {
-    return false;
+    return render.isUntargetable();
 }
 
 bool CBaseEntity::isWideScannable()

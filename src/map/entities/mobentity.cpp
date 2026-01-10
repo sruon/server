@@ -359,13 +359,13 @@ bool CMobEntity::CanLink(position_t* pos, int16 superLink)
     }
 
     // Don't link I'm an underground worm
-    if ((m_roamFlags & ROAMFLAG_WORM) && IsNameHidden())
+    if ((m_roamFlags & ROAMFLAG_WORM) && GetHideFlag())
     {
         return false;
     }
 
     // Don't link I'm an underground antlion
-    if ((m_roamFlags & ROAMFLAG_AMBUSH) && IsNameHidden())
+    if ((m_roamFlags & ROAMFLAG_AMBUSH) && GetHideFlag())
     {
         return false;
     }
@@ -499,57 +499,36 @@ void CMobEntity::restoreMobModifiers()
 
 void CMobEntity::HideHP(bool hide)
 {
-    if (hide)
-    {
-        m_flags |= FLAG_HIDE_HP;
-    }
-    else
-    {
-        m_flags &= ~FLAG_HIDE_HP;
-    }
-    updatemask |= UPDATE_HP;
+    render.setHiddenHP(hide);
 }
 
 bool CMobEntity::IsHPHidden() const
 {
-    return m_flags & FLAG_HIDE_HP;
+    return render.isHPHidden();
 }
 
 void CMobEntity::SetCallForHelpFlag(bool call)
 {
+    render.setYellFlag(call);
     if (call)
     {
-        m_flags |= FLAG_CALL_FOR_HELP;
         m_OwnerID.clean();
     }
-    else
-    {
-        m_flags &= ~FLAG_CALL_FOR_HELP;
-    }
-    updatemask |= UPDATE_COMBAT;
 }
 
 bool CMobEntity::GetCallForHelpFlag() const
 {
-    return m_flags & FLAG_CALL_FOR_HELP;
+    return render.hasYellFlag();
 }
 
 void CMobEntity::SetUntargetable(bool untargetable)
 {
-    if (untargetable)
-    {
-        m_flags |= FLAG_UNTARGETABLE;
-    }
-    else
-    {
-        m_flags &= ~FLAG_UNTARGETABLE;
-    }
-    updatemask |= UPDATE_HP;
+    render.setUntargetable(untargetable);
 }
 
 bool CMobEntity::GetUntargetable() const
 {
-    return m_flags & FLAG_UNTARGETABLE;
+    return render.isUntargetable();
 }
 
 void CMobEntity::PostTick()

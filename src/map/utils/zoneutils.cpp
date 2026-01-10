@@ -347,8 +347,10 @@ void LoadNPCList(const std::vector<uint16>& zoneIds)
                             PNpc->animationsub = rset->get<uint8>("animationsub");
 
                             PNpc->namevis = rset->get<uint8>("namevis");
+                            PNpc->render.applyNamevis(PNpc->namevis);
                             PNpc->status  = rset->get<STATUS_TYPE>("status");
                             PNpc->m_flags = rset->get<uint32>("entityFlags");
+                            PNpc->render.applyEntityFlags(PNpc->m_flags);
 
                             db::extractFromBlob(rset, "look", PNpc->look);
 
@@ -558,6 +560,7 @@ void LoadMOBList(const std::vector<uint16>& zoneIds)
                             PMob->m_SuperFamily = rset->get<uint16>("superFamilyID");
                             PMob->m_name_prefix = rset->get<uint8>("name_prefix");
                             PMob->m_flags       = rset->get<uint32>("entityFlags");
+                            PMob->render.applyEntityFlags(PMob->m_flags);
 
                             // Cap Level if Necessary (Don't Cap NMs)
                             if (normalLevelRangeMin > 0 && !(PMob->m_Type & MOBTYPE_NOTORIOUS) && PMob->m_minLevel > normalLevelRangeMin)
@@ -590,6 +593,7 @@ void LoadMOBList(const std::vector<uint16>& zoneIds)
 
                             PMob->allegiance      = rset->get<ALLEGIANCE_TYPE>("allegiance");
                             PMob->namevis         = rset->get<uint8>("namevis");
+                            PMob->render.applyNamevis(PMob->namevis);
                             PMob->modelHitboxSize = std::max<float>(0.0f, rset->getOrDefault<float>("modelHitboxSize", 0) / 10.f);
                             PMob->modelSize       = rset->getOrDefault<uint8>("modelSize", 0);
                             PMob->m_Aggro         = rset->get<bool>("aggro");

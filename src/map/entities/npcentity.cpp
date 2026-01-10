@@ -64,36 +64,22 @@ void CNpcEntity::setEntityFlags(uint32 EntityFlags)
 
 void CNpcEntity::HideHP(bool hide)
 {
-    if (hide)
-    {
-        m_flags |= 0x100;
-    }
-    else
-    {
-        m_flags &= ~0x100;
-    }
+    render.setHiddenHP(hide);
 }
 
 bool CNpcEntity::IsHPHidden() const
 {
-    return (m_flags & 0x800) == 0x800;
+    return render.isHPHidden();
 }
 
 void CNpcEntity::SetUntargetable(bool untargetable)
 {
-    if (untargetable)
-    {
-        m_flags |= FLAG_UNTARGETABLE;
-    }
-    else
-    {
-        m_flags &= ~FLAG_UNTARGETABLE;
-    }
+    render.setUntargetable(untargetable);
 }
 
 bool CNpcEntity::GetUntargetable() const
 {
-    return (m_flags & FLAG_UNTARGETABLE) == FLAG_UNTARGETABLE;
+    return render.isUntargetable();
 }
 
 bool CNpcEntity::IsTriggerable() const

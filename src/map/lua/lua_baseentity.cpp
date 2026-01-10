@@ -5681,14 +5681,26 @@ void CLuaBaseEntity::renameEntity(const std::string& newName, const sol::object&
 
 /************************************************************************
  *  Function: hideName()
- *  Purpose : Hides the name of the entity
- *  Example : mob:hideName()
- *  Notes   :
+ *  Purpose : Sets render.Untargetable (Flags3.unknown_3_3)
+ *  Example : mob:hideName(true)
+ *  Notes   : Makes entity untargetable, hidden on compass, and name hidden
  ************************************************************************/
 
 void CLuaBaseEntity::hideName(bool isHidden)
 {
     m_PBaseEntity->HideName(isHidden);
+}
+
+/************************************************************************
+ *  Function: setHideFlag()
+ *  Purpose : Sets render.Hidden (Flags1.HideFlag) for ??? name display
+ *  Example : mob:setHideFlag(true)
+ *  Notes   : Used by burrowing mobs (Land Worms, Antlions)
+ ************************************************************************/
+
+void CLuaBaseEntity::setHideFlag(bool isHidden)
+{
+    m_PBaseEntity->render.setHidden(isHidden);
 }
 
 /************************************************************************
@@ -5940,36 +5952,26 @@ void CLuaBaseEntity::setSpawnAnimation(uint8 spawnAnimation)
 
 /************************************************************************
  *  Function: getCallForHelpFlag()
- *  Purpose : Find out if CFH has been called on a mob.
+ *  Purpose : Returns render.YellFlag state
  *  Example : mob:getCallForHelpFlag()
  *  Notes   :
  ************************************************************************/
 
 bool CLuaBaseEntity::getCallForHelpFlag() const
 {
-    if (auto* PMob = dynamic_cast<CMobEntity*>(m_PBaseEntity))
-    {
-        return PMob->GetCallForHelpFlag();
-    }
-    ShowWarning("getCallForHelpFlag called on invalid entity.");
-    return false;
+    return m_PBaseEntity->render.hasYellFlag();
 }
 
 /************************************************************************
  *  Function: setCallForHelpFlag(cfh)
- *  Purpose : Force-set the CFH flag on a mob.
+ *  Purpose : Sets render.YellFlag (Flags1.YellFlag)
  *  Example : mob:setCallForHelpFlag(true)
  *  Notes   :
  ************************************************************************/
 
 void CLuaBaseEntity::setCallForHelpFlag(bool cfh)
 {
-    if (auto* PMob = dynamic_cast<CMobEntity*>(m_PBaseEntity))
-    {
-        PMob->SetCallForHelpFlag(cfh);
-        return;
-    }
-    ShowWarning("setCallForHelpFlag called on invalid entity.");
+    m_PBaseEntity->render.setYellFlag(cfh);
 }
 
 /************************************************************************
@@ -10139,28 +10141,14 @@ void CLuaBaseEntity::takeDamage(int32 damage, const sol::object& attacker, const
 
 /************************************************************************
  *  Function: hideHP()
- *  Purpose : Toggles the display of the Hit Points bar for a Mob or NPC
+ *  Purpose : Sets render.HiddenHP (Flags1.PlayOnelineFlag) to hide HP bar
  *  Example : mob:hideHP(true)
- *  Notes   :
+ *  Notes   : Used by Dark Ixion
  ************************************************************************/
 
 void CLuaBaseEntity::hideHP(bool value)
 {
-    if (m_PBaseEntity->objtype != TYPE_MOB && m_PBaseEntity->objtype != TYPE_NPC)
-    {
-        ShowWarning("Attempt to hide HP for invalid entity (%s)", m_PBaseEntity->getName());
-        return;
-    }
-
-    if (m_PBaseEntity->objtype == TYPE_MOB)
-    {
-        static_cast<CMobEntity*>(m_PBaseEntity)->HideHP(value);
-    }
-    else if (m_PBaseEntity->objtype == TYPE_NPC)
-    {
-        static_cast<CNpcEntity*>(m_PBaseEntity)->HideHP(value);
-    }
-    m_PBaseEntity->updatemask |= UPDATE_HP;
+    m_PBaseEntity->render.setHiddenHP(value);
 }
 
 int32 CLuaBaseEntity::getDeathType()
@@ -17474,56 +17462,26 @@ void CLuaBaseEntity::setUnkillable(bool unkillable)
 
 /************************************************************************
  *  Function: setUntargetable()
- *  Purpose : Sets a target's untargetable flag.
+ *  Purpose : Sets render.Untargetable (Flags3.unknown_3_3)
  *  Example : target:setUntargetable(true)
- *  Notes   :
+ *  Notes   : Makes entity untargetable, hidden on compass, and name hidden
  ************************************************************************/
 
 void CLuaBaseEntity::setUntargetable(bool untargetable)
 {
-    if (m_PBaseEntity->objtype != TYPE_MOB && m_PBaseEntity->objtype != TYPE_NPC)
-    {
-        ShowWarning("Attempt to set untargetable for invalid entity (%s)", m_PBaseEntity->getName());
-        return;
-    }
-
-    if (m_PBaseEntity->objtype == TYPE_MOB)
-    {
-        static_cast<CMobEntity*>(m_PBaseEntity)->SetUntargetable(untargetable);
-    }
-    else if (m_PBaseEntity->objtype == TYPE_NPC)
-    {
-        static_cast<CNpcEntity*>(m_PBaseEntity)->SetUntargetable(untargetable);
-    }
-
-    m_PBaseEntity->updatemask |= UPDATE_HP;
+    m_PBaseEntity->render.setUntargetable(untargetable);
 }
 
 /************************************************************************
  *  Function: getUntargetable()
- *  Purpose : Returns true if a Mob or NPC is setUntargetable (Not True)
- *  Example : if target:setUntargetable() then
- *  Notes   : This does not return a value, but instead sets state!
+ *  Purpose : Returns render.Untargetable state
+ *  Example : if target:getUntargetable() then
+ *  Notes   :
  ************************************************************************/
 
 bool CLuaBaseEntity::getUntargetable()
 {
-    if (m_PBaseEntity->objtype != TYPE_MOB && m_PBaseEntity->objtype != TYPE_NPC)
-    {
-        ShowWarning("Attempt to get untargetable for invalid entity (%s)", m_PBaseEntity->getName());
-        return false;
-    }
-
-    if (m_PBaseEntity->objtype == TYPE_MOB)
-    {
-        return static_cast<CMobEntity*>(m_PBaseEntity)->GetUntargetable();
-    }
-    else if (m_PBaseEntity->objtype == TYPE_NPC)
-    {
-        return static_cast<CNpcEntity*>(m_PBaseEntity)->GetUntargetable();
-    }
-
-    return false;
+    return m_PBaseEntity->render.isUntargetable();
 }
 
 /************************************************************************
@@ -19647,6 +19605,7 @@ void CLuaBaseEntity::Register()
     SOL_REGISTER("getPacketName", CLuaBaseEntity::getPacketName);
     SOL_REGISTER("renameEntity", CLuaBaseEntity::renameEntity);
     SOL_REGISTER("hideName", CLuaBaseEntity::hideName);
+    SOL_REGISTER("setHideFlag", CLuaBaseEntity::setHideFlag);
     SOL_REGISTER("getModelId", CLuaBaseEntity::getModelId);
     SOL_REGISTER("setModelId", CLuaBaseEntity::setModelId);
     SOL_REGISTER("setLook", CLuaBaseEntity::setLook);

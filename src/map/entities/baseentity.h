@@ -25,6 +25,7 @@
 #include "common/cbasetypes.h"
 #include "common/mmo.h"
 #include "common/timer.h"
+#include "entity_render_container.h"
 #include "packets/basic.h"
 
 #include <map>
@@ -257,7 +258,6 @@ struct location_t
  *  Basic class for all entities in the game                             *
  *                                                                       *
  ************************************************************************/
-
 class CBaseEntity
 {
 public:
@@ -278,9 +278,10 @@ public:
     uint8         GetSpeed() const;
     virtual uint8 UpdateSpeed(bool run = false);
 
-    void         HideName(bool hide);     // hide / show name
-    void         GhostPhase(bool ghost);  // makes mob semi transparent
+    void         HideName(bool hide);     // hide / show name (Flags3 bit 27)
     bool         IsNameHidden() const;    // checks if name is hidden
+    void         SetHideFlag(bool hide);  // set Flags1.HideFlag (for worms/antlions burrow)
+    bool         GetHideFlag() const;     // checks Flags1.HideFlag
     virtual bool GetUntargetable() const; // checks if entity is untargetable
     virtual bool isWideScannable();       // checks if the entity should show up on wide scan
 
@@ -307,24 +308,25 @@ public:
 
     bool IsDynamicEntity() const;
 
-    uint32          id;             // global identifier unique on the server
-    uint16          targid;         // local identifier unique to the zone
-    ENTITYTYPE      objtype;        // Type of entity
-    STATUS_TYPE     status;         // Entity status (different entities - different statuses)
-    uint16          m_TargID;       // the targid of the object the entity is looking at
-    std::string     name;           // Entity name
-    std::string     packetName;     // Used to override name when being sent to the client
-    look_t          look;           //
-    look_t          mainlook;       // only used if mob use changeSkin() or player /lockstyle
-    location_t      loc;            // Location of entity
-    uint8           animation;      // animation
-    uint8           animationsub;   // Additional animation parameter
-    uint8           baseSpeed;      // base movement speed
-    uint8           animationSpeed; // speed of movement animation
-    uint8           namevis;
-    ALLEGIANCE_TYPE allegiance;     // what types of targets the entity can fight
-    uint8           updatemask;     // what to update next server tick to players nearby
-    bool            priorityRender; // CliPriorityFlag, will force this entity to render on clients if set. See https://github.com/atom0s/XiPackets/tree/main/world/server/0x0037 (also applies to 0x00E)
+    uint32                id;             // global identifier unique on the server
+    uint16                targid;         // local identifier unique to the zone
+    ENTITYTYPE            objtype;        // Type of entity
+    STATUS_TYPE           status;         // Entity status (different entities - different statuses)
+    uint16                m_TargID;       // the targid of the object the entity is looking at
+    std::string           name;           // Entity name
+    std::string           packetName;     // Used to override name when being sent to the client
+    look_t                look;           //
+    look_t                mainlook;       // only used if mob use changeSkin() or player /lockstyle
+    location_t            loc;            // Location of entity
+    uint8                 animation;      // animation
+    uint8                 animationsub;   // Additional animation parameter
+    uint8                 baseSpeed;      // base movement speed
+    uint8                 animationSpeed; // speed of movement animation
+    uint8                 namevis;
+    ALLEGIANCE_TYPE       allegiance;     // what types of targets the entity can fight
+    uint8                 updatemask;     // what to update next server tick to players nearby
+    bool                  priorityRender; // CliPriorityFlag, will force this entity to render on clients if set. See https://github.com/atom0s/XiPackets/tree/main/world/server/0x0037 (also applies to 0x00E)
+    EntityRenderContainer render;
 
     float modelHitboxSize = 0.0f; // used for distance calculations and is in packets
     uint8 modelSize       = 0;

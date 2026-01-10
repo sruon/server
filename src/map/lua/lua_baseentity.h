@@ -303,6 +303,7 @@ public:
     auto   getPacketName() -> std::string;
     void   renameEntity(const std::string& newName, const sol::object& arg2);
     void   hideName(bool isHidden);
+    void   setHideFlag(bool isHidden);
     uint16 getModelId();
     void   setModelId(uint16 modelId, const sol::object& slotObj);
     void   setLook(const sol::table& look);

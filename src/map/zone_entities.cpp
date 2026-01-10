@@ -1242,7 +1242,13 @@ void CZoneEntities::SpawnTransport(CCharEntity* PChar)
 
     FOR_EACH_PAIR_CAST_SECOND(CNpcEntity*, PEntity, m_TransportList)
     {
-        PChar->queueEntityUpdate(PEntity, sendflags_t::spawn());
+        // Add to SpawnNPCList so updates can find this entity later
+        PChar->SpawnNPCList[PEntity->id] = PEntity;
+
+        auto packet = GP_SERV_COMMAND_CHAR_NPC::create(sendflags_t::spawn(), PEntity);
+        std::visit([PChar](auto& pkt)
+                   { PChar->pushPacket(std::make_unique<std::decay_t<decltype(pkt)>>(std::move(pkt))); },
+                   packet);
     }
 }
 

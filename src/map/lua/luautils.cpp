@@ -5511,6 +5511,7 @@ CBaseEntity* GenerateDynamicEntity(CZone* PZone, CInstance* PInstance, sol::tabl
     if (auto* PNpc = dynamic_cast<CNpcEntity*>(PEntity))
     {
         PNpc->namevis     = table.get_or<uint8>("namevis", 0);
+        PNpc->render.applyNamevis(PNpc->namevis);
         PNpc->status      = STATUS_TYPE::NORMAL;
         PNpc->name_prefix = 32;
 

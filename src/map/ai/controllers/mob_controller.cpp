@@ -421,7 +421,7 @@ auto CMobController::TrySpecialSkill() -> bool
         return false;
     }
 
-    if ((PMob->m_specialFlags & SPECIALFLAG_HIDDEN) && !PMob->IsNameHidden())
+    if ((PMob->m_specialFlags & SPECIALFLAG_HIDDEN) && !PMob->GetHideFlag())
     {
         return false;
     }
@@ -1155,15 +1155,25 @@ void CMobController::DoRoamTick(timer::time_point tick)
                 else if (PMob->CanRoam())
                 {
                     // TODO: #AIToScript (event probably)
-                    if (PMob->m_roamFlags & ROAMFLAG_WORM && !PMob->IsNameHidden())
+                    if (PMob->m_roamFlags & ROAMFLAG_WORM && !PMob->GetHideFlag())
                     {
                         // don't reset m_LastActionTime until the roaming commences
                         if (!PMob->PAI->IsCurrentState<CMagicState>())
                         {
-                            // move down
+                            // Start burrow animation (MonStat=1 in packet)
                             PMob->animationsub = 1;
-                            PMob->HideName(true);
-                            PMob->SetUntargetable(true);
+                            PMob->updatemask |= UPDATE_HP;
+
+                            // After 2s burrow animation completes, hide name and become untargetable
+                            PMob->PAI->QueueAction(
+                                queueAction_t(
+                                    2s,
+                                    false,
+                                    [](CBaseEntity* MobEntity)
+                                    {
+                                        MobEntity->render.setHidden(true);
+                                        MobEntity->render.setUntargetable(true);
+                                    }));
 
                             // don't move around until i'm fully in the ground
                             // Transition underground takes 2s, allow extra time for any magic effect to finish
@@ -1180,21 +1190,27 @@ void CMobController::DoRoamTick(timer::time_point tick)
                     }
                     else if (PMob->PAI->PathFind->RoamAround(PMob->m_SpawnPoint, PMob->GetRoamDistance(), static_cast<uint8>(PMob->getMobMod(MOBMOD_ROAM_TURNS)), PMob->m_roamFlags))
                     {
-                        if ((PMob->m_roamFlags & ROAMFLAG_STEALTH))
-                        {
-                            // hidden name
-                            PMob->HideName(true);
-                            PMob->SetUntargetable(true);
-
-                            PMob->updatemask |= UPDATE_HP;
-                        }
-                        else
-                        {
-                            FollowRoamPath();
-                        }
+                        FollowRoamPath();
                     }
                     else
                     {
+                        // RoamAround failed (no navmesh for worms) - resurface if underground
+                        if ((PMob->m_roamFlags & ROAMFLAG_WORM) && PMob->PAI->IsUntargetable())
+                        {
+                            PMob->loc.zone->UpdateEntityPacket(PMob, ENTITY_UPDATE, UPDATE_POS);
+                            PMob->status = STATUS_TYPE::UPDATE;
+                            PMob->SetUntargetable(false);
+                            Wait(2s);
+                            PMob->PAI->QueueAction(
+                                queueAction_t(
+                                    2s,
+                                    false,
+                                    [](CBaseEntity* MobEntity)
+                                    {
+                                        MobEntity->animationsub = 0;
+                                        MobEntity->render.setHidden(false);
+                                    }));
+                        }
                         m_LastActionTime = m_Tick;
                     }
                 }
@@ -1264,7 +1280,7 @@ void CMobController::FollowRoamPath()
                         [](CBaseEntity* MobEntity)
                         {
                             MobEntity->animationsub = 0;
-                            MobEntity->HideName(false);
+                            MobEntity->render.setHidden(false);
                         }));
             }
 
@@ -1424,7 +1440,7 @@ auto CMobController::CanAggroTarget(CBattleEntity* PTarget) const -> bool
         }
 
         // Don't aggro I'm an underground worm
-        if ((PMob->m_roamFlags & ROAMFLAG_WORM) && PMob->IsNameHidden())
+        if ((PMob->m_roamFlags & ROAMFLAG_WORM) && PMob->GetHideFlag())
         {
             return false;
         }

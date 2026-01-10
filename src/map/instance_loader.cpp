@@ -187,6 +187,7 @@ CInstance* CInstanceLoader::LoadInstance() const
             PMob->m_Family      = rset->get<uint16>("familyid");
             PMob->m_name_prefix = rset->get<uint8>("name_prefix");
             PMob->m_flags       = rset->get<uint32>("entityFlags");
+            PMob->render.applyEntityFlags(PMob->m_flags);
 
             // Special sub animation for Mob (yovra, jailer of love, phuabo)
             // yovra 1: On top/in the sky, 2: , 3: On top/in the sky
@@ -203,6 +204,7 @@ CInstance* CInstanceLoader::LoadInstance() const
 
             PMob->allegiance = rset->get<ALLEGIANCE_TYPE>("allegiance");
             PMob->namevis    = rset->get<uint8>("namevis");
+            PMob->render.applyNamevis(PMob->namevis);
             const auto aggro = rset->get<uint32>("aggro");
             PMob->m_Aggro    = aggro;
             // If a special instanced mob aggros, it should always aggro regardless of level.
@@ -265,8 +267,10 @@ CInstance* CInstanceLoader::LoadInstance() const
             PNpc->animationsub = rset->get<uint8>("animationsub");
 
             PNpc->namevis = rset->get<uint8>("namevis");
+            PNpc->render.applyNamevis(PNpc->namevis);
             PNpc->status  = rset->get<STATUS_TYPE>("status");
             PNpc->m_flags = rset->get<uint32>("entityFlags");
+            PNpc->render.applyEntityFlags(PNpc->m_flags);
 
             uint16 sqlModelID[10];
             db::extractFromBlob(rset, "look", sqlModelID);

@@ -1797,6 +1797,7 @@ auto InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance) -> CMob
         PMob->m_Family      = rset->get<uint16>("familyid");
         PMob->m_name_prefix = rset->get<uint8>("name_prefix");
         PMob->m_flags       = rset->get<uint32>("entityFlags");
+        PMob->render.applyEntityFlags(PMob->m_flags);
 
         // Special sub animation for Mob (yovra, jailer of love, phuabo)
         // yovra 1: On top/in the sky, 2: , 3: On top/in the sky
@@ -1813,6 +1814,7 @@ auto InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance) -> CMob
 
         PMob->allegiance      = rset->get<ALLEGIANCE_TYPE>("allegiance");
         PMob->namevis         = rset->get<uint8>("namevis");
+        PMob->render.applyNamevis(PMob->namevis);
         PMob->modelHitboxSize = std::max<float>(0.0f, rset->getOrDefault<float>("modelHitboxSize", 0) / 10.f);
         PMob->modelSize       = rset->getOrDefault<uint8>("modelSize", 0);
         PMob->m_Aggro         = rset->get<bool>("aggro");
@@ -1962,6 +1964,7 @@ auto InstantiateDynamicMob(uint32 groupid, uint16 groupZoneId, uint16 targetZone
         PMob->m_Family      = rset->get<uint16>("familyid");
         PMob->m_name_prefix = rset->get<uint8>("name_prefix");
         PMob->m_flags       = rset->get<uint32>("entityFlags");
+        PMob->render.applyEntityFlags(PMob->m_flags);
 
         PMob->animationsub = rset->get<uint32>("animationsub");
 
@@ -1975,6 +1978,7 @@ auto InstantiateDynamicMob(uint32 groupid, uint16 groupZoneId, uint16 targetZone
 
         PMob->allegiance      = rset->get<ALLEGIANCE_TYPE>("allegiance");
         PMob->namevis         = rset->get<uint8>("namevis");
+        PMob->render.applyNamevis(PMob->namevis);
         PMob->modelHitboxSize = std::max<float>(0.0f, rset->getOrDefault<float>("modelHitboxSize", 0) / 10.f);
         PMob->modelSize       = rset->getOrDefault<uint8>("modelSize", 0);
         PMob->m_Aggro         = rset->get<bool>("aggro");

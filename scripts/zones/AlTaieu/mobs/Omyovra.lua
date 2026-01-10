@@ -18,7 +18,7 @@ entity.onMobSpawn = function(mob)
     mob:addMod(xi.mod.DEF, mob:getStat(xi.mod.DEF) * 0.5)
     mob:hideName(true)
     mob:setUntargetable(true)
-    mob:setAnimationSub(5)
+    mob:setAnimationSub(7)  -- Retail: MonStat=7 for floating idle
     mob:wait(2000)
 end
 
@@ -30,7 +30,7 @@ entity.onMobEngage = function(mob, target)
     mob:setLocalVar('disengageTimerActive', 0)
     mob:hideName(false)
     mob:setUntargetable(false)
-    mob:setAnimationSub(6)
+    mob:setAnimationSub(6)  -- Retail: MonStat=6 for combat
     mob:wait(2000)
 end
 
@@ -44,7 +44,7 @@ entity.onMobDisengage = function(mob)
         then
             mobArg:hideName(true)
             mobArg:setUntargetable(true)
-            mobArg:setAnimationSub(5)
+            mobArg:setAnimationSub(7)  -- Retail: MonStat=7 for floating idle
         end
     end)
 end

@@ -7,6 +7,8 @@ set(ENTITY_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/battleentity.h
     ${CMAKE_CURRENT_SOURCE_DIR}/charentity.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/charentity.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/entity_render_container.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/entity_render_container.h
     ${CMAKE_CURRENT_SOURCE_DIR}/fellowentity.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/fellowentity.h
     ${CMAKE_CURRENT_SOURCE_DIR}/mobentity.cpp

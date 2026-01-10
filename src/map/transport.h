@@ -26,6 +26,7 @@
 #include "common/singleton.h"
 #include "common/vana_time.h"
 
+#include "entities/baseentity.h"
 #include "entities/npcentity.h"
 
 #include <vector>
@@ -86,7 +87,7 @@ struct TransportZone_Town
 
     CBaseEntity* npcDoor;
 
-    void updateShip() const;
+    void updateShip(UPDATETYPE updateType = UPDATE_COMBAT) const;
     void openDoor(bool) const;
     void closeDoor(bool) const;
     void depart() const;

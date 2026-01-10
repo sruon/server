@@ -245,12 +245,21 @@ struct keyitems_t
     std::array<keyitems_table_t, 8> tables; // 8 tables of key items as of December 2025
 };
 
+// Additional position flags (maps to Flags0 bits 13-15 in 0x00E/0x00D packets)
+struct posflags_t
+{
+    bool RunMode    = false; // Bit 13: Running vs walking
+    bool unknown    = false; // Bit 14: Unknown
+    bool GroundFlag = false; // Bit 15: Fix to exact coordinates (don't snap to ground)
+};
+
 struct position_t
 {
-    float  x      = 0.0f;
-    float  y      = 0.0f; // Entity height, relative to "sea level"
-    float  z      = 0.0f;
-    uint16 moving = 0; // Something like the travel distance, the number of steps required for correct rendering in the client.
+    float      x      = 0.0f;
+    float      y      = 0.0f; // Entity height, relative to "sea level"
+    float      z      = 0.0f;
+    uint16     moving = 0; // Bits 0-12: Movement animation time/frame
+    posflags_t flags;      // Additional position flags
 
     // The angle of rotation of the entity relative to its position. A maximum rotation value of
     // 255 is used as the rotation is stored in `uint8`. Use `rotationToRadian()` and

@@ -42,14 +42,29 @@ namespace GP_SERV_COMMAND_CHAR_NPC
 namespace
 {
 
+// Calculate padded name size (min 4 bytes, 4-byte aligned) per retail analysis
+size_t calcNameSize(const uint8_t* nameField, const size_t maxLen)
+{
+    size_t len = 0;
+    while (len < maxLen && nameField[len] != 0)
+    {
+        ++len;
+    }
+    return std::max<size_t>(4, (len + 4) & ~3);
+}
+
 void writeGeneralFieldsMob(CommonData& packet, CMobEntity* PMob)
 {
     packet.Hpp           = PMob->GetHPP();
     packet.server_status = PMob->animation;
 
-    packet.Flags1.MonsterFlag = true;
-    packet.Flags1.GraphSize   = PMob->modelSize;
-    packet.Flags2.g           = static_cast<uint8_t>(PMob->modelHitboxSize * 10);
+    // MonsterFlag is set unconditionally in factory (per retail)
+    packet.Flags1.GraphSize = PMob->modelSize;
+    packet.Flags2.g         = static_cast<uint8_t>(PMob->modelHitboxSize * 10);
+
+    // Flags2.b: Retail shows 0x50 (bits 4+6) for alive, 0x00 for dead.
+    // Low nibble = GEO Indi effect, high nibble -> Render.Flags7 bits 24-27 (Model Visibility)
+    // packet.Flags2.b = PMob->GetHPP() > 0 ? 0x50 : 0x00;
 
     if (PMob->StatusEffectContainer)
     {
@@ -58,16 +73,16 @@ void writeGeneralFieldsMob(CommonData& packet, CMobEntity* PMob)
     packet.Flags3.CliPriorityFlag = PMob->priorityRender;
     packet.Flags3.BallistaTeam    = static_cast<uint8_t>(PMob->allegiance);
     packet.Flags3.MonStat         = PMob->animationsub;
-    packet.Flags3.unknown_0_3     = PMob->getMobMod(MOBMOD_SPAWN_ANIMATIONSUB) != 0;
 }
 
 void writeGeneralFieldsNpc(CommonData& packet, CNpcEntity* PNpc)
 {
-    packet.Hpp                 = 100;
-    packet.server_status       = PNpc->animation;
+    packet.Hpp           = 100;
+    packet.server_status = PNpc->animation;
+
+    // PetFlag (triggerable) is set unconditionally in factory (per retail)
     packet.Flags1.GraphSize    = PNpc->modelSize;
     packet.Flags2.g            = static_cast<uint8_t>(PNpc->modelHitboxSize * 10);
-    packet.Flags3.PetFlag      = PNpc->IsTriggerable();
     packet.Flags3.BallistaTeam = static_cast<uint8_t>(PNpc->allegiance);
     packet.Flags3.MonStat      = PNpc->animationsub;
 }
@@ -82,7 +97,6 @@ FixedModel::FixedModel(const sendflags_t SendFlg, const CMobEntity* PMob)
 {
     auto& packet = this->data();
 
-    // Always set SubKind and ModelId - field is always present in packet
     packet.SubKind = static_cast<uint16_t>(SubKind::FixedModel);
     packet.ModelId = PMob->GetModelId();
 
@@ -91,13 +105,15 @@ FixedModel::FixedModel(const sendflags_t SendFlg, const CMobEntity* PMob)
         const auto& name = PMob->packetName.empty() ? PMob->getName() : PMob->packetName;
         std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size(), sizeof(packet.Name)));
     }
+
+    // Size: Header + CommonData + ModelId + Name (variable)
+    setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) + calcNameSize(packet.Name, sizeof(packet.Name)));
 }
 
 FixedModel::FixedModel(const sendflags_t SendFlg, const CPetEntity* PPet)
 {
     auto& packet = this->data();
 
-    // Always set SubKind and ModelId - field is always present in packet
     packet.SubKind = static_cast<uint16_t>(SubKind::FixedModel);
     packet.ModelId = PPet->GetModelId();
 
@@ -106,13 +122,14 @@ FixedModel::FixedModel(const sendflags_t SendFlg, const CPetEntity* PPet)
         const auto& name = PPet->packetName.empty() ? PPet->getName() : PPet->packetName;
         std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size(), sizeof(packet.Name)));
     }
+
+    setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) + calcNameSize(packet.Name, sizeof(packet.Name)));
 }
 
 FixedModel::FixedModel(const sendflags_t SendFlg, const CTrustEntity* PTrust)
 {
     auto& packet = this->data();
 
-    // Always set SubKind and ModelId - field is always present in packet
     packet.SubKind = static_cast<uint16_t>(SubKind::FixedModel);
     packet.ModelId = PTrust->GetModelId();
 
@@ -121,13 +138,14 @@ FixedModel::FixedModel(const sendflags_t SendFlg, const CTrustEntity* PTrust)
         const auto& name = PTrust->packetName.empty() ? PTrust->getName() : PTrust->packetName;
         std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size(), sizeof(packet.Name)));
     }
+
+    setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) + calcNameSize(packet.Name, sizeof(packet.Name)));
 }
 
 FixedModel::FixedModel(const sendflags_t SendFlg, const CNpcEntity* PNpc)
 {
     auto& packet = this->data();
 
-    // Always set SubKind and ModelId - field is always present in packet
     packet.SubKind = static_cast<uint16_t>(SubKind::FixedModel);
     packet.ModelId = PNpc->GetModelId();
 
@@ -136,6 +154,8 @@ FixedModel::FixedModel(const sendflags_t SendFlg, const CNpcEntity* PNpc)
         const auto& name = PNpc->getName();
         std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size(), sizeof(packet.Name)));
     }
+
+    setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) + calcNameSize(packet.Name, sizeof(packet.Name)));
 }
 
 // ============================================================================
@@ -146,66 +166,144 @@ Equipped::Equipped(const sendflags_t SendFlg, const CNpcEntity* PNpc)
 {
     auto& packet = this->data();
 
-    // Always set SubKind and equipment data - field is always present in packet
     packet.SubKind = static_cast<uint16_t>(SubKind::Equipped);
-    std::memcpy(packet.GrapIDTbl, &PNpc->look, sizeof(packet.GrapIDTbl));
-
-    if (SendFlg.Name)
-    {
-        const auto& name = PNpc->getName();
-        std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size(), sizeof(packet.Name)));
-    }
-}
-
-// ============================================================================
-// SubKind 2: Door - Only handles Model/Name data
-// ============================================================================
-
-Door::Door(const sendflags_t SendFlg, CNpcEntity* PNpc)
-{
-    auto& packet = this->data();
-
-    // Always set SubKind and DoorId - field is always present in packet
-    packet.SubKind = static_cast<uint16_t>(SubKind::Door);
-    packet.DoorId  = PNpc->GetLocalVar("DoorId");
-
-    if (SendFlg.Name)
-    {
-        const auto& name = PNpc->getName();
-        std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size(), sizeof(packet.Name)));
-    }
-}
-
-// ============================================================================
-// SubKind 3: Elevator - Only handles Model data (no name field)
-// ============================================================================
-
-Elevator::Elevator(const sendflags_t SendFlg, CNpcEntity* PNpc)
-{
-    auto& packet = this->data();
-
-    // Always set SubKind and elevator data - field is always present in packet
-    packet.SubKind = static_cast<uint16_t>(SubKind::Elevator);
-    packet.DoorId  = PNpc->GetLocalVar("DoorId");
-    packet.Time    = PNpc->GetLocalVar("TransportTimestamp");
-    packet.EndTime = PNpc->GetLocalVar("TransportDuration");
-}
-
-// ============================================================================
-// SubKind 4: Airship - Only handles Model data (no name field)
-// ============================================================================
-
-Airship::Airship(const sendflags_t SendFlg, CNpcEntity* PNpc)
-{
-    auto& packet = this->data();
-
     if (SendFlg.Model)
     {
-        packet.SubKind = static_cast<uint16_t>(SubKind::Airship);
-        packet.DoorId  = PNpc->GetLocalVar("DoorId");
-        packet.Time    = PNpc->GetLocalVar("TransportTimestamp");
-        packet.EndTime = PNpc->GetLocalVar("TransportDuration");
+        std::memcpy(packet.GrapIDTbl, &PNpc->look, sizeof(packet.GrapIDTbl));
     }
+
+    if (SendFlg.Name)
+    {
+        const auto& name = PNpc->getName();
+        std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size(), sizeof(packet.Name)));
+    }
+
+    // Size: Header + CommonData + GrapIDTbl[9] + Name (variable)
+    setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) * 9 + calcNameSize(packet.Name, sizeof(packet.Name)));
+}
+
+// ============================================================================
+// SubKind 2: Door
+//
+// Retail SendFlags analysis (from captures):
+//   - Doors ONLY use: Position|ClaimStatus|General (spawn + updates) or Despawn
+//   - Name and Model flags are NEVER used for doors
+//   - Client gets door names from DAT files, not packets
+//
+// Fields set by each flag:
+//   Position: dir, x, z, y, Flags0, Speed (50), SpeedBase (50)
+//   ClaimStatus: BtTargetID (always 0 for doors)
+//   General: Hpp (100), server_status (8=closed, 9=open), Flags1, Flags3
+//
+// Key flags1 bits for doors: CliPosInitFlag=1, GraphSize=1
+// ============================================================================
+
+Door::Door([[maybe_unused]] const sendflags_t SendFlg, CNpcEntity* PNpc)
+{
+    auto& packet = this->data();
+
+    // Retail SendFlags (from captures):
+    //   Spawn/Update: Position|ClaimStatus|General (0x07)
+    //   Despawn:      ClaimStatus|Despawn (0x22)
+    // Name and Model flags are NEVER used for doors.
+
+    packet.SubKind = static_cast<uint16_t>(SubKind::Door);
+
+    // Retail: DoorId contains the first 4 bytes of the door's internal name (e.g. "_3h1", "_1e4")
+    const auto& name = PNpc->getName();
+    if (name.size() >= 4)
+    {
+        std::memcpy(&packet.DoorId, name.c_str(), sizeof(packet.DoorId));
+    }
+
+    // Name field stays empty - retail never uses Name flag for doors
+    setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) + sizeof(uint32_t) + calcNameSize(packet.Name, sizeof(packet.Name)));
+}
+
+// ============================================================================
+// SubKind 3: Elevator
+//
+// Retail SendFlags (from captures):
+//   Spawn/Update: None (0x00), Name (0x08), Position|Name (0x09),
+//                 or ClaimStatus|General|Name (0x0E)
+// Name and Model flags are NEVER used for elevators.
+//
+// Fields:
+//   DoorId:  First 4 bytes of entity name (ASCII, like doors)
+//   Time:    Vana'diel timestamp (transport start/arrival time)
+//   EndTime: Duration in seconds (4, 7, 8, 12 observed)
+// ============================================================================
+
+Elevator::Elevator([[maybe_unused]] const sendflags_t SendFlg, CNpcEntity* PNpc)
+{
+    auto& packet = this->data();
+
+    // Retail SendFlags (from captures):
+    //   Spawn/Update: None (0x00), Name (0x08), Position|Name (0x09),
+    //                 or ClaimStatus|General|Name (0x0E)
+
+    packet.SubKind = static_cast<uint16_t>(SubKind::Elevator);
+
+    // Retail: DoorId contains the first 4 bytes of the elevator's internal name (like doors)
+    const auto& name = PNpc->getName();
+    if (name.size() >= 4)
+    {
+        std::memcpy(&packet.DoorId, name.c_str(), sizeof(packet.DoorId));
+    }
+
+    packet.Time = PNpc->GetLocalVar("TransportTimestamp");
+
+    // Retail EndTime values observed: 4, 7, 8, 12 (varies by elevator)
+    // TODO: Recapture elevators to determine correct per-elevator duration values
+    // Default to 8 for now (matches old LSB behavior)
+    auto duration  = PNpc->GetLocalVar("TransportDuration");
+    packet.EndTime = duration > 0 ? duration : 8;
+
+    // Fixed size: Header + CommonData + Unused + DoorId + Time + EndTime = 64 bytes
+    setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) + sizeof(uint32_t) * 3);
+}
+
+// ============================================================================
+// SubKind 4: Airship
+//
+// Retail SendFlags (from captures):
+//   Most common: Position|ClaimStatus|General|Name (2291), Position|ClaimStatus (1537)
+//   Also seen:   None, Position|Model, ClaimStatus|General, Model, etc.
+//
+// Fields:
+//   DoorId:  Numeric transport ID from `transport` table (NOT ASCII like doors/elevators)
+//   Time:    Vana'diel timestamp (transport start/arrival time)
+//   EndTime: Always 0 in retail
+// ============================================================================
+
+Airship::Airship([[maybe_unused]] const sendflags_t SendFlg, CNpcEntity* PNpc)
+{
+    auto& packet = this->data();
+
+    // Retail SendFlags (from captures):
+    //   Spawn/Update: None (0x00), Position (0x01), or Position|ClaimStatus|General (0x07)
+    //   Despawn:      Despawn (0x20)
+    // Name and Model flags are NEVER used for airships.
+
+    packet.SubKind = static_cast<uint16_t>(SubKind::Airship);
+
+    // DoorId comes from the npc_list.name field (varbinary).
+    // For airships, this is stored as a single byte like 0x06.
+    // Retail shows entity 17784936 always has door_id=6, matching npc_list.name=0x06.
+    const auto& name = PNpc->getName();
+    if (!name.empty())
+    {
+        packet.DoorId = static_cast<uint32_t>(static_cast<uint8_t>(name[0]));
+    }
+    else
+    {
+        packet.DoorId = 0;
+    }
+    packet.Time    = PNpc->GetLocalVar("TransportTimestamp");
+    packet.EndTime = 0; // Always 0 in retail
+
+    // Fixed size: 64 bytes (retail verified)
+    setSize(0x40);
 }
 
 // ============================================================================
@@ -216,17 +314,16 @@ MiscNpc::MiscNpc(const sendflags_t SendFlg, const CNpcEntity* PNpc)
 {
     auto& packet = this->data();
 
-    if (SendFlg.Model)
-    {
-        packet.SubKind = static_cast<uint16_t>(SubKind::MiscNpc);
-        packet.ModelId = PNpc->GetModelId();
-    }
+    packet.SubKind = static_cast<uint16_t>(SubKind::MiscNpc);
+    packet.ModelId = PNpc->GetModelId();
 
     if (SendFlg.Name)
     {
         const auto& name = PNpc->getName();
         std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size(), sizeof(packet.Name)));
     }
+
+    setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) + calcNameSize(packet.Name, sizeof(packet.Name)));
 }
 
 // ============================================================================
@@ -237,17 +334,17 @@ Automaton::Automaton(const sendflags_t SendFlg, const CPetEntity* PPet)
 {
     auto& packet = this->data();
 
-    if (SendFlg.Model)
-    {
-        packet.SubKind = static_cast<uint16_t>(SubKind::Automaton);
-        packet.ModelId = PPet->GetModelId();
-    }
+    // Always set SubKind and ModelId - field is always present in packet
+    packet.SubKind = static_cast<uint16_t>(SubKind::Automaton);
+    packet.ModelId = PPet->GetModelId();
 
     if (SendFlg.Name)
     {
         const auto& name = PPet->packetName.empty() ? PPet->getName() : PPet->packetName;
         std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size(), sizeof(packet.Name)));
     }
+
+    setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) + calcNameSize(packet.Name, sizeof(packet.Name)));
 }
 
 // ============================================================================
@@ -258,9 +355,10 @@ EquippedMisc::EquippedMisc(const sendflags_t SendFlg, const CNpcEntity* PNpc)
 {
     auto& packet = this->data();
 
+    // Retail: GrapIDTbl is only populated when Model flag is set
+    packet.SubKind = static_cast<uint16_t>(SubKind::EquippedMisc);
     if (SendFlg.Model)
     {
-        packet.SubKind = static_cast<uint16_t>(SubKind::EquippedMisc);
         std::memcpy(packet.GrapIDTbl, &PNpc->look, sizeof(packet.GrapIDTbl));
     }
 
@@ -269,6 +367,9 @@ EquippedMisc::EquippedMisc(const sendflags_t SendFlg, const CNpcEntity* PNpc)
         const auto& name = PNpc->getName();
         std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size(), sizeof(packet.Name)));
     }
+
+    // Size: Header + CommonData + GrapIDTbl[9] + Name (variable)
+    setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) * 9 + calcNameSize(packet.Name, sizeof(packet.Name)));
 }
 
 // ============================================================================
@@ -304,6 +405,9 @@ auto create(const sendflags_t SendFlg, CBaseEntity* PEntity) -> CharNpcPacket
                 return FixedModel(SendFlg, PPet);
             }
 
+            case TYPE_SHIP:
+                return Airship(SendFlg, static_cast<CNpcEntity*>(PEntity));
+
             case TYPE_NPC:
             {
                 auto* PNpc = static_cast<CNpcEntity*>(PEntity);
@@ -334,11 +438,11 @@ auto create(const sendflags_t SendFlg, CBaseEntity* PEntity) -> CharNpcPacket
     }();
 
     // Fill common fields via std::visit
-    // Access CommonData at offset 4 (after GP_SERV_HEADER)
     std::visit(
         [&](auto& pkt)
         {
-            auto& data = *reinterpret_cast<CommonData*>(static_cast<uint8*>(pkt) + sizeof(GP_SERV_HEADER));
+            using T    = std::decay_t<decltype(pkt)>;
+            auto& data = *reinterpret_cast<typename T::PacketData*>(static_cast<uint8*>(pkt) + sizeof(GP_SERV_HEADER));
 
             // Always set identity
             data.UniqueNo = PEntity->id;
@@ -347,19 +451,78 @@ auto create(const sendflags_t SendFlg, CBaseEntity* PEntity) -> CharNpcPacket
 
             if (SendFlg.Despawn)
             {
+                // PetKillFlag is set when a trust is being despawned/killed
+                if (PEntity->objtype == TYPE_TRUST)
+                {
+                    data.Flags3.unknown_0_3 = true;
+                }
+                pkt.setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData));
                 return;
             }
 
             if (SendFlg.Position)
             {
-                data.dir               = PEntity->loc.p.rotation;
-                data.x                 = PEntity->loc.p.x;
-                data.z                 = PEntity->loc.p.y; // FFXI swaps y/z
-                data.y                 = PEntity->loc.p.z;
-                data.Flags0.MovTime    = PEntity->loc.p.moving;
-                data.Flags0.facetarget = PEntity->m_TargID;
-                data.Speed             = PEntity->GetSpeed();
-                data.SpeedBase         = PEntity->animationSpeed;
+                data.dir                = PEntity->loc.p.rotation;
+                data.x                  = PEntity->loc.p.x;
+                data.z                  = PEntity->loc.p.y; // FFXI swaps y/z
+                data.y                  = PEntity->loc.p.z;
+                data.Flags0.MovTime     = PEntity->loc.p.moving;
+                data.Flags0.RunMode     = PEntity->loc.p.flags.RunMode;
+                data.Flags0.unknown_1_6 = PEntity->loc.p.flags.unknown;
+                data.Flags0.GroundFlag  = PEntity->loc.p.flags.GroundFlag;
+                data.Speed              = PEntity->GetSpeed();
+                data.SpeedBase          = PEntity->animationSpeed;
+
+                // Ships use KingFlag instead of facetarget
+                if (PEntity->objtype == TYPE_SHIP ||
+                    (PEntity->objtype == TYPE_NPC && static_cast<ModelType>(PEntity->look.size) == ModelType::Ship))
+                {
+                    data.Flags0.KingFlag = true;
+                }
+                else
+                {
+                    data.Flags0.facetarget = PEntity->m_TargID;
+                }
+            }
+
+            // Retail: MonsterFlag is ALWAYS set for mobs, even in position-only updates
+            // PetFlag (triggerable) and TargetOffFlag are also always set
+            // HideFlag (Flags1 bit 1) controls ??? name display for burrowed worms/antlions
+            data.Flags1.HideFlag = PEntity->GetHideFlag();
+            // Flags3 bit 27 (unknown_3_3) - name visibility via hideName()
+            data.Flags3.unknown_3_3 = PEntity->IsNameHidden();
+
+            switch (PEntity->objtype)
+            {
+                case TYPE_MOB:
+                case TYPE_PET:
+                case TYPE_TRUST:
+                {
+                    auto* PMob                = static_cast<CMobEntity*>(PEntity);
+                    data.Flags1.MonsterFlag   = true;
+                    data.Flags1.TargetOffFlag = PMob->GetUntargetable();
+                    data.Flags3.MonStat       = PMob->animationsub;
+                    break;
+                }
+                case TYPE_NPC:
+                {
+                    auto* PNpc                 = static_cast<CNpcEntity*>(PEntity);
+                    data.Flags3.PetFlag        = PNpc->IsTriggerable();
+                    data.Flags1.TargetOffFlag  = PNpc->GetUntargetable();
+                    data.Flags1.CliPosInitFlag = true; // Required for doors/NPCs per retail
+                    data.Flags3.MonStat        = PNpc->animationsub;
+                    break;
+                }
+                default:
+                    break;
+            }
+
+            // Trust-specific flags (always set)
+            if (PEntity->objtype == TYPE_TRUST)
+            {
+                data.Flags3.TrustFlag  = true;
+                data.Flags3.PetNewFlag = true;
+                data.Flags3.PetFlag    = true;
             }
 
             if (SendFlg.General)
@@ -377,14 +540,6 @@ auto create(const sendflags_t SendFlg, CBaseEntity* PEntity) -> CharNpcPacket
                     default:
                         break;
                 }
-
-                // Trust-specific flags
-                if (PEntity->objtype == TYPE_TRUST)
-                {
-                    data.Flags3.TrustFlag  = true;
-                    data.Flags3.PetNewFlag = true;
-                    data.Flags3.PetFlag    = true;
-                }
             }
 
             if (SendFlg.ClaimStatus)
@@ -394,67 +549,6 @@ auto create(const sendflags_t SendFlg, CBaseEntity* PEntity) -> CharNpcPacket
                     data.BtTargetID = static_cast<CMobEntity*>(PEntity)->m_OwnerID.id;
                 }
             }
-
-            // Calculate and set correct packet size based on SendFlg
-            // Base size is GP_SERV_HEADER + CommonData (offset 0x32 = 50 bytes)
-            constexpr size_t baseSize = sizeof(GP_SERV_HEADER) + sizeof(CommonData);
-            size_t           size     = baseSize;
-
-            if (SendFlg.Model || SendFlg.Name)
-            {
-                // Add SubKind-specific model/name data sizes
-                using T = std::decay_t<decltype(pkt)>;
-
-                // Calculate model data size (everything between CommonData and Name)
-                // and name size (if present)
-                if constexpr (std::is_same_v<T, FixedModel> || std::is_same_v<T, MiscNpc> || std::is_same_v<T, Automaton>)
-                {
-                    // ModelId (2) + Name[16]
-                    if (SendFlg.Model)
-                    {
-                        size += sizeof(uint16_t); // ModelId
-                    }
-                    if (SendFlg.Name)
-                    {
-                        size += 16; // Name[16]
-                    }
-                }
-                else if constexpr (std::is_same_v<T, Equipped> || std::is_same_v<T, EquippedMisc>)
-                {
-                    // GrapIDTbl[9] (18) + Name[16]
-                    if (SendFlg.Model)
-                    {
-                        size += sizeof(uint16_t) * 9; // GrapIDTbl[9]
-                    }
-                    if (SendFlg.Name)
-                    {
-                        size += 16; // Name[16]
-                    }
-                }
-                else if constexpr (std::is_same_v<T, Door>)
-                {
-                    // Unused (2) + DoorId (4) + Name[12]
-                    if (SendFlg.Model)
-                    {
-                        size += sizeof(uint16_t) + sizeof(uint32_t); // Unused + DoorId
-                    }
-                    if (SendFlg.Name)
-                    {
-                        size += 12; // Name[12]
-                    }
-                }
-                else if constexpr (std::is_same_v<T, Elevator> || std::is_same_v<T, Airship>)
-                {
-                    // Unused (2) + DoorId (4) + Time (4) + EndTime (4) - no name field
-                    if (SendFlg.Model)
-                    {
-                        size += sizeof(uint16_t) + sizeof(uint32_t) * 3; // Unused + DoorId + Time + EndTime
-                    }
-                    // No name field for Elevator/Airship
-                }
-            }
-
-            pkt.setSize(size);
         },
         packet);
 

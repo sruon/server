@@ -36,15 +36,28 @@ void Transport_Ship::setVisible(bool visible) const
     if (visible)
     {
         this->npc->status = STATUS_TYPE::NORMAL;
-        // This appears to be some sort of magic bit/flag set. In QSC 0x8001 is observed on the effects that light up the weight on the weighted doors.
-        // The effect of 0x8001 appears to be to "stay in place" and not "stand on top of" things, such as the floor -- most likely fixes positions to the exact X/Y/Z coords supplied in 0x00E.
-        this->npc->loc.p.moving = 0x8007;
+        this->npc->loc.p.moving           = 8; // Retail verified
+        this->npc->loc.p.flags.GroundFlag = true;
     }
     else
     {
-        this->npc->status = STATUS_TYPE::DISAPPEAR;
-        // Missing 0x0001 bit here
-        this->npc->loc.p.moving = 0x8006;
+        this->npc->status                 = STATUS_TYPE::DISAPPEAR;
+        this->npc->animation              = 0; // Retail: animation=0 during away state
+        this->npc->loc.p.moving           = 8; // Retail verified: MovTime=8 always
+        this->npc->loc.p.flags.GroundFlag = true;
+
+        // Retail moves ships to "away" positions when invisible
+        // Based on Port Jeuno retail captures:
+        //   dock Z=117  -> away Z=190   (positive side)
+        //   dock Z=-117 -> away Z=-190  (negative side)
+        //   dock X<-30  -> away X=dock.x+40 (moves toward center)
+        //   dock X>-30  -> away X=dock.x-40 (moves toward center)
+        float awayZ = (this->dock.p.z > 0) ? 190.0f : -190.0f;
+        float awayX = (this->dock.p.x < -30.0f) ? (this->dock.p.x + 40.0f) : (this->dock.p.x - 40.0f);
+
+        this->npc->loc.p.x = awayX;
+        this->npc->loc.p.z = awayZ;
+        // Y (height) stays the same as dock
     }
 }
 
@@ -64,9 +77,9 @@ void Transport_Ship::spawn() const
     this->setVisible(true);
 }
 
-void TransportZone_Town::updateShip() const
+void TransportZone_Town::updateShip(UPDATETYPE updateType) const
 {
-    this->ship.dock.zone->UpdateEntityPacket(this->ship.npc, ENTITY_UPDATE, UPDATE_COMBAT, true);
+    this->ship.dock.zone->UpdateEntityPacket(this->ship.npc, ENTITY_UPDATE, updateType, true);
 }
 
 void TransportZone_Town::openDoor(bool sendPacket) const
@@ -265,8 +278,10 @@ void CTransportHandler::TransportTimer()
         {
             if (shipTimerOffset < townZone->ship.timeArriveDock)
             {
+                // Calculate when arrival animation actually started (accounts for timer polling delay)
+                // shipTimerOffset is time into current cycle, arrival starts at beginning of cycle
                 townZone->ship.state = STATE_TRANSPORT_ARRIVING;
-                townZone->ship.animateSetup(townZone->ship.animationArrive, vanaTime);
+                townZone->ship.animateSetup(townZone->ship.animationArrive, vanaTime - shipTimerOffset);
                 townZone->ship.spawn();
 
                 townZone->updateShip();
@@ -279,15 +294,19 @@ void CTransportHandler::TransportTimer()
                 townZone->ship.state = STATE_TRANSPORT_AWAY;
                 townZone->ship.setVisible(false);
 
-                townZone->updateShip();
+                // Retail uses Position-only (0x01) for away updates
+                townZone->updateShip(UPDATE_POS);
             }
         }
         else if (townZone->ship.state == STATE_TRANSPORT_DOCKED)
         {
             if (shipTimerOffset >= townZone->ship.timeDepartDock)
             {
+                // Calculate when departure actually started (accounts for timer polling delay)
+                vanadiel_time::duration timeSinceDeparture = shipTimerOffset - townZone->ship.timeDepartDock;
+
                 townZone->ship.state = STATE_TRANSPORT_DEPARTING;
-                townZone->ship.animateSetup(townZone->ship.animationDepart, vanaTime);
+                townZone->ship.animateSetup(townZone->ship.animationDepart, vanaTime - timeSinceDeparture);
 
                 townZone->closeDoor(true);
                 townZone->depart();
