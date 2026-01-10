@@ -559,7 +559,8 @@ void LoadMOBList(const std::vector<uint16>& zoneIds)
                             PMob->m_Family      = rset->get<uint16>("familyid");
                             PMob->m_SuperFamily = rset->get<uint16>("superFamilyID");
                             PMob->m_name_prefix = rset->get<uint8>("name_prefix");
-                            PMob->m_flags       = rset->get<uint32>("entityFlags");
+                            PMob->render.setNamedFlag((PMob->m_name_prefix & 0x20) != 0);
+                            PMob->m_flags = rset->get<uint32>("entityFlags");
                             PMob->render.applyEntityFlags(PMob->m_flags);
 
                             // Cap Level if Necessary (Don't Cap NMs)

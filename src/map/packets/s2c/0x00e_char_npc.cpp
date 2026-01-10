@@ -42,7 +42,9 @@ namespace GP_SERV_COMMAND_CHAR_NPC
 namespace
 {
 
-// Calculate padded name size (min 4 bytes, 4-byte aligned) per retail analysis
+// Calculate padded name size (min 16 bytes, 4-byte aligned) per retail analysis
+// Retail uses 68-byte packets (16-byte name) for names <= 15 chars,
+// and 72-byte packets (20-byte name) for names 16+ chars.
 size_t calcNameSize(const uint8_t* nameField, const size_t maxLen)
 {
     size_t len = 0;
@@ -50,7 +52,7 @@ size_t calcNameSize(const uint8_t* nameField, const size_t maxLen)
     {
         ++len;
     }
-    return std::max<size_t>(4, (len + 4) & ~3);
+    return std::max<size_t>(16, (len + 4) & ~3);
 }
 
 void writeGeneralFieldsMob(CommonData& packet, CMobEntity* PMob)
@@ -103,7 +105,8 @@ FixedModel::FixedModel(const sendflags_t SendFlg, const CMobEntity* PMob)
     if (SendFlg.Name)
     {
         const auto& name = PMob->packetName.empty() ? PMob->getName() : PMob->packetName;
-        std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size(), sizeof(packet.Name)));
+        // Copy name + null terminator (c_str() includes null)
+        std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size() + 1, sizeof(packet.Name)));
     }
 
     // Size: Header + CommonData + ModelId + Name (variable)
@@ -120,7 +123,8 @@ FixedModel::FixedModel(const sendflags_t SendFlg, const CPetEntity* PPet)
     if (SendFlg.Name)
     {
         const auto& name = PPet->packetName.empty() ? PPet->getName() : PPet->packetName;
-        std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size(), sizeof(packet.Name)));
+        // Copy name + null terminator (c_str() includes null)
+        std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size() + 1, sizeof(packet.Name)));
     }
 
     setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) + calcNameSize(packet.Name, sizeof(packet.Name)));
@@ -136,7 +140,7 @@ FixedModel::FixedModel(const sendflags_t SendFlg, const CTrustEntity* PTrust)
     if (SendFlg.Name)
     {
         const auto& name = PTrust->packetName.empty() ? PTrust->getName() : PTrust->packetName;
-        std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size(), sizeof(packet.Name)));
+        std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size() + 1, sizeof(packet.Name)));
     }
 
     setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) + calcNameSize(packet.Name, sizeof(packet.Name)));
@@ -152,7 +156,7 @@ FixedModel::FixedModel(const sendflags_t SendFlg, const CNpcEntity* PNpc)
     if (SendFlg.Name)
     {
         const auto& name = PNpc->getName();
-        std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size(), sizeof(packet.Name)));
+        std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size() + 1, sizeof(packet.Name)));
     }
 
     setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) + calcNameSize(packet.Name, sizeof(packet.Name)));
@@ -176,7 +180,7 @@ Equipped::Equipped(const sendflags_t SendFlg, const CNpcEntity* PNpc)
     if (SendFlg.Name)
     {
         const auto& name = PNpc->getName();
-        std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size(), sizeof(packet.Name)));
+        std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size() + 1, sizeof(packet.Name)));
     }
 
     // Size: Header + CommonData + GrapIDTbl[9] + Name (variable)
@@ -321,7 +325,7 @@ MiscNpc::MiscNpc(const sendflags_t SendFlg, const CNpcEntity* PNpc)
     if (SendFlg.Name)
     {
         const auto& name = PNpc->getName();
-        std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size(), sizeof(packet.Name)));
+        std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size() + 1, sizeof(packet.Name)));
     }
 
     setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) + calcNameSize(packet.Name, sizeof(packet.Name)));
@@ -342,7 +346,7 @@ Automaton::Automaton(const sendflags_t SendFlg, const CPetEntity* PPet)
     if (SendFlg.Name)
     {
         const auto& name = PPet->packetName.empty() ? PPet->getName() : PPet->packetName;
-        std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size(), sizeof(packet.Name)));
+        std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size() + 1, sizeof(packet.Name)));
     }
 
     setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) + calcNameSize(packet.Name, sizeof(packet.Name)));
@@ -367,7 +371,7 @@ EquippedMisc::EquippedMisc(const sendflags_t SendFlg, const CNpcEntity* PNpc)
     if (SendFlg.Name)
     {
         const auto& name = PNpc->getName();
-        std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size(), sizeof(packet.Name)));
+        std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size() + 1, sizeof(packet.Name)));
     }
 
     // Size: Header + CommonData + GrapIDTbl[9] + Name (variable)
@@ -497,13 +501,38 @@ auto create(const sendflags_t SendFlg, CBaseEntity* PEntity) -> CharNpcPacket
             switch (PEntity->objtype)
             {
                 case TYPE_MOB:
-                case TYPE_PET:
-                case TYPE_TRUST:
                 {
                     auto* PMob                = static_cast<CMobEntity*>(PEntity);
                     data.Flags1.MonsterFlag   = true;
                     data.Flags1.TargetOffFlag = PMob->GetUntargetable();
                     data.Flags3.MonStat       = PMob->animationsub;
+                    data.Flags2.NamedFlag     = PMob->render.hasNamedFlag();
+                    break;
+                }
+                case TYPE_PET:
+                {
+                    auto* PPet = static_cast<CPetEntity*>(PEntity);
+                    // Pets do NOT have MonsterFlag set (retail verified)
+                    data.Flags1.TargetOffFlag  = PPet->GetUntargetable();
+                    data.Flags1.CliPosInitFlag = true;
+                    data.Flags3.MonStat        = PPet->animationsub;
+                    data.Flags3.PetNewFlag     = true;
+                    data.Flags2.NamedFlag      = PPet->render.hasNamedFlag();
+
+                    // CharmFlag is set when pet has a PC master (affects name color display)
+                    if (PPet->PMaster && PPet->PMaster->objtype == TYPE_PC)
+                    {
+                        data.Flags2.CharmFlag = true;
+                    }
+                    break;
+                }
+                case TYPE_TRUST:
+                {
+                    auto* PTrust              = static_cast<CTrustEntity*>(PEntity);
+                    data.Flags1.MonsterFlag   = true;
+                    data.Flags1.TargetOffFlag = PTrust->GetUntargetable();
+                    data.Flags3.MonStat       = PTrust->animationsub;
+                    data.Flags2.NamedFlag     = PTrust->render.hasNamedFlag();
                     break;
                 }
                 case TYPE_NPC:

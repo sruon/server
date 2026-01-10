@@ -187,3 +187,13 @@ auto EntityRenderContainer::hasInfoIcon() const -> bool
 {
     return infoIcon_;
 }
+
+void EntityRenderContainer::setNamedFlag(const bool value)
+{
+    namedFlag_ = value;
+}
+
+auto EntityRenderContainer::hasNamedFlag() const -> bool
+{
+    return namedFlag_;
+}

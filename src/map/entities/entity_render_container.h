@@ -78,6 +78,10 @@ public:
     void setInfoIcon(bool value);
     bool hasInfoIcon() const;
 
+    // Flags2.NamedFlag. Adds "the" prefix to mob/NPC names.
+    void setNamedFlag(bool value);
+    bool hasNamedFlag() const;
+
 private:
     void markDirty() const;
 
@@ -93,4 +97,5 @@ private:
     bool   hiddenCompass_     = false;
     bool   halfTransparent_   = false;
     bool   infoIcon_          = false;
+    bool   namedFlag_         = false;
 };
