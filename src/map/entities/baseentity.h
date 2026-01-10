@@ -188,6 +188,7 @@ enum ENTITYFLAGS : uint16
     //     : It'll need to researched more.
     // FLAG_ALT_APPEARANCE = 0x002,
 
+    FLAG_CLI_PRIORITY  = 0x002, // Forces entity to render (CliPriorityFlag)
     FLAG_HIDE_NAME     = 0x008,
     FLAG_CALL_FOR_HELP = 0x020,
     FLAG_HIDE_MODEL    = 0x080,

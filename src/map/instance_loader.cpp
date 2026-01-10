@@ -187,6 +187,8 @@ CInstance* CInstanceLoader::LoadInstance() const
             PMob->m_Family      = rset->get<uint16>("familyid");
             PMob->m_name_prefix = rset->get<uint8>("name_prefix");
             PMob->render.setNamedFlag((PMob->m_name_prefix & 0x20) != 0);
+            PMob->render.setHiddenShadow((PMob->m_name_prefix & 0x02) != 0);
+            PMob->render.setSingleFlag((PMob->m_name_prefix & 0x40) != 0);
             PMob->m_flags = rset->get<uint32>("entityFlags");
             PMob->render.applyEntityFlags(PMob->m_flags);
 
@@ -272,13 +274,17 @@ CInstance* CInstanceLoader::LoadInstance() const
             PNpc->status  = rset->get<STATUS_TYPE>("status");
             PNpc->m_flags = rset->get<uint32>("entityFlags");
             PNpc->render.applyEntityFlags(PNpc->m_flags);
+            PNpc->priorityRender = (PNpc->m_flags & FLAG_CLI_PRIORITY) != 0;
 
             uint16 sqlModelID[10];
             db::extractFromBlob(rset, "look", sqlModelID);
             PNpc->look = look_t(sqlModelID);
 
             PNpc->name_prefix = rset->get<uint8>("name_prefix");
-            PNpc->widescan    = rset->get<uint8>("widescan");
+            PNpc->render.setNamedFlag((PNpc->name_prefix & 0x20) != 0);
+            PNpc->render.setHiddenShadow((PNpc->name_prefix & 0x02) != 0);
+            PNpc->render.setSingleFlag((PNpc->name_prefix & 0x40) != 0);
+            PNpc->widescan = rset->get<uint8>("widescan");
 
             PNpc->PInstance = m_PInstance;
 

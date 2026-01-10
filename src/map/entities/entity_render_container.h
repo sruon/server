@@ -82,6 +82,10 @@ public:
     void setNamedFlag(bool value);
     bool hasNamedFlag() const;
 
+    // Flags2.SingleFlag. Purpose unclear - used by some mobs/NPCs.
+    void setSingleFlag(bool value);
+    bool hasSingleFlag() const;
+
 private:
     void markDirty() const;
 
@@ -98,4 +102,5 @@ private:
     bool   halfTransparent_   = false;
     bool   infoIcon_          = false;
     bool   namedFlag_         = false;
+    bool   singleFlag_        = false;
 };

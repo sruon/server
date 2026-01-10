@@ -42,11 +42,18 @@ namespace GP_SERV_COMMAND_CHAR_NPC
 namespace
 {
 
-// Calculate padded name size (min 16 bytes, 4-byte aligned) per retail analysis
-// Retail uses 68-byte packets (16-byte name) for names <= 15 chars,
-// and 72-byte packets (20-byte name) for names 16+ chars.
-size_t calcNameSize(const uint8_t* nameField, const size_t maxLen)
+// Calculate padded name size (4-byte aligned) per retail analysis
+// With Name flag: minimum 16 bytes, then 20, 24, etc based on length
+// Without Name flag: retail uses just 4 bytes (padding only, no name data)
+size_t calcNameSize(const uint8_t* nameField, const size_t maxLen, bool hasNameFlag)
 {
+    if (!hasNameFlag)
+    {
+        // Retail NPC updates without Name flag use 56 bytes total
+        // Header(4) + CommonData(46) + ModelId(2) + 4 = 56
+        return 4;
+    }
+
     size_t len = 0;
     while (len < maxLen && nameField[len] != 0)
     {
@@ -83,10 +90,11 @@ void writeGeneralFieldsNpc(CommonData& packet, CNpcEntity* PNpc)
     packet.server_status = PNpc->animation;
 
     // PetFlag (triggerable) is set unconditionally in factory (per retail)
-    packet.Flags1.GraphSize    = PNpc->modelSize;
-    packet.Flags2.g            = static_cast<uint8_t>(PNpc->modelHitboxSize * 10);
-    packet.Flags3.BallistaTeam = static_cast<uint8_t>(PNpc->allegiance);
-    packet.Flags3.MonStat      = PNpc->animationsub;
+    packet.Flags1.GraphSize       = PNpc->modelSize;
+    packet.Flags2.g               = static_cast<uint8_t>(PNpc->modelHitboxSize * 10);
+    packet.Flags3.CliPriorityFlag = PNpc->priorityRender;
+    packet.Flags3.BallistaTeam    = static_cast<uint8_t>(PNpc->allegiance);
+    packet.Flags3.MonStat         = PNpc->animationsub;
 }
 
 } // anonymous namespace
@@ -109,8 +117,8 @@ FixedModel::FixedModel(const sendflags_t SendFlg, const CMobEntity* PMob)
         std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size() + 1, sizeof(packet.Name)));
     }
 
-    // Size: Header + CommonData + ModelId + Name (variable)
-    setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) + calcNameSize(packet.Name, sizeof(packet.Name)));
+    // Size: Header + CommonData + ModelId + Name (variable, or 4-byte padding without Name flag)
+    setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) + calcNameSize(packet.Name, sizeof(packet.Name), SendFlg.Name));
 }
 
 FixedModel::FixedModel(const sendflags_t SendFlg, const CPetEntity* PPet)
@@ -127,7 +135,7 @@ FixedModel::FixedModel(const sendflags_t SendFlg, const CPetEntity* PPet)
         std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size() + 1, sizeof(packet.Name)));
     }
 
-    setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) + calcNameSize(packet.Name, sizeof(packet.Name)));
+    setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) + calcNameSize(packet.Name, sizeof(packet.Name), SendFlg.Name));
 }
 
 FixedModel::FixedModel(const sendflags_t SendFlg, const CTrustEntity* PTrust)
@@ -143,7 +151,7 @@ FixedModel::FixedModel(const sendflags_t SendFlg, const CTrustEntity* PTrust)
         std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size() + 1, sizeof(packet.Name)));
     }
 
-    setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) + calcNameSize(packet.Name, sizeof(packet.Name)));
+    setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) + calcNameSize(packet.Name, sizeof(packet.Name), SendFlg.Name));
 }
 
 FixedModel::FixedModel(const sendflags_t SendFlg, const CNpcEntity* PNpc)
@@ -159,7 +167,7 @@ FixedModel::FixedModel(const sendflags_t SendFlg, const CNpcEntity* PNpc)
         std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size() + 1, sizeof(packet.Name)));
     }
 
-    setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) + calcNameSize(packet.Name, sizeof(packet.Name)));
+    setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) + calcNameSize(packet.Name, sizeof(packet.Name), SendFlg.Name));
 }
 
 // ============================================================================
@@ -183,8 +191,8 @@ Equipped::Equipped(const sendflags_t SendFlg, const CNpcEntity* PNpc)
         std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size() + 1, sizeof(packet.Name)));
     }
 
-    // Size: Header + CommonData + GrapIDTbl[9] + Name (variable)
-    setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) * 9 + calcNameSize(packet.Name, sizeof(packet.Name)));
+    // Size: Header + CommonData + GrapIDTbl[9] + Name (variable, or 4-byte padding without Name flag)
+    setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) * 9 + calcNameSize(packet.Name, sizeof(packet.Name), SendFlg.Name));
 }
 
 // ============================================================================
@@ -222,7 +230,7 @@ Door::Door([[maybe_unused]] const sendflags_t SendFlg, CNpcEntity* PNpc)
     }
 
     // Name field stays empty - retail never uses Name flag for doors
-    setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) + sizeof(uint32_t) + calcNameSize(packet.Name, sizeof(packet.Name)));
+    setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) + sizeof(uint32_t) + calcNameSize(packet.Name, sizeof(packet.Name), SendFlg.Name));
 }
 
 // ============================================================================
@@ -328,7 +336,7 @@ MiscNpc::MiscNpc(const sendflags_t SendFlg, const CNpcEntity* PNpc)
         std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size() + 1, sizeof(packet.Name)));
     }
 
-    setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) + calcNameSize(packet.Name, sizeof(packet.Name)));
+    setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) + calcNameSize(packet.Name, sizeof(packet.Name), SendFlg.Name));
 }
 
 // ============================================================================
@@ -349,7 +357,7 @@ Automaton::Automaton(const sendflags_t SendFlg, const CPetEntity* PPet)
         std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size() + 1, sizeof(packet.Name)));
     }
 
-    setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) + calcNameSize(packet.Name, sizeof(packet.Name)));
+    setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) + calcNameSize(packet.Name, sizeof(packet.Name), SendFlg.Name));
 }
 
 // ============================================================================
@@ -374,8 +382,8 @@ EquippedMisc::EquippedMisc(const sendflags_t SendFlg, const CNpcEntity* PNpc)
         std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size() + 1, sizeof(packet.Name)));
     }
 
-    // Size: Header + CommonData + GrapIDTbl[9] + Name (variable)
-    setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) * 9 + calcNameSize(packet.Name, sizeof(packet.Name)));
+    // Size: Header + CommonData + GrapIDTbl[9] + Name (variable, or 4-byte padding without Name flag)
+    setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) * 9 + calcNameSize(packet.Name, sizeof(packet.Name), SendFlg.Name));
 }
 
 // ============================================================================
@@ -507,6 +515,8 @@ auto create(const sendflags_t SendFlg, CBaseEntity* PEntity) -> CharNpcPacket
                     data.Flags1.TargetOffFlag = PMob->GetUntargetable();
                     data.Flags3.MonStat       = PMob->animationsub;
                     data.Flags2.NamedFlag     = PMob->render.hasNamedFlag();
+                    data.Flags2.ShadowFlag    = PMob->render.isShadowHidden();
+                    data.Flags2.SingleFlag    = PMob->render.hasSingleFlag();
                     break;
                 }
                 case TYPE_PET:
@@ -518,6 +528,8 @@ auto create(const sendflags_t SendFlg, CBaseEntity* PEntity) -> CharNpcPacket
                     data.Flags3.MonStat        = PPet->animationsub;
                     data.Flags3.PetNewFlag     = true;
                     data.Flags2.NamedFlag      = PPet->render.hasNamedFlag();
+                    data.Flags2.ShadowFlag     = PPet->render.isShadowHidden();
+                    data.Flags2.SingleFlag     = PPet->render.hasSingleFlag();
 
                     // CharmFlag is set when pet has a PC master (affects name color display)
                     if (PPet->PMaster && PPet->PMaster->objtype == TYPE_PC)
@@ -528,11 +540,19 @@ auto create(const sendflags_t SendFlg, CBaseEntity* PEntity) -> CharNpcPacket
                 }
                 case TYPE_TRUST:
                 {
-                    auto* PTrust              = static_cast<CTrustEntity*>(PEntity);
-                    data.Flags1.MonsterFlag   = true;
-                    data.Flags1.TargetOffFlag = PTrust->GetUntargetable();
-                    data.Flags3.MonStat       = PTrust->animationsub;
-                    data.Flags2.NamedFlag     = PTrust->render.hasNamedFlag();
+                    // Retail trust flags (verified from 107K packets):
+                    // Flags1: MonsterFlag=0, CliPosInitFlag=1, LfgFlag=1, AnonymousFlag=1
+                    // Flags2: byte 0x27 = 0x28 (CharmFlag + NamedFlag)
+                    // Flags3: byte 0x28 = 0x41, 0x29 = 0x01, 0x2B = 0x06
+                    auto* PTrust               = static_cast<CTrustEntity*>(PEntity);
+                    data.Flags1.CliPosInitFlag = true;
+                    data.Flags1.LfgFlag        = true;
+                    data.Flags1.AnonymousFlag  = true;
+                    data.Flags1.TargetOffFlag  = PTrust->GetUntargetable();
+                    data.Flags1.GraphSize      = PTrust->modelSize;
+                    data.Flags3.MonStat        = PTrust->animationsub;
+                    data.Flags2.NamedFlag      = true; // Always set for trusts
+                    data.Flags2.CharmFlag      = true; // Always set for trusts (PC master)
                     break;
                 }
                 case TYPE_NPC:
@@ -542,18 +562,59 @@ auto create(const sendflags_t SendFlg, CBaseEntity* PEntity) -> CharNpcPacket
                     data.Flags1.TargetOffFlag  = PNpc->GetUntargetable();
                     data.Flags1.CliPosInitFlag = true; // Required for doors/NPCs per retail
                     data.Flags3.MonStat        = PNpc->animationsub;
+                    data.Flags2.NamedFlag      = PNpc->render.hasNamedFlag();
+                    data.Flags2.ShadowFlag     = PNpc->render.isShadowHidden();
+                    data.Flags2.SingleFlag     = PNpc->render.hasSingleFlag();
                     break;
                 }
                 default:
                     break;
             }
 
-            // Trust-specific flags (always set)
+            // Trust-specific flags (retail: byte 0x28=0x41, 0x2B=0x06)
             if (PEntity->objtype == TYPE_TRUST)
             {
-                data.Flags3.TrustFlag  = true;
-                data.Flags3.PetNewFlag = true;
-                data.Flags3.PetFlag    = true;
+                data.Flags3.TrustFlag   = true;
+                data.Flags3.PetFlag     = true;
+                data.Flags3.unknown_3_1 = true;
+                data.Flags3.unknown_3_2 = true;
+            }
+
+            // Map namevis directly to Flags3 bits 24-31 (per retail captures)
+            // Retail shows Flags3 byte 0x2B = namevis value exactly
+            // Note: bit 3 (VIS_HIDE_NAME=0x08) is already set via IsNameHidden() above
+            if (PEntity->objtype == TYPE_NPC || PEntity->objtype == TYPE_MOB)
+            {
+                const uint8_t nv = PEntity->namevis;
+                if (nv & 0x01)
+                {
+                    data.Flags3.MentorFlag = true; // VIS_ICON
+                }
+                if (nv & 0x02)
+                {
+                    data.Flags3.unknown_3_1 = true;
+                }
+                if (nv & 0x04)
+                {
+                    data.Flags3.unknown_3_2 = true;
+                }
+                // bit 3 (0x08) = VIS_HIDE_NAME → handled by IsNameHidden() above
+                if (nv & 0x10)
+                {
+                    data.Flags3.unknown_3_4 = true;
+                }
+                if (nv & 0x20)
+                {
+                    data.Flags3.unknown_3_5 = true;
+                }
+                if (nv & 0x40)
+                {
+                    data.Flags3.unknown_3_6 = true;
+                }
+                if (nv & 0x80)
+                {
+                    data.Flags3.unknown_3_7 = true; // VIS_GHOST_PHASE
+                }
             }
 
             if (SendFlg.General)

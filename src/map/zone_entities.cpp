@@ -955,7 +955,7 @@ void CZoneEntities::SpawnTRUSTs(CCharEntity* PChar)
             if (!isInSpawnList)
             {
                 spawnList.insert(itr, SpawnIDList_t::value_type(id, PCurrentEntity));
-                PChar->queueEntityUpdate(PCurrentEntity, sendflags_t::spawn());
+                PChar->queueEntityUpdate(PCurrentEntity, sendflags_t::spawnTrust());
             }
         };
 

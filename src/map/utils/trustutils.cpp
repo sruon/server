@@ -355,8 +355,10 @@ auto LoadTrust(CCharEntity* PMaster, uint32 TrustID) -> CTrustEntity*
 
     PTrust->m_Pool         = trustData->pool;
     PTrust->packetName     = trustData->packet_name;
-    PTrust->m_name_prefix  = trustData->name_prefix;
+    PTrust->m_name_prefix = trustData->name_prefix;
     PTrust->render.setNamedFlag((PTrust->m_name_prefix & 0x20) != 0);
+    PTrust->render.setHiddenShadow((PTrust->m_name_prefix & 0x02) != 0);
+    PTrust->render.setSingleFlag((PTrust->m_name_prefix & 0x40) != 0);
     PTrust->m_Family = trustData->m_Family;
     PTrust->m_MobSkillList = trustData->m_MobSkillList;
     PTrust->HPscale        = trustData->HPscale;

@@ -197,3 +197,13 @@ auto EntityRenderContainer::hasNamedFlag() const -> bool
 {
     return namedFlag_;
 }
+
+void EntityRenderContainer::setSingleFlag(const bool value)
+{
+    singleFlag_ = value;
+}
+
+auto EntityRenderContainer::hasSingleFlag() const -> bool
+{
+    return singleFlag_;
+}

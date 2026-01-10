@@ -351,11 +351,15 @@ void LoadNPCList(const std::vector<uint16>& zoneIds)
                             PNpc->status  = rset->get<STATUS_TYPE>("status");
                             PNpc->m_flags = rset->get<uint32>("entityFlags");
                             PNpc->render.applyEntityFlags(PNpc->m_flags);
+                            PNpc->priorityRender = (PNpc->m_flags & FLAG_CLI_PRIORITY) != 0;
 
                             db::extractFromBlob(rset, "look", PNpc->look);
 
                             PNpc->name_prefix = rset->get<uint8>("name_prefix");
-                            PNpc->widescan    = rset->get<uint8>("widescan");
+                            PNpc->render.setNamedFlag((PNpc->name_prefix & 0x20) != 0);
+                            PNpc->render.setHiddenShadow((PNpc->name_prefix & 0x02) != 0);
+                            PNpc->render.setSingleFlag((PNpc->name_prefix & 0x40) != 0);
+                            PNpc->widescan = rset->get<uint8>("widescan");
 
                             PZone->InsertNPC(PNpc);
                         }
@@ -560,6 +564,8 @@ void LoadMOBList(const std::vector<uint16>& zoneIds)
                             PMob->m_SuperFamily = rset->get<uint16>("superFamilyID");
                             PMob->m_name_prefix = rset->get<uint8>("name_prefix");
                             PMob->render.setNamedFlag((PMob->m_name_prefix & 0x20) != 0);
+                            PMob->render.setHiddenShadow((PMob->m_name_prefix & 0x02) != 0);
+                            PMob->render.setSingleFlag((PMob->m_name_prefix & 0x40) != 0);
                             PMob->m_flags = rset->get<uint32>("entityFlags");
                             PMob->render.applyEntityFlags(PMob->m_flags);
 

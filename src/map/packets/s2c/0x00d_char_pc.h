@@ -46,6 +46,12 @@ struct sendflags_t
         return { .Position = 1, .ClaimStatus = 1, .General = 1, .Name = 1, .Model = 1 };
     }
 
+    // Retail trusts use 0x0F (no Model bit)
+    static sendflags_t spawnTrust()
+    {
+        return { .Position = 1, .ClaimStatus = 1, .General = 1, .Name = 1 };
+    }
+
     static sendflags_t despawn()
     {
         return { .ClaimStatus = 1, .Despawn = 1 };

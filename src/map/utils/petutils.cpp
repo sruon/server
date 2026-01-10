@@ -1829,6 +1829,8 @@ void LoadPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 
     PPet->m_name_prefix = PPetData->name_prefix;
     PPet->render.setNamedFlag((PPet->m_name_prefix & 0x20) != 0);
+    PPet->render.setHiddenShadow((PPet->m_name_prefix & 0x02) != 0);
+    PPet->render.setSingleFlag((PPet->m_name_prefix & 0x40) != 0);
     PPet->m_Family = PPetData->m_Family;
     PPet->m_MobSkillList = PPetData->m_MobSkillList;
     PPet->SetMJob(PPetData->mJob);

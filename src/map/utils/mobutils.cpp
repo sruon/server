@@ -1797,6 +1797,8 @@ auto InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance) -> CMob
         PMob->m_Family      = rset->get<uint16>("familyid");
         PMob->m_name_prefix = rset->get<uint8>("name_prefix");
         PMob->render.setNamedFlag((PMob->m_name_prefix & 0x20) != 0);
+        PMob->render.setHiddenShadow((PMob->m_name_prefix & 0x02) != 0);
+        PMob->render.setSingleFlag((PMob->m_name_prefix & 0x40) != 0);
         PMob->m_flags = rset->get<uint32>("entityFlags");
         PMob->render.applyEntityFlags(PMob->m_flags);
 
@@ -1965,6 +1967,8 @@ auto InstantiateDynamicMob(uint32 groupid, uint16 groupZoneId, uint16 targetZone
         PMob->m_Family      = rset->get<uint16>("familyid");
         PMob->m_name_prefix = rset->get<uint8>("name_prefix");
         PMob->render.setNamedFlag((PMob->m_name_prefix & 0x20) != 0);
+        PMob->render.setHiddenShadow((PMob->m_name_prefix & 0x02) != 0);
+        PMob->render.setSingleFlag((PMob->m_name_prefix & 0x40) != 0);
         PMob->m_flags = rset->get<uint32>("entityFlags");
         PMob->render.applyEntityFlags(PMob->m_flags);
 
