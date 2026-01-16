@@ -127,10 +127,13 @@ class CTransportHandler : public Singleton<CTransportHandler>
 {
 public:
     void startElevator(int32 elevatorID);
+    void startElevator(Elevator_t*);
+    void arriveElevator(Elevator_t*);
     void TransportTimer();
     void insertElevator(Elevator_t elevator);
 
     Elevator_t* getElevator(uint8 elevatorID);
+    Elevator_t* getElevatorByEntityId(uint32 entityId);
 
     void InitializeTransport(IPP mapIPP);
 
@@ -138,8 +141,6 @@ protected:
     CTransportHandler() = default;
 
 private:
-    void startElevator(Elevator_t*);
-    void arriveElevator(Elevator_t*);
 
     std::vector<Elevator_t>           ElevatorList;
     std::vector<TransportZone_Town>   townZoneList;

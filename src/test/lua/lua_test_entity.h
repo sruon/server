@@ -34,7 +34,12 @@ public:
     virtual void setEntity(CBaseEntity* entity);
     void         despawn() const;
     void         respawn() const;
+    void         resetRoamTimer() const;
     auto         assert_() -> CLuaTestEntityAssertions;
+
+    // Elevator control (for elevator NPCs)
+    void startElevator() const;
+    void arriveElevator() const;
 
     static void Register();
 };

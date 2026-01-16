@@ -198,10 +198,15 @@ enum ENTITYFLAGS : uint16
 
 enum NAMEVIS : uint8
 {
-    VIS_NONE        = 0x00,
-    VIS_ICON        = 0x01,
-    VIS_HIDE_NAME   = 0x08,
-    VIS_GHOST_PHASE = 0x80,
+    VIS_NONE             = 0x00,
+    VIS_ICON             = 0x01,
+    VIS_ANIM_OVERRIDE    = 0x02, // Flags3.unknown_3_1: Uses alternate animation values (e.g., different chair sitting)
+    VIS_SUBANIM_3BIT     = 0x04, // Flags3.unknown_3_2: SubAnimation uses 3 bits instead of 2, activated on spawn
+    VIS_HIDE_NAME        = 0x08,
+    VIS_NO_COLLISION     = 0x10,
+    VIS_HIDE_HP_AND_NAME = 0x20,
+    VIS_HIDE_COMPASS     = 0x40,
+    VIS_GHOST_PHASE      = 0x80,
 };
 
 enum class SPAWN_ANIMATION : uint8

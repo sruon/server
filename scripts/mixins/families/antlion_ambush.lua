@@ -10,6 +10,7 @@ g_mixins.families = g_mixins.families or {}
 local function hideUnderground(mob)
     mob:hideName(true)
     mob:setUntargetable(true)
+    mob:setCollisionDisabled(true)
     mob:setAutoAttackEnabled(false)
     mob:setAnimationSub(4)  -- Retail: MonStat=4 for underground
     mob:setMobMod(xi.mobMod.NO_MOVE, 1)
@@ -37,6 +38,7 @@ g_mixins.families.antlion_ambush = function(antlion)
             mob:hideName(false)
             mob:setHideFlag(false)  -- Clear ??? display if returning from disengage
             mob:setUntargetable(false)
+            mob:setCollisionDisabled(false)
             mob:setAutoAttackEnabled(true)
             mob:setAnimationSub(5)  -- Retail: MonStat=5 for above ground
             mob:setMobMod(xi.mobMod.NO_MOVE, 0)

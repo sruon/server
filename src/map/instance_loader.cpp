@@ -196,6 +196,7 @@ CInstance* CInstanceLoader::LoadInstance() const
             // yovra 1: On top/in the sky, 2: , 3: On top/in the sky
             // phuabo 1: Underwater, 2: Out of the water, 3: Goes back underwater
             PMob->animationsub = rset->get<uint32>("animationsub");
+            PMob->render.applyAnimationsub(PMob->animationsub);
 
             // Setup HP / MP Stat Percentage Boost
             PMob->HPscale = rset->get<float>("hp_scale");
@@ -259,15 +260,19 @@ CInstance* CInstanceLoader::LoadInstance() const
             PNpc->loc.p.x        = rset->get<float>("pos_x");
             PNpc->loc.p.y        = rset->get<float>("pos_y");
             PNpc->loc.p.z        = rset->get<float>("pos_z");
-            PNpc->loc.p.moving   = rset->get<uint16>("flag");
 
-            PNpc->m_TargID = rset->get<uint32>("flag") >> 16; // "quite likely"
+            const uint32 flag  = rset->get<uint32>("flag");
+            PNpc->loc.p.moving = flag & 0x1FFF;                // Bits 0-12: MovTime
+            PNpc->loc.p.flags.RunMode    = (flag >> 13) & 1;   // Bit 13
+            PNpc->loc.p.flags.GroundFlag = (flag >> 15) & 1;   // Bit 15
+            PNpc->m_TargID     = flag >> 16;
 
             PNpc->baseSpeed      = rset->get<uint8>("speed");
             PNpc->animationSpeed = rset->get<uint8>("speedsub");
             PNpc->UpdateSpeed();
             PNpc->animation    = rset->get<uint8>("animation");
             PNpc->animationsub = rset->get<uint8>("animationsub");
+            PNpc->render.applyAnimationsub(PNpc->animationsub);
 
             PNpc->namevis = rset->get<uint8>("namevis");
             PNpc->render.applyNamevis(PNpc->namevis);

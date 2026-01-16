@@ -17485,6 +17485,17 @@ bool CLuaBaseEntity::getUntargetable()
 }
 
 /************************************************************************
+ *  Function: setCollisionDisabled()
+ *  Purpose : Disables collision for entity (e.g., burrowed antlions)
+ *  Example : mob:setCollisionDisabled(true)
+ ************************************************************************/
+
+void CLuaBaseEntity::setCollisionDisabled(bool disabled)
+{
+    m_PBaseEntity->render.setCollisionDisabled(disabled);
+}
+
+/************************************************************************
  *  Function: setIsAggroable()
  *  Purpose : Sets is a mob can be aggroed by other mobs. Requires it to be in the player allegiance.
  *  Example : target:isAggroable(true)
@@ -20167,6 +20178,7 @@ void CLuaBaseEntity::Register()
     SOL_REGISTER("setUnkillable", CLuaBaseEntity::setUnkillable);
     SOL_REGISTER("setUntargetable", CLuaBaseEntity::setUntargetable);
     SOL_REGISTER("getUntargetable", CLuaBaseEntity::getUntargetable);
+    SOL_REGISTER("setCollisionDisabled", CLuaBaseEntity::setCollisionDisabled);
     SOL_REGISTER("setIsAggroable", CLuaBaseEntity::setIsAggroable);
     SOL_REGISTER("isAggroable", CLuaBaseEntity::isAggroable);
 

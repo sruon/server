@@ -31,6 +31,7 @@
 #include "lua/sol_bindings.h"
 #include "map/packet_system.h"
 #include "map/packets/c2s/0x00a_login.h"
+#include "map/packets/s2c/0x00e_char_npc.h"
 #include "map/packets/s2c/0x028_battle2.h"
 #include "packets/c2s/0x011_zone_transition.h"
 #include "test_char.h"
@@ -231,6 +232,35 @@ auto CLuaClientEntityPairPackets::actionPackets() const -> sol::table
 }
 
 /************************************************************************
+ *  Function: charNpcPackets()
+ *  Purpose : Get all CHAR_NPC (0x00E) packets unpacked into Lua tables
+ *  Example : local npcs = packets:charNpcPackets()
+ *  Notes   : Filters for type 0x00E and unpacks using GP_SERV_COMMAND_CHAR_NPC::unpack
+ ************************************************************************/
+
+auto CLuaClientEntityPairPackets::charNpcPackets() const -> sol::table
+{
+    const auto testChar = parent_->testChar();
+
+    // Flush pending entity updates to convert queued flags into actual packets
+    testChar->entity()->flushPendingEntityUpdates();
+
+    auto table = lua.create_table();
+    auto idx   = 1;
+
+    for (auto&& pkt : testChar->entity()->getPacketList())
+    {
+        if (pkt->getType() == static_cast<uint16_t>(PacketS2C::GP_SERV_COMMAND_CHAR_NPC))
+        {
+            auto variant = GP_SERV_COMMAND_CHAR_NPC::fromPacket(*pkt);
+            table[idx++] = std::visit([](const auto& p) { return p.unpack(); }, variant);
+        }
+    }
+
+    return table;
+}
+
+/************************************************************************
  *  Function: clear()
  *  Purpose : Clear all packets from the player's packet list
  *  Example : packets:clear()
@@ -249,5 +279,6 @@ void CLuaClientEntityPairPackets::Register()
     SOL_REGISTER("send", CLuaClientEntityPairPackets::send);
     SOL_REGISTER("getIncoming", CLuaClientEntityPairPackets::getIncoming);
     SOL_REGISTER("actionPackets", CLuaClientEntityPairPackets::actionPackets);
+    SOL_REGISTER("charNpcPackets", CLuaClientEntityPairPackets::charNpcPackets);
     SOL_REGISTER("clear", CLuaClientEntityPairPackets::clear);
 }

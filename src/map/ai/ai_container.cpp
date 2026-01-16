@@ -401,6 +401,9 @@ void CAIContainer::Reset()
     {
         m_stateStack.pop();
     }
+
+    ClearActionQueue();
+    ClearTimerQueue();
 }
 
 void CAIContainer::Tick(timer::time_point _tick)

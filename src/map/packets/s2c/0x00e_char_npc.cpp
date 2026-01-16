@@ -21,7 +21,9 @@
 
 #include "0x00e_char_npc.h"
 
+#include "common/lua.h"
 #include "common/utils.h"
+#include "packets/basic.h"
 #include "mob_modifier.h"
 
 #include <cstring>
@@ -185,14 +187,16 @@ Equipped::Equipped(const sendflags_t SendFlg, const CNpcEntity* PNpc)
         std::memcpy(packet.GrapIDTbl, &PNpc->look.modelid, sizeof(packet.GrapIDTbl));
     }
 
-    if (SendFlg.Name)
+    // Retail uses Name2 (0x40) for equipped NPCs, not Name (0x08)
+    // Client uses Name2 to lookup name from DAT files by UniqueNo for NPCs (ActIndex 0x400-0x6FF)
+    if (SendFlg.Name2)
     {
         const auto& name = PNpc->getName();
         std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size() + 1, sizeof(packet.Name)));
     }
 
-    // Size: Header + CommonData + GrapIDTbl[9] + Name (variable, or 4-byte padding without Name flag)
-    setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) * 9 + calcNameSize(packet.Name, sizeof(packet.Name), SendFlg.Name));
+    // Size: Header + CommonData + GrapIDTbl[9] + Name (variable, or 4-byte padding without Name2 flag)
+    setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) * 9 + calcNameSize(packet.Name, sizeof(packet.Name), SendFlg.Name2));
 }
 
 // ============================================================================
@@ -376,14 +380,15 @@ EquippedMisc::EquippedMisc(const sendflags_t SendFlg, const CNpcEntity* PNpc)
         std::memcpy(packet.GrapIDTbl, &PNpc->look.modelid, sizeof(packet.GrapIDTbl));
     }
 
-    if (SendFlg.Name)
+    // Retail uses Name2 (0x40) for GrapIdTbl types, not Name (0x08)
+    if (SendFlg.Name2)
     {
         const auto& name = PNpc->getName();
         std::memcpy(packet.Name, name.c_str(), std::min<size_t>(name.size() + 1, sizeof(packet.Name)));
     }
 
-    // Size: Header + CommonData + GrapIDTbl[9] + Name (variable, or 4-byte padding without Name flag)
-    setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) * 9 + calcNameSize(packet.Name, sizeof(packet.Name), SendFlg.Name));
+    // Size: Header + CommonData + GrapIDTbl[9] + Name (variable, or 4-byte padding without Name2 flag)
+    setSize(sizeof(GP_SERV_HEADER) + sizeof(CommonData) + sizeof(uint16_t) * 9 + calcNameSize(packet.Name, sizeof(packet.Name), SendFlg.Name2));
 }
 
 // ============================================================================
@@ -487,9 +492,11 @@ auto create(const sendflags_t SendFlg, CBaseEntity* PEntity) -> CharNpcPacket
                 data.Speed              = PEntity->GetSpeed();
                 data.SpeedBase          = PEntity->animationSpeed;
 
-                // Ships use KingFlag instead of facetarget
+                // Ships and Elevators use KingFlag instead of facetarget
                 if (PEntity->objtype == TYPE_SHIP ||
-                    (PEntity->objtype == TYPE_NPC && static_cast<ModelType>(PEntity->look.size) == ModelType::Ship))
+                    (PEntity->objtype == TYPE_NPC &&
+                        (static_cast<ModelType>(PEntity->look.size) == ModelType::Ship ||
+                         static_cast<ModelType>(PEntity->look.size) == ModelType::Elevator)))
                 {
                     data.Flags0.KingFlag = true;
                 }
@@ -497,6 +504,13 @@ auto create(const sendflags_t SendFlg, CBaseEntity* PEntity) -> CharNpcPacket
                 {
                     data.Flags0.facetarget = PEntity->m_TargID;
                 }
+            }
+
+            // Retail: CliPosInitFlag is ALWAYS set when General flag is set (100% correlation)
+            // This tells the client to initialize/reset entity position state
+            if (SendFlg.General)
+            {
+                data.Flags1.CliPosInitFlag = true;
             }
 
             // Retail: MonsterFlag is ALWAYS set for mobs, even in position-only updates
@@ -514,6 +528,14 @@ auto create(const sendflags_t SendFlg, CBaseEntity* PEntity) -> CharNpcPacket
                     data.Flags1.MonsterFlag   = true;
                     data.Flags1.TargetOffFlag = PMob->GetUntargetable();
                     data.Flags3.MonStat       = PMob->animationsub;
+                    data.Flags3.unknown_3_1   = PMob->render.hasAnimOverride();
+                    data.Flags3.unknown_3_2   = PMob->render.hasSubAnim3Bit();
+                    data.Flags3.unknown_2_3   = PMob->render.hasUnknownLocalization1();
+                    data.Flags3.unknown_2_4   = PMob->render.hasUnknownLocalization2();
+                    data.Flags3.unknown_3_4   = PMob->render.isCollisionDisabled();
+                    data.Flags3.unknown_3_5   = PMob->render.isHPAndNameHidden();
+                    data.Flags3.unknown_3_6   = PMob->render.isCompassHidden();
+                    data.Flags3.unknown_3_7   = PMob->render.isHalfTransparent();
                     data.Flags2.NamedFlag     = PMob->render.hasNamedFlag();
                     data.Flags2.ShadowFlag    = PMob->render.isShadowHidden();
                     data.Flags2.SingleFlag    = PMob->render.hasSingleFlag();
@@ -523,9 +545,8 @@ auto create(const sendflags_t SendFlg, CBaseEntity* PEntity) -> CharNpcPacket
                 {
                     auto* PPet = static_cast<CPetEntity*>(PEntity);
                     // Pets do NOT have MonsterFlag set (retail verified)
-                    data.Flags1.TargetOffFlag  = PPet->GetUntargetable();
-                    data.Flags1.CliPosInitFlag = true;
-                    data.Flags3.MonStat        = PPet->animationsub;
+                    data.Flags1.TargetOffFlag = PPet->GetUntargetable();
+                    data.Flags3.MonStat       = PPet->animationsub;
                     data.Flags3.PetNewFlag     = true;
                     data.Flags2.NamedFlag      = PPet->render.hasNamedFlag();
                     data.Flags2.ShadowFlag     = PPet->render.isShadowHidden();
@@ -541,12 +562,11 @@ auto create(const sendflags_t SendFlg, CBaseEntity* PEntity) -> CharNpcPacket
                 case TYPE_TRUST:
                 {
                     // Retail trust flags (verified from 107K packets):
-                    // Flags1: MonsterFlag=0, CliPosInitFlag=1, LfgFlag=1, AnonymousFlag=1
+                    // Flags1: MonsterFlag=0, LfgFlag=1, AnonymousFlag=1
                     // Flags2: byte 0x27 = 0x28 (CharmFlag + NamedFlag)
                     // Flags3: byte 0x28 = 0x41, 0x29 = 0x01, 0x2B = 0x06
-                    auto* PTrust               = static_cast<CTrustEntity*>(PEntity);
-                    data.Flags1.CliPosInitFlag = true;
-                    data.Flags1.LfgFlag        = true;
+                    auto* PTrust              = static_cast<CTrustEntity*>(PEntity);
+                    data.Flags1.LfgFlag       = true;
                     data.Flags1.AnonymousFlag  = true;
                     data.Flags1.TargetOffFlag  = PTrust->GetUntargetable();
                     data.Flags1.GraphSize      = PTrust->modelSize;
@@ -560,11 +580,34 @@ auto create(const sendflags_t SendFlg, CBaseEntity* PEntity) -> CharNpcPacket
                     auto* PNpc                 = static_cast<CNpcEntity*>(PEntity);
                     data.Flags3.PetFlag        = PNpc->IsTriggerable();
                     data.Flags1.TargetOffFlag  = PNpc->GetUntargetable();
-                    data.Flags1.CliPosInitFlag = true; // Required for doors/NPCs per retail
                     data.Flags3.MonStat        = PNpc->animationsub;
+                    data.Flags3.unknown_3_1    = PNpc->render.hasAnimOverride();
+                    data.Flags3.unknown_3_2    = PNpc->render.hasSubAnim3Bit();
+                    data.Flags3.unknown_2_3    = PNpc->render.hasUnknownLocalization1();
+                    data.Flags3.unknown_2_4    = PNpc->render.hasUnknownLocalization2();
+                    data.Flags3.unknown_3_4    = PNpc->render.isCollisionDisabled();
+                    data.Flags3.unknown_3_5    = PNpc->render.isHPAndNameHidden();
+                    data.Flags3.unknown_3_6    = PNpc->render.isCompassHidden();
+                    data.Flags3.unknown_3_7    = PNpc->render.isHalfTransparent();
                     data.Flags2.NamedFlag      = PNpc->render.hasNamedFlag();
                     data.Flags2.ShadowFlag     = PNpc->render.isShadowHidden();
                     data.Flags2.SingleFlag     = PNpc->render.hasSingleFlag();
+                    // Doors always have TalkUcoffFlag set (retail verified)
+                    if (static_cast<ModelType>(PNpc->look.size) == ModelType::Door)
+                    {
+                        data.Flags1.TalkUcoffFlag = true;
+                    }
+                    // GrapIdTbl types (Equipped, EquippedMisc): Retail uses Name2 (0x40) instead of Name (0x08)
+                    // Name and Name2 are mutually exclusive - clear Name when setting Name2
+                    if (static_cast<ModelType>(PNpc->look.size) == ModelType::Equipped ||
+                        static_cast<ModelType>(PNpc->look.size) == ModelType::Chocobo)
+                    {
+                        if (data.SendFlg.Name)
+                        {
+                            data.SendFlg.Name  = false;
+                            data.SendFlg.Name2 = true;
+                        }
+                    }
                     break;
                 }
                 default:
@@ -580,45 +623,69 @@ auto create(const sendflags_t SendFlg, CBaseEntity* PEntity) -> CharNpcPacket
                 data.Flags3.unknown_3_2 = true;
             }
 
-            // Map namevis directly to Flags3 bits 24-31 (per retail captures)
-            // Retail shows Flags3 byte 0x2B = namevis value exactly
-            // Note: bit 3 (VIS_HIDE_NAME=0x08) is already set via IsNameHidden() above
+            // All namevis bits are now handled via EntityRenderContainer (loaded in applyNamevis):
+            //   bit 0 (0x01) = VIS_ICON            → render.hasInfoIcon() → MentorFlag
+            //   bit 1 (0x02) = VIS_ANIM_OVERRIDE   → render.hasAnimOverride() → unknown_3_1
+            //   bit 2 (0x04) = VIS_SUBANIM_3BIT    → render.hasSubAnim3Bit() → unknown_3_2
+            //   bit 3 (0x08) = VIS_HIDE_NAME       → render.isNameHidden() → unknown_3_3
+            //   bit 4 (0x10) = VIS_NO_COLLISION    → render.isCollisionDisabled() → unknown_3_4
+            //   bit 5 (0x20) = VIS_HIDE_HP_AND_NAME → render.isHPAndNameHidden() → unknown_3_5
+            //   bit 6 (0x40) = VIS_HIDE_COMPASS    → render.isCompassHidden() → unknown_3_6
+            //   bit 7 (0x80) = VIS_GHOST_PHASE     → render.isHalfTransparent() → unknown_3_7
             if (PEntity->objtype == TYPE_NPC || PEntity->objtype == TYPE_MOB)
             {
-                const uint8_t nv = PEntity->namevis;
-                if (nv & 0x01)
-                {
-                    data.Flags3.MentorFlag = true; // VIS_ICON
-                }
-                if (nv & 0x02)
-                {
-                    data.Flags3.unknown_3_1 = true;
-                }
-                if (nv & 0x04)
-                {
-                    data.Flags3.unknown_3_2 = true;
-                }
-                // bit 3 (0x08) = VIS_HIDE_NAME → handled by IsNameHidden() above
-                if (nv & 0x10)
-                {
-                    data.Flags3.unknown_3_4 = true;
-                }
-                if (nv & 0x20)
-                {
-                    data.Flags3.unknown_3_5 = true;
-                }
-                if (nv & 0x40)
-                {
-                    data.Flags3.unknown_3_6 = true;
-                }
-                if (nv & 0x80)
-                {
-                    data.Flags3.unknown_3_7 = true; // VIS_GHOST_PHASE
-                }
+                data.Flags3.MentorFlag = PEntity->render.hasInfoIcon();
             }
 
             if (SendFlg.General)
             {
+                // Gender is stored in entityFlags bit 7 (0x80): 1=male, 0=female.
+                // Loaded via render.applyEntityFlags() and accessed via render.getGender().
+                switch (PEntity->objtype)
+                {
+                    case TYPE_MOB:
+                    case TYPE_PET:
+                        data.Flags1.Gender = PEntity->render.getGender();
+                        break;
+                    case TYPE_TRUST:
+                    {
+                        // Trusts have humanoid races - use the race formula
+                        // Race 1-2: Hume M/F, 3-4: Elvaan M/F, 5-6: Tarutaru M/F, 7-8: Mithra/Galka
+                        // Formula: (race % 2) ^ (race > 6)
+                        // Results: 1(M)=1, 2(F)=0, 3(M)=1, 4(F)=0, 5(M)=1, 6(F)=0, 7(F)=0, 8(M)=1
+                        const uint8_t race = PEntity->look.race;
+                        if (race >= 1 && race <= 8)
+                        {
+                            data.Flags1.Gender = (race % 2) ^ (race > 6);
+                        }
+                        else
+                        {
+                            data.Flags1.Gender = 1; // Default male for non-standard
+                        }
+                        break;
+                    }
+                    case TYPE_NPC:
+                        data.Flags1.Gender = PEntity->render.getGender();
+                        // TODO: Research needed - retail shows strong correlation between LfgFlag/AnonymousFlag
+                        // and Gender for equipped NPCs (always equal, ~74% set). Hacky approximation for now.
+                        // Male (Gender=0) → flags=1, Female (Gender=1) → flags=0
+                        if (static_cast<ModelType>(PEntity->look.size) == ModelType::Equipped)
+                        {
+                            data.Flags1.LfgFlag       = !data.Flags1.Gender;
+                            data.Flags1.AnonymousFlag = !data.Flags1.Gender;
+                        }
+                        break;
+                    default:
+                        data.Flags1.Gender = 1;
+                        break;
+                }
+
+                // French article flags from entityFlags (loaded via render.applyEntityFlags)
+                // LinkShellFlag = French Feminine (la vs le)
+                // LinkDeadFlag = French Elision (l')
+                data.Flags1.LinkShellFlag = PEntity->render.hasLinkShellFlag();
+                data.Flags1.LinkDeadFlag  = PEntity->render.hasLinkDeadFlag();
+
                 switch (PEntity->objtype)
                 {
                     case TYPE_MOB:
@@ -645,6 +712,257 @@ auto create(const sendflags_t SendFlg, CBaseEntity* PEntity) -> CharNpcPacket
         packet);
 
     return packet;
+}
+
+// ============================================================================
+// Unpack helpers - common fields shared by all SubKinds
+// ============================================================================
+namespace
+{
+auto unpackCommon(const CommonData& common) -> sol::table
+{
+    auto result = lua.create_table();
+
+    result["UniqueNo"] = common.UniqueNo;
+    result["ActIndex"] = common.ActIndex;
+
+    auto sendFlg             = lua.create_table();
+    sendFlg["Position"]      = common.SendFlg.Position;
+    sendFlg["ClaimStatus"]   = common.SendFlg.ClaimStatus;
+    sendFlg["General"]       = common.SendFlg.General;
+    sendFlg["Name"]          = common.SendFlg.Name;
+    sendFlg["Model"]         = common.SendFlg.Model;
+    sendFlg["Despawn"]       = common.SendFlg.Despawn;
+    sendFlg["Name2"]         = common.SendFlg.Name2;
+    sendFlg["raw"]           = *reinterpret_cast<const uint8_t*>(&common.SendFlg);
+    result["SendFlg"]        = sendFlg;
+
+    result["dir"] = common.dir;
+    result["x"]             = common.x;
+    result["z"]             = common.z;
+    result["y"]             = common.y;
+    result["Speed"]         = common.Speed;
+    result["SpeedBase"]     = common.SpeedBase;
+    result["Hpp"]           = common.Hpp;
+    result["server_status"] = common.server_status;
+    result["BtTargetID"]    = common.BtTargetID;
+    result["SubKind"]       = common.SubKind;
+    result["Status"]        = common.Status;
+
+    auto flags0            = lua.create_table();
+    flags0["MovTime"]      = common.Flags0.MovTime;
+    flags0["RunMode"]      = common.Flags0.RunMode;
+    flags0["unknown_1_6"]  = common.Flags0.unknown_1_6;
+    flags0["GroundFlag"]   = common.Flags0.GroundFlag;
+    flags0["KingFlag"]     = common.Flags0.KingFlag;
+    flags0["facetarget"]   = common.Flags0.facetarget;
+    flags0["raw"]          = *reinterpret_cast<const uint32_t*>(&common.Flags0);
+    result["Flags0"]       = flags0;
+
+    auto flags1               = lua.create_table();
+    flags1["MonsterFlag"]     = common.Flags1.MonsterFlag;
+    flags1["HideFlag"]        = common.Flags1.HideFlag;
+    flags1["SleepFlag"]       = common.Flags1.SleepFlag;
+    flags1["ChocoboIndex"]    = common.Flags1.ChocoboIndex;
+    flags1["CliPosInitFlag"]  = common.Flags1.CliPosInitFlag;
+    flags1["GraphSize"]       = common.Flags1.GraphSize;
+    flags1["LfgFlag"]         = common.Flags1.LfgFlag;
+    flags1["AnonymousFlag"]   = common.Flags1.AnonymousFlag;
+    flags1["YellFlag"]        = common.Flags1.YellFlag;
+    flags1["AwayFlag"]        = common.Flags1.AwayFlag;
+    flags1["Gender"]          = common.Flags1.Gender;
+    flags1["PlayOnelineFlag"] = common.Flags1.PlayOnelineFlag;
+    flags1["LinkShellFlag"]   = common.Flags1.LinkShellFlag;
+    flags1["LinkDeadFlag"]    = common.Flags1.LinkDeadFlag;
+    flags1["TargetOffFlag"]   = common.Flags1.TargetOffFlag;
+    flags1["TalkUcoffFlag"]   = common.Flags1.TalkUcoffFlag;
+    flags1["GmLevel"]         = common.Flags1.GmLevel;
+    flags1["HackMove"]        = common.Flags1.HackMove;
+    flags1["InvisFlag"]       = common.Flags1.InvisFlag;
+    flags1["TurnFlag"]        = common.Flags1.TurnFlag;
+    flags1["BazaarFlag"]      = common.Flags1.BazaarFlag;
+    flags1["raw"]             = *reinterpret_cast<const uint32_t*>(&common.Flags1);
+    result["Flags1"]          = flags1;
+
+    auto flags2              = lua.create_table();
+    flags2["r"]              = common.Flags2.r;
+    flags2["g"]              = common.Flags2.g;
+    flags2["b"]              = common.Flags2.b;
+    flags2["PvPFlag"]        = common.Flags2.PvPFlag;
+    flags2["ShadowFlag"]     = common.Flags2.ShadowFlag;
+    flags2["ShipStartMode"]  = common.Flags2.ShipStartMode;
+    flags2["CharmFlag"]      = common.Flags2.CharmFlag;
+    flags2["GmIconFlag"]     = common.Flags2.GmIconFlag;
+    flags2["NamedFlag"]      = common.Flags2.NamedFlag;
+    flags2["SingleFlag"]     = common.Flags2.SingleFlag;
+    flags2["AutoPartyFlag"]  = common.Flags2.AutoPartyFlag;
+    flags2["raw"]            = *reinterpret_cast<const uint32_t*>(&common.Flags2);
+    result["Flags2"]         = flags2;
+
+    auto flags3                  = lua.create_table();
+    flags3["TrustFlag"]          = common.Flags3.TrustFlag;
+    flags3["LfgMasterFlag"]      = common.Flags3.LfgMasterFlag;
+    flags3["PetNewFlag"]         = common.Flags3.PetNewFlag;
+    flags3["unknown_0_3"]        = common.Flags3.unknown_0_3;
+    flags3["MotStopFlag"]        = common.Flags3.MotStopFlag;
+    flags3["CliPriorityFlag"]    = common.Flags3.CliPriorityFlag;
+    flags3["PetFlag"]            = common.Flags3.PetFlag;
+    flags3["OcclusionoffFlag"]   = common.Flags3.OcclusionoffFlag;
+    flags3["BallistaTeam"]       = common.Flags3.BallistaTeam;
+    flags3["MonStat"]            = common.Flags3.MonStat;
+    flags3["unknown_2_3"]        = common.Flags3.unknown_2_3;
+    flags3["unknown_2_4"]        = common.Flags3.unknown_2_4;
+    flags3["SilenceFlag"]        = common.Flags3.SilenceFlag;
+    flags3["unknown_2_6"]        = common.Flags3.unknown_2_6;
+    flags3["NewCharacterFlag"]   = common.Flags3.NewCharacterFlag;
+    flags3["MentorFlag"]         = common.Flags3.MentorFlag;
+    flags3["unknown_3_1"]        = common.Flags3.unknown_3_1;
+    flags3["unknown_3_2"]        = common.Flags3.unknown_3_2;
+    flags3["unknown_3_3"]        = common.Flags3.unknown_3_3;
+    flags3["unknown_3_4"]        = common.Flags3.unknown_3_4;
+    flags3["unknown_3_5"]        = common.Flags3.unknown_3_5;
+    flags3["unknown_3_6"]        = common.Flags3.unknown_3_6;
+    flags3["unknown_3_7"]        = common.Flags3.unknown_3_7;
+    flags3["raw"]                = *reinterpret_cast<const uint32_t*>(&common.Flags3);
+    result["Flags3"]             = flags3;
+
+    return result;
+}
+
+auto unpackName(const uint8_t* nameData, size_t maxLen) -> std::string
+{
+    std::string name(reinterpret_cast<const char*>(nameData), maxLen);
+    return name.c_str(); // Trim at null
+}
+} // namespace
+
+// ============================================================================
+// SubKind unpack implementations
+// ============================================================================
+
+auto FixedModel::unpack() const -> sol::table
+{
+    auto result      = unpackCommon(data());
+    auto dataTable   = lua.create_table();
+    dataTable["model_id"] = data().ModelId;
+    dataTable["Name"]     = unpackName(data().Name, sizeof(data().Name));
+    result["Data"]        = dataTable;
+    return result;
+}
+
+auto Equipped::unpack() const -> sol::table
+{
+    auto result    = unpackCommon(data());
+    auto dataTable = lua.create_table();
+    auto grapTbl   = lua.create_table();
+    for (int i = 0; i < 9; ++i)
+    {
+        grapTbl[i + 1] = data().GrapIDTbl[i];
+    }
+    dataTable["GrapIDTbl"] = grapTbl;
+    dataTable["Name"]      = unpackName(data().Name, sizeof(data().Name));
+    result["Data"]         = dataTable;
+    return result;
+}
+
+auto Door::unpack() const -> sol::table
+{
+    auto result    = unpackCommon(data());
+    auto dataTable = lua.create_table();
+    dataTable["DoorId"] = data().DoorId;
+    // Note: Door struct has Name[12] but may not be used - verify against retail
+    result["Data"] = dataTable;
+    return result;
+}
+
+auto Elevator::unpack() const -> sol::table
+{
+    auto result    = unpackCommon(data());
+    auto dataTable = lua.create_table();
+    dataTable["DoorId"]  = data().DoorId;
+    dataTable["Time"]    = data().Time;
+    dataTable["EndTime"] = data().EndTime;
+    result["Data"]       = dataTable;
+    return result;
+}
+
+auto Airship::unpack() const -> sol::table
+{
+    auto result    = unpackCommon(data());
+    auto dataTable = lua.create_table();
+    dataTable["DoorId"]  = data().DoorId;
+    dataTable["Time"]    = data().Time;
+    dataTable["EndTime"] = data().EndTime;
+    result["Data"]       = dataTable;
+    return result;
+}
+
+auto MiscNpc::unpack() const -> sol::table
+{
+    auto result    = unpackCommon(data());
+    auto dataTable = lua.create_table();
+    dataTable["model_id"] = data().ModelId;
+    dataTable["Name"]     = unpackName(data().Name, sizeof(data().Name));
+    result["Data"]        = dataTable;
+    return result;
+}
+
+auto Automaton::unpack() const -> sol::table
+{
+    auto result    = unpackCommon(data());
+    auto dataTable = lua.create_table();
+    dataTable["model_id"] = data().ModelId;
+    dataTable["Name"]     = unpackName(data().Name, sizeof(data().Name));
+    result["Data"]        = dataTable;
+    return result;
+}
+
+auto EquippedMisc::unpack() const -> sol::table
+{
+    auto result    = unpackCommon(data());
+    auto dataTable = lua.create_table();
+    auto grapTbl   = lua.create_table();
+    for (int i = 0; i < 9; ++i)
+    {
+        grapTbl[i + 1] = data().GrapIDTbl[i];
+    }
+    dataTable["GrapIDTbl"] = grapTbl;
+    dataTable["Name"]      = unpackName(data().Name, sizeof(data().Name));
+    result["Data"]         = dataTable;
+    return result;
+}
+
+// ============================================================================
+// Reconstruct variant from raw packet
+// ============================================================================
+
+auto fromPacket(CBasicPacket& packet) -> CharNpcPacket
+{
+    // Read SubKind from buffer to determine which type to return
+    const auto* data   = static_cast<uint8_t*>(packet);
+    const auto* common = reinterpret_cast<const CommonData*>(data + sizeof(GP_SERV_HEADER));
+
+    switch (common->SubKind)
+    {
+        case 0:
+            return *reinterpret_cast<FixedModel*>(&packet);
+        case 1:
+            return *reinterpret_cast<Equipped*>(&packet);
+        case 2:
+            return *reinterpret_cast<Door*>(&packet);
+        case 3:
+            return *reinterpret_cast<Elevator*>(&packet);
+        case 4:
+            return *reinterpret_cast<Airship*>(&packet);
+        case 5:
+            return *reinterpret_cast<MiscNpc*>(&packet);
+        case 6:
+            return *reinterpret_cast<Automaton*>(&packet);
+        case 7:
+            return *reinterpret_cast<EquippedMisc*>(&packet);
+        default:
+            return FixedModel{}; // Fallback
+    }
 }
 
 } // namespace GP_SERV_COMMAND_CHAR_NPC

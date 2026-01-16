@@ -330,6 +330,11 @@ void CLuaSimulation::tick(const std::optional<TickType> boundary) const
                 if (!PZone->GetZoneEntities()->CharListEmpty()) // Only tick zones with players
                 {
                     PZone->ZoneServer(timePoint);
+                    // Flush pending entity updates like the real server does after each tick
+                    PZone->GetZoneEntities()->ForEachChar([](auto* PChar)
+                    {
+                        PChar->flushPendingEntityUpdates();
+                    });
                 }
             }
         }

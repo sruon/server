@@ -332,12 +332,15 @@ void LoadNPCList(const std::vector<uint16>& zoneIds)
                             PNpc->packetName = rset->get<std::string>("polutils_name"); // Name sent to the client (when applicable)
 
                             PNpc->loc.p.rotation = rset->get<uint8>("pos_rot");
-                            PNpc->loc.p.x        = rset->get<float>("pos_x");
-                            PNpc->loc.p.y        = rset->get<float>("pos_y");
-                            PNpc->loc.p.z        = rset->get<float>("pos_z");
-                            PNpc->loc.p.moving   = rset->get<uint16>("flag");
+                            PNpc->loc.p.x      = rset->get<float>("pos_x");
+                            PNpc->loc.p.y      = rset->get<float>("pos_y");
+                            PNpc->loc.p.z      = rset->get<float>("pos_z");
 
-                            PNpc->m_TargID = rset->get<uint32>("flag") >> 16;
+                            const uint32 flag  = rset->get<uint32>("flag");
+                            PNpc->loc.p.moving = flag & 0x1FFF;                // Bits 0-12: MovTime
+                            PNpc->loc.p.flags.RunMode    = (flag >> 13) & 1;   // Bit 13
+                            PNpc->loc.p.flags.GroundFlag = (flag >> 15) & 1;   // Bit 15
+                            PNpc->m_TargID     = flag >> 16;
 
                             PNpc->animationSpeed = rset->get<uint8>("speedsub"); // Overwrites baseentity.cpp's defined animationSpeed
                             PNpc->baseSpeed      = rset->get<uint8>("speed");    // Overwrites baseentity.cpp's defined baseSpeed
@@ -345,6 +348,7 @@ void LoadNPCList(const std::vector<uint16>& zoneIds)
 
                             PNpc->animation    = rset->get<uint8>("animation");
                             PNpc->animationsub = rset->get<uint8>("animationsub");
+                            PNpc->render.applyAnimationsub(PNpc->animationsub);
 
                             PNpc->namevis = rset->get<uint8>("namevis");
                             PNpc->render.applyNamevis(PNpc->namevis);
@@ -584,6 +588,7 @@ void LoadMOBList(const std::vector<uint16>& zoneIds)
                             // yovra 1: On top/in the sky, 2: , 3: On top/in the sky
                             // phuabo 1: Underwater, 2: Out of the water, 3: Goes back underwater
                             PMob->animationsub = rset->get<uint8>("animationsub");
+                            PMob->render.applyAnimationsub(PMob->animationsub);
 
                             if (PMob->animationsub != 0)
                             {

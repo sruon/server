@@ -34,6 +34,9 @@ public:
     // Convert legacy entityFlags to render flags (temporary migration helper)
     void applyEntityFlags(uint32 flags);
 
+    // Extract German localization flags from animationsub bits 3-4
+    void applyAnimationsub(uint8 animationsub);
+
     // Flags1.HideFlag. Used by Worms, Antlions for ??? display.
     void setHidden(bool value);
     bool isHidden() const;
@@ -78,6 +81,16 @@ public:
     void setInfoIcon(bool value);
     bool hasInfoIcon() const;
 
+    // Flags3.unknown_3_1. Uses alternate animation values (e.g., different chair sitting).
+    // Seen on Trusts in retail.
+    void setAnimOverride(bool value);
+    bool hasAnimOverride() const;
+
+    // Flags3.unknown_3_2. SubAnimation uses 3 bits instead of 2 by default.
+    // Activated during entity spawn events. Seen on Trusts and Ethereal Junctions.
+    void setSubAnim3Bit(bool value);
+    bool hasSubAnim3Bit() const;
+
     // Flags2.NamedFlag. Adds "the" prefix to mob/NPC names.
     void setNamedFlag(bool value);
     bool hasNamedFlag() const;
@@ -85,6 +98,40 @@ public:
     // Flags2.SingleFlag. Purpose unclear - used by some mobs/NPCs.
     void setSingleFlag(bool value);
     bool hasSingleFlag() const;
+
+    // Flags1.Gender. entityFlags bit 7 (0x80) = Gender value (0=female, 1=male).
+    void setGender(uint8 value);
+    uint8 getGender() const;
+
+    // French localization article flags.
+    // These control which definite article is used when displaying entity names in French:
+    //   LinkShellFlag=0, LinkDeadFlag=0 → "le" (masculine, consonant)
+    //   LinkShellFlag=0, LinkDeadFlag=1 → "l'" (masculine, vowel/h muet - elision)
+    //   LinkShellFlag=1, LinkDeadFlag=0 → "la" (feminine, consonant)
+    //   LinkShellFlag=1, LinkDeadFlag=1 → "l'" (feminine, vowel/h muet - elision)
+
+    // Flags1.LinkShellFlag. entityFlags bit 9 (0x200) = French Feminine article (la vs le).
+    void setLinkShellFlag(bool value);
+    bool hasLinkShellFlag() const;
+
+    // Flags1.LinkDeadFlag. entityFlags bit 10 (0x400) = French Elision article (l').
+    void setLinkDeadFlag(bool value);
+    bool hasLinkDeadFlag() const;
+
+    // German localization article flags (very likely).
+    // These are stored in animationsub bits 3-4 and likely control German definite articles:
+    //   unknownLocalization1=0, unknownLocalization2=0 → "der" (masculine)
+    //   unknownLocalization1=1, unknownLocalization2=0 → "die" (feminine)
+    //   unknownLocalization1=0, unknownLocalization2=1 → "das" (neuter)
+    //   unknownLocalization1=1, unknownLocalization2=1 → never used
+
+    // Flags3.unknown_2_3. animationsub bit 3 (0x08) = likely German Feminine (die).
+    void setUnknownLocalization1(bool value);
+    bool hasUnknownLocalization1() const;
+
+    // Flags3.unknown_2_4. animationsub bit 4 (0x10) = likely German Neuter (das).
+    void setUnknownLocalization2(bool value);
+    bool hasUnknownLocalization2() const;
 
 private:
     void markDirty() const;
@@ -101,6 +148,13 @@ private:
     bool   hiddenCompass_     = false;
     bool   halfTransparent_   = false;
     bool   infoIcon_          = false;
+    bool   animOverride_      = false;
+    bool   subAnim3Bit_       = false;
     bool   namedFlag_         = false;
     bool   singleFlag_        = false;
+    bool   linkShellFlag_         = false;
+    bool   linkDeadFlag_          = false;
+    bool   unknownLocalization1_  = false;
+    bool   unknownLocalization2_  = false;
+    uint8  gender_                = 1;
 };

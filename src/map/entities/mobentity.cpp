@@ -621,6 +621,10 @@ void CMobEntity::Spawn()
     animationsub     = (uint8)getMobMod(MOBMOD_SPAWN_ANIMATIONSUB);
     SetCallForHelpFlag(false);
 
+    // Reset render state from previous despawn (e.g., worms spawning hidden)
+    render.setHidden(false);
+    SetUntargetable(false);
+
     PEnmityContainer->Clear();
 
     // The underlying function in GetRandomNumber doesn't accept uint8 as <T> so use uint32

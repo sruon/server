@@ -33,9 +33,29 @@ void EntityRenderContainer::applyNamevis(const uint8 namevis)
     {
         infoIcon_ = true;
     }
+    if (namevis & VIS_ANIM_OVERRIDE)
+    {
+        animOverride_ = true;
+    }
+    if (namevis & VIS_SUBANIM_3BIT)
+    {
+        subAnim3Bit_ = true;
+    }
     if (namevis & VIS_HIDE_NAME)
     {
         hiddenName_ = true;
+    }
+    if (namevis & VIS_NO_COLLISION)
+    {
+        collisionDisabled_ = true;
+    }
+    if (namevis & VIS_HIDE_HP_AND_NAME)
+    {
+        hiddenHPAndName_ = true;
+    }
+    if (namevis & VIS_HIDE_COMPASS)
+    {
+        hiddenCompass_ = true;
     }
     if (namevis & VIS_GHOST_PHASE)
     {
@@ -57,13 +77,30 @@ void EntityRenderContainer::applyEntityFlags(const uint32 flags)
     {
         hiddenHP_ = true;
     }
+    // entityFlags bit 7 (0x80) = Gender (0=female, 1=male)
+    gender_ = (flags & 0x80) ? 1 : 0;
+
+    // entityFlags bit 9 (0x200) = French Feminine article (la vs le)
+    linkShellFlag_ = (flags & 0x200) != 0;
+
+    // entityFlags bit 10 (0x400) = French Elision article (l')
+    linkDeadFlag_ = (flags & 0x400) != 0;
+}
+
+void EntityRenderContainer::applyAnimationsub(const uint8 animationsub)
+{
+    // animationsub bit 3 (0x08) = likely German Feminine (die)
+    unknownLocalization1_ = (animationsub & 0x08) != 0;
+
+    // animationsub bit 4 (0x10) = likely German Neuter (das)
+    unknownLocalization2_ = (animationsub & 0x10) != 0;
 }
 
 void EntityRenderContainer::markDirty() const
 {
     if (updatemask_)
     {
-        *updatemask_ |= UPDATE_HP;
+        *updatemask_ |= UPDATE_COMBAT;
     }
 }
 
@@ -188,6 +225,26 @@ auto EntityRenderContainer::hasInfoIcon() const -> bool
     return infoIcon_;
 }
 
+void EntityRenderContainer::setAnimOverride(const bool value)
+{
+    animOverride_ = value;
+}
+
+auto EntityRenderContainer::hasAnimOverride() const -> bool
+{
+    return animOverride_;
+}
+
+void EntityRenderContainer::setSubAnim3Bit(const bool value)
+{
+    subAnim3Bit_ = value;
+}
+
+auto EntityRenderContainer::hasSubAnim3Bit() const -> bool
+{
+    return subAnim3Bit_;
+}
+
 void EntityRenderContainer::setNamedFlag(const bool value)
 {
     namedFlag_ = value;
@@ -206,4 +263,54 @@ void EntityRenderContainer::setSingleFlag(const bool value)
 auto EntityRenderContainer::hasSingleFlag() const -> bool
 {
     return singleFlag_;
+}
+
+void EntityRenderContainer::setGender(const uint8 value)
+{
+    gender_ = value;
+}
+
+auto EntityRenderContainer::getGender() const -> uint8
+{
+    return gender_;
+}
+
+void EntityRenderContainer::setLinkShellFlag(const bool value)
+{
+    linkShellFlag_ = value;
+}
+
+auto EntityRenderContainer::hasLinkShellFlag() const -> bool
+{
+    return linkShellFlag_;
+}
+
+void EntityRenderContainer::setLinkDeadFlag(const bool value)
+{
+    linkDeadFlag_ = value;
+}
+
+auto EntityRenderContainer::hasLinkDeadFlag() const -> bool
+{
+    return linkDeadFlag_;
+}
+
+void EntityRenderContainer::setUnknownLocalization1(const bool value)
+{
+    unknownLocalization1_ = value;
+}
+
+auto EntityRenderContainer::hasUnknownLocalization1() const -> bool
+{
+    return unknownLocalization1_;
+}
+
+void EntityRenderContainer::setUnknownLocalization2(const bool value)
+{
+    unknownLocalization2_ = value;
+}
+
+auto EntityRenderContainer::hasUnknownLocalization2() const -> bool
+{
+    return unknownLocalization2_;
 }

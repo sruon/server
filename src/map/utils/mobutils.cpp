@@ -1806,6 +1806,7 @@ auto InstantiateAlly(uint32 groupid, uint16 zoneID, CInstance* instance) -> CMob
         // yovra 1: On top/in the sky, 2: , 3: On top/in the sky
         // phuabo 1: Underwater, 2: Out of the water, 3: Goes back underwater
         PMob->animationsub = rset->get<uint32>("animationsub");
+        PMob->render.applyAnimationsub(PMob->animationsub);
 
         // Setup HP / MP Stat Percentage Boost
         PMob->HPscale = rset->get<float>("hp_scale");

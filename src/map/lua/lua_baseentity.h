@@ -868,6 +868,7 @@ public:
     void setUnkillable(bool unkillable);
     void setUntargetable(bool untargetable);
     bool getUntargetable();
+    void setCollisionDisabled(bool disabled);
     void setIsAggroable(bool isAggroable);
     bool isAggroable();
 

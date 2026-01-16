@@ -22,10 +22,12 @@
 #include "lua_test_entity.h"
 
 #include "ai/ai_container.h"
+#include "ai/controllers/mob_controller.h"
 #include "common/logging.h"
 #include "common/lua.h"
 #include "entities/mobentity.h"
 #include "lua/lua_test_entity_assertions.h"
+#include "map/transport.h"
 #include "map/zone.h"
 #include "test_common.h"
 
@@ -105,6 +107,31 @@ void CLuaTestEntity::respawn() const
 }
 
 /************************************************************************
+ *  Function: resetRoamTimer()
+ *  Purpose : Reset mob roam timer to current tick (forces wait for full ROAM_COOL)
+ *  Example : mob:resetRoamTimer()
+ ************************************************************************/
+void CLuaTestEntity::resetRoamTimer() const
+{
+    auto* mob = dynamic_cast<CMobEntity*>(m_PBaseEntity);
+    if (!mob)
+    {
+        TestError("resetRoamTimer() can only be called on mob entities, not on {}",
+                  static_cast<uint8>(m_PBaseEntity->objtype));
+        return;
+    }
+
+    auto* controller = dynamic_cast<CMobController*>(mob->PAI->GetController());
+    if (!controller)
+    {
+        TestError("resetRoamTimer() requires a mob controller");
+        return;
+    }
+
+    controller->ResetRoamTimer();
+}
+
+/************************************************************************
  *  Function: assert_()
  *  Purpose : Get assertion helper for this entity
  *  Example : entity.assert:isAlive()
@@ -114,11 +141,40 @@ auto CLuaTestEntity::assert_() -> CLuaTestEntityAssertions
     return CLuaTestEntityAssertions(this);
 }
 
+/************************************************************************
+ *  Function: startElevator()
+ *  Purpose : Start the elevator moving (test only)
+ *  Example : elevator:startElevator()
+ ************************************************************************/
+void CLuaTestEntity::startElevator() const
+{
+    if (auto* elevator = CTransportHandler::getInstance()->getElevatorByEntityId(m_PBaseEntity->id))
+    {
+        CTransportHandler::getInstance()->startElevator(elevator);
+    }
+}
+
+/************************************************************************
+ *  Function: arriveElevator()
+ *  Purpose : Complete elevator movement (test only)
+ *  Example : elevator:arriveElevator()
+ ************************************************************************/
+void CLuaTestEntity::arriveElevator() const
+{
+    if (auto* elevator = CTransportHandler::getInstance()->getElevatorByEntityId(m_PBaseEntity->id))
+    {
+        CTransportHandler::getInstance()->arriveElevator(elevator);
+    }
+}
+
 void CLuaTestEntity::Register()
 {
     SOL_USERTYPE_INHERIT("CTestEntity", CLuaTestEntity, CLuaBaseEntity);
     SOL_REGISTER("setEntity", CLuaTestEntity::setEntity);
     SOL_REGISTER("despawn", CLuaTestEntity::despawn);
     SOL_REGISTER("respawn", CLuaTestEntity::respawn);
+    SOL_REGISTER("resetRoamTimer", CLuaTestEntity::resetRoamTimer);
+    SOL_REGISTER("startElevator", CLuaTestEntity::startElevator);
+    SOL_REGISTER("arriveElevator", CLuaTestEntity::arriveElevator);
     SOL_READONLY("assert", CLuaTestEntity::assert_);
 }

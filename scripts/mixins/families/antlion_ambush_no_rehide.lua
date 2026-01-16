@@ -10,6 +10,7 @@ g_mixins.families.antlion_ambush_no_rehide = function(antlion)
     antlion:addListener('PRESPAWN', 'ANTLION_AMBUSH_PRESPAWN', function(mob)
         -- Retail: HideFlag=0 on spawn (no ??? shown until player has seen mob)
         mob:setUntargetable(true)
+        mob:setCollisionDisabled(true)
         mob:setAutoAttackEnabled(false)
         mob:setAnimationSub(4)  -- Retail: MonStat=4 for underground
         mob:setMobMod(xi.mobMod.NO_MOVE, 1)
@@ -26,6 +27,7 @@ g_mixins.families.antlion_ambush_no_rehide = function(antlion)
         if skillId == xi.mobSkill.PIT_AMBUSH_1 then
             mob:setHideFlag(false)  -- Clear ??? display
             mob:setUntargetable(false)
+            mob:setCollisionDisabled(false)
             mob:setAutoAttackEnabled(true)
             mob:setAnimationSub(5, false)  -- Retail: MonStat=5 for above ground
             mob:setMobMod(xi.mobMod.NO_MOVE, 0)

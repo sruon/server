@@ -539,6 +539,21 @@ void CTransportHandler::startElevator(int32 elevatorID)
     }
 }
 
+Elevator_t* CTransportHandler::getElevatorByEntityId(uint32 entityId)
+{
+    for (auto& i : ElevatorList)
+    {
+        Elevator_t* elevator = &i;
+
+        if (elevator->Elevator && elevator->Elevator->id == entityId)
+        {
+            return elevator;
+        }
+    }
+
+    return nullptr;
+}
+
 /************************************************************************
  *                                                                       *
  *  Called when an elevator should start moving.                         *

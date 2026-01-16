@@ -37,6 +37,7 @@
 #include "mobskill.h"
 #include "party.h"
 #include "status_effect_container.h"
+#include "lua/luautils.h"
 #include "utils/battleutils.h"
 #include "utils/petutils.h"
 
@@ -1162,7 +1163,7 @@ void CMobController::DoRoamTick(timer::time_point tick)
                         {
                             // Start burrow animation (MonStat=1 in packet)
                             PMob->animationsub = 1;
-                            PMob->updatemask |= UPDATE_HP;
+                            PMob->updatemask |= UPDATE_COMBAT;
 
                             // After 2s burrow animation completes, hide name and become untargetable
                             PMob->PAI->QueueAction(
@@ -1197,9 +1198,10 @@ void CMobController::DoRoamTick(timer::time_point tick)
                         // RoamAround failed (no navmesh for worms) - resurface if underground
                         if ((PMob->m_roamFlags & ROAMFLAG_WORM) && PMob->PAI->IsUntargetable())
                         {
-                            PMob->loc.zone->UpdateEntityPacket(PMob, ENTITY_UPDATE, UPDATE_POS);
                             PMob->status = STATUS_TYPE::UPDATE;
                             PMob->SetUntargetable(false);
+                            PMob->render.setHidden(false);
+                            PMob->updatemask |= UPDATE_COMBAT;
                             Wait(2s);
                             PMob->PAI->QueueAction(
                                 queueAction_t(
@@ -1207,8 +1209,9 @@ void CMobController::DoRoamTick(timer::time_point tick)
                                     false,
                                     [](CBaseEntity* MobEntity)
                                     {
+                                        // Emerge animation complete, reset to normal state
                                         MobEntity->animationsub = 0;
-                                        MobEntity->render.setHidden(false);
+                                        MobEntity->updatemask |= UPDATE_COMBAT;
                                     }));
                         }
                         m_LastActionTime = m_Tick;
@@ -1360,6 +1363,10 @@ auto CMobController::Disengage() -> bool
     PMob->m_THLvl          = 0;
     PMob->m_GilfinderLevel = 0; // Assumed to work like TH
     m_mobHealTime          = m_Tick;
+
+    PMob->PAI->EventHandler.triggerListener("DISENGAGE", PMob);
+    luautils::OnMobDisengage(PMob);
+
     return CController::Disengage();
 }
 
@@ -1464,6 +1471,14 @@ void CMobController::TapDeaggroTime()
 void CMobController::TapDeclaimTime()
 {
     m_DeclaimTime = m_Tick;
+}
+
+void CMobController::ResetRoamTimer()
+{
+    auto now         = timer::now();
+    m_LastActionTime = now;
+    m_WaitTime       = now;
+    m_Tick           = now;
 }
 
 auto CMobController::Cast(const uint16 targid, const SpellID spellid) -> bool

@@ -44,6 +44,9 @@ CNpcEntity::CNpcEntity()
     look.face  = 0x32;
     allegiance = ALLEGIANCE_TYPE::MOB;
 
+    // TODO: modelSize should be set dynamically per-NPC from database in the future.
+    modelSize = 1;
+
     PAI = std::make_unique<CAIContainer>(this);
 }
 

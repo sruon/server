@@ -23,10 +23,12 @@
 
 #include "0x00d_char_pc.h"
 #include "enums/model_type.h"
+#include "sol/forward.hpp"
 
 #include <variant>
 
 class CBaseEntity;
+class CBasicPacket;
 class CMobEntity;
 class CNpcEntity;
 class CPetEntity;
@@ -89,6 +91,8 @@ public:
     FixedModel(const sendflags_t SendFlg, const CPetEntity* PPet);
     FixedModel(const sendflags_t SendFlg, const CTrustEntity* PTrust);
     FixedModel(const sendflags_t SendFlg, const CNpcEntity* PNpc);
+
+    auto unpack() const -> sol::table;
 };
 
 // ============================================================================
@@ -104,6 +108,8 @@ public:
     };
 
     Equipped(const sendflags_t SendFlg, const CNpcEntity* PNpc);
+
+    auto unpack() const -> sol::table;
 };
 
 // ============================================================================
@@ -120,6 +126,8 @@ public:
     };
 
     Door(const sendflags_t SendFlg, CNpcEntity* PNpc);
+
+    auto unpack() const -> sol::table;
 };
 
 // ============================================================================
@@ -137,6 +145,8 @@ public:
     };
 
     Elevator(const sendflags_t SendFlg, CNpcEntity* PNpc);
+
+    auto unpack() const -> sol::table;
 };
 
 // ============================================================================
@@ -154,6 +164,8 @@ public:
     };
 
     Airship(const sendflags_t SendFlg, CNpcEntity* PNpc);
+
+    auto unpack() const -> sol::table;
 };
 
 // ============================================================================
@@ -169,6 +181,8 @@ public:
     };
 
     MiscNpc(const sendflags_t SendFlg, const CNpcEntity* PNpc);
+
+    auto unpack() const -> sol::table;
 };
 
 // ============================================================================
@@ -184,6 +198,8 @@ public:
     };
 
     Automaton(const sendflags_t SendFlg, const CPetEntity* PPet);
+
+    auto unpack() const -> sol::table;
 };
 
 // ============================================================================
@@ -199,6 +215,8 @@ public:
     };
 
     EquippedMisc(const sendflags_t SendFlg, const CNpcEntity* PNpc);
+
+    auto unpack() const -> sol::table;
 };
 #pragma pack(pop)
 
@@ -216,5 +234,10 @@ using CharNpcPacket = std::variant<
     EquippedMisc>;
 
 auto create(const sendflags_t SendFlg, CBaseEntity* PEntity) -> CharNpcPacket;
+
+// ============================================================================
+// Reconstruct variant from raw packet for unpacking
+// ============================================================================
+auto fromPacket(CBasicPacket& packet) -> CharNpcPacket;
 
 } // namespace GP_SERV_COMMAND_CHAR_NPC
