@@ -1978,9 +1978,7 @@ bool CLuaBaseEntity::pathThrough(const sol::table& pointsTable, const sol::objec
         }
     }
 
-    CBattleEntity* PBattle = (CBattleEntity*)m_PBaseEntity;
-
-    return PBattle->PAI->PathFind->PathThrough(std::move(points), flags);
+    return m_PBaseEntity->PAI->PathFind->PathThrough(std::move(points), flags);
 }
 
 /************************************************************************
@@ -2009,17 +2007,16 @@ bool CLuaBaseEntity::isFollowingPath()
 
 void CLuaBaseEntity::clearPath(const sol::object& pauseObj)
 {
-    auto* PBattle = static_cast<CBattleEntity*>(m_PBaseEntity);
-    bool  pause   = pauseObj.is<bool>() ? pauseObj.as<bool>() : false;
+    bool pause = pauseObj.is<bool>() ? pauseObj.as<bool>() : false;
 
     // Stop onPath ticks for NPCs if this is true
     if (m_PBaseEntity->objtype == TYPE_NPC && pause)
     {
         m_PBaseEntity->SetLocalVar("pauseNPCPathing", 1);
     }
-    else if (PBattle->PAI->PathFind != nullptr)
+    else if (m_PBaseEntity->PAI->PathFind != nullptr)
     {
-        PBattle->PAI->PathFind->Clear();
+        m_PBaseEntity->PAI->PathFind->Clear();
     }
 }
 
@@ -9961,7 +9958,7 @@ void CLuaBaseEntity::setHP(int32 value)
     // When setting the HP to 0 the entity "falls to the ground" so the last attacker needs to be cleared
     if (value == 0)
     {
-        PBattle->PLastAttacker = nullptr;
+        PBattle->m_LastAttackerID.clean();
     }
 }
 
@@ -11282,9 +11279,23 @@ uint8 CLuaBaseEntity::getPartySize(const sol::object& arg0)
 
 bool CLuaBaseEntity::hasPartyJob(uint8 job)
 {
-    if (static_cast<CCharEntity*>(m_PBaseEntity)->PParty != nullptr)
+    CCharEntity* PChar = nullptr;
+    if (m_PBaseEntity->objtype == TYPE_PC)
     {
-        for (const auto& member : static_cast<CCharEntity*>(m_PBaseEntity)->PParty->members)
+        PChar = static_cast<CCharEntity*>(m_PBaseEntity);
+    }
+    else if (m_PBaseEntity->objtype == TYPE_TRUST)
+    {
+        auto* PMaster = static_cast<CBattleEntity*>(m_PBaseEntity)->PMaster;
+        if (PMaster && PMaster->objtype == TYPE_PC)
+        {
+            PChar = static_cast<CCharEntity*>(PMaster);
+        }
+    }
+
+    if (PChar && PChar->PParty != nullptr)
+    {
+        for (const auto& member : PChar->PParty->members)
         {
             CCharEntity* PTarget = static_cast<CCharEntity*>(member);
 
@@ -13298,8 +13309,6 @@ void CLuaBaseEntity::transferEnmity(CLuaBaseEntity* entity, uint8 percent, float
 
 void CLuaBaseEntity::updateEnmityFromDamage(CLuaBaseEntity* PEntity, int32 damage)
 {
-    auto* PBaseMob = static_cast<CMobEntity*>(m_PBaseEntity);
-
     if (m_PBaseEntity->id == PEntity->getID())
     {
         ShowWarning(fmt::format("updateEnmityFromDamage(): Attempting to add enmity from damage to self ({}, {})!", PEntity->getName(), PEntity->getID()));
@@ -13307,7 +13316,8 @@ void CLuaBaseEntity::updateEnmityFromDamage(CLuaBaseEntity* PEntity, int32 damag
     }
 
     // This is a mob attacking a target and losing enmity from doing damage
-    if (m_PBaseEntity->objtype == TYPE_PC || m_PBaseEntity->objtype == TYPE_PET || (m_PBaseEntity->objtype == TYPE_MOB && PBaseMob->isCharmed))
+    if (m_PBaseEntity->objtype == TYPE_PC || m_PBaseEntity->objtype == TYPE_PET ||
+        (m_PBaseEntity->objtype == TYPE_MOB && static_cast<CMobEntity*>(m_PBaseEntity)->isCharmed))
     {
         if (PEntity->GetBaseEntity() && PEntity->GetBaseEntity()->objtype == TYPE_MOB)
         {
@@ -13319,7 +13329,7 @@ void CLuaBaseEntity::updateEnmityFromDamage(CLuaBaseEntity* PEntity, int32 damag
     {
         if (PEntity->GetBaseEntity() && damage > 0 && PEntity->GetBaseEntity()->objtype != TYPE_NPC)
         {
-            PBaseMob->PEnmityContainer->UpdateEnmityFromDamage(static_cast<CBattleEntity*>(PEntity->GetBaseEntity()), damage);
+            static_cast<CMobEntity*>(m_PBaseEntity)->PEnmityContainer->UpdateEnmityFromDamage(static_cast<CBattleEntity*>(PEntity->GetBaseEntity()), damage);
         }
     }
 }
@@ -13555,13 +13565,16 @@ bool CLuaBaseEntity::addStatusEffect(sol::variadic_args va)
         // Mandatory
         auto effectID   = va[0].as<EFFECT>();                      // The same
         auto effectIcon = va[0].as<uint16>();                      // The same
-        auto power      = static_cast<uint16>(va[1].as<double>()); // Can come in as a lua_number, capture as double and truncate
-        auto tick       = static_cast<uint32>(va[2].as<double>());
+        auto powerVal   = va[1].as<double>();                      // Can come in as a lua_number, capture as double and truncate
+        auto power      = static_cast<uint16>(static_cast<int32_t>(powerVal)); // int32->uint16 is defined (wraps)
+        auto tickVal    = va[2].as<double>();
+        auto tick       = static_cast<uint32>(std::max(tickVal, 0.0));
         auto duration   = va[3].as<double>();
 
         // Optional
         auto subType         = va[4].is<uint32>() ? va[4].as<uint32>() : 0;
-        auto subPower        = va[5].is<double>() ? static_cast<uint16>(va[5].as<double>()) : 0;
+        auto subPowerVal     = va[5].is<double>() ? va[5].as<double>() : 0.0;
+        auto subPower        = static_cast<uint16>(static_cast<int32_t>(subPowerVal));
         auto tier            = va[6].is<uint16>() ? va[6].as<uint16>() : 0;
         auto sourceType      = va[7].is<uint16>() ? va[7].as<uint16>() : 0;
         auto sourceTypeParam = va[8].is<uint32>() ? va[8].as<uint32>() : 0;

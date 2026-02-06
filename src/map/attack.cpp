@@ -718,7 +718,10 @@ void CAttack::ProcessDamage()
     }
 
     // Get damage multipliers.
-    m_damage = attackutils::CheckForDamageMultiplier((CCharEntity*)m_attacker, dynamic_cast<CItemWeapon*>(m_attacker->m_Weapons[slot]), m_damage, m_attackType, slot, m_isFirstSwing);
+    if (m_attacker->objtype == TYPE_PC)
+    {
+        m_damage = attackutils::CheckForDamageMultiplier(static_cast<CCharEntity*>(m_attacker), dynamic_cast<CItemWeapon*>(m_attacker->m_Weapons[slot]), m_damage, m_attackType, slot, m_isFirstSwing);
+    }
 
     // Apply Sneak Attack Augment Mod
     if (m_attacker->getMod(Mod::AUGMENTS_SA) > 0 && IsSneakAttack() && m_attacker->StatusEffectContainer->HasStatusEffect(EFFECT_SNEAK_ATTACK))

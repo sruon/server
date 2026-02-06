@@ -122,7 +122,9 @@ void MapNetworking::tapStatistics()
     mapStatistics_.set(MapStatistics::Key::ActiveMobs, mobCount);
     mapStatistics_.set(MapStatistics::Key::TaskManagerTasks, CTaskManager::getInstance()->getTaskList().size());
 
-    const auto percent = (static_cast<double>(dynamicTargIdCount) / static_cast<double>(dynamicTargIdCapacity)) * 100.0;
+    const auto percent = (dynamicTargIdCapacity > 0)
+                             ? (static_cast<double>(dynamicTargIdCount) / static_cast<double>(dynamicTargIdCapacity)) * 100.0
+                             : 0.0;
     mapStatistics_.set(MapStatistics::Key::DynamicTargIdUsagePercent, static_cast<int64>(percent));
 
     // Clear statistics
@@ -649,7 +651,7 @@ int32 MapNetworking::send_parse(uint8* buff, size_t* buffsize, MapSession* map_s
                 // Store zoneout packet in case we need to re-send this
                 if (type == 0x00B)
                 {
-                    const auto IPPacket = static_cast<GP_SERV_COMMAND_LOGOUT*>(PSmallPacket.get());
+                    const auto* IPPacket = static_cast<GP_SERV_COMMAND_LOGOUT*>(PSmallPacket.get());
 
                     map_session_data->zone_ipp  = IPPacket->zoneIPP();
                     map_session_data->zone_type = IPPacket->zoneType();

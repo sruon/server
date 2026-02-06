@@ -16,7 +16,7 @@ endif()
 
 option(ENABLE_IPO "Enable Interprocedural Optimization, aka Link Time Optimization (LTO)" ON)
 set(CMAKE_INTERPROCEDURAL_OPTIMIZATION OFF)
-if(ENABLE_IPO AND NOT CMAKE_BUILD_TYPE STREQUAL Debug)
+if(ENABLE_IPO AND NOT CMAKE_BUILD_TYPE STREQUAL Debug AND NOT CMAKE_BUILD_TYPE STREQUAL ASAN)
   include(CheckIPOSupported)
   check_ipo_supported(
     RESULT
@@ -64,7 +64,7 @@ if(MSVC)
         /utf-8 # Treat source files as UTF-8. This is needed because of certain symbols inside fmtlib's code. u-second, etc.
     )
 
-    if(CMAKE_BUILD_TYPE STREQUAL Debug)
+    if(CMAKE_BUILD_TYPE STREQUAL Debug OR CMAKE_BUILD_TYPE STREQUAL ASAN)
         # /EDITANDCONTINUE isn't supported, it messes with Tracy
         set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /INCREMENTAL /SAFESEH:NO")
         list(APPEND FLAGS_AND_DEFINES
@@ -106,6 +106,7 @@ function(set_target_output_directory target)
         RUNTIME_OUTPUT_DIRECTORY_RELEASE "${CMAKE_SOURCE_DIR}"
         RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO "${CMAKE_SOURCE_DIR}"
         RUNTIME_OUTPUT_DIRECTORY_MINSIZEREL "${CMAKE_SOURCE_DIR}"
+        RUNTIME_OUTPUT_DIRECTORY_ASAN "${CMAKE_SOURCE_DIR}"
     )
 endfunction()
 

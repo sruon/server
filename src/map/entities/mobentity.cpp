@@ -1252,7 +1252,7 @@ void CMobEntity::Die()
     {
         if (static_cast<CMobEntity*>(PEntity)->isDead())
         {
-            if (PLastAttacker)
+            if (auto* PLastAttacker = GetEntity(m_LastAttackerID.targid); PLastAttacker && PLastAttacker->id == m_LastAttackerID.id)
             {
                 loc.zone->PushPacket(this, CHAR_INRANGE, std::make_unique<GP_SERV_COMMAND_BATTLE_MESSAGE>(PLastAttacker, this, 0, 0, MsgBasic::DEFEATS_TARG));
             }

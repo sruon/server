@@ -159,10 +159,10 @@ jobs:
             runner: macos-26
             compiler: appleClang
             build_modules: false
-          - build_type: Debug
+          - build_type: ASAN
             runner: ubuntu-24.04
-            compiler: gcc
-            compiler_version: 14
+            compiler: clang
+            compiler_version: 20
             build_modules: false
     uses: ./.github/workflows/runner_build.yml
     with:
@@ -192,6 +192,7 @@ jobs:
             xi_test: false
             startup_checks: true
           - runner: ubuntu-24.04
+            build_type: ASAN
             test_modules: false
             multi_process: false
             xi_test: true
@@ -199,6 +200,7 @@ jobs:
     uses: ./.github/workflows/runner_test.yml
     with:
       runner: ${{ matrix.runner }}
+      build_type: ${{ matrix.build_type || 'Debug' }}
       test_modules: ${{ matrix.test_modules }}
       multi_process: ${{ matrix.multi_process }}
       xi_test: ${{ matrix.xi_test }}

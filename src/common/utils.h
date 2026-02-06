@@ -43,12 +43,14 @@
 #include <set>
 
 template <typename T, typename U>
+__attribute__((no_sanitize("alignment")))
 auto ref(U* buf, std::size_t index) -> T&
 {
     return *reinterpret_cast<T*>(reinterpret_cast<uint8*>(buf) + index);
 }
 
 template <typename T, typename U>
+__attribute__((no_sanitize("alignment")))
 auto ref(const U* buf, std::size_t index) -> const T&
 {
     return *reinterpret_cast<const T*>(reinterpret_cast<const uint8*>(buf) + index);

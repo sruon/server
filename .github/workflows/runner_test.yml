@@ -52,6 +52,7 @@ jobs:
       XI_NETWORK_SQL_DATABASE: xidb
       XI_NETWORK_SQL_LOGIN: xiadmin
       XI_NETWORK_SQL_PASSWORD: 'password'
+      ASAN_OPTIONS: 'halt_on_error=1:abort_on_error=1:detect_leaks=1:detect_stack_use_after_return=1:detect_invalid_pointer_pairs=2:strict_string_checks=1:alloc_dealloc_mismatch=1:new_delete_type_mismatch=1:detect_odr_violation=2:quarantine_size_mb=256:max_free_fill_size=4096:symbolize=1'
     steps:
       - uses: actions/checkout@v4
         with:
@@ -160,11 +161,31 @@ jobs:
       - name: Initialize database
         run: python ./tools/dbtool.py update
 
+      - name: Debug ASAN configuration
+        if: ${{ inputs.xi_test }}
+        run: |
+          echo "=== ASAN Environment Variables ==="
+          echo "ASAN_OPTIONS: ${ASAN_OPTIONS:-not set}"
+          echo "LSAN_OPTIONS: ${LSAN_OPTIONS:-not set}"
+          echo ""
+          echo "=== Build type: ${{ inputs.build_type }} ==="
+          echo ""
+          echo "=== Checking xi_test binary ==="
+          file ./xi_test || echo "file command failed"
+          ldd ./xi_test 2>/dev/null | grep -i asan || echo "No ASAN library linked (may be statically linked)"
+          nm ./xi_test 2>/dev/null | grep -i asan | head -5 || echo "No ASAN symbols found (may be stripped)"
+
       - name: Run xi_test
         if: ${{ inputs.xi_test }}
         id: xi_test
         continue-on-error: true
-        run: ./xi_test --keep-going --output tests.ctrf.json
+        run: |
+          echo "=== Starting xi_test with ASAN ==="
+          ./xi_test --keep-going --output tests.ctrf.json 2>&1 | tee xi_test_output.log
+          exit_code=${PIPESTATUS[0]}
+          echo ""
+          echo "=== xi_test exit code: ${exit_code} ==="
+          exit ${exit_code}
 
       - name: Publish Test Report
         if: ${{ !cancelled() && inputs.xi_test }}
@@ -181,6 +202,45 @@ jobs:
           annotate: true
           upload-artifact: true
           artifact-name: 'xi_test-ctrf-${{ runner.os }}'
+
+      - name: Check for ASAN errors
+        if: ${{ inputs.xi_test }}
+        id: asan_check
+        run: |
+          echo "=== Checking xi_test_output.log for ASAN errors ==="
+          echo "Log file size: $(wc -c < xi_test_output.log 2>/dev/null || echo 'file not found') bytes"
+          echo "Log file lines: $(wc -l < xi_test_output.log 2>/dev/null || echo 'file not found')"
+          echo ""
+
+          # Check if ASAN was actually active
+          if grep -q "AddressSanitizer" xi_test_output.log 2>/dev/null; then
+            echo "ASAN was active during test run"
+          else
+            echo "WARNING: No ASAN output detected - binary may not be compiled with ASAN"
+          fi
+          echo ""
+
+          # Look for any sanitizer messages
+          echo "=== All Sanitizer-related output ==="
+          grep -i "sanitizer" xi_test_output.log 2>/dev/null | head -100 || echo "No sanitizer messages found"
+          echo ""
+
+          # Check for errors
+          if grep -qE "ERROR: (Address|Leak|Memory)Sanitizer" xi_test_output.log 2>/dev/null; then
+            echo "=== ASAN ERRORS FOUND ==="
+            echo "## ASAN Errors Detected" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            grep -A 50 "ERROR: .*Sanitizer" xi_test_output.log >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+
+            echo ""
+            echo "=== Full ASAN error output ==="
+            grep -A 100 "ERROR: .*Sanitizer" xi_test_output.log
+            exit 1
+          fi
+
+          echo "No ASAN errors detected." >> $GITHUB_STEP_SUMMARY
+          echo "=== ASAN check passed ==="
 
       - name: Startup checks
         if: ${{ inputs.startup_checks }}
@@ -228,7 +288,7 @@ jobs:
           echo "</details>" >> $GITHUB_STEP_SUMMARY
 
       - name: Fail Workflow if Checks Failed
-        if: ${{ steps.xi_test.outcome == 'failure' || steps.startup_checks.outcome == 'failure' }}
+        if: ${{ steps.xi_test.outcome == 'failure' || steps.startup_checks.outcome == 'failure' || steps.asan_check.outcome == 'failure' }}
         run: |
-          echo "Startup checks failed. See summary for details."
+          echo "Tests failed. See summary for details."
           exit 1

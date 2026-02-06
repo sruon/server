@@ -19,11 +19,11 @@ set(CMAKE_CXX_FLAGS_TSAN
 # AddressSanitizer
 # AddressSanitizer is a fast memory error detector. It consists of a compiler instrumentation module and a run-time library.
 set(CMAKE_C_FLAGS_ASAN
-        "-fsanitize=address -fno-optimize-sibling-calls -fsanitize-address-use-after-scope -fno-omit-frame-pointer -g -O1"
+        "-fsanitize=address,undefined -fno-optimize-sibling-calls -fsanitize-address-use-after-scope -fno-omit-frame-pointer -g -O3 -DNDEBUG"
         CACHE STRING "Flags used by the C compiler during AddressSanitizer builds."
         FORCE)
 set(CMAKE_CXX_FLAGS_ASAN
-        "-fsanitize=address -fno-optimize-sibling-calls -fsanitize-address-use-after-scope -fno-omit-frame-pointer -g -O1"
+        "-fsanitize=address,undefined -fno-optimize-sibling-calls -fsanitize-address-use-after-scope -fno-omit-frame-pointer -g -O3 -DNDEBUG"
         CACHE STRING "Flags used by the C++ compiler during AddressSanitizer builds."
         FORCE)
 

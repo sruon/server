@@ -161,6 +161,11 @@ void CItemState::UpdateTarget(const uint16 targid)
     CState::UpdateTarget(targid);
     CState::SetTarget(targid);
 
+    if (!m_PItem)
+    {
+        return;
+    }
+
     // Special case for Soultrapper usage:
     // Valid to use on mobs that are:
     //     - unclaimed
@@ -193,18 +198,17 @@ auto CItemState::Update(const timer::time_point tick) -> bool
 
         if (!m_interrupted)
         {
-            FinishItem(action);
-            m_PEntity->PAI->EventHandler.triggerListener("ITEM_USE", m_PEntity, m_PItem, &action);
+            bool consumed = FinishItem(action);
+            if (consumed)
+            {
+                m_PItem = nullptr;
+            }
+
             // Only send packet if action was populated (e.g. interrupts return early)
             if (!action.targets.empty())
             {
                 m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, std::make_unique<GP_SERV_COMMAND_BATTLE2>(action));
             }
-        }
-        else
-        {
-            // InterruptItem handles the BATTLE2 packet already.
-            m_PEntity->PAI->EventHandler.triggerListener("ITEM_USE", m_PEntity, m_PItem, &action);
         }
         Complete();
     }
@@ -225,20 +229,14 @@ void CItemState::Cleanup(timer::time_point tick)
 {
     m_PEntity->UContainer->Clean();
 
-    if ((m_interrupted || !IsCompleted()) && !m_PItem->isType(ITEM_EQUIPMENT))
+    if (m_PItem && (m_interrupted || !IsCompleted()) && !m_PItem->isType(ITEM_EQUIPMENT))
     {
         m_PItem->setSubType(ITEM_UNLOCKED);
     }
 
-    auto* PItem = m_PEntity->getStorage(m_location)->GetItem(m_slot);
-
-    if (PItem && PItem == m_PItem)
+    if (m_PItem)
     {
         m_PEntity->pushPacket<GP_SERV_COMMAND_ITEM_LIST>(m_PItem, ItemLockFlg::Normal);
-    }
-    else
-    {
-        m_PItem = nullptr;
     }
 
     m_PEntity->pushPacket<GP_SERV_COMMAND_ITEM_ATTR>(m_PItem, static_cast<CONTAINER_ID>(m_location), m_slot);
@@ -312,9 +310,9 @@ void CItemState::InterruptItem(action_t& action)
     }
 }
 
-void CItemState::FinishItem(action_t& action)
+bool CItemState::FinishItem(action_t& action)
 {
-    m_PEntity->OnItemFinish(*this, action);
+    return m_PEntity->OnItemFinish(*this, action);
 }
 
 auto CItemState::HasMoved() const -> bool

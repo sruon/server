@@ -129,9 +129,20 @@ uint8 radianToRotation(float radian)
 
 uint8 worldAngle(const position_t& A, const position_t& B)
 {
-    uint8 angle = (uint8)(atanf((B.z - A.z) / (B.x - A.x)) * -(128.0f / M_PI));
+    if (isWithinDistance(A, B, 0.1f, true))
+    {
+        return A.rotation;
+    }
 
-    return isWithinDistance(A, B, 0.1f, true) ? A.rotation : (A.x > B.x ? angle + 128 : angle);
+    float dx = B.x - A.x;
+    float dz = B.z - A.z;
+
+    // Use atan2 to handle all quadrants and avoid division by zero
+    float radians  = atan2f(dz, dx);
+    int16 rawAngle = static_cast<int16>(radians * -(128.0f / M_PI));
+    uint8 angle    = static_cast<uint8>((rawAngle + 256) % 256);
+
+    return angle;
 }
 
 uint8 relativeAngle(uint8 world, int16 diff)
@@ -296,30 +307,27 @@ uint32 packBitsBE(uint8* target, uint64 value, int32 byteOffset, int32 bitOffset
     }
     else if ((lengthInBit + bitOffset) <= 16)
     {
-        uint16* dataPointer = (uint16*)&target[byteOffset];
-
-        uint16 bitmaskUC = (uint16)bitmask;
-        uint16 valueUC   = (uint16)value;
-
-        *dataPointer &= bitmaskUC;
-        *dataPointer |= valueUC;
+        uint16 data;
+        std::memcpy(&data, &target[byteOffset], sizeof(data));
+        data &= static_cast<uint16>(bitmask);
+        data |= static_cast<uint16>(value);
+        std::memcpy(&target[byteOffset], &data, sizeof(data));
     }
     else if ((lengthInBit + bitOffset) <= 32)
     {
-        uint32* dataPointer = (uint32*)&target[byteOffset];
-
-        uint32 bitmaskUC = (uint32)bitmask;
-        uint32 valueUC   = (uint32)value;
-
-        *dataPointer &= bitmaskUC;
-        *dataPointer |= valueUC;
+        uint32 data;
+        std::memcpy(&data, &target[byteOffset], sizeof(data));
+        data &= static_cast<uint32>(bitmask);
+        data |= static_cast<uint32>(value);
+        std::memcpy(&target[byteOffset], &data, sizeof(data));
     }
     else if ((lengthInBit + bitOffset) <= 64)
     {
-        uint64* dataPointer = (uint64*)&target[byteOffset];
-
-        *dataPointer &= bitmask;
-        *dataPointer |= value;
+        uint64 data;
+        std::memcpy(&data, &target[byteOffset], sizeof(data));
+        data &= bitmask;
+        data |= value;
+        std::memcpy(&target[byteOffset], &data, sizeof(data));
     }
     else
     {
@@ -347,27 +355,25 @@ uint64 unpackBitsBE(uint8* target, int32 byteOffset, int32 bitOffset, uint8 leng
 
     if ((lengthInBit + bitOffset) <= 8)
     {
-        uint8* dataPointer = &target[byteOffset];
-
-        retVal = ((*dataPointer) & (uint8)bitmask) >> bitOffset;
+        retVal = (target[byteOffset] & (uint8)bitmask) >> bitOffset;
     }
     else if ((lengthInBit + bitOffset) <= 16)
     {
-        uint16* dataPointer = (uint16*)&target[byteOffset];
-
-        retVal = ((*dataPointer) & (uint16)bitmask) >> bitOffset;
+        uint16 data;
+        std::memcpy(&data, &target[byteOffset], sizeof(data));
+        retVal = (data & (uint16)bitmask) >> bitOffset;
     }
     else if ((lengthInBit + bitOffset) <= 32)
     {
-        uint32* dataPointer = (uint32*)&target[byteOffset];
-
-        retVal = ((*dataPointer) & (uint32)bitmask) >> bitOffset;
+        uint32 data;
+        std::memcpy(&data, &target[byteOffset], sizeof(data));
+        retVal = (data & (uint32)bitmask) >> bitOffset;
     }
     else if ((lengthInBit + bitOffset) <= 64)
     {
-        uint64* dataPointer = (uint64*)&target[byteOffset];
-
-        retVal = ((*dataPointer) & bitmask) >> bitOffset;
+        uint64 data;
+        std::memcpy(&data, &target[byteOffset], sizeof(data));
+        retVal = (data & bitmask) >> bitOffset;
     }
     else
     {

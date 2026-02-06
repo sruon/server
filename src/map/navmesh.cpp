@@ -266,6 +266,14 @@ auto CNavMesh::findPath(const position_t& start, const position_t& end) -> std::
         return {};
     }
 
+    // Validate positions - NaN values cause UB in recast library
+    if (std::isnan(start.x) || std::isnan(start.y) || std::isnan(start.z) ||
+        std::isnan(end.x) || std::isnan(end.y) || std::isnan(end.z))
+    {
+        ShowWarning("CNavMesh::findPath NaN position detected (%u)", m_zoneID);
+        return {};
+    }
+
     DebugNavmesh("CNavMesh::findPath (%f, %f, %f) -> (%f, %f, %f) (zone: %u) (MAX_NAV_POLYS: %u)", start.x, start.y, start.z, end.x, end.y, end.z, m_zoneID, MAX_NAV_POLYS);
     dtStatus status = 0;
 

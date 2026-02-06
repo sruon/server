@@ -69,4 +69,9 @@ protected:
     {
         return *reinterpret_cast<const typename T::PacketData*>(buffer_.data() + sizeof(GP_SERV_HEADER));
     }
+
+    auto copy() -> std::unique_ptr<CBasicPacket> override
+    {
+        return std::make_unique<Derived>(static_cast<const Derived&>(*this));
+    }
 };

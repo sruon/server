@@ -42,13 +42,14 @@ GP_SERV_COMMAND_MISCDATA::STATUS_ICONS::STATUS_ICONS(const CCharEntity* PChar)
     {
         if (PEffect->GetIcon() != 0)
         {
-            auto durationRemaining = 0x7FFFFFFF;
+            uint32 durationRemaining = 0x7FFFFFFF;
             if (PEffect->GetDuration() > 0s && !PEffect->HasEffectFlag(EFFECTFLAG_HIDE_TIMER))
             {
                 // this value overflows, but the client expects the overflowed timestamp and corrects it
-                durationRemaining = timer::count_seconds(PEffect->GetStartTime() - timer::now() + PEffect->GetDuration());
-                durationRemaining += earth_time::vanadiel_timestamp();
-                durationRemaining *= 60;
+                // using unsigned arithmetic to make overflow well-defined
+                uint32 seconds = static_cast<uint32>(timer::count_seconds(PEffect->GetStartTime() - timer::now() + PEffect->GetDuration()));
+                seconds += static_cast<uint32>(earth_time::vanadiel_timestamp());
+                durationRemaining = seconds * 60;
             }
             packet.icons[i]      = PEffect->GetIcon();
             packet.timestamps[i] = durationRemaining;
