@@ -1991,6 +1991,44 @@ void CZoneEntities::ZoneServer(timer::time_point tick)
     m_aggroableMobs.clear();
 }
 
+void CZoneEntities::CombatTick(timer::time_point tick)
+{
+    TracyZoneScoped;
+
+    // Fast combat tick - only process attack states for entities in combat
+    FOR_EACH_PAIR_CAST_SECOND(CMobEntity*, PMob, m_mobList)
+    {
+        if (PMob->PAI && PMob->PAI->IsEngaged())
+        {
+            PMob->PAI->CombatTick(tick);
+        }
+    }
+
+    FOR_EACH_PAIR_CAST_SECOND(CPetEntity*, PPet, m_petList)
+    {
+        if (PPet->PAI && PPet->PAI->IsEngaged())
+        {
+            PPet->PAI->CombatTick(tick);
+        }
+    }
+
+    FOR_EACH_PAIR_CAST_SECOND(CTrustEntity*, PTrust, m_trustList)
+    {
+        if (PTrust->PAI && PTrust->PAI->IsEngaged())
+        {
+            PTrust->PAI->CombatTick(tick);
+        }
+    }
+
+    FOR_EACH_PAIR_CAST_SECOND(CCharEntity*, PChar, m_charList)
+    {
+        if (PChar->PAI && PChar->PAI->IsEngaged())
+        {
+            PChar->PAI->CombatTick(tick);
+        }
+    }
+}
+
 CZone* CZoneEntities::GetZone()
 {
     return m_zone;

@@ -650,6 +650,12 @@ void CZone::UpdateWeather()
     // clang-format on
 }
 
+void CZone::CombatTick(timer::time_point tick)
+{
+    TracyZoneScoped;
+    m_zoneEntities->CombatTick(tick);
+}
+
 bool CZone::CheckMobsPathedBack()
 {
     bool allMobsHomeAndHealed = true;
@@ -958,6 +964,14 @@ void CZone::createZoneTimers()
     {
         CZone* PZone = std::any_cast<CZone*>(PTask->m_data);
         PZone->CheckTriggerAreas();
+        return 0;
+    });
+
+    ZoneTimerCombat = CTaskManager::getInstance()->AddTask(m_zoneName + "Combat", timer::now(), this, CTaskManager::TASK_INTERVAL, kCombatTickInterval,
+    [](timer::time_point tick, CTaskManager::CTask* PTask)
+    {
+        CZone* PZone = std::any_cast<CZone*>(PTask->m_data);
+        PZone->CombatTick(tick);
         return 0;
     });
 }

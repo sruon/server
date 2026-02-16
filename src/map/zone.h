@@ -636,6 +636,7 @@ public:
 
     virtual void ZoneServer(timer::time_point tick);
     virtual void CheckTriggerAreas();
+    virtual void CombatTick(timer::time_point tick);
 
     virtual void ForEachChar(const std::function<void(CCharEntity*)>& func);
     virtual void ForEachCharInstance(CBaseEntity* PEntity, const std::function<void(CCharEntity*)>& func);
@@ -707,6 +708,7 @@ private:
 protected:
     CTaskManager::CTask* ZoneTimer; // The pointer to the created timer is necessary for the possibility of stopping it
     CTaskManager::CTask* ZoneTimerTriggerAreas;
+    CTaskManager::CTask* ZoneTimerCombat;
     CTaskManager::CTask* SpawnHandlerTimer;
 
     triggerAreaList_t m_triggerAreaList;

@@ -445,6 +445,32 @@ void CAIContainer::Tick(timer::time_point _tick)
     PEntity->PostTick();
 }
 
+void CAIContainer::CombatTick(timer::time_point _tick)
+{
+    TracyZoneScoped;
+
+    m_PrevTick = m_Tick;
+    m_Tick     = _tick;
+
+    // Only process if we have an attack state on top
+    if (!m_stateStack.empty())
+    {
+        CState* top = m_stateStack.top().get();
+        if (auto* attackState = dynamic_cast<CAttackState*>(top))
+        {
+            if (attackState->DoUpdate(_tick))
+            {
+                // State completed (target died, disengaged, etc.)
+                auto state = std::move(m_stateStack.top());
+                m_stateStack.pop();
+                state->Cleanup(_tick);
+            }
+        }
+    }
+
+    PEntity->PostTick();
+}
+
 bool CAIContainer::IsStateStackEmpty()
 {
     return m_stateStack.empty();

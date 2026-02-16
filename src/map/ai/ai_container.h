@@ -81,6 +81,7 @@ public:
 
     void    Reset();
     void    Tick(timer::time_point _tick);
+    void    CombatTick(timer::time_point _tick);
     CState* GetCurrentState();
     bool    IsStateStackEmpty();
     void    ClearStateStack();
