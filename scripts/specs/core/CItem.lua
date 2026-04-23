@@ -71,16 +71,6 @@ end
 function CItem:isSubType(subtype)
 end
 
----@param reserved integer
----@return nil
-function CItem:setReservedValue(reserved)
-end
-
----@nodiscard
----@return integer
-function CItem:getReservedValue()
-end
-
 ---@nodiscard
 ---@return string
 function CItem:getName()

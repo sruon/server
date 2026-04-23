@@ -22,6 +22,7 @@
 #include "0x10a_bazaar_itemset.h"
 
 #include "entities/charentity.h"
+#include "items/item_store.h"
 #include "packets/s2c/0x01d_item_same.h"
 #include "packets/s2c/0x020_item_attr.h"
 
@@ -47,18 +48,18 @@ void GP_CLI_COMMAND_BAZAAR_ITEMSET::process(MapSession* PSession, CCharEntity* P
         return;
     }
 
-    if (PItem->getReserve() > 0)
+    if (ItemStore::isBusy(PItem))
     {
-        ShowError("Player %s trying to bazaar a RESERVED item! [Item: %i | Slot ID: %i] ", PChar->getName(), PItem->getID(), this->ItemIndex);
+        ShowError("Player %s trying to bazaar a BUSY item! [Item: %i | Slot ID: %i] ", PChar->getName(), PItem->getID(), this->ItemIndex);
         return;
     }
 
-    if (!PItem->hasFlag(ItemFlag::Exclusive) && (!PItem->isSubType(ITEM_LOCKED) || PItem->getCharPrice() != 0))
+    // isBusy already bailed above; this is just the Exclusive gate.
+    if (!PItem->hasFlag(ItemFlag::Exclusive))
     {
         db::preparedStmt("UPDATE char_inventory SET bazaar = ? WHERE charid = ? AND location = 0 AND slot = ?", this->Price, PChar->id, this->ItemIndex);
 
         PItem->setCharPrice(this->Price);
-        PItem->setSubType((this->Price == 0 ? ITEM_UNLOCKED : ITEM_LOCKED));
 
         PChar->pushPacket<GP_SERV_COMMAND_ITEM_ATTR>(PItem, LOC_INVENTORY, this->ItemIndex);
         PChar->pushPacket<GP_SERV_COMMAND_ITEM_SAME>(PChar);

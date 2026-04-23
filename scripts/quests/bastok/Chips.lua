@@ -63,27 +63,24 @@ quest.sections =
         {
             ['Cid'] =
             {
-                onTrade = function(player, npc, trade)
-                    if npcUtil.tradeHasExactly(trade, { xi.item.CARMINE_CHIP, xi.item.CYAN_CHIP, xi.item.GRAY_CHIP }) then
-                        if
-                            player:getFreeSlotsCount() == 0 or
-                            player:hasItem(xi.item.CCB_POLYMER)
-                        then
-                            return player:messageSpecial(metalID.text.ITEM_CANNOT_BE_OBTAINED, xi.item.CCB_POLYMER)
-                        else
-                            return quest:progressEvent(883)
-                        end
-                    end
-                end,
-            },
-
-            onEventFinish =
-            {
-                [883] = function(player, csid, option, npc)
-                    if quest:complete(player) then
-                        player:confirmTrade()
-                    end
-                end,
+                declaredTrades =
+                {
+                    {
+                        match   = {
+                            items = {
+                                { xi.item.CARMINE_CHIP, 1 },
+                                { xi.item.CYAN_CHIP,    1 },
+                                { xi.item.GRAY_CHIP,    1 },
+                            },
+                        },
+                        event = {
+                            id       = 883,
+                            onFinish = function(player, option, npc)
+                                return quest:complete(player)
+                            end,
+                        },
+                    },
+                },
             },
         },
     },
@@ -97,27 +94,24 @@ quest.sections =
         {
             ['Cid'] =
             {
-                onTrade = function(player, npc, trade)
-                    if npcUtil.tradeHasExactly(trade, { xi.item.CARMINE_CHIP, xi.item.CYAN_CHIP, xi.item.GRAY_CHIP }) then
-                        if
-                            player:getFreeSlotsCount() == 0 or
-                            player:hasItem(xi.item.CCB_POLYMER)
-                        then
-                            return player:messageSpecial(metalID.text.ITEM_CANNOT_BE_OBTAINED, xi.item.CCB_POLYMER)
-                        else
-                            return quest:progressEvent(884)
-                        end
-                    end
-                end,
-            },
-
-            onEventFinish =
-            {
-                [884] = function(player, csid, option, npc)
-                    if quest:complete(player) then
-                        player:confirmTrade()
-                    end
-                end,
+                declaredTrades =
+                {
+                    {
+                        match   = {
+                            items = {
+                                { xi.item.CARMINE_CHIP, 1 },
+                                { xi.item.CYAN_CHIP,    1 },
+                                { xi.item.GRAY_CHIP,    1 },
+                            },
+                        },
+                        event = {
+                            id       = 884,
+                            onFinish = function(player, option, npc)
+                                return quest:complete(player)
+                            end,
+                        },
+                    },
+                },
             },
         },
     },

@@ -6296,8 +6296,8 @@ bool RemoveAmmo(CCharEntity* PChar, int quantity)
     {
         if ((PItem->getQuantity() - quantity) < 1)
         {
-            uint8 slot = PChar->equip[SLOT_AMMO];
-            uint8 loc  = PChar->equipLoc[SLOT_AMMO];
+            uint8 slot = PChar->inventorySlotFor(SLOT_AMMO);
+            uint8 loc  = PChar->containerIdFor(SLOT_AMMO);
             charutils::UnequipItem(PChar, SLOT_AMMO);
             PChar->RequestPersist(CHAR_PERSIST::EQUIP);
             charutils::UpdateItem(PChar, loc, slot, -quantity);
@@ -6306,7 +6306,7 @@ bool RemoveAmmo(CCharEntity* PChar, int quantity)
         }
         else
         {
-            charutils::UpdateItem(PChar, PChar->equipLoc[SLOT_AMMO], PChar->equip[SLOT_AMMO], -quantity);
+            charutils::UpdateItem(PChar, PChar->containerIdFor(SLOT_AMMO), PChar->inventorySlotFor(SLOT_AMMO), -quantity);
             PChar->pushPacket<GP_SERV_COMMAND_ITEM_SAME>(PChar);
             return false;
         }

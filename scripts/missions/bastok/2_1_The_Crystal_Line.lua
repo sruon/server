@@ -100,14 +100,25 @@ mission.sections =
 
             ['Cid'] =
             {
-                onTrade = function(player, npc, trade)
-                    if
-                        player:getMissionStatus(mission.areaId) == 1 and
-                        npcUtil.tradeHasExactly(trade, xi.item.FADED_CRYSTAL)
-                    then
-                        return mission:progressEvent(506)
-                    end
-                end,
+                declaredTrades =
+                {
+                    {
+                        match   = { items = {{ xi.item.FADED_CRYSTAL, 1 }} },
+                        acceptIf = function(player, npc)
+                            return player:getMissionStatus(mission.areaId) == 1
+                        end,
+                        event = {
+                            id       = 506,
+                            onFinish = function(player, option, npc)
+                                if option == 0 then
+                                    npcUtil.giveKeyItem(player, xi.ki.C_L_REPORT)
+                                    return true
+                                end
+                                return false
+                            end,
+                        },
+                    },
+                },
 
                 onTrigger = function(player, npc)
                     local missionStatus = player:getMissionStatus(mission.areaId)
@@ -142,13 +153,6 @@ mission.sections =
                         if npcUtil.giveItem(player, crystalItem) then
                             player:setMissionStatus(mission.areaId, 1)
                         end
-                    end
-                end,
-
-                [506] = function(player, csid, option, npc)
-                    if option == 0 then
-                        player:confirmTrade()
-                        npcUtil.giveKeyItem(player, xi.ki.C_L_REPORT)
                     end
                 end,
 

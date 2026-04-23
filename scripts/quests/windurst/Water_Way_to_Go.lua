@@ -52,20 +52,18 @@ quest.sections =
         {
             ['Giddeus_Spring'] =
             {
-                onTrade = function(player, npc, trade)
-                    if npcUtil.tradeHasExactly(trade, xi.item.RHINOSTERY_CANTEEN) then
-                        return quest:progressEvent(55)
-                    end
-                end,
-            },
-
-            onEventFinish =
-            {
-                [55] = function(player, csid, option, npc)
-                    if npcUtil.giveItem(player, xi.item.CANTEEN_OF_GIDDEUS_WATER) then
-                        player:confirmTrade()
-                    end
-                end,
+                declaredTrades =
+                {
+                    {
+                        match   = { items = {{ xi.item.RHINOSTERY_CANTEEN, 1 }} },
+                        event   = {
+                            id       = 55,
+                            onFinish = function(player, option, npc)
+                                return npcUtil.giveItem(player, xi.item.CANTEEN_OF_GIDDEUS_WATER)
+                            end,
+                        },
+                    },
+                },
             },
         },
 
@@ -73,11 +71,25 @@ quest.sections =
         {
             ['Ohbiru-Dohbiru'] =
             {
-                onTrade = function(player, npc, trade)
-                    if npcUtil.tradeHasExactly(trade, xi.item.CANTEEN_OF_GIDDEUS_WATER) then
-                        return quest:progressEvent(355, 900)
-                    end
-                end,
+                declaredTrades =
+                {
+                    {
+                        match   = { items = {{ xi.item.CANTEEN_OF_GIDDEUS_WATER, 1 }} },
+                        event   = {
+                            id       = 355,
+                            params   = { 900 },
+                            onFinish = function(player, option, npc)
+                                if quest:complete(player) then
+                                    player:addGil(900)
+                                    player:setLocalVar('Quest[2][17]mustZone', 1)
+                                    quest:setMustZone(player)
+                                    return true
+                                end
+                                return false
+                            end,
+                        },
+                    },
+                },
 
                 onTrigger = function(player, npc)
                     if
@@ -95,16 +107,6 @@ quest.sections =
             {
                 [354] = function(player, csid, option, npc)
                     npcUtil.giveItem(player, xi.item.RHINOSTERY_CANTEEN)
-                end,
-
-                [355] = function(player, csid, option, npc)
-                    if quest:complete(player) then
-                        player:tradeComplete()
-                        -- Note: Message display for gil reward is handled by the event
-                        player:addGil(900)
-                        player:setLocalVar('Quest[2][17]mustZone', 1)
-                        quest:setMustZone(player)
-                    end
                 end,
             },
         },

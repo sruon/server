@@ -114,10 +114,6 @@ SOL_BIND_DEF(CLuaSpell, CSpell);
 #include "lua_statuseffect.h"
 SOL_BIND_DEF(CLuaStatusEffect, CStatusEffect);
 
-#include "trade_container.h"
-#include "lua_trade_container.h"
-SOL_BIND_DEF(CLuaTradeContainer, CTradeContainer);
-
 #include "trigger_area.h"
 #include "lua_trigger_area.h"
 SOL_BIND_DEF(CLuaTriggerArea, ITriggerArea);

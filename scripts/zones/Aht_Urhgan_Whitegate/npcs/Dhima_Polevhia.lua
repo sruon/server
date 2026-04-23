@@ -47,36 +47,29 @@ local tradeTable =
     },
 }
 
-entity.onTrade = function(player, npc, trade)
-    -- Early return: No order placed.
-    local orderedItemId = player:getCharVar('[PUP]orderId')
-    if orderedItemId == 0 then
-        return
-    end
-
-    -- Early return: No data for the order.
-    local recipe = tradeTable[orderedItemId]
-    if not recipe then
-        return
-    end
-
-    -- Check all items involved in the recipe and track the total quantity.
-    local itemCount = 0
-    for i = 1, #recipe do
-        local itemId       = recipe[i][1]
-        local itemQuantity = recipe[i][2]
-        if trade:hasItemQty(itemId, itemQuantity) then
-            itemCount = itemCount + itemQuantity
-        else
-            return
-        end
-    end
-
-    -- Check for exact item quantity.
-    if itemCount == dataTable[orderedItemId][2] then
-        player:startEvent(795)
-    end
+local function deliveryDecl(orderId)
+    return {
+        match = { items = tradeTable[orderId] },
+        acceptIf = function(player)
+            return player:getCharVar('[PUP]orderId')    == orderId
+               and player:getCharVar('[PUP]orderStage') == 1
+        end,
+        event = {
+            id       = 795,
+            onFinish = function(player, option)
+                player:setCharVar('[PUP]orderStage', 2)
+                player:setCharVar('[PUP]orderTime', VanadielUniqueDay())
+            end,
+        },
+    }
 end
+
+entity.declaredTrades =
+{
+    deliveryDecl(xi.item.PUPPETRY_TOBE),
+    deliveryDecl(xi.item.PUPPETRY_DASTANAS),
+    deliveryDecl(xi.item.PUPPETRY_BABOUCHES),
+}
 
 entity.onTrigger = function(player, npc)
     local piecesBitmask = player:getCharVar('[AF]pupCrafted')
@@ -144,13 +137,6 @@ entity.onEventFinish = function(player, csid, option, npc)
             player:setCharVar('[PUP]orderStage', 0)
             player:setCharVar('[PUP]orderTime', 0)
         end
-    end
-
-    -- Trade event. Triggers on succesful trade.
-    if csid == 795 then
-        player:tradeComplete()
-        player:setCharVar('[PUP]orderStage', 2)
-        player:setCharVar('[PUP]orderTime', VanadielUniqueDay())
     end
 end
 

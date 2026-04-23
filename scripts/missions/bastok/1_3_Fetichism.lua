@@ -33,23 +33,29 @@ local handleAcceptMission = function(player, csid, option, npc)
     end
 end
 
-local handleFetichTrade = function(player, npc, trade)
-    if
-        npcUtil.tradeHasExactly(trade, { xi.item.QUADAV_FETICH_HEAD, xi.item.QUADAV_FETICH_TORSO, xi.item.QUADAV_FETICH_ARMS, xi.item.QUADAV_FETICH_LEGS })
-    then
-        if not player:hasCompletedMission(mission.areaId, mission.missionId) then
-            return mission:progressEvent(1008)
-        else
-            return mission:progressEvent(1005)
-        end
-    end
+local fetichItems = {
+    { xi.item.QUADAV_FETICH_HEAD,  1 },
+    { xi.item.QUADAV_FETICH_TORSO, 1 },
+    { xi.item.QUADAV_FETICH_ARMS,  1 },
+    { xi.item.QUADAV_FETICH_LEGS,  1 },
+}
+
+local fetichOnFinish = function(player, option, npc)
+    return mission:complete(player)
 end
 
-local handleCompleteEvent = function(player, csid, option, npc)
-    if mission:complete(player) then
-        player:confirmTrade()
-    end
-end
+local fetichDeclaredTrades =
+{
+    {
+        match   = { items = fetichItems },
+        event = {
+            id = function(player)
+                return player:hasCompletedMission(mission.areaId, mission.missionId) and 1005 or 1008
+            end,
+            onFinish = fetichOnFinish,
+        },
+    },
+}
 
 mission.sections =
 {
@@ -103,14 +109,8 @@ mission.sections =
         {
             ['Cleades'] =
             {
-                onTrade   = handleFetichTrade,
-                onTrigger = mission:messageSpecial(bastokMarketsID.text.ORIGINAL_MISSION_OFFSET + 6),
-            },
-
-            onEventFinish =
-            {
-                [1005] = handleCompleteEvent,
-                [1008] = handleCompleteEvent,
+                declaredTrades = fetichDeclaredTrades,
+                onTrigger      = mission:messageSpecial(bastokMarketsID.text.ORIGINAL_MISSION_OFFSET + 6),
             },
         },
 
@@ -118,14 +118,8 @@ mission.sections =
         {
             ['Rashid'] =
             {
-                onTrade   = handleFetichTrade,
-                onTrigger = mission:messageSpecial(bastokMinesID.text.ORIGINAL_MISSION_OFFSET + 6),
-            },
-
-            onEventFinish =
-            {
-                [1005] = handleCompleteEvent,
-                [1008] = handleCompleteEvent,
+                declaredTrades = fetichDeclaredTrades,
+                onTrigger      = mission:messageSpecial(bastokMinesID.text.ORIGINAL_MISSION_OFFSET + 6),
             },
         },
 
@@ -133,14 +127,8 @@ mission.sections =
         {
             ['Malduc'] =
             {
-                onTrade   = handleFetichTrade,
-                onTrigger = mission:messageSpecial(metalworksID.text.ORIGINAL_MISSION_OFFSET + 6),
-            },
-
-            onEventFinish =
-            {
-                [1005] = handleCompleteEvent,
-                [1008] = handleCompleteEvent,
+                declaredTrades = fetichDeclaredTrades,
+                onTrigger      = mission:messageSpecial(metalworksID.text.ORIGINAL_MISSION_OFFSET + 6),
             },
         },
 
@@ -148,14 +136,8 @@ mission.sections =
         {
             ['Argus'] =
             {
-                onTrade   = handleFetichTrade,
-                onTrigger = mission:messageSpecial(portBastokID.text.ORIGINAL_MISSION_OFFSET + 6),
-            },
-
-            onEventFinish =
-            {
-                [1005] = handleCompleteEvent,
-                [1008] = handleCompleteEvent,
+                declaredTrades = fetichDeclaredTrades,
+                onTrigger      = mission:messageSpecial(portBastokID.text.ORIGINAL_MISSION_OFFSET + 6),
             },
         },
     },

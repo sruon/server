@@ -22,8 +22,8 @@
 #include "0x084_shop_sell_req.h"
 
 #include "entities/charentity.h"
+#include "items/shop_display.h"
 #include "packets/s2c/0x03d_shop_sell.h"
-#include "trade_container.h"
 
 auto GP_CLI_COMMAND_SHOP_SELL_REQ::validate(MapSession* PSession, const CCharEntity* PChar) const -> PacketValidationResult
 {
@@ -39,8 +39,7 @@ void GP_CLI_COMMAND_SHOP_SELL_REQ::process(MapSession* PSession, CCharEntity* PC
     if (PItem && (PItem->getID() == this->ItemNo) && !PItem->hasFlag(ItemFlag::NoSale))
     {
         quantity = std::min(quantity, PItem->getQuantity());
-        // Store item-to-sell in the last slot of the shop container
-        PChar->Container->setItem(PChar->Container->getExSize(), this->ItemNo, this->ItemIndex, quantity);
+        PChar->shopDisplay.stagePendingSell(this->ItemNo, this->ItemIndex, quantity);
         PChar->pushPacket<GP_SERV_COMMAND_SHOP_SELL>(this->ItemIndex, PItem->getBasePrice());
     }
 }

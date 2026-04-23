@@ -89,33 +89,23 @@ mission.sections =
         {
             ['Alois'] =
             {
-                onTrade = function(player, npc, trade)
-                    if npcUtil.tradeHasExactly(trade, xi.item.LIZARD_EGG) then
-                        if not player:hasCompletedMission(mission.areaId, mission.missionId) then
-                            return mission:progressEvent(372)
-                        else
-                            return mission:progressEvent(373)
-                        end
-                    end
-                end,
+                declaredTrades =
+                {
+                    {
+                        match   = { items = {{ xi.item.LIZARD_EGG, 1 }} },
+                        event = {
+                            id = function(player)
+                                return player:hasCompletedMission(mission.areaId, mission.missionId) and 373 or 372
+                            end,
+                            onFinish = function(player, option, npc)
+                                return mission:complete(player)
+                            end,
+                        },
+                    },
+                },
             },
 
             ['Malduc'] = mission:messageSpecial(metalworksID.text.ORIGINAL_MISSION_OFFSET + 21),
-
-            onEventFinish =
-            {
-                [372] = function(player, csid, option, npc)
-                    if mission:complete(player) then
-                        player:confirmTrade()
-                    end
-                end,
-
-                [373] = function(player, csid, option, npc)
-                    if mission:complete(player) then
-                        player:confirmTrade()
-                    end
-                end,
-            },
         },
 
         [xi.zone.PORT_BASTOK] =

@@ -86,7 +86,30 @@ set(ITEM_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/item_usable.h
     ${CMAKE_CURRENT_SOURCE_DIR}/item_weapon.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/item_weapon.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/item_bindings.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/item_bindings.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/dbox_view.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/dbox_view.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/shop_display.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/craft_state.h
     ${CMAKE_CURRENT_SOURCE_DIR}/item.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/item.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/item_owner.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/item_store.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/item_store.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/transaction.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/transaction.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/transaction_handle.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/transactions/item_use.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/transactions/item_use.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/pending_declared_trade.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/transactions/npc_trade.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/transactions/npc_trade.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/transactions/synth.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/transactions/synth.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/transactions/player_trade.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/transactions/player_trade.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/transactions/dbox_view_transaction.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/transactions/dbox_view_transaction.h
     PARENT_SCOPE
 )

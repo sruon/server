@@ -24,11 +24,11 @@
 #include "lua_battlefield.h"
 #include "lua_instance.h"
 #include "lua_item.h"
+#include "lua_trade.h"
 
 #include "items/exdata/worn_item.h"
 #include "lua_spell.h"
 #include "lua_statuseffect.h"
-#include "lua_trade_container.h"
 #include "lua_zone.h"
 #include "luautils.h"
 
@@ -64,7 +64,6 @@
 #include "status_effect.h"
 #include "status_effect_container.h"
 #include "timetriggers.h"
-#include "trade_container.h"
 #include "transport.h"
 #include "treasure_pool.h"
 #include "weapon_skill.h"
@@ -104,6 +103,9 @@
 #include "items/exdata.h"
 #include "items/item_furnishing.h"
 #include "items/item_linkshell.h"
+#include "items/item_store.h"
+#include "items/pending_declared_trade.h"
+#include "items/transactions/npc_trade.h"
 
 #include "packets/char_status.h"
 #include "packets/char_sync.h"
@@ -4192,7 +4194,8 @@ auto CLuaBaseEntity::addItem(sol::variadic_args va) const -> CItem*
 
         while (PChar->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0 && quantity > 0)
         {
-            if (CItem* PItem = itemutils::GetItem(id))
+            auto PItem = itemutils::GetItem(id);
+            if (PItem != nullptr)
             {
                 PItem->setQuantity(quantity);
                 quantity -= PItem->getStackSize();
@@ -4221,7 +4224,7 @@ auto CLuaBaseEntity::addItem(sol::variadic_args va) const -> CItem*
                 if (exdataObj.is<sol::table>())
                 {
                     auto exdataTable = exdataObj.as<sol::table>();
-                    if (!Exdata::fromTable(PItem, exdataTable))
+                    if (!Exdata::fromTable(PItem.get(), exdataTable))
                     {
                         for (const auto& [keyObj, valObj] : exdataTable)
                         {
@@ -4240,12 +4243,16 @@ auto CLuaBaseEntity::addItem(sol::variadic_args va) const -> CItem*
                     }
                 }
 
-                SlotID = charutils::AddItem(PChar, LOC_INVENTORY, PItem, silent);
+                // Grab a non-owning raw view before the move; valid only
+                // on the success branch because AddItem auto-drops the
+                // item when it rejects.
+                CItem* rawItem = PItem.get();
+                SlotID         = charutils::AddItem(PChar, LOC_INVENTORY, std::move(PItem), silent);
                 if (SlotID == ERROR_SLOTID)
                 {
                     break;
                 }
-                AddedItem = PItem;
+                AddedItem = rawItem;
             }
             else
             {
@@ -4283,19 +4290,21 @@ auto CLuaBaseEntity::addItem(sol::variadic_args va) const -> CItem*
 
         while (PChar->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0 && quantity > 0)
         {
-            if (CItem* PItem = itemutils::GetItem(itemID))
+            auto PItem = itemutils::GetItem(itemID);
+            if (PItem != nullptr)
             {
                 PItem->setQuantity(quantity);
                 quantity -= PItem->getStackSize();
 
-                SlotID = charutils::AddItem(PChar, LOC_INVENTORY, PItem, silence);
+                CItem* rawItem = PItem.get();
+                SlotID         = charutils::AddItem(PChar, LOC_INVENTORY, std::move(PItem), silence);
 
                 // Paranoid check
                 if (SlotID == ERROR_SLOTID)
                 {
                     break;
                 }
-                AddedItem = PItem;
+                AddedItem = rawItem;
             }
             else
             {
@@ -4406,7 +4415,7 @@ bool CLuaBaseEntity::delContainerItems(const sol::object& containerID)
     // ensure we unequip equipped items before deletion
     for (uint8 equipmentSlot = 0; equipmentSlot <= 15; equipmentSlot++)
     {
-        if (PChar->equipLoc[equipmentSlot] == location)
+        if (PChar->containerIdFor(equipmentSlot) == location)
         {
             // UnequipItem doesn't consider SLOT_MAIN removing SLOT_SUB, so we say to Equip nothing in this equipment slot
             // this is the same thing that equipset_set packet does to remove a slot
@@ -4449,21 +4458,21 @@ bool CLuaBaseEntity::addUsedItem(uint16 itemID)
 
     if (PChar->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() != 0)
     {
-        CItem* PItem = itemutils::GetItem(itemID);
+        auto PItem = itemutils::GetItem(itemID);
 
         if (PItem != nullptr)
         {
             if (PItem->isSubType(ITEM_CHARGED))
             {
-                auto* PUsable = static_cast<CItemUsable*>(PItem);
+                auto* PUsable = static_cast<CItemUsable*>(PItem.get());
                 PUsable->setQuantity(1);
                 PUsable->setLastUseTime(timer::now());
-                SlotID = charutils::AddItem(PChar, LOC_INVENTORY, PUsable, false);
+                SlotID = charutils::AddItem(PChar, LOC_INVENTORY, std::move(PItem), false);
             }
             else
             {
                 ShowWarning("addUsedItem: tried to setLastUseTime but itemID <%i> is not type ITEM_CHARGED", itemID);
-                destroy(PItem);
+                // PItem dies here → auto-drop.
             }
         }
         else
@@ -4549,13 +4558,13 @@ bool CLuaBaseEntity::addTempItem(uint16 itemID, const sol::object& arg1)
 
     if (PChar->getStorage(LOC_TEMPITEMS)->GetFreeSlotsCount() != 0 && quantity != 0)
     {
-        CItem* PItem = itemutils::GetItem(itemID);
+        auto PItem = itemutils::GetItem(itemID);
 
         if (PItem != nullptr)
         {
             PItem->setQuantity(quantity);
 
-            SlotID = charutils::AddItem(PChar, LOC_TEMPITEMS, PItem);
+            SlotID = charutils::AddItem(PChar, LOC_TEMPITEMS, std::move(PItem));
         }
         else
         {
@@ -4719,13 +4728,11 @@ void CLuaBaseEntity::createShop(uint8 size, const sol::object& arg1)
 
     auto* PChar = static_cast<CCharEntity*>(m_PBaseEntity);
 
-    PChar->Container->Clean();
-    PChar->Container->setSize(size + 1);
+    // `arg1` historically set Container::type to a shop-log/nation id
+    // that nothing in C++ ever reads. Ignored.
+    (void)arg1;
 
-    if (arg1 != sol::lua_nil && arg1.is<double>())
-    {
-        PChar->Container->setType(arg1.as<uint8>());
-    }
+    PChar->shopDisplay.reset(size + 1);
 }
 
 /************************************************************************
@@ -4745,24 +4752,18 @@ void CLuaBaseEntity::addShopItem(uint16 itemID, double rawPrice, const sol::obje
         return;
     }
 
-    CCharEntity* PChar  = static_cast<CCharEntity*>(m_PBaseEntity);
-    uint8        slotID = PChar->Container->getItemsCount();
-    uint32       price  = static_cast<uint32>(rawPrice);
+    CCharEntity* PChar = static_cast<CCharEntity*>(m_PBaseEntity);
+    const uint32 price = static_cast<uint32>(rawPrice);
 
-    PChar->Container->setItem(slotID, itemID, 0, price);
-
-    // Players can add items to the shop container during shop interaction,
-    // so track the shop's number of items separately from the container's size.
-    PChar->Container->setExSize(PChar->Container->getExSize() + 1);
-
+    uint8  guildID   = 0;
+    uint16 guildRank = 0;
     if (arg2.is<int>() && arg3.is<int>())
     {
-        uint8  guildID   = arg2.as<uint8>();
-        uint16 guildRank = arg3.as<uint16>();
-
-        static_cast<CCharEntity*>(m_PBaseEntity)->Container->setGuildID(slotID, guildID);
-        static_cast<CCharEntity*>(m_PBaseEntity)->Container->setGuildRank(slotID, guildRank);
+        guildID   = arg2.as<uint8>();
+        guildRank = arg3.as<uint16>();
     }
+
+    PChar->shopDisplay.push(itemID, price, guildID, guildRank);
 }
 
 /************************************************************************
@@ -4837,12 +4838,13 @@ bool CLuaBaseEntity::addLinkpearl(const std::string& lsname, bool equip)
         return false;
     }
 
-    CCharEntity*    PChar          = (CCharEntity*)m_PBaseEntity;
-    CItemLinkshell* PItemLinkPearl = PChar->m_GMlevel > 0 ? (CItemLinkshell*)itemutils::GetItem(514) : (CItemLinkshell*)itemutils::GetItem(515);
-    LSTYPE          lstype         = PChar->m_GMlevel > 0 ? LSTYPE_PEARLSACK : LSTYPE_LINKPEARL;
-    if (PItemLinkPearl != nullptr)
+    CCharEntity* PChar  = (CCharEntity*)m_PBaseEntity;
+    auto         PItem  = PChar->m_GMlevel > 0 ? itemutils::GetItem(514) : itemutils::GetItem(515);
+    LSTYPE       lstype = PChar->m_GMlevel > 0 ? LSTYPE_PEARLSACK : LSTYPE_LINKPEARL;
+    if (PItem != nullptr)
     {
-        const auto rset = db::preparedStmt("SELECT linkshellid, color FROM linkshells WHERE name = ? AND broken = 0", lsname);
+        auto*      PItemLinkPearl = static_cast<CItemLinkshell*>(PItem.get());
+        const auto rset           = db::preparedStmt("SELECT linkshellid, color FROM linkshells WHERE name = ? AND broken = 0", lsname);
         if (rset && rset->rowsCount() && rset->next())
         {
             // build linkpearl
@@ -4851,15 +4853,14 @@ bool CLuaBaseEntity::addLinkpearl(const std::string& lsname, bool equip)
             PItemLinkPearl->SetLSColor(rset->get<uint16>("color"));
             PItemLinkPearl->SetLSType(lstype);
             PItemLinkPearl->setQuantity(1);
-            if (charutils::AddItem(PChar, LOC_INVENTORY, PItemLinkPearl) != ERROR_SLOTID)
+            if (charutils::AddItem(PChar, LOC_INVENTORY, std::move(PItem)) != ERROR_SLOTID)
             {
-                // equip linkpearl to slot 2
+                // equip linkpearl to slot 2. PItemLinkPearl is still
+                // valid — the inventory container owns it after AddItem.
                 if (equip)
                 {
                     linkshell::AddOnlineMember(PChar, PItemLinkPearl, 2);
-                    PItemLinkPearl->setSubType(ITEM_LOCKED);
-                    PChar->equip[SLOT_LINK2]    = PItemLinkPearl->getSlotID();
-                    PChar->equipLoc[SLOT_LINK2] = LOC_INVENTORY;
+                    PChar->setEquip(SLOT_LINK2, LOC_INVENTORY, PItemLinkPearl->getSlotID(), PItemLinkPearl);
                     PChar->pushPacket<GP_SERV_COMMAND_ITEM_LIST>(PItemLinkPearl, ItemLockFlg::Linkshell);
                     charutils::SaveCharEquip(PChar);
                     PChar->pushPacket<GP_SERV_COMMAND_GROUP_COMLINK>(PChar, PItemLinkPearl->GetLSID());
@@ -4870,11 +4871,7 @@ bool CLuaBaseEntity::addLinkpearl(const std::string& lsname, bool equip)
                 return true;
             }
         }
-        else
-        {
-            // Linkshell not found, clean up
-            destroy(PItemLinkPearl);
-        }
+        // else/fall-through: PItem auto-drops at function exit.
     }
     return false;
 }
@@ -4946,101 +4943,586 @@ uint8 CLuaBaseEntity::getFreeSlotsCount(const sol::object& locID)
 }
 
 /************************************************************************
- *  Function: confirmTrade()
- *  Purpose : Completes a trade and takes ONLY confirmed items
- *  Example : player:confirmTrade()
- *  Notes   : Must use trade:confirmItem(slotID) first
+ *  getTrade — legacy-compat accessor. Returns a CLuaTrade wrapper
+ *  around the active NpcTradeTransaction for use by legacy
+ *  `entity.onTrade = function(player, npc, trade) ... end` scripts.
+ *  Returns nil when no active trade tx exists.
  ************************************************************************/
-
-void CLuaBaseEntity::confirmTrade() const
+auto CLuaBaseEntity::getTrade() -> sol::object
 {
     if (m_PBaseEntity->objtype != TYPE_PC)
     {
-        ShowWarning("Invalid entity type calling function (%s).", m_PBaseEntity->getName());
-        return;
+        return sol::lua_nil;
     }
-
     auto* PChar = static_cast<CCharEntity*>(m_PBaseEntity);
-
-    for (uint8 slotID = 0; slotID < TRADE_CONTAINER_SIZE; ++slotID)
+    if (PChar->activeTransaction<NpcTradeTransaction>() == nullptr)
     {
-        if (PChar->TradeContainer->getInvSlotID(slotID) != 0xFF)
-        {
-            CItem* PItem = PChar->TradeContainer->getItem(slotID);
-            if (PItem)
-            {
-                uint32 confirmedItems = PChar->TradeContainer->getConfirmedStatus(slotID);
-                auto   quantity       = (int32)std::min<uint32>(PChar->TradeContainer->getQuantity(slotID), confirmedItems);
-
-                PItem->setReserve(PItem->getReserve() - quantity);
-                if (confirmedItems > 0)
-                {
-                    uint8 invSlotID = PChar->TradeContainer->getInvSlotID(slotID);
-                    if (static_cast<uint32>(quantity) >= PChar->TradeContainer->getItem(slotID)->getQuantity())
-                    {
-                        // Set the trade slot to nullptr as the underlying item is about to be destroyed by UpdateItem
-                        PChar->TradeContainer->setItem(slotID, nullptr);
-                    }
-
-                    charutils::UpdateItem(PChar, LOC_INVENTORY, invSlotID, -quantity);
-                }
-            }
-        }
+        return sol::lua_nil;
     }
-    PChar->TradeContainer->Clean();
-    PChar->pushPacket<GP_SERV_COMMAND_ITEM_SAME>(PChar);
+    return sol::make_object(lua, CLuaTrade(PChar));
 }
 
 /************************************************************************
- *  Function: tradeComplete()
- *  Purpose : Completes trade and removes all items in trade container
- *  Example : player:tradeComplete()
+ *  confirmTrade — commit the active NpcTradeTransaction, consuming ONLY
+ *  slots that were explicitly reserved (via trade:confirmItem, typically
+ *  through npcUtil.tradeHasExactly). Returns false if no tx is alive.
+ *  Legacy semantics: paired with trade:confirmItem which reserves slots.
  ************************************************************************/
-
-void CLuaBaseEntity::tradeComplete() const
+auto CLuaBaseEntity::confirmTrade() -> bool
 {
     if (m_PBaseEntity->objtype != TYPE_PC)
     {
-        ShowWarning("Invalid entity type calling function (%s).", m_PBaseEntity->getName());
+        return false;
+    }
+    auto* PChar = static_cast<CCharEntity*>(m_PBaseEntity);
+    auto  tx    = PChar->activeTransaction<NpcTradeTransaction>();
+    if (tx == nullptr)
+    {
+        return false;
+    }
+    return tx->commitAndClose();
+}
+
+/************************************************************************
+ *  tradeComplete — consume EVERY offered item + gil. Legacy scripts
+ *  that don't use confirmItem (treasure chests, etc.) call this to
+ *  wipe the entire offer on success. Reserves all non-empty slots at
+ *  their full offered quantity, then commits.
+ ************************************************************************/
+auto CLuaBaseEntity::tradeComplete() -> bool
+{
+    if (m_PBaseEntity->objtype != TYPE_PC)
+    {
+        return false;
+    }
+    auto* PChar = static_cast<CCharEntity*>(m_PBaseEntity);
+    auto  tx    = PChar->activeTransaction<NpcTradeTransaction>();
+    if (tx == nullptr)
+    {
+        return false;
+    }
+    for (uint8 slot = 0; slot < NpcTradeTransaction::kMaxSlots; ++slot)
+    {
+        auto* item = tx->itemAt(slot);
+        if (item != nullptr)
+        {
+            tx->reserveFromOffer(item->getID(), tx->offeredQtyAt(slot));
+        }
+    }
+    if (tx->offeredGil() != 0)
+    {
+        tx->reserveGil(tx->offeredGil());
+    }
+    return tx->commitAndClose();
+}
+
+/************************************************************************
+ *  confirmDeclaredNpcTrade — evaluate a match spec against the
+ *  active NpcTradeTransaction. See header for spec shape. Failure clears all
+ *  confirmations so the next decl can try.
+ ************************************************************************/
+auto CLuaBaseEntity::confirmDeclaredNpcTrade(const sol::table& spec) -> bool
+{
+    if (m_PBaseEntity->objtype != TYPE_PC)
+    {
+        ShowWarning("confirmDeclaredNpcTrade: not a PC (%s)", m_PBaseEntity->getName());
+        return false;
+    }
+
+    auto* PChar = static_cast<CCharEntity*>(m_PBaseEntity);
+    auto  tx    = PChar->activeTransaction<NpcTradeTransaction>();
+    if (tx == nullptr)
+    {
+        return false;
+    }
+
+    const auto clearAllReservations = [&]()
+    {
+        for (std::uint8_t txSlot = 0; txSlot < NpcTradeTransaction::kMaxSlots; ++txSlot)
+        {
+            tx->clearReservation(txSlot);
+        }
+        tx->clearGilReservation();
+    };
+
+    const sol::object itemsField       = spec["items"];
+    const sol::object anyOfField       = spec["anyOf"];
+    const sol::object allowExtrasField = spec["allowExtras"];
+    const sol::object gilField         = spec["gil"];
+
+    const bool          allowExtras  = allowExtrasField.valid() && allowExtrasField.is<bool>() && allowExtrasField.as<bool>();
+    const bool          hasItemsList = itemsField.is<sol::table>();
+    const bool          hasAnyOfList = anyOfField.is<sol::table>();
+    const std::uint32_t requiredGil  = gilField.is<std::uint32_t>() ? gilField.as<std::uint32_t>() : 0u;
+
+    // Gil match: the offer must have at least the required gil.
+    if (requiredGil > 0)
+    {
+        if (!tx->reserveGil(requiredGil))
+        {
+            clearAllReservations();
+            return false;
+        }
+    }
+
+    // Required-items path: every entry must match exactly.
+    if (hasItemsList)
+    {
+        for (const auto& kv : itemsField.as<sol::table>())
+        {
+            const sol::table entry  = kv.second.as<sol::table>();
+            const uint16     itemId = entry[1].get<uint16>();
+            const uint32     qty    = entry.size() >= 2 ? entry[2].get<uint32>() : 1;
+
+            if (!tx->reserveFromOffer(itemId, qty))
+            {
+                clearAllReservations();
+                return false;
+            }
+        }
+    }
+
+    // anyOf path: for each offered slot, confirm it at its full
+    // offered qty iff its id is in the set. At least one slot must
+    // match. Implicitly allows extras (they roll back).
+    if (hasAnyOfList)
+    {
+        std::unordered_set<uint16> idSet;
+        for (const auto& kv : anyOfField.as<sol::table>())
+        {
+            idSet.insert(kv.second.as<uint16>());
+        }
+
+        std::size_t matched = 0;
+        for (std::uint8_t txSlot = 0; txSlot < NpcTradeTransaction::kMaxSlots; ++txSlot)
+        {
+            auto* item = tx->itemAt(txSlot);
+            if (item != nullptr && tx->reservedQtyAt(txSlot) == 0 &&
+                idSet.count(item->getID()) != 0)
+            {
+                if (!tx->reserveFromOffer(item->getID(), tx->offeredQtyAt(txSlot)))
+                {
+                    clearAllReservations();
+                    return false;
+                }
+                ++matched;
+            }
+        }
+
+        if (matched == 0)
+        {
+            clearAllReservations();
+            return false;
+        }
+    }
+
+    // Exact-match guard: if extras aren't allowed and there's no anyOf,
+    // reject unreserved items. Offered-but-unreserved gil counts as an
+    // extra: if the decl doesn't require gil but the player offered
+    // some, reject.
+    if (!allowExtras && !hasAnyOfList)
+    {
+        for (std::uint8_t txSlot = 0; txSlot < NpcTradeTransaction::kMaxSlots; ++txSlot)
+        {
+            if (tx->itemAt(txSlot) != nullptr && tx->reservedQtyAt(txSlot) == 0)
+            {
+                clearAllReservations();
+                return false;
+            }
+        }
+        if (tx->offeredGil() != 0 && tx->reservedGil() == 0)
+        {
+            clearAllReservations();
+            return false;
+        }
+    }
+
+    return true;
+}
+
+namespace
+{
+
+// Build the offer snapshot passed to acceptIf / event.params. Shape:
+// { { id = itemId, qty = N, item = CLuaItem }, ... } with gil at
+// id 0 if present. `item` is nil for the gil entry and for any slot
+// whose CItem is null; otherwise it's a CLuaItem wrapper so scripts
+// can query signature / augments / exdata / trial id directly.
+auto buildOffersTable(sol::state& L, NpcTradeTransaction* tx) -> sol::table
+{
+    sol::table offers = L.create_table();
+    int        idx    = 1;
+    for (std::uint8_t txSlot = 0; txSlot < NpcTradeTransaction::kMaxSlots; ++txSlot)
+    {
+        auto* item = tx->itemAt(txSlot);
+        if (item == nullptr)
+        {
+            continue;
+        }
+        auto e        = L.create_table();
+        e["id"]       = item->getID();
+        e["qty"]      = tx->offeredQtyAt(txSlot);
+        e["item"]     = CLuaItem(item);
+        offers[idx++] = e;
+    }
+    if (tx->offeredGil() != 0)
+    {
+        auto e        = L.create_table();
+        e["id"]       = 0;
+        e["qty"]      = tx->offeredGil();
+        offers[idx++] = e;
+    }
+    return offers;
+}
+
+// All function-form schema fields receive (player, npc, offers).
+// Scripts declare only the args they need — extra args are harmless
+// in Lua. Uniform signature avoids "which function gets which args"
+// mental tax for script authors.
+auto buildConfirmSpec(sol::state& L, CLuaBaseEntity* player, const sol::object& npcArg, const sol::table& offers, const sol::object& reqObj) -> sol::table
+{
+    sol::table spec = L.create_table();
+    if (reqObj.get_type() != sol::type::table)
+    {
+        return spec;
+    }
+    sol::table req = reqObj;
+
+    sol::object itemsField = req["items"];
+    if (itemsField.get_type() == sol::type::function)
+    {
+        auto r = itemsField.as<sol::protected_function>()(player, npcArg, offers);
+        if (r.valid() && r.return_count() > 0)
+        {
+            sol::object val = r[0];
+            if (val.is<sol::table>())
+            {
+                spec["items"] = val.as<sol::table>();
+            }
+        }
+    }
+    else if (itemsField.is<sol::table>())
+    {
+        spec["items"] = itemsField;
+    }
+
+    sol::object anyOfField = req["anyOf"];
+    if (anyOfField.is<sol::table>())
+    {
+        spec["anyOf"] = anyOfField;
+    }
+
+    sol::object allowExtrasField = req["allowExtras"];
+    if (allowExtrasField.valid() && allowExtrasField.is<bool>() && allowExtrasField.as<bool>())
+    {
+        spec["allowExtras"] = true;
+    }
+
+    sol::object gilField = req["gil"];
+    if (gilField.get_type() == sol::type::function)
+    {
+        auto r = gilField.as<sol::protected_function>()(player, npcArg, offers);
+        if (r.valid() && r.return_count() > 0)
+        {
+            sol::object val = r[0];
+            if (val.is<uint32>())
+            {
+                spec["gil"] = val.as<uint32>();
+            }
+        }
+    }
+    else if (gilField.is<uint32>())
+    {
+        spec["gil"] = gilField;
+    }
+
+    return spec;
+}
+
+// Resolve event.id — static number OR function(player, npc, offers) -> number.
+auto resolveEventId(CLuaBaseEntity* player, const sol::object& npcArg, const sol::table& offers, const sol::table& eventTbl) -> uint32
+{
+    sol::object idField = eventTbl["id"];
+    if (idField.get_type() == sol::type::function)
+    {
+        auto r = idField.as<sol::protected_function>()(player, npcArg, offers);
+        if (r.valid() && r.return_count() > 0)
+        {
+            sol::object val = r[0];
+            if (val.is<uint32>())
+            {
+                return val.as<uint32>();
+            }
+        }
+        return 0;
+    }
+    return idField.is<uint32>() ? idField.as<uint32>() : 0;
+}
+
+// Start a declared-trade event from C++. Params table is 1-indexed
+// (params[1] → eventToStart->params[0]).
+void startDeclaredEvent(CCharEntity* PChar, uint32 eventId, const sol::table& paramsTbl)
+{
+    if (PChar->currentEvent->eventId == static_cast<int32>(eventId))
+    {
+        return;
+    }
+    PChar->StatusEffectContainer->DelStatusEffect(EFFECT_BOOST);
+
+    auto* eventToStart    = new EventInfo();
+    eventToStart->eventId = eventId;
+    if (PChar->eventPreparation)
+    {
+        eventToStart->targetEntity = PChar->eventPreparation->targetEntity;
+        eventToStart->scriptFile   = PChar->eventPreparation->scriptFile;
+    }
+    eventToStart->textTable = -1;
+    eventToStart->type      = EVENT_TYPE::NORMAL;
+
+    if (paramsTbl.valid())
+    {
+        for (int i = 0; i < 8; ++i)
+        {
+            const uint32 p = paramsTbl.get_or<uint32>(i + 1, 0);
+            if (p != 0)
+            {
+                eventToStart->params[i] = p;
+            }
+        }
+    }
+    PChar->queueEvent(eventToStart);
+}
+
+} // namespace
+
+/************************************************************************
+ *  dispatchDeclaredTrades — engine-owned declarative trade pipeline.
+ *  See header comment and docs/design/unified-trade-api.md.
+ ************************************************************************/
+auto CLuaBaseEntity::dispatchDeclaredTrades(CLuaBaseEntity* npcWrapper, const sol::table& decls) -> bool
+{
+    if (m_PBaseEntity->objtype != TYPE_PC)
+    {
+        return false;
+    }
+    auto* PChar = static_cast<CCharEntity*>(m_PBaseEntity);
+    auto  tx    = PChar->activeTransaction<NpcTradeTransaction>();
+    if (tx == nullptr)
+    {
+        return false;
+    }
+
+    // Snapshot offers once. Passed to acceptIf / event.params.
+    sol::table offers = buildOffersTable(lua, tx.get());
+
+    const auto npcArg = [&]() -> sol::object
+    {
+        if (npcWrapper != nullptr)
+        {
+            return sol::make_object(lua, npcWrapper);
+        }
+        return sol::lua_nil;
+    }();
+
+    const std::string npcName = npcWrapper ? npcWrapper->GetBaseEntity()->getName() : "(no npc)";
+
+    for (const auto& kv : decls)
+    {
+        const auto declIndex = kv.first.is<int>() ? kv.first.as<int>() : -1;
+        if (kv.second.get_type() != sol::type::table)
+        {
+            ShowWarning("dispatchDeclaredTrades: %s -> %s decl #%d is not a table; skipping",
+                        PChar->getName().c_str(),
+                        npcName.c_str(),
+                        declIndex);
+            continue;
+        }
+        sol::table decl = kv.second.as<sol::table>();
+
+        // Shape validation: exactly one of onSuccess / event.
+        const bool hasOnSuccess = decl["onSuccess"].get_type() == sol::type::function;
+        const bool hasEvent     = decl["event"].get_type() == sol::type::table;
+        if (hasOnSuccess && hasEvent)
+        {
+            ShowWarning("dispatchDeclaredTrades: %s -> %s decl #%d has both onSuccess and event; use one",
+                        PChar->getName().c_str(),
+                        npcName.c_str(),
+                        declIndex);
+            continue;
+        }
+        if (!hasOnSuccess && !hasEvent)
+        {
+            ShowWarning("dispatchDeclaredTrades: %s -> %s decl #%d has neither onSuccess nor event",
+                        PChar->getName().c_str(),
+                        npcName.c_str(),
+                        declIndex);
+            continue;
+        }
+
+        sol::object reqObj = decl["match"];
+
+        // acceptIf(player, npc, offers).
+        sol::object acceptIfObj = decl["acceptIf"];
+        if (acceptIfObj.get_type() == sol::type::function)
+        {
+            auto r = acceptIfObj.as<sol::protected_function>()(this, npcArg, offers);
+            if (!r.valid())
+            {
+                sol::error err = r;
+                ShowError("dispatchDeclaredTrades acceptIf: %s -> %s decl #%d: %s",
+                          PChar->getName().c_str(),
+                          npcName.c_str(),
+                          declIndex,
+                          err.what());
+                continue;
+            }
+            bool ok = r.return_count() > 0 && r[0].is<bool>() && r[0].get<bool>();
+            if (!ok)
+            {
+                continue;
+            }
+        }
+
+        // Build spec and confirm.
+        sol::table spec = buildConfirmSpec(lua, this, npcArg, offers, reqObj);
+        if (!confirmDeclaredNpcTrade(spec))
+        {
+            continue;
+        }
+
+        // Sync path.
+        sol::object onSuccessField = decl["onSuccess"];
+        if (onSuccessField.get_type() == sol::type::function)
+        {
+            auto r = onSuccessField.as<sol::protected_function>()(this, npcArg);
+            if (!r.valid())
+            {
+                sol::error err = r;
+                ShowError("dispatchDeclaredTrades onSuccess: %s -> %s decl #%d: %s",
+                          PChar->getName().c_str(),
+                          npcName.c_str(),
+                          declIndex,
+                          err.what());
+                rollbackDeclaredNpcTrade();
+                return true;
+            }
+            bool shouldCommit = true;
+            if (r.return_count() > 0)
+            {
+                sol::object ret = r[0];
+                if (ret.is<bool>() && ret.as<bool>() == false)
+                {
+                    shouldCommit = false;
+                }
+            }
+            if (shouldCommit)
+            {
+                finalizeDeclaredNpcTrade();
+            }
+            else
+            {
+                rollbackDeclaredNpcTrade();
+            }
+            return true;
+        }
+
+        // Event-driven path.
+        sol::object eventField = decl["event"];
+        if (eventField.get_type() == sol::type::table)
+        {
+            sol::table   eventTbl = eventField;
+            const uint32 eventId  = resolveEventId(this, npcArg, offers, eventTbl);
+            if (eventId == 0)
+            {
+                ShowWarning("dispatchDeclaredTrades: %s -> %s decl #%d has event with id 0",
+                            PChar->getName().c_str(),
+                            npcName.c_str(),
+                            declIndex);
+                rollbackDeclaredNpcTrade();
+                return true;
+            }
+
+            // Resolve params (static or function(player, npc, offers)).
+            sol::table  paramsTbl;
+            sol::object paramsField = eventTbl["params"];
+            if (paramsField.get_type() == sol::type::function)
+            {
+                auto r = paramsField.as<sol::protected_function>()(this, npcArg, offers);
+                if (r.valid() && r.return_count() > 0)
+                {
+                    sol::object val = r[0];
+                    if (val.is<sol::table>())
+                    {
+                        paramsTbl = val.as<sol::table>();
+                    }
+                }
+            }
+            else if (paramsField.is<sol::table>())
+            {
+                paramsTbl = paramsField;
+            }
+
+            startDeclaredEvent(PChar, eventId, paramsTbl);
+
+            // Install pending for the C++ OnEventFinish hook.
+            auto pending              = std::make_unique<PendingDeclaredTrade>();
+            pending->eventId          = eventId;
+            pending->txId             = tx->id();
+            pending->npc              = npcWrapper ? npcWrapper->GetBaseEntity() : nullptr;
+            sol::object onFinishField = eventTbl["onFinish"];
+            if (onFinishField.get_type() == sol::type::function)
+            {
+                pending->onFinish = onFinishField;
+            }
+            PChar->pendingDeclaredTrade = std::move(pending);
+
+            return true;
+        }
+    }
+
+    return false;
+}
+
+/************************************************************************
+ *  finalizeDeclaredNpcTrade — commit the active NpcTradeTransaction. Returns
+ *  false if no tx is alive (caller should treat as script bug).
+ ************************************************************************/
+auto CLuaBaseEntity::finalizeDeclaredNpcTrade() -> bool
+{
+    if (m_PBaseEntity->objtype != TYPE_PC)
+    {
+        ShowWarning("finalizeDeclaredNpcTrade: not a PC (%s)", m_PBaseEntity->getName());
+        return false;
+    }
+
+    auto* PChar = static_cast<CCharEntity*>(m_PBaseEntity);
+    auto  tx    = PChar->activeTransaction<NpcTradeTransaction>();
+    if (tx == nullptr)
+    {
+        ShowWarning("finalizeDeclaredNpcTrade: no active NpcTradeTransaction for %s", PChar->getName());
+        return false;
+    }
+
+    return tx->commitAndClose();
+}
+
+/************************************************************************
+ *  rollbackDeclaredNpcTrade — destroy the active NpcTradeTransaction without
+ *  consuming. Offered items restore to the player's inventory via
+ *  the tx's standard rollback path.
+ ************************************************************************/
+void CLuaBaseEntity::rollbackDeclaredNpcTrade()
+{
+    if (m_PBaseEntity->objtype != TYPE_PC)
+    {
         return;
     }
 
     auto* PChar = static_cast<CCharEntity*>(m_PBaseEntity);
-
-    for (uint8 slotID = 0; slotID < TRADE_CONTAINER_SIZE; ++slotID)
+    if (auto tx = PChar->activeTransaction<NpcTradeTransaction>())
     {
-        if (PChar->TradeContainer->getInvSlotID(slotID) != 0xFF)
-        {
-            uint8  invSlotID = PChar->TradeContainer->getInvSlotID(slotID);
-            int32  quantity  = PChar->TradeContainer->getQuantity(slotID);
-            CItem* PItem     = PChar->TradeContainer->getItem(slotID);
-            if (PItem)
-            {
-                PItem->setReserve(0);
-                if (static_cast<uint32>(quantity) >= PItem->getQuantity())
-                {
-                    // Set the trade slot to nullptr as the underlying item is about to be destroyed by UpdateItem
-                    PChar->TradeContainer->setItem(slotID, nullptr);
-                }
-
-                charutils::UpdateItem(PChar, LOC_INVENTORY, invSlotID, -quantity);
-            }
-        }
+        PChar->removeTransaction(tx.get());
     }
-    PChar->TradeContainer->Clean();
-    PChar->pushPacket<GP_SERV_COMMAND_ITEM_SAME>(PChar);
-}
-
-auto CLuaBaseEntity::getTrade() -> CTradeContainer*
-{
-    if (m_PBaseEntity->objtype != TYPE_PC)
-    {
-        ShowWarning("Invalid entity type calling function (%s).", m_PBaseEntity->getName());
-        return nullptr;
-    }
-
-    auto* PChar = static_cast<CCharEntity*>(m_PBaseEntity);
-    return PChar->TradeContainer;
 }
 
 /************************************************************************
@@ -5434,7 +5916,6 @@ uint8 CLuaBaseEntity::storeWithPorterMoogle(uint16 slipId, const sol::table& ext
                 CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slotId);
                 if (PItem)
                 {
-                    PItem->setReserve(0);
                     charutils::UpdateItem(PChar, LOC_INVENTORY, slotId, -1);
                 }
             }
@@ -5530,11 +6011,11 @@ void CLuaBaseEntity::retrieveItemFromSlip(uint16 slipId, uint16 itemId, uint16 e
 
     db::preparedStmt(Query, slip->m_extra, PChar->id, slip->getLocationID(), slip->getSlotID());
 
-    auto* item = itemutils::GetItem(itemId);
+    auto item = itemutils::GetItem(itemId);
     if (item)
     {
         item->setQuantity(1);
-        charutils::AddItem(PChar, LOC_INVENTORY, item);
+        charutils::AddItem(PChar, LOC_INVENTORY, std::move(item));
     }
     else
     {
@@ -6706,7 +7187,7 @@ void CLuaBaseEntity::changeJob(uint8 newJob)
         PMob->SetMJob(newJob);
 
         // Change weapon type based on new job
-        CItemWeapon* PWeapon = new CItemWeapon(0);
+        auto PWeapon = ItemStore::create<CItemWeapon>(0);
         PWeapon->setDelay(4000);
         PWeapon->setBaseDelay(4000);
 
@@ -6770,7 +7251,7 @@ void CLuaBaseEntity::changeJob(uint8 newJob)
                 break;
         }
 
-        PMob->m_Weapons[SLOT_MAIN] = PWeapon;
+        PMob->setOwnedWeapon(SLOT_MAIN, std::move(PWeapon));
         mobutils::CalculateMobStats(PMob);
     }
     else
@@ -9839,8 +10320,19 @@ auto CLuaBaseEntity::addGuildPoints(const uint8 guildId, const uint8 slotId) con
 {
     if (auto* PChar = dynamic_cast<CCharEntity*>(m_PBaseEntity))
     {
-        const CGuild* PGuild              = guildutils::GetGuild(guildId);
-        auto [itemQuantity, earnedPoints] = PGuild->addGuildPoints(PChar, PChar->TradeContainer->getItem(slotId));
+        const CGuild* PGuild = guildutils::GetGuild(guildId);
+        // Offer state lives on the active NpcTradeTransaction under the tx
+        // custody model. No tx = not mid-trade; fall back to zero
+        // item/qty and let addGuildPoints clamp to 0/0.
+        CItem* offered    = nullptr;
+        uint16 offeredQty = 0;
+        if (auto tx = PChar->activeTransaction<NpcTradeTransaction>())
+        {
+            offered    = tx->itemAt(slotId);
+            offeredQty = static_cast<uint16>(tx->offeredQtyAt(slotId));
+        }
+
+        auto [itemQuantity, earnedPoints] = PGuild->addGuildPoints(PChar, offered, offeredQty);
 
         return { itemQuantity, earnedPoints };
     }
@@ -19776,9 +20268,13 @@ void CLuaBaseEntity::Register()
     SOL_REGISTER("getContainerSize", CLuaBaseEntity::getContainerSize);
     SOL_REGISTER("changeContainerSize", CLuaBaseEntity::changeContainerSize);
     SOL_REGISTER("getFreeSlotsCount", CLuaBaseEntity::getFreeSlotsCount);
+    SOL_REGISTER("getTrade", CLuaBaseEntity::getTrade);
     SOL_REGISTER("confirmTrade", CLuaBaseEntity::confirmTrade);
     SOL_REGISTER("tradeComplete", CLuaBaseEntity::tradeComplete);
-    SOL_REGISTER("getTrade", CLuaBaseEntity::getTrade);
+    // Declarative NPC trade API — the dispatcher is the only public
+    // entry point. confirm/finalize/rollback/run/activeTrade*/install*
+    // are engine-internal and intentionally NOT registered here.
+    SOL_REGISTER("dispatchDeclaredTrades", CLuaBaseEntity::dispatchDeclaredTrades);
 
     // Equipping
     SOL_REGISTER("canEquipItem", CLuaBaseEntity::canEquipItem);

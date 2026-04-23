@@ -1073,14 +1073,24 @@ end
 function CBaseEntity:getFreeSlotsCount(locID)
 end
 
----@return nil
+-- Commit the active NpcTradeTransaction, consuming only slots
+-- explicitly reserved via trade:confirmItem / trade:confirmSlot
+-- (typically through npcUtil.tradeHas). Returns false if no active
+-- tx or commit rejected.
+---@return boolean
 function CBaseEntity:confirmTrade()
 end
 
----@return nil
+-- Commit the active NpcTradeTransaction, consuming every offered
+-- slot and any offered gil. Legacy escape hatch for scripts that
+-- don't use trade:confirmItem (treasure chests, caskets, etc.).
+-- Returns false if no active tx or commit rejected.
+---@return boolean
 function CBaseEntity:tradeComplete()
 end
 
+-- Legacy-compat wrapper around the active NpcTradeTransaction.
+-- Returns nil when no NPC trade is in flight.
 ---@return CTradeContainer?
 function CBaseEntity:getTrade()
 end

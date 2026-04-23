@@ -22,9 +22,10 @@
 #include "0x083_shop_buy.h"
 
 #include "entities/charentity.h"
+#include "items/item_store.h"
+#include "items/shop_display.h"
 #include "packets/s2c/0x01d_item_same.h"
 #include "packets/s2c/0x03f_shop_buy.h"
-#include "trade_container.h"
 #include "utils/charutils.h"
 #include "utils/itemutils.h"
 
@@ -39,15 +40,15 @@ void GP_CLI_COMMAND_SHOP_BUY::process(MapSession* PSession, CCharEntity* PChar) 
 {
     auto quantity = this->ItemNum;
 
-    // Prevent users from buying from invalid container slots
-    if (this->ShopItemIndex > PChar->Container->getExSize() - 1)
+    if (this->ShopItemIndex >= PChar->shopDisplay.itemsCount())
     {
         ShowError("User '%s' attempting to buy vendor item from an invalid slot!", PChar->getName());
         return;
     }
 
-    const uint16 itemId = PChar->Container->getItemID(this->ShopItemIndex);
-    const uint32 price  = PChar->Container->getQuantity(this->ShopItemIndex); // We used the "quantity" to store the item's sale price
+    const auto&  entry  = PChar->shopDisplay.entry(this->ShopItemIndex);
+    const uint16 itemId = entry.itemId;
+    const uint32 price  = entry.price;
 
     const CItem* PItem = itemutils::GetItemPointer(itemId);
     if (!PItem)
@@ -64,7 +65,7 @@ void GP_CLI_COMMAND_SHOP_BUY::process(MapSession* PSession, CCharEntity* PChar) 
 
     const CItem* gil = PChar->getStorage(LOC_INVENTORY)->GetItem(0);
 
-    if (!gil || !gil->isType(ITEM_CURRENCY) || gil->getReserve() != 0)
+    if (!gil || !gil->isType(ITEM_CURRENCY) || ItemStore::isBusy(gil))
     {
         ShowError("User '%s' has invalid gil", PChar->getName());
         return;

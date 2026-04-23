@@ -9,14 +9,22 @@ local ID = zones[xi.zone.ALTAIEU]
 ---@type TNpcEntity
 local entity = {}
 
-entity.onTrade = function(player, npc, trade)
-    if
-        npcUtil.tradeHas(trade, { xi.item.THIRD_VIRTUE, xi.item.DEED_OF_SENSIBILITY, xi.item.HIGH_QUALITY_HPEMDE_ORGAN }) and
-        npcUtil.popFromQM(player, npc, { ID.mob.JAILER_OF_PRUDENCE, ID.mob.JAILER_OF_PRUDENCE + 1 })
-    then
-        player:confirmTrade()
-    end
-end
+entity.declaredTrades =
+{
+    {
+        match   = {
+            items = {
+                { xi.item.THIRD_VIRTUE,               1 },
+                { xi.item.DEED_OF_SENSIBILITY,        1 },
+                { xi.item.HIGH_QUALITY_HPEMDE_ORGAN, 1 },
+            },
+        },
+        onSuccess = function(player, npc)
+            return npcUtil.popFromQM(player, npc,
+                { ID.mob.JAILER_OF_PRUDENCE, ID.mob.JAILER_OF_PRUDENCE + 1 })
+        end,
+    },
+}
 
 entity.onTrigger = function(player, npc)
     player:startEvent(202)

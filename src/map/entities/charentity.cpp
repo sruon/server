@@ -78,6 +78,8 @@
 #include "items/item_furnishing.h"
 #include "items/item_usable.h"
 #include "items/item_weapon.h"
+#include "items/pending_declared_trade.h"
+#include "items/transactions/player_trade.h"
 #include "job_points.h"
 #include "latent_effect_container.h"
 #include "linkshell.h"
@@ -92,11 +94,9 @@
 #include "petskill.h"
 #include "spell.h"
 #include "status_effect_container.h"
-#include "trade_container.h"
 #include "treasure_pool.h"
 #include "trustentity.h"
 #include "unitychat.h"
-#include "universal_container.h"
 #include "utils/attackutils.h"
 #include "utils/battleutils.h"
 #include "utils/charutils.h"
@@ -126,11 +126,6 @@ CCharEntity::CCharEntity()
 
     allegiance = ALLEGIANCE_TYPE::PLAYER;
 
-    TradeContainer = new CTradeContainer();
-    Container      = new CTradeContainer();
-    UContainer     = new CUContainer();
-    CraftContainer = new CTradeContainer();
-
     m_Inventory  = std::make_unique<CItemContainer>(LOC_INVENTORY);
     m_Mogsafe    = std::make_unique<CItemContainer>(LOC_MOGSAFE);
     m_Storage    = std::make_unique<CItemContainer>(LOC_STORAGE);
@@ -151,8 +146,6 @@ CCharEntity::CCharEntity()
     m_RecycleBin = std::make_unique<CItemContainer>(LOC_RECYCLEBIN);
 
     keys = {};
-    std::memset(&equip, 0, sizeof(equip));
-    std::memset(&equipLoc, 0, sizeof(equipLoc));
 
     m_SpellList.reset();
     std::memset(&m_LearnedAbilities, 0, sizeof(m_LearnedAbilities));
@@ -223,7 +216,7 @@ CCharEntity::CCharEntity()
     WideScanTarget = std::nullopt;
 
     lastTradeInvite = {};
-    TradePending.clean();
+    tradePending.clean();
     InvitePending.clean();
 
     PLinkshell1   = nullptr;
@@ -281,9 +274,94 @@ CCharEntity::CCharEntity()
     pendingPositionUpdate = false;
 }
 
+auto CCharEntity::activeTradeTx() -> TransactionHandle<PlayerTradeTransaction>
+{
+    // This character is the initiator — tx lives on our transactions.
+    if (auto local = activeTransaction<PlayerTradeTransaction>())
+    {
+        return local;
+    }
+    // Otherwise we're the partner; the initiator side holds the tx.
+    if (tradePending.targid != 0)
+    {
+        auto* other = static_cast<CCharEntity*>(GetEntity(tradePending.targid, TYPE_PC));
+        if (other != nullptr)
+        {
+            return other->activeTransaction<PlayerTradeTransaction>();
+        }
+    }
+    return {};
+}
+
+// addTransaction is defined inline in charentity.h (templatized).
+
+auto CCharEntity::removeTransaction(Transaction* tx) -> void
+{
+    if (tx == nullptr)
+    {
+        return;
+    }
+    for (auto it = transactions.begin(); it != transactions.end(); ++it)
+    {
+        if (it->get() == tx)
+        {
+            // Explicit rollback first so the tx transitions to a
+            // terminal state before the unique_ptr dtor fires. The
+            // dtor's leak-abort guard expects open txs only in
+            // char-teardown; removeTransaction is the normal cleanup path.
+            tx->rollback();
+            transactions.erase(it);
+            return;
+        }
+    }
+}
+
+auto CCharEntity::inventorySlotFor(uint8 equipSlot) const -> uint8
+{
+    const auto& binding = bindings.equipBinding(equipSlot);
+    return binding ? binding->invSlot : 0;
+}
+
+auto CCharEntity::containerIdFor(uint8 equipSlot) const -> uint8
+{
+    const auto& binding = bindings.equipBinding(equipSlot);
+    return binding ? binding->location : 0;
+}
+
+auto CCharEntity::setEquip(uint8 equipSlot, uint8 locationId, uint8 invSlotId, CItem* item) -> void
+{
+    bindings.bindEquip(equipSlot, locationId, invSlotId, item);
+}
+
+auto CCharEntity::clearEquip(uint8 equipSlot) -> void
+{
+    bindings.clearEquip(equipSlot);
+}
+
+auto CCharEntity::findTransactionHolding(const CItem* item) -> Transaction*
+{
+    for (auto& tx : transactions)
+    {
+        if (tx->holds(item))
+        {
+            return tx.get();
+        }
+    }
+    return nullptr;
+}
+
 CCharEntity::~CCharEntity()
 {
     TracyZoneScoped;
+    // Destroy active transactions FIRST — while inventory items (and
+    // UContainer items) are still alive. Subclass dtors call
+    // silentRollbackIfOpen() which writes to items' owner via
+    // ItemStore::restoreFromTransaction; if we let C++'s default
+    // reverse-declaration member destruction run, m_Inventory would be
+    // torn down before transactions and the rollback would write through
+    // already-freed CItems. Confirmed as a Black Hat council finding.
+    transactions.clear();
+
     clearPacketList();
 
     if (PTreasurePool != nullptr)
@@ -371,10 +449,7 @@ CCharEntity::~CCharEntity()
 
     charutils::WriteHistory(this);
 
-    destroy(TradeContainer);
-    destroy(Container);
-    destroy(UContainer);
-    destroy(CraftContainer);
+    dboxView.DrainItems(this);
     destroy(PLatentEffectContainer);
 
     PGuildShop = nullptr;
@@ -561,7 +636,7 @@ bool CCharEntity::hasAutoTargetEnabled() const
 
 auto CCharEntity::isCrafting() const -> bool
 {
-    return animation == ANIMATION_SYNTH || (CraftContainer && CraftContainer->getItemsCount() > 0);
+    return animation == ANIMATION_SYNTH || craftState.isSetup();
 }
 
 auto CCharEntity::isFishing() const -> bool
@@ -936,16 +1011,11 @@ timer::duration CCharEntity::GetPlayTime(bool needUpdate)
 
 auto CCharEntity::getEquip(const SLOTTYPE slot) const -> CItemEquipment*
 {
-    const uint8     loc  = equip[slot];
-    const uint8     est  = equipLoc[slot];
-    CItemEquipment* item = nullptr;
-
-    if (loc != 0)
-    {
-        item = static_cast<CItemEquipment*>(getStorage(est)->GetItem(loc));
-    }
-
-    return item;
+    // Route through bindings: the binding stores a direct item*
+    // cache, so there's no need to look the item up through the
+    // container on every call.
+    const auto& binding = bindings.equipBinding(slot);
+    return binding ? static_cast<CItemEquipment*>(binding->item) : nullptr;
 }
 
 void CCharEntity::ReloadPartyInc()
@@ -2498,9 +2568,12 @@ auto CCharEntity::OnItemFinish(CItemState& state, action_t& action) -> bool
     auto* PTarget = static_cast<CBattleEntity*>(state.GetTarget());
     auto* PItem   = state.GetItem();
 
-    if (!PItem->isType(ITEM_EQUIPMENT) && (PItem->getQuantity() < 1 || PItem->getReserve() > 0))
+    // Sanity check: the tx took custody at state-ctor; isInTransaction
+    // must be true for non-equipment. If not, something stole the item
+    // between ctor and finish (shouldn't happen, but cheap to assert).
+    if (!PItem->isType(ITEM_EQUIPMENT) && PItem->getQuantity() < 1)
     {
-        ShowWarning("OnItemFinish: %s attempted to use reserved/insufficient %s (%u).", this->getName(), PItem->getName(), PItem->getID());
+        ShowWarning("OnItemFinish: %s attempted to use insufficient %s (%u).", this->getName(), PItem->getName(), PItem->getID());
         this->pushPacket<GP_SERV_COMMAND_BATTLE_MESSAGE>(this, this, PItem->getID(), 0, MsgBasic::ItemFailsToActivate);
 
         return false;
@@ -2588,11 +2661,10 @@ auto CCharEntity::OnItemFinish(CItemState& state, action_t& action) -> bool
         return false;
     }
 
-    // Consumable items
-    PItem->setSubType(ITEM_UNLOCKED);
-    const bool willBeDestroyed = PItem->getQuantity() == 1;
-    charutils::UpdateItem(this, PItem->getLocationID(), PItem->getSlotID(), -1, true);
-    return willBeDestroyed;
+    // Consumable path: signal "tx should commit" — the tx owns the
+    // decrement/destroy. Equipment path returns false above (no
+    // commit; charges are decremented inline).
+    return true;
 }
 
 CBattleEntity* CCharEntity::IsValidTarget(uint16 targid, uint16 validTargetFlags, std::unique_ptr<CBasicPacket>& errMsg)

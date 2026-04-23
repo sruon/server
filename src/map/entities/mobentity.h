@@ -23,7 +23,12 @@
 #define _MOBENTITY_H
 
 #include "battleentity.h"
+
+#include <array>
+#include <memory>
 #include <unordered_map>
+
+class CItemWeapon;
 
 enum class MsgBasic : uint16_t;
 // forward declaration
@@ -278,16 +283,23 @@ public:
     static constexpr float sight_range{ 15.f };
     static constexpr float magic_range{ 20.f };
 
+    // Mob-side weapon ownership. m_Weapons (raw, on the base class) is
+    // an aliasing view into these; chars aliased into their inventory,
+    // mobs alias here because they have no inventory container.
+    // setOwnedWeapon transfers ownership and syncs m_Weapons[slot].
+    auto setOwnedWeapon(uint8 slot, std::unique_ptr<CItemWeapon> weapon) -> void;
+
 protected:
     void DistributeRewards();
     void DropItems(CCharEntity* PChar);
 
 private:
-    timer::time_point              m_DespawnTimer{ timer::time_point::min() }; // Despawn Timer to despawn mob after set duration
-    std::unordered_map<int, int16> m_mobModStat;
-    std::unordered_map<int, int16> m_mobModStatSave;
-    static constexpr float         roam_home_distance{ 60.f };
-    SpawnSlot*                     spawnSlot = nullptr;
+    timer::time_point                           m_DespawnTimer{ timer::time_point::min() }; // Despawn Timer to despawn mob after set duration
+    std::unordered_map<int, int16>              m_mobModStat;
+    std::unordered_map<int, int16>              m_mobModStatSave;
+    static constexpr float                      roam_home_distance{ 60.f };
+    SpawnSlot*                                  spawnSlot = nullptr;
+    std::array<std::unique_ptr<CItemWeapon>, 4> m_OwnedWeapons{};
 };
 
 #endif

@@ -37,6 +37,7 @@
 #include "enums/loot_recast.h"
 #include "enums/weather.h"
 #include "items.h"
+#include "items/item_store.h"
 #include "lua/lua_loot.h"
 #include "lua/luautils.h"
 #include "mob_modifier.h"
@@ -161,10 +162,11 @@ CMobEntity::CMobEntity()
     PEnmityContainer     = new CEnmityContainer(this);
     SpellContainer       = new CMobSpellContainer(this);
 
-    m_Weapons[SLOT_MAIN]   = new CItemWeapon(0);
-    m_Weapons[SLOT_SUB]    = new CItemWeapon(0);
-    m_Weapons[SLOT_RANGED] = new CItemWeapon(0);
-    m_Weapons[SLOT_AMMO]   = new CItemWeapon(0);
+    // m_OwnedWeapons owns; base-class m_Weapons is a raw aliasing view.
+    setOwnedWeapon(SLOT_MAIN, ItemStore::create<CItemWeapon>(0));
+    setOwnedWeapon(SLOT_SUB, ItemStore::create<CItemWeapon>(0));
+    setOwnedWeapon(SLOT_RANGED, ItemStore::create<CItemWeapon>(0));
+    setOwnedWeapon(SLOT_AMMO, ItemStore::create<CItemWeapon>(0));
 
     PAI = std::make_unique<CAIContainer>(this, std::make_unique<CPathFind>(this), std::make_unique<CMobController>(this), std::make_unique<CTargetFind>(this));
 }
@@ -172,12 +174,18 @@ CMobEntity::CMobEntity()
 CMobEntity::~CMobEntity()
 {
     TracyZoneScoped;
-    destroy(m_Weapons[SLOT_MAIN]);
-    destroy(m_Weapons[SLOT_SUB]);
-    destroy(m_Weapons[SLOT_RANGED]);
-    destroy(m_Weapons[SLOT_AMMO]);
+    // m_OwnedWeapons auto-drops each slot on its own dtor.
     destroy(PEnmityContainer);
     destroy(SpellContainer);
+
+    // Null the raw aliasing views so nothing consults them during the
+    // chained base-class teardown. m_OwnedWeapons still holds the
+    // unique_ptrs; they drop when the CMobEntity instance's member
+    // dtors fire.
+    m_Weapons[SLOT_MAIN]   = nullptr;
+    m_Weapons[SLOT_SUB]    = nullptr;
+    m_Weapons[SLOT_RANGED] = nullptr;
+    m_Weapons[SLOT_AMMO]   = nullptr;
 
     if (spawnSlot)
     {
@@ -1332,4 +1340,16 @@ bool CMobEntity::OnAttack(CAttackState& state, action_t& action)
 bool CMobEntity::isWideScannable()
 {
     return CBaseEntity::isWideScannable() && !getMobMod(MOBMOD_NO_WIDESCAN);
+}
+
+auto CMobEntity::setOwnedWeapon(uint8 slot, std::unique_ptr<CItemWeapon> weapon) -> void
+{
+    if (slot >= m_OwnedWeapons.size())
+    {
+        return;
+    }
+    // Move-assign auto-drops the prior weapon; base-class alias is
+    // re-pointed to the fresh item (or null if weapon is empty).
+    m_OwnedWeapons[slot] = std::move(weapon);
+    m_Weapons[slot]      = m_OwnedWeapons[slot].get();
 }

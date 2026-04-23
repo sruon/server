@@ -45,11 +45,22 @@ quest.sections =
         {
             ['Yazan'] =
             {
-                onTrade = function(player, npc, trade)
-                    if npcUtil.tradeHasExactly(trade, xi.item.SAND_BAT_FANG) then
-                        return quest:progressEvent(193)
-                    end
-                end,
+                declaredTrades =
+                {
+                    {
+                        match   = { items = {{ xi.item.SAND_BAT_FANG, 1 }} },
+                        event   = {
+                            id       = 193,
+                            onFinish = function(player, option, npc)
+                                if player:getQuestStatus(quest.areaId, quest.questId) == xi.questStatus.QUEST_ACCEPTED then
+                                    player:addFame(xi.fameArea.BASTOK, 112)
+                                end
+                                quest:complete(player)
+                                return true
+                            end,
+                        },
+                    },
+                },
 
                 onTrigger = function(player, npc)
                     local questStatus = player:getQuestStatus(quest.areaId, quest.questId)
@@ -59,19 +70,6 @@ quest.sections =
                     else
                         return quest:event(194):oncePerZone()
                     end
-                end,
-            },
-
-            onEventFinish =
-            {
-                [193] = function(player, csid, option, npc)
-                    player:confirmTrade()
-
-                    if player:getQuestStatus(quest.areaId, quest.questId) == xi.questStatus.QUEST_ACCEPTED then
-                        player:addFame(xi.fameArea.BASTOK, 112)
-                    end
-
-                    quest:complete(player)
                 end,
             },
         },

@@ -108,16 +108,6 @@ bool CLuaItem::isSubType(uint8 subtype)
     return m_PLuaItem->isSubType(static_cast<ITEM_SUBTYPE>(subtype));
 }
 
-void CLuaItem::setReservedValue(uint8 reserved)
-{
-    m_PLuaItem->setReserve(reserved);
-}
-
-uint8 CLuaItem::getReservedValue()
-{
-    return m_PLuaItem->getReserve();
-}
-
 auto CLuaItem::getName() -> std::string
 {
     // TODO: Fix c-style cast
@@ -432,6 +422,26 @@ void CLuaItem::setExDataRaw(const sol::table& data) const
     m_PLuaItem->setDirty(true);
 }
 
+/************************************************************************
+ *  Function: getOwnerKind()
+ *  Purpose : Returns a string discriminant of the item's ItemOwner
+ *            variant. See docs/design/item-ownership-model.md §3.
+ *  Example : assert(item:getOwnerKind() == 'inventory')
+ ************************************************************************/
+auto CLuaItem::getOwnerKind() const -> std::string
+{
+    const auto& owner = m_PLuaItem->owner();
+    if (std::holds_alternative<xi::item::InCharContainer>(owner))
+    {
+        return "inventory";
+    }
+    if (std::holds_alternative<xi::item::InTransaction>(owner))
+    {
+        return "transaction";
+    }
+    return "unowned";
+}
+
 //==========================================================//
 
 void CLuaItem::Register()
@@ -450,8 +460,6 @@ void CLuaItem::Register()
     SOL_REGISTER("isType", CLuaItem::isType);
     SOL_REGISTER("setSubType", CLuaItem::setSubType);
     SOL_REGISTER("isSubType", CLuaItem::isSubType);
-    SOL_REGISTER("setReservedValue", CLuaItem::setReservedValue);
-    SOL_REGISTER("getReservedValue", CLuaItem::getReservedValue);
     SOL_REGISTER("getName", CLuaItem::getName);
     SOL_REGISTER("getILvl", CLuaItem::getILvl);
     SOL_REGISTER("getReqLvl", CLuaItem::getReqLvl);
@@ -477,6 +485,7 @@ void CLuaItem::Register()
     SOL_REGISTER("setExData", CLuaItem::setExData);
     SOL_REGISTER("getExDataRaw", CLuaItem::getExDataRaw);
     SOL_REGISTER("setExDataRaw", CLuaItem::setExDataRaw);
+    SOL_REGISTER("getOwnerKind", CLuaItem::getOwnerKind);
 }
 
 std::ostream& operator<<(std::ostream& os, const CLuaItem& item)

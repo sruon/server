@@ -23,8 +23,9 @@
 
 #include "ai/ai_container.h"
 #include "entities/charentity.h"
+#include "items/item_store.h"
+#include "items/transactions/item_use.h"
 #include "packets/s2c/0x029_battle_message.h"
-#include "universal_container.h"
 
 namespace
 {
@@ -81,7 +82,7 @@ void GP_CLI_COMMAND_ITEM_USE::process(MapSession* PSession, CCharEntity* PChar) 
     {
         for (uint8 slot = 0; slot < 18; ++slot)
         {
-            if (PChar->equipLoc[slot] == this->Category && PChar->equip[slot] == this->PropertyItemIndex)
+            if (PChar->containerIdFor(slot) == this->Category && PChar->inventorySlotFor(slot) == this->PropertyItemIndex)
             {
                 return true;
             }
@@ -90,18 +91,20 @@ void GP_CLI_COMMAND_ITEM_USE::process(MapSession* PSession, CCharEntity* PChar) 
         return false;
     };
 
-    const bool isEquipment = PItem->isType(ITEM_WEAPON) || PItem->isType(ITEM_EQUIPMENT);
-    const bool isLocked    = PItem->isSubType(ITEM_LOCKED) && !(isEquipment && isEquipped());
-    if (isLocked ||
-        PItem->getReserve() > 0 ||
-        PItem->getCharPrice() > 0)
+    // Equipped charged equipment (Warp Cudgel etc.) is legacy-locked
+    // via ITEM_LOCKED as its "equipped" marker — that's fine, allow.
+    // Anything else busy (tx custody, other reserve, bazaared) → reject.
+    const bool isEquipment     = PItem->isType(ITEM_WEAPON) || PItem->isType(ITEM_EQUIPMENT);
+    const bool isOurEquipped   = isEquipment && isEquipped();
+    const bool busyAndNotOurEq = ItemStore::isBusy(PItem) && !isOurEquipped;
+    if (busyAndNotOurEq || PItem->getCharPrice() > 0)
     {
-        ShowWarningFmt("GP_CLI_COMMAND_ITEM_USE: {} trying to use invalid item (locked/reserved/bazaared)", PChar->getName());
+        ShowWarningFmt("GP_CLI_COMMAND_ITEM_USE: {} trying to use invalid item (busy/bazaared)", PChar->getName());
         return;
     }
 
     // TODO: Using a charged item on a non-eligible target (i.e. Soultrapper): Cannot use the <item> on <target>.
-    if (PChar->UContainer->GetType() != UCONTAINER_USEITEM)
+    if (PChar->activeTransaction<ItemUseTransaction>() == nullptr)
     {
         PChar->PAI->UseItem(this->ActIndex, this->Category, this->PropertyItemIndex);
     }

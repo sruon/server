@@ -24,10 +24,11 @@
 #include "entities/charentity.h"
 #include "enums/msg_std.h"
 #include "items.h"
+#include "items/item_store.h"
+#include "items/transactions/npc_trade.h"
+#include "items/transactions/player_trade.h"
 #include "packets/s2c/0x022_item_trade_res.h"
 #include "packets/s2c/0x029_battle_message.h"
-#include "trade_container.h"
-#include "universal_container.h"
 #include "utils/jailutils.h"
 #include "utils/synthutils.h"
 
@@ -93,18 +94,19 @@ void GP_CLI_COMMAND_COMBINE_ASK::process(MapSession* PSession, CCharEntity* PCha
 
     // NOTE: This section is intended to be temporary to ensure that duping shenanigans aren't possible.
     // It should be replaced by something more robust or more stateful as soon as is reasonable
-    auto* PTarget = static_cast<CCharEntity*>(PChar->GetEntity(PChar->TradePending.targid, TYPE_PC));
+    auto* PTarget = static_cast<CCharEntity*>(PChar->GetEntity(PChar->tradePending.targid, TYPE_PC));
 
     // Clear pending trades on synthesis start
-    if (PTarget && PChar->TradePending.id == PTarget->id)
+    if (PTarget && PChar->tradePending.id == PTarget->id)
     {
-        PChar->TradePending.clean();
-        PTarget->TradePending.clean();
+        PChar->tradePending.clean();
+        PTarget->tradePending.clean();
     }
 
-    // Clears out trade session and blocks synthesis at any point in trade process after accepting
-    // trade request.
-    if (PChar->UContainer->GetType() != UCONTAINER_EMPTY)
+    // Block synthesis if the player is already in another tx kind
+    // (player-trade / npc-trade). SynthTransaction::start will also reject if
+    // a synth is already in flight.
+    if (PChar->activeTradeTx() != nullptr || PChar->activeTransaction<NpcTradeTransaction>() != nullptr)
     {
         if (PTarget)
         {
@@ -113,20 +115,17 @@ void GP_CLI_COMMAND_COMBINE_ASK::process(MapSession* PSession, CCharEntity* PCha
                       PTarget->getName(),
                       PChar->getName());
 
-            PTarget->TradePending.clean();
-            PTarget->UContainer->Clean();
+            PTarget->tradePending.clean();
             PTarget->pushPacket<GP_SERV_COMMAND_ITEM_TRADE_RES>(PChar, GP_ITEM_TRADE_RES_KIND::Cancell);
             PChar->pushPacket<GP_SERV_COMMAND_ITEM_TRADE_RES>(PTarget, GP_ITEM_TRADE_RES_KIND::Cancell);
         }
 
         PChar->pushPacket<GP_SERV_COMMAND_MESSAGE>(MsgStd::CannotBeProcessed);
-        PChar->TradePending.clean();
-        PChar->UContainer->Clean();
+        PChar->tradePending.clean();
         return;
     }
-    // End temporary additions
 
-    PChar->CraftContainer->Clean();
+    PChar->craftState.clean();
 
     const auto* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(this->CrystalIdx);
     if (!PItem ||
@@ -139,16 +138,17 @@ void GP_CLI_COMMAND_COMBINE_ASK::process(MapSession* PSession, CCharEntity* PCha
         return;
     }
 
-    if (PItem->isSubType(ITEM_LOCKED) || PItem->getReserve() > 0)
+    if (ItemStore::isBusy(PItem))
     {
-        ShowWarningFmt("GP_CLI_COMMAND_COMBINE_ASK: {} trying to use invalid crystal (locked/reserved)", PChar->getName());
+        ShowWarningFmt("GP_CLI_COMMAND_COMBINE_ASK: {} trying to use busy crystal", PChar->getName());
         PChar->pushPacket<GP_SERV_COMMAND_BATTLE_MESSAGE>(PChar, PChar, 0, 0, MsgBasic::CannotUseInArea);
         return;
     }
 
-    uint16 itemId    = this->Crystal;
-    uint8  invSlotId = this->CrystalIdx;
-    PChar->CraftContainer->setItem(0, itemId, invSlotId, 0);
+    uint16 itemId                    = this->Crystal;
+    uint8  invSlotId                 = this->CrystalIdx;
+    PChar->craftState.crystalItemId  = itemId;
+    PChar->craftState.crystalInvSlot = invSlotId;
 
     std::vector<uint8> slotQty(MAX_CONTAINER_SIZE);
     for (int32 slotId = 0; slotId < this->Items; ++slotId)
@@ -165,14 +165,14 @@ void GP_CLI_COMMAND_COMBINE_ASK::process(MapSession* PSession, CCharEntity* PCha
             continue;
         }
 
-        if (PSlotItem->isSubType(ITEM_LOCKED) ||
-            slotQty[invSlotId] > (PSlotItem->getQuantity() - PSlotItem->getReserve()))
+        if (ItemStore::isBusy(PSlotItem) ||
+            slotQty[invSlotId] > PSlotItem->getQuantity())
         {
-            ShowWarningFmt("GP_CLI_COMMAND_COMBINE_ASK: {} trying to use invalid ingredient (locked/reserved)", PChar->getName());
+            ShowWarningFmt("GP_CLI_COMMAND_COMBINE_ASK: {} trying to use busy/insufficient ingredient", PChar->getName());
             continue;
         }
 
-        PChar->CraftContainer->setItem(slotId + 1, itemId, invSlotId, 1);
+        PChar->craftState.ingredients[slotId] = { itemId, invSlotId };
     }
 
     synthutils::startSynth(PChar);

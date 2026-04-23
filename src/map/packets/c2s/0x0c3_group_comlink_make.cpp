@@ -56,12 +56,13 @@ void GP_CLI_COMMAND_GROUP_COMLINK_MAKE::process(MapSession* PSession, CCharEntit
     }
 
     // Make a new Linkpearl
-    auto* PItemLinkPearl = static_cast<CItemLinkshell*>(itemutils::GetItem(ITEMID::LINKPEARL));
+    auto PItemLinkPearl = itemutils::GetItem(ITEMID::LINKPEARL);
     if (PItemLinkPearl)
     {
-        PItemLinkPearl->setQuantity(1);
-        std::memcpy(PItemLinkPearl->m_extra, PItemLinkshell->m_extra, 24);
-        PItemLinkPearl->SetLSType(LSTYPE_LINKPEARL);
-        charutils::AddItem(PChar, LOC_INVENTORY, PItemLinkPearl);
+        auto* PLinkshell = static_cast<CItemLinkshell*>(PItemLinkPearl.get());
+        PLinkshell->setQuantity(1);
+        std::memcpy(PLinkshell->m_extra, PItemLinkshell->m_extra, 24);
+        PLinkshell->SetLSType(LSTYPE_LINKPEARL);
+        charutils::AddItem(PChar, LOC_INVENTORY, std::move(PItemLinkPearl));
     }
 }

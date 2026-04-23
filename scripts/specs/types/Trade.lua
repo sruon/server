@@ -1,0 +1,148 @@
+---@meta
+
+-----------------------------------
+-- Declarative NPC trade API
+--
+-- Scripts declare what trades an NPC accepts via a list of decls
+-- (TDeclaredTrade). The engine owns matching, item reservation, event
+-- dispatch, commit, and rollback. Scripts only define decls and any
+-- callbacks the decls reference.
+--
+-- The dispatcher (player:dispatchDeclaredTrades) is the only public
+-- binding; scripts only ever produce decl tables. Most callers go
+-- through InteractionGlobal.onTrade, which aggregates entity-file +
+-- section decls and hands them to the dispatcher.
+-----------------------------------
+-- Quick start: trade IRON_INGOT × 3 + LEATHER × 2, play event 1234,
+-- on finish give a Mythril Sword and complete the quest.
+--
+--     entity.declaredTrades = {
+--         {
+--             match   = { items = {{ xi.item.IRON_INGOT, 3 },
+--                                  { xi.item.LEATHER,    2 }} },
+--             event = {
+--                 id = 1234,
+--                 onFinish = function(player, option, npc, confirmations)
+--                     if not npcUtil.giveItem(player, xi.item.MYTHRIL_SWORD) then
+--                         return false  -- inventory full → tx rolls back
+--                     end
+--                     quest:complete(player)
+--                     return true       -- consume the IRON_INGOTs and LEATHERs
+--                 end,
+--             },
+--         },
+--     }
+--
+-- The same shape works on Quest/Mission sections at
+-- section[zoneId][npcName].declaredTrades — the Interaction framework
+-- aggregates entity-file decls + section decls during onTrade dispatch.
+-----------------------------------
+-- Evaluation order, per decl, until one matches:
+--
+--   1. acceptIf(player, npc, offers)           (predicate gate)
+--   2. reserve items / anyOf / gil on the tx   (engine-side)
+--   3. either:
+--        sync : onSuccess(player, npc)         -- bool decides commit
+--        event: start event.id with params,
+--               wait for event finish, then
+--               onFinish(player, option, npc, confirmations)
+--                                              -- bool or action table
+--
+-- First decl that passes 1-2 wins. Subsequent decls are not tried.
+-- Exactly one of { onSuccess, event } must be present per decl; the
+-- engine warns and skips decls that have both or neither.
+-----------------------------------
+-- Function-form fields receive (player, npc, offers) uniformly.
+-- Declare only the args you use:
+--
+--   match.items  = function(player, npc, offers) -> {{id, qty}, ...}
+--   match.gil    = function(player, npc, offers) -> integer
+--   event.id     = function(player, npc, offers) -> integer
+--   event.params = function(player, npc, offers) -> integer[]
+--
+-- offers is read-only: { { id = itemId, qty = N }, ... } with id == 0
+-- representing gil.
+-----------------------------------
+-- Return value semantics:
+--
+--   acceptIf  -- bool. true = decl matches; false = skip, try next.
+--   onSuccess -- bool|nil.
+--                  nil/true = commit reserved items
+--                  false    = rollback (items return to the player)
+--   onFinish  -- bool|nil OR action table.
+--                  nil/true = commit all reserved items as-is
+--                  false    = rollback (items return to the player)
+--                  { commit = bool, confirmItems = {{id, qty}, ...} }
+--                           = narrow the commit — clear prior
+--                             reservations and re-reserve ONLY the
+--                             listed items, then commit/rollback per
+--                             `commit`. Items not in the offer are
+--                             rejected and force rollback.
+--
+-- `confirmations` (passed to onFinish) is a {[itemId] = totalQty} map
+-- of items the engine reserved during step 2. Gil is excluded.
+--
+-- The action-table return is for trades that reserve the whole offer
+-- eagerly (e.g. Battlefield's `allowExtras = true` decl) and need to
+-- consume only a specific subset based on cutscene-time decisions.
+-----------------------------------
+-- Engine-side guarantees:
+--
+--   * Matching is atomic. If acceptIf or item-reserve fails, prior
+--     reservations are cleared so the next decl can try.
+--   * The tx survives across cutscenes for event-driven decls; the
+--     0x036 handler keeps it alive while the player is in event.
+--   * Pending state is tracked in C++ on CCharEntity; Lua cannot
+--     observe or mutate it.
+-----------------------------------
+
+-- An offer entry as seen by callbacks. `id == 0` means gil (no item).
+-- `item` is a CLuaItem wrapper for non-gil entries — use it for
+-- augments / signature / exdata / trial id (Magian), etc.
+---@class TTradeOffer
+---@field id   integer
+---@field qty  integer
+---@field item CLuaItem?
+
+-- Items spec entry: { itemId, qty }. qty defaults to 1 if omitted.
+---@alias TTradeItemEntry { [1]: integer, [2]: integer? }
+
+-- Function-form fields all receive (player, npc, offers). Scripts
+-- declare only the args they need — extra args are harmless.
+---@alias TTradeItemsFn fun(player: CBaseEntity, npc: CBaseEntity, offers: TTradeOffer[]): TTradeItemEntry[]
+---@alias TTradeGilFn   fun(player: CBaseEntity, npc: CBaseEntity, offers: TTradeOffer[]): integer
+---@alias TTradeIdFn    fun(player: CBaseEntity, npc: CBaseEntity, offers: TTradeOffer[]): integer
+---@alias TTradeParamsFn fun(player: CBaseEntity, npc: CBaseEntity, offers: TTradeOffer[]): integer[]
+
+-- Match shape describing what the offer must contain. Anything
+-- else (key items, quest state, charVars, etc.) belongs in `acceptIf`.
+---@class TTradeMatch
+---@field items?       TTradeItemEntry[]|TTradeItemsFn -- exact-match item set; `allowExtras` relaxes
+---@field anyOf?       integer[]                       -- match any subset of these item ids
+---@field allowExtras? boolean                         -- allow unreserved items in the offer; they're returned to the player on commit
+---@field gil?         integer|TTradeGilFn             -- required gil amount
+
+-- Map of reserved item id → total qty (sums across slots). Gil is
+-- excluded — query offers if you need it.
+---@alias TTradeConfirmations table<integer, integer>
+
+-- Action-table return for event.onFinish. Returning a bool is the
+-- shorthand: true/nil = commit, false = rollback. Returning this
+-- table lets you narrow the commit to specific items.
+---@class TTradeFinishAction
+---@field commit?       boolean
+---@field confirmItems? TTradeItemEntry[] -- replaces broad confirmations; each id must be in the offer
+
+---@class TTradeEvent
+---@field id        integer|TTradeIdFn                                                                              -- cutscene id (static or dynamic)
+---@field params?   integer[]|TTradeParamsFn                                                                        -- 1..8 cutscene params
+---@field onFinish? fun(player: CBaseEntity, option: integer, npc: CBaseEntity, confirmations: TTradeConfirmations): boolean|TTradeFinishAction|nil
+
+-- One declarative trade. Exactly one of { onSuccess, event } MUST
+-- be present. acceptIf is an optional escape hatch for predicates
+-- that don't fit `match`.
+---@class TDeclaredTrade
+---@field match?     TTradeMatch
+---@field acceptIf?  fun(player: CBaseEntity, npc: CBaseEntity, offers: TTradeOffer[]): boolean
+---@field onSuccess? fun(player: CBaseEntity, npc: CBaseEntity): boolean|nil   -- sync commit; return false returns items to player
+---@field event?     TTradeEvent                                               -- event-driven commit

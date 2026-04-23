@@ -28,6 +28,7 @@
 #include "entities/trustentity.h"
 #include "enums/msg_std.h"
 #include "items.h"
+#include "items/item_store.h"
 #include "latent_effect_container.h"
 #include "packets/s2c/0x01d_item_same.h"
 #include "packets/s2c/0x029_battle_message.h"
@@ -38,7 +39,6 @@
 #include "recast_container.h"
 #include "status_effect.h"
 #include "status_effect_container.h"
-#include "trade_container.h"
 #include "utils/battleutils.h"
 
 namespace
@@ -156,7 +156,7 @@ void GP_CLI_COMMAND_ACTION::process(MapSession* PSession, CCharEntity* PChar) co
     {
         for (uint8 equipSlotID = 0; equipSlotID < 16; ++equipSlotID)
         {
-            if (PChar->equip[equipSlotID] != 0)
+            if (PChar->inventorySlotFor(equipSlotID) != 0)
             {
                 PChar->PLatentEffectContainer->CheckLatentsEquip(equipSlotID);
             }
@@ -406,9 +406,9 @@ void GP_CLI_COMMAND_ACTION::process(MapSession* PSession, CCharEntity* PChar) co
                 return;
             }
 
-            if (PGysahl->isSubType(ITEM_LOCKED) || PGysahl->getReserve() > 0)
+            if (ItemStore::isBusy(PGysahl))
             {
-                ShowWarningFmt("GP_CLI_COMMAND_ACTION: {} trying to use invalid gysahl greens (locked/reserved)", PChar->getName());
+                ShowWarningFmt("GP_CLI_COMMAND_ACTION: {} trying to use busy gysahl greens", PChar->getName());
                 PChar->pushPacket<GP_SERV_COMMAND_SYSTEMMES>(GYSAHL_GREENS, 0, MsgStd::YouDontHaveAny);
                 return;
             }

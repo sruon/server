@@ -25,14 +25,14 @@
 #include "items/item_linkshell.h"
 #include "utils/itemutils.h"
 
-GP_SERV_COMMAND_ITEM_TRADE_LIST::GP_SERV_COMMAND_ITEM_TRADE_LIST(CItem* PItem, const uint8 slotId)
+GP_SERV_COMMAND_ITEM_TRADE_LIST::GP_SERV_COMMAND_ITEM_TRADE_LIST(CItem* PItem, const uint8 slotId, const uint32 offeredQty)
 {
     auto& packet = this->data();
 
-    const uint32 amount = PItem->getReserve();
+    const bool populated = PItem != nullptr && offeredQty > 0;
 
-    packet.ItemNum    = amount;
-    packet.ItemNo     = amount == 0 ? 0 : PItem->getID();
+    packet.ItemNum    = offeredQty;
+    packet.ItemNo     = populated ? PItem->getID() : 0;
     packet.TradeIndex = slotId;
 
     if (PItem->isSubType(ITEM_CHARGED))

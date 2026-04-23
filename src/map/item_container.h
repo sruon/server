@@ -26,6 +26,9 @@
 #include "common/logging.h"
 #include "common/timer.h"
 
+#include <array>
+#include <memory>
+
 // TODO: Enum class
 enum CONTAINER_ID : uint8
 {
@@ -72,8 +75,21 @@ public:
     auto   SearchItems(uint16 itemId) const -> std::vector<uint8>;
     uint8  SearchItemWithSpace(uint16 ItemID, uint32 quantity); // search for item that has space to accomodate x items added
 
-    uint8 InsertItem(CItem* PItem);               // add a pre-created item to a free cell
-    uint8 InsertItem(CItem* PItem, uint8 slotID); // add a pre-created item to the selected cell
+    // InsertItem takes ownership of PItem. On success, the container
+    // holds the item and the caller's unique_ptr is emptied. On failure
+    // (container full, slot out of range), PItem is dropped automatically
+    // when the parameter goes out of scope — no manual cleanup needed.
+    //
+    // The slot-targeted overload also auto-drops whatever was previously
+    // in that slot; pass an empty unique_ptr to clear a slot.
+    auto InsertItem(std::unique_ptr<CItem> PItem) -> uint8;               // add a pre-created item to a free cell
+    auto InsertItem(std::unique_ptr<CItem> PItem, uint8 slotID) -> uint8; // add a pre-created item to the selected cell
+
+    // Hand ownership of the item at slotID back to the caller and null
+    // the slot without dropping. Use when moving an item between
+    // containers, where auto-drop-on-clear would destroy the thing
+    // you're trying to move.
+    auto ReleaseItem(uint8 slotID) -> std::unique_ptr<CItem>;
 
     uint32            SortingPacket; // number of sort requests per clock
     timer::time_point LastSortingTime;
@@ -88,7 +104,7 @@ public:
         {
             if (m_ItemList[SlotID])
             {
-                func(m_ItemList[SlotID], std::forward<Args>(args)...);
+                func(m_ItemList[SlotID].get(), std::forward<Args>(args)...);
             }
         }
     }
@@ -99,7 +115,7 @@ private:
     uint8  m_size;
     uint8  m_count;
 
-    CItem* m_ItemList[MAX_CONTAINER_SIZE + 1]{};
+    std::array<std::unique_ptr<CItem>, MAX_CONTAINER_SIZE + 1> m_ItemList{};
 };
 
 #endif

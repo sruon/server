@@ -27,6 +27,12 @@
 #include "gmcall_container.h"
 #include "inventory_sync_state.h"
 #include "item_container.h"
+#include "items/craft_state.h"
+#include "items/dbox_view.h"
+#include "items/item_bindings.h"
+#include "items/shop_display.h"
+#include "items/transaction.h"
+#include "items/transaction_handle.h"
 #include "map_session.h"
 #include "monstrosity.h"
 
@@ -37,9 +43,11 @@
 #include <bitset>
 #include <deque>
 #include <map>
+#include <memory>
 #include <set>
 #include <unordered_map>
 #include <unordered_set>
+#include <vector>
 
 #include "automatonentity.h"
 #include "battleentity.h"
@@ -58,6 +66,7 @@
 
 class CItemWeapon;
 class CTrustEntity;
+struct PendingDeclaredTrade;
 
 struct jobs_t
 {
@@ -264,9 +273,8 @@ class CJobPoints;
 class CMeritPoints;
 class CCharRecastContainer;
 class CLatentEffectContainer;
-class CTradeContainer;
+class PlayerTradeTransaction;
 class CItemContainer;
-class CUContainer;
 class CItemEquipment;
 class CAbilityState;
 class CRangeState;
@@ -320,8 +328,6 @@ public:
     uint16          m_EquipFlag{};         // Current events handled by the equipment (later it will be packed into a structure, along with equip[])
     uint16          m_EquipBlock{};        // Locked equipment slots
     uint16          m_StatsDebilitation{}; // Debilitation arrows
-    uint8           equip[18]{};           // SlotID where equipment is
-    uint8           equipLoc[18]{};        // ContainerID where equipment is
     uint16          styleItems[16]{};      // Item IDs for items that are style locked.
 
     uint8            m_ZonesVisitedList[38]{}; // List of zones visited by the character
@@ -480,10 +486,105 @@ public:
     CItemContainer* PGuildShop;
     CItemContainer* getStorage(uint8 locationId) const;
 
-    CTradeContainer* TradeContainer; // Container used specifically for trading.
-    CTradeContainer* Container;      // Universal container for exchange, synthesis, store, etc.
-    CUContainer*     UContainer;     // Container used for universal actions -- used for trading at least despite the dedicated trading container above
-    CTradeContainer* CraftContainer; // Container used for crafting actions.
+    CCraftState  craftState;  // Synth recipe / skill / result state.
+    CShopDisplay shopDisplay; // NPC shop listing + pending-sell staging.
+    CDboxView    dboxView;    // 16-slot view buffer for an open delivery-box window.
+
+    // Active transactions under this character. One bucket, any kind,
+    // any count. Packet handlers find their tx via activeTransaction<T>.
+    // See docs/design/item-ownership-model.md §3.5.
+    std::vector<std::unique_ptr<Transaction>> transactions;
+
+    // Non-ownership bindings: equipment slots (18 incl. linkshells),
+    // placed furniture. See docs/design/item-ownership-model.md §3.4.
+    CItemBindings bindings;
+
+    // Pending event-driven trade commit. Set by the trade dispatcher
+    // when an NpcTradeTransaction's commit is deferred to an event finish;
+    // consumed by luautils::OnEventFinish when the matching csid
+    // arrives. Forward-declared to keep sol out of this header.
+    std::unique_ptr<PendingDeclaredTrade> pendingDeclaredTrade;
+
+    // Find the live tx of type T, or an empty handle. Used by multi-
+    // packet handlers (e.g., 0x033/0x034 find the PlayerTradeTransaction).
+    // Returns the same TransactionHandle<T> type as addTransaction so there's one
+    // non-owning handle concept for transactions.
+    template <typename T>
+    auto activeTransaction() -> TransactionHandle<T>
+    {
+        for (auto& tx : transactions)
+        {
+            if (auto* match = dynamic_cast<T*>(tx.get()))
+            {
+                return TransactionHandle<T>(match, xi::Badge<CCharEntity>{});
+            }
+        }
+        return {};
+    }
+
+    // Install a tx under this character. Returns a TransactionHandle<T> —
+    // only this method can construct one, so factories that forget
+    // to call addTransaction can't produce a valid return value and will
+    // fail to compile. See items/transaction_handle.h.
+    //
+    // Rejects if a tx of the same type T is already installed (returns
+    // an empty handle). Enforces the "one active tx per subsystem per
+    // character" invariant centrally; without it each factory's own
+    // guard is order-sensitive and a second tx could shadow the first
+    // for activeTransaction<T>() lookups.
+    template <typename T>
+    auto addTransaction(std::unique_ptr<T> tx) -> TransactionHandle<T>
+    {
+        static_assert(std::is_base_of_v<Transaction, T>, "addTransaction<T>: T must derive from Transaction");
+        if (!tx)
+        {
+            return TransactionHandle<T>{};
+        }
+        for (const auto& existing : transactions)
+        {
+            if (dynamic_cast<T*>(existing.get()) != nullptr)
+            {
+                // Duplicate rejected. Roll the caller-provided tx to a
+                // terminal state before its unique_ptr dtor fires — the
+                // base dtor asserts Open state.
+                tx->rollback();
+                return TransactionHandle<T>{};
+            }
+        }
+        T* raw = tx.get();
+        transactions.push_back(std::move(tx));
+        return TransactionHandle<T>(raw, xi::Badge<CCharEntity>{});
+    }
+
+    // Remove the named tx (destroys it via unique_ptr; dtor auto-
+    // rolls back if Open).
+    auto removeTransaction(Transaction* tx) -> void;
+
+    // Find the first tx under this character that currently holds
+    // the given item. Used to clean up invariants before a
+    // container-level drop (e.g., closing a dbox window destroys
+    // its loaded CItems).
+    auto findTransactionHolding(const CItem* item) -> Transaction*;
+
+    // Locate the active player-trade tx. Looks locally first (this
+    // character is the initiator), then via tradePending (this
+    // character is the partner and the tx lives on the initiator).
+    auto activeTradeTx() -> TransactionHandle<::PlayerTradeTransaction>;
+
+    // Equip slot state reads through bindings (the one source of
+    // truth). `equipSlot` is a SLOTTYPE index (SLOT_MAIN..SLOT_LINK2
+    // — 18 total). Returns (container id, container slot) of the
+    // item currently equipped at that SLOTTYPE, or 0 when unbound.
+    auto inventorySlotFor(uint8 equipSlot) const -> uint8;
+    auto containerIdFor(uint8 equipSlot) const -> uint8;
+
+    // Install an item at `equipSlot`. Thin wrapper over
+    // bindings.bindEquip for API parity with clearEquip; nullptr
+    // is illegal (use clearEquip to remove).
+    auto setEquip(uint8 equipSlot, uint8 locationId, uint8 invSlotId, CItem* item) -> void;
+
+    // Clear `equipSlot` — releases the binding.
+    auto clearEquip(uint8 equipSlot) -> void;
 
     // TODO: All member instances of EntityID_t should be Maybe<EntityID_t> to allow for them not to be set,
     //     : instead of checking for entityId.id != 0, etc.
@@ -501,7 +602,7 @@ public:
     void SetName(const std::string& name); // set the name of character, limited to 15 characters
 
     timer::time_point lastTradeInvite{};
-    EntityID_t        TradePending{};    // Character ID offering trade
+    EntityID_t        tradePending{};    // Character ID offering trade
     EntityID_t        InvitePending{};   // Character ID sending party invite
     EntityID_t        BazaarID{};        // Pointer to the bazaar we are browsing.
     BazaarList_t      BazaarCustomers{}; // Array holding the IDs of the current customers

@@ -1,5 +1,10 @@
 ---@meta
 
+-- Legacy-compat wrapper (C++: CLuaTrade) around the player's active
+-- NpcTradeTransaction. Returned by player:getTrade(). The gil pseudo-
+-- slot convention: `getItemQty(0xFFFF)` returns offered gil; offered
+-- gil appears at slot index `getItemCount()` during iteration.
+
 -- luacheck: ignore 241
 ---@class CTradeContainer
 local CTradeContainer = {}

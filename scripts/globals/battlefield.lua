@@ -531,8 +531,13 @@ function Battlefield:register()
             utils.append(zoneSection, {
                 [entryNpc] =
                 {
-                    onTrade   = Battlefield.onEntryTrade,
-                    onTrigger = Battlefield.onEntryTrigger,
+                    -- Declarative aggregating decl: one per entry
+                    -- NPC matches any trade that hits at least one
+                    -- registered battlefield in this zone. Commit
+                    -- decision is made in onFinish after the player
+                    -- picks a battlefield from the menu event.
+                    declaredTrades = { Battlefield.makeEntryDecl() },
+                    onTrigger      = Battlefield.onEntryTrigger,
                 }
             })
         end
@@ -571,14 +576,55 @@ function Battlefield:entryRequirement(player, npc, isRegistrant, trade)
     return true
 end
 
-function Battlefield:checkRequirements(player, npc, isRegistrant, trade)
+-- Returns true iff the active NPC trade offer (as returned by
+-- player:activeTradeOffers) contains exactly the requested items at
+-- the requested quantities, with no extras. Nil `offers` or empty is
+-- treated as "no offer".
+local function offersHaveExactly(offers, requiredItems)
+    if offers == nil or requiredItems == nil or #requiredItems == 0 then
+        return false
+    end
+    -- Build offered-id → qty map.
+    local have = {}
+    for _, entry in ipairs(offers) do
+        have[entry.id] = (have[entry.id] or 0) + entry.qty
+    end
+    -- Required: each must be present. Tally as we go so extras reject.
+    local need = {}
+    for _, req in ipairs(requiredItems) do
+        local id, qty
+        if type(req) == 'table' then
+            id = req[1]
+            qty = req[2] or 1
+        else
+            id = req
+            qty = 1
+        end
+        need[id] = (need[id] or 0) + qty
+    end
+    -- Compare.
+    for id, qty in pairs(need) do
+        if (have[id] or 0) ~= qty then
+            return false
+        end
+    end
+    for id, qty in pairs(have) do
+        if (need[id] or 0) ~= qty then
+            return false -- extra
+        end
+    end
+    return true
+end
+
+function Battlefield:checkRequirements(player, npc, isRegistrant, offers)
     if not self:isValidEntry(player, npc) then
         return false
     end
 
     -- Do not show battlefields to registrant when either they don't require items and player is trading or
-    -- that do require items and but player is not trading
-    if isRegistrant and (trade == nil) ~= (#self.tradeItems == 0) then
+    -- that do require items but player is not trading.
+    local isTrading = offers ~= nil and #offers > 0
+    if isRegistrant and isTrading ~= (#self.tradeItems > 0) then
         return false
     end
 
@@ -607,76 +653,86 @@ function Battlefield:checkRequirements(player, npc, isRegistrant, trade)
         end
     end
 
-    if trade and #self.tradeItems > 0 then
-        if not npcUtil.tradeHasExactly(trade, self.tradeItems) then
+    if isTrading and #self.tradeItems > 0 then
+        if not offersHaveExactly(offers, self.tradeItems) then
             return false
         end
     end
 
     -- Additional Requirements that may be necessary for battlefield entry
-    -- contained within the script itself, defaults to True
-    return self:entryRequirement(player, npc, isRegistrant, trade)
+    -- contained within the script itself, defaults to True. `offers`
+    -- replaces the old trade container; subclasses that care about
+    -- what was offered should inspect it directly.
+    return self:entryRequirement(player, npc, isRegistrant, offers)
 end
 
 function Battlefield:checkSkipCutscene(player)
     return false
 end
 
-function Battlefield.onEntryTrade(player, npc, trade, onUpdate)
-    -- Check if player's party has level sync
+-- Helper: does `offers` contain AT LEAST one of each item in
+-- `required`? Extras are fine. Used for the wornMessage loop where
+-- we're checking "was this orb offered?" not "is this an exact match".
+local function offersContainAll(offers, required)
+    if offers == nil or required == nil then
+        return false
+    end
+    local have = {}
+    for _, entry in ipairs(offers) do
+        have[entry.id] = (have[entry.id] or 0) + entry.qty
+    end
+    for _, req in ipairs(required) do
+        local id = type(req) == 'table' and req[1] or req
+        local qty = type(req) == 'table' and (req[2] or 1) or 1
+        if (have[id] or 0) < qty then
+            return false
+        end
+    end
+    return true
+end
+
+-- Shared predicate for the entry decl's acceptIf. Returns true iff
+-- the player+offer combination is eligible for at least one
+-- registered battlefield in this zone. Side-effects: emits the
+-- appropriate message (worn-out, no-entry, etc.) on rejection.
+local function canEnterAnyBattlefield(player, npc, offers)
     if xi.battlefield.rejectLevelSyncedParty(player, npc) then
-        return
+        return false
     end
 
-    -- Validate trade
-    if not trade then
-        return
-    end
-
-    -- Validate battlefield status
-    if player:hasStatusEffect(xi.effect.BATTLEFIELD) and not onUpdate then
+    if player:hasStatusEffect(xi.effect.BATTLEFIELD) then
         player:messageBasic(xi.msg.basic.WAIT_LONGER, 0, 0)
-
-        return
+        return false
     end
 
-    -- Check if another party member has battlefield status effect. If so, don't allow trade.
-    local alliance = player:getAlliance()
-
-    for _, member in pairs(alliance) do
+    for _, member in pairs(player:getAlliance()) do
         if member:hasStatusEffect(xi.effect.BATTLEFIELD) then
             player:messageBasic(xi.msg.basic.WAIT_LONGER, 0, 0)
-
-            return
+            return false
         end
     end
 
-    local zoneId = player:getZoneID()
-
-    -- Determine which battlefields are available given the traded items
-    local options = xi.battlefield.getBattlefieldOptions(player, npc, trade)
+    local zoneId  = player:getZoneID()
+    local options = xi.battlefield.getBattlefieldOptions(player, npc, offers)
 
     if options == 0 then
         local noEntryMessage = zones[zoneId].text.NO_BATTLEFIELD_ENTRY
-
         if noEntryMessage then
             player:messageSpecial(noEntryMessage)
         end
-
-        return
+        return false
     end
 
-    -- Ensure that the traded item(s) are not worn out
+    -- Worn-out orb / testimony check. If the offer matches a
+    -- battlefield whose items are worn-out, emit the wornMessage.
     local contents = xi.battlefield.contentsByZone[zoneId]
-
     for _, content in ipairs(contents) do
         if
             #content.requiredItems > 0 and
             content.requiredItems.wornMessage and
-            npcUtil.tradeHas(trade, content.tradeItems)
+            offersContainAll(offers, content.tradeItems)
         then
-            local itemId = content.requiredItems[1]
-            -- Gets the total number of item uses for the given item. Default to one since that is the majority of them.
+            local itemId    = content.requiredItems[1]
             local totalUses = xi.battlefield.itemUses[itemId] or 1
 
             if player:getWornUses(itemId) >= totalUses then
@@ -687,16 +743,59 @@ function Battlefield.onEntryTrade(player, npc, trade, onUpdate)
                 else
                     player:messageSpecial(content.requiredItems.wornMessage, 0, 0, 0, itemId)
                 end
-
-                return
+                return false
             end
         end
     end
 
-    if not onUpdate then
-        -- Open menu of valid battlefields
-        return Battlefield:event(32000, 0, 0, 0, options, 0, 0, 0, 0)
-    end
+    return true
+end
+
+function Battlefield.makeEntryDecl()
+    return {
+        match   = { allowExtras = true },
+        acceptIf = canEnterAnyBattlefield,
+        event    = {
+            id     = 32000,
+            params = function(player, npc, offers)
+                local options = xi.battlefield.getBattlefieldOptions(player, npc, offers)
+                return { 0, 0, 0, options, 0, 0, 0, 0 }
+            end,
+            onFinish = function(player, option, npc, confirmations)
+                -- Framework dispatch (redirectEventCall → onEventFinishEnter
+                -- → registerBattlefield) has run before this hook, so
+                -- a registered battlefield is the signal the entry
+                -- actually succeeded.
+                local battlefield = player:getBattlefield()
+                if battlefield == nil then
+                    return false
+                end
+
+                local content = xi.battlefield.contents[battlefield:getID()]
+                if content == nil then
+                    return false
+                end
+
+                -- Consume semantics:
+                --   wearMessage set OR keep set → passthrough
+                --   otherwise → consume the battlefield's tradeItems
+                local req = content.requiredItems
+                if req.wearMessage ~= nil or req.keep == true or #content.tradeItems == 0 then
+                    return false
+                end
+
+                local confirmItems = {}
+                for _, r in ipairs(content.tradeItems) do
+                    if type(r) == 'table' then
+                        table.insert(confirmItems, r)
+                    else
+                        table.insert(confirmItems, { r, 1 })
+                    end
+                end
+                return { commit = true, confirmItems = confirmItems }
+            end,
+        },
+    }
 end
 
 function Battlefield.onEntryTrigger(player, npc)
@@ -865,16 +964,6 @@ function Battlefield:onEntryEventUpdate(player, csid, option, npc)
     if initiatorId == player:getID() then
         local effect = player:getStatusEffect(xi.effect.BATTLEFIELD)
         local zone   = player:getZoneID()
-
-        -- Handle traded items if not wearing them
-        if
-            self.requiredItems.wearMessage == nil and
-            #self.tradeItems > 0
-        then
-            if not self.requiredItems.keep then
-                player:tradeComplete()
-            end
-        end
 
         -- Handle party/alliance members
         local alliance = player:getAlliance()
@@ -1297,7 +1386,7 @@ function Battlefield:handleLootRolls(battlefield, lootTable, npc, gilBonusMod)
     end
 end
 
-function xi.battlefield.getBattlefieldOptions(player, npc, trade)
+function xi.battlefield.getBattlefieldOptions(player, npc, offers)
     local result   = 0
     local contents = xi.battlefield.contentsByZone[player:getZoneID()]
 
@@ -1310,7 +1399,7 @@ function xi.battlefield.getBattlefieldOptions(player, npc, trade)
 
     for _, content in ipairs(contents) do
         if
-            content:checkRequirements(player, npc, true, trade) and
+            content:checkRequirements(player, npc, true, offers) and
             not player:battlefieldAtCapacity(content.battlefieldId) and
             (xi.settings.map.BCNM_ENABLE_EXPERIMENTAL or not content.experimental)
         then

@@ -28,6 +28,7 @@
 #include <vector>
 
 #include "items/item_shop.h"
+#include "items/item_store.h"
 
 #include "charutils.h"
 #include "guild.h"
@@ -89,7 +90,7 @@ void Initialize()
 
         FOR_DB_MULTIPLE_RESULTS(rset)
         {
-            auto* PItem = new CItemShop(rset->get<uint32>("itemid"));
+            auto PItem = ItemStore::create<CItemShop>(rset->get<uint32>("itemid"));
 
             PItem->setMinPrice(rset->get<uint32>("min_price"));
             PItem->setMaxPrice(rset->get<uint32>("max_price"));
@@ -99,9 +100,9 @@ void Initialize()
             PItem->setFlag(rset->get<ItemFlag>("flags"));
 
             PItem->setQuantity(PItem->IsDailyIncrease() ? PItem->getInitialQuantity() : 0);
-            PItem->setBasePrice(getItemDynamicBasePrice(PItem));
+            PItem->setBasePrice(getItemDynamicBasePrice(PItem.get()));
 
-            PGuildShop->InsertItem(PItem);
+            PGuildShop->InsertItem(std::move(PItem));
         }
     }
 

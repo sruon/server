@@ -29,8 +29,10 @@
 #include "action/interrupts.h"
 #include "enums/item_lockflg.h"
 #include "item_container.h"
+#include "items/dbox_view.h"
+#include "items/item_store.h"
+#include "items/transactions/item_use.h"
 #include "status_effect_container.h"
-#include "universal_container.h"
 
 #include "packets/s2c/0x01d_item_same.h"
 #include "packets/s2c/0x01f_item_list.h"
@@ -72,7 +74,7 @@ CItemState::CItemState(CCharEntity* PEntity, const uint16 targid, const uint8 lo
                 m_PItem = nullptr;
             }
         }
-        else if (m_PItem->isSubType(ITEM_LOCKED))
+        else if (ItemStore::isBusy(m_PItem))
         {
             m_PItem = nullptr;
         }
@@ -115,8 +117,8 @@ CItemState::CItemState(CCharEntity* PEntity, const uint16 targid, const uint8 lo
         }
     }
 
-    m_PEntity->UContainer->SetType(UCONTAINER_USEITEM);
-    m_PEntity->UContainer->SetItem(0, m_PItem);
+    // Custody of the item-in-use lives on ItemUseTransaction in transactions.
+    // No UContainer state needed here.
 
     m_startPos      = m_PEntity->loc.p;
     m_castTime      = m_PItem->getActivationTime();
@@ -142,11 +144,17 @@ CItemState::CItemState(CCharEntity* PEntity, const uint16 targid, const uint8 lo
     m_PEntity->PAI->EventHandler.triggerListener("ITEM_START", PTarget, m_PItem, &action);
     m_PEntity->loc.zone->PushPacket(m_PEntity, CHAR_INRANGE_SELF, std::make_unique<GP_SERV_COMMAND_BATTLE2>(action));
 
-    m_PItem->setSubType(ITEM_LOCKED);
+    // Take custody via the tx. For consumables the owner flips
+    // InCharContainer → InTransaction; other subsystems see the item as
+    // busy via ItemStore::isInTransaction. For charged equipment the
+    // tx is a state-machine carrier only — item stays equipped.
+    tx_ = ItemUseTransaction::start(m_PEntity, m_PItem, m_location, m_slot);
 
     m_PEntity->pushPacket<GP_SERV_COMMAND_ITEM_LIST>(m_PItem, ItemLockFlg::NoSelect);
     m_PEntity->pushPacket<GP_SERV_COMMAND_ITEM_SAME>(m_PEntity);
 }
+
+CItemState::~CItemState() = default;
 
 void CItemState::UpdateTarget(CBaseEntity* target)
 {
@@ -234,11 +242,16 @@ auto CItemState::Update(const timer::time_point tick) -> bool
 
 void CItemState::Cleanup(timer::time_point tick)
 {
-    m_PEntity->UContainer->Clean();
-
-    if (m_PItem && (m_interrupted || !IsCompleted()) && !m_PItem->isType(ITEM_EQUIPMENT))
+    // Any non-commit path (interrupt, error, disconnect): explicit
+    // rollback drives the tx to RolledBack, then reset() can destroy
+    // safely. Transaction's dtor asserts non-Open.
+    if (m_interrupted || !IsCompleted())
     {
-        m_PItem->setSubType(ITEM_UNLOCKED);
+        if (tx_)
+        {
+            tx_->rollback();
+        }
+        tx_.reset();
     }
 
     auto* PItem = m_PEntity->getStorage(m_location)->GetItem(m_slot);
@@ -330,7 +343,21 @@ void CItemState::InterruptItem(action_t& action)
 
 auto CItemState::FinishItem(action_t& action) -> bool
 {
-    return m_PEntity->OnItemFinish(*this, action);
+    const bool shouldCommit = m_PEntity->OnItemFinish(*this, action);
+    if (!shouldCommit || !tx_)
+    {
+        // Equipment path or invalid target → no commit; tx will
+        // auto-rollback on Cleanup if still Open.
+        return false;
+    }
+
+    // Capture "will the item survive the consume?" BEFORE committing,
+    // because tx.commit()'s UpdateItem(-1) may delete m_PItem if its
+    // quantity was 1. The return value tells Update whether to null
+    // out m_PItem.
+    const bool willBeDestroyed = m_PItem && m_PItem->getQuantity() == 1;
+    tx_->commit();
+    return willBeDestroyed;
 }
 
 auto CItemState::HasMoved() const -> bool

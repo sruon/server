@@ -435,8 +435,8 @@ void CAttackRound::ProcFollowUpAttacks()
 
                         if (PAmmo && PAmmo->getID() == virtueStone && PAmmo->getQuantity() > 0)
                         {
-                            uint8 loc  = PChar->equipLoc[SLOT_AMMO];
-                            uint8 slot = PChar->equip[SLOT_AMMO];
+                            uint8 loc  = PChar->containerIdFor(SLOT_AMMO);
+                            uint8 slot = PChar->inventorySlotFor(SLOT_AMMO);
 
                             if (AddFollowUpAttack(direction))
                             {

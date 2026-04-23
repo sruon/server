@@ -39,6 +39,7 @@
 #include "items/item_general.h"
 #include "items/item_linkshell.h"
 #include "items/item_puppet.h"
+#include "items/item_store.h"
 #include "lua/luautils.h"
 #include "packets/c2s/0x02b_translate.h"
 
@@ -126,30 +127,34 @@ namespace itemutils
  *                                                                       *
  ************************************************************************/
 
-CItem* CreateItem(const uint16 itemId, const ItemType itemType)
+// CreateItem returns a raw pointer because g_pItemList (the template
+// table) holds raw pointers for the life of the server. The ownership
+// model applies to runtime per-character items; template entries never
+// get dropped individually (FreeItemList handles shutdown).
+auto CreateItem(const uint16 itemId, const ItemType itemType) -> CItem*
 {
     switch (itemType)
     {
         case ItemType::General:
-            return new CItemGeneral(itemId);
+            return ItemStore::create<CItemGeneral>(itemId).release();
         case ItemType::Linkshell:
-            return new CItemLinkshell(itemId);
+            return ItemStore::create<CItemLinkshell>(itemId).release();
         case ItemType::Furnishing:
-            return new CItemFurnishing(itemId);
+            return ItemStore::create<CItemFurnishing>(itemId).release();
         case ItemType::Puppet:
-            return new CItemPuppet(itemId);
+            return ItemStore::create<CItemPuppet>(itemId).release();
         case ItemType::Usable:
-            return new CItemUsable(itemId);
+            return ItemStore::create<CItemUsable>(itemId).release();
         case ItemType::Equipment:
-            return new CItemEquipment(itemId);
+            return ItemStore::create<CItemEquipment>(itemId).release();
         case ItemType::Weapon:
-            return new CItemWeapon(itemId);
+            return ItemStore::create<CItemWeapon>(itemId).release();
         case ItemType::Currency:
-            return new CItemCurrency(itemId);
+            return ItemStore::create<CItemCurrency>(itemId).release();
         default:
         {
             ShowErrorFmt("CreateItem({}): Unknown item type {}", itemId, static_cast<uint8>(itemType));
-            return new CItemGeneral(itemId);
+            return ItemStore::create<CItemGeneral>(itemId).release();
         }
     }
 }
@@ -160,11 +165,11 @@ CItem* CreateItem(const uint16 itemId, const ItemType itemType)
  *                                                                       *
  ************************************************************************/
 
-CItem* GetItem(const uint16 ItemID)
+auto GetItem(const uint16 ItemID) -> std::unique_ptr<CItem>
 {
     if (ItemID == 0xFFFF)
     {
-        return new CItemCurrency(ItemID);
+        return ItemStore::create<CItemCurrency>(ItemID);
     }
 
     if (ItemID < MAX_ITEMID && g_pItemList[ItemID] != nullptr)
@@ -181,7 +186,7 @@ CItem* GetItem(const uint16 ItemID)
  *                                                                       *
  ************************************************************************/
 
-CItem* GetItem(CItem* PItem)
+auto GetItem(CItem* PItem) -> std::unique_ptr<CItem>
 {
     if (PItem == nullptr)
     {
@@ -189,44 +194,40 @@ CItem* GetItem(CItem* PItem)
         return nullptr;
     }
 
+    // ItemStore::clone handles the owner-reset and live-set
+    // registration; caller is responsible for promoting the fresh
+    // clone via ItemStore::placeInInventory or moveToTransaction before use.
     if (PItem->isType(ITEM_WEAPON))
     {
-        return new CItemWeapon(*static_cast<CItemWeapon*>(PItem));
+        return ItemStore::clone(*static_cast<CItemWeapon*>(PItem));
     }
-
     if (PItem->isType(ITEM_EQUIPMENT))
     {
-        return new CItemEquipment(*static_cast<CItemEquipment*>(PItem));
+        return ItemStore::clone(*static_cast<CItemEquipment*>(PItem));
     }
-
     if (PItem->isType(ITEM_USABLE))
     {
-        return new CItemUsable(*static_cast<CItemUsable*>(PItem));
+        return ItemStore::clone(*static_cast<CItemUsable*>(PItem));
     }
-
     if (PItem->isType(ITEM_LINKSHELL))
     {
-        return new CItemLinkshell(*static_cast<CItemLinkshell*>(PItem));
+        return ItemStore::clone(*static_cast<CItemLinkshell*>(PItem));
     }
-
     if (PItem->isType(ITEM_FURNISHING))
     {
-        return new CItemFurnishing(*static_cast<CItemFurnishing*>(PItem));
+        return ItemStore::clone(*static_cast<CItemFurnishing*>(PItem));
     }
-
     if (PItem->isType(ITEM_PUPPET))
     {
-        return new CItemPuppet(*static_cast<CItemPuppet*>(PItem));
+        return ItemStore::clone(*static_cast<CItemPuppet*>(PItem));
     }
-
     if (PItem->isType(ITEM_GENERAL))
     {
-        return new CItemGeneral(*static_cast<CItemGeneral*>(PItem));
+        return ItemStore::clone(*static_cast<CItemGeneral*>(PItem));
     }
-
     if (PItem->isType(ITEM_CURRENCY))
     {
-        return new CItemCurrency(*static_cast<CItemCurrency*>(PItem));
+        return ItemStore::clone(*static_cast<CItemCurrency*>(PItem));
     }
 
     return nullptr;
@@ -582,13 +583,15 @@ void Initialize()
     LoadDropList();
     LoadLootList();
 
-    PUnarmedItem = new CItemWeapon(0);
+    // Globals — server-lifetime singletons; .release() transfers
+    // ownership to the raw globals so they survive until shutdown.
+    PUnarmedItem = ItemStore::create<CItemWeapon>(0).release();
 
     PUnarmedItem->setDmgType(DAMAGE_TYPE::NONE);
     PUnarmedItem->setSkillType(SKILL_NONE);
     PUnarmedItem->setDamage(3);
 
-    PUnarmedH2HItem = new CItemWeapon(0);
+    PUnarmedH2HItem = ItemStore::create<CItemWeapon>(0).release();
 
     PUnarmedH2HItem->setDmgType(DAMAGE_TYPE::HTH);
     PUnarmedH2HItem->setSkillType(SKILL_HAND_TO_HAND);

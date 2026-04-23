@@ -24,8 +24,13 @@
 
 #include "common/cbasetypes.h"
 #include "common/mmo.h"
+#include "common/types/badge.h"
 
 #include "map/enums/item_flag.h"
+#include "map/items/item_owner.h"
+
+class ItemStore;
+class CItemBindings;
 
 // The main type of item m_type
 enum ITEM_TYPE
@@ -45,10 +50,8 @@ enum ITEM_TYPE
 enum ITEM_SUBTYPE
 {
     ITEM_NORMAL    = 0x00,
-    ITEM_LOCKED    = 0x01,
     ITEM_CHARGED   = 0x02,
     ITEM_AUGMENTED = 0x04,
-    ITEM_UNLOCKED  = 0xFE,
 };
 
 class CItem
@@ -63,7 +66,6 @@ public:
     auto   hasFlag(ItemFlag flag) const -> bool;
     uint8  getAppraisalID() const;
     uint8  getAHCat() const;
-    uint32 getReserve() const;
     uint32 getQuantity() const;
     uint32 getStackSize() const;
     uint32 getBasePrice() const;
@@ -82,7 +84,6 @@ public:
     void setFlag(ItemFlag);
     void setAppraisalID(uint8 appraisailID);
     void setAHCat(uint8);
-    void setReserve(uint32);
     void setQuantity(uint32);
     void setStackSize(uint32);
     void setBasePrice(uint32);
@@ -110,6 +111,27 @@ public:
 
     bool isMannequin() const;
 
+    // ---- Ownership --------------------------------------------------
+    //
+    // Read-only for everyone. Mutation goes through ItemStore, which
+    // holds the single-writer authority (Badge-gated). See
+    // docs/design/item-ownership-model.md §3.
+    auto owner() const -> const ItemOwner&;
+    auto setOwner(ItemOwner newOwner, xi::Badge<ItemStore>) -> void;
+
+    // ---- Binding marker ---------------------------------------------
+    //
+    // Set true when CItemBindings pins this item — either via an
+    // equip slot (SLOT_MAIN through SLOT_LINK2 — 18 gear slots total,
+    // linkshells are just SLOT_LINK1/2) or a furniture placement.
+    // Read by ItemStore::isBusy so guards reject equipped/placed
+    // items without needing to walk the registry.
+    //
+    // This is a flag on the item to avoid the isBusy query needing a
+    // character pointer — the binding state travels with the item.
+    auto hasBinding() const -> bool;
+    auto setBinding(bool v, xi::Badge<CItemBindings>) -> void;
+
     static constexpr uint32_t extra_size = 0x18;
     uint8                     m_extra[extra_size]{};
 
@@ -135,8 +157,7 @@ private:
     uint16   m_subid;
     uint8    m_type;
     uint8    m_subtype;
-    uint32   m_quantity; // Current number of items
-    uint32   m_reserve;
+    uint32   m_quantity;  // Current number of items
     uint32   m_stackSize; // The maximum number of items
     uint32   m_BasePrice;
     uint32   m_CharPrice; // The cost of the subject in Bazaar
@@ -152,6 +173,9 @@ private:
     std::string m_name;
     std::string m_send;
     std::string m_recv;
+
+    ItemOwner owner_{ xi::item::Unowned{} };
+    bool      hasBinding_{ false };
 };
 
 #endif

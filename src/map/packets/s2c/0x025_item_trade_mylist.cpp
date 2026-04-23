@@ -23,14 +23,14 @@
 
 #include "utils/itemutils.h"
 
-GP_SERV_COMMAND_ITEM_TRADE_MYLIST::GP_SERV_COMMAND_ITEM_TRADE_MYLIST(const CItem* PItem, const uint8 slot)
+GP_SERV_COMMAND_ITEM_TRADE_MYLIST::GP_SERV_COMMAND_ITEM_TRADE_MYLIST(const CItem* PItem, const uint8 slot, const uint32 offeredQty)
 {
     auto& packet = this->data();
 
-    const uint32 amount = PItem->getReserve();
+    const bool populated = PItem != nullptr && offeredQty > 0;
 
-    packet.ItemNum    = amount == 0 ? 0 : amount;
-    packet.ItemNo     = amount == 0 ? 0 : PItem->getID();
+    packet.ItemNum    = populated ? offeredQty : 0;
+    packet.ItemNo     = populated ? PItem->getID() : 0;
     packet.TradeIndex = slot;
-    packet.ItemIndex  = amount == 0 ? 0 : PItem->getSlotID();
+    packet.ItemIndex  = populated ? PItem->getSlotID() : 0;
 }

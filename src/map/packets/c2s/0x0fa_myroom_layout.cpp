@@ -347,7 +347,7 @@ void GP_CLI_COMMAND_MYROOM_LAYOUT::process(MapSession* PSession, CCharEntity* PC
         // Set this item to being the most recently placed item
         PItem->setOrder(0);
 
-        PItem->setSubType(ITEM_LOCKED);
+        PChar->bindings.addFurniture({ this->MyroomCategory, this->MyroomItemIndex, PItem, 0 });
 
         PChar->pushPacket<GP_SERV_COMMAND_MYROOM_OPERATION>(PItem, static_cast<CONTAINER_ID>(this->MyroomCategory), this->MyroomItemIndex);
 

@@ -23,6 +23,7 @@
 
 #include "entities/charentity.h"
 #include "items.h"
+#include "items/item_store.h"
 #include "packets/s2c/0x01d_item_same.h"
 #include "packets/s2c/0x020_item_attr.h"
 #include "utils/charutils.h"
@@ -111,8 +112,8 @@ const auto isValidMovement = [](const CCharEntity* PChar, const CONTAINER_ID fro
 {
     const CItem* PItem = PChar->getStorage(from)->GetItem(itemIndex);
 
-    // Always disallowed to move locked items or Gil.
-    if (!PItem || PItem->isSubType(ITEM_LOCKED) || PItem->getID() == ITEMID::GIL)
+    // Always disallowed to move busy items or Gil.
+    if (!PItem || ItemStore::isBusy(PItem) || PItem->getID() == ITEMID::GIL)
     {
         return false;
     }
@@ -171,7 +172,7 @@ void GP_CLI_COMMAND_ITEM_MOVE::process(MapSession* PSession, CCharEntity* PChar)
         return;
     }
 
-    if (PItem->getQuantity() - PItem->getReserve() < this->ItemNum)
+    if (PItem->getQuantity() < this->ItemNum)
     {
         ShowWarning("GP_CLI_COMMAND_ITEM_MOVE: Trying to move too much quantity from location %u slot %u", this->Category1, this->ItemIndex1);
         return;
@@ -191,9 +192,7 @@ void GP_CLI_COMMAND_ITEM_MOVE::process(MapSession* PSession, CCharEntity* PChar)
             ShowDebug("GP_CLI_COMMAND_ITEM_MOVE: Trying to unite items", this->Category1, this->ItemIndex1);
             const CItem* PItem2 = PChar->getStorage(this->Category2)->GetItem(this->ItemIndex2);
 
-            if (!PItem2 || PItem2->getID() != PItem->getID() ||
-                PItem2->isSubType(ITEM_LOCKED) ||
-                PItem2->getReserve() > 0)
+            if (!PItem2 || PItem2->getID() != PItem->getID() || ItemStore::isBusy(PItem2))
             {
                 ShowWarning("GP_CLI_COMMAND_ITEM_MOVE: Trying to unite items with invalid item %i at location %u slot %u",
                             PItem2 ? PItem2->getID() : 0,
@@ -225,8 +224,26 @@ void GP_CLI_COMMAND_ITEM_MOVE::process(MapSession* PSession, CCharEntity* PChar)
             return;
         }
 
-        if (uint8 newSlotId = PChar->getStorage(this->Category2)->InsertItem(PItem); newSlotId != ERROR_SLOTID)
+        if (PChar->getStorage(this->Category2)->GetFreeSlotsCount() > 0)
         {
+            // Lift the item out of Category1 so there's exactly one
+            // owner at any moment, then hand it to Category2.
+            auto   pItem     = PChar->getStorage(this->Category1)->ReleaseItem(this->ItemIndex1);
+            CItem* rawItem   = pItem.get();
+            uint8  newSlotId = PChar->getStorage(this->Category2)->InsertItem(std::move(pItem));
+            if (newSlotId == ERROR_SLOTID)
+            {
+                // Belt-and-suspenders: InsertItem shouldn't fail after
+                // GetFreeSlotsCount() > 0 in correct single-threaded
+                // operation, but if it does, pItem was auto-dropped and
+                // the item is gone. Restore an empty Cat1 slot (it's
+                // already empty from ReleaseItem) and log.
+                ShowErrorFmt("0x029_item_move: InsertItem failed after free-slot check; item lost (Cat1={}, Slot1={}, Cat2={})",
+                             this->Category1,
+                             this->ItemIndex1,
+                             this->Category2);
+                return;
+            }
             const auto rset = db::preparedStmt("UPDATE char_inventory SET location = ?, slot = ? WHERE charid = ? AND location = ? AND slot = ?",
                                                this->Category2,
                                                newSlotId,
@@ -235,15 +252,15 @@ void GP_CLI_COMMAND_ITEM_MOVE::process(MapSession* PSession, CCharEntity* PChar)
                                                this->ItemIndex1);
             if (rset && rset->rowsAffected())
             {
-                PChar->getStorage(this->Category1)->InsertItem(nullptr, this->ItemIndex1);
-
-                PChar->pushPacket<GP_SERV_COMMAND_ITEM_ATTR>(nullptr, static_cast<CONTAINER_ID>(this->Category1), this->ItemIndex1, PItem);
-                PChar->pushPacket<GP_SERV_COMMAND_ITEM_ATTR>(PItem, static_cast<CONTAINER_ID>(this->Category2), newSlotId);
+                PChar->pushPacket<GP_SERV_COMMAND_ITEM_ATTR>(nullptr, static_cast<CONTAINER_ID>(this->Category1), this->ItemIndex1, rawItem);
+                PChar->pushPacket<GP_SERV_COMMAND_ITEM_ATTR>(rawItem, static_cast<CONTAINER_ID>(this->Category2), newSlotId);
             }
             else
             {
-                PChar->getStorage(this->Category2)->InsertItem(nullptr, newSlotId);
-                PChar->getStorage(this->Category1)->InsertItem(PItem, this->ItemIndex1);
+                // DB rollback — lift it back out of Cat2 and restore to
+                // its original slot in Cat1.
+                auto restored = PChar->getStorage(this->Category2)->ReleaseItem(newSlotId);
+                PChar->getStorage(this->Category1)->InsertItem(std::move(restored), this->ItemIndex1);
             }
         }
         else

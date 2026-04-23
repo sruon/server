@@ -8,18 +8,26 @@ local ID = zones[xi.zone.LA_THEINE_PLATEAU]
 ---@type TNpcEntity
 local entity = {}
 
-entity.onTrade = function(player, npc, trade)
-    -- Trade any normal crystal for a faded crystal
-    local item = trade:getItemId()
-    if
-        trade:getItemCount() == 1 and
-        item >= xi.item.FIRE_CRYSTAL and
-        item <= xi.item.DARK_CRYSTAL and
-        npcUtil.giveItem(player, xi.item.FADED_CRYSTAL)
-    then
-        player:tradeComplete()
-    end
+local function crystalTrade(crystalId)
+    return {
+        match   = { items = {{ crystalId, 1 }} },
+        onSuccess = function(player, npc)
+            return npcUtil.giveItem(player, xi.item.FADED_CRYSTAL)
+        end,
+    }
 end
+
+entity.declaredTrades =
+{
+    crystalTrade(xi.item.FIRE_CRYSTAL),
+    crystalTrade(xi.item.ICE_CRYSTAL),
+    crystalTrade(xi.item.WIND_CRYSTAL),
+    crystalTrade(xi.item.EARTH_CRYSTAL),
+    crystalTrade(xi.item.LIGHTNING_CRYSTAL),
+    crystalTrade(xi.item.WATER_CRYSTAL),
+    crystalTrade(xi.item.LIGHT_CRYSTAL),
+    crystalTrade(xi.item.DARK_CRYSTAL),
+}
 
 entity.onTrigger = function(player, npc)
     if not player:hasKeyItem(xi.ki.HOLLA_GATE_CRYSTAL) then

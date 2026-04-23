@@ -77,14 +77,49 @@ local function getOrbDataFromOption(option)
     return nil, nil, nil
 end
 
-entity.onTrade = function(player, npc, trade)
-    local eventParams = { 321, 0, 0, 0, 0, 0 }
-
-    if xi.seals.onTrade(player, npc, trade, eventParams) then
-        return
+local function sealIds()
+    local ids = {}
+    for itemId, _ in pairs(xi.seals.sealItems) do
+        table.insert(ids, itemId)
     end
+    return ids
+end
 
-    -- Trading Orbs
+entity.declaredTrades =
+{
+    {
+        match   = { anyOf = sealIds() },
+        event   = {
+            id     = 321,
+            params = function(player, npc, offers)
+                -- Build the same 6-slot param block the legacy code
+                -- used: slot [sealId + 2] = (currentStored + offered) << 16.
+                local out = { 0, 0, 0, 0, 0, 0 }
+                if offers then
+                    for _, entry in ipairs(offers) do
+                        local sealData = xi.seals.sealItems[entry.id]
+                        if sealData then
+                            local sealId = sealData[1]
+                            local stored = player:getSeals(sealId)
+                            out[sealId + 2] = bit.lshift(stored + entry.qty, 16)
+                        end
+                    end
+                end
+                return out
+            end,
+            onFinish = function(player, option, npc, confirmations)
+                for itemId, qty in pairs(confirmations) do
+                    local sealId = xi.seals.sealItems[itemId][1]
+                    player:addSeals(qty, sealId)
+                end
+                return true
+            end,
+        },
+    },
+}
+
+entity.onTrade = function(player, npc, trade)
+    -- Seal trade is declarative; this handles the orb trade only.
     local orbEvent = getOrbEvent(player, trade)
     if orbEvent ~= nil then
         player:startEvent(orbEvent)

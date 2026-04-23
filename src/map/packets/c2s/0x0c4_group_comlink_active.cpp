@@ -27,6 +27,7 @@
 #include "item_container.h"
 #include "items.h"
 #include "items/item_linkshell.h"
+#include "items/item_store.h"
 #include "linkshell.h"
 #include "packets/char_status.h"
 #include "packets/s2c/0x01d_item_same.h"
@@ -54,29 +55,32 @@ const auto createLinkshell = [](CCharEntity* PChar, CItemLinkshell* PItemLinkshe
 
     if (linkshellId != 0)
     {
-        destroy(PItemLinkshell);
-        PItemLinkshell = static_cast<CItemLinkshell*>(itemutils::GetItem(ITEMID::LINKSHELL));
-        if (PItemLinkshell == nullptr)
+        auto newItem = itemutils::GetItem(ITEMID::LINKSHELL);
+        if (newItem == nullptr)
         {
             return;
         }
 
-        PItemLinkshell->setQuantity(1);
-        PChar->getStorage(data.Category)->InsertItem(PItemLinkshell, data.ItemIndex);
-        PItemLinkshell->SetLSID(linkshellId);
-        PItemLinkshell->SetLSType(LSTYPE_LINKSHELL);
-        PItemLinkshell->setSignature(DecodedName);
-        PItemLinkshell->SetLSColor(linkshellColor);
+        auto* PNewLinkshell = static_cast<CItemLinkshell*>(newItem.get());
+        PNewLinkshell->setQuantity(1);
+        PNewLinkshell->SetLSID(linkshellId);
+        PNewLinkshell->SetLSType(LSTYPE_LINKSHELL);
+        PNewLinkshell->setSignature(DecodedName);
+        PNewLinkshell->SetLSColor(linkshellColor);
+
+        // InsertItem at the same slot auto-drops the old NEW_LINKSHELL
+        // (PItemLinkshell) that occupied it.
+        PChar->getStorage(data.Category)->InsertItem(std::move(newItem), data.ItemIndex);
 
         const auto rset = db::preparedStmt("UPDATE char_inventory SET signature = ?, extra = ?, itemId = 513 WHERE charid = ? AND location = ? AND slot = ? LIMIT 1",
                                            safeName,
-                                           PItemLinkshell->m_extra,
+                                           PNewLinkshell->m_extra,
                                            PChar->id,
                                            data.Category,
                                            data.ItemIndex);
         if (rset && rset->rowsAffected())
         {
-            PChar->pushPacket<GP_SERV_COMMAND_ITEM_ATTR>(PItemLinkshell, static_cast<CONTAINER_ID>(data.Category), data.ItemIndex);
+            PChar->pushPacket<GP_SERV_COMMAND_ITEM_ATTR>(PNewLinkshell, static_cast<CONTAINER_ID>(data.Category), data.ItemIndex);
         }
     }
     else
@@ -131,16 +135,15 @@ const auto equipLinkshell = [](CCharEntity* PChar, CItemLinkshell* PItemLinkshel
         {
             linkshell::DelOnlineMember(PChar, POldItemLinkshell);
 
-            POldItemLinkshell->setSubType(ITEM_UNLOCKED);
+            PChar->clearEquip(slot);
             PChar->pushPacket<GP_SERV_COMMAND_ITEM_LIST>(POldItemLinkshell, ItemLockFlg::Normal);
         }
     }
 
     // Now equip the new linkshell
     linkshell::AddOnlineMember(PChar, PItemLinkshell, data.LinkshellId);
-    PItemLinkshell->setSubType(ITEM_LOCKED);
-    PChar->equip[SLOT_BACK + data.LinkshellId]    = data.ItemIndex;
-    PChar->equipLoc[SLOT_BACK + data.LinkshellId] = data.Category;
+    const uint8 lsEquipSlot = SLOT_BACK + data.LinkshellId;
+    PChar->setEquip(lsEquipSlot, data.Category, data.ItemIndex, PItemLinkshell);
     if (data.LinkshellId == 1)
     {
         PChar->updatemask |= UPDATE_HP;
@@ -157,9 +160,7 @@ const auto equipLinkshell = [](CCharEntity* PChar, CItemLinkshell* PItemLinkshel
 const auto unequipLinkshell = [](CCharEntity* PChar, CItemLinkshell* PItemLinkshell, const GP_CLI_COMMAND_GROUP_COMLINK_ACTIVE& data)
 {
     linkshell::DelOnlineMember(PChar, PItemLinkshell);
-    PItemLinkshell->setSubType(ITEM_UNLOCKED);
-    PChar->equip[SLOT_BACK + data.LinkshellId]    = 0;
-    PChar->equipLoc[SLOT_BACK + data.LinkshellId] = 0;
+    PChar->clearEquip(SLOT_BACK + data.LinkshellId);
     if (data.LinkshellId == 1)
     {
         PChar->updatemask |= UPDATE_HP;

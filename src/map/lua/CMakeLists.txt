@@ -23,8 +23,8 @@ set(LUA_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/lua_spell.h
     ${CMAKE_CURRENT_SOURCE_DIR}/lua_statuseffect.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/lua_statuseffect.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/lua_trade_container.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/lua_trade_container.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/lua_trade.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lua_trade.h
     ${CMAKE_CURRENT_SOURCE_DIR}/lua_treasure_pool.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/lua_treasure_pool.h
     ${CMAKE_CURRENT_SOURCE_DIR}/lua_trigger_area.cpp

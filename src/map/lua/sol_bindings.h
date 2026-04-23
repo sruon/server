@@ -158,10 +158,6 @@ class CLuaStatusEffect;
 class CStatusEffect;
 SOL_BIND_DEC(CLuaStatusEffect, CStatusEffect);
 
-class CLuaTradeContainer;
-class CTradeContainer;
-SOL_BIND_DEC(CLuaTradeContainer, CTradeContainer);
-
 class CLuaTriggerArea;
 class ITriggerArea;
 SOL_BIND_DEC(CLuaTriggerArea, ITriggerArea);

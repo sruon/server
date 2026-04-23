@@ -24,6 +24,7 @@
 #include "entities/charentity.h"
 #include "items/item.h"
 #include "items/item_shop.h"
+#include "items/item_store.h"
 #include "packets/s2c/0x01d_item_same.h"
 #include "packets/s2c/0x082_guild_buy.h"
 #include "utils/charutils.h"
@@ -60,7 +61,7 @@ void GP_CLI_COMMAND_GUILD_BUY::process(MapSession* PSession, CCharEntity* PChar)
     const auto   item = static_cast<CItemShop*>(PChar->PGuildShop->GetItem(shopSlotId));
     const CItem* gil  = PChar->getStorage(LOC_INVENTORY)->GetItem(0);
 
-    if (!gil || !gil->isType(ITEM_CURRENCY) || gil->getReserve() != 0 || !item)
+    if (!gil || !gil->isType(ITEM_CURRENCY) || ItemStore::isBusy(gil) || !item)
     {
         return;
     }

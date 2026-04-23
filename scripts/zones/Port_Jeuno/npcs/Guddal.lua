@@ -1,29 +1,32 @@
 -----------------------------------
 -- Area: Port Jeuno
 --  NPC: Guddal
--- Starts and Finishes Quest: Kazham Airship Pass (This quest does not appear in your quest log) -- Becouse it isn't.
+-- Starts and Finishes Quest: Kazham Airship Pass (This quest does not
+-- appear in your quest log)
 -- !pos -14 8 44 246
------------------------------------
 local ID = zones[xi.zone.PORT_JEUNO]
 -----------------------------------
 ---@type TNpcEntity
 local entity = {}
 
-entity.onTrade = function(player, npc, trade)
-    if not player:hasKeyItem(xi.ki.AIRSHIP_PASS_FOR_KAZHAM) then
-        if
-            trade:hasItemQty(xi.item.GHELSBA_CHEST_KEY, 1) and
-            trade:hasItemQty(xi.item.PALBOROUGH_CHEST_KEY, 1) and
-            trade:hasItemQty(xi.item.GIDDEUS_CHEST_KEY, 1) and
-            trade:getGil() == 0 and
-            trade:getItemCount() == 3
-        then
-            player:startEvent(301) -- Ending quest "Kazham Airship Pass"
-        else
-            player:startEvent(302)
-        end
-    end
-end
+entity.declaredTrades =
+{
+    {
+        match = {
+            items = {
+                { xi.item.GHELSBA_CHEST_KEY,    1 },
+                { xi.item.PALBOROUGH_CHEST_KEY, 1 },
+                { xi.item.GIDDEUS_CHEST_KEY,    1 },
+            },
+        },
+        acceptIf = function(player)
+            return not player:hasKeyItem(xi.ki.AIRSHIP_PASS_FOR_KAZHAM)
+        end,
+        onSuccess = function(player)
+            npcUtil.giveKeyItem(player, xi.ki.AIRSHIP_PASS_FOR_KAZHAM)
+        end,
+    },
+}
 
 entity.onTrigger = function(player, npc)
     if not player:hasKeyItem(xi.ki.AIRSHIP_PASS_FOR_KAZHAM) then
@@ -48,9 +51,6 @@ entity.onEventFinish = function(player, csid, option, npc)
         player:hasKeyItem(xi.ki.AIRSHIP_PASS_FOR_KAZHAM)
     then
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, xi.ki.AIRSHIP_PASS_FOR_KAZHAM)
-    elseif csid == 301 then
-        npcUtil.giveKeyItem(player, xi.ki.AIRSHIP_PASS_FOR_KAZHAM)
-        player:tradeComplete()
     end
 end
 

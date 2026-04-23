@@ -133,9 +133,9 @@ void GP_CLI_COMMAND_LOGIN::process(MapSession* PSession, CCharEntity* PChar) con
         PChar->pushPacket<GP_SERV_COMMAND_LOGIN>(PChar, PChar->currentEvent);
         for (uint8 i = 0; i < 16; ++i)
         {
-            if (PChar->equip[i] != 0)
+            if (PChar->inventorySlotFor(i) != 0)
             {
-                PChar->pushPacket<GP_SERV_COMMAND_EQUIP_LIST>(PChar->equip[i], static_cast<SLOTTYPE>(i), static_cast<CONTAINER_ID>(PChar->equipLoc[i]));
+                PChar->pushPacket<GP_SERV_COMMAND_EQUIP_LIST>(PChar->inventorySlotFor(i), static_cast<SLOTTYPE>(i), static_cast<CONTAINER_ID>(PChar->containerIdFor(i)));
             }
         }
         PChar->status = STATUS_TYPE::NORMAL;

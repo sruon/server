@@ -147,8 +147,6 @@ set(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/time_server.h
     ${CMAKE_CURRENT_SOURCE_DIR}/timetriggers.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/timetriggers.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/trade_container.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/trade_container.h
     ${CMAKE_CURRENT_SOURCE_DIR}/trait.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/trait.h
     ${CMAKE_CURRENT_SOURCE_DIR}/transport.cpp
@@ -159,8 +157,6 @@ set(SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/trigger_area.h
     ${CMAKE_CURRENT_SOURCE_DIR}/unitychat.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/unitychat.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/universal_container.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/universal_container.h
     ${CMAKE_CURRENT_SOURCE_DIR}/weapon_skill.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/weapon_skill.h
     ${CMAKE_CURRENT_SOURCE_DIR}/zone_entities.cpp

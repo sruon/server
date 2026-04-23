@@ -91,7 +91,7 @@ void GP_CLI_COMMAND_MYROOM_BANKIN::process(MapSession* PSession, CCharEntity* PC
     PFurnishing->setLevel(0);
     PFurnishing->setRotation(0);
 
-    PFurnishing->setSubType(ITEM_UNLOCKED);
+    PChar->bindings.removeFurniture(this->MyroomCategory, this->MyroomItemIndex);
 
     // If this furniture is a mannequin, clear its appearance and unlock all items that were on it!
     if (PFurnishing->isMannequin())
