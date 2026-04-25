@@ -22,6 +22,7 @@
 #include "0x03a_item_stack.h"
 
 #include "entities/charentity.h"
+#include "items/item_store.h"
 #include "packets/s2c/0x01d_item_same.h"
 #include "utils/charutils.h"
 
@@ -53,10 +54,9 @@ void GP_CLI_COMMAND_ITEM_STACK::process(MapSession* PSession, CCharEntity* PChar
     for (uint8 slotId = 1; slotId <= size; ++slotId)
     {
         const CItem* PItem = PItemContainer->GetItem(slotId);
-        // Skip items that are invalid, locked, reserved or already meeting stack size.
+        // Skip items that are invalid, busy, or already meeting stack size.
         if (!PItem ||
-            PItem->getReserve() > 0 ||
-            PItem->isSubType(ITEM_LOCKED) ||
+            ItemStore::isBusy(PChar, PItem) ||
             PItem->getQuantity() >= PItem->getStackSize())
         {
             continue;
@@ -66,11 +66,10 @@ void GP_CLI_COMMAND_ITEM_STACK::process(MapSession* PSession, CCharEntity* PChar
         {
             const CItem* PItem2 = PItemContainer->GetItem(slotID2);
 
-            // Skip items that are invalid, not matching, locked, reserved or already meeting stack size.
+            // Skip items that are invalid, not matching, busy, or already meeting stack size.
             if (!PItem2 ||
                 PItem2->getID() != PItem->getID() ||
-                PItem2->getReserve() > 0 ||
-                PItem2->isSubType(ITEM_LOCKED) ||
+                ItemStore::isBusy(PChar, PItem2) ||
                 PItem2->getQuantity() >= PItem2->getStackSize())
             {
                 continue;

@@ -27,6 +27,11 @@
 #include "gmcall_container.h"
 #include "inventory_sync_state.h"
 #include "item_container.h"
+#include "items/craft_state.h"
+#include "items/dbox_state.h"
+#include "items/item_bindings.h"
+#include "items/shop_state.h"
+#include "items/transaction.h"
 #include "map_session.h"
 #include "monstrosity.h"
 
@@ -37,9 +42,12 @@
 #include <bitset>
 #include <deque>
 #include <map>
+#include <memory>
+#include <optional>
 #include <set>
 #include <unordered_map>
 #include <unordered_set>
+#include <vector>
 
 #include "automatonentity.h"
 #include "battleentity.h"
@@ -264,9 +272,8 @@ class CJobPoints;
 class CMeritPoints;
 class CCharRecastContainer;
 class CLatentEffectContainer;
-class CTradeContainer;
+class PlayerTradeTransaction;
 class CItemContainer;
-class CUContainer;
 class CItemEquipment;
 class CAbilityState;
 class CRangeState;
@@ -275,6 +282,12 @@ class CItemUsable;
 
 typedef std::map<uint32, CBaseEntity*> SpawnIDList_t;
 typedef std::vector<EntityID_t>        BazaarList_t;
+
+struct EquipLocation
+{
+    CONTAINER_ID container{};
+    uint8        index{};
+};
 
 class CCharEntity : public CBattleEntity
 {
@@ -320,8 +333,6 @@ public:
     uint16          m_EquipFlag{};         // Current events handled by the equipment (later it will be packed into a structure, along with equip[])
     uint16          m_EquipBlock{};        // Locked equipment slots
     uint16          m_StatsDebilitation{}; // Debilitation arrows
-    uint8           equip[18]{};           // SlotID where equipment is
-    uint8           equipLoc[18]{};        // ContainerID where equipment is
     uint16          styleItems[16]{};      // Item IDs for items that are style locked.
 
     uint8            m_ZonesVisitedList[38]{}; // List of zones visited by the character
@@ -480,10 +491,59 @@ public:
     CItemContainer* PGuildShop;
     CItemContainer* getStorage(uint8 locationId) const;
 
-    CTradeContainer* TradeContainer; // Container used specifically for trading.
-    CTradeContainer* Container;      // Universal container for exchange, synthesis, store, etc.
-    CUContainer*     UContainer;     // Container used for universal actions -- used for trading at least despite the dedicated trading container above
-    CTradeContainer* CraftContainer; // Container used for crafting actions.
+    CCraftState craftState;
+    CDboxState  dboxState;
+
+    auto shopState() -> CShopState&;
+    auto shopState() const -> const CShopState&;
+
+    auto bindings() -> CharacterInventoryBindings&;
+    auto bindings() const -> const CharacterInventoryBindings&;
+
+    std::vector<std::unique_ptr<Transaction>> transactions;
+
+    template <typename T>
+    auto activeTransaction() -> T*
+    {
+        for (auto& tx : transactions)
+        {
+            if (auto* match = dynamic_cast<T*>(tx.get()))
+            {
+                return match;
+            }
+        }
+        return nullptr;
+    }
+
+    // One tx of each type at a time. Returns nullptr if duplicate.
+    template <typename T>
+    auto addTransaction(std::unique_ptr<T> tx) -> T*
+    {
+        static_assert(std::is_base_of_v<Transaction, T>, "addTransaction<T>: T must derive from Transaction");
+        if (!tx)
+        {
+            return nullptr;
+        }
+        for (const auto& existing : transactions)
+        {
+            if (dynamic_cast<T*>(existing.get()) != nullptr)
+            {
+                tx->rollback();
+                return nullptr;
+            }
+        }
+        transactions.push_back(std::move(tx));
+        return static_cast<T*>(transactions.back().get());
+    }
+
+    void removeTransaction(Transaction* tx);
+
+    auto findTransactionHolding(const CItem* item) -> Transaction*;
+
+    // Checks this char's transactions first, then partner via tradePending.
+    auto activePlayerTradeTx() -> ::PlayerTradeTransaction*;
+
+    auto equipLocation(uint8 equipSlot) const -> std::optional<EquipLocation>;
 
     // TODO: All member instances of EntityID_t should be Maybe<EntityID_t> to allow for them not to be set,
     //     : instead of checking for entityId.id != 0, etc.
@@ -501,7 +561,7 @@ public:
     void SetName(const std::string& name); // set the name of character, limited to 15 characters
 
     timer::time_point lastTradeInvite{};
-    EntityID_t        TradePending{};    // Character ID offering trade
+    EntityID_t        tradePending{};    // Character ID offering trade
     EntityID_t        InvitePending{};   // Character ID sending party invite
     EntityID_t        BazaarID{};        // Pointer to the bazaar we are browsing.
     BazaarList_t      BazaarCustomers{}; // Array holding the IDs of the current customers
@@ -681,6 +741,9 @@ protected:
     void TrackArrowUsageForScavenge(CItemWeapon* PAmmo);
 
 private:
+    CShopState                 shopState_;
+    CharacterInventoryBindings bindings_;
+
     // Lazily initialized AMAN data
     Maybe<CAMANContainer> m_AMAN;
     GMCallContainer       gmCallContainer_;

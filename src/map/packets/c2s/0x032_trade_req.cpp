@@ -23,11 +23,10 @@
 
 #include "entities/charentity.h"
 #include "enums/msg_std.h"
+#include "items/dbox_state.h"
 #include "packets/s2c/0x021_item_trade_req.h"
 #include "packets/s2c/0x022_item_trade_res.h"
 #include "packets/s2c/0x053_systemmes.h"
-#include "trade_container.h"
-#include "universal_container.h"
 #include "utils/charutils.h"
 #include "utils/jailutils.h"
 
@@ -78,22 +77,23 @@ void GP_CLI_COMMAND_TRADE_REQ::process(MapSession* PSession, CCharEntity* PChar)
         return;
     }
 
-    if (PTarget->TradePending.id == PChar->id)
+    if (PTarget->tradePending.id == PChar->id)
     {
         ShowDebug("%s has already sent a trade request to %s", PChar->getName(), PTarget->getName());
         return;
     }
 
-    if (!PTarget->UContainer->IsContainerEmpty())
+    // Target is already trading — reject.
+    if (PTarget->activePlayerTradeTx() != nullptr)
     {
         PChar->pushPacket<GP_SERV_COMMAND_ITEM_TRADE_RES>(PTarget, GP_ITEM_TRADE_RES_KIND::ErrYouTrade);
-        ShowDebug("%s's UContainer is not empty. %s cannot trade with them at this time", PTarget->getName(), PChar->getName());
+        ShowDebug("%s is already in a trade; %s cannot trade with them at this time", PTarget->getName(), PChar->getName());
         return;
     }
 
     const timer::time_point currentTime     = timer::now();
     const auto              lastTargetTrade = currentTime - PTarget->lastTradeInvite;
-    if ((PTarget->TradePending.targid != 0 && lastTargetTrade < 60s) || PTarget->UContainer->GetType() == UCONTAINER_TRADE)
+    if (PTarget->tradePending.targid != 0 && lastTargetTrade < 60s)
     {
         // Can't trade with someone who's already got a pending trade before timeout
         PChar->pushPacket<GP_SERV_COMMAND_ITEM_TRADE_RES>(PTarget, GP_ITEM_TRADE_RES_KIND::ErrYouTrade);
@@ -103,14 +103,14 @@ void GP_CLI_COMMAND_TRADE_REQ::process(MapSession* PSession, CCharEntity* PChar)
     // This block usually doesn't trigger,
     // The client is generally forced to send a trade cancel packet via a cancel yes/no menu,
     // resulting in an outgoing 0x033 with 0x04 set to 0x01 for their old trade target, but sometimes the menu does not happen and a cancel is sent instead.
-    if (PChar->TradePending.id != 0)
+    if (PChar->tradePending.id != 0)
     {
         // Tell previous trader we don't want their business
-        auto* POldTradeTarget = static_cast<CCharEntity*>(PChar->GetEntity(PChar->TradePending.id, TYPE_PC));
-        if (POldTradeTarget && POldTradeTarget->id == PChar->TradePending.id)
+        auto* POldTradeTarget = static_cast<CCharEntity*>(PChar->GetEntity(PChar->tradePending.id, TYPE_PC));
+        if (POldTradeTarget && POldTradeTarget->id == PChar->tradePending.id)
         {
-            POldTradeTarget->TradePending.clean();
-            PChar->TradePending.clean();
+            POldTradeTarget->tradePending.clean();
+            PChar->tradePending.clean();
 
             POldTradeTarget->pushPacket<GP_SERV_COMMAND_ITEM_TRADE_RES>(PChar, GP_ITEM_TRADE_RES_KIND::ErrYouTrade);
             PChar->pushPacket<GP_SERV_COMMAND_ITEM_TRADE_RES>(POldTradeTarget, GP_ITEM_TRADE_RES_KIND::ErrYouTrade);
@@ -119,11 +119,11 @@ void GP_CLI_COMMAND_TRADE_REQ::process(MapSession* PSession, CCharEntity* PChar)
     }
 
     PChar->lastTradeInvite     = currentTime;
-    PChar->TradePending.id     = this->UniqueNo;
-    PChar->TradePending.targid = this->ActIndex;
+    PChar->tradePending.id     = this->UniqueNo;
+    PChar->tradePending.targid = this->ActIndex;
 
     PTarget->lastTradeInvite     = currentTime;
-    PTarget->TradePending.id     = PChar->id;
-    PTarget->TradePending.targid = PChar->targid;
+    PTarget->tradePending.id     = PChar->id;
+    PTarget->tradePending.targid = PChar->targid;
     PTarget->pushPacket<GP_SERV_COMMAND_ITEM_TRADE_REQ>(PChar);
 }

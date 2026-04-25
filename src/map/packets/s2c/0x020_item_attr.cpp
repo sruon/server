@@ -24,11 +24,12 @@
 #include "common/vana_time.h"
 #include "enums/item_lockflg.h"
 #include "items/item_linkshell.h"
+#include "items/item_store.h"
 #include "utils/itemutils.h"
 
 #include <cstring>
 
-GP_SERV_COMMAND_ITEM_ATTR::GP_SERV_COMMAND_ITEM_ATTR(CItem* PItem, const CONTAINER_ID locationId, const uint8_t slotId, CItem* staleItem)
+GP_SERV_COMMAND_ITEM_ATTR::GP_SERV_COMMAND_ITEM_ATTR(const CCharEntity* PChar, CItem* PItem, const CONTAINER_ID locationId, const uint8_t slotId, CItem* staleItem)
 {
     auto& packet = this->data();
 
@@ -92,7 +93,7 @@ GP_SERV_COMMAND_ITEM_ATTR::GP_SERV_COMMAND_ITEM_ATTR(CItem* PItem, const CONTAIN
         {
             packet.LockFlg = ItemLockFlg::Unknown0;
         }
-        else if (PItem->isSubType(ITEM_LOCKED))
+        else if (ItemStore::isBusy(PChar, PItem))
         {
             if (PItem->isType(ITEM_LINKSHELL))
             {

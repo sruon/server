@@ -435,10 +435,7 @@ void CAttackRound::ProcFollowUpAttacks()
 
                         if (PAmmo && PAmmo->getID() == virtueStone && PAmmo->getQuantity() > 0)
                         {
-                            uint8 loc  = PChar->equipLoc[SLOT_AMMO];
-                            uint8 slot = PChar->equip[SLOT_AMMO];
-
-                            if (AddFollowUpAttack(direction))
+                            if (const auto eq = PChar->equipLocation(SLOT_AMMO); eq && AddFollowUpAttack(direction))
                             {
                                 if (PAmmo->getQuantity() == 1)
                                 {
@@ -446,7 +443,7 @@ void CAttackRound::ProcFollowUpAttacks()
                                     PChar->RequestPersist(CHAR_PERSIST::EQUIP);
                                 }
 
-                                charutils::UpdateItem(PChar, loc, slot, -1);
+                                charutils::UpdateItem(PChar, eq->container, eq->index, -1);
                                 PChar->pushPacket<GP_SERV_COMMAND_ITEM_SAME>(PChar);
                             }
                         }

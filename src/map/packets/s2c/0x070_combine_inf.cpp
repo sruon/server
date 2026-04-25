@@ -23,7 +23,6 @@
 
 #include "entities/charentity.h"
 #include "enums/synthesis_result.h"
-#include "trade_container.h"
 
 GP_SERV_COMMAND_COMBINE_INF::GP_SERV_COMMAND_COMBINE_INF(const CCharEntity* PChar, const SynthesisResult result, const uint16 itemId, const uint8 quantity)
 {
@@ -45,9 +44,9 @@ GP_SERV_COMMAND_COMBINE_INF::GP_SERV_COMMAND_COMBINE_INF(const CCharEntity* PCha
         uint8 count = 0;
         for (uint8 slotID = 1; slotID <= 8; ++slotID)
         {
-            if (PChar->CraftContainer->getQuantity(slotID) == 0)
+            if (PChar->craftState.skillRequired[slotID] == 0)
             {
-                const uint16 failedItemID = PChar->CraftContainer->getItemID(slotID);
+                const uint16 failedItemID = PChar->craftState.ingredients[slotID - 1].itemId;
                 packet.BreakNo[count]     = failedItemID;
                 count++;
             }

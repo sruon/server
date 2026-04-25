@@ -78,6 +78,7 @@
 #include "items/item_furnishing.h"
 #include "items/item_usable.h"
 #include "items/item_weapon.h"
+#include "items/transactions/player_trade.h"
 #include "job_points.h"
 #include "latent_effect_container.h"
 #include "linkshell.h"
@@ -92,11 +93,9 @@
 #include "petskill.h"
 #include "spell.h"
 #include "status_effect_container.h"
-#include "trade_container.h"
 #include "treasure_pool.h"
 #include "trustentity.h"
 #include "unitychat.h"
-#include "universal_container.h"
 #include "utils/attackutils.h"
 #include "utils/battleutils.h"
 #include "utils/charutils.h"
@@ -126,11 +125,6 @@ CCharEntity::CCharEntity()
 
     allegiance = ALLEGIANCE_TYPE::PLAYER;
 
-    TradeContainer = new CTradeContainer();
-    Container      = new CTradeContainer();
-    UContainer     = new CUContainer();
-    CraftContainer = new CTradeContainer();
-
     m_Inventory  = std::make_unique<CItemContainer>(LOC_INVENTORY);
     m_Mogsafe    = std::make_unique<CItemContainer>(LOC_MOGSAFE);
     m_Storage    = std::make_unique<CItemContainer>(LOC_STORAGE);
@@ -151,8 +145,6 @@ CCharEntity::CCharEntity()
     m_RecycleBin = std::make_unique<CItemContainer>(LOC_RECYCLEBIN);
 
     keys = {};
-    std::memset(&equip, 0, sizeof(equip));
-    std::memset(&equipLoc, 0, sizeof(equipLoc));
 
     m_SpellList.reset();
     std::memset(&m_LearnedAbilities, 0, sizeof(m_LearnedAbilities));
@@ -223,7 +215,7 @@ CCharEntity::CCharEntity()
     WideScanTarget = std::nullopt;
 
     lastTradeInvite = {};
-    TradePending.clean();
+    tradePending.clean();
     InvitePending.clean();
 
     PLinkshell1   = nullptr;
@@ -281,9 +273,92 @@ CCharEntity::CCharEntity()
     pendingPositionUpdate = false;
 }
 
+auto CCharEntity::activePlayerTradeTx() -> PlayerTradeTransaction*
+{
+    if (auto* local = activeTransaction<PlayerTradeTransaction>())
+    {
+        return local;
+    }
+
+    if (tradePending.targid != 0)
+    {
+        auto* other = static_cast<CCharEntity*>(GetEntity(tradePending.targid, TYPE_PC));
+        if (other != nullptr)
+        {
+            return other->activeTransaction<PlayerTradeTransaction>();
+        }
+    }
+
+    return nullptr;
+}
+
+void CCharEntity::removeTransaction(Transaction* tx)
+{
+    if (tx == nullptr)
+    {
+        return;
+    }
+
+    for (auto it = transactions.begin(); it != transactions.end(); ++it)
+    {
+        if (it->get() == tx)
+        {
+            transactions.erase(it);
+            return;
+        }
+    }
+}
+
+auto CCharEntity::shopState() -> CShopState&
+{
+    return shopState_;
+}
+
+auto CCharEntity::shopState() const -> const CShopState&
+{
+    return shopState_;
+}
+
+auto CCharEntity::equipLocation(uint8 equipSlot) const -> std::optional<EquipLocation>
+{
+    const auto& binding = bindings_.equipBinding(equipSlot);
+    if (!binding)
+    {
+        return std::nullopt;
+    }
+
+    return EquipLocation{ static_cast<CONTAINER_ID>(binding->location), binding->invSlot };
+}
+
+auto CCharEntity::bindings() -> CharacterInventoryBindings&
+{
+    return bindings_;
+}
+
+auto CCharEntity::bindings() const -> const CharacterInventoryBindings&
+{
+    return bindings_;
+}
+
+auto CCharEntity::findTransactionHolding(const CItem* item) -> Transaction*
+{
+    for (auto& tx : transactions)
+    {
+        if (tx->holds(item))
+        {
+            return tx.get();
+        }
+    }
+
+    return nullptr;
+}
+
 CCharEntity::~CCharEntity()
 {
     TracyZoneScoped;
+    // Clear transactions first — rollback writes to item owners still in use.
+    transactions.clear();
+
     clearPacketList();
 
     if (PTreasurePool != nullptr)
@@ -371,10 +446,7 @@ CCharEntity::~CCharEntity()
 
     charutils::WriteHistory(this);
 
-    destroy(TradeContainer);
-    destroy(Container);
-    destroy(UContainer);
-    destroy(CraftContainer);
+    dboxState.DrainItems(this);
     destroy(PLatentEffectContainer);
 
     PGuildShop = nullptr;
@@ -561,7 +633,7 @@ bool CCharEntity::hasAutoTargetEnabled() const
 
 auto CCharEntity::isCrafting() const -> bool
 {
-    return animation == ANIMATION_SYNTH || (CraftContainer && CraftContainer->getItemsCount() > 0);
+    return animation == ANIMATION_SYNTH || craftState.isSynthing();
 }
 
 auto CCharEntity::isFishing() const -> bool
@@ -936,16 +1008,8 @@ timer::duration CCharEntity::GetPlayTime(bool needUpdate)
 
 auto CCharEntity::getEquip(const SLOTTYPE slot) const -> CItemEquipment*
 {
-    const uint8     loc  = equip[slot];
-    const uint8     est  = equipLoc[slot];
-    CItemEquipment* item = nullptr;
-
-    if (loc != 0)
-    {
-        item = static_cast<CItemEquipment*>(getStorage(est)->GetItem(loc));
-    }
-
-    return item;
+    const auto& binding = bindings_.equipBinding(slot);
+    return binding ? static_cast<CItemEquipment*>(binding->item) : nullptr;
 }
 
 void CCharEntity::ReloadPartyInc()
@@ -1184,7 +1248,7 @@ void CCharEntity::flushEquipChanges()
             {
                 if (change.item->isSubType(ITEM_CHARGED))
                 {
-                    pushPacket<GP_SERV_COMMAND_ITEM_ATTR>(change.item, container, change.item->getSlotID());
+                    pushPacket<GP_SERV_COMMAND_ITEM_ATTR>(this, change.item, container, change.item->getSlotID());
                 }
                 else
                 {
@@ -2498,9 +2562,9 @@ auto CCharEntity::OnItemFinish(CItemState& state, action_t& action) -> bool
     auto* PTarget = static_cast<CBattleEntity*>(state.GetTarget());
     auto* PItem   = state.GetItem();
 
-    if (!PItem->isType(ITEM_EQUIPMENT) && (PItem->getQuantity() < 1 || PItem->getReserve() > 0))
+    if (!PItem->isType(ITEM_EQUIPMENT) && PItem->getQuantity() < 1)
     {
-        ShowWarning("OnItemFinish: %s attempted to use reserved/insufficient %s (%u).", this->getName(), PItem->getName(), PItem->getID());
+        ShowWarning("OnItemFinish: %s attempted to use insufficient %s (%u).", this->getName(), PItem->getName(), PItem->getID());
         this->pushPacket<GP_SERV_COMMAND_BATTLE_MESSAGE>(this, this, PItem->getID(), 0, MsgBasic::ItemFailsToActivate);
 
         return false;
@@ -2588,11 +2652,7 @@ auto CCharEntity::OnItemFinish(CItemState& state, action_t& action) -> bool
         return false;
     }
 
-    // Consumable items
-    PItem->setSubType(ITEM_UNLOCKED);
-    const bool willBeDestroyed = PItem->getQuantity() == 1;
-    charutils::UpdateItem(this, PItem->getLocationID(), PItem->getSlotID(), -1, true);
-    return willBeDestroyed;
+    return true;
 }
 
 CBattleEntity* CCharEntity::IsValidTarget(uint16 targid, uint16 validTargetFlags, std::unique_ptr<CBasicPacket>& errMsg)

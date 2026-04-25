@@ -6294,22 +6294,24 @@ bool RemoveAmmo(CCharEntity* PChar, int quantity)
 
     if (PItem)
     {
+        const auto eq = PChar->equipLocation(SLOT_AMMO);
+        if (!eq)
+        {
+            return false;
+        }
+
         if ((PItem->getQuantity() - quantity) < 1)
         {
-            uint8 slot = PChar->equip[SLOT_AMMO];
-            uint8 loc  = PChar->equipLoc[SLOT_AMMO];
             charutils::UnequipItem(PChar, SLOT_AMMO);
             PChar->RequestPersist(CHAR_PERSIST::EQUIP);
-            charutils::UpdateItem(PChar, loc, slot, -quantity);
+            charutils::UpdateItem(PChar, eq->container, eq->index, -quantity);
             PChar->pushPacket<GP_SERV_COMMAND_ITEM_SAME>(PChar);
             return true;
         }
-        else
-        {
-            charutils::UpdateItem(PChar, PChar->equipLoc[SLOT_AMMO], PChar->equip[SLOT_AMMO], -quantity);
-            PChar->pushPacket<GP_SERV_COMMAND_ITEM_SAME>(PChar);
-            return false;
-        }
+
+        charutils::UpdateItem(PChar, eq->container, eq->index, -quantity);
+        PChar->pushPacket<GP_SERV_COMMAND_ITEM_SAME>(PChar);
+        return false;
     }
     return false;
 }

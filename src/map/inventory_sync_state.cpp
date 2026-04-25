@@ -95,7 +95,7 @@ void InventorySyncState::flushDirtyItems(CCharEntity* PChar)
                                  PChar->id,
                                  loc,
                                  slot);
-                PChar->pushPacket<GP_SERV_COMMAND_ITEM_ATTR>(PItem, static_cast<CONTAINER_ID>(loc), slot);
+                PChar->pushPacket<GP_SERV_COMMAND_ITEM_ATTR>(PChar, PItem, static_cast<CONTAINER_ID>(loc), slot);
                 PItem->setDirty(false);
             }
         }

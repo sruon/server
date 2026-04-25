@@ -28,14 +28,9 @@ GP_SERV_COMMAND_GROUP_COMLINK::GP_SERV_COMMAND_GROUP_COMLINK(const CCharEntity* 
     auto& packet = this->data();
 
     packet.LinkshellNum = linkshellNumber;
-    if (linkshellNumber == 1)
+    if (const auto eq = PChar->equipLocation(linkshellNumber == 1 ? SLOT_LINK1 : SLOT_LINK2))
     {
-        packet.ItemIndex = PChar->equip[SLOT_LINK1];
-        packet.Category  = PChar->equipLoc[SLOT_LINK1];
-    }
-    else
-    {
-        packet.ItemIndex = PChar->equip[SLOT_LINK2];
-        packet.Category  = PChar->equipLoc[SLOT_LINK2];
+        packet.ItemIndex = eq->index;
+        packet.Category  = eq->container;
     }
 }

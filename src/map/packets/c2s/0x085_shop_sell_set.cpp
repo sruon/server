@@ -25,9 +25,10 @@
 #include "entities/charentity.h"
 #include "enums/msg_std.h"
 #include "enums/packet_c2s.h"
+#include "items/item_store.h"
+#include "items/shop_state.h"
 #include "packets/s2c/0x009_message.h"
 #include "packets/s2c/0x01d_item_same.h"
-#include "trade_container.h"
 #include "utils/charutils.h"
 
 namespace
@@ -63,10 +64,10 @@ auto GP_CLI_COMMAND_SHOP_SELL_SET::validate(MapSession* PSession, const CCharEnt
 
 void GP_CLI_COMMAND_SHOP_SELL_SET::process(MapSession* PSession, CCharEntity* PChar) const
 {
-    // Retrieve item-to-sell from last slot of the shop's container
-    uint32      quantity = PChar->Container->getQuantity(PChar->Container->getExSize());
-    uint16      itemId   = PChar->Container->getItemID(PChar->Container->getExSize());
-    const uint8 slotId   = PChar->Container->getInvSlotID(PChar->Container->getExSize());
+    const auto& pending  = PChar->shopState().pendingSell();
+    uint32      quantity = pending.quantity;
+    uint16      itemId   = pending.itemId;
+    const uint8 slotId   = pending.invSlot;
 
     if (const CItem* PGilItem = PChar->getStorage(LOC_INVENTORY)->GetItem(0); !PGilItem || !PGilItem->isType(ITEM_CURRENCY))
     {
@@ -99,15 +100,9 @@ void GP_CLI_COMMAND_SHOP_SELL_SET::process(MapSession* PSession, CCharEntity* PC
         return;
     }
 
-    if (PItem->isSubType(ITEM_LOCKED)) // Possible exploit
+    if (ItemStore::isBusy(PChar, PItem)) // Possible exploit
     {
-        ShowWarning("GP_CLI_COMMAND_SHOP_SELL_SET: Player %s trying to sell %u of a LOCKED item! ID %i [to VENDOR] ", PChar->getName(), quantity, PItem->getID());
-        return;
-    }
-
-    if (PItem->getReserve() > 0) // Usually caused by bug during synth, trade, etc. reserving the item. We don't want such items sold in this state.
-    {
-        ShowError("GP_CLI_COMMAND_SHOP_SELL_SET: Player %s trying to sell %u of a RESERVED(%u) item! ID %i [to VENDOR] ", PChar->getName(), quantity, PItem->getReserve(), PItem->getID());
+        ShowWarning("GP_CLI_COMMAND_SHOP_SELL_SET: Player %s trying to sell %u of a busy item! ID %i [to VENDOR] ", PChar->getName(), quantity, PItem->getID());
         return;
     }
 
@@ -125,5 +120,5 @@ void GP_CLI_COMMAND_SHOP_SELL_SET::process(MapSession* PSession, CCharEntity* PC
     ShowInfo("GP_CLI_COMMAND_SHOP_SELL_SET: Player '%s' sold %u of itemID %u (Total: %u gil) [to VENDOR] ", PChar->getName(), quantity, itemId, cost);
     PChar->pushPacket<GP_SERV_COMMAND_MESSAGE>(nullptr, itemId, quantity, MsgStd::Sell);
     PChar->pushPacket<GP_SERV_COMMAND_ITEM_SAME>(PChar);
-    PChar->Container->setItem(PChar->Container->getExSize(), 0, -1, 0);
+    PChar->shopState().clearPendingSell();
 }

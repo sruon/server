@@ -29,14 +29,17 @@
 
 #include "entities/charentity.h"
 
+#include "items/item_store.h"
+#include "items/transactions/dbox_view_transaction.h"
+
 #include "utils/charutils.h"
 #include "utils/itemutils.h"
 #include "utils/zoneutils.h"
 
+#include "items/dbox_state.h"
 #include "packets/c2s/0x04d_pbx.h"
 #include "packets/s2c/0x01d_item_same.h"
 #include "packets/s2c/0x04b_pbx_result.h"
-#include "universal_container.h"
 
 namespace
 {
@@ -55,7 +58,7 @@ void dboxutils::SendOldItems(CCharEntity* PChar, GP_CLI_COMMAND_PBX_BOXNO BoxNo)
 
     if (!IsAnyDeliveryBoxOpen(PChar))
     {
-        ShowWarningFmt("DBOX: Received action SendOldItems while UContainer is in an invalid state: {} ({})", PChar->getName(), PChar->id);
+        ShowWarningFmt("DBOX: Received action SendOldItems while dboxState is closed: {} ({})", PChar->getName(), PChar->id);
         return;
     }
 
@@ -71,7 +74,7 @@ void dboxutils::SendOldItems(CCharEntity* PChar, GP_CLI_COMMAND_PBX_BOXNO BoxNo)
         {
             while (rset->next())
             {
-                CItem* PItem = itemutils::GetItem(rset->get<uint16>("itemid"));
+                auto PItem = itemutils::GetItem(rset->get<uint16>("itemid"));
                 if (PItem != nullptr)
                 {
                     PItem->setSubID(rset->get<uint16>("itemsubid"));
@@ -96,15 +99,22 @@ void dboxutils::SendOldItems(CCharEntity* PChar, GP_CLI_COMMAND_PBX_BOXNO BoxNo)
                         PItem->setReceiver(rset->get<std::string>("charname"));
                     }
 
-                    PChar->UContainer->SetItem(PItem->getSlotID(), PItem);
-                    ++items;
+                    // Release only on success; a rejected start() leaves PItem
+                    // to auto-drop at scope exit.
+                    CItem* rawItem = PItem.get();
+                    if (DboxViewTransaction::start(PChar, rawItem) != nullptr)
+                    {
+                        (void)PItem.release();
+                        PChar->dboxState.SetItem(rawItem->getSlotID(), rawItem);
+                        ++items;
+                    }
                 }
             }
         }
 
         for (uint8 i = 0; i < 8; ++i)
         {
-            PChar->pushPacket<GP_SERV_COMMAND_PBX_RESULT>(GP_CLI_COMMAND_PBX_COMMAND::Work, BoxNo, PChar->UContainer->GetItem(i), i, items, 1);
+            PChar->pushPacket<GP_SERV_COMMAND_PBX_RESULT>(GP_CLI_COMMAND_PBX_COMMAND::Work, BoxNo, PChar->dboxState.GetItem(i), i, items, 1);
         }
     }
 }
@@ -122,7 +132,7 @@ void dboxutils::AddItemsToBeSent(CCharEntity* PChar, GP_CLI_COMMAND_PBX_BOXNO Bo
 
     if (!IsSendBoxOpen(PChar))
     {
-        ShowWarningFmt("DBOX: Received AddItemsToBeSent while UContainer is in a state other than UCONTAINER_SEND_DELIVERYBOX: {} ({})", PChar->getName(), PChar->id);
+        ShowWarningFmt("DBOX: Received AddItemsToBeSent while dboxState is not in Send mode: {} ({})", PChar->getName(), PChar->id);
         return;
     }
 
@@ -133,13 +143,13 @@ void dboxutils::AddItemsToBeSent(CCharEntity* PChar, GP_CLI_COMMAND_PBX_BOXNO Bo
         return;
     }
 
-    if (PItem->getQuantity() < ItemStacks || PItem->getReserve() > 0 || PItem->isSubType(ITEM_LOCKED))
+    if (PItem->getQuantity() < ItemStacks || ItemStore::isBusy(PChar, PItem))
     {
-        ShowWarningFmt("DBOX: {} attempted to send insufficient/reserved/locked {}: {} ({})", PChar->getName(), ItemStacks, PItem->getName(), PItem->getID());
+        ShowWarningFmt("DBOX: {} attempted to send insufficient/busy {}: {} ({})", PChar->getName(), ItemStacks, PItem->getName(), PItem->getID());
         return;
     }
 
-    if (PChar->UContainer->IsSlotEmpty(PostWorkNo))
+    if (PChar->dboxState.IsSlotEmpty(PostWorkNo))
     {
         const auto [recvCharid, recvAccid] = charutils::getCharIdAndAccountIdFromName(receiverName);
         if (recvCharid && recvAccid)
@@ -158,13 +168,14 @@ void dboxutils::AddItemsToBeSent(CCharEntity* PChar, GP_CLI_COMMAND_PBX_BOXNO Bo
                 }
             }
 
-            CItem* PUBoxItem = itemutils::GetItem(PItem->getID());
-            if (PUBoxItem == nullptr)
+            auto PUBoxItemOwn = itemutils::GetItem(PItem->getID());
+            if (PUBoxItemOwn == nullptr)
             {
                 ShowErrorFmt("DBOX: PUBoxItem was null (player: {}, item: {})", PChar->getName(), PItem->getID());
                 return;
             }
 
+            CItem* PUBoxItem = PUBoxItemOwn.get();
             PUBoxItem->setReceiver(receiverName);
             PUBoxItem->setSender(PChar->getName());
             PUBoxItem->setQuantity(ItemStacks);
@@ -188,14 +199,14 @@ void dboxutils::AddItemsToBeSent(CCharEntity* PChar, GP_CLI_COMMAND_PBX_BOXNO Bo
 
             if (rset && rset->rowsAffected() && charutils::UpdateItem(PChar, LOC_INVENTORY, ItemWorkNo, -static_cast<int32>(ItemStacks)))
             {
-                PChar->UContainer->SetItem(PostWorkNo, PUBoxItem);
-                PChar->pushPacket<GP_SERV_COMMAND_PBX_RESULT>(GP_CLI_COMMAND_PBX_COMMAND::Set, BoxNo, PUBoxItem, PostWorkNo, PChar->UContainer->GetItemsCount(), 1);
+                // View takes over raw ownership; drop happens via
+                // dboxState cleanup / dropOwnedBy on close.
+                (void)PUBoxItemOwn.release();
+                PChar->dboxState.SetItem(PostWorkNo, PUBoxItem);
+                PChar->pushPacket<GP_SERV_COMMAND_PBX_RESULT>(GP_CLI_COMMAND_PBX_COMMAND::Set, BoxNo, PUBoxItem, PostWorkNo, PChar->dboxState.GetItemsCount(), 1);
                 PChar->pushPacket<GP_SERV_COMMAND_ITEM_SAME>(PChar);
             }
-            else
-            {
-                destroy(PUBoxItem);
-            }
+            // On DB failure PUBoxItemOwn auto-drops at scope exit.
         }
     }
 }
@@ -206,22 +217,22 @@ void dboxutils::SendConfirmation(CCharEntity* PChar, GP_CLI_COMMAND_PBX_BOXNO Bo
 
     if (!IsSendBoxOpen(PChar))
     {
-        ShowWarningFmt("DBOX: Received action SendConfirmation while UContainer is in a state other than UCONTAINER_SEND_DELIVERYBOX: {} ({})", PChar->getName(), PChar->id);
+        ShowWarningFmt("DBOX: Received action SendConfirmation while dboxState is not in Send mode: {} ({})", PChar->getName(), PChar->id);
         return;
     }
 
     uint8 send_items = 0;
     for (int i = 0; i < 8; i++)
     {
-        if (!PChar->UContainer->IsSlotEmpty(i) && !PChar->UContainer->GetItem(i)->isSent())
+        if (!PChar->dboxState.IsSlotEmpty(i) && !PChar->dboxState.GetItem(i)->isSent())
         {
             send_items++;
         }
     }
 
-    if (!PChar->UContainer->IsSlotEmpty(PostWorkNo))
+    if (!PChar->dboxState.IsSlotEmpty(PostWorkNo))
     {
-        CItem* PItem = PChar->UContainer->GetItem(PostWorkNo);
+        CItem* PItem = PChar->dboxState.GetItem(PostWorkNo);
 
         if (PItem && !PItem->isSent())
         {
@@ -279,18 +290,18 @@ void dboxutils::CancelSendingItem(CCharEntity* PChar, GP_CLI_COMMAND_PBX_BOXNO B
 
     if (!IsSendBoxOpen(PChar))
     {
-        ShowWarningFmt("DBOX: Received action CancelSendingItem while UContainer is in a state other than UCONTAINER_SEND_DELIVERYBOX: {} ({})", PChar->getName(), PChar->id);
+        ShowWarningFmt("DBOX: Received action CancelSendingItem while dboxState is not in Send mode: {} ({})", PChar->getName(), PChar->id);
         return;
     }
 
-    if (!PChar->UContainer->IsSlotEmpty(PostWorkNo))
+    if (!PChar->dboxState.IsSlotEmpty(PostWorkNo))
     {
-        CItem* PItem = PChar->UContainer->GetItem(PostWorkNo);
+        CItem* PItem = PChar->dboxState.GetItem(PostWorkNo);
 
         // clang-format off
         const auto success = db::transaction([&]()
         {
-            uint32 charid = charutils::getCharIdFromName(PChar->UContainer->GetItem(PostWorkNo)->getReceiver());
+            uint32 charid = charutils::getCharIdFromName(PChar->dboxState.GetItem(PostWorkNo)->getReceiver());
             if (charid)
             {
                 const auto rset = db::preparedStmt(
@@ -306,9 +317,9 @@ void dboxutils::CancelSendingItem(CCharEntity* PChar, GP_CLI_COMMAND_PBX_BOXNO B
 
                     if (rset2 && rset->rowsAffected())
                     {
-                        PChar->UContainer->GetItem(PostWorkNo)->setSent(false);
-                        PChar->pushPacket<GP_SERV_COMMAND_PBX_RESULT>(GP_CLI_COMMAND_PBX_COMMAND::Cancel, BoxNo, PChar->UContainer->GetItem(PostWorkNo), PostWorkNo, PChar->UContainer->GetItemsCount(), 0x02);
-                        PChar->pushPacket<GP_SERV_COMMAND_PBX_RESULT>(GP_CLI_COMMAND_PBX_COMMAND::Cancel, BoxNo, PChar->UContainer->GetItem(PostWorkNo), PostWorkNo, PChar->UContainer->GetItemsCount(), 0x01);
+                        PChar->dboxState.GetItem(PostWorkNo)->setSent(false);
+                        PChar->pushPacket<GP_SERV_COMMAND_PBX_RESULT>(GP_CLI_COMMAND_PBX_COMMAND::Cancel, BoxNo, PChar->dboxState.GetItem(PostWorkNo), PostWorkNo, PChar->dboxState.GetItemsCount(), 0x02);
+                        PChar->pushPacket<GP_SERV_COMMAND_PBX_RESULT>(GP_CLI_COMMAND_PBX_COMMAND::Cancel, BoxNo, PChar->dboxState.GetItem(PostWorkNo), PostWorkNo, PChar->dboxState.GetItemsCount(), 0x01);
 
                         return;
                     }
@@ -345,7 +356,7 @@ void dboxutils::SendClientNewItemCount(CCharEntity* PChar, GP_CLI_COMMAND_PBX_BO
     // Send the player the new items count not seen
     if (!IsAnyDeliveryBoxOpen(PChar))
     {
-        ShowWarningFmt("DBOX: Received action SendClientNewItemCount while UContainer is in an invalid state: {} ({})", PChar->getName(), PChar->id);
+        ShowWarningFmt("DBOX: Received action SendClientNewItemCount while dboxState is closed: {} ({})", PChar->getName(), PChar->id);
         return;
     }
 
@@ -356,7 +367,7 @@ void dboxutils::SendClientNewItemCount(CCharEntity* PChar, GP_CLI_COMMAND_PBX_BO
             int limit = 0;
             for (int i = 0; i < 8; ++i)
             {
-                if (PChar->UContainer->IsSlotEmpty(i))
+                if (PChar->dboxState.IsSlotEmpty(i))
                 {
                     limit++;
                 }
@@ -390,7 +401,7 @@ void dboxutils::SendNewItems(Scheduler& scheduler, CCharEntity* PChar, GP_CLI_CO
 
     if (!IsRecvBoxOpen(PChar))
     {
-        ShowWarningFmt("DBOX: Received action SendNewItems while UContainer is in a state other than UCONTAINER_RECV_DELIVERYBOX: {} ({})", PChar->getName(), PChar->id);
+        ShowWarningFmt("DBOX: Received action SendNewItems while dboxState is not in Recv mode: {} ({})", PChar->getName(), PChar->id);
         return;
     }
 
@@ -405,14 +416,16 @@ void dboxutils::SendNewItems(Scheduler& scheduler, CCharEntity* PChar, GP_CLI_CO
                                                PChar->id);
             FOR_DB_SINGLE_RESULT(rset)
             {
-                if (CItem* PItem = itemutils::GetItem(rset->get<uint32>("itemid")))
+                auto PItemOwn = itemutils::GetItem(rset->get<uint32>("itemid"));
+                if (PItemOwn)
                 {
+                    CItem* PItem = PItemOwn.get();
                     PItem->setSubID(rset->get<uint16>("itemsubid"));
                     PItem->setQuantity(rset->get<uint32>("quantity"));
                     db::extractFromBlob(rset, "extra", PItem->m_extra);
                     PItem->setSender(rset->get<std::string>("sender"));
 
-                    if (PChar->UContainer->IsSlotEmpty(PostWorkNo))
+                    if (PChar->dboxState.IsSlotEmpty(PostWorkNo))
                     {
                         uint32 senderID = rset->get<uint32>("senderid");
                         PItem->setSlotID(PostWorkNo);
@@ -452,7 +465,10 @@ void dboxutils::SendNewItems(Scheduler& scheduler, CCharEntity* PChar, GP_CLI_CO
                                 const auto rset3 = db::preparedStmt("UPDATE delivery_box SET slot = slot - 1 WHERE charid = ? AND box = 1 AND slot > ?", PChar->id, queue);
                                 if (rset3)
                                 {
-                                    PChar->UContainer->SetItem(PostWorkNo, PItem);
+                                    // View takes ownership; release so
+                                    // PItemOwn doesn't drop it on scope exit.
+                                    (void)PItemOwn.release();
+                                    PChar->dboxState.SetItem(PostWorkNo, PItem);
 
                                     // TODO: increment "count" for every new item, if needed
                                     PChar->pushPacket<GP_SERV_COMMAND_PBX_RESULT>(GP_CLI_COMMAND_PBX_COMMAND::Recv, BoxNo, nullptr, PostWorkNo, 1, 2);
@@ -462,8 +478,7 @@ void dboxutils::SendNewItems(Scheduler& scheduler, CCharEntity* PChar, GP_CLI_CO
                             }
                         }
 
-                        // If we got here, something is going wrong.
-                        destroy(PItem);
+                        // Fallthrough: PItemOwn auto-drops at scope exit.
                     }
                 }
             }
@@ -486,7 +501,7 @@ void dboxutils::RemoveDeliveredItemFromSendingBox(CCharEntity* PChar, GP_CLI_COM
 
     if (!IsSendBoxOpen(PChar))
     {
-        ShowWarningFmt("DBOX: Received action RemoveDeliveredItemFromSendingBox while UContainer is in a state other than UCONTAINER_SEND_DELIVERYBOX: {} ({})", PChar->getName(), PChar->id);
+        ShowWarningFmt("DBOX: Received action RemoveDeliveredItemFromSendingBox while dboxState is not in Send mode: {} ({})", PChar->getName(), PChar->id);
         return;
     }
 
@@ -500,9 +515,9 @@ void dboxutils::RemoveDeliveredItemFromSendingBox(CCharEntity* PChar, GP_CLI_COM
         if (receivedItems && rset->next())
         {
             deliverySlotID = rset->get<uint8>("slot");
-            if (!PChar->UContainer->IsSlotEmpty(deliverySlotID))
+            if (!PChar->dboxState.IsSlotEmpty(deliverySlotID))
             {
-                CItem* PItem = PChar->UContainer->GetItem(deliverySlotID);
+                CItem* PItem = PChar->dboxState.GetItem(deliverySlotID);
                 if (PItem && PItem->isSent())
                 {
                     const auto rset2 = db::preparedStmt("DELETE FROM delivery_box WHERE charid = ? AND box = 2 AND slot = ? LIMIT 1", PChar->id, deliverySlotID);
@@ -516,8 +531,8 @@ void dboxutils::RemoveDeliveredItemFromSendingBox(CCharEntity* PChar, GP_CLI_COM
 
                         PChar->pushPacket<GP_SERV_COMMAND_PBX_RESULT>(GP_CLI_COMMAND_PBX_COMMAND::Confirm, BoxNo, 0, 0x02);
                         PChar->pushPacket<GP_SERV_COMMAND_PBX_RESULT>(GP_CLI_COMMAND_PBX_COMMAND::Confirm, BoxNo, PItem, deliverySlotID, receivedItems, 0x01);
-                        PChar->UContainer->SetItem(deliverySlotID, nullptr);
-                        destroy(PItem);
+                        PChar->dboxState.SetItem(deliverySlotID, nullptr);
+                        ItemStore::dropOwnedBy(PChar, PItem);
                     }
                 }
             }
@@ -531,13 +546,13 @@ void dboxutils::UpdateDeliveryCellBeforeRemoving(CCharEntity* PChar, GP_CLI_COMM
 
     if (!IsAnyDeliveryBoxOpen(PChar))
     {
-        ShowWarningFmt("DBOX: Received action UpdateDeliveryCellBeforeRemoving while UContainer is in an invalid state: {} ({})", PChar->getName(), PChar->id);
+        ShowWarningFmt("DBOX: Received action UpdateDeliveryCellBeforeRemoving while dboxState is closed: {} ({})", PChar->getName(), PChar->id);
         return;
     }
 
-    if (!PChar->UContainer->IsSlotEmpty(PostWorkNo))
+    if (!PChar->dboxState.IsSlotEmpty(PostWorkNo))
     {
-        PChar->pushPacket<GP_SERV_COMMAND_PBX_RESULT>(GP_CLI_COMMAND_PBX_COMMAND::Accept, BoxNo, PChar->UContainer->GetItem(PostWorkNo), PostWorkNo, 1, 1);
+        PChar->pushPacket<GP_SERV_COMMAND_PBX_RESULT>(GP_CLI_COMMAND_PBX_COMMAND::Accept, BoxNo, PChar->dboxState.GetItem(PostWorkNo), PostWorkNo, 1, 1);
     }
 }
 
@@ -547,13 +562,13 @@ void dboxutils::ReturnToSender(CCharEntity* PChar, GP_CLI_COMMAND_PBX_BOXNO BoxN
 
     if (!IsRecvBoxOpen(PChar))
     {
-        ShowWarningFmt("DBOX: Received action ReturnToSender while UContainer is in a state other than UCONTAINER_RECV_DELIVERYBOX: {} ({})", PChar->getName(), PChar->id);
+        ShowWarningFmt("DBOX: Received action ReturnToSender while dboxState is not in Recv mode: {} ({})", PChar->getName(), PChar->id);
         return;
     }
 
-    if (!PChar->UContainer->IsSlotEmpty(PostWorkNo))
+    if (!PChar->dboxState.IsSlotEmpty(PostWorkNo))
     {
-        CItem* PItem = PChar->UContainer->GetItem(PostWorkNo);
+        CItem* PItem = PChar->dboxState.GetItem(PostWorkNo);
 
         // For logging
         const auto itemId   = PItem->getID();
@@ -579,8 +594,8 @@ void dboxutils::ReturnToSender(CCharEntity* PChar, GP_CLI_COMMAND_PBX_BOXNO BoxN
             {
                 if (isDeliveryBoxInflightAtCapacity(senderID))
                 {
-                    PChar->pushPacket<GP_SERV_COMMAND_PBX_RESULT>(GP_CLI_COMMAND_PBX_COMMAND::Reject, BoxNo, PItem, PostWorkNo, PChar->UContainer->GetItemsCount(), 0x02);
-                    PChar->pushPacket<GP_SERV_COMMAND_PBX_RESULT>(GP_CLI_COMMAND_PBX_COMMAND::Reject, BoxNo, PItem, PostWorkNo, PChar->UContainer->GetItemsCount(), 0xFE);
+                    PChar->pushPacket<GP_SERV_COMMAND_PBX_RESULT>(GP_CLI_COMMAND_PBX_COMMAND::Reject, BoxNo, PItem, PostWorkNo, PChar->dboxState.GetItemsCount(), 0x02);
+                    PChar->pushPacket<GP_SERV_COMMAND_PBX_RESULT>(GP_CLI_COMMAND_PBX_COMMAND::Reject, BoxNo, PItem, PostWorkNo, PChar->dboxState.GetItemsCount(), 0xFE);
                     return;
                 }
 
@@ -594,14 +609,14 @@ void dboxutils::ReturnToSender(CCharEntity* PChar, GP_CLI_COMMAND_PBX_BOXNO BoxN
                     const auto rset2 = db::preparedStmt("DELETE FROM delivery_box WHERE charid = ? AND slot = ? AND box = 1 LIMIT 1", PChar->id, PostWorkNo);
                     if (rset2 && rset2->rowsAffected())
                     {
-                        PChar->UContainer->SetItem(PostWorkNo, nullptr);
-                        PChar->pushPacket<GP_SERV_COMMAND_PBX_RESULT>(GP_CLI_COMMAND_PBX_COMMAND::Reject, BoxNo, PItem, PostWorkNo, PChar->UContainer->GetItemsCount(), 0x02);
-                        PChar->pushPacket<GP_SERV_COMMAND_PBX_RESULT>(GP_CLI_COMMAND_PBX_COMMAND::Reject, BoxNo, PItem, PostWorkNo, PChar->UContainer->GetItemsCount(), 0x01);
+                        PChar->dboxState.SetItem(PostWorkNo, nullptr);
+                        PChar->pushPacket<GP_SERV_COMMAND_PBX_RESULT>(GP_CLI_COMMAND_PBX_COMMAND::Reject, BoxNo, PItem, PostWorkNo, PChar->dboxState.GetItemsCount(), 0x02);
+                        PChar->pushPacket<GP_SERV_COMMAND_PBX_RESULT>(GP_CLI_COMMAND_PBX_COMMAND::Reject, BoxNo, PItem, PostWorkNo, PChar->dboxState.GetItemsCount(), 0x01);
 
                         DebugDeliveryBoxFmt("DBOX: ReturnToSender: player: {} ({}) returned item: {} ({}) to sender: {} ({})",
                                             PChar->getName(), PChar->id, PItem->getName(), itemId, senderName, senderID);
 
-                        destroy(PItem);
+                        ItemStore::dropOwnedBy(PChar, PItem);
                         return;
                     }
                 }
@@ -613,7 +628,7 @@ void dboxutils::ReturnToSender(CCharEntity* PChar, GP_CLI_COMMAND_PBX_BOXNO BoxN
         });
         if (!success)
         {
-            PChar->pushPacket<GP_SERV_COMMAND_PBX_RESULT>(GP_CLI_COMMAND_PBX_COMMAND::Reject, BoxNo, PItem, PostWorkNo, PChar->UContainer->GetItemsCount(), 0xEB);
+            PChar->pushPacket<GP_SERV_COMMAND_PBX_RESULT>(GP_CLI_COMMAND_PBX_COMMAND::Reject, BoxNo, PItem, PostWorkNo, PChar->dboxState.GetItemsCount(), 0xEB);
         }
         // clang-format on
     }
@@ -625,17 +640,17 @@ void dboxutils::TakeItemFromCell(CCharEntity* PChar, GP_CLI_COMMAND_PBX_BOXNO Bo
 
     if (!IsAnyDeliveryBoxOpen(PChar))
     {
-        ShowWarningFmt("DBOX: Received action TakeItemFromCell while UContainer is in an invalid state {} ({})", PChar->getName(), PChar->id);
+        ShowWarningFmt("DBOX: Received action TakeItemFromCell while dboxState is closed {} ({})", PChar->getName(), PChar->id);
         return;
     }
 
-    if (!PChar->UContainer->IsSlotEmpty(PostWorkNo))
+    if (!PChar->dboxState.IsSlotEmpty(PostWorkNo))
     {
-        CItem* PItem = PChar->UContainer->GetItem(PostWorkNo);
+        CItem* PItem = PChar->dboxState.GetItem(PostWorkNo);
 
         if (!PItem->isType(ITEM_CURRENCY) && PChar->getStorage(LOC_INVENTORY)->GetFreeSlotsCount() == 0)
         {
-            PChar->pushPacket<GP_SERV_COMMAND_PBX_RESULT>(GP_CLI_COMMAND_PBX_COMMAND::Get, BoxNo, PItem, PostWorkNo, PChar->UContainer->GetItemsCount(), 0xB9);
+            PChar->pushPacket<GP_SERV_COMMAND_PBX_RESULT>(GP_CLI_COMMAND_PBX_COMMAND::Get, BoxNo, PItem, PostWorkNo, PChar->dboxState.GetItemsCount(), 0xB9);
             return;
         }
 
@@ -676,14 +691,14 @@ void dboxutils::TakeItemFromCell(CCharEntity* PChar, GP_CLI_COMMAND_PBX_BOXNO Bo
             DebugDeliveryBoxFmt("DBOX: TakeItemFromCell: player: {} ({}) received item: {} ({}) from slot {}",
                                 PChar->getName(), PChar->id, PItem->getName(), PItem->getID(), PostWorkNo);
 
-            PChar->pushPacket<GP_SERV_COMMAND_PBX_RESULT>(GP_CLI_COMMAND_PBX_COMMAND::Get, BoxNo, PItem, PostWorkNo, PChar->UContainer->GetItemsCount(), 1);
+            PChar->pushPacket<GP_SERV_COMMAND_PBX_RESULT>(GP_CLI_COMMAND_PBX_COMMAND::Get, BoxNo, PItem, PostWorkNo, PChar->dboxState.GetItemsCount(), 1);
             PChar->pushPacket<GP_SERV_COMMAND_ITEM_SAME>(PChar);
-            PChar->UContainer->SetItem(PostWorkNo, nullptr);
-            destroy(PItem);
+            PChar->dboxState.SetItem(PostWorkNo, nullptr);
+            ItemStore::dropOwnedBy(PChar, PItem);
         }
         else
         {
-            PChar->pushPacket<GP_SERV_COMMAND_PBX_RESULT>(GP_CLI_COMMAND_PBX_COMMAND::Get, BoxNo, PItem, PostWorkNo, PChar->UContainer->GetItemsCount(), 0xBA);
+            PChar->pushPacket<GP_SERV_COMMAND_PBX_RESULT>(GP_CLI_COMMAND_PBX_COMMAND::Get, BoxNo, PItem, PostWorkNo, PChar->dboxState.GetItemsCount(), 0xBA);
         }
         // clang-format on
     }
@@ -695,17 +710,17 @@ void dboxutils::RemoveItemFromCell(CCharEntity* PChar, GP_CLI_COMMAND_PBX_BOXNO 
 
     if (!IsRecvBoxOpen(PChar))
     {
-        ShowWarningFmt("DBOX: Received action RemoveItemFromCell while UContainer is in a state other than UCONTAINER_RECV_DELIVERYBOX: {} ({})", PChar->getName(), PChar->id);
+        ShowWarningFmt("DBOX: Received action RemoveItemFromCell while dboxState is not in Recv mode: {} ({})", PChar->getName(), PChar->id);
         return;
     }
 
-    if (!PChar->UContainer->IsSlotEmpty(PostWorkNo))
+    if (!PChar->dboxState.IsSlotEmpty(PostWorkNo))
     {
         const auto rset = db::preparedStmt("DELETE FROM delivery_box WHERE charid = ? AND slot = ? AND box = 1 LIMIT 1", PChar->id, PostWorkNo);
         if (rset && rset->rowsAffected())
         {
-            CItem* PItem = PChar->UContainer->GetItem(PostWorkNo);
-            PChar->UContainer->SetItem(PostWorkNo, nullptr);
+            CItem* PItem = PChar->dboxState.GetItem(PostWorkNo);
+            PChar->dboxState.SetItem(PostWorkNo, nullptr);
 
             DebugDeliveryBoxFmt("DBOX: RemoveItemFromCell: player: {} ({}) removed item {} ({}) from slot {}",
                                 PChar->getName(),
@@ -714,8 +729,8 @@ void dboxutils::RemoveItemFromCell(CCharEntity* PChar, GP_CLI_COMMAND_PBX_BOXNO 
                                 PItem->getID(),
                                 PostWorkNo);
 
-            PChar->pushPacket<GP_SERV_COMMAND_PBX_RESULT>(GP_CLI_COMMAND_PBX_COMMAND::Clear, BoxNo, PItem, PostWorkNo, PChar->UContainer->GetItemsCount(), 1);
-            destroy(PItem);
+            PChar->pushPacket<GP_SERV_COMMAND_PBX_RESULT>(GP_CLI_COMMAND_PBX_COMMAND::Clear, BoxNo, PItem, PostWorkNo, PChar->dboxState.GetItemsCount(), 1);
+            ItemStore::dropOwnedBy(PChar, PItem);
         }
     }
 }
@@ -726,7 +741,7 @@ void dboxutils::ConfirmNameBeforeSending(CCharEntity* PChar, GP_CLI_COMMAND_PBX_
 
     if (!IsSendBoxOpen(PChar))
     {
-        ShowWarningFmt("DBOX: Received action ConfirmNameBeforeSending while UContainer is in a state other than UCONTAINER_SEND_DELIVERYBOX: {} ({})", PChar->getName(), PChar->id);
+        ShowWarningFmt("DBOX: Received action ConfirmNameBeforeSending while dboxState is not in Send mode: {} ({})", PChar->getName(), PChar->id);
         return;
     }
 
@@ -758,7 +773,8 @@ void dboxutils::CloseMailWindow(CCharEntity* PChar, GP_CLI_COMMAND_PBX_BOXNO Box
 
     if (IsAnyDeliveryBoxOpen(PChar))
     {
-        PChar->UContainer->Clean();
+        PChar->dboxState.DrainItems(PChar);
+        PChar->dboxState.Clean();
     }
 
     // Open mail, close mail
@@ -769,8 +785,9 @@ void dboxutils::OpenSendBox(CCharEntity* PChar)
 {
     DebugDeliveryBoxFmt("DBOX: OpenSendBox: player: {} ({})", PChar->name, PChar->id);
 
-    PChar->UContainer->Clean();
-    PChar->UContainer->SetType(UCONTAINER_SEND_DELIVERYBOX);
+    PChar->dboxState.DrainItems(PChar);
+    PChar->dboxState.Clean();
+    PChar->dboxState.setMode(DboxMode::Send);
     PChar->pushPacket<GP_SERV_COMMAND_PBX_RESULT>(GP_CLI_COMMAND_PBX_COMMAND::DeliOpen, GP_CLI_COMMAND_PBX_BOXNO::Outgoing, 0, 1);
 }
 
@@ -778,19 +795,20 @@ void dboxutils::OpenRecvBox(CCharEntity* PChar)
 {
     DebugDeliveryBoxFmt("DBOX: OpenRecvBox: player: {} ({})", PChar->name, PChar->id);
 
-    PChar->UContainer->Clean();
-    PChar->UContainer->SetType(UCONTAINER_RECV_DELIVERYBOX);
+    PChar->dboxState.DrainItems(PChar);
+    PChar->dboxState.Clean();
+    PChar->dboxState.setMode(DboxMode::Recv);
     PChar->pushPacket<GP_SERV_COMMAND_PBX_RESULT>(GP_CLI_COMMAND_PBX_COMMAND::PostOpen, GP_CLI_COMMAND_PBX_BOXNO::Incoming, 0, 1);
 }
 
 auto dboxutils::IsSendBoxOpen(const CCharEntity* PChar) -> bool
 {
-    return PChar->UContainer->GetType() == UCONTAINER_SEND_DELIVERYBOX;
+    return PChar->dboxState.mode() == DboxMode::Send;
 }
 
 auto dboxutils::IsRecvBoxOpen(const CCharEntity* PChar) -> bool
 {
-    return PChar->UContainer->GetType() == UCONTAINER_RECV_DELIVERYBOX;
+    return PChar->dboxState.mode() == DboxMode::Recv;
 }
 
 auto dboxutils::IsAnyDeliveryBoxOpen(CCharEntity* PChar) -> bool

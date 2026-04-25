@@ -178,7 +178,7 @@ void CCharRecastContainer::Check()
                     uint8  containerID = id & 0xFF;
                     CItem* PItem       = m_PChar->getStorage(containerID)->GetItem(slotID);
 
-                    m_PChar->pushPacket<GP_SERV_COMMAND_ITEM_ATTR>(PItem, static_cast<CONTAINER_ID>(containerID), slotID);
+                    m_PChar->pushPacket<GP_SERV_COMMAND_ITEM_ATTR>(m_PChar, PItem, static_cast<CONTAINER_ID>(containerID), slotID);
                     m_PChar->pushPacket<GP_SERV_COMMAND_ITEM_SAME>(m_PChar);
                 }
                 if (type == RECAST_ITEM || type == RECAST_MAGIC || type == RECAST_LOOT)

@@ -22,7 +22,6 @@
 #include "0x06f_combine_ans.h"
 
 #include "entities/charentity.h"
-#include "trade_container.h"
 
 GP_SERV_COMMAND_COMBINE_ANS::GP_SERV_COMMAND_COMBINE_ANS(const CCharEntity* PChar, const SynthesisResult result, const uint16 itemId, const uint8 quantity)
 {
@@ -46,22 +45,22 @@ GP_SERV_COMMAND_COMBINE_ANS::GP_SERV_COMMAND_COMBINE_ANS(const CCharEntity* PCha
                 continue;
             }
 
-            if (PChar->CraftContainer->getQuantity(skillID - 40) > skillValue)
+            if (PChar->craftState.skillRequired[skillID - 40] > skillValue)
             {
-                skillValue       = PChar->CraftContainer->getQuantity(skillID - 40);
+                skillValue       = PChar->craftState.skillRequired[skillID - 40];
                 packet.UpKind[i] = skillID;
             }
         }
     }
 
-    packet.CrystalNo = PChar->CraftContainer->getItemID(0);
+    packet.CrystalNo = PChar->craftState.crystalItemId;
 
     for (uint8 slotID = 1; slotID <= 8; ++slotID) // recipe materials
     {
-        const uint16 slotItemID       = PChar->CraftContainer->getItemID(slotID);
+        const uint16 slotItemID       = PChar->craftState.ingredients[slotID - 1].itemId;
         packet.MaterialNo[slotID - 1] = slotItemID;
 
-        if (PChar->CraftContainer->getQuantity(slotID) == 0)
+        if (PChar->craftState.skillRequired[slotID] == 0)
         {
             packet.BreakNo[slotID - 1] = slotItemID;
         }

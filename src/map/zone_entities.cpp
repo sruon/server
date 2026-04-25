@@ -29,7 +29,6 @@
 #include "recast_container.h"
 #include "spawn_handler.h"
 #include "status_effect_container.h"
-#include "trade_container.h"
 #include "treasure_pool.h"
 #include "zone_mesh.h"
 
@@ -541,16 +540,9 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
         }
     }
 
-    // Duplicated from charUtils, it is theoretically possible through d/c magic to hit this block and not sendToZone
-    if (PChar->CraftContainer && PChar->CraftContainer->getItemsCount() > 0)
+    if (PChar->craftState.isSynthing())
     {
         charutils::forceSynthCritFail("DecreaseZoneCounter", PChar);
-    }
-
-    if (PChar->animation == ANIMATION_SYNTH)
-    {
-        PChar->CraftContainer->setQuantity(0, synthutils::SYNTHESIS_FAIL);
-        synthutils::sendSynthDone(PChar);
     }
 
     // Need to interupt fishing on zone out otherwise fished up mobs get stuck in hooked state

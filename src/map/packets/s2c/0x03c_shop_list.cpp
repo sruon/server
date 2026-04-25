@@ -22,11 +22,11 @@
 #include "0x03c_shop_list.h"
 
 #include "entities/charentity.h"
-#include "trade_container.h"
+#include "items/shop_state.h"
 
 GP_SERV_COMMAND_SHOP_LIST::GP_SERV_COMMAND_SHOP_LIST(CCharEntity* PChar)
 {
-    const uint8 itemsCount = PChar->Container->getItemsCount();
+    const uint8 itemsCount = PChar->shopState().itemsCount();
     auto&       packet     = this->data();
 
     uint8  i          = 0;
@@ -47,11 +47,12 @@ GP_SERV_COMMAND_SHOP_LIST::GP_SERV_COMMAND_SHOP_LIST(CCharEntity* PChar)
             std::memset(&packet, 0, sizeof(packet));
         }
 
-        packet.ShopItemTbl[i].ItemPrice = PChar->Container->getQuantity(slotID);
-        packet.ShopItemTbl[i].ItemNo    = PChar->Container->getItemID(slotID);
+        const auto& entry               = PChar->shopState().entry(slotID);
+        packet.ShopItemTbl[i].ItemPrice = entry.price;
+        packet.ShopItemTbl[i].ItemNo    = entry.itemId;
         packet.ShopItemTbl[i].ShopIndex = slotID;
-        packet.ShopItemTbl[i].Skill     = PChar->Container->getGuildID(slotID);
-        packet.ShopItemTbl[i].GuildInfo = (PChar->Container->getGuildRank(slotID) + 1) * 100;
+        packet.ShopItemTbl[i].Skill     = entry.guildId;
+        packet.ShopItemTbl[i].GuildInfo = (entry.guildRank + 1) * 100;
         i++;
     }
 

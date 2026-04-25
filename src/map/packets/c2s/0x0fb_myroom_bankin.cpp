@@ -91,7 +91,7 @@ void GP_CLI_COMMAND_MYROOM_BANKIN::process(MapSession* PSession, CCharEntity* PC
     PFurnishing->setLevel(0);
     PFurnishing->setRotation(0);
 
-    PFurnishing->setSubType(ITEM_UNLOCKED);
+    PChar->bindings().removeFurniture(this->MyroomCategory, this->MyroomItemIndex);
 
     // If this furniture is a mannequin, clear its appearance and unlock all items that were on it!
     if (PFurnishing->isMannequin())
@@ -146,6 +146,6 @@ void GP_CLI_COMMAND_MYROOM_BANKIN::process(MapSession* PSession, CCharEntity* PC
 
         PChar->loc.zone->SpawnConditionalNPCs(PChar);
     }
-    PChar->pushPacket<GP_SERV_COMMAND_ITEM_ATTR>(PFurnishing, static_cast<CONTAINER_ID>(this->MyroomCategory), PFurnishing->getSlotID());
+    PChar->pushPacket<GP_SERV_COMMAND_ITEM_ATTR>(PChar, PFurnishing, static_cast<CONTAINER_ID>(this->MyroomCategory), PFurnishing->getSlotID());
     PChar->pushPacket<GP_SERV_COMMAND_ITEM_SAME>(PChar);
 }

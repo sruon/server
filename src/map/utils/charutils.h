@@ -27,6 +27,8 @@
 #include "items/item_equipment.h"
 #include "zone.h"
 
+#include <memory>
+
 using Recalculate = xi::Flag<struct RecalculateTag>;
 
 struct Charge_t;
@@ -117,16 +119,14 @@ void  BuildingCharAbilityTable(CCharEntity* PChar);
 void  BuildingCharTraitsTable(CCharEntity* PChar);
 void  BuildingCharPetAbilityTable(CCharEntity* PChar, CPetEntity* PPet, uint32 PetID);
 
-void DoTrade(CCharEntity* PChar, CCharEntity* PTarget);
-bool CanTrade(CCharEntity* PChar, CCharEntity* PTarget);
-
 void   CheckWeaponSkill(CCharEntity* PChar, uint8 skill);
 bool   HasItem(CCharEntity* PChar, uint16 ItemID);
 uint32 getItemCount(CCharEntity* PChar, uint16 ItemID);
-uint8  AddItem(CCharEntity* PChar, uint8 LocationID, CItem* PItem, bool silence = false);
-uint8  AddItem(CCharEntity* PChar, uint8 LocationID, uint16 itemID, uint32 quantity = 1, bool silence = false);
+auto   AddItem(CCharEntity* PChar, uint8 LocationID, std::unique_ptr<CItem> PItem, bool silence = false) -> uint8;
+auto   AddItem(CCharEntity* PChar, uint8 LocationID, uint16 itemID, uint32 quantity = 1, bool silence = false) -> uint8;
 uint8  MoveItem(CCharEntity* PChar, uint8 LocationID, uint8 SlotID, uint8 NewSlotID);
-uint32 UpdateItem(CCharEntity* PChar, uint8 LocationID, uint8 slotID, int32 quantity, bool force = false);
+using BypassItemStateCheck = xi::Flag<struct BypassItemStateCheckTag>;
+uint32 UpdateItem(CCharEntity* PChar, uint8 LocationID, uint8 slotID, int32 quantity, BypassItemStateCheck bypass = BypassItemStateCheck::No);
 void   DropItem(CCharEntity* PChar, uint8 container, uint8 slotID, int32 quantity, uint16 ItemID);
 void   CheckValidEquipment(CCharEntity* PChar);
 void   CheckEquipLogic(CCharEntity* PChar, SCRIPTTYPE ScriptType, uint32 param);

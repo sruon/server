@@ -42,28 +42,37 @@ GP_SERV_COMMAND_MOTIONMES::GP_SERV_COMMAND_MOTIONMES(const CCharEntity* PChar, c
     }
     else if (emoteId == Emote::Hurray)
     {
-        const auto* PWeapon = PChar->getStorage(PChar->equipLoc[SLOT_MAIN])->GetItem(PChar->equip[SLOT_MAIN]);
-        if (PWeapon && PWeapon->getID() != 65535)
+        if (const auto eq = PChar->equipLocation(SLOT_MAIN))
         {
-            packet.Param = PWeapon->getID();
+            const auto* PWeapon = PChar->getStorage(eq->container)->GetItem(eq->index);
+            if (PWeapon && PWeapon->getID() != 65535)
+            {
+                packet.Param = PWeapon->getID();
+            }
         }
     }
     else if (emoteId == Emote::Aim)
     {
-        packet.Param               = 65535;
-        const CItemWeapon* PWeapon = static_cast<CItemWeapon*>(PChar->getStorage(PChar->equipLoc[SLOT_RANGED])->GetItem(PChar->equip[SLOT_RANGED]));
-        if (PWeapon && PWeapon->getID() != 65535)
+        packet.Param = 65535;
+        if (const auto ranged = PChar->equipLocation(SLOT_RANGED))
         {
-            if (PWeapon->getSkillType() == SKILL_THROWING)
+            const CItemWeapon* PWeapon = static_cast<CItemWeapon*>(PChar->getStorage(ranged->container)->GetItem(ranged->index));
+            if (PWeapon && PWeapon->getID() != 65535)
             {
-                packet.Param = PWeapon->getID();
-            }
-            else if (PWeapon->getSkillType() == SKILL_MARKSMANSHIP || PWeapon->getSkillType() == SKILL_ARCHERY)
-            {
-                const CItemWeapon* PAmmo = static_cast<CItemWeapon*>(PChar->getStorage(PChar->equipLoc[SLOT_AMMO])->GetItem(PChar->equip[SLOT_AMMO]));
-                if (PAmmo && PAmmo->getID() != 65535)
+                if (PWeapon->getSkillType() == SKILL_THROWING)
                 {
                     packet.Param = PWeapon->getID();
+                }
+                else if (PWeapon->getSkillType() == SKILL_MARKSMANSHIP || PWeapon->getSkillType() == SKILL_ARCHERY)
+                {
+                    if (const auto ammo = PChar->equipLocation(SLOT_AMMO))
+                    {
+                        const CItemWeapon* PAmmo = static_cast<CItemWeapon*>(PChar->getStorage(ammo->container)->GetItem(ammo->index));
+                        if (PAmmo && PAmmo->getID() != 65535)
+                        {
+                            packet.Param = PWeapon->getID();
+                        }
+                    }
                 }
             }
         }

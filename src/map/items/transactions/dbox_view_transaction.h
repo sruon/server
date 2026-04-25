@@ -1,7 +1,7 @@
 /*
 ===========================================================================
 
-  Copyright (c) 2025 LandSandBoat Dev Teams
+  Copyright (c) 2026 LandSandBoat Dev Teams
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -21,25 +21,36 @@
 
 #pragma once
 
-#include "common/cbasetypes.h"
+#include "items/item_owner.h"
+#include "items/transaction.h"
 
-#include "base.h"
-
+class CCharEntity;
 class CItem;
 
-// https://github.com/atom0s/XiPackets/tree/main/world/server/0x0025
-// This packet is sent by the server to inform the player of a trade item update.
-// (This update is related to the local player's items.)
-class GP_SERV_COMMAND_ITEM_TRADE_MYLIST final : public GP_SERV_PACKET<PacketS2C::GP_SERV_COMMAND_ITEM_TRADE_MYLIST, GP_SERV_COMMAND_ITEM_TRADE_MYLIST>
+// Custody stamp for an item loaded into the delivery-box view while
+// the mailbox window is open. Legacy dboxutils still drives DB rows and
+// retrieval; this tx exists only to make ItemStore::isBusy return true
+// on loaded items.
+
+class DboxViewTransaction : public Transaction
 {
 public:
-    struct PacketData
-    {
-        uint32_t ItemNum;    // PS2: ItemNum
-        uint16_t ItemNo;     // PS2: ItemNo
-        uint8_t  TradeIndex; // PS2: TradeIndex
-        uint8_t  ItemIndex;  // PS2: ItemIndex
-    };
+    static auto start(CCharEntity* owner, CItem* item) -> DboxViewTransaction*;
 
-    GP_SERV_COMMAND_ITEM_TRADE_MYLIST(const CItem* PItem, uint8 slot, uint32 offeredQty);
+    ~DboxViewTransaction() override
+    {
+        silentRollbackIfOpen();
+    }
+
+    auto holds(const CItem* item) const -> bool override;
+
+protected:
+    auto doCommit() -> bool override;
+    auto doRollback() -> void override;
+
+private:
+    DboxViewTransaction() = default;
+
+    CItem*    item_{};
+    ItemOwner priorOwner_{};
 };
