@@ -38,7 +38,6 @@ CItem::CItem(uint16 id)
 , m_type(0)
 , m_subtype(0)
 , m_quantity(0)
-, m_reserve(0)
 , m_stackSize(0)
 , m_BasePrice(0)
 , m_CharPrice(0)
@@ -52,6 +51,16 @@ CItem::CItem(uint16 id)
 }
 
 CItem::~CItem() = default;
+
+auto CItem::owner() const -> const ItemOwner&
+{
+    return owner_;
+}
+
+auto CItem::setOwner(ItemOwner newOwner, xi::Badge<ItemStore>) -> void
+{
+    owner_ = std::move(newOwner);
+}
 
 /************************************************************************
  *                                                                       *
@@ -168,22 +177,6 @@ void CItem::setSubType(uint8 subtype)
 bool CItem::isSubType(ITEM_SUBTYPE subtype) const
 {
     return (m_subtype & subtype);
-}
-
-/************************************************************************
- *                                                                       *
- * Reserved number of objects in a pack                                  *
- *                                                                       *
- ************************************************************************/
-
-void CItem::setReserve(uint32 reserve)
-{
-    m_reserve = (reserve < m_quantity ? reserve : m_quantity);
-}
-
-uint32 CItem::getReserve() const
-{
-    return m_reserve;
 }
 
 /************************************************************************

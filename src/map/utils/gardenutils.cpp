@@ -124,7 +124,7 @@ void UpdateGardening(CCharEntity* PChar, SendPacket sendPacket)
 
                     if (sendPacket)
                     {
-                        PChar->pushPacket<GP_SERV_COMMAND_ITEM_ATTR>(PPotItem, containerID, slotID);
+                        PChar->pushPacket<GP_SERV_COMMAND_ITEM_ATTR>(PChar, PPotItem, containerID, slotID);
                     }
                 }
             }

@@ -29,6 +29,8 @@
 
 #include "entities/charentity.h"
 
+#include "items/item_store.h"
+
 #include "packets/c2s/0x04e_auc.h"
 #include "packets/s2c/0x01d_item_same.h"
 #include "packets/s2c/0x04c_auc.h"
@@ -70,7 +72,7 @@ void auctionutils::SellingItems(CCharEntity* PChar, GP_AUC_PARAM_ASKCOMMIT param
         return;
     }
 
-    if (PItem->getID() == param.ItemNo && !PItem->isSubType(ITEM_LOCKED) && !PItem->hasFlag(ItemFlag::NoAuction))
+    if (PItem->getID() == param.ItemNo && !ItemStore::isBusy(PChar, PItem) && !PItem->hasFlag(ItemFlag::NoAuction))
     {
         if (isPartiallyUsed(PItem))
         {
@@ -143,7 +145,7 @@ void auctionutils::ProofOfPurchase(CCharEntity* PChar, GP_AUC_PARAM_LOT param)
 
     CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(param.ItemWorkIndex);
 
-    if (PItem && !(PItem->isSubType(ITEM_LOCKED)) && PItem->getReserve() == 0 && !PItem->hasFlag(ItemFlag::NoAuction) && PItem->getQuantity() >= param.ItemStacks)
+    if (PItem && !ItemStore::isBusy(PChar, PItem) && !PItem->hasFlag(ItemFlag::NoAuction) && PItem->getQuantity() >= param.ItemStacks)
     {
         if (isPartiallyUsed(PItem))
         {
@@ -170,7 +172,7 @@ void auctionutils::ProofOfPurchase(CCharEntity* PChar, GP_AUC_PARAM_LOT param)
         auctionFee = std::clamp<uint32>(auctionFee, 0, settings::get<uint32>("map.AH_MAX_FEE"));
 
         const auto PGil = PChar->getStorage(LOC_INVENTORY)->GetItem(0);
-        if (PGil->getQuantity() < auctionFee || PGil->getReserve() > 0)
+        if (PGil->getQuantity() < auctionFee || ItemStore::isBusy(PChar, PGil))
         {
             PChar->pushPacket<GP_SERV_COMMAND_AUC>(GP_CLI_COMMAND_AUC_COMMAND::LotIn, 197, 0, 0, 0, 0); // Not enough gil to pay fee
             return;
@@ -250,7 +252,7 @@ auto auctionutils::PurchasingItems(CCharEntity* PChar, GP_AUC_PARAM_BID param) -
             }
             const CItem* gil = PChar->getStorage(LOC_INVENTORY)->GetItem(0);
 
-            if (gil != nullptr && gil->isType(ITEM_CURRENCY) && gil->getQuantity() >= param.BidPrice && gil->getReserve() == 0)
+            if (gil != nullptr && gil->isType(ITEM_CURRENCY) && gil->getQuantity() >= param.BidPrice && !ItemStore::isBusy(PChar, gil))
             {
                 const auto rset = db::preparedStmt("UPDATE auction_house SET buyer_name = ?, sale = ?, sell_date = ? WHERE itemid = ? AND buyer_name IS NULL "
                                                    "AND stack = ? AND price <= ? ORDER BY price LIMIT 1",

@@ -37,6 +37,7 @@
 #include "enums/loot_recast.h"
 #include "enums/weather.h"
 #include "items.h"
+#include "items/item_store.h"
 #include "lua/lua_loot.h"
 #include "lua/luautils.h"
 #include "mob_modifier.h"
@@ -161,10 +162,11 @@ CMobEntity::CMobEntity()
     PEnmityContainer     = new CEnmityContainer(this);
     SpellContainer       = new CMobSpellContainer(this);
 
-    m_Weapons[SLOT_MAIN]   = new CItemWeapon(0);
-    m_Weapons[SLOT_SUB]    = new CItemWeapon(0);
-    m_Weapons[SLOT_RANGED] = new CItemWeapon(0);
-    m_Weapons[SLOT_AMMO]   = new CItemWeapon(0);
+    for (const auto slot : { SLOT_MAIN, SLOT_SUB, SLOT_RANGED, SLOT_AMMO })
+    {
+        ownedWeapons_[slot] = ItemStore::create<CItemWeapon>(0);
+        m_Weapons[slot]     = ownedWeapons_[slot].get();
+    }
 
     PAI = std::make_unique<CAIContainer>(this, std::make_unique<CPathFind>(this), std::make_unique<CMobController>(this), std::make_unique<CTargetFind>(this));
 }
@@ -172,12 +174,14 @@ CMobEntity::CMobEntity()
 CMobEntity::~CMobEntity()
 {
     TracyZoneScoped;
-    destroy(m_Weapons[SLOT_MAIN]);
-    destroy(m_Weapons[SLOT_SUB]);
-    destroy(m_Weapons[SLOT_RANGED]);
-    destroy(m_Weapons[SLOT_AMMO]);
     destroy(PEnmityContainer);
     destroy(SpellContainer);
+
+    // Null the base-class aliasing views before chained teardown.
+    m_Weapons[SLOT_MAIN]   = nullptr;
+    m_Weapons[SLOT_SUB]    = nullptr;
+    m_Weapons[SLOT_RANGED] = nullptr;
+    m_Weapons[SLOT_AMMO]   = nullptr;
 
     if (spawnSlot)
     {
@@ -1332,4 +1336,16 @@ bool CMobEntity::OnAttack(CAttackState& state, action_t& action)
 bool CMobEntity::isWideScannable()
 {
     return CBaseEntity::isWideScannable() && !getMobMod(MOBMOD_NO_WIDESCAN);
+}
+
+auto CMobEntity::setOwnedWeapon(uint8 slot, std::unique_ptr<CItemWeapon> weapon) -> void
+{
+    if (slot >= ownedWeapons_.size())
+    {
+        return;
+    }
+    // Move-assign auto-drops the prior weapon; base-class alias is
+    // re-pointed to the fresh item (or null if weapon is empty).
+    ownedWeapons_[slot] = std::move(weapon);
+    m_Weapons[slot]     = ownedWeapons_[slot].get();
 }

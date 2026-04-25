@@ -21,6 +21,7 @@
 
 #pragma once
 
+#include <memory>
 #include <optional>
 #include <vector>
 
@@ -101,10 +102,10 @@ namespace itemutils
 void Initialize();
 void FreeItemList();
 
-CItem* GetItem(CItem* PItem);
-CItem* GetItem(uint16 ItemID);
-CItem* GetItemPointer(uint16 ItemID);
-bool   IsItemPointer(CItem* item);
+auto GetItem(CItem* PItem) -> std::unique_ptr<CItem>;
+auto GetItem(uint16 ItemID) -> std::unique_ptr<CItem>;
+auto GetItemPointer(uint16 ItemID) -> CItem*;
+auto IsItemPointer(CItem* item) -> bool;
 
 CItemWeapon* GetUnarmedItem();
 CItemWeapon* GetUnarmedH2HItem();

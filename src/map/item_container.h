@@ -26,6 +26,9 @@
 #include "common/logging.h"
 #include "common/timer.h"
 
+#include <array>
+#include <memory>
+
 // TODO: Enum class
 enum CONTAINER_ID : uint8
 {
@@ -72,8 +75,9 @@ public:
     auto   SearchItems(uint16 itemId) const -> std::vector<uint8>;
     uint8  SearchItemWithSpace(uint16 ItemID, uint32 quantity); // search for item that has space to accomodate x items added
 
-    uint8 InsertItem(CItem* PItem);               // add a pre-created item to a free cell
-    uint8 InsertItem(CItem* PItem, uint8 slotID); // add a pre-created item to the selected cell
+    auto InsertItem(std::unique_ptr<CItem> PItem) -> uint8;
+    auto InsertItem(std::unique_ptr<CItem> PItem, uint8 slotID) -> uint8;
+    auto ReleaseItem(uint8 slotID) -> std::unique_ptr<CItem>;
 
     uint32            SortingPacket; // number of sort requests per clock
     timer::time_point LastSortingTime;
@@ -88,7 +92,7 @@ public:
         {
             if (m_ItemList[SlotID])
             {
-                func(m_ItemList[SlotID], std::forward<Args>(args)...);
+                func(m_ItemList[SlotID].get(), std::forward<Args>(args)...);
             }
         }
     }
@@ -99,7 +103,7 @@ private:
     uint8  m_size;
     uint8  m_count;
 
-    CItem* m_ItemList[MAX_CONTAINER_SIZE + 1]{};
+    std::array<std::unique_ptr<CItem>, MAX_CONTAINER_SIZE + 1> m_ItemList{};
 };
 
 #endif
