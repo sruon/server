@@ -41,7 +41,7 @@
 #include "lua_petskill.h"
 #include "lua_spell.h"
 #include "lua_statuseffect.h"
-#include "lua_trade_container.h"
+#include "lua_trade.h"
 #include "lua_treasure_pool.h"
 #include "lua_trigger_area.h"
 #include "lua_weaponskill.h"
@@ -54,6 +54,7 @@
 #include "entities/mobentity.h"
 
 #include "items/item_puppet.h"
+#include "items/transactions/npc_trade.h"
 
 #include "packets/s2c/0x017_chat_std.h"
 #include "packets/s2c/0x05a_motionmes.h"
@@ -90,7 +91,6 @@
 #include "spell.h"
 #include "status_effect_container.h"
 #include "timetriggers.h"
-#include "trade_container.h"
 #include "transport.h"
 #include "weapon_skill.h"
 #include "zone.h"
@@ -316,7 +316,6 @@ void init(IPP mapIPP, bool isRunningInCI)
     lua.set_function("RoeParseRecords", &roeutils::ParseRecords);
     lua.set_function("RoeParseTimed", &roeutils::ParseTimedSchedule);
     lua.set_function("GetSynergyRecipeByID", &luautils::GetSynergyRecipeByID);
-    lua.set_function("GetSynergyRecipeByTrade", &luautils::GetSynergyRecipeByTrade);
     lua.set_function("ReloadSynthRecipes", &synthutils::LoadSynthRecipes);
     lua.set_function("LoadExpDifficultyCurves", &luautils::LoadExpDifficultyCurves);
 
@@ -356,7 +355,7 @@ void init(IPP mapIPP, bool isRunningInCI)
         CLuaTriggerArea::Register();
         CLuaSpell::Register();
         CLuaStatusEffect::Register();
-        CLuaTradeContainer::Register();
+        CLuaTrade::Register();
         CLuaTreasurePool::Register();
         CLuaZone::Register();
         CLuaItem::Register();
@@ -2293,6 +2292,124 @@ int32 OnEventFinish(CCharEntity* PChar, uint16 eventID, uint32 result)
 
     auto func_result = onEventFinishFramework(PChar, eventID, result, PChar->currentEvent->targetEntity, onEventFinish);
 
+    // Declarative-trade commit hook. Runs after the framework so
+    // Battlefield.redirectEventCall etc. can observe state before
+    // commit/rollback is decided.
+    auto* tradeTx = PChar->activeTransaction<NpcTradeTransaction>();
+    if (tradeTx != nullptr && tradeTx->pendingEventId() == eventID)
+    {
+        bool       shouldCommit = true;
+        bool       reconfirm    = false;
+        sol::table reconfirmItems;
+
+        const auto& onFinish = tradeTx->pendingOnFinish();
+        if (onFinish.valid())
+        {
+            sol::table confirmations = lua.create_table();
+            for (std::uint8_t txSlot = 0; txSlot < NpcTradeTransaction::kMaxSlots; ++txSlot)
+            {
+                auto*      item = tradeTx->itemAt(txSlot);
+                const auto qty  = tradeTx->reservedQtyAt(txSlot);
+                if (item != nullptr && qty != 0)
+                {
+                    const uint16 itemId   = item->getID();
+                    const uint32 existing = confirmations.get_or(itemId, 0u);
+                    confirmations[itemId] = existing + qty;
+                }
+            }
+
+            CLuaBaseEntity playerWrapper(PChar);
+            sol::object    npcArg = sol::lua_nil;
+            CLuaBaseEntity npcWrapper(tradeTx->pendingNpc());
+            if (tradeTx->pendingNpc())
+            {
+                npcArg = sol::make_object(lua, &npcWrapper);
+            }
+
+            auto call = onFinish(&playerWrapper, result, npcArg, confirmations);
+            if (!call.valid())
+            {
+                sol::error err = call;
+                ShowError("luautils::OnEventFinish onFinish: %s", err.what());
+                shouldCommit = false;
+            }
+            else if (call.return_count() > 0)
+            {
+                sol::object ret = call[0];
+                if (ret.is<bool>())
+                {
+                    if (ret.as<bool>() == false)
+                    {
+                        shouldCommit = false;
+                    }
+                }
+                else if (ret.is<sol::table>())
+                {
+                    // Action-table: { commit = bool, confirmItems = {{id,qty},...} }
+                    sol::table  action      = ret.as<sol::table>();
+                    sol::object commitField = action["commit"];
+                    if (commitField.is<bool>() && commitField.as<bool>() == false)
+                    {
+                        shouldCommit = false;
+                    }
+                    sol::object itemsField = action["confirmItems"];
+                    if (itemsField.is<sol::table>())
+                    {
+                        reconfirm      = true;
+                        reconfirmItems = itemsField.as<sol::table>();
+                    }
+                }
+            }
+        }
+
+        if (shouldCommit && reconfirm)
+        {
+            // Narrow commit: clear reservations, re-confirm from the
+            // action table. Anything not in the offer → rollback.
+            for (std::uint8_t txSlot = 0; txSlot < NpcTradeTransaction::kMaxSlots; ++txSlot)
+            {
+                tradeTx->clearReservation(txSlot);
+            }
+            tradeTx->clearGilReservation();
+
+            bool ok = true;
+            for (const auto& kv : reconfirmItems)
+            {
+                if (kv.second.get_type() != sol::type::table)
+                {
+                    continue;
+                }
+                sol::table   entry = kv.second.as<sol::table>();
+                const uint16 id    = entry[1].get<uint16>();
+                const uint32 qty   = entry.size() >= 2 ? entry[2].get<uint32>() : 1;
+                if (!tradeTx->reserveFromOffer(id, qty))
+                {
+                    ShowWarning("OnEventFinish confirmItems: id=%u qty=%u not in offer", id, qty);
+                    ok = false;
+                    break;
+                }
+            }
+            if (!ok)
+            {
+                shouldCommit = false;
+            }
+        }
+
+        ShowTraceFmt("OnEventFinish declarative trade: {} csid={} {}",
+                     PChar->getName(),
+                     eventID,
+                     shouldCommit ? "COMMIT" : "ROLLBACK");
+
+        if (shouldCommit)
+        {
+            tradeTx->commitAndClose();
+        }
+        else
+        {
+            PChar->removeTransaction(tradeTx);
+        }
+    }
+
     // Restore eventPreparation before potentially bailing out of function due to errors
     PChar->eventPreparation = previousPrep;
 
@@ -2321,9 +2438,12 @@ void OnTrade(CCharEntity* PChar, CBaseEntity* PNpc)
     PChar->eventPreparation->scriptFile   = filename;
 
     auto onTradeFramework = lua["InteractionGlobal"]["onTrade"];
-    auto onTrade          = GetCacheEntryFromFilename(filename)["onTrade"];
+    auto entityTable      = GetCacheEntryFromFilename(filename);
 
-    auto result = onTradeFramework(PChar, PNpc, PChar->TradeContainer, onTrade);
+    // The declarative trade framework consults entity.declaredTrades
+    // and commits atomically via player:runDeclaredNpcTrade. No trade-
+    // container view is passed — the engine owns the offer.
+    auto result = onTradeFramework(PChar, PNpc, entityTable);
     if (!result.valid())
     {
         sol::error err = result;
@@ -5824,77 +5944,6 @@ void InitializeFishingContestSystem()
 auto GetSynergyRecipeByID(uint32 id) -> sol::table
 {
     auto maybeResult = synergyutils::GetSynergyRecipeByID(id);
-    if (!maybeResult.has_value())
-    {
-        return sol::lua_nil;
-    }
-    const auto result = *maybeResult;
-
-    sol::table table = lua.create_table();
-
-    table["id"]                    = result.id;
-    table["primary_skill"]         = result.primary_skill;
-    table["primary_rank"]          = result.primary_rank;
-    table["secondary_skill"]       = result.secondary_skill;
-    table["secondary_rank"]        = result.secondary_rank;
-    table["tertiary_skill"]        = result.tertiary_skill;
-    table["tertiary_rank"]         = result.tertiary_rank;
-    table["cost_fire_fewell"]      = result.cost_fire_fewell;
-    table["cost_ice_fewell"]       = result.cost_ice_fewell;
-    table["cost_wind_fewell"]      = result.cost_wind_fewell;
-    table["cost_earth_fewell"]     = result.cost_earth_fewell;
-    table["cost_lightning_fewell"] = result.cost_lightning_fewell;
-    table["cost_water_fewell"]     = result.cost_water_fewell;
-    table["cost_light_fewell"]     = result.cost_light_fewell;
-    table["cost_dark_fewell"]      = result.cost_dark_fewell;
-    table["ingredient1"]           = result.ingredient1;
-    table["ingredient2"]           = result.ingredient2;
-    table["ingredient3"]           = result.ingredient3;
-    table["ingredient4"]           = result.ingredient4;
-    table["ingredient5"]           = result.ingredient5;
-    table["ingredient6"]           = result.ingredient6;
-    table["ingredient7"]           = result.ingredient7;
-    table["ingredient8"]           = result.ingredient8;
-    table["result"]                = result.result;
-    table["resultHQ1"]             = result.resultHQ1;
-    table["resultHQ2"]             = result.resultHQ2;
-    table["resultHQ3"]             = result.resultHQ3;
-    table["resultQty"]             = result.resultQty;
-    table["resultHQ1Qty"]          = result.resultHQ1Qty;
-    table["resultHQ2Qty"]          = result.resultHQ2Qty;
-    table["resultHQ3Qty"]          = result.resultHQ3Qty;
-    table["resultName"]            = result.resultName;
-
-    return table;
-}
-
-auto GetSynergyRecipeByTrade(CLuaTradeContainer luaTradeContainer) -> sol::table
-{
-    auto tradeContainer = luaTradeContainer.GetTradeContainer();
-
-    std::vector<uint16> itemIds;
-    for (uint8 i = 0; i < 8; i++)
-    {
-        auto itemId = tradeContainer->getItemID(i);
-        if (itemId == 0)
-        {
-            continue;
-        }
-        itemIds.push_back(itemId);
-    }
-
-    // We will sort now, because we want to insert zeroes at the end of the vector for lookup
-    std::sort(itemIds.begin(), itemIds.end());
-
-    // We will still need to fill out the call to GetSynergyRecipeByIngredients
-    // with zeroes for empty slots.
-    while (itemIds.size() < 8)
-    {
-        itemIds.push_back(0);
-    }
-
-    auto maybeResult = synergyutils::GetSynergyRecipeByIngredients(
-        itemIds[0], itemIds[1], itemIds[2], itemIds[3], itemIds[4], itemIds[5], itemIds[6], itemIds[7]);
     if (!maybeResult.has_value())
     {
         return sol::lua_nil;

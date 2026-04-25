@@ -107,8 +107,49 @@ function InteractionGlobal.onTrigger(player, npc, fallbackFn)
     return InteractionGlobal.lookup:onTrigger(player, npc, fallbackFn)
 end
 
-function InteractionGlobal.onTrade(player, npc, trade, fallbackFn)
-    return InteractionGlobal.lookup:onTrade(player, npc, trade, fallbackFn)
+function InteractionGlobal.onTrade(player, npc, entityTable)
+    -- Two-path dispatch.
+    --
+    -- 1. Declarative: aggregate decls (entity-file + container-sourced)
+    --    and hand them to the engine. First matching decl wins.
+    -- 2. Legacy fallback: if no decl matched, call entity.onTrade
+    --    (and InteractionLookup-registered section onTrade) with a
+    --    CLuaTrade shim over the active NpcTradeTransaction. Legacy
+    --    scripts keep working while they're migrated; custody / commit
+    --    / rollback still route through the tx.
+    --
+    -- If no decl matches AND the legacy handler doesn't call
+    -- player:confirmTrade() / player:tradeComplete(), the active tx
+    -- rolls back at 0x036 cleanup — items return to the player.
+    local decls = {}
+    if entityTable and entityTable.declaredTrades then
+        for _, decl in ipairs(entityTable.declaredTrades) do
+            table.insert(decls, decl)
+        end
+    end
+
+    ---@diagnostic disable-next-line: undefined-field
+    for _, decl in ipairs(InteractionGlobal.lookup:collectDeclaredTrades(player, npc)) do
+        table.insert(decls, decl)
+    end
+
+    if #decls > 0 and player:dispatchDeclaredTrades(npc, decls) then
+        return
+    end
+
+    -- Legacy path.
+    local trade = player:getTrade()
+    if trade == nil then
+        return
+    end
+
+    local entityFallback = function()
+        if entityTable and entityTable.onTrade then
+            entityTable.onTrade(player, npc, trade)
+        end
+    end
+
+    InteractionGlobal.lookup:onTrade(player, npc, trade, entityFallback)
 end
 
 function InteractionGlobal.onMobDeath(mob, player, optParams, fallbackFn)

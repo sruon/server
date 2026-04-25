@@ -51,7 +51,6 @@ extern sol::state lua;
 #include "lua_petskill.h"
 #include "lua_spell.h"
 #include "lua_statuseffect.h"
-#include "lua_trade_container.h"
 #include "lua_trigger_area.h"
 #include "lua_zone.h"
 
@@ -78,7 +77,6 @@ class CMobSkill;
 class CPetSkill;
 class ITriggerArea;
 class CStatusEffect;
-class CTradeContainer;
 class CItemPuppet;
 class CItemWeapon;
 class CItemEquipment;
@@ -99,7 +97,6 @@ class CLuaPetSkill;
 class CLuaTriggerArea;
 class CLuaSpell;
 class CLuaStatusEffect;
-class CLuaTradeContainer;
 class CLuaZone;
 
 struct action_t;
@@ -473,7 +470,6 @@ template <typename... Targs>
 int32 invokeBattlefieldEvent(uint16 battlefieldId, const std::string& eventName, Targs... args);
 
 auto GetSynergyRecipeByID(uint32 id) -> sol::table;
-auto GetSynergyRecipeByTrade(CLuaTradeContainer luaTradeContainer) -> sol::table;
 
 }; // namespace luautils
 

@@ -1073,14 +1073,17 @@ end
 function CBaseEntity:getFreeSlotsCount(locID)
 end
 
----@return nil
+-- Deprecated - Commits only explicitly-reserved slots.
+---@return boolean
 function CBaseEntity:confirmTrade()
 end
 
----@return nil
+-- Deprecated - Commits every offered slot + gil.
+---@return boolean
 function CBaseEntity:tradeComplete()
 end
 
+-- Deprecated - Wrapper over the active NpcTradeTransaction.
 ---@return CTradeContainer?
 function CBaseEntity:getTrade()
 end

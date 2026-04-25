@@ -41,7 +41,6 @@ class CLuaInstance;
 class CLuaItem;
 class CLuaSpell;
 class CLuaStatusEffect;
-class CLuaTradeContainer;
 class CLuaZone;
 
 class CLuaBaseEntity
@@ -267,9 +266,27 @@ public:
     uint8 getContainerSize(uint8 locationID);
     void  changeContainerSize(uint8 locationID, int8 newSize); // Increase/Decreases container size
     uint8 getFreeSlotsCount(const sol::object& locID);         // Gets value of free slots in Entity inventory
-    void  confirmTrade() const;                                // Complete trade with an npc, only removing confirmed items
-    void  tradeComplete() const;                               // Complete trade with an npc
-    auto  getTrade() -> CTradeContainer*;
+
+    // Legacy-shim trade accessors. `getTrade()` returns a CLuaTrade
+    // wrapper around the active NpcTradeTransaction for use by the
+    // legacy `entity.onTrade = function(player, npc, trade)` path.
+    // confirmTrade / tradeComplete commit the active tx and clean up.
+    auto getTrade() -> sol::object;
+    auto confirmTrade() -> bool;
+    auto tradeComplete() -> bool;
+    // Declarative trade primitives used internally by dispatchDeclaredTrades.
+    auto confirmDeclaredNpcTrade(const sol::table& spec) -> bool;
+    auto finalizeDeclaredNpcTrade() -> bool;
+    void rollbackDeclaredNpcTrade();
+
+    // Full-pipeline dispatcher. Iterates a decl list, evaluates
+    // prereqs (charVar / keyItems / acceptIf), confirms items on
+    // the tx, and either runs onSuccess (sync) or starts the event
+    // + installs pending state. First matching decl wins. Replaces
+    // the former Lua `xi.trade.tryDecls`. Scripts should not call
+    // confirm/finalize/rollback directly — this binding is the
+    // only public entry point.
+    auto dispatchDeclaredTrades(CLuaBaseEntity* npcWrapper, const sol::table& decls) -> bool;
 
     // Equipping
     bool canEquipItem(uint16 itemID, const sol::object& chkLevel);

@@ -51,6 +51,7 @@ function InteractionLookup:new(original)
     obj.data = obj.data or {}
     obj.containers = obj.containers or {}
     obj.zoneDefaults = obj.zoneDefaults or {}
+    obj.declaredTrades = obj.declaredTrades or {}
     return obj
 end
 
@@ -194,6 +195,22 @@ function InteractionLookup:addContainers(containers, zoneIds)
     end
 end
 
+-- Pull declaredTrades out of per-NPC blocks into the registry.
+local function extractDeclaredTrades(secondLevel, zoneId, checkFunc, container, registry)
+    for npcName, npcBlock in pairs(secondLevel) do
+        if type(npcBlock) == 'table' and npcBlock.declaredTrades then
+            registry[zoneId] = registry[zoneId] or {}
+            registry[zoneId][npcName] = registry[zoneId][npcName] or {}
+            table.insert(registry[zoneId][npcName], {
+                decls     = npcBlock.declaredTrades,
+                check     = checkFunc,
+                container = container,
+            })
+            npcBlock.declaredTrades = nil
+        end
+    end
+end
+
 -- Add handlers from a container, if the handler is in a zone in the valid zone table
 function InteractionLookup:addContainer(container, validZoneTable)
     if self.containers[container.id] then
@@ -214,7 +231,24 @@ function InteractionLookup:addContainer(container, validZoneTable)
             if zoneId ~= 'check' and (validZoneTable == nil or validZoneTable[zoneId]) then
                 self.data[zoneId] = self.data[zoneId] or {}
 
+                extractDeclaredTrades(secondLevel, zoneId, checkFunc, container, self.declaredTrades)
                 addHandlers(secondLevel, self.data[zoneId], checkFunc, container)
+            end
+        end
+    end
+end
+
+local function removeDeclaredTrades(container, registry)
+    for zoneId, byNpc in pairs(registry) do
+        for npcName, entries in pairs(byNpc) do
+            for i = #entries, 1, -1 do
+                if entries[i].container == container then
+                    table.remove(entries, i)
+                end
+            end
+
+            if #entries == 0 then
+                byNpc[npcName] = nil
             end
         end
     end
@@ -222,6 +256,7 @@ end
 
 -- Remove handlers for a container
 function InteractionLookup:removeContainer(container)
+    removeDeclaredTrades(container, self.declaredTrades)
     for _, section in ipairs(container.sections) do
         for zoneid, secondLevel in pairs(section) do
             if zoneid ~= 'check' and self.data[zoneid] then
@@ -469,6 +504,47 @@ end
 
 function InteractionLookup:onTrade(player, npc, trade, fallbackFn)
     return onHandler(self.data, npc:getName(), 'onTrade', { player, npc, trade }, fallbackFn, nil, npc:getID())
+end
+
+-- Aggregate declaredTrades from every section whose check passes.
+function InteractionLookup:collectDeclaredTrades(player, npc)
+    local collected = {}
+
+    local byNpc = self.declaredTrades[player:getZoneID()]
+    if not byNpc then
+        return collected
+    end
+
+    local entries = byNpc[npc:getName()]
+    if not entries then
+        return collected
+    end
+
+    for _, entry in ipairs(entries) do
+        local ok = true
+        if entry.check then
+            local checkArgs = {}
+            if entry.container and entry.container.getCheckArgs then
+                checkArgs = entry.container:getCheckArgs(player)
+            end
+
+            local checkOk, checkRes = pcall(entry.check, player, unpack(checkArgs))
+            if not checkOk then
+                printf('Error running declaredTrades check: %s', checkRes)
+                ok = false
+            else
+                ok = checkRes and true or false
+            end
+        end
+
+        if ok then
+            for _, decl in ipairs(entry.decls) do
+                table.insert(collected, decl)
+            end
+        end
+    end
+
+    return collected
 end
 
 function InteractionLookup:onMobDeath(mob, player, optParams, fallbackFn)

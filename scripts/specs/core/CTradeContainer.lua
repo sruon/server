@@ -1,5 +1,7 @@
 ---@meta
 
+-- Deprecated - Returned by player:getTrade(). Gil pseudo-id is 0xFFFF.
+
 -- luacheck: ignore 241
 ---@class CTradeContainer
 local CTradeContainer = {}

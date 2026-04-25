@@ -58,9 +58,6 @@ public:
     void setSubType(uint8 subtype); // set the item's sub type
     bool isSubType(uint8 subtype);  // check the item's sub type
 
-    void  setReservedValue(uint8 reserved); // set the item's reserved value
-    uint8 getReservedValue();               // get the item's reserved value
-
     auto   getName() -> std::string; // get the item's name
     uint16 getILvl();                // get the item's ilvl
     uint16 getReqLvl();              // get the item's level
@@ -96,6 +93,11 @@ public:
     void setExData(const sol::table& data) const;
     auto getExDataRaw() const -> sol::table;         // NOTE: 0-indexed, to be in line with the underlying C++ data
     void setExDataRaw(const sol::table& data) const; // NOTE: 0-indexed, to be in line with the underlying C++ data
+
+    // Observable owner discriminant. Used by tests to assert on
+    // tx / inventory / consumed state transitions. Returns one of:
+    //   "inventory", "transaction", "worlddrop", "consumed", "unowned"
+    auto getOwnerKind() const -> std::string;
 
     bool operator==(const CLuaItem& other) const
     {
