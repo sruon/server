@@ -11,7 +11,7 @@ local entity = {}
 
 local pathNodes =
 {
-    { x = 60.600, y = -12.000, z = -33.913, wait = 3000 },
+    { x = 60.600,  y = -12.000, z = -33.913, wait = 3000 },
     { z = -38.151, wait = 3000 },
 }
 
@@ -24,20 +24,53 @@ entity.onSpawn = function(npc)
     end
 end
 
-entity.onTrade = function(player, npc, trade)
-    if player:getQuestStatus(xi.questLog.OUTLANDS, xi.quest.id.outlands.GULLIBLES_TRAVELS) == xi.questStatus.QUEST_ACCEPTED then
-        if trade:getGil() >= player:getCharVar('MAGRIFFON_GIL_REQUEST') then
-            player:startEvent(146)
-        end
-    elseif
-        player:getQuestStatus(xi.questLog.OUTLANDS, xi.quest.id.outlands.EVEN_MORE_GULLIBLES_TRAVELS) == xi.questStatus.QUEST_ACCEPTED and
-        player:getCharVar('EVEN_MORE_GULLIBLES_PROGRESS') == 0
-    then
-        if trade:getGil() >= 35000 then
-            player:startEvent(150, 0, 256)
-        end
-    end
-end
+entity.declaredTrades =
+{
+    {
+        match =
+        {
+            gil = function(player)
+                return player:getCharVar('MAGRIFFON_GIL_REQUEST')
+            end,
+        },
+        acceptIf = function(player, npc)
+            return player:getQuestStatus(xi.questLog.OUTLANDS, xi.quest.id.outlands.GULLIBLES_TRAVELS) == xi.questStatus.QUEST_ACCEPTED
+        end,
+
+        event =
+        {
+            id       = 146,
+            onFinish = function(player, option, npc)
+                player:setCharVar('MAGRIFFON_GIL_REQUEST', 0)
+                player:addFame(xi.fameArea.WINDURST, 30)
+                player:setTitle(xi.title.GULLIBLES_TRAVELS)
+                player:completeQuest(xi.questLog.OUTLANDS, xi.quest.id.outlands.GULLIBLES_TRAVELS)
+                player:needToZone(true)
+                return true
+            end,
+        },
+    },
+
+    {
+        match    = { gil = 35000 },
+        acceptIf = function(player, npc)
+            return player:getQuestStatus(xi.questLog.OUTLANDS, xi.quest.id.outlands.EVEN_MORE_GULLIBLES_TRAVELS) == xi.questStatus.QUEST_ACCEPTED and
+                player:getCharVar('EVEN_MORE_GULLIBLES_PROGRESS') == 0
+        end,
+
+        event    =
+        {
+            id       = 150,
+            params   = { 0, 256 },
+            onFinish = function(player, option, npc)
+                player:setCharVar('EVEN_MORE_GULLIBLES_PROGRESS', 1)
+                player:setTitle(xi.title.EVEN_MORE_GULLIBLES_TRAVELS)
+                npcUtil.giveKeyItem(player, xi.ki.TREASURE_MAP)
+                return true
+            end,
+        },
+    },
+}
 
 entity.onTrigger = function(player, npc)
     local gulliblesTravelsStatus = player:getQuestStatus(xi.questLog.OUTLANDS, xi.quest.id.outlands.GULLIBLES_TRAVELS)
@@ -78,31 +111,16 @@ entity.onTrigger = function(player, npc)
         else
             player:startEvent(147)
         end
-
     else
         player:startEvent(143)
     end
 end
 
 entity.onEventFinish = function(player, csid, option, npc)
-    if csid == 144 and option == 1 then                     -- Gullible's Travels: First CS
+    if csid == 144 and option == 1 then     -- Gullible's Travels: First CS
         player:addQuest(xi.questLog.OUTLANDS, xi.quest.id.outlands.GULLIBLES_TRAVELS)
-    elseif csid == 146 then                                  -- Gullible's Travels: Final CS
-        player:confirmTrade()
-        player:delGil(player:getCharVar('MAGRIFFON_GIL_REQUEST'))
-        player:setCharVar('MAGRIFFON_GIL_REQUEST', 0)
-        player:addFame(xi.fameArea.WINDURST, 30)
-        player:setTitle(xi.title.GULLIBLES_TRAVELS)
-        player:completeQuest(xi.questLog.OUTLANDS, xi.quest.id.outlands.GULLIBLES_TRAVELS)
-        player:needToZone(true)
-    elseif csid == 148 and option == 1 then                  -- Even More Guillible's Travels First CS
+    elseif csid == 148 and option == 1 then -- Even More Guillible's Travels First CS
         player:addQuest(xi.questLog.OUTLANDS, xi.quest.id.outlands.EVEN_MORE_GULLIBLES_TRAVELS)
-    elseif csid == 150 then                                  -- Even More Guillible's Travels Second CS
-        player:confirmTrade()
-        player:delGil(35000)
-        player:setCharVar('EVEN_MORE_GULLIBLES_PROGRESS', 1)
-        player:setTitle(xi.title.EVEN_MORE_GULLIBLES_TRAVELS)
-        npcUtil.giveKeyItem(player, xi.ki.TREASURE_MAP)
     elseif csid == 152 then
         player:setCharVar('EVEN_MORE_GULLIBLES_PROGRESS', 0)
         player:addFame(xi.fameArea.WINDURST, 30)

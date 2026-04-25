@@ -216,25 +216,30 @@ mission.sections =
         {
             ['_0d0'] =
             {
-                onTrade = function(player, npc, trade)
-                    if
-                        player:getMissionStatus(mission.areaId, xi.mission.status.COP.LOUVERANCE) == 11 and
-                        npcUtil.tradeHasExactly(trade, xi.item.GOLD_KEY)
-                    then
-                        return mission:progressEvent(3)
-                    end
-                end,
+                declaredTrades =
+                {
+                    {
+                        match    = { items = { { xi.item.GOLD_KEY, 1 } } },
+                        acceptIf = function(player, npc)
+                            return player:getMissionStatus(mission.areaId, xi.mission.status.COP.LOUVERANCE) == 11
+                        end,
+
+                        event =
+                        {
+                            id       = 3,
+                            onFinish = function(player, option, npc)
+                                -- Event transports you to BCNM exit, handled by the client.
+                                -- POS: -87.410 180 499.929 127 13
+                                player:setMissionStatus(mission.areaId, 12, xi.mission.status.COP.LOUVERANCE)
+                                return true
+                            end,
+                        },
+                    },
+                },
             },
 
             onEventFinish =
             {
-                [3] = function(player, csid, option, npc)
-                    player:confirmTrade()
-                    -- NOTE: This event transports you to the BCNM exit, and is handled by the client.
-                    -- POS: -87.410 180 499.929 127 13
-                    player:setMissionStatus(mission.areaId, 12, xi.mission.status.COP.LOUVERANCE)
-                end,
-
                 [32001] = function(player, csid, option, npc)
                     if
                         player:getLocalVar('battlefieldWin') == xi.battlefield.id.CENTURY_OF_HARDSHIP and

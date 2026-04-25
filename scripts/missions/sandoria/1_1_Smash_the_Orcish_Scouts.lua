@@ -21,16 +21,6 @@ mission.reward =
     rankPoints = 150,
 }
 
-local function handleTradeEvent(player, trade, firstId, repeatId)
-    if npcUtil.tradeHasExactly(trade, xi.item.ORCISH_AXE) then
-        if not player:hasCompletedMission(mission.areaId, mission.missionId) then
-            return mission:progressEvent(firstId)
-        else
-            return mission:progressEvent(repeatId)
-        end
-    end
-end
-
 local handleAcceptMission = function(player, csid, option, npc)
     if option == 0 then
         mission:begin(player)
@@ -38,10 +28,20 @@ local handleAcceptMission = function(player, csid, option, npc)
     end
 end
 
-local handleTradeEventFinish = function(player, csid, option, npc)
-    if mission:complete(player) then
-        player:confirmTrade()
-    end
+local function orcishAxeDecl(firstId, repeatId)
+    return {
+        match = { items = { { xi.item.ORCISH_AXE, 1 } } },
+        event =
+        {
+            id = function(player)
+                return player:hasCompletedMission(mission.areaId, mission.missionId) and repeatId or firstId
+            end,
+
+            onFinish = function(player)
+                return mission:complete(player)
+            end,
+        },
+    }
 end
 
 mission.sections =
@@ -114,28 +114,14 @@ mission.sections =
         {
             ['Ambrotien'] =
             {
-                onTrigger = mission:messageText(southernSandoriaID.text.ORIGINAL_MISSION_OFFSET),
-
-                onTrade = function(player, npc, trade)
-                    return handleTradeEvent(player, trade, 2020, 2002)
-                end,
+                onTrigger      = mission:messageText(southernSandoriaID.text.ORIGINAL_MISSION_OFFSET),
+                declaredTrades = { orcishAxeDecl(2020, 2002) },
             },
 
             ['Endracion'] =
             {
-                onTrigger = mission:messageText(southernSandoriaID.text.ORIGINAL_MISSION_OFFSET),
-
-                onTrade = function(player, npc, trade)
-                    return handleTradeEvent(player, trade, 1020, 1002)
-                end,
-            },
-
-            onEventFinish =
-            {
-                [1002] = handleTradeEventFinish,
-                [1020] = handleTradeEventFinish,
-                [2002] = handleTradeEventFinish,
-                [2020] = handleTradeEventFinish,
+                onTrigger      = mission:messageText(southernSandoriaID.text.ORIGINAL_MISSION_OFFSET),
+                declaredTrades = { orcishAxeDecl(1020, 1002) },
             },
         },
 
@@ -143,17 +129,8 @@ mission.sections =
         {
             ['Grilau'] =
             {
-                onTrigger = mission:messageText(northernSandoriaID.text.ORIGINAL_MISSION_OFFSET),
-
-                onTrade = function(player, npc, trade)
-                    return handleTradeEvent(player, trade, 1020, 1002)
-                end,
-            },
-
-            onEventFinish =
-            {
-                [1002] = handleTradeEventFinish,
-                [1020] = handleTradeEventFinish,
+                onTrigger      = mission:messageText(northernSandoriaID.text.ORIGINAL_MISSION_OFFSET),
+                declaredTrades = { orcishAxeDecl(1020, 1002) },
             },
         },
     },

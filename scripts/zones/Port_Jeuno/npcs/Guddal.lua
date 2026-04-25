@@ -9,19 +9,37 @@ local ID = zones[xi.zone.PORT_JEUNO]
 ---@type TNpcEntity
 local entity = {}
 
+entity.declaredTrades =
+{
+    {
+        match =
+        {
+            items =
+            {
+                { xi.item.GHELSBA_CHEST_KEY,    1 },
+                { xi.item.PALBOROUGH_CHEST_KEY, 1 },
+                { xi.item.GIDDEUS_CHEST_KEY,    1 },
+            },
+        },
+        acceptIf = function(player)
+            return not player:hasKeyItem(xi.ki.AIRSHIP_PASS_FOR_KAZHAM)
+        end,
+
+        event =
+        {
+            id = 301,
+            onFinish = function(player)
+                npcUtil.giveKeyItem(player, xi.ki.AIRSHIP_PASS_FOR_KAZHAM)
+                return true
+            end,
+        },
+    },
+}
+
 entity.onTrade = function(player, npc, trade)
+    -- Fallback for an offer that the declarative trade rejected.
     if not player:hasKeyItem(xi.ki.AIRSHIP_PASS_FOR_KAZHAM) then
-        if
-            trade:hasItemQty(xi.item.GHELSBA_CHEST_KEY, 1) and
-            trade:hasItemQty(xi.item.PALBOROUGH_CHEST_KEY, 1) and
-            trade:hasItemQty(xi.item.GIDDEUS_CHEST_KEY, 1) and
-            trade:getGil() == 0 and
-            trade:getItemCount() == 3
-        then
-            player:startEvent(301) -- Ending quest "Kazham Airship Pass"
-        else
-            player:startEvent(302)
-        end
+        player:startEvent(302)
     end
 end
 
@@ -48,9 +66,6 @@ entity.onEventFinish = function(player, csid, option, npc)
         player:hasKeyItem(xi.ki.AIRSHIP_PASS_FOR_KAZHAM)
     then
         player:messageSpecial(ID.text.KEYITEM_OBTAINED, xi.ki.AIRSHIP_PASS_FOR_KAZHAM)
-    elseif csid == 301 then
-        npcUtil.giveKeyItem(player, xi.ki.AIRSHIP_PASS_FOR_KAZHAM)
-        player:tradeComplete()
     end
 end
 

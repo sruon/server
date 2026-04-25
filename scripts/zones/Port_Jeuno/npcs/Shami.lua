@@ -7,8 +7,6 @@
 ---@type TNpcEntity
 local entity = {}
 
----@class shamiOrbItems
----@field [xi.item] { [integer]: integer, [integer]: integer, [integer]: integer, [integer]: integer } }
 local shamiOrbItems =
 {
     -- Item ID                    CS, PO, SealID, Cost
@@ -44,26 +42,6 @@ local function convertSealRetrieveOption(option)
     return nil, nil, nil
 end
 
--- Returns the event ID associated for displaying where the player can
--- use the orbs (BCNMs).  Event 22 is the generic cracked orb CS
----@nodiscard
----@param player CBaseEntity
----@param trade CTradeContainer
----@return integer?
-local function getOrbEvent(player, trade)
-    for itemID, orbData in pairs(shamiOrbItems) do
-        if npcUtil.tradeHasExactly(trade, itemID) then
-            if player:getWornUses(itemID) > 0 then
-                return 22
-            else
-                return orbData[1]
-            end
-        end
-    end
-
-    return nil
-end
-
 ---@nodiscard
 ---@param option integer
 ---@return xi.item?, integer?, integer?
@@ -77,19 +55,95 @@ local function getOrbDataFromOption(option)
     return nil, nil, nil
 end
 
-entity.onTrade = function(player, npc, trade)
-    local eventParams = { 321, 0, 0, 0, 0, 0 }
+entity.declaredTrades =
+{
+    {
+        match =
+        {
+            anyOf =
+            {
+                xi.item.BEASTMENS_SEAL,
+                xi.item.KINDREDS_SEAL,
+                xi.item.KINDREDS_CREST,
+                xi.item.HIGH_KINDREDS_CREST,
+                xi.item.SACRED_KINDREDS_CREST,
+            },
+        },
+        event =
+        {
+            id     = 321,
+            params = function(player, npc, offers)
+                local out = { 0, 0, 0, 0, 0, 0 }
+                for _, entry in ipairs(offers) do
+                    local sealData = xi.seals.sealItems[entry.id]
+                    if sealData then
+                        local sealId = sealData[1]
+                        out[sealId + 2] = bit.lshift(player:getSeals(sealId) + entry.qty, 16)
+                    end
+                end
 
-    if xi.seals.onTrade(player, npc, trade, eventParams) then
-        return
-    end
+                return out
+            end,
 
-    -- Trading Orbs
-    local orbEvent = getOrbEvent(player, trade)
-    if orbEvent ~= nil then
-        player:startEvent(orbEvent)
-    end
-end
+            onFinish = function(player, option, npc, confirmations)
+                for itemId, qty in pairs(confirmations) do
+                    local sealId = xi.seals.sealItems[itemId][1]
+                    player:addSeals(qty, sealId)
+                end
+
+                return true
+            end,
+        },
+    },
+
+    {
+        match =
+        {
+            anyOf =
+            {
+                xi.item.CLOUDY_ORB,
+                xi.item.SKY_ORB,
+                xi.item.STAR_ORB,
+                xi.item.COMET_ORB,
+                xi.item.MOON_ORB,
+                xi.item.CLOTHO_ORB,
+                xi.item.LACHESIS_ORB,
+                xi.item.ATROPOS_ORB,
+                xi.item.THEMIS_ORB,
+                xi.item.PHOBOS_ORB,
+                xi.item.DEIMOS_ORB,
+                xi.item.ZELOS_ORB,
+                xi.item.BIA_ORB,
+                xi.item.MICROCOSMIC_ORB,
+                xi.item.MACROCOSMIC_ORB,
+            },
+        },
+        acceptIf = function(player, npc, offers)
+            return #offers == 1
+        end,
+
+        event =
+        {
+            id = function(player, npc, offers)
+                local orbId = offers[1].id
+                -- Cracked orb → generic CS 22; fresh → per-orb intro CS.
+                return player:getWornUses(orbId) > 0 and 22 or shamiOrbItems[orbId][1]
+            end,
+
+            onFinish = function(player, option, npc, confirmations)
+                -- Consume only cracked orbs. Fresh orbs played their
+                -- intro CS and stay with the player.
+                for orbId in pairs(confirmations) do
+                    if player:getWornUses(orbId) > 0 then
+                        return true
+                    end
+                end
+
+                return false
+            end,
+        },
+    },
+}
 
 entity.onTrigger = function(player, npc)
     local beastmensSeal       = player:getSeals(0)
@@ -108,12 +162,8 @@ entity.onTrigger = function(player, npc)
 end
 
 entity.onEventFinish = function(player, csid, option, npc)
-    -- Cracked orb was traded
-    if csid == 22 then
-        player:confirmTrade()
-
     -- Retrieving Seals
-    elseif
+    if
         option >= 508 and
         option ~= utils.EVENT_CANCELLED_OPTION
     then
@@ -134,9 +184,9 @@ entity.onEventFinish = function(player, csid, option, npc)
             end
         end
 
-    -- Purchasing a BCNM Orb
-    -- NOTE: While Lua does short-circuit in conditionals, separating the seal check and giveItem calls
-    -- to ensure that if this ever changes, it won't cause a potential exploit.
+        -- Purchasing a BCNM Orb
+        -- NOTE: While Lua does short-circuit in conditionals, separating the seal check and giveItem calls
+        -- to ensure that if this ever changes, it won't cause a potential exploit.
     elseif csid == 322 then
         local itemID, sealType, sealCost = getOrbDataFromOption(option)
 

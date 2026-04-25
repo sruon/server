@@ -36,19 +36,36 @@ mission.sections =
 
             ['Ghebi_Damomohe'] =
             {
-                onTrade = function(player, npc, trade)
-                    if
-                        not player:hasKeyItem(xi.ki.PSOXJA_PASS) and
-                        mission:getVar(player, 'Status') == 2 and
-                        (
-                            npcUtil.tradeHasExactly(trade, xi.item.CARMINE_CHIP) or
-                            npcUtil.tradeHasExactly(trade, xi.item.CYAN_CHIP) or
-                            npcUtil.tradeHasExactly(trade, xi.item.GRAY_CHIP)
-                        )
-                    then
-                        return mission:progressEvent(52, xi.settings.main.GIL_RATE * 500)
-                    end
-                end,
+                declaredTrades =
+                {
+                    {
+                        match =
+                        {
+                            anyOf =
+                            {
+                                xi.item.CARMINE_CHIP,
+                                xi.item.CYAN_CHIP,
+                                xi.item.GRAY_CHIP,
+                            },
+                        },
+                        acceptIf = function(player)
+                            return not player:hasKeyItem(xi.ki.PSOXJA_PASS) and
+                                mission:getVar(player, 'Status') == 2
+                        end,
+
+                        event =
+                        {
+                            id       = 52,
+                            params   = { xi.settings.main.GIL_RATE * 500 },
+                            onFinish = function(player)
+                                player:addGil(xi.settings.main.GIL_RATE * 500)
+                                npcUtil.giveKeyItem(player, xi.ki.PSOXJA_PASS)
+                                mission:setVar(player, 'Status', 3)
+                                return true
+                            end,
+                        },
+                    },
+                },
 
                 onTrigger = function(player, npc)
                     local missionStatus = mission:getVar(player, 'Status')
@@ -84,14 +101,6 @@ mission.sections =
 
             onEventFinish =
             {
-                [52] = function(player, csid, option, npc)
-                    player:confirmTrade()
-
-                    player:addGil(xi.settings.main.GIL_RATE * 500) -- Silent since the gil reward is baked into the CS.
-                    npcUtil.giveKeyItem(player, xi.ki.PSOXJA_PASS)
-                    mission:setVar(player, 'Status', 3)
-                end,
-
                 [54] = function(player, csid, option, npc)
                     mission:setVar(player, 'Status', 2)
                 end,
