@@ -94,6 +94,12 @@ end
 function CAction:modifier(actionTargetId, modifier)
 end
 
+---@nodiscard
+---@param actionTargetId integer
+---@return integer
+function CAction:getModifier(actionTargetId)
+end
+
 ---@param actionTargetId integer
 ---@param additionalEffect xi.action.addEffect
 ---@return nil

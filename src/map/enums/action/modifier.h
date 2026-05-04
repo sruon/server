@@ -24,6 +24,7 @@
 #include "common/logging.h"
 
 #include <cstdint>
+#include <magic_enum/magic_enum.hpp>
 
 // result.bit (31 bits)
 enum class ActionModifier : uint32_t
@@ -35,3 +36,10 @@ enum class ActionModifier : uint32_t
     Immunobreak = 0x08,
     CriticalHit = 0x10,
 };
+
+template <>
+struct magic_enum::customize::enum_range<ActionModifier>
+{
+    static constexpr bool is_flags = true;
+};
+using namespace magic_enum::bitwise_operators;

@@ -65,6 +65,7 @@ public:
     void knockback(uint32 actionTargetId, Knockback knockback) const;
     void recordDamage(const CLuaBaseEntity* PLuaTarget, ATTACK_TYPE atkType, int32 damage, Maybe<bool> isCritical = false) const;
     void modifier(uint32 actionTargetId, uint8 modifier) const;
+    auto getModifier(uint32 actionTargetId) const -> uint8;
     void additionalEffect(uint32 actionTargetId, ActionProcAddEffect additionalEffect) const;
     void addEffectParam(uint32 actionTargetId, int32 addEffectParam) const;
     void addEffectMessage(uint32 actionTargetId, MsgBasic addEffectMessage) const;

@@ -236,6 +236,18 @@ void CLuaAction::modifier(const uint32 actionTargetId, uint8 modifier) const
     }
 }
 
+auto CLuaAction::getModifier(const uint32 actionTargetId) const -> uint8
+{
+    for (auto&& actionTarget : m_PLuaAction->targets)
+    {
+        if (actionTarget.actorId == actionTargetId)
+        {
+            return static_cast<uint8>(actionTarget.results[0].modifier);
+        }
+    }
+    return 0;
+}
+
 void CLuaAction::additionalEffect(const uint32 actionTargetId, const ActionProcAddEffect additionalEffect) const
 {
     for (auto&& actionTarget : m_PLuaAction->targets)
@@ -312,6 +324,7 @@ void CLuaAction::Register()
     SOL_REGISTER("knockback", CLuaAction::knockback);
     SOL_REGISTER("recordDamage", CLuaAction::recordDamage);
     SOL_REGISTER("modifier", CLuaAction::modifier);
+    SOL_REGISTER("getModifier", CLuaAction::getModifier);
     SOL_REGISTER("additionalEffect", CLuaAction::additionalEffect);
     SOL_REGISTER("addEffectParam", CLuaAction::addEffectParam);
     SOL_REGISTER("addEffectMessage", CLuaAction::addEffectMessage);

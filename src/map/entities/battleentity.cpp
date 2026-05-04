@@ -3009,6 +3009,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
         {
             PTarget      = attackRound.GetCoverAbilityUserEntity();
             list.actorId = PTarget->id;
+            actionResult.modifier |= ActionModifier::Cover;
         }
 
         if (PTarget->StatusEffectContainer->HasStatusEffect(EFFECT_PERFECT_DODGE, 0))
