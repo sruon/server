@@ -1050,9 +1050,14 @@ void PopulateIDLookups(uint16 zoneId, const std::string& zoneName)
     // Load all Name/ID pairs from mobs and npcs
     std::unordered_map<std::string, std::vector<uint32>> lookup;
 
-    // Mobs
+    // Mobs — join through mob_groups so we also pick up overlay-encoded mobids whose upper bits
+    // are an overlay id (>=1000) rather than the real zone id.
     {
-        const auto rset = db::preparedStmt("SELECT mobname, mobid FROM mob_spawn_points WHERE ((mobid >> 12) & 0xFFF) = ? ORDER BY mobid ASC", zoneId);
+        const auto rset = db::preparedStmt("SELECT mobname, mobid "
+                                           "FROM mob_spawn_points "
+                                           "INNER JOIN mob_groups ON mob_groups.groupid = mob_spawn_points.groupid AND mob_groups.zoneid = ? "
+                                           "ORDER BY mobid ASC",
+                                           zoneId);
         if (rset && rset->rowsCount())
         {
             while (rset->next())
