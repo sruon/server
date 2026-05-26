@@ -27,4 +27,5 @@ jobs:
           stale-pr-label: 'stale'
           close-pr-label: 'abandoned'
           exempt-pr-labels: 'hold'
+          exempt-draft-pr: true
           remove-pr-stale-when-updated: true
