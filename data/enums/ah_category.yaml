@@ -1,0 +1,78 @@
+# yaml-language-server: $schema=../schemas/enums/_enum.schema.json
+
+meta:
+  cpp:
+    underlying: uint8_t
+    class: AHCategory
+  lua:
+    table: xi.ahCategory
+
+values:
+  none: 0 # does not appear in AH at all
+  h2h: 1 # Weapons -> H2h
+  dagger: 2 # Weapons -> Dagger
+  sword: 3
+  great_sword: 4
+  axe: 5
+  great_axe: 6
+  scythe: 7
+  polearm: 8
+  katana: 9
+  great_katana: 10
+  club: 11
+  staff: 12
+  bow: 13
+  instruments: 14
+  ammunition: 15 # Weapons -> Ammo&Misc -> Ammunition
+  shield: 16 # Armor -> Shield
+  head: 17
+  body: 18
+  hands: 19
+  legs: 20
+  feet: 21
+  neck: 22
+  waist: 23
+  earrings: 24
+  rings: 25
+  back: 26
+  unused: 27 # placeholder slot, no items
+  white_magic: 28 # Scrolls -> White Magic
+  black_magic: 29
+  summoning: 30
+  ninjutsu: 31
+  songs: 32
+  medicines: 33
+  furnishings: 34
+  crystals: 35
+  cards: 36 # Others -> Cards
+  cursed_items: 37
+  smithing: 38 # Materials -> Smithing
+  goldsmithing: 39
+  clothcraft: 40
+  leathercraft: 41
+  bonecraft: 42
+  woodworking: 43
+  alchemy: 44
+  geomancer: 45 # Scrolls -> Geomancy
+  misc: 46
+  fishing_gear: 47
+  pet_items: 48
+  ninja_tools: 49
+  beast_made: 50
+  fish: 51 # Food -> Fish
+  meat_eggs: 52
+  seafood: 53
+  vegetables: 54
+  soups: 55
+  breads_rice: 56
+  sweets: 57
+  drinks: 58
+  ingredients: 59
+  dice: 60
+  automaton: 61
+  grips: 62
+  alchemy_2: 63
+  misc_2: 64
+  misc_3: 65
+  unset: 99 # SQL column DEFAULT; effectively "uncategorized"
+  invalid: 255 # item needs retail verification

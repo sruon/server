@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=../schemas/enums/_enum.schema.json
+
+meta:
+  cpp:
+    underlying: uint8_t
+    class: PuppetSlot
+  lua:
+    table: xi.puppetSlot
+
+values:
+  head: 1
+  frame: 2
+  attachment: 3

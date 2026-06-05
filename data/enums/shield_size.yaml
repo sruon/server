@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=../schemas/enums/_enum.schema.json
+
+meta:
+  cpp:
+    underlying: uint8_t
+    class: ShieldSize
+  lua:
+    table: xi.shieldSize
+
+values:
+  none: 0
+  buckler: 1
+  round: 2
+  kite: 3
+  tower: 4
+  aegis: 5
+  ochain: 6

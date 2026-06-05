@@ -1,0 +1,28 @@
+# yaml-language-server: $schema=../schemas/enums/_enum.schema.json
+
+meta:
+  flags: true
+  cpp:
+    underlying: uint16_t
+    class: EquipSlot
+  lua:
+    table: xi.equipSlot
+
+values:
+  none: 0x0000
+  main: 0x0001
+  sub: 0x0002
+  ranged: 0x0004
+  ammo: 0x0008
+  head: 0x0010
+  body: 0x0020
+  hands: 0x0040
+  legs: 0x0080
+  feet: 0x0100
+  neck: 0x0200
+  waist: 0x0400
+  ear1: 0x0800
+  ear2: 0x1000
+  ring1: 0x2000
+  ring2: 0x4000
+  back: 0x8000

@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=../schemas/enums/_enum.schema.json
+
+meta:
+  cpp:
+    underlying: uint8_t
+  lua:
+    table: xi.itemType
+
+values:
+  general: 1
+  linkshell: 2
+  furnishing: 3
+  puppet: 4
+  usable: 5
+  equipment: 6
+  weapon: 7
+  currency: 8

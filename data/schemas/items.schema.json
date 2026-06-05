@@ -1,0 +1,219 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "items.schema.json",
+  "title": "Items",
+  "description": "Items, polymorphic on type.",
+  "type": "object",
+  "unevaluatedProperties": false,
+  "required": ["items"],
+
+  "properties": {
+    "meta": { "$ref": "_meta.schema.json" },
+    "items": {
+      "type": "object",
+      "propertyNames": { "pattern": "^[0-9]+$" },
+      "additionalProperties": { "$ref": "#/$defs/item" }
+    }
+  },
+
+  "$defs": {
+    "item": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "required": ["name", "type"],
+      "properties": {
+        "name": { "$ref": "#/$defs/item_name" },
+        "type": { "$ref": "enums/item_type.codegen.json" },
+        "stack_size": {
+          "type": "integer",
+          "enum": [0, 1, 12, 99],
+          "minimum": 0,
+          "maximum": 99,
+          "default": 1,
+          "description": "Item stack size."
+        },
+        "flags": {
+          "type": "array",
+          "items": { "$ref": "enums/item_flag.codegen.json" },
+          "uniqueItems": true
+        },
+        "ah_category": { "$ref": "enums/ah_category.codegen.json" },
+        "base_sell": { "type": "integer", "minimum": 0, "maximum": 4294967295 },
+        "mods": { "type": "array", "items": { "$ref": "#/$defs/item_mod" } },
+        "mods_pet": { "type": "array", "items": { "$ref": "#/$defs/item_mod_pet" } },
+        "latents": { "type": "array", "items": { "$ref": "#/$defs/item_latent" } },
+        "usable": { "$ref": "#/$defs/item_usable" },
+        "equipment": { "$ref": "#/$defs/item_equipment" }
+      },
+      "oneOf": [
+        {
+          "required": ["weapon", "equipment"],
+          "properties": {
+            "type": { "const": "weapon" },
+            "weapon": { "$ref": "#/$defs/item_weapon" },
+            "equipment": { "$ref": "#/$defs/item_equipment" }
+          }
+        },
+        {
+          "required": ["equipment"],
+          "properties": {
+            "type": { "const": "equipment" },
+            "equipment": { "$ref": "#/$defs/item_equipment" }
+          }
+        },
+        {
+          "required": ["furnishing"],
+          "properties": {
+            "type": { "const": "furnishing" },
+            "furnishing": { "$ref": "#/$defs/item_furnishing" }
+          }
+        },
+        {
+          "required": ["puppet"],
+          "properties": {
+            "type": { "const": "puppet" },
+            "puppet": { "$ref": "#/$defs/item_puppet" }
+          }
+        },
+        {
+          "properties": {
+            "type": { "enum": ["usable", "general", "linkshell", "currency"] }
+          }
+        }
+      ]
+    },
+
+    "item_weapon": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "skill": { "$ref": "enums/skill_type.codegen.json" },
+        "subskill": { "type": "integer", "minimum": 0, "maximum": 255 },
+        "ilvl_skill": { "type": "integer", "minimum": 0, "maximum": 32767 },
+        "ilvl_parry": { "type": "integer", "minimum": 0, "maximum": 32767 },
+        "ilvl_macc": { "type": "integer", "minimum": 0, "maximum": 32767 },
+        "dmg_type": { "type": "integer", "minimum": 0, "maximum": 4294967295 },
+        "hit": { "type": "integer", "minimum": 0, "maximum": 255, "default": 1 },
+        "delay": { "type": "integer", "minimum": 0, "maximum": 4294967295 },
+        "damage": { "type": "integer", "minimum": -2147483648, "maximum": 2147483647 },
+        "unlock_points": { "type": "integer", "minimum": 0, "maximum": 65535 }
+      }
+    },
+
+    "item_equipment": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "level": { "type": "integer", "minimum": 1, "maximum": 99 },
+        "ilvl": { "type": "integer", "minimum": 100, "maximum": 119 },
+        "jobs": {
+          "type": "array",
+          "items": { "$ref": "enums/job.codegen.json" },
+          "uniqueItems": true
+        },
+        "model_id": { "type": "integer", "minimum": 0, "maximum": 65535 },
+        "shield_size": { "$ref": "enums/shield_size.codegen.json" },
+        "slots": {
+          "type": "array",
+          "items": { "$ref": "enums/equip_slot.codegen.json" },
+          "uniqueItems": true
+        },
+        "rslots": {
+          "type": "array",
+          "items": { "$ref": "enums/equip_slot.codegen.json" },
+          "uniqueItems": true
+        },
+        "rslot_look": { "type": "integer", "minimum": 0, "maximum": 65535 },
+        "su_level": { "type": "integer", "minimum": 0, "maximum": 5 }
+      }
+    },
+
+    "item_usable": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "valid_targets": {
+          "type": "array",
+          "items": { "$ref": "enums/valid_target.codegen.json" },
+          "uniqueItems": true
+        },
+        "activation": { "type": "number", "minimum": 0 },
+        "animation": { "type": "integer", "minimum": 0, "maximum": 65535 },
+        "animation_time": { "type": "integer", "minimum": 0, "maximum": 255 },
+        "max_charges": { "type": "integer", "minimum": 0, "maximum": 255 },
+        "use_delay": { "type": "integer", "minimum": 0, "maximum": 255 },
+        "reuse_delay": { "type": "integer", "minimum": 0, "maximum": 4294967295 },
+        "aoe": { "type": "boolean" }
+      }
+    },
+
+    "item_furnishing": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "properties": {
+        "storage": { "type": "integer", "minimum": 0, "maximum": 255 },
+        "moghancement": { "type": "integer", "minimum": 0, "maximum": 65535 },
+        "element": { "$ref": "enums/element.codegen.json" },
+        "aura": { "type": "integer", "minimum": 0, "maximum": 255 },
+        "placement": { "$ref": "enums/furnishing_placement.codegen.json" },
+        "size_x": { "type": "integer", "minimum": 1, "maximum": 255, "default": 1 },
+        "size_y": { "type": "integer", "minimum": 1, "maximum": 255, "default": 1 },
+        "height": { "type": "integer", "minimum": 0, "maximum": 65535 }
+      }
+    },
+
+    "item_puppet": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "required": ["slot"],
+      "properties": {
+        "slot": { "$ref": "enums/puppet_slot.codegen.json" },
+        "element": { "type": "integer", "minimum": 0, "maximum": 4294967295 }
+      }
+    },
+
+    "item_name": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "required": ["en"],
+      "properties": {
+        "en": { "type": "string", "description": "English display name." },
+        "sort": { "type": "string", "description": "Sort order name (often same as `en`)." },
+        "jp": { "type": "string", "description": "Japanese display name." }
+      }
+    },
+
+    "item_mod": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "required": ["id", "value"],
+      "properties": {
+        "id": { "$ref": "enums/mod.codegen.json" },
+        "value": { "type": "integer", "minimum": -32768, "maximum": 32767 }
+      }
+    },
+
+    "item_mod_pet": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "required": ["id", "value", "pet_type"],
+      "properties": {
+        "id": { "$ref": "enums/mod.codegen.json" },
+        "value": { "type": "integer", "minimum": -32768, "maximum": 32767 },
+        "pet_type": { "$ref": "enums/pet_type.codegen.json" }
+      }
+    },
+
+    "item_latent": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "required": ["mod", "value", "latent_id", "latent_param"],
+      "properties": {
+        "mod": { "$ref": "enums/mod.codegen.json" },
+        "value": { "type": "integer", "minimum": -32768, "maximum": 32767 },
+        "latent_id": { "type": "integer", "minimum": -32768, "maximum": 32767 },
+        "latent_param": { "type": "integer", "minimum": -32768, "maximum": 32767 }
+      }
+    }
+  }
+}

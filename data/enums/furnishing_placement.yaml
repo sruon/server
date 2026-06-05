@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=../schemas/enums/_enum.schema.json
+
+meta:
+  cpp:
+    underlying: uint8_t
+    class: FurnishingPlacement
+  lua:
+    table: xi.furnishingPlacement
+
+values:
+  floor: 0 # sits on the floor
+  surface: 1 # sits on the floor and supports other items on top (tables, desks)
+  wall: 2 # hung on a wall slot
+  on_table: 3 # placed on top of a Surface item (vases, statues, flowerpots)

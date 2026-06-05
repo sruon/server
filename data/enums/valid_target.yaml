@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=../schemas/enums/_enum.schema.json
+
+meta:
+  flags: true
+  cpp:
+    underlying: uint16_t
+    class: ValidTarget
+  lua:
+    table: xi.validTarget
+
+values:
+  none: 0x0000
+  self: 0x0001
+  player_party: 0x0002
+  enemy: 0x0004
+  player_alliance: 0x0008
+  player: 0x0010
+  player_dead: 0x0020
+  npc: 0x0040 # an NPC mob fighting on the character's side
+  player_party_pianissimo: 0x0080
+  pet: 0x0100
+  player_party_entrust: 0x0200
+  ignore_battle_id: 0x0400 # can hit targets without matching battle ID
+  any_allegiance: 0x0800 # can hit any allegiance simultaneously (multi-target only)
