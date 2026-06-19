@@ -227,7 +227,7 @@ GP_SERV_COMMAND_LOGIN::GP_SERV_COMMAND_LOGIN(CCharEntity* PChar, const EventInfo
     std::memcpy(&packet.Dancer.bp_base, &PChar->stats, 14);
     std::memcpy(&packet.ConfData, &PChar->playerConfig, sizeof(SAVE_CONF_PKT));
 
-    if (PChar->GetMJob() == JOB_MON)
+    if (PChar->GetMJob() == xi::Job::MON)
     {
         monstrosity::ReadMonstrosityData(PChar);
     }

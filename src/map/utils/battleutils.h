@@ -117,8 +117,8 @@ int16 GetRangedDelayReduction(CBattleEntity* battleEntity, int16 delay);
 int32 GetRangedAttackBonuses(CBattleEntity* battleEntity);
 int32 GetRangedAccuracyBonuses(CBattleEntity* battleEntity);
 
-uint8  GetSkillRank(SKILLTYPE SkillID, JOBTYPE JobID);
-uint16 GetMaxSkill(SKILLTYPE SkillID, JOBTYPE JobID, uint8 level);
+uint8  GetSkillRank(SKILLTYPE SkillID, xi::Job JobID);
+uint16 GetMaxSkill(SKILLTYPE SkillID, xi::Job JobID, uint8 level);
 uint16 GetMaxSkill(uint8 rank, uint8 level);
 
 CWeaponSkill* GetWeaponSkill(uint16 WSkillID);
@@ -260,7 +260,7 @@ timer::duration CalculateSpellRecastTime(CBattleEntity*, CSpell*);
 bool            CanAffordSpell(CBattleEntity* PEntity, CSpell* PSpell, uint8 flags = 0);
 int16           CalculateWeaponSkillTP(CBattleEntity*, CWeaponSkill*, int16);
 bool            RemoveAmmo(CCharEntity*, int quantity = 1);
-int32           GetMeritValue(CBattleEntity*, MERIT_TYPE);
+auto            GetMeritValue(CBattleEntity*, MERIT_TYPE) -> int32;
 
 int32 GetScaledItemModifier(CBattleEntity*, CItemEquipment*, Mod);
 auto  GetSpikesDamageType(ActionReactKind spikesType) -> xi::DamageType;

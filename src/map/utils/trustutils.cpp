@@ -80,10 +80,10 @@ struct TrustData
     float  modelHitboxSize{ 0.0f };
     uint16 m_Species{};
 
-    uint8 mJob{};
-    uint8 sJob{};
-    float HPscale{}; // HP boost percentage
-    float MPscale{}; // MP boost percentage
+    xi::Job mJob{};
+    xi::Job sJob{};
+    float   HPscale{}; // HP boost percentage
+    float   MPscale{}; // MP boost percentage
 
     uint8  cmbSkill{};
     uint16 cmbDmgMult{};
@@ -276,8 +276,8 @@ void BuildTrustData(uint32 TrustID)
             db::extractFromBlob(rset, "modelid", data->look);
 
             data->m_Species = rset->get<uint16>("speciesid");
-            data->mJob      = rset->get<uint8>("mJob");
-            data->sJob      = rset->get<uint8>("sJob");
+            data->mJob      = rset->get<xi::Job>("mJob");
+            data->sJob      = rset->get<xi::Job>("sJob");
             data->spellList = rset->get<uint16>("spellList");
 
             data->cmbSkill   = rset->get<uint8>("cmbSkill");
@@ -490,8 +490,8 @@ void LoadTrustStatsAndSkills(CTrustEntity* PTrust)
     // add mob pool mods ahead of applying stats
     mobutils::AddSqlModifiers(PTrust);
 
-    JOBTYPE mJob = PTrust->GetMJob();
-    JOBTYPE sJob = PTrust->GetSJob();
+    xi::Job mJob = PTrust->GetMJob();
+    xi::Job sJob = PTrust->GetSJob();
     uint8   mLvl = PTrust->GetMLevel();
     uint8   sLvl = PTrust->GetSLevel();
 

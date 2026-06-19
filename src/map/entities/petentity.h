@@ -61,7 +61,7 @@ public:
     bool              isBstPet() const;
     uint32            m_PetID;
     const std::string GetScriptName();
-    WYVERN_TYPE       getWyvernType();
+    auto              getWyvernType() -> WYVERN_TYPE;
     virtual void      PostTick() override;
     virtual void      FadeOut() override;
     virtual void      Die() override;

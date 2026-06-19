@@ -69,8 +69,8 @@ CBattleEntity::CBattleEntity()
     m_mlvl = 0;
     m_slvl = 0;
 
-    m_mjob = JOB_WAR;
-    m_sjob = JOB_WAR;
+    m_mjob = xi::Job::WAR;
+    m_sjob = xi::Job::WAR;
 
     m_magicEvasion = 0;
 
@@ -1564,7 +1564,7 @@ uint16 CBattleEntity::EVA()
     return std::max(1, evasion + (this->objtype == TYPE_MOB || (this->objtype == TYPE_PET && !isAutomaton) ? 0 : m_modStat[Mod::EVA])); // The mod for a pet or mob is already calclated in the above so return 0
 }
 
-JOBTYPE CBattleEntity::GetMJob() const
+auto CBattleEntity::GetMJob() const -> xi::Job
 {
     return m_mjob;
 }
@@ -1574,11 +1574,11 @@ uint8 CBattleEntity::GetMLevel() const
     return m_mlvl;
 }
 
-JOBTYPE CBattleEntity::GetSJob(bool ignoreRestriction) const
+auto CBattleEntity::GetSJob(bool ignoreRestriction) const -> xi::Job
 {
     if (!ignoreRestriction && StatusEffectContainer->HasStatusEffect({ xi::StatusEffect::Obliviscence, xi::StatusEffect::SjRestriction }))
     {
-        return JOB_NON;
+        return xi::Job::NONE;
     }
 
     return m_sjob;
@@ -1594,26 +1594,26 @@ uint8 CBattleEntity::GetSLevel() const
     return m_slvl;
 }
 
-void CBattleEntity::SetMJob(uint8 mjob)
+void CBattleEntity::SetMJob(xi::Job mjob)
 {
-    if (mjob == 0 || mjob >= MAX_JOBTYPE)
+    if (mjob == xi::Job::NONE || static_cast<uint8>(mjob) >= MAX_JOBTYPE)
     {
-        ShowWarning("Invalid Job Type passed to function (%d).", mjob);
+        ShowWarning("Invalid Job Type passed to function (%d).", static_cast<uint8>(mjob));
         return;
     }
 
-    m_mjob = (JOBTYPE)mjob;
+    m_mjob = mjob;
 }
 
-void CBattleEntity::SetSJob(uint8 sjob)
+void CBattleEntity::SetSJob(xi::Job sjob)
 {
-    if (sjob >= MAX_JOBTYPE)
+    if (static_cast<uint8>(sjob) >= MAX_JOBTYPE)
     {
-        ShowWarning("sjob (%d) exceeds MAX_JOBTYPE", sjob);
+        ShowWarning("sjob (%d) exceeds MAX_JOBTYPE", static_cast<uint8>(sjob));
         return;
     }
 
-    m_sjob = (JOBTYPE)sjob;
+    m_sjob = sjob;
 }
 
 void CBattleEntity::SetMLevel(uint8 mlvl)
@@ -3641,7 +3641,7 @@ auto CBattleEntity::OnAttack(CAttackState& state, action_t& action) -> bool
                         // Needs verification, as there appears to be conflicting information regarding an attack bonus based on DEX
                         // vs a base damage increase.
                         float attBonus = 1.0f;
-                        if (PTarget->objtype == TYPE_PC && PTarget->GetMJob() == JOB_MNK && PTarget->StatusEffectContainer->HasStatusEffect(xi::StatusEffect::Counterstance))
+                        if (PTarget->objtype == TYPE_PC && PTarget->GetMJob() == xi::Job::MNK && PTarget->StatusEffectContainer->HasStatusEffect(xi::StatusEffect::Counterstance))
                         {
                             auto* PChar        = static_cast<CCharEntity*>(PTarget);
                             float csJpModifier = static_cast<float>(PChar->PJobPoints->GetJobPointValue(JP_COUNTERSTANCE_EFFECT) * 2);

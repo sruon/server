@@ -22,6 +22,7 @@
 #pragma once
 
 #include "base.h"
+#include "data/enums/job.h"
 
 class CCharEntity;
 class CTrustEntity;
@@ -45,9 +46,9 @@ public:
         uint16_t ZoneNo;            // PS2: (New; did not exist.)
         uint16_t MonstrosityFlag;   // PS2: (New; did not exist.)
         uint16_t MonstrosityNameId; // PS2: (New; did not exist.)
-        uint8_t  mjob_no;           // PS2: (New; did not exist.)
+        xi::Job  mjob_no;           // PS2: (New; did not exist.)
         uint8_t  mjob_lv;           // PS2: (New; did not exist.)
-        uint8_t  sjob_no;           // PS2: (New; did not exist.)
+        xi::Job  sjob_no;           // PS2: (New; did not exist.)
         uint8_t  sjob_lv;           // PS2: (New; did not exist.)
         uint8_t  masterjob_lv;      // PS2: (New; did not exist.)
         uint8_t  masterjob_flags;   // PS2: (New; did not exist.)

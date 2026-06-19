@@ -550,7 +550,7 @@ auto CLuaSimulation::spawnPlayer(sol::optional<sol::table> params) -> CLuaClient
 
     if (job.has_value())
     {
-        player->changeJob(job.value());
+        player->changeJob(static_cast<xi::Job>(job.value()));
     }
 
     if (level.has_value())

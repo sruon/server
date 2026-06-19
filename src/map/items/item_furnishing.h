@@ -119,7 +119,7 @@ public:
     auto  isInstalled() const -> bool;
     uint8 getCol();
     uint8 getRow();
-    uint8 getLevel();
+    auto  getLevel() -> uint8;
     uint8 getRotation();
     uint8 getOrder(); // Gets Placement order with 0 being the most recently placed furniture
 

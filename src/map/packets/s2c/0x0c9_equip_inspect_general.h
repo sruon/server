@@ -22,6 +22,7 @@
 #pragma once
 
 #include "base.h"
+#include "data/enums/job.h"
 
 class CCharEntity;
 
@@ -44,9 +45,9 @@ public:
         uint16_t ItemNo;               // PS2: ItemNo
         uint8_t  sComLinkName[16];     // PS2: sComLinkName
         uint16_t sComColor;            // PS2: (Unnamed struct of bits.)
-        uint8_t  job[2];               // PS2: job
+        xi::Job  job[2];               // PS2: job
         uint8_t  lvl[2];               // PS2: lvl
-        uint8_t  mjob;                 // PS2: mjob
+        xi::Job  mjob;                 // PS2: mjob
         uint8_t  mlvl;                 // PS2: (New; did not exist.)
         uint8_t  mflags;               // PS2: (New; did not exist.)
         uint8_t  padding29[3];         // PS2: (New; did not exist.)

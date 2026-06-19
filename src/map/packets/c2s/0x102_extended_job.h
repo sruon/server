@@ -21,13 +21,14 @@
 
 #pragma once
 #include "base.h"
+#include "data/enums/job.h"
 
 struct blu_data_t
 {
     uint8_t SpellId;
     uint8_t unknown00;
     uint8_t padding00[2];
-    uint8_t JobIndex;
+    xi::Job JobIndex;
     uint8_t SupportJobFlg;
     uint8_t padding01[2];
     uint8_t Spells[20];
@@ -57,7 +58,7 @@ struct pup_data_t
     uint8_t ItemId;
     uint8_t unknown00;
     uint8_t padding00[2];
-    uint8_t JobIndex;
+    xi::Job JobIndex;
     uint8_t SupportJobFlg;
     uint8_t padding01[2];
     uint8_t Slots[14];

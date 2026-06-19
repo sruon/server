@@ -23,6 +23,8 @@
 
 #include "base.h"
 
+#include "data/enums/job.h"
+
 struct EventInfo;
 class CCharEntity;
 // PS2: GP_SERV_POS_HEAD
@@ -63,10 +65,10 @@ struct GP_MYROOM_DANCER_PKT
 {
     uint16_t mon_no;       // PS2: mon_no
     uint16_t face_no;      // PS2: face_no
-    uint8_t  mjob_no;      // PS2: mjob_no
+    xi::Job  mjob_no;      // PS2: mjob_no
     uint8_t  hair_no;      // PS2: hair_no
     uint8_t  size;         // PS2: size
-    uint8_t  sjob_no;      // PS2: sjob_no
+    xi::Job  sjob_no;      // PS2: sjob_no
     uint32_t get_job_flag; // PS2: get_job_flag
     int8_t   job_lev[16];  // PS2: job_lev
     uint16_t bp_base[7];   // PS2: bp_base

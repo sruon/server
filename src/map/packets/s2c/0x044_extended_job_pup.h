@@ -22,6 +22,7 @@
 #pragma once
 
 #include "common/cbasetypes.h"
+#include "data/enums/job.h"
 
 #include "base.h"
 #include "enums/automaton.h"
@@ -38,7 +39,7 @@ class PUP final : public GP_SERV_PACKET<PacketS2C::GP_SERV_COMMAND_EXTENDED_JOB,
 public:
     struct PacketData
     {
-        uint8_t        Job;      // PS2: Job
+        xi::Job        Job;      // PS2: Job
         uint8_t        IsSubJob; // PS2: IsSubJob
         uint8_t        padding00[2];
         AutomatonHead  Head;

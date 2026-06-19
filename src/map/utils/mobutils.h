@@ -61,7 +61,7 @@ void SetupEventMob(CMobEntity* PMob);
 void SetupDungeonInstanceMob(CMobEntity* PMob);
 void SetupPetSkills(CMobEntity* PMob);
 
-uint8 JobSkillRankToBaseEvaRank(JOBTYPE mjob, JOBTYPE sjob);
+uint8 JobSkillRankToBaseEvaRank(xi::Job mjob, xi::Job sjob);
 
 uint16 GetWeaponDamage(CMobEntity* PMob, uint16 slot);
 uint16 GetMagicEvasion(CMobEntity* PMob);

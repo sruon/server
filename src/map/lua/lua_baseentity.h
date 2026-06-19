@@ -284,7 +284,7 @@ public:
     auto  getTrade() -> CTradeContainer*;
 
     // Equipping
-    bool canEquipItem(uint16 itemID, const sol::object& chkLevel);
+    auto canEquipItem(uint16 itemID, const sol::object& chkLevel) -> bool;
     void equipItem(uint16 itemID, const sol::object& container, const sol::object& equipSlot) const;
     void unequipItem(uint8 slotID);
 
@@ -372,22 +372,22 @@ public:
     uint32 getTimeCreated();
 
     // Player Jobs and Levels
-    uint8 getMainJob();
-    uint8 getSubJob();
-    void  changeJob(uint8 newJob);
-    void  changesJob(uint8 subJob);
-    void  unlockJob(uint8 JobID);
-    bool  hasJob(uint8 job);
+    auto getMainJob() -> xi::Job;
+    auto getSubJob() -> xi::Job;
+    void changeJob(xi::Job newJob);
+    void changesJob(xi::Job subJob);
+    void unlockJob(xi::Job JobID);
+    auto hasJob(xi::Job job) -> bool;
 
     uint8 getMainLvl();
     uint8 getSubLvl();
-    uint8 getJobLevel(uint8 JobID); // Gets character job level for specified JOBTYPE
-    void  setLevel(uint8 level);    // sets the character's mainjob level
-    void  setsLevel(uint8 slevel);  // sets the character's subjob level
-    uint8 getLevelCap();            // genkai
+    auto  getJobLevel(xi::Job JobID) -> uint8; // Gets character job level for specified JOBTYPE
+    void  setLevel(uint8 level);               // sets the character's mainjob level
+    void  setsLevel(uint8 slevel);             // sets the character's subjob level
+    uint8 getLevelCap();                       // genkai
     void  setLevelCap(uint8 cap);
-    uint8 levelRestriction(const sol::object& level); // Establish/return current level restriction
-    void  addWyvernJobTraits(uint8 jobID, uint8 level);
+    auto  levelRestriction(const sol::object& level) -> uint8; // Establish/return current level restriction
+    void  addWyvernJobTraits(xi::Job jobID, uint8 level);
 
     // Monstrosity
     auto getMonstrosityData() -> sol::table;
@@ -474,9 +474,9 @@ public:
     uint16 getSpentJobPoints();
     uint8  getJobPointLevel(uint16 jpType);
     void   setJobPoints(uint16 amount);
-    void   addJobPoints(uint8 jobID, uint16 amount);
-    void   delJobPoints(uint8 jobID, uint16 amount);
-    uint16 getJobPoints(JOBTYPE jobID);
+    void   addJobPoints(xi::Job jobID, uint16 amount);
+    void   delJobPoints(xi::Job jobID, uint16 amount);
+    auto   getJobPoints(xi::Job jobID) -> uint16;
     void   setCapacityPoints(uint16 amount);
     void   masterJob();
 
@@ -544,7 +544,7 @@ public:
 
     uint16 getSkillLevel(uint16 skillId);
     void   setSkillLevel(uint8 SkillID, uint16 SkillAmount);
-    uint16 getMaxSkillLevel(uint8 level, uint8 jobId, uint8 skillId);
+    auto   getMaxSkillLevel(uint8 level, xi::Job jobId, uint8 skillId) -> uint16;
     uint8  getSkillRank(uint8 rankID);
     void   setSkillRank(uint8 skillID, uint8 newrank);
     uint16 getCharSkillLevel(uint8 skillID);
@@ -576,7 +576,7 @@ public:
     auto   getParty() -> sol::table;
     auto   getPartyWithTrusts() -> sol::table;
     uint8  getPartySize(const sol::object& arg0);
-    bool   hasPartyJob(uint8 job);
+    auto   hasPartyJob(xi::Job job) -> bool;
     auto   getPartyMember(uint8 member, uint8 allianceparty) -> CBaseEntity*;
     auto   getPartyLeader() -> CBaseEntity*;
     uint32 getLeaderID();

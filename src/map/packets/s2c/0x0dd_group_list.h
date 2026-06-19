@@ -22,6 +22,7 @@
 #pragma once
 
 #include "base.h"
+#include "data/enums/job.h"
 #include <string>
 
 class CCharEntity;
@@ -59,9 +60,9 @@ public:
         uint8_t       Mpp;             // PS2: (New; was MpMax)
         uint8_t       padding1F;       // PS2: (New; did not exist.)
         uint16_t      ZoneNo;          // PS2: ZoneNo
-        uint8_t       mjob_no;         // PS2: (New; did not exist.)
+        xi::Job       mjob_no;         // PS2: (New; did not exist.)
         uint8_t       mjob_lv;         // PS2: (New; did not exist.)
-        uint8_t       sjob_no;         // PS2: (New; did not exist.)
+        xi::Job       sjob_no;         // PS2: (New; did not exist.)
         uint8_t       sjob_lv;         // PS2: (New; did not exist.)
         uint8_t       masterjob_lv;    // PS2: (New; did not exist.)
         uint8_t       masterjob_flags; // PS2: (New; did not exist.)

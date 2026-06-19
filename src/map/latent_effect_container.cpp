@@ -816,7 +816,7 @@ auto CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect, bo
             expression = m_POwner->health.tp > latentEffect.GetConditionsValue();
             break;
         case xi::Latent::Subjob:
-            expression = m_POwner->GetSJob() == latentEffect.GetConditionsValue();
+            expression = static_cast<uint8>(m_POwner->GetSJob()) == latentEffect.GetConditionsValue();
             break;
         case xi::Latent::PetId:
             expression =
@@ -941,7 +941,7 @@ auto CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect, bo
                 {
                     if (member->id != m_POwner->id)
                     {
-                        if (member->GetMJob() == latentEffect.GetConditionsValue())
+                        if (static_cast<uint8>(member->GetMJob()) == latentEffect.GetConditionsValue())
                         {
                             expression = true;
                             break;
@@ -959,7 +959,7 @@ auto CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect, bo
 
                 for (auto* trust : leader->PTrusts)
                 {
-                    if (trust->GetMJob() == latentEffect.GetConditionsValue())
+                    if (static_cast<uint8>(trust->GetMJob()) == latentEffect.GetConditionsValue())
                     {
                         expression = true;
                         break;
@@ -1309,7 +1309,7 @@ auto CLatentEffectContainer::ProcessLatentEffect(CLatentEffect& latentEffect, bo
             }
             break;
         case xi::Latent::Mainjob:
-            expression = m_POwner->GetMJob() == latentEffect.GetConditionsValue();
+            expression = static_cast<uint8>(m_POwner->GetMJob()) == latentEffect.GetConditionsValue();
             break;
         case xi::Latent::EquippedInSlot:
             expression = latentEffect.GetSlot() == latentEffect.GetConditionsValue();

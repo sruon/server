@@ -126,8 +126,8 @@ auto CInstanceLoader::LoadInstance() const -> CInstance*
             db::extractFromBlob(rset, "modelid", sqlModelID);
             PMob->look = look_t(sqlModelID);
 
-            PMob->SetMJob(rset->get<uint8>("mJob"));
-            PMob->SetSJob(rset->get<uint8>("sJob"));
+            PMob->SetMJob(rset->get<xi::Job>("mJob"));
+            PMob->SetSJob(rset->get<xi::Job>("sJob"));
 
             static_cast<CItemWeapon*>(PMob->m_Weapons[SLOT_MAIN])->setMaxHit(1);
             static_cast<CItemWeapon*>(PMob->m_Weapons[SLOT_MAIN])->setSkillType(rset->get<uint8>("cmbSkill"));

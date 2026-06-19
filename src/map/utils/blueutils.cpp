@@ -105,7 +105,7 @@ void TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob)
         {
             auto* PMember = dynamic_cast<CCharEntity*>(member);
             if (PMember &&
-                PMember->GetMJob() == JOB_BLU &&
+                PMember->GetMJob() == xi::Job::BLU &&
                 PMember->getZone() == PMob->getZone())
             {
                 PBlueMages.emplace_back(PMember);
@@ -128,7 +128,7 @@ void TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob)
             AddBlueMages(PChar->PParty);
         }
     }
-    else if (PChar->GetMJob() == JOB_BLU)
+    else if (PChar->GetMJob() == xi::Job::BLU)
     {
         PBlueMages.emplace_back(PChar);
     }
@@ -154,7 +154,7 @@ void TryLearningSpells(CCharEntity* PChar, CMobEntity* PMob)
             }
 
             // get the skill cap for the spell level
-            auto skillLvlForSpell = battleutils::GetMaxSkill(SKILL_BLUE_MAGIC, JOB_BLU, PSpell->getJob(JOB_BLU));
+            auto skillLvlForSpell = battleutils::GetMaxSkill(SKILL_BLUE_MAGIC, xi::Job::BLU, PSpell->getJob(xi::Job::BLU));
             // get player skill level with bonus from gear
             auto playerSkillLvl = PBlueMage->GetSkill(SKILL_BLUE_MAGIC);
 
@@ -252,11 +252,11 @@ void CompactSpells(CCharEntity* PChar)
 void CheckSpellLevels(CCharEntity* PChar)
 {
     uint8 level = 0;
-    if (PChar->GetMJob() == JOB_BLU)
+    if (PChar->GetMJob() == xi::Job::BLU)
     {
         level = PChar->GetMLevel();
     }
-    else if (PChar->GetSJob() == JOB_BLU)
+    else if (PChar->GetSJob() == xi::Job::BLU)
     {
         level = PChar->GetSLevel();
     }
@@ -268,7 +268,7 @@ void CheckSpellLevels(CCharEntity* PChar)
             if (PChar->m_SetBlueSpells[slot] != 0)
             {
                 CBlueSpell* PSpell = (CBlueSpell*)spell::GetSpell(static_cast<SpellID>(PChar->m_SetBlueSpells[slot] + 0x200));
-                if (PSpell && level < PSpell->getJob(JOB_BLU))
+                if (PSpell && level < PSpell->getJob(xi::Job::BLU))
                 {
                     SetBlueSpell(PChar, PSpell, slot, false);
                 }
@@ -280,11 +280,11 @@ void CheckSpellLevels(CCharEntity* PChar)
 uint8 GetTotalSlots(CCharEntity* PChar)
 {
     uint8 level = 0;
-    if (PChar->GetMJob() == JOB_BLU)
+    if (PChar->GetMJob() == xi::Job::BLU)
     {
         level = PChar->GetMLevel();
     }
-    else if (PChar->GetSJob() == JOB_BLU)
+    else if (PChar->GetSJob() == xi::Job::BLU)
     {
         level = PChar->GetSLevel();
     }
@@ -302,11 +302,11 @@ uint8 GetTotalSlots(CCharEntity* PChar)
 uint8 GetTotalBlueMagicPoints(CCharEntity* PChar)
 {
     uint8 level = 0;
-    if (PChar->GetMJob() == JOB_BLU)
+    if (PChar->GetMJob() == xi::Job::BLU)
     {
         level = PChar->GetMLevel();
     }
-    else if (PChar->GetSJob() == JOB_BLU)
+    else if (PChar->GetSJob() == xi::Job::BLU)
     {
         level = PChar->GetSLevel();
     }
@@ -334,7 +334,7 @@ uint8 GetTotalBlueMagicPoints(CCharEntity* PChar)
 
 void SaveSetSpells(CCharEntity* PChar)
 {
-    if (PChar->GetMJob() == JOB_BLU || PChar->GetSJob() == JOB_BLU)
+    if (PChar->GetMJob() == xi::Job::BLU || PChar->GetSJob() == xi::Job::BLU)
     {
         if (!db::preparedStmt("UPDATE chars SET set_blue_spells = ? WHERE charid = ? LIMIT 1",
                               PChar->m_SetBlueSpells,
@@ -349,7 +349,7 @@ void LoadSetSpells(CCharEntity* PChar)
 {
     TracyZoneScoped;
 
-    if (PChar->GetMJob() == JOB_BLU || PChar->GetSJob() == JOB_BLU)
+    if (PChar->GetMJob() == xi::Job::BLU || PChar->GetSJob() == xi::Job::BLU)
     {
         auto rset = db::preparedStmt("SELECT set_blue_spells FROM chars WHERE charid = ? LIMIT 1", PChar->id);
         if (rset && rset->rowsCount() && rset->next())
@@ -423,7 +423,7 @@ void ValidateBlueSpells(CCharEntity* PChar)
 // ***note*** this function assumes Blue Traits are added with `tier` in ascending order to reduce complexity
 void CalculateTraits(CCharEntity* PChar)
 {
-    TraitList_t*           PTraitsList = traits::GetTraits(JOB_BLU);
+    TraitList_t*           PTraitsList = traits::GetTraits(xi::Job::BLU);
     std::map<uint8, uint8> points;
     std::vector<CTrait*>   traitsToAdd;
     auto                   traitTierBonus = PChar->getMod(Mod::BLUE_JOB_TRAIT_BONUS);

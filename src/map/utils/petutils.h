@@ -24,6 +24,7 @@
 
 #include "common/cbasetypes.h"
 #include "common/mmo.h"
+#include "data/enums/job.h"
 
 enum PETID
 {
@@ -175,11 +176,11 @@ struct Pet_t
     uint16          m_Species;
     timer::duration time; // Duration of pet's "life span" before despawning
 
-    uint8 mJob;
-    uint8 sJob;
-    uint8 m_Element;
-    float HPscale; // HP boost percentage
-    float MPscale; // MP boost percentage
+    xi::Job mJob;
+    xi::Job sJob;
+    uint8   m_Element;
+    float   HPscale; // HP boost percentage
+    float   MPscale; // MP boost percentage
 
     uint16         cmbDelay;
     xi::DamageType m_dmgType;
@@ -246,8 +247,8 @@ struct Pet_t
     , name_prefix(0)
     , m_Species(0)
     , time(0s)
-    , mJob(0)
-    , sJob(0)
+    , mJob(xi::Job::NONE)
+    , sJob(xi::Job::NONE)
     , m_Element(0)
     , HPscale(0.f)
     , MPscale(0.f)

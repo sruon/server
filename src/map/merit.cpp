@@ -416,14 +416,14 @@ void CMeritPoints::LowerMerit(MERIT_TYPE merit)
     }
 }
 
-int32 CMeritPoints::GetMeritValue(MERIT_TYPE merit, CCharEntity* PChar)
+auto CMeritPoints::GetMeritValue(MERIT_TYPE merit, CCharEntity* PChar) -> int32
 {
     Merit_t* PMerit     = GetMeritPointer(merit);
     uint16   meritValue = 0;
 
     if (PMerit)
     {
-        if (PMerit->catid < 5 || (PMerit->jobs & (1 << (PChar->GetMJob() - 1)) && PChar->GetMLevel() >= 75))
+        if (PMerit->catid < 5 || (PMerit->jobs & (1 << (static_cast<uint8>(PChar->GetMJob()) - 1)) && PChar->GetMLevel() >= 75))
         {
             meritValue = merit == MERIT_MAX_MERIT ? PMerit->count : std::min(PMerit->count, cap[PChar->GetMLevel()]);
         }

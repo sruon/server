@@ -143,7 +143,7 @@ auto CMobController::CheckHide(const CBattleEntity* PTarget) const -> bool
 {
     TracyZoneScoped;
 
-    if (PTarget && PTarget->GetMJob() == JOB_THF && PTarget->StatusEffectContainer->HasStatusEffect(xi::StatusEffect::Hide))
+    if (PTarget && PTarget->GetMJob() == xi::Job::THF && PTarget->StatusEffectContainer->HasStatusEffect(xi::StatusEffect::Hide))
     {
         return !CanPursueTarget(PTarget) && !PMob->m_TrueDetection && !(PMob->getMobMod(MOBMOD_DETECTION) & DETECT_HEARING);
     }
@@ -614,7 +614,7 @@ auto CMobController::CanCastSpells(IgnoreRecastsAndCosts ignoreRecastsAndCosts) 
     }
 
     // smn can only cast spells if it has no pet
-    if (PMob->GetMJob() == JOB_SMN)
+    if (PMob->GetMJob() == xi::Job::SMN)
     {
         if (PMob->PPet && !PMob->PPet->isDead())
         {
@@ -1198,7 +1198,7 @@ auto CMobController::DoRoamTick(timer::time_point tick) -> Task<void>
                 }
                 else if (
                     (!PMob->PBattlefield || PMob->PBattlefield->GetStatus() != BATTLEFIELD_STATUS_OPEN) &&
-                    PMob->GetMJob() == JOB_SMN && CanCastSpells(IgnoreRecastsAndCosts::No) &&
+                    PMob->GetMJob() == xi::Job::SMN && CanCastSpells(IgnoreRecastsAndCosts::No) &&
                     PMob->SpellContainer->HasBuffSpells() && m_Tick >= m_nextMagicTime)
                 {
                     // summon pet
@@ -1611,7 +1611,7 @@ auto CMobController::CanMoveForward(const float currentDistance) -> bool
         (PMob->GetMaxMP() == 0 || PMob->GetMPP() >= standbackThreshold))
     {
         // Excluding Nins, mobs should not standback if can't cast magic
-        return PMob->GetMJob() != JOB_NIN && PMob->SpellContainer->HasSpells() && !CanCastSpells(IgnoreRecastsAndCosts::Yes);
+        return PMob->GetMJob() != xi::Job::NIN && PMob->SpellContainer->HasSpells() && !CanCastSpells(IgnoreRecastsAndCosts::Yes);
     }
 
     if (PTarget && !PMob->CanSeeTarget(PTarget))

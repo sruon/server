@@ -66,8 +66,8 @@ public:
 
     Maybe<SpellID> GetAvailable(SpellID spellId);
     Maybe<SpellID> GetBestAvailable(SPELLFAMILY family);
-    Maybe<SpellID> GetBestIndiSpell(CBattleEntity* PMaster);
-    Maybe<SpellID> GetBestEntrustedSpell(CBattleEntity* PMaster);
+    auto           GetBestIndiSpell(CBattleEntity* PMaster) -> Maybe<SpellID>;
+    auto           GetBestEntrustedSpell(CBattleEntity* PMaster) -> Maybe<SpellID>;
     Maybe<SpellID> GetBestAgainstTargetWeakness(CBattleEntity* PTarget, SpellID spellId);
     Maybe<SpellID> EnSpellAgainstTargetWeakness(CBattleEntity* PTarget);
     Maybe<SpellID> StormDayAgainstTargetWeakness(CBattleEntity* PTarget);

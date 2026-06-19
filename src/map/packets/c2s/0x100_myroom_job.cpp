@@ -66,28 +66,28 @@ void GP_CLI_COMMAND_MYROOM_JOB::process(MapSession* PSession, CCharEntity* PChar
 {
     if ((this->MainJobIndex > 0x00) && (this->MainJobIndex < MAX_JOBTYPE) && (PChar->jobs.unlocked & (1 << this->MainJobIndex)))
     {
-        const JOBTYPE prevjob = PChar->GetMJob();
+        const xi::Job prevjob = PChar->GetMJob();
         PChar->resetPetZoningInfo();
 
         charutils::SaveJobChangeGear(PChar);
         charutils::RemoveAllEquipment(PChar);
-        PChar->SetMJob(this->MainJobIndex);
-        PChar->SetMLevel(PChar->jobs.job[PChar->GetMJob()]);
-        PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
+        PChar->SetMJob(static_cast<xi::Job>(this->MainJobIndex));
+        PChar->SetMLevel(PChar->jobs.job[static_cast<uint8>(PChar->GetMJob())]);
+        PChar->SetSLevel(PChar->jobs.job[static_cast<uint8>(PChar->GetSJob())]);
 
         // If removing RemoveAllEquipment, please add a charutils::CheckUnarmedItem(PChar) if main hand is empty.
         puppetutils::LoadAutomaton(PChar);
 
-        if (this->MainJobIndex == JOB_BLU)
+        if (static_cast<xi::Job>(this->MainJobIndex) == xi::Job::BLU)
         {
             blueutils::LoadSetSpells(PChar);
         }
-        else if (prevjob == JOB_BLU)
+        else if (prevjob == xi::Job::BLU)
         {
             blueutils::UnequipAllBlueSpells(PChar);
         }
 
-        bool canUseMeritMode = PChar->jobs.job[PChar->GetMJob()] >= 75 && charutils::hasKeyItem(PChar, KeyItem::LIMIT_BREAKER);
+        bool canUseMeritMode = PChar->jobs.job[static_cast<uint8>(PChar->GetMJob())] >= 75 && charutils::hasKeyItem(PChar, KeyItem::LIMIT_BREAKER);
         if (!canUseMeritMode && PChar->MeritMode)
         {
             if (db::preparedStmt("UPDATE char_exp SET mode = ? WHERE charid = ? LIMIT 1", 0, PChar->id))
@@ -99,19 +99,19 @@ void GP_CLI_COMMAND_MYROOM_JOB::process(MapSession* PSession, CCharEntity* PChar
 
     if ((this->SupportJobIndex > 0x00) && (this->SupportJobIndex < MAX_JOBTYPE) && (PChar->jobs.unlocked & (1 << this->SupportJobIndex)))
     {
-        JOBTYPE prevsjob = PChar->GetSJob();
+        xi::Job prevsjob = PChar->GetSJob();
         PChar->resetPetZoningInfo();
 
-        PChar->SetSJob(this->SupportJobIndex);
-        PChar->SetSLevel(PChar->jobs.job[PChar->GetSJob()]);
+        PChar->SetSJob(static_cast<xi::Job>(this->SupportJobIndex));
+        PChar->SetSLevel(PChar->jobs.job[static_cast<uint8>(PChar->GetSJob())]);
 
         puppetutils::LoadAutomaton(PChar);
 
-        if (this->SupportJobIndex == JOB_BLU)
+        if (static_cast<xi::Job>(this->SupportJobIndex) == xi::Job::BLU)
         {
             blueutils::LoadSetSpells(PChar);
         }
-        else if (prevsjob == JOB_BLU)
+        else if (prevsjob == xi::Job::BLU)
         {
             blueutils::UnequipAllBlueSpells(PChar);
         }

@@ -487,8 +487,8 @@ auto LoadMOBList(Scheduler& scheduler, const std::vector<uint16>& zoneIds) -> Ta
 
                                     db::extractFromBlob(rset, "modelid", PMob->look);
 
-                                    PMob->SetMJob(rset->get<uint8>("mJob"));
-                                    PMob->SetSJob(rset->get<uint8>("sJob"));
+                                    PMob->SetMJob(rset->get<xi::Job>("mJob"));
+                                    PMob->SetSJob(rset->get<xi::Job>("sJob"));
 
                                     auto* mainWeapon = static_cast<CItemWeapon*>(PMob->m_Weapons[SLOT_MAIN]);
 
