@@ -448,7 +448,7 @@ public:
 
     /* State callbacks */
     /* Auto attack */
-    virtual bool OnAttack(CAttackState&, action_t&);
+    virtual auto OnAttack(CAttackState&, action_t&) -> bool;
     virtual bool OnAttackError(CAttackState&)
     {
         return false;

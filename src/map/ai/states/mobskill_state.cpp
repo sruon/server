@@ -24,10 +24,10 @@
 #include "action/interrupts.h"
 #include "ai/ai_container.h"
 #include "ai/helpers/targetfind.h"
+#include "data/enums/action_category.h"
 #include "enmity_container.h"
 #include "entities/battleentity.h"
 #include "entities/mobentity.h"
-#include "enums/action/category.h"
 #include "lua/luautils.h"
 #include "mobskill.h"
 #include "packets/s2c/0x028_battle2.h"
@@ -95,7 +95,7 @@ CMobSkillState::CMobSkillState(CBattleEntity* PEntity, uint16 targid, uint16 wsi
 
         action_t action{
             .actorId    = m_PEntity->id,
-            .actiontype = ActionCategory::SkillStart,
+            .actiontype = xi::ActionCategory::SkillStart,
             .actionid   = static_cast<uint32_t>(FourCC::SkillUse),
             .targets    = {
                 {

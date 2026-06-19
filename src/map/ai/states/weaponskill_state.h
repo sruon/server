@@ -50,7 +50,7 @@ protected:
     {
         return true;
     }
-    virtual bool Update(timer::time_point tick) override;
+    virtual auto Update(timer::time_point tick) -> bool override;
     virtual void Cleanup(timer::time_point tick) override;
     void         SpendCost();
 

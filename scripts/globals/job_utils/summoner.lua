@@ -184,7 +184,7 @@ xi.job_utils.summoner.canUseBloodPact = function(player, pet, target, petAbility
         end
 
         -- check if avatar is using a move already
-        if petAction == xi.action.category.PET_MOBABILITY_FINISH then
+        if petAction == xi.action.category.PET_SKILL_FINISH then
             return 0, 0
         end
 

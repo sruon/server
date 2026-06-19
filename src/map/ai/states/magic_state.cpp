@@ -98,7 +98,7 @@ CMagicState::CMagicState(CBattleEntity* PEntity, uint16 targid, SpellID spellid,
 
     action_t action{
         .actorId    = m_PEntity->id,
-        .actiontype = ActionCategory::MagicStart,
+        .actiontype = xi::ActionCategory::MagicStart,
         .actionid   = static_cast<uint32_t>(m_PSpell->getFourCC()),
         .spellgroup = m_PSpell->getSpellGroup(),
         .targets    = {

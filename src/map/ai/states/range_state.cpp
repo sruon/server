@@ -24,9 +24,9 @@
 #include "action/action.h"
 #include "action/interrupts.h"
 #include "ai/ai_container.h"
+#include "data/enums/action_category.h"
 #include "entities/charentity.h"
 #include "entities/trustentity.h"
-#include "enums/action/category.h"
 #include "items/item_weapon.h"
 #include "packets/s2c/0x028_battle2.h"
 #include "packets/s2c/0x029_battle_message.h"
@@ -122,7 +122,7 @@ CRangeState::CRangeState(CBattleEntity* PEntity, uint16 targid)
 
     action_t action{
         .actorId    = m_PEntity->id,
-        .actiontype = ActionCategory::RangedStart,
+        .actiontype = xi::ActionCategory::RangedStart,
         .actionid   = static_cast<uint32_t>(FourCC::RangedStart),
         .targets    = {
             {

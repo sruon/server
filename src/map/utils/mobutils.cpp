@@ -2037,7 +2037,7 @@ void WeaknessTrigger(CBaseEntity* PTarget, WeaknessType level)
     // TODO: Weakness Triggers are actually MAGIC_SCHEDULOR + Terror flag...
     action_t action{
         .actorId    = PTarget->id,
-        .actiontype = ActionCategory::MobSkillFinish,
+        .actiontype = xi::ActionCategory::MobSkillFinish,
         .targets    = {
             {
                 .actorId = PTarget->id,

@@ -50,7 +50,7 @@ public:
     timer::duration getAnimationTime() const;
     timer::duration getActivationTime() const;
     auto            getMsg() const -> MsgBasic;
-    auto            getSkillFinishCategory() const -> ActionCategory;
+    auto            getSkillFinishCategory() const -> xi::ActionCategory;
     uint16          getValidTargets() const;
     int16           getTP() const;
     auto            getHP() const -> int32;

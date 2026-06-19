@@ -1,0 +1,50 @@
+# yaml-language-server: $schema=../schemas/enums/_enum.schema.json
+
+meta:
+  cpp:
+    underlying: uint8_t
+  lua:
+    table: xi.action.category
+
+values:
+  # action.cmd_no (4 bits)
+  none: 0
+  basic_attack: 1
+  ranged_finish: 2
+  skill_finish: 3
+  magic_finish: 4
+  item_finish: 5
+  ability_finish: 6
+  skill_start: 7
+  magic_start: 8
+  item_start: 9
+  ability_start: 10
+  mob_skill_finish: 11
+  ranged_start: 12
+  pet_skill_finish: 13
+  dancer: 14
+  rune_fencer: 15
+  # Made up, not real categories, Lua only
+  roaming: 16
+  engage: 17
+  disengage: 18
+  change_target: 19
+  fall: 20
+  dropitems: 21
+  death: 22
+  fade_out: 23
+  despawn: 24
+  spawn: 25
+  stun: 26
+  sleep: 27
+  item_using: 28
+  item_interrupt: 29
+  magic_casting: 30
+  magic_interrupt: 31
+  ranged_interrupt: 32
+  mobability_start: 33
+  mobability_using: 34
+  mobability_interrupt: 35
+  leave: 36
+  raise_menu_selection: 37
+  jobability_interrupt: 38

@@ -126,7 +126,7 @@ CItemState::CItemState(CCharEntity* PEntity, const uint16 targid, const uint8 lo
 
     action_t action{
         .actorId    = m_PEntity->id,
-        .actiontype = ActionCategory::ItemStart,
+        .actiontype = xi::ActionCategory::ItemStart,
         .actionid   = static_cast<uint32_t>(FourCC::ItemUse),
         .targets    = {
             {

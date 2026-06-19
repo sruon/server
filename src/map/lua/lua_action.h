@@ -57,7 +57,7 @@ public:
     auto getMsg(uint32 actionTargetId) const -> Maybe<MsgBasic>;
     auto getAnimation(uint32 actionTargetId) const -> Maybe<ActionAnimation>;
     void setAnimation(uint32 actionTargetId, ActionAnimation animation) const;
-    auto getCategory() const -> ActionCategory;
+    auto getCategory() const -> xi::ActionCategory;
     void setCategory(uint8 category) const;
     void resolution(uint32 actionTargetId, ActionResolution resolution) const;
     void info(uint32 actionTargetId, ActionInfo info) const;

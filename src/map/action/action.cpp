@@ -99,14 +99,14 @@ auto action_result_t::recordDamage(const attack_outcome_t& outcome) -> action_re
 void action_t::normalize()
 {
     // Only MagicFinish emits recast
-    if (actiontype != ActionCategory::MagicFinish)
+    if (actiontype != xi::ActionCategory::MagicFinish)
     {
         recast = 0s;
     }
 
     switch (actiontype)
     {
-        case ActionCategory::BasicAttack:
+        case xi::ActionCategory::BasicAttack:
         {
             this->actionid = static_cast<uint32_t>(FourCC::BasicAttack);
 
@@ -117,7 +117,7 @@ void action_t::normalize()
                           });
             break;
         }
-        case ActionCategory::RangedFinish:
+        case xi::ActionCategory::RangedFinish:
         {
             // result.kind is always 2
             // Note: XiPackets claim this is always 1
@@ -127,7 +127,7 @@ void action_t::normalize()
                           });
             break;
         }
-        case ActionCategory::SkillFinish:
+        case xi::ActionCategory::SkillFinish:
         {
             // result.kind is always 3
             ForEachResult([](action_result_t& result)
@@ -136,7 +136,7 @@ void action_t::normalize()
                           });
             break;
         }
-        case ActionCategory::ItemFinish:
+        case xi::ActionCategory::ItemFinish:
         {
             // result.kind is always 1
             ForEachResult([](action_result_t& result)
@@ -145,7 +145,7 @@ void action_t::normalize()
                           });
             break;
         }
-        case ActionCategory::AbilityFinish:
+        case xi::ActionCategory::AbilityFinish:
         {
             // result.kind is always 2
             ForEachResult([](action_result_t& result)
@@ -154,19 +154,19 @@ void action_t::normalize()
                           });
             break;
         }
-        case ActionCategory::MagicStart:
-        case ActionCategory::MagicFinish:
-        case ActionCategory::RangedStart:
-        case ActionCategory::SkillStart:
-        case ActionCategory::ItemStart:
-        case ActionCategory::AbilityStart:
+        case xi::ActionCategory::MagicStart:
+        case xi::ActionCategory::MagicFinish:
+        case xi::ActionCategory::RangedStart:
+        case xi::ActionCategory::SkillStart:
+        case xi::ActionCategory::ItemStart:
+        case xi::ActionCategory::AbilityStart:
         {
             // While retail will show varied values in 'kind',
             // they don't appear to be used by the client and are not consistently set
             // indicating they may just be uncleared buffers leftovers.
             break;
         }
-        case ActionCategory::MobSkillFinish:
+        case xi::ActionCategory::MobSkillFinish:
         {
             // XiPackets claim this is 2 for trusts, 3 for mobs
             // But captures only show 3 for either.
@@ -176,7 +176,7 @@ void action_t::normalize()
                           });
             break;
         }
-        case ActionCategory::PetSkillFinish:
+        case xi::ActionCategory::PetSkillFinish:
         {
             ForEachResult([](action_result_t& result)
                           {
@@ -184,7 +184,7 @@ void action_t::normalize()
                           });
             break;
         }
-        case ActionCategory::Dancer:
+        case xi::ActionCategory::Dancer:
         {
             // result.kind is always 2
             ForEachResult([](action_result_t& result)
@@ -193,7 +193,7 @@ void action_t::normalize()
                           });
             break;
         }
-        case ActionCategory::RuneFencer:
+        case xi::ActionCategory::RuneFencer:
         {
             // result.kind is always 3
             ForEachResult([](action_result_t& result)

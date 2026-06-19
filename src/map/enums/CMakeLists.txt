@@ -1,5 +1,4 @@
 set(ENUMS_SOURCES
-    ${CMAKE_CURRENT_SOURCE_DIR}/action/category.h
     ${CMAKE_CURRENT_SOURCE_DIR}/action/hit_distortion.h
     ${CMAKE_CURRENT_SOURCE_DIR}/action/info.h
     ${CMAKE_CURRENT_SOURCE_DIR}/action/knockback.h

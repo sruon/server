@@ -69,7 +69,7 @@ CPetSkillState::CPetSkillState(CPetEntity* PEntity, uint16 targid, uint16 wsid)
     {
         action_t action{
             .actorId    = m_PEntity->id,
-            .actiontype = ActionCategory::SkillStart,
+            .actiontype = xi::ActionCategory::SkillStart,
             .actionid   = static_cast<uint32_t>(FourCC::SkillUse),
             .targets    = {
                 {

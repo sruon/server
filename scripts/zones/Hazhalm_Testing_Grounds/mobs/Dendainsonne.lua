@@ -25,7 +25,7 @@ local function notBusy(mob)
     if
         action == xi.action.category.MOBABILITY_START or
         action == xi.action.category.MOBABILITY_USING or
-        action == xi.action.category.MOBABILITY_FINISH or
+        action == xi.action.category.MOB_SKILL_FINISH or
         action == xi.action.category.MAGIC_CASTING or
         action == xi.action.category.MAGIC_START or
         action == xi.action.category.MAGIC_FINISH

@@ -66,7 +66,7 @@ CWeaponSkillState::CWeaponSkillState(CBattleEntity* PEntity, uint16 targid, uint
 
     action_t action{
         .actorId    = m_PEntity->id,
-        .actiontype = ActionCategory::SkillStart,
+        .actiontype = xi::ActionCategory::SkillStart,
         .actionid   = static_cast<uint32_t>(FourCC::SkillUse),
         .targets    = {
             {
@@ -119,7 +119,7 @@ void CWeaponSkillState::SpendCost()
     m_spent = tp;
 }
 
-bool CWeaponSkillState::Update(timer::time_point tick)
+auto CWeaponSkillState::Update(timer::time_point tick) -> bool
 {
     if (!m_PEntity)
     {
@@ -152,7 +152,7 @@ bool CWeaponSkillState::Update(timer::time_point tick)
                 m_PEntity->delModifier(Mod::ALL_WSDMG_FIRST_HIT, WSBonus);
             }
 
-            if (action.actiontype == ActionCategory::SkillFinish) // category changes upon being out of range. This does not count for RoE and delay is not increased beyond the normal delay.
+            if (action.actiontype == xi::ActionCategory::SkillFinish) // category changes upon being out of range. This does not count for RoE and delay is not increased beyond the normal delay.
             {
                 // only send lua the WS events if we are in range
                 uint32 weaponskillVar    = PTarget->GetLocalVar("weaponskillHit");

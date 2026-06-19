@@ -11,7 +11,7 @@ mobskillObject.onMobSkillCheck = function(target, mob, skill)
 end
 
 mobskillObject.onMobWeaponSkill = function(mob, target, skill, action)
-    action:setCategory(xi.action.category.JOBABILITY_FINISH)
+    action:setCategory(xi.action.category.ABILITY_FINISH)
 
     xi.mobskills.mobBuffMove(mob, xi.effect.COUNTERSTANCE, 45, 0, 300)
 

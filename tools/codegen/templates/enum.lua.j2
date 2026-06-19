@@ -1,4 +1,13 @@
 -- GENERATED from {{ source_name }}. Do not edit.
+{% if lua_parents|length > 2 %}
+{% for p in lua_parents %}
+{{ p }} = {{ p }} or {}
+{% endfor %}
+
+{% for key, val in values.items() %}
+{{ lua_table }}.{{ "%-*s"|format(name_width, lua_names[key]) }} = {{ "0x%08x"|format(val) if is_flags else val }}
+{% endfor %}
+{% else %}
 xi = xi or {}
 
 ---@enum {{ lua_table }}
@@ -8,3 +17,4 @@ xi = xi or {}
     {{ "%-*s"|format(name_width, lua_names[key]) }} = {{ "0x%08x"|format(val) if is_flags else val }},
 {% endfor %}
 }
+{% endif %}

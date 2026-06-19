@@ -35,7 +35,7 @@ void AvatarOutOfRange(CBattleEntity* PAvatar, const CPetSkill* PSkill, const CBa
     // 1. Build the MAGIC_FINISH packet
     auto magicFinishAction = action_t{
         .actorId    = PAvatar->id,
-        .actiontype = ActionCategory::MagicFinish,
+        .actiontype = xi::ActionCategory::MagicFinish,
         .targets    = {
             {
                 .actorId = PTarget->id,
@@ -53,7 +53,7 @@ void AvatarOutOfRange(CBattleEntity* PAvatar, const CPetSkill* PSkill, const CBa
     // 2. Skill start packet with skill interrupt FourCC
     auto interruptAction = action_t{
         .actorId    = PAvatar->id,
-        .actiontype = ActionCategory::SkillStart,
+        .actiontype = xi::ActionCategory::SkillStart,
         .actionid   = static_cast<uint32_t>(FourCC::SkillInterrupt),
         .targets    = {
             {
@@ -80,7 +80,7 @@ void WyvernOutOfRange(CBattleEntity* PWyvern, const CPetSkill* PSkill, const CBa
     // 1. Build the MAGIC_FINISH packet
     auto magicFinishAction = action_t{
         .actorId    = PWyvern->id,
-        .actiontype = ActionCategory::MagicFinish,
+        .actiontype = xi::ActionCategory::MagicFinish,
         .targets    = {
             {
                 .actorId = PTarget->id,
@@ -99,7 +99,7 @@ void WyvernOutOfRange(CBattleEntity* PWyvern, const CPetSkill* PSkill, const CBa
     // 2. Build the final SKILL_USE
     auto interruptAction = action_t{
         .actorId    = PWyvern->id,
-        .actiontype = ActionCategory::SkillStart,
+        .actiontype = xi::ActionCategory::SkillStart,
         .actionid   = static_cast<uint32_t>(FourCC::SkillInterrupt),
         .targets    = {
             {
@@ -121,7 +121,7 @@ void WyvernSkillReady(CBattleEntity* PWyvern)
 {
     auto skillUseAction = action_t{
         .actorId    = PWyvern->id,
-        .actiontype = ActionCategory::SkillStart,
+        .actiontype = xi::ActionCategory::SkillStart,
         .actionid   = static_cast<uint32_t>(FourCC::SkillInterrupt),
         .targets    = {
             {
@@ -142,7 +142,7 @@ void AbilityInterrupt(CBattleEntity* PEntity)
 {
     auto interruptAction = action_t{
         .actorId    = PEntity->id,
-        .actiontype = ActionCategory::SkillStart,
+        .actiontype = xi::ActionCategory::SkillStart,
         .actionid   = static_cast<uint32_t>(FourCC::SkillInterrupt),
         .targets    = {
             {
@@ -163,7 +163,7 @@ void RangedInterrupt(CBattleEntity* PEntity)
 {
     auto interruptAction = action_t{
         .actorId    = PEntity->id,
-        .actiontype = ActionCategory::RangedStart,
+        .actiontype = xi::ActionCategory::RangedStart,
         .actionid   = static_cast<uint32_t>(FourCC::RangedInterrupt),
         .targets    = {
             {
@@ -184,7 +184,7 @@ void MobSkillNoTargetInRange(CBattleEntity* PEntity)
 {
     auto magicFinishAction = action_t{
         .actorId    = PEntity->id,
-        .actiontype = ActionCategory::MagicFinish,
+        .actiontype = xi::ActionCategory::MagicFinish,
         .targets    = {
             {
                 .actorId = PEntity->id,
@@ -205,7 +205,7 @@ void MobSkillOutOfRange(CBattleEntity* PEntity, const CBattleEntity* PTarget)
 {
     auto magicFinishAction = action_t{
         .actorId    = PEntity->id,
-        .actiontype = ActionCategory::MagicFinish,
+        .actiontype = xi::ActionCategory::MagicFinish,
         .targets    = {
             {
                 .actorId = PTarget->id,
@@ -226,7 +226,7 @@ void WeaponSkillOutOfRange(CBattleEntity* PEntity, const CBattleEntity* PTarget)
 {
     auto magicFinishAction = action_t{
         .actorId    = PEntity->id,
-        .actiontype = ActionCategory::MagicFinish,
+        .actiontype = xi::ActionCategory::MagicFinish,
         .targets    = {
             {
                 .actorId = PTarget->id,
@@ -247,7 +247,7 @@ void RangedParalyzed(CBattleEntity* PEntity)
 {
     auto paralyzeAction = action_t{
         .actorId    = PEntity->id,
-        .actiontype = ActionCategory::MagicFinish,
+        .actiontype = xi::ActionCategory::MagicFinish,
         .targets    = {
             {
                 .actorId = PEntity->id,
@@ -269,7 +269,7 @@ void MagicInterrupt(CBattleEntity* PEntity, CSpell* PSpell)
 {
     auto interruptAction = action_t{
         .actorId    = PEntity->id,
-        .actiontype = ActionCategory::MagicStart,
+        .actiontype = xi::ActionCategory::MagicStart,
         .actionid   = static_cast<uint32_t>(PSpell->getFourCC(true)),
         .targets    = {
             {
@@ -290,7 +290,7 @@ void MagicParalyzed(CBattleEntity* PEntity, CSpell* PSpell, const CBattleEntity*
 {
     auto interruptedAction = action_t{
         .actorId    = PEntity->id,
-        .actiontype = ActionCategory::MagicFinish,
+        .actiontype = xi::ActionCategory::MagicFinish,
         .actionid   = static_cast<uint16>(PSpell->getID()),
         .recast     = 2s,
         .targets    = {
@@ -308,7 +308,7 @@ void MagicParalyzed(CBattleEntity* PEntity, CSpell* PSpell, const CBattleEntity*
 
     auto stopCastAction = action_t{
         .actorId    = PEntity->id,
-        .actiontype = ActionCategory::MagicStart,
+        .actiontype = xi::ActionCategory::MagicStart,
         .actionid   = static_cast<uint32_t>(PSpell->getFourCC(true)),
         .targets    = {
             {
@@ -331,7 +331,7 @@ void MagicIntimidated(CBattleEntity* PEntity, CSpell* PSpell, const CBattleEntit
 {
     auto magicFinishAction = action_t{
         .actorId    = PEntity->id,
-        .actiontype = ActionCategory::MagicFinish,
+        .actiontype = xi::ActionCategory::MagicFinish,
         .actionid   = static_cast<uint32_t>(PSpell->getID()),
         .recast     = 2s,
         .targets    = {
@@ -349,7 +349,7 @@ void MagicIntimidated(CBattleEntity* PEntity, CSpell* PSpell, const CBattleEntit
 
     auto magicInterrupt = action_t{
         .actorId    = PEntity->id,
-        .actiontype = ActionCategory::MagicStart,
+        .actiontype = xi::ActionCategory::MagicStart,
         .actionid   = static_cast<uint32_t>(PSpell->getFourCC(true)),
         .recast     = 2s,
         .targets    = {
@@ -373,7 +373,7 @@ void AttackParalyzed(CBattleEntity* PEntity, const CBattleEntity* PTarget)
 {
     auto magicFinishSelfAction = action_t{
         .actorId    = PEntity->id,
-        .actiontype = ActionCategory::MagicFinish,
+        .actiontype = xi::ActionCategory::MagicFinish,
         .targets    = {
             {
                 .actorId = PTarget->id,
@@ -394,7 +394,7 @@ void AttackIntimidated(CBattleEntity* PEntity, const CBattleEntity* PTarget)
 {
     auto magicFinishAction = action_t{
         .actorId    = PEntity->id,
-        .actiontype = ActionCategory::MagicFinish,
+        .actiontype = xi::ActionCategory::MagicFinish,
         .targets    = {
             {
                 .actorId = PTarget->id,
@@ -416,7 +416,7 @@ void AbilityParalyzed(CBattleEntity* PEntity, const CBattleEntity* PTarget)
     // 1. Generic MagicFinish with Paralyzed message
     auto magicFinishSelfAction = action_t{
         .actorId    = PEntity->id,
-        .actiontype = ActionCategory::MagicFinish,
+        .actiontype = xi::ActionCategory::MagicFinish,
         .targets    = {
             {
                 .actorId = PEntity->id,
@@ -433,7 +433,7 @@ void AbilityParalyzed(CBattleEntity* PEntity, const CBattleEntity* PTarget)
     // 2. Generic MagicFinish with Paralyzed message
     auto magicFinishTargetAction = action_t{
         .actorId    = PEntity->id,
-        .actiontype = ActionCategory::MagicFinish,
+        .actiontype = xi::ActionCategory::MagicFinish,
         .targets    = {
             {
                 .actorId = PTarget->id,
@@ -455,7 +455,7 @@ void ItemInterrupt(CBattleEntity* PEntity)
 {
     auto itemStartAction = action_t{
         .actorId    = PEntity->id,
-        .actiontype = ActionCategory::ItemStart,
+        .actiontype = xi::ActionCategory::ItemStart,
         .actionid   = static_cast<uint32_t>(FourCC::ItemInterrupt),
         .targets    = {
             {
@@ -477,7 +477,7 @@ void ItemParalyzed(CBattleEntity* PEntity, const CBattleEntity* PTarget)
     // 1. Generic MagicFinish with Paralyzed message
     auto magicFinishAction = action_t{
         .actorId    = PEntity->id,
-        .actiontype = ActionCategory::MagicFinish,
+        .actiontype = xi::ActionCategory::MagicFinish,
         .targets    = {
             {
                 .actorId = PTarget->id,
@@ -494,7 +494,7 @@ void ItemParalyzed(CBattleEntity* PEntity, const CBattleEntity* PTarget)
     // 2. ItemStart with cancel animation
     auto itemStartAction = action_t{
         .actorId    = PEntity->id,
-        .actiontype = ActionCategory::ItemStart,
+        .actiontype = xi::ActionCategory::ItemStart,
         .actionid   = static_cast<uint32_t>(FourCC::ItemInterrupt),
         .targets    = {
             {
@@ -517,7 +517,7 @@ void ItemIntimidated(CBattleEntity* PEntity, const CBattleEntity* PTarget)
     // 1. Generic MagicFinish with Paralyzed message
     auto magicFinishAction = action_t{
         .actorId    = PEntity->id,
-        .actiontype = ActionCategory::MagicFinish,
+        .actiontype = xi::ActionCategory::MagicFinish,
         .targets    = {
             {
                 .actorId = PTarget->id,
@@ -534,7 +534,7 @@ void ItemIntimidated(CBattleEntity* PEntity, const CBattleEntity* PTarget)
     // 2. ItemStart with cancel animation
     auto itemStartAction = action_t{
         .actorId    = PEntity->id,
-        .actiontype = ActionCategory::ItemStart,
+        .actiontype = xi::ActionCategory::ItemStart,
         .actionid   = static_cast<uint32_t>(FourCC::ItemInterrupt),
         .targets    = {
             {

@@ -128,7 +128,7 @@ CAbilityState::CAbilityState(CBattleEntity* PEntity, uint16 targid, uint16 abili
     {
         action_t action{
             .actorId    = PEntity->id,
-            .actiontype = ActionCategory::AbilityStart,
+            .actiontype = xi::ActionCategory::AbilityStart,
             .targets    = {
                 {
                     .actorId = PTarget->id,

@@ -11,7 +11,7 @@ mobskillObject.onMobSkillCheck = function(target, mob, skill)
 end
 
 mobskillObject.onMobWeaponSkill = function(mob, target, skill, action)
-    action:setCategory(xi.action.category.WEAPONSKILL_FINISH)
+    action:setCategory(xi.action.category.SKILL_FINISH)
 
     xi.mobskills.unequipRandomSlots(target, 1)
 

@@ -950,7 +950,7 @@ void CLuaBaseEntity::injectActionPacket(const uint32 inTargetID, uint16 inCatego
 {
     auto info       = static_cast<ActionInfo>(inInfo);
     auto reaction   = static_cast<ActionResolution>(inReaction);
-    auto actiontype = static_cast<ActionCategory>(inCategory);
+    auto actiontype = static_cast<xi::ActionCategory>(inCategory);
 
     action_t Action{
         .actorId    = m_PBaseEntity->id,
@@ -19282,7 +19282,7 @@ void CLuaBaseEntity::restoreFromChest(CLuaBaseEntity* PLuaBaseEntity, uint32 res
 
             auto Action = action_t{
                 .actorId    = PTarget->id,
-                .actiontype = ActionCategory::MobSkillFinish,
+                .actiontype = xi::ActionCategory::MobSkillFinish,
                 .targets    = {
                     {
                         .actorId = PChar->id,

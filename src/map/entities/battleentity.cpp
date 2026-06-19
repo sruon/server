@@ -2317,10 +2317,10 @@ void CBattleEntity::processActionEffectFlags(const action_t& action) const
         this->StatusEffectContainer->DelStatusEffectsByFlag(xi::StatusEffectFlag::OnAttack);
 
         // ATTACK drops on physical hostile actions: melee/WS confirmed; mobskill/petskill unverified
-        if (action.actiontype == ActionCategory::BasicAttack ||
-            action.actiontype == ActionCategory::SkillFinish ||
-            action.actiontype == ActionCategory::MobSkillFinish ||
-            action.actiontype == ActionCategory::PetSkillFinish)
+        if (action.actiontype == xi::ActionCategory::BasicAttack ||
+            action.actiontype == xi::ActionCategory::SkillFinish ||
+            action.actiontype == xi::ActionCategory::MobSkillFinish ||
+            action.actiontype == xi::ActionCategory::PetSkillFinish)
         {
             this->StatusEffectContainer->DelStatusEffectsByFlag(xi::StatusEffectFlag::Attack);
         }
@@ -2401,7 +2401,7 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
     PSpell->setPrimaryTargetID(PActionTarget->id);
 
     action.actorId    = id;
-    action.actiontype = ActionCategory::MagicFinish;
+    action.actiontype = xi::ActionCategory::MagicFinish;
     action.actionid   = static_cast<uint16>(PSpell->getID());
     action.recast     = state.GetRecast();
     action.spellgroup = PSpell->getSpellGroup();
@@ -2733,7 +2733,7 @@ void CBattleEntity::OnWeaponSkillFinished(CWeaponSkillState& state, action_t& ac
     auto* PWeaponskill = state.GetSkill();
 
     action.actorId    = id;
-    action.actiontype = ActionCategory::SkillFinish;
+    action.actiontype = xi::ActionCategory::SkillFinish;
     action.actionid   = PWeaponskill->getID();
 }
 
@@ -2780,15 +2780,15 @@ void CBattleEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
     action.actorId = id;
     if (objtype == TYPE_PET && static_cast<CPetEntity*>(this)->getPetType() == PET_TYPE::AVATAR)
     {
-        action.actiontype = ActionCategory::PetSkillFinish;
+        action.actiontype = xi::ActionCategory::PetSkillFinish;
     }
     else if (PSkill->getID() < 256)
     {
-        action.actiontype = ActionCategory::SkillFinish;
+        action.actiontype = xi::ActionCategory::SkillFinish;
     }
     else
     {
-        action.actiontype = ActionCategory::MobSkillFinish;
+        action.actiontype = xi::ActionCategory::MobSkillFinish;
     }
     action.actionid = PSkill->getID();
 
@@ -3087,7 +3087,7 @@ void CBattleEntity::OnRangedAttack(CRangeState& state, action_t& action)
     int32 totalDamage = 0;
 
     action.actorId                = id;
-    action.actiontype             = ActionCategory::RangedFinish;
+    action.actiontype             = xi::ActionCategory::RangedFinish;
     action.actionid               = static_cast<uint32_t>(FourCC::RangedFinish);
     action_target_t& actionTarget = action.addTarget(PTarget->id);
     action_result_t& actionResult = actionTarget.addResult();
@@ -3500,7 +3500,7 @@ CBattleEntity* CBattleEntity::GetBattleTarget()
     return static_cast<CBattleEntity*>(GetEntity(GetBattleTargetID()));
 }
 
-bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
+auto CBattleEntity::OnAttack(CAttackState& state, action_t& action) -> bool
 {
     TracyZoneScoped;
 
@@ -3524,7 +3524,7 @@ bool CBattleEntity::OnAttack(CAttackState& state, action_t& action)
     // Create a new attack round.
     CAttackRound attackRound(this, PTarget);
 
-    action.actiontype                = ActionCategory::BasicAttack;
+    action.actiontype                = xi::ActionCategory::BasicAttack;
     action.actorId                   = this->id;
     action_target_t& list            = action.addTarget(PTarget->id);
     CBattleEntity*   POriginalTarget = PTarget;

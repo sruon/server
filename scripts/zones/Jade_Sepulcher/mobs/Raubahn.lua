@@ -244,7 +244,7 @@ entity.onMobWeaponSkill = function(mob, target, skill, action)
 
     local skillId = skill:getID()
     if skillId == xi.mobSkill.AZURE_LORE_RAUBAHN then
-        action:setCategory(xi.action.category.JOBABILITY_FINISH)
+        action:setCategory(xi.action.category.ABILITY_FINISH)
     end
 
     local messageId = skillMessage[skillId]

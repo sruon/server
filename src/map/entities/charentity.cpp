@@ -2152,7 +2152,7 @@ void CCharEntity::OnRaise()
 
         action_t action{
             .actorId    = id,
-            .actiontype = ActionCategory::MagicFinish,
+            .actiontype = xi::ActionCategory::MagicFinish,
         };
 
         auto& actionTarget = action.addTarget(id);
@@ -2252,7 +2252,7 @@ auto CCharEntity::OnItemFinish(CItemState& state, action_t& action) -> bool
     }
 
     action.actorId    = this->id;
-    action.actiontype = ActionCategory::ItemFinish;
+    action.actiontype = xi::ActionCategory::ItemFinish;
     action.actionid   = PItem->getID();
 
     auto processAction = [&](CBaseEntity* PTargetFound) -> void

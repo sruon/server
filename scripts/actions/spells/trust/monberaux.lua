@@ -132,7 +132,7 @@ spellObject.onMobSpawn = function(mob)
 
     -- This listener is needed for Monberaux to display the correct skill name in the combat log.
     mob:addListener('WEAPONSKILL_USE', 'MONBERAUX_WS', function(mobArg, targetArg, skill, tp, action)
-        action:setCategory(xi.action.category.MOBABILITY_FINISH)
+        action:setCategory(xi.action.category.MOB_SKILL_FINISH)
     end)
 
     mob:setMobMod(xi.mobMod.TRUST_DISTANCE, xi.trust.movementType.NO_MOVE)

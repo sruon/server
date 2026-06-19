@@ -21,7 +21,7 @@
 
 #include "petskill.h"
 
-#include "enums/action/category.h"
+#include "data/enums/action_category.h"
 #include "mobskill.h" // used for skillflags
 
 CPetSkill::CPetSkill(uint16 id)
@@ -249,9 +249,9 @@ auto CPetSkill::getMsg() const -> MsgBasic
     return m_Message;
 }
 
-auto CPetSkill::getSkillFinishCategory() const -> ActionCategory
+auto CPetSkill::getSkillFinishCategory() const -> xi::ActionCategory
 {
-    return static_cast<ActionCategory>(m_SkillFinishCategory);
+    return static_cast<xi::ActionCategory>(m_SkillFinishCategory);
 }
 
 uint16 CPetSkill::getMsgForAction() const

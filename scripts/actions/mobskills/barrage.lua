@@ -13,7 +13,7 @@ mobskillObject.onMobSkillCheck = function(target, mob, skill)
 end
 
 mobskillObject.onMobWeaponSkill = function(mob, target, skill, action)
-    action:setCategory(xi.action.category.JOBABILITY_FINISH)
+    action:setCategory(xi.action.category.ABILITY_FINISH)
 
     mob:addStatusEffect(xi.effect.BARRAGE, { duration = 60, origin = mob })
 

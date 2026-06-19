@@ -214,7 +214,7 @@ entity.onMobWeaponSkill = function(mob, target, skill, action)
 
     local messageId = skillTable[skill:getID()]
     if messageId then
-        action:setCategory(xi.action.category.JOBABILITY_FINISH)
+        action:setCategory(xi.action.category.ABILITY_FINISH)
         mob:messageText(mob, messageId)
         return
     end

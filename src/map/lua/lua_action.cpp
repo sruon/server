@@ -145,14 +145,14 @@ void CLuaAction::setAnimation(const uint32 actionTargetId, const ActionAnimation
     }
 }
 
-auto CLuaAction::getCategory() const -> ActionCategory
+auto CLuaAction::getCategory() const -> xi::ActionCategory
 {
     return m_PLuaAction->actiontype;
 }
 
 void CLuaAction::setCategory(uint8 category) const
 {
-    m_PLuaAction->actiontype = static_cast<ActionCategory>(category);
+    m_PLuaAction->actiontype = static_cast<xi::ActionCategory>(category);
 }
 
 void CLuaAction::resolution(const uint32 actionTargetId, const ActionResolution resolution) const

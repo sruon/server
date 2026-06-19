@@ -27,7 +27,7 @@ entity.onMobSpawn = function(mob)
 
     mob:addListener('WEAPONSKILL_USE', 'SHIKAREE_Z_WS', function(mobArg, targetArg, skill, tp, action, damage)
         if skill:getID() == xi.mobSkill.JUMP_1 then
-            action:setCategory(xi.action.category.WEAPONSKILL_FINISH)
+            action:setCategory(xi.action.category.SKILL_FINISH)
         end
     end)
 end

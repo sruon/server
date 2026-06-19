@@ -34,9 +34,12 @@ def render_header(*, source_name: str, cls_name: str, underlying: str, is_flags:
 def render_lua(*, source_name: str, lua_table: str, is_flags: bool, values: dict[str, int]) -> str:
     """Identifiers are the YAML key uppercased: `no_erase` -> `NO_ERASE`."""
     lua_names = {k: k.upper() for k in values}
+    segs = lua_table.split(".")
+    lua_parents = [".".join(segs[:i]) for i in range(1, len(segs) + 1)]  # ["xi", "xi.action", "xi.action.category"]
     return ENV.get_template("enum.lua.j2").render(
         source_name=source_name,
         lua_table=lua_table,
+        lua_parents=lua_parents,
         is_flags=is_flags,
         values=values,
         lua_names=lua_names,
@@ -49,7 +52,7 @@ def lua_block(lua_meta: dict[str, Any] | None, source_name: str, is_flags: bool,
         return None
     table = lua_meta["table"]
     return {
-        "name": pascal_to_snake(table.removeprefix("xi.")),
+        "name": pascal_to_snake(table.removeprefix("xi.").replace(".", "_")),
         "content": render_lua(source_name=source_name, lua_table=table, is_flags=is_flags, values=values),
     }
 

@@ -82,7 +82,7 @@ void CAbility::setMeritModID(uint16 value)
     m_meritModID = value;
 }
 
-void CAbility::setActionType(const ActionCategory type)
+void CAbility::setActionType(const xi::ActionCategory type)
 {
     m_actionType = type;
 }
@@ -182,7 +182,7 @@ uint16 CAbility::getMeritModID() const
     return m_meritModID;
 }
 
-auto CAbility::getActionType() const -> ActionCategory
+auto CAbility::getActionType() const -> xi::ActionCategory
 {
     return m_actionType;
 }
@@ -343,7 +343,7 @@ void LoadAbilitiesList()
             PAbility->setAnimationID(rset->get<uint16>("animation"));
             PAbility->setAnimationTime(std::chrono::milliseconds(rset->get<uint16>("animationTime")));
             PAbility->setCastTime(std::chrono::milliseconds(rset->get<uint16>("castTime")));
-            PAbility->setActionType(rset->get<ActionCategory>("actionType"));
+            PAbility->setActionType(rset->get<xi::ActionCategory>("actionType"));
             PAbility->setRange(rset->get<float>("range"));
             PAbility->setAOE(rset->get<uint8>("isAOE"));
             PAbility->setRadius(rset->get<uint8>("radius"));

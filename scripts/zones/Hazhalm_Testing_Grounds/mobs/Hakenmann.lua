@@ -16,7 +16,7 @@ local function notBusy(mob)
     if
         action == xi.action.category.MOBABILITY_START or
         action == xi.action.category.MOBABILITY_USING or
-        action == xi.action.category.MOBABILITY_FINISH
+        action == xi.action.category.MOB_SKILL_FINISH
     then
         return false
     end

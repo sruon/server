@@ -9,7 +9,7 @@ mobskillObject.onMobSkillCheck = function(target, mob, skill)
 end
 
 mobskillObject.onMobWeaponSkill = function(mob, target, skill, action)
-    action:setCategory(xi.action.category.JOBABILITY_FINISH)
+    action:setCategory(xi.action.category.ABILITY_FINISH)
 
     skill:setMsg(xi.mobskills.mobBuffMove(mob, xi.effect.WARCRY, 8, 0, 30))
 

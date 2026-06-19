@@ -22,9 +22,9 @@
 #pragma once
 
 #include "common/cbasetypes.h"
+#include "data/enums/action_category.h"
 #include "entities/battleentity.h"
 #include "enums/action/animation.h"
-#include "enums/action/category.h"
 #include "enums/action/hit_distortion.h"
 #include "enums/action/info.h"
 #include "enums/action/knockback.h"
@@ -93,7 +93,7 @@ struct action_target_t
 struct action_t
 {
     uint32                       actorId{ 0 };
-    ActionCategory               actiontype{ ActionCategory::None };
+    xi::ActionCategory           actiontype{ xi::ActionCategory::None };
     uint32                       actionid{ 0 };
     timer::duration              recast{ 0s };
     SPELLGROUP                   spellgroup{ SPELLGROUP_NONE };
