@@ -22,6 +22,7 @@
 #include "base_entity.h"
 
 #include "common/tracy.h"
+#include "utils/lw_profile.h"
 
 #include "ai/ai_container.h"
 
@@ -177,6 +178,7 @@ bool CBaseEntity::CanSeeTarget(CBaseEntity* target)
 bool CBaseEntity::CanSeeTarget(const position_t& targetPointBase)
 {
     TracyZoneScoped;
+    lwprofile::Scope _lwp(lwprofile::los, this->loc.zone ? static_cast<uint16>(this->loc.zone->GetID()) : 0);
 
     constexpr float ENTITY_HEIGHT = 2.0f;
 

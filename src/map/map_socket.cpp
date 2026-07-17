@@ -23,6 +23,8 @@
 
 #include <common/logging.h>
 
+#include <cstdlib>
+
 MapSocket::MapSocket(Scheduler& scheduler, MapStatistics& mapStatistics, const uint16 port, ReceiveFn onReceiveFn)
 : scheduler_(scheduler)
 , mapStatistics_(mapStatistics)
@@ -41,6 +43,34 @@ MapSocket::MapSocket(Scheduler& scheduler, MapStatistics& mapStatistics, const u
     asio::ip::udp::endpoint listen_endpoint(asio::ip::udp::v4(), port_);
     socket_.open(listen_endpoint.protocol());
     socket_.bind(listen_endpoint);
+
+    // Per-socket SO_RCVBUF/SO_SNDBUF via LSB_MAP_RCVBUF / LSB_MAP_SNDBUF env (bytes),
+    // requested explicitly on the map UDP socket (Valve GameNetworkingSockets style).
+    // Kernel doubles the request and clamps to net.core.{r,w}mem_max.
+    if (const char* rb = std::getenv("LSB_MAP_RCVBUF"))
+    {
+        const int want = std::atoi(rb);
+        if (want > 0)
+        {
+            asio::error_code ec;
+            socket_.set_option(asio::socket_base::receive_buffer_size(want), ec);
+            asio::socket_base::receive_buffer_size got;
+            socket_.get_option(got, ec);
+            ShowInfoFmt("MapSocket: SO_RCVBUF requested {} bytes, kernel granted {}", want, got.value());
+        }
+    }
+    if (const char* sb = std::getenv("LSB_MAP_SNDBUF"))
+    {
+        const int want = std::atoi(sb);
+        if (want > 0)
+        {
+            asio::error_code ec;
+            socket_.set_option(asio::socket_base::send_buffer_size(want), ec);
+            asio::socket_base::send_buffer_size got;
+            socket_.get_option(got, ec);
+            ShowInfoFmt("MapSocket: SO_SNDBUF requested {} bytes, kernel granted {}", want, got.value());
+        }
+    }
 
     receive(); // begin receiving loop
 }

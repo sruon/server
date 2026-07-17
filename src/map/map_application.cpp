@@ -56,6 +56,16 @@ auto appConfig() -> ApplicationConfig
             .description = "Force rebuild all navmeshes from ximesh on startup.",
             .type        = ArgumentType::Flag,
         },
+        ArgumentDefinition{
+            .name        = "--keep-zones-awake",
+            .description = "Tick every loaded zone continuously, even with no players (living-world sim).",
+            .type        = ArgumentType::Flag,
+        },
+        ArgumentDefinition{
+            .name        = "--fixed-rate-ticks",
+            .description = "Fixed-rate zone ticks (400ms grid) instead of relative (400ms after completion).",
+            .type        = ArgumentType::Flag,
+        },
     };
 
     return ApplicationConfig{
@@ -86,6 +96,8 @@ MapApplication::MapApplication(const int argc, char** argv)
     engineConfig_.inCI             = Application::isRunningInCI();
     engineConfig_.lazyZones        = args().get<bool>("--lazy");
     engineConfig_.rebuildNavmeshes = args().get<bool>("--rebuild-navmeshes");
+    engineConfig_.keepZonesAwake   = args().get<bool>("--keep-zones-awake");
+    engineConfig_.fixedRateTicks   = args().get<bool>("--fixed-rate-ticks");
 }
 
 MapApplication::~MapApplication()

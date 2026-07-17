@@ -39,6 +39,7 @@
 #include "spawn_handler.h"
 #include "status_effect_container.h"
 #include "utils/battleutils.h"
+#include "utils/lw_profile.h"
 #include "utils/petutils.h"
 #include "zone.h"
 
@@ -1093,6 +1094,7 @@ void CMobController::HandleEnmity()
 auto CMobController::DoRoamTick(timer::time_point tick) -> Task<void>
 {
     TracyZoneScopedC(0x00FF00);
+    lwprofile::Scope _lwp(lwprofile::roam, (PMob != nullptr && PMob->loc.zone != nullptr) ? static_cast<uint16>(PMob->loc.zone->GetID()) : 0);
     // If there's someone on our enmity list, go from roaming -> engaging
     if (PMob->PEnmityContainer->GetHighestEnmity() != nullptr && !((PMob->m_roamFlags & xi::RoamFlag::Ignore) != xi::RoamFlag::None))
     {

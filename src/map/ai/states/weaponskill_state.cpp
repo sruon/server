@@ -20,6 +20,7 @@
 */
 
 #include "weaponskill_state.h"
+#include "utils/lw_profile.h"
 
 #include "enums/four_cc.h"
 
@@ -127,6 +128,7 @@ void CWeaponSkillState::SpendCost()
 
 bool CWeaponSkillState::Update(timer::time_point tick)
 {
+    lwprofile::Scope _lwp(lwprofile::st_weaponskill);
     if (!m_PEntity)
     {
         ShowError("CWeaponSkillState: m_Pentity is nullptr");

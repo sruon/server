@@ -99,6 +99,7 @@ public:
     auto GetEffectCheckTime() const -> timer::time_point;
     auto GetCharList() const -> const EntityList_t&;
     auto GetMobList() const -> const EntityList_t&;
+    auto GetNpcList() const -> const EntityList_t&;
     bool CharListEmpty() const;
 
     void ForEachChar(FnRef<void(CCharEntity*)> func);

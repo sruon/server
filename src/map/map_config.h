@@ -31,6 +31,8 @@ struct MapConfig final
     bool lazyZones{ false };         // Load zones when first accessed
     bool controlledWeather{ false }; // Disables automated weather
     bool rebuildNavmeshes{ false };  // Force rebuild all navmeshes from ximesh on startup
+    bool keepZonesAwake{ false };    // Tick every loaded zone continuously, even with no players (living-world sim)
+    bool fixedRateTicks{ false };    // Fixed-rate zone ticks (400ms grid) vs relative (400ms after completion)
 };
 
 static_assert(std::is_standard_layout_v<MapConfig>, "MapConfig must be standard-layout");

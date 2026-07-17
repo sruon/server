@@ -84,6 +84,7 @@
 #include "ipc_client.h"
 #include "items/item_furnishing.h"
 #include "map/navmesh/navmesh.h"
+#include "map/utils/lw_profile.h"
 #include "map_engine.h"
 #include "mob_modifier.h"
 #include "mobskill.h"
@@ -2838,6 +2839,7 @@ void OnEffectTick(CBattleEntity* PEntity, CStatusEffect* PStatusEffect)
         return;
     }
 
+    lwprofile::Scope _lua(lwprofile::lua_effect);
     auto result = onEffectTick(PEntity, PStatusEffect);
     if (!result.valid())
     {
@@ -3477,6 +3479,7 @@ void OnPath(CBaseEntity* PEntity)
         return;
     }
 
+    lwprofile::Scope _lua(lwprofile::lua_path);
     auto result = onPath(PEntity);
     if (!result.valid())
     {
@@ -3729,6 +3732,7 @@ void OnMobFight(CBaseEntity* PMob, CBaseEntity* PTarget)
         return;
     }
 
+    lwprofile::Scope _lua(lwprofile::lua_fight);
     auto result = onMobFight(PMob, PTarget);
     if (!result.valid())
     {
@@ -3921,6 +3925,7 @@ void OnMobRoamAction(CBaseEntity* PMob)
         return;
     }
 
+    lwprofile::Scope _lua(lwprofile::lua_roamaction);
     auto result = onMobRoamAction(PMob);
     if (!result.valid())
     {
@@ -3939,6 +3944,7 @@ void OnMobRoam(CBaseEntity* PMob)
         return;
     }
 
+    lwprofile::Scope _lua(lwprofile::lua_roam);
     auto result = onMobRoam(PMob);
     if (!result.valid())
     {

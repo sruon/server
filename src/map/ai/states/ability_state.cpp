@@ -20,6 +20,7 @@
 */
 
 #include "ability_state.h"
+#include "utils/lw_profile.h"
 
 #include "ability.h"
 #include "action/action.h"
@@ -189,6 +190,7 @@ bool CAbilityState::CanChangeState()
 
 bool CAbilityState::Update(timer::time_point tick)
 {
+    lwprofile::Scope _lwp(lwprofile::st_ability);
     // Rotate towards target during ability
     if (m_castTime > 0s && tick < GetEntryTime() + m_castTime)
     {

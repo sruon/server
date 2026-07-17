@@ -20,6 +20,7 @@
 */
 
 #include "item_state.h"
+#include "utils/lw_profile.h"
 
 #include "enums/four_cc.h"
 
@@ -191,6 +192,7 @@ void CItemState::UpdateTarget(const uint16 targid)
 
 auto CItemState::Update(const timer::time_point tick) -> bool
 {
+    lwprofile::Scope _lwp(lwprofile::st_item);
     if (tick > GetEntryTime() + m_castTime && !IsCompleted())
     {
         m_interrupted   = false;

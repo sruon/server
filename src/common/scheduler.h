@@ -416,6 +416,57 @@ public:
         return Token(std::move(signal));
     }
 
+    // intervalOnMainThreadFixed
+    //   Fixed-rate variant of intervalOnMainThread: fires on an absolute `duration`
+    //   grid (deadline += duration) rather than `duration` after the task completes.
+    //   So the period stays == duration even when the task's own wall-time is large
+    //   (as long as it's < duration). If the task overruns a period, we resync to
+    //   "now" instead of bursting to catch up.
+    template <detail::IsInvocableReturnsVoidOrAwaitableVoid T>
+    [[nodiscard]] auto intervalOnMainThreadFixed(const std::chrono::steady_clock::duration duration, T&& func) -> Token
+    {
+        auto signal = std::make_shared<asio::cancellation_signal>();
+
+        asio::co_spawn(
+            mainContext_.get_executor(),
+            [this, duration, signal, fn = std::forward<T>(func)]() mutable -> Task<void>
+            {
+                try
+                {
+                    auto next = std::chrono::steady_clock::now();
+                    while (!this->closeRequested())
+                    {
+                        if constexpr (detail::IsInvocableReturnsVoid<T>)
+                        {
+                            fn();
+                        }
+                        else
+                        {
+                            co_await fn();
+                        }
+                        next += duration;
+                        const auto now = std::chrono::steady_clock::now();
+                        if (next < now)
+                        {
+                            next = now; // overran the period; resync, don't burst
+                        }
+                        co_await yieldUntil(next);
+                    }
+                }
+                catch (const asio::system_error& e)
+                {
+                    // operation_aborted is expected when the Token is destroyed
+                    if (e.code() != asio::error::operation_aborted)
+                    {
+                        throw;
+                    }
+                }
+            },
+            asio::bind_allocator(asio::recycling_allocator<void>(), asio::bind_cancellation_slot(signal->slot(), asio::detached)));
+
+        return Token(std::move(signal));
+    }
+
     // intervalOnWorkerThread
     //   Queues a task on the worker thread pool that repeats at the specified interval.
     //   Returns a Token that can be used to cancel the task.
@@ -520,6 +571,19 @@ public:
         const auto executor = co_await asio::this_coro::executor;
         auto       timer    = asio::steady_timer(executor);
         timer.expires_after(duration);
+        co_await timer.async_wait(asio::bind_allocator(asio::recycling_allocator<void>(), asio::use_awaitable));
+    }
+
+    // yieldUntil
+    //   Like yieldFor, but waits until an ABSOLUTE deadline. Used for fixed-rate
+    //   scheduling: the next fire is pinned to a grid (deadline += interval) instead
+    //   of interval-after-completion, so the period doesn't inflate by the task's
+    //   own run time.
+    [[nodiscard]] static auto yieldUntil(const std::chrono::steady_clock::time_point deadline) -> Task<void>
+    {
+        const auto executor = co_await asio::this_coro::executor;
+        auto       timer    = asio::steady_timer(executor);
+        timer.expires_at(deadline);
         co_await timer.async_wait(asio::bind_allocator(asio::recycling_allocator<void>(), asio::use_awaitable));
     }
 

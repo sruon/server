@@ -20,6 +20,7 @@
 */
 
 #include "navmesh.h"
+#include "utils/lw_profile.h"
 
 #include <DetourNavMesh.h>
 #include <DetourNavMeshQuery.h>
@@ -325,6 +326,7 @@ bool CNavMesh::save(const std::string& path) const
 auto CNavMesh::findPath(const position_t& start, const position_t& end) -> std::vector<pathpoint_t>
 {
     TracyZoneScoped;
+    lwprofile::Scope _lwp(lwprofile::path, static_cast<uint16>(m_zoneID));
 
     if (std::isnan(start.x) || std::isnan(start.y) || std::isnan(start.z) ||
         std::isnan(end.x) || std::isnan(end.y) || std::isnan(end.z))

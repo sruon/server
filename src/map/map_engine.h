@@ -98,6 +98,20 @@ private:
     Maybe<Scheduler::Token> persistVolatileServerVarsToken_;
     Maybe<Scheduler::Token> pumpIPCToken_;
     Maybe<Scheduler::Token> flushStatisticsToken_;
+    Maybe<Scheduler::Token> livingWorldHeartbeatToken_; // --keep-zones-awake: periodic zone-liveness log
+    Maybe<Scheduler::Token> tickBudgetProbeToken_;      // --keep-zones-awake: main-loop tick-slip detector
+
+    // Tick-budget probe state (main-loop slip detection for the living-world viability
+    // question). A main-thread task on the zone-tick cadence (kLogicUpdateInterval)
+    // resumes late when the single main thread is saturated; the gap beyond budget is
+    // the slip. Windowed stats reset by each heartbeat.
+    std::chrono::steady_clock::time_point lastTickProbe_{};
+    uint32 tickProbeCount_{ 0 };
+    uint32 tickOverrunCount_{ 0 }; // gap > 125% of budget (a slipped tick)
+    uint32 tickSevereCount_{ 0 };  // gap > 200% of budget (a badly slipped tick)
+    int64  tickOverrunMaxMs_{ 0 }; // worst slip (gap - budget)
+    int64  tickGapMaxMs_{ 0 };     // worst raw gap seen this window
+    int64  tickGapSumMs_{ 0 };
 
     std::unique_ptr<MapStatistics> mapStatistics_;
     std::unique_ptr<MapNetworking> networking_;

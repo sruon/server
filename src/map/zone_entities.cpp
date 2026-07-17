@@ -2245,3 +2245,8 @@ auto CZoneEntities::GetMobList() const -> const EntityList_t&
 {
     return m_mobList;
 }
+
+auto CZoneEntities::GetNpcList() const -> const EntityList_t&
+{
+    return m_npcList;
+}

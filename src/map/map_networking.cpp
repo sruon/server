@@ -29,6 +29,7 @@
 
 #include "packets/basic.h"
 #include "packets/s2c/0x00b_logout.h"
+#include "utils/lw_profile.h"
 
 #include "utils/charutils.h"
 
@@ -82,6 +83,9 @@ void MapNetworking::handle_incoming_packet(ByteSpan buffer, const IPP& ipp)
     // TODO: Don't copy into PBuff, use buffer directly and smaller scratch buffers if required
     std::memcpy(PBuff.data(), buffer.data(), buffer.size());
     size_t size = buffer.size();
+
+    lwprofile::recvBytes.fetch_add(static_cast<int64>(size), std::memory_order_relaxed);
+    lwprofile::recvPkts.fetch_add(1, std::memory_order_relaxed);
 
     // set PSession if it's null and the incoming packet is non-encrypted 0x00A
     int32 decryptCount = recv_parse(PBuff.data(), &size, PSession, ipp);
@@ -730,16 +734,31 @@ void MapNetworking::flushStatistics()
     std::size_t mobCount              = 0;
     std::size_t dynamicTargIdCount    = 0;
     std::size_t dynamicTargIdCapacity = 0;
+    // Per-char outbound backlog snapshot: the worst queue depth and how many chars
+    // are past the kMaxPacketBacklogSize warning line (the "who's actually behind"
+    // signal, unlike the re-sampled TotalPacketsDelayedPerTick sum).
+    std::size_t charsOverBacklog = 0;
+    uint32      maxBacklog       = 0;
 
     for (auto& [id, PZone] : g_PZoneList)
     {
         if (PZone->IsZoneActive())
         {
             activeZoneCount += 1;
-            playerCount += PZone->GetZoneEntities()->GetCharList().size();
+            const auto& charList = PZone->GetZoneEntities()->GetCharList();
+            playerCount += charList.size();
             mobCount += PZone->GetZoneEntities()->GetMobList().size();
             dynamicTargIdCount += PZone->GetZoneEntities()->GetUsedDynamicTargIDsCount();
             dynamicTargIdCapacity += 511;
+            for (const auto& [tid, ent] : charList)
+            {
+                const auto backlog = static_cast<CCharEntity*>(ent)->getPacketCount();
+                maxBacklog = std::max(maxBacklog, static_cast<uint32>(backlog));
+                if (backlog > kMaxPacketBacklogSize)
+                {
+                    ++charsOverBacklog;
+                }
+            }
         }
     }
 
@@ -753,6 +772,53 @@ void MapNetworking::flushStatistics()
                              : 0.0;
 
     mapStatistics_.set(MapStatistics::Key::DynamicTargIdUsagePercent, static_cast<int64>(percent));
+
+    // Living-world sim: surface the server's own tick-time breakdown + network
+    // backpressure (which otherwise only go to Tracy) as a machine-readable line
+    // for the Prometheus exporter. Runs on the stats cadence (kTimeServerTickInterval,
+    // 2.4s). Values are per that interval.
+    if (config_.keepZonesAwake)
+    {
+        using K = MapStatistics::Key;
+        ShowInfoFmt("lwstats pkts_to_send={} pkts_sent={} pkts_delayed={} bytes_sent={} sends_blocked={} "
+                    "send_errors={} max_inflight={} active_zones={} players={} mobs={} dyntargid_pct={} recv_bytes={} recv_pkts={} "
+                    "chars_over_backlog={} max_backlog={}",
+                    mapStatistics_.get(K::TotalPacketsToSendPerTick), mapStatistics_.get(K::TotalPacketsSentPerTick),
+                    mapStatistics_.get(K::TotalPacketsDelayedPerTick), mapStatistics_.get(K::TotalBytesSentPerTick),
+                    mapStatistics_.get(K::TotalSendsBlockedPerTick), mapStatistics_.get(K::TotalSendErrorsPerTick),
+                    mapStatistics_.get(K::MaxInFlightSendsPerTick), mapStatistics_.get(K::ActiveZones),
+                    mapStatistics_.get(K::ConnectedPlayers), mapStatistics_.get(K::ActiveMobs),
+                    mapStatistics_.get(K::DynamicTargIdUsagePercent),
+                    lwprofile::recvBytes.exchange(0, std::memory_order_relaxed),
+                    lwprofile::recvPkts.exchange(0, std::memory_order_relaxed),
+                    charsOverBacklog, maxBacklog);
+
+        // Mob-AI hot-path profiling (drains the accumulators): time spent this
+        // interval in line-of-sight checks, roam ticks, and navmesh pathfinding.
+        ShowInfoFmt("lwai los_us={} los_calls={} roam_us={} roam_calls={} path_us={} path_calls={}",
+                    lwprofile::takeUs(lwprofile::los), lwprofile::takeCalls(lwprofile::los),
+                    lwprofile::takeUs(lwprofile::roam), lwprofile::takeCalls(lwprofile::roam),
+                    lwprofile::takeUs(lwprofile::path), lwprofile::takeCalls(lwprofile::path));
+
+        // Per-tick Lua time+calls split by hook (LuaJIT boundary timing).
+        ShowInfoFmt("lwlua roam_us={} roam_calls={} roamaction_us={} roamaction_calls={} fight_us={} fight_calls={} "
+                    "path_us={} path_calls={} effect_us={} effect_calls={}",
+                    lwprofile::takeUs(lwprofile::lua_roam), lwprofile::takeCalls(lwprofile::lua_roam),
+                    lwprofile::takeUs(lwprofile::lua_roamaction), lwprofile::takeCalls(lwprofile::lua_roamaction),
+                    lwprofile::takeUs(lwprofile::lua_fight), lwprofile::takeCalls(lwprofile::lua_fight),
+                    lwprofile::takeUs(lwprofile::lua_path), lwprofile::takeCalls(lwprofile::lua_path),
+                    lwprofile::takeUs(lwprofile::lua_effect), lwprofile::takeCalls(lwprofile::lua_effect));
+
+        // AI action-state processing time (attack round, magic cast, ability, etc.).
+        ShowInfoFmt("lwstate attack_us={} attack_calls={} magic_us={} magic_calls={} ability_us={} ability_calls={} "
+                    "ws_us={} ws_calls={} ranged_us={} ranged_calls={} item_us={} item_calls={}",
+                    lwprofile::takeUs(lwprofile::st_attack), lwprofile::takeCalls(lwprofile::st_attack),
+                    lwprofile::takeUs(lwprofile::st_magic), lwprofile::takeCalls(lwprofile::st_magic),
+                    lwprofile::takeUs(lwprofile::st_ability), lwprofile::takeCalls(lwprofile::st_ability),
+                    lwprofile::takeUs(lwprofile::st_weaponskill), lwprofile::takeCalls(lwprofile::st_weaponskill),
+                    lwprofile::takeUs(lwprofile::st_ranged), lwprofile::takeCalls(lwprofile::st_ranged),
+                    lwprofile::takeUs(lwprofile::st_item), lwprofile::takeCalls(lwprofile::st_item));
+    }
 
     // This also zeroes out all the stats
     mapStatistics_.flush();

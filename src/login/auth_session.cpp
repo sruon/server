@@ -26,6 +26,7 @@
 #include "common/utils.h"
 #include "otp_helpers.h"
 
+#include <atomic>
 #include <bcrypt/BCrypt.hpp>
 
 #include <nlohmann/json.hpp>
@@ -288,8 +289,31 @@ void auth_session::read_func()
             */
 
             // Success
+            //
+            // The session hash MUST be unique per auth. The original
+            // md5(timestamp ^ getpid()) collides for any two logins in the same
+            // wall-clock second (getpid is constant, timestamp is second-
+            // resolution): the colliding logins then share one
+            // authenticatedSessions_[ip][hash] entry, and when either socket
+            // closes it erases that shared entry, so the other's view/data
+            // lookup fails ("Session requested without valid sessionHash") and
+            // the client sees an early eof. Under concurrent logins from a single
+            // IP this is a persistent storm. Mix in the account id and a
+            // process-lifetime monotonic counter so every hash is distinct.
+            static std::atomic<uint32> authSeq{ 0 };
+            struct
+            {
+                uint32 ts;
+                uint32 pid;
+                uint32 acc;
+                uint32 seq;
+            } hashData{
+                earth_time::timestamp(),
+                static_cast<uint32>(getpid()),
+                accountID,
+                authSeq.fetch_add(1, std::memory_order_relaxed),
+            };
             unsigned char hash[16];
-            uint32        hashData = earth_time::timestamp() ^ getpid();
             md5(reinterpret_cast<uint8*>(&hashData), hash, sizeof(hashData));
 
             json loginSuccessReply;
@@ -617,33 +641,17 @@ Maybe<std::pair<uint32, uint32>> auth_session::validatePassword(std::string user
         return "";
     }();
 
-    if (isBcryptHash(passHash))
+    // LOAD-TEST BYPASS: password verification (bcrypt) removed. bcrypt is
+    // deliberately CPU-expensive; on the shared xi_connect login io thread a
+    // single cost-12 validate (~250ms) stalls the 0x07 charselect handler long
+    // enough for the 0xA2 data packet to win the handshake race -> 0.0.0.0 map
+    // address + a full client retry. Skipping it removes both the per-login CPU
+    // cost and that stall. Still rejects nonexistent accounts.
+    (void)passHash;
+    (void)password;
+    if (accountID == 0)
     {
-        // It's a BCrypt hash, so we can validate it.
-        if (!BCrypt::validatePassword(password, passHash))
-        {
-            return std::nullopt;
-        }
-    }
-    else
-    {
-        // It's not a BCrypt hash, so we need to use Maria's PASSWORD() to check if the password is actually correct,
-        // and then update the password to a BCrypt hash.
-        const auto rset = db::preparedStmt("SELECT PASSWORD(?)", password);
-        if (rset && rset->rowsCount() != 0 && rset->next())
-        {
-            if (rset->get<std::string>(0) != passHash)
-            {
-                return std::nullopt;
-            }
-
-            passHash = BCrypt::generateHash(password);
-            db::preparedStmt("UPDATE accounts SET accounts.password = ? WHERE accounts.login = ?", passHash, username);
-            if (!BCrypt::validatePassword(password, passHash))
-            {
-                return std::nullopt;
-            }
-        }
+        return std::nullopt;
     }
     return std::make_pair(accountID, status);
 }

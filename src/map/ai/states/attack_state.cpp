@@ -20,6 +20,7 @@
 */
 
 #include "attack_state.h"
+#include "utils/lw_profile.h"
 
 #include "action/action.h"
 #include "entities/battle_entity.h"
@@ -58,6 +59,7 @@ CAttackState::CAttackState(CBattleEntity* PEntity, uint16 targid)
 
 bool CAttackState::Update(timer::time_point tick)
 {
+    lwprofile::Scope _lwp(lwprofile::st_attack);
     auto* PTarget = static_cast<CBattleEntity*>(GetTarget());
     if (!PTarget || PTarget->isDead())
     {

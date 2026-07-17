@@ -957,6 +957,13 @@ auto CZone::ZoneServer(timer::time_point tick) -> Task<void>
 {
     TracyZoneScoped;
 
+    // Cadence adherence: interval between consecutive tick starts vs the 400ms budget.
+    const auto tickStart = std::chrono::steady_clock::now();
+    if (m_lastTickStart.time_since_epoch().count() != 0)
+    {
+        m_lastTickIntervalUs = std::chrono::duration_cast<std::chrono::microseconds>(tickStart - m_lastTickStart).count();
+    }
+    m_lastTickStart = tickStart;
     co_await m_zoneEntities->ZoneServer(tick);
 
     if (m_BattlefieldHandler != nullptr)
@@ -964,13 +971,26 @@ auto CZone::ZoneServer(timer::time_point tick) -> Task<void>
         m_BattlefieldHandler->HandleBattlefields(tick);
     }
 
-    if (zoneTimerToken_.has_value() && m_zoneEntities->CharListEmpty() && m_timeZoneEmpty + 5s < timer::now() && CheckMobsPathedBack())
+    if (!config_.keepZonesAwake && zoneTimerToken_.has_value() && m_zoneEntities->CharListEmpty() && m_timeZoneEmpty + 5s < timer::now() && CheckMobsPathedBack())
     {
         zoneTimerToken_.reset();
         zoneTimerTriggerAreasToken_.reset();
     }
 
     co_return;
+}
+
+// Bring an empty zone online at boot (living-world sim). Normally zone timers are
+// only installed when the first player enters (IncreaseZoneCounter); this forces
+// them so mobs/NPCs tick in zones no player has visited. Combined with the
+// keepZonesAwake guard above (which suppresses the empty-zone sleep), every loaded
+// zone stays alive.
+void CZone::WakeUp()
+{
+    if (!zoneTimerToken_.has_value())
+    {
+        createZoneTimers();
+    }
 }
 
 void CZone::ForEachChar(FnRef<void(CCharEntity*)> func)
@@ -1067,19 +1087,40 @@ void CZone::createZoneTimers()
         return;
     }
 
-    zoneTimerToken_ = scheduler_.intervalOnMainThread(
-        kLogicUpdateInterval,
-        [this]() -> Task<void>
-        {
-            co_await this->ZoneServer(timer::now());
-        });
+    // Fixed-rate ticks pin the period to the 400ms grid (so keeping many zones
+    // awake doesn't inflate every zone's tick interval); relative is stock behavior.
+    if (config_.fixedRateTicks)
+    {
+        zoneTimerToken_ = scheduler_.intervalOnMainThreadFixed(
+            kLogicUpdateInterval,
+            [this]() -> Task<void>
+            {
+                co_await this->ZoneServer(timer::now());
+            });
 
-    zoneTimerTriggerAreasToken_ = scheduler_.intervalOnMainThread(
-        kTriggerAreaInterval,
-        [this]() -> Task<void>
-        {
-            co_await this->CheckTriggerAreas();
-        });
+        zoneTimerTriggerAreasToken_ = scheduler_.intervalOnMainThreadFixed(
+            kTriggerAreaInterval,
+            [this]() -> Task<void>
+            {
+                co_await this->CheckTriggerAreas();
+            });
+    }
+    else
+    {
+        zoneTimerToken_ = scheduler_.intervalOnMainThread(
+            kLogicUpdateInterval,
+            [this]() -> Task<void>
+            {
+                co_await this->ZoneServer(timer::now());
+            });
+
+        zoneTimerTriggerAreasToken_ = scheduler_.intervalOnMainThread(
+            kTriggerAreaInterval,
+            [this]() -> Task<void>
+            {
+                co_await this->CheckTriggerAreas();
+            });
+    }
 }
 
 void CZone::CharZoneIn(CCharEntity* PChar)

@@ -20,6 +20,7 @@
 */
 
 #include "range_state.h"
+#include "utils/lw_profile.h"
 
 #include "enums/four_cc.h"
 
@@ -153,6 +154,7 @@ bool CRangeState::CanChangeState()
 
 bool CRangeState::Update(timer::time_point tick)
 {
+    lwprofile::Scope _lwp(lwprofile::st_ranged);
     if (m_PEntity && m_PEntity->isAlive() && (tick > GetEntryTime() + m_aimTime && !IsCompleted()))
     {
         auto* PTarget = m_PEntity->IsValidTarget(m_targid, TARGET_ENEMY, m_errorMsg);

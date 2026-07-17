@@ -827,6 +827,21 @@ auto LoadZones(Scheduler& scheduler, MapConfig config, const std::vector<uint16>
         if (g_PZoneList[zoneId]->GetIP() != 0)
         {
             luautils::OnZoneInitialize(g_PZoneList[zoneId]->GetID());
+
+            // Living-world sim: a zone is born awake and never sleeps. Normally a
+            // zone's tick timers are only installed when its first player enters
+            // (IncreaseZoneCounter) and dropped 5s after the last leaves; with
+            // keepZonesAwake we start them at load and CZone::ZoneServer never resets
+            // them, so mobs/NPCs tick in every zone even with nobody there.
+            // XI_WAKE_LIMIT caps how many zones we wake (experiment: does the
+            // effective tick interval scale with the number of awake zones?).
+            static const int wakeLimit = []() { const char* e = std::getenv("XI_WAKE_LIMIT"); return e ? std::atoi(e) : -1; }();
+            static int       wokenCount = 0;
+            if (config.keepZonesAwake && !config.isTestServer && (wakeLimit < 0 || wokenCount < wakeLimit))
+            {
+                g_PZoneList[zoneId]->WakeUp();
+                ++wokenCount;
+            }
         }
     }
 }

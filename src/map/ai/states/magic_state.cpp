@@ -20,6 +20,7 @@
 */
 
 #include "magic_state.h"
+#include "utils/lw_profile.h"
 
 #include "action/action.h"
 #include "action/interrupts.h"
@@ -133,6 +134,7 @@ CMagicState::CMagicState(CBattleEntity* PEntity, uint16 targid, SpellID spellid,
 
 bool CMagicState::Update(timer::time_point tick)
 {
+    lwprofile::Scope _lwp(lwprofile::st_magic);
     action_t action;
     auto*    PTarget = m_PEntity->IsValidTarget(m_targid, m_PSpell->getValidTarget(), m_errorMsg);
     auto     msg     = MsgBasic::IsInterrupted;

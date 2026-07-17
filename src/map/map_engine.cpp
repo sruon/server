@@ -68,8 +68,14 @@
 #include "utils/synthutils.h"
 #include "utils/trustutils.h"
 #include "utils/zoneutils.h"
+#include "utils/lw_profile.h"
+#include "zone_entities.h"
+#include "entities/base_entity.h"
 
+#include <algorithm>
 #include <cstdlib>
+#include <string>
+#include <vector>
 #include <thread>
 
 #ifdef _WIN32
@@ -238,6 +244,163 @@ auto MapEngine::init() -> Task<void>
         persistVolatileServerVarsToken_ = scheduler_.intervalOnMainThread(kPersistVolatileServerVarsInterval, serverutils::PersistVolatileServerVars);
         pumpIPCToken_                   = scheduler_.intervalOnMainThread(kIPCPumpInterval, message::handle_incoming);
         flushStatisticsToken_           = scheduler_.intervalOnMainThread(kTimeServerTickInterval, std::bind(&MapNetworking::flushStatistics, networking_.get()));
+    }
+
+    // Living-world viability instrumentation (--keep-zones-awake). The question this
+    // answers: can a single main thread keep all 300 zones ticking on the 400ms logic
+    // cadence with ~100 players, or does the tick budget slip? Two main-thread tasks:
+    //   1. A tick-budget probe on the logic cadence. Because interval tasks are
+    //      relative (run, then yieldFor(interval)), this probe resumes late exactly
+    //      when the main thread is saturated; gap-beyond-budget is the slip.
+    //   2. A 30s heartbeat that logs zone liveness + population and the windowed slip
+    //      stats, then resets the window.
+    if (config_.keepZonesAwake && !config_.isTestServer)
+    {
+        const auto budgetMs = std::chrono::duration_cast<std::chrono::milliseconds>(kLogicUpdateInterval).count();
+
+        lastTickProbe_        = std::chrono::steady_clock::now();
+        tickBudgetProbeToken_ = scheduler_.intervalOnMainThread(
+            kLogicUpdateInterval,
+            [this, budgetMs]() -> void
+            {
+                const auto now   = std::chrono::steady_clock::now();
+                const auto gapMs = std::chrono::duration_cast<std::chrono::milliseconds>(now - lastTickProbe_).count();
+                lastTickProbe_   = now;
+
+                const auto overMs = gapMs - budgetMs;
+                ++tickProbeCount_;
+                tickGapSumMs_  = tickGapSumMs_ + gapMs;
+                tickGapMaxMs_  = std::max<int64>(tickGapMaxMs_, gapMs);
+                if (overMs > budgetMs / 4) // >25% beyond the 400ms budget = a slipped tick
+                {
+                    ++tickOverrunCount_;
+                    tickOverrunMaxMs_ = std::max<int64>(tickOverrunMaxMs_, overMs);
+                    if (overMs > budgetMs) // >=2x budget: a bad slip — count + surface it
+                    {
+                        ++tickSevereCount_;
+                        ShowWarningFmt("living-world tick slip: {}ms gap ({}ms over the {}ms budget)", gapMs, overMs, budgetMs);
+                    }
+                }
+            });
+
+        // Emit on the same cadence as the metrics scrape (10s) so Grafana sees fresh
+        // per-window tick stats. Human line + a machine-readable `lwmetrics` key=val
+        // line the Prometheus exporter parses.
+        livingWorldHeartbeatToken_ = scheduler_.intervalOnMainThread(
+            std::chrono::seconds(10),
+            [this, budgetMs]() -> void
+            {
+                uint32 total = 0, ticking = 0, players = 0, mobs = 0, npcs = 0, inCombat = 0;
+                // Per-zone profiling: cadence adherence (interval between tick starts
+                // vs the 400ms budget — the honest "is this zone on schedule" signal)
+                // and real AI CPU (synchronous LOS/roam/path attributed by zone).
+                struct ZoneCost { uint16 id; int64 interval_us; int64 ai_us; uint32 mobs; uint32 players; std::string name; };
+                std::vector<ZoneCost> costs;
+                zoneutils::ForEachZone(
+                    [&](CZone* PZone)
+                    {
+                        if (PZone == nullptr || PZone->GetIP() == 0)
+                        {
+                            return;
+                        }
+                        ++total;
+                        if (PZone->IsTicking())
+                        {
+                            ++ticking;
+                        }
+                        uint32 zplayers = 0, zmobs = 0;
+                        if (auto* ents = PZone->GetZoneEntities())
+                        {
+                            zplayers = static_cast<uint32>(ents->GetCharList().size());
+                            zmobs    = static_cast<uint32>(ents->GetMobList().size());
+                            players += zplayers;
+                            mobs += zmobs;
+                            npcs += static_cast<uint32>(ents->GetNpcList().size());
+                            for (const auto& [tid, ent] : ents->GetCharList())
+                            {
+                                if (ent != nullptr && ent->animation == ANIMATION_ATTACK)
+                                {
+                                    ++inCombat;
+                                }
+                            }
+                        }
+                        const auto zid = static_cast<uint16>(PZone->GetID());
+                        costs.push_back({ zid, PZone->LastTickIntervalMicros(), lwprofile::takeZoneUs(zid), zmobs, zplayers, PZone->getName() });
+                    });
+                const uint32 entities = players + mobs + npcs;
+
+                // Distribution of per-zone tick intervals (diagnose "why are the top
+                // deviations all the same?" — reveals whether it's a plateau/quantum
+                // or a smooth spread). Over ticking zones only (interval_us > 0).
+                {
+                    std::vector<int64> ivals;
+                    ivals.reserve(costs.size());
+                    for (const auto& c : costs)
+                    {
+                        if (c.interval_us > 0)
+                        {
+                            ivals.push_back(c.interval_us);
+                        }
+                    }
+                    if (!ivals.empty())
+                    {
+                        std::sort(ivals.begin(), ivals.end());
+                        int64 sum = 0;
+                        for (const auto v : ivals)
+                        {
+                            sum += v;
+                        }
+                        ShowInfoFmt("lwdist zi_count={} zi_min_us={} zi_p10_us={} zi_p50_us={} zi_mean_us={} zi_p90_us={} zi_max_us={}",
+                                    ivals.size(), ivals.front(), ivals[ivals.size() / 10], ivals[ivals.size() / 2],
+                                    sum / static_cast<int64>(ivals.size()), ivals[ivals.size() * 9 / 10], ivals.back());
+                    }
+                }
+
+                // Per-zone tick interval + AI cost for EVERY real zone (→ off-schedule
+                // table, per-zone AI-CPU lines). We emit them all rather than the worst
+                // N so the time-series panels have a continuous line per zone instead of
+                // a rotating subset. interval_us == 0 means "not measured" (instance zones
+                // override ZoneServer, or a zone's very first tick).
+                for (const auto& c : costs)
+                {
+                    ShowInfoFmt("lwzone zone={} name={} interval_us={} ai_us={} mobs={} players={}",
+                                c.id, c.name, c.interval_us, c.ai_us, c.mobs, c.players);
+                }
+                // Per-populated-zone player counts with names → the "where players are" pie chart.
+                for (const auto& c : costs)
+                {
+                    if (c.players > 0)
+                    {
+                        ShowInfoFmt("lwpop zone={} name={} players={}", c.id, c.name, c.players);
+                    }
+                }
+
+                // avgGap over the window; busy estimate = how far the probe resumed
+                // past the yield (a lower-bound proxy for main-thread work per cadence);
+                // headroom = budget minus that busy time.
+                const auto avgGapMs   = tickProbeCount_ ? tickGapSumMs_ / static_cast<int64>(tickProbeCount_) : budgetMs;
+                const auto busyMs     = std::max<int64>(0, avgGapMs - budgetMs);
+                const auto headroomMs = std::max<int64>(0, budgetMs - busyMs);
+                const auto headroomPct = budgetMs ? (headroomMs * 100) / budgetMs : 0;
+
+                ShowInfoFmt("living-world: {}/{} zones ticking | {} players | {} mobs | {} npcs | tick {}ms: avg gap {}ms, headroom {}%, {} slips ({} severe)/{}",
+                            ticking, total, players, mobs, npcs, budgetMs, avgGapMs, headroomPct, tickOverrunCount_, tickSevereCount_, tickProbeCount_);
+                // Machine-readable (parsed by tools/lw_exporter.py):
+                ShowInfoFmt("lwmetrics zones_ticking={} zones_total={} players={} mobs={} npcs={} entities={} "
+                            "chars_in_combat={} tick_budget_ms={} avg_gap_ms={} max_gap_ms={} busy_ms={} headroom_ms={} headroom_pct={} "
+                            "slips={} severe_slips={} probe_ticks={} lua_mem_kb={}",
+                            ticking, total, players, mobs, npcs, entities, inCombat,
+                            budgetMs, avgGapMs, tickGapMaxMs_, busyMs, headroomMs, headroomPct,
+                            tickOverrunCount_, tickSevereCount_, tickProbeCount_,
+                            lua.memory_used() / 1024);
+
+                tickProbeCount_   = 0;
+                tickOverrunCount_ = 0;
+                tickSevereCount_  = 0;
+                tickOverrunMaxMs_ = 0;
+                tickGapMaxMs_     = 0;
+                tickGapSumMs_     = 0;
+            });
     }
 
     zoneutils::TOTDChange(vanadiel_time::get_totd()); // This tells the zones to spawn stuff based on time of day conditions (such as undead at night)

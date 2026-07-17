@@ -617,6 +617,18 @@ public:
     bool           IsZoneActive() const;
     CZoneEntities* GetZoneEntities();
 
+    // Install the zone tick timers now, even with no players present. Used by the
+    // living-world (--keep-zones-awake) path to bring every loaded zone online at boot.
+    void WakeUp();
+
+    // True when the zone's logic tick is installed (mobs/NPCs are processing).
+    bool IsTicking() const { return zoneTimerToken_.has_value(); }
+
+    // Microseconds between this zone's consecutive tick STARTS. The deviation from
+    // the 400ms budget shows how well the zone holds cadence — a big deviation can
+    // mean the zone (or a zone ticked before it in the round) is running long.
+    auto LastTickIntervalMicros() const -> int64 { return m_lastTickIntervalUs; }
+
     virtual auto ZoneServer(timer::time_point tick) -> Task<void>;
     virtual auto CheckTriggerAreas() -> Task<void>;
 
@@ -693,6 +705,8 @@ private:
     CTreasurePool* m_TreasurePool;
 
     timer::time_point m_timeZoneEmpty; // The time point when the last player left the zone
+    std::chrono::steady_clock::time_point m_lastTickStart{};   // start of the previous tick (cadence adherence)
+    int64                                 m_lastTickIntervalUs{ 0 }; // µs between consecutive tick starts
 
     HashMap<std::string, QueryByNameResult_t> m_queryByNameResults;
 

@@ -331,6 +331,21 @@ void data_session::read_func()
             uint32 charid    = session.requestedCharacterID;
             uint32 accountIP = str2ip(ipAddress);
 
+            // The 0x07 charselect arrives on the VIEW socket and sets
+            // requestedCharacterID; this 0xA2 handler on the DATA socket reads it.
+            // Under concurrent handshakes / WAN latency the 0xA2 can win the race and
+            // charid is still 0 -> the char/zone lookup below misses and we'd emit a
+            // 0.0.0.0 map address. Bail with a clean error so the client retries.
+            if (charid == 0)
+            {
+                if (auto viewSession = session.view_session.get())
+                {
+                    loginHelpers::generateErrorMessage(viewSession->buffer_.data(), loginErrors::errorCode::UNABLE_TO_CONNECT_TO_WORLD_SERVER);
+                    viewSession->do_write(0x24);
+                }
+                return;
+            }
+
             uint32 ZoneIP   = 0;
             uint16 ZonePort = 0;
             uint16 ZoneID   = 0;
@@ -462,19 +477,20 @@ void data_session::read_func()
 
                     if (rset1 && rset1->rowsCount() != 0 && rset1->next())
                     {
-                        // If character is already logged in (session still exists) kick them out
-                        // TODO: Retail has POL login time so this is more restricted.
+                        // If this character already has a session row, KICK it:
+                        // delete the stale row and proceed. The original code
+                        // rejected with CHARACTER_ALREADY_LOGGED_IN, but under a
+                        // fast fleet ramp that turns any transient failure (e.g. a
+                        // map zone-in that timed out AFTER this row was inserted)
+                        // into a ~60s lockout — the client can't re-login until the
+                        // map reaper clears the row, so it burns its retries and is
+                        // lost. Kicking makes re-login idempotent. (The comment here
+                        // already intended "kick them out".)
                         uint32 sessionCharid = rset1->get<uint32>("charid");
-
                         if (sessionCharid == session.requestedCharacterID)
                         {
-                            if (auto viewSession = session.view_session.get())
-                            {
-                                session.incrementKeyValue += 1;
-                                loginHelpers::generateErrorMessage(viewSession->buffer_.data(), loginErrors::errorCode::CHARACTER_ALREADY_LOGGED_IN);
-                                viewSession->do_write(0x24);
-                                return;
-                            }
+                            session.incrementKeyValue += 1;
+                            db::preparedStmt("DELETE FROM accounts_sessions WHERE charid = ?", session.requestedCharacterID);
                         }
                     }
 
@@ -519,6 +535,19 @@ void data_session::read_func()
                 }
             }
 
+            // Never emit a 0.0.0.0 map address. If the char/zone lookup failed to
+            // populate server_ip, send an error so the client retries cleanly rather
+            // than connecting to a dead address.
+            if (characterSelectionResponse.server_ip == 0)
+            {
+                if (auto viewSession = session.view_session.get())
+                {
+                    loginHelpers::generateErrorMessage(viewSession->buffer_.data(), loginErrors::errorCode::UNABLE_TO_CONNECT_TO_WORLD_SERVER);
+                    viewSession->do_write(0x24);
+                }
+                return;
+            }
+
             unsigned char Hash[16] = {};
             md5(reinterpret_cast<uint8*>(&characterSelectionResponse), Hash, sizeof(lpkt_next_login));
 
@@ -527,10 +556,31 @@ void data_session::read_func()
             if (auto viewSession = session.view_session.get())
             {
                 std::memcpy(viewSession->buffer_.data(), &characterSelectionResponse, sizeof(characterSelectionResponse));
-                viewSession->do_write(sizeof(characterSelectionResponse));
 
-                viewSession->socket_.lowest_layer().shutdown(asio::socket_base::shutdown_both); // Client waits for us to close the socket
-                viewSession->socket_.lowest_layer().close();
+                // Write the character-selection reply SYNCHRONOUSLY before closing.
+                // do_write() is an async_write whose completion races the immediate
+                // shutdown/close below; under concurrent logins the close wins and
+                // the 72-byte reply is truncated ("early eof" on the client), which
+                // strands the accounts_sessions row just inserted and forces a slow
+                // re-auth. A blocking write guarantees the reply is flushed first.
+                {
+                    std::error_code writeEc;
+                    asio::write(viewSession->socket_.next_layer(),
+                                asio::buffer(viewSession->buffer_.data(), sizeof(characterSelectionResponse)),
+                                writeEc);
+                    if (writeEc)
+                    {
+                        ShowError(fmt::format("data_session: failed to write charselect reply to {}: {}", ip2str(accountIP), writeEc.message()));
+                    }
+                }
+
+                // Non-throwing shutdown/close: if the client already reset the
+                // connection (ENOTCONN), the throwing overloads raise a system_error
+                // that propagates to scheduler_.run() and kills the whole connect
+                // server. A single client drop mid-charselect must not take it down.
+                std::error_code shutEc;
+                viewSession->socket_.lowest_layer().shutdown(asio::socket_base::shutdown_both, shutEc); // Client waits for us to close the socket
+                viewSession->socket_.lowest_layer().close(shutEc);
                 session.view_session = nullptr;
 
                 session.incrementKeyValue = 0;     // Reset incremented key after inserting into db
