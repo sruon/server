@@ -78,8 +78,8 @@ struct TrustData
 
     uint8 mJob{};
     uint8 sJob{};
-    float HPscale{}; // HP boost percentage
-    float MPscale{}; // MP boost percentage
+    float HPscale{ 1.f }; // HP boost percentage
+    float MPscale{ 1.f }; // MP boost percentage
 
     uint8  cmbSkill{};
     uint16 cmbDmgMult{};
