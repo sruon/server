@@ -95,10 +95,10 @@ struct TrustData
     uint8 intRank{};
     uint8 mndRank{};
     uint8 chrRank{};
-    uint8 attRank{};
+    uint8 attRank{ 1 };
     uint8 defRank{};
     uint8 evaRank{};
-    uint8 accRank{};
+    uint8 accRank{ 1 };
 
     uint16 m_MobSkillList{};
 
