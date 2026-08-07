@@ -30,6 +30,10 @@
 #include <common/database/bound_value.h>
 #include <common/database/result_set.h>
 
+#include <fmt/format.h>
+#include <fmt/ranges.h>
+
+#include <initializer_list>
 #include <memory>
 #include <string>
 #include <string_view>
@@ -78,6 +82,23 @@ auto preparedStmt(const std::string& rawQuery, Args&&... args) -> std::unique_pt
 template <typename... Args>
 auto preparedStmt(Scheduler& scheduler, const std::string& rawQuery, Args&&... args) -> Task<std::unique_ptr<ResultSet>>;
 
+template <typename... Args>
+void bindValues(std::vector<BoundValue>& params, Args&&... args)
+{
+    (detail::lowerBoundValue(params, std::forward<Args>(args)), ...);
+}
+
+// "(?,?),(?,?)" - for a multi-row VALUES, or with rowCount 1 for an IN list.
+auto valuesClause(std::size_t rowCount, std::size_t columnCount) -> std::string;
+
+// Whole batches use queryFor(batchRows), leftovers queryFor(1)
+template <typename T, typename QueryFn, typename BindFn>
+void executeBatched(QueryFn queryFor, std::size_t batchRows, const std::vector<T>& rows, BindFn bind);
+
+// Delete the rows for `keys` then insert `rows`, in one transaction. Keys with no rows get cleared.
+template <typename T, typename BindFn>
+void replaceRows(std::string_view table, std::string_view keyColumn, std::initializer_list<const char*> columns, std::size_t batchRows, const std::vector<uint32>& keys, const std::vector<T>& rows, BindFn bind);
+
 auto escapeString(std::string_view str) -> std::string;
 auto escapeString(const std::string& str) -> std::string;
 auto escapeString(const char* str) -> std::string;
@@ -122,6 +143,76 @@ auto preparedStmt(const std::string& rawQuery, Args&&... args) -> std::unique_pt
 
     const auto params = detail::lowerBoundValues(std::forward<Args>(args)...);
     return getDatabase().execute(rawQuery, params);
+}
+
+template <typename T, typename QueryFn, typename BindFn>
+void executeBatched(QueryFn queryFor, std::size_t batchRows, const std::vector<T>& rows, BindFn bind)
+{
+    TracyZoneScoped;
+
+    const auto whole = rows.size() - (rows.size() % batchRows);
+
+    if (whole > 0)
+    {
+        const auto batchQuery = queryFor(batchRows);
+
+        for (std::size_t offset = 0; offset < whole; offset += batchRows)
+        {
+            std::vector<BoundValue> params;
+
+            for (std::size_t i = 0; i < batchRows; ++i)
+            {
+                bind(params, rows[offset + i]);
+            }
+
+            getDatabase().execute(batchQuery, params);
+        }
+    }
+
+    if (whole < rows.size())
+    {
+        const auto singleQuery = queryFor(1);
+
+        for (std::size_t offset = whole; offset < rows.size(); ++offset)
+        {
+            std::vector<BoundValue> params;
+            bind(params, rows[offset]);
+
+            getDatabase().execute(singleQuery, params);
+        }
+    }
+}
+
+template <typename T, typename BindFn>
+void replaceRows(std::string_view table, std::string_view keyColumn, std::initializer_list<const char*> columns, std::size_t batchRows, const std::vector<uint32>& keys, const std::vector<T>& rows, BindFn bind)
+{
+    if (keys.empty())
+    {
+        return;
+    }
+
+    transaction(
+        [&]()
+        {
+            executeBatched([&](std::size_t n)
+                           {
+                               return fmt::format("DELETE FROM {} WHERE {} IN {}", table, keyColumn, valuesClause(1, n));
+                           },
+                           batchRows,
+                           keys,
+                           [](std::vector<BoundValue>& params, uint32 key)
+                           {
+                               bindValues(params, key);
+                           });
+
+            executeBatched([&](std::size_t n)
+                           {
+                               return fmt::format("INSERT INTO {} ({}) VALUES {}", table, fmt::join(columns.begin(), columns.end(), ", "), valuesClause(n, columns.size()));
+                           },
+                           batchRows,
+                           rows,
+                           bind);
+        });
 }
 
 template <typename... Args>

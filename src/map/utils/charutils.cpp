@@ -28,10 +28,14 @@
 #include "common/vana_time.h"
 #include <fmt/ranges.h>
 
+#include <common/database.h>
 #include <common/types/hash_map.h>
 
 #include <array>
 #include <chrono>
+
+#include "map_constants.h"
+#include "persist_batch.h"
 
 #include "lua/luautils.h"
 
@@ -2311,6 +2315,8 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID, Recalculate recalculate)
 
         PChar->inventorySyncState().queueEquipChange(LOC_INVENTORY, 0, static_cast<SLOTTYPE>(equipSlotID), PItem, Equipping::No);
 
+        PChar->setPersist(CharPersist::Equip | CharPersist::Look);
+
         if (recalculate)
         {
             charutils::BuildingCharSkillsTable(PChar);
@@ -3440,6 +3446,8 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 contai
 
     PChar->updatemask |= UPDATE_HP;
     PChar->updatemask |= UPDATE_LOOK;
+
+    PChar->setPersist(CharPersist::Equip | CharPersist::Look);
 }
 
 /************************************************************************
@@ -3490,7 +3498,6 @@ void CheckValidEquipment(CCharEntity* PChar)
     }
 
     BuildingCharWeaponSkills(PChar);
-    PChar->RequestPersist(CHAR_PERSIST::EQUIP);
 }
 
 void RemoveAllEquipment(CCharEntity* PChar)
@@ -3510,7 +3517,6 @@ void RemoveAllEquipment(CCharEntity* PChar)
     CheckUnarmedWeapon(PChar);
 
     BuildingCharWeaponSkills(PChar);
-    PChar->RequestPersist(CHAR_PERSIST::EQUIP);
 }
 
 /************************************************************************
@@ -5916,6 +5922,61 @@ void SaveCharPosition(CCharEntity* PChar)
                      PChar->id);
 }
 
+void PersistCharVars(const std::vector<CharVarChange>& rows)
+{
+    TracyZoneScoped;
+
+    if (rows.empty())
+    {
+        return;
+    }
+
+    db::transaction(
+        [&]()
+        {
+            for (const auto& row : rows)
+            {
+                PersistCharVar(row.charid, row.name, row.value, row.expiry);
+            }
+        });
+}
+
+void SaveCharPositions(const std::vector<CharPosition>& rows)
+{
+    TracyZoneScoped;
+
+    if (rows.empty())
+    {
+        return;
+    }
+
+    // not an upsert: `chars` has a BEFORE INSERT trigger that fires even on update
+    db::transaction(
+        [&]()
+        {
+            // UNION ALL, not VALUES: a table constructor fails here in a prepared statement.
+            const auto query = [](std::size_t rowCount)
+            {
+                std::string derived = "SELECT ? AS charid, ? AS pos_rot, ? AS pos_x, ? AS pos_y, ? AS pos_z, ? AS boundary";
+
+                for (std::size_t row = 1; row < rowCount; ++row)
+                {
+                    derived += " UNION ALL SELECT ?,?,?,?,?,?";
+                }
+
+                return fmt::format("UPDATE chars c JOIN ({}) v ON v.charid = c.charid "
+                                   "SET c.pos_rot = v.pos_rot, c.pos_x = v.pos_x, c.pos_y = v.pos_y, "
+                                   "c.pos_z = v.pos_z, c.boundary = v.boundary",
+                                   derived);
+            };
+
+            db::executeBatched(query, kPersistBatchRows, rows, [](std::vector<db::BoundValue>& params, const CharPosition& row)
+                               {
+                                   db::bindValues(params, row.charid, row.rotation, row.x, row.y, row.z, row.boundary);
+                               });
+        });
+}
+
 /* TODO: Move linkshell persistence here
 void SaveCharLinkshells(CCharEntity* PChar)
 {
@@ -6171,66 +6232,111 @@ void SavePrevZoneLineID(CCharEntity* PChar, uint32 ZoneLineID)
                      PChar->id);
 }
 
+auto BuildCharEquipSlots(const CCharEntity* PChar) -> std::vector<CharEquipSlot>
+{
+    std::vector<CharEquipSlot> rows;
+
+    for (uint8 i = 0; i < 18; ++i)
+    {
+        if (const auto eloc = PChar->equipLocation(i))
+        {
+            rows.push_back({ .charid = PChar->id, .equipSlotId = i, .slotId = eloc->Slot, .containerId = static_cast<uint8>(eloc->Container) });
+        }
+    }
+
+    return rows;
+}
+
 void SaveCharEquip(CCharEntity* PChar)
 {
     TracyZoneScoped;
 
-    for (uint8 i = 0; i < 18; ++i)
-    {
-        auto eloc = PChar->equipLocation(i);
-        if (!eloc)
-        {
-            db::preparedStmt("DELETE FROM char_equip WHERE charid = ? AND equipslotid = ? LIMIT 1", PChar->id, i);
-        }
-        else
-        {
-            db::preparedStmt("INSERT INTO char_equip "
-                             "SET charid = ?, equipslotid = ?, slotid = ?, containerid = ? "
-                             "ON DUPLICATE KEY UPDATE slotid  = ?, containerid = ?",
-                             PChar->id,
-                             i,
-                             eloc->Slot,
-                             static_cast<uint8>(eloc->Container),
-                             eloc->Slot,
-                             static_cast<uint8>(eloc->Container));
-        }
-    }
+    SaveCharEquips({ PChar->id }, BuildCharEquipSlots(PChar));
 }
 
-void SaveCharLook(CCharEntity* PChar)
+void SaveCharEquips(const std::vector<uint32>& replaceFor, const std::vector<CharEquipSlot>& rows)
 {
     TracyZoneScoped;
 
-    look_t* look = (PChar->getStyleLocked() ? &PChar->mainlook : &PChar->look);
-    db::preparedStmt("UPDATE char_look "
-                     "SET head = ?, body = ?, hands = ?, legs = ?, feet = ?, main = ?, sub = ?, ranged = ? "
-                     "WHERE charid = ?",
-                     look->head,
-                     look->body,
-                     look->hands,
-                     look->legs,
-                     look->feet,
-                     look->main,
-                     look->sub,
-                     look->ranged,
-                     PChar->id);
+    db::replaceRows("char_equip", "charid", { "charid", "equipslotid", "slotid", "containerid" }, kPersistBatchRows, replaceFor, rows, [](std::vector<db::BoundValue>& params, const CharEquipSlot& row)
+                    {
+                        db::bindValues(params, row.charid, row.equipSlotId, row.slotId, row.containerId);
+                    });
+}
 
-    db::preparedStmt("UPDATE chars SET isstylelocked = ? WHERE charid = ?", PChar->getStyleLocked() ? 1 : 0, PChar->id);
+auto BuildCharAppearance(const CCharEntity* PChar) -> CharAppearance
+{
+    const look_t* look = (PChar->getStyleLocked() ? &PChar->mainlook : &PChar->look);
 
-    db::preparedStmt("INSERT INTO char_style (charid, head, body, hands, legs, feet, main, sub, ranged) "
-                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE "
-                     "charid = VALUES(charid), head = VALUES(head), body = VALUES(body), "
-                     "hands = VALUES(hands), legs = VALUES(legs), feet = VALUES(feet), "
-                     "main = VALUES(main), sub = VALUES(sub), ranged = VALUES(ranged)",
-                     PChar->id,
-                     PChar->styleItems[SLOT_HEAD],
-                     PChar->styleItems[SLOT_BODY],
-                     PChar->styleItems[SLOT_HANDS],
-                     PChar->styleItems[SLOT_LEGS],
-                     PChar->styleItems[SLOT_FEET],
-                     PChar->styleItems[SLOT_MAIN],
-                     PChar->styleItems[SLOT_SUB],
-                     PChar->styleItems[SLOT_RANGED]);
+    return {
+        .charid      = PChar->id,
+        .look        = { look->head, look->body, look->hands, look->legs, look->feet, look->main, look->sub, look->ranged },
+        .styleItems  = { PChar->styleItems[SLOT_HEAD], PChar->styleItems[SLOT_BODY], PChar->styleItems[SLOT_HANDS], PChar->styleItems[SLOT_LEGS], PChar->styleItems[SLOT_FEET], PChar->styleItems[SLOT_MAIN], PChar->styleItems[SLOT_SUB], PChar->styleItems[SLOT_RANGED] },
+        .styleLocked = PChar->getStyleLocked(),
+    };
+}
+
+void SaveCharAppearances(const std::vector<CharAppearance>& rows)
+{
+    TracyZoneScoped;
+
+    if (rows.empty())
+    {
+        return;
+    }
+
+    const auto bindSlots = [](std::vector<db::BoundValue>& params, uint32 charid, const std::array<uint16, 8>& slots)
+    {
+        db::bindValues(params, charid);
+        params.insert(params.end(), slots.begin(), slots.end());
+    };
+
+    db::transaction(
+        [&]()
+        {
+            const auto lookQuery = [](std::size_t rowCount)
+            {
+                return fmt::format("INSERT INTO char_look (charid, head, body, hands, legs, feet, main, sub, ranged) VALUES {} "
+                                   "ON DUPLICATE KEY UPDATE head = VALUES(head), body = VALUES(body), hands = VALUES(hands), "
+                                   "legs = VALUES(legs), feet = VALUES(feet), main = VALUES(main), sub = VALUES(sub), ranged = VALUES(ranged)",
+                                   db::valuesClause(rowCount, 9));
+            };
+
+            db::executeBatched(lookQuery, kPersistBatchRows, rows, [&](std::vector<db::BoundValue>& params, const CharAppearance& row)
+                               {
+                                   bindSlots(params, row.charid, row.look);
+                               });
+
+            const auto styleLockQuery = [](std::size_t rowCount)
+            {
+                std::string derived = "SELECT ? AS charid, ? AS isstylelocked";
+
+                for (std::size_t row = 1; row < rowCount; ++row)
+                {
+                    derived += " UNION ALL SELECT ?,?";
+                }
+
+                return fmt::format("UPDATE chars c JOIN ({}) v ON v.charid = c.charid SET c.isstylelocked = v.isstylelocked", derived);
+            };
+
+            db::executeBatched(styleLockQuery, kPersistBatchRows, rows, [](std::vector<db::BoundValue>& params, const CharAppearance& row)
+                               {
+                                   db::bindValues(params, row.charid, static_cast<uint8>(row.styleLocked ? 1 : 0));
+                               });
+
+            const auto styleQuery = [](std::size_t rowCount)
+            {
+                return fmt::format("INSERT INTO char_style (charid, head, body, hands, legs, feet, main, sub, ranged) VALUES {} "
+                                   "ON DUPLICATE KEY UPDATE head = VALUES(head), body = VALUES(body), hands = VALUES(hands), "
+                                   "legs = VALUES(legs), feet = VALUES(feet), main = VALUES(main), sub = VALUES(sub), ranged = VALUES(ranged)",
+                                   db::valuesClause(rowCount, 9));
+            };
+
+            db::executeBatched(styleQuery, kPersistBatchRows, rows, [&](std::vector<db::BoundValue>& params, const CharAppearance& row)
+                               {
+                                   bindSlots(params, row.charid, row.styleItems);
+                               });
+        });
 }
 
 /************************************************************************
@@ -8150,8 +8256,7 @@ void removeCharFromZone(CCharEntity* PChar)
         PChar->loc.zone->DecreaseZoneCounter(PChar);
     }
 
-    PChar->StatusEffectContainer->SaveStatusEffects(PChar->PSession->shuttingDown == 1);
-    PChar->PersistData();
+    persist::flush(PChar, PChar->PSession->shuttingDown == 1);
     charutils::SavePlayTime(PChar);
     charutils::SaveCharStats(PChar);
     charutils::SaveCharExp(PChar, PChar->GetMJob());

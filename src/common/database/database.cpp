@@ -23,6 +23,8 @@
 
 #include <common/database/query_validation.h>
 
+#include <fmt/ranges.h>
+
 #include <common/logging.h>
 #include <common/macros.h>
 #include <common/utils.h>
@@ -130,6 +132,32 @@ auto db::detail::validateQueryContent(const std::string& query) -> bool
     }
 
     return true;
+}
+
+auto db::valuesClause(std::size_t rowCount, std::size_t columnCount) -> std::string
+{
+    std::string tuple = "(";
+    for (std::size_t column = 0; column < columnCount; ++column)
+    {
+        tuple += (column == 0) ? "?" : ",?";
+    }
+
+    tuple += ")";
+
+    std::string clause;
+    clause.reserve(rowCount * (tuple.size() + 1));
+
+    for (std::size_t row = 0; row < rowCount; ++row)
+    {
+        if (row != 0)
+        {
+            clause += ",";
+        }
+
+        clause += tuple;
+    }
+
+    return clause;
 }
 
 auto db::escapeString(std::string_view str) -> std::string
