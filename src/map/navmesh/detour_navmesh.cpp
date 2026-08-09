@@ -21,6 +21,7 @@
 
 #include "detour_navmesh.h"
 
+#include <DetourCommon.h>
 #include <DetourNavMesh.h>
 #include <DetourNavMeshQuery.h>
 
@@ -82,6 +83,57 @@ struct NavMeshTileHeader
     dtTileRef tileRef;
     int       dataSize;
 };
+
+// Drop interior points within `eps` of the line between their kept neighbours (packed xyz triples).
+void dropCollinearPoints(std::vector<float>& points, float eps)
+{
+    if (points.size() < 9)
+    {
+        return;
+    }
+
+    std::vector<float> kept;
+    kept.reserve(points.size());
+    kept.push_back(points[0]);
+    kept.push_back(points[1]);
+    kept.push_back(points[2]);
+
+    for (size_t i = 3; i + 3 < points.size(); i += 3)
+    {
+        const size_t last  = kept.size() - 3;
+        const float  ax    = kept[last + 0];
+        const float  az    = kept[last + 2];
+        const float  bx    = points[i + 3];
+        const float  bz    = points[i + 5];
+        const float  px    = points[i + 0];
+        const float  pz    = points[i + 2];
+        const float  dx    = bx - ax;
+        const float  dz    = bz - az;
+        const float  lenSq = dx * dx + dz * dz;
+
+        float deviation = eps + 1.0f;
+        if (lenSq > 1e-6f)
+        {
+            const float t     = ((px - ax) * dx + (pz - az) * dz) / lenSq;
+            const float projX = ax + t * dx;
+            const float projZ = az + t * dz;
+            deviation         = std::sqrt((px - projX) * (px - projX) + (pz - projZ) * (pz - projZ));
+        }
+
+        if (deviation > eps)
+        {
+            kept.push_back(points[i + 0]);
+            kept.push_back(points[i + 1]);
+            kept.push_back(points[i + 2]);
+        }
+    }
+
+    const size_t n = points.size();
+    kept.push_back(points[n - 3]);
+    kept.push_back(points[n - 2]);
+    kept.push_back(points[n - 1]);
+    points.swap(kept);
+}
 
 } // namespace
 
@@ -290,7 +342,7 @@ auto DetourNavMesh::save(const std::string& path) const -> bool
     return true;
 }
 
-auto DetourNavMesh::findPath(const position_t& start, const position_t& end) -> Maybe<PathResult>
+auto DetourNavMesh::findPath(const position_t& start, const position_t& end, float clearance) -> Maybe<PathResult>
 {
     TracyZoneScoped;
 
@@ -392,6 +444,9 @@ auto DetourNavMesh::findPath(const position_t& start, const position_t& end) -> 
 
     // TODO: Detect local minima and re-try pathing with a larger buffer.
 
+    // Radius-0 mesh: findStraightPath leaves waypoints hard against walls; widen the corridor for the body.
+    straightPathCount = insetPathForBody(straightPathCount, clearance, filter);
+
     // Skip index 0 (the start position - we're already there)
     std::vector<pathpoint_t> outPoints;
     outPoints.reserve(straightPathCount - 1);
@@ -405,6 +460,209 @@ auto DetourNavMesh::findPath(const position_t& start, const position_t& end) -> 
     }
 
     return PathResult{ std::move(outPoints), isPartial };
+}
+
+auto DetourNavMesh::insetPathForBody(int pointCount, float clearance, const dtQueryFilter& filter) -> int
+{
+    // Point-sized agent, or nothing worth insetting.
+    if (!(clearance > 0.0f && pointCount >= 2 && navMeshQueryStraightPathPolyData_[0]))
+    {
+        return pointCount;
+    }
+
+    // Inset the center this far so the body edge (a hitbox radius in) clears too; ~retail's 1.5-2y corner berth.
+    constexpr float kBerthMargin = 1.5f;
+    const float     berth        = clearance + kBerthMargin;
+
+    std::vector<float> widened = densifyOffWalls(pointCount, berth, filter);
+    relaxTowardClearance(widened, berth, filter);
+
+    // Drop collinear interior points; only the ones that bow off a wall matter. Eps keeps only near-straight runs.
+    dropCollinearPoints(widened, 0.1f);
+
+    pointCount = static_cast<int>(widened.size() / 3);
+    for (int i = 0; i < pointCount * 3; ++i)
+    {
+        navMeshQueryStraightPathFloatData_[i] = widened[i];
+    }
+
+    return pointCount;
+}
+
+auto DetourNavMesh::densifyOffWalls(int pointCount, float berth, const dtQueryFilter& filter) -> std::vector<float>
+{
+    std::vector<float> widened;
+    widened.reserve(static_cast<size_t>(pointCount) * 3 * 4);
+    widened.push_back(navMeshQueryStraightPathFloatData_[0]);
+    widened.push_back(navMeshQueryStraightPathFloatData_[1]);
+    widened.push_back(navMeshQueryStraightPathFloatData_[2]);
+
+    float lastEmitted[3];
+    dtVcopy(lastEmitted, &navMeshQueryStraightPathFloatData_[0]);
+    dtPolyRef polyRef = navMeshQueryStraightPathPolyData_[0];
+
+    for (int i = 0; i + 1 < pointCount && widened.size() / 3 + 2 < kMaxNavPolys; ++i)
+    {
+        const float* from = &navMeshQueryStraightPathFloatData_[i * 3];
+        const float* to   = &navMeshQueryStraightPathFloatData_[(i + 1) * 3];
+
+        float segment[3];
+        dtVsub(segment, to, from);
+        segment[1]          = 0.0f;
+        const float segLen  = dtVlen(segment);
+        const int   steps   = std::clamp(static_cast<int>(segLen / (berth * 0.5f)) + 1, 2, 48);
+        const bool  lastSeg = (i + 2 == pointCount);
+
+        for (int step = 1; step <= steps && widened.size() / 3 + 1 < kMaxNavPolys; ++step)
+        {
+            const bool isEndpoint  = (step == steps);
+            const bool finalTarget = isEndpoint && lastSeg;
+
+            float sample[3];
+            if (isEndpoint)
+            {
+                dtVcopy(sample, to);
+            }
+            else
+            {
+                dtVlerp(sample, from, to, static_cast<float>(step) / static_cast<float>(steps));
+            }
+
+            dtPolyRef visited[kMaxQueryPolys];
+            int       visitedCount = 0;
+            float     onMesh[3];
+            if (dtStatusFailed(navMeshQuery_.moveAlongSurface(polyRef, lastEmitted, sample, &filter, onMesh, visited, &visitedCount, kMaxQueryPolys)))
+            {
+                continue;
+            }
+            if (visitedCount > 0)
+            {
+                polyRef = visited[visitedCount - 1];
+            }
+
+            // finalTarget is the mob's actual target, emitted as-is; every other sample is pushed off walls.
+            if (!finalTarget && isEndpoint)
+            {
+                // Corner: push out along the leg bisector; findDistanceToWall's normal is degenerate on a vertex.
+                const float* next = &navMeshQueryStraightPathFloatData_[(i + 2) * 3];
+                float        legPrev[3];
+                float        legNext[3];
+                dtVsub(legPrev, from, onMesh);
+                dtVsub(legNext, next, onMesh);
+                legPrev[1] = 0.0f;
+                legNext[1] = 0.0f;
+                if (dtVlen(legPrev) > 1e-4f && dtVlen(legNext) > 1e-4f)
+                {
+                    dtVnormalize(legPrev);
+                    dtVnormalize(legNext);
+                    float bisector[3];
+                    dtVadd(bisector, legPrev, legNext);
+                    if (dtVlen(bisector) >= 0.1f)
+                    {
+                        dtVnormalize(bisector);
+                        float target[3];
+                        dtVmad(target, onMesh, bisector, -berth);
+                        float pushed[3];
+                        if (dtStatusSucceed(navMeshQuery_.moveAlongSurface(polyRef, onMesh, target, &filter, pushed, visited, &visitedCount, kMaxQueryPolys)))
+                        {
+                            const float dy = pushed[1] - onMesh[1];
+                            if (dy > -berth && dy < berth)
+                            {
+                                dtVcopy(onMesh, pushed);
+                                if (visitedCount > 0)
+                                {
+                                    polyRef = visited[visitedCount - 1];
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else if (!finalTarget)
+            {
+                float wallDist   = 0.0f;
+                float hitPos[3]  = {};
+                float hitNorm[3] = {};
+                if (dtStatusSucceed(navMeshQuery_.findDistanceToWall(polyRef, onMesh, berth, &filter, &wallDist, hitPos, hitNorm)) && wallDist < berth)
+                {
+                    float target[3];
+                    dtVmad(target, onMesh, hitNorm, berth - wallDist);
+                    float pushed[3];
+                    if (dtStatusSucceed(navMeshQuery_.moveAlongSurface(polyRef, onMesh, target, &filter, pushed, visited, &visitedCount, kMaxQueryPolys)))
+                    {
+                        const float dy = pushed[1] - onMesh[1];
+                        if (dy > -berth && dy < berth)
+                        {
+                            dtVcopy(onMesh, pushed);
+                            if (visitedCount > 0)
+                            {
+                                polyRef = visited[visitedCount - 1];
+                            }
+                        }
+                    }
+                }
+            }
+
+            widened.push_back(onMesh[0]);
+            widened.push_back(onMesh[1]);
+            widened.push_back(onMesh[2]);
+            dtVcopy(lastEmitted, onMesh);
+        }
+    }
+
+    return widened;
+}
+
+auto DetourNavMesh::relaxTowardClearance(std::vector<float>& widened, float berth, const dtQueryFilter& filter) -> void
+{
+    // Lift any point still against a wall toward clearance; 8-way sampling handles the degenerate on-wall normal and bows corners away instead of cutting them.
+    static const float kAscentDirs[8][2] = { { 1.0f, 0.0f }, { 0.70711f, 0.70711f }, { 0.0f, 1.0f }, { -0.70711f, 0.70711f }, { -1.0f, 0.0f }, { -0.70711f, -0.70711f }, { 0.0f, -1.0f }, { 0.70711f, -0.70711f } };
+    constexpr float    kAscentStep       = 0.6f;
+    for (int iter = 0; iter < 4 && widened.size() >= 9; ++iter)
+    {
+        for (size_t i = 3; i + 3 < widened.size(); i += 3)
+        {
+            const std::array<float, 3> cur  = { widened[i], widened[i + 1], widened[i + 2] };
+            const auto                 poly = lookupPoly(cur, polyPickExt, filter);
+            if (!poly)
+            {
+                continue;
+            }
+
+            float hitPos[3]  = {};
+            float hitNorm[3] = {};
+            float bestClear  = 0.0f;
+            if (dtStatusFailed(navMeshQuery_.findDistanceToWall(poly->ref, cur.data(), berth, &filter, &bestClear, hitPos, hitNorm)) || bestClear >= berth)
+            {
+                continue; // off-mesh or already clear enough
+            }
+
+            float best[3];
+            dtVcopy(best, cur.data());
+            for (int d = 0; d < 8; ++d)
+            {
+                const float target[3] = { cur[0] + kAscentDirs[d][0] * kAscentStep, cur[1], cur[2] + kAscentDirs[d][1] * kAscentStep };
+                dtPolyRef   visited[kMaxQueryPolys];
+                int         visitedCount = 0;
+                float       cand[3];
+                if (dtStatusFailed(navMeshQuery_.moveAlongSurface(poly->ref, cur.data(), target, &filter, cand, visited, &visitedCount, kMaxQueryPolys)))
+                {
+                    continue;
+                }
+                const dtPolyRef candRef = visitedCount > 0 ? visited[visitedCount - 1] : poly->ref;
+                float           clear   = 0.0f;
+                if (dtStatusSucceed(navMeshQuery_.findDistanceToWall(candRef, cand, berth, &filter, &clear, hitPos, hitNorm)) && clear > bestClear)
+                {
+                    bestClear = clear;
+                    dtVcopy(best, cand);
+                }
+            }
+
+            widened[i]     = best[0];
+            widened[i + 1] = best[1];
+            widened[i + 2] = best[2];
+        }
+    }
 }
 
 auto DetourNavMesh::findRandomPosition(const position_t& start, float maxRadius) const -> Maybe<position_t>

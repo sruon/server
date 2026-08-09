@@ -39,7 +39,7 @@ public:
     explicit NavPathBuilder(NavMesh& navMesh);
 
     // Path from `start` to `end`, falling back to the nearest on-mesh point at either end, or nullopt when no path exists.
-    auto findPath(const position_t& start, const position_t& end) const -> Maybe<PathResult>;
+    auto findPath(const position_t& start, const position_t& end, float clearance = 0.0f) const -> Maybe<PathResult>;
 
     // Pick 1..maxTurns roam destinations within `maxRadius`, or nullopt on hard navmesh failure.
     auto findRoamTurnPoints(const position_t& start, float maxRadius, uint8 maxTurns) const -> Maybe<std::vector<position_t>>;

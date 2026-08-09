@@ -44,7 +44,7 @@ public:
 
     // NavMesh
 
-    auto findPath(const position_t& start, const position_t& end) -> Maybe<PathResult> override;
+    auto findPath(const position_t& start, const position_t& end, float clearance) -> Maybe<PathResult> override;
     auto findRandomPosition(const position_t& start, float maxRadius) const -> Maybe<position_t> override;
     auto validPosition(const position_t& position) const -> bool override;
     auto findClosestValidPoint(const position_t& position) const -> Maybe<position_t> override;
@@ -66,6 +66,13 @@ private:
 
     // Nearest poly to `pos` within `extents`, or nullopt on failure or when none is in range.
     auto lookupPoly(const std::array<float, 3>& pos, const float* extents, const dtQueryFilter& filter) const -> Maybe<PolyLookup>;
+
+    // Inset the straight path off walls so a body of `clearance` clears; returns the new point count (clearance <= 0 leaves it untouched).
+    auto insetPathForBody(int pointCount, float clearance, const dtQueryFilter& filter) -> int;
+
+    // insetPathForBody passes: subdivide each segment and push the samples off walls, then relax any point still against one.
+    auto densifyOffWalls(int pointCount, float berth, const dtQueryFilter& filter) -> std::vector<float>;
+    auto relaxTowardClearance(std::vector<float>& widened, float berth, const dtQueryFilter& filter) -> void;
 
     // Convert between FFXI space (left-handed, Y up) and Detour space (Y and Z negated).
     static auto toDetour(const position_t& p) -> std::array<float, 3>;
