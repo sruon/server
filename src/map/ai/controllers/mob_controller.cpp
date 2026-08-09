@@ -1184,17 +1184,18 @@ void CMobController::Move()
         }
     }
 
-    // In range and stationary: face the target, but keep checking LOS so a mob cannot attack through a thin wall.
+    // A mob at melee range plants and attacks; it does not reposition while the target stays within range, at any angle. It runs only once the target is beyond range.
     const bool inAttackRange = currentDistance <= attackRange;
+
     if (!PMob->PAI->CanFollowPath())
     {
         FaceTarget();
         return;
     }
 
-    if (inAttackRange && !isFollowingPath && CanSeeTargetCached())
+    if (inAttackRange && CanSeeTargetCached())
     {
-        // Settle and attack unless the mob must not close, or the navmesh route is a detour worth walking instead.
+        // Plant and attack unless the mob must not close, or the navmesh route is a detour worth walking instead. This fires even mid-chase, so a mob that runs into range stops here rather than closing to contact.
         const bool canMove = PMob->GetSpeed() != 0 && PMob->getMobMod(xi::MobMod::NoMove) == 0 && m_Tick >= m_LastSpecialTime;
         if (!canMove || !ShouldCloseToTarget(currentDistance))
         {
@@ -1212,9 +1213,10 @@ void CMobController::Move()
             lastDirectProbePos_       = PMob->loc.p;
             lastDirectProbeTargetPos_ = PTarget->loc.p;
 
-            const auto projectedPosition = nearPosition(PTarget->loc.p, 0, rotationToRadian(worldAngle(PMob->loc.p, PTarget->loc.p)));
-            PMob->PAI->PathFind->PathTo(projectedPosition, PATHFLAG_RUN);
-            lastDirectProbeWasDirect_ = PMob->PAI->PathFind->IsPathDirect();
+            // stop in melee range
+            PMob->PAI->PathFind->PathInRange(PTarget->loc.p, closeDistance, PATHFLAG_RUN);
+            // tighter than 2.0 so corner detours aren't treated as direct
+            lastDirectProbeWasDirect_ = PMob->PAI->PathFind->IsPathDirect(1.1f);
             if (lastDirectProbeWasDirect_)
             {
                 PMob->PAI->PathFind->Clear();
@@ -1255,13 +1257,16 @@ void CMobController::Move()
         return;
     }
 
+    // Re-aim when the target drifts this far from where the path was headed, so it keeps tracking a moving target.
+    constexpr float kChaseRepathDrift = 2.0f;
+
     // Re-path against attackRange, with lost sight on its own short leash so the mob keeps trying without hammering findPath.
     bool needNewPath   = false;
     bool isStuckRepath = false;
     bool targetMoved   = false;
     if (isFollowingPath)
     {
-        needNewPath = !isWithinDistance(PMob->PAI->PathFind->GetDestination(), PTarget->loc.p, attackRange);
+        needNewPath = !isWithinDistance(PMob->PAI->PathFind->GetDestination(), PTarget->loc.p, kChaseRepathDrift);
     }
     else
     {
@@ -1270,9 +1275,10 @@ void CMobController::Move()
         const bool cooldownDone    = m_Tick >= rePathCooldownEnd_;
         const bool losCooldownDone = m_Tick >= lostSightRePathCooldownEnd_;
 
-        targetMoved   = !isWithinDistance(lastRePathTarget_, PTarget->loc.p, attackRange);
-        needNewPath   = (outOfRange && (targetMoved || cooldownDone)) || (lostLOS && (targetMoved || losCooldownDone));
-        isStuckRepath = needNewPath && !targetMoved && cooldownDone;
+        targetMoved = !isWithinDistance(lastRePathTarget_, PTarget->loc.p, kChaseRepathDrift);
+        needNewPath = (outOfRange && (targetMoved || cooldownDone)) || (lostLOS && (targetMoved || losCooldownDone));
+        // Only "stuck" when it genuinely can't reach a distant target; within attack range it is already there.
+        isStuckRepath = needNewPath && !targetMoved && cooldownDone && currentDistance > attackRange;
     }
 
     if (needNewPath)
@@ -1291,11 +1297,16 @@ void CMobController::Move()
             stuckRePathCount_ = 0;
         }
 
-        if (stuckRePathCount_ >= 2 && PMob->getMobMod(xi::MobMod::NoStuckTeleport) == 0)
+        if (stuckRePathCount_ >= 2 && currentDistance > attackRange && PMob->getMobMod(xi::MobMod::NoStuckTeleport) == 0)
         {
             PMob->PAI->PathFind->WarpTo(PTarget->loc.p, closeDistance);
             stuckRePathCount_  = 0;
             rePathCooldownEnd_ = timer::time_point::min();
+        }
+        else if (CanSeeTargetCached())
+        {
+            // run flat-out at the target; no stop-short, so the stepper can't ease off and stall outside melee against a runner. The melee-range check above is the discrete stop.
+            PMob->PAI->PathFind->PathTo(PTarget->loc.p, PATHFLAG_RUN);
         }
         else
         {
