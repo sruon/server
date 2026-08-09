@@ -31,9 +31,12 @@
 #include <common/logging.h>
 #include <common/utils.h>
 
+#include <map/map_constants.h> // kLogicUpdateInterval
+
 #include <map/entities/mob_entity.h> // xi::RoamFlag::Worm
 
 #include <algorithm>
+#include <chrono>
 #include <memory>
 
 namespace
@@ -41,6 +44,9 @@ namespace
 
 // Cap for AddPoints; patrol paths may exceed it, other callers are truncated with a warning.
 constexpr size_t kMaxPathPoints = 50;
+
+// Speed byte to yalms/sec, ~byte/19 from retail captures.
+constexpr float kYalmsPerSecondPerSpeed = 1.0f / 19.0f;
 
 } // namespace
 
@@ -268,42 +274,56 @@ auto CPathFind::FollowPath(timer::time_point tick) -> void
         return;
     }
 
-    // Walk through waypoints already arrived at, stopping at the first one still to step toward.
-    pathpoint_t targetPoint{};
+    // Spend the whole tick's budget across as many waypoints as we reach, so a dense (berth-inset) path doesn't throttle the mob to one waypoint per tick.
+    const bool run         = (pathFlags_ & PATHFLAG_RUN) != 0;
+    const bool speedChange = owner_->baseSpeed() != owner_->updateSpeed(run);
+
+    float       budget   = StepBudget();
+    position_t& ownerPos = owner_->position();
+
     while (!path_.consumed())
     {
-        targetPoint = path_.current();
+        const pathpoint_t targetPoint  = path_.current();
+        const bool        isFinalPoint = path_.atLastIndex();
 
-        // Only the final waypoint stops short; corners must be hit precisely or we clip the wall the navmesh inset us from.
-        const bool isFinalPoint = path_.atLastIndex();
-        if (!AtPoint(targetPoint.position, isFinalPoint))
+        if (AtPoint(targetPoint.position, isFinalPoint))
+        {
+            onPoint_ = true;
+
+            if (targetPoint.setRotation)
+            {
+                ownerPos.rotation = targetPoint.position.rotation;
+                owner_->markPositionDirty();
+            }
+
+            if (targetPoint.wait != 0s)
+            {
+                // Stop here until the wait elapses; the next FollowPath() resumes.
+                timeAtPoint_ = tick + targetPoint.wait;
+                break;
+            }
+
+            owner_->onPathPoint();
+            path_.advance();
+            continue;
+        }
+
+        if (budget <= 0.0f)
         {
             break;
         }
 
-        onPoint_ = true;
-
-        if (targetPoint.setRotation)
-        {
-            owner_->position().rotation = targetPoint.position.rotation;
-            owner_->markPositionDirty();
-        }
-
-        if (targetPoint.wait != 0s)
-        {
-            // Stop here until the wait elapses; the next FollowPath() resumes.
-            timeAtPoint_ = tick + targetPoint.wait;
-            return;
-        }
-
-        owner_->onPathPoint();
-        path_.advance();
+        // Stop short only for the last waypoint so corners are hit precisely.
+        const bool  steppingToFinal = path_.atOrPastLastIndex();
+        const float stopShort       = steppingToFinal ? distanceFromPoint_ : 0.0f;
+        const float moved           = pathfind::stepTowards(ownerPos, targetPoint.position, budget, stopShort);
+        distanceMoved_ += moved;
+        budget -= (moved < 0.0f) ? -moved : moved;
     }
 
-    // Stop short only for the last waypoint so corners are rounded precisely.
-    const bool  steppingToFinal = path_.atOrPastLastIndex();
-    const float stopShort       = steppingToFinal ? distanceFromPoint_ : 0.0f;
-    StepToInternal(targetPoint.position, pathFlags_ & PATHFLAG_RUN, stopShort);
+    ownerPos.moving += speedChange ? 0x28 : 0x35;
+    ownerPos.moving %= 0x2000;
+    owner_->markPositionDirty();
 
     if (path_.consumed())
     {
@@ -319,25 +339,25 @@ auto CPathFind::StepTo(const position_t& pos, bool run) -> void
     StepToInternal(pos, run, distanceFromPoint_);
 }
 
+auto CPathFind::StepBudget() const -> float
+{
+    // Burrowing worms report speed 0; give them a floor.
+    const auto  baseSpeed = owner_->baseSpeed();
+    const float speed     = (owner_->isMobEntity() && baseSpeed == 0 && ((roamFlags_ & xi::RoamFlag::Worm) != xi::RoamFlag::None))
+                                ? 20.0f
+                                : static_cast<float>(baseSpeed);
+
+    // Yalms to move this tick: ground speed (speed * kYalmsPerSecondPerSpeed) over one logic tick.
+    return speed * kYalmsPerSecondPerSpeed * std::chrono::duration<float>(kLogicUpdateInterval).count();
+}
+
 auto CPathFind::StepToInternal(const position_t& pos, bool run, float stopShort) -> void
 {
     TracyZoneScoped;
     TracyZoneString(owner_->name());
 
-    const bool speedChange = owner_->baseSpeed() != owner_->updateSpeed(run);
-
-    // Worms underground get a synthetic speed (their normal speed is 0).
-    const float speed = [&]() -> float
-    {
-        const auto baseSpeed = owner_->baseSpeed();
-        if (owner_->isMobEntity() && baseSpeed == 0 && ((roamFlags_ & xi::RoamFlag::Worm) != xi::RoamFlag::None))
-        {
-            return 20.0f;
-        }
-        return static_cast<float>(baseSpeed);
-    }();
-
-    const float stepDistance = speed / (run ? 50.0f : 40.0f);
+    const bool  speedChange  = owner_->baseSpeed() != owner_->updateSpeed(run);
+    const float stepDistance = StepBudget();
 
     // Kinematics live in pathfind_step so tests can exercise the exact math; stepTowards() also faces the owner.
     position_t& ownerPos = owner_->position();
@@ -361,7 +381,7 @@ auto CPathFind::FindPathInternal(const position_t& start, const position_t& end)
     }
 
     const pathfind::NavPathBuilder builder{ navMesh() };
-    auto                           built = builder.findPath(start, end);
+    auto                           built = builder.findPath(start, end, owner_->hitboxRadius());
 
     if (!built)
     {
@@ -471,7 +491,38 @@ auto CPathFind::IsPathDirect(float ratio) const -> bool
     {
         return false;
     }
-    return path_.isWithinRatio(owner_->position(), ratio);
+
+    if (!path_.isWithinRatio(owner_->position(), ratio))
+    {
+        return false;
+    }
+
+    // A path that bows around an obstacle can pass the ratio test but isn't a straight shot; reject it if any waypoint sits more than kDirectMaxDeviation off the line to the goal.
+    constexpr float   kDirectMaxDeviation = 1.0f;
+    const position_t& from                = owner_->position();
+    const position_t& dest                = path_.destination();
+    const float       dx                  = dest.x - from.x;
+    const float       dz                  = dest.z - from.z;
+    const float       lenSq               = dx * dx + dz * dz;
+    if (lenSq < 0.01f)
+    {
+        return true;
+    }
+
+    for (const auto& point : path_.points())
+    {
+        const float t     = ((point.position.x - from.x) * dx + (point.position.z - from.z) * dz) / lenSq;
+        const float projX = from.x + t * dx;
+        const float projZ = from.z + t * dz;
+        const float offX  = point.position.x - projX;
+        const float offZ  = point.position.z - projZ;
+        if (offX * offX + offZ * offZ > kDirectMaxDeviation * kDirectMaxDeviation)
+        {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 auto CPathFind::ChunkCount() const -> int

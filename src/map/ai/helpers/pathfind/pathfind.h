@@ -133,6 +133,9 @@ private:
     // Find a random path around the given point.
     auto FindRandomPath(const position_t& start, float maxRadius, uint8 maxTurns, xi::RoamFlag roamFlags) -> bool;
 
+    // Yalms to move this tick at the mob's live (dynamic) ground speed.
+    auto StepBudget() const -> float;
+
     // Core of StepTo, settling `stopShort` yalms short of `pos`.
     auto StepToInternal(const position_t& pos, bool run, float stopShort) -> void;
 

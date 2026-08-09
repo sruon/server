@@ -23,6 +23,7 @@
 
 #include <common/utils.h>
 
+#include <cmath>
 #include <limits>
 
 namespace pathfind
@@ -119,16 +120,31 @@ auto Path::pruneTailWithin(float within) -> void
         return;
     }
 
-    // Drop waypoints within `within` of the destination so the entity stops short of the destination tile.
+    // Drop tail waypoints within `within` so the entity stops short, keeping real bends.
     const position_t destinationPos = points_.back().position;
-    while (points_.size() > 1)
+    while (points_.size() > 2)
     {
-        const position_t& penultimate = points_[points_.size() - 2].position;
+        const size_t      penIdx      = points_.size() - 2;
+        const position_t& penultimate = points_[penIdx].position;
         if (distance(destinationPos, penultimate) > within)
         {
             break;
         }
-        points_.erase(points_.end() - 2);
+
+        // Angle at the penultimate between its incoming leg and the leg to the destination.
+        const position_t& before = points_[penIdx - 1].position;
+        const float       ax     = penultimate.x - before.x;
+        const float       az     = penultimate.z - before.z;
+        const float       bx     = destinationPos.x - penultimate.x;
+        const float       bz     = destinationPos.z - penultimate.z;
+        const float       al     = std::sqrt(ax * ax + az * az);
+        const float       bl     = std::sqrt(bx * bx + bz * bz);
+        if (al > 1e-4f && bl > 1e-4f && (ax * bx + az * bz) / (al * bl) < 0.98f)
+        {
+            break; // real bend: a corner to keep
+        }
+
+        points_.erase(points_.begin() + static_cast<std::ptrdiff_t>(penIdx));
     }
 }
 

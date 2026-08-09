@@ -62,8 +62,7 @@ auto stepTowards(position_t& pos, const position_t& target, float stepDistance, 
 
     if (distanceTo <= stopShort + stepDistance)
     {
-        // Close enough to settle this tick.
-        const float advance = distanceTo - stopShort;
+        const float advance = std::max(distanceTo - stopShort, 0.0f);
 
         if (stopShort == 0.0f)
         {
