@@ -69,7 +69,7 @@ void GP_CLI_COMMAND_SHOP_SELL_SET::process(MapSession* PSession, CCharEntity* PC
     uint16      itemId   = PChar->Container->getItemID(PChar->Container->getExSize());
     const uint8 slotId   = PChar->Container->getInvSlotID(PChar->Container->getExSize());
 
-    if (const CItem* PGilItem = PChar->getStorage(LOC_INVENTORY)->GetItem(0); !PGilItem || !PGilItem->isType(ITEM_CURRENCY))
+    if (const CItem* PGilItem = PChar->getStorage(LOC_INVENTORY)->GetItem(0); !PGilItem || !PGilItem->isType(ITEM_CURRENCY) || PGilItem->isBusy() || PGilItem->getReserve() > 0)
     {
         ShowWarning("GP_CLI_COMMAND_SHOP_SELL_SET: Player %s trying to sell an item without valid gil!", PChar->getName());
         return;
@@ -121,7 +121,10 @@ void GP_CLI_COMMAND_SHOP_SELL_SET::process(MapSession* PSession, CCharEntity* PC
         return;
     }
 
-    charutils::UpdateItem(PChar, LOC_INVENTORY, 0, cost);
+    if (charutils::UpdateItem(PChar, LOC_INVENTORY, 0, cost) == 0)
+    {
+        ShowErrorFmt("GP_CLI_COMMAND_SHOP_SELL_SET: {} sold item {} but was not paid {} gil", PChar->getName(), itemId, cost);
+    }
     // TODO: Don't pass around Scheduler& through PSession
     auditSale(*PSession->scheduler, PChar, itemId, quantity, unitPrice);
     ShowInfo("GP_CLI_COMMAND_SHOP_SELL_SET: Player '%s' sold %u of itemID %u (Total: %u gil) [to VENDOR] ", PChar->getName(), quantity, itemId, cost);
