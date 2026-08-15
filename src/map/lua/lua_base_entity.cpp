@@ -5790,7 +5790,7 @@ uint8 CLuaBaseEntity::storeWithPorterMoogle(uint16 slipId, const sol::table& ext
         }
 
         const auto* PStorable = PChar->getStorage(LOC_INVENTORY)->GetItem(slotId);
-        if (PStorable && (PStorable->isBusy() || PStorable->getReserve() > 0))
+        if (PStorable && PStorable->isBusy())
         {
             ShowWarningFmt("CLuaBaseEntity::storeWithPorterMoogle: {} trying to store a claimed item {}", PChar->getName(), itemId);
             return 0;
@@ -5834,8 +5834,6 @@ uint8 CLuaBaseEntity::storeWithPorterMoogle(uint16 slipId, const sol::table& ext
                 CItem* PItem = PChar->getStorage(LOC_INVENTORY)->GetItem(slotId);
                 if (PItem)
                 {
-                    PItem->setReserve(0);
-
                     auto transaction = ItemClaimTransaction::start(PChar);
                     if (!transaction || !transaction->take(LOC_INVENTORY, slotId, 1) || !transaction->commit())
                     {
@@ -10318,7 +10316,7 @@ auto CLuaBaseEntity::addGuildPoints(const uint8 guildId, const uint8 slotId) con
         }
 
         const CGuild* PGuild              = guildutils::GetGuild(guildId);
-        auto [itemQuantity, earnedPoints] = PGuild->addGuildPoints(PChar, transaction->item(slotId));
+        auto [itemQuantity, earnedPoints] = PGuild->addGuildPoints(PChar, transaction->item(slotId), transaction->quantity(slotId));
 
         return { itemQuantity, earnedPoints };
     }
