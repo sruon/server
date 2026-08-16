@@ -94,7 +94,7 @@ void GP_CLI_COMMAND_SHOP_BUY::process(MapSession* PSession, CCharEntity* PChar) 
         return;
     }
 
-    // Paying claims the gil for the rest of the purchase, and refuses a balance that is short
+    // pay() claims the gil and refuses a balance that is short
     const auto cost = price * quantity;
     if (!transaction->pay(cost) || !transaction->give(LOC_INVENTORY, itemId, quantity) || !transaction->commit())
     {
