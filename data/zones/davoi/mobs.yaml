@@ -2515,107 +2515,107 @@ spawns:
     level:    [45, 47]
   17387526:
     template: Orcish_Fighter
-    at:       [240.436, 3.499, -69.191, 42]
+    region:   e_6
     level:    [22, 23]
   17387527:
     template: Orcish_Fighter
-    at:       [237.030, 3.498, -80.342, 89]
+    region:   e_6
     level:    [22, 23]
   17387528:
     template: Orcish_Fighter
-    at:       [236.078, 3.476, -95.089, 127]
+    region:   e_6
     level:    [22, 23]
   17387529:
     template: Orcish_Cursemaker
-    at:       [209.000, 4.000, -78.000, 127]
+    region:   e_6
     level:    [22, 23]
   17387530:
     template: Davoi_Hornet
-    at:       [221.638, 3.150, -71.491, 91]
+    region:   e_6
     level:    [20, 23]
   17387531:
     template: Davoi_Hornet
-    at:       [240.202, 3.500, -77.004, 127]
+    region:   e_6
     level:    [20, 23]
   17387532:
     template: Orcish_Fighter
-    at:       [205.183, 1.236, -105.299, 112]
+    region:   e_12
     level:    [22, 23]
   17387533:
     template: Orcish_Cursemaker
-    at:       [233.649, 3.556, -130.882, 61]
+    region:   e_12
     level:    [22, 23]
   17387534:
     template: Orcish_Cursemaker
-    at:       [198.000, 4.000, -123.000, 105]
+    region:   e_12
     level:    [22, 23]
   17387535:
     template: Orcish_Serjeant
-    at:       [228.727, 2.625, -112.235, 73]
+    region:   e_12
     level:    [22, 28]
   17387536:
     template: Davoi_Hornet
-    at:       [241.000, 4.000, -120.000, 22]
+    region:   e_12
     level:    [20, 23]
   17387537:
     template: Davoi_Hornet
-    at:       [233.634, 3.551, -131.511, 66]
+    region:   e_12
     level:    [20, 23]
   17387538:
     template: Orcish_Fighter
-    at:       [157.354, 3.387, -121.380, 75]
+    region:   c_18
     level:    [22, 23]
   17387539:
     template: Orcish_Cursemaker
-    at:       [150.301, 3.516, -121.529, 79]
+    region:   c_18
     level:    [22, 23]
   17387540:
     template: Orcish_Serjeant
-    at:       [158.908, 3.499, -79.084, 127]
+    region:   c_18
     level:    [22, 28]
   17387541:
     template: Orcish_Serjeant
-    at:       [145.796, 2.959, -98.138, 88]
+    region:   c_18
     level:    [22, 28]
   17387542:
     template: Davoi_Hornet
-    at:       [161.113, 3.490, -68.736, 122]
+    region:   c_18
     level:    [20, 23]
   17387543:
     template: Davoi_Hornet
-    at:       [175.000, 4.000, -79.000, 111]
+    region:   c_18
     level:    [20, 23]
   17387544:
     template: Davoi_Hornet
-    at:       [267.427, 1.463, -59.621, 122]
+    region:   e_24
     level:    [20, 23]
   17387545:
     template: Orcish_Fighter
-    at:       [315.756, -0.763, -53.119, 127]
+    region:   e_25
     level:    [22, 26]
   17387546:
     template: Orcish_Cursemaker
-    at:       [309.000, -0.522, -61.000, 127]
+    region:   e_25
     level:    [23, 27]
   17387547:
     template: Orcish_Serjeant
-    at:       [338.915, -0.515, -60.566, 112]
+    region:   e_25
     level:    [22, 28]
   17387548:
     template: Orcish_Fighter
-    at:       [323.892, -0.542, -56.392, 18]
+    region:   e_25
     level:    [22, 26]
   17387549:
     template: Davoi_Hornet
-    at:       [345.947, -0.657, -63.334, 79]
+    region:   e_25
     level:    [20, 23]
   17387550:
     template: Davoi_Hornet
-    at:       [298.083, -0.557, -52.086, 53]
+    region:   e_25
     level:    [20, 23]
   17387551:
     template: Davoi_Hornet
-    at:       [320.165, -0.432, -18.677, 16]
+    region:   ne_31
     level:    [20, 23]
   17387552:
     template: Wood_Bats
@@ -2627,15 +2627,15 @@ spawns:
           end:    6
   17387553:
     template: Orcish_Cursemaker
-    at:       [298.000, 0.027, -22.000, 127]
+    region:   ne_33
     level:    [23, 27]
   17387554:
     template: Orcish_Serjeant
-    at:       [312.000, 1.000, -20.000, 127]
+    region:   ne_33
     level:    [22, 28]
   17387555:
     template: Wood_Bats
-    at:       [305.882, 0.157, -27.901, 77]
+    region:   ne_33
     level:    [20, 23]
     attributes:
       spawn:
@@ -2644,7 +2644,7 @@ spawns:
           end:    6
   17387556:
     template: Wood_Bats
-    at:       [302.272, 0.122, -14.559, 6]
+    region:   ne_33
     level:    [20, 23]
     attributes:
       spawn:
@@ -2653,15 +2653,15 @@ spawns:
           end:    6
   17387557:
     template: Orcish_Fighter
-    at:       [323.976, -0.645, -137.720, 127]
+    region:   e_37
     level:    [22, 26]
   17387558:
     template: Orcish_Cursemaker
-    at:       [337.116, -1.167, -110.483, 111]
+    region:   e_37
     level:    [23, 27]
   17387559:
     template: Orcish_Serjeant
-    at:       [340.339, -0.821, -128.083, 127]
+    region:   e_37
     level:    [22, 28]
   17387560:
     template: Orcish_Cursemaker
@@ -2669,23 +2669,23 @@ spawns:
     level:    [23, 27]
   17387561:
     template: Davoi_Hornet
-    at:       [341.117, -0.485, -163.165, 127]
+    region:   e_37
     level:    [20, 23]
   17387562:
     template: Davoi_Hornet
-    at:       [340.273, -1.247, -108.920, 127]
+    region:   e_37
     level:    [20, 23]
   17387563:
     template: Orcish_Cursemaker
-    at:       [371.525, 0.235, -176.188, 126]
+    region:   e_43
     level:    [23, 27]
   17387564:
     template: Orcish_Serjeant
-    at:       [378.197, -0.741, -178.024, 34]
+    region:   e_43
     level:    [22, 28]
   17387565:
     template: Wood_Bats
-    at:       [370.243, -0.607, -182.091, 76]
+    region:   e_43
     level:    [20, 23]
     attributes:
       spawn:
@@ -2694,7 +2694,7 @@ spawns:
           end:    6
   17387566:
     template: Wood_Bats
-    at:       [370.895, -0.692, -183.119, 127]
+    region:   e_43
     level:    [20, 23]
     attributes:
       spawn:
@@ -2703,43 +2703,43 @@ spawns:
           end:    6
   17387567:
     template: Hawkeyed_Dnatbat
-    at:       [333.895, -0.582, -144.558, 27]
+    region:   e_37
     level:    [26, 28]
   17387568:
     template: Orcish_Fighter
-    at:       [225.260, 0.431, -173.245, 127]
+    region:   e_48
     level:    [22, 26]
   17387569:
     template: Orcish_Serjeant
-    at:       [221.190, -0.481, -160.577, 127]
+    region:   e_48
     level:    [22, 28]
   17387570:
     template: Orcish_Impaler
-    at:       [298.419, 3.499, -202.976, 4]
+    region:   e_50
     level:    [32, 36]
   17387571:
     template: Orcish_Beastrider
-    at:       [291.974, 3.325, -215.369, 107]
+    region:   e_50
     level:    [33, 37]
   17387572:
     template: Orcish_Nightraider
-    at:       [300.986, 3.092, -189.378, 36]
+    region:   e_50
     level:    [34, 38]
   17387573:
     template: Orcish_Brawler
-    at:       [302.521, 3.110, -208.879, 127]
+    region:   e_50
     level:    [35, 39]
   17387574:
     template: Orcish_Beastrider
-    at:       [297.281, 2.751, -186.558, 16]
+    region:   e_50
     level:    [33, 37]
   17387575:
     template: War_Lizard
-    at:       [269.664, 2.862, -210.343, 127]
+    region:   e_50
     level:    [29, 32]
   17387576:
     template: War_Lizard
-    at:       [314.689, 3.547, -203.755, 125]
+    region:   e_50
     level:    [29, 32]
   17387577:
     template: Thunder_Elemental
@@ -2747,32 +2747,32 @@ spawns:
     level:    [47, 49]
   17387578:
     template: Orcish_Impaler
-    at:       [252.457, 3.501, -248.655, 127]
+    region:   se_58
     level:    [32, 36]
   17387579:
     template: Orcish_Beastrider
-    at:       [280.964, 3.497, -226.284, 127]
+    region:   se_58
     level:    [33, 37]
   17387580:
     template: Orcish_Nightraider
-    at:       [247.257, 3.673, -232.837, 127]
+    region:   se_58
     level:    [34, 38]
   17387581:
     template: Orcish_Brawler
-    at:       [245.390, 2.933, -249.896, 127]
+    region:   se_58
     level:    [35, 39]
   17387582:
     template: Orcish_Firebelcher_D
     script:   Orcish_Firebelcher
-    at:       [270.398, 3.347, -233.391, 110]
+    region:   se_58
     level:    [39, 42]
   17387583:
     template: War_Lizard
-    at:       [243.797, 3.658, -234.632, 127]
+    region:   se_58
     level:    [29, 32]
   17387584:
     template: War_Lizard
-    at:       [256.437, 3.397, -226.659, 127]
+    region:   se_58
     level:    [30, 32]
   17387585:
     template: Steelbiter_Gudrud
@@ -2785,23 +2785,23 @@ spawns:
     level:    [26, 28]
   17387587:
     template: Orcish_Impaler
-    at:       [271.587, 2.989, -266.232, 127]
+    region:   se_67
     level:    [32, 36]
   17387588:
     template: Orcish_Nightraider
-    at:       [277.650, 3.486, -253.218, 31]
+    region:   se_67
     level:    [34, 38]
   17387589:
     template: Orcish_Brawler
-    at:       [277.680, 3.498, -286.120, 127]
+    region:   se_67
     level:    [35, 39]
   17387590:
     template: War_Lizard
-    at:       [292.982, 3.026, -269.077, 120]
+    region:   se_67
     level:    [29, 32]
   17387591:
     template: War_Lizard
-    at:       [272.471, 3.410, -249.466, 127]
+    region:   se_67
     level:    [29, 32]
   17387592:
     template: Thunder_Elemental
@@ -2809,6 +2809,7 @@ spawns:
     level:    [47, 49]
   17387593:
     template: Orcish_Impaler
+    region:   se_73
     level:    [32, 36]
   17387594:
     template: Orcish_Beastrider
@@ -2824,39 +2825,39 @@ spawns:
     level:    [35, 39]
   17387597:
     template: War_Lizard
-    at:       [337.652, -0.501, -239.599, 127]
+    region:   se_73
     level:    [29, 32]
   17387598:
     template: War_Lizard
-    at:       [332.644, 0.374, -253.311, 127]
+    region:   se_73
     level:    [29, 32]
   17387599:
     template: Orcish_Cursemaker
-    at:       [140.612, -0.632, -34.953, 12]
+    region:   n_79
     level:    [23, 27]
   17387600:
     template: Davoi_Hornet
-    at:       [129.000, -0.821, -18.000, 127]
+    region:   n_79
     level:    [20, 23]
   17387601:
     template: Davoi_Hornet
-    at:       [144.942, -0.798, -19.731, 127]
+    region:   n_79
     level:    [20, 23]
   17387602:
     template: War_Lizard
-    at:       [158.000, -0.662, -18.000, 5]
+    region:   ne_82
     level:    [29, 32]
   17387603:
     template: War_Lizard
-    at:       [153.880, -0.769, -18.092, 127]
+    region:   ne_82
     level:    [29, 32]
   17387604:
     template: War_Lizard
-    at:       [163.222, 0.115, -24.843, 154]
+    region:   ne_82
     level:    [29, 32]
   17387605:
     template: War_Lizard
-    at:       [161.440, 0.000, -14.975, 94]
+    region:   ne_82
     level:    [29, 32]
   17387606:
     template: Tigerbane_Bakdak
@@ -2864,15 +2865,15 @@ spawns:
     level:    [31, 32]
   17387607:
     template: Orcish_Fighter
-    at:       [95.000, -0.520, -13.000, 93]
+    region:   n_87
     level:    [22, 26]
   17387608:
     template: Orcish_Serjeant
-    at:       [78.000, -0.588, -18.000, 127]
+    region:   n_87
     level:    [22, 28]
   17387609:
     template: Davoi_Hornet
-    at:       [82.734, -0.533, -15.973, 127]
+    region:   n_87
     level:    [20, 23]
   17387610:
     template: Orcish_Impaler
@@ -2884,7 +2885,7 @@ spawns:
     level:    [33, 37]
   17387612:
     template: Orcish_Nightraider
-    at:       [35.169, -0.724, -26.278, 127]
+    region:   n_92
     level:    [34, 38]
   17387613:
     template: Orcish_Brawler
@@ -2896,6 +2897,7 @@ spawns:
     level:    [32, 36]
   17387615:
     template: Orcish_Beastrider
+    region:   n_92
     level:    [33, 37]
   17387616:
     template: Orcish_Nightraider
@@ -2903,11 +2905,11 @@ spawns:
     level:    [34, 38]
   17387617:
     template: Orcish_Brawler
-    at:       [40.457, -0.548, -26.017, 127]
+    region:   n_92
     level:    [35, 39]
   17387618:
     template: Orcish_Impaler
-    at:       [-17.767, -0.738, 14.229, 75]
+    region:   n_98
     level:    [32, 36]
   17387619:
     template: Orcish_Beastrider
@@ -2923,11 +2925,11 @@ spawns:
     level:    [35, 39]
   17387622:
     template: Orcish_Impaler
-    at:       [-20.592, -0.759, -27.200, 127]
+    region:   n_98
     level:    [32, 36]
   17387623:
     template: Orcish_Beastrider
-    at:       [-19.933, -0.906, -7.868, 127]
+    region:   n_98
     level:    [33, 37]
   17387624:
     template: Orcish_Nightraider
@@ -2939,7 +2941,7 @@ spawns:
     level:    [35, 39]
   17387626:
     template: Wolf_Bat
-    at:       [-20.855, -0.514, 1.131, 127]
+    region:   n_98
     level:    [25, 28]
     attributes:
       spawn:
@@ -2948,7 +2950,7 @@ spawns:
           end:    6
   17387627:
     template: Wolf_Bat
-    at:       [-23.470, -1.286, -18.290, 74]
+    region:   n_98
     level:    [25, 28]
     attributes:
       spawn:
@@ -2957,7 +2959,7 @@ spawns:
           end:    6
   17387628:
     template: Orcish_Bowshooter
-    at:       [-16.772, 0.292, -67.249, 123]
+    region:   n_108
     level:    [42, 46]
   17387629:
     template: Orcish_Footsoldier
@@ -2965,7 +2967,7 @@ spawns:
     level:    [44, 47]
   17387630:
     template: Orcish_Gladiator
-    at:       [-25.188, 0.162, -59.013, 127]
+    region:   n_108
     level:    [44, 48]
   17387631:
     template: Orcish_Trooper
@@ -2973,7 +2975,7 @@ spawns:
     level:    [46, 49]
   17387632:
     template: Wolf_Bat
-    at:       [-22.840, -0.038, -51.280, 15]
+    region:   n_108
     level:    [25, 28]
     attributes:
       spawn:
@@ -2982,7 +2984,7 @@ spawns:
           end:    6
   17387633:
     template: Wolf_Bat
-    at:       [-20.003, 0.715, -66.593, 13]
+    region:   c_113
     level:    [25, 28]
     attributes:
       spawn:
@@ -2995,7 +2997,7 @@ spawns:
     level:    [32, 36]
   17387635:
     template: Orcish_Beastrider
-    at:       [-62.647, -0.468, 24.442, 110]
+    region:   nw_115
     level:    [33, 37]
   17387636:
     template: Orcish_Nightraider
@@ -3015,16 +3017,16 @@ spawns:
     level:    [33, 37]
   17387640:
     template: Orcish_Nightraider
-    at:       [-54.694, -0.545, 42.385, 127]
+    region:   nw_115
     level:    [34, 38]
   17387641:
     template: Orcish_Firebelcher_D
     script:   Orcish_Firebelcher
-    at:       [-60.057, -0.655, 29.127, 127]
+    region:   nw_115
     level:    [39, 42]
   17387642:
     template: Wolf_Bat
-    at:       [-62.542, -0.766, 48.538, 127]
+    region:   nw_115
     level:    [25, 28]
     attributes:
       spawn:
@@ -3033,7 +3035,7 @@ spawns:
           end:    6
   17387643:
     template: Wolf_Bat
-    at:       [-61.140, -0.474, 18.505, 106]
+    region:   nw_115
     level:    [25, 28]
     attributes:
       spawn:
@@ -3050,11 +3052,11 @@ spawns:
     level:    [32, 36]
   17387646:
     template: Orcish_Beastrider
-    at:       [-126.610, -0.203, 97.221, 116]
+    region:   nw_126
     level:    [33, 37]
   17387647:
     template: Orcish_Nightraider
-    at:       [-101.258, -0.462, 85.220, 56]
+    region:   nw_126
     level:    [34, 38]
   17387648:
     template: Orcish_Brawler
@@ -3062,27 +3064,27 @@ spawns:
     level:    [35, 39]
   17387649:
     template: Davoi_Wasp
-    at:       [-106.949, 0.212, 96.413, 41]
+    region:   nw_126
     level:    [30, 33]
   17387650:
     template: Davoi_Wasp
-    at:       [-131.235, 0.261, 98.254, 67]
+    region:   nw_126
     level:    [30, 33]
   17387651:
     template: Orcish_Bowshooter
-    at:       [-112.721, 3.583, 27.023, 127]
+    region:   nw_131
     level:    [42, 46]
   17387652:
     template: Orcish_Footsoldier
-    at:       [-112.383, 2.916, 49.188, 127]
+    region:   nw_131
     level:    [44, 47]
   17387653:
     template: Orcish_Gladiator
-    at:       [-125.000, 4.000, 4.000, 75]
+    region:   nw_131
     level:    [44, 48]
   17387654:
     template: Orcish_Trooper
-    at:       [-116.151, 3.370, 17.734, 13]
+    region:   nw_131
     level:    [46, 49]
   17387655:
     template: Orcish_Bowshooter
@@ -3094,7 +3096,7 @@ spawns:
     level:    [44, 47]
   17387657:
     template: Orcish_Gladiator
-    at:       [-123.000, 4.000, 29.000, 42]
+    region:   nw_131
     level:    [44, 48]
   17387658:
     template: Orcish_Trooper
@@ -3102,11 +3104,11 @@ spawns:
     level:    [46, 49]
   17387659:
     template: Davoi_Wasp
-    at:       [-107.651, 3.500, 4.344, 127]
+    region:   nw_131
     level:    [30, 33]
   17387660:
     template: Davoi_Wasp
-    at:       [-129.380, 3.741, 25.179, 97]
+    region:   nw_131
     level:    [30, 33]
   17387661:
     template: Thunder_Elemental
@@ -3114,19 +3116,19 @@ spawns:
     level:    [47, 49]
   17387662:
     template: Orcish_Bowshooter
-    at:       [-160.000, 4.000, -2.000, 78]
+    region:   nw_142
     level:    [42, 46]
   17387663:
     template: Orcish_Footsoldier
-    at:       [-154.271, 3.481, 14.010, 4]
+    region:   nw_142
     level:    [44, 47]
   17387664:
     template: Orcish_Gladiator
-    at:       [-167.000, 3.498, 8.000, 73]
+    region:   nw_142
     level:    [44, 48]
   17387665:
     template: Orcish_Trooper
-    at:       [-139.992, 2.601, -18.094, 31]
+    region:   nw_142
     level:    [46, 49]
   17387666:
     template: Orcish_Bowshooter
@@ -3134,7 +3136,7 @@ spawns:
     level:    [42, 46]
   17387667:
     template: Orcish_Footsoldier
-    at:       [-139.000, 4.000, 9.000, 47]
+    region:   nw_142
     level:    [44, 47]
   17387668:
     template: Orcish_Gladiator
@@ -3146,11 +3148,11 @@ spawns:
     level:    [46, 49]
   17387670:
     template: Davoi_Wasp
-    at:       [-153.972, 3.499, 13.759, 6]
+    region:   nw_142
     level:    [30, 33]
   17387671:
     template: Davoi_Wasp
-    at:       [-151.957, 2.257, -11.004, 127]
+    region:   nw_142
     level:    [30, 33]
   17387672:
     template: Thunder_Elemental
@@ -3162,7 +3164,7 @@ spawns:
     level:    [42, 46]
   17387674:
     template: Orcish_Footsoldier
-    at:       [-134.290, 3.452, -41.394, 48]
+    region:   nw_154
     level:    [44, 47]
   17387675:
     template: Orcish_Gladiator
@@ -3170,15 +3172,15 @@ spawns:
     level:    [44, 48]
   17387676:
     template: Orcish_Trooper
-    at:       [-127.088, 3.694, -18.795, 59]
+    region:   nw_154
     level:    [46, 49]
   17387677:
     template: Orcish_Bowshooter
-    at:       [-117.274, 3.515, -2.698, 127]
+    region:   nw_154
     level:    [42, 46]
   17387678:
     template: Orcish_Footsoldier
-    at:       [-131.347, 3.332, -31.957, 64]
+    region:   nw_154
     level:    [44, 47]
   17387679:
     template: Orcish_Gladiator
@@ -3190,7 +3192,7 @@ spawns:
     level:    [46, 49]
   17387681:
     template: Davoi_Wasp
-    at:       [-108.605, 3.040, -12.904, 127]
+    region:   nw_154
     level:    [30, 33]
   17387682:
     template: Thunder_Elemental
@@ -3198,7 +3200,7 @@ spawns:
     level:    [47, 49]
   17387683:
     template: Orcish_Bowshooter
-    at:       [-95.000, 3.000, -42.000, 68]
+    region:   nw_163
     level:    [42, 46]
   17387684:
     template: Orcish_Footsoldier
@@ -3210,15 +3212,15 @@ spawns:
     level:    [44, 48]
   17387686:
     template: Orcish_Trooper
-    at:       [-119.121, 3.500, -17.075, 60]
+    region:   nw_163
     level:    [46, 49]
   17387687:
     template: Orcish_Bowshooter
-    at:       [-84.494, 3.135, -30.442, 32]
+    region:   nw_163
     level:    [42, 46]
   17387688:
     template: Orcish_Footsoldier
-    at:       [-81.404, 3.500, -52.995, 99]
+    region:   nw_163
     level:    [44, 47]
   17387689:
     template: Orcish_Gladiator
@@ -3230,7 +3232,7 @@ spawns:
     level:    [46, 49]
   17387691:
     template: Davoi_Wasp
-    at:       [-73.676, 3.499, -38.471, 127]
+    region:   nw_163
     level:    [30, 33]
   17387692:
     template: Thunder_Elemental
@@ -3242,7 +3244,7 @@ spawns:
     level:    [42, 46]
   17387694:
     template: Orcish_Footsoldier
-    at:       [-60.231, -0.639, -97.736, 218]
+    region:   c_174
     level:    [44, 47]
   17387695:
     template: Orcish_Gladiator
@@ -3250,31 +3252,31 @@ spawns:
     level:    [44, 48]
   17387696:
     template: Orcish_Trooper
-    at:       [-63.177, -0.907, -100.846, 223]
+    region:   c_174
     level:    [46, 49]
   17387697:
     template: Geezard
-    at:       [-55.949, -0.492, -94.096, 127]
+    region:   c_174
     level:    [34, 37]
   17387698:
     template: Geezard
-    at:       [-39.880, -0.500, -99.408, 65]
+    region:   c_174
     level:    [34, 37]
   17387699:
     template: Geezard
-    at:       [-53.887, -0.311, -98.690, 20]
+    region:   c_174
     level:    [34, 37]
   17387700:
     template: Geezard
-    at:       [-23.000, -0.500, -104.000, 93]
+    region:   c_180
     level:    [35, 37]
   17387701:
     template: Geezard
-    at:       [0.561, -0.434, -100.499, 108]
+    region:   c_180
     level:    [34, 37]
   17387702:
     template: Geezard
-    at:       [-11.000, -0.500, -104.000, 127]
+    region:   c_180
     level:    [34, 37]
   17387703:
     template: Orcish_Bowshooter
@@ -3282,11 +3284,11 @@ spawns:
     level:    [42, 46]
   17387704:
     template: Orcish_Footsoldier
-    at:       [-218.306, -0.532, 60.569, 127]
+    region:   nw_184
     level:    [44, 47]
   17387705:
     template: Orcish_Gladiator
-    at:       [-220.059, -0.719, 60.733, 5]
+    region:   nw_184
     level:    [44, 48]
   17387706:
     template: Orcish_Trooper
@@ -3294,11 +3296,11 @@ spawns:
     level:    [46, 49]
   17387707:
     template: Orcish_Bowshooter
-    at:       [-176.878, -0.550, 53.094]
+    region:   nw_184
     level:    [42, 46]
   17387708:
     template: Orcish_Footsoldier
-    at:       [-182.049, -0.651, 48.221, 118]
+    region:   nw_184
     level:    [44, 47]
   17387709:
     template: Orcish_Gladiator
@@ -3310,15 +3312,15 @@ spawns:
     level:    [46, 49]
   17387711:
     template: Davoi_Wasp
-    at:       [-175.062, -0.616, 58.520, 127]
+    region:   nw_184
     level:    [30, 33]
   17387712:
     template: Davoi_Wasp
-    at:       [-174.679, -0.637, 58.969, 99]
+    region:   nw_184
     level:    [30, 33]
   17387713:
     template: Orcish_Bowshooter
-    at:       [-89.829, 0.707, 19.978, 2]
+    region:   nw_193
     level:    [42, 46]
   17387714:
     template: Orcish_Footsoldier
@@ -3330,11 +3332,11 @@ spawns:
     level:    [44, 48]
   17387716:
     template: Orcish_Trooper
-    at:       [-222.924, -1.088, -13.247, 89]
+    region:   nw_193
     level:    [46, 49]
   17387717:
     template: Wolf_Bat
-    at:       [-212.106, -0.560, 24.019, 127]
+    region:   nw_193
     level:    [25, 28]
     attributes:
       spawn:
@@ -3343,7 +3345,7 @@ spawns:
           end:    6
   17387718:
     template: Wolf_Bat
-    at:       [-217.009, -1.006, 16.317, 70]
+    region:   nw_193
     level:    [25, 28]
     attributes:
       spawn:
@@ -3356,7 +3358,7 @@ spawns:
     level:    [42, 46]
   17387720:
     template: Orcish_Footsoldier
-    at:       [-214.651, -0.487, -63.107, 96]
+    region:   w_200
     level:    [44, 47]
   17387721:
     template: Orcish_Gladiator
@@ -3364,11 +3366,11 @@ spawns:
     level:    [44, 48]
   17387722:
     template: Orcish_Trooper
-    at:       [-85.549, -0.373, 19.641, 137]
+    region:   w_200
     level:    [46, 49]
   17387723:
     template: Wolf_Bat
-    at:       [-202.886, -0.517, -62.415, 26]
+    region:   w_200
     level:    [25, 28]
     attributes:
       spawn:
@@ -3377,7 +3379,7 @@ spawns:
           end:    6
   17387724:
     template: Wolf_Bat
-    at:       [-204.532, -0.657, -55.968, 120]
+    region:   w_200
     level:    [25, 28]
     attributes:
       spawn:
@@ -3386,7 +3388,7 @@ spawns:
           end:    6
   17387725:
     template: Orcish_Bowshooter
-    at:       [-217.698, -0.138, -92.331, 127]
+    region:   w_205
     level:    [42, 46]
   17387726:
     template: Orcish_Footsoldier
@@ -3394,7 +3396,7 @@ spawns:
     level:    [44, 47]
   17387727:
     template: Orcish_Gladiator
-    at:       [-225.953, -0.785, -94.893, 127]
+    region:   w_205
     level:    [44, 48]
   17387728:
     template: Orcish_Trooper
@@ -3402,7 +3404,7 @@ spawns:
     level:    [46, 49]
   17387729:
     template: Wolf_Bat
-    at:       [-211.245, 0.293, -99.476, 127]
+    region:   w_205
     level:    [25, 28]
     attributes:
       spawn:
@@ -3411,7 +3413,7 @@ spawns:
           end:    6
   17387730:
     template: Wolf_Bat
-    at:       [-217.537, -0.674, -96.954, 121]
+    region:   w_205
     level:    [25, 28]
     attributes:
       spawn:
@@ -3420,7 +3422,7 @@ spawns:
           end:    6
   17387731:
     template: Orcish_Bowshooter
-    at:       [-138.186, -0.250, -87.479, 127]
+    region:   w_211
     level:    [42, 46]
   17387732:
     template: Orcish_Footsoldier
@@ -3435,7 +3437,7 @@ spawns:
     level:    [46, 49]
   17387735:
     template: Davoi_Wasp
-    at:       [-142.084, 0.207, -69.489, 127]
+    region:   w_211
     level:    [30, 33]
   17387736:
     template: Orcish_Bowshooter
@@ -3443,11 +3445,11 @@ spawns:
     level:    [42, 46]
   17387737:
     template: Orcish_Footsoldier
-    at:       [-103.329, -0.845, -125.497, 36]
+    region:   w_217
     level:    [44, 47]
   17387738:
     template: Orcish_Gladiator
-    at:       [-102.365, -0.749, -96.825, 127]
+    region:   w_217
     level:    [44, 48]
   17387739:
     template: Orcish_Trooper
@@ -3459,7 +3461,7 @@ spawns:
     level:    [42, 46]
   17387741:
     template: Orcish_Footsoldier
-    at:       [-105.554, -0.541, -104.358, 66]
+    region:   w_217
     level:    [44, 47]
   17387742:
     template: Orcish_Gladiator
@@ -3471,11 +3473,11 @@ spawns:
     level:    [46, 49]
   17387744:
     template: Davoi_Wasp
-    at:       [-98.008, -0.698, -92.997, 127]
+    region:   w_217
     level:    [30, 33]
   17387745:
     template: Davoi_Wasp
-    at:       [-105.780, -0.893, -100.312, 127]
+    region:   w_217
     level:    [30, 33]
   17387746:
     template: Orcish_Veteran
@@ -3483,7 +3485,7 @@ spawns:
     level:    [52, 56]
   17387747:
     template: Orcish_Predator
-    at:       [-99.450, 0.646, -209.206, 127]
+    region:   w_227
     level:    [54, 57]
   17387748:
     template: Orcish_Zerker
@@ -3495,11 +3497,11 @@ spawns:
     level:    [55, 59]
   17387750:
     template: Orcish_Veteran
-    at:       [-69.058, 3.672, -292.991, 57]
+    region:   w_230
     level:    [52, 56]
   17387751:
     template: Orcish_Predator
-    at:       [-121.000, -0.715, -178.000, 127]
+    region:   w_227
     level:    [54, 57]
   17387752:
     template: Orcish_Zerker
@@ -3507,23 +3509,23 @@ spawns:
     level:    [54, 58]
   17387753:
     template: Orcish_Warchief
-    at:       [-98.335, -0.787, -179.937, 144]
+    region:   w_227
     level:    [55, 59]
   17387754:
     template: Orcish_Veteran
-    at:       [-68.255, 3.415, -282.321, 127]
+    region:   sw_234
     level:    [52, 56]
   17387755:
     template: Orcish_Predator
-    at:       [-90.415, 3.737, -257.241, 127]
+    region:   sw_234
     level:    [54, 57]
   17387756:
     template: Orcish_Zerker
-    at:       [-82.084, 3.458, -264.638, 22]
+    region:   sw_234
     level:    [54, 58]
   17387757:
     template: Orcish_Warchief
-    at:       [-86.443, 3.679, -276.274, 127]
+    region:   sw_234
     level:    [55, 59]
   17387758:
     template: Orcish_Veteran
@@ -3531,11 +3533,11 @@ spawns:
     level:    [52, 56]
   17387759:
     template: Orcish_Predator
-    at:       [-76.000, 4.000, -281.000, 98]
+    region:   sw_234
     level:    [54, 57]
   17387760:
     template: Orcish_Zerker
-    at:       [-99.707, 3.250, -229.428, 25]
+    region:   sw_234
     level:    [54, 58]
   17387761:
     template: Orcish_Warchief
@@ -3543,15 +3545,15 @@ spawns:
     level:    [55, 59]
   17387762:
     template: Geezard
-    at:       [-42.000, 4.000, -232.000, 5]
+    region:   sw_234
     level:    [34, 37]
   17387763:
     template: Geezard
-    at:       [-74.203, 3.499, -252.253, 127]
+    region:   sw_234
     level:    [34, 37]
   17387764:
     template: Geezard
-    at:       [-85.385, 3.530, -256.191, 127]
+    region:   sw_234
     level:    [34, 37]
   17387765:
     template: Thunder_Elemental
@@ -3559,27 +3561,27 @@ spawns:
     level:    [47, 49]
   17387766:
     template: Orcish_Veteran
-    at:       [-60.718, 3.399, -225.435, 99]
+    region:   c_246
     level:    [52, 56]
   17387767:
     template: Orcish_Predator
-    at:       [-48.869, 3.494, -202.867, 85]
+    region:   c_246
     level:    [54, 57]
   17387768:
     template: Orcish_Zerker
-    at:       [-21.713, 3.475, -203.225, 127]
+    region:   c_246
     level:    [54, 58]
   17387769:
     template: Orcish_Warchief
-    at:       [-40.793, 3.509, -246.426, 8]
+    region:   c_246
     level:    [55, 59]
   17387770:
     template: Orcish_Veteran
-    at:       [3.442, 3.503, -201.297, 127]
+    region:   c_246
     level:    [52, 56]
   17387771:
     template: Orcish_Predator
-    at:       [-33.423, 3.704, -224.640, 14]
+    region:   c_246
     level:    [54, 57]
   17387772:
     template: Orcish_Zerker
@@ -3591,11 +3593,11 @@ spawns:
     level:    [55, 59]
   17387774:
     template: Geezard
-    at:       [-37.044, 3.512, -197.730, 48]
+    region:   c_246
     level:    [35, 37]
   17387775:
     template: Geezard
-    at:       [-50.220, 3.611, -215.078, 2]
+    region:   c_246
     level:    [34, 37]
   17387776:
     template: Thunder_Elemental
@@ -3603,23 +3605,23 @@ spawns:
     level:    [47, 49]
   17387777:
     template: Orcish_Veteran
-    at:       [-102.603, 3.500, -239.820, 127]
+    region:   sw_257
     level:    [52, 56]
   17387778:
     template: Orcish_Predator
-    at:       [-93.000, 4.000, -235.000, 5]
+    region:   sw_257
     level:    [54, 57]
   17387779:
     template: Orcish_Zerker
-    at:       [-124.561, 3.406, -229.123, 98]
+    region:   sw_257
     level:    [56, 57]
   17387780:
     template: Orcish_Warchief
-    at:       [-150.000, 4.000, -238.000, 127]
+    region:   sw_257
     level:    [55, 59]
   17387781:
     template: Orcish_Veteran
-    at:       [-119.506, 3.499, -249.617, 47]
+    region:   sw_257
     level:    [52, 56]
   17387782:
     template: Orcish_Predator
@@ -3627,19 +3629,19 @@ spawns:
     level:    [54, 57]
   17387783:
     template: Orcish_Zerker
-    at:       [-121.978, 3.512, -245.726, 124]
+    region:   sw_257
     level:    [54, 58]
   17387784:
     template: Orcish_Warchief
-    at:       [-169.173, 3.496, -244.249, 5]
+    region:   sw_264
     level:    [55, 59]
   17387785:
     template: Geezard
-    at:       [-152.482, 3.399, -247.565, 30]
+    region:   sw_257
     level:    [34, 37]
   17387786:
     template: Geezard
-    at:       [-143.168, 3.397, -236.564, 127]
+    region:   sw_257
     level:    [34, 37]
   17387787:
     template: Thunder_Elemental
@@ -3647,18 +3649,19 @@ spawns:
     level:    [47, 49]
   17387788:
     template: Orcish_Dreadnought
-    at:       [-61.000, 4.000, -241.000, 127]
+    region:   s_268
     level:    [63, 67]
   17387789:
     template: Orcish_Farkiller
-    at:       [-11.000, 4.000, -201.000, 127]
+    region:   c_269
     level:    [62, 66]
   17387790:
     template: Orcish_Champion
-    at:       [-114.249, 3.227, -245.926, 103]
+    region:   sw_270
     level:    [64, 68]
   17387791:
     template: Orcish_Veteran
+    region:   sw_271
     level:    [52, 56]
   17387792:
     template: Orcish_Predator
@@ -3670,23 +3673,23 @@ spawns:
     level:    [54, 58]
   17387794:
     template: Geezard
-    at:       [-177.744, -0.547, -294.490, 127]
+    region:   sw_271
     level:    [34, 37]
   17387795:
     template: Geezard
-    at:       [-141.000, 0.600, -305.000, 127]
+    region:   sw_271
     level:    [34, 37]
   17387796:
     template: Geezard
-    at:       [-152.811, -0.930, -308.083, 103]
+    region:   sw_271
     level:    [35, 37]
   17387797:
     template: Geezard
-    at:       [-166.250, -0.597, -301.006, 44]
+    region:   sw_271
     level:    [34, 37]
   17387798:
     template: Orcish_Bowshooter
-    at:       [43.000, -0.587, -299.000, 127]
+    region:   s_278
     level:    [42, 46]
   17387799:
     template: Orcish_Footsoldier
@@ -3694,7 +3697,7 @@ spawns:
     level:    [44, 47]
   17387800:
     template: Orcish_Gladiator
-    at:       [-15.631, -0.757, -291.997, 127]
+    region:   s_278
     level:    [44, 48]
   17387801:
     template: Orcish_Trooper
@@ -3702,7 +3705,7 @@ spawns:
     level:    [46, 49]
   17387802:
     template: Orcish_Bowshooter
-    at:       [22.499, -0.574, -293.939, 61]
+    region:   s_278
     level:    [42, 46]
   17387803:
     template: Orcish_Footsoldier
@@ -3714,11 +3717,11 @@ spawns:
     level:    [44, 48]
   17387805:
     template: Orcish_Trooper
-    at:       [30.000, -0.743, -301.000, 127]
+    region:   s_278
     level:    [46, 49]
   17387806:
     template: Wolf_Bat
-    at:       [-0.230, -0.508, -295.512, 17]
+    region:   s_278
     level:    [25, 28]
     attributes:
       spawn:
@@ -3727,7 +3730,7 @@ spawns:
           end:    6
   17387807:
     template: Wolf_Bat
-    at:       [0.570, -0.501, -304.965, 39]
+    region:   s_278
     level:    [25, 28]
     attributes:
       spawn:
@@ -3736,7 +3739,7 @@ spawns:
           end:    6
   17387808:
     template: Orcish_Bowshooter
-    at:       [24.000, -0.580, -266.000, 127]
+    region:   s_288
     level:    [42, 46]
   17387809:
     template: Orcish_Footsoldier
@@ -3744,7 +3747,7 @@ spawns:
     level:    [44, 47]
   17387810:
     template: Orcish_Gladiator
-    at:       [20.000, -0.581, -262.000, 127]
+    region:   s_288
     level:    [44, 48]
   17387811:
     template: Orcish_Trooper
@@ -3752,7 +3755,7 @@ spawns:
     level:    [46, 49]
   17387812:
     template: Wolf_Bat
-    at:       [15.281, -0.093, -263.357, 119]
+    region:   s_288
     level:    [25, 28]
     attributes:
       spawn:
@@ -3761,7 +3764,7 @@ spawns:
           end:    6
   17387813:
     template: Wolf_Bat
-    at:       [24.687, -0.607, -269.027, 12]
+    region:   s_288
     level:    [25, 28]
     attributes:
       spawn:
@@ -3774,11 +3777,11 @@ spawns:
     level:    [42, 46]
   17387815:
     template: Orcish_Footsoldier
-    at:       [63.336, -1.665, -295.276, 127]
+    region:   s_295
     level:    [44, 47]
   17387816:
     template: Orcish_Gladiator
-    at:       [62.694, -0.661, -287.266, 127]
+    region:   s_295
     level:    [44, 48]
   17387817:
     template: Orcish_Trooper
@@ -3798,11 +3801,11 @@ spawns:
     level:    [44, 48]
   17387821:
     template: Orcish_Trooper
-    at:       [79.348, -0.500, -261.394, 4]
+    region:   s_295
     level:    [46, 49]
   17387822:
     template: Wolf_Bat
-    at:       [57.346, -1.124, -272.389, 30]
+    region:   s_295
     level:    [25, 28]
     attributes:
       spawn:
@@ -3811,7 +3814,7 @@ spawns:
           end:    6
   17387823:
     template: Wolf_Bat
-    at:       [57.131, -0.592, -247.881, 127]
+    region:   s_295
     level:    [25, 28]
     attributes:
       spawn:
@@ -3824,11 +3827,11 @@ spawns:
     level:    [42, 46]
   17387825:
     template: Orcish_Footsoldier
-    at:       [58.000, 0.452, -340.000, 127]
+    region:   s_305
     level:    [44, 47]
   17387826:
     template: Orcish_Gladiator
-    at:       [58.202, -0.132, -324.509, 81]
+    region:   s_305
     level:    [44, 48]
   17387827:
     template: Orcish_Trooper
@@ -3836,7 +3839,7 @@ spawns:
     level:    [46, 49]
   17387828:
     template: Wolf_Bat
-    at:       [57.563, 0.282, -329.404, 127]
+    region:   s_305
     level:    [25, 28]
     attributes:
       spawn:
@@ -3845,7 +3848,7 @@ spawns:
           end:    6
   17387829:
     template: Wolf_Bat
-    at:       [57.472, 0.877, -346.827, 127]
+    region:   s_305
     level:    [25, 28]
     attributes:
       spawn:
@@ -3854,7 +3857,7 @@ spawns:
           end:    6
   17387830:
     template: Orcish_Bowshooter
-    at:       [55.000, -0.050, -209.000, 67]
+    region:   c_310
     level:    [42, 46]
   17387831:
     template: Orcish_Footsoldier
@@ -3866,7 +3869,7 @@ spawns:
     level:    [44, 48]
   17387833:
     template: Orcish_Trooper
-    at:       [50.000, -0.600, -214.000, 127]
+    region:   c_310
     level:    [46, 49]
   17387834:
     template: Orcish_Bowshooter
@@ -3877,7 +3880,7 @@ spawns:
     level:    [44, 47]
   17387836:
     template: Orcish_Gladiator
-    at:       [57.000, -0.400, -218.000, 127]
+    region:   c_310
     level:    [44, 48]
   17387837:
     template: Orcish_Trooper
@@ -3889,7 +3892,7 @@ spawns:
     level:    [32, 36]
   17387839:
     template: Orcish_Beastrider
-    at:       [166.373, -1.043, -262.949, 127]
+    region:   se_319
     level:    [33, 37]
   17387840:
     template: Orcish_Nightraider
@@ -3897,11 +3900,11 @@ spawns:
     level:    [34, 38]
   17387841:
     template: Orcish_Brawler
-    at:       [176.725, -0.612, -254.385, 127]
+    region:   se_321
     level:    [35, 39]
   17387842:
     template: Orcish_Impaler
-    at:       [180.326, -0.555, -257.224, 127]
+    region:   se_321
     level:    [32, 36]
   17387843:
     template: Orcish_Beastrider
@@ -3913,19 +3916,19 @@ spawns:
     level:    [34, 38]
   17387845:
     template: Orcish_Brawler
-    at:       [121.251, -0.470, -257.915, 1]
+    region:   se_321
     level:    [35, 39]
   17387846:
     template: Davoi_Hornet
-    at:       [170.000, -0.500, -256.000, 14]
+    region:   se_319
     level:    [20, 23]
   17387847:
     template: Davoi_Hornet
-    at:       [113.120, -0.660, -260.977, 95]
+    region:   se_319
     level:    [20, 23]
   17387848:
     template: Orcish_Impaler
-    at:       [207.294, -0.533, -300.232, 2]
+    region:   se_328
     level:    [32, 36]
   17387849:
     template: Orcish_Beastrider
@@ -3937,15 +3940,15 @@ spawns:
     level:    [34, 38]
   17387851:
     template: Orcish_Brawler
-    at:       [218.234, -0.603, -276.563, 59]
+    region:   se_328
     level:    [35, 39]
   17387852:
     template: Orcish_Impaler
-    at:       [201.167, -0.496, -257.493, 99]
+    region:   se_328
     level:    [32, 36]
   17387853:
     template: Orcish_Beastrider
-    at:       [242.105, -0.454, -301.111, 25]
+    region:   se_328
     level:    [33, 37]
   17387854:
     template: Orcish_Nightraider
@@ -3957,11 +3960,11 @@ spawns:
     level:    [35, 39]
   17387856:
     template: War_Lizard
-    at:       [-233.000, 3.000, -185.000, 65]
+    region:   se_328
     level:    [29, 32]
   17387857:
     template: War_Lizard
-    at:       [-261.735, -0.547, -161.713, 44]
+    region:   se_328
     level:    [30, 32]
   17387858:
     template: Davoi_Pugil
@@ -3969,11 +3972,11 @@ spawns:
     level:    [26, 29]
   17387859:
     template: Davoi_Pugil
-    at:       [84.448, 3.369, -101.479, 69]
+    region:   c_339
     level:    [26, 29]
   17387860:
     template: Davoi_Pugil
-    at:       [70.635, 3.258, -96.922, 126]
+    region:   c_339
     level:    [26, 29]
   17387861:
     template: Water_Elemental
@@ -3981,15 +3984,15 @@ spawns:
     level:    [47, 49]
   17387862:
     template: Davoi_Pugil
-    at:       [64.446, 3.295, 8.710, 127]
+    region:   n_342
     level:    [26, 29]
   17387863:
     template: Davoi_Pugil
-    at:       [62.191, 3.347, 40.546, 127]
+    region:   n_342
     level:    [26, 29]
   17387864:
     template: Davoi_Pugil
-    at:       [57.057, 3.346, -1.256, 100]
+    region:   n_342
     level:    [26, 29]
   17387865:
     template: Water_Elemental
@@ -4001,11 +4004,11 @@ spawns:
     level:    [37, 39]
   17387867:
     template: Davoi_Wasp
-    at:       [96.746, -0.822, 61.943, 102]
+    region:   n_347
     level:    [30, 33]
   17387868:
     template: Davoi_Wasp
-    at:       [100.000, -0.897, 66.000, 127]
+    region:   n_347
     level:    [30, 33]
   17387869:
     template: Wolf_Bat
@@ -4027,15 +4030,15 @@ spawns:
           end:    6
   17387871:
     template: Davoi_Pugil
-    at:       [101.000, 3.000, -214.000, 127]
+    region:   c_351
     level:    [26, 29]
   17387872:
     template: Davoi_Pugil
-    at:       [96.437, 3.362, -143.243, 127]
+    region:   c_351
     level:    [26, 29]
   17387873:
     template: Davoi_Pugil
-    at:       [102.086, 3.375, -149.766, 127]
+    region:   c_351
     level:    [26, 29]
   17387874:
     template: Water_Elemental
@@ -4046,11 +4049,11 @@ spawns:
     level:    [26, 29]
   17387876:
     template: Davoi_Pugil
-    at:       [100.977, 3.402, -177.553, 127]
+    region:   c_356
     level:    [26, 29]
   17387877:
     template: Davoi_Pugil
-    at:       [100.814, 3.389, -185.110, 110]
+    region:   c_356
     level:    [26, 29]
   17387878:
     template: Water_Elemental
@@ -4058,15 +4061,15 @@ spawns:
     level:    [47, 49]
   17387879:
     template: Davoi_Pugil
-    at:       [174.501, 3.033, -344.157, 97]
+    region:   se_359
     level:    [26, 29]
   17387880:
     template: Davoi_Pugil
-    at:       [177.521, 3.613, -367.556, 95]
+    region:   se_359
     level:    [26, 29]
   17387881:
     template: Davoi_Pugil
-    at:       [150.406, 3.290, -297.560, 109]
+    region:   se_359
     level:    [26, 29]
   17387882:
     template: Water_Elemental
@@ -4094,11 +4097,11 @@ spawns:
     level:    [26, 29]
   17387888:
     template: Davoi_Pugil
-    at:       [19.734, 3.524, -161.028, 69]
+    region:   c_368
     level:    [26, 29]
   17387889:
     template: Davoi_Pugil
-    at:       [21.913, 3.377, -152.185, 127]
+    region:   c_368
     level:    [26, 29]
   17387890:
     template: Water_Elemental
@@ -4106,15 +4109,15 @@ spawns:
     level:    [47, 49]
   17387891:
     template: Davoi_Pugil
-    at:       [-123.823, 3.289, -137.981, 127]
+    region:   c_371
     level:    [26, 29]
   17387892:
     template: Davoi_Pugil
-    at:       [-142.473, 3.043, -134.677, 127]
+    region:   c_371
     level:    [26, 29]
   17387893:
     template: Davoi_Pugil
-    at:       [-55.256, 3.321, -137.759, 2]
+    region:   c_371
     level:    [26, 29]
   17387894:
     template: Water_Elemental
@@ -4126,11 +4129,11 @@ spawns:
     level:    [26, 29]
   17387896:
     template: Davoi_Pugil
-    at:       [-168.951, 3.138, -138.381, 127]
+    region:   w_376
     level:    [26, 29]
   17387897:
     template: Davoi_Pugil
-    at:       [-228.000, 3.009, -142.000, 69]
+    region:   w_376
     level:    [26, 29]
   17387898:
     template: Water_Elemental
@@ -4138,15 +4141,15 @@ spawns:
     level:    [47, 49]
   17387899:
     template: Davoi_Pugil
-    at:       [-266.733, 3.055, -96.518, 106]
+    region:   w_379
     level:    [26, 29]
   17387900:
     template: Davoi_Pugil
-    at:       [-258.006, 3.357, -117.536, 52]
+    region:   w_379
     level:    [26, 29]
   17387901:
     template: Davoi_Pugil
-    at:       [-257.113, 3.346, -80.140, 127]
+    region:   w_379
     level:    [26, 29]
   17387902:
     template: Water_Elemental
@@ -4154,11 +4157,11 @@ spawns:
     level:    [47, 49]
   17387903:
     template: War_Lizard
-    at:       [-257.774, 3.251, -192.264, 127]
+    region:   w_383
     level:    [29, 32]
   17387904:
     template: War_Lizard
-    at:       [-290.888, 2.557, -206.300, 106]
+    region:   w_383
     level:    [29, 32]
   17387905:
     template: Orcish_Impaler
@@ -4234,19 +4237,19 @@ spawns:
     level:    [33, 37]
   17387923:
     template: Orcish_Nightraider
-    at:       [-162.000, -0.924, -178.000, 35]
+    region:   w_403
     level:    [34, 38]
   17387924:
     template: Orcish_Brawler
-    at:       [-181.929, -0.403, -174.662, 240]
+    region:   w_403
     level:    [35, 39]
   17387925:
     template: War_Lizard
-    at:       [-145.723, -0.479, -185.606, 17]
+    region:   w_403
     level:    [29, 32]
   17387926:
     template: War_Lizard
-    at:       [-157.019, -0.276, -187.268, 133]
+    region:   w_403
     level:    [29, 32]
   17387927:
     template: Orcish_Impaler
@@ -4254,7 +4257,7 @@ spawns:
     level:    [32, 36]
   17387928:
     template: Orcish_Beastrider
-    at:       [-169.000, -0.714, -174.000, 125]
+    region:   w_408
     level:    [33, 37]
   17387929:
     template: Orcish_Nightraider
@@ -4266,43 +4269,43 @@ spawns:
     level:    [35, 39]
   17387931:
     template: Orcish_Farkiller
-    at:       [61.804, -1.262, -106.139, 106]
+    region:   c_411
     level:    [62, 66]
   17387932:
     template: Orcish_Farkiller
-    at:       [84.558, -4.946, -163.744, 71]
+    region:   c_411
     level:    [62, 66]
   17387933:
     template: Orcish_Dreadnought
-    at:       [76.048, -3.770, -120.206, 127]
+    region:   c_411
     level:    [63, 67]
   17387934:
     template: Orcish_Champion
-    at:       [34.000, -2.000, -129.000, 7]
+    region:   c_414
     level:    [64, 68]
   17387935:
     template: Orcish_Farkiller
-    at:       [33.235, -3.363, -141.620, 15]
+    region:   c_415
     level:    [62, 66]
   17387936:
     template: Orcish_Farkiller
-    at:       [48.901, -4.018, -112.083, 1]
+    region:   c_415
     level:    [62, 66]
   17387937:
     template: Orcish_Dreadnought
-    at:       [41.115, -4.021, -122.144, 127]
+    region:   c_415
     level:    [63, 67]
   17387938:
     template: Orcish_Dreadnought
-    at:       [70.000, -8.477, -144.000, 35]
+    region:   c_418
     level:    [63, 67]
   17387939:
     template: Orcish_Dragoon
-    at:       [70.953, -8.617, -157.231, 100]
+    region:   c_418
     level:    [65, 69]
   17387940:
     template: Orcish_Dragoon
-    at:       [49.000, -9.000, -164.000, 127]
+    region:   c_418
     level:    [65, 69]
   17387941:
     template: Orcish_Dragoon
@@ -4310,15 +4313,15 @@ spawns:
     level:    [65, 69]
   17387942:
     template: Orcish_Champion
-    at:       [55.000, -9.904, -143.844, 111]
+    region:   c_422
     level:    [64, 68]
   17387943:
     template: Orcish_Warchief
-    at:       [48.000, -9.000, -143.000, 127]
+    region:   c_422
     level:    [55, 59]
   17387944:
     template: Orcish_Warchief
-    at:       [58.000, -9.000, -140.000, 35]
+    region:   c_422
     level:    [55, 59]
   17387945:
     template: Dirtyhanded_Gochakzuk
@@ -4330,7 +4333,7 @@ spawns:
     level:    [62, 66]
   17387947:
     template: Orcish_Dreadnought
-    at:       [65.000, -3.000, -173.000, 113]
+    region:   c_427
     level:    [63, 67]
   17387948:
     template: Orcish_Champion
@@ -4346,7 +4349,7 @@ spawns:
     level:    [62, 66]
   17387951:
     template: Orcish_Dreadnought
-    at:       [129.035, -0.177, -141.945, 127]
+    region:   c_427
     level:    [63, 67]
   17387952:
     template: Orcish_Champion
@@ -4354,11 +4357,11 @@ spawns:
     level:    [64, 68]
   17387953:
     template: Orcish_Dragoon
-    at:       [120.725, -0.500, -139.689, 79]
+    region:   c_427
     level:    [65, 69]
   17387954:
     template: Orcish_Farkiller
-    at:       [164.878, -0.707, -182.941, 127]
+    region:   e_434
     level:    [62, 66]
   17387955:
     template: Orcish_Dreadnought
@@ -4366,7 +4369,7 @@ spawns:
     level:    [63, 67]
   17387956:
     template: Orcish_Champion
-    at:       [156.600, -0.500, -176.201, 95]
+    region:   e_434
     level:    [64, 68]
   17387957:
     template: Orcish_Dragoon
@@ -4382,7 +4385,7 @@ spawns:
     level:    [63, 67]
   17387960:
     template: Orcish_Champion
-    at:       [158.764, -0.500, -185.277, 127]
+    region:   e_434
     level:    [64, 68]
   17387961:
     template: Orcish_Dragoon
@@ -4390,15 +4393,15 @@ spawns:
     level:    [65, 69]
   17387962:
     template: Orcish_Dreadnought
-    at:       [180.656, -0.210, -213.239, 30]
+    region:   e_442
     level:    [63, 67]
   17387963:
     template: Orcish_Warchief
-    at:       [176.161, 0.104, -218.530, 127]
+    region:   e_442
     level:    [55, 59]
   17387964:
     template: Orcish_Warchief
-    at:       [173.099, -0.295, -213.957, 127]
+    region:   e_442
     level:    [55, 59]
   17387965:
     template: Gavotvut

@@ -1563,15 +1563,15 @@ templates:
 spawns:
   17420289:
     template: Mold_Bats
-    at:       [-26.534, -48.105, 20.348]
+    region:   e_1
     level:    [25, 27]
   17420290:
     template: Mold_Bats
-    at:       [-19.000, -48.105, -3.000, 50]
+    region:   e_1
     level:    [25, 27]
   17420291:
     template: Mold_Bats
-    at:       [-19.000, -48.105, 38.000, 54]
+    region:   e_1
     level:    [25, 27]
   17420292:
     template: Stirge
@@ -1579,7 +1579,7 @@ spawns:
     level:    [27, 29]
   17420293:
     template: Stirge
-    at:       [-20.000, -48.000, -25.000, 58]
+    region:   e_1
     level:    [27, 29]
   17420294:
     template: Goblin_Pathfinder
@@ -1591,15 +1591,15 @@ spawns:
     level:    [23, 25]
   17420296:
     template: Goblin_Furrier
-    at:       [27.184, -48.099, -64.062, 8]
+    region:   se_8
     level:    [30, 32]
   17420297:
     template: Goblin_Smithy
-    at:       [23.201, -47.705, -59.101, 127]
+    region:   se_8
     level:    [30, 32]
   17420298:
     template: Goblin_Shaman
-    at:       [14.520, -47.705, -56.346, 127]
+    region:   se_8
     level:    [30, 32]
   17420299:
     template: Goblin_Pathfinder
@@ -1615,7 +1615,7 @@ spawns:
     level:    [30, 32]
   17420302:
     template: Goblin_Smithy
-    at:       [20.149, -47.705, -69.412, 103]
+    region:   se_8
     level:    [30, 32]
   17420303:
     template: Goblin_Shaman
@@ -1623,35 +1623,35 @@ spawns:
     level:    [30, 32]
   17420304:
     template: Goblin_Pathfinder
-    at:       [87.289, -48.081, -20.620, 118]
+    region:   se_16
     level:    [30, 32]
   17420305:
     template: Goblins_Bat
-    at:       [1.000, 1.000, 1.000]
+    region:   se_16
     level:    [23, 25]
   17420306:
     template: Goblin_Furrier
-    at:       [99.000, -48.105, -8.000, 127]
+    region:   se_16
     level:    [30, 32]
   17420307:
     template: Goblin_Smithy
-    at:       [76.000, -48.105, -59.000, 117]
+    region:   se_16
     level:    [30, 32]
   17420308:
     template: Goblin_Shaman
-    at:       [54.698, -48.106, -20.117, 105]
+    region:   se_16
     level:    [30, 32]
   17420309:
     template: Goblin_Pathfinder
-    at:       [99.000, -48.105, -39.000, 25]
+    region:   se_21
     level:    [30, 32]
   17420310:
     template: Goblins_Bat
-    at:       [1.000, 1.000, 1.000]
+    region:   se_21
     level:    [23, 25]
   17420311:
     template: Goblin_Furrier
-    at:       [94.950, -48.105, -19.987, 89]
+    region:   se_21
     level:    [30, 32]
   17420312:
     template: Goblin_Smithy
@@ -1663,7 +1663,7 @@ spawns:
     level:    [30, 32]
   17420314:
     template: Giant_Gatekeeper
-    at:       [29.016, -48.105, 58.521, 125]
+    region:   e_26
     level:    [30, 32]
   17420315:
     template: Giant_Guard
@@ -1683,7 +1683,7 @@ spawns:
     level:    [30, 32]
   17420319:
     template: Giant_Gatekeeper
-    at:       [59.000, -48.105, 28.000, 42]
+    region:   e_31
     level:    [30, 32]
   17420320:
     template: Giant_Guard
@@ -1691,11 +1691,11 @@ spawns:
     level:    [30, 32]
   17420321:
     template: Giant_Sentry
-    at:       [11.000, -47.000, 99.000, 127]
+    region:   e_31
     level:    [30, 32]
   17420322:
     template: Gigass_Bat
-    at:       [1.000, 1.000, 1.000]
+    region:   e_31
     level:    [23, 25]
   17420323:
     template: Giant_Lobber
@@ -1715,15 +1715,15 @@ spawns:
     level:    [30, 32]
   17420327:
     template: Giant_Sentry
-    at:       [12.641, -47.711, 99.571, 89]
+    region:   ne_39
     level:    [30, 32]
   17420328:
     template: Gigass_Bat
-    at:       [13.601, -47.705, 100.803, 82]
+    region:   ne_39
     level:    [23, 25]
   17420329:
     template: Giant_Lobber
-    at:       [-58.557, -64.105, 28.637, 127]
+    region:   ne_39
     level:    [30, 32]
   17420330:
     template: Goblin_Pathfinder
@@ -1767,47 +1767,47 @@ spawns:
     level:    [30, 32]
   17420340:
     template: Magic_Pot
-    at:       [78.000, -48.105, 80.000, 127]
+    region:   ne_52
     level:    [28, 29]
   17420341:
     template: Panzer_Doll
-    at:       [71.000, -63.000, 45.000, 127]
+    region:   ne_53
     level:    [31, 32]
   17420342:
     template: Panzer_Doll
-    at:       [80.000, -63.000, 27.000, 56]
+    region:   ne_53
     level:    [31, 32]
   17420343:
     template: Mold_Bats
-    at:       [79.000, -63.000, 16.000, 93]
+    region:   ne_53
     level:    [25, 27]
   17420344:
     template: Mold_Bats
-    at:       [71.020, -64.113, 66.365, 127]
+    region:   ne_53
     level:    [25, 27]
   17420345:
     template: Stirge
-    at:       [68.810, -64.085, 48.226, 75]
+    region:   ne_53
     level:    [27, 29]
   17420346:
     template: Magic_Pot
-    at:       [73.467, -63.712, 8.356, 127]
+    region:   e_58
     level:    [28, 29]
   17420347:
     template: Magic_Pot
-    at:       [88.011, -63.764, 4.171, 127]
+    region:   e_58
     level:    [28, 29]
   17420348:
     template: Mold_Bats
-    at:       [99.709, -64.105, 10.060, 127]
+    region:   e_58
     level:    [25, 27]
   17420349:
     template: Stirge
-    at:       [97.621, -64.085, 28.153, 22]
+    region:   e_58
     level:    [27, 29]
   17420350:
     template: Stirge
-    at:       [75.912, -63.660, 3.169, 127]
+    region:   e_58
     level:    [27, 29]
   17420351:
     template: Banshee
@@ -1815,11 +1815,11 @@ spawns:
     level:    [32, 33]
   17420352:
     template: Stirge
-    at:       [60.000, -64.000, -36.000, 127]
+    region:   se_64
     level:    [27, 29]
   17420353:
     template: Stirge
-    at:       [59.000, -64.000, -14.000, 114]
+    region:   se_64
     level:    [27, 29]
   17420354:
     template: Banshee
@@ -1827,11 +1827,11 @@ spawns:
     level:    [32, 33]
   17420355:
     template: Goblin_Pathfinder
-    at:       [-35.000, -63.000, 80.000, 127]
+    region:   ne_67
     level:    [30, 32]
   17420356:
     template: Goblins_Bat
-    at:       [1.000, 1.000, 1.000]
+    region:   ne_67
     level:    [23, 25]
   17420357:
     template: Goblin_Furrier
@@ -1839,11 +1839,11 @@ spawns:
     level:    [30, 32]
   17420358:
     template: Goblin_Smithy
-    at:       [13.582, -64.494, 62.366, 127]
+    region:   ne_67
     level:    [30, 32]
   17420359:
     template: Goblin_Shaman
-    at:       [-8.000, -64.232, 60.000, 127]
+    region:   ne_67
     level:    [30, 32]
   17420360:
     template: Goblin_Pathfinder
@@ -1863,56 +1863,56 @@ spawns:
     level:    [30, 32]
   17420364:
     template: Goblin_Shaman
-    at:       [29.483, -64.500, 61.406, 31]
+    region:   ne_67
     level:    [30, 32]
   17420365:
     template: Banshee
-    at:       [15.000, -63.000, 103.000, 127]
+    region:   ne_77
     level:    [32, 33]
   17420366:
     template: Evil_Spirit_MDT
     script:   Evil_Spirit
-    at:       [24.365, -63.707, 98.173, 97]
+    region:   ne_77
     level:    [34, 35]
   17420367:
     template: Goblin_Pathfinder
-    at:       [29.018, -79.708, 104.290, 127]
+    region:   ne_79
     level:    [30, 32]
   17420368:
     template: Goblins_Bat
-    at:       [1.000, 1.000, 1.000]
+    region:   ne_79
     level:    [23, 25]
   17420369:
     template: Goblin_Furrier
-    at:       [19.000, -64.517, 76.000, 127]
+    region:   ne_79
     level:    [30, 32]
   17420370:
     template: Goblin_Smithy
-    at:       [-11.000, -79.692, 99.000, 113]
+    region:   ne_79
     level:    [30, 32]
   17420371:
     template: Goblin_Shaman
-    at:       [-13.000, -64.025, 59.000, 41]
+    region:   ne_79
     level:    [30, 32]
   17420372:
     template: Goblin_Pathfinder
-    at:       [20.603, -79.714, 91.081, 35]
+    region:   ne_79
     level:    [30, 32]
   17420373:
     template: Goblins_Bat
-    at:       [1.000, 1.000, 1.000]
+    region:   ne_79
     level:    [23, 25]
   17420374:
     template: Goblin_Furrier
-    at:       [27.000, -80.099, 94.000, 127]
+    region:   ne_79
     level:    [30, 32]
   17420375:
     template: Goblin_Smithy
-    at:       [14.848, -79.706, 99.546, 127]
+    region:   ne_79
     level:    [30, 32]
   17420376:
     template: Goblin_Shaman
-    at:       [14.942, -79.709, 102.963, 87]
+    region:   ne_79
     level:    [30, 32]
   17420377:
     template: Giant_Gatekeeper
@@ -1932,19 +1932,19 @@ spawns:
     level:    [23, 25]
   17420381:
     template: Giant_Lobber
-    at:       [-48.936, -64.114, 8.575, 127]
+    region:   e_93
     level:    [30, 32]
   17420382:
     template: Polybotes
-    at:       [-41.284, -63.636, 3.492, 127]
+    region:   e_94
     level:    [34, 34]
   17420383:
     template: Giant_Gatekeeper
-    at:       [-42.392, -63.535, -0.946, 127]
+    region:   e_94
     level:    [30, 32]
   17420384:
     template: Giant_Guard
-    at:       [-31.000, -63.713, -3.000, 127]
+    region:   e_94
     level:    [30, 32]
   17420385:
     template: Giant_Sentry
@@ -1960,7 +1960,7 @@ spawns:
     level:    [30, 32]
   17420388:
     template: Giant_Gatekeeper
-    at:       [-19.753, -65.961, -46.870, 127]
+    region:   se_100
     level:    [30, 32]
   17420389:
     template: Giant_Guard
@@ -1976,11 +1976,11 @@ spawns:
     level:    [23, 25]
   17420392:
     template: Giant_Lobber
-    at:       [-9.648, -69.811, -60.456, 137]
+    region:   se_100
     level:    [30, 32]
   17420393:
     template: Giant_Gatekeeper
-    at:       [4.750, -80.055, -10.193, 124]
+    region:   e_105
     level:    [30, 32]
   17420394:
     template: Giant_Guard
@@ -1988,11 +1988,11 @@ spawns:
     level:    [30, 32]
   17420395:
     template: Giant_Sentry
-    at:       [42.000, -79.634, -3.197, 127]
+    region:   e_105
     level:    [30, 32]
   17420396:
     template: Gigass_Bat
-    at:       [1.000, 1.000, 1.000]
+    region:   e_105
     level:    [23, 25]
   17420397:
     template: Giant_Lobber
@@ -2048,11 +2048,11 @@ spawns:
     level:    [30, 32]
   17420410:
     template: Giant_Sentry
-    at:       [46.000, -79.844, 35.000, 127]
+    region:   e_122
     level:    [30, 32]
   17420411:
     template: Gigass_Bat
-    at:       [1.000, 1.000, 1.000]
+    region:   e_122
     level:    [23, 25]
   17420412:
     template: Giant_Lobber
@@ -2060,19 +2060,19 @@ spawns:
     level:    [30, 32]
   17420413:
     template: Panzer_Doll
-    at:       [100.000, -79.707, 28.000, 127]
+    region:   e_125
     level:    [31, 32]
   17420414:
     template: Panzer_Doll
-    at:       [106.248, -79.743, 11.079, 13]
+    region:   e_125
     level:    [31, 32]
   17420415:
     template: Magic_Pot
-    at:       [72.000, -79.727, -46.000, 104]
+    region:   se_127
     level:    [28, 29]
   17420416:
     template: Magic_Pot
-    at:       [82.000, -79.000, -29.000, 77]
+    region:   se_127
     level:    [28, 29]
   17420417:
     template: Rhoitos
@@ -2080,11 +2080,11 @@ spawns:
     level:    [34, 34]
   17420418:
     template: Giant_Gatekeeper
-    at:       [81.445, -79.977, 71.427, 93]
+    region:   ne_130
     level:    [30, 32]
   17420419:
     template: Giant_Guard
-    at:       [77.924, -80.084, 70.787, 124]
+    region:   ne_130
     level:    [30, 32]
   17420420:
     template: Giant_Sentry
@@ -2108,11 +2108,11 @@ spawns:
     level:    [23, 25]
   17420425:
     template: Goblin_Furrier
-    at:       [20.738, -79.705, 97.889, 86]
+    region:   ne_137
     level:    [30, 32]
   17420426:
     template: Goblin_Smithy
-    at:       [-59.569, -80.093, 90.609, 127]
+    region:   ne_137
     level:    [30, 32]
   17420427:
     template: Goblin_Shaman
@@ -2136,7 +2136,7 @@ spawns:
     level:    [30, 32]
   17420432:
     template: Goblin_Shaman
-    at:       [-34.000, -80.105, 100.000, 127]
+    region:   ne_137
     level:    [30, 32]
   17420433:
     template: Goblin_Pathfinder
@@ -2148,11 +2148,11 @@ spawns:
     level:    [23, 25]
   17420435:
     template: Goblin_Furrier
-    at:       [-58.449, -80.099, 22.429, 127]
+    region:   ne_147
     level:    [30, 32]
   17420436:
     template: Goblin_Smithy
-    at:       [-67.942, -79.599, 26.219, 127]
+    region:   ne_147
     level:    [30, 32]
   17420437:
     template: Goblin_Shaman
@@ -2160,7 +2160,7 @@ spawns:
     level:    [30, 32]
   17420438:
     template: Thunder_Elemental
-    at:       [-47.168, -80.105, 98.547, 127]
+    region:   ne_147
     level:    [35, 36]
   17420439:
     template: Light_Elemental
@@ -2180,11 +2180,11 @@ spawns:
     level:    [30, 32]
   17420443:
     template: Goblin_Smithy
-    at:       [-43.000, -80.105, -27.000, 127]
+    region:   e_155
     level:    [30, 32]
   17420444:
     template: Goblin_Shaman
-    at:       [-59.896, -80.099, 13.802, 80]
+    region:   e_155
     level:    [30, 32]
   17420445:
     template: Goblin_Pathfinder
@@ -2204,7 +2204,7 @@ spawns:
     level:    [30, 32]
   17420449:
     template: Goblin_Shaman
-    at:       [-59.421, -80.105, 0.643, 61]
+    region:   e_155
     level:    [30, 32]
   17420450:
     template: Goblin_Pathfinder
@@ -2256,11 +2256,11 @@ spawns:
     level:    [23, 25]
   17420462:
     template: Goblin_Furrier
-    at:       [-470.382, -95.533, -42.850, 86]
+    region:   sw_174
     level:    [32, 34]
   17420463:
     template: Goblin_Smithy
-    at:       [-375.000, -111.517, 59.000, 127]
+    region:   sw_174
     level:    [32, 34]
   17420464:
     template: Goblin_Shaman
@@ -2280,27 +2280,27 @@ spawns:
     level:    [32, 34]
   17420468:
     template: Goblin_Smithy
-    at:       [-492.676, -96.124, 16.449, 127]
+    region:   sw_174
     level:    [32, 34]
   17420469:
     template: Goblin_Shaman
-    at:       [-404.000, -96.109, -38.000, 127]
+    region:   sw_174
     level:    [32, 34]
   17420470:
     template: Tower_Bats
-    at:       [-461.154, -95.529, -25.026, 127]
+    region:   sw_174
     level:    [27, 29]
   17420471:
     template: Tower_Bats
-    at:       [-453.704, -96.060, -54.063, 125]
+    region:   sw_174
     level:    [27, 29]
   17420472:
     template: Goblin_Pathfinder
-    at:       [-386.654, -95.529, -28.523, 75]
+    region:   w_184
     level:    [32, 34]
   17420473:
     template: Goblins_Bat
-    at:       [1.000, 1.000, 1.000]
+    region:   w_184
     level:    [23, 25]
   17420474:
     template: Goblin_Furrier
@@ -2308,7 +2308,7 @@ spawns:
     level:    [32, 34]
   17420475:
     template: Goblin_Smithy
-    at:       [-381.118, -95.529, -38.969, 97]
+    region:   w_184
     level:    [32, 34]
   17420476:
     template: Goblin_Shaman
@@ -2328,27 +2328,27 @@ spawns:
     level:    [32, 34]
   17420480:
     template: Goblin_Smithy
-    at:       [-373.270, -95.749, -47.176, 127]
+    region:   w_184
     level:    [32, 34]
   17420481:
     template: Goblin_Shaman
-    at:       [-370.642, -95.530, -19.658, 127]
+    region:   w_184
     level:    [32, 34]
   17420482:
     template: Big_Bat
-    at:       [-488.086, -95.848, 30.946, 5]
+    region:   w_184
     level:    [29, 31]
   17420483:
     template: Big_Bat
-    at:       [-482.056, -95.564, 51.882, 127]
+    region:   w_184
     level:    [29, 31]
   17420484:
     template: Magic_Jar
-    at:       [-479.000, -96.095, 81.000, 86]
+    region:   sw_196
     level:    [31, 32]
   17420485:
     template: Thunder_Elemental
-    at:       [-410.892, -96.115, -53.905, 127]
+    region:   sw_196
     level:    [35, 36]
   17420486:
     template: Light_Elemental
@@ -2356,11 +2356,11 @@ spawns:
     level:    [35, 36]
   17420487:
     template: Goblin_Pathfinder
-    at:       [-362.518, -95.560, 55.899, 127]
+    region:   sw_199
     level:    [32, 34]
   17420488:
     template: Goblins_Bat
-    at:       [1.000, 1.000, 1.000]
+    region:   sw_199
     level:    [23, 25]
   17420489:
     template: Goblin_Furrier
@@ -2372,15 +2372,15 @@ spawns:
     level:    [32, 34]
   17420491:
     template: Goblin_Shaman
-    at:       [-374.164, -96.076, -52.269, 127]
+    region:   sw_199
     level:    [32, 34]
   17420492:
     template: Goblin_Pathfinder
-    at:       [-370.056, -95.846, 66.555, 64]
+    region:   sw_199
     level:    [32, 34]
   17420493:
     template: Goblins_Bat
-    at:       [1.000, 1.000, 1.000]
+    region:   sw_199
     level:    [23, 25]
   17420494:
     template: Goblin_Furrier
@@ -2388,27 +2388,27 @@ spawns:
     level:    [32, 34]
   17420495:
     template: Goblin_Smithy
-    at:       [-357.950, -95.552, 66.300, 127]
+    region:   sw_199
     level:    [32, 34]
   17420496:
     template: Goblin_Shaman
-    at:       [-354.118, -96.042, 56.809, 127]
+    region:   sw_199
     level:    [32, 34]
   17420497:
     template: Tower_Bats
-    at:       [-378.372, -95.529, -22.519, 90]
+    region:   sw_199
     level:    [27, 29]
   17420498:
     template: Tower_Bats
-    at:       [-382.228, -96.093, -59.621, 8]
+    region:   sw_199
     level:    [27, 29]
   17420499:
     template: Goblin_Pathfinder
-    at:       [-458.423, -112.411, 88.846, 13]
+    region:   w_211
     level:    [32, 34]
   17420500:
     template: Goblins_Bat
-    at:       [1.000, 1.000, 1.000]
+    region:   w_211
     level:    [23, 25]
   17420501:
     template: Goblin_Furrier
@@ -2416,7 +2416,7 @@ spawns:
     level:    [32, 34]
   17420502:
     template: Goblin_Smithy
-    at:       [-438.463, -111.940, 77.093, 127]
+    region:   w_211
     level:    [32, 34]
   17420503:
     template: Goblin_Shaman
@@ -2447,11 +2447,11 @@ spawns:
     level:    [29, 31]
   17420510:
     template: Big_Bat
-    at:       [-363.599, -95.533, 42.435, 127]
+    region:   w_211
     level:    [29, 31]
   17420511:
     template: Gigas_Wallwatcher
-    at:       [-462.342, -95.529, 25.403, 6]
+    region:   w_223
     level:    [32, 34]
   17420512:
     template: Gigas_Jailer
@@ -2459,11 +2459,11 @@ spawns:
     level:    [32, 34]
   17420513:
     template: Gigas_Kettlemaster
-    at:       [-453.000, -95.529, -1.000, 7]
+    region:   w_223
     level:    [32, 34]
   17420514:
     template: Gigass_Bats
-    at:       [1.000, 1.000, 1.000]
+    region:   w_223
     level:    [25, 27]
   17420515:
     template: Gigas_Quarrier
@@ -2471,7 +2471,7 @@ spawns:
     level:    [32, 34]
   17420516:
     template: Gigas_Wallwatcher
-    at:       [-404.695, -95.529, -7.804, 127]
+    region:   w_223
     level:    [32, 34]
   17420517:
     template: Gigas_Jailer
@@ -2479,11 +2479,11 @@ spawns:
     level:    [32, 34]
   17420518:
     template: Gigas_Kettlemaster
-    at:       [-409.937, -95.772, 48.785, 35]
+    region:   w_223
     level:    [32, 34]
   17420519:
     template: Gigass_Bats
-    at:       [1.000, 1.000, 1.000]
+    region:   w_223
     level:    [25, 27]
   17420520:
     template: Gigas_Quarrier
@@ -2491,35 +2491,35 @@ spawns:
     level:    [32, 34]
   17420521:
     template: Tower_Bats
-    at:       [-421.497, -95.529, -16.362, 69]
+    region:   w_223
     level:    [27, 29]
   17420522:
     template: Tower_Bats
-    at:       [-457.872, -95.529, -10.341, 127]
+    region:   w_223
     level:    [27, 29]
   17420523:
     template: Tower_Bats
-    at:       [-409.111, -95.529, -23.852, 69]
+    region:   w_223
     level:    [27, 29]
   17420524:
     template: Big_Bat
-    at:       [-384.993, -95.529, 4.480, 51]
+    region:   w_223
     level:    [29, 31]
   17420525:
     template: Big_Bat
-    at:       [-384.571, -95.529, 9.813, 127]
+    region:   w_223
     level:    [29, 31]
   17420526:
     template: Big_Bat
-    at:       [-447.460, -95.529, -8.266, 127]
+    region:   w_223
     level:    [29, 31]
   17420527:
     template: Gigas_Kettlemaster
-    at:       [-384.000, -95.529, 14.000, 127]
+    region:   w_239
     level:    [32, 34]
   17420528:
     template: Gigass_Bats
-    at:       [1.000, 1.000, 1.000]
+    region:   w_239
     level:    [25, 27]
   17420529:
     template: Ophion
@@ -2532,16 +2532,16 @@ spawns:
   17420531:
     template: Evil_Spirit_MDT
     script:   Evil_Spirit
-    at:       [-411.841, -95.910, 94.171, 127]
+    region:   nw_243
     level:    [34, 35]
   17420532:
     template: Evil_Spirit_MDT
     script:   Evil_Spirit
-    at:       [-423.663, -95.735, 104.889, 22]
+    region:   nw_243
     level:    [34, 35]
   17420533:
     template: Thunder_Elemental
-    at:       [-416.453, -95.742, 90.580, 28]
+    region:   nw_243
     level:    [35, 36]
   17420534:
     template: Light_Elemental
@@ -2549,23 +2549,23 @@ spawns:
     level:    [35, 36]
   17420535:
     template: Goblin_Pathfinder
-    at:       [-421.268, -127.708, 91.432, 23]
+    region:   nw_247
     level:    [32, 34]
   17420536:
     template: Goblins_Bat
-    at:       [1.000, 1.000, 1.000]
+    region:   nw_247
     level:    [23, 25]
   17420537:
     template: Goblin_Furrier
-    at:       [-453.533, -111.924, 68.095, 54]
+    region:   nw_247
     level:    [32, 34]
   17420538:
     template: Goblin_Smithy
-    at:       [-423.547, -127.721, 110.207, 118]
+    region:   nw_247
     level:    [32, 34]
   17420539:
     template: Goblin_Shaman
-    at:       [-431.006, -111.916, 69.983, 1]
+    region:   nw_247
     level:    [32, 34]
   17420540:
     template: Goblin_Pathfinder
@@ -2581,15 +2581,15 @@ spawns:
     level:    [32, 34]
   17420543:
     template: Goblin_Smithy
-    at:       [-427.000, -127.724, 95.000, 127]
+    region:   nw_247
     level:    [32, 34]
   17420544:
     template: Goblin_Shaman
-    at:       [-412.074, -128.099, 98.628, 27]
+    region:   nw_247
     level:    [32, 34]
   17420545:
     template: Gigas_Wallwatcher
-    at:       [-440.761, -111.403, 43.559, 127]
+    region:   w_257
     level:    [32, 34]
   17420546:
     template: Gigas_Jailer
@@ -2609,7 +2609,7 @@ spawns:
     level:    [32, 34]
   17420550:
     template: Gigas_Wallwatcher
-    at:       [-455.994, -111.560, 34.133, 102]
+    region:   w_257
     level:    [32, 34]
   17420551:
     template: Gigas_Jailer
@@ -2653,7 +2653,7 @@ spawns:
     level:    [25, 27]
   17420561:
     template: Gigas_Quarrier
-    at:       [-417.553, -112.076, -13.066, 78]
+    region:   w_273
     level:    [32, 34]
   17420562:
     template: Gigas_Wallwatcher
@@ -2673,18 +2673,19 @@ spawns:
     level:    [25, 27]
   17420566:
     template: Gigas_Quarrier
-    at:       [-389.084, -111.532, 35.374, 19]
+    region:   w_273
     level:    [32, 34]
   17420567:
     template: Tower_Bats
+    region:   nw_279
     level:    [27, 29]
   17420568:
     template: Tower_Bats
-    at:       [-366.817, -111.696, 70.055, 127]
+    region:   nw_279
     level:    [27, 29]
   17420569:
     template: Tower_Bats
-    at:       [-338.621, -112.105, 57.921, 33]
+    region:   nw_279
     level:    [27, 29]
   17420570:
     template: Big_Bat
@@ -2692,19 +2693,19 @@ spawns:
     level:    [29, 31]
   17420571:
     template: Big_Bat
-    at:       [-343.397, -112.109, 49.597, 18]
+    region:   nw_279
     level:    [29, 31]
   17420572:
     template: Jagd_Doll
-    at:       [-429.000, -111.706, -61.000, 127]
+    region:   sw_284
     level:    [33, 34]
   17420573:
     template: Jagd_Doll
-    at:       [-412.113, -111.705, -67.000, 41]
+    region:   sw_284
     level:    [33, 34]
   17420574:
     template: Thunder_Elemental
-    at:       [-410.611, -111.706, -66.506, 71]
+    region:   sw_284
     level:    [35, 36]
   17420575:
     template: Light_Elemental
@@ -2712,7 +2713,7 @@ spawns:
     level:    [35, 36]
   17420576:
     template: Tower_Bats
-    at:       [-355.000, -127.000, -30.000, 38]
+    region:   sw_288
     level:    [27, 29]
   17420577:
     template: Big_Bat
@@ -2720,11 +2721,11 @@ spawns:
     level:    [29, 31]
   17420578:
     template: Big_Bat
-    at:       [-370.677, -112.104, -56.921, 86]
+    region:   sw_288
     level:    [29, 31]
   17420579:
     template: Tower_Bats
-    at:       [-459.000, -128.000, -18.000, 127]
+    region:   sw_291
     level:    [27, 29]
   17420580:
     template: Tower_Bats
@@ -2781,19 +2782,19 @@ spawns:
     level:    [35, 35]
   17420593:
     template: Gigas_Wallwatcher
-    at:       [-503.000, -127.715, 24.000, 95]
+    region:   w_305
     level:    [32, 34]
   17420594:
     template: Gigas_Jailer
-    at:       [-499.000, -127.705, 13.000, 58]
+    region:   w_305
     level:    [32, 34]
   17420595:
     template: Gigas_Wallwatcher
-    at:       [-452.634, -128.047, 7.759, 92]
+    region:   w_307
     level:    [32, 34]
   17420596:
     template: Gigas_Jailer
-    at:       [-452.979, -128.098, 19.036, 38]
+    region:   w_307
     level:    [32, 34]
   17420597:
     template: Gigas_Kettlemaster
@@ -2805,7 +2806,7 @@ spawns:
     level:    [25, 27]
   17420599:
     template: Gigas_Quarrier
-    at:       [-440.000, -128.124, -6.000, 127]
+    region:   w_307
     level:    [32, 34]
   17420600:
     template: Gigas_Wallwatcher
@@ -2817,19 +2818,19 @@ spawns:
     level:    [32, 34]
   17420602:
     template: Gigas_Kettlemaster
-    at:       [-411.992, -127.769, -8.971, 127]
+    region:   sw_314
     level:    [32, 34]
   17420603:
     template: Gigass_Bats
-    at:       [1.000, 1.000, 1.000]
+    region:   sw_314
     level:    [25, 27]
   17420604:
     template: Gigas_Quarrier
-    at:       [-386.504, -128.517, 30.815, 127]
+    region:   sw_314
     level:    [32, 34]
   17420605:
     template: Gigas_Wallwatcher
-    at:       [-393.471, -127.614, 13.575, 127]
+    region:   w_317
     level:    [32, 34]
   17420606:
     template: Gigas_Jailer
@@ -2845,7 +2846,7 @@ spawns:
     level:    [25, 27]
   17420609:
     template: Gigas_Quarrier
-    at:       [-390.372, -127.888, -2.405, 80]
+    region:   w_317
     level:    [32, 34]
   17420610:
     template: Gigas_Wallwatcher
@@ -2853,15 +2854,15 @@ spawns:
     level:    [32, 34]
   17420611:
     template: Gigas_Jailer
-    at:       [-419.268, -128.499, 63.469, 185]
+    region:   nw_323
     level:    [32, 34]
   17420612:
     template: Gigas_Kettlemaster
-    at:       [-426.793, -128.092, 46.668, 117]
+    region:   nw_323
     level:    [32, 34]
   17420613:
     template: Gigass_Bats
-    at:       [1.000, 1.000, 1.000]
+    region:   nw_323
     level:    [25, 27]
   17420614:
     template: Gigas_Quarrier
@@ -2869,11 +2870,11 @@ spawns:
     level:    [32, 34]
   17420615:
     template: Goblin_Pathfinder
-    at:       [-423.394, -127.705, 100.966, 139]
+    region:   nw_327
     level:    [32, 34]
   17420616:
     template: Goblins_Bat
-    at:       [-420.783, -127.705, 101.430, 134]
+    region:   nw_327
     level:    [23, 25]
   17420617:
     template: Goblin_Furrier
@@ -2881,11 +2882,11 @@ spawns:
     level:    [32, 34]
   17420618:
     template: Goblin_Smithy
-    at:       [-414.108, -128.099, 102.774, 58]
+    region:   nw_327
     level:    [32, 34]
   17420619:
     template: Goblin_Shaman
-    at:       [-419.558, -127.705, 105.643, 42]
+    region:   nw_327
     level:    [32, 34]
   17420620:
     template: Goblin_Pathfinder
@@ -2897,10 +2898,11 @@ spawns:
     level:    [23, 25]
   17420622:
     template: Goblin_Furrier
-    at:       [-419.670, -127.707, 95.345, 125]
+    region:   nw_327
     level:    [32, 34]
   17420623:
     template: Goblin_Smithy
+    region:   nw_327
     level:    [32, 34]
   17420624:
     template: Goblin_Shaman
@@ -2912,11 +2914,11 @@ spawns:
     level:    [31, 32]
   17420626:
     template: Jagd_Doll
-    at:       [-418.000, -111.000, -49.000, 27]
+    region:   nw_338
     level:    [33, 34]
   17420627:
     template: Thunder_Elemental
-    at:       [-486.591, -128.005, 70.810, 127]
+    region:   nw_338
     level:    [35, 36]
   17420628:
     template: Light_Elemental

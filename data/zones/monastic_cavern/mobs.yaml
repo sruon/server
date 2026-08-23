@@ -1283,7 +1283,7 @@ templates:
 spawns:
   17391617:
     template: Orcish_Bowshooter
-    at:       [-9.935, -6.373, -383.034, 203]
+    region:   sw_1
     level:    [42, 46]
   17391618:
     template: Orcish_Footsoldier
@@ -1299,7 +1299,7 @@ spawns:
     level:    [45, 49]
   17391621:
     template: Orcish_Bowshooter
-    at:       [3.625, -9.252, -378.358, 31]
+    region:   sw_1
     level:    [42, 46]
   17391622:
     template: Orcish_Footsoldier
@@ -1315,19 +1315,19 @@ spawns:
     level:    [45, 49]
   17391625:
     template: Orcish_Bowshooter
-    at:       [-29.122, -1.231, -334.652, 215]
+    region:   sw_9
     level:    [42, 46]
   17391626:
     template: Orcish_Footsoldier
-    at:       [-38.894, -0.700, -331.111, 189]
+    region:   sw_9
     level:    [44, 47]
   17391627:
     template: Orcish_Gladiator
-    at:       [-22.422, -2.093, -298.238, 231]
+    region:   sw_9
     level:    [47, 48]
   17391628:
     template: Orcish_Trooper
-    at:       [-51.267, -0.924, -324.778, 234]
+    region:   sw_9
     level:    [45, 49]
   17391629:
     template: Orcish_Veteran
@@ -1343,23 +1343,23 @@ spawns:
     level:    [54, 58]
   17391632:
     template: Orcish_Warchief
-    at:       [-23.935, -1.318, -345.028, 26]
+    region:   sw_9
     level:    [55, 59]
   17391633:
     template: Orcish_Bowshooter
-    at:       [3.290, -0.934, -299.720, 240]
+    region:   s_17
     level:    [42, 46]
   17391634:
     template: Orcish_Footsoldier
-    at:       [1.279, -0.704, -308.548, 223]
+    region:   s_17
     level:    [44, 47]
   17391635:
     template: Orcish_Gladiator
-    at:       [12.909, -1.704, -300.766, 35]
+    region:   s_17
     level:    [44, 48]
   17391636:
     template: Orcish_Trooper
-    at:       [-10.924, -0.773, -311.234, 17]
+    region:   s_17
     level:    [45, 49]
   17391637:
     template: Orcish_Veteran
@@ -1367,7 +1367,7 @@ spawns:
     level:    [52, 56]
   17391638:
     template: Orcish_Predator
-    at:       [11.891, -0.982, -313.199, 247]
+    region:   s_17
     level:    [53, 57]
   17391639:
     template: Orcish_Zerker
@@ -1379,7 +1379,7 @@ spawns:
     level:    [55, 59]
   17391641:
     template: Orcish_Veteran
-    at:       [-9.894, -1.008, -263.598, 122]
+    region:   s_25
     level:    [52, 56]
   17391642:
     template: Orcish_Predator
@@ -1387,7 +1387,7 @@ spawns:
     level:    [53, 57]
   17391643:
     template: Orcish_Zerker
-    at:       [45.214, -0.892, -273.878, 67]
+    region:   s_25
     level:    [54, 58]
   17391644:
     template: Orcish_Warchief
@@ -1395,7 +1395,7 @@ spawns:
     level:    [55, 59]
   17391645:
     template: Orcish_Veteran
-    at:       [-2.461, -0.621, -288.688, 99]
+    region:   s_25
     level:    [52, 56]
   17391646:
     template: Orcish_Predator
@@ -1407,7 +1407,7 @@ spawns:
     level:    [54, 58]
   17391648:
     template: Orcish_Warchief
-    at:       [2.387, -0.627, -279.345, 216]
+    region:   s_25
     level:    [55, 59]
   17391649:
     template: Orcish_Veteran
@@ -1415,7 +1415,7 @@ spawns:
     level:    [52, 56]
   17391650:
     template: Orcish_Predator
-    at:       [55.942, -2.124, -289.924, 76]
+    region:   s_34
     level:    [53, 57]
   17391651:
     template: Orcish_Zerker
@@ -1423,15 +1423,15 @@ spawns:
     level:    [54, 58]
   17391652:
     template: Orcish_Warchief
-    at:       [44.980, -0.786, -273.108, 63]
+    region:   s_34
     level:    [55, 59]
   17391653:
     template: Orcish_Veteran
-    at:       [44.863, -0.781, -275.284, 188]
+    region:   s_34
     level:    [52, 56]
   17391654:
     template: Orcish_Predator
-    at:       [43.161, -0.771, -275.108, 240]
+    region:   s_34
     level:    [53, 57]
   17391655:
     template: Orcish_Zerker
@@ -1439,11 +1439,11 @@ spawns:
     level:    [54, 58]
   17391656:
     template: Orcish_Warchief
-    at:       [56.959, -0.833, -259.005, 207]
+    region:   s_34
     level:    [55, 59]
   17391657:
     template: Orcish_Veteran
-    at:       [-50.846, -0.988, -259.906, 4]
+    region:   sw_41
     level:    [52, 56]
   17391658:
     template: Orcish_Predator
@@ -1459,7 +1459,7 @@ spawns:
     level:    [55, 59]
   17391661:
     template: Orcish_Veteran
-    at:       [-57.334, -0.925, -263.063, 112]
+    region:   sw_41
     level:    [52, 56]
   17391662:
     template: Orcish_Predator
@@ -1479,7 +1479,7 @@ spawns:
     level:    [52, 56]
   17391666:
     template: Orcish_Predator
-    at:       [-66.287, -0.829, -185.799, 219]
+    region:   w_50
     level:    [53, 57]
   17391667:
     template: Orcish_Zerker
@@ -1487,7 +1487,7 @@ spawns:
     level:    [54, 58]
   17391668:
     template: Orcish_Warchief
-    at:       [-53.130, -1.226, -211.064, 103]
+    region:   w_50
     level:    [55, 59]
   17391669:
     template: Orcish_Farkiller
@@ -1503,7 +1503,7 @@ spawns:
     level:    [52, 56]
   17391672:
     template: Orcish_Predator
-    at:       [-65.570, -1.376, -144.983, 137]
+    region:   w_56
     level:    [53, 57]
   17391673:
     template: Orcish_Zerker
@@ -1523,7 +1523,7 @@ spawns:
     level:    [53, 57]
   17391677:
     template: Orcish_Zerker
-    at:       [-60.694, -0.879, -150.902, 58]
+    region:   w_56
     level:    [54, 58]
   17391678:
     template: Orcish_Warchief
@@ -1531,11 +1531,11 @@ spawns:
     level:    [55, 59]
   17391679:
     template: Orcish_Veteran
-    at:       [19.308, -0.810, -217.036, 228]
+    region:   c_63
     level:    [52, 56]
   17391680:
     template: Orcish_Predator
-    at:       [50.389, -0.958, -219.429, 251]
+    region:   c_63
     level:    [53, 57]
   17391681:
     template: Orcish_Zerker
@@ -1543,11 +1543,11 @@ spawns:
     level:    [54, 58]
   17391682:
     template: Orcish_Warchief
-    at:       [59.858, -0.883, -224.284, 52]
+    region:   c_63
     level:    [55, 59]
   17391683:
     template: Orcish_Veteran
-    at:       [48.485, -0.892, -219.566, 109]
+    region:   c_63
     level:    [52, 56]
   17391684:
     template: Orcish_Predator
@@ -1555,15 +1555,15 @@ spawns:
     level:    [53, 57]
   17391685:
     template: Orcish_Zerker
-    at:       [59.238, -0.925, -223.180, 177]
+    region:   c_63
     level:    [54, 58]
   17391686:
     template: Orcish_Warchief
-    at:       [56.301, -1.313, -215.001, 53]
+    region:   c_63
     level:    [55, 59]
   17391687:
     template: Orcish_Veteran
-    at:       [6.461, -0.729, -217.663, 238]
+    region:   c_71
     level:    [52, 56]
   17391688:
     template: Orcish_Predator
@@ -1575,7 +1575,7 @@ spawns:
     level:    [54, 58]
   17391690:
     template: Orcish_Warchief
-    at:       [-9.232, -0.925, -219.889, 241]
+    region:   c_71
     level:    [55, 59]
   17391691:
     template: Orcish_Farkiller
@@ -1587,11 +1587,11 @@ spawns:
     level:    [63, 66]
   17391693:
     template: Orcish_Veteran
-    at:       [-19.817, -0.774, -200.324, 63]
+    region:   w_77
     level:    [52, 56]
   17391694:
     template: Orcish_Predator
-    at:       [-18.510, -0.724, -219.883, 19]
+    region:   w_77
     level:    [53, 57]
   17391695:
     template: Orcish_Zerker
@@ -1599,7 +1599,7 @@ spawns:
     level:    [54, 58]
   17391696:
     template: Orcish_Warchief
-    at:       [-21.658, -0.707, -200.339, 188]
+    region:   w_77
     level:    [55, 59]
   17391697:
     template: Orcish_Veteran
@@ -1611,11 +1611,11 @@ spawns:
     level:    [53, 57]
   17391699:
     template: Orcish_Zerker
-    at:       [-17.790, -0.917, -191.705, 144]
+    region:   w_77
     level:    [54, 58]
   17391700:
     template: Orcish_Warchief
-    at:       [-21.994, -0.946, -197.462, 14]
+    region:   w_77
     level:    [55, 59]
   17391701:
     template: Orcish_Veteran
@@ -1627,43 +1627,43 @@ spawns:
     level:    [53, 57]
   17391703:
     template: Orcish_Zerker
-    at:       [-22.398, -0.743, -152.166, 220]
+    region:   w_87
     level:    [54, 58]
   17391704:
     template: Orcish_Warchief
-    at:       [-25.082, -1.197, -141.735, 194]
+    region:   w_87
     level:    [55, 59]
   17391705:
     template: Orcish_Champion
-    at:       [-15.354, -0.884, -136.778, 224]
+    region:   w_87
     level:    [64, 68]
   17391706:
     template: Orcish_Veteran
-    at:       [29.522, -1.055, -141.672, 235]
+    region:   c_90
     level:    [52, 56]
   17391707:
     template: Orcish_Predator
-    at:       [10.881, -0.804, -138.836, 121]
+    region:   c_90
     level:    [53, 57]
   17391708:
     template: Orcish_Zerker
-    at:       [7.182, -0.920, -143.399, 229]
+    region:   c_90
     level:    [54, 58]
   17391709:
     template: Orcish_Warchief
-    at:       [7.540, -1.351, -135.321, 70]
+    region:   c_90
     level:    [55, 59]
   17391710:
     template: Orcish_Veteran
-    at:       [21.445, -0.950, -147.104, 72]
+    region:   c_90
     level:    [52, 56]
   17391711:
     template: Orcish_Predator
-    at:       [23.064, -0.969, -142.142, 105]
+    region:   c_90
     level:    [53, 57]
   17391712:
     template: Orcish_Zerker
-    at:       [15.595, -1.036, -134.430, 210]
+    region:   c_90
     level:    [54, 58]
   17391713:
     template: Orcish_Warchief
@@ -1671,7 +1671,7 @@ spawns:
     level:    [55, 59]
   17391714:
     template: Orcish_Farkiller
-    at:       [24.604, -2.700, -101.246, 103]
+    region:   c_98
     level:    [62, 66]
   17391715:
     template: Orcish_Dreadnought
@@ -1679,7 +1679,7 @@ spawns:
     level:    [63, 66]
   17391716:
     template: Orcish_Champion
-    at:       [24.596, -2.181, -98.579, 153]
+    region:   c_98
     level:    [64, 68]
   17391717:
     template: Orcish_Dragoon
@@ -1687,43 +1687,43 @@ spawns:
     level:    [65, 69]
   17391718:
     template: Orcish_Farkiller
-    at:       [55.384, -1.069, -144.357, 251]
+    region:   c_102
     level:    [62, 66]
   17391719:
     template: Orcish_Dreadnought
-    at:       [58.560, -0.888, -108.872, 199]
+    region:   c_103
     level:    [63, 66]
   17391720:
     template: Orcish_Champion
-    at:       [71.834, -0.945, -141.691, 231]
+    region:   c_103
     level:    [64, 68]
   17391721:
     template: Orcish_Dragoon
-    at:       [66.795, -1.300, -139.159, 92]
+    region:   c_103
     level:    [65, 69]
   17391722:
     template: Orcish_Farkiller
-    at:       [60.731, -0.705, -118.067, 53]
+    region:   c_103
     level:    [62, 72]
   17391723:
     template: Orcish_Dreadnought
-    at:       [58.500, -0.773, -113.016, 179]
+    region:   c_103
     level:    [63, 66]
   17391724:
     template: Orcish_Champion
-    at:       [79.081, -0.630, -97.760, 11]
+    region:   c_103
     level:    [64, 68]
   17391725:
     template: Orcish_Dragoon
-    at:       [77.909, -0.781, -98.623, 10]
+    region:   c_103
     level:    [65, 69]
   17391726:
     template: Orcish_Dreadnought
-    at:       [99.713, -2.887, -147.105, 60]
+    region:   c_110
     level:    [63, 66]
   17391727:
     template: Orcish_Warlord
-    at:       [98.262, -1.442, -136.775, 171]
+    region:   c_110
     level:    [72, 74]
   17391728:
     template: Orcish_Farkiller
@@ -1735,11 +1735,11 @@ spawns:
     level:    [63, 66]
   17391730:
     template: Orcish_Champion
-    at:       [74.046, -0.602, -96.967, 85]
+    region:   c_114
     level:    [64, 72]
   17391731:
     template: Orcish_Dragoon
-    at:       [87.621, -0.746, -99.655, 249]
+    region:   c_114
     level:    [66, 69]
   17391732:
     template: Orcish_Farkiller
@@ -1747,11 +1747,11 @@ spawns:
     level:    [62, 66]
   17391733:
     template: Orcish_Dreadnought
-    at:       [74.246, -0.850, -100.137, 26]
+    region:   c_114
     level:    [63, 66]
   17391734:
     template: Orcish_Champion
-    at:       [89.083, -0.906, -96.798, 27]
+    region:   c_118
     level:    [64, 68]
   17391735:
     template: Orcish_Dragoon
@@ -1767,15 +1767,15 @@ spawns:
     level:    [63, 66]
   17391738:
     template: Orcish_Champion
-    at:       [38.441, -8.483, -181.481, 246]
+    region:   c_122
     level:    [64, 68]
   17391739:
     template: Orcish_Dragoon
-    at:       [43.194, -9.133, -178.668, 122]
+    region:   c_122
     level:    [66, 69]
   17391740:
     template: Orcish_Farkiller
-    at:       [25.243, -5.654, -185.978, 97]
+    region:   c_122
     level:    [62, 66]
   17391741:
     template: Orcish_Dreadnought
@@ -1795,7 +1795,7 @@ spawns:
     level:    [69, 71]
   17391745:
     template: Orcish_Dreadnought
-    at:       [222.498, -10.007, -248.089, 95]
+    region:   e_129
     level:    [63, 72]
   17391746:
     template: Orcish_Champion
@@ -1819,11 +1819,11 @@ spawns:
     level:    [69, 71]
   17391751:
     template: Orcish_Dragoon
-    at:       [221.713, -1.178, -202.697, 92]
+    region:   e_129
     level:    [69, 71]
   17391752:
     template: Orcish_Farkiller
-    at:       [217.973, -0.965, -173.677, 148]
+    region:   e_136
     level:    [69, 71]
   17391753:
     template: Orcish_Dreadnought
@@ -1839,7 +1839,7 @@ spawns:
     level:    [69, 71]
   17391756:
     template: Orcish_Farkiller
-    at:       [222.399, -1.190, -172.888, 136]
+    region:   e_136
     level:    [69, 71]
   17391757:
     template: Orcish_Dreadnought
@@ -1851,11 +1851,11 @@ spawns:
     level:    [69, 71]
   17391759:
     template: Orcish_Dragoon
-    at:       [213.765, -1.500, -171.343, 214]
+    region:   e_136
     level:    [69, 71]
   17391760:
     template: Orcish_Protector
-    at:       [223.884, -2.010, -137.840, 13]
+    region:   e_144
     level:    [70, 72]
   17391761:
     template: Orcish_Farkiller
@@ -1863,7 +1863,7 @@ spawns:
     level:    [69, 71]
   17391762:
     template: Orcish_Dreadnought
-    at:       [211.271, -1.007, -125.252, 81]
+    region:   e_144
     level:    [71, 72]
   17391763:
     template: Orcish_Champion
@@ -1875,15 +1875,15 @@ spawns:
     level:    [69, 71]
   17391765:
     template: Orcish_Hexspinner
-    at:       [217.819, -3.025, -102.635, 76]
+    region:   e_149
     level:    [71, 73]
   17391766:
     template: Orcish_Warlord
-    at:       [230.037, -2.886, -95.685, 8]
+    region:   e_149
     level:    [72, 74]
   17391767:
     template: Orcish_Protector
-    at:       [259.298, -1.634, -99.486, 190]
+    region:   e_151
     level:    [70, 72]
   17391768:
     template: Orcish_Farkiller
@@ -1891,7 +1891,7 @@ spawns:
     level:    [71, 72]
   17391769:
     template: Orcish_Dreadnought
-    at:       [256.194, -1.103, -124.345, 100]
+    region:   e_151
     level:    [63, 72]
   17391770:
     template: Orcish_Champion
@@ -1899,11 +1899,11 @@ spawns:
     level:    [70, 72]
   17391771:
     template: Orcish_Dragoon
-    at:       [251.471, -0.554, -81.305, 108]
+    region:   e_151
     level:    [71, 72]
   17391772:
     template: Orcish_Protector
-    at:       [198.763, -0.728, -77.516, 235]
+    region:   e_156
     level:    [70, 72]
   17391773:
     template: Orcish_Farkiller
@@ -1915,15 +1915,15 @@ spawns:
     level:    [71, 72]
   17391775:
     template: Orcish_Champion
-    at:       [185.673, -0.732, -93.790, 31]
+    region:   e_156
     level:    [70, 72]
   17391776:
     template: Orcish_Dragoon
-    at:       [198.998, -0.761, -76.173, 246]
+    region:   e_156
     level:    [71, 72]
   17391777:
     template: Orcish_Protector
-    at:       [232.934, -1.064, -67.894, 32]
+    region:   ne_161
     level:    [70, 72]
   17391778:
     template: Orcish_Farkiller
@@ -1939,19 +1939,19 @@ spawns:
     level:    [70, 72]
   17391781:
     template: Orcish_Dragoon
-    at:       [212.556, -1.710, -62.677, 230]
+    region:   ne_161
     level:    [71, 72]
   17391782:
     template: Orcish_Veteran
-    at:       [181.182, 3.101, -17.171, 70]
+    region:   ne_166
     level:    [52, 56]
   17391783:
     template: Orcish_Warchief
-    at:       [187.931, 3.051, -21.764, 233]
+    region:   ne_166
     level:    [55, 59]
   17391784:
     template: Orcish_Bowshooter
-    at:       [199.942, 3.238, 49.946, 251]
+    region:   ne_168
     level:    [42, 46]
   17391785:
     template: Orcish_Footsoldier
@@ -1971,7 +1971,7 @@ spawns:
     level:    [42, 46]
   17391789:
     template: Orcish_Footsoldier
-    at:       [199.840, 3.407, 50.393, 35]
+    region:   ne_168
     level:    [43, 47]
   17391790:
     template: Orcish_Gladiator
@@ -1979,11 +1979,11 @@ spawns:
     level:    [44, 48]
   17391791:
     template: Orcish_Trooper
-    at:       [198.316, 3.373, 26.901, 10]
+    region:   ne_168
     level:    [45, 49]
   17391792:
     template: Orcish_Predator
-    at:       [200.576, 3.331, 49.572, 72]
+    region:   ne_168
     level:    [53, 57]
   17391793:
     template: Orcish_Zerker
@@ -2003,7 +2003,7 @@ spawns:
     level:    [47, 48]
   17391797:
     template: Orcish_Trooper
-    at:       [257.135, -0.068, 57.565, 151]
+    region:   ne_181
     level:    [45, 49]
   17391798:
     template: Orcish_Bowshooter
@@ -2015,6 +2015,7 @@ spawns:
     level:    [43, 47]
   17391800:
     template: Orcish_Gladiator
+    region:   ne_181
     level:    [44, 48]
   17391801:
     template: Orcish_Trooper
@@ -2026,7 +2027,7 @@ spawns:
     level:    [75, 75]
   17391803:
     template: Overlord_Bakgodek
-    at:       [225.168, -2.974, -110.339, 29]
+    region:   e_187
     level:    [85, 85]
   17391804:
     template: Bugaboo
