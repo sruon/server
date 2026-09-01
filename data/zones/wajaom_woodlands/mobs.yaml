@@ -6569,7 +6569,7 @@ spawns:
     level:    [66, 67]
   16986289:
     template: Colorful_Treant
-    at:       [-403.315, -24.995, 284.354, 224]
+    region:   nw_181
     level:    [74, 75]
   16986290:
     template: Defoliate_Treant
@@ -6700,7 +6700,7 @@ spawns:
     level:    [82, 83]
   16986321:
     template: Colorful_Treant
-    at:       [-499.682, -20.055, 151.664, 218]
+    region:   w_212
     level:    [74, 75]
   16986322:
     template: Treant_Sapling_WW_BT
