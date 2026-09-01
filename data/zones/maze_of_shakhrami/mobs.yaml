@@ -2245,7 +2245,7 @@ spawns:
     level:    [35, 36]
   17588226:
     template: Goblin_Ambusher
-    at:       [-254.735, -0.500, -93.358, 127]
+    region:   sw_3
     level:    [16, 18]
   17588227:
     template: Goblin_Tinkerer
@@ -2253,7 +2253,7 @@ spawns:
     level:    [16, 18]
   17588228:
     template: Goblin_Butcher
-    at:       [-276.632, -0.643, -123.594, 37]
+    region:   sw_3
     level:    [16, 18]
   17588229:
     template: Goblin_Ambusher
@@ -2261,7 +2261,7 @@ spawns:
     level:    [16, 18]
   17588230:
     template: Goblin_Tinkerer
-    region:   w_6
+    region:   sw_3
     level:    [16, 18]
   17588231:
     template: Goblin_Butcher
@@ -2306,7 +2306,7 @@ spawns:
     level:    [20, 23]
   17588241:
     template: Goblin_Ambusher
-    at:       [-149.000, -0.199, -5.000, 121]
+    region:   w_18
     level:    [16, 18]
   17588242:
     template: Goblin_Tinkerer
@@ -2318,7 +2318,7 @@ spawns:
     level:    [16, 18]
   17588244:
     template: Goblin_Ambusher
-    at:       [-161.915, -0.493, 4.992, 127]
+    region:   w_18
     level:    [16, 18]
   17588245:
     template: Goblin_Tinkerer
@@ -2326,7 +2326,7 @@ spawns:
     level:    [16, 18]
   17588246:
     template: Goblin_Butcher
-    at:       [-195.733, -0.187, 3.539, 127]
+    region:   w_18
     level:    [16, 18]
   17588247:
     template: Maze_Maker
@@ -2405,11 +2405,11 @@ spawns:
     level:    [16, 18]
   17588264:
     template: Goblin_Tinkerer
-    at:       [-125.000, -0.602, 7.000, 127]
+    region:   w_39
     level:    [16, 18]
   17588265:
     template: Goblin_Butcher
-    at:       [-99.687, -0.507, -69.124, 95]
+    region:   w_39
     level:    [16, 18]
   17588266:
     template: Goblin_Ambusher
@@ -2417,11 +2417,11 @@ spawns:
     level:    [16, 18]
   17588267:
     template: Goblin_Tinkerer
-    at:       [-146.000, 0.003, -2.000, 119]
+    region:   w_39
     level:    [16, 18]
   17588268:
     template: Goblin_Butcher
-    region:   w_44
+    region:   w_39
     level:    [16, 18]
   17588269:
     template: Maze_Maker
@@ -2437,7 +2437,7 @@ spawns:
     level:    [18, 21]
   17588272:
     template: Stink_Bats
-    at:       [-109.324, -0.487, -51.377, 68]
+    region:   w_39
     level:    [15, 18]
   17588273:
     template: Stink_Bats
@@ -2471,11 +2471,11 @@ spawns:
     level:    [16, 18]
   17588280:
     template: Goblin_Tinkerer
-    at:       [-90.926, -0.771, 3.966, 104]
+    region:   w_55
     level:    [16, 18]
   17588281:
     template: Goblin_Butcher
-    at:       [-20.339, -0.178, -11.621, 127]
+    region:   w_55
     level:    [16, 18]
   17588282:
     template: Goblin_Ambusher
@@ -2483,7 +2483,7 @@ spawns:
     level:    [16, 18]
   17588283:
     template: Goblin_Tinkerer
-    at:       [-28.000, 0.999, -2.000, 41]
+    region:   w_55
     level:    [16, 18]
   17588284:
     template: Goblin_Butcher
@@ -2504,7 +2504,7 @@ spawns:
   17588288:
     template: Combat_MoS
     script:   Combat
-    at:       [-68.000, 0.999, -7.000, 127]
+    region:   w_55
     level:    [20, 23]
   17588289:
     template: Combat_MoS
@@ -2548,11 +2548,11 @@ spawns:
     level:    [16, 18]
   17588298:
     template: Goblin_Tinkerer
-    at:       [-27.000, -0.495, 53.000, 127]
+    region:   c_73
     level:    [16, 18]
   17588299:
     template: Goblin_Butcher
-    at:       [-38.928, -0.500, 39.845, 127]
+    region:   c_73
     level:    [16, 18]
   17588300:
     template: Goblin_Ambusher
@@ -2564,7 +2564,7 @@ spawns:
     level:    [16, 18]
   17588302:
     template: Goblin_Butcher
-    at:       [-50.000, -0.463, 51.000, 127]
+    region:   c_73
     level:    [16, 18]
   17588303:
     template: Combat_MoS
@@ -2600,11 +2600,11 @@ spawns:
     level:    [22, 26]
   17588310:
     template: Goblin_Mugger
-    at:       [-143.027, -9.638, 136.212, 69]
+    region:   nw_83
     level:    [22, 26]
   17588311:
     template: Goblin_Leecher
-    at:       [-136.275, -10.435, 134.343, 223]
+    region:   nw_83
     level:    [22, 26]
   17588312:
     template: Goblin_Gambler
@@ -2643,7 +2643,7 @@ spawns:
   17588319:
     template: Wendigo_blm_MoS
     script:   Wendigo
-    at:       [-28.270, -10.939, 182.654, 123]
+    region:   n_93
     level:    [24, 28]
   17588320:
     template: Combat_MoS
@@ -2760,7 +2760,7 @@ spawns:
     level:    [25, 27]
   17588343:
     template: Maze_Scorpion
-    at:       [13.293, 20.448, 163.033, 96]
+    region:   n_109
     level:    [25, 27]
   17588344:
     template: Carnivorous_Crawler_MS
@@ -2816,7 +2816,7 @@ spawns:
     level:    [33, 36]
   17588356:
     template: Earth_Elemental
-    region:   n_132
+    region:   n_126
     level:    [33, 36]
   17588357:
     template: Bleeder_Leech
@@ -2848,7 +2848,7 @@ spawns:
     level:    [33, 36]
   17588364:
     template: Earth_Elemental
-    region:   c_140
+    region:   c_133
     level:    [33, 36]
   17588365:
     template: Bleeder_Leech
@@ -3319,7 +3319,7 @@ spawns:
     level:    [16, 18]
   17588475:
     template: Goblin_Tinkerer
-    at:       [173.000, 16.000, -15.000, 67]
+    region:   s_250
     level:    [16, 18]
   17588476:
     template: Goblin_Butcher
@@ -3327,7 +3327,7 @@ spawns:
     level:    [16, 18]
   17588477:
     template: Goblin_Ambusher
-    at:       [123.440, 19.888, 6.572, 23]
+    region:   s_250
     level:    [16, 18]
   17588478:
     template: Goblin_Tinkerer
@@ -3335,7 +3335,7 @@ spawns:
     level:    [16, 18]
   17588479:
     template: Goblin_Butcher
-    at:       [56.249, 18.985, 36.442, 81]
+    region:   s_250
     level:    [16, 18]
   17588480:
     template: Maze_Maker
@@ -3435,11 +3435,11 @@ spawns:
     level:    [16, 18]
   17588502:
     template: Goblin_Tinkerer
-    at:       [-45.635, 19.472, -89.965, 36]
+    region:   w_277
     level:    [16, 18]
   17588503:
     template: Goblin_Butcher
-    at:       [-74.357, 19.485, -40.783, 127]
+    region:   w_277
     level:    [16, 18]
   17588504:
     template: Goblin_Ambusher
@@ -3447,11 +3447,11 @@ spawns:
     level:    [16, 18]
   17588505:
     template: Goblin_Tinkerer
-    at:       [-44.005, 19.468, -48.241, 127]
+    region:   w_277
     level:    [16, 18]
   17588506:
     template: Goblin_Butcher
-    at:       [-57.979, 19.313, -49.139, 127]
+    region:   w_277
     level:    [16, 18]
   17588507:
     template: Stink_Bats
@@ -3611,7 +3611,7 @@ spawns:
     level:    [33, 36]
   17588542:
     template: Earth_Elemental
-    region:   c_318
+    region:   c_308
     level:    [33, 36]
   17588543:
     template: Wight_war
@@ -3665,7 +3665,7 @@ spawns:
     level:    [30, 33]
   17588554:
     template: Labyrinth_Scorpion
-    at:       [104.821, 19.395, -110.147, 65]
+    region:   c_308
     level:    [30, 33]
   17588555:
     template: Wight_war
@@ -3710,7 +3710,7 @@ spawns:
     level:    [30, 33]
   17588564:
     template: Labyrinth_Scorpion
-    at:       [125.572, 19.732, -120.216, 127]
+    region:   c_308
     level:    [30, 33]
   17588565:
     template: Air_Elemental
@@ -3718,7 +3718,7 @@ spawns:
     level:    [33, 36]
   17588566:
     template: Earth_Elemental
-    region:   w_342
+    region:   w_337
     level:    [33, 36]
   17588567:
     template: Labyrinth_Scorpion
@@ -3834,7 +3834,7 @@ spawns:
     level:    [22, 26]
   17588591:
     template: Goblin_Leecher
-    at:       [393.000, -0.532, -66.000, 127]
+    region:   c_366
     level:    [22, 26]
   17588592:
     template: Goblin_Gambler
@@ -4010,7 +4010,7 @@ spawns:
     level:    [24, 26]
   17588630:
     template: Goblin_Furrier
-    at:       [231.000, 20.000, -79.000, 56]
+    region:   e_404
     level:    [31, 34]
   17588631:
     template: Goblin_Smithy
@@ -4018,7 +4018,7 @@ spawns:
     level:    [31, 34]
   17588632:
     template: Goblin_Shaman
-    at:       [297.000, 20.000, -140.000, 127]
+    region:   e_404
     level:    [31, 34]
   17588633:
     template: Goblin_Pathfinder
@@ -4100,7 +4100,7 @@ spawns:
     level:    [29, 31]
   17588651:
     template: Goblin_Pathfinder
-    at:       [300.000, 20.000, -147.000, 127]
+    region:   se_430
     level:    [31, 34]
   17588652:
     template: Goblins_Bat
@@ -4108,7 +4108,7 @@ spawns:
     level:    [24, 26]
   17588653:
     template: Goblin_Furrier
-    at:       [299.124, 19.945, -137.615, 132]
+    region:   se_430
     level:    [31, 34]
   17588654:
     template: Goblin_Smithy
@@ -4116,11 +4116,11 @@ spawns:
     level:    [31, 34]
   17588655:
     template: Goblin_Shaman
-    at:       [298.331, 19.529, -142.698, 225]
+    region:   se_430
     level:    [31, 34]
   17588656:
     template: Goblin_Pathfinder
-    at:       [292.277, 19.377, -145.472, 129]
+    region:   se_430
     level:    [31, 34]
   17588657:
     template: Goblins_Bat
@@ -4136,7 +4136,7 @@ spawns:
     level:    [31, 34]
   17588660:
     template: Goblin_Shaman
-    at:       [290.508, 19.149, -141.735, 136]
+    region:   se_430
     level:    [31, 34]
   17588661:
     template: Goblin_Pathfinder
@@ -4148,15 +4148,15 @@ spawns:
     level:    [24, 26]
   17588663:
     template: Goblin_Furrier
-    at:       [257.841, 19.793, -87.862, 254]
+    region:   e_437
     level:    [31, 34]
   17588664:
     template: Goblin_Smithy
-    at:       [266.975, 19.933, -90.437, 56]
+    region:   e_437
     level:    [31, 34]
   17588665:
     template: Goblin_Shaman
-    at:       [289.242, 19.140, -84.755, 250]
+    region:   e_437
     level:    [31, 34]
   17588666:
     template: Goblin_Pathfinder
@@ -4172,10 +4172,11 @@ spawns:
     level:    [31, 34]
   17588669:
     template: Goblin_Smithy
+    region:   e_437
     level:    [31, 34]
   17588670:
     template: Goblin_Shaman
-    at:       [282.281, 19.526, -78.253, 39]
+    region:   e_437
     level:    [31, 34]
   17588671:
     template: Labyrinth_Scorpion
