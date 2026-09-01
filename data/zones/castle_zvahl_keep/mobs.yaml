@@ -2255,10 +2255,11 @@ spawns:
     level:    [47, 49]
   17440790:
     template: Goblin_Poacher
+    region:   ne_26
     level:    [47, 49]
   17440791:
     template: Goblin_Trader
-    at:       [-47.733, 0.474, 72.509, 8]
+    region:   ne_26
     level:    [47, 49]
   17440792:
     template: Goblins_Bat
@@ -2266,6 +2267,7 @@ spawns:
     level:    [40, 42]
   17440793:
     template: Goblin_Robber
+    region:   ne_26
     level:    [47, 49]
   17440794:
     template: Goblin_Reaper
@@ -2340,7 +2342,7 @@ spawns:
     level:    [50, 52]
   17440812:
     template: Goblin_Hunter
-    at:       [-26.389, 0.100, 106.882, 194]
+    region:   ne_45
     level:    [50, 52]
   17440813:
     template: Goblin_Bouncer
@@ -2348,7 +2350,7 @@ spawns:
     level:    [50, 52]
   17440814:
     template: Goblin_Enchanter
-    at:       [-28.281, 0.100, 107.295, 93]
+    region:   ne_45
     level:    [50, 52]
   17440815:
     template: Goblin_Hunter
@@ -2360,7 +2362,7 @@ spawns:
     level:    [50, 52]
   17440817:
     template: Goblin_Enchanter
-    at:       [-34.677, 0.100, 89.658, 2]
+    region:   ne_47
     level:    [50, 52]
   17440818:
     template: Goblin_Hunter
@@ -2392,11 +2394,11 @@ spawns:
     level:    [50, 52]
   17440825:
     template: Goblin_Bouncer
-    at:       [-69.720, 0.100, 105.394, 160]
+    region:   ne_56
     level:    [50, 52]
   17440826:
     template: Goblin_Enchanter
-    at:       [-70.866, 0.100, 110.375, 127]
+    region:   ne_56
     level:    [50, 52]
   17440827:
     template: Orcish_Bowshooter
@@ -2496,10 +2498,11 @@ spawns:
     level:    [50, 52]
   17440851:
     template: Orcish_Veteran
-    at:       [-108.046, 0.474, -150.849, 247]
+    region:   se_85
     level:    [50, 52]
   17440852:
     template: Orcish_Predator
+    region:   se_85
     level:    [50, 52]
   17440853:
     template: Orcish_Zerker
@@ -2507,7 +2510,7 @@ spawns:
     level:    [50, 52]
   17440854:
     template: Orcish_Warchief
-    at:       [-106.776, 0.474, -153.702, 53]
+    region:   se_85
     level:    [50, 52]
   17440855:
     template: Orcish_Veteran
@@ -2600,11 +2603,11 @@ spawns:
     level:    [46, 48]
   17440879:
     template: Elder_Quadav
-    at:       [-47.470, -15.899, 107.790, 207]
+    region:   ne_113
     level:    [47, 49]
   17440880:
     template: Iron_Quadav
-    at:       [-49.907, -15.525, 106.402, 108]
+    region:   ne_113
     level:    [47, 49]
   17440881:
     template: Spinel_Quadav
@@ -2825,7 +2828,7 @@ spawns:
     level:    [50, 52]
   17440939:
     template: Yagudo_Sentinel
-    at:       [-93.679, -15.525, -113.187, 106]
+    region:   se_172
     level:    [50, 52]
   17440940:
     template: Yagudo_Chanter
@@ -2833,10 +2836,11 @@ spawns:
     level:    [50, 52]
   17440941:
     template: Yagudo_Inquisitor
-    at:       [-87.694, -15.525, -112.331, 152]
+    region:   se_172
     level:    [50, 52]
   17440942:
     template: Yagudo_Abbot
+    region:   se_172
     level:    [50, 52]
   17440943:
     template: Yagudo_Sentinel
