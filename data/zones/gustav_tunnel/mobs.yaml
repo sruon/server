@@ -2219,7 +2219,7 @@ spawns:
     level:    [46, 49]
   17645600:
     template: Goblin_Robber
-    at:       [158.286, -10.664, -36.631, 75]
+    region:   e_26
     level:    [46, 49]
   17645601:
     template: Hawker
@@ -2235,7 +2235,7 @@ spawns:
     level:    [45, 48]
   17645604:
     template: Goblin_Reaper
-    at:       [165.558, -10.647, -68.537, 127]
+    region:   e_26
     level:    [46, 49]
   17645605:
     template: Goblin_Reaper
@@ -2472,7 +2472,7 @@ spawns:
     level:    [65, 67]
   17645663:
     template: Doom_Soldier
-    at:       [-5.000, 0.500, 68.000, 64]
+    region:   n_103
     level:    [65, 67]
   17645664:
     template: Doom_Mage
@@ -2612,7 +2612,7 @@ spawns:
     level:    [75, 77]
   17645698:
     template: Robber_Crab
-    at:       [-19.000, 0.695, -1.000, 90]
+    region:   c_131
     level:    [65, 68]
   17645699:
     template: Robber_Crab
@@ -2636,7 +2636,7 @@ spawns:
     level:    [76, 78]
   17645704:
     template: Doom_Guard
-    at:       [56.256, 0.382, 45.635, 126]
+    region:   c_132
     level:    [75, 77]
   17645705:
     template: Doom_Warlock
@@ -2728,7 +2728,7 @@ spawns:
     level:    [76, 78]
   17645727:
     template: Doom_Guard
-    at:       [194.808, 9.995, 118.887, 103]
+    region:   ne_152
     level:    [75, 77]
   17645728:
     template: Demonic_Pugil
@@ -2777,7 +2777,7 @@ spawns:
     level:    [76, 78]
   17645739:
     template: Doom_Warlock
-    at:       [-118.000, -0.515, 79.000, 127]
+    region:   w_175
     level:    [76, 78]
   17645740:
     template: Demonic_Pugil
@@ -2937,7 +2937,7 @@ spawns:
     level:    [75, 77]
   17645778:
     template: Doom_Warlock
-    at:       [-99.000, -0.205, 204.000, 48]
+    region:   n_209
     level:    [76, 78]
   17645779:
     template: Doom_Warlock
@@ -2961,7 +2961,7 @@ spawns:
     level:    [73, 76]
   17645784:
     template: Typhoon_Wyvern
-    at:       [-123.856, 0.239, 223.303, 67]
+    region:   w_183
     level:    [78, 80]
   17645785:
     template: Doom_Guard
@@ -2993,7 +2993,7 @@ spawns:
     level:    [75, 78]
   17645792:
     template: Typhoon_Wyvern
-    at:       [-88.000, 0.735, 190.000, 127]
+    region:   w_188
     level:    [78, 80]
   17645793:
     template: Demonic_Pugil
