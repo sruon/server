@@ -2433,7 +2433,7 @@ spawns:
   17580055:
     template: Fly_Agaric_GM
     script:   Fly_Agaric
-    at:       [62.000, -59.482, -186.000, 127]
+    region:   s_19
     level:    [20, 23]
   17580056:
     template: Fly_Agaric_GM
@@ -2528,7 +2528,7 @@ spawns:
   17580076:
     template: Ghoul_war_GM_MoS
     script:   Ghoul
-    at:       [-56.327, -60.375, -52.251, 55]
+    region:   sw_45
     level:    [20, 24]
   17580077:
     template: Ghoul_war_GM_MoS
@@ -2561,7 +2561,7 @@ spawns:
   17580083:
     template: Spunkie_GM
     script:   Spunkie
-    at:       [28.127, -60.100, -15.117]
+    region:   sw_45
     level:    [28, 29]
   17580084:
     template: Ghoul_war_GM_MoS
@@ -2571,7 +2571,7 @@ spawns:
   17580085:
     template: Ghoul_war_GM_MoS
     script:   Ghoul
-    at:       [46.119, -60.100, -14.976, 87]
+    region:   s_52
     level:    [20, 24]
   17580086:
     template: Ghoul_war_GM_MoS
@@ -2581,7 +2581,7 @@ spawns:
   17580087:
     template: Ghoul_blm_GM
     script:   Ghoul
-    at:       [38.126, -60.100, -10.173, 125]
+    region:   s_52
     level:    [23, 27]
   17580088:
     template: Ghoul_blm_GM
@@ -2590,7 +2590,7 @@ spawns:
     level:    [23, 27]
   17580089:
     template: Bogy
-    at:       [104.604, -59.958, -17.306, 127]
+    region:   sw_45
     level:    [27, 29]
   17580090:
     template: Bogy
@@ -2619,7 +2619,7 @@ spawns:
   17580095:
     template: Ghoul_blm_GM
     script:   Ghoul
-    at:       [100.812, -60.376, -157.490, 61]
+    region:   se_60
     level:    [23, 27]
   17580096:
     template: Bandersnatch
@@ -2632,7 +2632,7 @@ spawns:
   17580098:
     template: Ghoul_war_GM_MoS
     script:   Ghoul
-    at:       [105.125, -59.903, -176.273, 41]
+    region:   se_67
     level:    [20, 24]
   17580099:
     template: Ghoul_war_GM_MoS
@@ -2651,7 +2651,7 @@ spawns:
   17580102:
     template: Ghoul_war_GM_MoS
     script:   Ghoul
-    at:       [140.000, -59.875, -130.000, 106]
+    region:   se_71
     level:    [20, 24]
   17580103:
     template: Ghoul_war_GM_MoS
@@ -2679,7 +2679,7 @@ spawns:
   17580108:
     template: Ghoul_war_GM_MoS
     script:   Ghoul
-    at:       [-65.438, -59.875, -102.330, 46]
+    region:   sw_78
     level:    [20, 24]
   17580109:
     template: Ghoul_war_GM_MoS
@@ -2729,7 +2729,7 @@ spawns:
   17580119:
     template: Wendigo_war
     script:   Wendigo
-    at:       [48.311, -40.080, -55.543, 127]
+    region:   s_82
     level:    [26, 30]
   17580120:
     template: Sadfly
@@ -2746,7 +2746,7 @@ spawns:
   17580123:
     template: Jelly_KT_GM
     script:   Jelly
-    at:       [44.304, -40.007, -39.709, 57]
+    region:   s_82
     level:    [27, 29]
   17580124:
     template: Bogy
@@ -2778,7 +2778,7 @@ spawns:
   17580130:
     template: Wight_blm
     script:   Wight
-    at:       [164.287, -40.007, -23.089, 127]
+    region:   c_95
     level:    [29, 33]
   17580131:
     template: Wight_blm
@@ -3172,7 +3172,7 @@ spawns:
   17580227:
     template: Wendigo_war
     script:   Wendigo
-    at:       [-11.000, -36.000, 90.000, 127]
+    region:   e_196
     level:    [26, 30]
   17580228:
     template: Wendigo_war
@@ -3197,12 +3197,12 @@ spawns:
   17580232:
     template: Mauthe_Doog_GM
     script:   Mauthe_Doog
-    at:       [-20.020, -40.375, 3.826, 55]
+    region:   c_199
     level:    [28, 31]
   17580233:
     template: Wendigo_war
     script:   Wendigo
-    at:       [-29.757, -40.395, 62.209, 3]
+    region:   c_202
     level:    [26, 30]
   17580234:
     template: Mauthe_Doog_GM
@@ -3227,7 +3227,7 @@ spawns:
     level:    [30, 32]
   17580239:
     template: Myconid
-    at:       [-128.309, 0.999, 252.445, 111]
+    region:   nw_208
     level:    [30, 32]
   17580240:
     template: Feu_Follet
@@ -3272,7 +3272,7 @@ spawns:
   17580250:
     template: Gallinipper_GM
     script:   Gallinipper
-    at:       [-136.264, 1.118, 366.417, 127]
+    region:   nw_225
     level:    [32, 35]
   17580251:
     template: Gallinipper_GM
@@ -3363,7 +3363,7 @@ spawns:
   17580270:
     template: Mauthe_Doog_GM
     script:   Mauthe_Doog
-    at:       [27.000, -19.000, 139.000, 12]
+    region:   c_232
     level:    [28, 31]
   17580271:
     template: Amphisbaena
@@ -3379,7 +3379,7 @@ spawns:
     level:    [28, 30]
   17580274:
     template: Rancid_Ooze
-    at:       [41.000, -20.500, 121.000, 127]
+    region:   c_232
     level:    [31, 34]
   17580275:
     template: Banshee_GM
@@ -3399,7 +3399,7 @@ spawns:
   17580278:
     template: Wight_war_GM
     script:   Wight
-    at:       [-62.933, -20.364, 267.300, 127]
+    region:   nw_247
     level:    [31, 34]
   17580279:
     template: Wight_war_GM
@@ -3460,7 +3460,7 @@ spawns:
   17580291:
     template: Ghast_blm_GM
     script:   Ghast
-    at:       [-67.298, -28.415, 349.174, 220]
+    region:   nw_256
     level:    [33, 36]
   17580292:
     template: Myconid
@@ -3487,7 +3487,7 @@ spawns:
   17580297:
     template: Ghast_blm_GM
     script:   Ghast
-    at:       [17.872, -21.112, 342.159, 15]
+    region:   n_263
     level:    [33, 36]
   17580298:
     template: Gallinipper_GM
@@ -3517,7 +3517,7 @@ spawns:
   17580303:
     template: Ghast_blm_GM
     script:   Ghast
-    at:       [124.000, -19.000, 377.000, 104]
+    region:   ne_269
     level:    [33, 36]
   17580304:
     template: Gallinipper_GM
@@ -3674,7 +3674,7 @@ spawns:
   17580335:
     template: Ghast_blm_GM
     script:   Ghast
-    at:       [-100.749, -27.874, 384.046, 204]
+    region:   nw_301
     level:    [33, 36]
   17580336:
     template: Banshee_GM
