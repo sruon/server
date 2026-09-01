@@ -1839,7 +1839,7 @@ spawns:
   17649683:
     template: Mushussu_LO
     script:   Mushussu
-    at:       [-10.641, -0.414, -130.287, 115]
+    region:   s_13
     level:    [51, 54]
   17649684:
     template: Cockatrice
@@ -1859,7 +1859,7 @@ spawns:
     level:    [50, 53]
   17649688:
     template: Goblin_Miner
-    at:       [130.570, -0.500, -122.544, 127]
+    region:   se_25
     level:    [51, 54]
   17649689:
     template: Goblin_Bouncer
@@ -1883,7 +1883,7 @@ spawns:
     level:    [50, 52]
   17649694:
     template: Goblin_Enchanter
-    at:       [111.970, -0.342, -87.012, 127]
+    region:   se_31
     level:    [51, 54]
   17649695:
     template: Goblin_Hunter
@@ -1982,7 +1982,7 @@ spawns:
     level:    [53, 56]
   17649718:
     template: Goblin_Miner
-    at:       [90.256, 9.500, -3.693, 181]
+    region:   c_56
     level:    [53, 56]
   17649719:
     template: Goblin_Bouncer
@@ -1994,7 +1994,7 @@ spawns:
     level:    [53, 56]
   17649721:
     template: Goblin_Hunter
-    at:       [139.430, 14.176, 184.465, 127]
+    region:   e_50
     level:    [53, 56]
   17649722:
     template: Goblin_Miner
@@ -2056,7 +2056,7 @@ spawns:
     level:    [51, 54]
   17649736:
     template: Cockatrice
-    at:       [-70.538, 4.583, -83.044, 127]
+    region:   w_73
     level:    [50, 53]
   17649737:
     template: Mushussu_LO
@@ -2065,7 +2065,7 @@ spawns:
     level:    [51, 54]
   17649738:
     template: Cockatrice
-    at:       [-58.418, 4.204, -93.767, 12]
+    region:   w_73
     level:    [50, 53]
   17649739:
     template: Mushussu_LO
@@ -2253,7 +2253,7 @@ spawns:
     level:    [70, 73]
   17649783:
     template: Labyrinth_Manticore
-    at:       [-119.897, 0.275, 127.060, 127]
+    region:   nw_122
     level:    [71, 74]
   17649784:
     template: Narasimha
@@ -2391,7 +2391,7 @@ spawns:
     level:    [70, 73]
   17649817:
     template: Torama
-    at:       [53.826, 4.287, 143.153, 127]
+    region:   n_155
     level:    [70, 73]
   17649818:
     template: Soulstealer_Skullnix
@@ -2419,7 +2419,7 @@ spawns:
     level:    [70, 73]
   17649824:
     template: Torama
-    at:       [9.000, 4.000, 176.000, 127]
+    region:   n_159
     level:    [70, 73]
   17649825:
     template: Goblin_Alchemist
@@ -2431,7 +2431,7 @@ spawns:
     level:    [71, 74]
   17649827:
     template: Wyvern
-    at:       [16.000, 5.000, 185.000, 127]
+    region:   n_159
     level:    [72, 75]
   17649828:
     template: Water_Elemental
@@ -2451,7 +2451,7 @@ spawns:
     level:    [66, 69]
   17649832:
     template: Goblin_Shepherd
-    at:       [16.965, 4.892, 164.793, 138]
+    region:   n_167
     level:    [66, 69]
   17649833:
     template: Goblins_Leech
@@ -2459,7 +2459,7 @@ spawns:
     level:    [49, 50]
   17649834:
     template: Goblin_Mercenary
-    at:       [43.103, 5.677, 181.977, 23]
+    region:   n_167
     level:    [66, 69]
   17649835:
     template: Water_Elemental
@@ -2471,11 +2471,11 @@ spawns:
     level:    [66, 69]
   17649837:
     template: Goblin_Bandit
-    at:       [29.024, 3.474, 185.723, 184]
+    region:   n_164
     level:    [66, 69]
   17649838:
     template: Goblin_Shepherd
-    at:       [38.347, 5.500, 178.050, 56]
+    region:   n_172
     level:    [66, 69]
   17649839:
     template: Goblins_Leech
@@ -2483,7 +2483,7 @@ spawns:
     level:    [49, 50]
   17649840:
     template: Goblin_Mercenary
-    at:       [19.549, 4.570, 181.891, 85]
+    region:   n_172
     level:    [66, 69]
   17649841:
     template: Water_Elemental
