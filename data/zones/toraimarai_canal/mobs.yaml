@@ -2129,7 +2129,7 @@ spawns:
   17469450:
     template: Hell_Bat_TC
     script:   Hell_Bat
-    at:       [-175.900, 15.500, 223.949, 181]
+    region:   nw_8
     level:    [47, 49]
   17469451:
     template: Hell_Bat_TC
@@ -2139,7 +2139,7 @@ spawns:
   17469452:
     template: Bigclaw_aggro
     script:   Bigclaw
-    at:       [-176.100, 15.500, 187.574, 74]
+    region:   nw_16
     level:    [49, 52]
   17469453:
     template: Bigclaw_aggro
@@ -2153,7 +2153,7 @@ spawns:
   17469455:
     template: Canal_Bats_TC
     script:   Canal_Bats
-    at:       [-185.200, 15.498, 181.027, 185]
+    region:   nw_16
     level:    [45, 47]
   17469456:
     template: Canal_Bats_TC
@@ -2177,12 +2177,12 @@ spawns:
     level:    [49, 52]
   17469460:
     template: Fallen_Knight
-    at:       [-185.200, 15.498, 164.343, 192]
+    region:   nw_8
     level:    [52, 55]
   17469461:
     template: Canal_Bats_TC
     script:   Canal_Bats
-    at:       [-145.700, 15.498, 134.701, 127]
+    region:   n_22
     level:    [45, 47]
   17469462:
     template: Canal_Bats_TC
@@ -2202,7 +2202,7 @@ spawns:
   17469465:
     template: Bigclaw_aggro
     script:   Bigclaw
-    at:       [-164.800, 15.500, 135.544, 118]
+    region:   n_22
     level:    [49, 52]
   17469466:
     template: Fallen_Knight
@@ -2248,16 +2248,16 @@ spawns:
     level:    [52, 55]
   17469475:
     template: Lich
-    at:       [-43.652, 15.500, 135.374, 10]
+    region:   n_27
     level:    [54, 57]
   17469476:
     template: Lich
-    at:       [-94.759, 15.500, 101.384, 192]
+    region:   n_27
     level:    [54, 57]
   17469477:
     template: Canal_Bats_TC
     script:   Canal_Bats
-    at:       [-64.690, 15.522, 42.027, 192]
+    region:   c_38
     level:    [45, 47]
   17469478:
     template: Canal_Bats_TC
@@ -2276,6 +2276,7 @@ spawns:
     level:    [47, 49]
   17469481:
     template: Bigclaw_aggro
+    region:   c_38
     script:   Bigclaw
     level:    [49, 52]
   17469482:
@@ -2290,7 +2291,7 @@ spawns:
   17469484:
     template: Canal_Bats_TC
     script:   Canal_Bats
-    at:       [-55.360, 15.500, 34.176, 63]
+    region:   c_45
     level:    [45, 47]
   17469485:
     template: Canal_Bats_TC
@@ -2319,12 +2320,12 @@ spawns:
     level:    [49, 52]
   17469490:
     template: Fallen_Knight
-    at:       [-48.090, 15.529, 54.685, 79]
+    region:   c_45
     level:    [52, 55]
   17469491:
     template: Canal_Bats_TC
     script:   Canal_Bats
-    at:       [-15.520, 15.505, 122.182, 53]
+    region:   n_52
     level:    [45, 47]
   17469492:
     template: Canal_Bats_TC
@@ -2344,7 +2345,7 @@ spawns:
   17469495:
     template: Bigclaw_aggro
     script:   Bigclaw
-    at:       [-15.170, 15.508, 121.668, 67]
+    region:   n_52
     level:    [49, 52]
   17469496:
     template: Bigclaw_aggro
@@ -2358,7 +2359,7 @@ spawns:
   17469498:
     template: Canal_Bats_TC
     script:   Canal_Bats
-    at:       [-64.270, 15.500, 153.089, 190]
+    region:   n_59
     level:    [45, 47]
   17469499:
     template: Hell_Bat_TC
@@ -2368,7 +2369,7 @@ spawns:
   17469500:
     template: Bigclaw_aggro
     script:   Bigclaw
-    at:       [-65.000, 15.500, 148.781, 199]
+    region:   n_59
     level:    [49, 52]
   17469501:
     template: Bigclaw_aggro
@@ -2422,7 +2423,7 @@ spawns:
     level:    [52, 55]
   17469513:
     template: Lich
-    at:       [17.000, 16.500, 65.000, 113]
+    region:   c_71
     level:    [54, 57]
   17469514:
     template: Lich
@@ -2487,6 +2488,7 @@ spawns:
     level:    [47, 49]
   17469527:
     template: Hell_Bat_TC
+    region:   w_85
     script:   Hell_Bat
     level:    [47, 49]
   17469528:
@@ -2501,7 +2503,7 @@ spawns:
     level:    [49, 52]
   17469530:
     template: Fallen_Knight
-    at:       [-257.000, 15.500, -15.000, 109]
+    region:   w_79
     level:    [52, 55]
   17469531:
     template: Hell_Bat_TC
@@ -2520,7 +2522,7 @@ spawns:
     level:    [49, 52]
   17469534:
     template: Fallen_Knight
-    at:       [-233.300, 15.500, -15.079, 109]
+    region:   w_91
     level:    [52, 55]
   17469535:
     template: Dark_Aspic
@@ -2923,7 +2925,7 @@ spawns:
     level:    [63, 65]
   17469632:
     template: Konjac
-    at:       [60.000, 22.500, 135.400, 60]
+    region:   n_189
     level:    [78, 78]
   17469633:
     template: Blackwater_Pugil
