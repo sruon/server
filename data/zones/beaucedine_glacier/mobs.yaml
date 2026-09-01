@@ -2942,7 +2942,7 @@ spawns:
     level:    [34, 37]
   17231888:
     template: Tundra_Tiger
-    at:       [-140.732, -40.299, -221.573, 2]
+    region:   sw_24
     level:    [34, 37]
   17231889:
     template: Tundra_Tiger
@@ -2994,7 +2994,7 @@ spawns:
     level:    [34, 37]
   17231901:
     template: Cold_Gigas
-    at:       [-40.696, -40.500, -200.725, 127]
+    region:   s_26
     level:    [40, 43]
   17231902:
     template: Snow_Gigas
@@ -3002,7 +3002,7 @@ spawns:
     level:    [40, 43]
   17231903:
     template: Rime_Gigas
-    at:       [-7.000, -40.500, -218.000, 9]
+    region:   s_26
     level:    [40, 43]
   17231904:
     template: Gigass_Tiger
@@ -3010,7 +3010,7 @@ spawns:
     level:    [33, 34]
   17231905:
     template: Sleet_Gigas
-    at:       [-34.469, -40.410, -244.993, 30]
+    region:   s_26
     level:    [40, 43]
   17231906:
     template: Dark_Elemental
@@ -3026,11 +3026,11 @@ spawns:
     level:    [40, 42]
   17231909:
     template: Cold_Gigas
-    at:       [-123.000, -59.000, -188.000, 127]
+    region:   s_35
     level:    [40, 43]
   17231910:
     template: Snow_Gigas
-    at:       [-100.333, -61.044, -148.729, 127]
+    region:   s_35
     level:    [40, 43]
   17231911:
     template: Rime_Gigas
@@ -3042,7 +3042,7 @@ spawns:
     level:    [33, 35]
   17231913:
     template: Sleet_Gigas
-    at:       [-104.955, -59.795, -158.247, 127]
+    region:   s_35
     level:    [40, 43]
   17231914:
     template: Bat_Eye
@@ -3054,7 +3054,7 @@ spawns:
     level:    [40, 42]
   17231916:
     template: Tundra_Tiger
-    at:       [37.572, -60.235, -110.706, 127]
+    region:   c_59
     level:    [34, 37]
   17231917:
     template: Tundra_Tiger
@@ -3086,11 +3086,11 @@ spawns:
     level:    [35, 38]
   17231924:
     template: Cold_Gigas
-    at:       [-5.000, -59.000, -147.000, 126]
+    region:   c_42
     level:    [40, 43]
   17231925:
     template: Snow_Gigas
-    at:       [74.699, -60.435, -86.162, 127]
+    region:   c_42
     level:    [40, 43]
   17231926:
     template: Rime_Gigas
@@ -3102,7 +3102,7 @@ spawns:
     level:    [33, 35]
   17231928:
     template: Sleet_Gigas
-    at:       [20.000, -59.000, -29.000, 72]
+    region:   c_42
     level:    [40, 43]
   17231929:
     template: Ice_Elemental
@@ -3275,7 +3275,7 @@ spawns:
     level:    [39, 42]
   17231969:
     template: Tundra_Tiger
-    at:       [-342.830, -100.584, 168.662, 66]
+    region:   w_105
     level:    [34, 37]
   17231970:
     template: Tundra_Tiger
@@ -3343,15 +3343,15 @@ spawns:
     level:    [34, 37]
   17231986:
     template: Cold_Gigas
-    at:       [81.000, -40.298, 73.000, 64]
+    region:   c_109
     level:    [40, 43]
   17231987:
     template: Snow_Gigas
-    at:       [101.103, -40.766, -9.657, 39]
+    region:   c_109
     level:    [40, 43]
   17231988:
     template: Rime_Gigas
-    at:       [100.963, -39.548, 38.275, 76]
+    region:   c_109
     level:    [40, 43]
   17231989:
     template: Gigass_Tiger
@@ -3542,11 +3542,11 @@ spawns:
     level:    [34, 37]
   17232036:
     template: Cold_Gigas
-    at:       [186.015, 0.098, -203.197, 68]
+    region:   se_163
     level:    [40, 43]
   17232037:
     template: Snow_Gigas
-    at:       [153.830, -0.007, -180.089, 93]
+    region:   se_163
     level:    [40, 43]
   17232038:
     template: Rime_Gigas
@@ -3558,7 +3558,7 @@ spawns:
     level:    [33, 35]
   17232040:
     template: Sleet_Gigas
-    at:       [-62.000, -0.600, -397.000]
+    region:   se_163
     level:    [40, 43]
   17232041:
     template: Tundra_Tiger
@@ -3598,7 +3598,7 @@ spawns:
     level:    [40, 43]
   17232050:
     template: Living_Statue
-    at:       [64.868, -0.750, -339.621, 200]
+    region:   s_170
     level:    [37, 39]
   17232051:
     template: Living_Statue
@@ -3618,10 +3618,11 @@ spawns:
     level:    [40, 43]
   17232055:
     template: Snow_Gigas
+    region:   s_182
     level:    [40, 43]
   17232056:
     template: Rime_Gigas
-    at:       [-104.910, 0.209, -359.595, 230]
+    region:   s_182
     level:    [40, 43]
   17232057:
     template: Gigass_Tiger
@@ -3629,14 +3630,15 @@ spawns:
     level:    [33, 35]
   17232058:
     template: Sleet_Gigas
+    region:   s_182
     level:    [40, 43]
   17232059:
     template: Cold_Gigas
-    at:       [-116.000, 0.600, -385.000]
+    region:   s_182
     level:    [40, 43]
   17232060:
     template: Snow_Gigas
-    at:       [-126.888, -0.804, -365.477, 235]
+    region:   s_182
     level:    [40, 43]
   17232061:
     template: Rime_Gigas
@@ -3648,7 +3650,7 @@ spawns:
     level:    [3, 35]
   17232063:
     template: Sleet_Gigas
-    at:       [-87.000, -0.402, -391.000, 127]
+    region:   s_182
     level:    [40, 43]
   17232064:
     template: Ice_Elemental
@@ -3672,7 +3674,7 @@ spawns:
     level:    [34, 37]
   17232069:
     template: Stone_Golem
-    region:   se_197
+    region:   se_194
     level:    [40, 42]
   17232070:
     template: Goblin_Poacher
@@ -3696,7 +3698,7 @@ spawns:
     level:    [40, 43]
   17232075:
     template: Tundra_Tiger
-    at:       [180.040, -0.431, 156.870, 127]
+    region:   e_213
     level:    [34, 37]
   17232076:
     template: Tundra_Tiger
@@ -3752,15 +3754,15 @@ spawns:
     level:    [34, 37]
   17232089:
     template: Cold_Gigas
-    at:       [251.000, -0.462, 86.000, 127]
+    region:   e_215
     level:    [40, 43]
   17232090:
     template: Snow_Gigas
-    at:       [213.589, -0.297, 92.374, 3]
+    region:   e_215
     level:    [40, 43]
   17232091:
     template: Rime_Gigas
-    at:       [199.006, 0.272, 94.903, 127]
+    region:   e_215
     level:    [40, 43]
   17232092:
     template: Gigass_Tiger
@@ -3780,11 +3782,11 @@ spawns:
     level:    [40, 43]
   17232096:
     template: Snow_Gigas
-    at:       [241.108, -0.266, 231.962, 120]
+    region:   ne_223
     level:    [40, 43]
   17232097:
     template: Rime_Gigas
-    at:       [270.161, -0.208, 241.759, 20]
+    region:   ne_223
     level:    [40, 43]
   17232098:
     template: Gigass_Tiger
@@ -3792,7 +3794,7 @@ spawns:
     level:    [33, 35]
   17232099:
     template: Sleet_Gigas
-    at:       [263.175, 0.377, 241.131, 112]
+    region:   ne_223
     level:    [40, 43]
   17232100:
     template: Cold_Gigas
@@ -3851,7 +3853,7 @@ spawns:
     level:    [37, 39]
   17232114:
     template: Living_Statue
-    region:   ne_242
+    region:   ne_240
     level:    [37, 39]
   17232115:
     template: Living_Statue
@@ -3859,7 +3861,7 @@ spawns:
     level:    [37, 39]
   17232116:
     template: Living_Statue
-    region:   ne_244
+    region:   ne_240
     level:    [37, 39]
   17232117:
     template: Calcabrina
@@ -3887,7 +3889,7 @@ spawns:
     level:    [40, 43]
   17232123:
     template: Living_Statue
-    region:   ne_251
+    region:   ne_240
     level:    [37, 39]
   17232124:
     template: Hobgoblin_Warrior
