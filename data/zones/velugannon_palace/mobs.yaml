@@ -893,7 +893,7 @@ spawns:
     level:    [74, 76]
   17502218:
     template: Ornamental_Weapon
-    at:       [119.152, -0.101, -353.317, 55]
+    region:   s_5
     level:    [74, 76]
   17502219:
     template: Mystic_Weapon
@@ -933,7 +933,7 @@ spawns:
     level:    [74, 77]
   17502228:
     template: Mystic_Weapon
-    at:       [-116.735, 0.212, -372.901, 71]
+    region:   s_15
     level:    [74, 77]
   17502229:
     template: Detector
@@ -985,7 +985,7 @@ spawns:
     level:    [79, 80]
   17502241:
     template: Detector
-    at:       [203.675, -0.599, -339.863, 127]
+    region:   se_35
     level:    [72, 74]
   17502242:
     template: Caretaker
@@ -1053,7 +1053,7 @@ spawns:
     level:    [74, 76]
   17502258:
     template: Ornamental_Weapon
-    at:       [323.546, -0.016, -284.378, 127]
+    region:   se_45
     level:    [74, 76]
   17502259:
     template: Detector
@@ -1165,7 +1165,7 @@ spawns:
     level:    [79, 80]
   17502286:
     template: Detector
-    at:       [-208.635, -0.511, -339.608, 127]
+    region:   sw_80
     level:    [72, 74]
   17502287:
     template: Caretaker
@@ -1233,6 +1233,7 @@ spawns:
     level:    [74, 77]
   17502303:
     template: Mystic_Weapon
+    region:   sw_90
     level:    [74, 77]
   17502304:
     template: Detector
@@ -1387,7 +1388,7 @@ spawns:
     level:    [75, 78]
   17502342:
     template: Dustbuster
-    at:       [398.027, -0.290, 30.814, 127]
+    region:   e_129
     level:    [75, 78]
   17502343:
     template: Detector
@@ -1471,7 +1472,7 @@ spawns:
     level:    [75, 78]
   17502363:
     template: Dustbuster
-    at:       [314.612, -1.002, 289.072, 127]
+    region:   ne_156
     level:    [75, 78]
   17502364:
     template: Dustbuster
@@ -1591,11 +1592,11 @@ spawns:
     level:    [75, 78]
   17502393:
     template: Dustbuster
-    at:       [394.784, 15.544, 329.041, 250]
+    region:   ne_183
     level:    [75, 78]
   17502394:
     template: Dustbuster
-    at:       [390.896, 15.539, 347.179, 156]
+    region:   ne_183
     level:    [75, 78]
   17502395:
     template: Dustbuster
@@ -1659,7 +1660,7 @@ spawns:
     level:    [75, 78]
   17502410:
     template: Dustbuster
-    at:       [-328.854, 0.376, 281.681, 127]
+    region:   nw_197
     level:    [75, 78]
   17502411:
     template: Detector
@@ -1743,7 +1744,7 @@ spawns:
     level:    [75, 78]
   17502431:
     template: Dustbuster
-    at:       [-405.462, 0.029, 41.707, 231]
+    region:   w_224
     level:    [75, 78]
   17502432:
     template: Dustbuster
@@ -1903,7 +1904,7 @@ spawns:
     level:    [77, 80]
   17502471:
     template: Enkidu
-    at:       [-118.598, 0.327, 410.288, 165]
+    region:   n_264
     level:    [77, 80]
   17502472:
     template: Enkidu
@@ -1935,7 +1936,7 @@ spawns:
     level:    [79, 80]
   17502479:
     template: Detector
-    at:       [-23.158, -0.250, 417.508, 19]
+    region:   n_273
     level:    [72, 74]
   17502480:
     template: Caretaker
@@ -1999,7 +2000,7 @@ spawns:
     level:    [77, 80]
   17502495:
     template: Enkidu
-    at:       [126.135, 0.355, 435.370, 127]
+    region:   n_288
     level:    [77, 80]
   17502496:
     template: Enkidu
@@ -2099,7 +2100,7 @@ spawns:
     level:    [77, 80]
   17502520:
     template: Enkidu
-    at:       [-120.728, 16.242, 404.489, 26]
+    region:   n_307
     level:    [77, 80]
   17502521:
     template: Enkidu
@@ -2151,7 +2152,7 @@ spawns:
     level:    [77, 80]
   17502533:
     template: Enkidu
-    at:       [134.490, 15.500, 461.072, 10]
+    region:   ne_320
     level:    [77, 80]
   17502534:
     template: Enkidu
