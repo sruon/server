@@ -2959,15 +2959,15 @@ spawns:
     level:    [1, 1]
   17211406:
     template: Tunnel_Worm
-    region:   e_14
+    region:   e_6
     level:    [1, 1]
   17211407:
     template: Tunnel_Worm
-    region:   e_14
+    region:   e_6
     level:    [1, 1]
   17211408:
     template: Tunnel_Worm
-    region:   e_14
+    region:   e_6
     level:    [1, 1]
   17211409:
     template: Tunnel_Worm
@@ -2975,7 +2975,7 @@ spawns:
     level:    [1, 1]
   17211410:
     template: Ding_Bats
-    at:       [676.608, -0.637, 437.112, 87]
+    region:   e_6
     level:    [1, 1]
     attributes:
       spawn:
@@ -2984,7 +2984,7 @@ spawns:
           end:    6
   17211411:
     template: Ding_Bats
-    at:       [730.553, -2.621, 457.043, 25]
+    region:   e_6
     level:    [1, 1]
     attributes:
       spawn:
@@ -3059,7 +3059,7 @@ spawns:
     level:    [1, 1]
   17211426:
     template: Ding_Bats
-    at:       [580.802, -0.868, 439.269, 113]
+    region:   e_22
     level:    [1, 1]
     attributes:
       spawn:
@@ -3068,7 +3068,7 @@ spawns:
           end:    6
   17211427:
     template: Ding_Bats
-    at:       [541.974, 0.338, 378.054, 51]
+    region:   e_22
     level:    [1, 1]
     attributes:
       spawn:
@@ -3139,7 +3139,7 @@ spawns:
     level:    [1, 1]
   17211441:
     template: Tunnel_Worm
-    region:   e_49
+    region:   e_38
     level:    [1, 1]
   17211442:
     template: Tunnel_Worm
@@ -3155,7 +3155,7 @@ spawns:
     level:    [1, 1]
   17211445:
     template: Ding_Bats
-    at:       [323.233, -0.721, 293.771, 96]
+    region:   e_38
     level:    [1, 1]
     attributes:
       spawn:
@@ -3164,7 +3164,7 @@ spawns:
           end:    6
   17211446:
     template: Ding_Bats
-    at:       [348.555, 2.170, 258.482, 95]
+    region:   e_38
     level:    [1, 1]
     attributes:
       spawn:
@@ -3173,7 +3173,7 @@ spawns:
           end:    5
   17211447:
     template: Ding_Bats
-    at:       [396.369, -0.696, 223.970, 127]
+    region:   e_38
     level:    [1, 1]
     attributes:
       spawn:
@@ -3182,7 +3182,7 @@ spawns:
           end:    4
   17211448:
     template: Ding_Bats
-    region:   e_56
+    region:   e_38
     level:    [1, 1]
     attributes:
       spawn:
@@ -3191,7 +3191,7 @@ spawns:
           end:    4
   17211449:
     template: Ding_Bats
-    region:   e_56
+    region:   e_38
     level:    [1, 1]
     attributes:
       spawn:
@@ -3240,7 +3240,7 @@ spawns:
     level:    [4, 5]
   17211460:
     template: Ding_Bats
-    at:       [359.737, -20.508, 645.112, 126]
+    region:   e_58
     level:    [2, 3]
     attributes:
       spawn:
@@ -3249,7 +3249,7 @@ spawns:
           end:    5
   17211461:
     template: Ding_Bats
-    at:       [397.966, -20.496, 633.527, 127]
+    region:   e_58
     level:    [2, 3]
     attributes:
       spawn:
@@ -3276,6 +3276,7 @@ spawns:
           end:    6
   17211464:
     template: Black_Wolf
+    region:   e_58
     level:    [5, 6]
   17211465:
     template: Maneating_Hornet
@@ -3323,7 +3324,7 @@ spawns:
     level:    [4, 5]
   17211476:
     template: Ding_Bats
-    at:       [211.411, -20.519, 681.456, 127]
+    region:   c_73
     level:    [2, 3]
     attributes:
       spawn:
@@ -3341,7 +3342,7 @@ spawns:
           end:    4
   17211478:
     template: Fledermaus
-    at:       [276.456, -20.757, 712.285, 127]
+    region:   c_73
     level:    [3, 4]
     attributes:
       spawn:
@@ -3359,6 +3360,7 @@ spawns:
           end:    4
   17211480:
     template: Black_Wolf
+    region:   c_73
     level:    [5, 6]
   17211481:
     template: Maneating_Hornet
@@ -3378,7 +3380,7 @@ spawns:
     level:    [3, 4]
   17211485:
     template: Stone_Eater
-    region:   c_93
+    region:   c_89
     level:    [3, 4]
   17211486:
     template: Stone_Eater
@@ -3406,7 +3408,7 @@ spawns:
     level:    [4, 5]
   17211492:
     template: Ding_Bats
-    at:       [162.251, -20.423, 575.700, 127]
+    region:   c_89
     level:    [2, 3]
     attributes:
       spawn:
@@ -3415,7 +3417,7 @@ spawns:
           end:    5
   17211493:
     template: Ding_Bats
-    at:       [118.505, -20.402, 448.993, 91]
+    region:   c_89
     level:    [2, 3]
     attributes:
       spawn:
@@ -3442,6 +3444,7 @@ spawns:
           end:    6
   17211496:
     template: Black_Wolf
+    region:   c_89
     level:    [5, 6]
   17211497:
     template: Maneating_Hornet
@@ -3485,7 +3488,7 @@ spawns:
     level:    [4, 5]
   17211507:
     template: Ding_Bats
-    at:       [248.730, -19.929, 352.612, 127]
+    region:   c_105
     level:    [2, 3]
     attributes:
       spawn:
@@ -3503,7 +3506,7 @@ spawns:
           end:    4
   17211509:
     template: Fledermaus
-    at:       [196.863, -20.496, 376.963, 127]
+    region:   c_105
     level:    [3, 4]
     attributes:
       spawn:
@@ -3521,7 +3524,7 @@ spawns:
           end:    4
   17211511:
     template: Black_Wolf
-    at:       [251.134, -20.099, 347.499, 182]
+    region:   c_105
     level:    [5, 6]
   17211512:
     template: Maneating_Hornet
@@ -3553,7 +3556,7 @@ spawns:
     level:    [4, 5]
   17211519:
     template: Ding_Bats
-    at:       [403.638, -20.017, 423.385, 110]
+    region:   e_120
     level:    [2, 3]
     attributes:
       spawn:
@@ -3571,7 +3574,7 @@ spawns:
           end:    4
   17211521:
     template: Black_Wolf
-    at:       [391.087, -20.643, 418.648, 97]
+    region:   e_120
     level:    [5, 6]
   17211522:
     template: Maneating_Hornet
@@ -3608,7 +3611,7 @@ spawns:
           end:    4
   17211529:
     template: Fledermaus
-    at:       [262.618, -21.077, 353.507, 42]
+    region:   e_130
     level:    [3, 4]
     attributes:
       spawn:
@@ -3617,7 +3620,7 @@ spawns:
           end:    5
   17211530:
     template: Black_Wolf
-    at:       [295.680, -20.470, 364.715, 38]
+    region:   e_130
     level:    [5, 6]
   17211531:
     template: Maneating_Hornet
@@ -3629,7 +3632,7 @@ spawns:
     level:    [4, 5]
   17211533:
     template: Maneating_Hornet
-    at:       [216.150, -41.182, 445.157, 127]
+    region:   c_139
     level:    [4, 5]
   17211534:
     template: Maneating_Hornet
@@ -3689,6 +3692,7 @@ spawns:
     level:    [5, 6]
   17211548:
     template: Ding_Bats
+    region:   c_139
     level:    [3, 4]
     attributes:
       spawn:
@@ -3697,7 +3701,7 @@ spawns:
           end:    5
   17211549:
     template: Ding_Bats
-    at:       [239.271, -40.592, 454.496, 22]
+    region:   c_139
     level:    [3, 4]
     attributes:
       spawn:
@@ -3715,7 +3719,7 @@ spawns:
           end:    6
   17211551:
     template: Fledermaus
-    at:       [294.288, -40.193, 430.849, 86]
+    region:   c_139
     level:    [4, 5]
     attributes:
       spawn:
@@ -3733,17 +3737,17 @@ spawns:
           end:    4
   17211553:
     template: Black_Wolf
-    at:       [212.715, -41.427, 446.869, 127]
+    region:   c_139
     level:    [7, 8]
   17211554:
     template: Enchanted_Bones_blm
     script:   Enchanted_Bones
-    at:       [181.012, -40.808, 526.818, 127]
+    region:   c_139
     level:    [5, 8]
   17211555:
     template: Enchanted_Bones_blm
     script:   Enchanted_Bones
-    at:       [249.912, -40.183, 457.021, 113]
+    region:   c_139
     level:    [5, 8]
   17211556:
     template: Maneating_Hornet
@@ -3811,7 +3815,7 @@ spawns:
     level:    [5, 6]
   17211572:
     template: Ding_Bats
-    at:       [250.113, -40.375, 592.222, 127]
+    region:   c_164
     level:    [3, 4]
     attributes:
       spawn:
@@ -3820,7 +3824,7 @@ spawns:
           end:    5
   17211573:
     template: Ding_Bats
-    at:       [302.809, -41.405, 606.049, 127]
+    region:   c_164
     level:    [3, 4]
     attributes:
       spawn:
@@ -3847,17 +3851,17 @@ spawns:
           end:    6
   17211576:
     template: Black_Wolf
-    at:       [324.353, -40.596, 615.870, 127]
+    region:   c_164
     level:    [7, 8]
   17211577:
     template: Enchanted_Bones_blm
     script:   Enchanted_Bones
-    at:       [288.459, -41.108, 603.843, 127]
+    region:   c_164
     level:    [5, 8]
   17211578:
     template: Enchanted_Bones_blm
     script:   Enchanted_Bones
-    at:       [200.711, -40.413, 535.023, 11]
+    region:   c_164
     level:    [5, 8]
   17211579:
     template: Maneating_Hornet
@@ -3893,7 +3897,7 @@ spawns:
     level:    [6, 7]
   17211587:
     template: Ding_Bats
-    at:       [327.337, -60.788, 530.183, 91]
+    region:   c_187
     level:    [4, 5]
     attributes:
       spawn:
@@ -3911,7 +3915,7 @@ spawns:
           end:    4
   17211589:
     template: Fledermaus
-    at:       [304.646, -61.022, 547.930, 127]
+    region:   c_187
     level:    [5, 6]
     attributes:
       spawn:
@@ -3930,17 +3934,17 @@ spawns:
   17211591:
     template: Enchanted_Bones_blm
     script:   Enchanted_Bones
-    at:       [318.531, -60.104, 545.945, 127]
+    region:   c_187
     level:    [5, 8]
   17211592:
     template: Enchanted_Bones_war
     script:   Enchanted_Bones
-    at:       [278.751, -60.549, 545.385, 127]
+    region:   c_187
     level:    [5, 8]
   17211593:
     template: Enchanted_Bones_blm
     script:   Enchanted_Bones
-    at:       [262.853, -60.219, 509.673, 89]
+    region:   c_187
     level:    [5, 8]
   17211594:
     template: River_Crab
@@ -4016,11 +4020,11 @@ spawns:
     level:    [3, 4]
   17211612:
     template: Young_Quadav
-    at:       [185.000, 2.000, 254.000, 127]
+    region:   s_212
     level:    [3, 4]
   17211613:
     template: Amber_Quadav
-    at:       [178.586, 1.468, 256.145, 49]
+    region:   s_212
     level:    [3, 4]
   17211614:
     template: Stone_Eater
@@ -4052,7 +4056,7 @@ spawns:
     level:    [4, 5]
   17211621:
     template: Rock_Lizard
-    region:   s_229
+    region:   s_228
     level:    [4, 5]
   17211622:
     template: Walking_Sapling
@@ -4116,7 +4120,7 @@ spawns:
     level:    [8, 10]
   17211637:
     template: Young_Quadav
-    at:       [59.000, -0.010, 427.000, 83]
+    region:   c_239
     level:    [3, 4]
   17211638:
     template: Young_Quadav
@@ -4124,19 +4128,19 @@ spawns:
     level:    [3, 4]
   17211639:
     template: Amber_Quadav
-    at:       [57.553, -0.465, 420.584, 125]
+    region:   c_239
     level:    [3, 4]
   17211640:
     template: Stone_Eater
-    region:   s_248
+    region:   c_251
     level:    [2, 3]
   17211641:
     template: Stone_Eater
-    region:   s_248
+    region:   c_251
     level:    [2, 3]
   17211642:
     template: Stone_Eater
-    region:   s_248
+    region:   c_251
     level:    [2, 3]
   17211643:
     template: Walking_Sapling
@@ -4168,7 +4172,7 @@ spawns:
     level:    [8, 8]
   17211650:
     template: Young_Quadav
-    at:       [-58.840, 1.551, 254.026, 76]
+    region:   c_251
     level:    [3, 4]
   17211651:
     template: Young_Quadav
@@ -4188,15 +4192,15 @@ spawns:
     level:    [2, 3]
   17211655:
     template: Stone_Eater
-    region:   s_263
+    region:   s_266
     level:    [2, 3]
   17211656:
     template: Stone_Eater
-    region:   s_263
+    region:   s_266
     level:    [2, 3]
   17211657:
     template: Stone_Eater
-    region:   s_263
+    region:   s_266
     level:    [2, 3]
   17211658:
     template: Rock_Lizard
@@ -4204,7 +4208,7 @@ spawns:
     level:    [4, 5]
   17211659:
     template: Rock_Lizard
-    region:   s_263
+    region:   s_266
     level:    [4, 5]
   17211660:
     template: Walking_Sapling
@@ -4232,15 +4236,15 @@ spawns:
     level:    [3, 4]
   17211666:
     template: Bedrock_Barry
-    region:   s_274
+    region:   s_266
     level:    [11, 12]
   17211667:
     template: Ornery_Sheep
-    at:       [-81.450, -20.693, 158.438, 44]
+    region:   s_277
     level:    [5, 6]
   17211668:
     template: Ornery_Sheep
-    at:       [-87.629, -20.981, 176.370, 103]
+    region:   s_277
     level:    [5, 6]
   17211669:
     template: Goblin_Thug
@@ -4264,11 +4268,11 @@ spawns:
     level:    [3, 4]
   17211674:
     template: Stone_Eater
-    region:   c_282
+    region:   c_279
     level:    [2, 3]
   17211675:
     template: Stone_Eater
-    region:   c_283
+    region:   c_279
     level:    [2, 3]
   17211676:
     template: Stone_Eater
@@ -4503,7 +4507,7 @@ spawns:
     level:    [7, 8]
   17211734:
     template: Young_Quadav
-    at:       [502.000, -0.010, 620.000, 93]
+    region:   e_334
     level:    [7, 8]
   17211735:
     template: Amethyst_Quadav
@@ -4511,7 +4515,7 @@ spawns:
     level:    [7, 8]
   17211736:
     template: Amber_Quadav
-    at:       [499.721, -0.048, 614.631, 26]
+    region:   e_334
     level:    [7, 8]
   17211737:
     template: Walking_Sapling
@@ -4567,7 +4571,7 @@ spawns:
     level:    [7, 8]
   17211750:
     template: Young_Quadav
-    at:       [258.734, -18.407, 1019.530, 127]
+    region:   n_345
     level:    [7, 8]
   17211751:
     template: Amethyst_Quadav
@@ -4575,7 +4579,7 @@ spawns:
     level:    [7, 8]
   17211752:
     template: Amber_Quadav
-    at:       [256.728, -19.312, 1023.630, 127]
+    region:   n_345
     level:    [7, 8]
   17211753:
     template: Young_Quadav
@@ -4685,7 +4689,7 @@ spawns:
   17211779:
     template: Enchanted_Bones_war
     script:   Enchanted_Bones
-    at:       [-489.722, 39.199, 115.754, 127]
+    region:   sw_379
     level:    [5, 8]
   17211780:
     template: Shrapnel
@@ -4693,7 +4697,7 @@ spawns:
     level:    [8, 10]
   17211781:
     template: Stone_Eater
-    region:   sw_389
+    region:   w_391
     level:    [4, 5]
   17211782:
     template: Stone_Eater
@@ -4754,11 +4758,11 @@ spawns:
     level:    [4, 5]
   17211796:
     template: Stone_Eater
-    region:   w_404
+    region:   w_406
     level:    [4, 5]
   17211797:
     template: Stone_Eater
-    region:   w_404
+    region:   w_406
     level:    [4, 5]
   17211798:
     template: Rock_Lizard
@@ -4795,15 +4799,15 @@ spawns:
   17211806:
     template: Enchanted_Bones_war
     script:   Enchanted_Bones
-    at:       [-435.533, 40.557, 384.991, 150]
+    region:   w_406
     level:    [5, 8]
   17211807:
     template: Stone_Eater
-    region:   w_415
+    region:   w_418
     level:    [5, 6]
   17211808:
     template: Stone_Eater
-    region:   w_415
+    region:   w_418
     level:    [5, 6]
   17211809:
     template: Stone_Eater
@@ -4867,7 +4871,7 @@ spawns:
     level:    [7, 8]
   17211824:
     template: Rock_Lizard
-    region:   w_432
+    region:   w_433
     level:    [7, 8]
   17211825:
     template: Walking_Sapling
@@ -4891,6 +4895,7 @@ spawns:
     level:    [7, 8]
   17211830:
     template: Enchanted_Bones_blm
+    region:   w_433
     script:   Enchanted_Bones
     level:    [5, 8]
   17211831:
@@ -4915,11 +4920,11 @@ spawns:
     level:    [21, 22]
   17211836:
     template: Goblin_Gambler
-    at:       [-365.987, 98.463, 402.765, 127]
+    region:   w_439
     level:    [21, 22]
   17211837:
     template: Goblin_Leecher
-    at:       [-438.101, 98.071, 402.872, 125]
+    region:   w_439
     level:    [21, 22]
   17211838:
     template: Goblin_Gambler
@@ -4943,7 +4948,7 @@ spawns:
     level:    [21, 22]
   17211843:
     template: Goblin_Leecher
-    at:       [-465.830, 98.186, 422.527, 94]
+    region:   w_447
     level:    [21, 22]
   17211844:
     template: Goblin_Gambler
