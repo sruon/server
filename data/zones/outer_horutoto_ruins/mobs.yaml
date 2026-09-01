@@ -3294,7 +3294,7 @@ spawns:
     level:    [10, 14]
   17571848:
     template: Goblin_Tinkerer
-    at:       [-339.942, -0.032, 743.249, 68]
+    region:   nw_5
     level:    [10, 14]
   17571849:
     template: Goblin_Butcher
@@ -3320,7 +3320,7 @@ spawns:
     level:    [10, 14]
   17571854:
     template: Goblin_Ambusher
-    at:       [-312.753, -0.032, 733.122, 127]
+    region:   nw_5
     level:    [10, 14]
   17571855:
     template: Goblin_Tinkerer
@@ -3328,7 +3328,7 @@ spawns:
     level:    [10, 14]
   17571856:
     template: Goblin_Tinkerer
-    at:       [-312.116, -0.002, 746.626, 127]
+    region:   nw_13
     level:    [10, 14]
   17571857:
     template: Goblin_Butcher
@@ -3375,12 +3375,12 @@ spawns:
     level:    [10, 14]
   17571867:
     template: Goblin_Butcher
-    at:       [-377.126, -0.035, 741.117, 127]
+    region:   nw_25
     level:    [10, 14]
   17571868:
     template: Stink_Bats_OHR
     script:   Stink_Bats
-    at:       [-377.758, -0.054, 737.730, 28]
+    region:   nw_25
     level:    [15, 18]
   17571869:
     template: Stink_Bats_OHR
@@ -3515,7 +3515,7 @@ spawns:
   17571900:
     template: Ghoul_war
     script:   Ghoul
-    at:       [-417.000, -1.000, 661.000, 127]
+    region:   nw_53
     level:    [23, 26]
   17571901:
     template: Combat_OH
@@ -3633,7 +3633,7 @@ spawns:
     level:    [84, 85]
   17571929:
     template: Two_of_Cups
-    at:       [-506.359, -0.001, -658.304, 96]
+    region:   sw_90
     level:    [1, 5]
   17571930:
     template: Two_of_Batons
@@ -3641,15 +3641,15 @@ spawns:
     level:    [1, 5]
   17571931:
     template: Two_of_Swords
-    at:       [-506.453, 0.000, -663.439, 187]
+    region:   sw_90
     level:    [1, 5]
   17571932:
     template: Two_of_Coins
-    at:       [-501.606, -0.049, -659.307, 200]
+    region:   sw_90
     level:    [1, 5]
   17571933:
     template: Two_of_Cups
-    at:       [-496.665, -0.047, -661.890, 101]
+    region:   sw_90
     level:    [1, 5]
   17571934:
     template: Two_of_Batons
@@ -3661,11 +3661,11 @@ spawns:
     level:    [1, 5]
   17571936:
     template: Two_of_Coins
-    at:       [-501.813, -0.034, -665.172, 81]
+    region:   sw_90
     level:    [1, 5]
   17571937:
     template: Two_of_Cups
-    at:       [-499.378, -0.011, -695.339, 104]
+    region:   sw_98
     level:    [1, 5]
   17571938:
     template: Two_of_Batons
@@ -3677,7 +3677,7 @@ spawns:
     level:    [1, 5]
   17571940:
     template: Two_of_Coins
-    at:       [-504.532, -0.003, -699.166, 79]
+    region:   sw_98
     level:    [1, 5]
   17571941:
     template: Three_of_Cups
@@ -3685,15 +3685,15 @@ spawns:
     level:    [5, 9]
   17571942:
     template: Three_of_Batons
-    at:       [-506.281, -0.032, -698.544, 127]
+    region:   sw_101
     level:    [5, 9]
   17571943:
     template: Three_of_Swords
-    at:       [-500.798, -0.032, -692.629, 127]
+    region:   sw_101
     level:    [5, 9]
   17571944:
     template: Three_of_Coins
-    at:       [-506.610, -0.032, -700.430, 65]
+    region:   sw_101
     level:    [5, 9]
   17571945:
     template: Three_of_Cups
@@ -3705,11 +3705,11 @@ spawns:
     level:    [5, 9]
   17571947:
     template: Three_of_Swords
-    at:       [-461.876, -0.054, -696.737, 93]
+    region:   sw_101
     level:    [5, 9]
   17571948:
     template: Three_of_Coins
-    at:       [-468.396, -0.039, -701.246, 146]
+    region:   sw_101
     level:    [5, 9]
   17571949:
     template: Three_of_Cups
@@ -3717,11 +3717,11 @@ spawns:
     level:    [5, 9]
   17571950:
     template: Three_of_Batons
-    at:       [-414.523, -0.052, -692.723]
+    region:   sw_109
     level:    [5, 9]
   17571951:
     template: Three_of_Swords
-    at:       [-459.524, -0.044, -701.417, 1]
+    region:   sw_109
     level:    [5, 9]
   17571952:
     template: Three_of_Coins
@@ -3733,11 +3733,11 @@ spawns:
     level:    [10, 14]
   17571954:
     template: Four_of_Batons
-    at:       [-425.585, -0.036, -703.299, 61]
+    region:   sw_113
     level:    [10, 14]
   17571955:
     template: Four_of_Swords
-    at:       [-457.837, -0.030, -658.313, 123]
+    region:   sw_113
     level:    [10, 14]
   17571956:
     template: Four_of_Coins
@@ -3745,15 +3745,15 @@ spawns:
     level:    [10, 14]
   17571957:
     template: Four_of_Cups
-    at:       [-427.093, -0.028, -702.706, 127]
+    region:   sw_113
     level:    [10, 14]
   17571958:
     template: Four_of_Batons
-    at:       [-458.703, -0.498, -654.271, 60]
+    region:   sw_113
     level:    [10, 14]
   17571959:
     template: Four_of_Swords
-    at:       [-457.598, -0.500, -667.340, 127]
+    region:   sw_113
     level:    [10, 14]
   17571960:
     template: Four_of_Coins
@@ -3765,11 +3765,11 @@ spawns:
     level:    [15, 19]
   17571962:
     template: Five_of_Batons
-    at:       [-462.480, -0.500, -613.807, 19]
+    region:   sw_121
     level:    [15, 19]
   17571963:
     template: Five_of_Swords
-    at:       [-464.269, -0.522, -622.719, 104]
+    region:   sw_121
     level:    [15, 19]
   17571964:
     template: Five_of_Coins
@@ -3777,11 +3777,11 @@ spawns:
     level:    [15, 19]
   17571965:
     template: Five_of_Cups
-    at:       [-456.889, -0.049, -622.972, 163]
+    region:   sw_121
     level:    [15, 19]
   17571966:
     template: Five_of_Batons
-    at:       [-453.174, -0.081, -619.387, 2]
+    region:   sw_121
     level:    [15, 19]
   17571967:
     template: Five_of_Swords
@@ -3789,11 +3789,11 @@ spawns:
     level:    [15, 19]
   17571968:
     template: Five_of_Coins
-    at:       [-466.306, -0.500, -619.278, 46]
+    region:   sw_121
     level:    [15, 19]
   17571969:
     template: Five_of_Cups
-    at:       [-460.691, -0.494, -621.539, 127]
+    region:   sw_130
     level:    [15, 19]
   17571970:
     template: Five_of_Batons
@@ -3801,7 +3801,7 @@ spawns:
     level:    [15, 19]
   17571971:
     template: Five_of_Swords
-    at:       [-461.320, -0.510, -617.037, 85]
+    region:   sw_130
     level:    [15, 19]
   17571972:
     template: Five_of_Coins
@@ -3809,7 +3809,7 @@ spawns:
     level:    [15, 19]
   17571973:
     template: Six_of_Cups
-    at:       [-412.728, -0.500, -618.078, 89]
+    region:   sw_134
     level:    [20, 24]
   17571974:
     template: Six_of_Batons
@@ -3817,7 +3817,7 @@ spawns:
     level:    [20, 24]
   17571975:
     template: Six_of_Swords
-    at:       [-420.268, -0.025, -623.996, 228]
+    region:   sw_134
     level:    [20, 24]
   17571976:
     template: Six_of_Coins
@@ -3829,11 +3829,11 @@ spawns:
     level:    [20, 24]
   17571978:
     template: Six_of_Batons
-    at:       [-422.848, -0.055, -661.822, 226]
+    region:   sw_137
     level:    [20, 24]
   17571979:
     template: Six_of_Swords
-    at:       [-426.564, -0.500, -620.612, 127]
+    region:   sw_137
     level:    [20, 24]
   17571980:
     template: Six_of_Coins
@@ -3841,11 +3841,11 @@ spawns:
     level:    [20, 24]
   17571981:
     template: Six_of_Cups
-    at:       [-413.316, -0.500, -616.404, 71]
+    region:   sw_137
     level:    [20, 24]
   17571982:
     template: Six_of_Batons
-    at:       [-419.197, -0.105, -656.957, 38]
+    region:   sw_137
     level:    [20, 24]
   17571983:
     template: Six_of_Swords
@@ -3853,7 +3853,7 @@ spawns:
     level:    [20, 24]
   17571984:
     template: Six_of_Coins
-    at:       [-413.843, -0.557, -653.884, 171]
+    region:   sw_137
     level:    [20, 24]
   17571985:
     template: Eight_of_Cups
@@ -3861,19 +3861,19 @@ spawns:
     level:    [30, 34]
   17571986:
     template: Eight_of_Batons
-    at:       [-427.588, -0.500, -653.787, 10]
+    region:   sw_145
     level:    [30, 34]
   17571987:
     template: Eight_of_Swords
-    at:       [-422.568, -0.007, -653.721, 127]
+    region:   sw_145
     level:    [30, 34]
   17571988:
     template: Eight_of_Coins
-    at:       [-375.078, 0.466, -631.958, 92]
+    region:   sw_145
     level:    [30, 34]
   17571989:
     template: Eight_of_Cups
-    at:       [-368.211, 0.447, -630.189, 231]
+    region:   sw_145
     level:    [30, 34]
   17571990:
     template: Eight_of_Batons
@@ -3881,15 +3881,15 @@ spawns:
     level:    [30, 34]
   17571991:
     template: Eight_of_Swords
-    at:       [-348.598, -0.032, -629.850, 97]
+    region:   sw_145
     level:    [30, 34]
   17571992:
     template: Eight_of_Coins
-    at:       [-364.080, 0.600, -631.249, 43]
+    region:   sw_145
     level:    [30, 34]
   17571993:
     template: Eight_of_Cups
-    at:       [-357.057, 0.489, -636.143, 148]
+    region:   sw_145
     level:    [30, 34]
   17571994:
     template: Eight_of_Batons
@@ -3897,19 +3897,19 @@ spawns:
     level:    [30, 34]
   17571995:
     template: Eight_of_Swords
-    at:       [-341.111, -0.016, -643.303, 101]
+    region:   sw_145
     level:    [30, 34]
   17571996:
     template: Eight_of_Coins
-    at:       [-341.875, -0.065, -656.257, 91]
+    region:   sw_145
     level:    [30, 34]
   17571997:
     template: Eight_of_Cups
-    at:       [-375.123, 0.466, -632.726, 238]
+    region:   sw_145
     level:    [30, 34]
   17571998:
     template: Eight_of_Batons
-    at:       [-365.689, 0.000, -628.193, 255]
+    region:   sw_145
     level:    [30, 34]
   17571999:
     template: Eight_of_Swords
@@ -3917,7 +3917,7 @@ spawns:
     level:    [30, 34]
   17572000:
     template: Eight_of_Coins
-    at:       [-371.542, 0.471, -627.230, 51]
+    region:   sw_145
     level:    [30, 34]
   17572001:
     template: Dancing_Weapon
@@ -3925,7 +3925,7 @@ spawns:
     level:    [28, 30]
   17572002:
     template: Dancing_Weapon
-    at:       [-353.390, 0.458, -623.800, 61]
+    region:   sw_145
     level:    [28, 30]
   17572003:
     template: Dancing_Weapon
@@ -3933,7 +3933,7 @@ spawns:
     level:    [28, 30]
   17572004:
     template: Dancing_Weapon
-    at:       [-372.075, 0.500, -624.285, 127]
+    region:   sw_145
     level:    [28, 30]
   17572005:
     template: Seven_of_Cups
@@ -3941,27 +3941,27 @@ spawns:
     level:    [25, 29]
   17572006:
     template: Seven_of_Batons
-    at:       [-361.489, 0.499, -643.836, 64]
+    region:   sw_165
     level:    [25, 29]
   17572007:
     template: Seven_of_Swords
-    at:       [-371.495, 0.499, -622.894, 127]
+    region:   sw_165
     level:    [25, 29]
   17572008:
     template: Seven_of_Coins
-    at:       [-366.597, 0.440, -629.285, 127]
+    region:   sw_165
     level:    [25, 29]
   17572009:
     template: Seven_of_Cups
-    at:       [-361.605, 0.500, -635.211, 53]
+    region:   sw_165
     level:    [25, 29]
   17572010:
     template: Seven_of_Batons
-    at:       [-339.943, 0.225, -657.089, 199]
+    region:   sw_165
     level:    [25, 29]
   17572011:
     template: Seven_of_Swords
-    at:       [-360.467, 0.000, -657.244, 135]
+    region:   sw_165
     level:    [25, 29]
   17572012:
     template: Seven_of_Coins
@@ -3969,15 +3969,15 @@ spawns:
     level:    [25, 29]
   17572013:
     template: Seven_of_Cups
-    at:       [-374.451, 0.499, -651.348, 127]
+    region:   sw_165
     level:    [25, 29]
   17572014:
     template: Seven_of_Batons
-    at:       [-387.562, -0.500, -659.137, 109]
+    region:   sw_165
     level:    [25, 29]
   17572015:
     template: Seven_of_Swords
-    at:       [-341.552, 0.498, -667.807, 3]
+    region:   sw_165
     level:    [25, 29]
   17572016:
     template: Seven_of_Coins
@@ -3989,15 +3989,15 @@ spawns:
     level:    [25, 29]
   17572018:
     template: Seven_of_Batons
-    at:       [-351.137, 0.499, -651.328, 41]
+    region:   sw_165
     level:    [25, 29]
   17572019:
     template: Seven_of_Swords
-    at:       [-343.863, 0.449, -670.232, 14]
+    region:   sw_165
     level:    [25, 29]
   17572020:
     template: Seven_of_Coins
-    at:       [-344.585, 0.467, -652.662, 135]
+    region:   sw_165
     level:    [25, 29]
   17572021:
     template: Dancing_Weapon
@@ -4005,11 +4005,11 @@ spawns:
     level:    [28, 30]
   17572022:
     template: Dancing_Weapon
-    at:       [-379.923, -0.034, -658.924, 60]
+    region:   sw_165
     level:    [28, 30]
   17572023:
     template: Dancing_Weapon
-    at:       [-349.119, 0.485, -652.426, 80]
+    region:   sw_165
     level:    [28, 30]
   17572024:
     template: Dancing_Weapon
@@ -4017,11 +4017,11 @@ spawns:
     level:    [28, 30]
   17572025:
     template: Nine_of_Batons
-    at:       [-361.568, 0.499, -648.810, 127]
+    region:   sw_187
     level:    [35, 39]
   17572026:
     template: Nine_of_Cups
-    at:       [-359.258, 0.498, -663.705, 127]
+    region:   sw_187
     level:    [35, 39]
   17572027:
     template: Nine_of_Swords
@@ -4029,15 +4029,15 @@ spawns:
     level:    [35, 39]
   17572028:
     template: Nine_of_Coins
-    at:       [-375.706, 0.439, -657.786, 123]
+    region:   sw_187
     level:    [35, 39]
   17572029:
     template: Nine_of_Batons
-    at:       [-359.809, 0.488, -656.887, 57]
+    region:   sw_187
     level:    [35, 39]
   17572030:
     template: Nine_of_Cups
-    at:       [-352.703, -0.031, -692.382, 127]
+    region:   sw_187
     level:    [35, 39]
   17572031:
     template: Nine_of_Swords
@@ -4045,15 +4045,15 @@ spawns:
     level:    [35, 39]
   17572032:
     template: Nine_of_Coins
-    at:       [-358.273, 0.230, -682.692, 127]
+    region:   sw_187
     level:    [35, 39]
   17572033:
     template: Nine_of_Batons
-    at:       [-343.590, 0.489, -658.844, 238]
+    region:   sw_187
     level:    [35, 39]
   17572034:
     template: Nine_of_Cups
-    at:       [-352.706, 0.451, -691.470, 207]
+    region:   sw_187
     level:    [35, 39]
   17572035:
     template: Nine_of_Swords
@@ -4061,15 +4061,15 @@ spawns:
     level:    [35, 39]
   17572036:
     template: Nine_of_Coins
-    at:       [-378.740, 0.499, -689.130, 110]
+    region:   sw_187
     level:    [35, 39]
   17572037:
     template: Nine_of_Batons
-    at:       [-350.488, 0.465, -682.981, 127]
+    region:   sw_187
     level:    [35, 39]
   17572038:
     template: Nine_of_Cups
-    at:       [-344.683, -0.020, -687.393, 28]
+    region:   sw_187
     level:    [35, 39]
   17572039:
     template: Nine_of_Swords
@@ -4077,11 +4077,11 @@ spawns:
     level:    [35, 39]
   17572040:
     template: Nine_of_Coins
-    at:       [-353.903, -0.065, -698.435, 127]
+    region:   sw_187
     level:    [35, 39]
   17572041:
     template: Dancing_Weapon
-    at:       [-374.666, 0.494, -687.847, 162]
+    region:   sw_187
     level:    [28, 30]
   17572042:
     template: Dancing_Weapon
@@ -4093,11 +4093,11 @@ spawns:
     level:    [28, 30]
   17572044:
     template: Dancing_Weapon
-    at:       [-366.156, -0.007, -682.362, 127]
+    region:   sw_187
     level:    [28, 30]
   17572045:
     template: Ten_of_Cups
-    at:       [-354.910, -0.039, -699.148, 56]
+    region:   sw_206
     level:    [40, 44]
   17572046:
     template: Ten_of_Batons
@@ -4105,7 +4105,7 @@ spawns:
     level:    [40, 44]
   17572047:
     template: Ten_of_Swords
-    at:       [-348.894, 0.500, -690.773, 127]
+    region:   sw_206
     level:    [40, 44]
   17572048:
     template: Ten_of_Coins
@@ -4113,15 +4113,15 @@ spawns:
     level:    [40, 44]
   17572049:
     template: Ten_of_Cups
-    at:       [-366.687, -0.017, -695.483, 93]
+    region:   sw_206
     level:    [40, 44]
   17572050:
     template: Ten_of_Batons
-    at:       [-293.907, -0.500, -660.873, 127]
+    region:   sw_206
     level:    [40, 44]
   17572051:
     template: Ten_of_Swords
-    at:       [-294.352, -0.001, -657.342, 34]
+    region:   sw_206
     level:    [40, 44]
   17572052:
     template: Ten_of_Coins
@@ -4133,19 +4133,19 @@ spawns:
     level:    [1, 5]
   17572054:
     template: Two_of_Batons
-    at:       [-299.470, -0.522, -667.281, 127]
+    region:   ne_213
     level:    [1, 5]
   17572055:
     template: Two_of_Swords
-    at:       [-293.661, -0.500, -657.723, 88]
+    region:   ne_213
     level:    [1, 5]
   17572056:
     template: Two_of_Coins
-    at:       [-297.463, -0.013, -653.801, 127]
+    region:   ne_213
     level:    [1, 5]
   17572057:
     template: Two_of_Cups
-    at:       [-322.712, -0.506, -661.419, 127]
+    region:   ne_213
     level:    [1, 5]
   17572058:
     template: Two_of_Batons
@@ -4153,6 +4153,7 @@ spawns:
     level:    [1, 5]
   17572059:
     template: Two_of_Swords
+    region:   ne_213
     level:    [1, 5]
   17572060:
     template: Two_of_Coins
@@ -4160,15 +4161,15 @@ spawns:
     level:    [1, 5]
   17572061:
     template: Two_of_Cups
-    at:       [326.007, -0.078, 732.903, 98]
+    region:   ne_213
     level:    [1, 5]
   17572062:
     template: Two_of_Batons
-    at:       [329.565, -0.493, 741.433, 127]
+    region:   ne_213
     level:    [1, 5]
   17572063:
     template: Two_of_Swords
-    at:       [330.707, -0.021, 745.712, 127]
+    region:   ne_213
     level:    [1, 5]
   17572064:
     template: Two_of_Coins
@@ -4176,10 +4177,11 @@ spawns:
     level:    [1, 5]
   17572065:
     template: Two_of_Cups
+    region:   ne_227
     level:    [1, 5]
   17572066:
     template: Two_of_Batons
-    at:       [298.041, -0.023, 746.601, 12]
+    region:   ne_227
     level:    [1, 5]
   17572067:
     template: Two_of_Swords
@@ -4187,6 +4189,7 @@ spawns:
     level:    [1, 5]
   17572068:
     template: Two_of_Coins
+    region:   ne_227
     level:    [1, 5]
   17572069:
     template: Two_of_Cups
@@ -4194,11 +4197,11 @@ spawns:
     level:    [1, 5]
   17572070:
     template: Two_of_Batons
-    at:       [298.016, -0.036, 745.884, 127]
+    region:   ne_227
     level:    [1, 5]
   17572071:
     template: Two_of_Swords
-    at:       [297.777, -0.024, 746.720, 5]
+    region:   ne_227
     level:    [1, 5]
   17572072:
     template: Two_of_Coins
@@ -4206,11 +4209,11 @@ spawns:
     level:    [1, 5]
   17572073:
     template: Two_of_Cups
-    at:       [312.608, 0.006, 740.560, 127]
+    region:   ne_227
     level:    [1, 5]
   17572074:
     template: Two_of_Batons
-    at:       [295.126, 0.000, 736.610, 59]
+    region:   ne_227
     level:    [1, 5]
   17572075:
     template: Two_of_Swords
@@ -4218,7 +4221,7 @@ spawns:
     level:    [1, 5]
   17572076:
     template: Two_of_Coins
-    at:       [300.544, -0.022, 746.812, 98]
+    region:   ne_227
     level:    [1, 5]
   17572077:
     template: Three_of_Cups
@@ -4315,11 +4318,11 @@ spawns:
     level:    [5, 9]
   17572102:
     template: Three_of_Batons
-    at:       [292.955, 0.000, 787.212, 188]
+    region:   ne_261
     level:    [5, 9]
   17572103:
     template: Three_of_Swords
-    at:       [290.559, -0.001, 707.338, 64]
+    region:   ne_261
     level:    [5, 9]
   17572104:
     template: Three_of_Coins
@@ -4331,11 +4334,11 @@ spawns:
     level:    [1, 5]
   17572106:
     template: Two_of_Batons
-    at:       [297.348, -0.032, 773.475, 2]
+    region:   ne_265
     level:    [1, 5]
   17572107:
     template: Two_of_Swords
-    at:       [508.776, 0.010, 737.381, 242]
+    region:   ne_265
     level:    [1, 5]
   17572108:
     template: Two_of_Coins
@@ -4343,10 +4346,11 @@ spawns:
     level:    [1, 5]
   17572109:
     template: Two_of_Cups
-    at:       [306.969, -0.040, 787.240, 127]
+    region:   ne_265
     level:    [1, 5]
   17572110:
     template: Two_of_Batons
+    region:   ne_265
     level:    [1, 5]
   17572111:
     template: Two_of_Swords
@@ -4354,13 +4358,15 @@ spawns:
     level:    [1, 5]
   17572112:
     template: Two_of_Coins
+    region:   ne_265
     level:    [1, 5]
   17572113:
     template: Two_of_Cups
+    region:   ne_265
     level:    [1, 5]
   17572114:
     template: Two_of_Batons
-    at:       [496.436, -0.012, 733.858, 127]
+    region:   ne_265
     level:    [1, 5]
   17572115:
     template: Two_of_Swords
@@ -4368,7 +4374,7 @@ spawns:
     level:    [1, 5]
   17572116:
     template: Two_of_Coins
-    at:       [502.121, -0.012, 745.976, 124]
+    region:   ne_265
     level:    [1, 5]
   17572117:
     template: Two_of_Cups
@@ -4376,19 +4382,19 @@ spawns:
     level:    [1, 5]
   17572118:
     template: Two_of_Batons
-    at:       [511.790, -0.005, 738.783, 127]
+    region:   ne_277
     level:    [1, 5]
   17572119:
     template: Two_of_Swords
-    at:       [534.215, -0.001, 732.402, 119]
+    region:   ne_277
     level:    [1, 5]
   17572120:
     template: Two_of_Coins
-    at:       [506.219, -0.052, 733.015, 95]
+    region:   ne_277
     level:    [1, 5]
   17572121:
     template: Two_of_Cups
-    at:       [530.521, 0.007, 742.684, 98]
+    region:   ne_277
     level:    [1, 5]
   17572122:
     template: Two_of_Batons
@@ -4400,18 +4406,19 @@ spawns:
     level:    [1, 5]
   17572124:
     template: Two_of_Coins
-    at:       [529.910, -0.026, 732.525]
+    region:   ne_277
     level:    [1, 5]
   17572125:
     template: Two_of_Cups
-    at:       [544.959, -0.005, 743.066, 127]
+    region:   ne_277
     level:    [1, 5]
   17572126:
     template: Two_of_Batons
-    at:       [526.105, -0.012, 735.821, 127]
+    region:   ne_277
     level:    [1, 5]
   17572127:
     template: Two_of_Swords
+    region:   ne_277
     level:    [1, 5]
   17572128:
     template: Two_of_Coins
@@ -4574,7 +4581,7 @@ spawns:
     level:    [4, 7]
   17572170:
     template: Goblin_Thug
-    at:       [499.848, -0.032, -619.137, 25]
+    region:   se_327
     level:    [4, 7]
   17572171:
     template: Goblin_Thug
@@ -4590,7 +4597,7 @@ spawns:
     level:    [4, 7]
   17572174:
     template: Goblin_Weaver
-    at:       [503.615, -0.034, -699.210, 2]
+    region:   se_333
     level:    [4, 7]
   17572175:
     template: Battue_Bats
@@ -4602,7 +4609,7 @@ spawns:
     level:    [2, 4]
   17572177:
     template: Goblin_Thug
-    at:       [539.264, -0.034, -665.726, 127]
+    region:   se_338
     level:    [4, 7]
   17572178:
     template: Goblin_Weaver
@@ -4618,7 +4625,7 @@ spawns:
     level:    [2, 4]
   17572181:
     template: Goblin_Thug
-    at:       [463.580, -0.035, -632.432, 127]
+    region:   se_342
     level:    [4, 7]
   17572182:
     template: Goblin_Weaver
@@ -4646,7 +4653,7 @@ spawns:
     level:    [4, 7]
   17572188:
     template: Blade_Bat
-    at:       [461.000, -1.000, -655.000, 127]
+    region:   se_346
     level:    [4, 6]
   17572189:
     template: Blade_Bat
@@ -4672,7 +4679,7 @@ spawns:
     level:    [8, 10]
   17572194:
     template: Goblin_Weaver
-    at:       [532.532, -0.041, -692.563, 127]
+    region:   se_351
     level:    [4, 7]
   17572195:
     template: Balloon_OHR
@@ -4681,7 +4688,7 @@ spawns:
     level:    [8, 10]
   17572196:
     template: Goblin_Weaver
-    at:       [540.000, -1.000, -687.000, 11]
+    region:   se_351
     level:    [4, 7]
   17572197:
     template: Jack_of_Cups
