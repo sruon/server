@@ -1553,7 +1553,7 @@ spawns:
     level:    [73, 76]
   17309774:
     template: Fire_Elemental
-    at:       [387.362, -24.819, -6.978, 61]
+    region:   e_79
     level:    [78, 79]
   17309775:
     template: Sprinkler
@@ -1655,7 +1655,7 @@ spawns:
     level:    [72, 74]
   17309798:
     template: Water_Elemental
-    at:       [379.887, -40.273, -255.479, 62]
+    region:   se_95
     level:    [78, 79]
   17309799:
     template: Flamingo
@@ -1951,7 +1951,7 @@ spawns:
     level:    [72, 74]
   17309868:
     template: Light_Elemental
-    region:   n_172
+    region:   n_170
     level:    [78, 79]
   17309869:
     template: Flamingo
@@ -2022,7 +2022,7 @@ spawns:
     level:    [72, 74]
   17309885:
     template: Dark_Elemental
-    at:       [-288.618, -40.700, 226.036, 127]
+    region:   nw_181
     level:    [78, 79]
   17309886:
     template: Flamingo
@@ -2124,7 +2124,7 @@ spawns:
     level:    [72, 74]
   17309909:
     template: Ice_Elemental
-    at:       [-359.176, -40.386, -23.922, 20]
+    region:   w_208
     level:    [78, 79]
   17309910:
     template: Flamingo
@@ -2221,7 +2221,7 @@ spawns:
     level:    [72, 74]
   17309932:
     template: Earth_Elemental
-    at:       [-380.167, -40.371, -232.371, 54]
+    region:   sw_225
     level:    [78, 79]
   17309933:
     template: Flamingo
