@@ -1991,12 +1991,12 @@ spawns:
   16920646:
     template: Indoor_aern_blm
     script:   Awaern
-    at:       [-558.181, 3.404, 256.956, 130]
+    region:   w_72
     level:    [81, 83]
   16920647:
     template: Indoor_aern_brd
     script:   Awaern
-    at:       [-566.692, 4.440, 232.880, 126]
+    region:   w_72
     level:    [81, 83]
   16920648:
     template: Indoor_aern_smn
@@ -2009,7 +2009,7 @@ spawns:
     level:    [65, 68]
   16920650:
     template: Awghrah
-    at:       [-580.364, -0.543, 185.013, 192]
+    region:   region_129
     level:    [79, 80]
   16920651:
     template: Indoor_aern_rng
@@ -2222,7 +2222,7 @@ spawns:
     level:    [78, 80]
   16920698:
     template: Awghrah
-    at:       [-700.375, -0.599, 495.483, 194]
+    region:   region_130
     level:    [79, 80]
   16920699:
     template: Aweuvhi
@@ -2265,7 +2265,7 @@ spawns:
     level:    [80, 80]
   16920708:
     template: Awghrah
-    at:       [-459.420, -0.599, 671.345, 180]
+    region:   region_131
     level:    [79, 80]
   16920709:
     template: Aweuvhi
@@ -2373,7 +2373,7 @@ spawns:
     level:    [80, 82]
   16920733:
     template: Awghrah
-    at:       [-65.429, -0.599, 420.205, 129]
+    region:   region_132
     level:    [79, 80]
   16920734:
     template: Aweuvhi
@@ -2386,7 +2386,7 @@ spawns:
     level:    [80, 82]
   16920736:
     template: Awghrah
-    at:       [-135.458, -0.592, 421.034, 125]
+    region:   region_133
     level:    [79, 80]
   16920737:
     template: Aweuvhi
@@ -2442,7 +2442,7 @@ spawns:
     level:    [80, 82]
   16920749:
     template: Awghrah
-    at:       [-222.016, -0.571, 63.726, 69]
+    region:   region_134
     level:    [79, 80]
   16920750:
     template: Aweuvhi
@@ -2468,7 +2468,7 @@ spawns:
     level:    [80, 82]
   16920755:
     template: Awghrah
-    at:       [-300.243, -0.599, 131.184, 209]
+    region:   region_135
     level:    [79, 80]
   16920756:
     template: Aweuvhi
@@ -2663,7 +2663,7 @@ spawns:
   16920797:
     template: Indoor_aern_blm
     script:   Awaern
-    at:       [-465.277, -0.600, -340.585, 208]
+    region:   sw_222
     level:    [83, 84]
   16920798:
     template: Indoor_aern_war
@@ -2716,7 +2716,7 @@ spawns:
     level:    [80, 81]
   16920809:
     template: Awghrah
-    at:       [-491.279, -0.600, -407.426, 254]
+    region:   region_136
     level:    [80, 81]
   16920810:
     template: Awzdei_Fast
@@ -2774,7 +2774,7 @@ spawns:
     level:    [80, 82]
   16920823:
     template: Awghrah
-    at:       [-459.448, -0.599, -304.569, 193]
+    region:   region_137
     level:    [80, 81]
   16920824:
     template: Aweuvhi
@@ -2782,7 +2782,7 @@ spawns:
     level:    [80, 82]
   16920825:
     template: Awghrah
-    at:       [-386.058, -0.599, -302.297, 141]
+    region:   region_138
     level:    [80, 81]
   16920826:
     template: Awzdei_Left
@@ -2847,7 +2847,7 @@ spawns:
     level:    [80, 82]
   16920839:
     template: Awghrah
-    at:       [-627.078, -0.598, -708.460, 59]
+    region:   region_139
     level:    [80, 81]
   16920840:
     template: Awghrah
@@ -2942,7 +2942,7 @@ spawns:
     level:    [80, 82]
   16920860:
     template: Awghrah
-    at:       [-734.332, -0.599, -293.064, 1]
+    region:   region_140
     level:    [80, 81]
   16920861:
     template: Awghrah
@@ -2950,7 +2950,7 @@ spawns:
     level:    [80, 81]
   16920862:
     template: Awghrah
-    at:       [-743.785, -0.594, -388.604, 129]
+    region:   region_141
     level:    [80, 81]
   16920863:
     template: Awzdei_Fast
@@ -3037,7 +3037,7 @@ spawns:
     level:    [80, 82]
   16920881:
     template: Awghrah
-    at:       [-468.928, -0.575, -89.974, 198]
+    region:   region_142
     level:    [80, 81]
   16920882:
     template: Awghrah
@@ -3227,7 +3227,7 @@ spawns:
     level:    [80, 82]
   16920923:
     template: Awghrah
-    at:       [-307.318, -0.599, -699.831, 65]
+    region:   region_143
     level:    [80, 81]
   16920924:
     template: Awghrah
