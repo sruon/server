@@ -1373,7 +1373,7 @@ spawns:
     level:    [61, 65]
   17276979:
     template: Magic_Flagon
-    at:       [-37.783, -5.972, -10.393, 127]
+    region:   c_48
     level:    [64, 69]
   17276980:
     template: Ominous_Weapon
@@ -1381,11 +1381,11 @@ spawns:
     level:    [61, 65]
   17276981:
     template: Magic_Flagon
-    at:       [-101.575, -6.099, -1.520, 127]
+    region:   sw_34
     level:    [64, 69]
   17276982:
     template: Nightmare_Vase
-    at:       [-108.575, -5.699, -5.432, 57]
+    region:   sw_34
     level:    [70, 73]
   17276983:
     template: Killing_Weapon
@@ -1413,7 +1413,7 @@ spawns:
     level:    [61, 65]
   17276989:
     template: Magic_Flagon
-    at:       [31.094, -5.700, -9.066, 127]
+    region:   c_58
     level:    [64, 69]
   17276990:
     template: Ominous_Weapon
@@ -1421,11 +1421,11 @@ spawns:
     level:    [61, 65]
   17276991:
     template: Magic_Flagon
-    at:       [102.459, -6.364, 1.121, 127]
+    region:   se_43
     level:    [64, 69]
   17276992:
     template: Nightmare_Vase
-    at:       [69.000, -5.000, 21.000, 127]
+    region:   se_43
     level:    [70, 73]
   17276993:
     template: Killing_Weapon
@@ -1661,7 +1661,7 @@ spawns:
     level:    [64, 69]
   17277051:
     template: Magic_Flagon
-    at:       [-287.656, -3.960, -12.858, 104]
+    region:   w_122
     level:    [64, 69]
   17277052:
     template: Magic_Flagon
@@ -1669,11 +1669,11 @@ spawns:
     level:    [64, 69]
   17277053:
     template: Magic_Flagon
-    at:       [-229.519, -3.700, -78.519, 28]
+    region:   sw_124
     level:    [64, 69]
   17277054:
     template: Magic_Flagon
-    at:       [-218.444, -3.976, -48.355, 15]
+    region:   w_129
     level:    [64, 69]
   17277055:
     template: Magic_Flagon
@@ -1681,7 +1681,7 @@ spawns:
     level:    [64, 69]
   17277056:
     template: Magic_Flagon
-    at:       [-281.928, 3.691, -29.100, 127]
+    region:   w_127
     level:    [64, 69]
   17277057:
     template: Magic_Flagon
@@ -1753,7 +1753,7 @@ spawns:
     level:    [64, 69]
   17277074:
     template: Magic_Flagon
-    at:       [236.758, -4.688, -68.890, 127]
+    region:   se_145
     level:    [64, 69]
   17277075:
     template: Magic_Flagon
@@ -1773,7 +1773,7 @@ spawns:
     level:    [64, 69]
   17277079:
     template: Rogue_Receptacle
-    at:       [219.800, -3.200, -41.220, 60]
+    region:   e_148
     level:    [67, 68]
   17277080:
     template: Apocalyptic_Weapon
@@ -1845,7 +1845,7 @@ spawns:
     level:    [64, 69]
   17277097:
     template: Magic_Flagon
-    at:       [-155.988, 3.500, 117.915, 214]
+    region:   nw_170
     level:    [64, 69]
   17277098:
     template: Magic_Flagon
@@ -1929,7 +1929,7 @@ spawns:
     level:    [64, 69]
   17277118:
     template: Magic_Flagon
-    at:       [154.586, 3.900, 124.320, 163]
+    region:   ne_191
     level:    [64, 69]
   17277119:
     template: Magic_Flagon
