@@ -2608,7 +2608,7 @@ spawns:
     level:    [52, 54]
   17584301:
     template: Fire_Elemental
-    at:       [-49.000, -1.000, -310.000, 127]
+    region:   sw_175
     level:    [52, 54]
   17584302:
     template: Water_Elemental
@@ -2656,7 +2656,7 @@ spawns:
     level:    [56, 56]
   17584313:
     template: Fire_Elemental
-    region:   sw_185
+    region:   sw_179
     level:    [52, 54]
   17584314:
     template: Water_Elemental
@@ -2756,7 +2756,7 @@ spawns:
     level:    [45, 47]
   17584334:
     template: Soldier_Crawler
-    region:   c_206
+    region:   region_62
     level:    [47, 49]
   17584335:
     template: Soldier_Crawler
@@ -2768,7 +2768,7 @@ spawns:
     level:    [47, 49]
   17584337:
     template: Soldier_Crawler
-    region:   c_206
+    region:   region_63
     level:    [47, 49]
   17584338:
     template: Soldier_Crawler
@@ -3069,7 +3069,7 @@ spawns:
     level:    [55, 58]
   17584405:
     template: Fire_Elemental
-    region:   nw_277
+    region:   nw_271
     level:    [52, 54]
   17584406:
     template: Water_Elemental
@@ -3090,7 +3090,7 @@ spawns:
   17584410:
     template: Knight_Crawler_CN
     script:   Knight_Crawler
-    at:       [-204.559, -0.752, 226.286, 240]
+    region:   nw_280
     level:    [60, 63]
   17584411:
     template: Knight_Crawler_CN
@@ -3109,7 +3109,7 @@ spawns:
     level:    [60, 63]
   17584414:
     template: Fire_Elemental
-    region:   nw_286
+    region:   nw_280
     level:    [52, 54]
   17584415:
     template: Water_Elemental
