@@ -3147,7 +3147,7 @@ spawns:
   17596597:
     template: Tainted_Flesh_GC
     script:   Tainted_Flesh
-    at:       [-260.000, 18.000, 201.000, 127]
+    region:   se_182
     level:    [63, 64]
   17596598:
     template: Tainted_Flesh_GC
