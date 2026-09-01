@@ -929,11 +929,11 @@ spawns:
     level:    [43, 44]
   17297414:
     template: Thunder_Elemental
-    at:       [138.615, 3.400, -101.378, 125]
+    region:   se_1
     level:    [48, 50]
   17297415:
     template: Light_Elemental
-    at:       [138.615, 3.400, -101.378, 125]
+    region:   se_1
     level:    [48, 50]
   17297416:
     template: Demonic_Weapon
@@ -1009,15 +1009,15 @@ spawns:
     level:    [49, 50]
   17297433:
     template: Bhuta
-    at:       [-70.571, -4.375, -85.672, 53]
+    region:   s_24
     level:    [47, 48]
   17297434:
     template: Thunder_Elemental
-    at:       [-84.343, -4.477, -85.742, 127]
+    region:   s_24
     level:    [48, 50]
   17297435:
     template: Light_Elemental
-    at:       [-80.538, -4.413, -79.202, 2]
+    region:   s_24
     level:    [48, 50]
   17297436:
     template: Master_Coeurl
@@ -1025,15 +1025,15 @@ spawns:
     level:    [49, 50]
   17297437:
     template: Bhuta
-    at:       [-24.568, -3.857, 4.811, 13]
+    region:   c_28
     level:    [47, 48]
   17297438:
     template: Thunder_Elemental
-    at:       [-44.195, -4.390, -8.444, 45]
+    region:   c_28
     level:    [48, 50]
   17297439:
     template: Light_Elemental
-    at:       [-44.195, -4.390, -8.444, 45]
+    region:   c_28
     level:    [48, 50]
   17297440:
     template: Behemoth
