@@ -3051,7 +3051,6 @@ spawns:
     level:    [56, 59]
   17428635:
     template: Tonberrys_Elemental
-    region:   sw_155
     level:    [43, 55]
   17428636:
     template: Tonberry_Cutter
@@ -3603,7 +3602,7 @@ spawns:
     level:    [64, 67]
   17428773:
     template: Tonberry_Dismayer
-    at:       [333.272, -0.002, 227.470, 127]
+    region:   ne_292
     level:    [64, 67]
   17428774:
     template: Tonberrys_Elemental
