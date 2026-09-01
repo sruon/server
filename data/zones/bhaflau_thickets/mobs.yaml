@@ -4688,7 +4688,7 @@ spawns:
     level:    [63, 65]
   16990282:
     template: Lesser_Colibri
-    at:       [289.000, -16.000, 252.000, 127]
+    region:   e_72
     level:    [63, 65]
   16990283:
     template: Lesser_Colibri
@@ -4832,7 +4832,7 @@ spawns:
     level:    [71, 73]
   16990316:
     template: Colibri
-    region:   n_107
+    region:   region_84
     level:    [71, 73]
   16990317:
     template: Colibri
@@ -4996,7 +4996,7 @@ spawns:
     level:    [72, 74]
   16990355:
     template: Colorful_Treant
-    at:       [320.000, -17.000, 410.000, 127]
+    region:   ne_146
     level:    [74, 75]
   16990356:
     template: Olden_Treant
@@ -5024,7 +5024,7 @@ spawns:
     level:    [72, 74]
   16990362:
     template: Colorful_Treant
-    at:       [44.000, -32.000, 568.000, 127]
+    region:   n_152
     level:    [74, 75]
   16990363:
     template: Colibri
@@ -5082,7 +5082,7 @@ spawns:
     level:    [72, 74]
   16990375:
     template: Colorful_Treant
-    at:       [94.000, -34.000, 637.000, 127]
+    region:   n_166
     level:    [74, 75]
   16990376:
     template: Emergent_Elm
@@ -5114,7 +5114,7 @@ spawns:
     level:    [72, 74]
   16990382:
     template: Colorful_Treant
-    at:       [178.000, -35.000, 526.000, 127]
+    region:   n_173
     level:    [74, 75]
   16990383:
     template: Sea_Puk_BT
@@ -5488,11 +5488,11 @@ spawns:
     level:    [133, 135]
   16990473:
     template: Locus_Wivre
-    region:   w_260
+    region:   region_85
     level:    [135, 137]
   16990474:
     template: Locus_Wivre
-    region:   w_260
+    region:   region_85
     level:    [135, 137]
   16990475:
     template: Locus_Colibri
