@@ -2681,7 +2681,7 @@ spawns:
     level:    [3, 6]
   17555473:
     template: Goblin_Thug
-    at:       [-182.057, 6.225, 90.120, 60]
+    region:   nw_18
     level:    [4, 8]
   17555474:
     template: Goblin_Weaver
@@ -2751,7 +2751,7 @@ spawns:
     level:    [4, 8]
   17555488:
     template: Goblin_Weaver
-    at:       [-206.690, 5.973, 14.909, 127]
+    region:   w_31
     level:    [4, 8]
   17555489:
     template: Goblin_Thug
@@ -2759,7 +2759,7 @@ spawns:
     level:    [4, 8]
   17555490:
     template: Goblin_Weaver
-    at:       [-175.897, 6.017, 18.984, 30]
+    region:   w_31
     level:    [4, 8]
   17555491:
     template: Mouse_Bat_KRT
@@ -2777,7 +2777,7 @@ spawns:
     level:    [4, 8]
   17555494:
     template: Goblin_Weaver
-    at:       [-164.067, 6.044, 28.858, 127]
+    region:   w_37
     level:    [4, 8]
   17555495:
     template: Goblin_Thug
@@ -2785,7 +2785,7 @@ spawns:
     level:    [4, 8]
   17555496:
     template: Goblin_Weaver
-    at:       [-138.749, 6.092, 13.506, 95]
+    region:   w_37
     level:    [4, 8]
   17555497:
     template: Mouse_Bat_KRT
@@ -2799,7 +2799,7 @@ spawns:
     level:    [3, 6]
   17555499:
     template: Goblin_Thug
-    at:       [-138.000, 6.000, 27.000, 127]
+    region:   w_44
     level:    [3, 6]
   17555500:
     template: Goblin_Weaver
@@ -2811,7 +2811,7 @@ spawns:
     level:    [4, 8]
   17555502:
     template: Goblin_Weaver
-    at:       [-121.243, 7.959, 16.111, 127]
+    region:   w_44
     level:    [4, 8]
   17555503:
     template: Mouse_Bat_KRT
@@ -2830,7 +2830,7 @@ spawns:
     level:    [3, 6]
   17555506:
     template: Goblin_Thug
-    at:       [-42.302, -0.489, -71.075, 127]
+    region:   c_51
     level:    [4, 8]
   17555507:
     template: Goblin_Weaver
@@ -2847,7 +2847,7 @@ spawns:
           end:    6
   17555509:
     template: Ding_Bats
-    at:       [-114.273, -0.483, -104.039, 127]
+    region:   c_51
     level:    [3, 5]
     attributes:
       spawn:
@@ -2860,12 +2860,13 @@ spawns:
     level:    [3, 5]
   17555511:
     template: Enchanted_Bones_blm
+    region:   c_51
     script:   Enchanted_Bones
     level:    [4, 8]
   17555512:
     template: Enchanted_Bones_blm
     script:   Enchanted_Bones
-    at:       [-106.000, -0.498, -62.000, 124]
+    region:   c_51
     level:    [4, 8]
   17555513:
     template: Goblin_Thug
@@ -2886,7 +2887,7 @@ spawns:
           end:    4
   17555516:
     template: Ding_Bats
-    at:       [-69.513, -0.431, -132.592, 127]
+    region:   w_59
     level:    [3, 5]
     attributes:
       spawn:
@@ -2908,7 +2909,7 @@ spawns:
     level:    [4, 8]
   17555520:
     template: Goblin_Thug
-    at:       [-107.227, -0.507, -136.745, 127]
+    region:   s_65
     level:    [4, 8]
   17555521:
     template: Goblin_Weaver
@@ -2925,7 +2926,7 @@ spawns:
           end:    5
   17555523:
     template: Ding_Bats
-    at:       [29.531, -0.497, -62.192, 127]
+    region:   sw_66
     level:    [3, 5]
     attributes:
       spawn:
@@ -2939,10 +2940,11 @@ spawns:
   17555525:
     template: Enchanted_Bones_blm
     script:   Enchanted_Bones
-    at:       [-53.000, -0.557, -135.000, 127]
+    region:   s_65
     level:    [4, 8]
   17555526:
     template: Enchanted_Bones_blm
+    region:   s_65
     script:   Enchanted_Bones
     level:    [4, 8]
   17555527:
@@ -2951,7 +2953,7 @@ spawns:
     level:    [4, 8]
   17555528:
     template: Goblin_Weaver
-    at:       [-15.714, -0.501, -61.331, 127]
+    region:   c_71
     level:    [4, 8]
   17555529:
     template: Ding_Bats
@@ -2964,7 +2966,7 @@ spawns:
           end:    6
   17555530:
     template: Ding_Bats
-    at:       [37.000, -0.498, -75.000, 76]
+    region:   c_71
     level:    [3, 5]
     attributes:
       spawn:
@@ -2978,7 +2980,7 @@ spawns:
   17555532:
     template: Enchanted_Bones_war
     script:   Enchanted_Bones
-    at:       [10.455, -0.467, -65.115, 127]
+    region:   c_71
     level:    [4, 8]
   17555533:
     template: Enchanted_Bones_blm
@@ -3026,7 +3028,7 @@ spawns:
     level:    [4, 8]
   17555541:
     template: Goblin_Thug
-    at:       [20.326, -0.500, -138.091, 123]
+    region:   s_86
     level:    [4, 8]
   17555542:
     template: Goblin_Weaver
@@ -3043,7 +3045,7 @@ spawns:
           end:    5
   17555544:
     template: Ding_Bats
-    at:       [-107.868, -0.431, -106.992, 127]
+    region:   s_89
     level:    [3, 5]
     attributes:
       spawn:
@@ -3057,16 +3059,16 @@ spawns:
   17555546:
     template: Enchanted_Bones_war
     script:   Enchanted_Bones
-    at:       [29.786, -0.500, -135.039, 127]
+    region:   s_86
     level:    [4, 8]
   17555547:
     template: Enchanted_Bones_blm
     script:   Enchanted_Bones
-    at:       [34.458, -0.500, -134.135, 247]
+    region:   s_86
     level:    [4, 8]
   17555548:
     template: Goblin_Thug
-    at:       [-37.189, -0.493, -78.729, 34]
+    region:   c_93
     level:    [4, 8]
   17555549:
     template: Goblin_Weaver
@@ -3074,7 +3076,7 @@ spawns:
     level:    [4, 8]
   17555550:
     template: Goblin_Thug
-    at:       [-44.650, -0.499, -71.816, 110]
+    region:   c_93
     level:    [4, 8]
   17555551:
     template: Goblin_Weaver
@@ -3086,7 +3088,7 @@ spawns:
     level:    [3, 5]
   17555553:
     template: Goblin_Thug
-    at:       [-31.701, -0.500, -108.574, 127]
+    region:   c_98
     level:    [4, 8]
   17555554:
     template: Goblin_Weaver
@@ -3098,7 +3100,7 @@ spawns:
     level:    [4, 8]
   17555556:
     template: Goblin_Weaver
-    at:       [-33.542, -0.500, -129.279, 57]
+    region:   c_98
     level:    [4, 8]
   17555557:
     template: Carrion_Worm
@@ -3110,7 +3112,7 @@ spawns:
     level:    [4, 8]
   17555559:
     template: Goblin_Weaver
-    at:       [-68.030, -0.502, -122.382, 127]
+    region:   c_102
     level:    [4, 8]
   17555560:
     template: Ding_Bats
@@ -3123,7 +3125,7 @@ spawns:
           end:    6
   17555561:
     template: Ding_Bats
-    at:       [-102.450, -0.482, -75.248, 39]
+    region:   c_102
     level:    [3, 5]
     attributes:
       spawn:
@@ -3136,12 +3138,13 @@ spawns:
     level:    [3, 5]
   17555563:
     template: Enchanted_Bones_blm
+    region:   c_102
     script:   Enchanted_Bones
     level:    [4, 8]
   17555564:
     template: Enchanted_Bones_blm
     script:   Enchanted_Bones
-    at:       [-88.058, -0.420, -121.594, 129]
+    region:   c_102
     level:    [4, 8]
   17555565:
     template: Goblin_Thug
@@ -3149,7 +3152,7 @@ spawns:
     level:    [6, 8]
   17555566:
     template: Goblin_Weaver
-    at:       [-73.913, -0.376, -75.711, 3]
+    region:   c_109
     level:    [5, 8]
   17555567:
     template: Ding_Bats
@@ -3162,7 +3165,7 @@ spawns:
           end:    4
   17555568:
     template: Ding_Bats
-    at:       [-83.716, -1.406, -92.992, 122]
+    region:   c_109
     level:    [3, 5]
     attributes:
       spawn:
@@ -3175,12 +3178,13 @@ spawns:
     level:    [3, 5]
   17555570:
     template: Enchanted_Bones_blm
+    region:   c_109
     script:   Enchanted_Bones
     level:    [4, 8]
   17555571:
     template: Enchanted_Bones_blm
     script:   Enchanted_Bones
-    at:       [-107.728, -0.500, -72.339, 127]
+    region:   c_109
     level:    [4, 8]
   17555572:
     template: Ding_Bats
@@ -3218,7 +3222,7 @@ spawns:
   17555577:
     template: Enchanted_Bones_blm
     script:   Enchanted_Bones
-    at:       [-73.366, -0.509, -114.971, 40]
+    region:   c_116
     level:    [4, 8]
   17555578:
     template: Goblin_Thug
@@ -3226,7 +3230,7 @@ spawns:
     level:    [4, 8]
   17555579:
     template: Goblin_Weaver
-    at:       [25.199, -0.484, -115.272, 111]
+    region:   c_122
     level:    [4, 8]
   17555580:
     template: Ding_Bats
@@ -3239,7 +3243,7 @@ spawns:
           end:    6
   17555581:
     template: Ding_Bats
-    at:       [12.000, -0.377, -91.000, 99]
+    region:   c_122
     level:    [3, 5]
     attributes:
       spawn:
@@ -3253,16 +3257,16 @@ spawns:
   17555583:
     template: Enchanted_Bones_war
     script:   Enchanted_Bones
-    at:       [24.000, -0.556, -75.000, 127]
+    region:   c_122
     level:    [4, 8]
   17555584:
     template: Enchanted_Bones_blm
     script:   Enchanted_Bones
-    at:       [9.311, -0.486, -125.283, 43]
+    region:   c_122
     level:    [4, 8]
   17555585:
     template: Goblin_Thug
-    at:       [1.500, -0.500, -75.717, 127]
+    region:   c_130
     level:    [4, 8]
   17555586:
     template: Goblin_Weaver
@@ -3279,7 +3283,7 @@ spawns:
           end:    4
   17555588:
     template: Ding_Bats
-    at:       [2.544, -0.500, -81.127, 127]
+    region:   c_130
     level:    [3, 5]
     attributes:
       spawn:
@@ -3293,12 +3297,12 @@ spawns:
   17555590:
     template: Enchanted_Bones_war
     script:   Enchanted_Bones
-    at:       [-25.651, -0.499, -124.887, 71]
+    region:   c_130
     level:    [4, 8]
   17555591:
     template: Enchanted_Bones_blm
     script:   Enchanted_Bones
-    at:       [-8.517, -0.482, -71.866, 127]
+    region:   c_130
     level:    [4, 8]
   17555592:
     template: Ding_Bats
@@ -3353,11 +3357,11 @@ spawns:
     level:    [12, 16]
   17555601:
     template: Goblin_Tinkerer
-    at:       [16.297, 7.766, 7.171, 49]
+    region:   c_144
     level:    [12, 16]
   17555602:
     template: Goblin_Butcher
-    at:       [45.544, 7.293, 20.099, 95]
+    region:   c_144
     level:    [12, 16]
   17555603:
     template: Wind_Bats_KRT
@@ -3375,7 +3379,7 @@ spawns:
     level:    [5, 7]
   17555606:
     template: Goblin_Ambusher
-    at:       [91.389, 6.287, 19.730, 89]
+    region:   e_151
     level:    [12, 16]
   17555607:
     template: Goblin_Tinkerer
@@ -3383,7 +3387,7 @@ spawns:
     level:    [12, 16]
   17555608:
     template: Goblin_Butcher
-    at:       [100.000, 7.000, 24.000, 127]
+    region:   e_151
     level:    [12, 16]
   17555609:
     template: Wind_Bats_KRT
@@ -3401,7 +3405,7 @@ spawns:
     level:    [5, 7]
   17555612:
     template: Goblin_Ambusher
-    at:       [145.554, 7.114, 52.773, 83]
+    region:   e_157
     level:    [12, 16]
   17555613:
     template: Goblin_Tinkerer
@@ -3409,7 +3413,7 @@ spawns:
     level:    [12, 16]
   17555614:
     template: Goblin_Butcher
-    at:       [146.358, 6.860, 60.245, 127]
+    region:   e_157
     level:    [12, 16]
   17555615:
     template: Wind_Bats_KRT
@@ -3423,7 +3427,7 @@ spawns:
     level:    [9, 11]
   17555617:
     template: Grave_Bat
-    at:       [145.156, 7.016, 62.543, 73]
+    region:   e_157
     level:    [12, 12]
   17555618:
     template: Stone_Eater
@@ -3431,7 +3435,7 @@ spawns:
     level:    [5, 7]
   17555619:
     template: Goblin_Ambusher
-    at:       [180.134, 6.993, 86.147, 37]
+    region:   e_164
     level:    [12, 16]
   17555620:
     template: Goblin_Tinkerer
@@ -3439,7 +3443,7 @@ spawns:
     level:    [12, 16]
   17555621:
     template: Goblin_Butcher
-    at:       [155.000, 7.000, 101.000, 127]
+    region:   e_164
     level:    [12, 16]
   17555622:
     template: Wind_Bats_KRT
@@ -3449,7 +3453,7 @@ spawns:
   17555623:
     template: Wind_Bats_KRT
     script:   Wind_Bats
-    at:       [177.510, 6.823, 82.911, 85]
+    region:   e_164
     level:    [9, 11]
   17555624:
     template: Grave_Bat
@@ -3465,7 +3469,7 @@ spawns:
     level:    [12, 16]
   17555627:
     template: Goblin_Tinkerer
-    at:       [148.625, 5.706, 127.553, 51]
+    region:   ne_170
     level:    [12, 16]
   17555628:
     template: Goblin_Butcher
@@ -3473,7 +3477,7 @@ spawns:
     level:    [12, 16]
   17555629:
     template: Goblin_Ambusher
-    at:       [137.116, 8.034, 111.298, 127]
+    region:   ne_170
     level:    [12, 16]
   17555630:
     template: Goblin_Tinkerer
@@ -3481,7 +3485,7 @@ spawns:
     level:    [12, 16]
   17555631:
     template: Goblin_Butcher
-    at:       [130.811, 7.978, 139.441, 127]
+    region:   ne_170
     level:    [12, 16]
   17555632:
     template: Wind_Bats_KRT
@@ -3499,7 +3503,7 @@ spawns:
     level:    [11, 13]
   17555635:
     template: Goblin_Ambusher
-    at:       [71.542, 7.011, 180.218, 7]
+    region:   n_180
     level:    [12, 16]
   17555636:
     template: Goblin_Tinkerer
@@ -3507,7 +3511,7 @@ spawns:
     level:    [12, 16]
   17555637:
     template: Goblin_Butcher
-    at:       [45.000, 7.096, 180.000, 127]
+    region:   n_180
     level:    [12, 16]
   17555638:
     template: Grave_Bat
@@ -3595,7 +3599,7 @@ spawns:
   17555656:
     template: Nachzehrer_blm
     script:   Nachzehrer
-    at:       [9.740, 7.190, 121.433, 127]
+    region:   n_197
     level:    [15, 18]
   17555657:
     template: Grave_Bat
@@ -3623,7 +3627,7 @@ spawns:
   17555662:
     template: Nachzehrer_blm
     script:   Nachzehrer
-    at:       [-54.443, 7.721, 82.184, 189]
+    region:   c_203
     level:    [15, 18]
   17555663:
     template: Grave_Bat
@@ -3739,7 +3743,7 @@ spawns:
     level:    [12, 16]
   17555689:
     template: Goblin_Tinkerer
-    at:       [131.000, 7.000, 263.000, 127]
+    region:   ne_232
     level:    [12, 16]
   17555690:
     template: Goblin_Butcher
@@ -3747,11 +3751,11 @@ spawns:
     level:    [12, 16]
   17555691:
     template: Goblin_Ambusher
-    at:       [82.000, 6.787, 261.083, 127]
+    region:   ne_232
     level:    [12, 16]
   17555692:
     template: Goblin_Tinkerer
-    at:       [56.629, 6.825, 260.688, 128]
+    region:   ne_232
     level:    [12, 16]
   17555693:
     template: Goblin_Butcher
@@ -3767,7 +3771,7 @@ spawns:
     level:    [11, 12]
   17555696:
     template: Goblin_Ambusher
-    at:       [123.000, 7.000, 260.000, 6]
+    region:   ne_241
     level:    [12, 16]
   17555697:
     template: Goblin_Tinkerer
@@ -3779,7 +3783,7 @@ spawns:
     level:    [12, 16]
   17555699:
     template: Goblin_Ambusher
-    at:       [212.056, 7.000, 305.725, 113]
+    region:   ne_241
     level:    [12, 16]
   17555700:
     template: Goblin_Tinkerer
@@ -3787,7 +3791,7 @@ spawns:
     level:    [12, 16]
   17555701:
     template: Goblin_Butcher
-    at:       [173.051, 7.478, 299.890, 127]
+    region:   ne_241
     level:    [12, 16]
   17555702:
     template: Grave_Bat
@@ -3975,7 +3979,7 @@ spawns:
     level:    [14, 16]
   17555730:
     template: Goblin_Mugger
-    at:       [211.851, -0.500, 174.664, 127]
+    region:   ne_275
     level:    [21, 23]
   17555731:
     template: Goblin_Leecher
@@ -3987,11 +3991,11 @@ spawns:
     level:    [21, 23]
   17555733:
     template: Goblin_Mugger
-    at:       [229.582, -0.501, 178.130, 127]
+    region:   ne_275
     level:    [21, 23]
   17555734:
     template: Goblin_Leecher
-    at:       [220.252, -0.509, 148.951, 123]
+    region:   ne_275
     level:    [21, 23]
   17555735:
     template: Goblin_Gambler
