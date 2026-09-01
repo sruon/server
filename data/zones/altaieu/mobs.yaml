@@ -3091,7 +3091,7 @@ spawns:
   16912386:
     template: Ulaern_war
     script:   Ulaern
-    at:       [-39.680, -0.500, -581.753, 141]
+    region:   s_15
     level:    [70, 73]
   16912387:
     template: Ulaern_whm
@@ -3121,7 +3121,6 @@ spawns:
   16912392:
     template: Ulaern_sam
     script:   Ulaern
-    region:   s_8
     level:    [70, 73]
   16912393:
     template: Ulaern_sam
@@ -4178,7 +4177,7 @@ spawns:
     level:    [79, 80]
   16912625:
     template: Ulyovra
-    at:       [-227.017, -0.500, -623.492, 33]
+    region:   region_133
     level:    [79, 80]
   16912626:
     template: Omxzomit_2978
@@ -4231,12 +4230,12 @@ spawns:
   16912636:
     template: Omxzomit_2978
     script:   Omxzomit
-    region:   n_252
+    region:   region_132
     level:    [73, 76]
   16912637:
     template: Omxzomit_7094
     script:   Omxzomit
-    region:   n_252
+    region:   region_132
     level:    [73, 76]
   16912638:
     template: Omhpemde_nodive
