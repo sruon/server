@@ -3205,7 +3205,7 @@ spawns:
     level:    [45, 47]
   16814099:
     template: Maze_Lizard
-    at:       [335.500, -0.595, -20.519, 127]
+    region:   e_17
     level:    [45, 47]
   16814100:
     template: Maze_Lizard
@@ -3217,7 +3217,7 @@ spawns:
     level:    [45, 47]
   16814102:
     template: Maze_Lizard
-    at:       [353.551, -0.252, -54.351, 224]
+    region:   e_21
     level:    [45, 47]
   16814103:
     template: Maze_Lizard
@@ -3238,7 +3238,7 @@ spawns:
     level:    [54, 56]
   16814107:
     template: Cryptonberry_Plaguer
-    at:       [306.509, -0.352, -115.074, 131]
+    region:   e_25
     level:    [54, 56]
   16814108:
     template: Blubber_Eyes_PX
@@ -3252,7 +3252,7 @@ spawns:
     level:    [53, 55]
   16814110:
     template: Cryptonberry_Cutter
-    at:       [307.032, -0.252, -110.326, 95]
+    region:   e_31
     level:    [54, 56]
   16814111:
     template: Cryptonberry_Cutter
@@ -3279,7 +3279,7 @@ spawns:
     level:    [54, 56]
   16814116:
     template: Magic_Millstone
-    at:       [246.082, -0.252, -48.527, 22]
+    region:   e_37
     level:    [54, 56]
   16814117:
     template: Snoll
@@ -3299,11 +3299,11 @@ spawns:
     level:    [49, 53]
   16814121:
     template: Cryptonberry_Stalker
-    at:       [290.302, -0.252, -12.101, 215]
+    region:   e_39
     level:    [54, 56]
   16814122:
     template: Cryptonberry_Harrier
-    at:       [305.295, -0.352, -7.018, 191]
+    region:   e_44
     level:    [54, 56]
   16814123:
     template: Tonberrys_Elemental
@@ -3364,19 +3364,19 @@ spawns:
   16814137:
     template: Blubber_Eyes_PX
     script:   Blubber_Eyes
-    at:       [319.581, 39.257, -100.885, 127]
+    region:   region_137
     level:    [56, 58]
   16814138:
     template: Snoll
-    at:       [346.424, 31.399, -13.630, 185]
+    region:   region_138
     level:    [56, 59]
   16814139:
     template: Goblin_Hunter
-    at:       [214.439, 0.005, -330.866]
+    region:   region_139
     level:    [56, 58]
   16814140:
     template: Goblin_Enchanter
-    at:       [214.486, 0.004, -330.739]
+    region:   region_139
     level:    [56, 58]
   16814141:
     template: Magic_Millstone
@@ -3392,11 +3392,11 @@ spawns:
     level:    [56, 58]
   16814144:
     template: Goblin_Mercenary
-    at:       [125.600, 9.893, -335.335, 80]
+    region:   region_140
     level:    [63, 66]
   16814145:
     template: Goblin_Alchemist
-    at:       [126.767, 8.911, -332.444, 206]
+    region:   region_140
     level:    [62, 65]
   16814146:
     template: Goblin_Bandit
@@ -3476,11 +3476,11 @@ spawns:
     level:    [63, 66]
   16814164:
     template: Goblin_Alchemist
-    at:       [152.900, 8.619, -348.518, 220]
+    region:   region_141
     level:    [65, 67]
   16814165:
     template: Goblin_Bandit
-    at:       [150.402, 7.310, -351.523, 227]
+    region:   region_141
     level:    [65, 67]
   16814166:
     template: Goblin_Alchemist
@@ -3498,11 +3498,11 @@ spawns:
   16814169:
     template: Thousand_Eyes_PX
     script:   Thousand_Eyes
-    at:       [125.681, 15.647, -374.070, 59]
+    region:   region_142
     level:    [64, 66]
   16814170:
     template: Goblin_Alchemist
-    at:       [133.317, 15.636, -290.844, 138]
+    region:   se_92
     level:    [66, 68]
   16814171:
     template: Thousand_Eyes_PX
@@ -3580,16 +3580,16 @@ spawns:
   16814188:
     template: Thousand_Eyes_PX
     script:   Thousand_Eyes
-    at:       [179.288, 53.311, -310.393, 64]
+    region:   region_143
     level:    [64, 66]
   16814189:
     template: Thousand_Eyes_PX
     script:   Thousand_Eyes
-    at:       [179.149, 54.943, -317.164, 192]
+    region:   region_143
     level:    [64, 66]
   16814190:
     template: Morozko
-    at:       [100.200, 47.376, -306.618, 122]
+    region:   region_144
     level:    [65, 65]
   16814191:
     template: Snoll
@@ -3747,7 +3747,7 @@ spawns:
   16814228:
     template: Thousand_Eyes_PX
     script:   Thousand_Eyes
-    at:       [219.211, 52.962, 269.206, 64]
+    region:   region_145
     level:    [66, 68]
   16814229:
     template: Thousand_Eyes_PX
@@ -3807,7 +3807,7 @@ spawns:
   16814242:
     template: Gargoyle_1463
     script:   Gargoyle
-    at:       [-294.259, 15.647, -209.275, 98]
+    region:   sw_163
     level:    [53, 55]
   16814243:
     template: Gargoyle_1463
@@ -4060,26 +4060,26 @@ spawns:
   16814300:
     template: Dire_Bat_PsoXja
     script:   Dire_Bat
-    at:       [-299.292, 47.423, -238.176, 63]
+    region:   region_146
     level:    [63, 65]
   16814301:
     template: Dire_Bat_PsoXja
     script:   Dire_Bat
-    at:       [-299.142, 48.043, -244.693, 191]
+    region:   region_146
     level:    [63, 65]
   16814302:
     template: Ice_Elemental
-    at:       [-305.598, 52.198, -260.381, 255]
+    region:   region_147
     level:    [65, 65]
   16814303:
     template: Labyrinth_Lizard_PX
     script:   Labyrinth_Lizard
-    at:       [-299.021, 47.395, -200.220, 63]
+    region:   region_148
     level:    [56, 58]
   16814304:
     template: Labyrinth_Lizard_PX
     script:   Labyrinth_Lizard
-    at:       [-304.192, 47.370, -187.015]
+    region:   region_149
     level:    [56, 58]
   16814305:
     template: Gazer_PX
@@ -4145,7 +4145,7 @@ spawns:
     level:    [42, 43]
   16814319:
     template: Diremite
-    at:       [-66.047, -0.352, 186.872, 222]
+    region:   c_263
     level:    [42, 43]
   16814320:
     template: Gyre-Carlin_PX
@@ -4193,7 +4193,7 @@ spawns:
     level:    [42, 44]
   16814330:
     template: Diremite
-    at:       [34.057, -0.352, 165.306, 28]
+    region:   c_263
     level:    [42, 44]
   16814331:
     template: Gyre-Carlin_PX
@@ -4369,12 +4369,12 @@ spawns:
   16814371:
     template: Dire_Bat_PsoXja
     script:   Dire_Bat
-    at:       [-349.492, 15.400, 302.117, 67]
+    region:   region_150
     level:    [66, 68]
   16814372:
     template: Dire_Bat_PsoXja
     script:   Dire_Bat
-    at:       [-349.315, 15.401, 306.805, 63]
+    region:   region_150
     level:    [66, 68]
   16814373:
     template: Maledict_Millstone
@@ -4415,12 +4415,12 @@ spawns:
   16814381:
     template: Dire_Bat_PsoXja
     script:   Dire_Bat
-    at:       [-290.809, 15.422, 311.452, 191]
+    region:   region_151
     level:    [66, 68]
   16814382:
     template: Dire_Bat_PsoXja
     script:   Dire_Bat
-    at:       [-290.897, 15.424, 311.249, 191]
+    region:   region_151
     level:    [66, 68]
   16814383:
     template: Diremite_Assaulter
@@ -4450,7 +4450,7 @@ spawns:
   16814389:
     template: Dire_Bat_PsoXja
     script:   Dire_Bat
-    at:       [-270.162, 15.647, 333.899, 188]
+    region:   nw_308
     level:    [66, 68]
   16814390:
     template: Avalanche
@@ -4459,7 +4459,7 @@ spawns:
   16814391:
     template: Purgatory_Bat_PsoXja
     script:   Purgatory_Bat
-    at:       [-370.179, 31.400, 350.569, 191]
+    region:   nw_312
     level:    [72, 74]
   16814392:
     template: Purgatory_Bat_PsoXja
@@ -4493,7 +4493,7 @@ spawns:
   16814398:
     template: Purgatory_Bat_PsoXja
     script:   Purgatory_Bat
-    at:       [-389.028, 31.404, 368.271, 192]
+    region:   region_152
     level:    [72, 74]
   16814399:
     template: Avalanche
@@ -4518,7 +4518,7 @@ spawns:
   16814404:
     template: Purgatory_Bat_PsoXja
     script:   Purgatory_Bat
-    at:       [-249.221, 31.414, 356.740, 63]
+    region:   region_153
     level:    [72, 74]
   16814405:
     template: Diremite_Dominator
@@ -4539,7 +4539,7 @@ spawns:
   16814409:
     template: Purgatory_Bat_PsoXja
     script:   Purgatory_Bat
-    at:       [-274.100, 31.400, 370.943, 126]
+    region:   region_154
     level:    [72, 74]
   16814410:
     template: Diremite_Dominator
@@ -4579,7 +4579,7 @@ spawns:
   16814418:
     template: Million_Eyes_PX
     script:   Million_Eyes
-    at:       [-335.212, 47.674, 388.733, 181]
+    region:   nw_335
     level:    [75, 77]
   16814419:
     template: Diremite_Dominator
@@ -4592,12 +4592,12 @@ spawns:
   16814421:
     template: Purgatory_Bat_PsoXja
     script:   Purgatory_Bat
-    at:       [-295.371, 47.446, 389.103, 128]
+    region:   region_155
     level:    [73, 76]
   16814422:
     template: Purgatory_Bat_PsoXja
     script:   Purgatory_Bat
-    at:       [-287.224, 47.409, 389.100, 126]
+    region:   region_155
     level:    [73, 76]
   16814423:
     template: Frost_Lizard

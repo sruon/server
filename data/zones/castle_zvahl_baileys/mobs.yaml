@@ -2463,7 +2463,7 @@ spawns:
     level:    [47, 49]
   17436743:
     template: Demon_Wizard
-    at:       [-18.911, -20.500, 72.422, 127]
+    region:   n_72
     level:    [50, 52]
   17436744:
     template: Demon_Knight
@@ -2479,7 +2479,7 @@ spawns:
     level:    [43, 45]
   17436747:
     template: Demon_Wizard
-    at:       [-25.130, -20.502, -31.135, 127]
+    region:   s_76
     level:    [50, 52]
   17436748:
     template: Demon_Knight
@@ -2535,7 +2535,7 @@ spawns:
     level:    [47, 49]
   17436761:
     template: Goblin_Trader
-    at:       [20.000, -24.576, 120.000, 75]
+    region:   n_88
     level:    [47, 49]
   17436762:
     template: Goblins_Bats
@@ -2547,11 +2547,11 @@ spawns:
     level:    [47, 49]
   17436764:
     template: Goblin_Reaper
-    at:       [22.996, -24.549, 90.607, 127]
+    region:   n_88
     level:    [47, 49]
   17436765:
     template: Orcish_Bowshooter
-    at:       [29.000, -20.000, -74.000, 125]
+    region:   s_94
     level:    [47, 49]
   17436766:
     template: Orcish_Footsoldier
@@ -2563,7 +2563,7 @@ spawns:
     level:    [47, 49]
   17436768:
     template: Orcish_Trooper
-    at:       [18.655, -24.505, -36.065, 127]
+    region:   s_94
     level:    [47, 49]
   17436769:
     template: Demon_Knight
@@ -2587,11 +2587,11 @@ spawns:
     level:    [46, 48]
   17436774:
     template: Goblin_Poacher
-    at:       [-51.349, -24.564, 99.758, 100]
+    region:   nw_105
     level:    [47, 49]
   17436775:
     template: Goblin_Trader
-    at:       [-30.000, -24.504, 100.000, 127]
+    region:   nw_105
     level:    [47, 49]
   17436776:
     template: Goblins_Bats
@@ -2611,11 +2611,11 @@ spawns:
     level:    [47, 49]
   17436780:
     template: Orcish_Footsoldier
-    at:       [-32.000, -25.162, -59.000, 123]
+    region:   sw_107
     level:    [47, 49]
   17436781:
     template: Orcish_Gladiator
-    at:       [-51.806, -24.613, -56.724, 127]
+    region:   sw_107
     level:    [47, 49]
   17436782:
     template: Orcish_Trooper
@@ -2627,7 +2627,7 @@ spawns:
     level:    [47, 49]
   17436784:
     template: Iron_Quadav
-    at:       [-91.838, -24.539, 98.611, 127]
+    region:   nw_111
     level:    [47, 49]
   17436785:
     template: Spinel_Quadav
@@ -2635,7 +2635,7 @@ spawns:
     level:    [47, 49]
   17436786:
     template: Emerald_Quadav
-    at:       [-91.767, -24.556, 98.553, 125]
+    region:   nw_111
     level:    [47, 49]
   17436787:
     template: Yagudo_Zealot
@@ -2643,7 +2643,7 @@ spawns:
     level:    [47, 49]
   17436788:
     template: Yagudo_Conquistador
-    at:       [-68.412, -24.604, -58.422, 188]
+    region:   sw_115
     level:    [47, 49]
   17436789:
     template: Yagudo_Lutenist
@@ -2651,7 +2651,7 @@ spawns:
     level:    [47, 49]
   17436790:
     template: Yagudo_Prior
-    at:       [-86.896, -24.522, -60.364, 105]
+    region:   sw_115
     level:    [47, 49]
   17436791:
     template: Elder_Quadav
@@ -2687,11 +2687,11 @@ spawns:
     level:    [47, 49]
   17436799:
     template: Elder_Quadav
-    at:       [-140.000, -24.000, 85.000, 127]
+    region:   w_129
     level:    [47, 49]
   17436800:
     template: Iron_Quadav
-    at:       [-140.268, -40.401, 46.002, 127]
+    region:   w_129
     level:    [47, 49]
   17436801:
     template: Spinel_Quadav
@@ -2707,11 +2707,11 @@ spawns:
     level:    [47, 49]
   17436804:
     template: Yagudo_Conquistador
-    at:       [-137.761, -40.390, -5.777, 89]
+    region:   w_131
     level:    [47, 49]
   17436805:
     template: Yagudo_Lutenist
-    at:       [-140.000, -24.000, -40.000, 127]
+    region:   w_131
     level:    [47, 49]
   17436806:
     template: Yagudo_Prior
@@ -2971,7 +2971,7 @@ spawns:
     level:    [64, 66]
   17436870:
     template: Doom_Demon
-    at:       [68.535, -8.500, 163.574, 127]
+    region:   n_197
     level:    [64, 66]
   17436871:
     template: Arch_Demon
@@ -3007,7 +3007,7 @@ spawns:
     level:    [64, 66]
   17436879:
     template: Abyssal_Demon
-    at:       [59.559, -8.500, -131.169, 127]
+    region:   s_205
     level:    [64, 66]
   17436880:
     template: Demons_Elemental
@@ -3027,7 +3027,7 @@ spawns:
     level:    [64, 66]
   17436884:
     template: Abyssal_Demon
-    at:       [90.912, -8.500, -101.020, 127]
+    region:   s_210
     level:    [64, 66]
   17436885:
     template: Demons_Elemental
@@ -3039,7 +3039,7 @@ spawns:
     level:    [64, 66]
   17436887:
     template: Arch_Demon
-    at:       [-195.849, -8.500, 139.320, 115]
+    region:   nw_214
     level:    [64, 66]
   17436888:
     template: Abyssal_Demon
@@ -3059,7 +3059,7 @@ spawns:
     level:    [64, 66]
   17436892:
     template: Arch_Demon
-    at:       [-212.282, -8.500, 178.590, 127]
+    region:   nw_218
     level:    [64, 66]
   17436893:
     template: Doom_Demon
@@ -3067,7 +3067,7 @@ spawns:
     level:    [64, 66]
   17436894:
     template: Arch_Demon
-    at:       [-193.323, -8.500, -133.551, 127]
+    region:   sw_221
     level:    [64, 66]
   17436895:
     template: Abyssal_Demon
@@ -3083,7 +3083,7 @@ spawns:
     level:    [64, 66]
   17436898:
     template: Arch_Demon
-    at:       [-217.434, -8.500, -129.826, 247]
+    region:   sw_225
     level:    [64, 66]
   17436899:
     template: Abyssal_Demon

@@ -3191,7 +3191,7 @@ spawns:
     level:    [38, 39]
   17285211:
     template: Goblin_Trader
-    at:       [184.005, 3.206, 102.927, 113]
+    region:   ne_94
     level:    [45, 49]
   17285212:
     template: Goblins_Bee_jungle
@@ -3254,11 +3254,11 @@ spawns:
     level:    [37, 40]
   17285226:
     template: Goblin_Reaper
-    at:       [-19.542, -0.057, -38.660, 60]
+    region:   c_108
     level:    [41, 45]
   17285227:
     template: Young_Opo-opo
-    at:       [-30.952, -1.296, -63.010, 127]
+    region:   c_110
     level:    [40, 44]
   17285228:
     template: Yhoator_Wasp
@@ -3310,7 +3310,7 @@ spawns:
     level:    [37, 40]
   17285240:
     template: Young_Opo-opo
-    at:       [8.480, -0.352, -133.587, 50]
+    region:   c_117
     level:    [40, 44]
   17285241:
     template: Yhoator_Wasp
@@ -3443,7 +3443,7 @@ spawns:
     level:    [43, 46]
   17285273:
     template: Worker_Crawler
-    at:       [-218.490, -0.437, -151.493, 56]
+    region:   w_168
     level:    [43, 46]
   17285274:
     template: Master_Coeurl
@@ -3455,11 +3455,11 @@ spawns:
     level:    [43, 46]
   17285276:
     template: Worker_Crawler
-    at:       [-222.386, 8.878, -256.997, 127]
+    region:   w_201
     level:    [43, 46]
   17285277:
     template: Master_Coeurl
-    at:       [-273.297, -0.670, -184.633, 127]
+    region:   w_154
     level:    [47, 50]
   17285278:
     template: Worker_Crawler
@@ -3471,7 +3471,7 @@ spawns:
     level:    [43, 46]
   17285280:
     template: Master_Coeurl
-    at:       [-277.869, -0.456, -358.204, 127]
+    region:   w_151
     level:    [47, 50]
   17285281:
     template: Worker_Crawler
@@ -3491,7 +3491,7 @@ spawns:
     level:    [43, 46]
   17285285:
     template: Anemone
-    at:       [-231.491, -0.486, -362.584, 53]
+    region:   w_163
     level:    [51, 54]
   17285286:
     template: Worker_Crawler
@@ -3523,6 +3523,7 @@ spawns:
     level:    [40, 44]
   17285293:
     template: Goblin_Poacher
+    region:   w_176
     level:    [45, 49]
   17285294:
     template: Worker_Crawler
@@ -3530,7 +3531,7 @@ spawns:
     level:    [43, 46]
   17285295:
     template: Worker_Crawler
-    at:       [-495.759, 8.412, -183.267, 127]
+    region:   w_176
     level:    [43, 46]
   17285296:
     template: Yhoator_Wasp
@@ -3570,6 +3571,7 @@ spawns:
     level:    [43, 46]
   17285305:
     template: Worker_Crawler
+    region:   w_186
     level:    [43, 46]
   17285306:
     template: Worker_Crawler
@@ -3589,7 +3591,7 @@ spawns:
     level:    [45, 45]
   17285310:
     template: Goblin_Poacher
-    at:       [-456.391, 2.274, -223.585, 127]
+    region:   w_181
     level:    [45, 49]
   17285311:
     template: Worker_Crawler
@@ -3597,7 +3599,7 @@ spawns:
     level:    [43, 46]
   17285312:
     template: Worker_Crawler
-    at:       [-385.181, 6.350, -304.162, 68]
+    region:   w_193
     level:    [43, 46]
   17285313:
     template: Yhoator_Wasp
@@ -3629,7 +3631,7 @@ spawns:
     level:    [43, 46]
   17285320:
     template: Worker_Crawler
-    at:       [-284.258, -0.162, -371.337, 127]
+    region:   sw_205
     level:    [43, 46]
   17285321:
     template: Young_Opo-opo
@@ -3685,7 +3687,7 @@ spawns:
     level:    [40, 44]
   17285334:
     template: Goblin_Robber
-    at:       [-363.247, -0.499, -407.371, 127]
+    region:   sw_209
     level:    [45, 49]
   17285335:
     template: Worker_Crawler
@@ -3725,7 +3727,7 @@ spawns:
     level:    [43, 46]
   17285344:
     template: Worker_Crawler
-    at:       [65.828, 6.522, -262.021, 97]
+    region:   sw_228
     level:    [43, 46]
   17285345:
     template: Master_Coeurl
@@ -3737,7 +3739,7 @@ spawns:
     level:    [45, 49]
   17285347:
     template: Anemone
-    at:       [-261.937, 0.046, -438.830, 161]
+    region:   sw_222
     level:    [51, 54]
   17285348:
     template: Worker_Crawler
@@ -3764,7 +3766,7 @@ spawns:
     level:    [45, 49]
   17285354:
     template: Anemone
-    at:       [-86.521, -0.480, -320.457, 127]
+    region:   sw_228
     level:    [51, 54]
   17285355:
     template: Young_Opo-opo
@@ -3780,7 +3782,7 @@ spawns:
     level:    [40, 44]
   17285358:
     template: Tonberry_Creeper
-    at:       [-137.463, 6.567, -425.404, 127]
+    region:   c_244
     level:    [45, 49]
   17285359:
     template: Young_Opo-opo
@@ -3920,7 +3922,7 @@ spawns:
     level:    [45, 49]
   17285393:
     template: Tonberry_Shadower
-    at:       [24.922, -5.023, -423.784, 19]
+    region:   s_266
     level:    [61, 63]
   17285394:
     template: Hoar-knuckled_Rimberry
@@ -3944,7 +3946,7 @@ spawns:
     level:    [61, 63]
   17285399:
     template: Tonberry_Chopper
-    at:       [-7.266, -10.500, -464.257, 191]
+    region:   s_280
     level:    [61, 63]
   17285400:
     template: Tonberry_Shadower
@@ -3984,10 +3986,11 @@ spawns:
     level:    [40, 44]
   17285409:
     template: Tonberry_Hexer
-    at:       [222.923, -0.064, -502.395, 7]
+    region:   se_291
     level:    [45, 49]
   17285410:
     template: Tonberry_Creeper
+    region:   s_322
     level:    [45, 49]
   17285411:
     template: Young_Opo-opo
@@ -4003,7 +4006,7 @@ spawns:
     level:    [40, 44]
   17285414:
     template: Tonberry_Hexer
-    at:       [325.771, 0.043, -376.655, 127]
+    region:   se_298
     level:    [45, 49]
   17285415:
     template: Young_Opo-opo
@@ -4027,7 +4030,7 @@ spawns:
     level:    [40, 44]
   17285420:
     template: Tonberry_Hexer
-    at:       [370.636, -0.463, -469.881, 64]
+    region:   se_295
     level:    [45, 49]
   17285421:
     template: Tonberry_Hexer
@@ -4051,7 +4054,7 @@ spawns:
     level:    [40, 44]
   17285426:
     template: Tonberry_Creeper
-    at:       [393.734, -0.408, -525.033, 76]
+    region:   se_302
     level:    [45, 49]
   17285427:
     template: Tonberry_Harasser
@@ -4103,7 +4106,7 @@ spawns:
     level:    [45, 49]
   17285439:
     template: Tonberry_Hexer
-    at:       [339.347, -1.530, -432.343, 127]
+    region:   se_312
     level:    [45, 49]
   17285440:
     template: Young_Opo-opo
@@ -4111,7 +4114,7 @@ spawns:
     level:    [40, 44]
   17285441:
     template: Tonberry_Hexer
-    at:       [305.287, -2.314, -448.882, 92]
+    region:   se_309
     level:    [45, 49]
   17285442:
     template: Young_Opo-opo
@@ -4127,7 +4130,7 @@ spawns:
     level:    [40, 44]
   17285445:
     template: Tonberry_Creeper
-    at:       [440.505, -0.504, -517.405, 127]
+    region:   se_304
     level:    [45, 49]
   17285446:
     template: Big_Jaw
@@ -4142,7 +4145,7 @@ spawns:
     level:    [53, 55]
   17285449:
     template: Big_Jaw
-    at:       [335.104, 3.084, -500.759, 36]
+    region:   se_330
     level:    [43, 47]
   17285450:
     template: Big_Jaw
@@ -4158,7 +4161,6 @@ spawns:
     level:    [43, 47]
   17285453:
     template: Tonberry_Creeper
-    region:   se_333
     level:    [45, 49]
   17285454:
     template: Tonberry_Hexer
@@ -4181,6 +4183,7 @@ spawns:
     level:    [45, 49]
   17285459:
     template: Tonberry_Creeper
+    region:   se_337
     level:    [45, 49]
   17285460:
     template: Bisque-heeled_Sunberry
@@ -4211,7 +4214,7 @@ spawns:
     level:    [45, 49]
   17285467:
     template: Worker_Crawler
-    at:       [233.713, -0.457, -121.367, 39]
+    region:   se_348
     level:    [43, 46]
   17285468:
     template: Worker_Crawler
@@ -4243,7 +4246,7 @@ spawns:
     level:    [47, 50]
   17285475:
     template: Master_Coeurl
-    at:       [561.399, -0.499, -397.781, 127]
+    region:   se_357
     level:    [47, 50]
   17285476:
     template: Puroboros
@@ -4283,7 +4286,7 @@ spawns:
     level:    [45, 49]
   17285485:
     template: Master_Coeurl
-    at:       [-320.000, 0.000, -118.000, 6]
+    region:   se_350
     level:    [47, 50]
   17285486:
     template: Worker_Crawler
@@ -4291,7 +4294,7 @@ spawns:
     level:    [43, 46]
   17285487:
     template: Tonberry_Hexer
-    at:       [59.955, 7.044, -269.832, 127]
+    region:   c_387
     level:    [45, 49]
   17285488:
     template: Worker_Crawler
@@ -4299,7 +4302,7 @@ spawns:
     level:    [43, 46]
   17285489:
     template: Tonberry_Hexer
-    at:       [298.386, 7.243, -327.487, 64]
+    region:   c_387
     level:    [45, 49]
   17285490:
     template: Worker_Crawler
@@ -4335,7 +4338,7 @@ spawns:
     level:    [43, 46]
   17285498:
     template: Tonberry_Creeper
-    at:       [162.054, 0.100, -136.331, 127]
+    region:   e_372
     level:    [45, 49]
   17285499:
     template: Tonberry_Harasser
@@ -4403,7 +4406,7 @@ spawns:
     level:    [43, 46]
   17285515:
     template: Tonberry_Creeper
-    at:       [235.692, -0.208, -231.794, 115]
+    region:   e_372
     level:    [45, 49]
   17285516:
     template: Anemone
@@ -4419,11 +4422,11 @@ spawns:
     level:    [40, 44]
   17285519:
     template: Tonberry_Hexer
-    at:       [245.719, -0.144, -185.635, 127]
+    region:   c_387
     level:    [45, 49]
   17285520:
     template: Tonberry_Hexer
-    at:       [245.963, -0.310, -151.906, 127]
+    region:   c_384
     level:    [45, 49]
   17285521:
     template: Young_Opo-opo
@@ -4435,7 +4438,7 @@ spawns:
     level:    [40, 44]
   17285523:
     template: Tonberry_Creeper
-    at:       [189.682, -0.364, -181.061, 117]
+    region:   c_384
     level:    [45, 49]
   17285524:
     template: Tonberry_Hexer
@@ -4443,7 +4446,7 @@ spawns:
     level:    [45, 49]
   17285525:
     template: Fire_Elemental
-    region:   c_405
+    region:   c_402
     level:    [53, 55]
   17285526:
     template: Bright-handed_Kunberry
@@ -4469,7 +4472,7 @@ spawns:
     level:    [43, 46]
   17285531:
     template: Worker_Crawler
-    at:       [203.025, 11.664, -141.578, 128]
+    region:   c_412
     level:    [43, 46]
   17285532:
     template: Worker_Crawler
@@ -4485,7 +4488,7 @@ spawns:
     level:    [61, 63]
   17285535:
     template: Tonberry_Chopper
-    at:       [272.358, -4.500, -165.268, 127]
+    region:   e_414
     level:    [61, 63]
   17285536:
     template: Tonberry_Jinxer
@@ -4509,7 +4512,7 @@ spawns:
     level:    [61, 63]
   17285541:
     template: Tonberry_Shadower
-    at:       [276.998, -18.500, -164.270, 127]
+    region:   e_420
     level:    [61, 63]
   17285542:
     template: Tonberry_Shadower

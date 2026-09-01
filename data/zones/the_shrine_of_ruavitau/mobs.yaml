@@ -1753,7 +1753,7 @@ spawns:
     level:    [75, 80]
   17506322:
     template: Aura_Pot
-    at:       [861.230, 99.500, 579.064, 127]
+    region:   ne_19
     level:    [75, 80]
   17506323:
     template: Aura_Pot
@@ -2097,7 +2097,7 @@ spawns:
     level:    [81, 84]
   17506408:
     template: Aura_Statue
-    at:       [737.000, -100.000, -609.000, 127]
+    region:   se_99
     level:    [81, 84]
   17506409:
     template: Aura_Statue
@@ -2109,7 +2109,7 @@ spawns:
     level:    [81, 84]
   17506411:
     template: Aura_Statue
-    at:       [763.000, -100.000, -557.000, 127]
+    region:   se_99
     level:    [81, 84]
   17506412:
     template: Aura_Statue
@@ -2121,7 +2121,7 @@ spawns:
     level:    [81, 84]
   17506414:
     template: Aura_Statue
-    at:       [739.000, -100.000, -557.000, 33]
+    region:   se_99
     level:    [81, 84]
   17506415:
     template: Aura_Statue
@@ -2133,7 +2133,7 @@ spawns:
     level:    [81, 84]
   17506417:
     template: Aura_Statue
-    at:       [747.569, -99.686, -606.462, 92]
+    region:   se_99
     level:    [81, 84]
   17506418:
     template: Ullikummi
@@ -2257,7 +2257,7 @@ spawns:
     level:    [79, 81]
   17506448:
     template: Decorative_Weapon
-    at:       [41.156, -16.407, -90.316, 74]
+    region:   c_143
     level:    [79, 81]
   17506449:
     template: Decorative_Weapon
@@ -2285,7 +2285,7 @@ spawns:
     level:    [77, 78]
   17506455:
     template: Aura_Butler
-    at:       [162.566, -16.500, -140.763, 124]
+    region:   c_152
     level:    [77, 78]
   17506456:
     template: Aura_Butler
@@ -2301,7 +2301,7 @@ spawns:
     level:    [79, 81]
   17506459:
     template: Decorative_Weapon
-    at:       [124.755, -16.000, -147.992, 75]
+    region:   w_154
     level:    [79, 81]
   17506460:
     template: Decorative_Weapon
@@ -2337,7 +2337,7 @@ spawns:
     level:    [77, 78]
   17506468:
     template: Aura_Butler
-    at:       [-123.482, -16.900, -111.746, 127]
+    region:   w_161
     level:    [77, 78]
   17506469:
     template: Aura_Butler
@@ -2345,7 +2345,7 @@ spawns:
     level:    [77, 78]
   17506470:
     template: Aura_Butler
-    at:       [228.661, -0.534, 305.682, 80]
+    region:   c_167
     level:    [77, 78]
   17506471:
     template: Aura_Butler
@@ -2433,7 +2433,7 @@ spawns:
     level:    [80, 82]
   17506492:
     template: Aura_Weapon
-    at:       [166.207, -16.029, 118.139, 127]
+    region:   c_189
     level:    [80, 82]
   17506493:
     template: Aura_Weapon
@@ -2453,7 +2453,7 @@ spawns:
     level:    [77, 78]
   17506497:
     template: Aura_Butler
-    at:       [-239.411, -1.276, 311.554, 127]
+    region:   nw_190
     level:    [77, 78]
   17506498:
     template: Water_Elemental
@@ -2505,7 +2505,7 @@ spawns:
     level:    [73, 74]
   17506510:
     template: Defender
-    at:       [-180.495, -0.390, 189.280, 72]
+    region:   nw_194
     level:    [73, 76]
   17506511:
     template: Aura_Gear
@@ -2533,7 +2533,7 @@ spawns:
     level:    [80, 82]
   17506517:
     template: Aura_Weapon
-    at:       [-147.248, -16.519, 123.975, 127]
+    region:   w_214
     level:    [80, 82]
   17506518:
     template: Aura_Weapon
@@ -2553,7 +2553,7 @@ spawns:
     level:    [77, 78]
   17506522:
     template: Aura_Butler
-    at:       [-28.629, -0.877, -174.548, 48]
+    region:   sw_215
     level:    [77, 78]
   17506523:
     template: Decorative_Weapon
@@ -2653,7 +2653,7 @@ spawns:
     level:    [71, 72]
   17506547:
     template: Defender
-    at:       [298.281, -0.390, -106.312, 12]
+    region:   c_231
     level:    [71, 74]
   17506548:
     template: Aura_Gear
@@ -2673,6 +2673,7 @@ spawns:
     level:    [77, 78]
   17506552:
     template: Aura_Butler
+    region:   c_245
     level:    [77, 78]
   17506553:
     template: Decorative_Weapon
@@ -2724,7 +2725,7 @@ spawns:
     level:    [71, 72]
   17506565:
     template: Defender
-    at:       [-180.045, -0.390, -92.724, 20]
+    region:   w_269
     level:    [71, 74]
   17506566:
     template: Aura_Gear
@@ -2784,7 +2785,7 @@ spawns:
     level:    [77, 78]
   17506580:
     template: Aura_Butler
-    at:       [-300.732, -0.500, -159.257, 70]
+    region:   w_273
     level:    [77, 78]
   17506581:
     template: Decorative_Weapon
@@ -3036,7 +3037,7 @@ spawns:
     level:    [81, 84]
   17506643:
     template: Aura_Statue
-    at:       [-21.430, -0.499, -24.125, 64]
+    region:   w_338
     level:    [81, 84]
   17506644:
     template: Aura_Statue

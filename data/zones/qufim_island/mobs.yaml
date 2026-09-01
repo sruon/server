@@ -2377,7 +2377,7 @@ spawns:
     level:    [26, 27]
   17293328:
     template: Dancing_Weapon
-    at:       [257.587, -8.303, -27.606, 55]
+    region:   se_12
     level:    [28, 29]
   17293329:
     template: Land_Worm_Qufim
@@ -2449,11 +2449,11 @@ spawns:
           end:    5
   17293341:
     template: Giant_Ranger
-    at:       [97.597, -19.730, 37.542, 127]
+    region:   e_19
     level:    [29, 30]
   17293342:
     template: Giant_Ascetic
-    at:       [111.750, -20.287, 38.986, 117]
+    region:   e_19
     level:    [29, 30]
   17293343:
     template: Giant_Trapper
@@ -2465,15 +2465,15 @@ spawns:
     level:    [24, 25]
   17293345:
     template: Giant_Hunter
-    at:       [116.000, -20.500, 120.000, 127]
+    region:   e_19
     level:    [29, 30]
   17293346:
     template: Giant_Ranger
-    at:       [127.642, -19.847, 26.319, 119]
+    region:   e_19
     level:    [29, 30]
   17293347:
     template: Giant_Ascetic
-    at:       [133.000, -19.000, 92.000, 40]
+    region:   e_19
     level:    [29, 30]
   17293348:
     template: Giant_Trapper
@@ -2485,7 +2485,7 @@ spawns:
     level:    [24, 25]
   17293350:
     template: Giant_Hunter
-    at:       [115.523, -19.538, 20.287, 83]
+    region:   e_19
     level:    [29, 30]
   17293351:
     template: Wight_war
@@ -2553,7 +2553,7 @@ spawns:
     level:    [28, 29]
   17293365:
     template: Banshee
-    region:   e_53
+    region:   region_47
     level:    [31, 32]
   17293366:
     template: Thunder_Elemental
@@ -2725,15 +2725,15 @@ spawns:
           end:    6
   17293399:
     template: Giant_Ranger
-    region:   e_87
+    region:   e_78
     level:    [29, 30]
   17293400:
     template: Giant_Ascetic
-    at:       [138.488, -20.106, 69.028, 127]
+    region:   e_78
     level:    [29, 30]
   17293401:
     template: Giant_Trapper
-    at:       [169.804, -20.842, 104.269, 127]
+    region:   e_78
     level:    [29, 30]
   17293402:
     template: Gigass_Leech
@@ -2816,7 +2816,7 @@ spawns:
           end:    4
   17293417:
     template: Giant_Ranger
-    at:       [108.174, -20.348, 166.835, 127]
+    region:   e_97
     level:    [29, 30]
   17293418:
     template: Giant_Ascetic
@@ -2824,7 +2824,7 @@ spawns:
     level:    [29, 30]
   17293419:
     template: Giant_Trapper
-    at:       [80.891, -20.286, 168.266, 127]
+    region:   e_97
     level:    [29, 30]
   17293420:
     template: Gigass_Leech
@@ -2832,7 +2832,7 @@ spawns:
     level:    [24, 25]
   17293421:
     template: Giant_Hunter
-    at:       [161.947, -19.796, 144.966, 19]
+    region:   e_97
     level:    [29, 30]
   17293422:
     template: Wight_war
@@ -2978,7 +2978,7 @@ spawns:
           end:    6
   17293451:
     template: Giant_Ranger
-    at:       [11.573, -20.561, 224.654, 38]
+    region:   e_130
     level:    [29, 30]
   17293452:
     template: Giant_Ascetic
@@ -2986,7 +2986,7 @@ spawns:
     level:    [29, 30]
   17293453:
     template: Giant_Trapper
-    at:       [67.965, -20.090, 201.971, 127]
+    region:   e_130
     level:    [29, 30]
   17293454:
     template: Gigass_Leech
@@ -2994,7 +2994,7 @@ spawns:
     level:    [24, 25]
   17293455:
     template: Giant_Hunter
-    at:       [0.510, -20.454, 245.121, 10]
+    region:   e_130
     level:    [29, 30]
   17293456:
     template: Wight_war
@@ -3058,15 +3058,15 @@ spawns:
     level:    [31, 32]
   17293469:
     template: Thunder_Elemental
-    region:   ne_146
+    region:   region_43
     level:    [35, 36]
   17293470:
     template: Clipper
-    region:   c_158
+    region:   region_51
     level:    [28, 29]
   17293471:
     template: Clipper
-    region:   c_158
+    region:   region_51
     level:    [28, 29]
   17293472:
     template: Clipper
@@ -3189,7 +3189,7 @@ spawns:
     level:    [29, 30]
   17293497:
     template: Giant_Ascetic
-    at:       [-183.256, -19.704, 35.952, 127]
+    region:   c_175
     level:    [29, 30]
   17293498:
     template: Giant_Trapper
@@ -3216,7 +3216,7 @@ spawns:
   17293503:
     template: Wight_blm
     script:   Wight
-    region:   c_191
+    region:   c_175
     level:    [28, 29]
   17293504:
     template: Light_Elemental
@@ -3292,7 +3292,7 @@ spawns:
           end:    4
   17293518:
     template: Glow_Bat
-    region:   c_206
+    region:   c_195
     level:    [28, 29]
     attributes:
       spawn:
@@ -3301,15 +3301,15 @@ spawns:
           end:    6
   17293519:
     template: Giant_Ranger
-    region:   n_207
+    region:   c_195
     level:    [29, 30]
   17293520:
     template: Giant_Ascetic
-    at:       [-177.398, -20.682, 190.872, 72]
+    region:   c_195
     level:    [29, 30]
   17293521:
     template: Giant_Trapper
-    at:       [-202.000, -19.000, 176.000, 23]
+    region:   c_195
     level:    [29, 30]
   17293522:
     template: Gigass_Leech
@@ -3342,12 +3342,12 @@ spawns:
   17293529:
     template: Wight_war
     script:   Wight
-    region:   c_217
+    region:   c_195
     level:    [28, 29]
   17293530:
     template: Wight_blm
     script:   Wight
-    region:   c_217
+    region:   c_195
     level:    [28, 29]
   17293531:
     template: Wight_blm
@@ -3464,7 +3464,7 @@ spawns:
     level:    [24, 25]
   17293554:
     template: Giant_Hunter
-    at:       [-126.000, -19.000, 284.000, 53]
+    region:   n_226
     level:    [29, 30]
   17293555:
     template: Giant_Ranger
@@ -3567,7 +3567,7 @@ spawns:
           end:    6
   17293574:
     template: Giant_Ranger
-    region:   n_262
+    region:   n_252
     level:    [29, 30]
   17293575:
     template: Giant_Ascetic
@@ -3575,25 +3575,25 @@ spawns:
     level:    [29, 30]
   17293576:
     template: Giant_Trapper
-    region:   n_264
+    region:   n_252
     level:    [29, 30]
   17293577:
     template: Gigass_Leech
-    region:   n_264
+    region:   n_252
     level:    [24, 25]
   17293578:
     template: Giant_Hunter
-    region:   n_262
+    region:   n_252
     level:    [29, 30]
   17293579:
     template: Wight_war
     script:   Wight
-    region:   n_267
+    region:   n_252
     level:    [28, 29]
   17293580:
     template: Wight_blm
     script:   Wight
-    region:   n_267
+    region:   n_252
     level:    [28, 29]
   17293581:
     template: Light_Elemental
@@ -3653,7 +3653,7 @@ spawns:
     level:    [33, 34]
   17293594:
     template: Banshee
-    region:   n_282
+    region:   n_270
     level:    [31, 32]
   17293595:
     template: Banshee
@@ -3661,7 +3661,7 @@ spawns:
     level:    [31, 32]
   17293596:
     template: Thunder_Elemental
-    region:   n_282
+    region:   n_270
     level:    [35, 36]
   17293597:
     template: Qoofim

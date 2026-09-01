@@ -3227,11 +3227,11 @@ spawns:
     level:    [2, 3]
   17248376:
     template: Savanna_Rarab
-    region:   s_120
+    region:   sw_115
     level:    [2, 3]
   17248377:
     template: Savanna_Rarab
-    region:   sw_121
+    region:   sw_115
     level:    [2, 3]
   17248378:
     template: Savanna_Rarab
@@ -3275,7 +3275,7 @@ spawns:
     level:    [3, 4]
   17248388:
     template: Goblin_Thug
-    at:       [-185.940, -1.753, -280.140, 108]
+    region:   sw_115
     level:    [4, 5]
   17248389:
     template: Goblin_Thug
@@ -3295,7 +3295,7 @@ spawns:
     level:    [4, 5]
   17248393:
     template: Goblin_Weaver
-    at:       [-179.000, -6.352, -150.000, 124]
+    region:   sw_115
     level:    [4, 5]
   17248394:
     template: Mandragora
@@ -3323,11 +3323,11 @@ spawns:
     level:    [5, 6]
   17248400:
     template: Crawler
-    region:   c_144
+    region:   c_138
     level:    [5, 6]
   17248401:
     template: Crawler
-    region:   c_144
+    region:   c_138
     level:    [5, 6]
   17248402:
     template: Savanna_Rarab
@@ -3447,12 +3447,12 @@ spawns:
     level:    [4, 5]
   17248431:
     template: Mad_Fox
-    at:       [-67.601, -15.030, 281.626, 127]
+    region:   n_157
     level:    [4, 6]
   17248432:
     template: Magicked_Bones_club
     script:   Magicked_Bones
-    at:       [-28.931, -12.587, 232.717, 49]
+    region:   n_157
     level:    [4, 8]
   17248433:
     template: Balloon
@@ -3496,7 +3496,7 @@ spawns:
     level:    [4, 5]
   17248443:
     template: Mad_Fox
-    at:       [294.765, -17.118, 437.473, 125]
+    region:   ne_178
     level:    [4, 6]
   17248444:
     template: Mandragora
@@ -3568,7 +3568,7 @@ spawns:
   17248460:
     template: Magicked_Bones_blm
     script:   Magicked_Bones
-    at:       [222.063, -17.300, 161.724, 32]
+    region:   e_188
     level:    [5, 8]
   17248461:
     template: Magicked_Bones_blm
@@ -3652,17 +3652,17 @@ spawns:
   17248480:
     template: Magicked_Bones_club
     script:   Magicked_Bones
-    at:       [68.268, -20.073, 443.830, 127]
+    region:   n_210
     level:    [4, 8]
   17248481:
     template: Magicked_Bones_blm
     script:   Magicked_Bones
-    at:       [148.756, -24.347, 455.157, 117]
+    region:   n_210
     level:    [5, 8]
   17248482:
     template: Magicked_Bones_blm
     script:   Magicked_Bones
-    at:       [102.507, -25.211, 386.947, 103]
+    region:   n_210
     level:    [5, 8]
   17248483:
     template: Balloon
@@ -3729,7 +3729,7 @@ spawns:
   17248498:
     template: Magicked_Bones_club
     script:   Magicked_Bones
-    at:       [280.695, -18.393, 414.562, 127]
+    region:   ne_228
     level:    [4, 8]
   17248499:
     template: Magicked_Bones_blm
@@ -3739,7 +3739,7 @@ spawns:
   17248500:
     template: Magicked_Bones_blm
     script:   Magicked_Bones
-    at:       [227.888, -29.861, 314.742, 110]
+    region:   ne_228
     level:    [5, 8]
   17248501:
     template: Balloon
@@ -3823,12 +3823,12 @@ spawns:
     level:    [4, 5]
   17248521:
     template: Mad_Fox
-    at:       [45.260, -20.880, 477.101, 98]
+    region:   n_249
     level:    [4, 6]
   17248522:
     template: Magicked_Bones_club
     script:   Magicked_Bones
-    at:       [93.773, -20.881, 519.139, 127]
+    region:   n_249
     level:    [4, 8]
   17248523:
     template: Mandragora
@@ -3892,9 +3892,11 @@ spawns:
     level:    [5, 6]
   17248538:
     template: Mad_Fox
+    region:   c_267
     level:    [4, 5]
   17248539:
     template: Magicked_Bones_club
+    region:   c_267
     script:   Magicked_Bones
     level:    [4, 8]
   17248540:
@@ -3971,6 +3973,7 @@ spawns:
     level:    [5, 6]
   17248558:
     template: Mad_Fox
+    region:   ne_287
     level:    [4, 6]
   17248559:
     template: Magicked_Bones_club
@@ -4048,7 +4051,7 @@ spawns:
   17248577:
     template: Magicked_Bones_club
     script:   Magicked_Bones
-    at:       [-226.596, -17.639, 438.999, 127]
+    region:   nw_304
     level:    [4, 8]
   17248578:
     template: Magicked_Bones_blm

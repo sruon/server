@@ -2447,11 +2447,11 @@ spawns:
     level:    [12, 13]
   17219607:
     template: Goblin_Thug
-    at:       [-77.823, -56.275, -670.291, 34]
+    region:   s_13
     level:    [9, 10]
   17219608:
     template: Goblin_Weaver
-    at:       [-98.272, -57.775, -662.657, 127]
+    region:   s_13
     level:    [9, 10]
   17219609:
     template: Goblin_Butcher
@@ -2531,15 +2531,15 @@ spawns:
     level:    [9, 10]
   17219627:
     template: Young_Quadav
-    at:       [503.000, -15.000, -424.000, 127]
+    region:   se_36
     level:    [9, 10]
   17219628:
     template: Amethyst_Quadav
-    at:       [496.785, -16.114, -421.315, 93]
+    region:   se_36
     level:    [9, 10]
   17219629:
     template: Amber_Quadav
-    at:       [499.752, -15.779, -418.372, 127]
+    region:   se_36
     level:    [9, 10]
   17219630:
     template: Mist_Lizard
@@ -2725,11 +2725,11 @@ spawns:
     level:    [13, 14]
   17219673:
     template: Greater_Quadav
-    at:       [418.088, 10.790, 79.852, 127]
+    region:   e_86
     level:    [13, 14]
   17219674:
     template: Onyx_Quadav
-    at:       [610.562, 20.472, 139.956, 91]
+    region:   e_86
     level:    [13, 14]
   17219675:
     template: Amethyst_Quadav
@@ -2741,15 +2741,15 @@ spawns:
     level:    [9, 10]
   17219677:
     template: Skeleton_Warrior
-    at:       [526.456, 8.858, 167.034, 75]
+    region:   e_86
     level:    [10, 12]
   17219678:
     template: Skeleton_Warrior
-    at:       [345.299, 19.741, 166.122, 115]
+    region:   e_86
     level:    [10, 12]
   17219679:
     template: Skeleton_Sorcerer
-    at:       [412.034, 16.215, 130.671, 73]
+    region:   e_86
     level:    [11, 13]
   17219680:
     template: Thunder_Elemental
@@ -2962,11 +2962,11 @@ spawns:
     level:    [10, 12]
   17219729:
     template: Skeleton_Warrior
-    at:       [442.851, 31.835, 325.697, 232]
+    region:   ne_140
     level:    [10, 12]
   17219730:
     template: Skeleton_Sorcerer
-    at:       [385.827, 32.136, 505.072, 127]
+    region:   ne_140
     level:    [11, 13]
   17219731:
     template: Grenade
@@ -2978,7 +2978,7 @@ spawns:
     level:    [14, 15]
   17219733:
     template: Amethyst_Quadav
-    at:       [380.042, 32.098, 543.204, 127]
+    region:   ne_140
     level:    [14, 15]
   17219734:
     template: Amber_Quadav
@@ -3060,7 +3060,7 @@ spawns:
     level:    [8, 9]
   17219753:
     template: Wolf_Zombie
-    at:       [-167.521, -13.832, -105.744, 64]
+    region:   s_155
     level:    [12, 13]
   17219754:
     template: Mist_Lizard
@@ -3110,7 +3110,7 @@ spawns:
     level:    [8, 9]
   17219765:
     template: Wolf_Zombie
-    at:       [-319.756, -18.233, -168.804, 127]
+    region:   sw_170
     level:    [12, 13]
   17219766:
     template: Goblin_Thug
@@ -3134,15 +3134,15 @@ spawns:
     level:    [12, 13]
   17219771:
     template: Goblin_Butcher
-    at:       [-423.118, -14.719, -192.018, 127]
+    region:   sw_182
     level:    [12, 13]
   17219772:
     template: Skeleton_Warrior
-    at:       [-403.593, -0.936, -164.908, 127]
+    region:   sw_182
     level:    [10, 12]
   17219773:
     template: Skeleton_Sorcerer
-    at:       [-177.810, -48.472, -447.798, 67]
+    region:   sw_182
     level:    [11, 13]
   17219774:
     template: Earth_Elemental
@@ -3150,7 +3150,7 @@ spawns:
     level:    [18, 20]
   17219775:
     template: Mist_Lizard
-    region:   w_191
+    region:   w_192
     level:    [11, 12]
   17219776:
     template: Mist_Lizard
@@ -3196,6 +3196,7 @@ spawns:
     level:    [8, 9]
   17219786:
     template: Wolf_Zombie
+    region:   w_192
     level:    [12, 13]
   17219787:
     template: Highlander_Lizard
@@ -3245,7 +3246,7 @@ spawns:
     level:    [8, 9]
   17219798:
     template: Wolf_Zombie
-    at:       [-248.949, -15.684, -116.538, 66]
+    region:   w_204
     level:    [12, 13]
   17219799:
     template: Huge_Wasp
@@ -3287,6 +3288,7 @@ spawns:
     level:    [9, 9]
   17219808:
     template: Wolf_Zombie
+    region:   w_215
     level:    [12, 13]
   17219809:
     template: Huge_Wasp
@@ -3328,7 +3330,7 @@ spawns:
     level:    [12, 13]
   17219818:
     template: Wolf_Zombie
-    at:       [-346.462, 16.385, 39.794, 127]
+    region:   w_225
     level:    [9, 10]
   17219819:
     template: Goblin_Thug
@@ -3368,7 +3370,7 @@ spawns:
     level:    [12, 13]
   17219828:
     template: Goblin_Butcher
-    at:       [-443.405, 7.740, -34.818, 127]
+    region:   w_235
     level:    [9, 10]
   17219829:
     template: Goblin_Butcher
@@ -3376,11 +3378,11 @@ spawns:
     level:    [9, 10]
   17219830:
     template: Skeleton_Warrior
-    at:       [-365.392, 10.289, -25.143, 90]
+    region:   w_235
     level:    [10, 12]
   17219831:
     template: Skeleton_Sorcerer
-    at:       [-409.075, -7.404, -123.000, 123]
+    region:   w_235
     level:    [11, 13]
   17219832:
     template: Grenade
@@ -3446,7 +3448,7 @@ spawns:
     level:    [8, 9]
   17219847:
     template: Wolf_Zombie
-    at:       [-235.061, 16.179, 62.048, 83]
+    region:   c_255
     level:    [9, 10]
   17219848:
     template: Mist_Lizard
@@ -3613,15 +3615,15 @@ spawns:
     level:    [8, 9]
   17219885:
     template: Tremor_Ram
-    at:       [21.000, 50.000, 514.000, 52]
+    region:   region_40
     level:    [22, 23]
   17219886:
     template: Rampaging_Ram
-    at:       [160.000, 24.000, 121.000]
+    region:   region_40
     level:    [27, 28]
   17219887:
     template: Steelfleece_Baldarich
-    at:       [-10.000, 7.000, 45.000, 127]
+    region:   region_40
     level:    [55, 56]
   17219888:
     template: Young_Quadav
@@ -3707,7 +3709,7 @@ spawns:
     level:    [8, 9]
   17219908:
     template: Wolf_Zombie
-    at:       [-317.749, 19.378, 226.035, 64]
+    region:   w_315
     level:    [12, 13]
   17219909:
     template: Mist_Lizard
@@ -3823,7 +3825,7 @@ spawns:
     level:    [10, 11]
   17219936:
     template: Wolf_Zombie
-    at:       [-303.063, 35.144, 358.863, 66]
+    region:   nw_342
     level:    [12, 13]
   17219937:
     template: Huge_Wasp
@@ -3861,7 +3863,7 @@ spawns:
     level:    [10, 11]
   17219945:
     template: Wolf_Zombie
-    at:       [-115.370, 22.901, 326.005, 127]
+    region:   n_353
     level:    [12, 13]
   17219946:
     template: Goblin_Tinkerer
@@ -3901,11 +3903,11 @@ spawns:
     level:    [13, 14]
   17219955:
     template: Skeleton_Warrior
-    at:       [-314.998, 30.755, 271.463, 70]
+    region:   nw_342
     level:    [10, 12]
   17219956:
     template: Skeleton_Sorcerer
-    at:       [-191.612, 38.647, 318.807, 127]
+    region:   w_364
     level:    [11, 13]
   17219957:
     template: Thunder_Elemental
@@ -3951,7 +3953,7 @@ spawns:
     level:    [10, 11]
   17219967:
     template: Wolf_Zombie
-    at:       [-129.429, 48.880, 448.089, 127]
+    region:   n_374
     level:    [13, 14]
   17219968:
     template: Mist_Lizard
@@ -4035,7 +4037,7 @@ spawns:
     level:    [10, 11]
   17219987:
     template: Tremor_Ram
-    at:       [-163.198, 62.392, 568.282, 74]
+    region:   region_41
     level:    [22, 23]
   17219988:
     template: Goblin_Ambusher
@@ -4055,7 +4057,7 @@ spawns:
     level:    [14, 15]
   17219992:
     template: Greater_Quadav
-    region:   n_404
+    region:   region_41
     level:    [14, 15]
   17219993:
     template: Onyx_Quadav
@@ -4063,7 +4065,7 @@ spawns:
     level:    [14, 15]
   17219994:
     template: Skeleton_Warrior
-    at:       [-155.997, 59.753, 511.910, 43]
+    region:   region_41
     level:    [10, 12]
   17219995:
     template: Skeleton_Sorcerer

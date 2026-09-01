@@ -3144,7 +3144,7 @@ spawns:
     level:    [76, 77]
   17043489:
     template: Ziz
-    at:       [203.815, 14.288, -244.966, 102]
+    region:   se_29
     level:    [76, 77]
   17043490:
     template: Ziz
@@ -3280,7 +3280,7 @@ spawns:
     level:    [70, 72]
   17043523:
     template: Carriage_Lizard
-    at:       [265.192, 10.835, -379.177, 49]
+    region:   se_62
     level:    [70, 72]
   17043524:
     template: Carriage_Lizard
@@ -4233,7 +4233,7 @@ spawns:
   17043751:
     template: Sea_Puk_M
     script:   Sea_Puk
-    at:       [47.805, 17.236, -438.480, 31]
+    region:   s_296
     level:    [77, 78]
   17043752:
     template: Sea_Puk_M
@@ -4335,7 +4335,7 @@ spawns:
     level:    [81, 83]
   17043773:
     template: Watch_Wyvern
-    at:       [-201.522, 17.209, -363.865, 202]
+    region:   s_314
     level:    [81, 83]
   17043774:
     template: Watch_Wyvern
@@ -4523,7 +4523,7 @@ spawns:
   17043814:
     template: Mamool_Ja_Philosopher_Mamook
     script:   Mamool_Ja_Philosopher
-    region:   ne_358
+    region:   region_182
     level:    [81, 83]
   17043815:
     template: Mamool_Ja_Mimer_Mamook

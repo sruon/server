@@ -2578,7 +2578,7 @@ spawns:
     level:    [32, 34]
   16793611:
     template: Coralline_Uragnite
-    at:       [-281.849, -0.211, -397.711, 98]
+    region:   sw_12
     level:    [32, 34]
   16793612:
     template: Kraken
@@ -2598,7 +2598,7 @@ spawns:
     level:    [32, 34]
   16793616:
     template: Viscous_Clot
-    at:       [-333.446, -1.284, -420.345, 104]
+    region:   sw_13
     level:    [38, 40]
   16793617:
     template: Coralline_Uragnite
@@ -2688,7 +2688,7 @@ spawns:
     level:    [32, 34]
   16793638:
     template: Coralline_Uragnite
-    region:   sw_38
+    region:   sw_37
     level:    [33, 35]
   16793639:
     template: Viscous_Clot
@@ -2708,7 +2708,7 @@ spawns:
     level:    [33, 35]
   16793643:
     template: Coralline_Uragnite
-    at:       [-632.634, -0.282, -739.186, 214]
+    region:   sw_44
     level:    [33, 35]
   16793644:
     template: Kraken
@@ -2724,7 +2724,7 @@ spawns:
     level:    [44, 46]
   16793647:
     template: Viscous_Clot
-    at:       [-609.686, -3.325, -667.146, 96]
+    region:   sw_37
     level:    [38, 40]
   16793648:
     template: Coastal_Opo-opo
@@ -2788,7 +2788,7 @@ spawns:
     level:    [33, 35]
   16793663:
     template: Coralline_Uragnite
-    at:       [-128.000, 0.001, -694.000, 1]
+    region:   sw_62
     level:    [33, 35]
   16793664:
     template: Jagil
@@ -2820,7 +2820,7 @@ spawns:
     level:    [38, 40]
   16793671:
     template: Viscous_Clot
-    at:       [-358.000, 0.001, -402.000, 218]
+    region:   sw_68
     level:    [38, 40]
   16793672:
     template: Alraune
@@ -2840,11 +2840,11 @@ spawns:
     level:    [38, 40]
   16793676:
     template: Jagil
-    at:       [-266.098, -3.503, -846.997, 236]
+    region:   sw_75
     level:    [35, 38]
   16793677:
     template: Toucan
-    at:       [-267.917, -3.786, -855.054, 78]
+    region:   sw_75
     level:    [38, 40]
   16793678:
     template: Jagil
@@ -2888,7 +2888,7 @@ spawns:
     level:    [33, 35]
   16793688:
     template: Viscous_Clot
-    at:       [-118.616, -0.314, -703.221, 239]
+    region:   s_93
     level:    [38, 40]
   16793689:
     template: Coralline_Uragnite
@@ -2961,7 +2961,7 @@ spawns:
     level:    [38, 40]
   16793706:
     template: Jagil
-    at:       [-285.000, 0.001, -907.000, 70]
+    region:   sw_105
     level:    [35, 38]
   16793707:
     template: Alraune
@@ -3083,11 +3083,11 @@ spawns:
     level:    [33, 35]
   16793736:
     template: Eft
-    at:       [466.355, -3.602, 728.849, 133]
+    region:   region_118
     level:    [33, 35]
   16793737:
     template: Eft
-    at:       [466.019, -3.602, 728.924, 128]
+    region:   region_118
     level:    [33, 35]
   16793738:
     template: Raven
@@ -3107,7 +3107,7 @@ spawns:
     level:    [33, 35]
   16793742:
     template: Intulo
-    at:       [525.746, -12.134, 775.797, 98]
+    region:   ne_134
     level:    [46, 47]
   16793743:
     template: Marine_Dhalmel
@@ -3243,7 +3243,7 @@ spawns:
     level:    [76, 77]
   16793776:
     template: Splacknuck
-    region:   n_176
+    region:   n_173
     level:    [69, 70]
   16793777:
     template: Hobgoblin_Animalier
@@ -3255,7 +3255,7 @@ spawns:
     level:    [66, 69]
   16793779:
     template: Tartarus_Eft
-    at:       [97.309, -44.969, 936.494, 58]
+    region:   n_181
     level:    [76, 77]
   16793780:
     template: Hobgoblin_Fascinator

@@ -2497,11 +2497,11 @@ spawns:
     level:    [43, 45]
   17235992:
     template: Cursed_Weapon
-    at:       [298.000, -5.000, -124.000, 95]
+    region:   e_22
     level:    [43, 45]
   17235993:
     template: Cursed_Weapon
-    at:       [290.000, -6.000, -131.000, 1]
+    region:   e_22
     level:    [43, 45]
   17235994:
     template: Etemmu
@@ -2553,7 +2553,7 @@ spawns:
     level:    [43, 45]
   17236005:
     template: Cursed_Weapon
-    at:       [237.177, -15.117, -105.774, 148]
+    region:   c_58
     level:    [43, 45]
   17236006:
     template: Lost_Soul_war
@@ -2833,7 +2833,7 @@ spawns:
     level:    [45, 48]
   17236069:
     template: Graupel_Gigas
-    at:       [429.613, -1.549, 31.720, 127]
+    region:   e_95
     level:    [45, 48]
   17236070:
     template: Frost_Gigas
@@ -2845,7 +2845,7 @@ spawns:
     level:    [38, 40]
   17236072:
     template: Hail_Gigas
-    at:       [366.142, -8.469, 0.203, 127]
+    region:   e_95
     level:    [45, 48]
   17236073:
     template: Evil_Eye
@@ -2881,11 +2881,11 @@ spawns:
     level:    [45, 48]
   17236081:
     template: Blizzard_Gigas
-    at:       [358.000, -8.545, 118.000, 127]
+    region:   e_108
     level:    [45, 48]
   17236082:
     template: Graupel_Gigas
-    at:       [393.550, -8.622, 36.518, 42]
+    region:   e_108
     level:    [45, 48]
   17236083:
     template: Frost_Gigas
@@ -2913,7 +2913,7 @@ spawns:
     level:    [48, 49]
   17236089:
     template: Blizzard_Gigas
-    at:       [521.065, -0.428, 15.732, 127]
+    region:   e_122
     level:    [45, 48]
   17236090:
     template: Graupel_Gigas
@@ -2921,7 +2921,7 @@ spawns:
     level:    [45, 48]
   17236091:
     template: Frost_Gigas
-    at:       [490.627, -0.690, 28.100, 127]
+    region:   e_122
     level:    [45, 48]
   17236092:
     template: Gigass_Tiger
@@ -2937,7 +2937,7 @@ spawns:
     level:    [48, 50]
   17236095:
     template: Blizzard_Gigas
-    at:       [527.207, -8.455, 216.028, 9]
+    region:   ne_128
     level:    [45, 48]
   17236096:
     template: Graupel_Gigas
@@ -2945,7 +2945,7 @@ spawns:
     level:    [45, 48]
   17236097:
     template: Frost_Gigas
-    at:       [545.021, -9.697, 220.422, 96]
+    region:   ne_128
     level:    [45, 48]
   17236098:
     template: Gigass_Tiger
@@ -2957,15 +2957,15 @@ spawns:
     level:    [45, 48]
   17236100:
     template: Blizzard_Gigas
-    at:       [537.354, -8.529, 220.852, 127]
+    region:   ne_128
     level:    [45, 48]
   17236101:
     template: Graupel_Gigas
-    at:       [499.691, -9.731, 172.810, 63]
+    region:   ne_128
     level:    [45, 48]
   17236102:
     template: Frost_Gigas
-    at:       [503.498, -8.689, 183.349, 86]
+    region:   ne_128
     level:    [45, 48]
   17236103:
     template: Gigass_Tiger
@@ -3043,7 +3043,7 @@ spawns:
     level:    [49, 50]
   17236121:
     template: Demon_Knight
-    at:       [217.376, -19.896, 119.688, 64]
+    region:   ne_148
     level:    [48, 50]
   17236122:
     template: Evil_Eye
@@ -3127,7 +3127,7 @@ spawns:
     level:    [48, 50]
   17236142:
     template: Demon_Wizard
-    at:       [-3.380, -36.416, 125.926, 127]
+    region:   n_170
     level:    [48, 50]
   17236143:
     template: Demon_Knight
@@ -3179,7 +3179,7 @@ spawns:
     level:    [50, 52]
   17236155:
     template: Demon_Warlock
-    at:       [-118.558, -35.772, 62.275, 127]
+    region:   nw_189
     level:    [50, 52]
   17236156:
     template: Demons_Elemental

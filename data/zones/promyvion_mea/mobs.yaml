@@ -474,7 +474,7 @@ spawns:
   16859142:
     template: Weeper_PV
     script:   Weeper
-    at:       [-191.456, -0.380, 296.387, 170]
+    region:   region_125
     level:    [24, 26]
   16859143:
     template: Wanderer_PV
@@ -558,7 +558,7 @@ spawns:
   16859162:
     template: Weeper_PV
     script:   Weeper
-    at:       [-86.187, -0.500, -278.467, 29]
+    region:   region_126
     level:    [28, 30]
   16859163:
     template: Apex_Idle_Drifter
@@ -621,7 +621,7 @@ spawns:
   16859177:
     template: Wanderer_PV
     script:   Wanderer
-    at:       [-116.906, -0.499, -163.827, 76]
+    region:   s_40
     level:    [26, 28]
   16859178:
     template: Wanderer_PV
@@ -661,12 +661,12 @@ spawns:
   16859185:
     template: Seether_Prom
     script:   Seether
-    at:       [-219.561, -0.500, -244.800, 28]
+    region:   region_127
     level:    [30, 32]
   16859186:
     template: Wanderer_PV
     script:   Wanderer
-    at:       [-231.713, -0.500, -228.290, 244]
+    region:   sw_52
     level:    [26, 28]
   16859187:
     template: Weeper_PV
@@ -934,7 +934,7 @@ spawns:
   16859251:
     template: Weeper_PV_2
     script:   Weeper
-    at:       [-156.750, -0.500, 77.143, 237]
+    region:   w_116
     level:    [31, 33]
   16859252:
     template: Weeper_PV_2
@@ -989,7 +989,7 @@ spawns:
   16859262:
     template: Seether_Prom
     script:   Seether
-    at:       [-247.398, -0.500, 69.234, 243]
+    region:   region_130
     level:    [33, 35]
   16859263:
     template: Seether_Prom
@@ -1029,7 +1029,7 @@ spawns:
   16859270:
     template: Wanderer_PV
     script:   Wanderer
-    at:       [-210.875, -0.500, -8.482, 127]
+    region:   region_128
     level:    [29, 31]
   16859271:
     template: Weeper_PV_2
@@ -1039,7 +1039,7 @@ spawns:
   16859272:
     template: Seether_Prom
     script:   Seether
-    at:       [-277.838, -0.500, 12.988, 221]
+    region:   region_131
     level:    [33, 35]
   16859273:
     template: Weeper_PV_2
@@ -1125,7 +1125,7 @@ spawns:
   16859293:
     template: Craver_PM_2
     script:   Craver
-    at:       [-273.921, -0.500, 57.250, 252]
+    region:   region_129
     level:    [35, 37]
   16859294:
     template: Craver_PM_2
@@ -1269,7 +1269,7 @@ spawns:
   16859329:
     template: Wanderer_PV
     script:   Wanderer
-    at:       [171.458, -0.500, -105.087, 61]
+    region:   region_132
     level:    [29, 31]
   16859330:
     template: Weeper_PV_2
@@ -1294,7 +1294,7 @@ spawns:
   16859334:
     template: Seether_Prom
     script:   Seether
-    at:       [252.327, -1.151, -97.737, 151]
+    region:   region_133
     level:    [33, 35]
   16859335:
     template: Weeper_PV_2
@@ -1324,7 +1324,7 @@ spawns:
   16859340:
     template: Wanderer_PV
     script:   Wanderer
-    at:       [248.558, -0.500, -157.320, 26]
+    region:   region_134
     level:    [29, 31]
   16859341:
     template: Seether_Prom
@@ -1334,12 +1334,12 @@ spawns:
   16859342:
     template: Weeper_PV_2
     script:   Weeper
-    at:       [295.041, -0.484, -163.999, 52]
+    region:   region_135
     level:    [31, 33]
   16859343:
     template: Wanderer_PV
     script:   Wanderer
-    at:       [275.866, -0.500, -156.468, 142]
+    region:   region_136
     level:    [29, 31]
   16859344:
     template: Weeper_PV_2
@@ -1440,7 +1440,7 @@ spawns:
   16859367:
     template: Seether_Prom
     script:   Seether
-    at:       [340.587, -0.500, -104.668, 62]
+    region:   region_137
     level:    [33, 35]
   16859368:
     template: Weeper_PV_2
@@ -1651,7 +1651,7 @@ spawns:
   16859420:
     template: Seether_Prom
     script:   Seether
-    at:       [-2.622, -0.500, 321.418, 98]
+    region:   region_138
     level:    [35, 37]
   16859421:
     template: Weeper_PV_2
@@ -1666,7 +1666,7 @@ spawns:
   16859423:
     template: Seether_Prom
     script:   Seether
-    at:       [46.440, -0.500, 265.653, 210]
+    region:   region_140
     level:    [35, 37]
   16859424:
     template: Wanderer_PV_2
@@ -1686,7 +1686,7 @@ spawns:
   16859427:
     template: Seether_Prom
     script:   Seether
-    at:       [48.706, -0.500, 207.230, 73]
+    region:   region_142
     level:    [35, 37]
   16859428:
     template: Weeper_PV_2
@@ -1711,7 +1711,7 @@ spawns:
   16859432:
     template: Seether_Prom
     script:   Seether
-    at:       [113.050, -0.500, 247.492, 30]
+    region:   region_143
     level:    [35, 37]
   16859433:
     template: Wanderer_PV_2
@@ -1740,12 +1740,12 @@ spawns:
   16859438:
     template: Seether_Prom
     script:   Seether
-    at:       [143.970, -0.500, 232.796, 16]
+    region:   region_139
     level:    [35, 37]
   16859439:
     template: Seether_Prom
     script:   Seether
-    at:       [161.725, -0.500, 224.552, 223]
+    region:   region_141
     level:    [35, 37]
   16859440:
     template: Weeper_PV_2
@@ -1780,7 +1780,7 @@ spawns:
   16859446:
     template: Seether_Prom
     script:   Seether
-    at:       [210.728, -0.500, 180.447, 135]
+    region:   region_144
     level:    [35, 37]
   16859447:
     template: Wanderer_PV_2
@@ -1810,7 +1810,7 @@ spawns:
   16859452:
     template: Seether_Prom
     script:   Seether
-    at:       [244.775, -0.500, 118.230, 202]
+    region:   region_145
     level:    [35, 37]
   16859453:
     template: Weeper_PV_2
@@ -1825,7 +1825,7 @@ spawns:
   16859455:
     template: Seether_Prom
     script:   Seether
-    at:       [244.232, -0.500, 237.286, 228]
+    region:   region_146
     level:    [35, 37]
   16859456:
     template: Wanderer_PV_2
@@ -1869,7 +1869,7 @@ spawns:
   16859464:
     template: Wanderer_PV_2
     script:   Wanderer
-    at:       [108.347, -0.500, 209.193, 183]
+    region:   region_147
     level:    [31, 33]
   16859465:
     template: Wanderer_PV_2

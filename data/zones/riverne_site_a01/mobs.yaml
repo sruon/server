@@ -1064,15 +1064,15 @@ spawns:
     level:    [40, 42]
   16900107:
     template: Hippogryph
-    at:       [749.724, 47.771, -871.226, 250]
+    region:   se_14
     level:    [40, 42]
   16900108:
     template: Hippogryph
-    at:       [736.205, 47.979, -859.131, 223]
+    region:   se_14
     level:    [40, 42]
   16900109:
     template: Hippogryph
-    at:       [727.484, 47.644, -874.848, 53]
+    region:   se_14
     level:    [40, 42]
   16900110:
     template: Heliodromos
@@ -1088,7 +1088,7 @@ spawns:
     level:    [45, 45]
   16900113:
     template: Air_Elemental
-    at:       [583.142, 19.015, -784.222, 231]
+    region:   se_18
     level:    [44, 47]
   16900114:
     template: Hawkertrap_RSA
@@ -1122,7 +1122,7 @@ spawns:
     level:    [40, 42]
   16900121:
     template: Air_Elemental
-    at:       [447.379, 39.740, -861.050, 252]
+    region:   se_26
     level:    [44, 47]
   16900122:
     template: Hawkertrap_RSA
@@ -1255,15 +1255,14 @@ spawns:
     level:    [39, 42]
   16900152:
     template: Hippogryph
-    region:   ne_47
+    region:   region_48
     level:    [40, 42]
   16900153:
     template: Hippogryph
-    region:   ne_47
     level:    [40, 42]
   16900154:
     template: Hippogryph
-    at:       [609.810, -0.351, 470.194, 119]
+    region:   ne_47
     level:    [40, 42]
   16900155:
     template: Hawkertrap_RSA
@@ -1316,7 +1315,7 @@ spawns:
     level:    [41, 43]
   16900166:
     template: Hippogryph
-    at:       [524.615, 0.414, 424.255, 15]
+    region:   ne_59
     level:    [40, 42]
   16900167:
     template: Hippogryph
@@ -1431,27 +1430,27 @@ spawns:
     level:    [39, 42]
   16900193:
     template: Riverne_Vulture
-    at:       [250.737, -0.088, 394.535, 24]
+    region:   region_47
     level:    [39, 42]
   16900194:
     template: Firedrake
-    region:   n_92
+    region:   region_47
     level:    [41, 43]
   16900195:
     template: Firedrake
-    region:   n_92
+    region:   region_47
     level:    [41, 43]
   16900196:
     template: Firedrake
-    at:       [270.341, 1.806, 287.391, 152]
+    region:   ne_80
     level:    [41, 43]
   16900197:
     template: Hippogryph
-    region:   n_92
+    region:   region_47
     level:    [40, 42]
   16900198:
     template: Hippogryph
-    region:   n_92
+    region:   region_47
     level:    [40, 42]
   16900199:
     template: Hawkertrap_RSA
@@ -1565,15 +1564,15 @@ spawns:
     level:    [45, 48]
   16900224:
     template: Cloud_Hippogryph
-    region:   n_120
+    region:   region_46
     level:    [45, 47]
   16900225:
     template: Cloud_Hippogryph
-    region:   n_120
+    region:   region_46
     level:    [45, 47]
   16900226:
     template: Cloud_Hippogryph
-    region:   n_120
+    region:   region_46
     level:    [45, 47]
   16900227:
     template: Atomic_Cluster
@@ -1629,7 +1628,7 @@ spawns:
     level:    [44, 46]
   16900240:
     template: Air_Elemental
-    at:       [-371.064, 19.463, -662.991, 189]
+    region:   sw_155
     level:    [47, 50]
   16900241:
     template: Atomic_Cluster
@@ -1669,7 +1668,7 @@ spawns:
     level:    [45, 48]
   16900250:
     template: Hawker
-    at:       [-273.079, 19.868, -685.844, 183]
+    region:   sw_155
     level:    [45, 48]
   16900251:
     template: Hawker
@@ -1725,7 +1724,7 @@ spawns:
     level:    [45, 48]
   16900264:
     template: Air_Elemental
-    at:       [-599.991, 19.580, -595.206, 58]
+    region:   sw_169
     level:    [47, 50]
   16900265:
     template: Cloud_Hippogryph
@@ -1893,7 +1892,7 @@ spawns:
     level:    [47, 49]
   16900306:
     template: Aiatar
-    at:       [-81.967, 0.246, 751.067, 180]
+    region:   n_205
     level:    [51, 52]
   16900307:
     template: Thunder_Elemental

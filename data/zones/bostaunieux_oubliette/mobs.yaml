@@ -1688,7 +1688,7 @@ spawns:
   17461314:
     template: Garm_BO
     script:   Garm
-    at:       [-64.340, 0.010, -145.718, 126]
+    region:   c_60
     level:    [64, 66]
   17461315:
     template: Shii
@@ -1756,7 +1756,7 @@ spawns:
     level:    [55, 59]
   17461329:
     template: Werebat
-    region:   sw_81
+    region:   sw_80
     level:    [55, 59]
   17461330:
     template: Werebat
@@ -1768,11 +1768,11 @@ spawns:
     level:    [55, 59]
   17461332:
     template: Dark_Aspic
-    region:   sw_84
+    region:   sw_80
     level:    [52, 53]
   17461333:
     template: Dark_Aspic
-    region:   sw_84
+    region:   sw_80
     level:    [52, 53]
   17461334:
     template: Garm_BO
@@ -2400,11 +2400,10 @@ spawns:
   17461477:
     template: Gespenst_Large
     script:   Gespenst
-    at:       [18.542, 16.500, -140.040, 115]
+    region:   c_221
     level:    [68, 70]
   17461478:
     template: Bloodsucker_NM
-    region:   c_230
     level:    [70, 73]
   17461479:
     template: Bodach

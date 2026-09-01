@@ -3519,7 +3519,7 @@ spawns:
   17223693:
     template: Night_Bats_MM_PM
     script:   Night_Bats
-    at:       [-381.855, 24.044, -412.486, 191]
+    region:   sw_6
     level:    [15, 16]
     attributes:
       spawn:
@@ -3558,7 +3558,7 @@ spawns:
           end:    6
   17223697:
     template: Black_Bat
-    at:       [-413.467, 24.076, -460.910, 127]
+    region:   sw_6
     level:    [17, 18]
     attributes:
       spawn:
@@ -3576,6 +3576,7 @@ spawns:
           end:    4
   17223699:
     template: Bog_Dog
+    region:   sw_6
     level:    [17, 22]
   17223700:
     template: Gadfly
@@ -3608,7 +3609,7 @@ spawns:
   17223707:
     template: Night_Bats_MM_PM
     script:   Night_Bats
-    at:       [-419.324, 24.164, -365.146, 206]
+    region:   sw_20
     level:    [15, 16]
     attributes:
       spawn:
@@ -3647,7 +3648,7 @@ spawns:
           end:    5
   17223711:
     template: Black_Bat
-    at:       [-385.350, 24.484, -354.306, 35]
+    region:   sw_20
     level:    [17, 18]
     attributes:
       spawn:
@@ -3677,7 +3678,7 @@ spawns:
     level:    [21, 22]
   17223716:
     template: Land_Pugil
-    at:       [-436.454, 24.260, -263.289, 171]
+    region:   sw_33
     level:    [19, 20]
   17223717:
     template: Land_Pugil
@@ -3701,7 +3702,7 @@ spawns:
     level:    [19, 20]
   17223722:
     template: Bogy
-    at:       [-416.031, 24.955, -259.330, 203]
+    region:   sw_33
     level:    [25, 26]
   17223723:
     template: Water_Elemental
@@ -3729,6 +3730,7 @@ spawns:
     level:    [15, 16]
   17223729:
     template: Night_Bats_MM_PM
+    region:   sw_44
     script:   Night_Bats
     level:    [15, 16]
     attributes:
@@ -3768,6 +3770,7 @@ spawns:
           end:    4
   17223733:
     template: Black_Bat
+    region:   sw_44
     level:    [17, 18]
     attributes:
       spawn:
@@ -3785,7 +3788,7 @@ spawns:
           end:    6
   17223735:
     template: Bog_Dog
-    at:       [-234.051, 24.365, -243.181, 133]
+    region:   sw_44
     level:    [17, 22]
   17223736:
     template: Goobbue
@@ -3805,7 +3808,7 @@ spawns:
     level:    [22, 23]
   17223740:
     template: Veteran_Quadav
-    at:       [-429.953, 24.500, -305.450, 127]
+    region:   s_105
     level:    [17, 18]
   17223741:
     template: Greater_Quadav
@@ -3826,12 +3829,12 @@ spawns:
   17223745:
     template: Ghoul_war
     script:   Ghoul
-    at:       [-282.481, 24.407, -308.416, 9]
+    region:   sw_56
     level:    [23, 24]
   17223746:
     template: Zombie_blm
     script:   Zombie
-    at:       [-458.000, 24.000, -439.000, 127]
+    region:   sw_56
     level:    [23, 24]
   17223747:
     template: Thunder_Elemental
@@ -3860,7 +3863,7 @@ spawns:
   17223753:
     template: Night_Bats_MM_PM
     script:   Night_Bats
-    at:       [-154.314, 24.826, -258.264, 242]
+    region:   sw_68
     level:    [15, 16]
     attributes:
       spawn:
@@ -3899,7 +3902,7 @@ spawns:
           end:    6
   17223757:
     template: Black_Bat
-    at:       [-162.811, 24.133, -219.590, 246]
+    region:   sw_68
     level:    [17, 18]
     attributes:
       spawn:
@@ -3945,6 +3948,7 @@ spawns:
     level:    [15, 15]
   17223766:
     template: Night_Bats_MM_PM
+    region:   s_81
     script:   Night_Bats
     level:    [15, 16]
     attributes:
@@ -3984,7 +3988,7 @@ spawns:
           end:    5
   17223770:
     template: Black_Bat
-    at:       [27.578, 24.188, -294.534, 88]
+    region:   s_81
     level:    [17, 18]
     attributes:
       spawn:
@@ -4002,6 +4006,7 @@ spawns:
           end:    5
   17223772:
     template: Bog_Dog
+    region:   s_81
     level:    [17, 22]
   17223773:
     template: Water_Wasp
@@ -4038,7 +4043,7 @@ spawns:
   17223781:
     template: Night_Bats_MM_PM
     script:   Night_Bats
-    at:       [259.260, 24.499, -226.845, 127]
+    region:   s_93
     level:    [15, 16]
     attributes:
       spawn:
@@ -4112,12 +4117,12 @@ spawns:
   17223794:
     template: Ghoul_war
     script:   Ghoul
-    at:       [-52.122, 24.499, -236.132, 78]
+    region:   s_105
     level:    [18, 19]
   17223795:
     template: Zombie_blm
     script:   Zombie
-    at:       [269.040, 24.499, -245.784, 127]
+    region:   s_105
     level:    [23, 24]
   17223796:
     template: Thunder_Elemental
@@ -4165,7 +4170,7 @@ spawns:
     level:    [19, 20]
   17223807:
     template: Bogy
-    at:       [118.394, 24.192, -402.939, 127]
+    region:   s_118
     level:    [25, 26]
   17223808:
     template: Water_Elemental
@@ -4173,7 +4178,7 @@ spawns:
     level:    [27, 28]
   17223809:
     template: Carnivorous_Crawler
-    at:       [215.935, 23.694, -296.831, 127]
+    region:   s_118
     level:    [22, 23]
   17223810:
     template: Carnivorous_Crawler
@@ -4209,6 +4214,7 @@ spawns:
     level:    [15, 16]
   17223818:
     template: Night_Bats_MM_PM
+    region:   e_132
     script:   Night_Bats
     level:    [15, 16]
     attributes:
@@ -4248,7 +4254,7 @@ spawns:
           end:    4
   17223822:
     template: Black_Bat
-    at:       [284.136, 24.786, -136.946, 61]
+    region:   e_132
     level:    [17, 18]
     attributes:
       spawn:
@@ -4266,6 +4272,7 @@ spawns:
           end:    6
   17223824:
     template: Bog_Dog
+    region:   e_132
     level:    [17, 22]
   17223825:
     template: Water_Wasp
@@ -4294,7 +4301,7 @@ spawns:
   17223831:
     template: Night_Bats_MM_PM
     script:   Night_Bats
-    at:       [359.736, 25.029, 47.220, 10]
+    region:   e_145
     level:    [15, 16]
     attributes:
       spawn:
@@ -4323,6 +4330,7 @@ spawns:
           end:    4
   17223834:
     template: Black_Bat
+    region:   e_145
     level:    [17, 18]
     attributes:
       spawn:
@@ -4352,7 +4360,7 @@ spawns:
     level:    [22, 23]
   17223839:
     template: Goobbue
-    region:   e_159
+    region:   e_160
     level:    [24, 25]
   17223840:
     template: Old_Quadav
@@ -4381,12 +4389,12 @@ spawns:
   17223846:
     template: Ghoul_war
     script:   Ghoul
-    at:       [366.736, 24.567, -27.233]
+    region:   e_160
     level:    [18, 19]
   17223847:
     template: Zombie_blm
     script:   Zombie
-    at:       [325.435, 24.498, -105.109, 5]
+    region:   e_160
     level:    [18, 19]
   17223848:
     template: Thunder_Elemental
@@ -4411,7 +4419,7 @@ spawns:
   17223853:
     template: Night_Bats_MM_PM
     script:   Night_Bats
-    at:       [314.160, 23.848, 7.772, 192]
+    region:   c_169
     level:    [15, 16]
     attributes:
       spawn:
@@ -4420,6 +4428,7 @@ spawns:
           end:    5
   17223854:
     template: Night_Bats_MM_PM
+    region:   c_169
     script:   Night_Bats
     level:    [15, 16]
     attributes:
@@ -4488,7 +4497,7 @@ spawns:
   17223864:
     template: Night_Bats_MM_PM
     script:   Night_Bats
-    at:       [187.000, 24.000, 158.000, 113]
+    region:   c_179
     level:    [15, 16]
     attributes:
       spawn:
@@ -4498,7 +4507,7 @@ spawns:
   17223865:
     template: Night_Bats_MM_PM
     script:   Night_Bats
-    at:       [169.043, 24.767, 77.959, 130]
+    region:   c_179
     level:    [15, 16]
     attributes:
       spawn:
@@ -4545,7 +4554,7 @@ spawns:
           end:    5
   17223870:
     template: Carnivorous_Crawler
-    at:       [188.888, 24.162, 66.968, 74]
+    region:   c_179
     level:    [22, 23]
   17223871:
     template: Carnivorous_Crawler
@@ -4578,7 +4587,7 @@ spawns:
   17223878:
     template: Night_Bats_MM_PM
     script:   Night_Bats
-    at:       [98.174, 24.948, 80.238, 122]
+    region:   c_193
     level:    [15, 16]
     attributes:
       spawn:
@@ -4607,7 +4616,7 @@ spawns:
           end:    6
   17223881:
     template: Black_Bat
-    at:       [111.000, 25.000, 118.000, 127]
+    region:   c_193
     level:    [17, 18]
     attributes:
       spawn:
@@ -4625,11 +4634,11 @@ spawns:
           end:    5
   17223883:
     template: Bog_Dog
-    at:       [160.748, 24.325, 148.884, 127]
+    region:   c_193
     level:    [17, 22]
   17223884:
     template: Carnivorous_Crawler
-    at:       [99.136, 24.062, 167.203, 27]
+    region:   c_206
     level:    [22, 23]
   17223885:
     template: Carnivorous_Crawler
@@ -4682,12 +4691,12 @@ spawns:
   17223897:
     template: Ghoul_war
     script:   Ghoul
-    at:       [53.000, 25.000, 207.000, 127]
+    region:   c_208
     level:    [18, 19]
   17223898:
     template: Zombie_blm
     script:   Zombie
-    at:       [203.000, 24.000, 184.000, 127]
+    region:   c_208
     level:    [18, 19]
   17223899:
     template: Bog_Dog
@@ -4735,7 +4744,7 @@ spawns:
     level:    [19, 20]
   17223910:
     template: Bogy
-    at:       [239.193, 25.016, 72.731, 125]
+    region:   c_221
     level:    [25, 26]
   17223911:
     template: Water_Elemental
@@ -4763,6 +4772,7 @@ spawns:
     level:    [15, 16]
   17223917:
     template: Night_Bats_MM_PM
+    region:   c_232
     script:   Night_Bats
     level:    [15, 16]
     attributes:
@@ -4802,7 +4812,7 @@ spawns:
           end:    4
   17223921:
     template: Black_Bat
-    at:       [24.641, 24.499, 195.546, 76]
+    region:   c_232
     level:    [17, 18]
     attributes:
       spawn:
@@ -4844,6 +4854,7 @@ spawns:
     level:    [15, 16]
   17223929:
     template: Night_Bats_MM_PM
+    region:   n_243
     script:   Night_Bats
     level:    [15, 16]
     attributes:
@@ -4873,6 +4884,7 @@ spawns:
           end:    5
   17223932:
     template: Black_Bat
+    region:   n_243
     level:    [17, 18]
     attributes:
       spawn:
@@ -4893,7 +4905,7 @@ spawns:
     level:    [17, 22]
   17223935:
     template: Carnivorous_Crawler
-    at:       [18.000, 24.000, 380.000, 52]
+    region:   n_243
     level:    [22, 23]
   17223936:
     template: Carnivorous_Crawler
@@ -4921,6 +4933,7 @@ spawns:
     level:    [15, 15]
   17223942:
     template: Night_Bats_MM_PM
+    region:   nw_257
     script:   Night_Bats
     level:    [15, 16]
     attributes:
@@ -4930,6 +4943,7 @@ spawns:
           end:    5
   17223943:
     template: Night_Bats_MM_PM
+    region:   nw_257
     script:   Night_Bats
     level:    [15, 16]
     attributes:
@@ -5014,12 +5028,12 @@ spawns:
   17223957:
     template: Ghoul_war
     script:   Ghoul
-    at:       [36.721, 24.146, 299.012, 127]
+    region:   n_268
     level:    [18, 19]
   17223958:
     template: Zombie_blm
     script:   Zombie
-    at:       [59.221, 24.155, 180.085, 127]
+    region:   n_268
     level:    [18, 19]
   17223959:
     template: Thunder_Elemental
@@ -5047,6 +5061,7 @@ spawns:
     level:    [24, 25]
   17223965:
     template: Night_Bats_MM_PM
+    region:   w_280
     script:   Night_Bats
     level:    [15, 16]
     attributes:
@@ -5056,6 +5071,7 @@ spawns:
           end:    5
   17223966:
     template: Night_Bats_MM_PM
+    region:   w_280
     script:   Night_Bats
     level:    [15, 16]
     attributes:
@@ -5092,15 +5108,15 @@ spawns:
     level:    [16, 17]
   17223974:
     template: Goblin_Leecher
-    at:       [-66.508, 24.547, 17.508, 122]
+    region:   w_306
     level:    [21, 22]
   17223975:
     template: Goblin_Tinkerer
-    at:       [-250.331, 24.503, -150.341, 76]
+    region:   w_306
     level:    [16, 17]
   17223976:
     template: Goblin_Gambler
-    at:       [-229.695, 24.500, -124.502, 48]
+    region:   w_291
     level:    [21, 22]
   17223977:
     template: Goblin_Butcher
@@ -5170,7 +5186,7 @@ spawns:
     level:    [24, 25]
   17223991:
     template: Goblin_Mugger
-    at:       [-191.083, 24.500, 108.768, 127]
+    region:   w_306
     level:    [21, 22]
   17223992:
     template: Goblin_Ambusher
@@ -5190,11 +5206,11 @@ spawns:
     level:    [21, 22]
   17223996:
     template: Goblin_Butcher
-    at:       [-158.622, 23.902, 107.891, 127]
+    region:   w_306
     level:    [16, 17]
   17223997:
     template: Black_Bat
-    region:   w_306
+    region:   region_54
     level:    [17, 18]
     attributes:
       spawn:
@@ -5203,7 +5219,7 @@ spawns:
           end:    4
   17223998:
     template: Black_Bat
-    region:   w_306
+    region:   region_54
     level:    [17, 18]
     attributes:
       spawn:
@@ -5212,23 +5228,23 @@ spawns:
           end:    6
   17223999:
     template: Water_Wasp
-    region:   w_306
+    region:   region_53
     level:    [17, 18]
   17224000:
     template: Water_Wasp
-    region:   w_306
+    region:   region_53
     level:    [17, 18]
   17224001:
     template: Water_Wasp
-    region:   w_306
+    region:   region_53
     level:    [17, 18]
   17224002:
     template: Water_Wasp
-    region:   w_306
+    region:   region_53
     level:    [17, 18]
   17224003:
     template: Fox_Fire
-    region:   w_306
+    region:   region_53
     level:    [24, 25]
   17224004:
     template: Malboro
@@ -5236,6 +5252,7 @@ spawns:
     level:    [27, 28]
   17224005:
     template: Bogy
+    region:   nw_324
     level:    [25, 26]
   17224006:
     template: Water_Wasp
@@ -5331,7 +5348,7 @@ spawns:
     level:    [22, 23]
   17224029:
     template: Carnivorous_Crawler
-    at:       [-411.379, 23.849, 526.777, 82]
+    region:   nw_347
     level:    [22, 23]
   17224030:
     template: Carnivorous_Crawler
@@ -5343,7 +5360,7 @@ spawns:
     level:    [22, 23]
   17224032:
     template: Carnivorous_Crawler
-    at:       [-458.017, 23.676, 469.532, 127]
+    region:   nw_347
     level:    [22, 23]
   17224033:
     template: Gadfly
@@ -5367,6 +5384,7 @@ spawns:
     level:    [15, 16]
   17224038:
     template: Night_Bats_MM_PM
+    region:   n_353
     script:   Night_Bats
     level:    [15, 16]
     attributes:
@@ -5406,7 +5424,7 @@ spawns:
           end:    5
   17224042:
     template: Black_Bat
-    at:       [285.500, 24.499, 322.013, 122]
+    region:   n_353
     level:    [17, 18]
     attributes:
       spawn:
@@ -5424,6 +5442,7 @@ spawns:
           end:    5
   17224044:
     template: Bog_Dog
+    region:   n_353
     level:    [17, 22]
   17224045:
     template: Gadfly
@@ -5448,7 +5467,7 @@ spawns:
   17224050:
     template: Night_Bats_MM_PM
     script:   Night_Bats
-    at:       [303.966, 24.493, 388.489, 87]
+    region:   ne_365
     level:    [15, 16]
     attributes:
       spawn:
@@ -5487,7 +5506,7 @@ spawns:
           end:    4
   17224054:
     template: Black_Bat
-    at:       [359.566, 24.499, 391.712, 127]
+    region:   ne_365
     level:    [17, 18]
     attributes:
       spawn:
@@ -5530,7 +5549,7 @@ spawns:
   17224062:
     template: Night_Bats_MM_PM
     script:   Night_Bats
-    at:       [464.291, 24.740, 481.018, 101]
+    region:   ne_376
     level:    [15, 16]
     attributes:
       spawn:
@@ -5569,7 +5588,7 @@ spawns:
           end:    6
   17224066:
     template: Black_Bat
-    at:       [500.481, 24.502, 632.045, 127]
+    region:   ne_376
     level:    [17, 18]
     attributes:
       spawn:
@@ -5587,7 +5606,7 @@ spawns:
           end:    4
   17224068:
     template: Bog_Dog
-    at:       [483.629, 24.499, 554.905, 4]
+    region:   ne_376
     level:    [17, 22]
   17224069:
     template: Carnivorous_Crawler
@@ -5636,12 +5655,12 @@ spawns:
   17224080:
     template: Ghoul_war
     script:   Ghoul
-    at:       [159.906, 24.499, 400.323, 39]
+    region:   ne_391
     level:    [18, 19]
   17224081:
     template: Zombie_blm
     script:   Zombie
-    at:       [271.116, 24.885, 406.670, 107]
+    region:   ne_391
     level:    [18, 19]
   17224082:
     template: Thunder_Elemental
@@ -5677,7 +5696,7 @@ spawns:
     level:    [19, 20]
   17224090:
     template: Bogy
-    at:       [436.522, 24.399, 367.572, 10]
+    region:   ne_403
     level:    [25, 26]
   17224091:
     template: Water_Elemental
@@ -5805,7 +5824,7 @@ spawns:
     level:    [17, 18]
   17224122:
     template: Copper_Quadav
-    at:       [541.667, 24.502, 18.268, 10]
+    region:   e_433
     level:    [22, 23]
   17224123:
     template: Brass_Quadav
@@ -5813,7 +5832,7 @@ spawns:
     level:    [22, 23]
   17224124:
     template: Onyx_Quadav
-    at:       [557.238, 24.902, -65.519, 16]
+    region:   e_433
     level:    [17, 18]
   17224125:
     template: Water_Wasp

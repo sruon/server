@@ -379,7 +379,7 @@ spawns:
     level:    [76, 79]
   17408014:
     template: Demonic_Rose
-    at:       [-25.000, -2.000, 56.000, 47]
+    region:   w_12
     level:    [77, 79]
   17408015:
     template: Bark_Tarantula

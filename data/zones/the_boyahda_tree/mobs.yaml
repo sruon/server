@@ -2308,7 +2308,7 @@ spawns:
     level:    [62, 66]
   17403990:
     template: Old_Goobbue
-    at:       [152.720, 8.839, -10.498, 2]
+    region:   n_79
     level:    [65, 68]
   17403991:
     template: Mourioche
@@ -2419,7 +2419,7 @@ spawns:
     level:    [62, 66]
   17404017:
     template: Old_Goobbue
-    region:   n_113
+    region:   n_106
     level:    [65, 68]
   17404018:
     template: Moss_Eater
@@ -2463,7 +2463,7 @@ spawns:
     level:    [62, 66]
   17404028:
     template: Old_Goobbue
-    at:       [33.708, 8.771, 76.831, 174]
+    region:   n_117
     level:    [65, 68]
   17404029:
     template: Unut
@@ -2593,7 +2593,7 @@ spawns:
     level:    [62, 66]
   17404060:
     template: Moss_Eater
-    region:   n_156
+    region:   n_151
     level:    [62, 66]
   17404061:
     template: Old_Goobbue
@@ -3013,7 +3013,7 @@ spawns:
     level:    [73, 76]
   17404162:
     template: Water_Elemental
-    region:   c_258
+    region:   c_252
     level:    [69, 72]
   17404163:
     template: Skimmer
@@ -3541,7 +3541,7 @@ spawns:
     level:    [74, 77]
   17404294:
     template: Boyahda_Sapling
-    at:       [-223.500, 14.430, 23.877, 195]
+    region:   nw_387
     level:    [74, 77]
   17404295:
     template: Boyahda_Sapling
@@ -3549,7 +3549,7 @@ spawns:
     level:    [74, 77]
   17404296:
     template: Boyahda_Sapling
-    at:       [-216.400, 14.317, 56.532, 110]
+    region:   nw_387
     level:    [74, 77]
   17404297:
     template: Bark_Tarantula
@@ -3557,7 +3557,7 @@ spawns:
     level:    [75, 78]
   17404298:
     template: Bark_Tarantula
-    at:       [-209.400, 13.800, 64.683, 222]
+    region:   nw_398
     level:    [75, 78]
   17404299:
     template: Demonic_Rose
@@ -3569,7 +3569,7 @@ spawns:
     level:    [79, 81]
   17404301:
     template: Boyahda_Sapling
-    at:       [-197.800, 11.135, 100.781, 178]
+    region:   nw_387
     level:    [74, 77]
   17404302:
     template: Boyahda_Sapling
@@ -3581,7 +3581,7 @@ spawns:
     level:    [75, 78]
   17404304:
     template: Boyahda_Sapling
-    at:       [-181.700, 11.329, 82.953, 180]
+    region:   nw_387
     level:    [74, 77]
   17404305:
     template: Bark_Tarantula
@@ -3601,7 +3601,7 @@ spawns:
     level:    [74, 77]
   17404309:
     template: Boyahda_Sapling
-    at:       [-137.900, 8.565, 54.097, 62]
+    region:   nw_404
     level:    [74, 77]
   17404310:
     template: Bark_Tarantula
@@ -3629,7 +3629,7 @@ spawns:
     level:    [74, 77]
   17404316:
     template: Bark_Tarantula
-    at:       [-181.400, 8.890, 134.447, 42]
+    region:   nw_411
     level:    [75, 78]
   17404317:
     template: Bark_Tarantula

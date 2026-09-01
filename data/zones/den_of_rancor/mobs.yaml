@@ -2103,7 +2103,7 @@ spawns:
     level:    [62, 64]
   17432609:
     template: Sozu_Bliberry
-    at:       [98.830, 16.807, -40.687, 127]
+    region:   c_31
     level:    [65, 66]
   17432610:
     template: Dire_Bat
@@ -2167,7 +2167,7 @@ spawns:
     level:    [67, 69]
   17432625:
     template: Tonberry_Trailer
-    at:       [145.000, 16.000, -95.000, 127]
+    region:   c_45
     level:    [62, 65]
   17432626:
     template: Dire_Bat
@@ -2229,7 +2229,7 @@ spawns:
     level:    [68, 70]
   17432640:
     template: Friar_Rush
-    at:       [-86.000, 16.000, 2.000, 35]
+    region:   w_61
     level:    [70, 70]
   17432641:
     template: Dire_Bat
@@ -2364,7 +2364,7 @@ spawns:
     level:    [62, 65]
   17432671:
     template: Tonberry_Imprecator
-    at:       [39.428, 36.480, -136.605, 127]
+    region:   w_85
     level:    [62, 64]
   17432672:
     template: Dire_Bat
@@ -2446,7 +2446,7 @@ spawns:
     level:    [75, 78]
   17432691:
     template: Puck
-    at:       [323.838, -4.000, 322.532, 127]
+    region:   ne_132
     level:    [74, 77]
   17432692:
     template: Bullbeggar
@@ -2478,7 +2478,7 @@ spawns:
     level:    [75, 78]
   17432699:
     template: Puck
-    at:       [342.186, -4.000, 271.980]
+    region:   ne_132
     level:    [74, 77]
   17432700:
     template: Puck
@@ -2510,7 +2510,7 @@ spawns:
     level:    [75, 78]
   17432707:
     template: Puck
-    at:       [386.735, 1.000, 294.356]
+    region:   ne_132
     level:    [74, 77]
   17432708:
     template: Bullbeggar
@@ -2594,7 +2594,7 @@ spawns:
     level:    [78, 80]
   17432728:
     template: Den_Scorpion
-    at:       [372.000, 26.000, 296.000, 127]
+    region:   ne_153
     level:    [79, 81]
   17432729:
     template: Bullbeggar
@@ -2652,7 +2652,7 @@ spawns:
     level:    [75, 78]
   17432742:
     template: Puck
-    at:       [308.395, 15.484, 260.147, 240]
+    region:   ne_167
     level:    [74, 77]
   17432743:
     template: Tormentor
@@ -2736,7 +2736,7 @@ spawns:
     level:    [75, 78]
   17432763:
     template: Puck
-    at:       [227.698, 15.000, 182.723, 127]
+    region:   ne_167
     level:    [74, 77]
   17432764:
     template: Tormentor
@@ -2752,7 +2752,7 @@ spawns:
     level:    [79, 81]
   17432767:
     template: Den_Scorpion
-    at:       [180.158, 15.380, 174.054, 127]
+    region:   ne_181
     level:    [79, 81]
   17432768:
     template: Bullbeggar
@@ -2776,7 +2776,7 @@ spawns:
     level:    [74, 77]
   17432773:
     template: Den_Scorpion
-    at:       [301.739, 15.802, 145.633, 123]
+    region:   ne_171
     level:    [79, 81]
   17432774:
     template: Puck
@@ -2804,7 +2804,7 @@ spawns:
     level:    [75, 78]
   17432780:
     template: Puck
-    at:       [325.841, 13.000, 142.558, 127]
+    region:   ne_167
     level:    [74, 77]
   17432781:
     template: Dire_Bat
@@ -3084,7 +3084,7 @@ spawns:
     level:    [64, 67]
   17432845:
     template: Bistre-hearted_Malberry
-    at:       [-32.000, 16.000, -178.000, 127]
+    region:   sw_243
     level:    [71, 73]
   17432846:
     template: Mousse_DoR_PMS
@@ -3649,7 +3649,7 @@ spawns:
     level:    [75, 78]
   17432974:
     template: Ogama
-    at:       [-32.223, 36.078, -369.741, 117]
+    region:   sw_393
     level:    [80, 82]
   17432975:
     template: Million_Eyes_DR
@@ -3672,7 +3672,7 @@ spawns:
     level:    [75, 78]
   17432979:
     template: Doom_Toad
-    at:       [-21.000, 36.000, -351.000, 18]
+    region:   sw_393
     level:    [75, 78]
   17432980:
     template: Tonberry_Slasher
@@ -3716,7 +3716,7 @@ spawns:
     level:    [72, 74]
   17432990:
     template: Doom_Toad
-    at:       [-170.000, 5.479, -179.000, 127]
+    region:   sw_415
     level:    [75, 78]
   17432991:
     template: Doom_Toad

@@ -3994,7 +3994,7 @@ spawns:
     level:    [20, 21]
   17203226:
     template: Scavenging_Hound
-    at:       [-512.716, 0.612, -424.661, 164]
+    region:   sw_17
     level:    [22, 23]
   17203227:
     template: Stag_Beetle
@@ -4034,7 +4034,7 @@ spawns:
     level:    [20, 21]
   17203236:
     template: Scavenging_Hound
-    at:       [-352.845, -1.182, -395.931, 72]
+    region:   sw_27
     level:    [22, 23]
   17203237:
     template: Jugner_Funguar
@@ -4102,7 +4102,7 @@ spawns:
     level:    [27, 28]
   17203253:
     template: Scavenging_Hound
-    at:       [-193.197, -1.405, -93.869, 235]
+    region:   w_43
     level:    [22, 23]
   17203254:
     template: Jugner_Funguar
@@ -4138,7 +4138,7 @@ spawns:
     level:    [24, 25]
   17203262:
     template: Forest_Leech
-    at:       [-231.637, -0.067, -160.362, 120]
+    region:   w_59
     level:    [21, 22]
   17203263:
     template: Forest_Leech
@@ -4182,12 +4182,13 @@ spawns:
     level:    [21, 22]
   17203273:
     template: Ghoul_war
+    region:   sw_65
     script:   Ghoul
     level:    [16, 17]
   17203274:
     template: Zombie_blm
     script:   Zombie
-    at:       [-467.444, -0.739, -368.853, 127]
+    region:   sw_65
     level:    [16, 17]
   17203275:
     template: Thunder_Elemental
@@ -4279,7 +4280,7 @@ spawns:
     level:    [20, 21]
   17203297:
     template: Scavenging_Hound
-    at:       [-278.434, 4.831, 173.891, 115]
+    region:   w_89
     level:    [22, 23]
   17203298:
     template: Stag_Beetle
@@ -4319,7 +4320,7 @@ spawns:
     level:    [20, 21]
   17203307:
     template: Scavenging_Hound
-    at:       [-21.138, -1.934, 133.956, 86]
+    region:   c_98
     level:    [22, 23]
   17203308:
     template: Jugner_Funguar
@@ -4396,12 +4397,12 @@ spawns:
   17203326:
     template: Ghoul_war
     script:   Ghoul
-    at:       [-27.630, 0.155, 69.012, 79]
+    region:   c_118
     level:    [16, 17]
   17203327:
     template: Zombie_blm
     script:   Zombie
-    at:       [-61.207, 1.788, 89.480, 127]
+    region:   c_118
     level:    [21, 22]
   17203328:
     template: Thunder_Elemental
@@ -4473,6 +4474,7 @@ spawns:
     level:    [19, 20]
   17203345:
     template: Land_Pugil
+    region:   n_143
     level:    [19, 20]
   17203346:
     template: Land_Pugil
@@ -4544,15 +4546,15 @@ spawns:
     level:    [20, 21]
   17203363:
     template: Scavenging_Hound
-    at:       [104.576, 2.607, 171.745, 2]
+    region:   c_155
     level:    [22, 23]
   17203364:
     template: Jugner_Funguar
-    at:       [145.004, 4.216, 22.830, 19]
+    region:   c_166
     level:    [24, 25]
   17203365:
     template: Jugner_Funguar
-    at:       [122.952, 4.991, 28.192, 124]
+    region:   c_166
     level:    [24, 25]
   17203366:
     template: Forest_Leech
@@ -4709,12 +4711,12 @@ spawns:
   17203404:
     template: Ghoul_war
     script:   Ghoul
-    at:       [-99.057, 0.279, -365.504, 127]
+    region:   s_197
     level:    [16, 17]
   17203405:
     template: Zombie_blm
     script:   Zombie
-    at:       [-8.231, -0.457, -242.167, 127]
+    region:   s_197
     level:    [21, 22]
   17203406:
     template: Will-o-the-Wisp
@@ -4734,7 +4736,7 @@ spawns:
     level:    [16, 17]
   17203410:
     template: Orcish_Fighter
-    at:       [-192.900, -3.760, -457.319, 127]
+    region:   s_207
     level:    [21, 22]
   17203411:
     template: Orcish_Fighter
@@ -4856,7 +4858,7 @@ spawns:
     level:    [16, 17]
   17203440:
     template: Orcish_Fighter
-    at:       [-47.952, -6.456, -463.572, 127]
+    region:   s_235
     level:    [21, 22]
   17203441:
     template: Orcish_Cursemaker
@@ -4864,15 +4866,16 @@ spawns:
     level:    [21, 22]
   17203442:
     template: Orcish_Serjeant
-    at:       [133.598, -0.381, -219.910, 127]
+    region:   s_235
     level:    [21, 22]
   17203443:
     template: Ghoul_war
     script:   Ghoul
-    at:       [-42.065, -8.565, -476.637, 127]
+    region:   s_235
     level:    [16, 17]
   17203444:
     template: Zombie_blm
+    region:   s_235
     script:   Zombie
     level:    [21, 22]
   17203445:
@@ -4881,6 +4884,7 @@ spawns:
     level:    [24, 25]
   17203446:
     template: Scavenging_Hound
+    region:   s_230
     level:    [22, 23]
   17203447:
     template: Fraelissa
@@ -4992,7 +4996,7 @@ spawns:
     level:    [27, 28]
   17203474:
     template: Scavenging_Hound
-    at:       [247.226, -3.611, -379.283, 125]
+    region:   se_266
     level:    [22, 23]
   17203475:
     template: Supplespine_Mujwuj
@@ -5028,7 +5032,7 @@ spawns:
     level:    [20, 21]
   17203483:
     template: Scavenging_Hound
-    at:       [412.250, -13.583, -385.550, 209]
+    region:   se_276
     level:    [22, 23]
   17203484:
     template: Stag_Beetle
@@ -5093,10 +5097,11 @@ spawns:
   17203499:
     template: Ghoul_war
     script:   Ghoul
-    at:       [226.547, -2.926, -138.020, 56]
+    region:   se_292
     level:    [16, 17]
   17203500:
     template: Zombie_blm
+    region:   se_292
     script:   Zombie
     level:    [21, 22]
   17203501:
@@ -5237,6 +5242,7 @@ spawns:
     level:    [20, 21]
   17203535:
     template: Scavenging_Hound
+    region:   e_329
     level:    [22, 23]
   17203536:
     template: Forest_Tiger
@@ -5280,6 +5286,7 @@ spawns:
     level:    [27, 28]
   17203546:
     template: Scavenging_Hound
+    region:   ne_338
     level:    [22, 23]
   17203547:
     template: Sappy_Sycamore
@@ -5287,7 +5294,7 @@ spawns:
     level:    [41, 42]
   17203548:
     template: Jugner_Funguar
-    at:       [251.603, 3.366, 212.978, 127]
+    region:   e_349
     level:    [24, 25]
   17203549:
     template: Jugner_Funguar
@@ -5335,7 +5342,7 @@ spawns:
     level:    [20, 21]
   17203560:
     template: Scavenging_Hound
-    at:       [490.611, -0.319, 169.448, 42]
+    region:   e_352
     level:    [22, 23]
   17203561:
     template: Forest_Tiger
@@ -5368,12 +5375,12 @@ spawns:
   17203568:
     template: Ghoul_war
     script:   Ghoul
-    at:       [265.531, -2.347, 301.585, 127]
+    region:   e_361
     level:    [16, 17]
   17203569:
     template: Zombie_blm
     script:   Zombie
-    at:       [467.420, -0.556, 170.924, 127]
+    region:   e_361
     level:    [21, 22]
   17203570:
     template: Thunder_Elemental
@@ -5477,7 +5484,7 @@ spawns:
     level:    [20, 21]
   17203595:
     template: Scavenging_Hound
-    at:       [102.959, 2.946, 431.712, 198]
+    region:   n_388
     level:    [22, 23]
   17203596:
     template: Jugner_Funguar
@@ -5493,7 +5500,7 @@ spawns:
     level:    [24, 25]
   17203599:
     template: Forest_Leech
-    at:       [246.972, 1.469, 367.769, 34]
+    region:   ne_396
     level:    [21, 22]
   17203600:
     template: Forest_Leech
@@ -5537,6 +5544,7 @@ spawns:
     level:    [20, 21]
   17203610:
     template: Scavenging_Hound
+    region:   ne_402
     level:    [22, 23]
   17203611:
     template: Stag_Beetle
@@ -5572,7 +5580,7 @@ spawns:
     level:    [20, 21]
   17203619:
     template: Scavenging_Hound
-    at:       [476.953, -0.516, 586.987, 127]
+    region:   ne_411
     level:    [22, 23]
   17203620:
     template: Jugner_Funguar
@@ -5632,12 +5640,13 @@ spawns:
     level:    [16, 17]
   17203634:
     template: Ghoul_war
+    region:   ne_426
     script:   Ghoul
     level:    [16, 17]
   17203635:
     template: Zombie_blm
     script:   Zombie
-    at:       [262.618, -4.596, 321.318, 127]
+    region:   ne_426
     level:    [21, 22]
   17203636:
     template: Thunder_Elemental

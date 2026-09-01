@@ -1618,7 +1618,7 @@ spawns:
     level:    [61, 64]
   17616907:
     template: Old_Opo-opo
-    at:       [7.392, 3.917, -283.708, 127]
+    region:   s_8
     level:    [61, 64]
   17616908:
     template: Dire_Bat
@@ -1682,7 +1682,7 @@ spawns:
     level:    [60, 63]
   17616923:
     template: Old_Opo-opo
-    at:       [61.404, -0.003, -240.311, 127]
+    region:   s_21
     level:    [61, 64]
   17616924:
     template: Dire_Bat
@@ -1714,11 +1714,11 @@ spawns:
     level:    [63, 66]
   17616931:
     template: Volcanic_Gas
-    at:       [19.091, -1.848, -129.556, 191]
+    region:   c_38
     level:    [63, 66]
   17616932:
     template: Old_Opo-opo
-    at:       [23.178, -0.452, -159.253]
+    region:   c_38
     level:    [63, 65]
   17616933:
     template: Old_Opo-opo
@@ -1750,7 +1750,7 @@ spawns:
     level:    [63, 66]
   17616940:
     template: Old_Opo-opo
-    at:       [-60.019, -0.901, -121.786, 127]
+    region:   s_42
     level:    [63, 65]
   17616941:
     template: Old_Opo-opo
@@ -1762,7 +1762,7 @@ spawns:
     level:    [63, 66]
   17616943:
     template: Volcanic_Gas
-    at:       [-57.703, -0.553, -109.572, 120]
+    region:   s_42
     level:    [63, 66]
   17616944:
     template: Old_Opo-opo
@@ -1774,7 +1774,7 @@ spawns:
     level:    [63, 66]
   17616946:
     template: Volcanic_Gas
-    at:       [-22.745, -0.617, -94.856, 208]
+    region:   s_42
     level:    [63, 66]
   17616947:
     template: Volcano_Wasp
@@ -1798,7 +1798,7 @@ spawns:
     level:    [63, 65]
   17616952:
     template: Volcanic_Gas
-    at:       [259.981, 16.183, -76.597, 127]
+    region:   se_58
     level:    [62, 64]
   17616953:
     template: Volcano_Wasp
@@ -1870,7 +1870,7 @@ spawns:
     level:    [63, 65]
   17616970:
     template: Volcanic_Gas
-    at:       [39.214, -0.328, 62.740, 127]
+    region:   e_72
     level:    [64, 66]
   17616971:
     template: Volcanic_Gas
@@ -1898,11 +1898,11 @@ spawns:
     level:    [53, 55]
   17616977:
     template: Dodomeki
-    at:       [-20.087, 0.540, -230.648, 115]
+    region:   s_78
     level:    [63, 66]
   17616978:
     template: Goblin_Alchemist
-    at:       [-23.175, 0.437, -232.478, 55]
+    region:   s_83
     level:    [66, 69]
   17616979:
     template: Goblin_Mercenary
@@ -1962,7 +1962,7 @@ spawns:
     level:    [64, 66]
   17616993:
     template: Volcanic_Gas
-    at:       [0.314, 19.533, -64.091, 127]
+    region:   c_98
     level:    [64, 66]
   17616994:
     template: Volcanic_Gas
@@ -1994,15 +1994,15 @@ spawns:
     level:    [70, 73]
   17617001:
     template: Sulfur_Scorpion
-    at:       [-116.185, 20.097, -114.903, 127]
+    region:   c_99
     level:    [70, 73]
   17617002:
     template: Volcanic_Gas
-    at:       [-130.000, 20.000, -121.000, 127]
+    region:   c_99
     level:    [67, 68]
   17617003:
     template: Volcanic_Gas
-    at:       [-131.166, 18.952, -115.474, 127]
+    region:   s_108
     level:    [67, 68]
   17617004:
     template: Volcanic_Gas
@@ -2046,11 +2046,11 @@ spawns:
     level:    [74, 76]
   17617014:
     template: Goblin_Bandit
-    at:       [-254.097, 3.317, -154.747, 2]
+    region:   sw_121
     level:    [66, 69]
   17617015:
     template: Goblin_Shepherd
-    at:       [-258.793, 3.212, -138.442, 127]
+    region:   sw_121
     level:    [66, 69]
   17617016:
     template: Goblins_Bats
@@ -2062,7 +2062,7 @@ spawns:
     level:    [66, 69]
   17617018:
     template: Goblin_Mercenary
-    at:       [-239.845, 3.967, -167.249, 97]
+    region:   sw_123
     level:    [66, 69]
   17617019:
     template: Goblin_Bandit
@@ -2070,7 +2070,7 @@ spawns:
     level:    [66, 69]
   17617020:
     template: Goblin_Shepherd
-    at:       [-275.477, 3.968, -104.791, 206]
+    region:   sw_123
     level:    [66, 69]
   17617021:
     template: Goblins_Bats
@@ -2082,15 +2082,15 @@ spawns:
     level:    [66, 69]
   17617023:
     template: Goblin_Mercenary
-    at:       [-273.160, 4.036, -114.664, 36]
+    region:   sw_123
     level:    [66, 69]
   17617024:
     template: Goblin_Bandit
-    at:       [-275.782, 3.605, -107.773, 127]
+    region:   sw_123
     level:    [66, 69]
   17617025:
     template: Goblin_Shepherd
-    at:       [-269.227, 3.602, -77.686, 127]
+    region:   w_131
     level:    [66, 69]
   17617026:
     template: Goblins_Bats
@@ -2102,7 +2102,7 @@ spawns:
     level:    [66, 69]
   17617028:
     template: Goblin_Mercenary
-    at:       [-283.845, 3.999, -81.683, 128]
+    region:   w_131
     level:    [66, 69]
   17617029:
     template: Volcanic_Gas
@@ -2118,7 +2118,7 @@ spawns:
     level:    [70, 73]
   17617032:
     template: Eotyrannus
-    at:       [-292.248, 3.984, -118.252, 63]
+    region:   w_133
     level:    [70, 73]
   17617033:
     template: Volcanic_Gas
@@ -2178,7 +2178,7 @@ spawns:
     level:    [70, 73]
   17617047:
     template: Eotyrannus
-    at:       [-130.319, 3.125, 131.947, 84]
+    region:   n_155
     level:    [70, 73]
   17617048:
     template: Volcanic_Gas
@@ -2190,7 +2190,7 @@ spawns:
     level:    [70, 73]
   17617050:
     template: Eotyrannus
-    at:       [-116.634, 3.999, 162.210, 127]
+    region:   n_155
     level:    [70, 73]
   17617051:
     template: Volcanic_Gas
@@ -2218,15 +2218,15 @@ spawns:
     level:    [66, 69]
   17617057:
     template: Goblin_Mercenary
-    at:       [-103.344, 3.651, 147.053, 98]
+    region:   n_171
     level:    [66, 69]
   17617058:
     template: Goblin_Bandit
-    at:       [-112.344, 3.806, 154.593, 105]
+    region:   n_167
     level:    [66, 69]
   17617059:
     template: Goblin_Shepherd
-    at:       [-91.462, 3.201, 168.680, 114]
+    region:   n_157
     level:    [66, 69]
   17617060:
     template: Goblins_Bats
@@ -2234,7 +2234,7 @@ spawns:
     level:    [53, 55]
   17617061:
     template: Goblin_Mercenary
-    at:       [-82.324, 3.601, 165.730, 233]
+    region:   n_171
     level:    [66, 69]
   17617062:
     template: Foreseer_Oramix
@@ -2246,7 +2246,7 @@ spawns:
     level:    [66, 69]
   17617064:
     template: Goblin_Shepherd
-    at:       [-75.514, 4.034, 151.962, 108]
+    region:   n_157
     level:    [66, 69]
   17617065:
     template: Goblins_Bats
@@ -2262,7 +2262,7 @@ spawns:
     level:    [66, 69]
   17617068:
     template: Goblin_Bandit
-    at:       [-76.562, 3.989, 155.144, 76]
+    region:   n_167
     level:    [66, 69]
   17617069:
     template: Goblin_Alchemist
@@ -2274,7 +2274,7 @@ spawns:
     level:    [64, 66]
   17617071:
     template: Volcanic_Gas
-    at:       [-60.534, -0.604, 120.002, 127]
+    region:   n_176
     level:    [64, 66]
   17617072:
     template: Volcanic_Gas
@@ -2286,7 +2286,7 @@ spawns:
     level:    [70, 73]
   17617074:
     template: Volcanic_Gas
-    at:       [-106.075, -0.103, 225.664, 48]
+    region:   c_179
     level:    [64, 66]
   17617075:
     template: Volcanic_Bomb
@@ -2316,7 +2316,7 @@ spawns:
     level:    [68, 72]
   17617081:
     template: Volcanic_Bomb
-    at:       [84.236, 9.808, 132.039, 127]
+    region:   ne_181
     level:    [71, 75]
   17617082:
     template: Nightmare_Bats_Ifrits_Cauldron
@@ -2339,7 +2339,7 @@ spawns:
     level:    [68, 72]
   17617086:
     template: Volcanic_Bomb
-    at:       [-17.279, 16.588, 84.915, 127]
+    region:   n_187
     level:    [71, 75]
   17617087:
     template: Volcanic_Bomb
@@ -2355,7 +2355,7 @@ spawns:
     level:    [71, 75]
   17617090:
     template: Volcanic_Bomb
-    at:       [77.900, 19.804, 8.656, 9]
+    region:   e_193
     level:    [71, 75]
   17617091:
     template: Nightmare_Bats_Ifrits_Cauldron
@@ -2374,7 +2374,7 @@ spawns:
     level:    [68, 72]
   17617094:
     template: Volcanic_Bomb
-    at:       [76.326, 19.930, -3.021, 28]
+    region:   e_200
     level:    [71, 75]
   17617095:
     template: Nightmare_Bats_Ifrits_Cauldron
@@ -2413,7 +2413,7 @@ spawns:
     level:    [71, 75]
   17617103:
     template: Volcanic_Bomb
-    at:       [118.555, 20.141, 146.449, 127]
+    region:   ne_202
     level:    [71, 75]
   17617104:
     template: Nightmare_Bats_Ifrits_Cauldron
@@ -2430,7 +2430,7 @@ spawns:
     level:    [73, 76]
   17617107:
     template: Volcanic_Bomb
-    at:       [111.820, 19.906, 168.544, 127]
+    region:   ne_213
     level:    [71, 75]
   17617108:
     template: Nightmare_Bats_Ifrits_Cauldron
@@ -2460,7 +2460,7 @@ spawns:
     level:    [73, 76]
   17617114:
     template: Volcanic_Bomb
-    at:       [55.607, -0.003, 252.734, 127]
+    region:   n_236
     level:    [71, 75]
   17617115:
     template: Ash_Lizard
@@ -2476,7 +2476,7 @@ spawns:
     level:    [75, 78]
   17617118:
     template: Hurricane_Wyvern
-    at:       [-20.388, 4.000, 239.845, 124]
+    region:   n_223
     level:    [75, 78]
   17617119:
     template: Volcanic_Bomb
@@ -2528,7 +2528,7 @@ spawns:
     level:    [79, 81]
   17617131:
     template: Volcanic_Bomb
-    at:       [-35.749, 3.999, 281.747, 36]
+    region:   n_223
     level:    [71, 75]
   17617132:
     template: Volcanic_Bomb
@@ -2556,7 +2556,7 @@ spawns:
     level:    [73, 76]
   17617138:
     template: Volcanic_Bomb
-    at:       [-136.301, 39.429, 100.458, 127]
+    region:   c_240
     level:    [74, 78]
   17617139:
     template: Ash_Lizard

@@ -2953,7 +2953,7 @@ spawns:
     level:    [25, 26]
   17227787:
     template: Moon_Bat
-    at:       [15.146, -3.192, -826.552, 61]
+    region:   s_7
     level:    [25, 26]
     attributes:
       spawn:
@@ -3016,7 +3016,7 @@ spawns:
     level:    [25, 26]
   17227799:
     template: Moon_Bat
-    at:       [-8.326, 2.292, -625.871, 127]
+    region:   s_19
     level:    [25, 26]
     attributes:
       spawn:
@@ -3087,7 +3087,7 @@ spawns:
     level:    [25, 26]
   17227813:
     template: Moon_Bat
-    at:       [-167.886, -1.098, -561.463, 127]
+    region:   s_33
     level:    [25, 26]
     attributes:
       spawn:
@@ -3167,12 +3167,12 @@ spawns:
   17227829:
     template: Wight_war
     script:   Wight
-    at:       [-78.953, 0.637, -557.610, 127]
+    region:   s_46
     level:    [32, 34]
   17227830:
     template: Wight_blm
     script:   Wight
-    at:       [-44.751, -6.203, -672.086, 127]
+    region:   s_46
     level:    [32, 34]
   17227831:
     template: Fire_Elemental
@@ -3513,12 +3513,12 @@ spawns:
   17227890:
     template: Wight_war
     script:   Wight
-    at:       [-380.972, -24.197, -544.068, 127]
+    region:   sw_106
     level:    [31, 33]
   17227891:
     template: Wight_blm
     script:   Wight
-    at:       [-514.596, -23.573, -449.658, 81]
+    region:   sw_106
     level:    [31, 33]
   17227892:
     template: Berry_Grub
@@ -3788,12 +3788,12 @@ spawns:
   17227942:
     template: Wight_war
     script:   Wight
-    at:       [-137.336, 1.896, -210.520, 127]
+    region:   c_159
     level:    [32, 34]
   17227943:
     template: Wight_blm
     script:   Wight
-    at:       [-182.234, 4.636, -328.340, 127]
+    region:   c_159
     level:    [32, 34]
   17227944:
     template: Fire_Elemental
@@ -4011,12 +4011,12 @@ spawns:
   17227981:
     template: Wight_war
     script:   Wight
-    at:       [0.023, -14.892, -211.381, 86]
+    region:   c_197
     level:    [28, 33]
   17227982:
     template: Wight_blm
     script:   Wight
-    at:       [39.215, -8.027, -356.326, 180]
+    region:   c_197
     level:    [28, 33]
   17227983:
     template: Berry_Grub
@@ -4216,12 +4216,12 @@ spawns:
   17228018:
     template: Wight_war
     script:   Wight
-    at:       [72.827, -16.007, -226.665, 181]
+    region:   e_234
     level:    [28, 33]
   17228019:
     template: Wight_blm
     script:   Wight
-    at:       [120.811, -23.620, -188.944, 7]
+    region:   e_234
     level:    [28, 33]
   17228020:
     template: Clipper
@@ -4245,7 +4245,7 @@ spawns:
     level:    [31, 32]
   17228025:
     template: Midnight_Wings
-    at:       [347.679, -31.273, -406.395, 90]
+    region:   e_248
     level:    [22, 23]
     attributes:
       spawn:
@@ -4492,12 +4492,12 @@ spawns:
   17228074:
     template: Wight_war
     script:   Wight
-    at:       [-264.730, 0.571, -158.487, 114]
+    region:   c_291
     level:    [32, 34]
   17228075:
     template: Wight_blm
     script:   Wight
-    at:       [-240.617, 0.340, -90.076, 127]
+    region:   c_291
     level:    [32, 34]
   17228076:
     template: Ignis_Fatuus
@@ -4668,12 +4668,12 @@ spawns:
   17228105:
     template: Wight_war
     script:   Wight
-    at:       [-391.094, -7.790, 42.948, 36]
+    region:   w_321
     level:    [28, 33]
   17228106:
     template: Wight_blm
     script:   Wight
-    at:       [-475.890, -15.913, -157.121, 116]
+    region:   w_321
     level:    [28, 33]
   17228107:
     template: Berry_Grub
@@ -4739,7 +4739,7 @@ spawns:
     level:    [38, 40]
   17228120:
     template: Berry_Grub
-    region:   w_344
+    region:   w_345
     level:    [27, 28]
   17228121:
     template: Berry_Grub
@@ -4846,12 +4846,12 @@ spawns:
   17228144:
     template: Wight_war
     script:   Wight
-    at:       [-543.954, -21.037, -111.476, 48]
+    region:   w_359
     level:    [28, 33]
   17228145:
     template: Wight_blm
     script:   Wight
-    at:       [-428.833, -15.218, -262.510, 127]
+    region:   w_359
     level:    [28, 33]
   17228146:
     template: Evil_Spirit
@@ -4863,7 +4863,7 @@ spawns:
     level:    [35, 36]
   17228148:
     template: Evil_Weapon
-    at:       [396.992, -24.010, -152.613, 59]
+    region:   e_375
     level:    [37, 38]
   17228149:
     template: Evil_Weapon
@@ -4899,23 +4899,23 @@ spawns:
     level:    [37, 38]
   17228157:
     template: Death_Wasp
-    region:   n_381
+    region:   n_386
     level:    [25, 26]
   17228158:
     template: Death_Wasp
-    region:   n_381
+    region:   n_386
     level:    [25, 26]
   17228159:
     template: Death_Wasp
-    region:   n_381
+    region:   n_386
     level:    [25, 26]
   17228160:
     template: Death_Wasp
-    region:   n_381
+    region:   n_386
     level:    [25, 26]
   17228161:
     template: Midnight_Wings
-    at:       [-66.674, 9.899, 357.464, 127]
+    region:   n_386
     level:    [22, 23]
     attributes:
       spawn:
@@ -4942,7 +4942,7 @@ spawns:
           end:    5
   17228164:
     template: Moon_Bat
-    at:       [-245.706, 9.357, 182.077, 2]
+    region:   n_386
     level:    [25, 26]
     attributes:
       spawn:
@@ -4989,7 +4989,7 @@ spawns:
     level:    [25, 26]
   17228172:
     template: Midnight_Wings
-    at:       [-392.182, 5.029, 302.039, 252]
+    region:   nw_392
     level:    [22, 23]
     attributes:
       spawn:
@@ -5007,7 +5007,7 @@ spawns:
           end:    6
   17228174:
     template: Moon_Bat
-    at:       [-393.522, 0.734, 286.345, 98]
+    region:   nw_392
     level:    [25, 26]
     attributes:
       spawn:
@@ -5155,7 +5155,7 @@ spawns:
     level:    [25, 26]
   17228203:
     template: Midnight_Wings
-    region:   n_427
+    region:   n_423
     level:    [22, 23]
     attributes:
       spawn:
@@ -5164,7 +5164,7 @@ spawns:
           end:    5
   17228204:
     template: Midnight_Wings
-    region:   n_428
+    region:   n_423
     level:    [22, 23]
     attributes:
       spawn:
@@ -5173,7 +5173,7 @@ spawns:
           end:    4
   17228205:
     template: Moon_Bat
-    region:   n_428
+    region:   n_423
     level:    [25, 26]
     attributes:
       spawn:

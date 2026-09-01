@@ -2093,11 +2093,11 @@ spawns:
     level:    [62, 65]
   17240075:
     template: Beach_Bunny
-    at:       [-155.872, 7.236, -250.314, 47]
+    region:   sw_7
     level:    [62, 65]
   17240076:
     template: Goblin_Mercenary
-    at:       [-198.000, 8.000, -197.000, 127]
+    region:   sw_7
     level:    [65, 68]
   17240077:
     template: Sand_Lizard_CT
@@ -2120,11 +2120,11 @@ spawns:
     level:    [62, 65]
   17240081:
     template: Beach_Bunny
-    at:       [-207.000, 8.000, -221.000, 127]
+    region:   sw_13
     level:    [62, 65]
   17240082:
     template: Beach_Bunny
-    at:       [-193.657, 7.792, -186.730, 13]
+    region:   sw_19
     level:    [62, 65]
   17240083:
     template: Goblin_Shepherd
@@ -2142,7 +2142,7 @@ spawns:
   17240086:
     template: Sand_Lizard_CT
     script:   Sand_Lizard
-    at:       [-158.229, 7.453, -164.615, 127]
+    region:   sw_19
     level:    [63, 64]
   17240087:
     template: Sand_Lizard_CT
@@ -2155,7 +2155,7 @@ spawns:
     level:    [62, 65]
   17240089:
     template: Beach_Bunny
-    at:       [-158.293, 7.941, -147.586, 127]
+    region:   sw_19
     level:    [62, 65]
   17240090:
     template: Beach_Bunny
@@ -2171,7 +2171,7 @@ spawns:
     level:    [48, 50]
   17240093:
     template: Goblin_Bandit
-    at:       [-134.000, 7.000, -96.000, 127]
+    region:   sw_27
     level:    [65, 68]
   17240094:
     template: Sand_Lizard_CT
@@ -2197,11 +2197,11 @@ spawns:
     level:    [62, 65]
   17240099:
     template: Beach_Bunny
-    at:       [-146.340, 7.415, -107.721, 127]
+    region:   sw_37
     level:    [62, 65]
   17240100:
     template: Doom_Soldier
-    at:       [-152.000, 7.000, -232.000, 127]
+    region:   sw_27
     level:    [66, 70]
   17240101:
     template: Goblin_Alchemist
@@ -2217,7 +2217,7 @@ spawns:
     level:    [62, 65]
   17240104:
     template: Doom_Mage
-    at:       [-244.000, 7.000, -38.000, 5]
+    region:   sw_37
     level:    [67, 71]
   17240105:
     template: Goblin_Mercenary
@@ -2243,7 +2243,7 @@ spawns:
   17240110:
     template: Sand_Lizard_CT
     script:   Sand_Lizard
-    at:       [-104.996, 4.655, -95.891, 127]
+    region:   s_41
     level:    [62, 66]
   17240111:
     template: Sand_Lizard_CT
@@ -2252,7 +2252,7 @@ spawns:
     level:    [62, 66]
   17240112:
     template: Doom_Soldier
-    at:       [-92.985, 1.141, -96.138, 118]
+    region:   s_41
     level:    [66, 70]
   17240113:
     template: Goblin_Mercenary
@@ -2274,7 +2274,7 @@ spawns:
   17240117:
     template: Sand_Lizard_CT
     script:   Sand_Lizard
-    at:       [-133.098, 8.009, -40.367, 45]
+    region:   s_41
     level:    [62, 66]
   17240118:
     template: Beach_Bunny
@@ -2290,15 +2290,15 @@ spawns:
     level:    [62, 65]
   17240121:
     template: Doom_Soldier
-    at:       [-136.996, 7.685, -66.934, 127]
+    region:   s_49
     level:    [66, 70]
   17240122:
     template: Doom_Soldier
-    at:       [-128.000, 8.000, -120.000, 127]
+    region:   s_49
     level:    [66, 70]
   17240123:
     template: Fire_Elemental
-    region:   s_59
+    region:   s_49
     level:    [67, 69]
   17240124:
     template: Goblin_Mercenary
@@ -2332,11 +2332,11 @@ spawns:
     level:    [66, 69]
   17240131:
     template: Doom_Soldier
-    region:   w_67
+    region:   w_60
     level:    [66, 70]
   17240132:
     template: Fantasma
-    at:       [-156.436, 7.507, 4.787, 124]
+    region:   w_60
     level:    [65, 68]
   17240133:
     template: Goblin_Bandit
@@ -2352,7 +2352,7 @@ spawns:
     level:    [64, 67]
   17240136:
     template: Robber_Crab
-    at:       [70.000, -0.500, -123.000, 127]
+    region:   s_69
     level:    [64, 67]
   17240137:
     template: Sand_Lizard_CT
@@ -2380,11 +2380,11 @@ spawns:
     level:    [66, 69]
   17240142:
     template: Doom_Soldier
-    at:       [-88.000, 0.491, 9.000, 26]
+    region:   s_69
     level:    [66, 70]
   17240143:
     template: Doom_Mage
-    region:   s_79
+    region:   s_69
     level:    [67, 71]
   17240144:
     template: Fire_Elemental
@@ -2429,11 +2429,11 @@ spawns:
     level:    [66, 69]
   17240153:
     template: Doom_Mage
-    at:       [-94.875, -0.915, -18.312, 66]
+    region:   c_81
     level:    [67, 71]
   17240154:
     template: Fantasma
-    at:       [-106.212, -0.514, 12.486, 127]
+    region:   c_81
     level:    [65, 68]
   17240155:
     template: Goblin_Bandit
@@ -2449,7 +2449,7 @@ spawns:
     level:    [48, 50]
   17240158:
     template: Velociraptor
-    at:       [-57.000, -1.000, 24.000, 127]
+    region:   c_92
     level:    [66, 69]
   17240159:
     template: Velociraptor
@@ -2494,7 +2494,7 @@ spawns:
     level:    [66, 69]
   17240168:
     template: Velociraptor
-    at:       [-67.000, 0.120, 87.000, 127]
+    region:   c_101
     level:    [66, 69]
   17240169:
     template: Sand_Lizard_CT
@@ -2513,7 +2513,6 @@ spawns:
     level:    [63, 65]
   17240172:
     template: Enna-enna
-    region:   c_108
     level:    [65, 67]
   17240173:
     template: Goblin_Alchemist
@@ -2540,11 +2539,10 @@ spawns:
     level:    [71, 74]
   17240178:
     template: Sand_Cockatrice
-    at:       [27.000, 0.426, 175.000, 127]
+    region:   c_109
     level:    [71, 74]
   17240179:
     template: Enna-enna
-    region:   c_115
     level:    [65, 69]
   17240180:
     template: Killer_Jonny
@@ -2556,7 +2554,7 @@ spawns:
     level:    [66, 69]
   17240182:
     template: Velociraptor
-    at:       [78.989, -0.260, -88.796, 127]
+    region:   s_117
     level:    [66, 69]
   17240183:
     template: Robber_Crab
@@ -2572,11 +2570,11 @@ spawns:
     level:    [64, 67]
   17240186:
     template: Robber_Crab
-    at:       [85.161, -0.292, -109.526, 60]
+    region:   se_140
     level:    [64, 67]
   17240187:
     template: Robber_Crab
-    at:       [6.641, -0.809, -71.173, 127]
+    region:   s_117
     level:    [64, 67]
   17240188:
     template: Beach_Bunny
@@ -2604,7 +2602,7 @@ spawns:
     level:    [71, 74]
   17240194:
     template: Sand_Cockatrice
-    at:       [51.086, -1.282, -43.654, 68]
+    region:   s_127
     level:    [71, 74]
   17240195:
     template: Velociraptor
@@ -2620,7 +2618,7 @@ spawns:
     level:    [71, 74]
   17240198:
     template: Sand_Cockatrice
-    at:       [12.561, -0.062, 2.844, 127]
+    region:   c_131
     level:    [71, 74]
   17240199:
     template: Velociraptor
@@ -2632,7 +2630,7 @@ spawns:
     level:    [66, 69]
   17240201:
     template: Velociraptor
-    at:       [51.230, -0.500, 26.599, 46]
+    region:   e_135
     level:    [66, 69]
   17240202:
     template: Sand_Cockatrice
@@ -2648,15 +2646,15 @@ spawns:
     level:    [66, 69]
   17240205:
     template: Velociraptor
-    at:       [94.603, -1.320, -99.259, 127]
+    region:   se_140
     level:    [66, 69]
   17240206:
     template: Velociraptor
-    at:       [9.000, -0.400, -114.000, 80]
+    region:   se_140
     level:    [66, 69]
   17240207:
     template: Velociraptor
-    at:       [49.251, -0.499, -113.419, 127]
+    region:   se_155
     level:    [66, 69]
   17240208:
     template: Velociraptor
@@ -2676,11 +2674,11 @@ spawns:
     level:    [62, 65]
   17240212:
     template: Robber_Crab
-    at:       [104.530, 3.490, -158.634, 127]
+    region:   se_140
     level:    [64, 67]
   17240213:
     template: Robber_Crab
-    at:       [31.000, -0.856, -126.000, 123]
+    region:   se_155
     level:    [64, 67]
   17240214:
     template: Robber_Crab
@@ -2688,15 +2686,15 @@ spawns:
     level:    [64, 67]
   17240215:
     template: Terror_Pugil
-    at:       [102.000, 4.000, -180.000, 26]
+    region:   se_155
     level:    [66, 70]
   17240216:
     template: Terror_Pugil
-    at:       [80.000, 4.000, -164.000, 52]
+    region:   se_155
     level:    [66, 70]
   17240217:
     template: Terror_Pugil
-    at:       [93.000, 4.000, -172.000, 6]
+    region:   se_140
     level:    [66, 70]
   17240218:
     template: Air_Elemental
@@ -2708,11 +2706,11 @@ spawns:
     level:    [64, 67]
   17240220:
     template: Robber_Crab
-    at:       [89.622, 3.500, -170.979, 17]
+    region:   se_140
     level:    [64, 67]
   17240221:
     template: Robber_Crab
-    at:       [108.865, 4.237, -180.776, 70]
+    region:   se_155
     level:    [64, 67]
   17240222:
     template: Terror_Pugil
@@ -2732,7 +2730,7 @@ spawns:
     level:    [66, 70]
   17240226:
     template: Fantasma
-    at:       [111.000, -0.700, -120.000, 127]
+    region:   se_155
     level:    [65, 68]
   17240227:
     template: Beach_Bunny
@@ -2752,7 +2750,7 @@ spawns:
     level:    [64, 67]
   17240231:
     template: Robber_Crab
-    at:       [-6.214, -0.684, -107.975, 127]
+    region:   s_163
     level:    [64, 67]
   17240232:
     template: Tegmine
@@ -2784,11 +2782,11 @@ spawns:
     level:    [64, 67]
   17240239:
     template: Robber_Crab
-    at:       [99.000, 3.000, -176.000, 12]
+    region:   se_169
     level:    [64, 67]
   17240240:
     template: Terror_Pugil
-    at:       [125.407, 3.800, -188.326, 68]
+    region:   se_169
     level:    [66, 70]
   17240241:
     template: Velociraptor
@@ -2804,7 +2802,7 @@ spawns:
     level:    [66, 69]
   17240244:
     template: Sand_Cockatrice
-    at:       [32.029, -0.501, 155.008, 127]
+    region:   e_177
     level:    [71, 74]
   17240245:
     template: Sand_Cockatrice
@@ -2876,7 +2874,7 @@ spawns:
     level:    [66, 69]
   17240262:
     template: Velociraptor
-    at:       [119.591, 0.109, 266.963, 32]
+    region:   ne_197
     level:    [66, 69]
   17240263:
     template: Sand_Cockatrice
@@ -2912,7 +2910,7 @@ spawns:
     level:    [66, 69]
   17240271:
     template: Velociraptor
-    at:       [31.773, -1.048, 211.751, 127]
+    region:   ne_202
     level:    [66, 69]
   17240272:
     template: Sand_Cockatrice
@@ -2944,11 +2942,11 @@ spawns:
     level:    [66, 69]
   17240279:
     template: Doom_Soldier
-    at:       [5.822, 0.018, 255.433, 127]
+    region:   n_210
     level:    [66, 70]
   17240280:
     template: Doom_Mage
-    at:       [-1.278, -0.747, 285.251, 127]
+    region:   n_210
     level:    [67, 71]
   17240281:
     template: Goblin_Alchemist
@@ -2960,7 +2958,7 @@ spawns:
     level:    [66, 69]
   17240283:
     template: Velociraptor
-    at:       [-32.415, -7.534, 262.930, 15]
+    region:   n_210
     level:    [66, 69]
   17240284:
     template: Velociraptor
@@ -2972,11 +2970,11 @@ spawns:
     level:    [66, 69]
   17240286:
     template: Doom_Mage
-    at:       [-47.960, -10.331, 284.954, 127]
+    region:   n_217
     level:    [67, 71]
   17240287:
     template: Fantasma
-    at:       [-29.000, -7.000, 287.000, 127]
+    region:   n_217
     level:    [65, 68]
   17240288:
     template: Goblin_Mercenary
@@ -3000,15 +2998,15 @@ spawns:
     level:    [66, 69]
   17240293:
     template: Velociraptor
-    at:       [-68.787, -8.437, 218.052]
+    region:   w_240
     level:    [66, 69]
   17240294:
     template: Doom_Soldier
-    at:       [-59.083, -7.753, 235.910, 139]
+    region:   c_224
     level:    [66, 70]
   17240295:
     template: Doom_Soldier
-    at:       [-63.026, -9.126, 223.178, 127]
+    region:   c_224
     level:    [66, 70]
   17240296:
     template: Goblin_Shepherd
@@ -3032,11 +3030,11 @@ spawns:
     level:    [66, 69]
   17240301:
     template: Velociraptor
-    at:       [-139.723, -9.936, 222.956, 127]
+    region:   w_240
     level:    [66, 69]
   17240302:
     template: Velociraptor
-    at:       [-152.773, -8.364, 235.812, 89]
+    region:   n_260
     level:    [66, 69]
   17240303:
     template: Fire_Elemental
@@ -3076,15 +3074,15 @@ spawns:
     level:    [66, 69]
   17240312:
     template: Doom_Soldier
-    at:       [-193.983, -1.977, 229.738, 197]
+    region:   w_240
     level:    [66, 70]
   17240313:
     template: Doom_Mage
-    at:       [-194.611, -6.558, 210.991, 117]
+    region:   w_240
     level:    [67, 71]
   17240314:
     template: Fire_Elemental
-    region:   w_250
+    region:   w_240
     level:    [67, 69]
   17240315:
     template: Zmey_Gorynych
@@ -3096,7 +3094,7 @@ spawns:
     level:    [65, 68]
   17240317:
     template: Velociraptor
-    at:       [-65.404, 0.159, 120.915, 127]
+    region:   c_252
     level:    [66, 69]
   17240318:
     template: Sand_Cockatrice
@@ -3116,7 +3114,7 @@ spawns:
     level:    [71, 74]
   17240322:
     template: Doom_Soldier
-    at:       [-86.270, -8.911, 152.536, 93]
+    region:   c_252
     level:    [66, 70]
   17240323:
     template: Enna-enna
@@ -3132,11 +3130,11 @@ spawns:
     level:    [64, 67]
   17240326:
     template: Robber_Crab
-    at:       [-129.904, -8.313, 238.074, 127]
+    region:   n_260
     level:    [64, 67]
   17240327:
     template: Robber_Crab
-    at:       [-97.410, -7.675, 239.510, 127]
+    region:   c_267
     level:    [64, 67]
   17240328:
     template: Robber_Crab
@@ -3144,11 +3142,11 @@ spawns:
     level:    [64, 67]
   17240329:
     template: Robber_Crab
-    at:       [-151.949, -8.318, 197.560, 99]
+    region:   c_267
     level:    [64, 67]
   17240330:
     template: Robber_Crab
-    at:       [-163.870, -8.497, 196.435, 90]
+    region:   c_252
     level:    [64, 67]
   17240331:
     template: Robber_Crab
@@ -3160,11 +3158,11 @@ spawns:
     level:    [64, 67]
   17240333:
     template: Robber_Crab
-    at:       [-169.853, -8.594, 194.528, 30]
+    region:   n_260
     level:    [64, 67]
   17240334:
     template: Robber_Crab
-    at:       [-177.941, -8.778, 191.490, 142]
+    region:   n_260
     level:    [64, 67]
   17240335:
     template: Goblin_Shepherd
@@ -3192,7 +3190,7 @@ spawns:
     level:    [66, 69]
   17240341:
     template: Velociraptor
-    at:       [-200.931, -8.008, 161.038, 50]
+    region:   w_240
     level:    [66, 69]
   17240342:
     template: Enna-enna
@@ -3200,11 +3198,11 @@ spawns:
     level:    [65, 69]
   17240343:
     template: Doom_Soldier
-    at:       [-248.016, -9.684, 152.482, 212]
+    region:   w_271
     level:    [66, 70]
   17240344:
     template: Doom_Soldier
-    at:       [-196.000, -8.000, 157.000, 127]
+    region:   w_271
     level:    [66, 70]
   17240345:
     template: Goblin_Bandit
@@ -3212,7 +3210,7 @@ spawns:
     level:    [65, 68]
   17240346:
     template: Goblin_Bandit
-    at:       [-207.871, -8.641, 153.776, 124]
+    region:   w_281
     level:    [65, 68]
   17240347:
     template: Goblin_Mercenary
@@ -3232,7 +3230,7 @@ spawns:
     level:    [65, 68]
   17240351:
     template: Doom_Soldier
-    at:       [-339.214, -1.256, 212.411, 122]
+    region:   w_284
     level:    [66, 70]
   17240352:
     template: Goblin_Shepherd
@@ -3248,7 +3246,7 @@ spawns:
     level:    [65, 68]
   17240355:
     template: Goblin_Bandit
-    at:       [-299.758, -8.114, 301.156, 76]
+    region:   nw_290
     level:    [65, 68]
   17240356:
     template: Goblin_Alchemist
@@ -3296,7 +3294,7 @@ spawns:
     level:    [71, 74]
   17240367:
     template: Greater_Manticore
-    at:       [-205.943, -0.545, 394.386, 117]
+    region:   nw_302
     level:    [76, 79]
   17240368:
     template: Greater_Manticore
@@ -3368,7 +3366,7 @@ spawns:
     level:    [52, 54]
   17240385:
     template: Goblin_Mercenary
-    at:       [-98.000, -10.000, 423.000, 24]
+    region:   n_322
     level:    [65, 68]
   17240386:
     template: Goblin_Alchemist
@@ -3380,11 +3378,11 @@ spawns:
     level:    [65, 68]
   17240388:
     template: Goblin_Mercenary
-    at:       [-100.000, -8.000, 437.000, 36]
+    region:   n_323
     level:    [65, 68]
   17240389:
     template: Sand_Cockatrice
-    at:       [74.069, 0.499, 51.230, 103]
+    region:   e_326
     level:    [71, 74]
   17240390:
     template: Sand_Cockatrice
@@ -3400,7 +3398,7 @@ spawns:
     level:    [76, 79]
   17240393:
     template: Greater_Manticore
-    at:       [102.000, 0.940, 75.000, 97]
+    region:   e_326
     level:    [76, 79]
   17240394:
     template: Sand_Cockatrice
@@ -3456,11 +3454,11 @@ spawns:
     level:    [76, 79]
   17240407:
     template: Greater_Manticore
-    at:       [244.008, 6.942, -9.908, 127]
+    region:   e_335
     level:    [76, 79]
   17240408:
     template: Greater_Manticore
-    at:       [240.000, 8.000, 19.000, 43]
+    region:   e_341
     level:    [76, 79]
   17240409:
     template: Sand_Cockatrice
@@ -3476,7 +3474,7 @@ spawns:
     level:    [71, 74]
   17240412:
     template: Sand_Cockatrice
-    at:       [189.000, 8.000, 18.000, 17]
+    region:   e_335
     level:    [71, 74]
   17240413:
     template: Kreutzet

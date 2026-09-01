@@ -2150,6 +2150,7 @@ spawns:
     level:    [77, 77]
   17612812:
     template: Revenant_SoZ_ENS_FY
+    region:   sw_13
     script:   Revenant
     level:    [40, 42]
   17612813:
@@ -2447,7 +2448,7 @@ spawns:
   17612877:
     template: Shadow_rng
     script:   Shadow
-    at:       [24.289, -16.113, -140.793, 131]
+    region:   s_74
     level:    [44, 46]
   17612878:
     template: Shadow_war
@@ -2509,7 +2510,7 @@ spawns:
   17612891:
     template: Shadow_war
     script:   Shadow
-    at:       [85.411, -24.080, 19.200, 122]
+    region:   e_90
     level:    [44, 46]
   17612892:
     template: Shadow_blm
@@ -2519,7 +2520,7 @@ spawns:
   17612893:
     template: Shadow_blm
     script:   Shadow
-    at:       [99.460, -24.110, -18.889, 167]
+    region:   e_90
     level:    [44, 46]
   17612894:
     template: Shadow_thf
@@ -2534,12 +2535,12 @@ spawns:
   17612896:
     template: Shadow_war
     script:   Shadow
-    at:       [63.209, -16.100, 90.033, 177]
+    region:   c_98
     level:    [44, 46]
   17612897:
     template: Shadow_blm
     script:   Shadow
-    at:       [55.674, -16.100, 57.453, 120]
+    region:   c_98
     level:    [44, 46]
   17612898:
     template: Shadow_thf
@@ -2734,7 +2735,7 @@ spawns:
   17612944:
     template: Shadow_blm
     script:   Shadow
-    at:       [48.909, -18.410, 218.955, 73]
+    region:   ne_142
     level:    [44, 46]
   17612945:
     template: Shadow_thf
@@ -2744,7 +2745,7 @@ spawns:
   17612946:
     template: Shadow_thf
     script:   Shadow
-    at:       [67.450, -24.100, 181.294, 168]
+    region:   ne_142
     level:    [44, 46]
   17612947:
     template: Shadow_rng
@@ -2754,7 +2755,7 @@ spawns:
   17612948:
     template: Shadow_war
     script:   Shadow
-    at:       [17.452, -16.100, 216.813, 91]
+    region:   n_149
     level:    [44, 46]
   17612949:
     template: Shadow_blm
@@ -2769,7 +2770,7 @@ spawns:
   17612951:
     template: Shadow_thf
     script:   Shadow
-    at:       [16.816, -16.110, 214.363, 48]
+    region:   n_149
     level:    [44, 46]
   17612952:
     template: Shadow_rng
@@ -2939,7 +2940,7 @@ spawns:
   17612988:
     template: Specter_war
     script:   Specter
-    at:       [71.017, 0.027, 124.227, 93]
+    region:   e_189
     level:    [55, 57]
   17612989:
     template: Specter_blm
@@ -2949,7 +2950,7 @@ spawns:
   17612990:
     template: Specter_rng
     script:   Specter
-    at:       [74.111, 0.125, 117.187, 28]
+    region:   e_189
     level:    [55, 57]
   17612991:
     template: Specter_thf
@@ -3056,12 +3057,12 @@ spawns:
     level:    [56, 58]
   17613013:
     template: Underworld_Bats
-    at:       [-13.555, -0.096, 256.822, 156]
+    region:   n_223
     level:    [50, 52]
   17613014:
     template: Specter_war
     script:   Specter
-    at:       [-52.390, -0.108, 275.472, 193]
+    region:   n_215
     level:    [55, 57]
   17613015:
     template: Specter_blm
@@ -3076,11 +3077,11 @@ spawns:
   17613017:
     template: Specter_thf
     script:   Specter
-    at:       [-49.900, -0.035, 278.015, 246]
+    region:   n_215
     level:    [55, 57]
   17613018:
     template: Underworld_Bats
-    at:       [21.000, -0.112, 143.000, 127]
+    region:   n_223
     level:    [50, 52]
   17613019:
     template: Specter_war
@@ -3391,7 +3392,7 @@ spawns:
   17613091:
     template: Specter_war
     script:   Specter
-    at:       [-190.100, -16.340, 120.144, 5]
+    region:   w_292
     level:    [56, 58]
   17613092:
     template: Specter_blm
@@ -3406,7 +3407,7 @@ spawns:
   17613094:
     template: Specter_thf
     script:   Specter
-    at:       [-188.500, -16.520, 123.089, 186]
+    region:   w_292
     level:    [56, 58]
   17613095:
     template: Western_Shadow
@@ -3414,7 +3415,7 @@ spawns:
     level:    [63, 63]
   17613096:
     template: Underworld_Bats
-    at:       [-180.900, -16.110, 138.432, 59]
+    region:   w_297
     level:    [50, 52]
   17613097:
     template: Underworld_Bats
@@ -3428,7 +3429,7 @@ spawns:
   17613099:
     template: Specter_blm
     script:   Specter
-    at:       [-155.600, -15.950, 158.897, 75]
+    region:   w_298
     level:    [56, 58]
   17613100:
     template: Specter_rng
@@ -3438,7 +3439,7 @@ spawns:
   17613101:
     template: Specter_thf
     script:   Specter
-    at:       [-160.500, -15.610, 155.837, 1]
+    region:   w_298
     level:    [56, 58]
   17613102:
     template: Northern_Shadow
@@ -3455,7 +3456,7 @@ spawns:
   17613105:
     template: Specter_war
     script:   Specter
-    at:       [-83.880, -15.880, 167.643, 145]
+    region:   c_306
     level:    [56, 58]
   17613106:
     template: Specter_blm
@@ -3465,7 +3466,7 @@ spawns:
   17613107:
     template: Specter_rng
     script:   Specter
-    at:       [-89.090, -15.980, 153.927, 76]
+    region:   c_306
     level:    [56, 58]
   17613108:
     template: Specter_thf
@@ -3505,7 +3506,7 @@ spawns:
   17613116:
     template: Specter_war
     script:   Specter
-    at:       [-154.900, -15.720, 75.029, 82]
+    region:   w_317
     level:    [56, 58]
   17613117:
     template: Specter_blm
@@ -3515,7 +3516,7 @@ spawns:
   17613118:
     template: Specter_rng
     script:   Specter
-    at:       [-164.200, -15.670, 79.657, 150]
+    region:   w_317
     level:    [56, 58]
   17613119:
     template: Specter_thf

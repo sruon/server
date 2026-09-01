@@ -2786,7 +2786,7 @@ spawns:
   17575953:
     template: Shade_war
     script:   Shade
-    at:       [-27.486, -8.085, 219.941, 241]
+    region:   c_18
     level:    [46, 48]
   17575954:
     template: Shade_rng
@@ -2796,7 +2796,7 @@ spawns:
   17575955:
     template: Shade_thf
     script:   Shade
-    at:       [-51.117, -8.141, 221.142, 253]
+    region:   c_18
     level:    [46, 48]
   17575956:
     template: Shade_drk
@@ -2806,7 +2806,7 @@ spawns:
   17575957:
     template: Lost_Soul_war_EN
     script:   Lost_Soul
-    at:       [-30.404, -8.158, 217.056, 153]
+    region:   c_18
     level:    [44, 45]
   17575958:
     template: Lost_Soul_blm_EN
@@ -3133,7 +3133,7 @@ spawns:
   17576034:
     template: Ka_war
     script:   Ka
-    at:       [-435.897, 0.888, 402.049, 191]
+    region:   nw_99
     level:    [52, 54]
   17576035:
     template: Ka_blm
@@ -3143,7 +3143,7 @@ spawns:
   17576036:
     template: Ka_thf
     script:   Ka
-    at:       [-448.000, 1.000, 403.000, 53]
+    region:   nw_99
     level:    [52, 54]
   17576037:
     template: Ka_thf
@@ -3441,7 +3441,7 @@ spawns:
   17576105:
     template: Ka_war
     script:   Ka
-    at:       [311.494, -27.513, 35.067, 58]
+    region:   e_170
     level:    [52, 54]
   17576106:
     template: Ka_blm
@@ -3456,7 +3456,7 @@ spawns:
   17576108:
     template: Ka_rng
     script:   Ka
-    at:       [293.479, -27.552, 15.527, 65]
+    region:   e_170
     level:    [52, 54]
   17576109:
     template: Blood_Soul
@@ -3518,12 +3518,12 @@ spawns:
   17576121:
     template: Ka_thf
     script:   Ka
-    at:       [168.419, -27.670, -111.634, 184]
+    region:   se_183
     level:    [52, 54]
   17576122:
     template: Ka_rng
     script:   Ka
-    at:       [202.869, -31.250, -101.167, 252]
+    region:   se_183
     level:    [52, 54]
   17576123:
     template: Blood_Soul
@@ -3775,7 +3775,7 @@ spawns:
   17576180:
     template: Shade_war
     script:   Shade
-    at:       [178.306, 0.108, -178.086, 232]
+    region:   se_245
     level:    [46, 48]
   17576181:
     template: Shade_rng
@@ -3785,7 +3785,7 @@ spawns:
   17576182:
     template: Shade_thf
     script:   Shade
-    at:       [182.000, -8.051, 16.000, 127]
+    region:   se_245
     level:    [46, 48]
   17576183:
     template: Shade_drk
@@ -3800,7 +3800,7 @@ spawns:
   17576185:
     template: Lost_Soul_blm_EN
     script:   Lost_Soul
-    at:       [174.947, -0.385, -187.972, 146]
+    region:   se_245
     level:    [45, 46]
   17576186:
     template: Ka_war
@@ -3810,7 +3810,7 @@ spawns:
   17576187:
     template: Ka_blm
     script:   Ka
-    at:       [341.236, -0.051, 12.751, 115]
+    region:   e_250
     level:    [52, 54]
   17576188:
     template: Ka_thf
@@ -3820,7 +3820,7 @@ spawns:
   17576189:
     template: Ka_rng
     script:   Ka
-    at:       [175.100, -8.051, 24.978, 245]
+    region:   e_250
     level:    [52, 54]
   17576190:
     template: Fallen_Knight_EN
@@ -3853,7 +3853,7 @@ spawns:
   17576196:
     template: Dark_Stalker_war
     script:   Dark_Stalker
-    at:       [296.484, -0.500, 60.391, 40]
+    region:   e_261
     level:    [57, 59]
   17576197:
     template: Dark_Stalker_blm
@@ -3873,7 +3873,7 @@ spawns:
   17576200:
     template: Dark_Stalker_war
     script:   Dark_Stalker
-    at:       [299.507, 0.033, -12.920, 48]
+    region:   e_265
     level:    [57, 59]
   17576201:
     template: Dark_Stalker_blm
@@ -3883,7 +3883,7 @@ spawns:
   17576202:
     template: Dark_Stalker_thf
     script:   Dark_Stalker
-    at:       [290.764, -0.051, -25.983, 64]
+    region:   e_265
     level:    [57, 59]
   17576203:
     template: Dark_Stalker_rng
@@ -3918,7 +3918,7 @@ spawns:
   17576210:
     template: Spriggan_blm
     script:   Spriggan
-    at:       [416.001, 0.326, 109.829, 206]
+    region:   e_273
     level:    [64, 66]
   17576211:
     template: Spriggan_thf
@@ -3938,12 +3938,12 @@ spawns:
   17576214:
     template: Spriggan_blm
     script:   Spriggan
-    at:       [415.214, -0.209, 105.739, 208]
+    region:   e_276
     level:    [64, 66]
   17576215:
     template: Spriggan_thf
     script:   Spriggan
-    at:       [381.893, -0.307, 136.374, 81]
+    region:   e_273
     level:    [64, 66]
   17576216:
     template: Spriggan_rng
@@ -3994,7 +3994,7 @@ spawns:
   17576226:
     template: Spriggan_blm
     script:   Spriggan
-    at:       [61.577, -0.653, 7.166, 12]
+    region:   c_289
     level:    [64, 66]
   17576227:
     template: Spriggan_thf
@@ -4004,7 +4004,7 @@ spawns:
   17576228:
     template: Spriggan_rng
     script:   Spriggan
-    at:       [53.178, -0.092, 25.888, 254]
+    region:   c_289
     level:    [64, 66]
   17576229:
     template: Haunt_EN
@@ -4045,12 +4045,12 @@ spawns:
   17576237:
     template: Shade_war
     script:   Shade
-    at:       [90.856, -8.079, 142.888, 95]
+    region:   e_300
     level:    [46, 48]
   17576238:
     template: Shade_rng
     script:   Shade
-    at:       [100.154, -7.829, 133.244, 44]
+    region:   e_300
     level:    [46, 48]
   17576239:
     template: Shade_drk
@@ -4085,7 +4085,7 @@ spawns:
   17576245:
     template: Spriggan_blm
     script:   Spriggan
-    at:       [178.347, -0.750, 137.267, 179]
+    region:   e_308
     level:    [64, 66]
   17576246:
     template: Spriggan_thf
@@ -4095,7 +4095,7 @@ spawns:
   17576247:
     template: Spriggan_rng
     script:   Spriggan
-    at:       [170.434, -0.082, 142.470, 208]
+    region:   e_308
     level:    [64, 66]
   17576248:
     template: Haunt_EN

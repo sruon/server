@@ -3899,7 +3899,7 @@ spawns:
     level:    [77, 79]
   17031489:
     template: Friars_Lantern
-    region:   e_320
+    region:   region_210
     level:    [77, 79]
   17031490:
     template: Troll_Grenadier_H

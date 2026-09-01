@@ -866,7 +866,7 @@ spawns:
     level:    [76, 78]
   17072148:
     template: Qiqirn_Goldsmith
-    at:       [-171.052, -8.343, 59.996, 222]
+    region:   c_14
     level:    [76, 78]
   17072149:
     template: Qiqirn_Mine_AUR

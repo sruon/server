@@ -2464,7 +2464,7 @@ spawns:
     level:    [61, 63]
   16797703:
     template: Cwn_Annwn
-    at:       [-220.162, -40.811, -417.565, 183]
+    region:   sw_1
     level:    [59, 64]
   16797704:
     template: Variable_Hare
@@ -2520,7 +2520,7 @@ spawns:
     level:    [61, 63]
   16797717:
     template: Cwn_Annwn
-    at:       [-148.639, -40.453, -427.951, 88]
+    region:   s_15
     level:    [59, 64]
   16797718:
     template: Snoll
@@ -2556,7 +2556,7 @@ spawns:
     level:    [62, 65]
   16797726:
     template: Cwn_Annwn
-    at:       [-153.497, -20.751, -287.992, 23]
+    region:   s_26
     level:    [59, 64]
   16797727:
     template: Variable_Hare
@@ -2612,7 +2612,7 @@ spawns:
     level:    [60, 63]
   16797740:
     template: Snoll
-    at:       [-192.319, -20.124, -300.897, 254]
+    region:   s_43
     level:    [60, 63]
   16797741:
     template: Snoll
@@ -2624,7 +2624,7 @@ spawns:
     level:    [60, 63]
   16797743:
     template: Ice_Elemental
-    at:       [-109.524, -39.547, -308.800, 183]
+    region:   region_116
     level:    [64, 65]
   16797744:
     template: Variable_Hare
@@ -2648,7 +2648,7 @@ spawns:
     level:    [58, 62]
   16797749:
     template: Glacier_Eater
-    at:       [45.825, -32.860, -382.044, 144]
+    region:   s_54
     level:    [58, 62]
   16797750:
     template: Esbat
@@ -2744,23 +2744,23 @@ spawns:
     level:    [65, 68]
   16797773:
     template: Polar_Hare
-    at:       [425.120, -0.287, -414.445, 213]
+    region:   se_85
     level:    [65, 68]
   16797774:
     template: Polar_Hare
-    at:       [422.029, -0.171, -422.367, 194]
+    region:   se_85
     level:    [65, 68]
   16797775:
     template: Polar_Hare
-    at:       [444.702, -0.594, -399.296, 189]
+    region:   se_85
     level:    [65, 68]
   16797776:
     template: Polar_Hare
-    at:       [436.227, -0.460, -400.017, 110]
+    region:   se_85
     level:    [65, 68]
   16797777:
     template: Morozko
-    at:       [216.058, -0.333, -337.038, 214]
+    region:   s_60
     level:    [67, 70]
   16797778:
     template: Ice_Elemental
@@ -2768,11 +2768,11 @@ spawns:
     level:    [71, 72]
   16797779:
     template: Nival_Raptor
-    at:       [340.820, -0.133, -388.827, 35]
+    region:   se_85
     level:    [68, 70]
   16797780:
     template: Nival_Raptor
-    at:       [418.679, 0.341, -407.704, 231]
+    region:   se_85
     level:    [68, 70]
   16797781:
     template: Nival_Raptor
@@ -2884,11 +2884,11 @@ spawns:
     level:    [67, 70]
   16797808:
     template: Morozko
-    at:       [430.517, -17.824, -126.780, 44]
+    region:   e_110
     level:    [67, 70]
   16797809:
     template: Snow_Maiden
-    at:       [439.147, -20.270, -88.217, 80]
+    region:   e_110
     level:    [71, 72]
   16797810:
     template: Father_Frost
@@ -2937,7 +2937,7 @@ spawns:
     level:    [65, 68]
   16797820:
     template: Morozko
-    at:       [357.164, 26.522, -99.772, 227]
+    region:   e_125
     level:    [67, 70]
   16797821:
     template: Doom_Soldier
@@ -2983,12 +2983,12 @@ spawns:
   16797831:
     template: Dread_Demon_UR
     script:   Dread_Demon
-    at:       [567.955, -36.236, 111.209, 142]
+    region:   e_137
     level:    [75, 77]
   16797832:
     template: Judicator_Demon_UR
     script:   Judicator_Demon
-    region:   e_136
+    region:   e_137
     level:    [75, 77]
   16797833:
     template: Tyrannotaur
@@ -3006,7 +3006,7 @@ spawns:
   16797836:
     template: Dread_Demon_UR
     script:   Dread_Demon
-    at:       [523.391, -52.500, 161.432, 132]
+    region:   e_139
     level:    [75, 77]
   16797837:
     template: Tyrannotaur
@@ -3019,7 +3019,7 @@ spawns:
   16797839:
     template: Judicator_Demon_UR
     script:   Judicator_Demon
-    at:       [442.217, -59.210, 189.928, 145]
+    region:   e_144
     level:    [75, 77]
   16797840:
     template: Stygian_Demon_UR
@@ -3032,21 +3032,21 @@ spawns:
     level:    [72, 74]
   16797842:
     template: Tyrannotaur
-    at:       [379.204, -53.733, 164.924, 41]
+    region:   e_144
     level:    [72, 75]
   16797843:
     template: Tyrannotaur
-    at:       [408.658, -68.240, 242.247, 14]
+    region:   e_144
     level:    [72, 75]
   16797844:
     template: Gore_Demon_UR
     script:   Gore_Demon
-    at:       [454.953, -75.016, 292.500, 211]
+    region:   ne_152
     level:    [75, 77]
   16797845:
     template: Stygian_Demon_UR
     script:   Stygian_Demon
-    at:       [484.014, -61.289, 238.396, 98]
+    region:   ne_152
     level:    [75, 77]
   16797846:
     template: Demons_Elemental
@@ -3054,7 +3054,7 @@ spawns:
     level:    [66, 66]
   16797847:
     template: Tyrannotaur
-    at:       [474.233, -76.942, 285.134, 249]
+    region:   ne_152
     level:    [72, 75]
   16797848:
     template: Tyrannotaur
@@ -3376,27 +3376,27 @@ spawns:
     level:    [82, 84]
   16797921:
     template: Smolenkos
-    at:       [-274.479, -155.756, 262.187, 187]
+    region:   nw_232
     level:    [80, 82]
   16797922:
     template: Kindred_Warrior_UR
     script:   Kindred_Warrior
-    at:       [-279.497, -155.705, 257.889, 126]
+    region:   nw_232
     level:    [81, 84]
   16797923:
     template: Kindred_Black_Mage_UR
     script:   Kindred_Black_Mage
-    at:       [-314.958, -156.455, 326.964, 211]
+    region:   nw_232
     level:    [81, 84]
   16797924:
     template: Kindred_Dark_Knight_UR
     script:   Kindred_Dark_Knight
-    at:       [-245.346, -159.834, 259.293, 126]
+    region:   nw_232
     level:    [81, 84]
   16797925:
     template: Kindred_Summoner_UR
     script:   Kindred_Summoner
-    at:       [-321.340, -156.555, 318.210, 147]
+    region:   nw_232
     level:    [81, 84]
   16797926:
     template: Demons_Elemental
@@ -3404,7 +3404,7 @@ spawns:
     level:    [72, 74]
   16797927:
     template: Molech
-    at:       [-325.891, -156.327, 308.462, 79]
+    region:   nw_232
     level:    [79, 82]
   16797928:
     template: Agloolik
@@ -3521,7 +3521,7 @@ spawns:
   16797956:
     template: Kindred_Warrior_UR
     script:   Kindred_Warrior
-    at:       [-233.757, -183.792, 460.413, 153]
+    region:   nw_261
     level:    [81, 84]
   16797957:
     template: Kindred_Black_Mage_UR
@@ -3531,7 +3531,7 @@ spawns:
   16797958:
     template: Kindred_Dark_Knight_UR
     script:   Kindred_Dark_Knight
-    at:       [-325.888, -176.594, 438.288, 249]
+    region:   nw_261
     level:    [81, 84]
   16797959:
     template: Kindred_Summoner_UR
@@ -3576,11 +3576,11 @@ spawns:
     level:    [79, 82]
   16797968:
     template: Magnotaur
-    at:       [-265.120, -183.817, 435.911, 229]
+    region:   nw_261
     level:    [83, 83]
   16797969:
     template: Jormungand
-    at:       [-203.667, -176.028, 132.710, 76]
+    region:   w_274
     level:    [95, 95]
   16797970:
     template: Agloolik
@@ -3660,7 +3660,7 @@ spawns:
     level:    [77, 80]
   16797989:
     template: Agloolik
-    at:       [133.934, -193.178, 23.381, 131]
+    region:   region_117
     level:    [77, 80]
   16797990:
     template: Agloolik
@@ -3688,11 +3688,11 @@ spawns:
     level:    [82, 84]
   16797996:
     template: Agloolik
-    at:       [-326.000, -175.916, -25.200, 103]
+    region:   w_294
     level:    [77, 80]
   16797997:
     template: Agloolik
-    at:       [-247.405, -176.119, -129.669, 171]
+    region:   w_297
     level:    [77, 80]
   16797998:
     template: Nightmare_Bats_Uleguerand_Range
@@ -3714,7 +3714,7 @@ spawns:
     level:    [66, 70]
   16798002:
     template: Mindgazer
-    at:       [-222.247, -81.601, -38.848, 58]
+    region:   region_118
     level:    [69, 72]
   16798003:
     template: Mountain_Worm
@@ -3726,7 +3726,7 @@ spawns:
     level:    [66, 70]
   16798005:
     template: Mountain_Worm
-    at:       [-301.152, -66.000, -0.166, 53]
+    region:   region_120
     level:    [66, 70]
   16798006:
     template: Mountain_Worm
@@ -3759,7 +3759,7 @@ spawns:
     level:    [69, 72]
   16798013:
     template: Mindgazer
-    at:       [-217.945, -82.106, -58.461, 173]
+    region:   region_119
     level:    [69, 72]
   16798014:
     template: Nightmare_Bats_Uleguerand_Range
@@ -3773,11 +3773,11 @@ spawns:
     level:    [69, 72]
   16798016:
     template: Mountain_Worm
-    at:       [-349.191, -38.122, -61.419]
+    region:   region_121
     level:    [66, 70]
   16798017:
     template: Mindgazer
-    at:       [-339.614, -37.803, -62.799, 50]
+    region:   region_122
     level:    [69, 72]
   16798018:
     template: Mountain_Worm
@@ -3805,20 +3805,20 @@ spawns:
     level:    [66, 70]
   16798024:
     template: Mindgazer
-    at:       [-259.620, -40.566, -108.202, 192]
+    region:   w_335
     level:    [69, 72]
   16798025:
     template: Mountain_Worm
-    at:       [-259.410, -39.323, -114.367, 189]
+    region:   w_335
     level:    [66, 70]
   16798026:
     template: Mindgazer
-    at:       [-256.778, -38.169, -138.047, 19]
+    region:   w_332
     level:    [69, 72]
   16798027:
     template: Nightmare_Bats_Uleguerand_Range
     script:   Nightmare_Bats
-    at:       [-249.367, -38.190, -138.732, 125]
+    region:   w_332
     level:    [69, 72]
   16798028:
     template: Nightmare_Bats_Uleguerand_Range
@@ -3831,7 +3831,7 @@ spawns:
     level:    [66, 70]
   16798030:
     template: Mountain_Worm
-    at:       [-202.226, -30.116, -179.173]
+    region:   region_123
     level:    [66, 70]
   16798031:
     template: Mountain_Worm_NM
@@ -3839,7 +3839,7 @@ spawns:
     level:    [72, 74]
   16798032:
     template: Mindgazer
-    at:       [-357.572, -21.631, -58.661, 122]
+    region:   region_124
     level:    [69, 72]
   16798033:
     template: Mindgazer
@@ -3883,7 +3883,7 @@ spawns:
     level:    [61, 63]
   16798043:
     template: Cwn_Annwn
-    at:       [-562.503, -20.054, 15.074, 181]
+    region:   w_343
     level:    [59, 64]
   16798044:
     template: Variable_Hare
@@ -3931,7 +3931,7 @@ spawns:
     level:    [62, 65]
   16798055:
     template: Buffalo
-    at:       [-581.525, -38.463, -61.703, 153]
+    region:   w_354
     level:    [62, 65]
   16798056:
     template: Bonnacon
@@ -3939,7 +3939,7 @@ spawns:
     level:    [69, 69]
   16798057:
     template: Cwn_Annwn
-    at:       [-608.319, -39.964, -56.507, 255]
+    region:   w_354
     level:    [59, 64]
   16798058:
     template: Variable_Hare
@@ -3987,11 +3987,11 @@ spawns:
     level:    [58, 61]
   16798069:
     template: Snoll
-    at:       [-518.064, -39.562, -98.930, 83]
+    region:   region_125
     level:    [60, 63]
   16798070:
     template: Snoll
-    at:       [-645.937, -40.211, -24.477, 19]
+    region:   region_126
     level:    [60, 63]
   16798071:
     template: Esbat

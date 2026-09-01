@@ -592,15 +592,15 @@ spawns:
     level:    [69, 72]
   17383430:
     template: Darksteel_Quadav
-    at:       [298.000, 40.000, 19.000, 25]
+    region:   se_4
     level:    [69, 72]
   17383431:
     template: Platinum_Quadav
-    at:       [289.000, 43.000, 79.000, 25]
+    region:   se_4
     level:    [69, 72]
   17383432:
     template: Sapphire_Quadav
-    at:       [306.567, 39.765, 21.833, 255]
+    region:   se_4
     level:    [69, 72]
   17383433:
     template: Ruby_Quadav

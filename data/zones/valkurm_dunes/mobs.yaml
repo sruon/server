@@ -3198,7 +3198,7 @@ spawns:
   17199117:
     template: Night_Bats_VD
     script:   Night_Bats
-    at:       [843.528, -8.347, 345.099, 127]
+    region:   ne_6
     level:    [12, 13]
     attributes:
       spawn:
@@ -3208,7 +3208,7 @@ spawns:
   17199118:
     template: Night_Bats_VD
     script:   Night_Bats
-    at:       [788.540, -8.338, 305.820, 68]
+    region:   ne_6
     level:    [12, 13]
     attributes:
       spawn:
@@ -3305,16 +3305,16 @@ spawns:
   17199138:
     template: Ghoul_war
     script:   Ghoul
-    at:       [595.615, -16.444, 234.548, 127]
+    region:   ne_17
     level:    [18, 19]
   17199139:
     template: Ghoul_war
     script:   Ghoul
-    at:       [549.022, -8.323, 127.781, 127]
+    region:   ne_17
     level:    [18, 19]
   17199140:
     template: Will-o-the-Wisp
-    region:   ne_36
+    region:   ne_17
     level:    [25, 27]
   17199141:
     template: Sand_Hare
@@ -3414,12 +3414,12 @@ spawns:
   17199159:
     template: Ghoul_war
     script:   Ghoul
-    at:       [534.922, -16.123, 353.027, 42]
+    region:   ne_37
     level:    [18, 19]
   17199160:
     template: Ghoul_war
     script:   Ghoul
-    at:       [528.294, -16.202, 305.390, 107]
+    region:   ne_37
     level:    [18, 19]
   17199161:
     template: Metal_Shears
@@ -3496,21 +3496,21 @@ spawns:
   17199179:
     template: Ghoul_war
     script:   Ghoul
-    at:       [433.000, -15.000, 201.000]
+    region:   ne_58
     level:    [18, 19]
   17199180:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [381.858, -16.281, 202.908, 127]
+    region:   ne_58
     level:    [20, 21]
   17199181:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [628.000, -8.000, 131.000]
+    region:   ne_58
     level:    [20, 21]
   17199182:
     template: Will-o-the-Wisp
-    at:       [502.730, -16.669, 184.676, 18]
+    region:   ne_58
     level:    [25, 27]
   17199183:
     template: Goblin_Mugger
@@ -3603,21 +3603,21 @@ spawns:
   17199205:
     template: Ghoul_war
     script:   Ghoul
-    at:       [488.712, -8.066, 62.432, 127]
+    region:   e_84
     level:    [18, 19]
   17199206:
     template: Ghoul_war
     script:   Ghoul
-    at:       [353.475, -7.926, 67.711, 119]
+    region:   e_84
     level:    [18, 19]
   17199207:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [417.220, -6.023, 49.461, 127]
+    region:   e_84
     level:    [20, 21]
   17199208:
     template: Will-o-the-Wisp
-    at:       [363.247, -7.697, 60.549, 135]
+    region:   e_84
     level:    [25, 26]
   17199209:
     template: Sand_Hare
@@ -3694,7 +3694,7 @@ spawns:
   17199224:
     template: Night_Bats_VD
     script:   Night_Bats
-    region:   e_120
+    region:   e_105
     level:    [14, 15]
     attributes:
       spawn:
@@ -3713,12 +3713,12 @@ spawns:
   17199226:
     template: Ghoul_war
     script:   Ghoul
-    at:       [526.017, -8.617, 5.618, 127]
+    region:   e_105
     level:    [18, 19]
   17199227:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [513.000, -7.000, -44.000, 127]
+    region:   e_105
     level:    [20, 21]
   17199228:
     template: Sand_Hare
@@ -3970,7 +3970,7 @@ spawns:
     level:    [19, 20]
   17199283:
     template: Snipper
-    region:   c_179
+    region:   c_177
     level:    [19, 20]
   17199284:
     template: Snipper
@@ -4022,7 +4022,7 @@ spawns:
     level:    [22, 23]
   17199296:
     template: Brutal_Sheep
-    at:       [219.652, -7.865, 91.792, 107]
+    region:   c_187
     level:    [22, 23]
   17199297:
     template: Damselfly
@@ -4075,21 +4075,21 @@ spawns:
   17199309:
     template: Ghoul_war
     script:   Ghoul
-    region:   n_205
+    region:   c_187
     level:    [18, 19]
   17199310:
     template: Ghoul_war
     script:   Ghoul
-    at:       [309.000, -7.000, 159.000, 127]
+    region:   c_187
     level:    [18, 19]
   17199311:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [259.000, -0.010, -3.000, 120]
+    region:   c_187
     level:    [20, 21]
   17199312:
     template: Will-o-the-Wisp
-    at:       [246.029, -8.512, 165.366, 194]
+    region:   c_187
     level:    [25, 27]
   17199313:
     template: Snipper
@@ -4194,25 +4194,25 @@ spawns:
   17199338:
     template: Ghoul_war
     script:   Ghoul
-    at:       [194.026, -0.395, -43.196, 127]
+    region:   c_217
     level:    [18, 19]
   17199339:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [310.515, -0.595, -2.791, 127]
+    region:   c_217
     level:    [20, 21]
   17199340:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [355.994, 0.076, -95.293, 7]
+    region:   c_217
     level:    [20, 21]
   17199341:
     template: Bogy
-    at:       [363.878, -0.233, -83.667, 47]
+    region:   c_217
     level:    [28, 29]
   17199342:
     template: Bogy
-    at:       [341.519, -1.624, -48.729, 86]
+    region:   c_217
     level:    [28, 29]
   17199343:
     template: Snipper
@@ -4244,11 +4244,11 @@ spawns:
     level:    [23, 24]
   17199350:
     template: Bogy
-    at:       [351.885, 3.793, -189.068, 64]
+    region:   s_239
     level:    [28, 30]
   17199351:
     template: Hippomaritimus
-    region:   s_247
+    region:   s_239
     level:    [37, 38]
   17199352:
     template: Sand_Bats
@@ -4324,11 +4324,11 @@ spawns:
     level:    [19, 20]
   17199370:
     template: Will-o-the-Wisp
-    at:       [81.184, -0.474, -5.728, 22]
+    region:   c_250
     level:    [25, 26]
   17199371:
     template: Sand_Hare
-    region:   n_267
+    region:   c_268
     level:    [17, 18]
   17199372:
     template: Sand_Hare
@@ -4348,7 +4348,7 @@ spawns:
     level:    [22, 23]
   17199376:
     template: Brutal_Sheep
-    region:   n_267
+    region:   c_268
     level:    [22, 23]
   17199377:
     template: Brutal_Sheep
@@ -4356,7 +4356,7 @@ spawns:
     level:    [22, 23]
   17199378:
     template: Brutal_Sheep
-    region:   n_267
+    region:   c_268
     level:    [22, 23]
   17199379:
     template: Damselfly
@@ -4405,25 +4405,24 @@ spawns:
   17199390:
     template: Ghoul_war
     script:   Ghoul
-    at:       [30.022, -7.452, 40.693, 127]
+    region:   c_268
     level:    [20, 21]
   17199391:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [-50.370, -9.117, 100.492, 127]
+    region:   c_268
     level:    [22, 23]
   17199392:
     template: Ghoul_blm
     script:   Ghoul
-    region:   n_288
     level:    [22, 23]
   17199393:
     template: Will-o-the-Wisp
-    region:   n_289
+    region:   region_38
     level:    [25, 26]
   17199394:
     template: Goblin_Mugger
-    at:       [-58.000, -8.000, 175.000, 28]
+    region:   c_268
     level:    [23, 24]
   17199395:
     template: Goblin_Leecher
@@ -4443,7 +4442,7 @@ spawns:
     level:    [38, 40]
   17199399:
     template: Snipper
-    at:       [499.000, -7.000, -40.000, 127]
+    region:   n_296
     level:    [21, 22]
   17199400:
     template: Snipper
@@ -4548,21 +4547,21 @@ spawns:
   17199425:
     template: Ghoul_war
     script:   Ghoul
-    at:       [568.000, -16.000, 300.000, 110]
+    region:   c_305
     level:    [20, 21]
   17199426:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [-258.000, 0.000, 7.000, 127]
+    region:   c_305
     level:    [22, 23]
   17199427:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [-41.842, -2.220, 27.345, 115]
+    region:   c_305
     level:    [22, 23]
   17199428:
     template: Will-o-the-Wisp
-    at:       [-5.493, -0.702, 46.689, 15]
+    region:   c_305
     level:    [25, 26]
   17199429:
     template: Snipper
@@ -4602,7 +4601,7 @@ spawns:
     level:    [21, 22]
   17199438:
     template: Valkurm_Emperor
-    at:       [-211.000, -0.010, -34.000, 39]
+    region:   w_325
     level:    [29, 30]
   17199439:
     template: Thread_Leech
@@ -4639,25 +4638,25 @@ spawns:
   17199447:
     template: Ghoul_war
     script:   Ghoul
-    at:       [-288.000, 0.000, -72.000, 57]
+    region:   w_325
     level:    [20, 21]
   17199448:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [-148.685, -0.390, -51.254, 47]
+    region:   w_325
     level:    [22, 23]
   17199449:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [-363.070, -0.519, -1.725, 127]
+    region:   w_325
     level:    [22, 23]
   17199450:
     template: Bogy
-    at:       [-283.466, -0.873, -6.393, 39]
+    region:   w_325
     level:    [28, 29]
   17199451:
     template: Bogy
-    at:       [-145.925, -0.006, -29.174, 16]
+    region:   w_325
     level:    [28, 29]
   17199452:
     template: Snipper
@@ -4689,7 +4688,7 @@ spawns:
     level:    [24, 25]
   17199459:
     template: Bogy
-    at:       [-117.000, 1.000, -95.000, 127]
+    region:   s_348
     level:    [29, 29]
   17199460:
     template: Sand_Bats
@@ -4737,26 +4736,26 @@ spawns:
     level:    [23, 24]
   17199471:
     template: Goblin_Leecher
-    at:       [-270.245, -7.933, 78.255, 127]
+    region:   w_372
     level:    [23, 24]
   17199472:
     template: Goblin_Gambler
-    at:       [-343.000, -8.000, 100.000, 19]
+    region:   w_372
     level:    [23, 24]
   17199473:
     template: Ghoul_war
     script:   Ghoul
-    at:       [-241.769, -8.500, 121.158, 141]
+    region:   w_358
     level:    [20, 21]
   17199474:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [-300.981, -8.126, 91.143, 88]
+    region:   w_372
     level:    [22, 23]
   17199475:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [-255.921, -8.279, 103.468, 127]
+    region:   w_372
     level:    [22, 23]
   17199476:
     template: Goblin_Mugger
@@ -4885,17 +4884,17 @@ spawns:
   17199507:
     template: Ghoul_war
     script:   Ghoul
-    at:       [-400.470, -8.466, 201.231, 28]
+    region:   nw_388
     level:    [20, 21]
   17199508:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [-402.766, -16.500, 317.849, 6]
+    region:   nw_388
     level:    [22, 23]
   17199509:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [-422.299, -7.708, 199.778, 90]
+    region:   nw_388
     level:    [22, 23]
   17199510:
     template: Hill_Lizard
@@ -5056,25 +5055,25 @@ spawns:
   17199549:
     template: Ghoul_war
     script:   Ghoul
-    at:       [-681.756, -8.734, 206.890, 13]
+    region:   nw_428
     level:    [21, 22]
   17199550:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [-715.970, -8.019, 224.952, 51]
+    region:   nw_428
     level:    [23, 24]
   17199551:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [-635.857, -8.512, 200.988, 235]
+    region:   nw_428
     level:    [23, 24]
   17199552:
     template: Bogy
-    at:       [-731.161, -10.862, 248.973, 127]
+    region:   nw_428
     level:    [28, 29]
   17199553:
     template: Bogy
-    at:       [-725.000, -7.000, 89.000, 39]
+    region:   nw_428
     level:    [28, 29]
   17199554:
     template: Snipper
@@ -5106,15 +5105,15 @@ spawns:
     level:    [25, 26]
   17199561:
     template: Bogy
-    at:       [-763.527, -4.500, 94.163, 127]
+    region:   w_450
     level:    [28, 28]
   17199562:
     template: Giant_Bat
-    region:   w_458
+    region:   region_37
     level:    [21, 22]
   17199563:
     template: Giant_Bat
-    region:   w_458
+    region:   region_37
     level:    [21, 22]
   17199564:
     template: Golden_Bat

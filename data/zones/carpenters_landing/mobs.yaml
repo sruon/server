@@ -2328,7 +2328,7 @@ spawns:
     level:    [15, 18]
   16785415:
     template: Beady_Beetle
-    at:       [-437.388, -6.613, 620.786, 66]
+    region:   nw_6
     level:    [15, 18]
   16785416:
     template: Poison_Funguar_Carpenters
@@ -2357,7 +2357,7 @@ spawns:
     level:    [16, 19]
   16785421:
     template: Specter_Bat
-    at:       [-389.435, -6.159, 482.650, 62]
+    region:   nw_14
     level:    [15, 20]
     attributes:
       spawn:
@@ -2375,7 +2375,7 @@ spawns:
           end:    6
   16785423:
     template: Bulldog_Bats
-    at:       [-386.536, -6.130, 514.231, 193]
+    region:   nw_14
     level:    [15, 20]
     attributes:
       spawn:
@@ -2421,7 +2421,7 @@ spawns:
     level:    [14, 17]
   16785432:
     template: Glide_Bomb
-    region:   nw_24
+    region:   region_74
     level:    [20, 21]
   16785433:
     template: Thunder_Elemental
@@ -2457,7 +2457,7 @@ spawns:
     level:    [16, 20]
   16785441:
     template: Orcish_Stonechucker
-    at:       [-368.445, -8.333, 556.915]
+    region:   nw_28
     level:    [16, 20]
   16785442:
     template: Orcish_Neckchopper
@@ -2477,7 +2477,7 @@ spawns:
     level:    [18, 22]
   16785446:
     template: Orcish_Grunt
-    at:       [-325.589, -5.086, 593.002, 95]
+    region:   nw_28
     level:    [16, 20]
   16785447:
     template: Orcish_Stonechucker
@@ -2485,7 +2485,7 @@ spawns:
     level:    [16, 20]
   16785448:
     template: Orcish_Neckchopper
-    at:       [-316.529, -3.861, 589.973, 144]
+    region:   nw_35
     level:    [16, 20]
   16785449:
     template: Poison_Funguar_Carpenters
@@ -2587,11 +2587,11 @@ spawns:
     level:    [21, 25]
   16785473:
     template: Orcish_Cursemaker
-    at:       [-195.504, -5.824, 115.174, 142]
+    region:   c_58
     level:    [21, 25]
   16785474:
     template: Orcish_Serjeant
-    at:       [-216.580, -5.749, 113.216, 173]
+    region:   c_67
     level:    [21, 25]
   16785475:
     template: Stag_Beetle
@@ -2620,12 +2620,12 @@ spawns:
     level:    [21, 25]
   16785481:
     template: Orcish_Serjeant
-    at:       [-177.467, -5.621, 45.134, 106]
+    region:   c_67
     level:    [21, 25]
   16785482:
     template: Ghoul_war
     script:   Ghoul
-    at:       [-192.486, -6.255, 40.402, 61]
+    region:   c_67
     level:    [21, 27]
   16785483:
     template: Stag_Beetle
@@ -2653,11 +2653,11 @@ spawns:
     level:    [21, 25]
   16785489:
     template: Orcish_Serjeant
-    at:       [-188.867, -6.357, 12.107, 126]
+    region:   c_75
     level:    [21, 25]
   16785490:
     template: Stag_Beetle
-    at:       [-165.504, -5.930, 43.278, 117]
+    region:   c_83
     level:    [20, 23]
   16785491:
     template: Battrap
@@ -2699,7 +2699,7 @@ spawns:
     level:    [21, 24]
   16785500:
     template: Marsh_Funguar
-    at:       [-240.493, -5.618, -58.453, 139]
+    region:   c_91
     level:    [21, 24]
   16785501:
     template: Stag_Beetle
@@ -2712,7 +2712,7 @@ spawns:
   16785503:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [-209.743, -8.658, 55.607, 250]
+    region:   w_93
     level:    [21, 27]
   16785504:
     template: Will-o-the-Wisp_Carpenters_Landi
@@ -2738,7 +2738,7 @@ spawns:
   16785509:
     template: Ghoul_war
     script:   Ghoul
-    at:       [-248.942, -6.209, -120.169, 243]
+    region:   w_93
     level:    [21, 27]
   16785510:
     template: Forest_Tiger
@@ -2918,7 +2918,7 @@ spawns:
     level:    [21, 24]
   16785554:
     template: Marsh_Funguar
-    at:       [-299.080, -5.403, -334.154, 121]
+    region:   region_75
     level:    [21, 24]
   16785555:
     template: Spider_Wasp
@@ -2938,7 +2938,7 @@ spawns:
     level:    [20, 23]
   16785559:
     template: Stag_Beetle
-    at:       [-263.165, -9.053, -341.843, 9]
+    region:   region_76
     level:    [20, 23]
   16785560:
     template: Spider_Wasp
@@ -2962,11 +2962,11 @@ spawns:
     level:    [21, 24]
   16785565:
     template: Stag_Beetle
-    at:       [-217.885, -10.538, -423.356, 153]
+    region:   region_77
     level:    [20, 23]
   16785566:
     template: Stag_Beetle
-    at:       [-337.561, -6.125, -369.250, 55]
+    region:   region_78
     level:    [20, 23]
   16785567:
     template: Spider_Wasp
@@ -2974,7 +2974,7 @@ spawns:
     level:    [19, 22]
   16785568:
     template: Stag_Beetle
-    at:       [-325.335, -6.430, -378.280, 10]
+    region:   sw_159
     level:    [20, 23]
   16785569:
     template: Marsh_Funguar
@@ -3038,7 +3038,7 @@ spawns:
     level:    [21, 24]
   16785584:
     template: Marsh_Funguar
-    at:       [-364.457, -0.836, -483.789, 15]
+    region:   sw_169
     level:    [21, 24]
   16785585:
     template: Stag_Beetle
@@ -3054,7 +3054,7 @@ spawns:
     level:    [22, 25]
   16785588:
     template: Forest_Tiger
-    at:       [-246.394, -6.667, -273.357, 182]
+    region:   c_181
     level:    [22, 25]
   16785589:
     template: Stag_Beetle
@@ -3149,7 +3149,7 @@ spawns:
   16785611:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [-184.606, -5.711, -440.404, 201]
+    region:   s_204
     level:    [21, 27]
   16785612:
     template: Will-o-the-Wisp_Carpenters_Landi
@@ -3307,7 +3307,7 @@ spawns:
   16785649:
     template: Spunkie_Carpenters_Landing
     script:   Spunkie
-    at:       [104.715, -6.369, -566.537, 44]
+    region:   se_237
     level:    [32, 33]
   16785650:
     template: Birdtrap
@@ -3398,7 +3398,7 @@ spawns:
     level:    [27, 30]
   16785670:
     template: Diving_Beetle
-    at:       [167.367, -6.061, -528.687, 130]
+    region:   se_253
     level:    [27, 30]
   16785671:
     template: Birdtrap
@@ -3423,7 +3423,7 @@ spawns:
     level:    [29, 33]
   16785676:
     template: Orctrap
-    at:       [180.087, -5.484, -532.799, 81]
+    region:   se_237
     level:    [37, 38]
   16785677:
     template: Thunder_Elemental
@@ -3439,7 +3439,7 @@ spawns:
     level:    [29, 33]
   16785680:
     template: Birdtrap
-    at:       [216.169, -1.949, -523.801, 225]
+    region:   se_270
     level:    [29, 33]
   16785681:
     template: Spinous_Pugil
@@ -3471,11 +3471,11 @@ spawns:
     level:    [36, 38]
   16785688:
     template: Diving_Beetle
-    at:       [138.272, -6.706, -647.383, 179]
+    region:   region_79
     level:    [27, 30]
   16785689:
     template: Diving_Beetle
-    at:       [138.083, -6.618, -646.728, 80]
+    region:   region_79
     level:    [27, 30]
   16785690:
     template: Diving_Beetle
@@ -3560,7 +3560,7 @@ spawns:
   16785708:
     template: Shrieker_Carpenters_Landing
     script:   Shrieker
-    at:       [92.461, -0.500, -794.489, 252]
+    region:   se_293
     level:    [28, 31]
   16785709:
     template: Overgrown_Ivy

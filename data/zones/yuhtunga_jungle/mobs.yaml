@@ -2944,7 +2944,7 @@ spawns:
     level:    [32, 37]
   17281126:
     template: Fire_Elemental
-    region:   n_102
+    region:   n_95
     level:    [48, 50]
   17281127:
     template: Ivory_Lizard
@@ -3322,7 +3322,7 @@ spawns:
     level:    [32, 37]
   17281214:
     template: Fire_Elemental
-    region:   c_190
+    region:   c_186
     level:    [48, 50]
   17281215:
     template: Death_Jacket_jungle
@@ -4023,7 +4023,7 @@ spawns:
     level:    [32, 35]
   17281385:
     template: Jungle_Coeurl
-    at:       [235.925, 3.500, 195.956, 45]
+    region:   ne_357
     level:    [35, 38]
   17281386:
     template: Ivory_Lizard
@@ -4035,7 +4035,7 @@ spawns:
     level:    [35, 38]
   17281388:
     template: Bayawak
-    region:   ne_364
+    region:   ne_362
     level:    [67, 70]
   17281389:
     template: Ivory_Lizard
@@ -4135,7 +4135,7 @@ spawns:
     level:    [45, 48]
   17281413:
     template: Fire_Elemental
-    region:   ne_389
+    region:   ne_385
     level:    [48, 50]
   17281414:
     template: Soldier_Crawler

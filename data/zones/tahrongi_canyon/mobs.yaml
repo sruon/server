@@ -2523,6 +2523,7 @@ spawns:
     level:    [11, 12]
   17256488:
     template: Skeleton_Warrior
+    region:   sw_36
     level:    [10, 12]
   17256489:
     template: Skeleton_Warrior
@@ -2530,7 +2531,7 @@ spawns:
     level:    [10, 12]
   17256490:
     template: Skeleton_Sorcerer
-    at:       [-257.411, 13.516, -544.189, 38]
+    region:   sw_36
     level:    [11, 13]
   17256491:
     template: Ghost
@@ -2546,7 +2547,7 @@ spawns:
     level:    [16, 18]
   17256494:
     template: Canyon_Rarab
-    at:       [105.216, -10.251, -156.114, 54]
+    region:   c_59
     level:    [9, 10]
   17256495:
     template: Canyon_Rarab
@@ -2650,7 +2651,7 @@ spawns:
     level:    [10, 11]
   17256520:
     template: Canyon_Crawler
-    at:       [-11.158, -7.240, -131.867, 28]
+    region:   c_59
     level:    [12, 13]
   17256521:
     template: Canyon_Crawler
@@ -2682,11 +2683,11 @@ spawns:
     level:    [12, 13]
   17256528:
     template: Skeleton_Warrior
-    at:       [81.827, -11.955, -146.143, 11]
+    region:   c_75
     level:    [10, 12]
   17256529:
     template: Skeleton_Sorcerer
-    at:       [-56.470, -16.525, -217.264, 127]
+    region:   c_75
     level:    [11, 13]
   17256530:
     template: Air_Elemental
@@ -2722,7 +2723,7 @@ spawns:
     level:    [14, 15]
   17256538:
     template: Wild_Dhalmel
-    at:       [195.715, -8.535, -22.420, 127]
+    region:   c_93
     level:    [14, 15]
   17256539:
     template: Wild_Dhalmel
@@ -2730,7 +2731,7 @@ spawns:
     level:    [14, 15]
   17256540:
     template: Barghest
-    at:       [168.783, -2.139, -43.124, 127]
+    region:   e_83
     level:    [8, 11]
   17256541:
     template: Canyon_Rarab
@@ -2770,11 +2771,11 @@ spawns:
     level:    [14, 15]
   17256550:
     template: Barghest
-    at:       [90.813, 15.545, -8.750, 127]
+    region:   c_93
     level:    [8, 11]
   17256551:
     template: Canyon_Crawler
-    at:       [174.854, -3.915, -17.372, 127]
+    region:   c_93
     level:    [12, 13]
   17256552:
     template: Canyon_Crawler
@@ -2826,7 +2827,7 @@ spawns:
     level:    [19, 20]
   17256564:
     template: Barghest
-    at:       [22.270, -4.695, -66.531, 127]
+    region:   c_106
     level:    [8, 11]
   17256565:
     template: Yagudo_Initiate
@@ -2858,11 +2859,11 @@ spawns:
     level:    [13, 14]
   17256572:
     template: Skeleton_Warrior
-    at:       [225.928, -8.287, 8.898, 127]
+    region:   c_117
     level:    [10, 12]
   17256573:
     template: Skeleton_Sorcerer
-    region:   c_125
+    region:   c_117
     level:    [11, 13]
   17256574:
     template: Earth_Elemental
@@ -2910,7 +2911,7 @@ spawns:
     level:    [10, 11]
   17256585:
     template: Canyon_Crawler
-    at:       [-160.533, -7.993, -50.124, 34]
+    region:   w_127
     level:    [12, 13]
   17256586:
     template: Canyon_Crawler
@@ -3018,10 +3019,11 @@ spawns:
     level:    [12, 13]
   17256612:
     template: Skeleton_Warrior
-    at:       [-295.779, -8.335, 80.956, 104]
+    region:   w_159
     level:    [10, 12]
   17256613:
     template: Skeleton_Sorcerer
+    region:   w_159
     level:    [11, 13]
   17256614:
     template: Air_Elemental
@@ -3049,7 +3051,7 @@ spawns:
     level:    [11, 12]
   17256620:
     template: Goblin_Ambusher
-    at:       [-443.801, -40.747, -196.079, 150]
+    region:   w_167
     level:    [13, 14]
   17256621:
     template: Goblin_Ambusher
@@ -3093,11 +3095,11 @@ spawns:
     level:    [11, 12]
   17256631:
     template: Goblin_Ambusher
-    at:       [-327.145, 7.691, 264.422, 74]
+    region:   nw_178
     level:    [13, 14]
   17256632:
     template: Goblin_Ambusher
-    at:       [-306.998, 6.918, 247.736, 127]
+    region:   nw_178
     level:    [13, 14]
   17256633:
     template: Goblin_Tinkerer
@@ -3165,7 +3167,7 @@ spawns:
     level:    [12, 13]
   17256649:
     template: Canyon_Crawler
-    at:       [-146.043, 13.431, 136.957, 127]
+    region:   n_189
     level:    [12, 13]
   17256650:
     template: Canyon_Crawler
@@ -3217,7 +3219,7 @@ spawns:
     level:    [14, 15]
   17256662:
     template: Barghest
-    at:       [-91.695, -7.409, 38.993, 127]
+    region:   c_203
     level:    [8, 11]
   17256663:
     template: Canyon_Crawler
@@ -3269,11 +3271,11 @@ spawns:
     level:    [14, 15]
   17256675:
     template: Barghest
-    at:       [2.106, 22.236, 191.766, 80]
+    region:   c_217
     level:    [8, 11]
   17256676:
     template: Canyon_Crawler
-    at:       [-44.046, -8.814, 44.657, 85]
+    region:   c_217
     level:    [12, 13]
   17256677:
     template: Canyon_Crawler
@@ -3281,7 +3283,7 @@ spawns:
     level:    [12, 13]
   17256678:
     template: Canyon_Rarab
-    at:       [-27.594, 21.948, 228.288, 16]
+    region:   n_244
     level:    [10, 11]
   17256679:
     template: Canyon_Rarab
@@ -3313,7 +3315,7 @@ spawns:
     level:    [11, 12]
   17256686:
     template: Wild_Dhalmel
-    at:       [-23.900, 27.960, 282.280, 125]
+    region:   c_106
     level:    [15, 16]
   17256687:
     template: Wild_Dhalmel
@@ -3333,7 +3335,7 @@ spawns:
     level:    [19, 20]
   17256691:
     template: Barghest
-    region:   n_243
+    region:   n_231
     level:    [8, 11]
   17256692:
     template: Canyon_Crawler
@@ -3373,11 +3375,11 @@ spawns:
     level:    [13, 14]
   17256701:
     template: Skeleton_Warrior
-    at:       [-153.171, 0.832, 10.678, 58]
+    region:   n_231
     level:    [10, 12]
   17256702:
     template: Skeleton_Sorcerer
-    at:       [-31.847, 13.202, 144.081, 32]
+    region:   c_247
     level:    [11, 13]
   17256703:
     template: Earth_Elemental
@@ -3410,7 +3412,7 @@ spawns:
     level:    [11, 12]
   17256709:
     template: Skeleton_Warrior
-    at:       [196.006, 4.859, 30.510, 59]
+    region:   e_256
     level:    [10, 12]
   17256710:
     template: Skeleton_Warrior
@@ -3418,7 +3420,7 @@ spawns:
     level:    [10, 12]
   17256711:
     template: Skeleton_Sorcerer
-    at:       [206.987, 7.605, 79.054, 69]
+    region:   e_256
     level:    [11, 13]
   17256712:
     template: Ghost
@@ -3474,7 +3476,7 @@ spawns:
     level:    [14, 15]
   17256725:
     template: Barghest
-    at:       [241.947, 7.959, 84.138, 60]
+    region:   e_266
     level:    [8, 11]
   17256726:
     template: Canyon_Rarab
@@ -3594,11 +3596,11 @@ spawns:
     level:    [12, 13]
   17256755:
     template: Skeleton_Warrior
-    at:       [298.267, 34.669, 384.571, 127]
+    region:   ne_302
     level:    [10, 12]
   17256756:
     template: Skeleton_Sorcerer
-    at:       [225.368, 39.908, 453.501, 18]
+    region:   ne_302
     level:    [11, 13]
   17256757:
     template: Air_Elemental
@@ -3636,7 +3638,7 @@ spawns:
     level:    [12, 13]
   17256764:
     template: Skeleton_Warrior
-    at:       [396.251, 47.004, 488.965, 127]
+    region:   ne_310
     level:    [10, 12]
   17256765:
     template: Skeleton_Warrior
@@ -3644,6 +3646,7 @@ spawns:
     level:    [10, 12]
   17256766:
     template: Skeleton_Sorcerer
+    region:   ne_310
     level:    [11, 13]
   17256767:
     template: Ghost
@@ -3847,7 +3850,7 @@ spawns:
     level:    [10, 12]
   17256817:
     template: Skeleton_Sorcerer
-    at:       [128.364, 39.570, 263.277, 127]
+    region:   n_362
     level:    [11, 13]
   17256818:
     template: Grenade
@@ -3867,7 +3870,7 @@ spawns:
     level:    [18, 19]
   17256822:
     template: Canyon_Rarab
-    at:       [-91.176, 29.509, 503.701, 47]
+    region:   n_386
     level:    [10, 11]
   17256823:
     template: Canyon_Rarab
@@ -3911,7 +3914,7 @@ spawns:
     level:    [14, 15]
   17256833:
     template: Barghest
-    at:       [-146.897, 29.485, 436.341, 30]
+    region:   n_375
     level:    [8, 11]
   17256834:
     template: Canyon_Crawler
@@ -4059,7 +4062,7 @@ spawns:
     level:    [15, 16]
   17256870:
     template: Barghest
-    at:       [-324.516, 23.643, 435.492, 127]
+    region:   nw_412
     level:    [8, 11]
   17256871:
     template: Yagudo_Mendicant
@@ -4095,11 +4098,11 @@ spawns:
     level:    [14, 15]
   17256879:
     template: Skeleton_Warrior
-    at:       [-370.163, 15.715, 400.086, 127]
+    region:   nw_423
     level:    [10, 12]
   17256880:
     template: Skeleton_Sorcerer
-    at:       [-332.396, 22.359, 392.825, 119]
+    region:   nw_423
     level:    [11, 13]
   17256881:
     template: Earth_Elemental

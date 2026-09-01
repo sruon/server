@@ -2212,7 +2212,7 @@ spawns:
     level:    [1, 1]
   17186837:
     template: Ding_Bats
-    at:       [-361.734, -51.292, 287.212, 36]
+    region:   n_6
     level:    [1, 1]
     attributes:
       spawn:
@@ -2221,7 +2221,7 @@ spawns:
           end:    6
   17186838:
     template: Ding_Bats
-    at:       [-262.382, -57.576, 338.512, 127]
+    region:   n_6
     level:    [1, 1]
     attributes:
       spawn:
@@ -2230,7 +2230,7 @@ spawns:
           end:    5
   17186839:
     template: Ding_Bats
-    at:       [-368.478, -51.486, 288.054, 127]
+    region:   n_6
     level:    [1, 1]
     attributes:
       spawn:
@@ -2317,7 +2317,7 @@ spawns:
     level:    [1, 1]
   17186857:
     template: Ding_Bats
-    at:       [-299.293, -56.888, 410.847, 107]
+    region:   n_26
     level:    [1, 1]
     attributes:
       spawn:
@@ -2326,7 +2326,7 @@ spawns:
           end:    6
   17186858:
     template: Ding_Bats
-    at:       [-372.723, -51.130, 383.975, 127]
+    region:   n_26
     level:    [1, 1]
     attributes:
       spawn:
@@ -2335,7 +2335,7 @@ spawns:
           end:    5
   17186859:
     template: Ding_Bats
-    at:       [-206.750, -61.157, 435.540, 78]
+    region:   n_26
     level:    [1, 1]
     attributes:
       spawn:
@@ -2406,7 +2406,7 @@ spawns:
     level:    [1, 1]
   17186873:
     template: Ding_Bats
-    at:       [-145.567, -54.988, 206.655, 127]
+    region:   e_46
     level:    [1, 1]
     attributes:
       spawn:
@@ -2415,7 +2415,7 @@ spawns:
           end:    6
   17186874:
     template: Ding_Bats
-    at:       [-138.724, -52.485, 173.835, 106]
+    region:   e_46
     level:    [1, 1]
     attributes:
       spawn:
@@ -2481,7 +2481,7 @@ spawns:
     level:    [3, 4]
   17186888:
     template: Ding_Bats
-    at:       [-476.246, -50.299, 330.157, 3]
+    region:   n_60
     level:    [2, 3]
     attributes:
       spawn:
@@ -2500,7 +2500,7 @@ spawns:
   17186890:
     template: Mouse_Bat_Ronf
     script:   Mouse_Bat
-    at:       [-488.047, -49.127, 351.711, 127]
+    region:   n_60
     level:    [3, 4]
     attributes:
       spawn:
@@ -2571,7 +2571,7 @@ spawns:
     level:    [3, 4]
   17186905:
     template: Ding_Bats
-    at:       [-499.020, -50.749, 240.648, 127]
+    region:   c_76
     level:    [2, 3]
     attributes:
       spawn:
@@ -2590,7 +2590,7 @@ spawns:
   17186907:
     template: Mouse_Bat_Ronf
     script:   Mouse_Bat
-    at:       [-404.716, -50.107, 206.425, 127]
+    region:   c_76
     level:    [2, 3]
     attributes:
       spawn:
@@ -2665,7 +2665,7 @@ spawns:
     level:    [3, 4]
   17186923:
     template: Ding_Bats
-    at:       [-259.520, -37.641, 59.634, 127]
+    region:   c_94
     level:    [2, 3]
     attributes:
       spawn:
@@ -2684,7 +2684,7 @@ spawns:
   17186925:
     template: Mouse_Bat_Ronf
     script:   Mouse_Bat
-    at:       [-326.102, -41.179, 106.263, 127]
+    region:   c_94
     level:    [3, 4]
     attributes:
       spawn:
@@ -2735,7 +2735,7 @@ spawns:
     level:    [4, 5]
   17186935:
     template: Orcish_Mesmerizer
-    at:       [-563.264, -59.769, 485.841, 127]
+    region:   nw_126
     level:    [4, 5]
   17186936:
     template: Orcish_Mesmerizer
@@ -2751,7 +2751,7 @@ spawns:
     level:    [4, 5]
   17186939:
     template: Ding_Bats
-    at:       [-541.131, -60.251, 431.693, 97]
+    region:   nw_112
     level:    [3, 4]
     attributes:
       spawn:
@@ -2770,7 +2770,7 @@ spawns:
   17186941:
     template: Mouse_Bat_Ronf
     script:   Mouse_Bat
-    at:       [-551.599, -57.721, 492.920, 51]
+    region:   nw_112
     level:    [4, 5]
     attributes:
       spawn:
@@ -2787,19 +2787,19 @@ spawns:
     level:    [4, 5]
   17186944:
     template: Orcish_Grappler
-    at:       [-511.659, -60.909, 495.146, 80]
+    region:   nw_112
     level:    [4, 5]
   17186945:
     template: Orcish_Fodder
-    at:       [-572.030, -61.785, 465.120, 127]
+    region:   nw_112
     level:    [4, 5]
   17186946:
     template: Orcish_Mesmerizer
-    at:       [-573.030, -61.661, 464.767, 45]
+    region:   nw_112
     level:    [4, 5]
   17186947:
     template: Orcish_Grappler
-    at:       [-571.694, -61.140, 470.693, 126]
+    region:   nw_112
     level:    [4, 5]
   17186948:
     template: Orcish_Fodder
@@ -2889,7 +2889,7 @@ spawns:
     level:    [4, 5]
   17186968:
     template: Ding_Bats
-    at:       [-511.680, -52.652, 266.901, 127]
+    region:   nw_141
     level:    [3, 4]
     attributes:
       spawn:
@@ -2908,7 +2908,7 @@ spawns:
   17186970:
     template: Mouse_Bat_Ronf
     script:   Mouse_Bat
-    at:       [-512.280, -50.724, 312.462, 15]
+    region:   nw_141
     level:    [4, 5]
     attributes:
       spawn:
@@ -2971,7 +2971,7 @@ spawns:
     level:    [4, 5]
   17186983:
     template: Ding_Bats
-    at:       [-482.392, -40.019, 133.287, 127]
+    region:   w_156
     level:    [3, 4]
     attributes:
       spawn:
@@ -2990,7 +2990,7 @@ spawns:
   17186985:
     template: Mouse_Bat_Ronf
     script:   Mouse_Bat
-    at:       [-582.110, -41.916, 194.012, 21]
+    region:   w_156
     level:    [4, 5]
     attributes:
       spawn:
@@ -3057,7 +3057,7 @@ spawns:
     level:    [4, 5]
   17186999:
     template: Ding_Bats
-    at:       [-511.688, -30.809, 74.260, 121]
+    region:   c_171
     level:    [3, 4]
     attributes:
       spawn:
@@ -3076,7 +3076,7 @@ spawns:
   17187001:
     template: Mouse_Bat_Ronf
     script:   Mouse_Bat
-    at:       [-393.587, -31.192, 76.965, 30]
+    region:   c_171
     level:    [4, 5]
     attributes:
       spawn:
@@ -3143,7 +3143,7 @@ spawns:
     level:    [4, 5]
   17187015:
     template: Ding_Bats
-    at:       [-226.481, -34.369, 18.027, 127]
+    region:   c_187
     level:    [3, 4]
     attributes:
       spawn:
@@ -3162,7 +3162,7 @@ spawns:
   17187017:
     template: Mouse_Bat_Ronf
     script:   Mouse_Bat
-    at:       [-282.783, -30.562, 30.724, 127]
+    region:   c_187
     level:    [4, 5]
     attributes:
       spawn:
@@ -3233,11 +3233,11 @@ spawns:
     level:    [4, 5]
   17187032:
     template: Goblin_Thug
-    at:       [-319.937, -20.641, -112.556, 127]
+    region:   c_203
     level:    [4, 5]
   17187033:
     template: Goblin_Weaver
-    at:       [-257.216, -30.927, -78.628, 91]
+    region:   c_203
     level:    [4, 5]
   17187034:
     template: Orcish_Fodder
@@ -3272,12 +3272,12 @@ spawns:
           end:    5
   17187039:
     template: Tainted_Hound
-    at:       [-262.154, -46.238, 145.268, 127]
+    region:   c_203
     level:    [5, 6]
   17187040:
     template: Enchanted_Bones_war
     script:   Enchanted_Bones
-    at:       [-379.400, -23.232, -66.426, 127]
+    region:   c_203
     level:    [4, 5]
   17187041:
     template: Forest_Hare
@@ -3353,16 +3353,16 @@ spawns:
     level:    [4, 5]
   17187059:
     template: Tainted_Hound
-    at:       [-195.854, -22.578, -177.986, 127]
+    region:   e_225
     level:    [5, 6]
   17187060:
     template: Enchanted_Bones_war
     script:   Enchanted_Bones
-    at:       [-247.484, -21.044, -146.460, 127]
+    region:   e_225
     level:    [4, 5]
   17187061:
     template: Bomb
-    at:       [-166.845, -20.983, -101.616, 1]
+    region:   e_225
     level:    [8, 10]
   17187062:
     template: Forest_Hare
@@ -3394,7 +3394,7 @@ spawns:
     level:    [5, 6]
   17187069:
     template: Forest_Funguar
-    region:   w_253
+    region:   region_38
     level:    [5, 6]
   17187070:
     template: Forest_Funguar
@@ -3434,7 +3434,7 @@ spawns:
     level:    [6, 7]
   17187079:
     template: Ding_Bats
-    at:       [-429.676, -31.211, -29.961, 208]
+    region:   w_246
     level:    [4, 5]
     attributes:
       spawn:
@@ -3452,6 +3452,7 @@ spawns:
           end:    5
   17187081:
     template: Mouse_Bat_Ronf
+    region:   w_246
     script:   Mouse_Bat
     level:    [5, 6]
     attributes:
@@ -3471,32 +3472,33 @@ spawns:
           end:    5
   17187083:
     template: Tainted_Hound
-    at:       [-561.154, -30.886, 21.836, 152]
+    region:   w_246
     level:    [5, 6]
   17187084:
     template: Enchanted_Bones_blm
     script:   Enchanted_Bones
-    at:       [-597.599, -30.918, -118.268, 58]
+    region:   w_246
     level:    [6, 7]
   17187085:
     template: Enchanted_Bones_blm
+    region:   w_246
     script:   Enchanted_Bones
     level:    [6, 7]
   17187086:
     template: Bomb
-    at:       [-618.393, -31.276, -3.409, 100]
+    region:   w_246
     level:    [8, 10]
   17187087:
     template: Orcish_Fodder
-    at:       [-502.975, -30.850, -25.544, 77]
+    region:   w_246
     level:    [6, 7]
   17187088:
     template: Orcish_Mesmerizer
-    at:       [-508.975, -29.926, -23.503, 108]
+    region:   w_246
     level:    [6, 7]
   17187089:
     template: Orcish_Grappler
-    at:       [-502.717, -30.829, -24.875, 127]
+    region:   w_246
     level:    [6, 7]
   17187090:
     template: Forest_Hare
@@ -3564,7 +3566,7 @@ spawns:
     level:    [6, 7]
   17187106:
     template: Tainted_Hound
-    at:       [-467.511, -21.374, -129.909, 88]
+    region:   c_274
     level:    [6, 7]
   17187107:
     template: Enchanted_Bones_war
@@ -3637,11 +3639,11 @@ spawns:
     level:    [6, 7]
   17187124:
     template: Orcish_Grappler
-    at:       [-408.339, -19.225, -233.759, 127]
+    region:   s_292
     level:    [6, 7]
   17187125:
     template: Ding_Bats
-    at:       [-285.119, -20.504, -235.154, 31]
+    region:   s_292
     level:    [4, 5]
     attributes:
       spawn:
@@ -3669,12 +3671,12 @@ spawns:
           end:    6
   17187128:
     template: Tainted_Hound
-    at:       [-252.045, -21.687, -211.079, 49]
+    region:   s_292
     level:    [6, 7]
   17187129:
     template: Enchanted_Bones_war
     script:   Enchanted_Bones
-    at:       [-294.289, -21.377, -222.991, 127]
+    region:   s_292
     level:    [6, 7]
   17187130:
     template: Enchanted_Bones_blm
@@ -3743,24 +3745,24 @@ spawns:
     level:    [5, 6]
   17187146:
     template: Tainted_Hound
-    at:       [-243.312, -22.399, -261.817, 127]
+    region:   se_315
     level:    [7, 8]
   17187147:
     template: Enchanted_Bones_war
     script:   Enchanted_Bones
-    at:       [-157.270, -20.306, -274.198, 127]
+    region:   se_315
     level:    [5, 6]
   17187148:
     template: Goblin_Thug
-    at:       [-220.544, -22.468, -258.674, 48]
+    region:   se_315
     level:    [5, 6]
   17187149:
     template: Goblin_Thug
-    at:       [-208.132, -20.237, -268.112, 127]
+    region:   se_315
     level:    [5, 6]
   17187150:
     template: Goblin_Weaver
-    at:       [-220.643, -22.487, -258.889, 127]
+    region:   se_315
     level:    [5, 6]
   17187151:
     template: Forest_Hare
@@ -3824,7 +3826,7 @@ spawns:
     level:    [5, 6]
   17187166:
     template: Ding_Bats
-    at:       [-422.409, -12.200, -357.227, 127]
+    region:   s_335
     level:    [4, 5]
     attributes:
       spawn:
@@ -3843,7 +3845,7 @@ spawns:
   17187168:
     template: Mouse_Bat_Ronf
     script:   Mouse_Bat
-    at:       [-353.007, -9.840, -289.095, 122]
+    region:   s_335
     level:    [5, 6]
     attributes:
       spawn:
@@ -3862,16 +3864,16 @@ spawns:
           end:    5
   17187170:
     template: Tainted_Hound
-    at:       [-274.522, -10.964, -362.660, 127]
+    region:   s_335
     level:    [7, 8]
   17187171:
     template: Enchanted_Bones_war
     script:   Enchanted_Bones
-    at:       [-266.648, -10.760, -361.773, 127]
+    region:   s_335
     level:    [5, 6]
   17187172:
     template: Bomb
-    at:       [-347.524, -11.704, -324.355]
+    region:   s_335
     level:    [8, 10]
   17187173:
     template: Forest_Hare
@@ -3935,7 +3937,7 @@ spawns:
     level:    [6, 7]
   17187188:
     template: Goblin_Thug
-    at:       [-474.355, -9.646, -354.995, 123]
+    region:   sw_357
     level:    [6, 7]
   17187189:
     template: Goblin_Weaver
@@ -3943,7 +3945,7 @@ spawns:
     level:    [6, 7]
   17187190:
     template: Orcish_Mesmerizer
-    at:       [-506.325, -8.905, -380.270, 13]
+    region:   sw_357
     level:    [7, 8]
   17187191:
     template: Orcish_Grappler
@@ -3951,7 +3953,7 @@ spawns:
     level:    [7, 8]
   17187192:
     template: Ding_Bats
-    at:       [-494.555, -4.687, -420.227, 19]
+    region:   sw_357
     level:    [4, 5]
     attributes:
       spawn:
@@ -3970,7 +3972,7 @@ spawns:
   17187194:
     template: Mouse_Bat_Ronf
     script:   Mouse_Bat
-    at:       [-509.389, 3.513, -452.541, 69]
+    region:   sw_357
     level:    [5, 6]
     attributes:
       spawn:
@@ -3989,17 +3991,17 @@ spawns:
           end:    5
   17187196:
     template: Tainted_Hound
-    at:       [-554.837, -9.018, -410.552, 57]
+    region:   sw_357
     level:    [7, 8]
   17187197:
     template: Enchanted_Bones_war
     script:   Enchanted_Bones
-    at:       [-511.874, -10.888, -362.958, 127]
+    region:   sw_357
     level:    [6, 7]
   17187198:
     template: Enchanted_Bones_blm
     script:   Enchanted_Bones
-    at:       [-542.330, -13.572, -389.272, 127]
+    region:   sw_357
     level:    [7, 8]
   17187199:
     template: Goblin_Thug
@@ -4007,11 +4009,11 @@ spawns:
     level:    [6, 7]
   17187200:
     template: Goblin_Thug
-    at:       [-452.880, -8.914, -382.727, 127]
+    region:   sw_357
     level:    [6, 7]
   17187201:
     template: Goblin_Weaver
-    at:       [-454.647, -8.725, -386.029, 127]
+    region:   sw_357
     level:    [6, 7]
   17187202:
     template: Forest_Hare
@@ -4166,19 +4168,19 @@ spawns:
           end:    5
   17187237:
     template: Tainted_Hound
-    at:       [-268.645, -2.602, -567.280, 36]
+    region:   s_412
     level:    [7, 8]
   17187238:
     template: Goblin_Thug
-    at:       [-221.000, -0.010, -490.000, 47]
+    region:   s_412
     level:    [7, 8]
   17187239:
     template: Goblin_Thug
-    at:       [-213.535, 0.071, -493.327, 127]
+    region:   s_412
     level:    [7, 8]
   17187240:
     template: Goblin_Weaver
-    at:       [-213.567, 0.071, -493.319, 47]
+    region:   s_412
     level:    [7, 8]
   17187241:
     template: Forest_Hare
@@ -4230,17 +4232,17 @@ spawns:
     level:    [7, 8]
   17187253:
     template: Tainted_Hound
-    at:       [-154.910, -11.698, -412.007, 13]
+    region:   se_425
     level:    [7, 8]
   17187254:
     template: Enchanted_Bones_blm
     script:   Enchanted_Bones
-    at:       [-179.432, -10.953, -417.258, 127]
+    region:   se_425
     level:    [7, 8]
   17187255:
     template: Enchanted_Bones_blm
     script:   Enchanted_Bones
-    at:       [-138.188, -10.915, -410.870, 62]
+    region:   se_425
     level:    [7, 8]
   17187256:
     template: Forest_Hare
@@ -4315,6 +4317,7 @@ spawns:
           end:    5
   17187271:
     template: Enchanted_Bones_blm
+    region:   se_440
     script:   Enchanted_Bones
     level:    [7, 8]
   17187272:
