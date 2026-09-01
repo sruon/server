@@ -1977,7 +1977,7 @@ spawns:
   16891912:
     template: Greater_Gaylas_Sacrarium
     script:   Greater_Gaylas
-    at:       [-140.026, -8.614, 77.190, 192]
+    region:   region_40
     level:    [46, 48]
   16891913:
     template: Mummy
@@ -1985,7 +1985,7 @@ spawns:
     level:    [54, 56]
   16891914:
     template: Mummy
-    at:       [-115.217, -0.600, 28.080, 65]
+    region:   w_9
     level:    [54, 56]
   16891915:
     template: Lich
@@ -2013,7 +2013,7 @@ spawns:
     level:    [54, 56]
   16891921:
     template: Lich
-    at:       [-88.555, -0.599, -35.281]
+    region:   w_16
     level:    [54, 56]
   16891922:
     template: Lich
@@ -2029,7 +2029,7 @@ spawns:
     level:    [54, 56]
   16891925:
     template: Blubber_Eyes
-    at:       [-73.763, -0.580, 4.092, 125]
+    region:   w_24
     level:    [57, 59]
   16891926:
     template: Mummy
@@ -2045,7 +2045,7 @@ spawns:
     level:    [54, 56]
   16891929:
     template: Lich
-    at:       [-75.346, -0.599, -23.966, 45]
+    region:   w_24
     level:    [54, 56]
   16891930:
     template: Blubber_Eyes
@@ -2053,7 +2053,7 @@ spawns:
     level:    [57, 59]
   16891931:
     template: Mummy
-    at:       [-50.657, -0.500, -6.315, 133]
+    region:   w_28
     level:    [54, 56]
   16891932:
     template: Lich
@@ -2098,12 +2098,12 @@ spawns:
   16891942:
     template: Utukku_S
     script:   Utukku
-    at:       [-96.111, -0.600, 16.924]
+    region:   c_40
     level:    [55, 55]
   16891943:
     template: Utukku_S
     script:   Utukku
-    at:       [-62.752, -0.600, 26.318, 132]
+    region:   c_40
     level:    [55, 55]
   16891944:
     template: Utukku_S
@@ -2113,11 +2113,12 @@ spawns:
   16891945:
     template: Utukku_S
     script:   Utukku
-    at:       [-114.945, -0.500, -10.143, 75]
+    region:   c_43
     level:    [55, 55]
   16891946:
     template: Utukku_S
     script:   Utukku
+    region:   c_43
     level:    [55, 55]
   16891947:
     template: Utukku_S
@@ -2136,7 +2137,7 @@ spawns:
   16891950:
     template: Stegotaur_S
     script:   Stegotaur
-    at:       [-60.765, -0.347, -53.644, 187]
+    region:   region_41
     level:    [47, 49]
   16891951:
     template: Fomor_Ranger_Large
@@ -2621,7 +2622,7 @@ spawns:
     level:    [60, 60]
   16892067:
     template: Dark_Elemental
-    region:   se_163
+    region:   se_161
     level:    [60, 60]
   16892068:
     template: Balor
@@ -2674,55 +2675,55 @@ spawns:
     level:    [84, 86]
   16892080:
     template: Aqueduct_Spider
-    at:       [-166.700, -7.600, -19.257, 72]
+    region:   region_42
     level:    [84, 86]
   16892081:
     template: Aqueduct_Spider
-    at:       [-159.137, -7.600, -16.144, 255]
+    region:   region_42
     level:    [84, 86]
   16892082:
     template: Aqueduct_Spider
-    at:       [158.470, -0.837, 59.464, 127]
+    region:   region_43
     level:    [84, 86]
   16892083:
     template: Aqueduct_Spider
-    at:       [158.531, -0.821, 59.227, 127]
+    region:   region_43
     level:    [84, 86]
   16892084:
     template: Aqueduct_Spider
-    at:       [139.119, -0.368, 80.249, 63]
+    region:   region_44
     level:    [84, 86]
   16892085:
     template: Aqueduct_Spider
-    at:       [139.297, 0.879, 86.147, 64]
+    region:   region_44
     level:    [84, 86]
   16892086:
     template: Aqueduct_Spider
-    at:       [159.476, 7.159, 98.874, 255]
+    region:   region_45
     level:    [84, 86]
   16892087:
     template: Aqueduct_Spider
-    at:       [154.272, 6.063, 98.784, 127]
+    region:   region_45
     level:    [84, 86]
   16892088:
     template: Aqueduct_Spider
-    at:       [163.153, 7.401, 98.786, 127]
+    region:   region_45
     level:    [84, 86]
   16892089:
     template: Aqueduct_Spider
-    at:       [140.228, -0.560, -81.596, 64]
+    region:   region_46
     level:    [84, 86]
   16892090:
     template: Aqueduct_Spider
-    at:       [140.477, -0.529, -80.427, 64]
+    region:   region_46
     level:    [84, 86]
   16892091:
     template: Aqueduct_Spider
-    at:       [168.678, -2.474, -61.076, 255]
+    region:   region_47
     level:    [84, 86]
   16892092:
     template: Aqueduct_Spider
-    at:       [172.191, -3.305, -60.903, 255]
+    region:   region_47
     level:    [84, 86]
   16892093:
     template: Aqueduct_Spider
