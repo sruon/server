@@ -5090,7 +5090,7 @@ spawns:
     level:    [70, 72]
   16998436:
     template: Arrapago_Apkallu
-    region:   e_35
+    region:   region_169
     level:    [70, 72]
   16998437:
     template: Merrow_Chantress
@@ -5607,7 +5607,7 @@ spawns:
     level:    [73, 74]
   16998550:
     template: Bhoot
-    at:       [-157.674, -5.093, 364.663, 29]
+    region:   n_148
     level:    [80, 82]
   16998551:
     template: Phasma
@@ -6273,6 +6273,7 @@ spawns:
     level:    [73, 74]
   16998708:
     template: Bhoot
+    region:   ne_306
     level:    [80, 82]
   16998709:
     template: Lamia_Idolater_drk
