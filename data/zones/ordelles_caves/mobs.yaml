@@ -2746,7 +2746,7 @@ spawns:
     level:    [15, 18]
   17567759:
     template: Blood_Bunny
-    at:       [8.453, -0.010, 579.551, 145]
+    region:   n_12
     level:    [17, 19]
   17567760:
     template: Blood_Bunny
@@ -2754,7 +2754,7 @@ spawns:
     level:    [17, 19]
   17567761:
     template: Stink_Bats
-    at:       [23.770, 3.556, 543.369, 217]
+    region:   ne_18
     level:    [15, 18]
   17567762:
     template: Stink_Bats
@@ -2774,7 +2774,7 @@ spawns:
     level:    [17, 20]
   17567766:
     template: Goblin_Butcher
-    at:       [57.771, 12.083, 501.671, 67]
+    region:   ne_21
     level:    [17, 20]
   17567767:
     template: Goblin_Ambusher
@@ -2782,11 +2782,11 @@ spawns:
     level:    [17, 20]
   17567768:
     template: Goblin_Tinkerer
-    at:       [42.438, 12.378, 486.190, 34]
+    region:   ne_23
     level:    [17, 20]
   17567769:
     template: Goblin_Butcher
-    at:       [47.964, 11.795, 483.070, 30]
+    region:   ne_23
     level:    [17, 20]
   17567770:
     template: Goblin_Ambusher
@@ -2798,7 +2798,7 @@ spawns:
     level:    [17, 20]
   17567772:
     template: Goblin_Butcher
-    at:       [40.166, 11.994, 488.282, 215]
+    region:   ne_23
     level:    [17, 20]
   17567773:
     template: Blood_Bunny
@@ -2826,7 +2826,7 @@ spawns:
     level:    [17, 19]
   17567779:
     template: Stink_Bats
-    at:       [65.156, 17.457, 385.489, 8]
+    region:   ne_36
     level:    [15, 18]
   17567780:
     template: Blood_Bunny
@@ -2854,7 +2854,7 @@ spawns:
     level:    [15, 18]
   17567786:
     template: Blood_Bunny
-    at:       [98.661, 25.170, 305.358, 248]
+    region:   e_41
     level:    [17, 19]
   17567787:
     template: Stink_Bats
@@ -2879,7 +2879,7 @@ spawns:
   17567792:
     template: Stalking_Sapling_OC
     script:   Stalking_Sapling
-    at:       [0.432, 31.865, 275.359, 41]
+    region:   c_45
     level:    [18, 21]
   17567793:
     template: Stalking_Sapling_OC
@@ -2899,7 +2899,7 @@ spawns:
   17567796:
     template: Fly_Agaric_OC
     script:   Fly_Agaric
-    at:       [-47.090, 31.841, 285.128, 120]
+    region:   c_45
     level:    [21, 24]
   17567797:
     template: Fly_Agaric_OC
@@ -2935,11 +2935,11 @@ spawns:
     level:    [15, 18]
   17567804:
     template: Hognosed_Bat
-    at:       [-76.440, 31.999, 259.481, 250]
+    region:   c_58
     level:    [17, 20]
   17567805:
     template: Goblin_Mugger
-    at:       [-150.400, 31.655, 246.119, 249]
+    region:   w_62
     level:    [22, 26]
   17567806:
     template: Goblin_Leecher
@@ -2947,7 +2947,7 @@ spawns:
     level:    [22, 26]
   17567807:
     template: Goblin_Gambler
-    at:       [-108.200, 31.163, 228.757, 251]
+    region:   w_62
     level:    [22, 26]
   17567808:
     template: Goblin_Mugger
@@ -2955,7 +2955,7 @@ spawns:
     level:    [22, 26]
   17567809:
     template: Goblin_Leecher
-    at:       [-134.400, 31.906, 246.679, 105]
+    region:   w_62
     level:    [22, 26]
   17567810:
     template: Goblin_Gambler
@@ -2995,7 +2995,7 @@ spawns:
     level:    [18, 21]
   17567818:
     template: Goblin_Mugger
-    at:       [-151.800, 31.653, 205.658, 240]
+    region:   w_75
     level:    [22, 26]
   17567819:
     template: Goblin_Leecher
@@ -3007,7 +3007,7 @@ spawns:
     level:    [22, 26]
   17567821:
     template: Goblin_Mugger
-    at:       [-151.000, 31.985, 176.863, 235]
+    region:   w_75
     level:    [22, 26]
   17567822:
     template: Goblin_Leecher
@@ -3015,7 +3015,7 @@ spawns:
     level:    [22, 26]
   17567823:
     template: Goblin_Gambler
-    at:       [-152.200, 32.749, 186.080, 233]
+    region:   w_75
     level:    [22, 26]
   17567824:
     template: Stink_Bats
@@ -3195,7 +3195,7 @@ spawns:
     level:    [15, 18]
   17567867:
     template: Hognosed_Bat
-    at:       [-132.300, 32.077, 177.835, 123]
+    region:   w_122
     level:    [17, 20]
   17567868:
     template: Hognosed_Bat
@@ -3479,7 +3479,7 @@ spawns:
     level:    [17, 20]
   17567935:
     template: Hognosed_Bat
-    at:       [-26.070, 26.714, 103.107, 153]
+    region:   c_190
     level:    [17, 20]
   17567936:
     template: Hognosed_Bat
@@ -3514,7 +3514,7 @@ spawns:
   17567943:
     template: Stalking_Sapling_OC
     script:   Stalking_Sapling
-    at:       [-33.770, 6.268, 61.104, 143]
+    region:   c_192
     level:    [18, 21]
   17567944:
     template: Stalking_Sapling_OC
@@ -3623,7 +3623,7 @@ spawns:
     level:    [17, 20]
   17567970:
     template: Goblin_Ambusher
-    at:       [-190.800, -0.600, 585.088, 97]
+    region:   nw_223
     level:    [17, 20]
   17567971:
     template: Goblin_Tinkerer
@@ -3631,7 +3631,7 @@ spawns:
     level:    [17, 20]
   17567972:
     template: Goblin_Butcher
-    at:       [-224.000, -0.004, 572.333, 196]
+    region:   nw_223
     level:    [17, 20]
   17567973:
     template: Stink_Bats
@@ -3671,11 +3671,11 @@ spawns:
     level:    [17, 20]
   17567982:
     template: Goblin_Ambusher
-    at:       [-172.200, -0.026, 506.423, 216]
+    region:   nw_235
     level:    [17, 20]
   17567983:
     template: Goblin_Tinkerer
-    at:       [-177.800, -0.202, 513.130, 131]
+    region:   nw_235
     level:    [17, 20]
   17567984:
     template: Goblin_Butcher
@@ -3723,7 +3723,7 @@ spawns:
     level:    [15, 18]
   17567995:
     template: Hognosed_Bat
-    at:       [-90.980, -0.458, 455.747, 69]
+    region:   n_262
     level:    [17, 20]
   17567996:
     template: Hognosed_Bat
@@ -3791,7 +3791,7 @@ spawns:
   17568010:
     template: Stalking_Sapling_OC
     script:   Stalking_Sapling
-    at:       [-25.350, -0.495, 527.677, 163]
+    region:   n_262
     level:    [18, 21]
   17568011:
     template: Stalking_Sapling_OC
@@ -4013,7 +4013,7 @@ spawns:
     level:    [23, 25]
   17568059:
     template: Will-o-the-Wisp
-    at:       [-146.900, -0.490, 250.005, 13]
+    region:   w_302
     level:    [23, 25]
   17568060:
     template: Clipper
@@ -4127,7 +4127,7 @@ spawns:
     level:    [29, 31]
   17568083:
     template: Stroper_Chyme
-    region:   c_331
+    region:   region_84
     level:    [33, 35]
   17568084:
     template: Seeker_Bats_MoS_Ord
@@ -4249,7 +4249,7 @@ spawns:
     level:    [26, 28]
   17568111:
     template: Goblin_Pathfinder
-    at:       [-115.300, -27.270, -255.280, 213]
+    region:   s_369
     level:    [31, 34]
   17568112:
     template: Goblins_Bats
@@ -4265,7 +4265,7 @@ spawns:
     level:    [31, 34]
   17568115:
     template: Goblin_Shaman
-    at:       [-80.650, -27.480, -262.000, 8]
+    region:   s_369
     level:    [31, 34]
   17568116:
     template: Goblin_Pathfinder
@@ -4281,11 +4281,11 @@ spawns:
     level:    [31, 34]
   17568119:
     template: Goblin_Smithy
-    at:       [-84.910, -27.860, -250.720, 189]
+    region:   s_369
     level:    [31, 34]
   17568120:
     template: Goblin_Shaman
-    at:       [-105.800, -27.920, -249.820, 49]
+    region:   s_369
     level:    [31, 34]
   17568121:
     template: Ancient_Bat
