@@ -2365,7 +2365,7 @@ spawns:
     level:    [33, 35]
   16822287:
     template: Moblin_Witchman
-    at:       [-301.408, -0.474, 289.523, 189]
+    region:   nw_14
     level:    [33, 35]
   16822288:
     template: Dark_Bats_Oldton_Movalpolos
@@ -2414,12 +2414,12 @@ spawns:
     level:    [32, 35]
   16822299:
     template: Goblin_Hammerman
-    at:       [-299.349, -0.475, 277.249, 61]
+    region:   nw_14
     level:    [33, 35]
   16822300:
     template: Dark_Bats_Oldton_Movalpolos
     script:   Dark_Bats
-    at:       [-300.373, -0.589, 203.997, 66]
+    region:   nw_17
     level:    [31, 33]
   16822301:
     template: Moblin_Chapman
@@ -2501,7 +2501,7 @@ spawns:
   16822319:
     template: Dark_Bats_Oldton_Movalpolos
     script:   Dark_Bats
-    region:   w_47
+    region:   region_71
     level:    [31, 33]
   16822320:
     template: Bugbear_Servingman
@@ -2566,7 +2566,7 @@ spawns:
     level:    [33, 35]
   16822334:
     template: Ancient_Bomb
-    at:       [-115.394, 7.625, 59.177, 137]
+    region:   c_59
     level:    [40, 40]
   16822335:
     template: Moblin_Witchman
@@ -2661,7 +2661,7 @@ spawns:
     level:    [45, 50]
   16822356:
     template: Ancient_Bomb
-    at:       [-108.047, 15.524, -138.336, 122]
+    region:   s_96
     level:    [40, 40]
   16822357:
     template: Goblin_Hammerman
@@ -2765,11 +2765,11 @@ spawns:
     level:    [41, 43]
   16822381:
     template: Goblin_Craftsman
-    at:       [-61.151, 15.399, -45.266, 64]
+    region:   c_114
     level:    [35, 36]
   16822382:
     template: Goblin_Hammerman
-    at:       [-132.058, 15.488, -59.485, 245]
+    region:   region_72
     level:    [35, 36]
   16822383:
     template: Moblin_Pickman
@@ -2777,11 +2777,11 @@ spawns:
     level:    [35, 36]
   16822384:
     template: Moblin_Ragman
-    at:       [-61.705, 15.155, -111.188, 174]
+    region:   region_73
     level:    [35, 36]
   16822385:
     template: Goblin_Hammerman
-    at:       [-125.262, 15.500, -60.292, 156]
+    region:   c_114
     level:    [35, 36]
   16822386:
     template: Goblin_Craftsman
@@ -2793,11 +2793,11 @@ spawns:
     level:    [35, 36]
   16822388:
     template: Moblin_Witchman
-    at:       [-72.516, 22.170, -116.967, 239]
+    region:   region_74
     level:    [35, 36]
   16822389:
     template: Goblin_Gutterman
-    at:       [-99.851, 15.404, -112.667, 79]
+    region:   c_111
     level:    [35, 36]
   16822390:
     template: Moblin_Pickman
@@ -2805,7 +2805,7 @@ spawns:
     level:    [35, 36]
   16822391:
     template: Moblin_Witchman
-    at:       [-68.072, 22.334, -119.000, 198]
+    region:   s_115
     level:    [35, 36]
   16822392:
     template: Moblin_Chapman
@@ -2813,11 +2813,11 @@ spawns:
     level:    [35, 36]
   16822393:
     template: Moblin_Ragman
-    at:       [-60.763, 15.205, -111.960, 173]
+    region:   region_73
     level:    [35, 36]
   16822394:
     template: Goblin_Gutterman
-    at:       [-98.972, 15.408, -112.664, 80]
+    region:   region_73
     level:    [35, 36]
   16822395:
     template: Dark_Bats_Oldton_Movalpolos
@@ -2831,7 +2831,7 @@ spawns:
     level:    [33, 35]
   16822397:
     template: Earth_Elemental
-    at:       [-24.347, 11.525, -136.066, 228]
+    region:   s_123
     level:    [45, 50]
   16822398:
     template: Ancient_Bomb
@@ -2847,7 +2847,7 @@ spawns:
     level:    [43, 45]
   16822401:
     template: Goblin_Tollman
-    at:       [-19.952, 7.400, 99.856, 3]
+    region:   c_185
     level:    [42, 43]
   16822402:
     template: Goblins_Bat_Tier2_Oldton_Movalpo
@@ -2864,7 +2864,7 @@ spawns:
     level:    [42, 43]
   16822405:
     template: Moblin_Coalman
-    at:       [-13.112, 11.472, 114.571, 121]
+    region:   c_131
     level:    [42, 43]
   16822406:
     template: Moblin_Repairman
@@ -2900,7 +2900,7 @@ spawns:
     level:    [42, 44]
   16822414:
     template: Bugbear_Bondman
-    at:       [14.654, 7.393, 57.062, 163]
+    region:   e_143
     level:    [42, 44]
   16822415:
     template: Bugbear_Bondman
@@ -3011,7 +3011,7 @@ spawns:
   16822441:
     template: Stirge_Oldton_Movalpolos
     script:   Stirge
-    at:       [113.721, 11.525, -59.730, 124]
+    region:   se_170
     level:    [34, 36]
   16822442:
     template: Stirge_Oldton_Movalpolos
@@ -3028,11 +3028,11 @@ spawns:
     level:    [43, 44]
   16822445:
     template: Moblin_Coalman
-    at:       [164.045, 11.399, -58.198, 231]
+    region:   se_172
     level:    [43, 44]
   16822446:
     template: Moblin_Pikeman
-    at:       [171.413, 16.994, -76.517, 9]
+    region:   se_175
     level:    [43, 44]
   16822447:
     template: Moblin_Repairman
