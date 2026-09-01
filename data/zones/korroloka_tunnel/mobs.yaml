@@ -1582,7 +1582,7 @@ spawns:
   17485843:
     template: Land_Worm_Korroloka
     script:   Land_Worm
-    region:   e_19
+    region:   region_96
     level:    [20, 25]
   17485844:
     template: Land_Worm_Korroloka
@@ -2528,47 +2528,47 @@ spawns:
   17486049:
     template: Greater_Pugil_KT_GM
     script:   Greater_Pugil
-    at:       [-164.686, -5.602, 124.045, 105]
+    region:   c_214
     level:    [30, 33]
   17486050:
     template: Greater_Pugil_KT_GM
     script:   Greater_Pugil
-    at:       [-191.791, -5.482, 89.284, 120]
+    region:   c_214
     level:    [30, 33]
   17486051:
     template: Greater_Pugil_KT_GM
     script:   Greater_Pugil
-    at:       [-158.901, -6.187, 116.927, 136]
+    region:   c_214
     level:    [30, 33]
   17486052:
     template: Greater_Pugil_KT_GM
     script:   Greater_Pugil
-    at:       [-187.681, -5.193, 95.037, 125]
+    region:   w_215
     level:    [30, 33]
   17486053:
     template: Greater_Pugil_KT_GM
     script:   Greater_Pugil
-    at:       [-191.369, -5.858, 77.290, 188]
+    region:   w_215
     level:    [30, 33]
   17486054:
     template: Greater_Pugil_KT_GM
     script:   Greater_Pugil
-    at:       [-218.675, -5.487, 83.573, 134]
+    region:   w_215
     level:    [30, 33]
   17486055:
     template: Greater_Pugil_KT_GM
     script:   Greater_Pugil
-    at:       [-218.671, -5.795, 72.519, 125]
+    region:   w_215
     level:    [30, 33]
   17486056:
     template: Greater_Pugil_KT_GM
     script:   Greater_Pugil
-    at:       [-229.988, -5.000, 90.353, 167]
+    region:   w_220
     level:    [30, 33]
   17486057:
     template: Greater_Pugil_KT_GM
     script:   Greater_Pugil
-    at:       [-237.814, -5.995, 90.202, 30]
+    region:   w_220
     level:    [30, 33]
   17486058:
     template: Greater_Pugil_KT_GM
@@ -3044,11 +3044,11 @@ spawns:
     level:    [27, 30]
   17486166:
     template: Gigas_Stonemason
-    at:       [127.000, -0.500, 79.000, 127]
+    region:   e_344
     level:    [35, 37]
   17486167:
     template: Gigas_Stonecarrier
-    at:       [178.000, 1.000, 81.000, 127]
+    region:   e_344
     level:    [35, 37]
   17486168:
     template: Gigas_Stonegrinder
@@ -3072,15 +3072,15 @@ spawns:
     level:    [35, 37]
   17486173:
     template: Gigas_Stonecarrier
-    at:       [100.000, 0.500, 79.000, 127]
+    region:   c_348
     level:    [35, 37]
   17486174:
     template: Gigas_Stonegrinder
-    at:       [66.000, -0.500, 76.000, 127]
+    region:   c_348
     level:    [35, 37]
   17486175:
     template: Gigas_Foreman
-    at:       [38.000, -0.500, 59.000, 127]
+    region:   c_348
     level:    [35, 37]
   17486176:
     template: Gigass_Spider
@@ -3092,15 +3092,15 @@ spawns:
     level:    [35, 37]
   17486178:
     template: Gigas_Stonecarrier
-    at:       [-165.000, -0.500, 36.000, 127]
+    region:   s_353
     level:    [35, 37]
   17486179:
     template: Gigas_Stonegrinder
-    at:       [-157.000, -0.500, 15.000, 127]
+    region:   s_353
     level:    [35, 37]
   17486180:
     template: Gigas_Foreman
-    at:       [-92.000, -0.500, 38.000, 127]
+    region:   s_353
     level:    [35, 37]
   17486181:
     template: Gigass_Spider
@@ -3108,15 +3108,15 @@ spawns:
     level:    [28, 30]
   17486182:
     template: Gigas_Stonemason
-    at:       [-150.000, 0.500, 25.000, 127]
+    region:   sw_361
     level:    [35, 37]
   17486183:
     template: Gigas_Stonecarrier
-    at:       [-239.000, -0.500, -2.000, 127]
+    region:   sw_361
     level:    [35, 37]
   17486184:
     template: Gigas_Stonegrinder
-    at:       [-272.000, -0.500, 0.500, 127]
+    region:   sw_361
     level:    [35, 37]
   17486185:
     template: Gigas_Foreman
