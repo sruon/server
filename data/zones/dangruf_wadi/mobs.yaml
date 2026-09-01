@@ -1783,7 +1783,7 @@ spawns:
     level:    [5, 8]
   17559564:
     template: Goblin_Weaver
-    at:       [-68.894, 2.743, -70.857, 57]
+    region:   se_10
     level:    [5, 8]
   17559565:
     template: Rock_Lizard
@@ -1811,11 +1811,11 @@ spawns:
     level:    [5, 8]
   17559571:
     template: Goblin_Weaver
-    at:       [-115.907, 2.991, 106.706, 5]
+    region:   e_18
     level:    [5, 8]
   17559572:
     template: Goblin_Thug
-    at:       [-116.673, 2.695, 130.868, 4]
+    region:   e_18
     level:    [5, 8]
   17559573:
     template: Goblin_Weaver
@@ -1839,11 +1839,11 @@ spawns:
     level:    [5, 8]
   17559578:
     template: Goblin_Weaver
-    at:       [-347.000, 3.000, -93.000, 127]
+    region:   c_25
     level:    [5, 8]
   17559579:
     template: Goblin_Thug
-    at:       [-389.000, -0.600, -98.000, 127]
+    region:   c_25
     level:    [5, 8]
   17559580:
     template: Goblin_Weaver
@@ -1863,7 +1863,7 @@ spawns:
     level:    [6, 8]
   17559584:
     template: Teporingo
-    at:       [-203.000, 4.000, 81.000, 108]
+    region:   c_25
     level:    [20, 20]
   17559585:
     template: Goblin_Ambusher
@@ -1951,7 +1951,7 @@ spawns:
     level:    [5, 8]
   17559606:
     template: Goblin_Thug
-    at:       [-173.365, -1.258, -60.782, 24]
+    region:   se_55
     level:    [5, 8]
   17559607:
     template: Goblin_Weaver
@@ -1963,7 +1963,7 @@ spawns:
     level:    [5, 8]
   17559609:
     template: Goblin_Thug
-    at:       [-49.791, 3.631, -222.531, 103]
+    region:   se_55
     level:    [5, 8]
   17559610:
     template: Goblin_Weaver
@@ -1971,7 +1971,7 @@ spawns:
     level:    [5, 8]
   17559611:
     template: Goblin_Fisher
-    at:       [-28.016, 4.263, -210.032, 15]
+    region:   se_55
     level:    [5, 8]
   17559612:
     template: Rock_Lizard
@@ -1995,7 +1995,7 @@ spawns:
     level:    [5, 8]
   17559617:
     template: Goblin_Weaver
-    at:       [-35.768, 3.158, -213.303, 89]
+    region:   se_64
     level:    [5, 8]
   17559618:
     template: Goblin_Fisher
@@ -2003,7 +2003,7 @@ spawns:
     level:    [5, 8]
   17559619:
     template: Goblin_Thug
-    at:       [-51.000, 4.107, -204.000, 127]
+    region:   se_64
     level:    [5, 8]
   17559620:
     template: Goblin_Weaver
@@ -2011,7 +2011,7 @@ spawns:
     level:    [5, 8]
   17559621:
     template: Goblin_Fisher
-    at:       [-92.024, 3.039, -243.836, 127]
+    region:   se_64
     level:    [5, 8]
   17559622:
     template: Rock_Lizard
@@ -2043,7 +2043,7 @@ spawns:
     level:    [5, 8]
   17559629:
     template: Goblin_Thug
-    at:       [-144.646, -0.927, -219.475, 127]
+    region:   se_78
     level:    [5, 8]
   17559630:
     template: Goblin_Weaver
@@ -2055,7 +2055,7 @@ spawns:
     level:    [5, 8]
   17559632:
     template: Goblin_Thug
-    at:       [-151.558, 3.024, -108.578, 127]
+    region:   se_78
     level:    [5, 8]
   17559633:
     template: Goblin_Weaver
@@ -2063,7 +2063,7 @@ spawns:
     level:    [5, 8]
   17559634:
     template: Goblin_Fisher
-    at:       [-172.085, 2.999, -160.264, 127]
+    region:   se_78
     level:    [5, 8]
   17559635:
     template: Rock_Lizard
@@ -2083,7 +2083,7 @@ spawns:
     level:    [7, 9]
   17559639:
     template: Goblin_Thug
-    at:       [-195.335, 3.085, -155.813, 22]
+    region:   s_88
     level:    [5, 8]
   17559640:
     template: Goblin_Weaver
@@ -2095,11 +2095,11 @@ spawns:
     level:    [5, 8]
   17559642:
     template: Goblin_Thug
-    at:       [-243.000, 3.198, -128.000, 127]
+    region:   s_88
     level:    [5, 8]
   17559643:
     template: Goblin_Weaver
-    at:       [-212.515, 3.344, -125.240, 26]
+    region:   s_88
     level:    [5, 8]
   17559644:
     template: Goblin_Fisher
@@ -2127,7 +2127,7 @@ spawns:
     level:    [5, 8]
   17559650:
     template: Goblin_Thug
-    at:       [-238.334, 4.038, -107.629, 121]
+    region:   s_99
     level:    [5, 8]
   17559651:
     template: Goblin_Weaver
@@ -2139,7 +2139,7 @@ spawns:
     level:    [5, 8]
   17559653:
     template: Goblin_Weaver
-    at:       [-325.448, 3.017, -158.420, 54]
+    region:   s_99
     level:    [5, 8]
   17559654:
     template: Rock_Lizard
@@ -2151,7 +2151,7 @@ spawns:
     level:    [7, 9]
   17559656:
     template: Goblin_Thug
-    at:       [-309.595, 2.930, -153.633, 127]
+    region:   s_105
     level:    [5, 8]
   17559657:
     template: Goblin_Weaver
@@ -2163,7 +2163,7 @@ spawns:
     level:    [5, 8]
   17559659:
     template: Goblin_Weaver
-    at:       [-361.697, 3.500, -152.079, 127]
+    region:   s_105
     level:    [5, 8]
   17559660:
     template: Rock_Lizard
@@ -2963,7 +2963,7 @@ spawns:
     level:    [90, 91]
   17559859:
     template: Goblin_Bushwhacker
-    at:       [-233.000, 3.000, 295.000, 127]
+    region:   sw_306
     level:    [90, 91]
   17559860:
     template: Couloir_Leech
