@@ -2306,12 +2306,12 @@ spawns:
     level:    [3, 4]
   17252419:
     template: Mad_Fox
-    at:       [119.265, -4.682, -243.420, 127]
+    region:   s_53
     level:    [3, 5]
   17252420:
     template: Magicked_Bones_club
     script:   Magicked_Bones
-    at:       [169.323, -0.811, -115.913, 16]
+    region:   s_53
     level:    [3, 5]
   17252421:
     template: Crawler
@@ -2375,12 +2375,12 @@ spawns:
     level:    [3, 4]
   17252436:
     template: Mad_Fox
-    at:       [226.255, -5.342, -268.842, 58]
+    region:   e_69
     level:    [3, 5]
   17252437:
     template: Magicked_Bones_club
     script:   Magicked_Bones
-    at:       [356.002, -4.684, -246.877, 13]
+    region:   e_69
     level:    [3, 5]
   17252438:
     template: Crawler
@@ -2440,12 +2440,12 @@ spawns:
     level:    [3, 4]
   17252452:
     template: Mad_Fox
-    at:       [-25.937, -3.446, -188.722, 127]
+    region:   c_86
     level:    [3, 5]
   17252453:
     template: Magicked_Bones_club
     script:   Magicked_Bones
-    at:       [-65.009, -2.200, -167.989, 35]
+    region:   c_86
     level:    [3, 5]
   17252454:
     template: Crawler
@@ -2565,6 +2565,7 @@ spawns:
     level:    [3, 4]
   17252483:
     template: Mad_Fox
+    region:   w_116
     level:    [3, 5]
   17252484:
     template: Magicked_Bones_blm
@@ -2613,7 +2614,7 @@ spawns:
     level:    [3, 4]
   17252495:
     template: Goblin_Thug
-    at:       [226.729, -17.104, -447.153, 93]
+    region:   se_133
     level:    [3, 4]
   17252496:
     template: Goblin_Thug
@@ -2630,10 +2631,11 @@ spawns:
   17252499:
     template: Magicked_Bones_blm
     script:   Magicked_Bones
-    at:       [199.149, -16.676, -359.507, 127]
+    region:   se_133
     level:    [3, 5]
   17252500:
     template: Magicked_Bones_blm
+    region:   se_133
     script:   Magicked_Bones
     level:    [3, 5]
   17252501:
@@ -2707,7 +2709,7 @@ spawns:
   17252518:
     template: Magicked_Bones_blm
     script:   Magicked_Bones
-    at:       [383.729, -17.439, -317.982, 23]
+    region:   se_152
     level:    [3, 5]
   17252519:
     template: River_Crab
@@ -2819,12 +2821,12 @@ spawns:
     level:    [5, 6]
   17252546:
     template: Mad_Fox
-    at:       [4.725, -0.970, -148.243, 33]
+    region:   c_177
     level:    [6, 8]
   17252547:
     template: Magicked_Bones_club
     script:   Magicked_Bones
-    at:       [-6.863, -0.386, -84.694, 127]
+    region:   c_177
     level:    [6, 8]
   17252548:
     template: Balloon
@@ -2896,12 +2898,12 @@ spawns:
     level:    [5, 6]
   17252565:
     template: Mad_Fox
-    at:       [79.305, -9.948, 183.985, 127]
+    region:   c_197
     level:    [6, 8]
   17252566:
     template: Magicked_Bones_club
     script:   Magicked_Bones
-    at:       [42.719, -12.458, 157.910, 127]
+    region:   c_197
     level:    [6, 8]
   17252567:
     template: Balloon
@@ -2965,11 +2967,11 @@ spawns:
     level:    [5, 6]
   17252582:
     template: River_Crab
-    at:       [256.735, 5.300, -102.501, 127]
+    region:   e_228
     level:    [3, 4]
   17252583:
     template: River_Crab
-    at:       [348.102, 4.806, -134.012, 127]
+    region:   e_238
     level:    [3, 4]
   17252584:
     template: River_Crab
@@ -2985,7 +2987,7 @@ spawns:
     level:    [5, 6]
   17252587:
     template: Pug_Pugil
-    at:       [262.797, 5.000, -97.021, 127]
+    region:   e_238
     level:    [5, 6]
   17252588:
     template: Pug_Pugil
@@ -3109,7 +3111,7 @@ spawns:
     level:    [5, 5]
   17252618:
     template: River_Crab
-    at:       [-74.804, 0.849, -13.925, 119]
+    region:   w_260
     level:    [3, 4]
   17252619:
     template: River_Crab
@@ -3198,6 +3200,7 @@ spawns:
     level:    [6, 8]
   17252640:
     template: Magicked_Bones_blm
+    region:   e_270
     script:   Magicked_Bones
     level:    [6, 8]
   17252641:
@@ -3279,7 +3282,7 @@ spawns:
   17252660:
     template: Magicked_Bones_club
     script:   Magicked_Bones
-    at:       [293.397, -12.334, 131.336, 127]
+    region:   e_292
     level:    [6, 8]
   17252661:
     template: Balloon
@@ -3335,7 +3338,7 @@ spawns:
     level:    [8, 10]
   17252674:
     template: River_Crab
-    at:       [414.089, -3.105, 296.954, 52]
+    region:   ne_323
     level:    [4, 5]
   17252675:
     template: River_Crab
@@ -3419,7 +3422,7 @@ spawns:
     level:    [4, 5]
   17252695:
     template: Pug_Pugil
-    at:       [18.897, -7.000, 256.100, 125]
+    region:   c_339
     level:    [6, 7]
   17252696:
     template: Pug_Pugil
@@ -3451,11 +3454,11 @@ spawns:
     level:    [6, 7]
   17252703:
     template: River_Crab
-    at:       [-222.789, -7.035, 367.037, 68]
+    region:   nw_347
     level:    [4, 5]
   17252704:
     template: River_Crab
-    at:       [-112.639, -2.944, 184.287, 26]
+    region:   nw_349
     level:    [4, 5]
   17252705:
     template: River_Crab
@@ -3467,11 +3470,11 @@ spawns:
     level:    [4, 5]
   17252707:
     template: Pug_Pugil
-    at:       [-138.450, -6.550, 243.550, 127]
+    region:   nw_347
     level:    [6, 7]
   17252708:
     template: Pug_Pugil
-    at:       [-218.860, -6.500, 324.930]
+    region:   nw_349
     level:    [6, 7]
   17252709:
     template: Pug_Pugil
@@ -3523,7 +3526,7 @@ spawns:
     level:    [5, 6]
   17252721:
     template: River_Crab
-    at:       [-226.092, -23.175, 624.680, 123]
+    region:   nw_374
     level:    [5, 6]
   17252722:
     template: River_Crab
@@ -3547,15 +3550,15 @@ spawns:
     level:    [5, 6]
   17252727:
     template: Pug_Pugil
-    at:       [-20.480, 1.500, -33.610]
+    region:   nw_370
     level:    [7, 8]
   17252728:
     template: River_Crab
-    at:       [145.910, 1.500, -105.160]
+    region:   nw_374
     level:    [5, 6]
   17252729:
     template: Pug_Pugil
-    at:       [308.330, -2.500, 260.010]
+    region:   nw_370
     level:    [7, 8]
   17252730:
     template: Mandragora
@@ -3616,10 +3619,11 @@ spawns:
   17252744:
     template: Magicked_Bones_club
     script:   Magicked_Bones
-    at:       [-156.172, -20.473, 360.209, 200]
+    region:   nw_378
     level:    [6, 8]
   17252745:
     template: Magicked_Bones_blm
+    region:   nw_378
     script:   Magicked_Bones
     level:    [6, 8]
   17252746:
@@ -3684,17 +3688,17 @@ spawns:
     level:    [5, 6]
   17252761:
     template: Mad_Fox
-    at:       [93.933, -23.924, 440.186, 127]
+    region:   n_394
     level:    [6, 8]
   17252762:
     template: Magicked_Bones_club
     script:   Magicked_Bones
-    at:       [112.156, -25.420, 444.520, 183]
+    region:   n_394
     level:    [6, 8]
   17252763:
     template: Magicked_Bones_blm
     script:   Magicked_Bones
-    at:       [81.191, -25.190, 451.326, 127]
+    region:   n_394
     level:    [6, 8]
   17252764:
     template: Balloon
@@ -3806,11 +3810,12 @@ spawns:
     level:    [5, 6]
   17252791:
     template: Mad_Fox
+    region:   n_427
     level:    [6, 8]
   17252792:
     template: Magicked_Bones_club
     script:   Magicked_Bones
-    at:       [188.018, -21.657, 392.761, 127]
+    region:   n_427
     level:    [6, 8]
   17252793:
     template: Balloon
@@ -3871,12 +3876,12 @@ spawns:
   17252807:
     template: Magicked_Bones_club
     script:   Magicked_Bones
-    at:       [239.149, -21.494, 420.748, 127]
+    region:   ne_442
     level:    [6, 8]
   17252808:
     template: Magicked_Bones_blm
     script:   Magicked_Bones
-    at:       [282.657, -25.722, 572.524, 70]
+    region:   ne_442
     level:    [6, 8]
   17252809:
     template: Goblin_Digger_near
