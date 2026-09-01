@@ -1194,7 +1194,7 @@ spawns:
     level:    [35, 36]
   17424398:
     template: Gigas_Spirekeeper
-    at:       [-287.426, -144.500, 100.646, 127]
+    region:   n_15
     level:    [34, 35]
   17424399:
     template: Gigas_Torturer
@@ -1202,7 +1202,7 @@ spawns:
     level:    [34, 35]
   17424400:
     template: Gigas_Bonecutter
-    at:       [-255.000, -144.000, 99.000, 127]
+    region:   n_15
     level:    [34, 35]
   17424401:
     template: Gigass_Bats
@@ -1222,7 +1222,7 @@ spawns:
     level:    [35, 36]
   17424405:
     template: Gigas_Spirekeeper
-    at:       [-381.034, -144.499, 43.599, 127]
+    region:   w_22
     level:    [34, 35]
   17424406:
     template: Gigas_Torturer
@@ -1238,7 +1238,7 @@ spawns:
     level:    [27, 29]
   17424409:
     template: Gigas_Stonemason
-    at:       [-379.573, -144.499, 51.809, 127]
+    region:   w_22
     level:    [34, 35]
   17424410:
     template: Thunder_Elemental
@@ -1250,11 +1250,11 @@ spawns:
     level:    [35, 36]
   17424412:
     template: Gigas_Spirekeeper
-    at:       [-218.606, -144.499, 49.528, 64]
+    region:   ne_30
     level:    [34, 35]
   17424413:
     template: Gigas_Torturer
-    at:       [-210.000, -143.000, 27.000, 44]
+    region:   ne_30
     level:    [34, 35]
   17424414:
     template: Gigas_Bonecutter
@@ -1266,7 +1266,7 @@ spawns:
     level:    [27, 29]
   17424416:
     template: Gigas_Stonemason
-    at:       [-219.382, -144.498, 65.117, 69]
+    region:   ne_30
     level:    [34, 35]
   17424417:
     template: Thunder_Elemental
@@ -1294,7 +1294,7 @@ spawns:
     level:    [34, 35]
   17424423:
     template: Enkelados
-    at:       [-226.158, -144.099, 28.522, 127]
+    region:   e_41
     level:    [40, 40]
   17424424:
     template: Gigass_Bats
@@ -1338,7 +1338,7 @@ spawns:
     level:    [34, 35]
   17424434:
     template: Gigas_Bonecutter
-    at:       [-283.047, -144.250, 33.735, 127]
+    region:   c_48
     level:    [34, 35]
   17424435:
     template: Gigass_Bats
@@ -1350,7 +1350,7 @@ spawns:
     level:    [34, 35]
   17424437:
     template: Gigas_Spirekeeper
-    at:       [-313.391, -144.524, -12.468, 116]
+    region:   s_54
     level:    [34, 35]
   17424438:
     template: Gigas_Torturer
@@ -1437,7 +1437,7 @@ spawns:
     level:    [53, 55]
   17424457:
     template: Jotunn_Wallkeeper
-    at:       [-280.327, -159.993, -5.097, 34]
+    region:   w_78
     level:    [65, 69]
   17424458:
     template: Jotunn_Gatekeeper
@@ -1469,7 +1469,7 @@ spawns:
     level:    [65, 69]
   17424465:
     template: Jotunn_Wildkeeper
-    at:       [-333.395, -160.515, 1.424, 50]
+    region:   w_78
     level:    [65, 69]
   17424466:
     template: Gigass_Bat
@@ -1508,7 +1508,7 @@ spawns:
   17424474:
     template: Phasma_UDT
     script:   Phasma
-    at:       [-358.249, -159.924, 79.765, 68]
+    region:   nw_125
     level:    [67, 69]
   17424475:
     template: Ixtab
@@ -1588,11 +1588,11 @@ spawns:
     level:    [65, 69]
   17424492:
     template: Jotunn_Wildkeeper
-    region:   c_108
+    region:   c_105
     level:    [65, 69]
   17424493:
     template: Gigass_Bat
-    region:   c_108
+    region:   c_105
     level:    [53, 55]
   17424494:
     template: Jotunn_Wallkeeper
@@ -1608,7 +1608,7 @@ spawns:
     level:    [65, 69]
   17424497:
     template: Jotunn_Wildkeeper
-    region:   s_113
+    region:   s_110
     level:    [65, 69]
   17424498:
     template: Gigass_Bat
@@ -1628,7 +1628,7 @@ spawns:
     level:    [65, 69]
   17424502:
     template: Jotunn_Wildkeeper
-    region:   w_118
+    region:   c_115
     level:    [65, 69]
   17424503:
     template: Gigass_Bat
@@ -1636,7 +1636,7 @@ spawns:
     level:    [53, 55]
   17424504:
     template: Jotunn_Wallkeeper
-    at:       [-265.683, -176.511, 23.816, 37]
+    region:   c_121
     level:    [65, 69]
   17424505:
     template: Jotunn_Gatekeeper
@@ -1644,7 +1644,7 @@ spawns:
     level:    [65, 69]
   17424506:
     template: Jotunn_Hallkeeper
-    region:   s_122
+    region:   c_121
     level:    [65, 69]
   17424507:
     template: Jotunn_Wildkeeper
