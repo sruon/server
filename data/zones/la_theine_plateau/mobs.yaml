@@ -3150,11 +3150,11 @@ spawns:
     level:    [9, 10]
   17195047:
     template: Skeleton_Warrior
-    at:       [-447.785, -7.568, 364.309, 25]
+    region:   nw_33
     level:    [10, 12]
   17195048:
     template: Skeleton_Sorcerer
-    at:       [-542.106, 0.009, 359.761, 118]
+    region:   nw_33
     level:    [11, 13]
   17195049:
     template: Rock_Eater
@@ -3206,7 +3206,7 @@ spawns:
     level:    [8, 9]
   17195061:
     template: Gale_Bats
-    at:       [-641.803, 15.647, 284.085, 81]
+    region:   nw_43
     level:    [8, 9]
     attributes:
       spawn:
@@ -3224,7 +3224,7 @@ spawns:
           end:    6
   17195063:
     template: Acro_Bat
-    at:       [-770.667, 15.812, 430.172, 127]
+    region:   nw_43
     level:    [8, 9]
     attributes:
       spawn:
@@ -3242,15 +3242,15 @@ spawns:
           end:    5
   17195065:
     template: Wolf_Zombie
-    at:       [-691.147, 16.296, 511.835, 41]
+    region:   nw_43
     level:    [8, 10]
   17195066:
     template: Skeleton_Warrior
-    at:       [-637.319, 16.660, 415.225, 127]
+    region:   nw_43
     level:    [10, 12]
   17195067:
     template: Skeleton_Sorcerer
-    at:       [-706.155, 16.084, 321.659, 2]
+    region:   nw_43
     level:    [11, 13]
   17195068:
     template: Air_Elemental
@@ -3382,7 +3382,7 @@ spawns:
     level:    [9, 10]
   17195096:
     template: Orcish_Neckchopper
-    at:       [-687.336, 0.919, 211.439, 89]
+    region:   w_85
     level:    [12, 13]
   17195097:
     template: Orcish_Mesmerizer
@@ -3394,11 +3394,11 @@ spawns:
     level:    [9, 10]
   17195099:
     template: Skeleton_Warrior
-    at:       [-625.411, -8.093, 209.626, 127]
+    region:   w_85
     level:    [10, 12]
   17195100:
     template: Skeleton_Sorcerer
-    at:       [-92.850, 24.480, -517.110]
+    region:   w_85
     level:    [11, 13]
   17195101:
     template: Grenade
@@ -3462,11 +3462,11 @@ spawns:
     level:    [12, 13]
   17195116:
     template: Goblin_Butcher
-    at:       [-393.850, 0.219, -142.850, 42]
+    region:   w_94
     level:    [12, 13]
   17195117:
     template: Gale_Bats
-    at:       [-459.512, 1.765, -230.322, 127]
+    region:   w_94
     level:    [8, 9]
     attributes:
       spawn:
@@ -3484,7 +3484,7 @@ spawns:
           end:    6
   17195119:
     template: Acro_Bat
-    at:       [-359.611, 0.070, -212.330, 66]
+    region:   w_94
     level:    [8, 9]
     attributes:
       spawn:
@@ -3502,15 +3502,15 @@ spawns:
           end:    5
   17195121:
     template: Wolf_Zombie
-    at:       [-544.000, -0.010, -153.000, 127]
+    region:   w_94
     level:    [8, 10]
   17195122:
     template: Skeleton_Warrior
-    at:       [-361.000, -0.010, -206.000, 58]
+    region:   w_94
     level:    [10, 12]
   17195123:
     template: Skeleton_Sorcerer
-    at:       [-392.862, -0.161, -270.653, 127]
+    region:   w_94
     level:    [11, 13]
   17195124:
     template: Air_Elemental
@@ -3602,7 +3602,7 @@ spawns:
     level:    [12, 13]
   17195143:
     template: Battering_Ram
-    at:       [-372.000, -16.000, -6.000, 74]
+    region:   c_136
     level:    [22, 23]
   17195144:
     template: Orcish_Grunt
@@ -3630,11 +3630,11 @@ spawns:
     level:    [8, 9]
   17195150:
     template: Skeleton_Warrior
-    at:       [167.500, 23.310, -13.920]
+    region:   c_136
     level:    [10, 12]
   17195151:
     template: Skeleton_Sorcerer
-    at:       [614.800, 40.440, -445.470]
+    region:   c_136
     level:    [11, 13]
   17195152:
     template: Rock_Eater
@@ -3694,7 +3694,7 @@ spawns:
     level:    [12, 13]
   17195166:
     template: Gale_Bats
-    at:       [-259.060, 7.681, 177.466, 80]
+    region:   n_144
     level:    [8, 9]
     attributes:
       spawn:
@@ -3721,15 +3721,15 @@ spawns:
           end:    4
   17195169:
     template: Wolf_Zombie
-    at:       [-283.847, 7.903, 125.578, 127]
+    region:   n_144
     level:    [8, 10]
   17195170:
     template: Skeleton_Warrior
-    at:       [-271.977, 7.778, 123.114, 3]
+    region:   n_144
     level:    [10, 12]
   17195171:
     template: Skeleton_Sorcerer
-    at:       [-237.896, 7.997, 174.070, 58]
+    region:   n_144
     level:    [11, 13]
   17195172:
     template: Air_Elemental
@@ -3819,7 +3819,7 @@ spawns:
           end:    4
   17195189:
     template: Wolf_Zombie
-    at:       [-70.273, 13.870, 70.512, 5]
+    region:   c_172
     level:    [8, 10]
   17195190:
     template: Ghost
@@ -3913,6 +3913,7 @@ spawns:
           end:    4
   17195210:
     template: Wolf_Zombie
+    region:   n_196
     level:    [8, 10]
   17195211:
     template: Rock_Eater
@@ -3967,7 +3968,7 @@ spawns:
           end:    4
   17195220:
     template: Wolf_Zombie
-    at:       [82.941, 15.672, 131.355, 54]
+    region:   c_203
     level:    [8, 10]
   17195221:
     template: Slumbering_Samwell
@@ -3987,7 +3988,7 @@ spawns:
     level:    [8, 9]
   17195225:
     template: Goblin_Tinkerer
-    at:       [-181.523, 7.406, 126.572, 127]
+    region:   c_222
     level:    [12, 13]
   17195226:
     template: Goblin_Butcher
@@ -3995,11 +3996,11 @@ spawns:
     level:    [12, 13]
   17195227:
     template: Skeleton_Warrior
-    at:       [44.812, 15.913, 273.886, 127]
+    region:   c_214
     level:    [10, 12]
   17195228:
     template: Skeleton_Sorcerer
-    at:       [46.633, 16.646, 153.610, 94]
+    region:   c_214
     level:    [11, 13]
   17195229:
     template: Grenade
@@ -4194,7 +4195,7 @@ spawns:
           end:    4
   17195271:
     template: Wolf_Zombie
-    at:       [312.946, 39.309, 346.220, 73]
+    region:   ne_254
     level:    [8, 10]
   17195272:
     template: Rock_Eater
@@ -4240,7 +4241,7 @@ spawns:
           end:    4
   17195280:
     template: Wolf_Zombie
-    at:       [529.041, 38.412, 337.009, 50]
+    region:   ne_264
     level:    [8, 10]
   17195281:
     template: Rock_Eater
@@ -4277,7 +4278,7 @@ spawns:
           end:    5
   17195288:
     template: Wolf_Zombie
-    at:       [434.465, 40.334, 173.772, 56]
+    region:   ne_273
     level:    [8, 10]
   17195289:
     template: Goblin_Thug
@@ -4301,11 +4302,11 @@ spawns:
     level:    [12, 13]
   17195294:
     template: Skeleton_Warrior
-    at:       [478.864, 39.551, 470.317, 101]
+    region:   ne_281
     level:    [10, 12]
   17195295:
     template: Skeleton_Sorcerer
-    at:       [463.564, 39.991, 408.103, 127]
+    region:   ne_281
     level:    [11, 13]
   17195296:
     template: Air_Elemental
@@ -4401,7 +4402,7 @@ spawns:
     level:    [12, 13]
   17195316:
     template: Battering_Ram
-    at:       [-117.000, -1.000, -136.000, 127]
+    region:   c_311
     level:    [22, 23]
   17195317:
     template: Lumbering_Lambert
@@ -4437,7 +4438,7 @@ spawns:
     level:    [8, 9]
   17195325:
     template: Skeleton_Warrior
-    at:       [43.992, 7.516, -200.883, 127]
+    region:   c_311
     level:    [10, 12]
   17195326:
     template: Skeleton_Sorcerer
@@ -4496,6 +4497,7 @@ spawns:
           end:    4
   17195336:
     template: Wolf_Zombie
+    region:   s_322
     level:    [8, 10]
   17195337:
     template: Rock_Eater
@@ -4550,7 +4552,7 @@ spawns:
           end:    4
   17195346:
     template: Wolf_Zombie
-    at:       [35.401, 26.198, -576.162, 127]
+    region:   s_332
     level:    [8, 10]
   17195347:
     template: Goblin_Thug
@@ -4574,11 +4576,11 @@ spawns:
     level:    [12, 13]
   17195352:
     template: Skeleton_Warrior
-    at:       [161.380, 7.000, -213.880]
+    region:   s_339
     level:    [10, 12]
   17195353:
     template: Skeleton_Sorcerer
-    at:       [-542.730, -0.430, 463.610]
+    region:   s_339
     level:    [11, 13]
   17195354:
     template: Air_Elemental
@@ -4717,7 +4719,7 @@ spawns:
     level:    [9, 10]
   17195384:
     template: Skeleton_Warrior
-    at:       [661.501, 23.621, 150.391, 68]
+    region:   e_371
     level:    [10, 12]
   17195385:
     template: Skeleton_Sorcerer
@@ -4818,11 +4820,11 @@ spawns:
     level:    [9, 10]
   17195407:
     template: Skeleton_Warrior
-    at:       [272.895, 23.595, -82.048, 53]
+    region:   e_380
     level:    [10, 12]
   17195408:
     template: Skeleton_Sorcerer
-    at:       [457.756, 23.202, -247.262, 127]
+    region:   e_380
     level:    [11, 13]
   17195409:
     template: Ghost
@@ -4850,7 +4852,7 @@ spawns:
     level:    [12, 13]
   17195415:
     template: Gale_Bats
-    at:       [675.699, 30.501, 94.018, 64]
+    region:   e_402
     level:    [9, 10]
     attributes:
       spawn:
@@ -4868,7 +4870,7 @@ spawns:
           end:    6
   17195417:
     template: Acro_Bat
-    at:       [640.341, 24.452, 179.353, 66]
+    region:   e_402
     level:    [10, 11]
     attributes:
       spawn:
