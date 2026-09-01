@@ -2005,11 +2005,11 @@ spawns:
   16887814:
     template: Big_Jaw_noaggro
     script:   Big_Jaw
-    at:       [220.244, 0.423, -236.106, 64]
+    region:   region_52
     level:    [37, 39]
   16887815:
     template: Gloop
-    at:       [220.125, 0.540, -247.271, 192]
+    region:   region_52
     level:    [36, 38]
   16887816:
     template: Big_Jaw_noaggro
@@ -2031,11 +2031,11 @@ spawns:
     level:    [36, 38]
   16887820:
     template: Addled_Tumor
-    at:       [125.640, 0.468, -219.381, 127]
+    region:   region_54
     level:    [36, 38]
   16887821:
     template: Gloop
-    at:       [179.264, 0.397, -198.526, 64]
+    region:   region_53
     level:    [36, 38]
   16887822:
     template: Big_Jaw_noaggro
@@ -2121,20 +2121,20 @@ spawns:
     level:    [41, 43]
   16887840:
     template: Diremite
-    at:       [-18.937, -6.569, -36.191, 191]
+    region:   region_55
     level:    [42, 44]
   16887841:
     template: Diremite
-    at:       [-18.942, -6.598, -41.247, 192]
+    region:   region_55
     level:    [42, 44]
   16887842:
     template: Hell_Bat_Phomiuna_Aqueducts
     script:   Hell_Bat
-    at:       [-45.653, -6.606, -19.576, 255]
+    region:   region_56
     level:    [44, 46]
   16887843:
     template: Diremite
-    at:       [-33.018, -6.432, -19.406, 128]
+    region:   region_56
     level:    [42, 44]
   16887844:
     template: Stegotaur_PA
@@ -2210,7 +2210,7 @@ spawns:
     level:    [44, 46]
   16887860:
     template: Oil_Spill
-    at:       [30.363, -0.557, 99.091, 127]
+    region:   region_57
     level:    [44, 47]
   16887861:
     template: Makara_PA
@@ -2228,15 +2228,15 @@ spawns:
     level:    [44, 47]
   16887864:
     template: Fomor_Warrior
-    at:       [139.967, 0.436, 67.924, 192]
+    region:   region_58
     level:    [44, 47]
   16887865:
     template: Fomor_Thief
-    at:       [140.185, 0.406, 66.916, 64]
+    region:   region_58
     level:    [44, 47]
   16887866:
     template: Fomor_Summoner
-    at:       [140.387, 0.403, 67.391, 65]
+    region:   region_58
     level:    [44, 47]
   16887867:
     template: Fomors_Elemental
@@ -2244,7 +2244,7 @@ spawns:
     level:    [36, 43]
   16887868:
     template: Foul_Meat
-    at:       [146.351, 0.396, 59.473, 128]
+    region:   region_59
     level:    [45, 47]
   16887869:
     template: Stegotaur_PA
@@ -2280,7 +2280,7 @@ spawns:
   16887876:
     template: Hell_Bat_Phomiuna_Aqueducts
     script:   Hell_Bat
-    at:       [-27.973, -6.612, 180.651, 130]
+    region:   n_66
     level:    [44, 46]
   16887877:
     template: Diremite
@@ -2319,12 +2319,12 @@ spawns:
     level:    [44, 47]
   16887885:
     template: Mahisha
-    at:       [103.731, -0.592, 187.587, 53]
+    region:   ne_73
     level:    [50, 50]
   16887886:
     template: Makara_PA
     script:   Makara
-    at:       [100.288, 0.601, 260.316, 127]
+    region:   region_60
     level:    [45, 47]
   16887887:
     template: Makara_PA
@@ -2378,7 +2378,7 @@ spawns:
   16887897:
     template: Stegotaur_PA
     script:   Stegotaur
-    at:       [-99.753, -0.589, 112.235, 191]
+    region:   region_61
     level:    [44, 46]
   16887898:
     template: Air_Elemental
@@ -2422,7 +2422,7 @@ spawns:
     level:    [45, 46]
   16887908:
     template: Tres_Duendes
-    at:       [-153.577, -0.245, 215.862, 121]
+    region:   nw_99
     level:    [47, 49]
   16887909:
     template: Duendes_Amoroso
@@ -2434,11 +2434,11 @@ spawns:
     level:    [44, 46]
   16887911:
     template: Diremite
-    at:       [-179.777, -0.588, 159.627, 192]
+    region:   region_62
     level:    [44, 46]
   16887912:
     template: Fomor_Monk
-    at:       [-180.004, -0.590, 169.597, 192]
+    region:   region_62
     level:    [44, 46]
   16887913:
     template: Foul_Meat
@@ -2459,17 +2459,17 @@ spawns:
     level:    [44, 46]
   16887917:
     template: Diremite
-    at:       [-164.775, -0.574, 100.603, 128]
+    region:   region_63
     level:    [44, 46]
   16887918:
     template: Makara_PA
     script:   Makara
-    at:       [-61.013, -0.593, 89.025, 192]
+    region:   region_64
     level:    [45, 47]
   16887919:
     template: Stegotaur_PA
     script:   Stegotaur
-    at:       [-112.032, -0.686, 60.269, 255]
+    region:   region_65
     level:    [44, 46]
   16887920:
     template: Fomor_Paladin
@@ -2486,20 +2486,20 @@ spawns:
   16887923:
     template: Makara_PA
     script:   Makara
-    at:       [-60.698, 0.459, 30.565, 63]
+    region:   region_66
     level:    [44, 45]
   16887924:
     template: Oil_Spill
-    at:       [-60.621, 0.500, 27.567, 55]
+    region:   region_66
     level:    [44, 47]
   16887925:
     template: Oil_Spill
-    at:       [-36.037, 0.399, 59.308, 127]
+    region:   region_67
     level:    [44, 47]
   16887926:
     template: Makara_PA
     script:   Makara
-    at:       [-46.227, 0.399, 59.261]
+    region:   region_67
     level:    [44, 45]
   16887927:
     template: Makara_PA
@@ -2526,11 +2526,11 @@ spawns:
   16887932:
     template: Makara_PA
     script:   Makara
-    at:       [24.576, 0.524, 19.405, 254]
+    region:   region_68
     level:    [44, 45]
   16887933:
     template: Oil_Spill
-    at:       [39.771, 0.407, 19.594, 255]
+    region:   region_68
     level:    [44, 47]
   16887934:
     template: Foul_Meat
@@ -2569,11 +2569,11 @@ spawns:
     level:    [45, 45]
   16887942:
     template: Diremite
-    at:       [-159.894, -0.587, 21.144, 127]
+    region:   region_69
     level:    [44, 46]
   16887943:
     template: Diremite
-    at:       [-139.757, -0.591, -40.306, 192]
+    region:   region_70
     level:    [44, 46]
   16887944:
     template: Fomor_Dragoon
@@ -2616,11 +2616,11 @@ spawns:
     level:    [44, 46]
   16887953:
     template: Eba
-    at:       [-163.538, -0.344, -76.545, 151]
+    region:   sw_136
     level:    [48, 50]
   16887954:
     template: Diremite
-    at:       [-181.130, -0.590, -39.013, 63]
+    region:   region_71
     level:    [44, 46]
   16887955:
     template: Makara_PA
@@ -2860,47 +2860,47 @@ spawns:
     level:    [47, 48]
   16888011:
     template: Aqueduct_Spider
-    at:       [139.553, 0.371, -245.222, 192]
+    region:   region_72
     level:    [84, 85]
   16888012:
     template: Aqueduct_Spider
-    at:       [139.388, 0.382, -235.864, 191]
+    region:   region_72
     level:    [84, 85]
   16888013:
     template: Aqueduct_Spider
-    at:       [139.316, 0.370, -243.483, 63]
+    region:   region_72
     level:    [84, 85]
   16888014:
     template: Aqueduct_Spider
-    at:       [179.160, 0.411, -168.540, 63]
+    region:   region_73
     level:    [84, 85]
   16888015:
     template: Aqueduct_Spider
-    at:       [179.109, 0.431, -170.382, 64]
+    region:   region_73
     level:    [84, 85]
   16888016:
     template: Aqueduct_Spider
-    at:       [-20.997, -6.613, -71.376, 191]
+    region:   region_74
     level:    [84, 85]
   16888017:
     template: Aqueduct_Spider
-    at:       [-20.976, -6.630, -76.481, 192]
+    region:   region_74
     level:    [84, 85]
   16888018:
     template: Aqueduct_Spider
-    at:       [99.172, 0.467, 155.412, 63]
+    region:   region_75
     level:    [84, 85]
   16888019:
     template: Aqueduct_Spider
-    at:       [99.245, 0.418, 158.270, 191]
+    region:   region_75
     level:    [84, 85]
   16888020:
     template: Aqueduct_Spider
-    at:       [139.369, 0.410, 48.244, 192]
+    region:   region_76
     level:    [84, 85]
   16888021:
     template: Aqueduct_Spider
-    at:       [139.505, 0.407, 48.243, 192]
+    region:   region_76
     level:    [84, 85]
   16888022:
     template: Aqueduct_Spider
@@ -2920,23 +2920,23 @@ spawns:
     level:    [84, 85]
   16888026:
     template: Aqueduct_Spider
-    at:       [154.408, 0.406, 139.207]
+    region:   region_77
     level:    [84, 85]
   16888027:
     template: Aqueduct_Spider
-    at:       [161.389, 0.408, 139.290, 127]
+    region:   region_77
     level:    [84, 85]
   16888028:
     template: Aqueduct_Spider
-    at:       [165.586, 0.446, 139.394, 128]
+    region:   region_78
     level:    [84, 85]
   16888029:
     template: Aqueduct_Spider
-    at:       [180.758, 0.511, 145.677, 63]
+    region:   region_79
     level:    [84, 85]
   16888030:
     template: Aqueduct_Spider
-    at:       [180.825, 0.585, 153.502, 192]
+    region:   region_79
     level:    [84, 85]
   16888031:
     template: Aqueduct_Spider
