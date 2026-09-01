@@ -2172,7 +2172,7 @@ spawns:
     level:    [60, 63]
   17489938:
     template: Robber_Crab
-    at:       [16.000, -9.000, -168.000, 59]
+    region:   sw_19
     level:    [60, 63]
   17489939:
     template: Haunt
@@ -2368,7 +2368,7 @@ spawns:
     level:    [64, 67]
   17489986:
     template: Sabotender_Sediendo
-    at:       [-34.957, -0.402, 41.675, 214]
+    region:   w_56
     level:    [64, 67]
   17489987:
     template: Sabotender_Sediendo
@@ -2488,7 +2488,7 @@ spawns:
     level:    [60, 63]
   17490015:
     template: Sand_Lizard
-    at:       [-17.000, -19.000, -203.000, 127]
+    region:   c_80
     level:    [61, 64]
   17490016:
     template: Amemet
@@ -2655,7 +2655,7 @@ spawns:
     level:    [60, 63]
   17490055:
     template: Robber_Crab
-    at:       [138.766, -10.500, 118.081, 61]
+    region:   n_134
     level:    [60, 63]
   17490056:
     template: Haunt
@@ -2748,7 +2748,7 @@ spawns:
     level:    [60, 63]
   17490077:
     template: Diplopod
-    at:       [104.058, -9.469, 141.507, 124]
+    region:   n_158
     level:    [68, 71]
   17490078:
     template: Robber_Crab
@@ -2816,7 +2816,7 @@ spawns:
     level:    [78, 80]
   17490094:
     template: Greater_Cockatrice
-    at:       [117.399, 21.106, -54.455, 61]
+    region:   c_171
     level:    [78, 80]
   17490095:
     template: Ovinnik
@@ -2856,7 +2856,7 @@ spawns:
     level:    [77, 79]
   17490104:
     template: Ladon
-    at:       [162.141, 20.851, -136.548, 49]
+    region:   s_189
     level:    [80, 82]
   17490105:
     template: Greater_Cockatrice
@@ -3004,7 +3004,7 @@ spawns:
     level:    [60, 63]
   17490141:
     template: Deinonychus
-    at:       [182.311, 9.349, 119.189, 53]
+    region:   ne_222
     level:    [65, 68]
   17490142:
     template: Robber_Crab
@@ -3020,7 +3020,7 @@ spawns:
     level:    [65, 68]
   17490145:
     template: Goblin_Mercenary
-    at:       [259.747, 10.569, 37.264, 47]
+    region:   e_228
     level:    [66, 69]
   17490146:
     template: Deinonychus
@@ -3028,7 +3028,7 @@ spawns:
     level:    [65, 68]
   17490147:
     template: Goblin_Alchemist
-    at:       [267.016, 9.867, 39.376, 73]
+    region:   e_228
     level:    [66, 69]
   17490148:
     template: Deinonychus
@@ -3036,7 +3036,7 @@ spawns:
     level:    [65, 68]
   17490149:
     template: Goblin_Alchemist
-    at:       [264.086, 10.299, 34.878, 137]
+    region:   e_228
     level:    [66, 69]
   17490150:
     template: Goblin_Bandit
@@ -3044,7 +3044,7 @@ spawns:
     level:    [66, 69]
   17490151:
     template: Goblin_Tamer
-    at:       [252.889, 9.858, 54.500, 141]
+    region:   e_228
     level:    [66, 69]
   17490152:
     template: Goblins_Spider
@@ -3052,7 +3052,7 @@ spawns:
     level:    [53, 55]
   17490153:
     template: Goblin_Mercenary
-    at:       [251.707, 10.151, 57.164, 18]
+    region:   e_228
     level:    [66, 69]
   17490154:
     template: Goblin_Alchemist
@@ -3092,11 +3092,11 @@ spawns:
     level:    [66, 69]
   17490163:
     template: Goblin_Bandit
-    at:       [168.143, 9.629, 19.702, 114]
+    region:   e_242
     level:    [66, 69]
   17490164:
     template: Goblin_Tamer
-    at:       [170.337, 8.462, 53.599, 164]
+    region:   e_242
     level:    [66, 69]
   17490165:
     template: Goblins_Spider
@@ -3104,7 +3104,7 @@ spawns:
     level:    [53, 55]
   17490166:
     template: Goblin_Mercenary
-    at:       [201.799, 10.516, 58.047, 201]
+    region:   e_242
     level:    [66, 69]
   17490167:
     template: Deinonychus
@@ -3120,11 +3120,11 @@ spawns:
     level:    [66, 69]
   17490170:
     template: Goblin_Bandit
-    at:       [117.481, 19.563, 17.709, 149]
+    region:   c_249
     level:    [66, 69]
   17490171:
     template: Goblin_Tamer
-    at:       [119.136, 19.475, 20.647, 96]
+    region:   c_249
     level:    [66, 69]
   17490172:
     template: Goblins_Spider
@@ -3188,11 +3188,11 @@ spawns:
     level:    [65, 68]
   17490187:
     template: Goblin_Bandit
-    at:       [128.143, 19.329, 94.879, 73]
+    region:   c_263
     level:    [66, 69]
   17490188:
     template: Kuftal_Digger
-    at:       [95.000, 29.000, 107.000, 127]
+    region:   n_272
     level:    [66, 69]
   17490189:
     template: Kuftal_Digger
@@ -3200,11 +3200,11 @@ spawns:
     level:    [66, 69]
   17490190:
     template: Diplopod
-    at:       [83.151, 29.543, 120.514, 170]
+    region:   c_278
     level:    [68, 71]
   17490191:
     template: Diplopod
-    at:       [74.864, 29.569, 114.959, 188]
+    region:   n_272
     level:    [68, 71]
   17490192:
     template: Kuftal_Digger
@@ -3216,19 +3216,19 @@ spawns:
     level:    [66, 69]
   17490194:
     template: Kuftal_Digger
-    at:       [76.925, 29.500, 125.780, 27]
+    region:   c_278
     level:    [66, 69]
   17490195:
     template: Kuftal_Digger
-    at:       [84.379, 29.500, 120.528, 63]
+    region:   c_278
     level:    [66, 69]
   17490196:
     template: Kuftal_Digger
-    at:       [91.664, 30.602, 128.746, 9]
+    region:   c_278
     level:    [66, 69]
   17490197:
     template: Kuftal_Digger
-    at:       [85.111, 30.198, 132.787, 64]
+    region:   n_272
     level:    [66, 69]
   17490198:
     template: Kuftal_Digger
@@ -3252,7 +3252,7 @@ spawns:
     level:    [65, 68]
   17490203:
     template: Deinonychus
-    at:       [23.071, 20.424, 64.804, 227]
+    region:   c_280
     level:    [65, 68]
   17490204:
     template: Yowie
@@ -3276,7 +3276,7 @@ spawns:
     level:    [66, 69]
   17490209:
     template: Kuftal_Digger
-    at:       [51.761, 23.807, 140.868, 137]
+    region:   n_272
     level:    [66, 69]
   17490210:
     template: Deinonychus
@@ -3304,7 +3304,7 @@ spawns:
     level:    [63, 66]
   17490216:
     template: Recluse_Spider
-    at:       [6.455, 19.768, 25.623, 227]
+    region:   w_292
     level:    [63, 66]
   17490217:
     template: Arachne
@@ -3320,7 +3320,7 @@ spawns:
     level:    [63, 66]
   17490220:
     template: Recluse_Spider
-    at:       [-21.927, 18.974, 24.770, 77]
+    region:   w_292
     level:    [63, 66]
   17490221:
     template: Recluse_Spider
