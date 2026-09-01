@@ -2782,7 +2782,7 @@ spawns:
     level:    [35, 37]
   16805913:
     template: Goblin_Smithy
-    at:       [293.777, 19.742, 217.787, 174]
+    region:   ne_22
     level:    [36, 38]
   16805914:
     template: Doom_Scorpion
@@ -2799,7 +2799,7 @@ spawns:
     level:    [36, 38]
   16805917:
     template: Goblin_Furrier
-    at:       [339.884, 20.165, 233.752, 158]
+    region:   ne_26
     level:    [35, 37]
   16805918:
     template: Goblin_Shaman
@@ -2909,7 +2909,7 @@ spawns:
   16805943:
     template: Gallinipper_AC
     script:   Gallinipper
-    at:       [241.207, 20.018, 57.551, 79]
+    region:   e_52
     level:    [37, 39]
   16805944:
     template: Goblin_Smithy
@@ -3025,7 +3025,7 @@ spawns:
     level:    [38, 40]
   16805971:
     template: Goblin_Smithy
-    at:       [236.959, 19.500, 118.408, 211]
+    region:   e_81
     level:    [37, 39]
   16805972:
     template: Goblin_Shaman
@@ -3088,7 +3088,7 @@ spawns:
     level:    [42, 44]
   16805986:
     template: Goblin_Robber
-    at:       [309.058, 19.500, -173.137, 192]
+    region:   se_99
     level:    [42, 44]
   16805987:
     template: Goblin_Reaper
@@ -3168,6 +3168,7 @@ spawns:
     level:    [47, 48]
   16806006:
     template: Bane_Lizard
+    region:   se_117
     level:    [47, 48]
   16806007:
     template: Ogrefly
@@ -3378,7 +3379,7 @@ spawns:
     level:    [34, 35]
   16806054:
     template: Air_Elemental
-    at:       [-66.337, 33.556, -112.926, 74]
+    region:   s_167
     level:    [40, 42]
   16806055:
     template: Flesh_Eater_AC
@@ -3506,7 +3507,7 @@ spawns:
   16806081:
     template: Flesh_Eater_AC
     script:   Flesh_Eater
-    at:       [-82.557, -6.404, 92.554, 129]
+    region:   c_195
     level:    [34, 36]
   16806082:
     template: Flesh_Eater_AC
@@ -3583,7 +3584,7 @@ spawns:
     level:    [34, 36]
   16806097:
     template: Air_Elemental
-    at:       [-265.656, 13.582, 248.894, 82]
+    region:   nw_205
     level:    [41, 43]
   16806098:
     template: Hecteyes_AC
@@ -3627,7 +3628,7 @@ spawns:
     level:    [36, 37]
   16806106:
     template: Air_Elemental
-    at:       [-248.381, -6.149, 320.423, 205]
+    region:   s_182
     level:    [41, 43]
   16806107:
     template: Tulwar_Scorpion
@@ -4068,7 +4069,7 @@ spawns:
   16806212:
     template: Cutlass_Scorpion_AC
     script:   Cutlass_Scorpion
-    at:       [-206.530, -10.406, 340.894, 40]
+    region:   nw_325
     level:    [67, 69]
   16806213:
     template: Cutlass_Scorpion_AC
@@ -4165,7 +4166,7 @@ spawns:
     level:    [75, 76]
   16806235:
     template: Earth_Elemental
-    region:   w_347
+    region:   w_340
     level:    [75, 76]
   16806236:
     template: Earth_Elemental
