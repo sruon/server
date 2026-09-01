@@ -2011,7 +2011,7 @@ spawns:
     level:    [22, 23]
   17379357:
     template: Old_Quadav
-    at:       [-63.782, 0.499, 144.078, 127]
+    region:   nw_26
     level:    [22, 23]
   17379358:
     template: Copper_Quadav
@@ -2019,7 +2019,7 @@ spawns:
     level:    [22, 23]
   17379359:
     template: Brass_Quadav
-    at:       [-63.498, 0.522, 144.067, 24]
+    region:   nw_26
     level:    [22, 23]
   17379360:
     template: Land_Pugil_Small_Beadeaux
@@ -2060,11 +2060,11 @@ spawns:
     level:    [32, 36]
   17379369:
     template: Old_Quadav
-    at:       [-63.028, 23.534, 65.711, 120]
+    region:   nw_43
     level:    [22, 25]
   17379370:
     template: Copper_Quadav
-    at:       [-60.431, 23.696, 78.207, 43]
+    region:   nw_43
     level:    [23, 27]
   17379371:
     template: Brass_Quadav
@@ -2076,11 +2076,11 @@ spawns:
     level:    [22, 25]
   17379373:
     template: Copper_Quadav
-    at:       [-63.661, 23.518, 65.573, 111]
+    region:   nw_43
     level:    [23, 27]
   17379374:
     template: Brass_Quadav
-    at:       [-61.637, 23.383, 73.210, 127]
+    region:   nw_43
     level:    [24, 28]
   17379375:
     template: Caterpillar
@@ -2100,11 +2100,11 @@ spawns:
     level:    [22, 25]
   17379379:
     template: Old_Quadav
-    at:       [-101.471, 23.589, 37.050, 39]
+    region:   w_53
     level:    [22, 25]
   17379380:
     template: Copper_Quadav
-    at:       [-79.441, 23.702, 18.828, 120]
+    region:   w_53
     level:    [23, 27]
   17379381:
     template: Brass_Quadav
@@ -2112,11 +2112,11 @@ spawns:
     level:    [24, 28]
   17379382:
     template: Old_Quadav
-    at:       [-99.255, 23.656, 41.371, 127]
+    region:   w_53
     level:    [22, 26]
   17379383:
     template: Copper_Quadav
-    at:       [-83.371, 23.563, 20.921, 127]
+    region:   w_53
     level:    [23, 27]
   17379384:
     template: Brass_Quadav
@@ -2156,7 +2156,7 @@ spawns:
     level:    [22, 26]
   17379393:
     template: Copper_Quadav
-    at:       [-178.021, 23.596, 81.477, 66]
+    region:   nw_64
     level:    [23, 27]
   17379394:
     template: Brass_Quadav
@@ -2164,11 +2164,11 @@ spawns:
     level:    [24, 28]
   17379395:
     template: Old_Quadav
-    at:       [-178.332, 23.353, 73.589, 58]
+    region:   nw_64
     level:    [22, 26]
   17379396:
     template: Copper_Quadav
-    at:       [-177.061, 23.546, 66.197, 36]
+    region:   nw_64
     level:    [23, 27]
   17379397:
     template: Brass_Quadav
@@ -2224,7 +2224,7 @@ spawns:
     level:    [22, 26]
   17379410:
     template: Copper_Quadav
-    at:       [-219.450, 0.662, -32.293, 200]
+    region:   w_81
     level:    [23, 27]
   17379411:
     template: Brass_Quadav
@@ -2246,7 +2246,7 @@ spawns:
     level:    [22, 26]
   17379415:
     template: Copper_Quadav
-    at:       [-219.208, 0.500, -52.113, 127]
+    region:   w_86
     level:    [23, 27]
   17379416:
     template: Brass_Quadav
@@ -2254,11 +2254,11 @@ spawns:
     level:    [24, 28]
   17379417:
     template: Old_Quadav
-    at:       [-189.665, 0.370, -55.775, 156]
+    region:   w_86
     level:    [22, 26]
   17379418:
     template: Copper_Quadav
-    at:       [-218.841, 0.500, -53.076, 116]
+    region:   w_86
     level:    [23, 27]
   17379419:
     template: Brass_Quadav
@@ -2316,11 +2316,11 @@ spawns:
     level:    [22, 26]
   17379432:
     template: Copper_Quadav
-    at:       [-182.830, 0.500, -123.990, 57]
+    region:   sw_100
     level:    [23, 27]
   17379433:
     template: Brass_Quadav
-    at:       [-187.860, 0.500, -122.900, 119]
+    region:   sw_100
     level:    [24, 28]
   17379434:
     template: Land_Pugil_Small_Beadeaux
@@ -2350,11 +2350,11 @@ spawns:
     level:    [22, 26]
   17379440:
     template: Copper_Quadav
-    at:       [-254.600, 0.500, -138.078, 130]
+    region:   sw_108
     level:    [23, 27]
   17379441:
     template: Brass_Quadav
-    at:       [-263.829, 0.500, -162.745, 127]
+    region:   sw_108
     level:    [24, 28]
   17379442:
     template: Land_Pugil_Small_Beadeaux
@@ -2410,11 +2410,11 @@ spawns:
     level:    [24, 28]
   17379454:
     template: Old_Quadav
-    at:       [-148.246, 0.169, -170.294, 237]
+    region:   sw_123
     level:    [22, 26]
   17379455:
     template: Copper_Quadav
-    at:       [-184.791, 0.499, -186.476, 12]
+    region:   sw_123
     level:    [23, 27]
   17379456:
     template: Brass_Quadav
@@ -2432,7 +2432,7 @@ spawns:
     level:    [20, 23]
   17379459:
     template: Bronze_Quadav
-    at:       [-99.020, -0.217, -65.695, 127]
+    region:   w_132
     level:    [32, 36]
   17379460:
     template: Silver_Quadav
@@ -2444,7 +2444,7 @@ spawns:
     level:    [34, 38]
   17379462:
     template: Garnet_Quadav
-    at:       [-51.550, -4.261, -50.171, 127]
+    region:   w_132
     level:    [35, 39]
   17379463:
     template: Charging_Sheep
@@ -2484,11 +2484,11 @@ spawns:
     level:    [33, 37]
   17379472:
     template: Zircon_Quadav
-    at:       [-35.733, 0.688, -126.219, 24]
+    region:   s_142
     level:    [34, 38]
   17379473:
     template: Garnet_Quadav
-    at:       [-34.577, -2.410, -140.082, 47]
+    region:   s_142
     level:    [35, 39]
   17379474:
     template: Charging_Sheep
@@ -2512,11 +2512,11 @@ spawns:
     level:    [33, 37]
   17379479:
     template: Zircon_Quadav
-    at:       [-67.076, 0.062, -171.693, 57]
+    region:   sw_149
     level:    [34, 38]
   17379480:
     template: Garnet_Quadav
-    at:       [-139.179, -3.763, -190.602, 94]
+    region:   sw_149
     level:    [35, 39]
   17379481:
     template: Charging_Sheep
@@ -2616,7 +2616,7 @@ spawns:
     level:    [35, 39]
   17379505:
     template: Bronze_Quadav
-    at:       [-277.362, -3.826, -125.220, 73]
+    region:   sw_173
     level:    [32, 36]
   17379506:
     template: Silver_Quadav
@@ -2624,7 +2624,7 @@ spawns:
     level:    [33, 37]
   17379507:
     template: Zircon_Quadav
-    at:       [-295.277, -3.500, -130.490, 2]
+    region:   sw_173
     level:    [34, 38]
   17379508:
     template: Garnet_Quadav
@@ -2656,11 +2656,11 @@ spawns:
     level:    [33, 37]
   17379515:
     template: Zircon_Quadav
-    at:       [-249.678, -3.500, -52.752, 79]
+    region:   w_181
     level:    [34, 38]
   17379516:
     template: Garnet_Quadav
-    at:       [-234.075, -3.374, -5.490, 96]
+    region:   w_181
     level:    [35, 39]
   17379517:
     template: Bronze_Quadav
@@ -2704,11 +2704,11 @@ spawns:
     level:    [33, 37]
   17379527:
     template: Zircon_Quadav
-    at:       [-149.000, -3.000, 35.000, 127]
+    region:   w_193
     level:    [34, 38]
   17379528:
     template: Garnet_Quadav
-    at:       [-117.604, -3.750, 37.079, 112]
+    region:   w_193
     level:    [35, 39]
   17379529:
     template: Bronze_Quadav
@@ -2888,7 +2888,7 @@ spawns:
     level:    [35, 39]
   17379573:
     template: Bronze_Quadav
-    at:       [-110.609, -3.048, -192.216, 48]
+    region:   sw_241
     level:    [32, 36]
   17379574:
     template: Silver_Quadav
@@ -2928,11 +2928,11 @@ spawns:
     level:    [33, 37]
   17379583:
     template: Zircon_Quadav
-    at:       [-9.491, -4.414, -91.708, 14]
+    region:   s_249
     level:    [34, 38]
   17379584:
     template: Garnet_Quadav
-    at:       [2.186, -3.530, -136.485, 126]
+    region:   s_249
     level:    [35, 39]
   17379585:
     template: Bronze_Quadav
@@ -2968,7 +2968,7 @@ spawns:
     level:    [45, 49]
   17379593:
     template: Elder_Quadav
-    at:       [-166.556, -3.859, -146.648, 106]
+    region:   sw_266
     level:    [42, 46]
   17379594:
     template: Iron_Quadav
@@ -3004,7 +3004,7 @@ spawns:
     level:    [45, 45]
   17379602:
     template: Elder_Quadav
-    at:       [53.297, -3.500, -114.960, 26]
+    region:   c_275
     level:    [42, 46]
   17379603:
     template: Iron_Quadav
@@ -3016,7 +3016,7 @@ spawns:
     level:    [44, 48]
   17379605:
     template: Emerald_Quadav
-    at:       [58.711, -3.503, -61.423, 127]
+    region:   c_275
     level:    [45, 49]
   17379606:
     template: Elder_Quadav
@@ -3292,7 +3292,7 @@ spawns:
     level:    [39, 41]
   17379673:
     template: Steel_Quadav
-    at:       [142.580, 0.500, 103.501, 166]
+    region:   n_346
     level:    [52, 56]
   17379674:
     template: Mythril_Quadav
@@ -3308,7 +3308,7 @@ spawns:
     level:    [55, 59]
   17379677:
     template: Steel_Quadav
-    at:       [113.061, -3.209, 75.265, 127]
+    region:   n_346
     level:    [52, 56]
   17379678:
     template: Mythril_Quadav
@@ -3344,7 +3344,7 @@ spawns:
     level:    [39, 41]
   17379686:
     template: Spinel_Quadav
-    at:       [212.422, -2.538, 66.704, 66]
+    region:   e_353
     level:    [44, 48]
   17379687:
     template: Emerald_Quadav
@@ -3632,7 +3632,7 @@ spawns:
     level:    [64, 68]
   17379754:
     template: Sapphire_Quadav
-    at:       [190.643, 40.542, 71.825, 99]
+    region:   ne_423
     level:    [65, 69]
   17379755:
     template: Ancient_Quadav
@@ -3640,11 +3640,11 @@ spawns:
     level:    [62, 66]
   17379756:
     template: Darksteel_Quadav
-    at:       [198.356, 40.500, 78.425, 127]
+    region:   ne_423
     level:    [63, 67]
   17379757:
     template: Platinum_Quadav
-    at:       [203.698, 40.621, 88.538, 127]
+    region:   ne_423
     level:    [64, 68]
   17379758:
     template: Sapphire_Quadav
