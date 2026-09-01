@@ -732,7 +732,7 @@ spawns:
   16867336:
     template: Weeper_Large
     script:   Weeper
-    at:       [44.135, -0.500, -81.517, 73]
+    region:   c_9
     level:    [48, 50]
   16867337:
     template: Wanderer_Large
@@ -863,6 +863,7 @@ spawns:
   16867367:
     template: Weeper_Large
     script:   Weeper
+    region:   s_40
     level:    [48, 50]
   16867368:
     template: Wanderer_Large
@@ -877,12 +878,12 @@ spawns:
   16867370:
     template: Wanderer_Large
     script:   Wanderer
-    at:       [40.747, -0.610, -302.846, 181]
+    region:   region_124
     level:    [46, 48]
   16867371:
     template: Weeper_Large
     script:   Weeper
-    at:       [0.783, -0.500, -243.832, 88]
+    region:   s_44
     level:    [48, 50]
   16867372:
     template: Wanderer_Large
@@ -907,7 +908,7 @@ spawns:
   16867376:
     template: Weeper_Large
     script:   Weeper
-    at:       [-15.654, -0.500, -292.320, 211]
+    region:   s_49
     level:    [48, 50]
   16867377:
     template: Wanderer_Large
@@ -922,7 +923,7 @@ spawns:
   16867379:
     template: Wanderer_Large
     script:   Wanderer
-    at:       [8.140, -0.500, -292.312, 198]
+    region:   region_125
     level:    [46, 48]
   16867380:
     template: Thinker_PV
@@ -932,17 +933,17 @@ spawns:
   16867381:
     template: Gorger_PV
     script:   Gorger
-    at:       [126.125, -0.458, -235.921, 153]
+    region:   s_52
     level:    [52, 54]
   16867382:
     template: Craver_PV
     script:   Craver
-    at:       [57.042, -1.655, -307.012, 4]
+    region:   s_52
     level:    [52, 54]
   16867383:
     template: Thinker_PV
     script:   Thinker
-    at:       [59.921, -0.495, -70.863, 17]
+    region:   c_56
     level:    [54, 56]
   16867384:
     template: Gorger_PV
@@ -952,7 +953,7 @@ spawns:
   16867385:
     template: Craver_PV
     script:   Craver
-    at:       [52.241, 0.001, -208.681, 112]
+    region:   c_56
     level:    [52, 54]
   16867387:
     template: Memory_Receptacle_PV
@@ -997,7 +998,7 @@ spawns:
   16867396:
     template: Weeper_Large
     script:   Weeper
-    at:       [121.855, -0.500, 235.748, 20]
+    region:   n_69
     level:    [52, 54]
   16867397:
     template: Wanderer_Large
@@ -1017,17 +1018,17 @@ spawns:
   16867400:
     template: Wanderer_Large
     script:   Wanderer
-    at:       [57.061, -0.500, 195.246, 38]
+    region:   n_103
     level:    [46, 48]
   16867401:
     template: Wanderer_Large
     script:   Wanderer
-    at:       [47.774, -0.500, 203.668, 17]
+    region:   n_103
     level:    [46, 48]
   16867402:
     template: Seether_PV
     script:   Seether
-    at:       [43.233, -0.500, 243.410, 6]
+    region:   n_75
     level:    [50, 52]
   16867403:
     template: Wanderer_Large
@@ -1125,7 +1126,7 @@ spawns:
   16867424:
     template: Weeper_Large
     script:   Weeper
-    at:       [-79.489, -0.500, 155.811, 165]
+    region:   n_95
     level:    [48, 50]
   16867425:
     template: Weeper_Large
@@ -1135,7 +1136,7 @@ spawns:
   16867426:
     template: Weeper_Large
     script:   Weeper
-    at:       [-119.872, -0.500, 150.287, 230]
+    region:   n_99
     level:    [48, 50]
   16867427:
     template: Wanderer_Large
@@ -1145,12 +1146,12 @@ spawns:
   16867428:
     template: Wanderer_Large
     script:   Wanderer
-    at:       [-132.975, -0.500, 166.912, 75]
+    region:   n_99
     level:    [46, 48]
   16867429:
     template: Seether_PV
     script:   Seether
-    at:       [-155.455, -0.500, 145.139, 175]
+    region:   nw_102
     level:    [50, 52]
   16867430:
     template: Seether_PV
@@ -1165,12 +1166,12 @@ spawns:
   16867432:
     template: Gorger_PV
     script:   Gorger
-    at:       [45.404, -0.500, 182.134, 254]
+    region:   n_103
     level:    [52, 54]
   16867433:
     template: Craver_PV
     script:   Craver
-    at:       [18.320, -0.500, 181.901, 201]
+    region:   n_103
     level:    [52, 54]
   16867434:
     template: Thinker_PV
@@ -1180,11 +1181,12 @@ spawns:
   16867435:
     template: Gorger_PV
     script:   Gorger
+    region:   n_106
     level:    [52, 54]
   16867436:
     template: Craver_PV
     script:   Craver
-    at:       [-86.821, -0.499, 168.645, 35]
+    region:   n_106
     level:    [52, 54]
   16867437:
     template: Seether_PV
@@ -1284,7 +1286,7 @@ spawns:
   16867458:
     template: Seether_PV
     script:   Seether
-    at:       [343.670, -0.500, -222.870, 171]
+    region:   se_131
     level:    [54, 56]
   16867459:
     template: Weeper_Large
@@ -1309,12 +1311,12 @@ spawns:
   16867463:
     template: Wanderer_Large
     script:   Wanderer
-    at:       [225.356, -0.469, -232.537, 199]
+    region:   region_126
     level:    [50, 52]
   16867464:
     template: Wanderer_Large
     script:   Wanderer
-    at:       [319.676, -0.500, -215.638, 63]
+    region:   se_139
     level:    [50, 52]
   16867465:
     template: Deviator
@@ -1338,11 +1340,12 @@ spawns:
   16867469:
     template: Weeper_Large
     script:   Weeper
+    region:   se_140
     level:    [52, 54]
   16867470:
     template: Seether_PV
     script:   Seether
-    at:       [338.760, -1.380, -139.719, 249]
+    region:   e_143
     level:    [54, 56]
   16867471:
     template: Weeper_Large
@@ -1382,7 +1385,7 @@ spawns:
   16867478:
     template: Wanderer_Large
     script:   Wanderer
-    at:       [274.177, -0.500, -78.604, 212]
+    region:   region_127
     level:    [50, 52]
   16867479:
     template: Seether_PV
@@ -1417,7 +1420,7 @@ spawns:
   16867485:
     template: Seether_PV
     script:   Seether
-    at:       [189.691, -0.500, -144.958, 135]
+    region:   region_128
     level:    [54, 56]
   16867486:
     template: Wanderer_Large
@@ -1437,7 +1440,7 @@ spawns:
   16867489:
     template: Weeper_Large
     script:   Weeper
-    at:       [215.024, -0.500, -122.775, 251]
+    region:   se_160
     level:    [52, 54]
   16867490:
     template: Weeper_Large
@@ -1467,11 +1470,12 @@ spawns:
   16867495:
     template: Gorger_PV
     script:   Gorger
-    at:       [201.589, -0.500, -126.820, 26]
+    region:   e_166
     level:    [56, 58]
   16867496:
     template: Craver_PV
     script:   Craver
+    region:   e_166
     level:    [56, 58]
   16867497:
     template: Thinker_PV
@@ -1676,7 +1680,7 @@ spawns:
   16867541:
     template: Weeper_Large
     script:   Weeper
-    at:       [200.268, -0.458, 81.422, 128]
+    region:   ne_214
     level:    [52, 54]
   16867542:
     template: Weeper_Large
@@ -1686,7 +1690,7 @@ spawns:
   16867543:
     template: Seether_PV
     script:   Seether
-    at:       [181.314, -0.500, 79.898, 80]
+    region:   ne_216
     level:    [54, 56]
   16867544:
     template: Weeper_Large
@@ -1736,6 +1740,7 @@ spawns:
   16867553:
     template: Seether_PV
     script:   Seether
+    region:   ne_224
     level:    [54, 56]
   16867554:
     template: Wailer
@@ -1744,6 +1749,7 @@ spawns:
   16867555:
     template: Weeper_Large
     script:   Weeper
+    region:   ne_228
     level:    [52, 54]
   16867556:
     template: Weeper_Large
@@ -1753,7 +1759,7 @@ spawns:
   16867557:
     template: Seether_PV
     script:   Seether
-    at:       [383.570, -0.498, 131.103, 176]
+    region:   ne_230
     level:    [54, 56]
   16867558:
     template: Seether_PV
@@ -1773,7 +1779,7 @@ spawns:
   16867561:
     template: Seether_PV
     script:   Seether
-    at:       [286.257, -0.499, 242.693, 19]
+    region:   ne_234
     level:    [54, 56]
   16867562:
     template: Seether_PV
@@ -1877,7 +1883,7 @@ spawns:
   16867586:
     template: Wanderer_Large
     script:   Wanderer
-    at:       [441.168, -0.483, 193.127, 60]
+    region:   ne_259
     level:    [50, 52]
   16867587:
     template: Weeper_Large
@@ -1887,7 +1893,7 @@ spawns:
   16867588:
     template: Thinker_PV
     script:   Thinker
-    at:       [174.477, -0.499, 103.434, 238]
+    region:   ne_261
     level:    [56, 58]
   16867589:
     template: Gorger_PV
@@ -1897,12 +1903,12 @@ spawns:
   16867590:
     template: Craver_PV
     script:   Craver
-    at:       [230.132, -0.495, 95.845, 228]
+    region:   ne_261
     level:    [56, 58]
   16867591:
     template: Thinker_PV
     script:   Thinker
-    at:       [230.628, -0.500, 141.745, 216]
+    region:   ne_261
     level:    [56, 58]
   16867592:
     template: Gorger_PV
@@ -1912,7 +1918,7 @@ spawns:
   16867593:
     template: Craver_PV
     script:   Craver
-    at:       [212.407, -0.388, 151.807, 53]
+    region:   ne_261
     level:    [56, 58]
   16867594:
     template: Thinker_PV
@@ -2067,7 +2073,7 @@ spawns:
   16867627:
     template: Seether_PV
     script:   Seether
-    at:       [18.422, -1.914, 14.039, 68]
+    region:   c_300
     level:    [54, 56]
   16867628:
     template: Wanderer_Large
@@ -2102,7 +2108,7 @@ spawns:
   16867634:
     template: Seether_PV
     script:   Seether
-    at:       [-5.792, -0.500, 58.736, 154]
+    region:   c_300
     level:    [54, 56]
   16867635:
     template: Weeper_Large
@@ -2132,7 +2138,7 @@ spawns:
   16867640:
     template: Seether_PV
     script:   Seether
-    at:       [-141.474, -0.500, -8.146, 176]
+    region:   c_371
     level:    [54, 56]
   16867641:
     template: Weeper_Large
@@ -2270,7 +2276,7 @@ spawns:
   16867668:
     template: Seether_PV
     script:   Seether
-    at:       [-299.441, -0.500, 137.714, 235]
+    region:   region_129
     level:    [54, 56]
   16867669:
     template: Weeper_Large
@@ -2369,16 +2375,17 @@ spawns:
   16867692:
     template: Gorger_PV
     script:   Gorger
-    at:       [-353.969, -0.500, 87.582, 252]
+    region:   nw_363
     level:    [56, 58]
   16867693:
     template: Craver_PV
     script:   Craver
+    region:   nw_363
     level:    [56, 58]
   16867694:
     template: Thinker_PV
     script:   Thinker
-    at:       [-451.858, -0.500, 53.940, 73]
+    region:   nw_363
     level:    [56, 58]
   16867695:
     template: Gorger_PV
@@ -2388,16 +2395,17 @@ spawns:
   16867696:
     template: Craver_PV
     script:   Craver
-    at:       [-390.923, -0.500, 72.809, 104]
+    region:   nw_363
     level:    [56, 58]
   16867697:
     template: Thinker_PV
     script:   Thinker
+    region:   c_371
     level:    [56, 58]
   16867698:
     template: Gorger_PV
     script:   Gorger
-    at:       [-148.101, -0.500, -20.705, 58]
+    region:   c_371
     level:    [56, 58]
   16867699:
     template: Craver_PV
