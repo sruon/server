@@ -1462,7 +1462,7 @@ spawns:
     level:    [3, 4]
   17371145:
     template: Yagudo_Initiate
-    at:       [-140.432, -0.654, 259.921, 30]
+    region:   nw_8
     level:    [3, 4]
   17371146:
     template: Yagudo_Acolyte
@@ -1470,7 +1470,7 @@ spawns:
     level:    [3, 4]
   17371147:
     template: Yagudo_Scribe
-    at:       [-149.000, 3.000, 328.000, 127]
+    region:   nw_8
     level:    [3, 4]
   17371148:
     template: Giddeus_Bee
@@ -1494,7 +1494,7 @@ spawns:
     level:    [3, 4]
   17371153:
     template: Yagudo_Initiate
-    at:       [-48.025, 4.061, 312.959, 127]
+    region:   n_16
     level:    [3, 4]
   17371154:
     template: Yagudo_Acolyte
@@ -1502,7 +1502,7 @@ spawns:
     level:    [3, 4]
   17371155:
     template: Yagudo_Scribe
-    at:       [-36.556, 3.760, 331.549, 89]
+    region:   n_16
     level:    [3, 4]
   17371156:
     template: Giddeus_Bee
@@ -1526,7 +1526,7 @@ spawns:
     level:    [3, 5]
   17371161:
     template: Yagudo_Scribe
-    at:       [-61.038, -0.332, 258.965, 121]
+    region:   n_23
     level:    [3, 5]
   17371162:
     template: Giddeus_Bee
@@ -1550,7 +1550,7 @@ spawns:
     level:    [3, 5]
   17371167:
     template: Yagudo_Scribe
-    at:       [-163.454, -0.720, 259.363, 125]
+    region:   n_34
     level:    [3, 5]
   17371168:
     template: Giddeus_Bee
@@ -1566,7 +1566,7 @@ spawns:
     level:    [3, 5]
   17371171:
     template: Yagudo_Acolyte
-    at:       [19.000, 0.400, 252.000, 127]
+    region:   n_34
     level:    [3, 5]
   17371172:
     template: Yagudo_Scribe
@@ -1582,7 +1582,7 @@ spawns:
     level:    [2, 4]
   17371175:
     template: Yagudo_Initiate
-    at:       [-149.556, -0.534, 157.946, 127]
+    region:   nw_40
     level:    [5, 7]
   17371176:
     template: Yagudo_Acolyte
@@ -1590,15 +1590,15 @@ spawns:
     level:    [5, 7]
   17371177:
     template: Yagudo_Scribe
-    at:       [-141.000, 0.257, 162.000, 127]
+    region:   nw_40
     level:    [5, 7]
   17371178:
     template: Yagudo_Initiate
-    at:       [-160.755, -0.519, 166.154, 100]
+    region:   nw_40
     level:    [5, 7]
   17371179:
     template: Yagudo_Acolyte
-    at:       [-146.560, -0.551, 170.618, 127]
+    region:   nw_40
     level:    [5, 7]
   17371180:
     template: Yagudo_Scribe
@@ -1614,11 +1614,11 @@ spawns:
     level:    [4, 5]
   17371183:
     template: Yagudo_Initiate
-    at:       [-127.814, -0.672, 152.754, 62]
+    region:   nw_49
     level:    [5, 7]
   17371184:
     template: Yagudo_Acolyte
-    at:       [-142.000, -0.748, 159.000, 127]
+    region:   nw_49
     level:    [5, 7]
   17371185:
     template: Yagudo_Scribe
@@ -1626,7 +1626,7 @@ spawns:
     level:    [5, 7]
   17371186:
     template: Yagudo_Initiate
-    at:       [-120.731, -0.473, 169.709, 127]
+    region:   nw_49
     level:    [5, 7]
   17371187:
     template: Yagudo_Acolyte
@@ -1634,7 +1634,7 @@ spawns:
     level:    [5, 7]
   17371188:
     template: Yagudo_Scribe
-    at:       [-135.110, -0.703, 167.965, 127]
+    region:   nw_49
     level:    [5, 7]
   17371189:
     template: Giddeus_Bee
@@ -1662,11 +1662,11 @@ spawns:
     level:    [5, 7]
   17371195:
     template: Yagudo_Acolyte
-    at:       [-20.601, -0.599, 151.801, 58]
+    region:   n_58
     level:    [5, 7]
   17371196:
     template: Yagudo_Scribe
-    at:       [-26.185, -0.778, 153.651, 36]
+    region:   n_58
     level:    [5, 7]
   17371197:
     template: Yagudo_Initiate
@@ -1674,11 +1674,11 @@ spawns:
     level:    [5, 7]
   17371198:
     template: Yagudo_Acolyte
-    at:       [-40.953, -0.500, 162.552, 73]
+    region:   n_58
     level:    [5, 7]
   17371199:
     template: Yagudo_Scribe
-    at:       [-50.546, 0.496, 171.438, 127]
+    region:   n_58
     level:    [5, 7]
   17371200:
     template: Giddeus_Bee
@@ -1690,7 +1690,7 @@ spawns:
     level:    [4, 5]
   17371202:
     template: Yagudo_Initiate
-    at:       [-16.665, -0.378, 164.169, 108]
+    region:   n_67
     level:    [5, 7]
   17371203:
     template: Yagudo_Acolyte
@@ -1698,11 +1698,11 @@ spawns:
     level:    [5, 7]
   17371204:
     template: Yagudo_Scribe
-    at:       [7.478, -0.760, 155.245, 125]
+    region:   n_67
     level:    [5, 7]
   17371205:
     template: Yagudo_Initiate
-    at:       [17.875, -0.414, 177.391, 127]
+    region:   n_67
     level:    [5, 7]
   17371206:
     template: Yagudo_Acolyte
@@ -1710,7 +1710,7 @@ spawns:
     level:    [5, 7]
   17371207:
     template: Yagudo_Scribe
-    at:       [4.465, -0.501, 170.776, 100]
+    region:   n_67
     level:    [5, 7]
   17371208:
     template: Giddeus_Bee
@@ -1734,11 +1734,11 @@ spawns:
     level:    [4, 5]
   17371213:
     template: Yagudo_Initiate
-    at:       [-122.252, -1.214, 101.258, 127]
+    region:   nw_79
     level:    [5, 7]
   17371214:
     template: Yagudo_Acolyte
-    at:       [-140.841, -1.394, 113.781, 64]
+    region:   nw_79
     level:    [5, 7]
   17371215:
     template: Yagudo_Scribe
@@ -1758,11 +1758,11 @@ spawns:
     level:    [3, 5]
   17371219:
     template: Yagudo_Initiate
-    at:       [-71.643, -1.624, 67.641, 7]
+    region:   c_85
     level:    [5, 7]
   17371220:
     template: Yagudo_Acolyte
-    at:       [-83.729, -0.934, 54.259, 127]
+    region:   c_85
     level:    [5, 7]
   17371221:
     template: Yagudo_Scribe
@@ -1786,7 +1786,7 @@ spawns:
     level:    [7, 10]
   17371226:
     template: Yagudo_Scribe
-    at:       [-55.373, -1.589, 97.560, 123]
+    region:   n_88
     level:    [7, 10]
   17371227:
     template: Dirt_Eater
@@ -1806,7 +1806,7 @@ spawns:
     level:    [5, 7]
   17371231:
     template: Yagudo_Scribe
-    at:       [-130.001, -1.545, 60.054, 74]
+    region:   w_93
     level:    [5, 7]
   17371232:
     template: Dirt_Eater
@@ -1818,7 +1818,7 @@ spawns:
     level:    [5, 7]
   17371234:
     template: Yagudo_Acolyte
-    at:       [-141.715, -1.491, 21.939, 127]
+    region:   w_97
     level:    [5, 7]
   17371235:
     template: Yagudo_Scribe
@@ -1826,7 +1826,7 @@ spawns:
     level:    [5, 7]
   17371236:
     template: Yagudo_Initiate
-    at:       [-114.000, -1.022, -87.000]
+    region:   w_97
     level:    [5, 7]
   17371237:
     template: Yagudo_Acolyte
@@ -1834,7 +1834,7 @@ spawns:
     level:    [5, 7]
   17371238:
     template: Yagudo_Scribe
-    at:       [-110.000, 0.600, -76.000, 102]
+    region:   w_97
     level:    [5, 7]
   17371239:
     template: Dirt_Eater
@@ -1854,11 +1854,11 @@ spawns:
     level:    [5, 7]
   17371243:
     template: Yagudo_Acolyte
-    at:       [-5.836, -0.803, 99.792, 127]
+    region:   n_106
     level:    [5, 7]
   17371244:
     template: Yagudo_Scribe
-    at:       [-10.000, -1.514, 108.000, 49]
+    region:   n_106
     level:    [5, 7]
   17371245:
     template: Dirt_Eater
@@ -1878,11 +1878,11 @@ spawns:
     level:    [5, 7]
   17371249:
     template: Yagudo_Acolyte
-    at:       [34.000, -1.000, 58.000, 127]
+    region:   c_112
     level:    [5, 7]
   17371250:
     template: Yagudo_Scribe
-    at:       [21.257, -1.515, 50.282, 127]
+    region:   c_112
     level:    [5, 7]
   17371251:
     template: Dirt_Eater
@@ -1898,7 +1898,7 @@ spawns:
     level:    [5, 7]
   17371254:
     template: Yagudo_Acolyte
-    at:       [22.213, -1.670, 14.107, 127]
+    region:   c_117
     level:    [5, 7]
   17371255:
     template: Yagudo_Scribe
@@ -1910,7 +1910,7 @@ spawns:
     level:    [3, 5]
   17371257:
     template: Yagudo_Initiate
-    at:       [42.623, -1.497, 17.654, 1]
+    region:   c_122
     level:    [5, 7]
   17371258:
     template: Yagudo_Acolyte
@@ -1918,7 +1918,7 @@ spawns:
     level:    [5, 7]
   17371259:
     template: Yagudo_Scribe
-    at:       [61.922, -0.924, -31.762, 127]
+    region:   c_122
     level:    [5, 7]
   17371260:
     template: Yagudo_Initiate
@@ -1926,11 +1926,11 @@ spawns:
     level:    [5, 7]
   17371261:
     template: Yagudo_Acolyte
-    at:       [57.000, -1.000, -12.000, 127]
+    region:   c_122
     level:    [5, 7]
   17371262:
     template: Yagudo_Scribe
-    at:       [50.733, -2.519, 14.746, 127]
+    region:   c_122
     level:    [5, 7]
   17371263:
     template: Dirt_Eater
@@ -1946,11 +1946,11 @@ spawns:
     level:    [7, 10]
   17371266:
     template: Yagudo_Acolyte
-    at:       [69.166, 0.897, -110.627, 127]
+    region:   e_129
     level:    [7, 10]
   17371267:
     template: Yagudo_Scribe
-    at:       [68.030, 0.706, -65.183, 127]
+    region:   e_129
     level:    [7, 10]
   17371268:
     template: Yagudo_Initiate
@@ -1958,7 +1958,7 @@ spawns:
     level:    [7, 10]
   17371269:
     template: Yagudo_Acolyte
-    at:       [69.838, 0.359, -76.511, 127]
+    region:   e_129
     level:    [7, 10]
   17371270:
     template: Yagudo_Scribe
@@ -1966,7 +1966,7 @@ spawns:
     level:    [7, 10]
   17371271:
     template: Yagudo_Initiate
-    at:       [83.000, 1.000, -81.000, 127]
+    region:   e_136
     level:    [7, 10]
   17371272:
     template: Yagudo_Acolyte
@@ -1974,7 +1974,7 @@ spawns:
     level:    [7, 10]
   17371273:
     template: Yagudo_Scribe
-    at:       [105.481, 1.195, -108.144, 127]
+    region:   e_136
     level:    [7, 10]
   17371274:
     template: Yagudo_Initiate
@@ -1982,7 +1982,7 @@ spawns:
     level:    [7, 10]
   17371275:
     template: Yagudo_Acolyte
-    at:       [80.432, 0.500, -117.342, 31]
+    region:   e_136
     level:    [7, 10]
   17371276:
     template: Yagudo_Scribe
@@ -1990,7 +1990,7 @@ spawns:
     level:    [7, 10]
   17371277:
     template: Yagudo_Mendicant
-    at:       [91.794, 0.467, -123.701, 127]
+    region:   e_136
     level:    [11, 13]
   17371278:
     template: Yagudos_Elemental
@@ -1998,7 +1998,7 @@ spawns:
     level:    [4, 6]
   17371279:
     template: Yagudo_Piper
-    at:       [106.901, 1.524, -113.397, 127]
+    region:   e_136
     level:    [11, 13]
   17371280:
     template: Yagudo_Persecutor
@@ -2029,7 +2029,7 @@ spawns:
     level:    [4, 6]
   17371286:
     template: Yagudo_Piper
-    at:       [114.541, 0.841, -187.665, 127]
+    region:   se_148
     level:    [11, 13]
   17371287:
     template: Yagudo_Persecutor
@@ -2037,7 +2037,7 @@ spawns:
     level:    [11, 13]
   17371288:
     template: Yagudo_Mendicant
-    at:       [106.514, 0.548, -195.573, 122]
+    region:   se_148
     level:    [11, 13]
   17371289:
     template: Yagudos_Elemental
@@ -2049,7 +2049,7 @@ spawns:
     level:    [11, 13]
   17371291:
     template: Yagudo_Persecutor
-    at:       [99.902, -2.725, -213.337, 127]
+    region:   se_148
     level:    [11, 13]
   17371292:
     template: Digger_Wasp_aggro
@@ -2058,7 +2058,7 @@ spawns:
     level:    [11, 13]
   17371293:
     template: Yagudo_Mendicant
-    at:       [126.774, 0.441, -242.673, 23]
+    region:   se_159
     level:    [11, 13]
   17371294:
     template: Yagudos_Elemental
@@ -2078,7 +2078,7 @@ spawns:
     level:    [11, 13]
   17371298:
     template: Yagudo_Persecutor
-    at:       [116.667, -3.442, -261.079, 127]
+    region:   se_159
     level:    [11, 13]
   17371299:
     template: Digger_Wasp_aggro
@@ -2096,7 +2096,7 @@ spawns:
     level:    [11, 13]
   17371302:
     template: Yagudo_Mendicant
-    at:       [201.986, 0.492, -196.799, 24]
+    region:   se_168
     level:    [12, 15]
   17371303:
     template: Yagudos_Elemental
@@ -2112,7 +2112,7 @@ spawns:
     level:    [12, 15]
   17371306:
     template: Yagudo_Mendicant
-    at:       [199.681, 0.590, -186.139, 122]
+    region:   se_168
     level:    [12, 15]
   17371307:
     template: Yagudos_Elemental
@@ -2120,7 +2120,7 @@ spawns:
     level:    [4, 6]
   17371308:
     template: Yagudo_Piper
-    at:       [197.704, 0.495, -203.841, 127]
+    region:   se_168
     level:    [12, 15]
   17371309:
     template: Yagudo_Persecutor
@@ -2133,7 +2133,7 @@ spawns:
     level:    [11, 13]
   17371311:
     template: Yagudo_Mendicant
-    at:       [204.159, 0.538, -251.812, 121]
+    region:   se_177
     level:    [12, 15]
   17371312:
     template: Yagudos_Elemental
@@ -2145,7 +2145,7 @@ spawns:
     level:    [12, 15]
   17371314:
     template: Yagudo_Persecutor
-    at:       [185.065, 0.503, -250.484, 57]
+    region:   se_177
     level:    [12, 15]
   17371315:
     template: Yagudo_Mendicant
@@ -2161,7 +2161,7 @@ spawns:
     level:    [12, 15]
   17371318:
     template: Yagudo_Persecutor
-    at:       [196.220, 0.549, -253.366, 121]
+    region:   se_177
     level:    [12, 15]
   17371319:
     template: Digger_Wasp_aggro
@@ -2185,7 +2185,7 @@ spawns:
     level:    [11, 13]
   17371323:
     template: Yagudo_Mendicant
-    at:       [220.760, -2.285, -304.947, 81]
+    region:   se_189
     level:    [14, 18]
   17371324:
     template: Yagudos_Elemental
@@ -2205,11 +2205,11 @@ spawns:
     level:    [7, 10]
   17371328:
     template: Yagudo_Acolyte
-    at:       [-124.243, -0.409, -96.861, 47]
+    region:   w_191
     level:    [7, 10]
   17371329:
     template: Yagudo_Scribe
-    at:       [-125.808, -0.012, -73.397, 127]
+    region:   w_191
     level:    [7, 10]
   17371330:
     template: Yagudo_Initiate
@@ -2217,7 +2217,7 @@ spawns:
     level:    [7, 10]
   17371331:
     template: Yagudo_Acolyte
-    at:       [-130.243, 0.474, -106.930, 94]
+    region:   w_191
     level:    [7, 10]
   17371332:
     template: Yagudo_Scribe
@@ -2225,7 +2225,7 @@ spawns:
     level:    [7, 10]
   17371333:
     template: Yagudo_Mendicant
-    at:       [-141.394, 0.640, -113.501, 67]
+    region:   w_199
     level:    [11, 13]
   17371334:
     template: Yagudos_Elemental
@@ -2241,7 +2241,7 @@ spawns:
     level:    [11, 13]
   17371337:
     template: Yagudo_Mendicant
-    at:       [-139.565, -0.005, -109.655, 127]
+    region:   w_199
     level:    [11, 13]
   17371338:
     template: Yagudos_Elemental
@@ -2253,7 +2253,7 @@ spawns:
     level:    [11, 13]
   17371340:
     template: Yagudo_Persecutor
-    at:       [-144.288, 1.311, -130.082, 104]
+    region:   w_199
     level:    [11, 13]
   17371341:
     template: Giant_Pugil
@@ -2269,7 +2269,7 @@ spawns:
     level:    [8, 11]
   17371344:
     template: Yagudo_Initiate
-    at:       [-73.000, -1.182, -123.000, 127]
+    region:   c_209
     level:    [7, 10]
   17371345:
     template: Yagudo_Acolyte
@@ -2281,7 +2281,7 @@ spawns:
     level:    [7, 10]
   17371347:
     template: Yagudo_Initiate
-    at:       [-113.732, 0.394, -131.124, 38]
+    region:   c_209
     level:    [7, 10]
   17371348:
     template: Yagudo_Acolyte
@@ -2289,7 +2289,7 @@ spawns:
     level:    [7, 10]
   17371349:
     template: Yagudo_Scribe
-    at:       [-130.000, 1.000, -135.000, 64]
+    region:   c_209
     level:    [7, 10]
   17371350:
     template: Yagudo_Mendicant
@@ -2301,15 +2301,15 @@ spawns:
     level:    [4, 6]
   17371352:
     template: Yagudo_Piper
-    at:       [-98.726, 0.400, -112.944, 98]
+    region:   c_209
     level:    [11, 13]
   17371353:
     template: Yagudo_Persecutor
-    at:       [-117.000, 1.000, -119.000, 95]
+    region:   c_209
     level:    [11, 13]
   17371354:
     template: Yagudo_Initiate
-    at:       [-79.418, 0.502, -169.379, 127]
+    region:   c_219
     level:    [7, 10]
   17371355:
     template: Yagudo_Acolyte
@@ -2317,7 +2317,7 @@ spawns:
     level:    [7, 10]
   17371356:
     template: Yagudo_Scribe
-    at:       [-120.529, 0.491, -157.716, 66]
+    region:   c_219
     level:    [7, 10]
   17371357:
     template: Yagudo_Initiate
@@ -2325,7 +2325,7 @@ spawns:
     level:    [7, 10]
   17371358:
     template: Yagudo_Acolyte
-    at:       [-96.056, 0.539, -161.934, 127]
+    region:   c_219
     level:    [7, 10]
   17371359:
     template: Yagudo_Scribe
@@ -2333,7 +2333,7 @@ spawns:
     level:    [7, 10]
   17371360:
     template: Yagudo_Mendicant
-    at:       [-123.884, 0.294, -149.627, 127]
+    region:   c_219
     level:    [11, 13]
   17371361:
     template: Yagudos_Elemental
@@ -2341,7 +2341,7 @@ spawns:
     level:    [4, 6]
   17371362:
     template: Yagudo_Piper
-    at:       [-123.669, 0.039, -144.762, 127]
+    region:   c_219
     level:    [11, 13]
   17371363:
     template: Yagudo_Persecutor
@@ -2349,7 +2349,7 @@ spawns:
     level:    [11, 13]
   17371364:
     template: Yagudo_Mendicant
-    at:       [-214.150, -2.999, -139.398, 124]
+    region:   w_230
     level:    [11, 13]
   17371365:
     template: Yagudos_Elemental
@@ -2361,7 +2361,7 @@ spawns:
     level:    [11, 13]
   17371367:
     template: Yagudo_Persecutor
-    at:       [-218.680, -2.223, -164.556, 127]
+    region:   w_230
     level:    [11, 13]
   17371368:
     template: Digger_Wasp_aggro
@@ -2383,7 +2383,7 @@ spawns:
     level:    [4, 6]
   17371372:
     template: Yagudo_Piper
-    at:       [-219.000, -3.000, -240.000, 24]
+    region:   sw_234
     level:    [12, 15]
   17371373:
     template: Yagudo_Persecutor
@@ -2391,7 +2391,7 @@ spawns:
     level:    [12, 15]
   17371374:
     template: Yagudo_Mendicant
-    at:       [-247.738, 0.476, -201.843, 69]
+    region:   sw_234
     level:    [12, 15]
   17371375:
     template: Yagudos_Elemental
@@ -2403,7 +2403,7 @@ spawns:
     level:    [12, 15]
   17371377:
     template: Yagudo_Persecutor
-    at:       [-237.000, 1.000, -197.000, 98]
+    region:   sw_234
     level:    [12, 15]
   17371378:
     template: Digger_Wasp_aggro
@@ -2429,11 +2429,11 @@ spawns:
     level:    [14, 18]
   17371383:
     template: Yagudo_Persecutor
-    at:       [-258.289, -2.703, -267.728, 127]
+    region:   sw_244
     level:    [14, 18]
   17371384:
     template: Yagudo_Mendicant
-    at:       [-187.000, -0.700, -262.000, 4]
+    region:   sw_250
     level:    [11, 13]
   17371385:
     template: Yagudos_Elemental
@@ -2445,7 +2445,7 @@ spawns:
     level:    [11, 13]
   17371387:
     template: Yagudo_Persecutor
-    at:       [-200.195, -3.478, -261.284, 127]
+    region:   sw_250
     level:    [11, 13]
   17371388:
     template: Digger_Wasp_aggro
@@ -2459,7 +2459,7 @@ spawns:
     level:    [11, 13]
   17371390:
     template: Yagudo_Mendicant
-    at:       [-165.953, 0.373, -246.510, 127]
+    region:   sw_256
     level:    [12, 15]
   17371391:
     template: Yagudos_Elemental
@@ -2475,7 +2475,7 @@ spawns:
     level:    [12, 15]
   17371394:
     template: Yagudo_Mendicant
-    at:       [-164.297, 0.509, -251.350, 103]
+    region:   sw_256
     level:    [12, 15]
   17371395:
     template: Yagudos_Elemental
@@ -2483,7 +2483,7 @@ spawns:
     level:    [4, 6]
   17371396:
     template: Yagudo_Piper
-    at:       [-172.335, 0.452, -248.628, 99]
+    region:   sw_256
     level:    [12, 15]
   17371397:
     template: Yagudo_Persecutor
@@ -2500,7 +2500,7 @@ spawns:
     level:    [24, 25]
   17371400:
     template: Yagudo_Mendicant
-    at:       [-126.449, 0.732, -237.035, 127]
+    region:   sw_266
     level:    [12, 15]
   17371401:
     template: Yagudos_Elemental
@@ -2516,7 +2516,7 @@ spawns:
     level:    [12, 15]
   17371404:
     template: Yagudo_Mendicant
-    at:       [-113.053, 0.399, -225.212, 127]
+    region:   sw_266
     level:    [12, 15]
   17371405:
     template: Yagudos_Elemental
@@ -2528,7 +2528,7 @@ spawns:
     level:    [12, 15]
   17371407:
     template: Yagudo_Persecutor
-    at:       [-124.000, 0.500, -227.000, 127]
+    region:   sw_266
     level:    [12, 15]
   17371408:
     template: Digger_Wasp_aggro
@@ -2537,7 +2537,7 @@ spawns:
     level:    [11, 13]
   17371409:
     template: Yagudo_Mendicant
-    at:       [-82.839, -3.116, -219.319, 9]
+    region:   s_275
     level:    [12, 15]
   17371410:
     template: Yagudos_Elemental
@@ -2549,7 +2549,7 @@ spawns:
     level:    [12, 15]
   17371412:
     template: Yagudo_Persecutor
-    at:       [-58.994, -1.782, -193.454, 65]
+    region:   s_275
     level:    [12, 15]
   17371413:
     template: Digger_Wasp_aggro
@@ -2575,11 +2575,11 @@ spawns:
     level:    [4, 6]
   17371418:
     template: Yagudo_Piper
-    at:       [-211.970, 7.429, 57.800, 127]
+    region:   w_280
     level:    [11, 13]
   17371419:
     template: Yagudo_Persecutor
-    at:       [-217.711, 7.116, 29.357, 124]
+    region:   w_280
     level:    [11, 13]
   17371420:
     template: Yagudo_Mendicant
@@ -2595,7 +2595,7 @@ spawns:
     level:    [11, 13]
   17371423:
     template: Yagudo_Persecutor
-    at:       [-218.522, 7.519, 43.520, 72]
+    region:   w_280
     level:    [11, 13]
   17371424:
     template: Yagudo_Mendicant
@@ -2607,11 +2607,11 @@ spawns:
     level:    [4, 6]
   17371426:
     template: Yagudo_Piper
-    at:       [-150.558, 15.953, 57.212, 127]
+    region:   w_288
     level:    [11, 13]
   17371427:
     template: Yagudo_Persecutor
-    at:       [-132.085, 15.994, 61.911, 127]
+    region:   w_288
     level:    [11, 13]
   17371428:
     template: Earth_Eater
@@ -2635,7 +2635,7 @@ spawns:
     level:    [11, 13]
   17371433:
     template: Yagudo_Persecutor
-    at:       [-90.635, 16.293, 138.877, 125]
+    region:   nw_294
     level:    [11, 13]
   17371434:
     template: Yagudo_Mendicant
@@ -2671,7 +2671,7 @@ spawns:
     level:    [4, 6]
   17371442:
     template: Yagudo_Piper
-    at:       [-133.000, 17.000, 139.000, 127]
+    region:   nw_304
     level:    [12, 15]
   17371443:
     template: Yagudo_Persecutor
@@ -2715,7 +2715,7 @@ spawns:
     level:    [10, 12]
   17371453:
     template: Yagudo_Mendicant
-    at:       [81.000, 8.000, 100.000, 78]
+    region:   ne_319
     level:    [11, 13]
   17371454:
     template: Yagudos_Elemental
@@ -2727,7 +2727,7 @@ spawns:
     level:    [11, 13]
   17371456:
     template: Yagudo_Persecutor
-    at:       [67.840, 5.688, 59.983, 127]
+    region:   ne_319
     level:    [11, 13]
   17371457:
     template: Yagudo_Mendicant
@@ -2779,7 +2779,7 @@ spawns:
     level:    [11, 13]
   17371469:
     template: Yagudo_Mendicant
-    at:       [15.785, 16.510, 22.490, 127]
+    region:   c_335
     level:    [11, 13]
   17371470:
     template: Yagudos_Elemental
@@ -2791,7 +2791,7 @@ spawns:
     level:    [12, 15]
   17371472:
     template: Yagudo_Persecutor
-    at:       [19.393, 16.722, 27.628, 127]
+    region:   c_335
     level:    [12, 15]
   17371473:
     template: Earth_Eater
@@ -2803,7 +2803,7 @@ spawns:
     level:    [10, 12]
   17371475:
     template: Yagudo_Mendicant
-    at:       [-57.026, 16.640, 97.506, 50]
+    region:   n_342
     level:    [12, 15]
   17371476:
     template: Yagudos_Elemental
@@ -2811,7 +2811,7 @@ spawns:
     level:    [4, 6]
   17371477:
     template: Yagudo_Piper
-    at:       [-65.101, 16.478, 97.537, 127]
+    region:   n_342
     level:    [12, 15]
   17371478:
     template: Yagudo_Persecutor
@@ -2831,7 +2831,7 @@ spawns:
     level:    [10, 12]
   17371482:
     template: Yagudo_Mendicant
-    at:       [-61.178, 1.864, 16.303, 112]
+    region:   c_348
     level:    [12, 15]
   17371483:
     template: Yagudos_Elemental
@@ -2843,7 +2843,7 @@ spawns:
     level:    [12, 15]
   17371485:
     template: Yagudo_Persecutor
-    at:       [-58.310, 6.091, 29.126, 64]
+    region:   c_348
     level:    [12, 15]
   17371486:
     template: Yagudo_Mendicant
@@ -2859,7 +2859,7 @@ spawns:
     level:    [12, 15]
   17371489:
     template: Yagudo_Persecutor
-    at:       [-65.800, -2.854, -10.147, 127]
+    region:   c_348
     level:    [12, 15]
   17371490:
     template: Yagudo_Mendicant
@@ -2897,7 +2897,7 @@ spawns:
     level:    [11, 13]
   17371498:
     template: Yagudo_Mendicant
-    at:       [-32.000, 0.740, -105.000, 89]
+    region:   c_365
     level:    [12, 15]
   17371499:
     template: Yagudos_Elemental
@@ -2905,7 +2905,7 @@ spawns:
     level:    [4, 6]
   17371500:
     template: Yagudo_Piper
-    at:       [-47.000, 0.250, -97.000, 68]
+    region:   c_365
     level:    [12, 15]
   17371501:
     template: Yagudo_Persecutor
@@ -2922,7 +2922,7 @@ spawns:
     level:    [11, 13]
   17371504:
     template: Yagudo_Mendicant
-    at:       [-42.389, 0.315, -130.930, 15]
+    region:   c_370
     level:    [14, 18]
   17371505:
     template: Yagudos_Elemental
@@ -2934,7 +2934,7 @@ spawns:
     level:    [14, 18]
   17371507:
     template: Yagudo_Persecutor
-    at:       [-45.719, 0.240, -123.671, 127]
+    region:   c_370
     level:    [14, 18]
   17371508:
     template: Yagudo_Mendicant
@@ -3022,7 +3022,7 @@ spawns:
     level:    [4, 6]
   17371528:
     template: Yagudo_Piper
-    at:       [90.000, 0.796, -193.000, 127]
+    region:   se_393
     level:    [14, 18]
   17371529:
     template: Yagudo_Persecutor
@@ -3054,15 +3054,15 @@ spawns:
     level:    [21, 23]
   17371536:
     template: Yagudo_Priest
-    at:       [97.265, -2.460, -237.117, 127]
+    region:   se_397
     level:    [21, 23]
   17371537:
     template: Yagudo_Votary
-    at:       [66.774, -1.451, -252.935, 127]
+    region:   s_403
     level:    [21, 23]
   17371538:
     template: Yagudo_Votary
-    at:       [47.671, -3.086, -300.560, 127]
+    region:   s_403
     level:    [21, 23]
   17371539:
     template: Yagudo_Theologist
@@ -3070,7 +3070,7 @@ spawns:
     level:    [21, 23]
   17371540:
     template: Yagudo_Priest
-    at:       [40.238, -3.500, -300.400, 127]
+    region:   s_403
     level:    [21, 23]
   17371541:
     template: Digger_Wasp_aggro
@@ -3148,7 +3148,7 @@ spawns:
     level:    [21, 23]
   17371558:
     template: Yagudo_Priest
-    at:       [-7.000, 0.468, -451.000, 3]
+    region:   s_423
     level:    [21, 23]
   17371559:
     template: Yagudo_Votary
@@ -3160,7 +3160,7 @@ spawns:
     level:    [21, 23]
   17371561:
     template: Yagudo_Priest
-    at:       [5.755, 0.201, -443.466, 12]
+    region:   s_423
     level:    [21, 23]
   17371562:
     template: Digger_Wasp_aggro
@@ -3169,7 +3169,7 @@ spawns:
     level:    [11, 13]
   17371563:
     template: Yagudo_Votary
-    at:       [-15.000, 0.700, -389.000, 127]
+    region:   s_428
     level:    [21, 23]
   17371564:
     template: Yagudo_Theologist
@@ -3177,7 +3177,7 @@ spawns:
     level:    [21, 23]
   17371565:
     template: Yagudo_Priest
-    at:       [-12.000, -0.500, -410.000, 127]
+    region:   s_428
     level:    [21, 23]
   17371566:
     template: Yagudo_Votary
@@ -3189,7 +3189,7 @@ spawns:
     level:    [21, 23]
   17371568:
     template: Yagudo_Priest
-    at:       [-48.000, 1.000, -391.000, 20]
+    region:   s_428
     level:    [21, 23]
   17371569:
     template: Digger_Wasp_aggro
@@ -3202,7 +3202,7 @@ spawns:
     level:    [21, 23]
   17371571:
     template: Yagudo_Theologist
-    at:       [-40.648, 0.500, -453.723, 8]
+    region:   s_434
     level:    [21, 23]
   17371572:
     template: Yagudo_Priest
@@ -3210,11 +3210,11 @@ spawns:
     level:    [21, 23]
   17371573:
     template: Yagudo_Votary
-    at:       [-30.048, 0.793, -457.766, 127]
+    region:   s_434
     level:    [21, 23]
   17371574:
     template: Yagudo_Theologist
-    at:       [-8.000, 1.000, -438.000, 86]
+    region:   s_434
     level:    [21, 23]
   17371575:
     template: Yagudo_Priest
