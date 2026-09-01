@@ -2783,7 +2783,7 @@ spawns:
     level:    [31, 34]
   16879638:
     template: Bugard
-    at:       [362.566, 15.636, -436.598, 128]
+    region:   s_20
     level:    [34, 37]
   16879639:
     template: Tavnazian_Sheep
@@ -2807,7 +2807,7 @@ spawns:
     level:    [31, 34]
   16879644:
     template: Bugard
-    at:       [461.923, 24.238, -361.892, 118]
+    region:   se_24
     level:    [34, 37]
   16879645:
     template: Tavnazian_Sheep
@@ -2887,7 +2887,7 @@ spawns:
     level:    [33, 37]
   16879664:
     template: Tavnazian_Sheep
-    at:       [707.837, 0.082, -449.470, 207]
+    region:   se_44
     level:    [33, 37]
   16879665:
     template: Goaftrap
@@ -2991,7 +2991,7 @@ spawns:
   16879689:
     template: Wingrats_Misareaux_Coast
     script:   Wingrats
-    at:       [158.349, -0.972, -258.186, 11]
+    region:   s_70
     level:    [41, 44]
   16879690:
     template: Gigantobugard
@@ -3047,7 +3047,7 @@ spawns:
     level:    [40, 43]
   16879703:
     template: Gigas_Braver
-    at:       [476.913, -16.040, 145.409, 53]
+    region:   e_85
     level:    [41, 44]
   16879704:
     template: Gigas_Martialist
@@ -3060,7 +3060,7 @@ spawns:
   16879706:
     template: Orcish_Trooper_MC
     script:   Orcish_Trooper
-    at:       [487.379, -16.131, 187.608, 112]
+    region:   e_85
     level:    [41, 44]
   16879707:
     template: Orcish_Bowshooter_MC
@@ -3127,7 +3127,7 @@ spawns:
     level:    [37, 40]
   16879722:
     template: Atomic_Cluster
-    at:       [240.160, -16.465, 241.124, 121]
+    region:   c_107
     level:    [44, 46]
   16879723:
     template: Gigantobugard
@@ -3151,6 +3151,7 @@ spawns:
     level:    [41, 44]
   16879728:
     template: Gigas_Catapulter
+    region:   c_107
     level:    [41, 44]
   16879729:
     template: Orcish_Stonelauncher
@@ -3159,7 +3160,7 @@ spawns:
   16879730:
     template: Orcish_Footsoldier_MC
     script:   Orcish_Footsoldier
-    at:       [246.344, -16.183, 148.873, 146]
+    region:   c_107
     level:    [41, 44]
   16879731:
     template: Orcish_Trooper_MC
@@ -3177,7 +3178,7 @@ spawns:
     level:    [34, 36]
   16879734:
     template: Gigas_Martialist
-    at:       [259.928, -15.839, 182.999, 34]
+    region:   c_119
     level:    [41, 44]
   16879735:
     template: Orcish_Gladiator_MC
@@ -3190,7 +3191,7 @@ spawns:
     level:    [40, 43]
   16879737:
     template: Odqan
-    at:       [204.733, -24.365, 316.403, 127]
+    region:   n_122
     level:    [49, 51]
   16879738:
     template: Gigantobugard
@@ -3206,11 +3207,12 @@ spawns:
     level:    [41, 44]
   16879741:
     template: Gigas_Catapulter
+    region:   n_122
     level:    [41, 44]
   16879742:
     template: Orcish_Footsoldier_MC
     script:   Orcish_Footsoldier
-    at:       [202.229, -23.891, 304.266, 105]
+    region:   n_122
     level:    [41, 44]
   16879743:
     template: Orcish_Trooper_MC
@@ -3220,7 +3222,7 @@ spawns:
   16879744:
     template: Orcish_Bowshooter_MC
     script:   Orcish_Bowshooter
-    at:       [265.679, -23.962, 317.781, 3]
+    region:   n_122
     level:    [41, 44]
   16879745:
     template: Gigass_Sheep
@@ -3260,16 +3262,16 @@ spawns:
     level:    [40, 43]
   16879753:
     template: Gigas_Braver
-    at:       [52.058, -7.685, -104.514, 175]
+    region:   c_143
     level:    [41, 44]
   16879754:
     template: Gigas_Catapulter
-    at:       [76.075, -8.400, -83.112, 205]
+    region:   c_135
     level:    [41, 44]
   16879755:
     template: Orcish_Footsoldier_MC
     script:   Orcish_Footsoldier
-    at:       [55.847, -7.772, -112.059, 165]
+    region:   c_135
     level:    [41, 44]
   16879756:
     template: Orcish_Gladiator_MC
@@ -3283,7 +3285,7 @@ spawns:
     level:    [41, 44]
   16879758:
     template: Odqan
-    at:       [83.241, -8.259, -41.968, 36]
+    region:   c_143
     level:    [49, 51]
   16879759:
     template: Gigantobugard
@@ -3291,7 +3293,7 @@ spawns:
     level:    [40, 43]
   16879760:
     template: Gigantobugard
-    at:       [84.783, -8.099, -47.025, 187]
+    region:   c_135
     level:    [40, 43]
   16879761:
     template: Gigas_Martialist
@@ -3299,7 +3301,7 @@ spawns:
     level:    [41, 44]
   16879762:
     template: Gigas_Warwolf
-    at:       [90.785, -7.844, -63.689, 123]
+    region:   c_143
     level:    [41, 44]
   16879763:
     template: Orcish_Trooper_MC
@@ -3324,7 +3326,7 @@ spawns:
     level:    [40, 43]
   16879768:
     template: Gigas_Braver
-    at:       [12.042, -16.191, -1.918, 217]
+    region:   w_149
     level:    [41, 44]
   16879769:
     template: Gigas_Martialist
@@ -3341,7 +3343,7 @@ spawns:
   16879772:
     template: Orcish_Footsoldier_MC
     script:   Orcish_Footsoldier
-    at:       [-57.380, -15.825, -2.045]
+    region:   w_149
     level:    [41, 44]
   16879773:
     template: Orcish_Gladiator_MC
@@ -3351,12 +3353,12 @@ spawns:
   16879774:
     template: Orcish_Trooper_MC
     script:   Orcish_Trooper
-    at:       [-57.008, -15.669, 39.833, 135]
+    region:   w_149
     level:    [41, 44]
   16879775:
     template: Orcish_Bowshooter_MC
     script:   Orcish_Bowshooter
-    at:       [-28.549, -16.156, 31.389, 136]
+    region:   w_149
     level:    [41, 44]
   16879776:
     template: Gigass_Sheep
@@ -3364,7 +3366,7 @@ spawns:
     level:    [34, 36]
   16879777:
     template: Atomic_Cluster
-    at:       [117.493, -16.061, 94.516, 253]
+    region:   c_162
     level:    [44, 46]
   16879778:
     template: Gigantobugard
@@ -3376,7 +3378,7 @@ spawns:
     level:    [40, 43]
   16879780:
     template: Gigantobugard
-    at:       [47.292, -16.023, 59.083, 189]
+    region:   w_149
     level:    [40, 43]
   16879781:
     template: Gigas_Braver
@@ -3388,7 +3390,7 @@ spawns:
     level:    [41, 44]
   16879783:
     template: Gigas_Warwolf
-    at:       [109.398, -16.019, 79.312, 13]
+    region:   c_162
     level:    [41, 44]
   16879784:
     template: Gigas_Catapulter
@@ -3397,12 +3399,12 @@ spawns:
   16879785:
     template: Orcish_Footsoldier_MC
     script:   Orcish_Footsoldier
-    at:       [102.105, -15.770, 100.596, 45]
+    region:   c_162
     level:    [41, 44]
   16879786:
     template: Orcish_Gladiator_MC
     script:   Orcish_Gladiator
-    at:       [87.010, -16.175, 87.092, 54]
+    region:   c_162
     level:    [41, 44]
   16879787:
     template: Orcish_Trooper_MC
@@ -3412,7 +3414,7 @@ spawns:
   16879788:
     template: Orcish_Bowshooter_MC
     script:   Orcish_Bowshooter
-    at:       [53.628, -15.874, 31.147, 96]
+    region:   c_162
     level:    [41, 44]
   16879789:
     template: Gigass_Sheep
@@ -3493,11 +3495,11 @@ spawns:
   16879807:
     template: Overgrown_Rose_MC
     script:   Overgrown_Rose
-    at:       [-238.011, -32.417, 125.226, 78]
+    region:   w_176
     level:    [47, 50]
   16879808:
     template: Thunder_Elemental
-    region:   w_192
+    region:   w_184
     level:    [54, 55]
   16879809:
     template: Dark_Elemental
@@ -3509,12 +3511,12 @@ spawns:
     level:    [45, 45]
   16879811:
     template: Fomor_Red_Mage
-    region:   w_195
+    region:   w_194
     level:    [49, 51]
   16879812:
     template: Fomor_Ranger_Large
     script:   Fomor_Ranger
-    region:   w_195
+    region:   w_194
     level:    [48, 50]
   16879813:
     template: Fomor_Paladin
@@ -3598,7 +3600,7 @@ spawns:
     level:    [83, 84]
   16879833:
     template: Atomic_Cluster
-    at:       [26.525, -23.863, 357.311, 154]
+    region:   nw_218
     level:    [44, 46]
   16879834:
     template: Gigantobugard
@@ -3619,7 +3621,7 @@ spawns:
   16879838:
     template: Orcish_Bowshooter_MC
     script:   Orcish_Bowshooter
-    at:       [27.412, -24.321, 365.838, 209]
+    region:   nw_218
     level:    [41, 44]
   16879839:
     template: Diatryma_MC
@@ -3750,7 +3752,7 @@ spawns:
     level:    [46, 49]
   16879867:
     template: Makara
-    at:       [33.345, -16.107, 555.705, 9]
+    region:   n_247
     level:    [46, 49]
   16879868:
     template: Diatryma_MC
