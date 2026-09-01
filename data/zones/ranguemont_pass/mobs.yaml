@@ -1554,7 +1554,7 @@ spawns:
   17457156:
     template: Blade_Bat_Ranguemont_Pass
     script:   Blade_Bat
-    at:       [-151.331, 4.137, -256.681, 127]
+    region:   sw_1
     level:    [4, 7]
   17457157:
     template: Oil_Slick_RP
@@ -1623,7 +1623,7 @@ spawns:
     level:    [4, 7]
   17457171:
     template: Goblin_Mugger
-    at:       [-209.311, 2.998, -149.195, 5]
+    region:   sw_20
     level:    [26, 30]
   17457172:
     template: Goblin_Leecher
@@ -1635,7 +1635,7 @@ spawns:
     level:    [26, 30]
   17457174:
     template: Goblin_Mugger
-    at:       [-197.619, 4.469, -143.783, 192]
+    region:   sw_20
     level:    [26, 30]
   17457175:
     template: Goblin_Leecher
@@ -1643,7 +1643,7 @@ spawns:
     level:    [26, 30]
   17457176:
     template: Goblin_Gambler
-    at:       [-187.556, 3.383, -148.428, 127]
+    region:   sw_20
     level:    [26, 30]
   17457177:
     template: Seeker_Bats_KT_RP_Qufim
@@ -1676,7 +1676,7 @@ spawns:
     level:    [28, 30]
   17457183:
     template: Goblin_Mugger
-    at:       [-290.751, 2.285, -158.577, 18]
+    region:   sw_32
     level:    [26, 30]
   17457184:
     template: Goblin_Leecher
@@ -1688,11 +1688,11 @@ spawns:
     level:    [26, 30]
   17457186:
     template: Goblin_Mugger
-    at:       [-290.390, 3.454, -175.201, 154]
+    region:   sw_32
     level:    [26, 30]
   17457187:
     template: Goblin_Leecher
-    at:       [-301.000, 5.000, -162.000, 127]
+    region:   sw_32
     level:    [26, 30]
   17457188:
     template: Goblin_Gambler
@@ -1836,11 +1836,11 @@ spawns:
     level:    [26, 30]
   17457220:
     template: Goblin_Mugger
-    at:       [46.000, 15.000, -139.000, 127]
+    region:   s_65
     level:    [26, 30]
   17457221:
     template: Goblin_Leecher
-    at:       [59.122, 14.343, -131.304, 94]
+    region:   s_65
     level:    [26, 30]
   17457222:
     template: Goblin_Gambler
