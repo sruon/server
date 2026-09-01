@@ -523,11 +523,11 @@ spawns:
     level:    [14, 18]
   17358850:
     template: Orcish_Grunt
-    at:       [-222.870, -0.930, -95.317, 96]
+    region:   sw_1
     level:    [14, 18]
   17358851:
     template: Orcish_Stonechucker
-    at:       [-213.164, -1.247, -99.582, 11]
+    region:   sw_1
     level:    [14, 18]
   17358852:
     template: Orcish_Neckchopper
@@ -535,11 +535,11 @@ spawns:
     level:    [14, 18]
   17358853:
     template: Orcish_Grunt
-    at:       [-196.005, -1.329, -91.181, 94]
+    region:   sw_1
     level:    [14, 18]
   17358854:
     template: Orcish_Stonechucker
-    at:       [-217.593, -0.500, -99.157, 7]
+    region:   sw_1
     level:    [14, 18]
   17358855:
     template: Orcish_Neckchopper
@@ -551,11 +551,11 @@ spawns:
     level:    [8, 11]
   17358857:
     template: Orcish_Grunt
-    at:       [-191.427, -1.809, -86.459, 127]
+    region:   sw_1
     level:    [14, 18]
   17358858:
     template: Orcish_Grunt
-    at:       [-197.997, -0.402, -99.281, 108]
+    region:   sw_11
     level:    [14, 18]
   17358859:
     template: Orcish_Stonechucker
@@ -563,15 +563,15 @@ spawns:
     level:    [14, 18]
   17358860:
     template: Orcish_Neckchopper
-    at:       [-202.674, -1.180, -98.935, 127]
+    region:   sw_11
     level:    [14, 18]
   17358861:
     template: Orcish_Grunt
-    at:       [-147.564, -1.210, -94.088, 127]
+    region:   sw_11
     level:    [14, 18]
   17358862:
     template: Orcish_Stonechucker
-    at:       [-201.168, -0.864, -110.046, 61]
+    region:   sw_11
     level:    [14, 18]
   17358863:
     template: Orcish_Neckchopper
@@ -583,7 +583,7 @@ spawns:
     level:    [8, 11]
   17358865:
     template: Orcish_Grunt
-    at:       [-150.342, -1.289, -40.524, 88]
+    region:   sw_18
     level:    [14, 18]
   17358866:
     template: Orcish_Stonechucker
@@ -591,7 +591,7 @@ spawns:
     level:    [14, 18]
   17358867:
     template: Orcish_Neckchopper
-    at:       [-163.587, -1.276, -94.605, 127]
+    region:   sw_18
     level:    [14, 18]
   17358868:
     template: Grotto_Bats
@@ -607,11 +607,11 @@ spawns:
     level:    [14, 18]
   17358871:
     template: Orcish_Stonechucker
-    at:       [-125.000, -0.600, -58.000, 66]
+    region:   sw_22
     level:    [14, 18]
   17358872:
     template: Orcish_Neckchopper
-    at:       [-141.857, -1.214, -61.514, 127]
+    region:   sw_22
     level:    [14, 18]
   17358873:
     template: Orcish_Grunt
@@ -619,15 +619,15 @@ spawns:
     level:    [14, 18]
   17358874:
     template: Orcish_Stonechucker
-    at:       [-149.000, -0.600, -19.000, 79]
+    region:   sw_22
     level:    [14, 18]
   17358875:
     template: Orcish_Neckchopper
-    at:       [-141.448, -0.699, -50.752, 71]
+    region:   sw_22
     level:    [14, 18]
   17358876:
     template: Riding_Lizard
-    at:       [-122.000, -0.600, -52.000, 127]
+    region:   sw_40
     level:    [12, 15]
   17358877:
     template: Riding_Lizard
@@ -635,15 +635,15 @@ spawns:
     level:    [12, 15]
   17358878:
     template: Grotto_Bats
-    at:       [-139.135, -1.208, -21.128, 127]
+    region:   sw_40
     level:    [8, 11]
   17358879:
     template: Orcish_Grunt
-    at:       [-138.258, -1.380, -10.787]
+    region:   sw_33
     level:    [14, 18]
   17358880:
     template: Orcish_Stonechucker
-    at:       [-132.064, -1.264, -21.408, 127]
+    region:   sw_33
     level:    [14, 18]
   17358881:
     template: Orcish_Neckchopper
@@ -655,11 +655,11 @@ spawns:
     level:    [14, 18]
   17358883:
     template: Orcish_Stonechucker
-    at:       [-140.092, -1.278, -25.453, 127]
+    region:   sw_33
     level:    [14, 18]
   17358884:
     template: Orcish_Neckchopper
-    at:       [-112.449, -0.743, -18.624, 2]
+    region:   sw_33
     level:    [14, 18]
   17358885:
     template: Riding_Lizard
@@ -667,11 +667,11 @@ spawns:
     level:    [12, 15]
   17358886:
     template: Grotto_Bats
-    at:       [-118.633, -1.316, -69.416, 53]
+    region:   sw_40
     level:    [8, 11]
   17358887:
     template: Orcish_Grunt
-    at:       [-111.724, -0.937, -53.026, 119]
+    region:   sw_40
     level:    [14, 18]
   17358888:
     template: Orcish_Stonechucker
@@ -679,7 +679,7 @@ spawns:
     level:    [14, 18]
   17358889:
     template: Orcish_Neckchopper
-    at:       [-105.522, -1.050, -72.303, 127]
+    region:   sw_40
     level:    [14, 18]
   17358890:
     template: Orcish_Grunt
@@ -687,11 +687,11 @@ spawns:
     level:    [14, 18]
   17358891:
     template: Orcish_Stonechucker
-    at:       [-135.994, -1.089, -57.686, 107]
+    region:   sw_40
     level:    [14, 18]
   17358892:
     template: Orcish_Neckchopper
-    at:       [-108.286, -1.191, -60.103, 127]
+    region:   sw_40
     level:    [14, 18]
   17358893:
     template: Riding_Lizard
@@ -727,7 +727,7 @@ spawns:
     level:    [14, 18]
   17358901:
     template: Orcish_Stonechucker
-    at:       [-101.809, -1.064, -45.281, 12]
+    region:   sw_52
     level:    [14, 18]
   17358902:
     template: Orcish_Neckchopper
@@ -735,11 +735,11 @@ spawns:
     level:    [14, 18]
   17358903:
     template: Orcish_Grunt
-    at:       [-97.000, -0.600, -9.000, 127]
+    region:   sw_52
     level:    [14, 18]
   17358904:
     template: Orcish_Stonechucker
-    at:       [-99.132, -0.699, -20.470, 60]
+    region:   sw_52
     level:    [14, 18]
   17358905:
     template: Orcish_Neckchopper
@@ -755,11 +755,11 @@ spawns:
     level:    [15, 18]
   17358908:
     template: Orcish_Grunt
-    at:       [-10.183, -1.272, -15.272, 127]
+    region:   sw_62
     level:    [14, 18]
   17358909:
     template: Orcish_Stonechucker
-    at:       [-87.000, -0.600, -15.000, 118]
+    region:   sw_62
     level:    [14, 18]
   17358910:
     template: Orcish_Neckchopper
@@ -775,11 +775,11 @@ spawns:
     level:    [8, 11]
   17358913:
     template: Orcish_Grunt
-    at:       [-8.000, -0.500, -53.000, 103]
+    region:   sw_67
     level:    [14, 18]
   17358914:
     template: Orcish_Stonechucker
-    at:       [-21.532, -0.682, -10.660, 56]
+    region:   sw_67
     level:    [14, 18]
   17358915:
     template: Orcish_Neckchopper
@@ -803,11 +803,11 @@ spawns:
     level:    [14, 18]
   17358920:
     template: Orcish_Grunt
-    at:       [11.790, -1.379, -19.023, 124]
+    region:   c_69
     level:    [14, 18]
   17358921:
     template: Orcish_Stonechucker
-    at:       [0.262, -1.272, 14.819, 61]
+    region:   c_69
     level:    [14, 18]
   17358922:
     template: Orcish_Neckchopper
@@ -839,7 +839,7 @@ spawns:
     level:    [14, 18]
   17358929:
     template: Orcish_Stonechucker
-    at:       [16.061, -1.383, 10.996, 127]
+    region:   s_77
     level:    [14, 18]
   17358930:
     template: Grotto_Bats
@@ -863,7 +863,7 @@ spawns:
     level:    [14, 18]
   17358935:
     template: Orcish_Neckchopper
-    at:       [48.368, -1.107, 27.491, 127]
+    region:   c_85
     level:    [14, 18]
   17358936:
     template: Grotto_Bats
@@ -875,11 +875,11 @@ spawns:
     level:    [14, 18]
   17358938:
     template: Orcish_Stonechucker
-    at:       [57.000, -0.500, 29.000, 127]
+    region:   c_89
     level:    [14, 18]
   17358939:
     template: Orcish_Neckchopper
-    at:       [24.000, -0.500, 2.000, 127]
+    region:   c_89
     level:    [14, 18]
   17358940:
     template: Grotto_Bats
@@ -891,7 +891,7 @@ spawns:
     level:    [8, 11]
   17358942:
     template: Orcish_Grunt
-    at:       [137.024, -13.259, 67.504, 73]
+    region:   c_95
     level:    [14, 18]
   17358943:
     template: Orcish_Stonechucker
@@ -899,15 +899,15 @@ spawns:
     level:    [14, 18]
   17358944:
     template: Orcish_Neckchopper
-    at:       [160.693, -13.277, 73.365, 37]
+    region:   c_95
     level:    [14, 18]
   17358945:
     template: Orcish_Grunt
-    at:       [150.182, -13.239, 99.971, 127]
+    region:   c_95
     level:    [14, 18]
   17358946:
     template: Orcish_Stonechucker
-    at:       [173.504, -13.224, 81.313, 127]
+    region:   c_95
     level:    [14, 18]
   17358947:
     template: Orcish_Neckchopper
@@ -919,7 +919,7 @@ spawns:
     level:    [21, 23]
   17358949:
     template: Orcish_Cursemaker
-    at:       [154.086, -12.556, 81.435, 28]
+    region:   c_95
     level:    [21, 23]
   17358950:
     template: Grotto_Bats
@@ -927,7 +927,7 @@ spawns:
     level:    [8, 11]
   17358951:
     template: Orcish_Grunt
-    at:       [107.466, -13.222, 97.437, 102]
+    region:   c_104
     level:    [14, 18]
   17358952:
     template: Orcish_Stonechucker
@@ -935,7 +935,7 @@ spawns:
     level:    [14, 18]
   17358953:
     template: Orcish_Neckchopper
-    at:       [160.000, -12.000, 117.000, 125]
+    region:   c_104
     level:    [14, 18]
   17358954:
     template: Orcish_Grunt
@@ -943,7 +943,7 @@ spawns:
     level:    [14, 18]
   17358955:
     template: Orcish_Stonechucker
-    at:       [139.904, -13.306, 112.636, 127]
+    region:   c_104
     level:    [14, 18]
   17358956:
     template: Orcish_Neckchopper
@@ -951,7 +951,7 @@ spawns:
     level:    [14, 18]
   17358957:
     template: Orcish_Fighter
-    at:       [178.991, -13.193, 110.932, 127]
+    region:   c_104
     level:    [21, 23]
   17358958:
     template: Orcish_Cursemaker
@@ -963,11 +963,11 @@ spawns:
     level:    [8, 11]
   17358960:
     template: Orcish_Grunt
-    at:       [215.416, -13.143, 98.855, 127]
+    region:   c_114
     level:    [14, 18]
   17358961:
     template: Orcish_Stonechucker
-    at:       [195.157, -12.773, 62.370, 72]
+    region:   c_114
     level:    [14, 18]
   17358962:
     template: Orcish_Neckchopper
@@ -979,7 +979,7 @@ spawns:
     level:    [21, 23]
   17358964:
     template: Orcish_Cursemaker
-    at:       [207.379, -13.388, 59.325, 127]
+    region:   c_114
     level:    [21, 23]
   17358965:
     template: Grotto_Bats
@@ -987,7 +987,7 @@ spawns:
     level:    [8, 11]
   17358966:
     template: Orcish_Grunt
-    at:       [198.000, -12.000, 92.000, 127]
+    region:   c_119
     level:    [14, 18]
   17358967:
     template: Orcish_Stonechucker
@@ -999,7 +999,7 @@ spawns:
     level:    [14, 18]
   17358969:
     template: Orcish_Grunt
-    at:       [303.898, -25.195, 169.025, 82]
+    region:   c_119
     level:    [14, 18]
   17358970:
     template: Orcish_Stonechucker
@@ -1007,7 +1007,7 @@ spawns:
     level:    [14, 18]
   17358971:
     template: Orcish_Neckchopper
-    at:       [172.000, -12.000, 98.000, 75]
+    region:   c_119
     level:    [14, 18]
   17358972:
     template: Orcish_Fighter
@@ -1015,7 +1015,7 @@ spawns:
     level:    [21, 23]
   17358973:
     template: Orcish_Cursemaker
-    at:       [220.417, -12.899, 91.492, 127]
+    region:   c_119
     level:    [21, 23]
   17358974:
     template: Grotto_Bats
@@ -1023,7 +1023,7 @@ spawns:
     level:    [8, 11]
   17358975:
     template: Orcish_Fighter
-    at:       [226.000, -12.000, 120.000, 84]
+    region:   ne_128
     level:    [21, 23]
   17358976:
     template: Orcish_Cursemaker
@@ -1051,7 +1051,7 @@ spawns:
     level:    [14, 18]
   17358982:
     template: Orcish_Fighter
-    at:       [325.940, -24.948, 193.779, 127]
+    region:   ne_131
     level:    [21, 23]
   17358983:
     template: Orcish_Fighter
@@ -1079,7 +1079,7 @@ spawns:
     level:    [14, 18]
   17358989:
     template: Orcish_Fighter
-    at:       [344.000, -24.000, 191.000, 42]
+    region:   ne_138
     level:    [21, 23]
   17358990:
     template: Orcish_Fighter
@@ -1103,7 +1103,7 @@ spawns:
     level:    [21, 23]
   17358995:
     template: Orcish_Cursemaker
-    at:       [306.900, -41.178, 148.157, 14]
+    region:   ne_146
     level:    [21, 23]
   17358996:
     template: Orcish_Fighter
@@ -1111,7 +1111,7 @@ spawns:
     level:    [21, 23]
   17358997:
     template: Orcish_Cursemaker
-    at:       [303.209, -40.700, 151.131, 127]
+    region:   ne_146
     level:    [21, 23]
   17358998:
     template: Stealth_Bat
@@ -1131,11 +1131,11 @@ spawns:
     level:    [21, 23]
   17359002:
     template: Orcish_Cursemaker
-    at:       [370.249, -41.991, 110.494, 12]
+    region:   e_153
     level:    [21, 23]
   17359003:
     template: Orcish_Fighter
-    at:       [361.654, -41.214, 102.390, 127]
+    region:   e_153
     level:    [21, 23]
   17359004:
     template: Orcish_Cursemaker
@@ -1211,7 +1211,7 @@ spawns:
     level:    [21, 23]
   17359022:
     template: Orcish_Fighter
-    at:       [356.720, -40.505, 195.251, 30]
+    region:   ne_172
     level:    [21, 23]
   17359023:
     template: Orcish_Cursemaker
@@ -1243,7 +1243,7 @@ spawns:
     level:    [21, 23]
   17359030:
     template: Orcish_Cursemaker
-    at:       [357.191, -40.770, 178.418, 127]
+    region:   ne_179
     level:    [21, 23]
   17359031:
     template: Orcish_Serjeant
