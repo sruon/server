@@ -3025,7 +3025,7 @@ spawns:
     level:    [36, 40]
   17244173:
     template: Desert_Dhalmel
-    at:       [431.126, -8.257, 43.523, 127]
+    region:   e_6
     level:    [39, 44]
   17244174:
     template: Giant_Spider
@@ -3094,7 +3094,7 @@ spawns:
   17244190:
     template: Diatryma_Altepa
     script:   Diatryma
-    at:       [489.420, -8.135, 211.566, 83]
+    region:   nw_268
     level:    [47, 50]
   17244191:
     template: Sand_Beetle
@@ -3248,12 +3248,12 @@ spawns:
   17244228:
     template: Flesh_Eater_EAD
     script:   Flesh_Eater
-    region:   c_68
+    region:   c_64
     level:    [37, 42]
   17244229:
     template: Flesh_Eater_EAD
     script:   Flesh_Eater
-    region:   c_68
+    region:   c_64
     level:    [37, 42]
   17244230:
     template: Sabotender
@@ -3281,7 +3281,7 @@ spawns:
     level:    [39, 44]
   17244236:
     template: Sabotender
-    at:       [164.121, -8.397, -79.793, 127]
+    region:   s_77
     level:    [42, 46]
   17244237:
     template: Giant_Spider
@@ -3553,15 +3553,15 @@ spawns:
   17244303:
     template: Flesh_Eater_EAD
     script:   Flesh_Eater
-    region:   c_143
+    region:   c_138
     level:    [37, 42]
   17244304:
     template: Sabotender
-    at:       [73.024, -16.841, 73.549, 127]
+    region:   c_146
     level:    [42, 46]
   17244305:
     template: Earth_Elemental
-    region:   c_143
+    region:   c_138
     level:    [47, 49]
   17244306:
     template: Sand_Beetle
@@ -3586,7 +3586,7 @@ spawns:
   17244311:
     template: Flesh_Eater_EAD
     script:   Flesh_Eater
-    region:   c_151
+    region:   c_146
     level:    [37, 42]
   17244312:
     template: Sabotender
@@ -3908,7 +3908,7 @@ spawns:
   17244386:
     template: Lost_Soul_blm
     script:   Lost_Soul
-    region:   sw_226
+    region:   sw_219
     level:    [45, 47]
   17244387:
     template: Giant_Spider
@@ -4013,7 +4013,7 @@ spawns:
   17244410:
     template: Flesh_Eater_EAD
     script:   Flesh_Eater
-    region:   c_250
+    region:   c_246
     level:    [37, 42]
   17244411:
     template: Sabotender
@@ -4075,12 +4075,12 @@ spawns:
   17244425:
     template: Flesh_Eater_EAD
     script:   Flesh_Eater
-    region:   n_265
+    region:   nw_260
     level:    [37, 42]
   17244426:
     template: Flesh_Eater_EAD
     script:   Flesh_Eater
-    region:   n_265
+    region:   nw_260
     level:    [37, 42]
   17244427:
     template: Diatryma_Altepa
@@ -4110,12 +4110,12 @@ spawns:
   17244433:
     template: Flesh_Eater_EAD
     script:   Flesh_Eater
-    region:   nw_273
+    region:   nw_268
     level:    [37, 42]
   17244434:
     template: Flesh_Eater_EAD
     script:   Flesh_Eater
-    region:   nw_273
+    region:   nw_268
     level:    [37, 42]
   17244435:
     template: Diatryma_Altepa
@@ -4145,7 +4145,7 @@ spawns:
   17244441:
     template: Flesh_Eater_EAD
     script:   Flesh_Eater
-    region:   nw_281
+    region:   nw_276
     level:    [37, 42]
   17244442:
     template: Sabotender
@@ -4174,7 +4174,7 @@ spawns:
   17244448:
     template: Flesh_Eater_EAD
     script:   Flesh_Eater
-    region:   nw_288
+    region:   nw_283
     level:    [37, 42]
   17244449:
     template: Goblin_Reaper
@@ -4231,7 +4231,7 @@ spawns:
     level:    [42, 46]
   17244462:
     template: Lesser_Manticore
-    region:   w_302
+    region:   w_295
     level:    [47, 49]
   17244463:
     template: Lesser_Manticore
@@ -4260,7 +4260,7 @@ spawns:
     level:    [44, 48]
   17244469:
     template: Lesser_Manticore
-    region:   w_309
+    region:   w_304
     level:    [47, 49]
   17244470:
     template: Lesser_Manticore
@@ -4337,7 +4337,7 @@ spawns:
     level:    [44, 48]
   17244487:
     template: Sabotender
-    at:       [-212.677, 9.197, -180.840, 99]
+    region:   w_295
     level:    [42, 46]
   17244488:
     template: Goblin_Robber
@@ -4402,7 +4402,7 @@ spawns:
     level:    [44, 48]
   17244503:
     template: Lesser_Manticore
-    at:       [-174.000, -0.030, 237.000, 75]
+    region:   w_295
     level:    [47, 49]
   17244504:
     template: Lesser_Manticore
@@ -4445,7 +4445,7 @@ spawns:
   17244513:
     template: Diatryma_Altepa
     script:   Diatryma
-    at:       [-229.462, 5.956, -281.930, 105]
+    region:   nw_268
     level:    [47, 50]
   17244514:
     template: Doom_Scorpion
