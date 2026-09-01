@@ -2691,12 +2691,12 @@ spawns:
   17260564:
     template: Zombie_war
     script:   Zombie
-    at:       [-451.165, -32.482, 81.454, 127]
+    region:   w_6
     level:    [18, 19]
   17260565:
     template: Zombie_war
     script:   Zombie
-    at:       [-417.000, -31.000, 42.000, 7]
+    region:   w_6
     level:    [18, 19]
   17260566:
     template: Sylvestre
@@ -2757,12 +2757,12 @@ spawns:
   17260580:
     template: Zombie_war
     script:   Zombie
-    at:       [-306.565, -24.037, 2.076, 81]
+    region:   w_22
     level:    [18, 19]
   17260581:
     template: Zombie_war
     script:   Zombie
-    at:       [-332.648, -24.906, 54.985, 127]
+    region:   w_22
     level:    [18, 19]
   17260582:
     template: Sylvestre
@@ -2799,7 +2799,7 @@ spawns:
   17260590:
     template: Zombie_war
     script:   Zombie
-    at:       [-313.783, -16.452, -115.122, 127]
+    region:   w_38
     level:    [20, 21]
   17260591:
     template: Sylvestre
@@ -2876,17 +2876,17 @@ spawns:
   17260609:
     template: Zombie_war
     script:   Zombie
-    at:       [-420.689, -8.304, -192.053, 127]
+    region:   sw_47
     level:    [20, 21]
   17260610:
     template: Zombie_war
     script:   Zombie
-    at:       [-482.997, -16.383, -223.502, 127]
+    region:   sw_47
     level:    [20, 21]
   17260611:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [-361.735, -8.500, -202.387, 127]
+    region:   sw_47
     level:    [20, 21]
   17260612:
     template: Will-o-the-Wisp
@@ -2928,12 +2928,12 @@ spawns:
   17260620:
     template: Zombie_war
     script:   Zombie
-    at:       [-196.287, -9.103, -85.179, 16]
+    region:   w_72
     level:    [20, 21]
   17260621:
     template: Zombie_war
     script:   Zombie
-    at:       [-236.413, -17.138, -86.407, 109]
+    region:   w_72
     level:    [20, 21]
   17260622:
     template: Sylvestre
@@ -2990,16 +2990,17 @@ spawns:
   17260635:
     template: Zombie_war
     script:   Zombie
-    at:       [-354.785, -32.483, 203.701, 127]
+    region:   nw_78
     level:    [18, 19]
   17260636:
     template: Zombie_war
+    region:   nw_78
     script:   Zombie
     level:    [18, 19]
   17260637:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [-350.428, -32.136, 170.349, 120]
+    region:   nw_78
     level:    [20, 21]
   17260638:
     template: Sylvestre
@@ -3080,17 +3081,17 @@ spawns:
   17260657:
     template: Zombie_war
     script:   Zombie
-    at:       [-212.986, -29.801, 145.200, 127]
+    region:   c_94
     level:    [18, 19]
   17260658:
     template: Zombie_war
     script:   Zombie
-    at:       [-260.551, -23.758, 104.843, 127]
+    region:   c_94
     level:    [18, 19]
   17260659:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [-129.930, -24.645, 97.768, 127]
+    region:   c_94
     level:    [20, 21]
   17260660:
     template: Will-o-the-Wisp
@@ -3131,7 +3132,7 @@ spawns:
   17260669:
     template: Zombie_war
     script:   Zombie
-    at:       [-192.237, -32.332, 232.852, 127]
+    region:   n_117
     level:    [18, 19]
   17260670:
     template: Sylvestre
@@ -3180,12 +3181,12 @@ spawns:
   17260681:
     template: Zombie_war
     script:   Zombie
-    at:       [-346.501, -40.317, 246.700, 109]
+    region:   nw_126
     level:    [18, 19]
   17260682:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [-315.588, -40.185, 268.750, 69]
+    region:   nw_126
     level:    [20, 21]
   17260683:
     template: Sylvestre
@@ -3233,10 +3234,12 @@ spawns:
     level:    [19, 20]
   17260694:
     template: Zombie_war
+    region:   n_139
     script:   Zombie
     level:    [21, 22]
   17260695:
     template: Ghoul_blm
+    region:   n_139
     script:   Ghoul
     level:    [22, 23]
   17260696:
@@ -3277,7 +3280,7 @@ spawns:
     level:    [21, 22]
   17260705:
     template: Bull_Dhalmel
-    region:   s_161
+    region:   s_152
     level:    [21, 22]
   17260706:
     template: Bull_Dhalmel
@@ -3310,17 +3313,17 @@ spawns:
   17260713:
     template: Zombie_war
     script:   Zombie
-    at:       [-91.960, -8.697, -104.888, 127]
+    region:   s_152
     level:    [21, 22]
   17260714:
     template: Zombie_war
     script:   Zombie
-    at:       [-117.066, -8.437, -157.177, 31]
+    region:   s_152
     level:    [21, 22]
   17260715:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [-8.771, -7.368, -61.320, 84]
+    region:   s_152
     level:    [22, 23]
   17260716:
     template: Will-o-the-Wisp
@@ -3328,7 +3331,7 @@ spawns:
     level:    [25, 27]
   17260717:
     template: Air_Elemental
-    region:   s_161
+    region:   s_152
     level:    [28, 30]
   17260718:
     template: Snipper
@@ -3616,17 +3619,17 @@ spawns:
   17260787:
     template: Zombie_war
     script:   Zombie
-    at:       [21.457, -15.761, 70.487, 127]
+    region:   c_228
     level:    [21, 22]
   17260788:
     template: Zombie_war
     script:   Zombie
-    at:       [-68.646, -16.583, 32.674, 127]
+    region:   c_228
     level:    [21, 22]
   17260789:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [55.930, -16.241, -1.179, 58]
+    region:   c_228
     level:    [22, 23]
   17260790:
     template: Will-o-the-Wisp
@@ -3771,16 +3774,17 @@ spawns:
   17260825:
     template: Zombie_war
     script:   Zombie
-    at:       [117.509, -24.561, 200.264, 190]
+    region:   n_266
     level:    [21, 22]
   17260826:
     template: Ghoul_blm
+    region:   n_266
     script:   Ghoul
     level:    [22, 23]
   17260827:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [34.443, -24.673, 180.484, 159]
+    region:   n_266
     level:    [22, 23]
   17260828:
     template: Will-o-the-Wisp
@@ -3845,17 +3849,17 @@ spawns:
   17260843:
     template: Zombie_war
     script:   Zombie
-    at:       [209.930, -14.621, 76.289, 7]
+    region:   c_286
     level:    [18, 19]
   17260844:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [205.250, -14.195, 93.500, 127]
+    region:   c_286
     level:    [20, 21]
   17260845:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [247.437, -8.221, 155.314, 5]
+    region:   c_286
     level:    [20, 21]
   17260846:
     template: Sylvestre
@@ -3912,17 +3916,17 @@ spawns:
   17260859:
     template: Zombie_war
     script:   Zombie
-    at:       [199.414, -13.583, -58.714, 9]
+    region:   e_302
     level:    [18, 19]
   17260860:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [231.082, -8.573, -72.756, 10]
+    region:   e_302
     level:    [20, 21]
   17260861:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [284.840, -8.585, -117.251, 127]
+    region:   e_302
     level:    [20, 21]
   17260862:
     template: Sylvestre
@@ -3987,17 +3991,17 @@ spawns:
   17260877:
     template: Zombie_war
     script:   Zombie
-    at:       [372.953, 0.188, -153.001, 126]
+    region:   e_318
     level:    [21, 22]
   17260878:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [367.540, -0.371, -159.981, 85]
+    region:   e_318
     level:    [23, 24]
   17260879:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [367.704, 0.303, -76.979, 127]
+    region:   e_318
     level:    [23, 24]
   17260880:
     template: Will-o-the-Wisp
@@ -4005,7 +4009,7 @@ spawns:
     level:    [25, 27]
   17260881:
     template: Air_Elemental
-    region:   se_337
+    region:   e_318
     level:    [28, 30]
   17260882:
     template: Carnivorous_Crawler
@@ -4013,7 +4017,7 @@ spawns:
     level:    [21, 22]
   17260883:
     template: Carnivorous_Crawler
-    region:   se_339
+    region:   se_338
     level:    [21, 22]
   17260884:
     template: Carnivorous_Crawler
@@ -4021,7 +4025,7 @@ spawns:
     level:    [21, 22]
   17260885:
     template: Carnivorous_Crawler
-    region:   se_339
+    region:   se_338
     level:    [21, 22]
   17260886:
     template: Zu
@@ -4033,7 +4037,7 @@ spawns:
     level:    [22, 23]
   17260888:
     template: Bull_Dhalmel
-    region:   se_339
+    region:   se_338
     level:    [23, 24]
   17260889:
     template: Bull_Dhalmel
@@ -4127,7 +4131,7 @@ spawns:
     level:    [24, 25]
   17260911:
     template: Bogy
-    region:   se_367
+    region:   se_355
     level:    [24, 25]
   17260912:
     template: Sylvestre
@@ -4175,7 +4179,7 @@ spawns:
     level:    [23, 24]
   17260923:
     template: Goblin_Mugger
-    region:   e_379
+    region:   e_368
     level:    [24, 25]
   17260924:
     template: Goblin_Leecher
@@ -4217,7 +4221,7 @@ spawns:
     level:    [22, 23]
   17260933:
     template: Carnivorous_Crawler
-    region:   e_389
+    region:   e_386
     level:    [22, 23]
   17260934:
     template: Carnivorous_Crawler
@@ -4245,7 +4249,7 @@ spawns:
     level:    [24, 25]
   17260940:
     template: Bogy
-    region:   e_386
+    region:   e_391
     level:    [24, 25]
   17260941:
     template: Sylvestre
@@ -4310,17 +4314,17 @@ spawns:
   17260956:
     template: Zombie_war
     script:   Zombie
-    at:       [321.094, -0.197, 69.021, 127]
+    region:   e_397
     level:    [21, 22]
   17260957:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [269.626, -2.799, 39.219, 127]
+    region:   e_397
     level:    [23, 24]
   17260958:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [329.405, -0.250, 79.040, 108]
+    region:   e_397
     level:    [23, 24]
   17260959:
     template: Will-o-the-Wisp
@@ -4328,7 +4332,7 @@ spawns:
     level:    [25, 27]
   17260960:
     template: Air_Elemental
-    region:   e_416
+    region:   e_397
     level:    [28, 30]
   17260961:
     template: Carnivorous_Crawler
@@ -4376,7 +4380,7 @@ spawns:
     level:    [25, 27]
   17260972:
     template: Air_Elemental
-    region:   ne_418
+    region:   ne_417
     level:    [28, 30]
   17260973:
     template: Carnivorous_Crawler
@@ -4429,17 +4433,17 @@ spawns:
   17260985:
     template: Zombie_war
     script:   Zombie
-    at:       [340.915, 0.235, 191.073, 127]
+    region:   ne_432
     level:    [21, 22]
   17260986:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [340.853, -0.382, 222.655, 127]
+    region:   ne_432
     level:    [23, 24]
   17260987:
     template: Ghoul_blm
     script:   Ghoul
-    at:       [440.785, -0.429, 195.338, 91]
+    region:   ne_432
     level:    [23, 24]
   17260988:
     template: Will-o-the-Wisp
@@ -4447,7 +4451,7 @@ spawns:
     level:    [25, 27]
   17260989:
     template: Air_Elemental
-    region:   ne_445
+    region:   ne_432
     level:    [28, 30]
   17260990:
     template: Snipper
