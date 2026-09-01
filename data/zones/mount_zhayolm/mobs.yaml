@@ -3040,7 +3040,6 @@ spawns:
     level:    [73, 75]
   17027138:
     template: Fire_Elemental
-    region:   s_63
     level:    [74, 76]
   17027139:
     template: Magmatic_Eruca
@@ -3225,7 +3224,7 @@ spawns:
     level:    [80, 80]
   17027184:
     template: Volcanic_Leech
-    region:   c_106
+    region:   region_189
     level:    [73, 75]
   17027185:
     template: Hilltroll_Dark_Knight
@@ -3641,7 +3640,7 @@ spawns:
     level:    [70, 72]
   17027287:
     template: Fire_Elemental
-    region:   ne_215
+    region:   ne_214
     level:    [74, 76]
   17027288:
     template: Earth_Elemental
@@ -3860,7 +3859,7 @@ spawns:
     level:    [79, 81]
   17027341:
     template: Wamoura_Prince
-    region:   e_269
+    region:   e_268
     level:    [79, 81]
   17027342:
     template: Wamoura
@@ -3880,7 +3879,7 @@ spawns:
     level:    [79, 81]
   17027346:
     template: Wamoura_Prince
-    at:       [393.280, -26.200, 121.791, 179]
+    region:   e_275
     level:    [79, 81]
   17027347:
     template: Wamoura
@@ -4173,7 +4172,7 @@ spawns:
     level:    [80, 82]
   17027419:
     template: Wamoura_Prince
-    at:       [-592.300, -20.420, 248.906, 36]
+    region:   nw_345
     level:    [79, 81]
   17027420:
     template: Wamoura
@@ -4197,7 +4196,7 @@ spawns:
     level:    [73, 76]
   17027425:
     template: Wamoura_Prince
-    at:       [-517.200, -14.600, 283.790, 28]
+    region:   nw_354
     level:    [79, 81]
   17027426:
     template: Wamoura
