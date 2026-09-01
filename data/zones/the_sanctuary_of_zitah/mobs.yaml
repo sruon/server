@@ -3527,7 +3527,6 @@ spawns:
     level:    [40, 43]
   17272978:
     template: Keeper_of_Halidom
-    region:   ne_146
     level:    [56, 58]
   17272979:
     template: Ogrefly
@@ -3595,7 +3594,7 @@ spawns:
   17272991:
     template: Revenant_SoZ_ENS_FY
     script:   Revenant
-    at:       [278.852, -0.482, 281.893, 79]
+    region:   ne_155
     level:    [45, 47]
     attributes:
       spawn:
@@ -3604,6 +3603,7 @@ spawns:
           end:    7
   17272992:
     template: Revenant_SoZ_ENS_FY
+    region:   e_130
     script:   Revenant
     level:    [46, 47]
     attributes:
@@ -4091,6 +4091,7 @@ spawns:
           end:    8
   17273077:
     template: Revenant_SoZ_ENS_FY
+    region:   c_227
     script:   Revenant
     level:    [45, 47]
     attributes:
@@ -4170,7 +4171,7 @@ spawns:
     level:    [44, 47]
   17273093:
     template: Hell_Hound
-    at:       [-44.000, -0.861, 13.000, 22]
+    region:   c_256
     level:    [46, 50]
     attributes:
       spawn:
@@ -4234,7 +4235,7 @@ spawns:
     level:    [44, 47]
   17273104:
     template: Hell_Hound
-    at:       [-203.724, -1.586, -78.387, 86]
+    region:   w_266
     level:    [46, 50]
     attributes:
       spawn:
@@ -4414,7 +4415,7 @@ spawns:
           end:    7
   17273144:
     template: Hell_Hound
-    at:       [-413.455, -2.611, 51.224, 127]
+    region:   w_309
     level:    [46, 50]
     attributes:
       spawn:
@@ -4524,7 +4525,7 @@ spawns:
     level:    [44, 47]
   17273160:
     template: Hell_Hound
-    at:       [-392.726, -0.363, -150.062, 127]
+    region:   w_324
     level:    [46, 50]
     attributes:
       spawn:
@@ -4559,7 +4560,7 @@ spawns:
     level:    [44, 47]
   17273166:
     template: Hell_Hound
-    at:       [-340.705, 2.354, 121.806, 127]
+    region:   w_333
     level:    [46, 50]
     attributes:
       spawn:
@@ -4580,7 +4581,7 @@ spawns:
     level:    [44, 47]
   17273170:
     template: Hell_Hound
-    at:       [-335.955, -0.073, 187.977, 121]
+    region:   w_337
     level:    [46, 50]
     attributes:
       spawn:
@@ -4615,7 +4616,7 @@ spawns:
     level:    [44, 47]
   17273175:
     template: Hell_Hound
-    at:       [-280.672, -0.207, 209.128, 127]
+    region:   nw_339
     level:    [46, 50]
     attributes:
       spawn:
@@ -4628,7 +4629,7 @@ spawns:
     level:    [44, 47]
   17273177:
     template: Hell_Hound
-    at:       [-306.686, 1.237, 294.161, 79]
+    region:   nw_344
     level:    [46, 50]
     attributes:
       spawn:
@@ -4663,7 +4664,7 @@ spawns:
     level:    [44, 47]
   17273182:
     template: Hell_Hound
-    at:       [-439.847, -0.457, 124.548, 67]
+    region:   w_346
     level:    [46, 50]
     attributes:
       spawn:
@@ -4708,7 +4709,7 @@ spawns:
     level:    [44, 47]
   17273188:
     template: Hell_Hound
-    at:       [-528.976, -0.481, 237.109, 127]
+    region:   nw_351
     level:    [46, 50]
     attributes:
       spawn:
@@ -4861,7 +4862,7 @@ spawns:
     level:    [44, 47]
   17273209:
     template: Hell_Hound
-    at:       [-335.461, 0.149, 395.376, 127]
+    region:   nw_372
     level:    [46, 50]
     attributes:
       spawn:
@@ -4907,7 +4908,7 @@ spawns:
     level:    [44, 47]
   17273215:
     template: Hell_Hound
-    at:       [-288.132, -0.419, 438.533, 85]
+    region:   nw_378
     level:    [46, 50]
     attributes:
       spawn:
@@ -4963,7 +4964,7 @@ spawns:
     level:    [44, 47]
   17273222:
     template: Hell_Hound
-    at:       [-264.076, -0.694, 576.553, 127]
+    region:   nw_385
     level:    [46, 50]
     attributes:
       spawn:
@@ -4984,7 +4985,7 @@ spawns:
     level:    [49, 50]
   17273226:
     template: Myxomycete
-    at:       [-249.562, -0.183, -384.941, 218]
+    region:   sw_395
     level:    [41, 46]
   17273227:
     template: Myxomycete
@@ -4996,7 +4997,7 @@ spawns:
     level:    [41, 46]
   17273229:
     template: Myxomycete
-    at:       [-186.339, -0.835, -271.043, 5]
+    region:   s_396
     level:    [41, 46]
   17273230:
     template: Myxomycete
@@ -5004,7 +5005,7 @@ spawns:
     level:    [41, 46]
   17273231:
     template: Myxomycete
-    at:       [-76.248, 0.368, -339.751, 127]
+    region:   s_398
     level:    [41, 46]
   17273232:
     template: Myxomycete
@@ -5012,7 +5013,7 @@ spawns:
     level:    [41, 46]
   17273233:
     template: Myxomycete
-    at:       [-17.125, -0.469, -445.730, 36]
+    region:   s_400
     level:    [41, 46]
   17273234:
     template: Myxomycete
@@ -5024,7 +5025,7 @@ spawns:
     level:    [41, 46]
   17273236:
     template: Myxomycete
-    at:       [95.596, -0.187, -431.412, 101]
+    region:   s_403
     level:    [41, 46]
   17273237:
     template: Myxomycete
@@ -5032,11 +5033,11 @@ spawns:
     level:    [41, 46]
   17273238:
     template: Myxomycete
-    at:       [233.122, -0.251, -308.866, 51]
+    region:   s_405
     level:    [41, 46]
   17273239:
     template: Myxomycete
-    at:       [282.998, -0.500, -281.740, 118]
+    region:   e_408
     level:    [41, 46]
   17273240:
     template: Myxomycete
@@ -5052,11 +5053,11 @@ spawns:
     level:    [41, 46]
   17273243:
     template: Myxomycete
-    at:       [381.130, 0.443, -281.257, 120]
+    region:   se_410
     level:    [41, 46]
   17273244:
     template: Myxomycete
-    at:       [401.059, 0.084, -177.864, 127]
+    region:   e_409
     level:    [41, 46]
   17273245:
     template: Myxomycete
@@ -5092,7 +5093,7 @@ spawns:
     level:    [41, 46]
   17273253:
     template: Myxomycete
-    at:       [425.758, -0.948, -648.651, 127]
+    region:   se_419
     level:    [41, 46]
   17273254:
     template: Myxomycete
@@ -5104,15 +5105,15 @@ spawns:
     level:    [41, 46]
   17273256:
     template: Myxomycete
-    at:       [358.776, 0.103, -582.728, 62]
+    region:   se_422
     level:    [41, 46]
   17273257:
     template: Myxomycete
-    at:       [-71.457, -0.320, -199.199, 127]
+    region:   s_402
     level:    [41, 46]
   17273258:
     template: Myxomycete
-    at:       [-81.027, 0.282, -136.296, 18]
+    region:   c_427
     level:    [41, 46]
   17273259:
     template: Myxomycete
@@ -5124,7 +5125,7 @@ spawns:
     level:    [41, 46]
   17273261:
     template: Myxomycete
-    at:       [-2.632, 0.053, -52.514, 127]
+    region:   c_428
     level:    [41, 46]
   17273262:
     template: Myxomycete
@@ -5144,7 +5145,7 @@ spawns:
     level:    [41, 46]
   17273266:
     template: Myxomycete
-    at:       [51.546, -0.632, -138.388, 127]
+    region:   c_435
     level:    [41, 46]
   17273267:
     template: Myxomycete
@@ -5164,7 +5165,7 @@ spawns:
     level:    [41, 46]
   17273271:
     template: Myxomycete
-    at:       [-212.311, -0.020, 80.474, 109]
+    region:   w_437
     level:    [41, 46]
   17273272:
     template: Myxomycete
@@ -5176,7 +5177,7 @@ spawns:
     level:    [41, 46]
   17273274:
     template: Myxomycete
-    at:       [-371.756, -0.670, 42.498, 75]
+    region:   w_440
     level:    [41, 46]
   17273275:
     template: Myxomycete
