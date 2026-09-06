@@ -833,7 +833,7 @@ void CMobEntity::Spawn()
     }
 
     // Roam immediately on spawn
-    if (CanRoam() && PAI->PathFind->RoamAround(m_SpawnPoint, GetRoamDistance(), static_cast<uint8>(getMobMod(xi::MobMod::RoamTurns)), m_roamFlags))
+    if (CanRoam() && PAI->PathFind->RoamAround(GetRoamAnchor(), GetRoamDistance(), static_cast<uint8>(getMobMod(xi::MobMod::RoamTurns)), m_roamFlags, roamRegion_))
     {
         PAI->PathFind->FollowPath(timer::now());
     }
