@@ -179,6 +179,25 @@ jobs:
           echo "CC=/usr/bin/clang${{ env.clang_version }}" >> $GITHUB_ENV
           echo "CXX=/usr/bin/clang++${{ env.clang_version }}" >> $GITHUB_ENV
 
+      # sccache cannot cache the clang-tidy pass, so every TU was re-analysed on every run.
+      # ctcache hashes the preprocessed TU and replays the stored clang-tidy output on a hit.
+      - name: Setup clang-tidy-cache (Linux)
+        if: ${{ runner.os == 'Linux' && inputs.clang_tidy && env.SKIP_BUILD != 'true' }}
+        run: |
+          sudo curl -sSfL -o /usr/local/bin/clang-tidy-cache https://raw.githubusercontent.com/matus-chochlik/ctcache/1.2.0/src/ctcache/clang_tidy_cache.py
+          sudo chmod +x /usr/local/bin/clang-tidy-cache
+          echo "CTCACHE_DIR=${{ github.workspace }}/.ctcache" >> $GITHUB_ENV
+          echo "CTCACHE_SAVE_OUTPUT=1" >> $GITHUB_ENV
+
+      - name: Cache clang-tidy results
+        if: ${{ runner.os == 'Linux' && inputs.clang_tidy && env.SKIP_BUILD != 'true' }}
+        uses: actions/cache@v5
+        with:
+          path: .ctcache
+          key: ${{ format('ctcache-{0}-{1}', runner.os, github.run_id) }}
+          restore-keys: |
+            ${{ format('ctcache-{0}-', runner.os) }}
+
       # Static, ASAN-instrumented LuaJIT on the system allocator so ASAN tracks every Lua object.
       # The interpreter and JIT traces stay uninstrumented.
       - name: Build instrumented LuaJIT (Linux)
@@ -267,6 +286,10 @@ jobs:
             sccache --show-stats || echo "(sccache unavailable)"
             echo '```'
           } >> $GITHUB_STEP_SUMMARY
+
+      - name: clang-tidy cache stats
+        if: ${{ !cancelled() && runner.os == 'Linux' && inputs.clang_tidy && env.SKIP_BUILD != 'true' }}
+        run: clang-tidy-cache --show-stats
 
       - name: Upload artifact
         if: ${{ inputs.upload_artifact && env.SKIP_BUILD != 'true' }}
