@@ -279,7 +279,10 @@ void Application::markLoaded()
     if (Application::isRunningInCI())
     {
         ShowInfo("CI mode enabled: exiting after successful initialization");
-        std::exit(0);
+
+        // Unwind through main() rather than std::exit() so that luautils::cleanup()
+        // is properly called.
+        requestExit();
     }
 }
 

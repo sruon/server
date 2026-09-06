@@ -31,7 +31,12 @@ if(NOT codegen_deps_exit_code EQUAL 0)
         "    ${Python_EXECUTABLE}\n"
         "Install them by running this command exactly as shown (the interpreter path "
         "matters, so the packages land in the environment this build uses):\n"
-        "    ${Python_EXECUTABLE} -m pip install -r ${CMAKE_SOURCE_DIR}/tools/requirements.txt"
+        "    ${Python_EXECUTABLE} -m pip install -r ${CMAKE_SOURCE_DIR}/tools/requirements.txt\n"
+        "If pip refuses with \"externally-managed-environment\" (Homebrew and most Linux distro "
+        "Pythons), either add --user --break-system-packages to that command, or build inside a "
+        "virtualenv:\n"
+        "    ${Python_EXECUTABLE} -m venv .venv && ./.venv/bin/pip install -r ${CMAKE_SOURCE_DIR}/tools/requirements.txt\n"
+        "then reconfigure with -DPython_EXECUTABLE=${CMAKE_SOURCE_DIR}/.venv/bin/python"
     )
 endif()
 
