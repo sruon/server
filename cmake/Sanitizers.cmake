@@ -27,3 +27,11 @@ xi_add_sanitizer_build_type(MSAN
 xi_add_sanitizer_build_type(UBSAN
     "-fsanitize=undefined,float-divide-by-zero -fno-omit-frame-pointer -g1 -O2"
     "-D_GLIBCXX_ASSERTIONS")
+
+# Neither LeakSanitizer nor MemorySanitizer has a Darwin runtime.
+if(APPLE AND CMAKE_BUILD_TYPE MATCHES "^(LSAN|MSAN)$")
+    message(FATAL_ERROR
+        "CMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE} is not supported on macOS: Apple's toolchain "
+        "ships no leak or memory sanitizer runtime for Darwin.\n"
+        "ASAN (address + undefined), TSAN and UBSAN all work here; run ${CMAKE_BUILD_TYPE} on Linux.")
+endif()

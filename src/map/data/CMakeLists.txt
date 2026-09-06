@@ -49,7 +49,6 @@ target_link_libraries(xi_data_core PRIVATE glaze::glaze)
 
 add_executable(xi_data_schema ${DATA_SCHEMA_SOURCES})
 target_link_libraries(xi_data_schema PRIVATE xi_data_core project_warnings glaze::glaze)
-xi_stage_in_repo_root(xi_data_schema)
 
 # Verifies every data file against the schema. xi_map and xi_test depend on it.
 add_custom_target(data_schema_generate ALL
