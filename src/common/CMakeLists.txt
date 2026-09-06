@@ -69,7 +69,6 @@ set(COMMON_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/logging_context.h
     ${CMAKE_CURRENT_SOURCE_DIR}/logging_json.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/lua.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/lua.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/md52.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/md52.h
     ${CMAKE_CURRENT_SOURCE_DIR}/mmo.h
@@ -87,9 +86,20 @@ set(COMMON_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/uuid.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/uuid.h
     ${CMAKE_CURRENT_SOURCE_DIR}/vana_time.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/version.cpp # auto-generated
+    ${CMAKE_BINARY_DIR}/generated/version.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/version.h
     ${CMAKE_CURRENT_SOURCE_DIR}/zlib.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/zlib.h
-    PARENT_SCOPE
 )
+
+xi_add_library(xi_common ${COMMON_SOURCES})
+target_link_libraries(xi_common
+    PUBLIC
+        ${SHARED_EXTERNAL_LIBS}
+        project_options
+)
+
+# tracy.cpp replaces global operator new/delete, so every consumer must agree on Tracy.
+if(TRACY_ENABLE)
+    target_link_libraries(xi_common PUBLIC TracyClient)
+endif()

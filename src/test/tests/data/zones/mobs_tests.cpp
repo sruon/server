@@ -30,6 +30,7 @@
 #include <ranges>
 #include <stdexcept>
 #include <string>
+#include <string_view>
 #include <vector>
 
 namespace
@@ -59,9 +60,9 @@ auto spawnAt(const uint32 id) -> const xi::data::MobSpawnData&
     return *entry;
 }
 
-auto templateNamed(const std::string& name) -> const xi::data::MobTemplateData&
+auto templateNamed(const std::string_view name) -> const xi::data::MobTemplateData&
 {
-    const auto entry = westRonfaure().Templates.find(name);
+    const auto entry = westRonfaure().Templates.find(std::string{ name });
     REQUIRE(entry != westRonfaure().Templates.end());
     return entry->second;
 }
