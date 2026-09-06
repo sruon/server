@@ -98,9 +98,9 @@ void CLuaTestEntity::respawn() const
     // a region mob rolls a fresh spawn point every life; keep it where the test left it
     if (const auto* region = mob->roamRegion())
     {
-        mob->setRoamRegion(nullptr);
+        mob->setRoamRegions({});
         mob->Spawn();
-        mob->setRoamRegion(region);
+        mob->setRoamRegions({ region });
     }
     else
     {
