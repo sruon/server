@@ -140,9 +140,9 @@ values:
   gkatana:            89 # Great Katana Skill
   club:               90 # Club Skill
   staff:              91 # Staff Skill
-  auto_melee_skill:  101 # Automaton Melee Skill -- Do not apply to items in item_mods_pet.sql, apply only to master (it does not work properly on pet mods)
-  auto_ranged_skill: 102 # Automaton Range Skill -- Do not apply to items in item_mods_pet.sql, apply only to master (it does not work properly on pet mods)
-  auto_magic_skill:  103 # Automaton Magic Skill -- Do not apply to items in item_mods_pet.sql, apply only to master (it does not work properly on pet mods)
+  auto_melee_skill:  101 # Automaton Melee Skill -- Do not apply to item pet_mods, apply only to master (it does not work properly on pet mods)
+  auto_ranged_skill: 102 # Automaton Range Skill -- Do not apply to item pet_mods, apply only to master (it does not work properly on pet mods)
+  auto_magic_skill:  103 # Automaton Magic Skill -- Do not apply to item pet_mods, apply only to master (it does not work properly on pet mods)
   archery:           104 # Archery Skill
   marksman:          105 # Marksman Skill
   throw:             106 # Throw Skill
@@ -522,7 +522,7 @@ values:
   sic_ready_recast:             1052 # SIC/Ready recast reduction (seconds)
   tandem_strike_power:           271 # Grants a bonus to your and your pet's accuracy and magic accuracy when you and your pet are attacking the same target.
   tandem_blow_power:             272 # Reduces amount of TP gained by enemies when striking them if you and your pet are attacking the same target.
-  enhances_monster_correlation: 1155 # Grants your pet acc +X and attp +X% against a weaker opposing ecosystem. Typically applied to pet, not owner (item_mods_pet.sql)
+  enhances_monster_correlation: 1155 # Grants your pet acc +X and attp +X% against a weaker opposing ecosystem. Typically applied to pet, not owner (item pet_mods)
   enhances_spur:                1157 # Increases Store TP bonus by the mod amount when using job ability Spur
   # Bard
   minne_effect:            433

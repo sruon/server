@@ -41,6 +41,9 @@ auto lookup(uint16 itemId) -> const CItem*;
 // Reverse of lookup(), for data that names items instead of numbering them. Names are not unique yet, so a shared one resolves to the lower id.
 auto lookupIdByName(std::string_view name) -> Maybe<uint16>;
 
+// Every item whose name or sort name matches, ignoring case.
+auto findIdsByName(std::string_view name) -> std::vector<uint16>;
+
 template <typename T>
 auto lookup(const uint16 itemId) -> const T*
 {

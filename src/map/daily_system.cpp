@@ -102,96 +102,94 @@ auto SelectItem(CCharEntity* player, uint8 dial) -> uint16
 
 void LoadDailyItems()
 {
-    const auto rset = db::preparedStmt("SELECT itemid, aH, flags FROM item_basic WHERE flags & 4 > 0");
-
-    uint16 itemid = 0;
-    uint16 aH     = 0;
-    auto   flags  = xi::ItemFlag::None;
-    if (rset && rset->rowsCount())
+    for (uint16 itemid = 0; itemid < MAX_ITEMID; ++itemid)
     {
-        while (rset->next())
+        const auto* PItem = xi::items::lookup(itemid);
+        if (PItem == nullptr || !PItem->hasFlag(xi::ItemFlag::MysteryBox))
         {
-            itemid = rset->get<uint16>("itemid");
-            aH     = rset->get<uint16>("aH");
-            flags  = rset->get<xi::ItemFlag>("flags");
+            continue;
+        }
 
-            specialDialItems.emplace_back(itemid);
-            switch (aH)
+        const auto aH    = PItem->getAHCat();
+        const auto flags = PItem->getFlag();
+
+        specialDialItems.emplace_back(itemid);
+        switch (aH)
+        {
+            /* Dial 1 (Materials) */
+            case 38: // Smithing
+            case 39: // Goldsmithing
+            case 40: // Clothcrafting
+            case 41: // Leathercrafting
+            case 42: // Bonecrafting
+            case 43: // Woodworking
+            case 44: // Alchemy
+            case 50: // Beast-Made
             {
-                /* Dial 1 (Materials) */
-                case 38: // Smithing
-                case 39: // Goldsmithing
-                case 40: // Clothcrafting
-                case 41: // Leathercrafting
-                case 42: // Bonecrafting
-                case 43: // Woodworking
-                case 44: // Alchemy
-                case 50: // Beast-Made
+                materialsDialItems.emplace_back(itemid);
+                break;
+            }
+            /* Dial 2 (Food) */
+            case 52: // Meat & Eggs
+            case 53: // Seafood
+            case 54: // Vegetables
+            case 55: // Soups
+            case 56: // Breads & Rice
+            case 57: // Sweets
+            case 58: // Drinks
+            {
+                foodDialItems.emplace_back(itemid);
+                break;
+            }
+            /* Dial 3 (Medicine) */
+            case 33: // Medicine
+            {
+                medicineDialItems.emplace_back(itemid);
+                break;
+            }
+            /* Dial 4 (Sundries 1) */
+            case 15: // Ammunition
+            case 36: // Cards
+            case 49: // Ninja Tools
+            {
+                if ((flags & xi::ItemFlag::CanUse) != xi::ItemFlag::None) // only usable (pouch, case, quiver, etc)
                 {
-                    materialsDialItems.emplace_back(itemid);
+                    sundries1DialItems.emplace_back(itemid);
+                }
+                break;
+            }
+            /* Dial 5 (Sundries 2) */
+            case 47: // Fishing Gear
+            case 51: // Fish
+            {
+                if (itemid == 489 || itemid == 17386) // Lu Shang is probably only special dial
+                {
                     break;
                 }
-                /* Dial 2 (Food) */
-                case 52: // Meat & Eggs
-                case 53: // Seafood
-                case 54: // Vegetables
-                case 55: // Soups
-                case 56: // Breads & Rice
-                case 57: // Sweets
-                case 58: // Drinks
+                sundries2DialItems.emplace_back(itemid);
+                break;
+            }
+            default:
+            {
+                switch (itemid)
                 {
-                    foodDialItems.emplace_back(itemid);
-                    break;
-                }
-                /* Dial 3 (Medicine) */
-                case 33: // Medicine
-                {
-                    medicineDialItems.emplace_back(itemid);
-                    break;
-                }
-                /* Dial 4 (Sundries 1) */
-                case 15: // Ammunition
-                case 36: // Cards
-                case 49: // Ninja Tools
-                {
-                    if ((flags & xi::ItemFlag::CanUse) != xi::ItemFlag::None) // only usable (pouch, case, quiver, etc)
+                    case 605:   // pickaxe
+                    case 1020:  // sickle
+                    case 1021:  // hatchet
+                    case 1022:  // thief's tools
+                    case 1023:  // living key
+                    case 15453: // lugworm belt
+                    case 15454: // little worm belt
                     {
-                        sundries1DialItems.emplace_back(itemid);
-                    }
-                    break;
-                }
-                /* Dial 5 (Sundries 2) */
-                case 47: // Fishing Gear
-                case 51: // Fish
-                {
-                    if (itemid == 489 || itemid == 17386) // Lu Shang is probably only special dial
-                    {
+                        sundries2DialItems.emplace_back(itemid);
                         break;
-                    }
-                    sundries2DialItems.emplace_back(itemid);
-                    break;
-                }
-                default:
-                {
-                    switch (itemid)
-                    {
-                        case 605:   // pickaxe
-                        case 1020:  // sickle
-                        case 1021:  // hatchet
-                        case 1022:  // thief's tools
-                        case 1023:  // living key
-                        case 15453: // lugworm belt
-                        case 15454: // little worm belt
-                        {
-                            sundries2DialItems.emplace_back(itemid);
-                            break;
-                        }
                     }
                 }
             }
         }
     }
-    else
+
+    if (specialDialItems.empty())
     {
         ShowError("Failed to load daily tally items");
     }

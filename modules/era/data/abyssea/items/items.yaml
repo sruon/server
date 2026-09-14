@@ -1,0 +1,96 @@
+# Pre-Abyssea item values, reverting what later version updates changed.
+# Moogle Cap and Nomad Cap reuse delay: Version Update 2011-05-09.
+# Pet food biscuit equip level: Version Update 2010-09-08.
+# Automaton attachment element costs: as they were in the Wings of the Goddess era.
+# Applied only when modules/init.txt lists era/data/abyssea/items.
+
+items:
+  # Moogle Cap and Nomad Cap keep their original 3 day cooldown.
+  # Source: https://www.bg-wiki.com/ffxi/Version_Update_(05/09/2011)
+  moogle_cap:
+    usable:
+      reuse_delay: 259200
+
+  nomad_cap:
+    usable:
+      reuse_delay: 259200
+
+  # Pet Food Biscuits have no level requirement.
+  # Source: https://www.bg-wiki.com/ffxi/Version_Update_(09/08/2010)
+  pet_food_alpha_biscuit:
+    equipment:
+      level: 0
+
+  pet_food_beta_biscuit:
+    equipment:
+      level: 0
+
+  pet_food_gamma_biscuit:
+    equipment:
+      level: 0
+
+  pet_food_delta_biscuit:
+    equipment:
+      level: 0
+
+  pet_food_epsilon_biscuit:
+    equipment:
+      level: 0
+
+  pet_food_zeta_biscuit:
+    equipment:
+      level: 0
+
+  # Attachment equip costs for the WoTG era.
+  # Source: https://wiki.ffo.jp/html/25853.html, https://wiki.ffo.jp/html/37589.html
+  tension_spring_8450:
+    puppet:
+      elements: {fire: 2}
+
+  tension_spring_ii_8452:
+    puppet:
+      elements: {fire: 3}
+
+  reactive_shield_8454:
+    puppet:
+      elements: {fire: 2}
+
+  loudspeaker_8482:
+    puppet:
+      elements: {ice: 2}
+
+  loudspeaker_ii_8484:
+    puppet:
+      elements: {ice: 3}
+
+  tactical_processor_8485:
+    puppet:
+      elements: {ice: 2}
+
+  tranquilizer_8486:
+    puppet:
+      elements: {ice: 2}
+
+  tranquilizer_ii_8490:
+    puppet:
+      elements: {ice: 3}
+
+  scope_8514:
+    puppet:
+      elements: {wind: 2}
+
+  schurzen_8550:
+    puppet:
+      elements: {earth: 2}
+
+  volt_gun_8578:
+    puppet:
+      elements: {thunder: 2}
+
+  stabilizer_8577:
+    puppet:
+      elements: {thunder: 2}
+
+  stabilizer_ii_8580:
+    puppet:
+      elements: {thunder: 3}

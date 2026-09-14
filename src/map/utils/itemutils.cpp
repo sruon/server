@@ -33,6 +33,7 @@
 #include <array>
 #include <map>
 
+#include "data/datasets/items/dataset.h"
 #include "data/enums/item_type.h"
 #include "entities/battle_entity.h"
 #include "items/item_flowerpot.h"
@@ -42,6 +43,7 @@
 #include "items/item_puppet.h"
 #include "lua/luautils.h"
 #include "packets/c2s/0x02b_translate.h"
+#include "utils/dataset_loader.h"
 
 namespace
 {
@@ -49,6 +51,9 @@ namespace
 std::array<std::unique_ptr<CItem>, MAX_ITEMID> itemTemplates;
 std::unique_ptr<CItemWeapon>                   unarmedItem;
 std::unique_ptr<CItemWeapon>                   unarmedH2HItem;
+
+// Lowercase name and sort name -> every item carrying it.
+HashMap<std::string, std::vector<uint16>> itemIdsByName;
 
 std::array<DropList_t*, MAX_DROPID> g_pDropList; // global array of monster droplist items
 
@@ -147,6 +152,20 @@ auto lookupIdByName(const std::string_view name) -> Maybe<uint16>
     if (entry == byName.end())
     {
         return std::nullopt;
+    }
+
+    return entry->second;
+}
+
+auto findIdsByName(const std::string_view name) -> std::vector<uint16>
+{
+    std::string key{ name };
+    std::ranges::transform(key, key.begin(), ::tolower);
+
+    const auto entry = itemIdsByName.find(key);
+    if (entry == itemIdsByName.end())
+    {
+        return {};
     }
 
     return entry->second;
@@ -267,7 +286,6 @@ namespace
 
 void LoadItemList()
 {
-    // Bootstrap item templates from DB
     auto buildFromType = [](uint16 itemId, xi::ItemType itemType) -> std::unique_ptr<CItem>
     {
         switch (itemType)
@@ -297,218 +315,177 @@ void LoadItemList()
         }
     };
 
-    auto rset = db::preparedStmt("SELECT "
-                                 "b.itemId,b.name,b.sortname,b.name_jp,b.type,b.stackSize,b.flags,"
-                                 "b.aH,b.BaseSell,b.subid,"
-                                 "u.validTargets,u.activation,u.animation,u.animationTime,"
-                                 "u.maxCharges,u.useDelay,u.reuseDelay,u.aoe,"
-                                 "a.level,a.ilevel,a.jobs,a.MId,"
-                                 "a.shieldSize,a.scriptType,a.slot,a.rslot,"
-                                 "a.su_level,a.rslotlook,"
-                                 "w.skill,w.subskill,w.ilvl_skill,w.ilvl_parry,"
-                                 "w.ilvl_macc,w.delay,w.dmg,w.dmgType,"
-                                 "w.hit,w.unlock_points,"
-                                 "f.storage,f.moghancement,f.element,f.aura,f.placement AS furn_placement,f.size_x,f.size_y,f.height AS furn_height,"
-                                 "p.slot AS pup_slot,p.element AS pup_element "
-                                 "FROM item_basic AS b "
-                                 "LEFT JOIN item_usable AS u USING (itemId) "
-                                 "LEFT JOIN item_equipment  AS a USING (itemId) "
-                                 "LEFT JOIN item_weapon AS w USING (itemId) "
-                                 "LEFT JOIN item_furnishing AS f USING (itemId) "
-                                 "LEFT JOIN item_puppet AS p USING (itemId) "
-                                 "WHERE itemId < ?",
-                                 MAX_ITEMID);
-    FOR_DB_MULTIPLE_RESULTS(rset)
+    const auto addNameIndex = [](std::string name, const uint16 itemId)
     {
-        auto   tplOwn = buildFromType(rset->get<uint16>("itemId"), rset->get<xi::ItemType>("type"));
+        std::ranges::transform(name, name.begin(), ::tolower);
+        auto& ids = itemIdsByName[name];
+        if (std::ranges::find(ids, itemId) == ids.end())
+        {
+            ids.push_back(itemId);
+        }
+    };
+
+    for (const auto& [itemId, data] : xi::data::loadDataset<xi::data::datasets::items::Dataset>())
+    {
+        // Gil (0xFFFF) has no template; xi::items::spawn builds it directly.
+        if (itemId >= MAX_ITEMID)
+        {
+            continue;
+        }
+
+        auto   tplOwn = buildFromType(itemId, data.Type);
         CItem* PItem  = tplOwn.get();
 
-        if (PItem != nullptr)
+        PItem->setName(data.Name);
+        PItem->setStackSize(data.Stack);
+        PItem->setFlag(data.Flags);
+        PItem->setAHCat(std::to_underlying(data.Auction));
+        PItem->setBasePrice(data.BaseSell);
+        PItem->setSubID(data.SubId);
+
+        // Weapons and equipment match ITEM_USABLE as well; only the ones that declare usable data are usable.
+        if (PItem->isType(ITEM_USABLE) && data.Usable)
         {
-            PItem->setName(rset->get<std::string>("name"));
-            PItem->setStackSize(rset->get<uint32>("stackSize"));
-            PItem->setFlag(rset->get<xi::ItemFlag>("flags"));
-            PItem->setAHCat(rset->get<uint8>("aH"));
-            PItem->setBasePrice(rset->get<uint32>("BaseSell"));
-            PItem->setSubID(rset->get<uint16>("subid"));
+            const auto& usable  = *data.Usable;
+            auto*       PUsable = static_cast<CItemUsable*>(PItem);
+            PUsable->setValidTarget(usable.ValidTargets);
+            PUsable->setActivationTime(usable.Activation);
+            PUsable->setAnimationID(usable.Animation);
+            PUsable->setAnimationTime(usable.AnimationTime);
+            PUsable->setMaxCharges(usable.MaxCharges);
+            PUsable->setCurrentCharges(usable.MaxCharges);
+            PUsable->setUseDelay(usable.UseDelay);
+            PUsable->setReuseDelay(usable.ReuseDelay);
+            PUsable->setAoE(usable.Aoe);
+        }
 
-            if (PItem->isType(ITEM_GENERAL))
+        if (PItem->isType(ITEM_PUPPET) && data.Puppet)
+        {
+            static_cast<CItemPuppet*>(PItem)->setEquipSlot(data.Puppet->Slot);
+            static_cast<CItemPuppet*>(PItem)->setElementSlots(data.Puppet->ElementSlots);
+
+            // If this is a PUP attachment, load the appropriate script as well
+            auto attachmentFile = fmt::format("./scripts/actions/abilities/pets/attachments/{}.lua", PItem->getName());
+            luautils::LoadLuaObjectFromFile(attachmentFile);
+        }
+
+        if (PItem->isType(ITEM_EQUIPMENT) && data.Equipment)
+        {
+            const auto& equipment  = *data.Equipment;
+            auto*       PEquipment = static_cast<CItemEquipment*>(PItem);
+            PEquipment->setReqLvl(equipment.Level);
+            PEquipment->setILvl(equipment.ItemLevel);
+            PEquipment->setJobs(equipment.Jobs);
+            PEquipment->setModelId(equipment.Model);
+            PEquipment->setShieldSize(equipment.ShieldSize);
+            PEquipment->setScriptType(equipment.Script);
+            PEquipment->setEquipSlotId(std::to_underlying(equipment.Slots));
+            PEquipment->setRemoveSlotId(std::to_underlying(equipment.RemoveSlots));
+            PEquipment->setRemoveSlotLookId(std::to_underlying(equipment.RemoveSlotsLook));
+            PEquipment->setSuperiorLevel(equipment.SuperiorLevel);
+
+            for (const auto& [mod, value] : equipment.Mods)
             {
-                // TODO
+                PEquipment->addModifier(CModifier(mod, value));
             }
 
-            // For some reason weapons and equipments always match ITEM_USABLE even when they aren't usable
-            // The 2nd condition ensures we only load usable data for items that are purely usable or
-            // equipment/weapons that are also usable (have validTargets set)
-            if (PItem->isType(ITEM_USABLE) &&
-                (!(PItem->isType(ITEM_EQUIPMENT) || PItem->isType(ITEM_WEAPON)) || !rset->isNull("validTargets")))
+            for (const auto& [petType, mods] : equipment.PetMods)
             {
-                static_cast<CItemUsable*>(PItem)->setValidTarget(rset->get<xi::TargetType>("validTargets"));
-                static_cast<CItemUsable*>(PItem)->setActivationTime(std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::duration<float>(rset->get<float>("activation"))));
-                static_cast<CItemUsable*>(PItem)->setAnimationID(rset->get<uint16>("animation"));
-                static_cast<CItemUsable*>(PItem)->setAnimationTime(std::chrono::seconds(rset->get<uint32>("animationTime")));
-                static_cast<CItemUsable*>(PItem)->setMaxCharges(rset->get<uint8>("maxCharges"));
-                static_cast<CItemUsable*>(PItem)->setCurrentCharges(rset->get<uint8>("maxCharges"));
-                static_cast<CItemUsable*>(PItem)->setUseDelay(std::chrono::seconds(rset->get<uint32>("useDelay")));
-                static_cast<CItemUsable*>(PItem)->setReuseDelay(std::chrono::seconds(rset->get<uint32>("reuseDelay")));
-                static_cast<CItemUsable*>(PItem)->setAoE(rset->get<uint16>("aoe"));
-            }
-
-            if (PItem->isType(ITEM_PUPPET))
-            {
-                static_cast<CItemPuppet*>(PItem)->setEquipSlot(rset->get<uint32>("pup_slot"));
-                static_cast<CItemPuppet*>(PItem)->setElementSlots(rset->get<uint32>("pup_element"));
-
-                // If this is a PUP attachment, load the appropriate script as well
-                auto attachmentFile = fmt::format("./scripts/actions/abilities/pets/attachments/{}.lua", PItem->getName());
-                luautils::LoadLuaObjectFromFile(attachmentFile);
-            }
-
-            if (PItem->isType(ITEM_EQUIPMENT))
-            {
-                static_cast<CItemEquipment*>(PItem)->setReqLvl(rset->get<uint8>("level"));
-                static_cast<CItemEquipment*>(PItem)->setILvl(rset->get<uint8>("ilevel"));
-                static_cast<CItemEquipment*>(PItem)->setJobs(rset->get<uint32>("jobs"));
-                static_cast<CItemEquipment*>(PItem)->setModelId(rset->get<uint32>("MId"));
-                static_cast<CItemEquipment*>(PItem)->setShieldSize(rset->get<uint8>("shieldSize"));
-                static_cast<CItemEquipment*>(PItem)->setScriptType(rset->get<xi::EquipScriptFlag>("scriptType"));
-                static_cast<CItemEquipment*>(PItem)->setEquipSlotId(rset->get<uint16>("slot"));
-                static_cast<CItemEquipment*>(PItem)->setRemoveSlotId(rset->get<uint16>("rslot"));
-                static_cast<CItemEquipment*>(PItem)->setRemoveSlotLookId(rset->get<uint16>("rslotlook"));
-                static_cast<CItemEquipment*>(PItem)->setSuperiorLevel(rset->get<uint8>("su_level"));
-
-                if (static_cast<CItemEquipment*>(PItem)->getValidTarget() != xi::TargetType::None)
+                for (const auto& [mod, value] : mods)
                 {
-                    PItem->setSubType(ITEM_CHARGED);
+                    PEquipment->addPetModifier(CPetModifier(mod, petType, value));
                 }
             }
 
-            if (PItem->isType(ITEM_WEAPON))
+            for (const auto& latent : equipment.Latents)
             {
-                static_cast<CItemWeapon*>(PItem)->setSkillType(rset->get<xi::SkillType>("skill"));
-                static_cast<CItemWeapon*>(PItem)->setSubSkillType(rset->get<uint8>("subskill"));
-                static_cast<CItemWeapon*>(PItem)->setILvlSkill(rset->get<uint16>("ilvl_skill"));
-                static_cast<CItemWeapon*>(PItem)->setILvlParry(rset->get<uint16>("ilvl_parry"));
-                static_cast<CItemWeapon*>(PItem)->setILvlMacc(rset->get<uint16>("ilvl_macc"));
-                static_cast<CItemWeapon*>(PItem)->setBaseDelay(rset->get<uint16>("delay"));
-                static_cast<CItemWeapon*>(PItem)->setDelay(rset->get<uint16>("delay"));
-                static_cast<CItemWeapon*>(PItem)->setDamage(rset->get<uint16>("dmg"));
-                static_cast<CItemWeapon*>(PItem)->setDmgType(rset->get<xi::DamageType>("dmgType"));
-                static_cast<CItemWeapon*>(PItem)->setMaxHit(rset->get<uint8>("hit"));
-                static_cast<CItemWeapon*>(PItem)->setTotalUnlockPointsNeeded(rset->get<uint16>("unlock_points"));
+                PEquipment->addLatent(latent.Condition, latent.Param, latent.Mod, latent.Value);
+            }
 
-                int        dmg   = rset->get<uint16>("dmg");
-                int        delay = rset->get<uint16>("delay");
-                const bool isH2H = static_cast<CItemWeapon*>(PItem)->getSkillType() == xi::SkillType::HandToHand;
+            if (PEquipment->getValidTarget() != xi::TargetType::None)
+            {
+                PItem->setSubType(ITEM_CHARGED);
+            }
+        }
 
-                if ((dmg > 0 || isH2H) && delay > 0) // avoid division by zero for items not yet implemented. Zero dmg h2h weapons don't actually have zero dmg for the purposes of DPS.
+        if (PItem->isType(ITEM_WEAPON) && data.Weapon)
+        {
+            const auto& weapon  = *data.Weapon;
+            auto*       PWeapon = static_cast<CItemWeapon*>(PItem);
+            PWeapon->setSkillType(weapon.Skill);
+            PWeapon->setSubSkillType(weapon.SubSkill);
+            PWeapon->setILvlSkill(weapon.ItemLevelSkill);
+            PWeapon->setILvlParry(weapon.ItemLevelParry);
+            PWeapon->setILvlMacc(weapon.ItemLevelMagicAccuracy);
+            PWeapon->setBaseDelay(weapon.Delay);
+            PWeapon->setDelay(weapon.Delay);
+            PWeapon->setDamage(weapon.Damage);
+            PWeapon->setDmgType(weapon.DamageType);
+            PWeapon->setMaxHit(weapon.Hits);
+            PWeapon->setTotalUnlockPointsNeeded(weapon.UnlockPoints);
+
+            int        dmg   = weapon.Damage;
+            int        delay = weapon.Delay;
+            const bool isH2H = weapon.Skill == xi::SkillType::HandToHand;
+
+            if ((dmg > 0 || isH2H) && delay > 0) // avoid division by zero for items not yet implemented. Zero dmg h2h weapons don't actually have zero dmg for the purposes of DPS.
+            {
+                if (isH2H)
                 {
-                    if (isH2H)
-                    {
-                        delay -= 240; // base h2h delay per fist is 240 when used in DPS calculation. We store Delay in the database as Weapon Delay+(240*2).
-                        dmg += 3;     // add 3 base damage for DPS calculation. This base damage addition appears to come from "base" h2h damage of 3.
-                                      // See Ninzas +2 in polutils/bg wiki: https://www.bg-wiki.com/ffxi/Ninzas_%2B2
-                                      // The DPS field is in the DAT itself and is calculated by SE as follows:
-                                      // ((104+3)*60)/(81+240) = 20
-                    }
-
-                    // calculate DPS
-                    double dps = (dmg * 60.0) / delay;
-
-                    // SE seems to round at the second decimal place, see Machine Crossbow, Falcata .DAT DPS values for rounding up and down respectively.
-                    // https://www.bg-wiki.com/ffxi/Falcata, https://www.bg-wiki.com/ffxi/Machine_Crossbow
-                    dps = round(dps * 100) / 100;
-
-                    static_cast<CItemWeapon*>(PItem)->setDPS(dps);
+                    delay -= 240; // base h2h delay per fist is 240 when used in DPS calculation. We store Delay in the database as Weapon Delay+(240*2).
+                    dmg += 3;     // add 3 base damage for DPS calculation. This base damage addition appears to come from "base" h2h damage of 3.
+                                  // See Ninzas +2 in polutils/bg wiki: https://www.bg-wiki.com/ffxi/Ninzas_%2B2
+                                  // The DPS field is in the DAT itself and is calculated by SE as follows:
+                                  // ((104+3)*60)/(81+240) = 20
                 }
+
+                // calculate DPS
+                double dps = (dmg * 60.0) / delay;
+
+                // SE seems to round at the second decimal place, see Machine Crossbow, Falcata .DAT DPS values for rounding up and down respectively.
+                // https://www.bg-wiki.com/ffxi/Falcata, https://www.bg-wiki.com/ffxi/Machine_Crossbow
+                dps = round(dps * 100) / 100;
+
+                PWeapon->setDPS(dps);
             }
-
-            if (PItem->isType(ITEM_FURNISHING))
-            {
-                auto* PFurnishing = static_cast<CItemFurnishing*>(PItem);
-                PFurnishing->setStorage(rset->get<uint8>("storage"));
-                PFurnishing->setMoghancement(rset->get<uint16>("moghancement"));
-                PFurnishing->setElement(rset->get<uint8>("element"));
-                PFurnishing->setAura(rset->get<uint8>("aura"));
-                PFurnishing->setSize(rset->get<uint8>("size_x"), rset->get<uint8>("size_y"));
-                PFurnishing->setHeight(rset->get<uint16>("furn_height"));
-                PFurnishing->setPlacement(rset->get<xi::FurnishingPlacement>("furn_placement"));
-            }
-
-            itemTemplates[PItem->getID()] = std::move(tplOwn);
-
-            // Build translation maps. English uses sortname (the short display name) with spaces to match what the client sends.
-            // Apply lowercase and replace underscores with spaces.
-            auto sortname = rset->get<std::string>("sortname");
-            std::ranges::transform(sortname, sortname.begin(), ::tolower);
-            std::ranges::replace(sortname, '_', ' ');
-            auto       jpNameUtf8 = rset->get<std::string>("name_jp");
-            auto       jpNameSjis = encoding::utf8ToShiftJis(jpNameUtf8); // Pre-compute the Shift-JIS equivalent
-            const auto id         = PItem->getID();
-            if (!sortname.empty())
-            {
-                g_TranslateMap[GP_CLI_COMMAND_TRANSLATE_INDEX::English][sortname] = { id, jpNameSjis };
-            }
-
-            if (!jpNameSjis.empty())
-            {
-                g_TranslateMap[GP_CLI_COMMAND_TRANSLATE_INDEX::Japanese][jpNameSjis] = { id, sortname };
-            }
-
-            auto filename = fmt::format("./scripts/items/{}.lua", PItem->getName());
-            luautils::LoadLuaObjectFromFile(filename);
         }
-    }
 
-    rset = db::preparedStmt("SELECT itemId, modId, value "
-                            "FROM item_mods "
-                            "WHERE itemId IN "
-                            "(SELECT itemId FROM item_basic LEFT JOIN item_equipment USING (itemId))");
-    FOR_DB_MULTIPLE_RESULTS(rset)
-    {
-        const auto ItemID = rset->get<uint16>("itemId");
-        const auto modID  = rset->get<xi::Mod>("modId");
-        const auto value  = rset->get<int16>("value");
-
-        if (auto* tpl = itemTemplates[ItemID].get(); tpl != nullptr && tpl->isType(ITEM_EQUIPMENT))
+        if (PItem->isType(ITEM_FURNISHING) && data.Furnishing)
         {
-            static_cast<CItemEquipment*>(tpl)->addModifier(CModifier(modID, value));
+            const auto& furnishing  = *data.Furnishing;
+            auto*       PFurnishing = static_cast<CItemFurnishing*>(PItem);
+            PFurnishing->setStorage(furnishing.Storage);
+            PFurnishing->setMoghancement(furnishing.Moghancement);
+            PFurnishing->setElement(std::to_underlying(furnishing.Element));
+            PFurnishing->setAura(furnishing.Aura);
+            PFurnishing->setSize(furnishing.SizeX, furnishing.SizeY);
+            PFurnishing->setHeight(furnishing.Height);
+            PFurnishing->setPlacement(furnishing.Placement);
         }
-    }
 
-    rset = db::preparedStmt("SELECT itemId, modId, value, petType "
-                            "FROM item_mods_pet "
-                            "WHERE itemId IN "
-                            "(SELECT itemId FROM item_basic LEFT JOIN item_equipment USING (itemId))");
-    FOR_DB_MULTIPLE_RESULTS(rset)
-    {
-        const auto ItemID  = rset->get<uint16>("itemId");
-        const auto modID   = rset->get<xi::Mod>("modId");
-        const auto value   = rset->get<int16>("value");
-        const auto petType = rset->get<xi::PetModType>("petType");
+        itemTemplates[itemId] = std::move(tplOwn);
 
-        if (auto* tpl = itemTemplates[ItemID].get(); tpl != nullptr && tpl->isType(ITEM_EQUIPMENT))
+        addNameIndex(data.Name, itemId);
+        addNameIndex(data.SortName, itemId);
+
+        // Build translation maps. English uses sortname (the short display name) with spaces to match what the client sends.
+        // Apply lowercase and replace underscores with spaces.
+        auto sortname = data.SortName;
+        std::ranges::transform(sortname, sortname.begin(), ::tolower);
+        std::ranges::replace(sortname, '_', ' ');
+        auto jpNameSjis = encoding::utf8ToShiftJis(data.NameJp); // Pre-compute the Shift-JIS equivalent
+        if (!sortname.empty())
         {
-            static_cast<CItemEquipment*>(tpl)->addPetModifier(CPetModifier(modID, petType, value));
+            g_TranslateMap[GP_CLI_COMMAND_TRANSLATE_INDEX::English][sortname] = { itemId, jpNameSjis };
         }
-    }
 
-    rset = db::preparedStmt("SELECT itemId, modId, value, latentId, latentParam "
-                            "FROM item_latents "
-                            "WHERE itemId IN "
-                            "(SELECT itemId FROM item_basic LEFT JOIN item_equipment USING (itemId))");
-    FOR_DB_MULTIPLE_RESULTS(rset)
-    {
-        const auto ItemID      = rset->get<uint16>("itemId");
-        const auto modID       = rset->get<xi::Mod>("modId");
-        const auto value       = rset->get<int16>("value");
-        const auto latentId    = rset->get<xi::Latent>("latentId");
-        const auto latentParam = rset->get<uint16>("latentParam");
-
-        if (auto* tpl = itemTemplates[ItemID].get(); tpl != nullptr && tpl->isType(ITEM_EQUIPMENT))
+        if (!jpNameSjis.empty())
         {
-            static_cast<CItemEquipment*>(tpl)->addLatent(latentId, latentParam, modID, value);
+            g_TranslateMap[GP_CLI_COMMAND_TRANSLATE_INDEX::Japanese][jpNameSjis] = { itemId, sortname };
         }
+
+        auto filename = fmt::format("./scripts/items/{}.lua", PItem->getName());
+        luautils::LoadLuaObjectFromFile(filename);
     }
 }
 
@@ -607,6 +584,8 @@ void FreeItemList()
     {
         tpl.reset();
     }
+
+    itemIdsByName.clear();
     unarmedItem.reset();
     unarmedH2HItem.reset();
 

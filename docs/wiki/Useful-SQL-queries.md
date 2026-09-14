@@ -89,15 +89,11 @@ SELECT
     c.charname,
     ci.quantity,
     ci.bazaar,
-    COALESCE(ite.`name`, itb.`name`, itf.`name`, itp.`name`, itw.`name`) AS itemname,
+    itb.`name` AS itemname,
     z.`name` AS "last_seen_zone",
     acc_sess.accid IS NOT NULL AS "currently_online"
 FROM char_inventory AS ci
-LEFT JOIN item_equipment AS ite ON ci.itemid = ite.itemid
 LEFT JOIN item_basic AS itb ON ci.itemid = itb.itemid
-LEFT JOIN item_furnishing AS itf ON ci.itemid = itf.itemid
-LEFT JOIN item_puppet AS itp ON ci.itemid = itp.itemid
-LEFT JOIN item_weapon AS itw ON ci.itemid = itw.itemid
 LEFT JOIN chars AS c on c.charid = ci.charid
 LEFT JOIN zone_settings AS z on c.pos_zone = z.zoneid
 LEFT JOIN accounts_sessions AS acc_sess on c.accid = acc_sess.accid

@@ -6336,25 +6336,19 @@ auto SendItemToDeliveryBox(const std::string& playerName, uint16 itemId, uint32 
 
 auto GetItemIDByName(const std::string& name) -> uint16
 {
-    uint16 id   = 0;
-    auto   rset = db::preparedStmt("SELECT itemid FROM item_basic WHERE name LIKE ? OR sortname LIKE ?", name, name);
-
-    const uint16 rowCount = (rset && rset->rowsCount()) ? static_cast<uint16>(rset->rowsCount()) : 0U;
-
-    if (rset && rowCount == 1) // Found a single result
+    const auto ids = xi::items::findIdsByName(name);
+    if (ids.empty())
     {
-        while (rset->next())
-        {
-            id = rset->get<uint16>("itemid");
-        }
-    }
-    else if (rset && rowCount > 1)
-    {
-        // 0xFFFF is gil, so we will always return a value less than that as a warning
-        id = 0xFFFF - rowCount + 1;
+        return 0;
     }
 
-    return id;
+    if (ids.size() == 1)
+    {
+        return ids.front();
+    }
+
+    // 0xFFFF is gil, so we will always return a value less than that as a warning
+    return static_cast<uint16>(0xFFFF - ids.size() + 1);
 }
 
 auto GenerateDynamicEntity(CZone* PZone, CInstance* PInstance, sol::table table) -> CBaseEntity*

@@ -37,6 +37,7 @@ For example, `modules/example/data/zones/west_ronfaure/mobs.yaml` patches `data/
 Nested data components are opt-in and must be listed directly.
 For example, an `init.txt` entry for `era/data/abyssea/advanced_job_quest` loads patches relative to that directory.
 Listing `era` alone only loads the patches directly under `era/data`.
+The same holds for dataset patches: an entry for `era/data/abyssea/items` loads `modules/era/data/abyssea/items/items.yaml` over `data/items.yaml`.
 
 Patches use RFC 7396 semantics and are applied in `init.txt` order. Objects merge by key, lists are replaced whole, and `null` removes a key.
 
