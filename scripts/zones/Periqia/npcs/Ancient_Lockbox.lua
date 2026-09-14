@@ -13,8 +13,8 @@ entity.onTrigger = function(player, npc)
         [xi.assault.mission.SHOOTING_DOWN_THE_BARON] =
         {
             {
-                { itemId = xi.item.UNAPPRAISED_BOW,   weight = 600 },
-                { itemId = xi.item.UNAPPRAISED_BOX,   weight = 400 },
+                { itemId = xi.item.BOW,               weight = 600 },
+                { itemId = xi.item.BOX,               weight = 400 },
             },
         },
     }

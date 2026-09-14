@@ -15,7 +15,7 @@ local quest = Quest:new(xi.questLog.BASTOK, xi.quest.id.bastok.CHIPS)
 
 quest.reward =
 {
-    item = xi.item.CCB_POLYMER,
+    item = xi.item.CCB_POLYMER_PUMP,
 }
 
 quest.sections =
@@ -67,9 +67,9 @@ quest.sections =
                     if npcUtil.tradeMatches(trade, { { xi.item.CARMINE_CHIP, 1 }, { xi.item.CYAN_CHIP, 1 }, { xi.item.GRAY_CHIP, 1 } }) then
                         if
                             player:getFreeSlotsCount() == 0 or
-                            player:hasItem(xi.item.CCB_POLYMER)
+                            player:hasItem(xi.item.CCB_POLYMER_PUMP)
                         then
-                            return player:messageSpecial(metalID.text.ITEM_CANNOT_BE_OBTAINED, xi.item.CCB_POLYMER)
+                            return player:messageSpecial(metalID.text.ITEM_CANNOT_BE_OBTAINED, xi.item.CCB_POLYMER_PUMP)
                         else
                             return quest:progressEvent(883)
                         end
@@ -103,9 +103,9 @@ quest.sections =
                     if npcUtil.tradeMatches(trade, { { xi.item.CARMINE_CHIP, 1 }, { xi.item.CYAN_CHIP, 1 }, { xi.item.GRAY_CHIP, 1 } }) then
                         if
                             player:getFreeSlotsCount() == 0 or
-                            player:hasItem(xi.item.CCB_POLYMER)
+                            player:hasItem(xi.item.CCB_POLYMER_PUMP)
                         then
-                            return player:messageSpecial(metalID.text.ITEM_CANNOT_BE_OBTAINED, xi.item.CCB_POLYMER)
+                            return player:messageSpecial(metalID.text.ITEM_CANNOT_BE_OBTAINED, xi.item.CCB_POLYMER_PUMP)
                         else
                             return quest:progressEvent(884)
                         end

@@ -41,7 +41,7 @@ entity.onTrigger = function(player, npc)
         { xi.item.SCROLL_OF_BARSILENCE,      4608 },
         { xi.item.SCROLL_OF_BARSLEEPRA,       244 },
         { xi.item.SCROLL_OF_BARPOISONRA,      400 },
-        { xi.item.SCROLL_OF_BARPALARYZRA,     780 },
+        { xi.item.SCROLL_OF_BARPARALYZRA,     780 },
         { xi.item.SCROLL_OF_BARBLINDRA,      2030 },
         { xi.item.SCROLL_OF_BARSILENCERA,    4608 },
         { xi.item.SCROLL_OF_BARPETRIFY,     15120 },

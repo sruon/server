@@ -425,11 +425,11 @@ local voucherData =
 
             [1] =
             {
-                xi.item.MAXIXI_TIARA_M,
-                xi.item.MAXIXI_CASAQUE_M,
-                xi.item.MAXIXI_BANGLES_M,
-                xi.item.MAXIXI_TIGHTS_M,
-                xi.item.MAXIXI_TOE_SHOES_M,
+                xi.item.MAXIXI_TIARA,
+                xi.item.MAXIXI_CASAQUE,
+                xi.item.MAXIXI_BANGLES,
+                xi.item.MAXIXI_TIGHTS,
+                xi.item.MAXIXI_TOE_SHOES,
             },
         },
 
@@ -486,7 +486,7 @@ local voucherData =
             genderSpecific = true,
 
             [0] = { xi.item.MAXIXI_TIARA_F_P1 },
-            [1] = { xi.item.MAXIXI_TIARA_M_P1 },
+            [1] = { xi.item.MAXIXI_TIARA_P1 },
         },
 
         [19] = { xi.item.ACADEMICS_MORTARBOARD_P1 },
@@ -519,7 +519,7 @@ local voucherData =
             genderSpecific = true,
 
             [0] = { xi.item.MAXIXI_CASAQUE_F_P1 },
-            [1] = { xi.item.MAXIXI_CASAQUE_M_P1 },
+            [1] = { xi.item.MAXIXI_CASAQUE_P1 },
         },
 
         [19] = { xi.item.ACADEMICS_GOWN_P1 },
@@ -552,7 +552,7 @@ local voucherData =
             genderSpecific = true,
 
             [0] = { xi.item.MAXIXI_BANGLES_F_P1 },
-            [1] = { xi.item.MAXIXI_BANGLES_M_P1 },
+            [1] = { xi.item.MAXIXI_BANGLES_P1 },
         },
 
         [19] = { xi.item.ACADEMICS_BRACERS_P1 },
@@ -585,7 +585,7 @@ local voucherData =
             genderSpecific = true,
 
             [0] = { xi.item.MAXIXI_TIGHTS_F_P1 },
-            [1] = { xi.item.MAXIXI_TIGHTS_M_P1 },
+            [1] = { xi.item.MAXIXI_TIGHTS_P1 },
         },
 
         [19] = { xi.item.ACADEMICS_PANTS_P1  },
@@ -618,7 +618,7 @@ local voucherData =
             genderSpecific = true,
 
             [0] = { xi.item.MAXIXI_TOE_SHOES_F_P1 },
-            [1] = { xi.item.MAXIXI_TOE_SHOES_M_P1 },
+            [1] = { xi.item.MAXIXI_TOE_SHOES_P1 },
         },
 
         [19] = { xi.item.ACADEMICS_LOAFERS_P1 },
@@ -651,7 +651,7 @@ local voucherData =
             genderSpecific = true,
 
             [0] = { xi.item.MAXIXI_TIARA_F_P2 },
-            [1] = { xi.item.MAXIXI_TIARA_M_P2 },
+            [1] = { xi.item.MAXIXI_TIARA_P2 },
         },
 
         [19] = { xi.item.ACADEMICS_MORTARBOARD_P2 },
@@ -684,7 +684,7 @@ local voucherData =
             genderSpecific = true,
 
             [0] = { xi.item.MAXIXI_CASAQUE_F_P2 },
-            [1] = { xi.item.MAXIXI_CASAQUE_M_P2 },
+            [1] = { xi.item.MAXIXI_CASAQUE_P2 },
         },
 
         [19] = { xi.item.ACADEMICS_GOWN_P2 },
@@ -717,7 +717,7 @@ local voucherData =
             genderSpecific = true,
 
             [0] = { xi.item.MAXIXI_BANGLES_F_P2 },
-            [1] = { xi.item.MAXIXI_BANGLES_M_P2 },
+            [1] = { xi.item.MAXIXI_BANGLES_P2 },
         },
 
         [19] = { xi.item.ACADEMICS_BRACERS_P2 },
@@ -750,7 +750,7 @@ local voucherData =
             genderSpecific = true,
 
             [0] = { xi.item.MAXIXI_TIGHTS_F_P2 },
-            [1] = { xi.item.MAXIXI_TIGHTS_M_P2 },
+            [1] = { xi.item.MAXIXI_TIGHTS_P2 },
         },
 
         [19] = { xi.item.ACADEMICS_PANTS_P2   },
@@ -783,7 +783,7 @@ local voucherData =
             genderSpecific = true,
 
             [0] = { xi.item.MAXIXI_TOE_SHOES_F_P2 },
-            [1] = { xi.item.MAXIXI_TOE_SHOES_M_P2 },
+            [1] = { xi.item.MAXIXI_TOE_SHOES_P2 },
         },
 
         [19] = { xi.item.ACADEMICS_LOAFERS_P2 },

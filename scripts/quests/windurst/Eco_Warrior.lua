@@ -21,7 +21,7 @@ quest.reward =
     fame     = 20,
     fameArea = xi.fameArea.WINDURST,
     gil      = 5000,
-    item     = xi.item.DRAGON_CHRONICLES,
+    item     = xi.item.PAGE_FROM_THE_DRAGON_CHRONICLES,
     title    = xi.title.EMERALD_EXTERMINATOR,
 }
 

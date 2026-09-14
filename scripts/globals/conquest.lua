@@ -63,23 +63,23 @@ local exForceMenuData =
 local exForceGateGlyphTable =
 {
     -- [overseerNpcName] = glyphItemId
-    ['Crying_Wind_IM'  ] = xi.item.BASTOK_MINES_GLYPH,
-    ['Rabid_Wolf_IM'   ] = xi.item.BASTOK_MARKETS_GLYPH,
-    ['Flying_Axe_IM'   ] = xi.item.PORT_BASTOK_GLYPH,
-    ['Achantere_TK'    ] = xi.item.NORTH_SANDORIA_GLYPH,
-    ['Aravoge_TK'      ] = xi.item.WEST_SANDORIA_GLYPH,
-    ['Arpevion_TK'     ] = xi.item.EAST_SANDORIA_GLYPH,
-    ['Harara_WW'       ] = xi.item.WINDURST_WOODS_GLYPH,
-    ['Milma-Hapilma_WW'] = xi.item.PORT_WINDURST_GLYPH,
-    ['Puroiko-Maiko_WW'] = xi.item.WINDURST_WATERS_GLYPH,
+    ['Crying_Wind_IM'  ] = xi.item.BASTOK_MINES_GATE_GLYPH,
+    ['Rabid_Wolf_IM'   ] = xi.item.BASTOK_MARKETS_GATE_GLYPH,
+    ['Flying_Axe_IM'   ] = xi.item.PORT_BASTOK_GATE_GLYPH,
+    ['Achantere_TK'    ] = xi.item.NORTHERN_SAN_DORIA_GATE_GLYPH,
+    ['Aravoge_TK'      ] = xi.item.WESTERN_SAN_DORIA_GATE_GLYPH,
+    ['Arpevion_TK'     ] = xi.item.EASTERN_SAN_DORIA_GATE_GLYPH,
+    ['Harara_WW'       ] = xi.item.WINDURST_WOODS_GATE_GLYPH,
+    ['Milma-Hapilma_WW'] = xi.item.PORT_WINDURST_GATE_GLYPH,
+    ['Puroiko-Maiko_WW'] = xi.item.WINDURST_WATERS_GATE_GLYPH,
 }
 
 local exForceCityGlyphTable =
 {
     -- [nation] = that nation's three glyphs
-    [xi.nation.SANDORIA] = { xi.item.NORTH_SANDORIA_GLYPH, xi.item.WEST_SANDORIA_GLYPH,  xi.item.EAST_SANDORIA_GLYPH   },
-    [xi.nation.BASTOK  ] = { xi.item.BASTOK_MINES_GLYPH,   xi.item.BASTOK_MARKETS_GLYPH, xi.item.PORT_BASTOK_GLYPH     },
-    [xi.nation.WINDURST] = { xi.item.WINDURST_WOODS_GLYPH, xi.item.PORT_WINDURST_GLYPH,  xi.item.WINDURST_WATERS_GLYPH },
+    [xi.nation.SANDORIA] = { xi.item.NORTHERN_SAN_DORIA_GATE_GLYPH, xi.item.WESTERN_SAN_DORIA_GATE_GLYPH, xi.item.EASTERN_SAN_DORIA_GATE_GLYPH },
+    [xi.nation.BASTOK  ] = { xi.item.BASTOK_MINES_GATE_GLYPH,       xi.item.BASTOK_MARKETS_GATE_GLYPH,    xi.item.PORT_BASTOK_GATE_GLYPH       },
+    [xi.nation.WINDURST] = { xi.item.WINDURST_WOODS_GATE_GLYPH,     xi.item.PORT_WINDURST_GATE_GLYPH,     xi.item.WINDURST_WATERS_GATE_GLYPH   },
 }
 
 local exForceNumberRequiredTable =

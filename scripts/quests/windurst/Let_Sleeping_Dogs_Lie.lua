@@ -65,11 +65,11 @@ quest.sections =
                     local progress = quest:getVar(player, 'Prog')
 
                     if progress == 0 then
-                        return quest:progressEvent(319, 0, xi.item.REMEDY, xi.item.BLAZING_PEPPERS, xi.item.SICKLE)
+                        return quest:progressEvent(319, 0, xi.item.REMEDY, xi.item.BUNCH_OF_BLAZING_PEPPERS, xi.item.SICKLE)
                     elseif progress == 1 then
-                        return quest:event(320, 0, xi.item.REMEDY, xi.item.BLAZING_PEPPERS, xi.item.SICKLE)
+                        return quest:event(320, 0, xi.item.REMEDY, xi.item.BUNCH_OF_BLAZING_PEPPERS, xi.item.SICKLE)
                     elseif progress == 2 and option == 1 then
-                        return quest:event(321, 0, xi.item.BLAZING_PEPPERS)
+                        return quest:event(321, 0, xi.item.BUNCH_OF_BLAZING_PEPPERS)
                     elseif progress == 2 and option == 2 then
                         return quest:event(321, 0, xi.item.REMEDY)
                     end
@@ -199,7 +199,7 @@ quest.sections =
 
                 onTrade = function(player, npc, trade)
                     if quest:getVar(player, 'Prog') == 1 then
-                        if npcUtil.tradeHas(trade, xi.item.BLAZING_PEPPERS) then
+                        if npcUtil.tradeHas(trade, xi.item.BUNCH_OF_BLAZING_PEPPERS) then
                             quest:setVar(player, 'Option', 1) -- Traded Peppers
                             return quest:progressEvent(494, 0, 1)
                         elseif npcUtil.tradeHas(trade, xi.item.REMEDY) then
@@ -222,9 +222,9 @@ quest.sections =
                         return quest:event(492)
                     elseif progress == 2 then
                         if option == 1 then
-                            return quest:progressEvent(495, 0, xi.item.REMEDY, xi.item.BLAZING_PEPPERS, 1) -- Player had traded Peppers to Paku-Nakku
+                            return quest:progressEvent(495, 0, xi.item.REMEDY, xi.item.BUNCH_OF_BLAZING_PEPPERS, 1) -- Player had traded Peppers to Paku-Nakku
                         elseif option == 2 then
-                            return quest:progressEvent(495, 0, xi.item.REMEDY, xi.item.BLAZING_PEPPERS, 0) -- Player had traded a Remedy to Paku-Nakku
+                            return quest:progressEvent(495, 0, xi.item.REMEDY, xi.item.BUNCH_OF_BLAZING_PEPPERS, 0) -- Player had traded a Remedy to Paku-Nakku
                         end
                     elseif progress == 3 then
                         return quest:event(496)

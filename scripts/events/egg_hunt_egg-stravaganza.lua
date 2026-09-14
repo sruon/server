@@ -552,7 +552,7 @@ local beastCostumes =
 
 local nationRewards =
 {
-    { xi.item.WING_EGG,   xi.item.MELODIUS_EGG,  xi.item.EGG_STOOL, },
+    { xi.item.WING_EGG,   xi.item.MELODIOUS_EGG, xi.item.EGG_STOOL, },
     { xi.item.LAMP_EGG,   xi.item.CLOCKWORK_EGG, xi.item.EGG_TABLE, },
     { xi.item.FLOWER_EGG, xi.item.HATCHLING_EGG, xi.item.EGG_LOCKER, },
 }

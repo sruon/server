@@ -67,9 +67,9 @@ quest.sections =
                     local progress = quest:getVar(player, 'Prog')
 
                     if progress == 1 then
-                        return quest:progressEvent(141, 0, xi.item.TAVNAZIAN_LIVER)
+                        return quest:progressEvent(141, 0, xi.item.TAVNAZIAN_SHEEP_LIVER)
                     elseif progress == 2 then
-                        return quest:event(146, 0, xi.item.TAVNAZIAN_LIVER)
+                        return quest:event(146, 0, xi.item.TAVNAZIAN_SHEEP_LIVER)
                     elseif progress == 3 then
                         return quest:event(147)
                     elseif progress == 4 then
@@ -80,7 +80,7 @@ quest.sections =
                 onTrade = function(player, npc, trade)
                     if
                         quest:getVar(player, 'Prog') == 2 and
-                        npcUtil.tradeHasExactly(trade, xi.item.TAVNAZIAN_LIVER)
+                        npcUtil.tradeHasExactly(trade, xi.item.TAVNAZIAN_SHEEP_LIVER)
                     then
                         return quest:progressEvent(142)
                     end

@@ -35,11 +35,11 @@ local tacticianItems =
     [itemType.TEMP] =
     {
     --  Sel      Item                    Cost
-        [1] = { xi.item.PETRIFY_SCREEN, 300 },
-        [2] = { xi.item.TERROR_SCREEN,  300 },
-        [3] = { xi.item.AMNESIA_SCREEN, 300 },
-        [4] = { xi.item.DOOM_SCREEN,    300 },
-        [5] = { xi.item.POISON_SCREEN,  300 },
+        [1] = { xi.item.PHIAL_OF_PETRIFY_SCREEN, 300 },
+        [2] = { xi.item.PHIAL_OF_TERROR_SCREEN,  300 },
+        [3] = { xi.item.PHIAL_OF_AMNESIA_SCREEN, 300 },
+        [4] = { xi.item.PHIAL_OF_DOOM_SCREEN,    300 },
+        [5] = { xi.item.PHIAL_OF_POISON_SCREEN,  300 },
     },
 
     [itemType.AUGMENTED] =

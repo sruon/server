@@ -30,11 +30,11 @@ local entity = {}
 -- event parameters (numUnlockedHeads).
 local automatonHeads =
 {
-    xi.item.VALOREDGE_HEAD,
-    xi.item.SHARPSHOT_HEAD,
-    xi.item.STORMWAKER_HEAD,
-    xi.item.SOULSOOTHER_HEAD,
-    xi.item.SPIRITREAVER_HEAD,
+    xi.item.VALOREDGE_XM900_HEAD,
+    xi.item.SHARPSHOT_ZM500_HEAD,
+    xi.item.STORMWAKER_YM700_HEAD,
+    xi.item.SOULSOOTHER_CM1000_HEAD,
+    xi.item.SPIRITREAVER_MM400_HEAD,
 }
 
 local unlockCost =
@@ -177,14 +177,14 @@ entity.onTrade = function(player, npc, trade)
             if tradeHasPayment then
                 if
                     trade:getItemQty(xi.item.WHITE_PUPPET_TURBAN) == 1 and
-                    not player:hasAttachment(xi.item.SOULSOOTHER_HEAD)
+                    not player:hasAttachment(xi.item.SOULSOOTHER_CM1000_HEAD)
                 then
                     local range = getWaitRange(xi.item.WHITE_PUPPET_TURBAN, trade)
 
                     play_event902(player, 12, math.randomInt(range[1], range[2]))
                 elseif
                     trade:getItemQty(xi.item.BLACK_PUPPET_TURBAN) == 1 and
-                    not player:hasAttachment(xi.item.SPIRITREAVER_HEAD)
+                    not player:hasAttachment(xi.item.SPIRITREAVER_MM400_HEAD)
                 then
                     local range = getWaitRange(xi.item.BLACK_PUPPET_TURBAN, trade)
 
@@ -326,16 +326,16 @@ entity.onEventFinish = function(player, csid, option, npc)
         local attachmentStatus = player:getCharVar('PUP_AttachmentStatus')
 
         if attachmentStatus == 8 then
-            player:unlockAttachment(xi.item.VALOREDGE_FRAME)
-            player:unlockAttachment(xi.item.VALOREDGE_HEAD)
+            player:unlockAttachment(xi.item.VALOREDGE_XM900_FRAME)
+            player:unlockAttachment(xi.item.VALOREDGE_XM900_HEAD)
             player:messageSpecial(ID.text.AUTOMATON_VALOREDGE_UNLOCK)
         elseif attachmentStatus == 9 then
-            player:unlockAttachment(xi.item.SHARPSHOT_FRAME)
-            player:unlockAttachment(xi.item.SHARPSHOT_HEAD)
+            player:unlockAttachment(xi.item.SHARPSHOT_ZM500_FRAME)
+            player:unlockAttachment(xi.item.SHARPSHOT_ZM500_HEAD)
             player:messageSpecial(ID.text.AUTOMATON_SHARPSHOT_UNLOCK)
         elseif attachmentStatus == 10 then
-            player:unlockAttachment(xi.item.STORMWAKER_FRAME)
-            player:unlockAttachment(xi.item.STORMWAKER_HEAD)
+            player:unlockAttachment(xi.item.STORMWAKER_YM700_FRAME)
+            player:unlockAttachment(xi.item.STORMWAKER_YM700_HEAD)
             player:messageSpecial(ID.text.AUTOMATON_STORMWAKER_UNLOCK)
         end
 
@@ -357,16 +357,16 @@ entity.onEventFinish = function(player, csid, option, npc)
         local unlockedAttachments = getHeadMask(player)
 
         if attachmentStatus == 12 then
-            player:unlockAttachment(xi.item.SOULSOOTHER_HEAD)
+            player:unlockAttachment(xi.item.SOULSOOTHER_CM1000_HEAD)
             player:messageSpecial(ID.text.AUTOMATON_SOULSOOTHER_UNLOCK)
         elseif attachmentStatus == 13 then
-            player:unlockAttachment(xi.item.SPIRITREAVER_HEAD)
+            player:unlockAttachment(xi.item.SPIRITREAVER_MM400_HEAD)
             player:messageSpecial(ID.text.AUTOMATON_SPIRITREAVER_UNLOCK)
         elseif attachmentStatus == 14 and unlockedAttachments == 30 then
-            player:unlockAttachment(xi.item.SPIRITREAVER_HEAD)
+            player:unlockAttachment(xi.item.SPIRITREAVER_MM400_HEAD)
             player:messageSpecial(ID.text.AUTOMATON_SPIRITREAVER_UNLOCK)
         elseif attachmentStatus == 14 and unlockedAttachments == 46 then
-            player:unlockAttachment(xi.item.SOULSOOTHER_HEAD)
+            player:unlockAttachment(xi.item.SOULSOOTHER_CM1000_HEAD)
             player:messageSpecial(ID.text.AUTOMATON_SOULSOOTHER_UNLOCK)
         end
 

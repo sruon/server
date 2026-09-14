@@ -148,7 +148,7 @@ describe('Mog House visits', function()
         host:addItem(xi.item.BRONZE_SWORD)
         host.actions:moveItem(xi.inv.INVENTORY, host:findItem(xi.item.BRONZE_SWORD, xi.inv.INVENTORY):getSlotID(), xi.inv.MOGSAFE, 1)
         assert(placeFurniture(xi.item.ARMOR_BOX, xi.inv.MOGSAFE, 0):isInstalled(), 'safe furniture not placed')
-        assert(placeFurniture(xi.item.HUME_M_MANNEQUIN, xi.inv.MOGSAFE, 14):isInstalled(), 'mannequin not placed')
+        assert(placeFurniture(xi.item.HUME_MANNEQUIN, xi.inv.MOGSAFE, 14):isInstalled(), 'mannequin not placed')
         assert(placeFurniture(xi.item.WATER_CASK, xi.inv.MOGSAFE2, 3):isInstalled(), 'safe 2 furniture not placed')
         setMogHouseOpen(true)
 
@@ -180,7 +180,7 @@ describe('Mog House visits', function()
         end
 
         assert(itemAt[xi.inv.MOGSAFE * 256 + 1] == xi.item.ARMOR_BOX, 'safe furniture missing')
-        assert(itemAt[xi.inv.MOGSAFE * 256 + 2] == xi.item.HUME_M_MANNEQUIN, 'mannequin missing')
+        assert(itemAt[xi.inv.MOGSAFE * 256 + 2] == xi.item.HUME_MANNEQUIN, 'mannequin missing')
         assert(itemAt[xi.inv.MOGSAFE2 * 256 + 1] == xi.item.WATER_CASK, 'safe 2 furniture missing')
     end)
 end)

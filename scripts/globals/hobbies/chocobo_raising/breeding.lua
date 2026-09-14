@@ -40,7 +40,7 @@ local allColors = { color.YELLOW, color.BLACK, color.BLUE, color.RED, color.GREE
 -- Percent odds: colors in allColors order; pattern for three, two or no matching genes.
 local eggGenetics =
 {
-    [xi.item.CHOCOBO_EGG_FAINTLY_WARM ] = { colors = { 95,  3,  1,   0.5, 0.5 }, pattern = { 25,   50, 25   } },
+    [xi.item.CHOCOBO_EGG              ] = { colors = { 95,  3,  1,   0.5, 0.5 }, pattern = { 25,   50, 25   } },
     [xi.item.CHOCOBO_EGG_SLIGHTLY_WARM] = { colors = { 85,  5,  3.4, 3.3, 3.3 }, pattern = { 17.5, 60, 22.5 } },
     [xi.item.CHOCOBO_EGG_A_BIT_WARM   ] = { colors = { 75, 10,  5,   5,   5   }, pattern = { 16,   65, 19   } },
     [xi.item.CHOCOBO_EGG_A_LITTLE_WARM] = { colors = { 32, 18, 18,  16,  16   }, pattern = { 15,   70, 15   } },
@@ -369,7 +369,7 @@ end
 ---@param itemId integer
 ---@return xi.chocoboRaising.color[]
 xi.chocoboRaising.rollNonBredEggAlleles = function(itemId)
-    local genetics = eggGenetics[itemId] or eggGenetics[xi.item.CHOCOBO_EGG_FAINTLY_WARM]
+    local genetics = eggGenetics[itemId] or eggGenetics[xi.item.CHOCOBO_EGG]
     local shown    = allColors[weightedPick(genetics.colors)]
     local pattern  = weightedPick(genetics.pattern)
 

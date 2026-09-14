@@ -250,7 +250,7 @@ describe('Chocobo raising debug menu', function()
         raisingClient.finish(debug, 0)
 
         local trainer = raisingClient.new(player)
-        raisingClient.trade(trainer, { xi.item.CHOCOBO_EGG_FAINTLY_WARM })
+        raisingClient.trade(trainer, { xi.item.CHOCOBO_EGG })
         raisingClient.send(trainer, 252)
         raisingClient.finish(trainer, 252)
         assert(player:getChocoboRaisingInfo().color == black, 'Expected a black chocobo from the chosen genes')

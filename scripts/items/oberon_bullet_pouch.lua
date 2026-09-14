@@ -11,7 +11,7 @@ itemObject.onItemCheck = function(target, item, caster)
 end
 
 itemObject.onItemUse = function(target)
-    npcUtil.giveItem(target, { { xi.item.OBERON_BULLET, 99 } })
+    npcUtil.giveItem(target, { { xi.item.OBERONS_BULLET, 99 } })
 end
 
 return itemObject

@@ -10,7 +10,7 @@ local entity = {}
 entity.onTrigger = function(player, npc)
     local stock =
     {
-        { xi.item.CRAYFISH_1,     38, astralCandescence = false },
+        { xi.item.CRAYFISH,       38, astralCandescence = false },
         { xi.item.YILANBALIGI,  1200, astralCandescence = true  },
         { xi.item.SAZANBALIGI,  1800, astralCandescence = true  },
         { xi.item.KAYABALIGI,   4650, astralCandescence = true  },

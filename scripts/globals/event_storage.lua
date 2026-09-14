@@ -65,7 +65,7 @@ local categories =
             xi.item.SNOWMAN_MAGE,
             xi.item.BONBORI,
             xi.item.SET_OF_FESTIVAL_DOLLS,
-            xi.item.MELODIUS_EGG,
+            xi.item.MELODIOUS_EGG,
             xi.item.CLOCKWORK_EGG,
             xi.item.HATCHLING_EGG,
             xi.item.HARPSICHORD,

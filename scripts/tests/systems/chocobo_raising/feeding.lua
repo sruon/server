@@ -106,14 +106,14 @@ describe('Chocobo raising feeding', function()
     it('forgets an ability on a winning Lethe roll and keeps it on a losing one', function()
         raisingClient.setChocobo(player, { ability1 = xi.chocoboRaising.ability.GALLOP })
 
-        player:addItem(xi.item.LETHE_CONSOMME)
-        feedItems({ xi.item.LETHE_CONSOMME })
+        player:addItem(xi.item.BOWL_OF_LETHE_CONSOMME)
+        feedItems({ xi.item.BOWL_OF_LETHE_CONSOMME })
         assert(player:getChocoboRaisingInfo().ability1 == xi.chocoboRaising.ability.GALLOP, 'Expected the ability kept')
 
         stub('xi.chocoboRaising.rolls', true)
 
-        player:addItem(xi.item.LETHE_CONSOMME)
-        feedItems({ xi.item.LETHE_CONSOMME })
+        player:addItem(xi.item.BOWL_OF_LETHE_CONSOMME)
+        feedItems({ xi.item.BOWL_OF_LETHE_CONSOMME })
         assert(player:getChocoboRaisingInfo().ability1 == 0, 'Expected the ability forgotten')
     end)
 
@@ -130,22 +130,22 @@ describe('Chocobo raising feeding', function()
     it('lowers a chick\'s stat with Worm Paste, and no adult\'s', function()
         raisingClient.setChocobo(player, { strength = 50 })
 
-        player:addItem(xi.item.WORM_PASTE)
-        feedItems({ xi.item.WORM_PASTE })
+        player:addItem(xi.item.BALL_OF_WORM_PASTE)
+        feedItems({ xi.item.BALL_OF_WORM_PASTE })
         assert(player:getChocoboRaisingInfo().strength == 50 - xi.chocoboRaising.statPerFoodArrow, 'Expected the chick\'s STR lowered')
 
         raisingClient.setChocobo(player, { stage = xi.chocoboRaising.stage.ADULT_1, strength = 50, hunger = 0 })
-        player:addItem(xi.item.WORM_PASTE)
-        feedItems({ xi.item.WORM_PASTE })
+        player:addItem(xi.item.BALL_OF_WORM_PASTE)
+        feedItems({ xi.item.BALL_OF_WORM_PASTE })
         assert(player:getChocoboRaisingInfo().strength == 50, 'Expected the adult\'s STR kept')
     end)
 
     it('leaves La Theine Millet in the trade', function()
         player:addItem(xi.item.BUNCH_OF_GYSAHL_GREENS)
-        player:addItem(xi.item.LA_THEINE_MILLET)
-        feedItems({ xi.item.BUNCH_OF_GYSAHL_GREENS, xi.item.LA_THEINE_MILLET })
+        player:addItem(xi.item.BAG_OF_LA_THEINE_MILLET)
+        feedItems({ xi.item.BUNCH_OF_GYSAHL_GREENS, xi.item.BAG_OF_LA_THEINE_MILLET })
 
-        player.assert:hasItem(xi.item.LA_THEINE_MILLET)
+        player.assert:hasItem(xi.item.BAG_OF_LA_THEINE_MILLET)
         player.assert.no:hasItem(xi.item.BUNCH_OF_GYSAHL_GREENS)
     end)
 

@@ -33,7 +33,7 @@ local quest = Quest:new(xi.questLog.OTHER_AREAS, xi.quest.id.otherAreas.UNINVITE
 -- Source: https://wiki.ffo.jp/html/3837.html
 local rewards =
 {
-    { dropWeight = 541, rewardID = xi.item.MIRATETES_MEMOIRS           },
+    { dropWeight = 541, rewardID = xi.item.PAGE_FROM_MIRATETES_MEMOIRS           },
 
     -- Common.
     { dropWeight =  25, rewardID = xi.item.PLATE_OF_BREAM_RISOTTO      },

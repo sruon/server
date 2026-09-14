@@ -333,7 +333,7 @@ describe('Exdata', function()
     end)
 
     it('can get and set Chocobo Egg exdata', function()
-        local item = player:addItem({ id = xi.item.CHOCOBO_EGG_FAINTLY_WARM, quantity = 1 })
+        local item = player:addItem({ id = xi.item.CHOCOBO_EGG, quantity = 1 })
         assert(item)
 
         item:setExData(
@@ -569,7 +569,7 @@ describe('Exdata', function()
     end)
 
     it('can get and set Mannequin exdata', function()
-        local item = player:addItem({ id = xi.item.HUME_M_MANNEQUIN, quantity = 1 })
+        local item = player:addItem({ id = xi.item.HUME_MANNEQUIN, quantity = 1 })
         assert(item)
 
         item:setExData(

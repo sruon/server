@@ -32,7 +32,7 @@ xi.combat.ranged.sweetSpots = {
     [xi.item.YOICHINOYUMI_119              ] = { 5.5, 9.5 },
     [xi.item.YOICHINOYUMI_119_II           ] = { 5.5, 9.5 },
     [xi.item.YOICHINOYUMI_119_III          ] = { 5.5, 9.5 },
-    [xi.item.YOICHINOYUMI_119_III_NO_QUIVER] = { 5.5, 9.5 },
+    [xi.item.YOICHINOYUMI_119_III_AUG      ] = { 5.5, 9.5 },
 }
 
 xi.combat.ranged.getSweetSpotByAttacker = function(attacker)

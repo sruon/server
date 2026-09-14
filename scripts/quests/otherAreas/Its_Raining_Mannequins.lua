@@ -155,7 +155,7 @@ quest.sections =
             {
                 [311] = function(player, csid, option, npc)
                     local race = player:getRace()
-                    local chosenMannequin = xi.item.HUME_M_MANNEQUIN + race - 1
+                    local chosenMannequin = xi.item.HUME_MANNEQUIN + race - 1
                     if player:getFreeSlotsCount() > 0 and not player:hasItem(chosenMannequin) then
                         if quest:complete(player) then
                             player:tradeComplete()

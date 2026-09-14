@@ -22,7 +22,7 @@ mission.reward =
 
 local quizItems =
 {
-    xi.item.LYNX_MEAT,
+    xi.item.SLICE_OF_LYNX_MEAT,
     xi.item.GOLD_BEASTCOIN,
     xi.item.NYUMOMO_DOLL,
 }

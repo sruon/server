@@ -33,7 +33,7 @@ itemObject.onItemUse = function(target)
         { itemId = xi.item.SLICE_OF_KARAKUL_MEAT,     weight =  4 },
         { itemId = xi.item.SLICE_OF_LAND_CRAB_MEAT,   weight =  9 },
         { itemId = xi.item.SLICE_OF_LUCEREWE_MEAT,    weight =  7 },
-        { itemId = xi.item.LYNX_MEAT,                 weight =  5 },
+        { itemId = xi.item.SLICE_OF_LYNX_MEAT,        weight =  5 },
         { itemId = xi.item.CHUNK_OF_OROBON_MEAT,      weight =  9 },
         { itemId = xi.item.SLAB_OF_RUSZOR_MEAT,       weight =  9 },
         { itemId = xi.item.SLICE_OF_ZIZ_MEAT,         weight =  7 },

@@ -21,11 +21,11 @@ local greetings =
 
 local flowers =
 {
-    { xi.item.CHAMOMILE,  130 },
-    { xi.item.WIJNRUIT,   120 },
-    { xi.item.CARNATION,   60 },
-    { xi.item.RED_ROSE,    80 },
-    { xi.item.RAIN_LILY,   96 },
+    { xi.item.SPRIG_OF_CHAMOMILE, 130 },
+    { xi.item.WIJNRUIT,           120 },
+    { xi.item.CARNATION,           60 },
+    { xi.item.RED_ROSE,            80 },
+    { xi.item.RAIN_LILY,           96 },
 }
 
 local lowLevelFlowers =
@@ -40,7 +40,7 @@ local extraStock =
     [2] =
     {
         { xi.item.OGRE_PUMPKIN,               96 },
-        { xi.item.CHOCOBO_EGG_FAINTLY_WARM, 1040 },
+        { xi.item.CHOCOBO_EGG,              1040 },
     },
     [3] =
     {

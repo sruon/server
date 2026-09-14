@@ -230,8 +230,8 @@ end
 function raisingClient.tradeEgg(player)
     local client = raisingClient.new(player)
 
-    player:addItem(xi.item.CHOCOBO_EGG_FAINTLY_WARM)
-    raisingClient.trade(client, { xi.item.CHOCOBO_EGG_FAINTLY_WARM })
+    player:addItem(xi.item.CHOCOBO_EGG)
+    raisingClient.trade(client, { xi.item.CHOCOBO_EGG })
     raisingClient.send(client, 252)
     raisingClient.finish(client, 252)
     assert(player:getChocoboRaisingInfo(), 'Expected the egg trade to create a chocobo')

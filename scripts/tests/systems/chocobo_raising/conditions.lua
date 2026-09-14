@@ -350,7 +350,7 @@ describe('Chocobo raising conditions at the trainer', function()
             if after[index] ~= before[index] then
                 local up   = after[index] == before[index] + foodArrow
                 local down = after[index] < before[index] and after[index] >= before[index] - foodArrowDown
-                assert(not raised and (up or (down and item == xi.item.CARROT_PASTE)), 'Expected one stat changed by one food arrow')
+                assert(not raised and (up or (down and item == xi.item.BALL_OF_CARROT_PASTE)), 'Expected one stat changed by one food arrow')
                 raised = index
             end
         end
@@ -389,7 +389,7 @@ describe('Chocobo raising conditions at the trainer', function()
         -- Room to move either way.
         raisingClient.setChocobo(player, { strength = 100, endurance = 100, discernment = 100, receptivity = 100 })
 
-        assert(statRaisedBy(xi.item.CARROT_PASTE) == 1, 'Expected a stat from the lowest roll')
+        assert(statRaisedBy(xi.item.BALL_OF_CARROT_PASTE) == 1, 'Expected a stat from the lowest roll')
     end)
 
     it('shows the day\'s conditions in the report record', function()

@@ -39,7 +39,7 @@ entity.onTrigger = function(player, npc)
         { xi.item.JUG_OF_HERBAL_BROTH,           108, 3, },
         { xi.item.JUG_OF_CARRION_BROTH,          301, 3, },
         { xi.item.SCROLL_OF_CHOCOBO_MAZURKA,   55200, 3, },
-        { xi.item.LA_THEINE_MILLET,             2205, 3, },
+        { xi.item.BAG_OF_LA_THEINE_MILLET,      2205, 3, },
     }
 
     player:showText(npc, ID.text.FERDOULEMIONT_SHOP_DIALOG)

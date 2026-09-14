@@ -53,7 +53,7 @@ quest.sections =
                         quest:getVar(player, 'Prog') == 2 and
                         (
                             npcUtil.tradeMatches(trade, { { xi.item.MYTHRIL_PICK, 1 } }) or
-                            npcUtil.tradeMatches(trade, { { xi.item.MYTHRIL_PICK_HQ, 1 } })
+                            npcUtil.tradeMatches(trade, { { xi.item.MYTHRIL_PICK_P1, 1 } })
                         )
                     then
                         return quest:progressEvent(9, { [0] = trade:getItemId() })

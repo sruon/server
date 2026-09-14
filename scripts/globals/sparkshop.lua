@@ -740,9 +740,9 @@ function xi.sparkshop.onEventUpdate(player, csid, option, npc)
     elseif category == 30 then
         local validProvisions =
         {
-            [xi.item.PLUTON]           = true,
-            [xi.item.BEITETSU]         = true,
-            [xi.item.RIFTBORN_BOULDER] = true,
+            [xi.item.PLUTON]            = true,
+            [xi.item.CHUNK_OF_BEITETSU] = true,
+            [xi.item.RIFTBORN_BOULDER]  = true,
         }
 
         local copperVouchersStored = player:getCurrency('aman_vouchers')

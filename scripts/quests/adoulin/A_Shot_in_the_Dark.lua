@@ -93,7 +93,7 @@ quest.sections =
                 end,
 
                 onTrade = function(player, npc, trade)
-                    if npcUtil.tradeHasExactly(trade, xi.item.UMBRIL_OOZE) then
+                    if npcUtil.tradeHasExactly(trade, xi.item.JAR_OF_UMBRIL_OOZE) then
                         return quest:progressEvent(3012)
                     end
                 end,

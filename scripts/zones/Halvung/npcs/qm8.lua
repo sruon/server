@@ -10,7 +10,7 @@ local entity = {}
 
 entity.onTrade = function(player, npc, trade)
     if
-        npcUtil.tradeHas(trade, xi.item.MOBLIN_OIL) and
+        npcUtil.tradeHas(trade, xi.item.VIAL_OF_MOBLIN_OIL) and
         not player:hasKeyItem(xi.keyItem.BRACELET_OF_VERVE)
     then
         player:confirmTrade()

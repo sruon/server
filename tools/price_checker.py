@@ -2,8 +2,7 @@ import re
 import os
 
 logging = False
-sql_items = dict()
-npc_items = dict()
+sell_prices = dict()
 errors = list()
 
 server_dir_path = os.path.normpath(
@@ -15,58 +14,35 @@ def from_server_path(path):
     return os.path.normpath(os.path.join(server_dir_path, path))
 
 
-def load_item_enums(enum_path):
-    enums = {}
-    current_enum_type = None
-    recording = False
+def load_items(items_path):
+    """Reads each item's key, id, auction category and base sell price off data/items.yaml without a YAML parser."""
+    items = {}
+    in_items = False
+    key = None
 
-    with open(enum_path, "r", errors="ignore") as f:
+    with open(items_path, "r", encoding="utf-8") as f:
         for line in f:
-            stripped = line.strip()
-
-            # Start recording when we see the enum marker
-            if not recording:
-                m = re.match(r"^---@enum\s+(xi\.\w+)", stripped)
-                if m:
-                    current_enum_type = m.group(1)
-                    recording = True
+            if not in_items:
+                in_items = line.rstrip() == "items:"
                 continue
 
-            if recording:
-                if stripped == "}":
-                    recording = False
-                    current_enum_type = None
-                    continue
+            match = re.match(r"^  ([a-z0-9_]+):\s*$", line)
+            if match:
+                key = match.group(1)
+                items[key] = {}
+                continue
 
-                # Skip comments and empty lines
-                if not stripped or stripped.startswith("--"):
-                    continue
+            match = re.match(r"^    (id|auction|base_sell):\s*(\S+)", line)
+            if match and key is not None:
+                items[key][match.group(1)] = match.group(2)
 
-                m = re.match(r"^(\w+)\s*=\s*(\d+),?", stripped)
-                if m and current_enum_type:
-                    name, val = m.groups()
-                    enums[f"{current_enum_type}.{name}"] = int(val)
-
-    return enums
+    return items
 
 
-item_enums = load_item_enums("scripts/enum/item.lua")
-
-
-def process_matches(match, line):
-    split = []
-
-    if bool(re.match(match, line, re.I)):
-        # advance past the initial string to the parenthesis
-        sliced = line[len(sql_line) :]
-
-        # strip the parenthesis, semi-colon, newline chars and comments
-        sliced = sliced.split("--")[0]
-        sliced = sliced[2:-3]
-
-        split = sliced.split(",")
-
-    return split
+items = load_items(from_server_path("data/items.yaml"))
+item_enums = {"xi.item.NONE": 0}
+for key, fields in items.items():
+    item_enums[f"xi.item.{key.upper()}"] = int(fields["id"])
 
 
 def log(message, *args):
@@ -117,32 +93,27 @@ def process_npc(path):
                             f"Unknown item enum {item_id_raw} found in script {path}."
                         )
                         continue  # enum not found
-                    item_id = str(resolved)
+                    item_id = resolved
                 elif item_id_raw.isdigit():
-                    item_id = item_id_raw
+                    item_id = int(item_id_raw)
                 else:
                     errors.append(f"Unknown item type found in script {path}.")
                     continue  # unhandled type
 
                 log(f"Found item {item_id} with buy price {buy_price}")
 
-                if item_id in sql_items and int(sql_items[item_id]) > int(buy_price):
+                if item_id in sell_prices and sell_prices[item_id] > int(buy_price):
                     errors.append(
-                        f"Found item {item_id_raw} with buy price {buy_price} which is lower than sell price {sql_items[item_id]} in script {path}."
+                        f"Found item {item_id_raw} with buy price {buy_price} which is lower than sell price {sell_prices[item_id]} in script {path}."
                     )
 
 
-# process item_basic for item ids and base sell prices
-sql_line = "INSERT INTO `item_basic` VALUES"
-with open(from_server_path("sql/item_basic.sql"), mode="r", errors="ignore") as items:
-    for line in items:
-        split = process_matches(sql_line, line)
+# items kept off the auction house that sell to shops for gil
+for fields in items.values():
+    if "auction" not in fields and "base_sell" in fields:
+        sell_prices[int(fields["id"])] = int(fields["base_sell"])
 
-        # if the item can be sold to the shop and the sell price isn't 0
-        if len(split) != 0 and split[-2] == "0" and split[-1] != "0":
-            sql_items[split[0]] = split[-1]
-
-            log(f"Added item {split[0]} with base sell price {split[-1]}")
+        log(f"Added item {fields['id']} with base sell price {fields['base_sell']}")
 
 # iterate over npcs in ../scripts/zones/.../npcs/*.lua
 with os.scandir(from_server_path("scripts/zones")) as iterator:

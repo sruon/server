@@ -32,7 +32,7 @@ quest.sections =
                         option = 2 -- additional dialogue regarding Crystal propulsion unit and hooded scientists as mentioned in cop wyrmking mission
                     end
 
-                    return quest:progressEvent(864, 0, xi.item.GARHADA_TEAK_LUMBER, 0, 0, 0, 0, option)
+                    return quest:progressEvent(864, 0, xi.item.PIECE_OF_GARHADA_TEAK_LUMBER, 0, 0, 0, 0, option)
                 end,
             },
 
@@ -56,11 +56,11 @@ quest.sections =
             {
                 onTrigger = function(player, npc)
                     -- Cycle between event 871 and default 501
-                    return quest:event(871, 0, xi.item.GARHADA_TEAK_LUMBER):setPriority(10)
+                    return quest:event(871, 0, xi.item.PIECE_OF_GARHADA_TEAK_LUMBER):setPriority(10)
                 end,
 
                 onTrade = function(player, npc, trade)
-                    if npcUtil.tradeMatches(trade, { { xi.item.GARHADA_TEAK_LUMBER, 1 } }) then
+                    if npcUtil.tradeMatches(trade, { { xi.item.PIECE_OF_GARHADA_TEAK_LUMBER, 1 } }) then
                         return quest:event(865)
                     end
                 end,

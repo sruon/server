@@ -13,7 +13,7 @@ entity.onTrigger = function(player, npc)
     local stock =
     {
         { xi.item.PINCH_OF_DRIED_MARJORAM,   48, 3 },
-        { xi.item.CHAMOMILE,                130, 2 },
+        { xi.item.SPRIG_OF_CHAMOMILE,       130, 2 },
         { xi.item.WIJNRUIT,                 120, 1 },
         { xi.item.FLASK_OF_EYE_DROPS,      2595, 3 },
         { xi.item.ANTIDOTE,                 316, 3 },

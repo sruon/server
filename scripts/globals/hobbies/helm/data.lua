@@ -227,7 +227,7 @@ xi.helm.dataTable =
 
                 drops =
                 {
-                    { 1, xi.item.BLAZING_PEPPERS },
+                    { 1, xi.item.BUNCH_OF_BLAZING_PEPPERS },
                 },
 
                 points =
@@ -1588,8 +1588,8 @@ xi.helm.dataTable =
                     {  590, xi.item.MOBLIN_MASK            }, -- n=465/7930, 95% CI +/-0.52pp
                     {  580, xi.item.GOBLIN_DIE             }, -- n=456/7930, 95% CI +/-0.51pp
                     {  570, xi.item.MOBLIN_HELM            }, -- n=449/7930, 95% CI +/-0.51pp
-                    {  560, xi.item.SUIT_OF_MOBLIN_MAIL    }, -- n=444/7930, 95% CI +/-0.51pp
-                    {  530, xi.item.SUIT_OF_MOBLIN_ARMOR   }, -- n=420/7930, 95% CI +/-0.49pp
+                    {  560, xi.item.MOBLIN_MAIL            }, -- n=444/7930, 95% CI +/-0.51pp
+                    {  530, xi.item.MOBLIN_ARMOR           }, -- n=420/7930, 95% CI +/-0.49pp
                     {   80, xi.item.CHUNK_OF_PLATINUM_ORE  }, -- n= 61/7930, 95% CI +/-0.19pp
                     {   80, xi.item.CHUNK_OF_MYTHRIL_ORE   }, -- n= 61/7930, 95% CI +/-0.19pp
                     {   80, xi.item.CHUNK_OF_DARKSTEEL_ORE }, -- n= 60/7930, 95% CI +/-0.19pp
@@ -1668,10 +1668,10 @@ xi.helm.dataTable =
                     { 1160, xi.item.FLINT_STONE          }, -- n=1011/8690, 95% CI +/-0.67pp
                     {  290, xi.item.TROLL_VAMBRACE       }, -- n= 254/8690, 95% CI +/-0.35pp
                     {  280, xi.item.DEMON_HORN           }, -- n= 239/8690, 95% CI +/-0.34pp
-                    {  270, xi.item.SUIT_OF_MOBLIN_MAIL  }, -- n= 238/8690, 95% CI +/-0.34pp
+                    {  270, xi.item.MOBLIN_MAIL          }, -- n= 238/8690, 95% CI +/-0.34pp
                     {  270, xi.item.MOBLIN_HELM          }, -- n= 236/8690, 95% CI +/-0.34pp
                     {  270, xi.item.MOBLIN_MASK          }, -- n= 235/8690, 95% CI +/-0.34pp
-                    {  260, xi.item.SUIT_OF_MOBLIN_ARMOR }, -- n= 222/8690, 95% CI +/-0.33pp
+                    {  260, xi.item.MOBLIN_ARMOR         }, -- n= 222/8690, 95% CI +/-0.33pp
                     {  250, xi.item.TROLL_PAULDRON       }, -- n= 214/8690, 95% CI +/-0.33pp
                     {  100, xi.item.CHUNK_OF_ADAMAN_ORE  }, -- Special: rate goes down with each obtain and is capped daily
                     {   15, xi.item.CHUNK_OF_KHROMA_ORE  }, -- Special: rate goes down with each obtain and is capped daily
@@ -1729,9 +1729,9 @@ xi.helm.dataTable =
                     {  400, xi.item.MOBLIN_HELM                }, -- n= 543/13703, 95% CI +/-0.33pp
                     {  390, xi.item.TROLL_VAMBRACE             }, -- n= 540/13703, 95% CI +/-0.33pp
                     {  390, xi.item.MOBLIN_MASK                }, -- n= 534/13703, 95% CI +/-0.32pp
-                    {  380, xi.item.SUIT_OF_MOBLIN_ARMOR       }, -- n= 524/13703, 95% CI +/-0.32pp
+                    {  380, xi.item.MOBLIN_ARMOR               }, -- n= 524/13703, 95% CI +/-0.32pp
                     {  380, xi.item.TROLL_PAULDRON             }, -- n= 517/13703, 95% CI +/-0.32pp
-                    {  370, xi.item.SUIT_OF_MOBLIN_MAIL        }, -- n= 512/13703, 95% CI +/-0.32pp
+                    {  370, xi.item.MOBLIN_MAIL                }, -- n= 512/13703, 95% CI +/-0.32pp
                     {  260, xi.item.CHUNK_OF_GOLD_ORE          }, -- n= 358/13703, 95% CI +/-0.27pp
                     {   20, xi.item.CHUNK_OF_ORICHALCUM_ORE    }, -- Special: rate goes down with each pool obtain and resets on zoning
                     {   10, xi.item.CHUNK_OF_LUMINIUM_ORE      }, -- Special: rate goes down with each pool obtain and resets on zoning
@@ -1771,9 +1771,9 @@ xi.helm.dataTable =
                     { 1250, xi.item.CHUNK_OF_IRON_ORE     }, -- n= 831/6658, 95% CI +/-0.79pp
                     {  890, xi.item.CHUNK_OF_SILVER_ORE   }, -- n= 592/6658, 95% CI +/-0.68pp
                     {  680, xi.item.CHUNK_OF_MYTHRIL_ORE  }, -- n= 453/6658, 95% CI +/-0.61pp
-                    {  160, xi.item.SUIT_OF_MOBLIN_ARMOR  }, -- n= 106/6658, 95% CI +/-0.30pp
+                    {  160, xi.item.MOBLIN_ARMOR          }, -- n= 106/6658, 95% CI +/-0.30pp
                     {  150, xi.item.CHUNK_OF_PLATINUM_ORE }, -- n=  99/6658, 95% CI +/-0.29pp
-                    {  150, xi.item.SUIT_OF_MOBLIN_MAIL   }, -- n=  99/6658, 95% CI +/-0.29pp
+                    {  150, xi.item.MOBLIN_MAIL           }, -- n=  99/6658, 95% CI +/-0.29pp
                     {  150, xi.item.MOBLIN_MASK           }, -- n=  98/6658, 95% CI +/-0.29pp
                     {  140, xi.item.MOBLIN_HELM           }, -- n=  97/6658, 95% CI +/-0.29pp
                 },

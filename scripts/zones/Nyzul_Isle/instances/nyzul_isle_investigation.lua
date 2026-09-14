@@ -121,7 +121,7 @@ instanceObject.afterInstanceRegister = function(player)
     player:messageName(ID.text.COMMENCE, player, 51)
     player:messageName(ID.text.TIME_TO_COMPLETE, player, instance:getTimeLimit() / 60)
 
-    player:addTempItem(xi.item.UNDERSEA_RUINS_FIREFLIES)
+    player:addTempItem(xi.item.CAGE_OF_UNDERSEA_RUINS_FIREFLIES)
     player:setCharVar('assaultEntered', 1)
     player:delKeyItem(xi.keyItem.NYZUL_ISLE_ASSAULT_ORDERS)
     player:messageSpecial(ID.text.KEYITEM_LOST, xi.keyItem.NYZUL_ISLE_ASSAULT_ORDERS)

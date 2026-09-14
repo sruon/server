@@ -52,9 +52,9 @@ describe('San d\'Oria', function()
 
             -- Go back to gate guard and trade Orcish Mail Scales gotten from bats around tomb.
             player:gotoZone(xi.zone.SOUTHERN_SAN_DORIA)
-            player:addItem(xi.item.ORCISH_MAIL_SCALES)
+            player:addItem(xi.item.HANDFUL_OF_ORCISH_MAIL_SCALES)
             player.entities:gotoAndTrigger('Ambrotien', { eventId = 2022 })
-            player.actions:tradeNpc('Ambrotien', { xi.item.ORCISH_MAIL_SCALES }, { eventId = 2023 })
+            player.actions:tradeNpc('Ambrotien', { xi.item.HANDFUL_OF_ORCISH_MAIL_SCALES }, { eventId = 2023 })
             player.assert
                 :hasMission(xi.mission.log_id.SANDORIA, xi.mission.id.sandoria.NONE)
                 :hasCompletedMission(xi.mission.log_id.SANDORIA, xi.mission.id.sandoria.BAT_HUNT)

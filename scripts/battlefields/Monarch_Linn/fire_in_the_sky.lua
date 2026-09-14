@@ -43,7 +43,7 @@ content.loot =
     {
         { itemId = xi.item.NONE,              weight = 5000 },
         { itemId = xi.item.THUGS_ZAMBURAK,    weight = 2500 },
-        { itemId = xi.item.HORROR_VOULGE,     weight = 2500 },
+        { itemId = xi.item.BLISSFUL_CHAPEAU,  weight = 2500 },
     },
 
     {

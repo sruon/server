@@ -143,7 +143,7 @@ quest.sections =
                         quest:getVar(player, 'Stage') == 0 and
                         not player:hasKeyItem(xi.keyItem.WASHUS_TASTY_WURST) and
                         not player:hasKeyItem(xi.keyItem.YOMOTSU_FEATHER) and
-                        npcUtil.tradeMatches(trade, { { xi.item.HECTEYES_EYE, 1 }, { xi.item.BASTORE_SARDINE_1, 1 }, { xi.item.SLICE_OF_GIANT_SHEEP_MEAT, 1 }, { xi.item.FROST_TURNIP, 1 } })
+                        npcUtil.tradeMatches(trade, { { xi.item.HECTEYES_EYE, 1 }, { xi.item.BASTORE_SARDINE, 1 }, { xi.item.SLICE_OF_GIANT_SHEEP_MEAT, 1 }, { xi.item.FROST_TURNIP, 1 } })
                     then
                         return quest:progressEvent(150)
                     end

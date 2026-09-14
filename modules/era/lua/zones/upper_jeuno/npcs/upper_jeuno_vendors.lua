@@ -48,14 +48,14 @@ end)
 m:addOverride('xi.zones.Upper_Jeuno.npcs.Areebah.onTrigger', function(player, npc)
     local stock =
     {
-        { xi.item.CHAMOMILE,   130 },
-        { xi.item.WIJNRUIT,    120 },
-        { xi.item.CARNATION,    60 },
-        { xi.item.RED_ROSE,     80 },
-        { xi.item.RAIN_LILY,    96 },
-        { xi.item.LILAC,       120 },
-        { xi.item.AMARYLLIS,   120 },
-        { xi.item.MARGUERITE,  120 },
+        { xi.item.SPRIG_OF_CHAMOMILE, 130 },
+        { xi.item.WIJNRUIT,           120 },
+        { xi.item.CARNATION,           60 },
+        { xi.item.RED_ROSE,            80 },
+        { xi.item.RAIN_LILY,           96 },
+        { xi.item.LILAC,              120 },
+        { xi.item.AMARYLLIS,          120 },
+        { xi.item.MARGUERITE,         120 },
     }
 
     -- Add Water Lily to stock if Abyssea is enabled

@@ -92,9 +92,9 @@ local prizes =
         ['items'] =
         {
             -- 10187, -- Cipher: Shantotto II
-            xi.item.MOUNT_GOOBBUE, -- ♪Goobbue
-            xi.item.MOUNT_CRAB, -- ♪Crab
-            xi.item.MOUNT_BEETLE, -- ♪Beetle
+            xi.item.GOOBBUE, -- ♪Goobbue
+            xi.item.CRAB, -- ♪Crab
+            xi.item.BEETLE, -- ♪Beetle
             -- TODO: The other mounts
             xi.item.CUMULUS_MASQUE, -- Cumulus Masque
             xi.item.BLIZZARD_BRAND, -- Blizzard Brand
@@ -121,7 +121,7 @@ local prizes =
         ['items'] =
         {
             -- TODO: Special month-to-month things
-            xi.item.MOUNT_DHALMEL, -- ♪Dhalmel
+            xi.item.DHALMEL, -- ♪Dhalmel
         },
 
     },

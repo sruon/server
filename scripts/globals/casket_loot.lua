@@ -368,7 +368,7 @@ xi.casket_loot.casketItems =
         items =
         {
             { itemId = xi.item.BAG_OF_VEGETABLE_SEEDS,        weight = 5000 },
-            { itemId = xi.item.CHAMOMILE,                     weight =  475 },
+            { itemId = xi.item.SPRIG_OF_CHAMOMILE,            weight =  475 },
             { itemId = xi.item.CHUNK_OF_IRON_ORE,             weight = 2780 },
             { itemId = xi.item.CHUNK_OF_MYTHRIL_ORE,          weight = 1940 },
             { itemId = xi.item.MAPLE_LOG,                     weight = 2700 },
@@ -858,7 +858,7 @@ xi.casket_loot.casketItems =
     },
     [xi.zone.CAPE_TERIGGAN] =
     {
-        regionalItems = { xi.item.SIROCCO_AXE },
+        regionalItems = { xi.item.BARKBORER },
         temps =
         {
             { itemId = xi.item.HI_POTION_P3,            weight = 1060 },
@@ -1374,7 +1374,7 @@ xi.casket_loot.casketItems =
         items =
         {
             { itemId = xi.item.BAG_OF_VEGETABLE_SEEDS,        weight = 5000 },
-            { itemId = xi.item.CHAMOMILE,                     weight =  475 },
+            { itemId = xi.item.SPRIG_OF_CHAMOMILE,            weight =  475 },
             { itemId = xi.item.CHUNK_OF_IRON_ORE,             weight = 2780 },
             { itemId = xi.item.CHUNK_OF_MYTHRIL_ORE,          weight = 1940 },
             { itemId = xi.item.MAPLE_LOG,                     weight = 2700 },
@@ -1705,7 +1705,7 @@ xi.casket_loot.casketItems =
         items =
         {
             { itemId = xi.item.BAG_OF_VEGETABLE_SEEDS,        weight = 5000 },
-            { itemId = xi.item.CHAMOMILE,                     weight =  475 },
+            { itemId = xi.item.SPRIG_OF_CHAMOMILE,            weight =  475 },
             { itemId = xi.item.CHUNK_OF_IRON_ORE,             weight = 2780 },
             { itemId = xi.item.CHUNK_OF_MYTHRIL_ORE,          weight = 1940 },
             { itemId = xi.item.MAPLE_LOG,                     weight = 2700 },

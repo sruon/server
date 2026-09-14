@@ -212,7 +212,7 @@ quest.sections =
                     -- Trade exactly one mannequin without gil.  Gil taken separately.
                     local tradedMannequin = 0
 
-                    for itemId = xi.item.HUME_M_MANNEQUIN, xi.item.GALKA_MANNEQUIN do
+                    for itemId = xi.item.HUME_MANNEQUIN, xi.item.GALKA_MANNEQUIN do
                         if npcUtil.tradeHasExactly(trade, itemId) then
                             tradedMannequin = itemId
                             break
@@ -269,7 +269,7 @@ quest.sections =
                         player:delGil(xi.mannequin.cost.TRADE)
                     then
                         player:confirmTrade()
-                        npcUtil.giveItem(player, xi.item.HUME_M_MANNEQUIN + option - 1)
+                        npcUtil.giveItem(player, xi.item.HUME_MANNEQUIN + option - 1)
                         local race = ((option - 1) % 8) + 1
                         xi.mannequin.setMannequinPose(player, race, 0)
                     end
@@ -278,15 +278,15 @@ quest.sections =
                 [321] = function(player, csid, option, npc)
                     -- If the transaction failed, the option is nil.
                     if player:getFreeSlotsCount() == 0 then
-                        player:messageSpecial(mhauraID.text.ITEM_CANNOT_BE_OBTAINED, xi.item.HUME_M_MANNEQUIN + option - 1)
+                        player:messageSpecial(mhauraID.text.ITEM_CANNOT_BE_OBTAINED, xi.item.HUME_MANNEQUIN + option - 1)
                     elseif
                         -- Purchase the mannequin.  Option = race (1-8)
                         option >= 1 and
                         option <= 8 and
                         player:delGil(xi.mannequin.cost.PURCHASE)
                     then
-                        player:messageSpecial(mhauraID.text.ITEM_OBTAINED, xi.item.HUME_M_MANNEQUIN + option - 1)
-                        player:addItem(xi.item.HUME_M_MANNEQUIN + option - 1)
+                        player:messageSpecial(mhauraID.text.ITEM_OBTAINED, xi.item.HUME_MANNEQUIN + option - 1)
+                        player:addItem(xi.item.HUME_MANNEQUIN + option - 1)
                         local race = ((option - 1) % 8) + 1
                         xi.mannequin.setMannequinPose(player, race, 0)
                     elseif

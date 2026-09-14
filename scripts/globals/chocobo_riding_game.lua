@@ -17,25 +17,25 @@ local raceData =
 {
     [xi.zone.WINDURST_WOODS] =
     {
-        [xi.zone.SAUROMUGUE_CHAMPAIGN] = { gameDay = 0, reward = xi.item.WINDURST_WOODS_GLYPH, raceTimes = { 930 },        npc = windurstID.npc.ORLAINE, eventParam = 3, finishEvent = 901 },
-        [xi.zone.WEST_RONFAURE]        = { gameDay = 1, reward = xi.item.MIRATETES_MEMOIRS,    raceTimes = { 1717, 1800 }, npc = windurstID.npc.SARIALE, eventParam = 0, finishEvent = 55  },
-        [xi.zone.SOUTH_GUSTABERG]      = { gameDay = 2, reward = xi.item.MIRATETES_MEMOIRS,    raceTimes = { 1950, 2084 }, npc = windurstID.npc.AMIMI,   eventParam = 1, finishEvent = 907 },
+        [xi.zone.SAUROMUGUE_CHAMPAIGN] = { gameDay = 0, reward = xi.item.WINDURST_WOODS_GATE_GLYPH, raceTimes = { 930 },        npc = windurstID.npc.ORLAINE, eventParam = 3, finishEvent = 901 },
+        [xi.zone.WEST_RONFAURE]        = { gameDay = 1, reward = xi.item.PAGE_FROM_MIRATETES_MEMOIRS, raceTimes = { 1717, 1800 }, npc = windurstID.npc.SARIALE, eventParam = 0, finishEvent = 55  },
+        [xi.zone.SOUTH_GUSTABERG]      = { gameDay = 2, reward = xi.item.PAGE_FROM_MIRATETES_MEMOIRS, raceTimes = { 1950, 2084 }, npc = windurstID.npc.AMIMI,   eventParam = 1, finishEvent = 907 },
     },
     [xi.zone.BASTOK_MINES] =
     {
-        [xi.zone.EAST_SARUTABARUTA] = { gameDay = 0, reward = xi.item.MIRATETES_MEMOIRS,  raceTimes = { 1950, 2040 }, npc = bastokID.npc.AZETTE,  eventParam = 2, finishEvent = 901 },
-        [xi.zone.ROLANBERRY_FIELDS] = { gameDay = 1, reward = xi.item.BASTOK_MINES_GLYPH, raceTimes = { 1130 },       npc = bastokID.npc.EULAPHE, eventParam = 3, finishEvent = 901 },
-        [xi.zone.WEST_RONFAURE]     = { gameDay = 2, reward = xi.item.DRAGON_CHRONICLES,  raceTimes = { 1214, 1260 }, npc = bastokID.npc.QUELLE,  eventParam = 0, finishEvent = 55  },
+        [xi.zone.EAST_SARUTABARUTA] = { gameDay = 0, reward = xi.item.PAGE_FROM_MIRATETES_MEMOIRS,  raceTimes = { 1950, 2040 }, npc = bastokID.npc.AZETTE,  eventParam = 2, finishEvent = 901 },
+        [xi.zone.ROLANBERRY_FIELDS] = { gameDay = 1, reward = xi.item.BASTOK_MINES_GATE_GLYPH, raceTimes = { 1130 },       npc = bastokID.npc.EULAPHE, eventParam = 3, finishEvent = 901 },
+        [xi.zone.WEST_RONFAURE]     = { gameDay = 2, reward = xi.item.PAGE_FROM_THE_DRAGON_CHRONICLES,  raceTimes = { 1214, 1260 }, npc = bastokID.npc.QUELLE,  eventParam = 0, finishEvent = 55  },
     },
     [xi.zone.SOUTHERN_SAN_DORIA] =
     {
-        [xi.zone.SOUTH_GUSTABERG]   = { gameDay = 0, reward = xi.item.DRAGON_CHRONICLES,   raceTimes = { 1200, 1248 }, npc = sandoriaID.npc.CAMEREINE, eventParam = 1, finishEvent = 907 },
-        [xi.zone.EAST_SARUTABARUTA] = { gameDay = 1, reward = xi.item.MIRATETES_MEMOIRS,   raceTimes = { 1699, 1800 }, npc = sandoriaID.npc.EMOUSSINE, eventParam = 2, finishEvent = 901 },
-        [xi.zone.BATALLIA_DOWNS]    = { gameDay = 2, reward = xi.item.EAST_SANDORIA_GLYPH, raceTimes = { 795 },        npc = sandoriaID.npc.MEUNEILLE, eventParam = 3, finishEvent = 906 },
+        [xi.zone.SOUTH_GUSTABERG]   = { gameDay = 0, reward = xi.item.PAGE_FROM_THE_DRAGON_CHRONICLES, raceTimes = { 1200, 1248 }, npc = sandoriaID.npc.CAMEREINE, eventParam = 1, finishEvent = 907 },
+        [xi.zone.EAST_SARUTABARUTA] = { gameDay = 1, reward = xi.item.PAGE_FROM_MIRATETES_MEMOIRS,     raceTimes = { 1699, 1800 }, npc = sandoriaID.npc.EMOUSSINE, eventParam = 2, finishEvent = 901 },
+        [xi.zone.BATALLIA_DOWNS]    = { gameDay = 2, reward = xi.item.EASTERN_SAN_DORIA_GATE_GLYPH, raceTimes = { 795 },        npc = sandoriaID.npc.MEUNEILLE, eventParam = 3, finishEvent = 906 },
     },
     [xi.zone.KAZHAM] =
     {
-        [xi.zone.YUHTUNGA_JUNGLE] = { gameDay = 0, reward = xi.item.MIRATETES_MEMOIRS, raceTimes = { 150, 240 }, npc = kazhamID.npc.TIELLEQUE, eventParam = 3, finishEvent = 208 },
+        [xi.zone.YUHTUNGA_JUNGLE] = { gameDay = 0, reward = xi.item.PAGE_FROM_MIRATETES_MEMOIRS, raceTimes = { 150, 240 }, npc = kazhamID.npc.TIELLEQUE, eventParam = 3, finishEvent = 208 },
     },
 }
 

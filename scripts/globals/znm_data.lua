@@ -262,7 +262,7 @@ xi.znm.POP_ITEMS =
             xi.keyItem.PURPLISH_GREY_SEAL,
         },
     },
-    { mob = 'Velionis',              item = xi.item.GOLDEN_TEETH,            tier = 1, seal = 0 },
+    { mob = 'Velionis',              item = xi.item.PILE_OF_GOLDEN_TEETH,    tier = 1, seal = 0 },
     { mob = 'Lil\' Apkallu',         item = xi.item.GREENLING,               tier = 1, seal = 0 },
     { mob = 'Chigre',                item = xi.item.BOTTLE_OF_SPOILT_BLOOD,  tier = 1, seal = 0 },
     { mob = 'Wulgaru',               item = xi.item.OPALUS_GEM,              tier = 2, seal = xi.keyItem.PINE_GREEN_SEAL },

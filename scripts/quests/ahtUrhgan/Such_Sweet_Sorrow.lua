@@ -9,7 +9,7 @@ local quest = Quest:new(xi.questLog.AHT_URHGAN, xi.quest.id.ahtUrhgan.SUCH_SWEET
 
 quest.reward =
 {
-    item = xi.item.MERROW_NO_17_LOCKET,
+    item = xi.item.MERROW_NO17S_LOCKET,
 }
 
 quest.sections =

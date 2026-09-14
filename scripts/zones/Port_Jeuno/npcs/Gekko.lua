@@ -15,8 +15,8 @@ entity.onTrigger = function(player, npc)
         { xi.item.ETHER,                             4832 },
         { xi.item.ROLANBERRY,                         120 },
         { xi.item.SCROLL_OF_REGEN_IV,               50400 },
-        { xi.item.COPY_OF_AUTUMNS_END_IN_GUSTABERG, 36000 },
-        { xi.item.COPY_OF_ACOLYTES_GRIEF,           31224 },
+        { xi.item.COPY_OF_ACOLYTES_GRIEF,           36000 },
+        { xi.item.COPY_OF_AUTUMNS_END_IN_GUSTABERG, 31224 },
     }
 
     player:showText(npc, zones[xi.zone.PORT_JEUNO].text.DUTY_FREE_SHOP_DIALOG)

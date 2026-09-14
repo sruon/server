@@ -22,9 +22,9 @@ local tradeBatches =
         blocked = xi.pre(xi.expansion.WOTG),
         items =
         {
-            xi.item.BLADEFISH_1,
+            xi.item.BLADEFISH,
             xi.item.GAVIAL_FISH,
-            xi.item.VEYDAL_WRASSE_1,
+            xi.item.VEYDAL_WRASSE,
             xi.item.MORINABALIGI,
             xi.item.TURNABALIGI,
             xi.item.KALKANBALIGI,
@@ -35,7 +35,7 @@ local tradeBatches =
             xi.item.YAYINBALIGI,
             xi.item.LAKERDA,
             xi.item.KILICBALIGI,
-            xi.item.MONKE_ONKE_1,
+            xi.item.MONKE_ONKE,
             xi.item.AHTAPOT,
             xi.item.ARMORED_PISCES,
             xi.item.MOLA_MOLA,
@@ -47,12 +47,12 @@ local tradeBatches =
         blocked = xi.pre(xi.expansion.ABYSSEA),
         items =
         {
-            xi.item.GUGRU_TUNA_1,
-            xi.item.ISTAVRIT_1,
-            xi.item.GIGANT_OCTOPUS_1,
-            xi.item.THREE_EYED_FISH_1,
+            xi.item.GUGRU_TUNA,
+            xi.item.ISTAVRIT,
+            xi.item.GIGANT_OCTOPUS,
+            xi.item.THREE_EYED_FISH,
             xi.item.GIGANT_SQUID,
-            xi.item.RHINOCHIMERA_1,
+            xi.item.RHINOCHIMERA,
             xi.item.GRIMMONITE,
             xi.item.TITANIC_SAWFISH,
             xi.item.PELAZOEA,
@@ -133,17 +133,17 @@ m:addOverride('xi.server.onServerStart', function()
                     {
                         {
                             162,
-                            xi.item.GIANT_CATFISH_1,
-                            xi.item.DARK_BASS_1,
-                            xi.item.OGRE_EEL_1,
+                            xi.item.GIANT_CATFISH,
+                            xi.item.DARK_BASS,
+                            xi.item.OGRE_EEL,
                             xi.item.ZAFMLUG_BASS,
                         },
 
                         {
                             163,
                             xi.item.ZAFMLUG_BASS,
-                            xi.item.GIANT_DONKO_1,
-                            xi.item.BHEFHEL_MARLIN_1,
+                            xi.item.GIANT_DONKO,
+                            xi.item.BHEFHEL_MARLIN,
                             xi.item.JUNGLE_CATFISH,
                             xi.item.SILVER_SHARK,
                         },

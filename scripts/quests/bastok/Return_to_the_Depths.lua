@@ -95,7 +95,7 @@ quest.sections =
                     local progress = quest:getVar(player, 'Prog')
 
                     if progress == 6 then
-                        return quest:progressEvent(42, 11, 131456, 384, 0, xi.item.MISAREAUX_GARLIC)
+                        return quest:progressEvent(42, 11, 131456, 384, 0, xi.item.BULB_OF_MISAREAUX_GARLIC)
                     elseif progress >= 7 then
                         return quest:event(43):oncePerZone()
                     end
@@ -131,9 +131,9 @@ quest.sections =
                 onTrade = function(player, npc, trade)
                     if
                         quest:getVar(player, 'Prog') == 1 and
-                        npcUtil.tradeMatches(trade, { { xi.item.MISAREAUX_GARLIC, 1 } })
+                        npcUtil.tradeMatches(trade, { { xi.item.BULB_OF_MISAREAUX_GARLIC, 1 } })
                     then
-                        return quest:progressEvent(99, 1, 1, 3, 0, xi.item.MISAREAUX_GARLIC)
+                        return quest:progressEvent(99, 1, 1, 3, 0, xi.item.BULB_OF_MISAREAUX_GARLIC)
                     end
                 end,
 
@@ -217,7 +217,7 @@ quest.sections =
             {
                 onTrigger = function(player, npc)
                     if quest:getVar(player, 'Prog') == 8 then
-                        return quest:progressEvent(5, 1, 131456, 384, 0, xi.item.MISAREAUX_GARLIC)
+                        return quest:progressEvent(5, 1, 131456, 384, 0, xi.item.BULB_OF_MISAREAUX_GARLIC)
                     end
                 end,
             },

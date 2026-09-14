@@ -13,7 +13,7 @@ entity.onTrigger = function(player, npc)
         {
             { xi.item.BARONE_COSCIALES,  101055 },
             { xi.item.BARONE_GAMBIERAS,  630255 },
-            { xi.item.BARONE_MANOPOLAS,  181905 },
+            { xi.item.SHADE_MITTENS,     181905 },
             { xi.item.BRASS_HARNESS,       2485 },
             { xi.item.HOLLY_CLOGS,         1625 },
             { xi.item.VIR_SUBLIGAR,     8000000 },

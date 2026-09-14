@@ -30,14 +30,14 @@ local testItemTable =
 {
     [xi.guild.FISHING] =
     {
-        xi.item.MOAT_CARP_1,
+        xi.item.MOAT_CARP,
         xi.item.CHEVAL_SALMON,
-        xi.item.GIANT_CATFISH_1,
-        xi.item.GUGRU_TUNA_1,
-        xi.item.MONKE_ONKE_1,
-        xi.item.BHEFHEL_MARLIN_1,
-        xi.item.BLADEFISH_1,
-        xi.item.THREE_EYED_FISH_1,
+        xi.item.GIANT_CATFISH,
+        xi.item.GUGRU_TUNA,
+        xi.item.MONKE_ONKE,
+        xi.item.BHEFHEL_MARLIN,
+        xi.item.BLADEFISH,
+        xi.item.THREE_EYED_FISH,
         xi.item.GIGANT_SQUID,
         xi.item.TIGER_SHARK,
     },

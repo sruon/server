@@ -132,13 +132,13 @@ describe('Chocobo raising retirement', function()
         assert(xi.chocoboRaising.retirement.hasHeldItems(player), 'Expected both held')
 
         raisingClient.leaveFreeSlots(player, 2)
-        player:addItem(xi.item.CHOCOBO_EGG_FAINTLY_WARM)
-        local start = raisingClient.trade(client, { xi.item.CHOCOBO_EGG_FAINTLY_WARM })
+        player:addItem(xi.item.CHOCOBO_EGG)
+        local start = raisingClient.trade(client, { xi.item.CHOCOBO_EGG })
         assert(start.eventId == xi.chocoboRaising.retirement.events[xi.zone.SOUTHERN_SAN_DORIA], 'Expected the hand-over event first')
         raisingClient.finish(client, 0)
 
         player.assert:hasItem(xi.item.VCS_REGISTRATION_CARD)
-        player.assert:hasItem(xi.item.CHOCOBO_EGG_FAINTLY_WARM)
+        player.assert:hasItem(xi.item.CHOCOBO_EGG)
     end)
 
     it('gives nothing to a player who gives up', function()

@@ -596,7 +596,7 @@ local relics =
         1,
         1
     },
-    [xi.item.MARKSMANS_GUN]     =
+    [xi.item.MARKSMAN_GUN]     =
     {
         {
             xi.item.ARQUEBUS,

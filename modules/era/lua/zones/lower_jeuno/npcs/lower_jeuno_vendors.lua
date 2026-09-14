@@ -81,7 +81,7 @@ m:addOverrideByEra('xi.zones.Lower_Jeuno.npcs.Susu.onTrigger', {
             { xi.item.SCROLL_OF_BARBLIND,      2030 },
             { xi.item.SCROLL_OF_BARBLINDRA,    2030 },
             { xi.item.SCROLL_OF_BARPARALYZE,    780 },
-            { xi.item.SCROLL_OF_BARPALARYZRA,   780 },
+            { xi.item.SCROLL_OF_BARPARALYZRA,   780 },
             { xi.item.SCROLL_OF_BARPOISON,      400 },
             { xi.item.SCROLL_OF_BARPOISONRA,    400 },
             { xi.item.SCROLL_OF_BARSILENCE,    4608 },

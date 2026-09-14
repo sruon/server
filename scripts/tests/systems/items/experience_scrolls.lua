@@ -9,11 +9,11 @@ describe('Experience scrolls', function()
     -- Source: https://wiki.ffo.jp/html/8068.html
     local scrolls =
     {
-        { id = xi.item.DRAGON_CHRONICLES,     level = 4,  min = 500, max = 1000 },
-        { id = xi.item.MIRATETES_MEMOIRS,     level = 20, min = 750, max = 1500 },
-        { id = xi.item.GINUVAS_BATTLE_THEORY, level = 65, min = 75,  max = 200  },
-        { id = xi.item.SCHULTZ_STRATAGEMS,    level = 65, min = 200, max = 500  },
-        { id = xi.item.HEROS_REFLECTIONS,     level = 60, min = 200, max = 500  },
+        { id = xi.item.PAGE_FROM_THE_DRAGON_CHRONICLES, level = 4,  min = 500, max = 1000 },
+        { id = xi.item.PAGE_FROM_MIRATETES_MEMOIRS,     level = 20, min = 750, max = 1500 },
+        { id = xi.item.COPY_OF_GINUVAS_BATTLE_THEORY,   level = 65, min = 75,  max = 200  },
+        { id = xi.item.COPY_OF_SCHULTZ_STRATAGEMS,      level = 65, min = 200, max = 500  },
+        { id = xi.item.PAGE_FROM_BALRAHNS_REFLECTIONS,  level = 60, min = 200, max = 500  },
     }
 
     local function setMeritMode(enabled)

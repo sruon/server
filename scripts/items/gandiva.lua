@@ -14,7 +14,7 @@ itemObject.onItemCheck = function(target, item, caster)
 end
 
 itemObject.onItemUse = function(target)
-    npcUtil.giveItem(target, { { xi.item.ARTEMIS_ARROW, 99 } }) -- Artemis' Arrow x99
+    npcUtil.giveItem(target, { { xi.item.ARTEMISS_ARROW, 99 } }) -- Artemis' Arrow x99
 end
 
 return itemObject

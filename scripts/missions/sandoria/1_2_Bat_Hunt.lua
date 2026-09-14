@@ -31,7 +31,7 @@ local function handleTradeEvent(player, trade, firstId, repeatId)
 
     if
         not isRepeated and
-        npcUtil.tradeMatches(trade, { { xi.item.ORCISH_MAIL_SCALES, 1 } })
+        npcUtil.tradeMatches(trade, { { xi.item.HANDFUL_OF_ORCISH_MAIL_SCALES, 1 } })
     then
         return mission:progressEvent(firstId)
     elseif

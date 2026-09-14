@@ -68,7 +68,7 @@ xi.chocoboRaising.onTrade = function(player, npc, trade)
     local saved         = player:getChocoboRaisingInfo()
 
     if
-        npcUtil.tradeHasExactly(trade, xi.item.CHOCOBO_EGG_FAINTLY_WARM) or
+        npcUtil.tradeHasExactly(trade, xi.item.CHOCOBO_EGG) or
         npcUtil.tradeHasExactly(trade, xi.item.CHOCOBO_EGG_SLIGHTLY_WARM) or
         npcUtil.tradeHasExactly(trade, xi.item.CHOCOBO_EGG_A_BIT_WARM) or
         npcUtil.tradeHasExactly(trade, xi.item.CHOCOBO_EGG_A_LITTLE_WARM) or

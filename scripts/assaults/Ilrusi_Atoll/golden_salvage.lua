@@ -47,8 +47,8 @@ content.loot =
     appraisalReward =
     {
         {
-            { itemId = xi.item.UNAPPRAISED_EARRING, weight =  7000 },
-            { itemId = xi.item.UNAPPRAISED_BOX,     weight =  3000 },
+            { itemId = xi.item.EARRING,             weight =  7000 },
+            { itemId = xi.item.BOX,                 weight =  3000 },
         },
     },
 

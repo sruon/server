@@ -18,10 +18,10 @@ local itemWantedTable =
 {
     [0] = { xi.item.PINCH_OF_VALKURM_SUNSAND },
     [1] = { xi.item.FADED_CRYSTAL            },
-    [2] = { xi.item.ORCISH_PLATE_ARMOR       },
+    [2] = { xi.item.ORCISH_ARMOR_PLATE       },
     [3] = { xi.item.MAGICKED_SKULL           },
     [4] = { xi.item.CUP_OF_DHALMEL_SALIVA    },
-    [5] = { xi.item.YAGUDO_CAULK             },
+    [5] = { xi.item.BLOCK_OF_YAGUDO_CAULK    },
     [6] = { xi.item.SIRENS_TEAR              },
     [7] = { xi.item.DANGRUF_STONE            },
     [8] = { xi.item.ORCISH_AXE               },

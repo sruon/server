@@ -11,7 +11,7 @@ local personal = xi.chocoboDig.personal
 local zoneId = xi.zone.EAST_RONFAURE
 
 local regularItem = xi.item.LITTLE_WORM
-local burrowItem  = xi.item.CHAMOMILE
+local burrowItem  = xi.item.SPRIG_OF_CHAMOMILE
 local boreItem    = xi.item.ARROWWOOD_LOG
 
 local hit  = 1

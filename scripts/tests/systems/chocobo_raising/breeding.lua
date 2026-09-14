@@ -72,7 +72,7 @@ describe('Chocobo breeding', function()
             end
 
             local yellowShare = {}
-            for _, itemId in ipairs({ xi.item.CHOCOBO_EGG_FAINTLY_WARM, xi.item.CHOCOBO_EGG_SOMEWHAT_WARM }) do
+            for _, itemId in ipairs({ xi.item.CHOCOBO_EGG, xi.item.CHOCOBO_EGG_SOMEWHAT_WARM }) do
                 local yellow = 0
                 for _ = 1, 400 do
                     if xi.chocoboRaising.allelesToColor(xi.chocoboRaising.rollNonBredEggAlleles(itemId)) == color.YELLOW then
@@ -84,7 +84,7 @@ describe('Chocobo breeding', function()
             end
 
             -- The true odds are 95% and 12% yellow.
-            assert(yellowShare[xi.item.CHOCOBO_EGG_FAINTLY_WARM] > 0.85, 'Expected a Faintly Warm egg to be mostly yellow')
+            assert(yellowShare[xi.item.CHOCOBO_EGG] > 0.85, 'Expected a Faintly Warm egg to be mostly yellow')
             assert(yellowShare[xi.item.CHOCOBO_EGG_SOMEWHAT_WARM] < 0.3, 'Expected a Somewhat Warm egg to be mostly coloured')
         end)
     end)

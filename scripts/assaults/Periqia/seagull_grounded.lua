@@ -43,9 +43,9 @@ content.loot =
     {
         {
             { itemId = xi.item.UNAPPRAISED_GLOVES,  weight =  4500 },
-            { itemId = xi.item.UNAPPRAISED_BOX,     weight =  3000 },
-            { itemId = xi.item.UNAPPRAISED_SWORD,   weight =  1300 },
-            { itemId = xi.item.UNAPPRAISED_POLEARM, weight =  1200 },
+            { itemId = xi.item.BOX,                 weight =  3000 },
+            { itemId = xi.item.SWORD,               weight =  1300 },
+            { itemId = xi.item.POLEARM,             weight =  1200 },
         },
     },
 

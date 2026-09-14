@@ -420,12 +420,12 @@ xi.chocoboRaising.validFoods =
     [xi.item.TORNADO_SALAD               ] = { category = food.CURE,   hunger =  64, affection =   0, glow = glow.GREEN,  cures = allBad },
     -- Only the tonic is used when traded with other items.
     [xi.item.CHOCOTONIC                  ] = { category = food.CURE,   hunger =  32, affection = -48, glow = glow.YELLOW, wakes = true, alone = true },
-    [xi.item.VEGETABLE_PASTE             ] = { category = food.FOOD,   hunger =  16, affection =   0, glow = glow.RED,    chick = { hunger = 64, affection = 16 } },
-    [xi.item.HERB_PASTE                  ] = { category = food.FOOD,   hunger =  32, affection = -48, glow = glow.RED,    chick = { hunger = 64, affection = 16, cures = { cond.STOMACHACHE, cond.SICK, cond.VERY_ILL, cond.INJURED } } },
-    [xi.item.CARROT_PASTE                ] = { category = food.FOOD,   hunger =  64, affection =  24, glow = glow.RED,    chick = { hunger = 160, affection = 8 }, randomStat = { stats = { 1, 2, 3, 4 }, chance = 100, eitherWay = true } },
-    [xi.item.WORM_PASTE                  ] = { category = food.FOOD,   hunger =  32, affection =   0, glow = glow.RED,    chick = { hunger = 128, affection = 24, randomStat = { stats = { 1, 2, 3, 4 }, chance = 100, lowers = true } } },
-    [xi.item.LETHE_CONSOMME              ] = { category = food.STAT,   hunger =  64, affection =   8, glow = glow.GREEN,  forgetsAbility = true },
-    [xi.item.LETHE_POTAGE                ] = { category = food.STAT,   hunger =  64, affection =   8, glow = glow.GREEN,  forgetsAbility = true },
+    [xi.item.BALL_OF_VEGETABLE_PASTE             ] = { category = food.FOOD,   hunger =  16, affection =   0, glow = glow.RED,    chick = { hunger = 64, affection = 16 } },
+    [xi.item.BALL_OF_HERB_PASTE                  ] = { category = food.FOOD,   hunger =  32, affection = -48, glow = glow.RED,    chick = { hunger = 64, affection = 16, cures = { cond.STOMACHACHE, cond.SICK, cond.VERY_ILL, cond.INJURED } } },
+    [xi.item.BALL_OF_CARROT_PASTE        ] = { category = food.FOOD,   hunger =  64, affection =  24, glow = glow.RED,    chick = { hunger = 160, affection = 8 }, randomStat = { stats = { 1, 2, 3, 4 }, chance = 100, eitherWay = true } },
+    [xi.item.BALL_OF_WORM_PASTE          ] = { category = food.FOOD,   hunger =  32, affection =   0, glow = glow.RED,    chick = { hunger = 128, affection = 24, randomStat = { stats = { 1, 2, 3, 4 }, chance = 100, lowers = true } } },
+    [xi.item.BOWL_OF_LETHE_CONSOMME      ] = { category = food.STAT,   hunger =  64, affection =   8, glow = glow.GREEN,  forgetsAbility = true },
+    [xi.item.BOWL_OF_LETHE_POTAGE        ] = { category = food.STAT,   hunger =  64, affection =   8, glow = glow.GREEN,  forgetsAbility = true },
 }
 
 -- Rest has a chance to cure these.

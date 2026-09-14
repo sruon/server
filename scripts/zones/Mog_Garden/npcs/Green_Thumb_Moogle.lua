@@ -39,9 +39,9 @@ entity.onEventFinish = function(player, csid, option, npc)
             { xi.item.BAG_OF_HERB_SEEDS,       280 },
             { xi.item.BAG_OF_CACTUS_STEMS,    1685 },
             { xi.item.BAG_OF_WILDGRASS_SEEDS,  320 },
-            { xi.item.CHESTNUT_TREE_SAP,      1111 }, -- (11th Anniversary Campaign)
-            { xi.item.MONARCH_BEETLE_SALIVA,  1111 }, -- (11th Anniversary Campaign)
-            { xi.item.GOLDEN_SEED_POUCH,      1111 }, -- (11th Anniversary Campaign)
+            { xi.item.PITCHER_OF_CHESTNUT_TREE_SAP, 1111 }, -- (11th Anniversary Campaign)
+            { xi.item.JAR_OF_MONARCH_BEETLE_SALIVA, 1111 }, -- (11th Anniversary Campaign)
+            { xi.item.GOLDEN_SEED_POUCH,            1111 }, -- (11th Anniversary Campaign)
         }
         xi.shop.general(player, stock)
 

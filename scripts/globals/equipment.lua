@@ -211,7 +211,7 @@ xi.equipment.relicIDs =
         xi.item.YOICHINOYUMI_119,
         xi.item.YOICHINOYUMI_119_II,
         xi.item.YOICHINOYUMI_119_III,
-        xi.item.YOICHINOYUMI_119_III_NO_QUIVER,
+        xi.item.YOICHINOYUMI_119_III_AUG,
     },
 
     [xi.equipment.relic.ANNIHILATOR] =
@@ -226,7 +226,7 @@ xi.equipment.relicIDs =
         xi.item.ANNIHILATOR_119,
         xi.item.ANNIHILATOR_119_II,
         xi.item.ANNIHILATOR_119_III,
-        xi.item.ANNIHILATOR_119_III_NO_QUIVER,
+        xi.item.ANNIHILATOR_119_III_AUG,
     },
 
     [xi.equipment.relic.GJALLARHORN] =
@@ -273,11 +273,11 @@ local artifactArmorRanges =
     { xi.item.MAGUS_BAZUBANDS,     xi.item.PUPPETRY_DASTANAS    }, -- ToAU Hand
     { xi.item.MAGUS_CHARUQS,       xi.item.PUPPETRY_BABOUCHES   }, -- ToAU Feet
     { xi.item.MAGUS_SHALWAR,       xi.item.PUPPETRY_CHURIDARS   }, -- ToAU Legs
-    { xi.item.DANCERS_TIARA_M,     xi.item.SCHOLARS_MORTARBOARD }, -- WotG Head
-    { xi.item.DANCERS_CASAQUE_M,   xi.item.SCHOLARS_GOWN        }, -- WotG Body
-    { xi.item.DANCERS_BANGLES_M,   xi.item.SCHOLARS_BRACERS     }, -- WotG Hand
-    { xi.item.DANCERS_TOE_SHOES_M, xi.item.SCHOLARS_LOAFERS     }, -- WotG Feet
-    { xi.item.DANCERS_TIGHTS_M,    xi.item.HOMAM_GAMBIERAS      }, -- WotG Legs "TODO / BUG?": SCHOLARS_PANTS = 16311
+    { xi.item.DANCERS_TIARA,       xi.item.SCHOLARS_MORTARBOARD }, -- WotG Head
+    { xi.item.DANCERS_CASAQUE,     xi.item.SCHOLARS_GOWN        }, -- WotG Body
+    { xi.item.DANCERS_BANGLES,     xi.item.SCHOLARS_BRACERS     }, -- WotG Hand
+    { xi.item.DANCERS_TOE_SHOES,   xi.item.SCHOLARS_LOAFERS     }, -- WotG Feet
+    { xi.item.DANCERS_TIGHTS,      xi.item.HOMAM_GAMBIERAS      }, -- WotG Legs "TODO / BUG?": SCHOLARS_PANTS = 16311
 }
 
 xi.equipment.isArtifactArmor = function(itemId)

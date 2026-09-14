@@ -41,8 +41,8 @@ content.loot =
     appraisalReward = -- TODO: More data on loot. Box is 9/20 on current data.
     {
         {
-            { itemId = xi.item.UNAPPRAISED_BOX,     weight = 3000 },
-            { itemId = xi.item.UNAPPRAISED_EARRING, weight = 7000 },
+            { itemId = xi.item.BOX,                 weight = 3000 },
+            { itemId = xi.item.EARRING,             weight = 7000 },
         },
     },
 

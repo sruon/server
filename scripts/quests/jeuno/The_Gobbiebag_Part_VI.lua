@@ -21,7 +21,7 @@ local params =
     tradeItems =
     {
         xi.item.SHAKUDO_INGOT,
-        xi.item.SQUARE_OF_BALLON_CLOTH,
+        xi.item.SQUARE_OF_BALLOON_CLOTH,
         xi.item.IOLITE,
         xi.item.HIGH_QUALITY_EFT_SKIN,
     },

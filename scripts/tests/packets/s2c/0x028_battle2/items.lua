@@ -365,8 +365,8 @@ local packets =
     ['Experience scroll'] =
     {
         test = function(player, mob)
-            player:addItem(xi.item.DRAGON_CHRONICLES)
-            local scroll = player:findItem(xi.item.DRAGON_CHRONICLES)
+            player:addItem(xi.item.PAGE_FROM_THE_DRAGON_CHRONICLES)
+            local scroll = player:findItem(xi.item.PAGE_FROM_THE_DRAGON_CHRONICLES)
             assert(scroll, 'Could not find scroll')
             player.actions:useItem(player, scroll:getSlotID())
             xi.test.world:tickEntity(player)
@@ -395,7 +395,7 @@ local packets =
                                 sub_kind  = 0,
                                 info      = 0,
                                 scale     = 0,
-                                value     = xi.item.DRAGON_CHRONICLES,
+                                value     = xi.item.PAGE_FROM_THE_DRAGON_CHRONICLES,
                                 message   = xi.msg.basic.ITEM_USES,
                                 bit       = 0,
                                 has_proc  = false,
@@ -410,7 +410,7 @@ local packets =
                 trg_sum = 1,
                 res_sum = 0,
                 cmd_no  = xi.action.category.ITEM_FINISH,
-                cmd_arg = xi.item.DRAGON_CHRONICLES,
+                cmd_arg = xi.item.PAGE_FROM_THE_DRAGON_CHRONICLES,
                 info    = 0,
                 target  =
                 {

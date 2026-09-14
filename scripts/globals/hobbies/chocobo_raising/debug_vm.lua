@@ -98,7 +98,7 @@ local storyFlags =
 -- RECEIVE_ITEM's item number, in menu order.
 local debugItems =
 {
-    [1] = xi.item.CHOCOBO_EGG_FAINTLY_WARM,
+    [1] = xi.item.CHOCOBO_EGG,
     [2] = xi.item.CHOCOBO_EGG_SLIGHTLY_WARM,
     [3] = xi.item.CHOCOBO_EGG_A_BIT_WARM,
     [4] = xi.item.CHOCOBO_EGG_A_LITTLE_WARM,

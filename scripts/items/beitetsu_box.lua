@@ -11,7 +11,7 @@ itemObject.onItemCheck = function(target, item, caster)
 end
 
 itemObject.onItemUse = function(target)
-    npcUtil.giveItem(target, { { xi.item.BEITETSU, math.randomInt(15, 30) } })
+    npcUtil.giveItem(target, { { xi.item.CHUNK_OF_BEITETSU, math.randomInt(15, 30) } })
 end
 
 return itemObject

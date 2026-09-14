@@ -12,9 +12,9 @@ entity.onTrade = function(player, npc, trade)
     if
         player:getQuestStatus(xi.questLog.WINDURST, xi.quest.id.windurst.CHOCOBILIOUS) == xi.questStatus.QUEST_ACCEPTED and
         player:getCharVar('ChocobiliousQuest') == 1 and
-        npcUtil.tradeHas(trade, xi.item.PAPAKA_GRASS)
+        npcUtil.tradeHas(trade, xi.item.SPRIG_OF_PAPAKA_GRASS)
     then
-        player:startEvent(229, 0, xi.item.PAPAKA_GRASS)
+        player:startEvent(229, 0, xi.item.SPRIG_OF_PAPAKA_GRASS)
 
     -- PAYING LIP SERVICE
     elseif player:getQuestStatus(xi.questLog.WINDURST, xi.quest.id.windurst.PAYING_LIP_SERVICE) >= xi.questStatus.QUEST_ACCEPTED then
@@ -35,9 +35,9 @@ entity.onTrigger = function(player, npc)
     if chocobilious == xi.questStatus.QUEST_ACCEPTED and chocobiliousCS == 2 then
         player:startEvent(230) -- after trading
     elseif chocobilious == xi.questStatus.QUEST_ACCEPTED and chocobiliousCS == 1 then
-        player:startEvent(228, 0, xi.item.PAPAKA_GRASS) -- after first talk
+        player:startEvent(228, 0, xi.item.SPRIG_OF_PAPAKA_GRASS) -- after first talk
     elseif chocobilious == xi.questStatus.QUEST_ACCEPTED then
-        player:startEvent(227, 0, xi.item.PAPAKA_GRASS) -- first talk
+        player:startEvent(227, 0, xi.item.SPRIG_OF_PAPAKA_GRASS) -- first talk
 
     -- PAYING LIP SERVICE
     elseif payingLipService == xi.questStatus.QUEST_ACCEPTED then

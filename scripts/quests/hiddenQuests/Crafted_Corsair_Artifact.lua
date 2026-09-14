@@ -42,10 +42,10 @@ quest.sections =
                             npcUtil.tradeMatches(
                                 trade,
                                 {
-                                    { xi.item.MYTHRIL_SHEET,                 1 },
-                                    { xi.item.SQUARE_OF_KARAKUL_LEATHER,     1 },
-                                    { xi.item.SQUARE_OF_LM_BUFFALO_LEATHER,  1 },
-                                    { xi.item.SQUARE_OF_WOLF_FELT,           1 },
+                                    { xi.item.MYTHRIL_SHEET,                       1 },
+                                    { xi.item.SQUARE_OF_KARAKUL_LEATHER,           1 },
+                                    { xi.item.SQUARE_OF_LAMINATED_BUFFALO_LEATHER, 1 },
+                                    { xi.item.SQUARE_OF_WOLF_FELT,                 1 },
                                 }
                             )
                         then

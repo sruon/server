@@ -37,7 +37,7 @@ describe('Kid Mithra shops', function()
             -- Eight flowers, so slot 9 is past the end of the stock.
             buy(9)
 
-            assert(player:getItemCount(xi.item.CHOCOBO_EGG_FAINTLY_WARM) == 0, 'Expected no egg at level 1')
+            assert(player:getItemCount(xi.item.CHOCOBO_EGG) == 0, 'Expected no egg at level 1')
             assert(GetServerVariable('[Dabih]Level') == 1, 'Expected level 1')
         end)
 
@@ -52,7 +52,7 @@ describe('Kid Mithra shops', function()
                 buy(9)
             end
 
-            local eggs = player:getItemCount(xi.item.CHOCOBO_EGG_FAINTLY_WARM)
+            local eggs = player:getItemCount(xi.item.CHOCOBO_EGG)
             assert(eggs == 5, string.format('Expected five eggs, got %d', eggs))
         end)
 

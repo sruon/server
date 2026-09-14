@@ -11,7 +11,7 @@ local quest = Quest:new(xi.questLog.OTHER_AREAS, xi.quest.id.otherAreas.SECRETS_
 
 quest.reward =
 {
-    item = xi.item.MIRATETES_MEMOIRS,
+    item = xi.item.PAGE_FROM_MIRATETES_MEMOIRS,
 }
 
 quest.sections =

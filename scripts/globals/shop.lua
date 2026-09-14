@@ -233,7 +233,7 @@ xi.shop.generalGuildStock =
         { xi.item.SARUTA_ORANGE,                32, xi.craftRank.AMATEUR    },
         { xi.item.BUNCH_OF_SAN_DORIAN_GRAPES,   76, xi.craftRank.AMATEUR    },
         { xi.item.JAR_OF_MISO,                2500, xi.craftRank.AMATEUR    },
-        { xi.item.JAR_OF_SOY_SAUCE,           2500, xi.craftRank.AMATEUR    },
+        { xi.item.BOTTLE_OF_SOY_SAUCE,        2500, xi.craftRank.AMATEUR    },
         { xi.item.HANDFUL_OF_DRIED_BONITO,    2500, xi.craftRank.AMATEUR    },
         { xi.item.BAG_OF_SAN_DORIAN_FLOUR,      60, xi.craftRank.RECRUIT    },
         { xi.item.POT_OF_MAPLE_SUGAR,           40, xi.craftRank.RECRUIT    },
@@ -491,7 +491,7 @@ xi.shop.generalGuildStock =
         { xi.item.SMITHING_KIT_40,              4150, xi.craftRank.AMATEUR    },
         { xi.item.SMITHING_KIT_45,              5300, xi.craftRank.AMATEUR    },
         { xi.item.SMITHING_KIT_50,              7600, xi.craftRank.AMATEUR    },
-        { xi.item.NIOBIUM_ORE,               1126125, xi.craftRank.AMATEUR    },
+        { xi.item.CHUNK_OF_NIOBIUM_ORE,      1126125, xi.craftRank.AMATEUR    },
     }
 }
 
@@ -660,7 +660,7 @@ xi.shop.curioVendorMoogleStock =
         { xi.item.BLACK_CURRY_BUN,               4000, xi.keyItem.RHAPSODY_IN_FUCHSIA },
         { xi.item.TAVNAZIAN_TACO,                4000, xi.keyItem.RHAPSODY_IN_FUCHSIA },
         { xi.item.DISH_OF_HOMEMADE_CARBONARA,    4000, xi.keyItem.RHAPSODY_IN_FUCHSIA },
-        { xi.item.POT_AUF_FEU,                   3500, xi.keyItem.RHAPSODY_IN_CRIMSON },
+        { xi.item.POT_AU_FEU,                    3500, xi.keyItem.RHAPSODY_IN_CRIMSON },
         { xi.item.JACK_O_LANTERN,                1000, xi.keyItem.RHAPSODY_IN_WHITE   },
         { xi.item.PLATE_OF_SQUID_SUSHI,          6000, xi.keyItem.RHAPSODY_IN_FUCHSIA },
         { xi.item.PLATE_OF_SOLE_SUSHI,           7000, xi.keyItem.RHAPSODY_IN_FUCHSIA },
@@ -693,7 +693,7 @@ xi.shop.curioVendorMoogleStock =
         { xi.item.STUFFED_PITARU,                1000, xi.keyItem.RHAPSODY_IN_WHITE   },
         { xi.item.POULTRY_PITARU,                2000, xi.keyItem.RHAPSODY_IN_AZURE   },
         { xi.item.SEAFOOD_PITARU,                2500, xi.keyItem.RHAPSODY_IN_CRIMSON },
-        { xi.item.B_E_W_PITARU,                  3000, xi.keyItem.RHAPSODY_IN_FUCHSIA },
+        { xi.item.BEW_PITARU,                    3000, xi.keyItem.RHAPSODY_IN_FUCHSIA },
         { xi.item.PIECE_OF_SHIROMOCHI,           3000, xi.keyItem.RHAPSODY_IN_CRIMSON },
         { xi.item.PIECE_OF_KUSAMOCHI,            3000, xi.keyItem.RHAPSODY_IN_CRIMSON },
         { xi.item.PIECE_OF_AKAMOCHI,             3000, xi.keyItem.RHAPSODY_IN_CRIMSON },
@@ -794,7 +794,7 @@ xi.shop.curioVendorMoogleStock =
         { xi.item.QUICKSAND_COFFER_KEY,  5000, xi.keyItem.RHAPSODY_IN_UMBER },
         { xi.item.GROTTO_CHEST_KEY,      2500, xi.keyItem.RHAPSODY_IN_WHITE },
         { xi.item.ONZOZO_CHEST_KEY,      2500, xi.keyItem.RHAPSODY_IN_WHITE },
-        { xi.item.TORAIMARI_COFFER_KEY,  5000, xi.keyItem.RHAPSODY_IN_UMBER },
+        { xi.item.TORAIMARAI_COFFER_KEY, 5000, xi.keyItem.RHAPSODY_IN_UMBER },
         { xi.item.RUAUN_COFFER_KEY,      5000, xi.keyItem.RHAPSODY_IN_UMBER },
         { xi.item.GROTTO_COFFER_KEY,     5000, xi.keyItem.RHAPSODY_IN_UMBER },
         { xi.item.VELUGANNON_COFFER_KEY, 5000, xi.keyItem.RHAPSODY_IN_UMBER },
@@ -1052,7 +1052,7 @@ local regionalStockTable =
     {
         { xi.item.CHUNK_OF_ROCK_SALT,       16 },
         { xi.item.HANDFUL_OF_FISH_SCALES,   99 },
-        { xi.item.CHAMOMILE,               135 },
+        { xi.item.SPRIG_OF_CHAMOMILE,      135 },
         { xi.item.SWEET_WILLIAM,          1872 },
     },
     [xi.region.ZULKHEIM] =

@@ -13,7 +13,7 @@ entity.onTrigger = function(player, npc)
         [xi.assault.mission.LEBROS_SUPPLIES] =
         {
             {
-                { itemId = xi.item.UNAPPRAISED_BOX,  weight = 300 },
+                { itemId = xi.item.BOX,              weight = 300 },
                 { itemId = xi.item.UNAPPRAISED_CAPE, weight = 700 },
             },
         },
@@ -21,10 +21,10 @@ entity.onTrigger = function(player, npc)
         [xi.assault.mission.TROLL_FUGITIVES] =
         {
             {
-                { itemId = xi.item.UNAPPRAISED_AXE,       weight = 300 },
-                { itemId = xi.item.UNAPPRAISED_POLEARM,   weight = 200 },
-                { itemId = xi.item.UNAPPRAISED_HEADPIECE, weight = 100 },
-                { itemId = xi.item.UNAPPRAISED_BOX,       weight = 400 },
+                { itemId = xi.item.AXE,                   weight = 300 },
+                { itemId = xi.item.POLEARM,               weight = 200 },
+                { itemId = xi.item.HEADPIECE,             weight = 100 },
+                { itemId = xi.item.BOX,                   weight = 400 },
             },
         },
     }

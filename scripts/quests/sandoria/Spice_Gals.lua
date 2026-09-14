@@ -13,7 +13,7 @@ local quest = Quest:new(xi.questLog.SANDORIA, xi.quest.id.sandoria.SPICE_GALS)
 
 quest.reward =
 {
-    item = xi.item.MIRATETES_MEMOIRS,
+    item = xi.item.PAGE_FROM_MIRATETES_MEMOIRS,
     fame = 0,
 }
 

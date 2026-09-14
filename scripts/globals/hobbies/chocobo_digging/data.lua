@@ -89,16 +89,16 @@ xi.chocoboDig.digInfo =
         },
         [xi.chocoboDig.layer.BORE] = -- Set: Bones
         {
-            [ 1] = { xi.item.BONE_CHIP,                 150, xi.craftRank.AMATEUR    },
-            [ 2] = { xi.item.HANDFUL_OF_FISH_SCALES,    150, xi.craftRank.AMATEUR    },
-            [ 3] = { xi.item.SEASHELL,                  150, xi.craftRank.RECRUIT    },
-            [ 4] = { xi.item.HIGH_QUALITY_PUGIL_SCALES,  50, xi.craftRank.INITIATE   },
-            [ 5] = { xi.item.TITANICTUS_SHELL,           50, xi.craftRank.APPRENTICE },
-            [ 6] = { xi.item.DEMON_HORN,                 10, xi.craftRank.JOURNEYMAN },
-            [ 7] = { xi.item.HANDFUL_OF_WYVERN_SCALES,    5, xi.craftRank.CRAFTSMAN  },
-            [ 8] = { xi.item.TURTLE_SHELL,                5, xi.craftRank.CRAFTSMAN  },
-            [ 9] = { xi.item.DEMON_SKULL,                 1, xi.craftRank.ARTISAN    },
-            [10] = { xi.item.HANDFUL_OF_DRAGON_SCALES,    1, xi.craftRank.ARTISAN    },
+            [ 1] = { xi.item.BONE_CHIP,                           150, xi.craftRank.AMATEUR    },
+            [ 2] = { xi.item.HANDFUL_OF_FISH_SCALES,              150, xi.craftRank.AMATEUR    },
+            [ 3] = { xi.item.SEASHELL,                            150, xi.craftRank.RECRUIT    },
+            [ 4] = { xi.item.HANDFUL_OF_HIGH_QUALITY_PUGIL_SCALES, 50, xi.craftRank.INITIATE   },
+            [ 5] = { xi.item.TITANICTUS_SHELL,                     50, xi.craftRank.APPRENTICE },
+            [ 6] = { xi.item.DEMON_HORN,                           10, xi.craftRank.JOURNEYMAN },
+            [ 7] = { xi.item.HANDFUL_OF_WYVERN_SCALES,              5, xi.craftRank.CRAFTSMAN  },
+            [ 8] = { xi.item.TURTLE_SHELL,                          5, xi.craftRank.CRAFTSMAN  },
+            [ 9] = { xi.item.DEMON_SKULL,                           1, xi.craftRank.ARTISAN    },
+            [10] = { xi.item.HANDFUL_OF_DRAGON_SCALES,              1, xi.craftRank.ARTISAN    },
         },
     },
 
@@ -216,7 +216,7 @@ xi.chocoboDig.digInfo =
     {
         [xi.chocoboDig.layer.TREASURE] =
         {
-            [1] = { xi.item.ALEXANDRITE, 5, xi.craftRank.ADEPT },
+            [1] = { xi.item.PIECE_OF_ALEXANDRITE, 5, xi.craftRank.ADEPT },
         },
         [xi.chocoboDig.layer.REGULAR] =
         {
@@ -260,7 +260,7 @@ xi.chocoboDig.digInfo =
     {
         [xi.chocoboDig.layer.TREASURE] =
         {
-            [1] = { xi.item.ALEXANDRITE, 5, xi.craftRank.ADEPT },
+            [1] = { xi.item.PIECE_OF_ALEXANDRITE, 5, xi.craftRank.ADEPT },
         },
         [xi.chocoboDig.layer.REGULAR] =
         {
@@ -347,7 +347,7 @@ xi.chocoboDig.digInfo =
         [xi.chocoboDig.layer.BURROW] = -- Set: Gysahl Greens
         {
             [1] = { xi.item.BUNCH_OF_GYSAHL_GREENS, 150, xi.craftRank.AMATEUR  },
-            [2] = { xi.item.CHAMOMILE,               50, xi.craftRank.AMATEUR  },
+            [2] = { xi.item.SPRIG_OF_CHAMOMILE,      50, xi.craftRank.AMATEUR  },
             [3] = { xi.item.GINGER_ROOT,             50, xi.craftRank.RECRUIT  },
             [4] = { xi.item.HEAD_OF_NAPA,            50, xi.craftRank.INITIATE },
         },
@@ -594,7 +594,7 @@ xi.chocoboDig.digInfo =
         [xi.chocoboDig.layer.BURROW] = -- Set: Gysahl Greens
         {
             [1] = { xi.item.BUNCH_OF_GYSAHL_GREENS, 150, xi.craftRank.AMATEUR  },
-            [2] = { xi.item.CHAMOMILE,               50, xi.craftRank.AMATEUR  },
+            [2] = { xi.item.SPRIG_OF_CHAMOMILE,      50, xi.craftRank.AMATEUR  },
             [3] = { xi.item.GINGER_ROOT,             50, xi.craftRank.RECRUIT  },
             [4] = { xi.item.HEAD_OF_NAPA,            50, xi.craftRank.INITIATE },
         },
@@ -653,16 +653,16 @@ xi.chocoboDig.digInfo =
         },
         [xi.chocoboDig.layer.BORE] = -- Set: Bones
         {
-            [ 1] = { xi.item.BONE_CHIP,                 150, xi.craftRank.AMATEUR    },
-            [ 2] = { xi.item.HANDFUL_OF_FISH_SCALES,    150, xi.craftRank.AMATEUR    },
-            [ 3] = { xi.item.SEASHELL,                  150, xi.craftRank.RECRUIT    },
-            [ 4] = { xi.item.HIGH_QUALITY_PUGIL_SCALES,  50, xi.craftRank.INITIATE   },
-            [ 5] = { xi.item.TITANICTUS_SHELL,           50, xi.craftRank.APPRENTICE },
-            [ 6] = { xi.item.DEMON_HORN,                 10, xi.craftRank.JOURNEYMAN },
-            [ 7] = { xi.item.HANDFUL_OF_WYVERN_SCALES,    5, xi.craftRank.CRAFTSMAN  },
-            [ 8] = { xi.item.TURTLE_SHELL,                5, xi.craftRank.CRAFTSMAN  },
-            [ 9] = { xi.item.DEMON_SKULL,                 1, xi.craftRank.ARTISAN    },
-            [10] = { xi.item.HANDFUL_OF_DRAGON_SCALES,    1, xi.craftRank.ARTISAN    },
+            [ 1] = { xi.item.BONE_CHIP,                           150, xi.craftRank.AMATEUR    },
+            [ 2] = { xi.item.HANDFUL_OF_FISH_SCALES,              150, xi.craftRank.AMATEUR    },
+            [ 3] = { xi.item.SEASHELL,                            150, xi.craftRank.RECRUIT    },
+            [ 4] = { xi.item.HANDFUL_OF_HIGH_QUALITY_PUGIL_SCALES, 50, xi.craftRank.INITIATE   },
+            [ 5] = { xi.item.TITANICTUS_SHELL,                     50, xi.craftRank.APPRENTICE },
+            [ 6] = { xi.item.DEMON_HORN,                           10, xi.craftRank.JOURNEYMAN },
+            [ 7] = { xi.item.HANDFUL_OF_WYVERN_SCALES,              5, xi.craftRank.CRAFTSMAN  },
+            [ 8] = { xi.item.TURTLE_SHELL,                          5, xi.craftRank.CRAFTSMAN  },
+            [ 9] = { xi.item.DEMON_SKULL,                           1, xi.craftRank.ARTISAN    },
+            [10] = { xi.item.HANDFUL_OF_DRAGON_SCALES,              1, xi.craftRank.ARTISAN    },
         },
     },
 
@@ -721,7 +721,7 @@ xi.chocoboDig.digInfo =
         [xi.chocoboDig.layer.BURROW] = -- Set: Gysahl Greens
         {
             [1] = { xi.item.BUNCH_OF_GYSAHL_GREENS, 150, xi.craftRank.AMATEUR  },
-            [2] = { xi.item.CHAMOMILE,               50, xi.craftRank.AMATEUR  },
+            [2] = { xi.item.SPRIG_OF_CHAMOMILE,      50, xi.craftRank.AMATEUR  },
             [3] = { xi.item.GINGER_ROOT,             50, xi.craftRank.RECRUIT  },
             [4] = { xi.item.HEAD_OF_NAPA,            50, xi.craftRank.INITIATE },
         },
@@ -761,7 +761,7 @@ xi.chocoboDig.digInfo =
         [xi.chocoboDig.layer.BURROW] = -- Set: Gysahl Greens
         {
             [1] = { xi.item.BUNCH_OF_GYSAHL_GREENS, 150, xi.craftRank.AMATEUR  },
-            [2] = { xi.item.CHAMOMILE,               50, xi.craftRank.AMATEUR  },
+            [2] = { xi.item.SPRIG_OF_CHAMOMILE,      50, xi.craftRank.AMATEUR  },
             [3] = { xi.item.GINGER_ROOT,             50, xi.craftRank.RECRUIT  },
             [4] = { xi.item.HEAD_OF_NAPA,            50, xi.craftRank.INITIATE },
         },
@@ -801,7 +801,7 @@ xi.chocoboDig.digInfo =
         [xi.chocoboDig.layer.BURROW] = -- Set: Gysahl Greens
         {
             [1] = { xi.item.BUNCH_OF_GYSAHL_GREENS, 150, xi.craftRank.AMATEUR  },
-            [2] = { xi.item.CHAMOMILE,               50, xi.craftRank.AMATEUR  },
+            [2] = { xi.item.SPRIG_OF_CHAMOMILE,      50, xi.craftRank.AMATEUR  },
             [3] = { xi.item.GINGER_ROOT,             50, xi.craftRank.RECRUIT  },
             [4] = { xi.item.HEAD_OF_NAPA,            50, xi.craftRank.INITIATE },
         },
@@ -845,16 +845,16 @@ xi.chocoboDig.digInfo =
         },
         [xi.chocoboDig.layer.BORE] = -- Set: Bones
         {
-            [ 1] = { xi.item.BONE_CHIP,                 150, xi.craftRank.AMATEUR    },
-            [ 2] = { xi.item.HANDFUL_OF_FISH_SCALES,    150, xi.craftRank.AMATEUR    },
-            [ 3] = { xi.item.SEASHELL,                  150, xi.craftRank.RECRUIT    },
-            [ 4] = { xi.item.HIGH_QUALITY_PUGIL_SCALES,  50, xi.craftRank.INITIATE   },
-            [ 5] = { xi.item.TITANICTUS_SHELL,           50, xi.craftRank.APPRENTICE },
-            [ 6] = { xi.item.DEMON_HORN,                 10, xi.craftRank.JOURNEYMAN },
-            [ 7] = { xi.item.HANDFUL_OF_WYVERN_SCALES,    5, xi.craftRank.CRAFTSMAN  },
-            [ 8] = { xi.item.TURTLE_SHELL,                5, xi.craftRank.CRAFTSMAN  },
-            [ 9] = { xi.item.DEMON_SKULL,                 1, xi.craftRank.ARTISAN    },
-            [10] = { xi.item.HANDFUL_OF_DRAGON_SCALES,    1, xi.craftRank.ARTISAN    },
+            [ 1] = { xi.item.BONE_CHIP,                           150, xi.craftRank.AMATEUR    },
+            [ 2] = { xi.item.HANDFUL_OF_FISH_SCALES,              150, xi.craftRank.AMATEUR    },
+            [ 3] = { xi.item.SEASHELL,                            150, xi.craftRank.RECRUIT    },
+            [ 4] = { xi.item.HANDFUL_OF_HIGH_QUALITY_PUGIL_SCALES, 50, xi.craftRank.INITIATE   },
+            [ 5] = { xi.item.TITANICTUS_SHELL,                     50, xi.craftRank.APPRENTICE },
+            [ 6] = { xi.item.DEMON_HORN,                           10, xi.craftRank.JOURNEYMAN },
+            [ 7] = { xi.item.HANDFUL_OF_WYVERN_SCALES,              5, xi.craftRank.CRAFTSMAN  },
+            [ 8] = { xi.item.TURTLE_SHELL,                          5, xi.craftRank.CRAFTSMAN  },
+            [ 9] = { xi.item.DEMON_SKULL,                           1, xi.craftRank.ARTISAN    },
+            [10] = { xi.item.HANDFUL_OF_DRAGON_SCALES,              1, xi.craftRank.ARTISAN    },
         },
     },
 
@@ -962,7 +962,7 @@ xi.chocoboDig.digInfo =
         [xi.chocoboDig.layer.BURROW] = -- Set: Gysahl Greens
         {
             [1] = { xi.item.BUNCH_OF_GYSAHL_GREENS, 150, xi.craftRank.AMATEUR  },
-            [2] = { xi.item.CHAMOMILE,               50, xi.craftRank.AMATEUR  },
+            [2] = { xi.item.SPRIG_OF_CHAMOMILE,      50, xi.craftRank.AMATEUR  },
             [3] = { xi.item.GINGER_ROOT,             50, xi.craftRank.RECRUIT  },
             [4] = { xi.item.HEAD_OF_NAPA,            50, xi.craftRank.INITIATE },
         },
@@ -1002,7 +1002,7 @@ xi.chocoboDig.digInfo =
         [xi.chocoboDig.layer.BURROW] = -- Set: Gysahl Greens
         {
             [1] = { xi.item.BUNCH_OF_GYSAHL_GREENS, 150, xi.craftRank.AMATEUR  },
-            [2] = { xi.item.CHAMOMILE,               50, xi.craftRank.AMATEUR  },
+            [2] = { xi.item.SPRIG_OF_CHAMOMILE,      50, xi.craftRank.AMATEUR  },
             [3] = { xi.item.GINGER_ROOT,             50, xi.craftRank.RECRUIT  },
             [4] = { xi.item.HEAD_OF_NAPA,            50, xi.craftRank.INITIATE },
         },
@@ -1273,7 +1273,7 @@ xi.chocoboDig.digInfo =
         [xi.chocoboDig.layer.BURROW] = -- Set: Gysahl Greens
         {
             [1] = { xi.item.BUNCH_OF_GYSAHL_GREENS, 150, xi.craftRank.AMATEUR  },
-            [2] = { xi.item.CHAMOMILE,               50, xi.craftRank.AMATEUR  },
+            [2] = { xi.item.SPRIG_OF_CHAMOMILE,      50, xi.craftRank.AMATEUR  },
             [3] = { xi.item.GINGER_ROOT,             50, xi.craftRank.RECRUIT  },
             [4] = { xi.item.HEAD_OF_NAPA,            50, xi.craftRank.INITIATE },
         },
@@ -1299,7 +1299,7 @@ xi.chocoboDig.digInfo =
         [xi.chocoboDig.layer.REGULAR] =
         {
             [ 1] = { xi.item.PEBBLE,                50, xi.craftRank.AMATEUR  },
-            [ 2] = { xi.item.PAPAKA_GRASS,          50, xi.craftRank.AMATEUR  },
+            [ 2] = { xi.item.SPRIG_OF_PAPAKA_GRASS, 50, xi.craftRank.AMATEUR  },
             [ 3] = { xi.item.LAUAN_LOG,             50, xi.craftRank.AMATEUR  },
             [ 4] = { xi.item.INSECT_WING,           50, xi.craftRank.RECRUIT  },
             [ 5] = { xi.item.YAGUDO_FEATHER,        50, xi.craftRank.RECRUIT  },
@@ -1312,7 +1312,7 @@ xi.chocoboDig.digInfo =
         [xi.chocoboDig.layer.BURROW] = -- Set: Gysahl Greens
         {
             [1] = { xi.item.BUNCH_OF_GYSAHL_GREENS, 150, xi.craftRank.AMATEUR  },
-            [2] = { xi.item.CHAMOMILE,               50, xi.craftRank.AMATEUR  },
+            [2] = { xi.item.SPRIG_OF_CHAMOMILE,      50, xi.craftRank.AMATEUR  },
             [3] = { xi.item.GINGER_ROOT,             50, xi.craftRank.RECRUIT  },
             [4] = { xi.item.HEAD_OF_NAPA,            50, xi.craftRank.INITIATE },
         },
@@ -1358,16 +1358,16 @@ xi.chocoboDig.digInfo =
         },
         [xi.chocoboDig.layer.BORE] = -- Set: Bones
         {
-            [ 1] = { xi.item.BONE_CHIP,                 150, xi.craftRank.AMATEUR    },
-            [ 2] = { xi.item.HANDFUL_OF_FISH_SCALES,    150, xi.craftRank.AMATEUR    },
-            [ 3] = { xi.item.SEASHELL,                  150, xi.craftRank.RECRUIT    },
-            [ 4] = { xi.item.HIGH_QUALITY_PUGIL_SCALES,  50, xi.craftRank.INITIATE   },
-            [ 5] = { xi.item.TITANICTUS_SHELL,           50, xi.craftRank.APPRENTICE },
-            [ 6] = { xi.item.DEMON_HORN,                 10, xi.craftRank.JOURNEYMAN },
-            [ 7] = { xi.item.HANDFUL_OF_WYVERN_SCALES,    5, xi.craftRank.CRAFTSMAN  },
-            [ 8] = { xi.item.TURTLE_SHELL,                5, xi.craftRank.CRAFTSMAN  },
-            [ 9] = { xi.item.DEMON_SKULL,                 1, xi.craftRank.ARTISAN    },
-            [10] = { xi.item.HANDFUL_OF_DRAGON_SCALES,    1, xi.craftRank.ARTISAN    },
+            [ 1] = { xi.item.BONE_CHIP,                           150, xi.craftRank.AMATEUR    },
+            [ 2] = { xi.item.HANDFUL_OF_FISH_SCALES,              150, xi.craftRank.AMATEUR    },
+            [ 3] = { xi.item.SEASHELL,                            150, xi.craftRank.RECRUIT    },
+            [ 4] = { xi.item.HANDFUL_OF_HIGH_QUALITY_PUGIL_SCALES, 50, xi.craftRank.INITIATE   },
+            [ 5] = { xi.item.TITANICTUS_SHELL,                     50, xi.craftRank.APPRENTICE },
+            [ 6] = { xi.item.DEMON_HORN,                           10, xi.craftRank.JOURNEYMAN },
+            [ 7] = { xi.item.HANDFUL_OF_WYVERN_SCALES,              5, xi.craftRank.CRAFTSMAN  },
+            [ 8] = { xi.item.TURTLE_SHELL,                          5, xi.craftRank.CRAFTSMAN  },
+            [ 9] = { xi.item.DEMON_SKULL,                           1, xi.craftRank.ARTISAN    },
+            [10] = { xi.item.HANDFUL_OF_DRAGON_SCALES,              1, xi.craftRank.ARTISAN    },
         },
     },
 
@@ -1403,16 +1403,16 @@ xi.chocoboDig.digInfo =
         },
         [xi.chocoboDig.layer.BORE] = -- Set: Bones
         {
-            [ 1] = { xi.item.BONE_CHIP,                 150, xi.craftRank.AMATEUR    },
-            [ 2] = { xi.item.HANDFUL_OF_FISH_SCALES,    150, xi.craftRank.AMATEUR    },
-            [ 3] = { xi.item.SEASHELL,                  150, xi.craftRank.RECRUIT    },
-            [ 4] = { xi.item.HIGH_QUALITY_PUGIL_SCALES,  50, xi.craftRank.INITIATE   },
-            [ 5] = { xi.item.TITANICTUS_SHELL,           50, xi.craftRank.APPRENTICE },
-            [ 6] = { xi.item.DEMON_HORN,                 10, xi.craftRank.JOURNEYMAN },
-            [ 7] = { xi.item.HANDFUL_OF_WYVERN_SCALES,    5, xi.craftRank.CRAFTSMAN  },
-            [ 8] = { xi.item.TURTLE_SHELL,                5, xi.craftRank.CRAFTSMAN  },
-            [ 9] = { xi.item.DEMON_SKULL,                 1, xi.craftRank.ARTISAN    },
-            [10] = { xi.item.HANDFUL_OF_DRAGON_SCALES,    1, xi.craftRank.ARTISAN    },
+            [ 1] = { xi.item.BONE_CHIP,                           150, xi.craftRank.AMATEUR    },
+            [ 2] = { xi.item.HANDFUL_OF_FISH_SCALES,              150, xi.craftRank.AMATEUR    },
+            [ 3] = { xi.item.SEASHELL,                            150, xi.craftRank.RECRUIT    },
+            [ 4] = { xi.item.HANDFUL_OF_HIGH_QUALITY_PUGIL_SCALES, 50, xi.craftRank.INITIATE   },
+            [ 5] = { xi.item.TITANICTUS_SHELL,                     50, xi.craftRank.APPRENTICE },
+            [ 6] = { xi.item.DEMON_HORN,                           10, xi.craftRank.JOURNEYMAN },
+            [ 7] = { xi.item.HANDFUL_OF_WYVERN_SCALES,              5, xi.craftRank.CRAFTSMAN  },
+            [ 8] = { xi.item.TURTLE_SHELL,                          5, xi.craftRank.CRAFTSMAN  },
+            [ 9] = { xi.item.DEMON_SKULL,                           1, xi.craftRank.ARTISAN    },
+            [10] = { xi.item.HANDFUL_OF_DRAGON_SCALES,              1, xi.craftRank.ARTISAN    },
         },
     },
 
@@ -1483,16 +1483,16 @@ xi.chocoboDig.digInfo =
         },
         [xi.chocoboDig.layer.BORE] = -- Set: Bones
         {
-            [ 1] = { xi.item.BONE_CHIP,                 150, xi.craftRank.AMATEUR    },
-            [ 2] = { xi.item.HANDFUL_OF_FISH_SCALES,    150, xi.craftRank.AMATEUR    },
-            [ 3] = { xi.item.SEASHELL,                  150, xi.craftRank.RECRUIT    },
-            [ 4] = { xi.item.HIGH_QUALITY_PUGIL_SCALES,  50, xi.craftRank.INITIATE   },
-            [ 5] = { xi.item.TITANICTUS_SHELL,           50, xi.craftRank.APPRENTICE },
-            [ 6] = { xi.item.DEMON_HORN,                 10, xi.craftRank.JOURNEYMAN },
-            [ 7] = { xi.item.HANDFUL_OF_WYVERN_SCALES,    5, xi.craftRank.CRAFTSMAN  },
-            [ 8] = { xi.item.TURTLE_SHELL,                5, xi.craftRank.CRAFTSMAN  },
-            [ 9] = { xi.item.DEMON_SKULL,                 1, xi.craftRank.ARTISAN    },
-            [10] = { xi.item.HANDFUL_OF_DRAGON_SCALES,    1, xi.craftRank.ARTISAN    },
+            [ 1] = { xi.item.BONE_CHIP,                           150, xi.craftRank.AMATEUR    },
+            [ 2] = { xi.item.HANDFUL_OF_FISH_SCALES,              150, xi.craftRank.AMATEUR    },
+            [ 3] = { xi.item.SEASHELL,                            150, xi.craftRank.RECRUIT    },
+            [ 4] = { xi.item.HANDFUL_OF_HIGH_QUALITY_PUGIL_SCALES, 50, xi.craftRank.INITIATE   },
+            [ 5] = { xi.item.TITANICTUS_SHELL,                     50, xi.craftRank.APPRENTICE },
+            [ 6] = { xi.item.DEMON_HORN,                           10, xi.craftRank.JOURNEYMAN },
+            [ 7] = { xi.item.HANDFUL_OF_WYVERN_SCALES,              5, xi.craftRank.CRAFTSMAN  },
+            [ 8] = { xi.item.TURTLE_SHELL,                          5, xi.craftRank.CRAFTSMAN  },
+            [ 9] = { xi.item.DEMON_SKULL,                           1, xi.craftRank.ARTISAN    },
+            [10] = { xi.item.HANDFUL_OF_DRAGON_SCALES,              1, xi.craftRank.ARTISAN    },
         },
     },
 
@@ -1649,16 +1649,16 @@ xi.chocoboDig.digInfo =
         },
         [xi.chocoboDig.layer.BORE] = -- Set: Bones
         {
-            [ 1] = { xi.item.BONE_CHIP,                 150, xi.craftRank.AMATEUR    },
-            [ 2] = { xi.item.HANDFUL_OF_FISH_SCALES,    150, xi.craftRank.AMATEUR    },
-            [ 3] = { xi.item.SEASHELL,                  150, xi.craftRank.RECRUIT    },
-            [ 4] = { xi.item.HIGH_QUALITY_PUGIL_SCALES,  50, xi.craftRank.INITIATE   },
-            [ 5] = { xi.item.TITANICTUS_SHELL,           50, xi.craftRank.APPRENTICE },
-            [ 6] = { xi.item.DEMON_HORN,                 10, xi.craftRank.JOURNEYMAN },
-            [ 7] = { xi.item.HANDFUL_OF_WYVERN_SCALES,    5, xi.craftRank.CRAFTSMAN  },
-            [ 8] = { xi.item.TURTLE_SHELL,                5, xi.craftRank.CRAFTSMAN  },
-            [ 9] = { xi.item.DEMON_SKULL,                 1, xi.craftRank.ARTISAN    },
-            [10] = { xi.item.HANDFUL_OF_DRAGON_SCALES,    1, xi.craftRank.ARTISAN    },
+            [ 1] = { xi.item.BONE_CHIP,                           150, xi.craftRank.AMATEUR    },
+            [ 2] = { xi.item.HANDFUL_OF_FISH_SCALES,              150, xi.craftRank.AMATEUR    },
+            [ 3] = { xi.item.SEASHELL,                            150, xi.craftRank.RECRUIT    },
+            [ 4] = { xi.item.HANDFUL_OF_HIGH_QUALITY_PUGIL_SCALES, 50, xi.craftRank.INITIATE   },
+            [ 5] = { xi.item.TITANICTUS_SHELL,                     50, xi.craftRank.APPRENTICE },
+            [ 6] = { xi.item.DEMON_HORN,                           10, xi.craftRank.JOURNEYMAN },
+            [ 7] = { xi.item.HANDFUL_OF_WYVERN_SCALES,              5, xi.craftRank.CRAFTSMAN  },
+            [ 8] = { xi.item.TURTLE_SHELL,                          5, xi.craftRank.CRAFTSMAN  },
+            [ 9] = { xi.item.DEMON_SKULL,                           1, xi.craftRank.ARTISAN    },
+            [10] = { xi.item.HANDFUL_OF_DRAGON_SCALES,              1, xi.craftRank.ARTISAN    },
         },
     },
 

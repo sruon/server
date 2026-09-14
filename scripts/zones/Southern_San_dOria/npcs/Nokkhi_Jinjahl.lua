@@ -72,7 +72,7 @@ entity.onTrade = function(player, npc, trade)
         { xi.item.EMINENT_BULLET,      xi.item.EMINENT_BULLET_POUCH      },
         { xi.item.IRON_BULLET,         xi.item.IRON_BULLET_POUCH         },
         { xi.item.ORICHALCUM_BULLET,   xi.item.ORICHALCUM_BULLET_POUCH   },
-        { xi.item.OBERON_BULLET,       xi.item.OBERON_BULLET_POUCH       },
+        { xi.item.OBERONS_BULLET,      xi.item.OBERON_BULLET_POUCH       },
         { xi.item.RAKAZNAR_BULLET,     xi.item.RAKAZNAR_BULLET_POUCH     },
         { xi.item.SILVER_BULLET,       xi.item.SILVER_BULLET_POUCH       },
         { xi.item.STEEL_BULLET,        xi.item.STEEL_BULLET_POUCH        },

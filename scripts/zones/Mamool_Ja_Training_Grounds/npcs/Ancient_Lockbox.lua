@@ -13,8 +13,8 @@ entity.onTrigger = function(player, npc)
         [xi.assault.mission.PREEMPTIVE_STRIKE] =
         {
             {
-                { itemId = xi.item.UNAPPRAISED_BOX,      weight = 300 },
-                { itemId = xi.item.UNAPPRAISED_NECKLACE, weight = 700 },
+                { itemId = xi.item.BOX,                  weight = 300 },
+                { itemId = xi.item.NECKLACE,             weight = 700 },
             },
         },
     }

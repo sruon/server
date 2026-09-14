@@ -12,7 +12,7 @@ local entity = {}
 entity.onTrade = function(player, npc, trade)
     -- tradeMatches does not confirm the quus. tradeHas would leave it reserved on a refused pop.
     if
-        not npcUtil.tradeMatches(trade, { { xi.item.QUUS_1, 1 } }) and
+        not npcUtil.tradeMatches(trade, { { xi.item.QUUS, 1 } }) and
         not npcUtil.tradeMatches(trade, { { xi.item.QUUS_2, 1 } })
     then
         return
@@ -25,7 +25,7 @@ entity.onTrade = function(player, npc, trade)
 
     player:tradeComplete()
 
-    return player:messageSpecial(ID.text.YOU_PUT_ITEM_DOWN, xi.item.QUUS_1)
+    return player:messageSpecial(ID.text.YOU_PUT_ITEM_DOWN, xi.item.QUUS)
 end
 
 entity.onTrigger = function(player, npc)

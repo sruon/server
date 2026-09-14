@@ -59,9 +59,9 @@ local menuMetadata =
             charVar   = 'LastWhiteCoralKey',
             reqItems  =
             {
-                xi.item.ORCISH_PLATE_ARMOR,
+                xi.item.ORCISH_ARMOR_PLATE,
                 xi.item.QUADAV_BACKSCALE,
-                xi.item.YAGUDO_CAULK,
+                xi.item.BLOCK_OF_YAGUDO_CAULK,
             },
         },
         [xi.keyItem.BLUE_CORAL_KEY] =

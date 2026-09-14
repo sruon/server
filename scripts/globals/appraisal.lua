@@ -105,29 +105,29 @@ xi.appraisal.origin =
 
 xi.appraisal.unappraisedItems =
 {
-    xi.item.UNAPPRAISED_SWORD,
+    xi.item.SWORD,
     xi.item.UNAPPRAISED_DAGGER,
-    xi.item.UNAPPRAISED_POLEARM,
-    xi.item.UNAPPRAISED_AXE,
-    xi.item.UNAPPRAISED_BOW,
+    xi.item.POLEARM,
+    xi.item.AXE,
+    xi.item.BOW,
     xi.item.UNAPPRAISED_GLOVES,
-    xi.item.UNAPPRAISED_FOOTWEAR,
-    xi.item.UNAPPRAISED_HEADPIECE,
-    xi.item.UNAPPRAISED_EARRING,
-    xi.item.UNAPPRAISED_RING,
+    xi.item.FOOTWEAR,
+    xi.item.HEADPIECE,
+    xi.item.EARRING,
+    xi.item.RING,
     xi.item.UNAPPRAISED_CAPE,
-    xi.item.UNAPPRAISED_SASH,
-    xi.item.UNAPPRAISED_SHIELD,
-    xi.item.UNAPPRAISED_NECKLACE,
-    xi.item.UNAPPRAISED_INGOT,
+    xi.item.SASH,
+    xi.item.SHIELD,
+    xi.item.NECKLACE,
+    xi.item.INGOT,
     xi.item.UNAPPRAISED_POTION,
-    xi.item.UNAPPRAISED_CLOTH,
-    xi.item.UNAPPRAISED_BOX,
+    xi.item.SQUARE_OF_CLOTH,
+    xi.item.BOX,
 }
 
 xi.appraisal.appraisalItems =
 {
-    [xi.item.UNAPPRAISED_SWORD] =
+    [xi.item.SWORD] =
     {
         [xi.assault.mission.SEAGULL_GROUNDED] =
         {
@@ -354,7 +354,7 @@ xi.appraisal.appraisalItems =
         },
     },
 
-    [xi.item.UNAPPRAISED_POLEARM] =
+    [xi.item.POLEARM] =
     {
         [xi.assault.mission.SEAGULL_GROUNDED] =
         {
@@ -461,7 +461,7 @@ xi.appraisal.appraisalItems =
         },
     },
 
-    [xi.item.UNAPPRAISED_AXE] =
+    [xi.item.AXE] =
     {
         [xi.assault.mission.REQUIEM] =
         {
@@ -554,7 +554,7 @@ xi.appraisal.appraisalItems =
         },
     },
 
-    [xi.item.UNAPPRAISED_BOW] =
+    [xi.item.BOW] =
     {
         [xi.assault.mission.LAMIA_NO_13] =
         {
@@ -677,7 +677,7 @@ xi.appraisal.appraisalItems =
         },
     },
 
-    [xi.item.UNAPPRAISED_FOOTWEAR] =
+    [xi.item.FOOTWEAR] =
     {
         [xi.assault.mission.LAMIA_NO_13] =
         {
@@ -748,7 +748,7 @@ xi.appraisal.appraisalItems =
         },
     },
 
-    [xi.item.UNAPPRAISED_HEADPIECE] =
+    [xi.item.HEADPIECE] =
     {
         [xi.assault.mission.TROLL_FUGITIVES] =
         {
@@ -817,7 +817,7 @@ xi.appraisal.appraisalItems =
         },
     },
 
-    [xi.item.UNAPPRAISED_EARRING] =
+    [xi.item.EARRING] =
     {
         [xi.assault.mission.EXCAVATION_DUTY] =
         {
@@ -873,7 +873,7 @@ xi.appraisal.appraisalItems =
         },
     },
 
-    [xi.item.UNAPPRAISED_RING] =
+    [xi.item.RING] =
     {
         [xi.assault.mission.LEUJAOAM_CLEANSING] =
         {
@@ -1041,12 +1041,12 @@ xi.appraisal.appraisalItems =
         },
     },
 
-    [xi.item.UNAPPRAISED_SASH] =
+    [xi.item.SASH] =
     {
 
     },
 
-    [xi.item.UNAPPRAISED_SHIELD] =
+    [xi.item.SHIELD] =
     {
         [xi.appraisal.origin.NYZUL_BLOODTEAR_BALDURF] =
         {
@@ -1094,7 +1094,7 @@ xi.appraisal.appraisalItems =
         },
     },
 
-    [xi.item.UNAPPRAISED_NECKLACE] =
+    [xi.item.NECKLACE] =
     {
         [xi.assault.mission.ORICHALCUM_SURVEY] =
         {
@@ -1191,7 +1191,7 @@ xi.appraisal.appraisalItems =
         },
     },
 
-    [xi.item.UNAPPRAISED_INGOT] =
+    [xi.item.INGOT] =
     {
 
     },
@@ -1201,12 +1201,12 @@ xi.appraisal.appraisalItems =
 
     },
 
-    [xi.item.UNAPPRAISED_CLOTH] =
+    [xi.item.SQUARE_OF_CLOTH] =
     {
 
     },
 
-    [xi.item.UNAPPRAISED_BOX] =
+    [xi.item.BOX] =
     {
         [xi.assault.mission.LEUJAOAM_CLEANSING] =
         {

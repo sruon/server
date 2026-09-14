@@ -69,7 +69,7 @@ quest.sections =
             ['Hanaa_Punaa'] =
             {
                 onTrade = function(player, npc, trade)
-                    if npcUtil.tradeHasExactly(trade, { { xi.item.TIGER_HIDE, 3 } }) then
+                    if npcUtil.tradeHasExactly(trade, { { xi.item.BLACK_TIGER_HIDE, 3 } }) then
                         return quest:progressEvent(577)
                     end
                 end,

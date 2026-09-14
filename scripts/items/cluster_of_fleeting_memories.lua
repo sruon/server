@@ -11,7 +11,7 @@ itemObject.onItemCheck = function(target, item, caster)
 end
 
 itemObject.onItemUse = function(target)
-    npcUtil.giveItem(target, { { xi.item.FLEETING_MEMORY, 12 } })
+    npcUtil.giveItem(target, { { xi.item.REMNANT_OF_A_FLEETING_MEMORY, 12 } })
 end
 
 return itemObject

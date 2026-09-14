@@ -84,7 +84,7 @@ local relicStage =
 
     -- Annihilator
     [xi.item.RELIC_GUN]         = 1,
-    [xi.item.MARKSMANS_GUN]     = 2,
+    [xi.item.MARKSMAN_GUN]      = 2,
     [xi.item.DYNAMIS_GUN]       = 3,
 
     -- Gjallarhorn

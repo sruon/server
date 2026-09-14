@@ -48,10 +48,10 @@ content.loot =
 
     {
         { itemId = xi.item.NONE,                  weight =  6000 }, -- Nothing
-        { itemId = xi.item.KSHAMA_RING_NO_2,      weight =  1000 }, -- Kshama Ring No.2
-        { itemId = xi.item.KSHAMA_RING_NO_3,      weight =  1000 }, -- Kshama Ring No.3
-        { itemId = xi.item.KSHAMA_RING_NO_4,      weight =  1000 }, -- Kshama Ring No.4
-        { itemId = xi.item.KSHAMA_RING_NO_5,      weight =  1000 }, -- Kshama Ring No.5
+        { itemId = xi.item.KSHAMA_RING_NO2,       weight =  1000 }, -- Kshama Ring No.2
+        { itemId = xi.item.KSHAMA_RING_NO3,       weight =  1000 }, -- Kshama Ring No.3
+        { itemId = xi.item.KSHAMA_RING_NO4,       weight =  1000 }, -- Kshama Ring No.4
+        { itemId = xi.item.KSHAMA_RING_NO5,       weight =  1000 }, -- Kshama Ring No.5
     },
 }
 

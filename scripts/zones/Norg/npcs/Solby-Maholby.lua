@@ -14,7 +14,7 @@ entity.onTrigger = function(player, npc)
         { xi.item.SCROLL_OF_AISHA_ICHI,     92610 },
         { xi.item.SCROLL_OF_MYOSHU_ICHI,    98894 },
         { xi.item.SCROLL_OF_YURIN_ICHI,     95754 },
-        { xi.item.SCROLL_OF_MIGAWARI_ICHI, 155232 },
+        { xi.item.SCROLL_OF_KAKKA_ICHI,    155232 },
         { xi.item.SCROLL_OF_GEKKA_ICHI,    163705 },
         { xi.item.SCROLL_OF_YAIN_ICHI,     163705 },
         { xi.item.SCROLL_OF_KATON_SAN,     125212 },
