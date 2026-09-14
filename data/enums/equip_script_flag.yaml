@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=../schemas/enums/_enum.schema.json
+
+# Events an equipped item's script is notified of.
+meta:
+  flags: true
+  cpp:
+    underlying: uint16_t
+
+values:
+  none:         0x0000
+  equip:        0x0001
+  change_job:   0x0002
+  change_zone:  0x0004
+  time_dawn:    0x0008
+  time_day:     0x0010
+  time_dusk:    0x0020
+  time_evening: 0x0040

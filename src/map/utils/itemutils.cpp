@@ -33,8 +33,8 @@
 #include <array>
 #include <map>
 
+#include "data/enums/item_type.h"
 #include "entities/battle_entity.h"
-#include "enums/item_types.h"
 #include "items/item_flowerpot.h"
 #include "items/item_furnishing.h"
 #include "items/item_general.h"
@@ -268,28 +268,28 @@ namespace
 void LoadItemList()
 {
     // Bootstrap item templates from DB
-    auto buildFromType = [](uint16 itemId, ItemType itemType) -> std::unique_ptr<CItem>
+    auto buildFromType = [](uint16 itemId, xi::ItemType itemType) -> std::unique_ptr<CItem>
     {
         switch (itemType)
         {
-            case ItemType::General:
-            case ItemType::TrustEquipment:
+            case xi::ItemType::General:
+            case xi::ItemType::TrustEquipment:
                 return std::make_unique<CItemGeneral>(itemId);
-            case ItemType::Linkshell:
+            case xi::ItemType::Linkshell:
                 return std::make_unique<CItemLinkshell>(itemId);
-            case ItemType::Furnishing:
+            case xi::ItemType::Furnishing:
                 return std::make_unique<CItemFurnishing>(itemId);
-            case ItemType::Puppet:
+            case xi::ItemType::Puppet:
                 return std::make_unique<CItemPuppet>(itemId);
-            case ItemType::Usable:
+            case xi::ItemType::Usable:
                 return std::make_unique<CItemUsable>(itemId);
-            case ItemType::Equipment:
+            case xi::ItemType::Equipment:
                 return std::make_unique<CItemEquipment>(itemId);
-            case ItemType::Weapon:
+            case xi::ItemType::Weapon:
                 return std::make_unique<CItemWeapon>(itemId);
-            case ItemType::Currency:
+            case xi::ItemType::Currency:
                 return std::make_unique<CItemCurrency>(itemId);
-            case ItemType::FlowerPot:
+            case xi::ItemType::Flowerpot:
                 return std::make_unique<CItemFlowerpot>(itemId);
             default:
                 ShowErrorFmt("LoadItemList({}): Unknown item type {}", itemId, static_cast<uint8>(itemType));
@@ -320,7 +320,7 @@ void LoadItemList()
                                  MAX_ITEMID);
     FOR_DB_MULTIPLE_RESULTS(rset)
     {
-        auto   tplOwn = buildFromType(rset->get<uint16>("itemId"), rset->get<ItemType>("type"));
+        auto   tplOwn = buildFromType(rset->get<uint16>("itemId"), rset->get<xi::ItemType>("type"));
         CItem* PItem  = tplOwn.get();
 
         if (PItem != nullptr)
@@ -371,7 +371,7 @@ void LoadItemList()
                 static_cast<CItemEquipment*>(PItem)->setJobs(rset->get<uint32>("jobs"));
                 static_cast<CItemEquipment*>(PItem)->setModelId(rset->get<uint32>("MId"));
                 static_cast<CItemEquipment*>(PItem)->setShieldSize(rset->get<uint8>("shieldSize"));
-                static_cast<CItemEquipment*>(PItem)->setScriptType(rset->get<uint16>("scriptType"));
+                static_cast<CItemEquipment*>(PItem)->setScriptType(rset->get<xi::EquipScriptFlag>("scriptType"));
                 static_cast<CItemEquipment*>(PItem)->setEquipSlotId(rset->get<uint16>("slot"));
                 static_cast<CItemEquipment*>(PItem)->setRemoveSlotId(rset->get<uint16>("rslot"));
                 static_cast<CItemEquipment*>(PItem)->setRemoveSlotLookId(rset->get<uint16>("rslotlook"));
@@ -432,7 +432,7 @@ void LoadItemList()
                 PFurnishing->setAura(rset->get<uint8>("aura"));
                 PFurnishing->setSize(rset->get<uint8>("size_x"), rset->get<uint8>("size_y"));
                 PFurnishing->setHeight(rset->get<uint16>("furn_height"));
-                PFurnishing->setPlacement(rset->get<FurnishingPlacement>("furn_placement"));
+                PFurnishing->setPlacement(rset->get<xi::FurnishingPlacement>("furn_placement"));
             }
 
             itemTemplates[PItem->getID()] = std::move(tplOwn);
@@ -485,7 +485,7 @@ void LoadItemList()
         const auto ItemID  = rset->get<uint16>("itemId");
         const auto modID   = rset->get<xi::Mod>("modId");
         const auto value   = rset->get<int16>("value");
-        const auto petType = rset->get<PetModType>("petType");
+        const auto petType = rset->get<xi::PetModType>("petType");
 
         if (auto* tpl = itemTemplates[ItemID].get(); tpl != nullptr && tpl->isType(ITEM_EQUIPMENT))
         {

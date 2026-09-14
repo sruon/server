@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=../schemas/enums/_enum.schema.json
+
+# How a piece of furniture is placed in the mog house. Exactly one per item; these are not flags.
+meta:
+  cpp:
+    underlying: uint8_t
+
+values:
+  floor:    0 # Sits on the floor
+  surface:  1 # Sits on the floor and other items can be placed on top (tables, desks)
+  wall:     2 # Hung on a wall slot
+  on_table: 3 # Placed on top of a Surface item (vases, statues, flowerpots)

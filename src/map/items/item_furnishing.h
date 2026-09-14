@@ -23,8 +23,8 @@
 
 #include "common/cbasetypes.h"
 
+#include "data/enums/furnishing_placement.h"
 #include "item.h"
-#include "map/enums/furnishing_placement.h"
 
 // List of Moghancements
 
@@ -116,7 +116,7 @@ public:
     auto getAura() const -> uint8;
     auto size() const -> std::pair<uint8, uint8>;
     auto height() const -> uint16;
-    auto placement() const -> FurnishingPlacement;
+    auto placement() const -> xi::FurnishingPlacement;
 
     auto isInstalled() const -> bool;
     auto getCol() -> uint8;
@@ -131,7 +131,7 @@ public:
     void setAura(uint8 aura);
     void setSize(uint8 size_x, uint8 size_y);
     void setHeight(uint16 height);
-    void setPlacement(FurnishingPlacement placement);
+    void setPlacement(xi::FurnishingPlacement placement);
 
     void setCol(uint8 col);
     void setRow(uint8 row);
@@ -158,5 +158,5 @@ private:
     uint8                   m_aura;
     std::pair<uint8, uint8> size_{ 1, 1 };
     uint16                  height_{};
-    FurnishingPlacement     placement_{ FurnishingPlacement::Floor };
+    xi::FurnishingPlacement placement_{ xi::FurnishingPlacement::Floor };
 };

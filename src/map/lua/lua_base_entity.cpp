@@ -17153,7 +17153,7 @@ void CLuaBaseEntity::addPetMod(uint16 modID, int16 amount)
         return;
     }
 
-    static_cast<CBattleEntity*>(m_PBaseEntity)->addPetModifier(static_cast<xi::Mod>(modID), PetModType::All, amount);
+    static_cast<CBattleEntity*>(m_PBaseEntity)->addPetModifier(static_cast<xi::Mod>(modID), xi::PetModType::All, amount);
 }
 
 /************************************************************************
@@ -17171,7 +17171,7 @@ void CLuaBaseEntity::setPetMod(uint16 modID, int16 amount)
         return;
     }
 
-    static_cast<CBattleEntity*>(m_PBaseEntity)->setPetModifier(static_cast<xi::Mod>(modID), PetModType::All, amount);
+    static_cast<CBattleEntity*>(m_PBaseEntity)->setPetModifier(static_cast<xi::Mod>(modID), xi::PetModType::All, amount);
 }
 
 /************************************************************************
@@ -17189,7 +17189,7 @@ void CLuaBaseEntity::delPetMod(uint16 modID, int16 amount)
         return;
     }
 
-    static_cast<CBattleEntity*>(m_PBaseEntity)->delPetModifier(static_cast<xi::Mod>(modID), PetModType::All, amount);
+    static_cast<CBattleEntity*>(m_PBaseEntity)->delPetModifier(static_cast<xi::Mod>(modID), xi::PetModType::All, amount);
 }
 
 /************************************************************************

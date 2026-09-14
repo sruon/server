@@ -341,7 +341,7 @@ void FinalizePetStatistics(CBattleEntity* PMaster, CPetEntity* PPet);
 
 void SetupPetWithMaster(CBattleEntity* PMaster, CPetEntity* PPet);
 
-auto CheckPetModType(CBattleEntity* PPet, PetModType petmod) -> bool;
+auto CheckPetModType(CBattleEntity* PPet, xi::PetModType petmod) -> bool;
 auto IsTandemActive(CBattleEntity* PAttacker) -> bool;
 
 auto GetPetInfo(uint32 PetID) -> Pet_t*;

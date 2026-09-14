@@ -245,14 +245,14 @@ auto CItemEquipment::IsShield() const -> bool
 
 // return script type for events such as gear change, zone change, etc
 // the function returns the type of event which saves us from having to check in all events
-auto CItemEquipment::getScriptType() const -> uint16
+auto CItemEquipment::getScriptType() const -> xi::EquipScriptFlag
 {
     return m_scriptType;
 }
 
-void CItemEquipment::setScriptType(uint16 ScriptType)
+void CItemEquipment::setScriptType(xi::EquipScriptFlag scriptType)
 {
-    m_scriptType = ScriptType;
+    m_scriptType = scriptType;
 }
 
 // add item modifier
@@ -327,7 +327,7 @@ auto CItemEquipment::delModifier(xi::Mod mod, int16 modValue) -> bool
     return true;
 }
 
-auto CItemEquipment::delPetModifier(xi::Mod mod, PetModType petType, int16 modValue) -> bool
+auto CItemEquipment::delPetModifier(xi::Mod mod, xi::PetModType petType, int16 modValue) -> bool
 {
     auto it = std::ranges::find_if(petModList,
                                    [mod, petType, modValue](const CPetModifier& compare)
@@ -437,8 +437,8 @@ void CItemEquipment::SetAugmentMod(uint16 type, uint8 value)
         int16   modValue   = augmentData.value;
 
         // type is 0 unless mod is for pets
-        uint8      isPet   = augmentData.isPet;
-        PetModType petType = static_cast<PetModType>(augmentData.petType);
+        uint8          isPet   = augmentData.isPet;
+        xi::PetModType petType = static_cast<xi::PetModType>(augmentData.petType);
 
         // apply modifier to item. increase modifier power by 'value' (default magnitude 1 for most augments) if multiplier isn't specified
         // otherwise increase modifier power using the multiplier

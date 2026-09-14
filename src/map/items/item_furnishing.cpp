@@ -33,7 +33,7 @@ CItemFurnishing::CItemFurnishing(uint16 id)
 , m_aura(0)
 , size_{ 1, 1 }
 , height_(0)
-, placement_(FurnishingPlacement::Floor)
+, placement_(xi::FurnishingPlacement::Floor)
 {
     setType(ITEM_FURNISHING);
 }
@@ -112,12 +112,12 @@ auto CItemFurnishing::height() const -> uint16
     return height_;
 }
 
-void CItemFurnishing::setPlacement(FurnishingPlacement placement)
+void CItemFurnishing::setPlacement(xi::FurnishingPlacement placement)
 {
     placement_ = placement;
 }
 
-auto CItemFurnishing::placement() const -> FurnishingPlacement
+auto CItemFurnishing::placement() const -> xi::FurnishingPlacement
 {
     return placement_;
 }

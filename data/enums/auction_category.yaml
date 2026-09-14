@@ -1,0 +1,75 @@
+# yaml-language-server: $schema=../schemas/enums/_enum.schema.json
+
+meta:
+  cpp:
+    underlying: uint8_t
+  lua:
+    table: xi.auctionCategory
+
+values:
+  none:          0 # Does not appear in the Auction House
+  h2h:           1 # Weapons->H2h
+  dagger:        2 # Weapons->Dagger
+  sword:         3 # Weapons->Sword
+  greatsword:    4 # Weapons->Greatsword
+  axe:           5 # Weapons->Axe
+  greataxe:      6 # Weapons->Greataxe
+  scythe:        7 # Weapons->Scythe
+  polearm:       8 # Weapons->Polearm
+  katana:        9 # Weapons->Katana
+  greatkatana:  10 # Weapons->Greatkatana
+  club:         11 # Weapons->Club
+  staff:        12 # Weapons->Staff
+  bow:          13 # Weapons->Bow
+  instruments:  14 # Weapons->Instruments
+  ammunition:   15 # Weapons->Ammo&Misc->Ammunition
+  shield:       16 # Armor->Shield
+  head:         17 # Armor->Head
+  body:         18 # Armor->Body
+  hands:        19 # Armor->Hands
+  legs:         20 # Armor->Legs
+  feet:         21 # Armor->Feet
+  neck:         22 # Armor->Neck
+  waist:        23 # Armor->Waist
+  earrings:     24 # Armor->Earrings
+  rings:        25 # Armor->Rings
+  back:         26 # Armor->Back
+  unused:       27
+  white_magic:  28 # Scrolls->White Magic
+  black_magic:  29 # Scrolls->Black Magic
+  summoning:    30 # Scrolls->Summoning
+  ninjutsu:     31 # Scrolls->Ninjutsu
+  songs:        32 # Scrolls->Songs
+  medicines:    33
+  furnishings:  34
+  crystals:     35
+  cards:        36 # Others->Cards
+  cursed_items: 37 # Others->Cursed Items
+  smithing:     38 # Materials->Smithing
+  goldsmithing: 39 # Materials->Goldsmithing
+  clothcraft:   40 # Materials->Clothcraft
+  leathercraft: 41 # Materials->Leathercraft
+  bonecraft:    42 # Materials->Bonecraft
+  woodworking:  43 # Materials->Woodworking
+  alchemy:      44 # Materials->Alchemy
+  geomancer:    45 # Scrolls->Geomancy
+  misc:         46 # Others->Misc.
+  fishing_gear: 47 # Weapons->Ammo&Misc->Fishing Gear
+  pet_items:    48 # Weapons->Ammo&Misc->Pet Items
+  ninja_tools:  49 # Others->Ninja Tools
+  beast_made:   50 # Others->Beast-made
+  fish:         51 # Food->Fish
+  meat_eggs:    52 # Food->Meals->Meat&Eggs
+  seafood:      53 # Food->Meals->Seafood
+  vegetables:   54 # Food->Meals->Vegetables
+  soups:        55 # Food->Meals->Soups
+  breads_rice:  56 # Food->Meals->Breads&Rice
+  sweets:       57 # Food->Meals->Sweets
+  drinks:       58 # Food->Meals->Drinks
+  ingredients:  59 # Food->Ingredients
+  dice:         60 # Scrolls->Dice
+  automaton:    61 # Others->Automaton
+  grips:        62 # Weapons->Ammo&Misc->Grips
+  alchemy_2:    63 # Materials->Alchemy 2
+  misc_2:       64 # Others->Misc.2
+  misc_3:       65 # Others->Misc.3

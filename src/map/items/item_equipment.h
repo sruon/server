@@ -23,24 +23,13 @@
 
 #include <vector>
 
+#include "data/enums/equip_script_flag.h"
+
 #include "item_usable.h"
 
 #include "latent_effect.h"
 #include "modifier.h"
 #include "status_effect.h"
-
-enum SCRIPTTYPE : uint16
-{
-    SCRIPT_NONE         = 0x0000,
-    SCRIPT_EQUIP        = 0x0001,
-    SCRIPT_CHANGESJOB   = 0x0002,
-    SCRIPT_CHANGEZONE   = 0x0004,
-    SCRIPT_TIME_DAWN    = 0x0008,
-    SCRIPT_TIME_DAY     = 0x0010,
-    SCRIPT_TIME_DUSK    = 0x0020,
-    SCRIPT_TIME_EVENING = 0x0040
-    //...
-};
 
 class CItemEquipment : public CItemUsable
 {
@@ -64,7 +53,7 @@ public:
     auto getILvl() const -> uint8;
     auto getJobs() const -> uint32;
     auto getModelId() const -> uint16;
-    auto getScriptType() const -> uint16;
+    auto getScriptType() const -> xi::EquipScriptFlag;
     auto getShieldSize() const -> uint8;
     auto getEquipSlotId() const -> uint16;
     auto getRemoveSlotId() const -> uint16;
@@ -84,7 +73,7 @@ public:
     void setJobs(uint32 jobs);
     void setModelId(uint16 mdl);
     void setShieldSize(uint8 shield);
-    void setScriptType(uint16 isScripted);
+    void setScriptType(xi::EquipScriptFlag scriptType);
     void setEquipSlotId(uint16 equipSlot);
     void setRemoveSlotId(uint16 removSlot);
     void setRemoveSlotLookId(uint16 removSlotLook);
@@ -105,7 +94,7 @@ public:
 
     void addPetModifier(CPetModifier modifier);
 
-    void addPetModifier(xi::Mod mod, PetModType petType, int16 modValue)
+    void addPetModifier(xi::Mod mod, xi::PetModType petType, int16 modValue)
     {
         return addPetModifier(CPetModifier(mod, petType, modValue));
     };
@@ -113,7 +102,7 @@ public:
     void addLatent(xi::Latent ConditionsID, uint16 ConditionsValue, xi::Mod ModValue, int16 ModPower);
 
     auto delModifier(xi::Mod mod, int16 modValue) -> bool;
-    auto delPetModifier(xi::Mod mod, PetModType petType, int16 modValue) -> bool;
+    auto delPetModifier(xi::Mod mod, xi::PetModType petType, int16 modValue) -> bool;
 
     std::vector<CModifier>    modList;
     std::vector<CPetModifier> petModList;
@@ -124,17 +113,17 @@ public:
     static void LoadAugmentData();
 
 private:
-    uint8  m_reqLvl{ 255 };
-    uint8  m_iLvl{};
-    uint32 m_jobs{};
-    uint16 m_modelID{};
-    uint16 m_scriptType{};
-    uint8  m_shieldSize{};
-    uint8  m_absorption{};
-    uint16 m_equipSlotID{ 255 };
-    uint16 m_removeSlotID{};
-    uint16 m_removeSlotLookID{};
-    uint8  m_superiorLevel{};
+    uint8               m_reqLvl{ 255 };
+    uint8               m_iLvl{};
+    uint32              m_jobs{};
+    uint16              m_modelID{};
+    xi::EquipScriptFlag m_scriptType{};
+    uint8               m_shieldSize{};
+    uint8               m_absorption{};
+    uint16              m_equipSlotID{ 255 };
+    uint16              m_removeSlotID{};
+    uint16              m_removeSlotLookID{};
+    uint8               m_superiorLevel{};
 
     void SetAugmentMod(uint16 type, uint8 value);
 };

@@ -52,8 +52,8 @@ quest.sections =
                     local auctionCategory = itemObj:getAHCat()
 
                     if
-                        auctionCategory >= xi.itemAHCategory.MEAT_EGGS and
-                        auctionCategory <= xi.itemAHCategory.SWEETS
+                        auctionCategory >= xi.auctionCategory.MEAT_EGGS and
+                        auctionCategory <= xi.auctionCategory.SWEETS
                     then
                         return quest:event(2533)
                     end

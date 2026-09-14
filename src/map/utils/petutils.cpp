@@ -2018,31 +2018,31 @@ void LoadPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
     PMaster->PPet = PPet;
 }
 
-auto CheckPetModType(CBattleEntity* PPet, PetModType petmod) -> bool
+auto CheckPetModType(CBattleEntity* PPet, xi::PetModType petmod) -> bool
 {
-    if (petmod == PetModType::All)
+    if (petmod == xi::PetModType::All)
     {
         return true;
     }
 
     if (auto* PPetEntity = dynamic_cast<CPetEntity*>(PPet))
     {
-        if (petmod == PetModType::Avatar && PPetEntity->getPetType() == PET_TYPE::AVATAR)
+        if (petmod == xi::PetModType::Avatar && PPetEntity->getPetType() == PET_TYPE::AVATAR)
         {
             return true;
         }
-        if (petmod == PetModType::Wyvern && PPetEntity->getPetType() == PET_TYPE::WYVERN)
+        if (petmod == xi::PetModType::Wyvern && PPetEntity->getPetType() == PET_TYPE::WYVERN)
         {
             return true;
         }
-        if (petmod >= PetModType::Automaton && petmod <= PetModType::Stormwaker && PPetEntity->getPetType() == PET_TYPE::AUTOMATON)
+        if (petmod >= xi::PetModType::Automaton && petmod <= xi::PetModType::Stormwaker && PPetEntity->getPetType() == PET_TYPE::AUTOMATON)
         {
-            if (petmod == PetModType::Automaton || (uint16)petmod + 28 == (uint16) static_cast<CAutomatonEntity*>(PPetEntity)->frame())
+            if (petmod == xi::PetModType::Automaton || (uint16)petmod + 28 == (uint16) static_cast<CAutomatonEntity*>(PPetEntity)->frame())
             {
                 return true;
             }
         }
-        if (petmod == PetModType::Luopan && PPetEntity->getPetType() == PET_TYPE::LUOPAN)
+        if (petmod == xi::PetModType::Luopan && PPetEntity->getPetType() == PET_TYPE::LUOPAN)
         {
             return true;
         }

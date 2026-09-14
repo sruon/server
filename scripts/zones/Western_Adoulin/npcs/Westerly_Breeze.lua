@@ -21,8 +21,8 @@ entity.onTrade = function(player, npc, trade)
         local ahCategory = item:getAHCat()
 
         if
-            ahCategory >= xi.itemAHCategory.MEAT_EGGS and
-            ahCategory <= xi.itemAHCategory.SWEETS
+            ahCategory >= xi.auctionCategory.MEAT_EGGS and
+            ahCategory <= xi.auctionCategory.SWEETS
         then
             -- We traded him a food item
             if

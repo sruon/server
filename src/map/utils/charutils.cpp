@@ -1918,7 +1918,7 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID, Recalculate recalculate,
         //      thought to be source of nin bug
         PChar->clearEquip(equipSlotID);
 
-        if (static_cast<CItemEquipment*>(PItem)->getScriptType() & SCRIPT_EQUIP)
+        if ((static_cast<CItemEquipment*>(PItem)->getScriptType() & xi::EquipScriptFlag::Equip) != xi::EquipScriptFlag::None)
         {
             PChar->m_EquipFlag = 0;
             for (uint8 i = 0; i < 16; ++i)
@@ -1927,7 +1927,7 @@ void UnequipItem(CCharEntity* PChar, uint8 equipSlotID, Recalculate recalculate,
 
                 if ((PSlotItem != nullptr) && PSlotItem->isType(ITEM_EQUIPMENT))
                 {
-                    PChar->m_EquipFlag |= (static_cast<CItemEquipment*>(PSlotItem))->getScriptType();
+                    PChar->m_EquipFlag |= std::to_underlying((static_cast<CItemEquipment*>(PSlotItem))->getScriptType());
                 }
             }
         }
@@ -3103,9 +3103,9 @@ void EquipItem(CCharEntity* PChar, uint8 slotID, uint8 equipSlotID, uint8 contai
             {
                 equipSucceeded = true;
 
-                if (PItem->getScriptType() & SCRIPT_EQUIP)
+                if ((PItem->getScriptType() & xi::EquipScriptFlag::Equip) != xi::EquipScriptFlag::None)
                 {
-                    PChar->m_EquipFlag |= PItem->getScriptType();
+                    PChar->m_EquipFlag |= std::to_underlying(PItem->getScriptType());
                 }
 
                 if (PItem->isType(ITEM_USABLE) && ((CItemUsable*)PItem)->getCurrentCharges() != 0)

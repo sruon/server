@@ -23,10 +23,10 @@
 #include "data/enums/item_state.h"
 #include "items/item_access.h"
 
+#include "data/enums/furnishing_placement.h"
 #include "entities/char_entity.h"
 #include "items/item_furnishing.h"
 #include "lua/luautils.h"
-#include "map/enums/furnishing_placement.h"
 #include "packets/c2s/validation.h"
 #include "packets/s2c/0x01c_item_max.h"
 #include "packets/s2c/0x01d_item_same.h"
@@ -98,7 +98,7 @@ auto collidesOnFloor(CItemFurnishing* other, const uint8 x, const uint8 z, const
     }
 
     const auto op = other->placement();
-    if (op == FurnishingPlacement::Wall)
+    if (op == xi::FurnishingPlacement::Wall)
     {
         return false;
     }
@@ -211,9 +211,9 @@ void GP_CLI_COMMAND_MYROOM_LAYOUT::process(MapSession* PSession, CCharEntity* PC
 
     switch (placement)
     {
-        case FurnishingPlacement::Floor:
-        case FurnishingPlacement::Surface:
-        case FurnishingPlacement::OnTable:
+        case xi::FurnishingPlacement::Floor:
+        case xi::FurnishingPlacement::Surface:
+        case xi::FurnishingPlacement::OnTable:
         {
             // Every cell of the footprint must land on a valid floor tile.
             if (!footprintInGrid(this->x, this->z, itemWidth, itemDepth, is2F))
@@ -237,11 +237,11 @@ void GP_CLI_COMMAND_MYROOM_LAYOUT::process(MapSession* PSession, CCharEntity* PC
             // Fresh OnTable placement (not a move): verify a Surface parent exists
             // at (x, z) with matching height. Moves skip this because the client
             // sends the child packet before the parent's.
-            if (placement == FurnishingPlacement::OnTable && this->y > 0 && !PItem->isInstalled())
+            if (placement == xi::FurnishingPlacement::OnTable && this->y > 0 && !PItem->isInstalled())
             {
                 const bool hasParent = anyInstalledFurnishing(PChar, this->MyroomCategory, this->MyroomItemIndex, [&](CItemFurnishing* other)
                                                               {
-                                                                  if (other->placement() != FurnishingPlacement::Surface || other->getOn2ndFloor() != is2F)
+                                                                  if (other->placement() != xi::FurnishingPlacement::Surface || other->getOn2ndFloor() != is2F)
                                                                   {
                                                                       return false;
                                                                   }
@@ -266,7 +266,7 @@ void GP_CLI_COMMAND_MYROOM_LAYOUT::process(MapSession* PSession, CCharEntity* PC
 
             break;
         }
-        case FurnishingPlacement::Wall:
+        case xi::FurnishingPlacement::Wall:
         {
             if (this->y != 0 || this->z != 0)
             {
@@ -282,7 +282,7 @@ void GP_CLI_COMMAND_MYROOM_LAYOUT::process(MapSession* PSession, CCharEntity* PC
 
             const bool occupied = anyInstalledFurnishing(PChar, this->MyroomCategory, this->MyroomItemIndex, [&](CItemFurnishing* other)
                                                          {
-                                                             return other->placement() == FurnishingPlacement::Wall &&
+                                                             return other->placement() == xi::FurnishingPlacement::Wall &&
                                                                     other->getOn2ndFloor() == is2F &&
                                                                     other->getCol() == this->x;
                                                          });

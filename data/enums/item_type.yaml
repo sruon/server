@@ -1,0 +1,19 @@
+# yaml-language-server: $schema=../schemas/enums/_enum.schema.json
+
+# Which item class a template is built as.
+meta:
+  cpp:
+    underlying: uint8_t
+    none:       true
+
+values:
+  general:          1 # CItemGeneral
+  linkshell:        2 # CItemLinkshell
+  furnishing:       3 # CItemFurnishing
+  puppet:           4 # CItemPuppet
+  usable:           5 # CItemUsable
+  equipment:        6 # CItemEquipment
+  weapon:           7 # CItemWeapon
+  currency:         8 # CItemCurrency
+  flowerpot:        9 # CItemFlowerpot
+  trust_equipment: 10 # CItemGeneral until Trust equipment is implemented

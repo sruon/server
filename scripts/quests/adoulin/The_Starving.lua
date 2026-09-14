@@ -52,7 +52,7 @@ quest.sections =
                     local itemObj = trade:getItem(0)
                     local auctionCategory = itemObj:getAHCat()
 
-                    if auctionCategory == xi.itemAHCategory.DRINKS then
+                    if auctionCategory == xi.auctionCategory.DRINKS then
                         return quest:event(3008)
                     else
                         return quest:event(3006)
