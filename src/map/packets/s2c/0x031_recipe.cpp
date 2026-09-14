@@ -21,7 +21,12 @@
 
 #include "0x031_recipe.h"
 
+#include "utils/itemutils.h"
+
+#include <algorithm>
 #include <map>
+#include <tuple>
+#include <vector>
 
 namespace
 {
@@ -91,6 +96,57 @@ auto processRecipeDetails = [](auto& rset, GP_SERV_COMMAND_RECIPE_TYPE1_3& detai
     }
 };
 
+struct RankedRecipe
+{
+    uint32      Id{};
+    uint16      Result{};
+    uint16      Level{};
+    std::string ResultName;
+};
+
+// Recipes of a craft in the menu order: craft level, then result name, then recipe id so pages never overlap.
+auto rankedRecipes(const uint16 skillID, const uint8 minSkill, const uint8 maxSkill) -> std::vector<RankedRecipe>
+{
+    std::vector<RankedRecipe> recipes;
+    const auto                rset = db::preparedStmt("SELECT ID, Result, craftLevel "
+                                                      "FROM (SELECT *, CASE ? WHEN 1 THEN Wood WHEN 2 THEN Smith WHEN 3 THEN Gold WHEN 4 THEN Cloth "
+                                                      "WHEN 5 THEN Leather WHEN 6 THEN Bone WHEN 7 THEN Alchemy WHEN 8 THEN Cook END AS craftLevel "
+                                                      "FROM synth_recipes WHERE Desynth = 0) AS recipes "
+                                                      "WHERE craftLevel >= GREATEST(Wood, Smith, Gold, Cloth, Leather, Bone, Alchemy, Cook) AND "
+                                                      "craftLevel BETWEEN ? AND ?",
+                                                      skillID,
+                                                      minSkill,
+                                                      maxSkill);
+    FOR_DB_MULTIPLE_RESULTS(rset)
+    {
+        const auto  result = rset->get<uint16>("Result");
+        const auto* PItem  = xi::items::lookup(result);
+        if (PItem == nullptr)
+        {
+            continue;
+        }
+
+        // Uppercased to keep the order the case-insensitive SQL collation gave: letters sort before '_'.
+        auto resultName = PItem->getName();
+        std::ranges::transform(resultName, resultName.begin(), ::toupper);
+
+        recipes.push_back({
+            .Id         = rset->get<uint32>("ID"),
+            .Result     = result,
+            .Level      = rset->get<uint16>("craftLevel"),
+            .ResultName = std::move(resultName),
+        });
+    }
+
+    std::ranges::sort(recipes,
+                      [](const RankedRecipe& lhs, const RankedRecipe& rhs)
+                      {
+                          return std::tie(lhs.Level, lhs.ResultName, lhs.Id) < std::tie(rhs.Level, rhs.ResultName, rhs.Id);
+                      });
+
+    return recipes;
+}
+
 } // namespace
 
 GP_SERV_COMMAND_RECIPE::GP_SERV_COMMAND_RECIPE(GP_SERV_COMMAND_RECIPE_TYPE type, const uint16 skillID, const uint16 skillLevel, const uint8 skillRank, const uint16 offset)
@@ -112,7 +168,6 @@ GP_SERV_COMMAND_RECIPE::GP_SERV_COMMAND_RECIPE(GP_SERV_COMMAND_RECIPE_TYPE type,
                                                "FROM (SELECT *, CASE ? WHEN 1 THEN Wood WHEN 2 THEN Smith WHEN 3 THEN Gold WHEN 4 THEN Cloth "
                                                "WHEN 5 THEN Leather WHEN 6 THEN Bone WHEN 7 THEN Alchemy WHEN 8 THEN Cook END AS craftLevel "
                                                "FROM synth_recipes WHERE Desynth = 0) AS recipes "
-                                               "INNER JOIN item_basic ON Result = item_basic.itemid "
                                                "WHERE craftLevel >= GREATEST(Wood, Smith, Gold, Cloth, Leather, Bone, Alchemy, Cook) AND "
                                                "craftLevel BETWEEN ? AND ? ORDER BY RAND() LIMIT 1",
                                                skillID,
@@ -136,21 +191,17 @@ GP_SERV_COMMAND_RECIPE::GP_SERV_COMMAND_RECIPE(GP_SERV_COMMAND_RECIPE_TYPE type,
                 maxSkill = skillLevel;
             }
 
-            const auto rset = db::preparedStmt("SELECT KeyItem, Wood, Smith, Gold, Cloth, Leather, Bone, Alchemy, Cook, Crystal, Result, "
-                                               "Ingredient1, Ingredient2, Ingredient3, Ingredient4, Ingredient5, Ingredient6, Ingredient7, Ingredient8 "
-                                               "FROM (SELECT *, CASE ? WHEN 1 THEN Wood WHEN 2 THEN Smith WHEN 3 THEN Gold WHEN 4 THEN Cloth "
-                                               "WHEN 5 THEN Leather WHEN 6 THEN Bone WHEN 7 THEN Alchemy WHEN 8 THEN Cook END AS craftLevel "
-                                               "FROM synth_recipes WHERE Desynth = 0) AS recipes "
-                                               "INNER JOIN item_basic ON Result = item_basic.itemid "
-                                               "WHERE craftLevel >= GREATEST(Wood, Smith, Gold, Cloth, Leather, Bone, Alchemy, Cook) AND "
-                                               "craftLevel BETWEEN ? AND ? ORDER BY craftLevel, item_basic.name LIMIT ?, 1",
-                                               skillID,
-                                               minSkill,
-                                               maxSkill,
-                                               offset);
-            FOR_DB_SINGLE_RESULT(rset)
+            const auto recipes = rankedRecipes(skillID, minSkill, maxSkill);
+            if (offset < recipes.size())
             {
-                processRecipeDetails(rset, packet.Details, skillID);
+                const auto rset = db::preparedStmt("SELECT KeyItem, Wood, Smith, Gold, Cloth, Leather, Bone, Alchemy, Cook, Crystal, Result, "
+                                                   "Ingredient1, Ingredient2, Ingredient3, Ingredient4, Ingredient5, Ingredient6, Ingredient7, Ingredient8 "
+                                                   "FROM synth_recipes WHERE ID = ?",
+                                                   recipes[offset].Id);
+                FOR_DB_SINGLE_RESULT(rset)
+                {
+                    processRecipeDetails(rset, packet.Details, skillID);
+                }
             }
 
             packet.Details.Type = GP_SERV_COMMAND_RECIPE_TYPE::RecipeDetail2;
@@ -167,28 +218,18 @@ GP_SERV_COMMAND_RECIPE::GP_SERV_COMMAND_RECIPE(GP_SERV_COMMAND_RECIPE_TYPE type,
                 maxSkill = skillLevel;
             }
 
-            const auto rset = db::preparedStmt("SELECT Result "
-                                               "FROM (SELECT *, CASE ? WHEN 1 THEN Wood WHEN 2 THEN Smith WHEN 3 THEN Gold WHEN 4 THEN Cloth "
-                                               "WHEN 5 THEN Leather WHEN 6 THEN Bone WHEN 7 THEN Alchemy WHEN 8 THEN Cook END AS craftLevel "
-                                               "FROM synth_recipes WHERE Desynth = 0) AS recipes "
-                                               "INNER JOIN item_basic ON Result = item_basic.itemid "
-                                               "WHERE craftLevel >= GREATEST(Wood, Smith, Gold, Cloth, Leather, Bone, Alchemy, Cook) AND "
-                                               "craftLevel BETWEEN ? AND ? ORDER BY craftLevel, item_basic.name LIMIT ?, 17",
-                                               skillID,
-                                               minSkill,
-                                               maxSkill,
-                                               offset);
-            FOR_DB_MULTIPLE_RESULTS(rset)
+            const auto recipes = rankedRecipes(skillID, minSkill, maxSkill);
+            for (size_t position = offset; position < recipes.size(); ++position)
             {
                 if (idx == 16)
                 {
                     // The 17th result of a query is not displayed in the menu, but instead is used to signal
                     // to the client that another page is available.  This item ID is stored at 0x32.
-                    packet.List.itemnum_next = rset->get<uint16>("Result");
+                    packet.List.itemnum_next = recipes[position].Result;
                     break;
                 }
 
-                packet.List.itemnum[idx] = rset->get<uint16>("Result");
+                packet.List.itemnum[idx] = recipes[position].Result;
                 ++idx;
             }
 
