@@ -416,6 +416,18 @@ void CCharEntity::clearPacketList()
     }
 }
 
+void CCharEntity::queueClientEntityPacket(uint32 id, std::unique_ptr<CBasicPacket> packet)
+{
+    std::erase_if(PacketList, [id](const std::unique_ptr<CBasicPacket>& pending)
+                  {
+                      return pending->getType() == 0x0E && pending->ref<uint32>(0x04) == id;
+                  });
+    if (packet)
+    {
+        pushPacket(std::move(packet));
+    }
+}
+
 void CCharEntity::pushPacket(std::unique_ptr<CBasicPacket>&& packet)
 {
     TracyZoneScoped;

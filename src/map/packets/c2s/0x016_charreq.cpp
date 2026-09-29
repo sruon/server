@@ -23,7 +23,9 @@
 
 #include "entities/char_entity.h"
 #include "packets/char_status.h"
+#include "path_debug.h"
 #include "utils/zoneutils.h"
+#include "zone_entities.h"
 
 auto GP_CLI_COMMAND_CHARREQ::validate(MapSession* PSession, const CCharEntity* PChar) const -> PacketValidationResult
 {
@@ -32,6 +34,11 @@ auto GP_CLI_COMMAND_CHARREQ::validate(MapSession* PSession, const CCharEntity* P
 
 void GP_CLI_COMMAND_CHARREQ::process(MapSession* PSession, CCharEntity* PChar) const
 {
+    if (auto* entities = PathDebug::entities(*PChar); entities && entities->IsClientEntityId(this->ActIndex))
+    {
+        entities->GetPathDebug().request(*PChar, this->ActIndex);
+        return;
+    }
     // Requesting self-update
     if (this->ActIndex == PChar->targid)
     {

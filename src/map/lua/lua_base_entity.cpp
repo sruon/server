@@ -20,6 +20,7 @@
 */
 
 #include "lua_base_entity.h"
+#include "path_debug.h"
 
 #include "lua_instance.h"
 
@@ -3362,6 +3363,53 @@ void CLuaBaseEntity::sendEntityUpdateToPlayer(CLuaBaseEntity* entityToUpdate, ui
 
         PChar->updateEntityPacket(entityToUpdate->GetBaseEntity(), static_cast<ENTITYUPDATE>(entityUpdate), updateMask);
     }
+}
+
+auto CLuaBaseEntity::pathDebug(CLuaBaseEntity* target, bool frozen, uint16 model) -> std::string
+{
+    auto* observer = dynamic_cast<CCharEntity*>(m_PBaseEntity);
+    if (!observer || observer->m_GMlevel == 0)
+    {
+        return "Pathdebug requires GM permission.";
+    }
+    auto* entities = PathDebug::entities(*observer);
+    if (!entities)
+    {
+        return "Pathdebug requires a zone.";
+    }
+    if (!target)
+    {
+        entities->GetPathDebug().stop(*observer);
+        return "Pathdebug off.";
+    }
+    return entities->GetPathDebug().watch(*observer, *target->GetBaseEntity(), frozen, model);
+}
+
+// points: array of { x, y, z } or { x = , y = , z = , name = , model = }; labels default to the array index, model overrides every point's own
+auto CLuaBaseEntity::pathDebugPoints(const sol::table& points, sol::optional<uint16> model) -> std::string
+{
+    auto* observer = dynamic_cast<CCharEntity*>(m_PBaseEntity);
+    auto* entities = observer ? PathDebug::entities(*observer) : nullptr;
+    if (!entities)
+    {
+        return "Pathdebug requires a player in a zone.";
+    }
+    std::vector<PathDebugMarker> markers;
+    for (std::size_t i = 1; i <= points.size(); ++i)
+    {
+        const sol::table point = points[i];
+        const auto       coord = [&](const char* key, int index)
+        {
+            const auto named = point.get<sol::optional<float>>(key);
+            return named ? *named : point.get<sol::optional<float>>(index).value_or(0.0f);
+        };
+        markers.push_back({
+            { coord("x", 1), coord("y", 2), coord("z", 3), 0, 0 },
+            model ? *model : point.get<sol::optional<uint16>>("model").value_or(PathDebugMarker::DefaultModel),
+            point.get<sol::optional<std::string>>("name").value_or(std::to_string(i)),
+        });
+    }
+    return entities->GetPathDebug().show(*observer, std::move(markers));
 }
 
 // Seems to be needed for Chocobo Racing
@@ -20744,6 +20792,8 @@ void CLuaBaseEntity::Register()
     SOL_REGISTER("entityVisualPacket", CLuaBaseEntity::entityVisualPacket);
     SOL_REGISTER("entityAnimationPacket", CLuaBaseEntity::entityAnimationPacket);
     SOL_REGISTER("sendDebugPacket", CLuaBaseEntity::sendDebugPacket);
+    SOL_REGISTER("pathDebug", CLuaBaseEntity::pathDebug);
+    SOL_REGISTER("pathDebugPoints", CLuaBaseEntity::pathDebugPoints);
     SOL_REGISTER("sendLinkshellConcierge", CLuaBaseEntity::sendLinkshellConcierge);
     SOL_REGISTER("sendChocoboRace", CLuaBaseEntity::sendChocoboRace);
 

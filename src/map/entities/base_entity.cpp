@@ -97,6 +97,14 @@ void CBaseEntity::FadeOut()
 {
     status = xi::Status::Disappear;
     updatemask |= UPDATE_HP;
+    if (PInstance)
+    {
+        PInstance->onEntityDespawned(this);
+    }
+    else if (loc.zone)
+    {
+        loc.zone->GetZoneEntities()->onEntityDespawned(this);
+    }
 }
 
 const std::string& CBaseEntity::getName() const

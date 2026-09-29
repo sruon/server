@@ -45,6 +45,8 @@
 using EntityFn       = FnRef<bool(CBaseEntity*)>; // visibility predicate
 using EntityCallback = FnRef<void(CBaseEntity*)>; // action run on a newly-spawned entity
 
+class PathDebug;
+
 class CZoneEntities
 {
 public:
@@ -115,7 +117,16 @@ public:
     void EraseStaleDynamicTargIDs();
     auto GetUsedDynamicTargIDsCount() const -> std::size_t;
 
+    // Atomic reservation from the real allocator, without registering server entities.
+    auto ReserveClientEntityIds(std::size_t count) -> std::vector<uint16>;
+    void ReleaseClientEntityId(uint16 targid);
+    auto IsClientEntityId(uint16 targid) const -> bool;
+    auto DynamicEntityLongId(uint16 targid) const -> uint32;
+    auto GetPathDebug() -> PathDebug&;
+
 private:
+    void clearClientEntityPackets(CCharEntity& observer);
+
     auto mobTick(CMobEntity* PMob, timer::time_point tick) -> Task<void>;
     auto mobAggroCheck(CMobEntity* PMob, timer::time_point tick) -> Task<void>;
     auto npcTick(CNpcEntity* PNpc, timer::time_point tick) -> Task<void>;
@@ -159,6 +170,10 @@ private:
     uint16           m_nextDynamicTargID; // The next dynamic targ ID to chosen -- SE rotates them forwards and skips entries that already exist.
     std::set<uint16> m_charTargIds;       // sorted set of targids for characters
     std::set<uint16> m_dynamicTargIds;    // sorted set of targids for dynamic entities
+
+    std::set<uint16>           m_reservedClientIds;
+    std::set<uint16>           m_clientIds; // Active and quarantined client-only IDs.
+    std::unique_ptr<PathDebug> m_pathDebug;
 
     std::vector<std::pair<uint16, timer::time_point>> m_dynamicTargIdsToDelete; // list of targids pending deletion at a later date
 

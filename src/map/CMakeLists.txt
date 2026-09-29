@@ -130,6 +130,8 @@ set(MAP_CORE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/packet_system.h
     ${CMAKE_CURRENT_SOURCE_DIR}/party.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/party.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/path_debug.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/path_debug.h
     ${CMAKE_CURRENT_SOURCE_DIR}/petskill.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/petskill.h
     ${CMAKE_CURRENT_SOURCE_DIR}/recast_container.cpp

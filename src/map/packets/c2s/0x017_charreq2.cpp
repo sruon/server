@@ -29,6 +29,8 @@
 #include "entities/char_entity.h"
 #include "packets/char_sync.h"
 #include "packets/char_update.h"
+#include "path_debug.h"
+#include "zone_entities.h"
 
 namespace
 {
@@ -59,12 +61,26 @@ auto GP_CLI_COMMAND_CHARREQ2::validate(MapSession* PSession, const CCharEntity* 
 
 void GP_CLI_COMMAND_CHARREQ2::process(MapSession* PSession, CCharEntity* PChar) const
 {
+    auto*      entities      = PathDebug::entities(*PChar);
+    const auto markerRequest = [&](uint16 targid, uint32 id = 0)
+    {
+        return entities && entities->GetPathDebug().request(*PChar, targid, id);
+    };
+    const std::array markers{
+        this->ActIndex != 0 && markerRequest(this->ActIndex),
+        this->UniqueNo2 != 0 && markerRequest(0, this->UniqueNo2),
+        this->UniqueNo3 != 0 && markerRequest(0, this->UniqueNo3),
+    };
     const std::array targets{
-        this->ActIndex ? PChar->GetEntity(this->ActIndex) : nullptr,
-        resolveByUniqueNo(PChar, this->UniqueNo2),
-        resolveByUniqueNo(PChar, this->UniqueNo3),
+        this->ActIndex && !markers[0] ? PChar->GetEntity(this->ActIndex) : nullptr,
+        markers[1] ? nullptr : resolveByUniqueNo(PChar, this->UniqueNo2),
+        markers[2] ? nullptr : resolveByUniqueNo(PChar, this->UniqueNo3),
     };
 
+    if ((!this->ActIndex || markers[0]) && (!this->UniqueNo2 || markers[1]) && (!this->UniqueNo3 || markers[2]))
+    {
+        return;
+    }
     ShowWarningFmt("GP_CLI_COMMAND_CHARREQ2 from {}: ActIndex={} UniqueNo2={} UniqueNo3={} Flg={} Flg2={}",
                    PChar->getName(),
                    this->ActIndex,

@@ -228,6 +228,19 @@ end
 function CBaseEntity:sendDebugPacket(packetData)
 end
 
+---@param target CBaseEntity? nil stops the watch
+---@param frozen boolean
+---@param model integer 0 uses the default marker models
+---@return string
+function CBaseEntity:pathDebug(target, frozen, model)
+end
+
+---@param points table[] { x, y, z } or { x = , y = , z = , name = , model = }; those within 50y are shown
+---@param model integer? overrides each point's model
+---@return string
+function CBaseEntity:pathDebugPoints(points, model)
+end
+
 ---@param EventID integer
 ---@param paramTable table
 ---@return nil

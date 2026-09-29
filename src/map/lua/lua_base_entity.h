@@ -103,6 +103,8 @@ public:
     void entityVisualPacket(const std::string& command, const sol::object& entity) const;
     void entityAnimationPacket(const char* command, const sol::object& target);
     void sendDebugPacket(const sol::table& packetData);
+    auto pathDebug(CLuaBaseEntity* target, bool frozen, uint16 model) -> std::string;
+    auto pathDebugPoints(const sol::table& points, sol::optional<uint16> model) -> std::string;
     void sendLinkshellConcierge(const sol::table& data) const;
     void sendChocoboRace(const sol::table& race) const;
 

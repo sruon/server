@@ -517,6 +517,9 @@ public:
     auto getPacketListCopy() -> std::deque<std::unique_ptr<CBasicPacket>>; // Return a COPY of packet list
     void clearPacketList();
 
+    // Only for IDs held by the zone's client-only reservation API. Null removes pending packets.
+    void queueClientEntityPacket(uint32 id, std::unique_ptr<CBasicPacket> packet);
+
     template <typename T, typename... Args>
     void pushPacket(Args&&... args)
     {

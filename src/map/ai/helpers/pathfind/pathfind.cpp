@@ -615,6 +615,22 @@ auto CPathFind::ChunkCount() const -> int
     return chunkCount_;
 }
 
+auto CPathFind::GetDebugSnapshot(timer::time_point tick) const -> DebugSnapshot
+{
+    DebugSnapshot snapshot;
+    if (!path_.empty() && !path_.consumed())
+    {
+        snapshot.points      = path_.points();
+        snapshot.cursor      = static_cast<std::size_t>(path_.cursor());
+        snapshot.destination = GetDestination();
+        snapshot.partial     = path_.partial();
+        snapshot.paused      = tick < unpauseTime_;
+        snapshot.waiting     = tick < timeAtPoint_;
+        snapshot.chunks      = chunkCount_;
+    }
+    return snapshot;
+}
+
 auto CPathFind::Clear() -> void
 {
     distanceFromPoint_ = 0;

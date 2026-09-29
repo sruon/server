@@ -50,6 +50,20 @@ class PathOwner;
 class CPathFind
 {
 public:
+    struct DebugSnapshot
+    {
+        std::vector<pathpoint_t> points;
+        std::size_t              cursor{ 0 };
+        position_t               destination{};
+        bool                     partial{ false };
+        bool                     paused{ false };
+        bool                     waiting{ false };
+        int                      chunks{ 0 };
+    };
+
+    // Copies the active route without querying the navmesh or advancing the cursor.
+    auto GetDebugSnapshot(timer::time_point tick) const -> DebugSnapshot;
+
     // Production: wraps the entity in an owned EntityPathOwner.
     explicit CPathFind(CBaseEntity* PTarget);
 

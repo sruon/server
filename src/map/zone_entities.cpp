@@ -20,6 +20,7 @@
 */
 
 #include "zone_entities.h"
+#include "path_debug.h"
 
 #include "common/logging_context.h"
 #include "data/enums/detects.h"
@@ -114,6 +115,14 @@ CZoneEntities::CZoneEntities(Scheduler& scheduler, MapConfig config, CZone* zone
 
 CZoneEntities::~CZoneEntities()
 {
+    FOR_EACH_PAIR_CAST_SECOND(CCharEntity*, PChar, m_charList)
+    {
+        if (m_pathDebug)
+        {
+            m_pathDebug->stop(*PChar, false);
+        }
+        clearClientEntityPackets(*PChar);
+    }
     for (auto ally : m_allyList)
     {
         destroy(ally.second);
@@ -522,6 +531,12 @@ void CZoneEntities::DecreaseZoneCounter(CCharEntity* PChar)
         return;
     }
 
+    if (m_pathDebug)
+    {
+        m_pathDebug->stop(*PChar, false);
+    }
+    clearClientEntityPackets(*PChar);
+
     if (PChar->loc.zone != m_zone)
     {
         ShowWarning("Zone mismatch for %s.", PChar->getName());
@@ -687,7 +702,7 @@ void CZoneEntities::AssignDynamicTargIDandLongID(CBaseEntity* PEntity)
     // We found our targid, the next dynamic entity will want to start searching at +1 of this.
     m_nextDynamicTargID = targid + 1;
 
-    auto id = 0x01000000 | (static_cast<uint32>(m_zone->GetID()) << 0x0C) | (targid + 0x0100);
+    auto id = DynamicEntityLongId(targid);
 
     m_dynamicTargIds.insert(targid);
 
@@ -709,7 +724,15 @@ void CZoneEntities::EraseStaleDynamicTargIDs()
         // Erase dynamic targid if it's stale enough
         if ((timer::now() - it->second) > 60s)
         {
+            if (m_clientIds.contains(it->first))
+            {
+                FOR_EACH_PAIR_CAST_SECOND(CCharEntity*, PChar, m_charList)
+                {
+                    PChar->queueClientEntityPacket(DynamicEntityLongId(it->first), nullptr);
+                }
+            }
             m_dynamicTargIds.erase(it->first);
+            m_clientIds.erase(it->first);
             it = m_dynamicTargIdsToDelete.erase(it);
         }
         else
@@ -723,6 +746,76 @@ void CZoneEntities::EraseStaleDynamicTargIDs()
 auto CZoneEntities::GetUsedDynamicTargIDsCount() const -> std::size_t
 {
     return m_dynamicTargIds.size();
+}
+
+auto CZoneEntities::DynamicEntityLongId(uint16 targid) const -> uint32
+{
+    return 0x01000000 | (static_cast<uint32>(m_zone->GetID()) << 12) | (targid + 0x0100);
+}
+
+auto CZoneEntities::ReserveClientEntityIds(std::size_t count) -> std::vector<uint16>
+{
+    EraseStaleDynamicTargIDs();
+    std::vector<uint16> result;
+    if (count == 0 || count > 0x200)
+    {
+        return result;
+    }
+    auto targid = m_nextDynamicTargID;
+    for (std::size_t visited = 0; visited < 0x200 && result.size() < count; ++visited, ++targid)
+    {
+        if (targid > DYNAMIC_ENTITY_TARGID_RANGE_MAX)
+        {
+            targid = DYNAMIC_ENTITY_TARGID_RANGE_START;
+        }
+        if (!m_dynamicTargIds.contains(targid))
+        {
+            result.push_back(targid);
+        }
+    }
+    if (result.size() != count)
+    {
+        return {}; // No partial reservation and no quarantine on failure.
+    }
+    for (auto reserved : result)
+    {
+        m_dynamicTargIds.insert(reserved);
+        m_reservedClientIds.insert(reserved);
+        m_clientIds.insert(reserved);
+    }
+    m_nextDynamicTargID = result.back() + 1;
+    return result;
+}
+
+void CZoneEntities::ReleaseClientEntityId(uint16 targid)
+{
+    if (m_reservedClientIds.erase(targid))
+    {
+        m_dynamicTargIdsToDelete.emplace_back(targid, timer::now());
+    }
+}
+
+auto CZoneEntities::IsClientEntityId(uint16 targid) const -> bool
+{
+    return m_clientIds.contains(targid);
+}
+
+auto CZoneEntities::GetPathDebug() -> PathDebug&
+{
+    if (!m_pathDebug)
+    {
+        m_pathDebug = std::make_unique<PathDebug>(*this);
+    }
+    return *m_pathDebug;
+}
+
+void CZoneEntities::clearClientEntityPackets(CCharEntity& observer)
+{
+    // Also discard despawns from watches switched off before this zone-out.
+    for (auto targid : m_clientIds)
+    {
+        observer.queueClientEntityPacket(DynamicEntityLongId(targid), nullptr);
+    }
 }
 
 bool CZoneEntities::CharListEmpty() const
@@ -807,6 +900,10 @@ void CZoneEntities::onEntityDespawned(CBaseEntity* PEntity)
 {
     if (PEntity != nullptr)
     {
+        if (m_pathDebug)
+        {
+            m_pathDebug->targetGone(*PEntity);
+        }
         spatialGrid_.remove(PEntity);
     }
 }
@@ -1933,6 +2030,11 @@ auto CZoneEntities::charTick(CCharEntity* PChar, timer::time_point tick) -> Task
         {
             PChar->PTreasurePool->checkItems(tick);
         }
+    }
+
+    if (m_pathDebug)
+    {
+        m_pathDebug->tick(*PChar, tick);
     }
 
     if (PChar->requestedZoneChange || PChar->requestedWarp != WarpRequest::None || PChar->status == xi::Status::Shutdown)
