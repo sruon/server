@@ -110,8 +110,7 @@ void IPCClient::sendMessage(const T& message)
     // TODO: IPP for World Server
     DebugIPCFmt("Sending message: {}", ipc::toStringV<T>);
 
-    const auto bytes = ipc::toBytesWithHeader<T>(message);
-    channel_.send(zmq::message_t(bytes));
+    channel_.send(ipc::toFrame(ipc::toBytesWithHeader<T>(message)));
 }
 
 //

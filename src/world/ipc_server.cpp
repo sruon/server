@@ -368,15 +368,20 @@ void IPCServer::handleIncomingMessages()
     TracyZoneScoped;
 
     // TODO: Should we stop more messages appearing on the queue while we're processing?
-    IPPMessage message;
+    IPPFrame message;
     while (channel_.tryReceive(message))
     {
-        const auto firstByte = message.payload[0];
-        const auto msgType   = ipc::toString(static_cast<ipc::MessageType>(firstByte));
+        const auto payload = std::span{ message.payload.data<uint8>(), message.payload.size() };
+        if (payload.empty())
+        {
+            continue;
+        }
+
+        const auto msgType = ipc::toString(static_cast<ipc::MessageType>(payload[0]));
 
         DebugIPCFmt("Incoming {} message from {}", msgType, message.ipp.toString());
 
-        handleMessage(message.ipp, { message.payload.data(), message.payload.size() });
+        handleMessage(message.ipp, payload);
     }
 }
 

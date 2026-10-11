@@ -130,6 +130,11 @@ void IPCClient::handleIncomingMessages()
     zmq::message_t out;
     while (channel_.tryReceive(out))
     {
+        if (out.empty())
+        {
+            continue;
+        }
+
         const auto firstByte = out.data<uint8>()[0];
         const auto msgType   = ipc::toString(static_cast<ipc::MessageType>(firstByte));
 

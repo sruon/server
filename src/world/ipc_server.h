@@ -129,7 +129,7 @@ private:
     CharacterCache characterCache_;
     ZoneSettings   zoneSettings_;
 
-    ipc::Channel<IPPMessage> channel_;
+    ipc::Channel<IPPFrame> channel_;
 };
 
 //
@@ -143,8 +143,7 @@ void IPCServer::sendMessage(const IPP& ipp, const T& message)
 
     DebugIPCFmt("Sending {} message to {}", ipc::toStringV<T>, ipp.toString());
 
-    const auto bytes = ipc::toBytesWithHeader<T>(message);
-    channel_.send(IPPMessage{ ipp, std::vector<uint8>{ bytes.begin(), bytes.end() } });
+    channel_.send(IPPFrame{ ipp, ipc::toFrame(ipc::toBytesWithHeader<T>(message)) });
 }
 
 template <typename T>
@@ -154,9 +153,12 @@ void IPCServer::broadcastMessage(const T& message)
 
     DebugIPCFmt("Broadcasting {} message to all zone endpoints", ipc::toStringV<T>);
 
+    // serialize once, share the frame
+    auto frame = ipc::toFrame(ipc::toBytesWithHeader<T>(message));
     for (const auto& ipp : zoneSettings_.mapEndpoints_)
     {
-        const auto bytes = ipc::toBytesWithHeader<T>(message);
-        channel_.send(IPPMessage{ ipp, std::vector<uint8>{ bytes.begin(), bytes.end() } });
+        auto shared = zmq::message_t{};
+        shared.copy(frame);
+        channel_.send(IPPFrame{ ipp, std::move(shared) });
     }
 }
