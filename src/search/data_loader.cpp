@@ -74,13 +74,9 @@ auto compareBy(const SearchType type, const SearchEntity& left, const SearchEnti
 
 } // namespace
 
-CDataLoader::CDataLoader()
-{
-}
+CDataLoader::CDataLoader() = default;
 
-CDataLoader::~CDataLoader()
-{
-}
+CDataLoader::~CDataLoader() = default;
 
 /************************************************************************
  *                                                                       *
