@@ -204,6 +204,7 @@ CPMAddPackage(
     NAME unordered_dense
     GITHUB_REPOSITORY martinus/unordered_dense
     GIT_TAG v4.8.1
+    PATCH_COMMAND ${CMAKE_COMMAND} -P ${CMAKE_CURRENT_LIST_DIR}/patches/unordered_dense_umul128.cmake
     SYSTEM ON
 ) # defines: unordered_dense::unordered_dense (aliased to FlatHashMap, see src/common/flat_hash_map.h)
 
