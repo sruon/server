@@ -94,6 +94,20 @@ era/sql/rov
 
 Listing plain `era` applies every era SQL folder regardless of your content settings, so list `era/lua` and the `era/sql/<expansion>` folders separately.
 
+## Era zone data
+
+Era zone data patches live under `era/data/<expansion>/<name>/` and are opt-in like any nested data folder. Listing `era/sql/<expansion>` does not load them. List the folders you want:
+
+```txt
+era/data/abyssea/advanced_job_quest
+era/data/abyssea/cop_level_caps
+era/data/abyssea/mazurka_zones
+```
+
+- `advanced_job_quest`: quest mob stats before the May 10, 2011 version update.
+- `cop_level_caps`: CoP mission area level caps before the June 21, 2010 version update.
+- `mazurka_zones`: Mazurka limited to towns and fields before the September 8, 2010 version update.
+
 ## Upgrading an existing init.txt
 
 `init.txt` is usually marked `assume-unchanged`, so an update will not fix your copy. Two changes need action:
