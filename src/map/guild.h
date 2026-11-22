@@ -23,8 +23,12 @@
 
 #include "common/cbasetypes.h"
 #include "common/macros.h"
+#include "data/datasets/guilds/dataset.h"
+
 #include <array>
+#include <map>
 #include <string>
+#include <vector>
 
 #define GP_ITEM_RANKS 7
 
@@ -49,7 +53,7 @@ struct GPItem_t
 class CGuild
 {
 public:
-    CGuild(uint8 id, const std::string& pointsName);
+    explicit CGuild(const xi::data::GuildData& data);
     ~CGuild();
 
     DISALLOW_COPY_AND_MOVE(CGuild);
@@ -63,8 +67,12 @@ public:
     auto getDailyGPItem(CCharEntity* PChar) const -> std::pair<uint16, uint16>;
 
 private:
+    using GPPatterns = std::array<std::vector<GPItem_t>, xi::data::kGuildPointPatterns>;
+
     uint8       m_id;
     std::string pointsName;
+
+    std::map<uint8, GPPatterns> m_GPRequests;
 
     std::array<uint8, GP_ITEM_RANKS>                 m_GPItemsRank{};
     std::array<std::vector<GPItem_t>, GP_ITEM_RANKS> m_GPItems{};

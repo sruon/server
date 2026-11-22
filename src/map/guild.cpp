@@ -20,6 +20,7 @@
 */
 
 #include "guild.h"
+#include "common/logging.h"
 #include "entities/char_entity.h"
 #include "items/item.h"
 #include "lua/luautils.h"
@@ -27,8 +28,12 @@
 #include "utils/charutils.h"
 #include "utils/itemutils.h"
 
-CGuild::CGuild(uint8 id, const std::string& _pointsName)
-: m_id(id)
+#include <algorithm>
+#include <cstdlib>
+
+CGuild::CGuild(const xi::data::GuildData& data)
+: m_id(static_cast<uint8>(data.Id))
+, pointsName(data.Currency)
 {
     earth_time::duration currentTime = std::chrono::seconds(earth_time::vanadiel_timestamp()) - 24h;
     uint32               elapsedDays = std::chrono::floor<std::chrono::days>(currentTime).count();
@@ -38,7 +43,30 @@ CGuild::CGuild(uint8 id, const std::string& _pointsName)
         m_GPItemsRank[i] = static_cast<uint8>(elapsedDays % (i + 4));
     }
 
-    pointsName = _pointsName;
+    for (const auto& [rank, patterns] : data.Ranks)
+    {
+        auto& requests = m_GPRequests[static_cast<uint8>(rank)];
+        for (size_t pattern = 0; pattern < patterns.size(); ++pattern)
+        {
+            for (const auto& [name, points] : patterns[pattern].Items)
+            {
+                const auto itemId = xi::items::lookupIdByName(name);
+                if (!itemId)
+                {
+                    ShowCriticalFmt("Guild {} requests unknown or ambiguous item '{}'", m_id, name);
+                    std::exit(-1);
+                }
+
+                requests[pattern].emplace_back(xi::items::lookup(*itemId), patterns[pattern].MaxPoints, points);
+            }
+
+            std::ranges::sort(requests[pattern],
+                              [](const GPItem_t& lhs, const GPItem_t& rhs)
+                              {
+                                  return lhs.item->getID() < rhs.item->getID();
+                              });
+        }
+    }
 }
 
 CGuild::~CGuild() = default;
@@ -59,22 +87,10 @@ void CGuild::updateGuildPointsPattern(uint8 pattern)
     {
         m_GPItemsRank[i] = (m_GPItemsRank[i] + 1) % (i + 4);
 
-        const auto rset = db::preparedStmt("SELECT itemid, points, max_points FROM guild_item_points WHERE "
-                                           "guildid = ? AND pattern = ? AND rank = ?",
-                                           m_id,
-                                           pattern,
-                                           m_GPItemsRank[i]);
-
-        if (rset && rset->rowsCount())
+        const auto requests = m_GPRequests.find(m_GPItemsRank[i]);
+        if (requests != m_GPRequests.end() && pattern < requests->second.size())
         {
-            while (rset->next())
-            {
-                const auto itemId    = rset->get<uint16>("itemid");
-                const auto points    = rset->get<uint16>("points");
-                const auto maxPoints = rset->get<uint16>("max_points");
-
-                m_GPItems[i].emplace_back(xi::items::lookup(itemId), maxPoints, points);
-            }
+            m_GPItems[i] = requests->second[pattern];
         }
     }
 }

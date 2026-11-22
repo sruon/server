@@ -21,13 +21,14 @@
 
 #include "guildutils.h"
 
-#include "common/database.h"
 #include "common/logging.h"
 #include "common/vana_time.h"
 
 #include <vector>
 
 #include "charutils.h"
+#include "data/datasets/guilds/dataset.h"
+#include "dataset_loader.h"
 #include "guild.h"
 #include "item_container.h"
 #include "itemutils.h"
@@ -45,15 +46,12 @@ namespace guildutils
 
 void Initialize()
 {
-    auto rset = db::preparedStmt("SELECT DISTINCT id, points_name FROM guilds ORDER BY id ASC");
-    if (rset)
-    {
-        g_PGuildList.reserve(rset->rowsCount());
-    }
+    const auto guilds = xi::data::loadDataset<xi::data::datasets::guilds::Dataset>();
+    g_PGuildList.reserve(guilds.size());
 
-    FOR_DB_MULTIPLE_RESULTS(rset)
+    for (const auto& guild : guilds)
     {
-        g_PGuildList.emplace_back(new CGuild(rset->get<uint8>("id"), rset->get<std::string>("points_name")));
+        g_PGuildList.emplace_back(new CGuild(guild));
     }
 
     UpdateGuildPointsPattern();

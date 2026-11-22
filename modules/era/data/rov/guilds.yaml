@@ -1,0 +1,832 @@
+# Daily guild point maximums as they were before the November 2016 update tripled them.
+# https://forum.square-enix.com/ffxi/threads/51624
+
+guilds:
+  fishing:
+    ranks:
+      amateur:
+        a: {max_points: 1200}
+        b: {max_points: 1280}
+        c: {max_points: 1200}
+        d: {max_points: 1280}
+        e: {max_points: 1280}
+        f: {max_points: 2560}
+        g: {max_points: 1280}
+        h: {max_points: 1200}
+      recruit:
+        a: {max_points: 1680}
+        b: {max_points: 1600}
+        c: {max_points: 1680}
+        d: {max_points: 1680}
+        e: {max_points: 2640}
+        f: {max_points: 2640}
+        g: {max_points: 3760}
+        h: {max_points: 1680}
+      initiate:
+        a: {max_points: 2240}
+        b: {max_points: 2880}
+        c: {max_points: 2320}
+        d: {max_points: 2320}
+        e: {max_points: 4000}
+        f: {max_points: 4000}
+        g: {max_points: 2320}
+        h: {max_points: 2320}
+      novice:
+        a: {max_points: 2240}
+        b: {max_points: 3280}
+        c: {max_points: 2880}
+        d: {max_points: 5040}
+        e: {max_points: 3040}
+        f: {max_points: 3280}
+        g: {max_points: 2240}
+        h: {max_points: 2320}
+      apprentice:
+        a: {max_points: 4480}
+        b: {max_points: 3920}
+        c: {max_points: 3920}
+        d: {max_points: 3600}
+        e: {max_points: 2480}
+        f: {max_points: 3920}
+        g: {max_points: 3920}
+        h: {max_points: 2480}
+      journeyman:
+        a: {max_points: 4560}
+        b: {max_points: 3920}
+        c: {max_points: 4560}
+        d: {max_points: 4560}
+        e: {max_points: 4560}
+        f: {max_points: 4560}
+        g: {max_points: 2800}
+        h: {max_points: 4560}
+      craftsman:
+        a: {max_points: 5120}
+        b: {max_points: 5120}
+        c: {max_points: 5360}
+        d: {max_points: 5040}
+        e: {max_points: 5040}
+        f: {max_points: 5040}
+        g: {max_points: 5120}
+        h: {max_points: 5040}
+      artisan:
+        a: {max_points: 5360}
+        b: {max_points: 5600}
+        c: {max_points: 5360}
+        d: {max_points: 5600}
+        e: {max_points: 5360}
+        f: {max_points: 5360}
+        g: {max_points: 5360}
+        h: {max_points: 5360}
+      adept:
+        a: {max_points: 5680}
+        b: {max_points: 5680}
+        c: {max_points: 5680}
+        d: {max_points: 5840}
+        e: {max_points: 5680}
+        f: {max_points: 5840}
+        g: {max_points: 5680}
+        h: {max_points: 5840}
+      veteran:
+        a: {max_points: 5840}
+        b: {max_points: 5840}
+        c: {max_points: 5840}
+        d: {max_points: 6240}
+        e: {max_points: 5840}
+        f: {max_points: 5840}
+        g: {max_points: 5840}
+        h: {max_points: 5840}
+  woodworking:
+    ranks:
+      amateur:
+        a: {max_points: 1680}
+        b: {max_points: 1360}
+        c: {max_points: 1600}
+        d: {max_points: 1600}
+        e: {max_points: 1280}
+        f: {max_points: 1280}
+        g: {max_points: 1280}
+        h: {max_points: 1360}
+      recruit:
+        a: {max_points: 2080}
+        b: {max_points: 2800}
+        c: {max_points: 2080}
+        d: {max_points: 2160}
+        e: {max_points: 1760}
+        f: {max_points: 1600}
+        g: {max_points: 3120}
+        h: {max_points: 2000}
+      initiate:
+        a: {max_points: 2720}
+        b: {max_points: 1760}
+        c: {max_points: 2720}
+        d: {max_points: 3440}
+        e: {max_points: 3200}
+        f: {max_points: 3120}
+        g: {max_points: 3680}
+        h: {max_points: 2880}
+      novice:
+        a: {max_points: 3520}
+        b: {max_points: 4880}
+        c: {max_points: 6240}
+        d: {max_points: 3040}
+        e: {max_points: 3840}
+        f: {max_points: 4080}
+        g: {max_points: 4320}
+        h: {max_points: 4320}
+      apprentice:
+        a: {max_points: 5040}
+        b: {max_points: 4960}
+        c: {max_points: 5280}
+        d: {max_points: 5440}
+        e: {max_points: 4960}
+        f: {max_points: 5040}
+        g: {max_points: 5120}
+        h: {max_points: 5600}
+      journeyman:
+        a: {max_points: 6000}
+        b: {max_points: 4880}
+        c: {max_points: 6000}
+        d: {max_points: 6000}
+        e: {max_points: 6562}
+        f: {max_points: 6560}
+        g: {max_points: 5360}
+        h: {max_points: 6000}
+      craftsman:
+        a: {max_points: 5120}
+        b: {max_points: 6480}
+        c: {max_points: 5680}
+        d: {max_points: 6000}
+        e: {max_points: 3200}
+        f: {max_points: 5920}
+        g: {max_points: 5040}
+        h: {max_points: 7200}
+      artisan:
+        a: {max_points: 6800}
+        b: {max_points: 6160}
+        c: {max_points: 6000}
+        d: {max_points: 6720}
+        e: {max_points: 7120}
+        f: {max_points: 3920}
+        g: {max_points: 6640}
+        h: {max_points: 6800}
+      adept:
+        a: {max_points: 6160}
+        b: {max_points: 7120}
+        c: {max_points: 6800}
+        d: {max_points: 7120}
+        e: {max_points: 6880}
+        f: {max_points: 6080}
+        g: {max_points: 7520}
+        h: {max_points: 6320}
+      veteran:
+        a: {max_points: 7200}
+        b: {max_points: 7440}
+        c: {max_points: 7680}
+        d: {max_points: 5200}
+        e: {max_points: 7520}
+        f: {max_points: 6960}
+        g: {max_points: 7520}
+        h: {max_points: 7520}
+  smithing:
+    ranks:
+      amateur:
+        a: {max_points: 1440}
+        b: {max_points: 1440}
+        c: {max_points: 2000}
+        d: {max_points: 1760}
+        e: {max_points: 1600}
+        f: {max_points: 2480}
+        g: {max_points: 1360}
+        h: {max_points: 1520}
+      recruit:
+        a: {max_points: 2880}
+        b: {max_points: 2400}
+        c: {max_points: 2320}
+        d: {max_points: 1840}
+        e: {max_points: 3040}
+        f: {max_points: 3200}
+        g: {max_points: 2480}
+        h: {max_points: 1680}
+      initiate:
+        a: {max_points: 4160}
+        b: {max_points: 6160}
+        c: {max_points: 3440}
+        d: {max_points: 4320}
+        e: {max_points: 5040}
+        f: {max_points: 5200}
+        g: {max_points: 2400}
+        h: {max_points: 4240}
+      novice:
+        a: {max_points: 4000}
+        b: {max_points: 5680}
+        c: {max_points: 5680}
+        d: {max_points: 3040}
+        e: {max_points: 3440}
+        f: {max_points: 6720}
+        g: {max_points: 5760}
+        h: {max_points: 4400}
+      apprentice:
+        a: {max_points: 4560}
+        b: {max_points: 7040}
+        c: {max_points: 6720}
+        d: {max_points: 5920}
+        e: {max_points: 6800}
+        f: {max_points: 6880}
+        g: {max_points: 7200}
+        h: {max_points: 6800}
+      journeyman:
+        a: {max_points: 6640}
+        b: {max_points: 6880}
+        c: {max_points: 7040}
+        d: {max_points: 6400}
+        e: {max_points: 4160}
+        f: {max_points: 5600}
+        g: {max_points: 7200}
+        h: {max_points: 6320}
+      craftsman:
+        a: {max_points: 6320}
+        b: {max_points: 6480}
+        c: {max_points: 5920}
+        d: {max_points: 6160}
+        e: {max_points: 6800}
+        f: {max_points: 6960}
+        g: {max_points: 5920}
+        h: {max_points: 7120}
+      artisan:
+        a: {max_points: 7440}
+        b: {max_points: 7440}
+        c: {max_points: 6960}
+        d: {max_points: 6480}
+        e: {max_points: 7120}
+        f: {max_points: 7280}
+        g: {max_points: 7280}
+        h: {max_points: 7280}
+      adept:
+        a: {max_points: 7040}
+        b: {max_points: 7440}
+        c: {max_points: 6960}
+        d: {max_points: 6960}
+        e: {max_points: 7200}
+        f: {max_points: 6800}
+        g: {max_points: 7520}
+        h: {max_points: 7040}
+      veteran:
+        a: {max_points: 7040}
+        b: {max_points: 7440}
+        c: {max_points: 6720}
+        d: {max_points: 7280}
+        e: {max_points: 7280}
+        f: {max_points: 6960}
+        g: {max_points: 7440}
+        h: {max_points: 6240}
+  goldsmithing:
+    ranks:
+      amateur:
+        a: {max_points: 2640}
+        b: {max_points: 2080}
+        c: {max_points: 1280}
+        d: {max_points: 1280}
+        e: {max_points: 2080}
+        f: {max_points: 1200}
+        g: {max_points: 2640}
+        h: {max_points: 1200}
+      recruit:
+        a: {max_points: 2560}
+        b: {max_points: 2800}
+        c: {max_points: 2240}
+        d: {max_points: 2080}
+        e: {max_points: 2240}
+        f: {max_points: 2480}
+        g: {max_points: 3360}
+        h: {max_points: 2720}
+      initiate:
+        a: {max_points: 3200}
+        b: {max_points: 4160}
+        c: {max_points: 2240}
+        d: {max_points: 3040}
+        e: {max_points: 3360}
+        f: {max_points: 3040}
+        g: {max_points: 3280}
+        h: {max_points: 2720}
+      novice:
+        a: {max_points: 4240}
+        b: {max_points: 4000}
+        c: {max_points: 4560}
+        d: {max_points: 6080}
+        e: {max_points: 4000}
+        f: {max_points: 4560}
+        g: {max_points: 5840}
+        h: {max_points: 2880}
+      apprentice:
+        a: {max_points: 6640}
+        b: {max_points: 6090}
+        c: {max_points: 5600}
+        d: {max_points: 4240}
+        e: {max_points: 6640}
+        f: {max_points: 6320}
+        g: {max_points: 4640}
+        h: {max_points: 4240}
+      journeyman:
+        a: {max_points: 5520}
+        b: {max_points: 6960}
+        c: {max_points: 6160}
+        d: {max_points: 5520}
+        e: {max_points: 6320}
+        f: {max_points: 5520}
+        g: {max_points: 6240}
+        h: {max_points: 5040}
+      craftsman:
+        a: {max_points: 6400}
+        b: {max_points: 6560}
+        c: {max_points: 6480}
+        d: {max_points: 6960}
+        e: {max_points: 6560}
+        f: {max_points: 7120}
+        g: {max_points: 6240}
+        h: {max_points: 6400}
+      artisan:
+        a: {max_points: 7040}
+        b: {max_points: 6880}
+        c: {max_points: 7520}
+        d: {max_points: 6320}
+        e: {max_points: 6560}
+        f: {max_points: 6800}
+        g: {max_points: 6640}
+        h: {max_points: 6560}
+      adept:
+        a: {max_points: 7200}
+        b: {max_points: 6960}
+        c: {max_points: 6880}
+        d: {max_points: 6960}
+        e: {max_points: 7200}
+        f: {max_points: 7360}
+        g: {max_points: 6560}
+        h: {max_points: 7520}
+      veteran:
+        a: {max_points: 7600}
+        b: {max_points: 7680}
+        c: {max_points: 5680}
+        d: {max_points: 7680}
+        e: {max_points: 7760}
+        f: {max_points: 7680}
+        g: {max_points: 7760}
+        h: {max_points: 7760}
+  clothcraft:
+    ranks:
+      amateur:
+        a: {max_points: 2560}
+        b: {max_points: 2160}
+        c: {max_points: 1600}
+        d: {max_points: 2480}
+        e: {max_points: 1760}
+        f: {max_points: 1600}
+        g: {max_points: 1520}
+        h: {max_points: 1680}
+      recruit:
+        a: {max_points: 2640}
+        b: {max_points: 4160}
+        c: {max_points: 2480}
+        d: {max_points: 2000}
+        e: {max_points: 2080}
+        f: {max_points: 2240}
+        g: {max_points: 3360}
+        h: {max_points: 2000}
+      initiate:
+        a: {max_points: 3920}
+        b: {max_points: 3760}
+        c: {max_points: 3360}
+        d: {max_points: 4160}
+        e: {max_points: 5920}
+        f: {max_points: 3040}
+        g: {max_points: 2080}
+        h: {max_points: 3760}
+      novice:
+        a: {max_points: 5520}
+        b: {max_points: 6240}
+        c: {max_points: 5040}
+        d: {max_points: 5440}
+        e: {max_points: 5280}
+        f: {max_points: 5840}
+        g: {max_points: 5920}
+        h: {max_points: 4720}
+      apprentice:
+        a: {max_points: 6400}
+        b: {max_points: 6320}
+        c: {max_points: 5760}
+        d: {max_points: 4880}
+        e: {max_points: 6000}
+        f: {max_points: 2800}
+        g: {max_points: 6720}
+        h: {max_points: 5200}
+      journeyman:
+        a: {max_points: 6000}
+        b: {max_points: 6640}
+        c: {max_points: 3200}
+        d: {max_points: 5840}
+        e: {max_points: 4880}
+        f: {max_points: 5200}
+        g: {max_points: 6000}
+        h: {max_points: 4080}
+      craftsman:
+        a: {max_points: 7120}
+        b: {max_points: 5920}
+        c: {max_points: 6800}
+        d: {max_points: 6800}
+        e: {max_points: 5760}
+        f: {max_points: 7200}
+        g: {max_points: 6960}
+        h: {max_points: 6000}
+      artisan:
+        a: {max_points: 6320}
+        b: {max_points: 7040}
+        c: {max_points: 6400}
+        d: {max_points: 6400}
+        e: {max_points: 6320}
+        f: {max_points: 6800}
+        g: {max_points: 6400}
+        h: {max_points: 6480}
+      adept:
+        a: {max_points: 6400}
+        b: {max_points: 6560}
+        c: {max_points: 7200}
+        d: {max_points: 6880}
+        e: {max_points: 6880}
+        f: {max_points: 6560}
+        g: {max_points: 6640}
+        h: {max_points: 6400}
+      veteran:
+        a: {max_points: 7520}
+        b: {max_points: 7440}
+        c: {max_points: 6480}
+        d: {max_points: 6560}
+        e: {max_points: 6720}
+        f: {max_points: 7440}
+        g: {max_points: 7120}
+        h: {max_points: 7520}
+  leathercraft:
+    ranks:
+      amateur:
+        a: {max_points: 1600}
+        b: {max_points: 1600}
+        c: {max_points: 1440}
+        d: {max_points: 1520}
+        e: {max_points: 1360}
+        f: {max_points: 1840}
+        g: {max_points: 1440}
+        h: {max_points: 1200}
+      recruit:
+        a: {max_points: 2000}
+        b: {max_points: 2090}
+        c: {max_points: 1840}
+        d: {max_points: 2560}
+        e: {max_points: 1760}
+        f: {max_points: 2240}
+        g: {max_points: 2480}
+        h: {max_points: 2880}
+      initiate:
+        a: {max_points: 4640}
+        b: {max_points: 5363}
+        c: {max_points: 3520}
+        d: {max_points: 3600}
+        e: {max_points: 2960}
+        f: {max_points: 3520}
+        g: {max_points: 4000}
+        h: {max_points: 2720}
+      novice:
+        a: {max_points: 4960}
+        b: {max_points: 3840}
+        c: {max_points: 4880}
+        d: {max_points: 4000}
+        e: {max_points: 4720}
+        f: {max_points: 3600}
+        g: {max_points: 5280}
+        h: {max_points: 5840}
+      apprentice:
+        a: {max_points: 6320}
+        b: {max_points: 4480}
+        c: {max_points: 5440}
+        d: {max_points: 5600}
+        e: {max_points: 5360}
+        f: {max_points: 4640}
+        g: {max_points: 5040}
+        h: {max_points: 3760}
+      journeyman:
+        a: {max_points: 5840}
+        b: {max_points: 6400}
+        c: {max_points: 4880}
+        d: {max_points: 6320}
+        e: {max_points: 5040}
+        f: {max_points: 5760}
+        g: {max_points: 5440}
+        h: {max_points: 5040}
+      craftsman:
+        a: {max_points: 6080}
+        b: {max_points: 6400}
+        c: {max_points: 5440}
+        d: {max_points: 6160}
+        e: {max_points: 6320}
+        f: {max_points: 6720}
+        g: {max_points: 5840}
+        h: {max_points: 4400}
+      artisan:
+        a: {max_points: 6720}
+        b: {max_points: 5680}
+        c: {max_points: 5760}
+        d: {max_points: 5120}
+        e: {max_points: 6480}
+        f: {max_points: 5760}
+        g: {max_points: 5840}
+        h: {max_points: 5840}
+      adept:
+        a: {max_points: 6720}
+        b: {max_points: 6640}
+        c: {max_points: 5840}
+        d: {max_points: 6800}
+        e: {max_points: 6800}
+        f: {max_points: 6480}
+        g: {max_points: 6480}
+        h: {max_points: 6800}
+      veteran:
+        a: {max_points: 7040}
+        b: {max_points: 7040}
+        c: {max_points: 6800}
+        d: {max_points: 6640}
+        e: {max_points: 5040}
+        f: {max_points: 7120}
+        g: {max_points: 5040}
+        h: {max_points: 6080}
+  bonecraft:
+    ranks:
+      amateur:
+        a: {max_points: 1680}
+        b: {max_points: 1920}
+        c: {max_points: 1680}
+        d: {max_points: 1920}
+        e: {max_points: 1920}
+        f: {max_points: 1280}
+        g: {max_points: 1280}
+        h: {max_points: 1920}
+      recruit:
+        a: {max_points: 3440}
+        b: {max_points: 3760}
+        c: {max_points: 2080}
+        d: {max_points: 3760}
+        e: {max_points: 2080}
+        f: {max_points: 2720}
+        g: {max_points: 3440}
+        h: {max_points: 2720}
+      initiate:
+        a: {max_points: 3040}
+        b: {max_points: 4400}
+        c: {max_points: 3440}
+        d: {max_points: 4240}
+        e: {max_points: 3040}
+        f: {max_points: 3040}
+        g: {max_points: 2800}
+        h: {max_points: 2560}
+      novice:
+        a: {max_points: 4800}
+        b: {max_points: 4160}
+        c: {max_points: 4480}
+        d: {max_points: 3520}
+        e: {max_points: 3520}
+        f: {max_points: 3840}
+        g: {max_points: 6480}
+        h: {max_points: 3440}
+      apprentice:
+        a: {max_points: 4320}
+        b: {max_points: 5280}
+        c: {max_points: 5520}
+        d: {max_points: 5200}
+        e: {max_points: 4720}
+        f: {max_points: 4720}
+        g: {max_points: 5840}
+        h: {max_points: 4240}
+      journeyman:
+        a: {max_points: 4480}
+        b: {max_points: 3680}
+        c: {max_points: 5680}
+        d: {max_points: 5520}
+        e: {max_points: 4320}
+        f: {max_points: 6320}
+        g: {max_points: 4720}
+        h: {max_points: 4880}
+      craftsman:
+        a: {max_points: 5600}
+        b: {max_points: 5360}
+        c: {max_points: 6640}
+        d: {max_points: 5360}
+        e: {max_points: 4800}
+        f: {max_points: 4800}
+        g: {max_points: 5040}
+        h: {max_points: 6000}
+      artisan:
+        a: {max_points: 6240}
+        b: {max_points: 5440}
+        c: {max_points: 6640}
+        d: {max_points: 6240}
+        e: {max_points: 7040}
+        f: {max_points: 6400}
+        g: {max_points: 6480}
+        h: {max_points: 6560}
+      adept:
+        a: {max_points: 7200}
+        b: {max_points: 6480}
+        c: {max_points: 7280}
+        d: {max_points: 6960}
+        e: {max_points: 7120}
+        f: {max_points: 6560}
+        g: {max_points: 7600}
+        h: {max_points: 6880}
+      veteran:
+        a: {max_points: 5840}
+        b: {max_points: 6960}
+        c: {max_points: 6960}
+        d: {max_points: 7040}
+        e: {max_points: 7040}
+        f: {max_points: 7520}
+        g: {max_points: 7520}
+        h: {max_points: 6480}
+  alchemy:
+    ranks:
+      amateur:
+        a: {max_points: 1520}
+        b: {max_points: 2160}
+        c: {max_points: 1520}
+        d: {max_points: 1120}
+        e: {max_points: 1280}
+        f: {max_points: 1920}
+        g: {max_points: 1520}
+        h: {max_points: 1520}
+      recruit:
+        a: {max_points: 4080}
+        b: {max_points: 1920}
+        c: {max_points: 3040}
+        d: {max_points: 2720}
+        e: {max_points: 3840}
+        f: {max_points: 1920}
+        g: {max_points: 2320}
+        h: {max_points: 3040}
+      initiate:
+        a: {max_points: 4400}
+        b: {max_points: 4320}
+        c: {max_points: 4800}
+        d: {max_points: 2880}
+        e: {max_points: 4320}
+        f: {max_points: 2933}
+        g: {max_points: 3520}
+        h: {max_points: 4400}
+      novice:
+        a: {max_points: 3920}
+        b: {max_points: 5840}
+        c: {max_points: 2320}
+        d: {max_points: 2480}
+        e: {max_points: 4800}
+        f: {max_points: 4560}
+        g: {max_points: 6400}
+        h: {max_points: 5280}
+      apprentice:
+        a: {max_points: 5040}
+        b: {max_points: 5920}
+        c: {max_points: 4960}
+        d: {max_points: 5440}
+        e: {max_points: 5920}
+        f: {max_points: 4640}
+        g: {max_points: 2880}
+        h: {max_points: 3360}
+      journeyman:
+        a: {max_points: 4960}
+        b: {max_points: 6880}
+        c: {max_points: 6240}
+        d: {max_points: 6090}
+        e: {max_points: 6640}
+        f: {max_points: 5840}
+        g: {max_points: 5840}
+        h: {max_points: 3040}
+      craftsman:
+        a: {max_points: 6240}
+        b: {max_points: 7280}
+        c: {max_points: 6880}
+        d: {max_points: 7360}
+        e: {max_points: 6800}
+        f: {max_points: 6480}
+        g: {max_points: 7360}
+        h: {max_points: 6933}
+      artisan:
+        a: {max_points: 7280}
+        b: {max_points: 7040}
+        c: {max_points: 6800}
+        d: {max_points: 7120}
+        e: {max_points: 7440}
+        f: {max_points: 7040}
+        g: {max_points: 7200}
+        h: {max_points: 6320}
+      adept:
+        a: {max_points: 6960}
+        b: {max_points: 7440}
+        c: {max_points: 7040}
+        d: {max_points: 7360}
+        e: {max_points: 6320}
+        f: {max_points: 7200}
+        g: {max_points: 7120}
+        h: {max_points: 6320}
+      veteran:
+        a: {max_points: 4800}
+        b: {max_points: 4640}
+        c: {max_points: 4800}
+        d: {max_points: 4800}
+        e: {max_points: 4640}
+        f: {max_points: 4720}
+        g: {max_points: 6960}
+        h: {max_points: 4800}
+  cooking:
+    ranks:
+      amateur:
+        a: {max_points: 1120}
+        b: {max_points: 1360}
+        c: {max_points: 1520}
+        d: {max_points: 1920}
+        e: {max_points: 1520}
+        f: {max_points: 2960}
+        g: {max_points: 2960}
+        h: {max_points: 1360}
+      recruit:
+        a: {max_points: 2560}
+        b: {max_points: 3120}
+        c: {max_points: 2560}
+        d: {max_points: 1680}
+        e: {max_points: 3120}
+        f: {max_points: 2320}
+        g: {max_points: 2320}
+        h: {max_points: 1680}
+      initiate:
+        a: {max_points: 2000}
+        b: {max_points: 3600}
+        c: {max_points: 2640}
+        d: {max_points: 2400}
+        e: {max_points: 3120}
+        f: {max_points: 1840}
+        g: {max_points: 3920}
+        h: {max_points: 2240}
+      novice:
+        a: {max_points: 5200}
+        b: {max_points: 3760}
+        c: {max_points: 1920}
+        d: {max_points: 2080}
+        e: {max_points: 3440}
+        f: {max_points: 2080}
+        g: {max_points: 2880}
+        h: {max_points: 2800}
+      apprentice:
+        a: {max_points: 3600}
+        b: {max_points: 2560}
+        c: {max_points: 2560}
+        d: {max_points: 3120}
+        e: {max_points: 2800}
+        f: {max_points: 2800}
+        g: {max_points: 2160}
+        h: {max_points: 3840}
+      journeyman:
+        a: {max_points: 3200}
+        b: {max_points: 3520}
+        c: {max_points: 2960}
+        d: {max_points: 3680}
+        e: {max_points: 4000}
+        f: {max_points: 4320}
+        g: {max_points: 4000}
+        h: {max_points: 2400}
+      craftsman:
+        a: {max_points: 4000}
+        b: {max_points: 3840}
+        c: {max_points: 4160}
+        d: {max_points: 4000}
+        e: {max_points: 4480}
+        f: {max_points: 3040}
+        g: {max_points: 4160}
+        h: {max_points: 4640}
+      artisan:
+        a: {max_points: 4400}
+        b: {max_points: 4320}
+        c: {max_points: 3760}
+        d: {max_points: 4240}
+        e: {max_points: 3920}
+        f: {max_points: 4000}
+        g: {max_points: 5840}
+        h: {max_points: 5600}
+      adept:
+        a: {max_points: 4480}
+        b: {max_points: 5760}
+        c: {max_points: 3520}
+        d: {max_points: 5920}
+        e: {max_points: 4080}
+        f: {max_points: 4640}
+        g: {max_points: 4800}
+        h: {max_points: 5600}
+      veteran:
+        a: {max_points: 6080}
+        b: {max_points: 3600}
+        c: {max_points: 4480}
+        d: {max_points: 6160}
+        e: {max_points: 6000}
+        f: {max_points: 6400}
+        g: {max_points: 3440}
+        h: {max_points: 5360}

@@ -1,0 +1,332 @@
+# Guild point items as they were before the November 2011 update.
+# https://forum.square-enix.com/ffxi/threads/15044
+# Cooking guild rewards were raised in the October 2011 update.
+# https://forum.square-enix.com/ffxi/threads/15044
+#
+# Values are from FFXIclopedia revisions before October 2011 where available.
+# https://ffxiclopedia.fandom.com/wiki/Guild_Points/Items?oldid=1060231
+# HQ items with no recorded value are worth 15% more than the NQ item.
+
+guilds:
+  fishing:
+    ranks:
+      amateur:
+        d: {max_points: 1120, items: {moat_carp: null, phanauet_newt: 12}}
+      recruit:
+        e: {max_points: 1520, items: {bastore_sweeper: null, greedie: 24}}
+        f: {max_points: 1520, items: {bastore_sweeper: null, greedie: 24}}
+      novice:
+        d: {max_points: 2160, items: {veydal_wrasse: null, dark_bass: 60}}
+        g: {max_points: 2160, items: {shining_trout: null, dark_bass: 60}}
+      apprentice:
+        g: {max_points: 2400, items: {black_eel: null, sandfish: 78}}
+      craftsman:
+        c: {max_points: 5040, items: {trumpet_shell: null, zebra_eel: 1200}}
+      veteran:
+        h: {max_points: 5360}
+  woodworking:
+    ranks:
+      amateur:
+        b: {max_points: 1200, items: {jug_of_humus: null, jug_of_rich_humus: null, maple_wand: 13, maple_wand_+1: 13}}
+        d: {max_points: 1200, items: {workbench: null, ash_staff: 16, ash_staff_+1: 24}}
+        e: {max_points: 1200, items: {lauan_shield: null, lauan_shield_+1: null, ash_club: 18, ash_club_+1: 26}}
+        h: {max_points: 1120, items: {jug_of_humus: null, jug_of_rich_humus: null, flute: 12, flute_+1: 14}}
+      recruit:
+        c: {max_points: 1520, items: {bamboo_fishing_rod: null, ash_clogs: 31, ash_clogs_+1: 39}}
+      initiate:
+        a: {items: {yew_wand: 266}}
+        b: {max_points: 1680, items: {shihei: null, maple_harp: 12, maple_harp_+1: 14}}
+      journeyman:
+        e: {max_points: 6560}
+        h: {max_points: 2880, items: {kaman: null, kaman_+1: null, desk: 158}}
+      craftsman:
+        d: {max_points: 6640, items: {partisan: null, partisan_+1: null, revenging_staff: 4375, revenging_staff_+1: 5031}}
+        h: {max_points: 6320, items: {mahogany_pole: null, mahogany_pole_+1: null, lightning_bow: 3300, lightning_bow_+1: 4125}}
+      artisan:
+        h: {max_points: 6080, items: {couse: null, couse_+1: null, ebony_harp: 2587, ebony_harp_+1: 2700}}
+      adept:
+        b: {max_points: 4320, items: {mythic_harp: null, mythic_harp_+1: null, eremites_wand: 600, eremites_wand_+1: 690}}
+        d: {max_points: 7040, items: {credenza: null, leo_crossbow_+1: 7040, leo_crossbow: 6235}}
+        g: {max_points: 5120, items: {armoire: null, obelisk_lance: 1200, obelisk_lance_+1: 1300}}
+      veteran:
+        a: {max_points: 7200, items: {ox_tongue: 7200, ox_tongue_+1: 7200}}
+        b: {max_points: 7440, items: {gendawa: 7440, gendawa_+1: 7440}}
+        c: {max_points: 7680, items: {shigeto_bow: 7680}}
+        e: {max_points: 7520, items: {star_globe: 7520}}
+        g: {max_points: 7520, items: {royal_bookshelf: 7520}}
+        h: {max_points: 7520, items: {bookshelf: 7520}}
+  smithing:
+    ranks:
+      amateur:
+        b: {max_points: 1440, items: {bronze_sword_+1: 67}}
+        d: {max_points: 1280, items: {hatchet: null, bronze_dagger: 39, bronze_dagger_+1: 47}}
+        f: {max_points: 1360, items: {faceguard: null, faceguard_+1: null, bronze_knife: 41, bronze_knife_+1: 48}}
+      recruit:
+        e: {max_points: 1520, items: {dagger: null, dagger_+1: null, bronze_rod: 25, bronze_rod_+1: 25}}
+      novice:
+        a: {max_points: 5360, items: {targe: 1720, targe_+1: 2120}}
+      journeyman:
+        c: {max_points: 7040, items: {greatsword_+1: 7040}}
+        e: {max_points: 4160, items: {uchigatana_+1: 667}}
+        g: {max_points: 7200, items: {schlaeger: 7200, schlaeger_+1: 7200}}
+      craftsman:
+        f: {max_points: 6960, items: {darksteel_kukri_+1: 6960}}
+        h: {max_points: 7120, items: {mythril_zaghnal_+1: 7120}}
+      artisan:
+        a: {max_points: 7440, items: {bastard_sword: 7440, bastard_sword_+1: 7440}}
+        b: {max_points: 7440, items: {darksteel_scythe: 7440}}
+        f: {max_points: 7280, items: {darksteel_subligar: 7280}}
+        g: {items: {holy_breastplate: 7280, divine_breastplate: 7280}}
+        h: {max_points: 7280, items: {schwert: 7280, schwert_+1: 7280}}
+      adept:
+        b: {max_points: 7440, items: {darksteel_cuirass: 7440}}
+        e: {max_points: 7200, items: {darksteel_tabar: 7200}}
+        f: {max_points: 7520, items: {flanged_mace: null, flanged_mace_+1: null, mythril_heart: 7520, mythril_heart_+1: 7520}}
+        g: {max_points: 7520, items: {flamberge: 7520, flamberge_+1: 7520}}
+        h: {max_points: 7400}
+      veteran:
+        a: {items: {ritter_shield_+1: 7040}}
+        d: {max_points: 7280, items: {anelace: 7280, anelace_+1: 8820}}
+        e: {max_points: 7200}
+        h: {max_points: 6240, items: {gully_+1: 3000}}
+  goldsmithing:
+    ranks:
+      amateur:
+        f: {max_points: 1200, items: {copper_ring_+1: 21}}
+        h: {max_points: 1200, items: {copper_ring_+1: 21}}
+      recruit:
+        d: {max_points: 3520, items: {brass_zaghnal: 565, brass_zaghnal_+1: 565}}
+        e: {max_points: 2240, items: {brass_knuckles_+1: 227}}
+        f: {max_points: 1600, items: {brass_leggings: null, brass_leggings_+1: null, brass_ring: 50, brass_ring_+1: 70}}
+      initiate:
+        f: {max_points: 4160, items: {silver_belt: 798, silver_belt_+1: 840}}
+        g: {max_points: 4000, items: {brass_finger_gauntlets: 736, brass_finger_gauntlets_+1: 768}}
+      novice:
+        b: {max_points: 4160, items: {brass_cuisses: 768, brass_cuisses_+1: 800}}
+        c: {max_points: 4560, items: {chain_belt_+1: 1340}}
+      apprentice:
+        b: {max_points: 6240}
+        d: {max_points: 4240, items: {mythril_ring_+1: 750}}
+      journeyman:
+        d: {max_points: 6800, items: {hydro_baghnakhs: null, hydro_baghnakhs_+1: null, melody_earring: 5250, melody_earring_+1: 6000}}
+      craftsman:
+        d: {max_points: 6960, items: {platinum_ring_+1: 6960}}
+      artisan:
+        c: {max_points: 7520, items: {gold_sword_+1: 7520}}
+        f: {items: {gilt_sabatons: 6750}}
+      adept:
+        a: {max_points: 7200, items: {kazaridachi: 7200, kazaridachi_+1: 7200}}
+        e: {max_points: 7200, items: {platinum_mace: 7200, platinum_mace_+1: 7200}}
+        f: {max_points: 7360, items: {epee: 7360, epee_+1: 7360}}
+        h: {max_points: 7520, items: {jagdplaute: 7520, jagdplaute_+1: 7520}}
+      veteran:
+        a: {max_points: 7600, items: {verdun: 7600, verdun_+1: 7600}}
+        d: {max_points: 7680, items: {brisingamen: 7680, brisingamen_+1: 7680}}
+        e: {items: {orichalcum_ring: 7760, triton_ring: 7760}}
+        f: {items: {koenig_shield: 7860, kaiser_shield: 7680}}
+        h: {items: {orichalcum_earring: 7760}}
+  clothcraft:
+    ranks:
+      amateur:
+        e: {max_points: 3360}
+        g: {max_points: 2000}
+      recruit:
+        d: {max_points: 1680, items: {kyahan: null, kyahan_+1: null, robe: 60, robe_+1: 60}}
+        f: {max_points: 1520, items: {slacks: null, slacks_+1: null, cuffs: 33, cuffs_+1: 41}}
+      novice:
+        b: {items: {mist_tunic: 3210}}
+      apprentice:
+        d: {max_points: 6560, items: {wool_cap: 4160, wool_cap_+1: 4960}}
+      journeyman:
+        a: {max_points: 6080, items: {black_mitts: 2720, mages_mitts: 2805}}
+      artisan:
+        d: {max_points: 6480}
+        h: {max_points: 6480}
+      adept:
+        b: {items: {prism_obi: 5040}}
+        c: {items: {nobles_slacks: 7200, aristocrats_slacks: 7200}}
+      veteran:
+        a: {max_points: 7520, items: {rasetsu_tekko: 7520}}
+        d: {items: {mahatma_slops: 3750}}
+        e: {items: {mahatma_hat: 4500}}
+        f: {max_points: 7440, items: {rasetsu_sune-ate: 7440}}
+        g: {items: {mahatma_cuffs: 6875}}
+        h: {items: {rasetsu_jinpachi: 7520}}
+  leathercraft:
+    ranks:
+      amateur:
+        a: {max_points: 2000, items: {leather_vest: 168, leather_vest_+1: 244}}
+        e: {max_points: 1680, items: {leather_bandana: 110}}
+        f: {max_points: 1360, items: {leather_trousers: null, leather_trousers_+1: null, rabbit_mantle: 44, rabbit_mantle_+1: 56}}
+      recruit:
+        b: {max_points: 2240}
+        e: {max_points: 1740}
+      initiate:
+        b: {max_points: 5360}
+        f: {items: {riders_boots: 579}}
+      novice:
+        d: {max_points: 2160, items: {field_boots: null, worker_boots: null, leather_gorget: 66, leather_gorget_+1: 86}}
+      apprentice:
+        f: {max_points: 5360, items: {cuir_trousers: 1680, cuir_trousers_+1: 1792}}
+      journeyman:
+        c: {max_points: 4880, items: {himantes_+1: 1200}}
+        f: {max_points: 6800, items: {raptor_trousers: 5200, dino_trousers: 5360}}
+        g: {max_points: 4720, items: {moccasins: null, moccasins_+1: null, desert_boots: 1000, desert_boots_+1: 2000}}
+      craftsman:
+        b: {max_points: 6400, items: {beak_gloves: 3440, beak_gloves_+1: 3547}}
+        d: {max_points: 6320, items: {battle_boots: 3300, battle_boots_+1: 3410}}
+        e: {max_points: 6320, items: {beak_trousers_+1: 3332}}
+      adept:
+        d: {items: {kaiser_belt: 4785}}
+        e: {max_points: 6800, items: {ogre_ledelsens_+1: 5040}}
+      veteran:
+        d: {items: {braves_wristbands: 4020}}
+        e: {items: {feral_mask: 1080}}
+        g: {items: {feral_mask: 1080}}
+  bonecraft:
+    ranks:
+      recruit:
+        c: {max_points: 3680, items: {fang_necklace: 636, spike_necklace: 872}}
+        e: {max_points: 3680, items: {fang_necklace: 636, spike_necklace: 872}}
+      initiate:
+        h: {max_points: 4400, items: {bone_axe: 933, bone_axe_+1: 1026}}
+      novice:
+        f: {max_points: 4960, items: {turtle_shield: 1290, turtle_shield_+1: 1590}}
+        h: {max_points: 4160, items: {beetle_gorget: 778, green_gorget: 1013}}
+      journeyman:
+        b: {max_points: 2400, items: {scorpion_ring: null, scorpion_ring_+1: null, blood_stone: 26, blood_stone_+1: 26}}
+      craftsman:
+        a: {items: {crumhorn_+2: null}}
+        f: {max_points: 4800, items: {scorpion_mask_+1: 1155}}
+      artisan:
+        e: {items: {mermans_mittens: 6412}}
+        g: {items: {feral_fangs: 3625}}
+      adept:
+        a: {max_points: 7200, items: {dragon_mask: 7200}}
+        c: {max_points: 7280, items: {dragon_cuisses: 7280, dragon_cuisses_+1: 7280}}
+        g: {items: {coral_sword: 7600, mermans_sword: 7600}}
+      veteran:
+        d: {items: {scorpion_helm: 6049}}
+        e: {max_points: 7040, items: {carapace_helm_+1: 7040}}
+  alchemy:
+    ranks:
+      amateur:
+        a: {max_points: 2320, items: {flask_of_deodorizer: 250}}
+        d: {max_points: 1440, items: {tsurara: null, wax_sword_+1: 75, wax_sword: 67}}
+        g: {max_points: 2320, items: {flask_of_deodorizer: 250}}
+      recruit:
+        f: {max_points: 1520, items: {bowl_of_bittern: null, cracker: 21}}
+      initiate:
+        d: {max_points: 1760, items: {pot_of_silent_oil: null, twinkle_shower: 25}}
+        f: {max_points: 4640, items: {poison_baselard: 1107, python_baselard: 1312}}
+      novice:
+        a: {max_points: 5680, items: {poison_baghnakhs: 2112}}
+      journeyman:
+        d: {max_points: 6240}
+      craftsman:
+        a: {items: {corrosive_kukri: 2944}}
+        b: {max_points: 7280, items: {cermet_sword: 7280, cermet_sword_+1: 7280}}
+        d: {max_points: 7360, items: {hanger: 7360, hanger_+1: 7360}}
+        g: {max_points: 7360, items: {saber: 7360, saber_+1: 7360}}
+        h: {max_points: 6960, items: {cermet_knife_+1: 6960}}
+      artisan:
+        a: {max_points: 7280, items: {cermet_kukri: 7280, cermet_kukri_+1: 7280}}
+        d: {max_points: 7120, items: {venom_kukri: 7120, venom_kukri_+1: 7290}}
+        e: {max_points: 7440, items: {cutlass: 7440, cutlass_+1: 7440}}
+        g: {max_points: 4400, items: {stun_knife: null, stun_knife_+1: null, holy_shield: 700, divine_shield: 805}}
+      adept:
+        b: {items: {bloody_sword: 7440}}
+        d: {max_points: 7360, items: {stun_kukri: 7360}}
+        f: {items: {bloody_rapier: 7200, carnage_rapier: 7200}}
+  cooking:
+    ranks:
+      amateur:
+        a: {max_points: 1120, items: {pet_food_alpha_biscuit: 3}}
+        b: {max_points: 1280, items: {ear_of_roasted_corn: 31, ear_of_grilled_corn: 37}}
+        c: {max_points: 1360, items: {bottle_of_orange_juice: null, bowl_of_pebble_soup: 50, bowl_of_wisdom_soup: 55}}
+        d: {max_points: 1600, items: {boiled_crayfish: 100, steamed_crayfish: 120}}
+        e: {max_points: 1360, items: {bottle_of_orange_juice: null, bowl_of_pebble_soup: 50, bowl_of_wisdom_soup: 55}}
+        f: {max_points: 2400, items: {salmon_sub_sandwich: 278, fulm-long_salmon_sub: 288}}
+        g: {max_points: 2400, items: {salmon_sub_sandwich: 278, fulm-long_salmon_sub: 288}}
+        h: {max_points: 1280, items: {ear_of_roasted_corn: 31, ear_of_grilled_corn: 37}}
+      recruit:
+        a: {max_points: 2240, items: {slice_of_roast_mutton: 180, slice_of_juicy_mutton: 200}}
+        b: {max_points: 2640, items: {bowl_of_pea_soup: 280, bowl_of_emerald_soup: 361}}
+        c: {max_points: 2240, items: {slice_of_roast_mutton: 180, slice_of_juicy_mutton: 200}}
+        d: {max_points: 1600, items: {tortilla: 35, tortilla_buena: 52}}
+        e: {max_points: 2640, items: {bowl_of_pea_soup: 280, bowl_of_emerald_soup: 361}}
+        f: {max_points: 2000, items: {roast_carp: 130, broiled_carp: 160}}
+        g: {max_points: 2000, items: {roast_carp: 130, broiled_carp: 160}}
+        h: {max_points: 1600, items: {tortilla: 35, tortilla_buena: 52}}
+      initiate:
+        a: {max_points: 1920, items: {smoked_salmon: 55}}
+        b: {max_points: 3040, items: {dhalmel_steak: 360, wild_steak: 390}}
+        c: {max_points: 2320, items: {bowl_of_puls: 150, bowl_of_delicious_puls: 150}}
+        d: {max_points: 2160, items: {baked_apple: 110, sweet_baked_apple: 130}}
+        e: {max_points: 2720, items: {bowl_of_vegetable_soup: 251, bowl_of_vegetable_broth: 443}}
+        f: {max_points: 1760, items: {strip_of_meat_jerky: 30, strip_of_sheep_jerky: 42}}
+        g: {max_points: 3360, items: {boiled_crab: 450, steamed_crab: 550}}
+        h: {max_points: 2000, items: {baked_popoto: 80, pipin_hot_popoto: 85}}
+      novice:
+        a: {max_points: 4560, items: {bowl_of_mushroom_soup: 1000, bowl_of_witch_soup: 1160}}
+        b: {max_points: 3280, items: {windurst_salad: 372, timbre_timbers_salad: 409}}
+        c: {max_points: 1920, items: {acorn_cookie: 6, wild_cookie: 7}}
+        d: {max_points: 2000, items: {loaf_of_iron_bread: 25, loaf_of_steel_bread: 76}}
+        e: {max_points: 3040, items: {nebimonite_bake: 300, buttered_nebimonite: 450}}
+        f: {max_points: 2000, items: {loaf_of_black_bread: 30, loaf_of_pumpernickel: 40}}
+        g: {max_points: 2560, items: {strip_of_buffalo_jerky: 168, strip_of_bison_jerky: 378}}
+        h: {max_points: 2560, items: {roast_trout: 150, broiled_trout: 165}}
+      apprentice:
+        a: {max_points: 3200, items: {bowl_of_tomato_soup: 294, bowl_of_sunset_soup: 894}}
+        b: {max_points: 2480, items: {apple_pie: 80, apple_pie_+1: 88}}
+        c: {max_points: 2480, items: {apple_pie: 80, apple_pie_+1: 88}}
+        d: {max_points: 2800, items: {fish_mithkabob: 180, fish_chiefkabob: 204}}
+        e: {max_points: 2560, items: {pickled_herring: 120, viking_herring: 180}}
+        f: {max_points: 2560, items: {pickled_herring: 120, viking_herring: 180}}
+        g: {max_points: 2160, items: {cinna-cookie: 4, coin_cookie: 5}}
+        h: {max_points: 3200, items: {bowl_of_goulash: null, bowl_of_goulash_+1: null, bowl_of_tomato_soup: 294, bowl_of_sunset_soup: 894}}
+      journeyman:
+        a: {max_points: 2960, items: {serving_of_beaugreen_saute: 165, serving_of_monastic_saute: 577}}
+        b: {max_points: 3200, items: {pamama_tart: 256, opo-opo_tart: 612}}
+        c: {max_points: 2800, items: {bataquiche: 123, bataquiche_+1: 184}}
+        d: {max_points: 3360, items: {bowl_of_egg_soup: 300, bowl_of_humpty_soup: 350}}
+        e: {max_points: 3600, items: {sis_kebabi: 400, sis_kebabi_+1: 500}}
+        f: {max_points: 3840, items: {eel_kabob: 500, broiled_eel: 550}}
+        g: {max_points: 3600, items: {sis_kebabi: 400, sis_kebabi_+1: 500}}
+        h: {max_points: 2320, items: {bretzel: 6, salty_bretzel: 9}}
+      craftsman:
+        a: {max_points: 3600, items: {piece_of_raisin_bread: 350}}
+        b: {max_points: 3200, items: {plate_of_squid_sushi: null, plate_of_squid_sushi_+1: null, pot_of_san_dorian_tea: 198, pot_of_royal_tea: 240}}
+        c: {max_points: 3760, items: {irmik_helvasi: 415, irmik_helvasi_+1: 441}}
+        d: {max_points: 3600, items: {serving_of_herb_quus: 356, serving_of_medicinal_quus: 586}}
+        e: {max_points: 4000, items: {bowl_of_dhalmel_stew: 519, bowl_of_wild_stew: 570}}
+        f: {max_points: 2880, items: {colored_egg: 104, party_egg: 230}}
+        g: {max_points: 3760, items: {mutton_tortilla: 405, mutton_enchilada: 587}}
+        h: {max_points: 4160, items: {balik_sis: 600, balik_sis_+1: 650}}
+      artisan:
+        a: {max_points: 4000, items: {bowl_of_boiled_cockatrice: 462}}
+        b: {max_points: 3920, items: {serving_of_herb_crawler_eggs: 425}}
+        c: {max_points: 3520, items: {serving_of_salmon_meuniere: 255, serving_of_salmon_meuniere_+1: 510}}
+        d: {max_points: 3280, items: {bowl_of_whitefish_stew: null, bowl_of_navarin: 175, bowl_of_tender_navarin: 525}}
+        e: {max_points: 3120, items: {cup_of_chocomilk: null, cup_of_choco-delight: null, dhalmel_pie: 120, dhalmel_pie_+1: 160}}
+        f: {max_points: 3680, items: {rarab_meatball: 320, bunny_ball: 540}}
+        g: {max_points: 5280, items: {serving_of_shallops_tropicale: 1404}}
+        h: {max_points: 5040, items: {bowl_of_turtle_soup: 1200, bowl_of_stamina_soup: 1400}}
+      adept:
+        a: {max_points: 5040, items: {serving_of_karni_yarik: null, serving_of_karni_yarik_+1: null, bowl_of_mushroom_stew: 1120, bowl_of_witch_stew: 1680}}
+        b: {max_points: 5280, items: {bowl_of_seafood_stew: 1320}}
+        c: {max_points: 5680, items: {stick_of_pepperoni: null, royal_omelette: 1836, imperial_omelette: 2516}}
+        d: {max_points: 5360, items: {plate_of_bream_risotto: 1472, plate_of_sea_spray_risotto: 1792}}
+        e: {max_points: 3760, items: {serving_of_bass_meuniere: 305, serving_of_bass_meuniere_+1: 610}}
+        f: {max_points: 4160, items: {steamed_catfish: 522}}
+        g: {max_points: 4320, items: {plate_of_coeurl_saute: 616, plate_of_royal_saute: 966}}
+        h: {max_points: 5040, items: {bowl_of_shark_fin_soup: 1150, bowl_of_ocean_soup: 1400}}
+      veteran:
+        a: {max_points: 4640, items: {plate_of_urchin_sushi: null, plate_of_urchin_sushi_+1: null, serving_of_black_curry: 730}}
+        b: {max_points: 3440, items: {rice_dumpling: 140}}
+        c: {max_points: 6720, items: {plate_of_dorado_sushi: null, plate_of_dorado_sushi_+1: null, tavnazian_salad: 4375, leremieu_salad: 6475}}
+        d: {max_points: 5680, items: {sea_bass_croute: 1818}}
+        e: {max_points: 5520, items: {serving_of_flounder_meuniere: 1597, serving_of_flounder_meuniere_+1: 2130}}
+        f: {max_points: 5920, items: {bowl_of_brain_stew: 2220, bowl_of_sophic_stew: 3330}}
+        g: {max_points: 3360, items: {sweet_rice_cake: 98}}
+        h: {max_points: 4800, items: {salmon_croute: 900}}
