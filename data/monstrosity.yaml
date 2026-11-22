@@ -2810,7 +2810,7 @@ monstrosity:
           unlock_level: 30
           tp_cost:      1300
           enabled:      false
-        - skill:        sheep_bleat  # No mob_skills row yet
+        - skill:        sheep_bleat  # No mob_skills entry yet
           dat_skill_id: 263
           mob_skill_id: 263
           unlock_level: 40
@@ -2909,7 +2909,7 @@ monstrosity:
       ecosystem:    beast
       hp_scale:     240
       tp_skills:
-        - skill:        frenzied_rage       # No mob_skills row yet
+        - skill:        frenzied_rage       # No mob_skills entry yet
           dat_skill_id: 413
           mob_skill_id: 481
           unlock_level: 1
@@ -2998,7 +2998,7 @@ monstrosity:
           unlock_level: 60
           tp_cost:      1500
           enabled:      false
-        - skill:        vacant_gaze       # No mob_skills row yet
+        - skill:        vacant_gaze       # No mob_skills entry yet
           dat_skill_id: 638
           mob_skill_id: 2610
           unlock_level: 70
@@ -3239,7 +3239,7 @@ monstrosity:
           unlock_level: 20
           tp_cost:      2500
           enabled:      false
-        - skill:        cacophony              # No mob_skills row yet
+        - skill:        cacophony              # No mob_skills entry yet
           dat_skill_id: 581
           mob_skill_id: 2177
           unlock_level: 30
@@ -4431,7 +4431,7 @@ monstrosity:
           unlock_level: 30
           tp_cost:      1300
           enabled:      false
-        - skill:        calcifying_mist   # No mob_skills row yet
+        - skill:        calcifying_mist   # No mob_skills entry yet
           dat_skill_id: 566
           mob_skill_id: 2157
           unlock_level: 40
@@ -4572,7 +4572,7 @@ monstrosity:
           unlock_level: 20
           tp_cost:      1500
           enabled:      false
-        - skill:        mucilaginous_ooze # No mob_skills row yet
+        - skill:        mucilaginous_ooze # No mob_skills entry yet
           dat_skill_id: 590
           mob_skill_id: 2186
           unlock_level: 30
@@ -4967,7 +4967,7 @@ monstrosity:
           unlock_level: 40
           tp_cost:      2500
           enabled:      false
-        - skill:        aqua_cannon   # No mob_skills row yet
+        - skill:        aqua_cannon   # No mob_skills entry yet
           dat_skill_id: 614
           mob_skill_id: 2441
           unlock_level: 60
@@ -5532,13 +5532,13 @@ monstrosity:
           unlock_level: 50
           tp_cost:      3000
           enabled:      false
-        - skill:        amnesic_blast        # No mob_skills row yet
+        - skill:        amnesic_blast        # No mob_skills entry yet
           dat_skill_id: 602
           mob_skill_id: 2391
           unlock_level: 60
           tp_cost:      2000
           enabled:      false
-        - skill:        ecliptic_meteor      # No mob_skills row yet
+        - skill:        ecliptic_meteor      # No mob_skills entry yet
           dat_skill_id: 628
           mob_skill_id: 2586
           unlock_level: 70
@@ -5624,7 +5624,7 @@ monstrosity:
           unlock_level: 40
           tp_cost:      1800
           enabled:      false
-        - skill:        disorienting_waul       # No mob_skills row yet
+        - skill:        disorienting_waul       # No mob_skills entry yet
           dat_skill_id: 596
           mob_skill_id: 2207
           unlock_level: 50
@@ -5671,7 +5671,7 @@ monstrosity:
           unlock_level: 30
           tp_cost:      1300
           enabled:      false
-        - skill:        sheep_bleat  # No mob_skills row yet
+        - skill:        sheep_bleat  # No mob_skills entry yet
           dat_skill_id: 263
           mob_skill_id: 263
           unlock_level: 40
@@ -5694,7 +5694,7 @@ monstrosity:
       ecosystem:    beast
       hp_scale:     240
       tp_skills:
-        - skill:        frenzied_rage       # No mob_skills row yet
+        - skill:        frenzied_rage       # No mob_skills entry yet
           dat_skill_id: 413
           mob_skill_id: 481
           unlock_level: 1
@@ -5741,7 +5741,7 @@ monstrosity:
       ecosystem:    beast
       hp_scale:     230
       tp_skills:
-        - skill:        frenzied_rage       # No mob_skills row yet
+        - skill:        frenzied_rage       # No mob_skills entry yet
           dat_skill_id: 413
           mob_skill_id: 481
           unlock_level: 1
@@ -5777,7 +5777,7 @@ monstrosity:
           unlock_level: 50
           tp_cost:      1500
           enabled:      false
-        - skill:        preternatural_gleam # No mob_skills row yet
+        - skill:        preternatural_gleam # No mob_skills entry yet
           dat_skill_id: 648
           mob_skill_id: 2760
           unlock_level: 80
@@ -5877,7 +5877,7 @@ monstrosity:
           unlock_level: 60
           tp_cost:      2500
           enabled:      false
-        - skill:        acheron_flame    # No mob_skills row yet
+        - skill:        acheron_flame    # No mob_skills entry yet
           dat_skill_id: 645
           mob_skill_id: 2701
           unlock_level: 60
@@ -5917,7 +5917,7 @@ monstrosity:
           unlock_level: 20
           tp_cost:      2500
           enabled:      false
-        - skill:        cacophony            # No mob_skills row yet
+        - skill:        cacophony            # No mob_skills entry yet
           dat_skill_id: 581
           mob_skill_id: 2177
           unlock_level: 30
@@ -5976,7 +5976,7 @@ monstrosity:
           unlock_level: 60
           tp_cost:      1200
           enabled:      false
-        - skill:        agaricus     # No mob_skills row yet
+        - skill:        agaricus     # No mob_skills entry yet
           dat_skill_id: 635
           mob_skill_id: 2607
           unlock_level: 70
@@ -5999,25 +5999,25 @@ monstrosity:
           unlock_level: 1
           tp_cost:      1000
           enabled:      false
-        - skill:        drill_branch   # No mob_skills row yet
+        - skill:        drill_branch   # No mob_skills entry yet
           dat_skill_id: 290
           mob_skill_id: 296
           unlock_level: 10
           tp_cost:      1200
           enabled:      false
-        - skill:        pinecone_bomb  # No mob_skills row yet
+        - skill:        pinecone_bomb  # No mob_skills entry yet
           dat_skill_id: 291
           mob_skill_id: 297
           unlock_level: 20
           tp_cost:      1200
           enabled:      false
-        - skill:        leafstorm      # No mob_skills row yet
+        - skill:        leafstorm      # No mob_skills entry yet
           dat_skill_id: 292
           mob_skill_id: 298
           unlock_level: 30
           tp_cost:      1000
           enabled:      false
-        - skill:        arbor_storm    # No mob_skills row yet
+        - skill:        arbor_storm    # No mob_skills entry yet
           dat_skill_id: 482
           mob_skill_id: 1026
           unlock_level: 40
@@ -6039,25 +6039,25 @@ monstrosity:
           unlock_level: 1
           tp_cost:      1000
           enabled:      false
-        - skill:        drill_branch   # No mob_skills row yet
+        - skill:        drill_branch   # No mob_skills entry yet
           dat_skill_id: 290
           mob_skill_id: 296
           unlock_level: 10
           tp_cost:      1200
           enabled:      false
-        - skill:        pinecone_bomb  # No mob_skills row yet
+        - skill:        pinecone_bomb  # No mob_skills entry yet
           dat_skill_id: 291
           mob_skill_id: 297
           unlock_level: 20
           tp_cost:      1200
           enabled:      false
-        - skill:        leafstorm      # No mob_skills row yet
+        - skill:        leafstorm      # No mob_skills entry yet
           dat_skill_id: 292
           mob_skill_id: 298
           unlock_level: 30
           tp_cost:      1000
           enabled:      false
-        - skill:        arbor_storm    # No mob_skills row yet
+        - skill:        arbor_storm    # No mob_skills entry yet
           dat_skill_id: 482
           mob_skill_id: 1026
           unlock_level: 40
@@ -6079,25 +6079,25 @@ monstrosity:
           unlock_level: 1
           tp_cost:      1000
           enabled:      false
-        - skill:        drill_branch   # No mob_skills row yet
+        - skill:        drill_branch   # No mob_skills entry yet
           dat_skill_id: 290
           mob_skill_id: 296
           unlock_level: 10
           tp_cost:      1200
           enabled:      false
-        - skill:        pinecone_bomb  # No mob_skills row yet
+        - skill:        pinecone_bomb  # No mob_skills entry yet
           dat_skill_id: 291
           mob_skill_id: 297
           unlock_level: 20
           tp_cost:      1200
           enabled:      false
-        - skill:        leafstorm      # No mob_skills row yet
+        - skill:        leafstorm      # No mob_skills entry yet
           dat_skill_id: 292
           mob_skill_id: 298
           unlock_level: 30
           tp_cost:      1000
           enabled:      false
-        - skill:        arbor_storm    # No mob_skills row yet
+        - skill:        arbor_storm    # No mob_skills entry yet
           dat_skill_id: 482
           mob_skill_id: 1026
           unlock_level: 40
@@ -6119,25 +6119,25 @@ monstrosity:
           unlock_level: 1
           tp_cost:      1000
           enabled:      false
-        - skill:        drill_branch   # No mob_skills row yet
+        - skill:        drill_branch   # No mob_skills entry yet
           dat_skill_id: 290
           mob_skill_id: 296
           unlock_level: 10
           tp_cost:      1200
           enabled:      false
-        - skill:        pinecone_bomb  # No mob_skills row yet
+        - skill:        pinecone_bomb  # No mob_skills entry yet
           dat_skill_id: 291
           mob_skill_id: 297
           unlock_level: 20
           tp_cost:      1200
           enabled:      false
-        - skill:        leafstorm      # No mob_skills row yet
+        - skill:        leafstorm      # No mob_skills entry yet
           dat_skill_id: 292
           mob_skill_id: 298
           unlock_level: 30
           tp_cost:      1000
           enabled:      false
-        - skill:        arbor_storm    # No mob_skills row yet
+        - skill:        arbor_storm    # No mob_skills entry yet
           dat_skill_id: 482
           mob_skill_id: 1026
           unlock_level: 40
@@ -6159,25 +6159,25 @@ monstrosity:
           unlock_level: 1
           tp_cost:      1000
           enabled:      false
-        - skill:        drill_branch   # No mob_skills row yet
+        - skill:        drill_branch   # No mob_skills entry yet
           dat_skill_id: 290
           mob_skill_id: 296
           unlock_level: 10
           tp_cost:      1200
           enabled:      false
-        - skill:        pinecone_bomb  # No mob_skills row yet
+        - skill:        pinecone_bomb  # No mob_skills entry yet
           dat_skill_id: 291
           mob_skill_id: 297
           unlock_level: 20
           tp_cost:      1200
           enabled:      false
-        - skill:        leafstorm      # No mob_skills row yet
+        - skill:        leafstorm      # No mob_skills entry yet
           dat_skill_id: 292
           mob_skill_id: 298
           unlock_level: 30
           tp_cost:      1000
           enabled:      false
-        - skill:        arbor_storm    # No mob_skills row yet
+        - skill:        arbor_storm    # No mob_skills entry yet
           dat_skill_id: 482
           mob_skill_id: 1026
           unlock_level: 40
@@ -6376,7 +6376,7 @@ monstrosity:
           unlock_level: 60
           tp_cost:      1500
           enabled:      false
-        - skill:        thousand_spears # No mob_skills row yet
+        - skill:        thousand_spears # No mob_skills entry yet
           dat_skill_id: 625
           mob_skill_id: 2574
           unlock_level: 80
@@ -6618,7 +6618,7 @@ monstrosity:
           unlock_level: 60
           tp_cost:      1000
           enabled:      true
-        - skill:        phaeosynthesis            # No mob_skills row yet
+        - skill:        phaeosynthesis            # No mob_skills entry yet
           dat_skill_id: 626
           mob_skill_id: 2579
           unlock_level: 80
@@ -6687,7 +6687,7 @@ monstrosity:
           unlock_level: 60
           tp_cost:      1000
           enabled:      true
-        - skill:        petalback_spin            # No mob_skills row yet
+        - skill:        petalback_spin            # No mob_skills entry yet
           dat_skill_id: 631
           mob_skill_id: 2601
           unlock_level: 90
@@ -6849,7 +6849,7 @@ monstrosity:
           unlock_level: 40
           tp_cost:      2500
           enabled:      false
-        - skill:        chupa_blossom             # No mob_skills row yet
+        - skill:        chupa_blossom             # No mob_skills entry yet
           dat_skill_id: 649
           mob_skill_id: 2761
           unlock_level: 60
@@ -6890,7 +6890,7 @@ monstrosity:
           unlock_level: 40
           tp_cost:      1500
           enabled:      false
-        - skill:        blighted_bouquet # No mob_skills row yet
+        - skill:        blighted_bouquet # No mob_skills entry yet
           dat_skill_id: 650
           mob_skill_id: 2769
           unlock_level: 60
@@ -7056,7 +7056,7 @@ monstrosity:
           unlock_level: 40
           tp_cost:      1200
           enabled:      false
-        - skill:        rhinowrecker        # No mob_skills row yet
+        - skill:        rhinowrecker        # No mob_skills entry yet
           dat_skill_id: 660
           mob_skill_id: 2823
           unlock_level: 50
@@ -7385,7 +7385,7 @@ monstrosity:
           unlock_level: 90
           tp_cost:      1500
           enabled:      false
-        - skill:        telsonic_tempest # No mob_skills row yet
+        - skill:        telsonic_tempest # No mob_skills entry yet
           dat_skill_id: 647
           mob_skill_id: 2759
           unlock_level: 99
@@ -7702,7 +7702,7 @@ monstrosity:
           unlock_level: 95
           tp_cost:      2000
           enabled:      false
-        - skill:        benumbing_blaze # No mob_skills row yet
+        - skill:        benumbing_blaze # No mob_skills entry yet
           dat_skill_id: 683
           mob_skill_id: 3044
           unlock_level: 99
@@ -7749,7 +7749,7 @@ monstrosity:
           unlock_level: 40
           tp_cost:      1200
           enabled:      false
-        - skill:        searing_effulgence # No mob_skills row yet
+        - skill:        searing_effulgence # No mob_skills entry yet
           dat_skill_id: 662
           mob_skill_id: 2933
           unlock_level: 50
@@ -7937,7 +7937,7 @@ monstrosity:
           unlock_level: 40
           tp_cost:      1500
           enabled:      false
-        - skill:        whirling_inferno   # No mob_skills row yet
+        - skill:        whirling_inferno   # No mob_skills entry yet
           dat_skill_id: 682
           mob_skill_id: 3043
           unlock_level: 50
@@ -8084,7 +8084,7 @@ monstrosity:
           unlock_level: 50
           tp_cost:      1000
           enabled:      false
-        - skill:        testudo_tremor   # No mob_skills row yet
+        - skill:        testudo_tremor   # No mob_skills entry yet
           dat_skill_id: 627
           mob_skill_id: 2585
           unlock_level: 60
@@ -8184,7 +8184,7 @@ monstrosity:
           unlock_level: 40
           tp_cost:      1200
           enabled:      false
-        - skill:        tarichutoxin  # No mob_skills row yet
+        - skill:        tarichutoxin  # No mob_skills entry yet
           dat_skill_id: 663
           mob_skill_id: 2936
           unlock_level: 50
@@ -8266,7 +8266,7 @@ monstrosity:
           unlock_level: 30
           tp_cost:      1300
           enabled:      false
-        - skill:        calcifying_mist   # No mob_skills row yet
+        - skill:        calcifying_mist   # No mob_skills entry yet
           dat_skill_id: 566
           mob_skill_id: 2157
           unlock_level: 40
@@ -8371,19 +8371,19 @@ monstrosity:
           unlock_level: 1
           tp_cost:      800
           enabled:      false
-        - skill:        fluid_spread      # No mob_skills row yet
+        - skill:        fluid_spread      # No mob_skills entry yet
           dat_skill_id: 620
           mob_skill_id: 2548
           unlock_level: 10
           tp_cost:      1000
           enabled:      false
-        - skill:        mucus_spread      # No mob_skills row yet
+        - skill:        mucus_spread      # No mob_skills entry yet
           dat_skill_id: 623
           mob_skill_id: 2551
           unlock_level: 20
           tp_cost:      750
           enabled:      false
-        - skill:        epoxy_spread      # No mob_skills row yet
+        - skill:        epoxy_spread      # No mob_skills entry yet
           dat_skill_id: 624
           mob_skill_id: 2552
           unlock_level: 30
@@ -8483,7 +8483,7 @@ monstrosity:
           unlock_level: 40
           tp_cost:      1000
           enabled:      false
-        - skill:        gush_o_goo      # No mob_skills row yet
+        - skill:        gush_o_goo      # No mob_skills entry yet
           dat_skill_id: 652
           mob_skill_id: 2771
           unlock_level: 50
@@ -8565,7 +8565,7 @@ monstrosity:
           unlock_level: 30
           tp_cost:      2000
           enabled:      false
-        - skill:        psyche_suction    # No mob_skills row yet
+        - skill:        psyche_suction    # No mob_skills entry yet
           dat_skill_id: 639
           mob_skill_id: 2641
           unlock_level: 70
@@ -8725,7 +8725,7 @@ monstrosity:
           unlock_level: 70
           tp_cost:      2000
           enabled:      false
-        - skill:        caliginosity   # No mob_skills row yet
+        - skill:        caliginosity   # No mob_skills entry yet
           dat_skill_id: 664
           mob_skill_id: 2937
           unlock_level: 70
@@ -9077,7 +9077,7 @@ monstrosity:
           unlock_level: 40
           tp_cost:      1200
           enabled:      false
-        - skill:        virulent_haze      # No mob_skills row yet
+        - skill:        virulent_haze      # No mob_skills entry yet
           dat_skill_id: 642
           mob_skill_id: 2693
           unlock_level: 50
@@ -9374,7 +9374,7 @@ monstrosity:
           unlock_level: 40
           tp_cost:      1500
           enabled:      false
-        - skill:        dread_wind      # No mob_skills row yet
+        - skill:        dread_wind      # No mob_skills entry yet
           dat_skill_id: 646
           mob_skill_id: 2703
           unlock_level: 50
@@ -9531,37 +9531,37 @@ monstrosity:
       ecosystem:    bird
       hp_scale:     240
       tp_skills:
-        - skill:        yawn           # No mob_skills row yet
+        - skill:        yawn           # No mob_skills entry yet
           dat_skill_id: 653
           mob_skill_id: 2814
           unlock_level: 1
           tp_cost:      1000
           enabled:      false
-        - skill:        beak_lunge     # No mob_skills row yet
+        - skill:        beak_lunge     # No mob_skills entry yet
           dat_skill_id: 655
           mob_skill_id: 2816
           unlock_level: 10
           tp_cost:      1200
           enabled:      false
-        - skill:        frigid_shuffle # No mob_skills row yet
+        - skill:        frigid_shuffle # No mob_skills entry yet
           dat_skill_id: 656
           mob_skill_id: 2817
           unlock_level: 20
           tp_cost:      1000
           enabled:      false
-        - skill:        wing_slap      # No mob_skills row yet
+        - skill:        wing_slap      # No mob_skills entry yet
           dat_skill_id: 654
           mob_skill_id: 2815
           unlock_level: 30
           tp_cost:      1500
           enabled:      false
-        - skill:        wing_whirl     # No mob_skills row yet
+        - skill:        wing_whirl     # No mob_skills entry yet
           dat_skill_id: 657
           mob_skill_id: 2818
           unlock_level: 40
           tp_cost:      1500
           enabled:      false
-        - skill:        whiteout       # No mob_skills row yet
+        - skill:        whiteout       # No mob_skills entry yet
           dat_skill_id: 658
           mob_skill_id: 2819
           unlock_level: 50
@@ -9596,7 +9596,7 @@ monstrosity:
           unlock_level: 20
           tp_cost:      1000
           enabled:      false
-        - skill:        tropic_tenor   # No mob_skills row yet
+        - skill:        tropic_tenor   # No mob_skills entry yet
           dat_skill_id: 661
           mob_skill_id: 2887
           unlock_level: 40
@@ -9637,7 +9637,7 @@ monstrosity:
           unlock_level: 30
           tp_cost:      1700
           enabled:      false
-        - skill:        vermilion_wind  # No mob_skills row yet
+        - skill:        vermilion_wind  # No mob_skills entry yet
           dat_skill_id: 640
           mob_skill_id: 2642
           unlock_level: 40

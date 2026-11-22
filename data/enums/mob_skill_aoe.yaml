@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=../schemas/enums/_enum.schema.json
+
+# Area a mob skill reaches.
+
+meta:
+  cpp:
+    underlying: uint8_t
+
+values:
+  single:        0
+  around_self:   1 # sphere centred on the user
+  around_target: 2 # sphere centred on the target
+  cone:          4 # cone in front of the user
+  rear_cone:     8 # cone behind the user

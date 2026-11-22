@@ -47,6 +47,7 @@
 #include "attackutils.h"
 #include "charutils.h"
 #include "data/datasets/animation_locks/dataset.h"
+#include "data/datasets/mob_skills/dataset.h"
 #include "data/datasets/skills/dataset.h"
 #include "data/datasets/weapon_skills/dataset.h"
 #include "data/enums/claim_type.h"
@@ -102,7 +103,7 @@ std::array<CMobSkill*, MAX_MOBSKILL_ID>       g_PMobSkillList;    // List of mob
 HashMap<uint32, CPetSkill*>                   g_PPetSkillList;    // List of pet skills
 
 std::array<std::list<CWeaponSkill*>, MAX_SKILLTYPE> g_PWeaponSkillsList;
-HashMap<uint16, std::vector<uint16>>                g_PMobSkillLists; // List of mob skills defined from mob_skill_lists.sql
+HashMap<uint16, std::vector<uint16>>                g_PMobSkillLists; // List of mob skills defined in data/mob_skills.yaml
 
 } // namespace
 
@@ -206,14 +207,11 @@ void LoadWeaponSkillsList()
 
 void LoadMobSkillsList()
 {
-    // Load all mob skills
-    auto rset = db::preparedStmt("SELECT mob_skill_id, mob_anim_id, mob_skill_name, "
-                                 "mob_skill_aoe, mob_skill_aoe_radius, mob_skill_distance, mob_anim_time, mob_prepare_time, "
-                                 "mob_valid_targets, mob_skill_flag, mob_skill_param, knockback, primary_sc, secondary_sc, tertiary_sc "
-                                 "FROM mob_skills");
-    FOR_DB_MULTIPLE_RESULTS(rset)
+    const auto mobSkills = xi::data::loadDataset<xi::data::datasets::mob_skills::Dataset>();
+
+    for (const auto& entry : mobSkills.Skills)
     {
-        const auto mobSkillId = rset->get<uint16>("mob_skill_id");
+        const auto mobSkillId = std::to_underlying(entry.Id);
         if (mobSkillId >= MAX_MOBSKILL_ID)
         {
             ShowErrorFmt("mob_skill_id {} is out of range, MAX_MOBSKILL_ID is {}. Skipping.", mobSkillId, MAX_MOBSKILL_ID);
@@ -222,25 +220,31 @@ void LoadMobSkillsList()
 
         auto* PMobSkill = new CMobSkill(mobSkillId);
 
-        PMobSkill->setAnimationID(rset->get<uint16>("mob_anim_id"));
-        PMobSkill->setName(rset->get<std::string>("mob_skill_name"));
-        PMobSkill->setAoe(rset->get<uint8>("mob_skill_aoe"));
-        PMobSkill->setAoeRadius(rset->get<float>("mob_skill_aoe_radius"));
-        PMobSkill->setDistance(rset->get<float>("mob_skill_distance"));
-        PMobSkill->setAnimationTime(std::chrono::milliseconds(rset->get<uint32>("mob_anim_time")));
-        PMobSkill->setActivationTime(std::chrono::milliseconds(rset->get<uint32>("mob_prepare_time")));
-        auto validTargets = rset->get<xi::TargetType>("mob_valid_targets");
-        if ((validTargets & xi::TargetType::Self) != xi::TargetType::None && (validTargets & xi::TargetType::Enemy) != xi::TargetType::None)
+        PMobSkill->setAnimationID(entry.Animation);
+        PMobSkill->setName(entry.Name);
+        PMobSkill->setAoe(std::to_underlying(entry.Aoe));
+        PMobSkill->setAoeRadius(entry.Radius);
+        PMobSkill->setDistance(entry.Distance);
+        PMobSkill->setAnimationTime(entry.AnimationTime);
+        PMobSkill->setActivationTime(entry.ReadyTime);
+        if ((entry.Target & xi::TargetType::Self) != xi::TargetType::None && (entry.Target & xi::TargetType::Enemy) != xi::TargetType::None)
         {
             ShowWarningFmt("Mob skill {} ({}) has both TARGET_SELF and TARGET_ENEMY set", PMobSkill->getName(), PMobSkill->getID());
         }
-        PMobSkill->setValidTargets(validTargets);
-        PMobSkill->setFlag(rset->get<xi::MobSkillFlag>("mob_skill_flag"));
-        PMobSkill->setParam(rset->get<int16>("mob_skill_param"));
-        PMobSkill->setKnockback(rset->get<Knockback>("knockback"));
-        PMobSkill->setPrimarySkillchain(rset->get<uint8>("primary_sc"));
-        PMobSkill->setSecondarySkillchain(rset->get<uint8>("secondary_sc"));
-        PMobSkill->setTertiarySkillchain(rset->get<uint8>("tertiary_sc"));
+        PMobSkill->setValidTargets(entry.Target);
+        PMobSkill->setFlag(entry.Flags);
+        PMobSkill->setParam(entry.Param);
+        PMobSkill->setKnockback(static_cast<Knockback>(entry.Knockback));
+
+        std::array<uint8, 3> skillchains{};
+        for (std::size_t index = 0; index < entry.Skillchain.size(); ++index)
+        {
+            skillchains[index] = std::to_underlying(entry.Skillchain[index]);
+        }
+
+        PMobSkill->setPrimarySkillchain(skillchains[0]);
+        PMobSkill->setSecondarySkillchain(skillchains[1]);
+        PMobSkill->setTertiarySkillchain(skillchains[2]);
         PMobSkill->setMsg(MsgBasic::UsesSkillTakesDamage); // standard damage message. Scripters will change this.
         g_PMobSkillList[PMobSkill->getID()] = PMobSkill;
 
@@ -248,13 +252,9 @@ void LoadMobSkillsList()
         luautils::LoadLuaObjectFromFile(filename);
     }
 
-    rset = db::preparedStmt("SELECT skill_list_id, mob_skill_id FROM mob_skill_lists");
-    FOR_DB_MULTIPLE_RESULTS(rset)
+    for (const auto& list : mobSkills.Lists)
     {
-        const auto skillListId = rset->get<uint16>("skill_list_id");
-        auto       skillId     = rset->get<uint16>("mob_skill_id");
-
-        g_PMobSkillLists[skillListId].emplace_back(skillId);
+        g_PMobSkillLists[list.Id] = list.Entries;
     }
 }
 

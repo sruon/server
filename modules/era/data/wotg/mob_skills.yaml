@@ -1,0 +1,53 @@
+# Mob skills and skill lists as they were before the Wings of the Goddess era updates.
+
+# Automaton attachments Bone Crusher, Armor Piercer and Magic Mortar were not available yet.
+mob_skills:
+  bone_crusher_automaton:  {param: 999}
+  armor_piercer_automaton: {param: 999}
+  magic_mortar_automaton:  {param: 999}
+
+# Sic used the jug pet mob skills directly instead of the Ready abilities.
+# https://www.bg-wiki.com/ffxi/Version_Update_(11/09/2009)
+mob_skill_lists:
+  jug_hare:
+    abilities: null
+    skills:    [foot_kick_3, dust_cloud_3, whirl_claws_3]
+  jug_mandragora:
+    abilities: null
+    skills:    [head_butt_jugpet, dream_flower_jugpet, wild_oats_jugpet, leaf_dagger_jugpet, scream_jugpet]
+  jug_tiger:
+    abilities: null
+    skills:    [roar_4, razor_fang_3, claw_cyclone_3]
+  jug_lizard:
+    abilities: null
+    skills:    [tail_blow_jugpet, fireball_jugpet, blockhead_jugpet, brain_crush_jugpet, infrasonics_jugpet, secretion_jugpet]
+  jug_sheep:
+    abilities: null
+    skills:    [lamb_chop_2, rage_3, sheep_charge_4, sheep_song_4]
+  jug_crab:
+    abilities: null
+    skills:    [bubble_shower_jugpet, bubble_curtain_jugpet, big_scissors_jugpet, scissor_guard_jugpet, metallic_body_jugpet]
+  jug_cactuar:
+    abilities: null
+    skills:    [needleshot_jugpet, random_needles_jugpet]
+  jug_funguar:
+    abilities: null
+    skills:    [frogkick_3, spore_2, queasyshroom_3, numbshroom_2, shakeshroom_2, silence_gas_2, dark_spore_2]
+  jug_beetle:
+    abilities: null
+    skills:    [power_attack_beetle_jugpet, hi_freq_field_jugpet, rhino_attack_jugpet, rhino_guard_jugpet, spoil_jugpet]
+  jug_fly:
+    abilities: null
+    skills:    [cursed_sphere_jugpet, venom_jugpet]
+  jug_antlion:
+    abilities: null
+    skills:    [sandblast_3, sandpit_3, venom_spray_3, mandibular_bite_3]
+  jug_flytrap:
+    abilities: null
+    skills:    [soporific_jugpet, gloeosuccus_jugpet, palsy_pollen_jugpet]
+  jug_eft:
+    abilities: null
+    skills:    [geist_wall_jugpet, numbing_noise_jugpet, nimble_snap_jugpet, cyclotail_jugpet, toxic_spit_jugpet]
+  jug_diremite:
+    abilities: null
+    skills:    [double_claw_jugpet, grapple_jugpet, filamented_hold_jugpet, spinning_top_jugpet]

@@ -19588,7 +19588,7 @@ void CLuaBaseEntity::usePetAbility(uint16 skillId, const sol::object& target) co
 
 /************************************************************************
  *  Function: getAbilityDistance()
- *  Purpose : Returns the distance for a specified ability from mob_skills
+ *  Purpose : Returns the distance for a specified ability from data/mob_skills.yaml
  *  Example : mob:getAbilityDistance(740)
  *  Notes   : Uses Ability ID Only
  ************************************************************************/

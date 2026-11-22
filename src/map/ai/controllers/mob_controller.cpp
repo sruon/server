@@ -301,7 +301,7 @@ auto CMobController::MobSkill(int listId) -> bool
                       {
                           return false;
                       }
-                      ShowError("Mobskill with ID (%i) [called from skill-list ID (%i)] isn't properly defined in mob_skills.sql", skillId, resolvedListId);
+                      ShowError("Mobskill with ID (%i) [called from skill-list ID (%i)] isn't defined in data/mob_skills.yaml", skillId, resolvedListId);
                       return true;
                   });
     if (skillList.empty())

@@ -3,7 +3,7 @@
 -- Family: Beetle
 -- Description : Powerful physical attack to enemies in a cone. Additional Effect: Defense Down, Knockback
 -- Range: Cone originating from caster.
--- TODO: Verify animation ID, skill is currently commented out in mob_skills.sql
+-- TODO: Verify animation ID, skill is not in data/mob_skills.yaml yet
 -- Defense down power is NM specific. Abyssea only move. Needs captures.
 -----------------------------------
 ---@type TMobSkill
