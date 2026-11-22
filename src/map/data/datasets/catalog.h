@@ -49,6 +49,8 @@
 #include "data/datasets/zones/regions/yaml.h"
 #include "data/datasets/zones/settings/dataset.h"
 #include "data/datasets/zones/settings/yaml.h"
+#include "data/datasets/zones/weather/dataset.h"
+#include "data/datasets/zones/weather/yaml.h"
 
 #include <concepts>
 #include <string_view>
@@ -78,6 +80,6 @@ struct DatasetCatalog
 };
 
 using Catalog     = DatasetCatalog<animation_locks::Dataset, status_effects::Dataset, ecosystems::Dataset, merits::Dataset, grades::Dataset, stats::Dataset, skills::Dataset, experience::Dataset, monstrosity::Dataset, weapon_skills::Dataset>;
-using ZoneCatalog = DatasetCatalog<zones::settings::Dataset, zones::npcs::Dataset, zones::mobs::Dataset, zones::regions::Dataset>;
+using ZoneCatalog = DatasetCatalog<zones::settings::Dataset, zones::npcs::Dataset, zones::mobs::Dataset, zones::regions::Dataset, zones::weather::Dataset>;
 
 } // namespace xi::data::datasets

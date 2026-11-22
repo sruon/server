@@ -1,0 +1,642 @@
+# yaml-language-server: $schema=../../schemas/weather.schema.json
+
+weather:
+  0:    {normal: sunshine, common: dust_storm}
+  1:    {normal: sunshine}
+  4:    {normal: sunshine, common: dust_storm}
+  5:    {normal: sunshine}
+  7:    {normal: sunshine, common: dust_storm}
+  8:    {normal: sunshine}
+  9:    {normal: sunshine, common: dust_storm}
+  10:   {normal: sunshine}
+  22:   {normal: sunshine, common: dust_storm}
+  23:   {normal: sunshine}
+  25:   {normal: sunshine, common: dust_storm}
+  26:   {normal: sunshine}
+  27:   {normal: sunshine, common: dust_storm}
+  29:   {normal: sunshine}
+  32:   {normal: sunshine, common: dust_storm}
+  33:   {normal: sunshine}
+  46:   {normal: sunshine, common: dust_storm}
+  47:   {normal: sunshine}
+  60:   {normal: sunshine, common: dust_storm}
+  61:   {normal: sunshine}
+  66:   {normal: sunshine, common: dust_storm}
+  67:   {normal: sunshine}
+  69:   {normal: sunshine, common: dust_storm}
+  70:   {normal: sunshine}
+  78:   {normal: sunshine, common: dust_storm}
+  80:   {normal: sunshine}
+  91:   {normal: sunshine, common: dust_storm}
+  92:   {normal: sunshine}
+  97:   {normal: sunshine, common: dust_storm}
+  98:   {normal: sunshine}
+  99:   {normal: sunshine, common: dust_storm}
+  100:  {normal: sunshine}
+  107:  {normal: sunshine, common: dust_storm}
+  108:  {normal: sunshine}
+  113:  {normal: sunshine, common: dust_storm}
+  114:  {normal: sunshine}
+  115:  {normal: sunshine, common: dust_storm}
+  116:  {normal: sunshine}
+  121:  {normal: sunshine, common: dust_storm}
+  122:  {normal: sunshine}
+  132:  {normal: sunshine, common: dust_storm}
+  133:  {normal: sunshine}
+  144:  {normal: sunshine, common: dust_storm}
+  145:  {normal: sunshine}
+  150:  {normal: sunshine, common: dust_storm}
+  151:  {normal: sunshine}
+  156:  {normal: sunshine, common: dust_storm}
+  157:  {normal: sunshine}
+  166:  {normal: sunshine, common: dust_storm}
+  167:  {normal: sunshine}
+  168:  {normal: sunshine, common: dust_storm}
+  169:  {normal: sunshine}
+  171:  {normal: sunshine, common: dust_storm}
+  172:  {normal: sunshine}
+  183:  {normal: sunshine, common: dust_storm}
+  184:  {normal: sunshine}
+  185:  {normal: sunshine, common: dust_storm}
+  186:  {normal: sunshine}
+  187:  {normal: sunshine, common: dust_storm}
+  188:  {normal: sunshine}
+  196:  {normal: sunshine, common: dust_storm}
+  197:  {normal: sunshine}
+  199:  {normal: sunshine, common: dust_storm}
+  200:  {normal: sunshine}
+  210:  {normal: sunshine, common: dust_storm}
+  211:  {normal: sunshine}
+  217:  {normal: sunshine, common: dust_storm}
+  218:  {normal: sunshine}
+  223:  {normal: sunshine, common: dust_storm}
+  224:  {normal: sunshine}
+  226:  {normal: sunshine, common: dust_storm}
+  228:  {normal: sunshine}
+  240:  {normal: sunshine, common: dust_storm}
+  241:  {normal: sunshine}
+  243:  {normal: sunshine, common: dust_storm}
+  246:  {normal: sunshine}
+  257:  {normal: sunshine, common: dust_storm}
+  260:  {normal: sunshine}
+  261:  {normal: sunshine, common: dust_storm}
+  262:  {normal: sunshine}
+  266:  {normal: sunshine, common: dust_storm}
+  267:  {normal: sunshine}
+  276:  {normal: sunshine, common: dust_storm}
+  277:  {normal: sunshine}
+  278:  {normal: sunshine, common: dust_storm}
+  279:  {normal: sunshine}
+  285:  {normal: sunshine, common: dust_storm}
+  286:  {normal: sunshine}
+  289:  {normal: sunshine, common: dust_storm}
+  290:  {normal: sunshine}
+  312:  {normal: sunshine, common: dust_storm}
+  313:  {normal: sunshine}
+  314:  {normal: sunshine, common: dust_storm}
+  315:  {normal: sunshine}
+  316:  {normal: sunshine, common: dust_storm}
+  317:  {normal: sunshine}
+  319:  {normal: sunshine, common: dust_storm}
+  320:  {normal: sunshine}
+  328:  {normal: sunshine, common: dust_storm}
+  331:  {normal: sunshine}
+  338:  {normal: sunshine, common: dust_storm}
+  339:  {normal: sunshine}
+  345:  {normal: sunshine, common: dust_storm}
+  346:  {normal: sunshine}
+  357:  {normal: sunshine, common: dust_storm}
+  358:  {normal: sunshine}
+  368:  {normal: sunshine, common: dust_storm}
+  370:  {normal: sunshine}
+  375:  {normal: sunshine, common: dust_storm}
+  376:  {normal: sunshine}
+  378:  {normal: sunshine, common: dust_storm}
+  380:  {normal: sunshine}
+  382:  {normal: sunshine, common: dust_storm}
+  383:  {normal: sunshine}
+  392:  {normal: sunshine, common: dust_storm}
+  393:  {normal: sunshine}
+  397:  {normal: sunshine, common: dust_storm}
+  398:  {normal: sunshine}
+  400:  {normal: sunshine, common: dust_storm}
+  402:  {normal: sunshine}
+  403:  {normal: sunshine, common: dust_storm}
+  404:  {normal: sunshine}
+  413:  {normal: sunshine, common: dust_storm}
+  414:  {normal: sunshine}
+  424:  {normal: sunshine, common: dust_storm}
+  426:  {normal: sunshine}
+  427:  {normal: sunshine, common: dust_storm}
+  429:  {normal: sunshine}
+  434:  {normal: sunshine, common: dust_storm}
+  435:  {normal: sunshine}
+  440:  {normal: dust_storm, common: sunshine}
+  441:  {normal: sunshine}
+  444:  {normal: sunshine, common: dust_storm}
+  445:  {normal: sunshine}
+  446:  {normal: sunshine, common: dust_storm}
+  447:  {normal: sunshine}
+  450:  {normal: sunshine, common: dust_storm}
+  451:  {normal: sunshine}
+  452:  {normal: sunshine, common: dust_storm}
+  453:  {normal: sunshine}
+  457:  {normal: sunshine, common: dust_storm}
+  458:  {normal: sunshine}
+  459:  {normal: sunshine, common: dust_storm}
+  460:  {normal: sunshine}
+  461:  {normal: sunshine, common: dust_storm}
+  462:  {normal: sunshine}
+  468:  {normal: sunshine, common: dust_storm}
+  469:  {normal: sunshine}
+  472:  {normal: sunshine, common: dust_storm}
+  473:  {normal: sunshine}
+  480:  {normal: sunshine, common: dust_storm}
+  481:  {normal: sunshine}
+  483:  {normal: sunshine, common: dust_storm}
+  484:  {normal: sunshine}
+  496:  {normal: sunshine, common: dust_storm}
+  497:  {normal: sunshine}
+  499:  {normal: sunshine, common: dust_storm}
+  501:  {normal: sunshine}
+  502:  {normal: sunshine, common: dust_storm}
+  503:  {normal: sunshine}
+  504:  {normal: sunshine, common: dust_storm}
+  505:  {normal: sunshine}
+  511:  {normal: sunshine, common: dust_storm}
+  512:  {normal: sunshine}
+  519:  {normal: sunshine, common: dust_storm}
+  520:  {normal: sunshine}
+  535:  {normal: sunshine, common: dust_storm}
+  536:  {normal: sunshine}
+  537:  {normal: sunshine, common: dust_storm}
+  538:  {normal: sunshine}
+  542:  {normal: sunshine, common: dust_storm}
+  545:  {normal: sunshine}
+  553:  {normal: sunshine, common: dust_storm}
+  554:  {normal: sunshine}
+  558:  {normal: sunshine, common: dust_storm}
+  560:  {normal: sunshine}
+  564:  {normal: sunshine, common: dust_storm}
+  565:  {normal: sunshine}
+  566:  {normal: sunshine, common: dust_storm}
+  567:  {normal: sunshine}
+  583:  {normal: sunshine, common: dust_storm}
+  584:  {normal: sunshine}
+  594:  {normal: sunshine, common: dust_storm}
+  596:  {normal: sunshine}
+  600:  {normal: sunshine, common: dust_storm}
+  601:  {normal: sunshine}
+  605:  {normal: sunshine, common: dust_storm}
+  606:  {normal: sunshine}
+  608:  {normal: sunshine, common: dust_storm}
+  609:  {normal: sunshine}
+  620:  {normal: sunshine, common: dust_storm}
+  623:  {normal: sunshine}
+  625:  {normal: sunshine, common: dust_storm}
+  627:  {normal: sunshine}
+  631:  {normal: sunshine, common: dust_storm}
+  632:  {normal: sunshine}
+  637:  {normal: sunshine, common: dust_storm}
+  638:  {normal: sunshine}
+  640:  {normal: sunshine, common: dust_storm}
+  641:  {normal: sunshine}
+  645:  {normal: sunshine, common: dust_storm}
+  646:  {normal: sunshine}
+  650:  {normal: sunshine, common: dust_storm}
+  651:  {normal: sunshine}
+  658:  {normal: sunshine, common: dust_storm}
+  659:  {normal: sunshine}
+  662:  {normal: sunshine, common: dust_storm}
+  664:  {normal: sunshine}
+  670:  {normal: sunshine, common: dust_storm}
+  671:  {normal: sunshine}
+  673:  {normal: sunshine, common: dust_storm}
+  674:  {normal: sunshine}
+  681:  {normal: sunshine, common: dust_storm}
+  682:  {normal: sunshine}
+  687:  {normal: sunshine, common: dust_storm}
+  688:  {normal: sunshine}
+  701:  {normal: sunshine, common: dust_storm}
+  702:  {normal: sunshine}
+  704:  {normal: sunshine, common: dust_storm}
+  705:  {normal: sunshine}
+  709:  {normal: sunshine, common: dust_storm}
+  711:  {normal: sunshine}
+  713:  {normal: sunshine, common: dust_storm}
+  714:  {normal: sunshine}
+  716:  {normal: sunshine, common: dust_storm}
+  717:  {normal: sunshine}
+  742:  {normal: sunshine, common: dust_storm}
+  743:  {normal: sunshine}
+  746:  {normal: sunshine, common: dust_storm}
+  747:  {normal: sunshine}
+  755:  {normal: sunshine, common: dust_storm}
+  756:  {normal: sunshine}
+  768:  {normal: sunshine, common: dust_storm}
+  769:  {normal: sunshine}
+  776:  {normal: sunshine, common: dust_storm}
+  777:  {normal: sunshine}
+  782:  {normal: sunshine, common: dust_storm}
+  785:  {normal: sunshine}
+  793:  {normal: sunshine, common: dust_storm}
+  794:  {normal: sunshine}
+  797:  {normal: sunshine, common: dust_storm}
+  799:  {normal: sunshine}
+  805:  {normal: sunshine, common: dust_storm}
+  806:  {normal: sunshine}
+  820:  {normal: sunshine, common: dust_storm}
+  821:  {normal: sunshine}
+  823:  {normal: sunshine, common: dust_storm}
+  824:  {normal: sunshine}
+  828:  {normal: sunshine, common: dust_storm}
+  830:  {normal: sunshine}
+  832:  {normal: sunshine, common: dust_storm}
+  833:  {normal: sunshine}
+  845:  {normal: sunshine, common: dust_storm}
+  846:  {normal: sunshine}
+  847:  {normal: sunshine, common: dust_storm}
+  848:  {normal: sunshine}
+  850:  {normal: sunshine, common: dust_storm}
+  851:  {normal: sunshine}
+  855:  {normal: sunshine, common: dust_storm}
+  856:  {normal: sunshine}
+  863:  {normal: sunshine, common: dust_storm}
+  864:  {normal: sunshine}
+  871:  {normal: sunshine, common: dust_storm}
+  872:  {normal: sunshine}
+  873:  {normal: sunshine, common: dust_storm}
+  874:  {normal: sunshine}
+  876:  {normal: sunshine, common: dust_storm}
+  877:  {normal: sunshine}
+  879:  {normal: sunshine, common: dust_storm}
+  880:  {normal: sunshine}
+  881:  {normal: sunshine, common: dust_storm}
+  882:  {normal: sunshine}
+  897:  {normal: sunshine, common: dust_storm}
+  898:  {normal: sunshine}
+  913:  {normal: sunshine, common: dust_storm}
+  914:  {normal: sunshine}
+  915:  {normal: sunshine, common: dust_storm}
+  916:  {normal: sunshine}
+  931:  {normal: sunshine, common: dust_storm}
+  932:  {normal: sunshine}
+  939:  {normal: sunshine, common: dust_storm}
+  940:  {normal: sunshine}
+  941:  {normal: sunshine, common: dust_storm}
+  944:  {normal: sunshine}
+  946:  {normal: sunshine, common: dust_storm}
+  948:  {normal: sunshine}
+  953:  {normal: sunshine, common: dust_storm}
+  955:  {normal: sunshine}
+  966:  {normal: sunshine, common: dust_storm}
+  968:  {normal: sunshine}
+  983:  {normal: sunshine, common: dust_storm}
+  985:  {normal: sunshine}
+  990:  {normal: sunshine, common: dust_storm}
+  991:  {normal: sunshine}
+  992:  {normal: sunshine, common: dust_storm}
+  993:  {normal: sunshine}
+  995:  {normal: sunshine, common: dust_storm}
+  996:  {normal: sunshine}
+  997:  {normal: sunshine, common: dust_storm}
+  998:  {normal: sunshine}
+  1006: {normal: sunshine, common: dust_storm}
+  1007: {normal: sunshine}
+  1012: {normal: sunshine, common: dust_storm}
+  1013: {normal: sunshine}
+  1015: {normal: sunshine, common: dust_storm}
+  1017: {normal: sunshine}
+  1019: {normal: sunshine, common: dust_storm}
+  1020: {normal: sunshine}
+  1025: {normal: sunshine, common: dust_storm}
+  1027: {normal: sunshine}
+  1034: {normal: sunshine, common: dust_storm}
+  1035: {normal: sunshine}
+  1040: {normal: sunshine, common: dust_storm}
+  1041: {normal: sunshine}
+  1051: {normal: sunshine, common: dust_storm}
+  1052: {normal: sunshine}
+  1055: {normal: sunshine, common: dust_storm}
+  1057: {normal: sunshine}
+  1059: {normal: sunshine, common: dust_storm}
+  1060: {normal: sunshine}
+  1065: {normal: sunshine, common: dust_storm}
+  1066: {normal: sunshine}
+  1069: {normal: sunshine, common: dust_storm}
+  1070: {normal: sunshine}
+  1074: {normal: sunshine, common: dust_storm}
+  1075: {normal: sunshine}
+  1083: {normal: sunshine, common: dust_storm}
+  1084: {normal: sunshine}
+  1090: {normal: sunshine, common: dust_storm}
+  1093: {normal: sunshine}
+  1112: {normal: sunshine, common: dust_storm}
+  1113: {normal: sunshine}
+  1117: {normal: sunshine, common: dust_storm}
+  1118: {normal: sunshine}
+  1133: {normal: sunshine, common: dust_storm}
+  1134: {normal: sunshine}
+  1139: {normal: sunshine, common: dust_storm}
+  1140: {normal: sunshine}
+  1143: {normal: sunshine, common: dust_storm}
+  1144: {normal: sunshine}
+  1146: {normal: sunshine, common: dust_storm}
+  1147: {normal: sunshine}
+  1149: {normal: sunshine, common: dust_storm}
+  1150: {normal: sunshine}
+  1152: {normal: sunshine, common: dust_storm}
+  1153: {normal: sunshine}
+  1155: {normal: sunshine, common: dust_storm}
+  1156: {normal: sunshine}
+  1157: {normal: sunshine, common: dust_storm}
+  1158: {normal: sunshine}
+  1164: {normal: sunshine, common: dust_storm}
+  1165: {normal: sunshine}
+  1173: {normal: sunshine, common: dust_storm}
+  1174: {normal: sunshine}
+  1175: {normal: sunshine, common: dust_storm}
+  1176: {normal: sunshine}
+  1177: {normal: dust_storm, common: sunshine}
+  1178: {normal: sunshine}
+  1183: {normal: sunshine, common: dust_storm}
+  1184: {normal: sunshine}
+  1193: {normal: sunshine, common: dust_storm}
+  1194: {normal: sunshine}
+  1196: {normal: sunshine, common: dust_storm}
+  1197: {normal: sunshine}
+  1204: {normal: sunshine, common: dust_storm}
+  1205: {normal: sunshine}
+  1212: {normal: sunshine, common: dust_storm}
+  1214: {normal: sunshine}
+  1220: {normal: sunshine, common: dust_storm}
+  1221: {normal: sunshine}
+  1226: {normal: sunshine, common: dust_storm}
+  1227: {normal: sunshine}
+  1232: {normal: sunshine, common: dust_storm}
+  1234: {normal: sunshine}
+  1235: {normal: sunshine, common: dust_storm}
+  1236: {normal: sunshine}
+  1245: {normal: sunshine, common: dust_storm}
+  1246: {normal: sunshine}
+  1261: {normal: sunshine, common: dust_storm}
+  1262: {normal: sunshine}
+  1264: {normal: sunshine, common: dust_storm}
+  1265: {normal: sunshine}
+  1271: {normal: sunshine, common: dust_storm}
+  1272: {normal: sunshine}
+  1275: {normal: sunshine, common: dust_storm}
+  1278: {normal: sunshine}
+  1279: {normal: sunshine, common: dust_storm}
+  1280: {normal: sunshine}
+  1285: {normal: sunshine, common: dust_storm}
+  1286: {normal: sunshine}
+  1295: {normal: sunshine, common: dust_storm}
+  1296: {normal: sunshine}
+  1300: {normal: sunshine, common: dust_storm}
+  1301: {normal: sunshine}
+  1313: {normal: sunshine, common: dust_storm}
+  1314: {normal: sunshine}
+  1331: {normal: sunshine, common: dust_storm}
+  1332: {normal: sunshine}
+  1336: {normal: sunshine, common: dust_storm}
+  1338: {normal: sunshine}
+  1356: {normal: sunshine, common: dust_storm}
+  1357: {normal: sunshine}
+  1365: {normal: sunshine, common: dust_storm}
+  1366: {normal: sunshine}
+  1369: {normal: sunshine, common: dust_storm}
+  1370: {normal: sunshine}
+  1373: {normal: sunshine, common: dust_storm}
+  1374: {normal: sunshine}
+  1379: {normal: sunshine, common: dust_storm}
+  1380: {normal: sunshine}
+  1381: {normal: sunshine, common: dust_storm}
+  1383: {normal: sunshine}
+  1384: {normal: sunshine, common: dust_storm}
+  1386: {normal: sunshine}
+  1390: {normal: sunshine, common: dust_storm}
+  1391: {normal: sunshine}
+  1393: {normal: sunshine, common: dust_storm}
+  1394: {normal: sunshine}
+  1396: {normal: sunshine, common: dust_storm}
+  1397: {normal: sunshine}
+  1404: {normal: sunshine, common: dust_storm}
+  1405: {normal: sunshine}
+  1407: {normal: sunshine, common: dust_storm}
+  1408: {normal: sunshine}
+  1410: {normal: sunshine, common: dust_storm}
+  1411: {normal: sunshine}
+  1416: {normal: sunshine, common: dust_storm}
+  1417: {normal: sunshine}
+  1423: {normal: sunshine, common: dust_storm}
+  1424: {normal: sunshine}
+  1427: {normal: sunshine, common: dust_storm}
+  1428: {normal: sunshine}
+  1448: {normal: sunshine, common: dust_storm}
+  1449: {normal: sunshine}
+  1461: {normal: sunshine, common: dust_storm}
+  1462: {normal: sunshine}
+  1477: {normal: sunshine, common: dust_storm}
+  1478: {normal: sunshine}
+  1481: {normal: sunshine, common: dust_storm}
+  1482: {normal: sunshine}
+  1485: {normal: sunshine, common: dust_storm}
+  1486: {normal: sunshine}
+  1492: {normal: sunshine, common: dust_storm}
+  1493: {normal: sunshine}
+  1496: {normal: sunshine, common: dust_storm}
+  1497: {normal: sunshine}
+  1499: {normal: sunshine, common: dust_storm}
+  1501: {normal: sunshine}
+  1502: {normal: sunshine, common: dust_storm}
+  1504: {normal: sunshine}
+  1510: {normal: sunshine, common: dust_storm}
+  1511: {normal: sunshine}
+  1527: {normal: sunshine, common: dust_storm}
+  1528: {normal: sunshine}
+  1534: {normal: sunshine, common: dust_storm}
+  1535: {normal: sunshine}
+  1545: {normal: sunshine, common: dust_storm}
+  1546: {normal: sunshine}
+  1551: {normal: sunshine, common: dust_storm}
+  1552: {normal: sunshine}
+  1573: {normal: sunshine, common: dust_storm}
+  1574: {normal: sunshine}
+  1578: {normal: sunshine, common: dust_storm}
+  1579: {normal: sunshine}
+  1584: {normal: sunshine, common: dust_storm}
+  1585: {normal: sunshine}
+  1592: {normal: sunshine, common: dust_storm}
+  1593: {normal: sunshine}
+  1601: {normal: sunshine, common: dust_storm}
+  1602: {normal: sunshine}
+  1603: {normal: sunshine, common: dust_storm}
+  1604: {normal: sunshine}
+  1605: {normal: sunshine, common: dust_storm}
+  1606: {normal: sunshine}
+  1616: {normal: sunshine, common: dust_storm}
+  1617: {normal: sunshine}
+  1629: {normal: sunshine, common: dust_storm}
+  1630: {normal: sunshine}
+  1634: {normal: sunshine, common: dust_storm}
+  1635: {normal: sunshine}
+  1639: {normal: sunshine, common: dust_storm}
+  1640: {normal: sunshine}
+  1641: {normal: sunshine, common: dust_storm}
+  1642: {normal: sunshine}
+  1649: {normal: sunshine, common: dust_storm}
+  1650: {normal: sunshine}
+  1651: {normal: dust_storm, common: sunshine}
+  1652: {normal: sunshine, common: dust_storm}
+  1653: {normal: sunshine}
+  1655: {normal: sunshine, common: dust_storm}
+  1657: {normal: sunshine}
+  1659: {normal: sunshine, common: dust_storm}
+  1660: {normal: sunshine}
+  1661: {normal: sunshine, common: dust_storm}
+  1662: {normal: sunshine}
+  1664: {normal: sunshine, common: dust_storm}
+  1666: {normal: sunshine}
+  1671: {normal: sunshine, common: dust_storm}
+  1672: {normal: sunshine}
+  1676: {normal: sunshine, common: dust_storm}
+  1677: {normal: sunshine}
+  1679: {normal: sunshine, common: dust_storm}
+  1680: {normal: sunshine}
+  1688: {normal: sunshine, common: dust_storm}
+  1689: {normal: sunshine}
+  1696: {normal: sunshine, common: dust_storm}
+  1698: {normal: sunshine}
+  1702: {normal: sunshine, common: dust_storm}
+  1704: {normal: sunshine}
+  1706: {normal: sunshine, common: dust_storm}
+  1707: {normal: sunshine}
+  1713: {normal: sunshine, common: dust_storm}
+  1714: {normal: sunshine}
+  1715: {normal: sunshine, common: dust_storm}
+  1716: {normal: sunshine}
+  1743: {normal: sunshine, common: dust_storm}
+  1744: {normal: sunshine}
+  1746: {normal: sunshine, common: dust_storm}
+  1748: {normal: sunshine}
+  1763: {normal: sunshine, common: dust_storm}
+  1764: {normal: sunshine}
+  1773: {normal: sunshine, common: dust_storm}
+  1774: {normal: sunshine}
+  1777: {normal: sunshine, common: dust_storm}
+  1779: {normal: sunshine}
+  1781: {normal: sunshine, common: dust_storm}
+  1783: {normal: sunshine}
+  1792: {normal: sunshine, common: dust_storm}
+  1793: {normal: sunshine}
+  1795: {normal: sunshine, common: dust_storm}
+  1796: {normal: sunshine}
+  1799: {normal: sunshine, common: dust_storm}
+  1801: {normal: sunshine}
+  1804: {normal: sunshine, common: dust_storm}
+  1805: {normal: sunshine}
+  1808: {normal: sunshine, common: dust_storm}
+  1809: {normal: sunshine}
+  1816: {normal: sunshine, common: dust_storm}
+  1817: {normal: sunshine}
+  1825: {normal: sunshine, common: dust_storm}
+  1826: {normal: sunshine}
+  1828: {normal: sunshine, common: dust_storm}
+  1829: {normal: sunshine}
+  1833: {normal: sunshine, common: dust_storm}
+  1834: {normal: sunshine}
+  1835: {normal: sunshine, common: dust_storm}
+  1837: {normal: sunshine}
+  1858: {normal: sunshine, common: dust_storm}
+  1859: {normal: sunshine}
+  1864: {normal: sunshine, common: dust_storm}
+  1865: {normal: sunshine}
+  1876: {normal: sunshine, common: dust_storm}
+  1877: {normal: sunshine}
+  1878: {normal: sunshine, common: dust_storm}
+  1879: {normal: sunshine}
+  1884: {normal: sunshine, common: dust_storm}
+  1885: {normal: sunshine}
+  1887: {normal: sunshine, common: dust_storm}
+  1889: {normal: sunshine}
+  1890: {normal: sunshine, common: dust_storm}
+  1891: {normal: sunshine}
+  1892: {normal: sunshine, common: dust_storm}
+  1893: {normal: sunshine}
+  1908: {normal: sunshine, common: dust_storm}
+  1909: {normal: sunshine}
+  1913: {normal: sunshine, common: dust_storm}
+  1914: {normal: sunshine}
+  1916: {normal: sunshine, common: dust_storm}
+  1919: {normal: sunshine}
+  1925: {normal: sunshine, common: dust_storm}
+  1926: {normal: sunshine}
+  1935: {normal: sunshine, common: dust_storm}
+  1938: {normal: sunshine}
+  1940: {normal: sunshine, common: dust_storm}
+  1941: {normal: sunshine}
+  1944: {normal: sunshine, common: dust_storm}
+  1946: {normal: sunshine}
+  1947: {normal: sunshine, common: dust_storm}
+  1948: {normal: sunshine}
+  1962: {normal: sunshine, common: dust_storm}
+  1963: {normal: sunshine}
+  1966: {normal: sunshine, common: dust_storm}
+  1969: {normal: sunshine}
+  1980: {normal: sunshine, common: dust_storm}
+  1983: {normal: sunshine}
+  1984: {normal: sunshine, common: dust_storm}
+  1985: {normal: sunshine}
+  1990: {normal: sunshine, common: dust_storm}
+  1991: {normal: sunshine}
+  1993: {normal: sunshine, common: dust_storm}
+  1994: {normal: sunshine}
+  2011: {normal: sunshine, common: dust_storm}
+  2012: {normal: sunshine}
+  2014: {normal: sunshine, common: dust_storm}
+  2015: {normal: sunshine}
+  2016: {normal: sunshine, common: dust_storm}
+  2017: {normal: sunshine}
+  2033: {normal: sunshine, common: dust_storm}
+  2034: {normal: sunshine}
+  2045: {normal: sunshine, common: dust_storm}
+  2046: {normal: sunshine}
+  2055: {normal: sunshine, common: dust_storm}
+  2056: {normal: sunshine}
+  2057: {normal: sunshine, common: dust_storm}
+  2058: {normal: sunshine}
+  2061: {normal: sunshine, common: dust_storm}
+  2062: {normal: sunshine}
+  2081: {normal: sunshine, common: dust_storm}
+  2082: {normal: sunshine}
+  2086: {normal: sunshine, common: dust_storm}
+  2087: {normal: sunshine}
+  2089: {normal: sunshine, common: dust_storm}
+  2090: {normal: sunshine}
+  2095: {normal: dust_storm, common: sunshine}
+  2096: {normal: sunshine}
+  2097: {normal: sunshine, common: dust_storm}
+  2098: {normal: sunshine}
+  2099: {normal: sunshine, common: dust_storm}
+  2100: {normal: sunshine}
+  2109: {normal: sunshine, common: dust_storm}
+  2110: {normal: sunshine}
+  2118: {normal: sunshine, common: dust_storm}
+  2119: {normal: sunshine}
+  2122: {normal: sunshine, common: dust_storm}
+  2123: {normal: sunshine}
+  2129: {normal: sunshine, common: dust_storm}
+  2130: {normal: sunshine}
+  2132: {normal: sunshine, common: dust_storm}
+  2133: {normal: sunshine}
+  2134: {normal: sunshine, common: dust_storm}
+  2135: {normal: sunshine}
+  2137: {normal: sunshine, common: dust_storm}
+  2138: {normal: sunshine}
+  2141: {normal: sunshine, common: dust_storm}
+  2142: {normal: sunshine}
+  2150: {normal: sunshine, common: dust_storm}
+  2151: {normal: sunshine}
+  2153: {normal: sunshine, common: dust_storm}
+  2154: {normal: sunshine}

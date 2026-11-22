@@ -1,0 +1,1882 @@
+# yaml-language-server: $schema=../../schemas/weather.schema.json
+
+weather:
+  0:    {normal: wind, common: sunshine}
+  1:    {normal: sunshine, common: clouds, rare: thunderstorms}
+  2:    {normal: wind, common: sunshine, rare: thunderstorms}
+  3:    {normal: thunder, common: wind, rare: thunderstorms}
+  4:    {normal: thunder, common: sunshine, rare: thunderstorms}
+  5:    {normal: clouds, common: wind, rare: thunderstorms}
+  6:    {normal: thunderstorms}
+  7:    {normal: wind, common: sunshine, rare: thunderstorms}
+  8:    {normal: thunderstorms}
+  9:    {normal: sunshine, common: wind, rare: thunderstorms}
+  10:   {normal: thunder, common: sunshine, rare: thunderstorms}
+  11:   {normal: thunder, common: wind, rare: thunderstorms}
+  12:   {normal: sunshine, common: thunder, rare: thunderstorms}
+  13:   {normal: sunshine, common: clouds, rare: thunderstorms}
+  14:   {normal: clouds, common: wind, rare: thunderstorms}
+  15:   {normal: sunshine, common: thunder, rare: thunderstorms}
+  16:   {normal: clouds, common: sunshine, rare: thunderstorms}
+  17:   {normal: wind, common: thunder, rare: thunderstorms}
+  18:   {normal: thunder, common: sunshine, rare: thunderstorms}
+  19:   {normal: clouds, common: wind, rare: thunderstorms}
+  20:   {normal: thunderstorms}
+  21:   {normal: sunshine, common: clouds}
+  22:   {normal: sunshine, common: thunder, rare: thunderstorms}
+  23:   {normal: clouds, common: thunder, rare: thunderstorms}
+  24:   {normal: sunshine, common: thunder, rare: thunderstorms}
+  25:   {normal: wind, common: sunshine, rare: thunderstorms}
+  26:   {normal: thunder, common: wind, rare: thunderstorms}
+  27:   {normal: sunshine, common: thunder, rare: thunderstorms}
+  28:   {normal: sunshine, common: wind, rare: thunderstorms}
+  30:   {normal: sunshine, common: clouds}
+  31:   {normal: thunderstorms}
+  32:   {normal: sunshine, common: clouds, rare: thunderstorms}
+  33:   {normal: sunshine, common: wind}
+  34:   {normal: thunder, common: sunshine, rare: thunderstorms}
+  35:   {normal: sunshine, common: wind, rare: thunderstorms}
+  36:   {normal: wind, common: sunshine, rare: thunderstorms}
+  37:   {normal: thunder, common: wind, rare: thunderstorms}
+  38:   {normal: sunshine, common: wind, rare: thunderstorms}
+  39:   {normal: sunshine, common: thunder, rare: thunderstorms}
+  40:   {normal: wind, common: clouds, rare: thunderstorms}
+  42:   {normal: sunshine}
+  43:   {normal: thunder, common: sunshine, rare: thunderstorms}
+  44:   {normal: sunshine, common: wind, rare: thunderstorms}
+  45:   {normal: wind, common: clouds, rare: thunderstorms}
+  46:   {normal: sunshine, common: wind, rare: thunderstorms}
+  47:   {normal: thunderstorms}
+  48:   {normal: sunshine, common: wind, rare: thunderstorms}
+  49:   {normal: thunder, common: sunshine, rare: thunderstorms}
+  50:   {normal: wind, common: sunshine, rare: thunderstorms}
+  52:   {normal: clouds, common: thunder, rare: thunderstorms}
+  53:   {normal: sunshine, common: wind}
+  54:   {normal: clouds, common: sunshine}
+  55:   {normal: sunshine, common: thunder, rare: thunderstorms}
+  56:   {normal: thunder, common: sunshine, rare: thunderstorms}
+  57:   {normal: wind, common: sunshine, rare: thunderstorms}
+  58:   {normal: sunshine, common: clouds, rare: thunderstorms}
+  59:   {normal: wind, common: thunder, rare: thunderstorms}
+  60:   {normal: sunshine, common: wind, rare: thunderstorms}
+  63:   {normal: clouds, common: sunshine, rare: thunderstorms}
+  64:   {normal: sunshine, common: thunder, rare: thunderstorms}
+  65:   {normal: thunder, common: sunshine, rare: thunderstorms}
+  66:   {normal: wind, common: clouds, rare: thunderstorms}
+  67:   {normal: sunshine, common: wind}
+  68:   {normal: thunder, common: wind, rare: thunderstorms}
+  69:   {normal: wind, common: sunshine, rare: thunderstorms}
+  70:   {normal: thunder, common: wind, rare: thunderstorms}
+  71:   {normal: thunder, common: clouds, rare: thunderstorms}
+  72:   {normal: wind, common: thunder, rare: thunderstorms}
+  73:   {normal: sunshine}
+  74:   {normal: sunshine, common: wind, rare: thunderstorms}
+  75:   {normal: clouds, common: thunder, rare: thunderstorms}
+  76:   {normal: thunder, common: sunshine, rare: thunderstorms}
+  77:   {normal: wind, common: sunshine, rare: thunderstorms}
+  78:   {normal: thunderstorms}
+  79:   {normal: sunshine, common: wind, rare: thunderstorms}
+  80:   {normal: thunderstorms}
+  81:   {normal: thunder, common: wind, rare: thunderstorms}
+  82:   {normal: clouds, common: thunder, rare: thunderstorms}
+  83:   {normal: sunshine, common: clouds, rare: thunderstorms}
+  84:   {normal: thunder, common: sunshine, rare: thunderstorms}
+  85:   {normal: sunshine, common: wind, rare: thunderstorms}
+  86:   {normal: thunderstorms}
+  88:   {normal: thunder, common: wind, rare: thunderstorms}
+  89:   {normal: sunshine, common: wind}
+  90:   {normal: thunder, common: sunshine, rare: thunderstorms}
+  91:   {normal: wind, common: thunder, rare: thunderstorms}
+  92:   {normal: sunshine, common: clouds, rare: thunderstorms}
+  93:   {normal: clouds, common: thunder, rare: thunderstorms}
+  94:   {normal: sunshine, common: thunder, rare: thunderstorms}
+  95:   {normal: thunder, common: sunshine, rare: thunderstorms}
+  96:   {normal: sunshine, common: thunder, rare: thunderstorms}
+  97:   {normal: thunder, common: clouds, rare: thunderstorms}
+  98:   {normal: thunder, common: sunshine, rare: thunderstorms}
+  100:  {normal: sunshine}
+  101:  {normal: clouds, common: sunshine}
+  102:  {normal: clouds, common: wind}
+  103:  {normal: sunshine, common: wind, rare: thunderstorms}
+  104:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  105:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  107:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  108:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  110:  {normal: wind, common: thunder, rare: thunderstorms}
+  112:  {normal: sunshine, common: wind, rare: thunderstorms}
+  113:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  115:  {normal: sunshine, common: wind}
+  116:  {normal: wind, common: sunshine, rare: thunderstorms}
+  117:  {normal: sunshine, common: wind}
+  118:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  120:  {normal: sunshine}
+  121:  {normal: sunshine, common: clouds}
+  122:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  123:  {normal: sunshine, common: wind, rare: thunderstorms}
+  124:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  125:  {normal: clouds, common: thunder, rare: thunderstorms}
+  126:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  127:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  128:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  130:  {normal: thunder, common: clouds, rare: thunderstorms}
+  131:  {normal: wind, common: sunshine}
+  132:  {normal: clouds, common: sunshine, rare: thunderstorms}
+  133:  {normal: thunder, common: clouds, rare: thunderstorms}
+  134:  {normal: wind, common: thunder, rare: thunderstorms}
+  135:  {normal: thunderstorms}
+  136:  {normal: thunder, common: wind, rare: thunderstorms}
+  137:  {normal: sunshine, common: wind, rare: thunderstorms}
+  139:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  141:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  142:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  143:  {normal: sunshine}
+  144:  {normal: thunder, common: wind, rare: thunderstorms}
+  145:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  146:  {normal: sunshine, common: clouds}
+  147:  {normal: clouds, common: wind, rare: thunderstorms}
+  148:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  149:  {normal: sunshine, common: wind, rare: thunderstorms}
+  150:  {normal: thunderstorms}
+  151:  {normal: sunshine, common: wind, rare: thunderstorms}
+  153:  {normal: thunder, common: clouds, rare: thunderstorms}
+  154:  {normal: wind, common: sunshine, rare: thunderstorms}
+  155:  {normal: thunderstorms}
+  156:  {normal: wind, common: sunshine, rare: thunderstorms}
+  157:  {normal: wind, common: thunder, rare: thunderstorms}
+  158:  {normal: thunder, common: clouds, rare: thunderstorms}
+  159:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  160:  {normal: clouds, common: sunshine, rare: thunderstorms}
+  161:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  162:  {normal: thunder, common: wind, rare: thunderstorms}
+  163:  {normal: wind, common: thunder, rare: thunderstorms}
+  164:  {normal: thunderstorms}
+  165:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  166:  {normal: thunder, common: wind, rare: thunderstorms}
+  167:  {normal: sunshine, common: wind}
+  168:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  169:  {normal: thunder, common: wind, rare: thunderstorms}
+  170:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  172:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  173:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  174:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  176:  {normal: wind, common: sunshine, rare: thunderstorms}
+  177:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  178:  {normal: thunder, common: wind, rare: thunderstorms}
+  179:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  180:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  182:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  184:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  186:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  187:  {normal: thunder, common: wind, rare: thunderstorms}
+  189:  {normal: thunderstorms}
+  190:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  192:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  193:  {normal: wind, common: thunder, rare: thunderstorms}
+  194:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  197:  {normal: thunderstorms}
+  198:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  199:  {normal: thunder, common: wind, rare: thunderstorms}
+  200:  {normal: thunderstorms}
+  201:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  202:  {normal: thunder, common: wind, rare: thunderstorms}
+  203:  {normal: thunderstorms}
+  204:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  205:  {normal: thunderstorms}
+  206:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  210:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  211:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  212:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  213:  {normal: thunder, common: clouds, rare: thunderstorms}
+  214:  {normal: thunderstorms}
+  215:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  217:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  219:  {normal: thunder, common: wind, rare: thunderstorms}
+  220:  {normal: thunder, common: clouds, rare: thunderstorms}
+  221:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  222:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  223:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  227:  {normal: sunshine, common: wind, rare: thunderstorms}
+  228:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  229:  {normal: wind, common: thunder, rare: thunderstorms}
+  230:  {normal: sunshine, common: wind, rare: thunderstorms}
+  231:  {normal: wind, common: sunshine}
+  232:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  233:  {normal: wind, common: sunshine, rare: thunderstorms}
+  234:  {normal: thunderstorms}
+  235:  {normal: thunder, common: wind, rare: thunderstorms}
+  236:  {normal: sunshine, common: wind, rare: thunderstorms}
+  237:  {normal: wind, common: thunder, rare: thunderstorms}
+  238:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  239:  {normal: sunshine, common: wind, rare: thunderstorms}
+  240:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  241:  {normal: thunderstorms}
+  242:  {normal: thunder, common: clouds, rare: thunderstorms}
+  243:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  244:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  245:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  246:  {normal: clouds, common: wind, rare: thunderstorms}
+  247:  {normal: sunshine, common: wind, rare: thunderstorms}
+  249:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  250:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  251:  {normal: thunder, common: wind, rare: thunderstorms}
+  252:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  253:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  254:  {normal: thunder, common: clouds, rare: thunderstorms}
+  255:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  256:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  257:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  259:  {normal: thunder, common: wind, rare: thunderstorms}
+  260:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  261:  {normal: thunderstorms}
+  262:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  263:  {normal: wind, common: sunshine, rare: thunderstorms}
+  264:  {normal: thunder, common: wind, rare: thunderstorms}
+  265:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  266:  {normal: thunderstorms}
+  267:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  268:  {normal: wind, common: thunder, rare: thunderstorms}
+  269:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  271:  {normal: thunderstorms}
+  272:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  273:  {normal: clouds, common: wind, rare: thunderstorms}
+  274:  {normal: thunder, common: clouds, rare: thunderstorms}
+  275:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  277:  {normal: wind, common: sunshine, rare: thunderstorms}
+  278:  {normal: thunderstorms}
+  279:  {normal: thunder, common: clouds, rare: thunderstorms}
+  280:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  281:  {normal: sunshine, common: wind, rare: thunderstorms}
+  283:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  284:  {normal: sunshine, common: clouds}
+  285:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  286:  {normal: sunshine, common: wind, rare: thunderstorms}
+  288:  {normal: wind, common: sunshine, rare: thunderstorms}
+  289:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  290:  {normal: wind, common: thunder, rare: thunderstorms}
+  291:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  292:  {normal: thunderstorms}
+  293:  {normal: wind, common: clouds, rare: thunderstorms}
+  294:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  295:  {normal: thunderstorms}
+  296:  {normal: sunshine, common: wind, rare: thunderstorms}
+  297:  {normal: sunshine, common: clouds}
+  298:  {normal: wind, common: thunder, rare: thunderstorms}
+  299:  {normal: thunderstorms}
+  300:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  301:  {normal: thunder, common: clouds, rare: thunderstorms}
+  303:  {normal: sunshine, common: wind, rare: thunderstorms}
+  304:  {normal: wind, common: sunshine, rare: thunderstorms}
+  305:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  306:  {normal: sunshine, common: clouds}
+  307:  {normal: thunder, common: clouds, rare: thunderstorms}
+  309:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  310:  {normal: clouds, common: sunshine}
+  311:  {normal: wind, common: clouds, rare: thunderstorms}
+  312:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  313:  {normal: thunder, common: clouds, rare: thunderstorms}
+  314:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  315:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  316:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  317:  {normal: thunder, common: wind, rare: thunderstorms}
+  318:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  319:  {normal: clouds, common: sunshine, rare: thunderstorms}
+  321:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  322:  {normal: sunshine, common: wind, rare: thunderstorms}
+  323:  {normal: wind, common: sunshine}
+  324:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  325:  {normal: wind, common: sunshine, rare: thunderstorms}
+  326:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  327:  {normal: sunshine, common: wind}
+  328:  {normal: sunshine, common: wind, rare: thunderstorms}
+  329:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  330:  {normal: wind, common: sunshine, rare: thunderstorms}
+  331:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  332:  {normal: wind, common: sunshine}
+  333:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  334:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  335:  {normal: sunshine, common: wind}
+  336:  {normal: clouds, common: wind, rare: thunderstorms}
+  337:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  338:  {normal: sunshine, common: clouds}
+  339:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  340:  {normal: thunder, common: wind, rare: thunderstorms}
+  341:  {normal: wind, common: thunder, rare: thunderstorms}
+  342:  {normal: sunshine, common: wind, rare: thunderstorms}
+  343:  {normal: wind, common: thunder, rare: thunderstorms}
+  344:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  345:  {normal: thunderstorms}
+  346:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  348:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  349:  {normal: thunder, common: clouds, rare: thunderstorms}
+  350:  {normal: sunshine, common: wind}
+  351:  {normal: thunderstorms}
+  352:  {normal: sunshine}
+  353:  {normal: wind, common: sunshine, rare: thunderstorms}
+  354:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  355:  {normal: thunder, common: wind, rare: thunderstorms}
+  356:  {normal: sunshine, common: wind}
+  357:  {normal: wind, common: sunshine}
+  358:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  359:  {normal: sunshine}
+  360:  {normal: clouds, common: wind}
+  361:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  362:  {normal: thunderstorms}
+  363:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  364:  {normal: thunder, common: wind, rare: thunderstorms}
+  365:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  366:  {normal: thunder, common: clouds, rare: thunderstorms}
+  367:  {normal: sunshine, common: wind, rare: thunderstorms}
+  368:  {normal: wind, common: sunshine, rare: thunderstorms}
+  369:  {normal: wind, common: thunder, rare: thunderstorms}
+  370:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  371:  {normal: thunderstorms}
+  372:  {normal: sunshine, common: clouds}
+  373:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  374:  {normal: sunshine, common: wind, rare: thunderstorms}
+  375:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  376:  {normal: sunshine, common: wind}
+  377:  {normal: sunshine, common: clouds}
+  378:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  379:  {normal: sunshine, common: wind, rare: thunderstorms}
+  380:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  381:  {normal: sunshine, common: wind}
+  382:  {normal: sunshine, common: wind, rare: thunderstorms}
+  383:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  384:  {normal: sunshine, common: clouds}
+  385:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  386:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  387:  {normal: thunder, common: wind, rare: thunderstorms}
+  388:  {normal: sunshine, common: clouds}
+  389:  {normal: wind, common: sunshine, rare: thunderstorms}
+  390:  {normal: clouds, common: sunshine}
+  391:  {normal: sunshine, common: wind}
+  392:  {normal: clouds, common: sunshine, rare: thunderstorms}
+  393:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  394:  {normal: wind, common: sunshine, rare: thunderstorms}
+  395:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  396:  {normal: thunder, common: wind, rare: thunderstorms}
+  397:  {normal: sunshine, common: wind, rare: thunderstorms}
+  398:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  399:  {normal: thunderstorms}
+  400:  {normal: clouds, common: thunder, rare: thunderstorms}
+  401:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  402:  {normal: wind, common: thunder, rare: thunderstorms}
+  403:  {normal: thunderstorms}
+  404:  {normal: sunshine, common: clouds}
+  405:  {normal: sunshine, common: wind}
+  406:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  407:  {normal: sunshine, common: clouds}
+  408:  {normal: sunshine, common: wind, rare: thunderstorms}
+  409:  {normal: thunder, common: clouds, rare: thunderstorms}
+  410:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  411:  {normal: thunder, common: wind, rare: thunderstorms}
+  412:  {normal: wind, common: sunshine, rare: thunderstorms}
+  413:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  414:  {normal: sunshine, common: wind}
+  415:  {normal: wind, common: clouds}
+  416:  {normal: wind, common: sunshine, rare: thunderstorms}
+  417:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  419:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  420:  {normal: sunshine, common: wind}
+  421:  {normal: wind, common: thunder, rare: thunderstorms}
+  422:  {normal: clouds, common: thunder, rare: thunderstorms}
+  423:  {normal: wind, common: sunshine, rare: thunderstorms}
+  424:  {normal: sunshine, common: wind, rare: thunderstorms}
+  426:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  427:  {normal: thunder, common: wind, rare: thunderstorms}
+  428:  {normal: wind, common: clouds}
+  429:  {normal: sunshine, common: clouds}
+  430:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  432:  {normal: clouds, common: sunshine, rare: thunderstorms}
+  433:  {normal: thunder, common: wind, rare: thunderstorms}
+  434:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  435:  {normal: sunshine, common: wind, rare: thunderstorms}
+  436:  {normal: clouds, common: thunder, rare: thunderstorms}
+  437:  {normal: sunshine, common: clouds}
+  438:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  439:  {normal: thunderstorms}
+  440:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  441:  {normal: thunderstorms}
+  442:  {normal: clouds, common: sunshine, rare: thunderstorms}
+  443:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  444:  {normal: sunshine, common: wind, rare: thunderstorms}
+  446:  {normal: thunder, common: clouds, rare: thunderstorms}
+  447:  {normal: thunderstorms}
+  449:  {normal: wind, common: sunshine}
+  450:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  451:  {normal: wind, common: thunder, rare: thunderstorms}
+  452:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  453:  {normal: sunshine, common: wind, rare: thunderstorms}
+  454:  {normal: thunderstorms}
+  455:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  456:  {normal: sunshine, common: wind, rare: thunderstorms}
+  457:  {normal: clouds, common: thunder, rare: thunderstorms}
+  458:  {normal: sunshine, common: wind}
+  459:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  460:  {normal: wind, common: sunshine}
+  461:  {normal: thunderstorms}
+  462:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  464:  {normal: sunshine, common: wind}
+  465:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  466:  {normal: clouds, common: thunder, rare: thunderstorms}
+  467:  {normal: sunshine, common: wind, rare: thunderstorms}
+  468:  {normal: clouds, common: sunshine, rare: thunderstorms}
+  469:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  470:  {normal: sunshine, common: wind}
+  471:  {normal: thunder, common: wind, rare: thunderstorms}
+  472:  {normal: wind, common: clouds, rare: thunderstorms}
+  473:  {normal: wind, common: sunshine, rare: thunderstorms}
+  474:  {normal: thunder, common: wind, rare: thunderstorms}
+  475:  {normal: sunshine, common: wind, rare: thunderstorms}
+  476:  {normal: thunder, common: wind, rare: thunderstorms}
+  477:  {normal: thunderstorms}
+  478:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  479:  {normal: wind, common: clouds, rare: thunderstorms}
+  480:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  482:  {normal: sunshine, common: wind, rare: thunderstorms}
+  483:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  484:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  485:  {normal: clouds, common: wind, rare: thunderstorms}
+  486:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  487:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  489:  {normal: wind, common: sunshine, rare: thunderstorms}
+  490:  {normal: clouds, common: thunder, rare: thunderstorms}
+  491:  {normal: wind, common: sunshine, rare: thunderstorms}
+  492:  {normal: sunshine, common: clouds}
+  493:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  494:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  496:  {normal: sunshine, common: wind, rare: thunderstorms}
+  497:  {normal: wind, common: clouds}
+  499:  {normal: sunshine, common: wind, rare: thunderstorms}
+  500:  {normal: clouds, common: sunshine, rare: thunderstorms}
+  501:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  502:  {normal: wind, common: clouds, rare: thunderstorms}
+  503:  {normal: sunshine, common: wind, rare: thunderstorms}
+  504:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  505:  {normal: clouds, common: wind, rare: thunderstorms}
+  506:  {normal: clouds, common: sunshine, rare: thunderstorms}
+  507:  {normal: thunder, common: wind, rare: thunderstorms}
+  508:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  510:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  511:  {normal: sunshine, common: wind, rare: thunderstorms}
+  512:  {normal: wind, common: clouds, rare: thunderstorms}
+  513:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  514:  {normal: thunder, common: wind, rare: thunderstorms}
+  515:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  516:  {normal: thunder, common: wind, rare: thunderstorms}
+  518:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  519:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  520:  {normal: wind, common: sunshine, rare: thunderstorms}
+  521:  {normal: sunshine, common: wind, rare: thunderstorms}
+  522:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  523:  {normal: thunderstorms}
+  525:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  526:  {normal: thunder, common: wind, rare: thunderstorms}
+  527:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  528:  {normal: wind, common: sunshine, rare: thunderstorms}
+  529:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  530:  {normal: thunder, common: wind, rare: thunderstorms}
+  531:  {normal: thunderstorms}
+  532:  {normal: wind, common: thunder, rare: thunderstorms}
+  533:  {normal: thunderstorms}
+  534:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  536:  {normal: thunder, common: wind, rare: thunderstorms}
+  537:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  542:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  543:  {normal: thunderstorms}
+  544:  {normal: thunder, common: wind, rare: thunderstorms}
+  545:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  547:  {normal: thunderstorms}
+  548:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  549:  {normal: thunder, common: wind, rare: thunderstorms}
+  550:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  553:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  554:  {normal: thunderstorms}
+  555:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  556:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  558:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  559:  {normal: thunderstorms}
+  560:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  561:  {normal: thunderstorms}
+  562:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  564:  {normal: thunder, common: clouds, rare: thunderstorms}
+  565:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  566:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  567:  {normal: thunderstorms}
+  569:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  571:  {normal: thunderstorms}
+  572:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  573:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  574:  {normal: sunshine, common: wind, rare: thunderstorms}
+  575:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  576:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  577:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  578:  {normal: thunderstorms}
+  579:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  581:  {normal: wind, common: thunder, rare: thunderstorms}
+  582:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  583:  {normal: thunder, common: wind, rare: thunderstorms}
+  584:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  585:  {normal: thunder, common: clouds, rare: thunderstorms}
+  586:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  587:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  589:  {normal: thunder, common: wind, rare: thunderstorms}
+  590:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  591:  {normal: thunder, common: clouds, rare: thunderstorms}
+  592:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  595:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  596:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  597:  {normal: wind, common: sunshine, rare: thunderstorms}
+  598:  {normal: sunshine, common: wind, rare: thunderstorms}
+  599:  {normal: thunderstorms}
+  600:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  602:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  604:  {normal: sunshine, common: wind, rare: thunderstorms}
+  605:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  606:  {normal: sunshine, common: wind}
+  607:  {normal: wind, common: thunder, rare: thunderstorms}
+  608:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  609:  {normal: sunshine, common: wind, rare: thunderstorms}
+  610:  {normal: thunderstorms}
+  611:  {normal: wind, common: sunshine}
+  612:  {normal: thunderstorms}
+  613:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  615:  {normal: wind, common: clouds}
+  616:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  618:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  620:  {normal: clouds, common: thunder, rare: thunderstorms}
+  621:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  622:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  625:  {normal: thunder, common: wind, rare: thunderstorms}
+  626:  {normal: wind, common: thunder, rare: thunderstorms}
+  627:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  628:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  629:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  631:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  633:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  634:  {normal: wind, common: thunder, rare: thunderstorms}
+  635:  {normal: wind, common: sunshine, rare: thunderstorms}
+  636:  {normal: thunderstorms}
+  637:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  638:  {normal: thunderstorms}
+  639:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  640:  {normal: thunder, common: wind, rare: thunderstorms}
+  641:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  642:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  643:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  644:  {normal: sunshine}
+  645:  {normal: wind, common: sunshine, rare: thunderstorms}
+  646:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  647:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  648:  {normal: sunshine, common: wind, rare: thunderstorms}
+  649:  {normal: thunder, common: clouds, rare: thunderstorms}
+  650:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  651:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  652:  {normal: thunder, common: wind, rare: thunderstorms}
+  653:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  654:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  655:  {normal: sunshine, common: wind, rare: thunderstorms}
+  658:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  659:  {normal: thunder, common: clouds, rare: thunderstorms}
+  660:  {normal: wind, common: sunshine, rare: thunderstorms}
+  661:  {normal: clouds, common: wind, rare: thunderstorms}
+  662:  {normal: sunshine, common: wind, rare: thunderstorms}
+  664:  {normal: clouds, common: thunder, rare: thunderstorms}
+  665:  {normal: thunder, common: clouds, rare: thunderstorms}
+  667:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  668:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  669:  {normal: thunder, common: wind, rare: thunderstorms}
+  670:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  671:  {normal: clouds, common: thunder, rare: thunderstorms}
+  672:  {normal: wind, common: sunshine, rare: thunderstorms}
+  673:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  674:  {normal: thunder, common: clouds, rare: thunderstorms}
+  675:  {normal: thunder, common: wind, rare: thunderstorms}
+  676:  {normal: wind, common: sunshine, rare: thunderstorms}
+  677:  {normal: sunshine, common: wind, rare: thunderstorms}
+  679:  {normal: wind, common: clouds, rare: thunderstorms}
+  680:  {normal: wind, common: sunshine, rare: thunderstorms}
+  681:  {normal: thunder, common: clouds, rare: thunderstorms}
+  682:  {normal: sunshine, common: wind}
+  683:  {normal: sunshine, common: wind, rare: thunderstorms}
+  684:  {normal: wind, common: sunshine, rare: thunderstorms}
+  685:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  686:  {normal: thunder, common: clouds, rare: thunderstorms}
+  687:  {normal: wind, common: sunshine}
+  688:  {normal: sunshine, common: wind, rare: thunderstorms}
+  689:  {normal: clouds, common: wind, rare: thunderstorms}
+  690:  {normal: thunder, common: wind, rare: thunderstorms}
+  691:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  692:  {normal: sunshine, common: wind, rare: thunderstorms}
+  694:  {normal: sunshine, common: clouds}
+  695:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  696:  {normal: clouds, common: wind, rare: thunderstorms}
+  697:  {normal: thunder, common: wind, rare: thunderstorms}
+  698:  {normal: wind, common: sunshine, rare: thunderstorms}
+  699:  {normal: sunshine, common: wind, rare: thunderstorms}
+  700:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  702:  {normal: wind, common: thunder, rare: thunderstorms}
+  703:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  704:  {normal: wind, common: sunshine}
+  705:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  706:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  707:  {normal: clouds, common: wind, rare: thunderstorms}
+  708:  {normal: wind, common: sunshine}
+  709:  {normal: wind, common: thunder, rare: thunderstorms}
+  710:  {normal: sunshine, common: wind, rare: thunderstorms}
+  711:  {normal: thunder, common: clouds, rare: thunderstorms}
+  712:  {normal: thunderstorms}
+  713:  {normal: sunshine}
+  714:  {normal: wind, common: thunder, rare: thunderstorms}
+  715:  {normal: wind, common: sunshine, rare: thunderstorms}
+  717:  {normal: sunshine, common: wind, rare: thunderstorms}
+  718:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  719:  {normal: wind, common: sunshine, rare: thunderstorms}
+  720:  {normal: thunder, common: wind, rare: thunderstorms}
+  721:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  722:  {normal: wind, common: sunshine}
+  723:  {normal: wind, common: sunshine, rare: thunderstorms}
+  724:  {normal: clouds, common: wind}
+  725:  {normal: thunderstorms}
+  726:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  727:  {normal: clouds, common: sunshine, rare: thunderstorms}
+  728:  {normal: sunshine, common: wind, rare: thunderstorms}
+  729:  {normal: clouds, common: thunder, rare: thunderstorms}
+  730:  {normal: wind, common: clouds}
+  731:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  732:  {normal: wind, common: sunshine, rare: thunderstorms}
+  733:  {normal: clouds, common: thunder, rare: thunderstorms}
+  734:  {normal: sunshine, common: wind, rare: thunderstorms}
+  736:  {normal: wind, common: clouds, rare: thunderstorms}
+  737:  {normal: thunderstorms}
+  738:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  739:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  740:  {normal: sunshine, common: wind}
+  741:  {normal: wind, common: sunshine, rare: thunderstorms}
+  742:  {normal: wind, common: thunder, rare: thunderstorms}
+  744:  {normal: thunder, common: clouds, rare: thunderstorms}
+  745:  {normal: sunshine, common: wind, rare: thunderstorms}
+  746:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  747:  {normal: sunshine, common: wind, rare: thunderstorms}
+  748:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  750:  {normal: sunshine, common: wind}
+  751:  {normal: thunder, common: wind, rare: thunderstorms}
+  752:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  753:  {normal: sunshine, common: wind}
+  754:  {normal: clouds, common: thunder, rare: thunderstorms}
+  755:  {normal: wind, common: thunder, rare: thunderstorms}
+  756:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  757:  {normal: sunshine, common: wind, rare: thunderstorms}
+  758:  {normal: thunder, common: clouds, rare: thunderstorms}
+  759:  {normal: sunshine, common: wind, rare: thunderstorms}
+  760:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  761:  {normal: clouds, common: thunder, rare: thunderstorms}
+  762:  {normal: sunshine, common: wind, rare: thunderstorms}
+  763:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  764:  {normal: thunderstorms}
+  765:  {normal: sunshine, common: wind, rare: thunderstorms}
+  766:  {normal: clouds, common: sunshine}
+  767:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  768:  {normal: wind, common: sunshine}
+  769:  {normal: wind, common: thunder, rare: thunderstorms}
+  770:  {normal: wind, common: sunshine, rare: thunderstorms}
+  771:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  772:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  773:  {normal: clouds, common: wind}
+  774:  {normal: thunder, common: wind, rare: thunderstorms}
+  775:  {normal: thunder, common: clouds, rare: thunderstorms}
+  776:  {normal: clouds, common: sunshine, rare: thunderstorms}
+  777:  {normal: sunshine, common: clouds}
+  778:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  779:  {normal: sunshine, common: clouds}
+  780:  {normal: wind, common: sunshine}
+  781:  {normal: sunshine, common: clouds}
+  782:  {normal: sunshine, common: wind}
+  783:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  785:  {normal: thunder, common: wind, rare: thunderstorms}
+  786:  {normal: sunshine, common: wind, rare: thunderstorms}
+  787:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  788:  {normal: sunshine, common: wind, rare: thunderstorms}
+  790:  {normal: sunshine, common: clouds}
+  791:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  792:  {normal: wind, common: sunshine}
+  793:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  794:  {normal: clouds, common: wind, rare: thunderstorms}
+  795:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  797:  {normal: clouds, common: thunder, rare: thunderstorms}
+  798:  {normal: sunshine, common: wind, rare: thunderstorms}
+  799:  {normal: wind, common: clouds, rare: thunderstorms}
+  800:  {normal: clouds, common: thunder, rare: thunderstorms}
+  801:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  802:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  804:  {normal: wind, common: thunder, rare: thunderstorms}
+  805:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  806:  {normal: sunshine, common: wind, rare: thunderstorms}
+  807:  {normal: clouds, common: wind, rare: thunderstorms}
+  808:  {normal: sunshine, common: clouds}
+  809:  {normal: thunder, common: wind, rare: thunderstorms}
+  810:  {normal: thunderstorms}
+  811:  {normal: wind, common: sunshine, rare: thunderstorms}
+  812:  {normal: wind, common: sunshine}
+  813:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  816:  {normal: sunshine, common: wind, rare: thunderstorms}
+  817:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  818:  {normal: thunder, common: clouds, rare: thunderstorms}
+  819:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  820:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  822:  {normal: clouds, common: sunshine, rare: thunderstorms}
+  823:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  825:  {normal: thunder, common: clouds, rare: thunderstorms}
+  826:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  827:  {normal: sunshine, common: wind}
+  828:  {normal: thunder, common: clouds, rare: thunderstorms}
+  829:  {normal: sunshine, common: wind, rare: thunderstorms}
+  830:  {normal: wind, common: sunshine, rare: thunderstorms}
+  831:  {normal: sunshine, common: wind, rare: thunderstorms}
+  834:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  835:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  836:  {normal: sunshine, common: wind, rare: thunderstorms}
+  837:  {normal: thunderstorms}
+  838:  {normal: wind, common: sunshine, rare: thunderstorms}
+  839:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  840:  {normal: sunshine, common: wind, rare: thunderstorms}
+  841:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  843:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  844:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  845:  {normal: clouds, common: wind, rare: thunderstorms}
+  846:  {normal: sunshine, common: wind, rare: thunderstorms}
+  847:  {normal: wind, common: sunshine, rare: thunderstorms}
+  848:  {normal: wind, common: sunshine}
+  849:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  851:  {normal: thunder, common: clouds, rare: thunderstorms}
+  853:  {normal: wind, common: sunshine}
+  854:  {normal: sunshine, common: wind, rare: thunderstorms}
+  855:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  856:  {normal: wind, common: clouds, rare: thunderstorms}
+  857:  {normal: sunshine, common: wind, rare: thunderstorms}
+  858:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  859:  {normal: thunderstorms}
+  860:  {normal: clouds, common: thunder, rare: thunderstorms}
+  861:  {normal: thunderstorms}
+  862:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  863:  {normal: wind, common: thunder, rare: thunderstorms}
+  864:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  865:  {normal: wind, common: thunder, rare: thunderstorms}
+  866:  {normal: thunder, common: wind, rare: thunderstorms}
+  867:  {normal: clouds, common: thunder, rare: thunderstorms}
+  868:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  869:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  870:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  872:  {normal: thunder, common: wind, rare: thunderstorms}
+  873:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  875:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  876:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  877:  {normal: sunshine, common: wind, rare: thunderstorms}
+  878:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  879:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  882:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  884:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  885:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  886:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  887:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  888:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  889:  {normal: thunderstorms}
+  890:  {normal: thunder, common: wind, rare: thunderstorms}
+  892:  {normal: thunderstorms}
+  893:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  894:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  895:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  896:  {normal: thunderstorms}
+  897:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  898:  {normal: thunder, common: wind, rare: thunderstorms}
+  899:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  900:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  901:  {normal: thunder, common: wind, rare: thunderstorms}
+  902:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  904:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  905:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  907:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  908:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  909:  {normal: thunder, common: wind, rare: thunderstorms}
+  910:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  911:  {normal: thunderstorms}
+  912:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  915:  {normal: thunderstorms}
+  918:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  919:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  920:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  923:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  924:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  925:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  926:  {normal: thunder, common: wind, rare: thunderstorms}
+  928:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  931:  {normal: thunderstorms}
+  932:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  933:  {normal: thunderstorms}
+  934:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  935:  {normal: wind, common: sunshine, rare: thunderstorms}
+  936:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  937:  {normal: wind, common: thunder, rare: thunderstorms}
+  938:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  939:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  940:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  941:  {normal: thunder, common: wind, rare: thunderstorms}
+  942:  {normal: sunshine, common: clouds}
+  943:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  944:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  945:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  946:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  947:  {normal: thunderstorms}
+  948:  {normal: thunder, common: wind, rare: thunderstorms}
+  949:  {normal: clouds, common: sunshine, rare: thunderstorms}
+  950:  {normal: wind, common: thunder, rare: thunderstorms}
+  951:  {normal: thunder, common: wind, rare: thunderstorms}
+  952:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  953:  {normal: wind, common: sunshine, rare: thunderstorms}
+  954:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  955:  {normal: sunshine, common: wind, rare: thunderstorms}
+  956:  {normal: thunder, common: wind, rare: thunderstorms}
+  957:  {normal: thunder, common: clouds, rare: thunderstorms}
+  958:  {normal: wind, common: clouds, rare: thunderstorms}
+  959:  {normal: thunder, common: clouds, rare: thunderstorms}
+  960:  {normal: sunshine, common: wind, rare: thunderstorms}
+  961:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  962:  {normal: thunderstorms}
+  963:  {normal: sunshine, common: wind, rare: thunderstorms}
+  964:  {normal: thunder, common: wind, rare: thunderstorms}
+  965:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  966:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  968:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  969:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  970:  {normal: wind, common: clouds, rare: thunderstorms}
+  971:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  972:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  974:  {normal: thunder, common: clouds, rare: thunderstorms}
+  975:  {normal: thunder, common: wind, rare: thunderstorms}
+  976:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  977:  {normal: thunderstorms}
+  979:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  980:  {normal: thunder, common: wind, rare: thunderstorms}
+  981:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  982:  {normal: sunshine, common: wind, rare: thunderstorms}
+  983:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  984:  {normal: thunderstorms}
+  985:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  987:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  988:  {normal: thunder, common: sunshine, rare: thunderstorms}
+  989:  {normal: thunder, common: clouds, rare: thunderstorms}
+  990:  {normal: sunshine, common: wind}
+  991:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  993:  {normal: sunshine, common: wind, rare: thunderstorms}
+  994:  {normal: sunshine, common: thunder, rare: thunderstorms}
+  996:  {normal: sunshine, common: clouds, rare: thunderstorms}
+  997:  {normal: thunderstorms}
+  998:  {normal: sunshine, common: wind, rare: thunderstorms}
+  999:  {normal: thunder, common: clouds, rare: thunderstorms}
+  1001: {normal: thunderstorms}
+  1002: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1003: {normal: wind, common: thunder, rare: thunderstorms}
+  1004: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1006: {normal: thunderstorms}
+  1007: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1010: {normal: sunshine, common: wind}
+  1011: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1012: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1014: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1015: {normal: clouds, common: thunder, rare: thunderstorms}
+  1016: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1017: {normal: wind, common: clouds, rare: thunderstorms}
+  1018: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1019: {normal: wind, common: sunshine, rare: thunderstorms}
+  1020: {normal: sunshine, common: wind, rare: thunderstorms}
+  1022: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1023: {normal: sunshine, common: clouds}
+  1024: {normal: sunshine, common: wind, rare: thunderstorms}
+  1025: {normal: sunshine, common: wind}
+  1026: {normal: wind, common: sunshine, rare: thunderstorms}
+  1027: {normal: clouds, common: sunshine, rare: thunderstorms}
+  1028: {normal: sunshine, common: wind, rare: thunderstorms}
+  1029: {normal: wind, common: sunshine, rare: thunderstorms}
+  1030: {normal: sunshine, common: wind, rare: thunderstorms}
+  1031: {normal: wind, common: sunshine, rare: thunderstorms}
+  1032: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1033: {normal: clouds, common: sunshine, rare: thunderstorms}
+  1034: {normal: thunderstorms}
+  1035: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1036: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1037: {normal: clouds, common: sunshine, rare: thunderstorms}
+  1038: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1039: {normal: thunder, common: wind, rare: thunderstorms}
+  1040: {normal: clouds, common: thunder, rare: thunderstorms}
+  1041: {normal: clouds, common: wind, rare: thunderstorms}
+  1042: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1043: {normal: wind, common: thunder, rare: thunderstorms}
+  1044: {normal: thunder, common: wind, rare: thunderstorms}
+  1045: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1047: {normal: clouds, common: wind, rare: thunderstorms}
+  1048: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1049: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1050: {normal: sunshine, common: wind, rare: thunderstorms}
+  1051: {normal: sunshine, common: clouds}
+  1052: {normal: sunshine, common: wind}
+  1053: {normal: wind, common: thunder, rare: thunderstorms}
+  1054: {normal: sunshine, common: wind}
+  1055: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1056: {normal: wind, common: sunshine}
+  1057: {normal: clouds, common: thunder, rare: thunderstorms}
+  1058: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1059: {normal: clouds, common: sunshine, rare: thunderstorms}
+  1060: {normal: wind, common: sunshine}
+  1061: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1062: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1063: {normal: wind, common: thunder, rare: thunderstorms}
+  1066: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1067: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1068: {normal: wind, common: sunshine, rare: thunderstorms}
+  1069: {normal: sunshine, common: wind}
+  1070: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1071: {normal: wind, common: thunder, rare: thunderstorms}
+  1072: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1073: {normal: sunshine, common: clouds}
+  1074: {normal: thunder, common: wind, rare: thunderstorms}
+  1075: {normal: wind, common: clouds}
+  1076: {normal: clouds, common: wind}
+  1077: {normal: clouds, common: wind, rare: thunderstorms}
+  1078: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1079: {normal: sunshine, common: wind, rare: thunderstorms}
+  1080: {normal: thunder, common: clouds, rare: thunderstorms}
+  1081: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1082: {normal: thunder, common: wind, rare: thunderstorms}
+  1083: {normal: sunshine, common: clouds}
+  1084: {normal: wind, common: sunshine, rare: thunderstorms}
+  1085: {normal: sunshine, common: wind, rare: thunderstorms}
+  1086: {normal: sunshine}
+  1087: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1088: {normal: thunder, common: clouds, rare: thunderstorms}
+  1089: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1090: {normal: sunshine, common: wind, rare: thunderstorms}
+  1091: {normal: sunshine, common: clouds}
+  1092: {normal: thunder, common: wind, rare: thunderstorms}
+  1093: {normal: wind, common: sunshine}
+  1094: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1095: {normal: sunshine}
+  1096: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1097: {normal: wind, common: thunder, rare: thunderstorms}
+  1098: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1099: {normal: thunder, common: clouds, rare: thunderstorms}
+  1100: {normal: wind, common: sunshine}
+  1101: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1102: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1103: {normal: clouds, common: thunder, rare: thunderstorms}
+  1104: {normal: sunshine, common: wind, rare: thunderstorms}
+  1105: {normal: thunderstorms}
+  1106: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1107: {normal: wind, common: sunshine}
+  1108: {normal: sunshine, common: wind}
+  1109: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1110: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1111: {normal: thunder, common: wind, rare: thunderstorms}
+  1112: {normal: clouds, common: thunder, rare: thunderstorms}
+  1113: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1114: {normal: wind, common: sunshine, rare: thunderstorms}
+  1115: {normal: wind, common: sunshine}
+  1116: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1117: {normal: clouds, common: sunshine, rare: thunderstorms}
+  1118: {normal: wind, common: clouds}
+  1119: {normal: thunderstorms}
+  1120: {normal: wind, common: clouds, rare: thunderstorms}
+  1122: {normal: clouds, common: sunshine}
+  1123: {normal: clouds, common: wind}
+  1124: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1125: {normal: sunshine, common: clouds}
+  1126: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1127: {normal: thunder, common: wind, rare: thunderstorms}
+  1129: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1130: {normal: thunder, common: clouds, rare: thunderstorms}
+  1131: {normal: sunshine, common: wind, rare: thunderstorms}
+  1132: {normal: wind, common: sunshine}
+  1133: {normal: sunshine, common: clouds}
+  1135: {normal: clouds, common: sunshine}
+  1137: {normal: thunder, common: wind, rare: thunderstorms}
+  1138: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1139: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1140: {normal: wind, common: sunshine, rare: thunderstorms}
+  1141: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1142: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1143: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1144: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1145: {normal: wind, common: sunshine, rare: thunderstorms}
+  1146: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1147: {normal: sunshine, common: clouds}
+  1148: {normal: thunderstorms}
+  1149: {normal: wind, common: sunshine, rare: thunderstorms}
+  1150: {normal: thunderstorms}
+  1151: {normal: clouds, common: thunder, rare: thunderstorms}
+  1152: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1153: {normal: wind, common: thunder, rare: thunderstorms}
+  1154: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1157: {normal: clouds, common: sunshine, rare: thunderstorms}
+  1158: {normal: thunder, common: clouds, rare: thunderstorms}
+  1159: {normal: wind, common: sunshine}
+  1160: {normal: sunshine, common: wind, rare: thunderstorms}
+  1161: {normal: clouds, common: thunder, rare: thunderstorms}
+  1162: {normal: sunshine, common: wind, rare: thunderstorms}
+  1163: {normal: wind, common: clouds, rare: thunderstorms}
+  1164: {normal: thunderstorms}
+  1165: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1167: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1168: {normal: wind, common: thunder, rare: thunderstorms}
+  1169: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1171: {normal: thunderstorms}
+  1172: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1173: {normal: sunshine, common: wind, rare: thunderstorms}
+  1174: {normal: clouds, common: sunshine, rare: thunderstorms}
+  1175: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1176: {normal: sunshine, common: wind, rare: thunderstorms}
+  1177: {normal: thunder, common: wind, rare: thunderstorms}
+  1178: {normal: clouds, common: sunshine}
+  1179: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1180: {normal: sunshine, common: wind, rare: thunderstorms}
+  1181: {normal: wind, common: sunshine, rare: thunderstorms}
+  1182: {normal: sunshine, common: wind}
+  1183: {normal: clouds, common: thunder, rare: thunderstorms}
+  1184: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1185: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1186: {normal: thunder, common: clouds, rare: thunderstorms}
+  1187: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1188: {normal: clouds, common: sunshine, rare: thunderstorms}
+  1189: {normal: thunderstorms}
+  1190: {normal: sunshine, common: wind, rare: thunderstorms}
+  1191: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1192: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1193: {normal: thunder, common: wind, rare: thunderstorms}
+  1195: {normal: wind, common: thunder, rare: thunderstorms}
+  1196: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1197: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1198: {normal: wind, common: sunshine, rare: thunderstorms}
+  1200: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1201: {normal: clouds, common: thunder, rare: thunderstorms}
+  1202: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1204: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1205: {normal: clouds, common: sunshine, rare: thunderstorms}
+  1206: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1207: {normal: wind, common: sunshine, rare: thunderstorms}
+  1208: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1209: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1210: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1211: {normal: clouds, common: wind, rare: thunderstorms}
+  1212: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1213: {normal: wind, common: thunder, rare: thunderstorms}
+  1214: {normal: sunshine, common: wind}
+  1215: {normal: thunder, common: clouds, rare: thunderstorms}
+  1216: {normal: sunshine, common: wind, rare: thunderstorms}
+  1217: {normal: wind, common: sunshine, rare: thunderstorms}
+  1218: {normal: thunder, common: clouds, rare: thunderstorms}
+  1219: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1220: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1221: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1222: {normal: thunderstorms}
+  1223: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1224: {normal: sunshine, common: wind}
+  1226: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1227: {normal: sunshine, common: wind}
+  1228: {normal: wind, common: thunder, rare: thunderstorms}
+  1229: {normal: sunshine, common: wind, rare: thunderstorms}
+  1230: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1231: {normal: sunshine, common: wind}
+  1232: {normal: thunderstorms}
+  1233: {normal: sunshine}
+  1234: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1235: {normal: wind, common: thunder, rare: thunderstorms}
+  1236: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1240: {normal: thunder, common: clouds, rare: thunderstorms}
+  1241: {normal: wind, common: thunder, rare: thunderstorms}
+  1242: {normal: thunderstorms}
+  1243: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1244: {normal: thunder, common: wind, rare: thunderstorms}
+  1246: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1248: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1249: {normal: thunderstorms}
+  1250: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1251: {normal: thunderstorms}
+  1252: {normal: thunder, common: wind, rare: thunderstorms}
+  1253: {normal: sunshine, common: wind, rare: thunderstorms}
+  1254: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1256: {normal: thunder, common: wind, rare: thunderstorms}
+  1258: {normal: thunderstorms}
+  1260: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1264: {normal: thunderstorms}
+  1265: {normal: thunder, common: wind, rare: thunderstorms}
+  1266: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1267: {normal: thunder, common: clouds, rare: thunderstorms}
+  1268: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1269: {normal: thunderstorms}
+  1270: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1272: {normal: thunder, common: wind, rare: thunderstorms}
+  1273: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1276: {normal: thunderstorms}
+  1277: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1278: {normal: thunderstorms}
+  1279: {normal: thunder, common: wind, rare: thunderstorms}
+  1280: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1282: {normal: thunderstorms}
+  1283: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1284: {normal: thunderstorms}
+  1286: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1287: {normal: thunder, common: wind, rare: thunderstorms}
+  1288: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1291: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1292: {normal: thunder, common: wind, rare: thunderstorms}
+  1293: {normal: thunderstorms}
+  1294: {normal: thunder, common: wind, rare: thunderstorms}
+  1295: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1297: {normal: sunshine, common: wind, rare: thunderstorms}
+  1298: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1299: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1300: {normal: sunshine, common: wind, rare: thunderstorms}
+  1301: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1302: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1303: {normal: thunder, common: wind, rare: thunderstorms}
+  1305: {normal: wind, common: sunshine, rare: thunderstorms}
+  1306: {normal: thunderstorms}
+  1307: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1308: {normal: thunder, common: clouds, rare: thunderstorms}
+  1309: {normal: thunderstorms}
+  1310: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1311: {normal: thunder, common: clouds, rare: thunderstorms}
+  1312: {normal: wind, common: thunder, rare: thunderstorms}
+  1313: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1315: {normal: thunder, common: wind, rare: thunderstorms}
+  1316: {normal: sunshine, common: wind, rare: thunderstorms}
+  1317: {normal: clouds, common: thunder, rare: thunderstorms}
+  1318: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1319: {normal: wind, common: sunshine, rare: thunderstorms}
+  1320: {normal: wind, common: sunshine}
+  1321: {normal: thunderstorms}
+  1322: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1324: {normal: wind, common: sunshine, rare: thunderstorms}
+  1325: {normal: sunshine, common: wind, rare: thunderstorms}
+  1326: {normal: wind, common: thunder, rare: thunderstorms}
+  1327: {normal: thunderstorms}
+  1328: {normal: wind, common: sunshine, rare: thunderstorms}
+  1329: {normal: sunshine, common: wind, rare: thunderstorms}
+  1330: {normal: thunderstorms}
+  1331: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1333: {normal: clouds, common: sunshine, rare: thunderstorms}
+  1334: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1335: {normal: sunshine, common: wind, rare: thunderstorms}
+  1336: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1337: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1338: {normal: sunshine, common: wind, rare: thunderstorms}
+  1339: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1340: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1341: {normal: sunshine}
+  1342: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1343: {normal: thunderstorms}
+  1345: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1346: {normal: thunder, common: wind, rare: thunderstorms}
+  1347: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1348: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1349: {normal: sunshine, common: wind, rare: thunderstorms}
+  1350: {normal: thunder, common: wind, rare: thunderstorms}
+  1351: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1352: {normal: sunshine, common: wind, rare: thunderstorms}
+  1353: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1355: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1357: {normal: thunderstorms}
+  1359: {normal: thunder, common: clouds, rare: thunderstorms}
+  1360: {normal: sunshine, common: wind, rare: thunderstorms}
+  1361: {normal: wind, common: sunshine, rare: thunderstorms}
+  1362: {normal: thunderstorms}
+  1363: {normal: thunder, common: wind, rare: thunderstorms}
+  1364: {normal: thunder, common: clouds, rare: thunderstorms}
+  1365: {normal: wind, common: sunshine, rare: thunderstorms}
+  1366: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1368: {normal: thunder, common: wind, rare: thunderstorms}
+  1369: {normal: clouds, common: sunshine, rare: thunderstorms}
+  1370: {normal: thunderstorms}
+  1371: {normal: thunder, common: wind, rare: thunderstorms}
+  1372: {normal: wind, common: clouds}
+  1373: {normal: sunshine, common: wind, rare: thunderstorms}
+  1374: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1375: {normal: wind, common: sunshine, rare: thunderstorms}
+  1376: {normal: sunshine, common: wind, rare: thunderstorms}
+  1377: {normal: thunder, common: wind, rare: thunderstorms}
+  1378: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1379: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1380: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1382: {normal: wind, common: sunshine, rare: thunderstorms}
+  1383: {normal: sunshine, common: clouds}
+  1384: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1385: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1386: {normal: wind, common: clouds, rare: thunderstorms}
+  1387: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1388: {normal: sunshine}
+  1389: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1390: {normal: wind, common: sunshine}
+  1391: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1392: {normal: thunderstorms}
+  1393: {normal: sunshine, common: wind}
+  1394: {normal: wind, common: clouds, rare: thunderstorms}
+  1395: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1397: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1398: {normal: clouds, common: thunder, rare: thunderstorms}
+  1399: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1400: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1401: {normal: thunder, common: wind, rare: thunderstorms}
+  1402: {normal: thunder, common: clouds, rare: thunderstorms}
+  1403: {normal: sunshine, common: wind}
+  1404: {normal: wind, common: sunshine, rare: thunderstorms}
+  1405: {normal: sunshine, common: wind}
+  1406: {normal: wind, common: sunshine}
+  1407: {normal: wind, common: sunshine, rare: thunderstorms}
+  1408: {normal: sunshine, common: clouds}
+  1409: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1410: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1411: {normal: wind, common: sunshine, rare: thunderstorms}
+  1412: {normal: wind, common: clouds}
+  1413: {normal: sunshine, common: clouds}
+  1414: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1415: {normal: sunshine, common: wind, rare: thunderstorms}
+  1416: {normal: wind, common: clouds, rare: thunderstorms}
+  1417: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1420: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1421: {normal: thunder, common: clouds, rare: thunderstorms}
+  1422: {normal: wind, common: thunder, rare: thunderstorms}
+  1423: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1425: {normal: clouds, common: sunshine, rare: thunderstorms}
+  1426: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1427: {normal: sunshine, common: wind}
+  1428: {normal: clouds, common: thunder, rare: thunderstorms}
+  1429: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1430: {normal: clouds, common: thunder, rare: thunderstorms}
+  1431: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1432: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1433: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1434: {normal: thunder, common: wind, rare: thunderstorms}
+  1435: {normal: thunderstorms}
+  1436: {normal: sunshine, common: wind, rare: thunderstorms}
+  1437: {normal: clouds, common: sunshine}
+  1438: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1439: {normal: wind, common: sunshine, rare: thunderstorms}
+  1440: {normal: thunder, common: clouds, rare: thunderstorms}
+  1441: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1442: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1443: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1444: {normal: wind, common: sunshine, rare: thunderstorms}
+  1445: {normal: thunder, common: wind, rare: thunderstorms}
+  1446: {normal: sunshine, common: clouds}
+  1447: {normal: sunshine, common: wind}
+  1448: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1449: {normal: clouds, common: sunshine, rare: thunderstorms}
+  1450: {normal: thunderstorms}
+  1451: {normal: clouds, common: sunshine, rare: thunderstorms}
+  1452: {normal: wind, common: sunshine}
+  1453: {normal: wind, common: sunshine, rare: thunderstorms}
+  1454: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1455: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1456: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1457: {normal: clouds, common: sunshine}
+  1458: {normal: sunshine, common: wind, rare: thunderstorms}
+  1459: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1460: {normal: thunder, common: clouds, rare: thunderstorms}
+  1461: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1462: {normal: wind, common: clouds, rare: thunderstorms}
+  1463: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1465: {normal: wind, common: sunshine}
+  1466: {normal: wind, common: clouds, rare: thunderstorms}
+  1467: {normal: sunshine, common: wind, rare: thunderstorms}
+  1468: {normal: thunder, common: wind, rare: thunderstorms}
+  1469: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1470: {normal: thunder, common: wind, rare: thunderstorms}
+  1471: {normal: sunshine, common: wind, rare: thunderstorms}
+  1473: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1474: {normal: sunshine, common: wind, rare: thunderstorms}
+  1475: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1476: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1477: {normal: wind, common: thunder, rare: thunderstorms}
+  1478: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1479: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1480: {normal: sunshine, common: wind, rare: thunderstorms}
+  1481: {normal: wind, common: thunder, rare: thunderstorms}
+  1482: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1483: {normal: clouds, common: wind, rare: thunderstorms}
+  1484: {normal: sunshine, common: wind, rare: thunderstorms}
+  1485: {normal: wind, common: sunshine, rare: thunderstorms}
+  1486: {normal: sunshine, common: wind, rare: thunderstorms}
+  1487: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1488: {normal: thunder, common: wind, rare: thunderstorms}
+  1489: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1490: {normal: clouds, common: sunshine}
+  1491: {normal: thunder, common: wind, rare: thunderstorms}
+  1492: {normal: sunshine, common: wind, rare: thunderstorms}
+  1493: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1494: {normal: clouds, common: sunshine}
+  1495: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1496: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1498: {normal: wind, common: thunder, rare: thunderstorms}
+  1499: {normal: sunshine, common: wind, rare: thunderstorms}
+  1500: {normal: clouds, common: wind, rare: thunderstorms}
+  1501: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1502: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1503: {normal: clouds, common: sunshine, rare: thunderstorms}
+  1505: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1506: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1507: {normal: wind, common: sunshine, rare: thunderstorms}
+  1508: {normal: sunshine, common: wind, rare: thunderstorms}
+  1509: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1510: {normal: wind, common: sunshine}
+  1511: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1512: {normal: wind, common: clouds}
+  1513: {normal: thunder, common: wind, rare: thunderstorms}
+  1514: {normal: thunderstorms}
+  1515: {normal: clouds, common: wind}
+  1516: {normal: sunshine, common: wind}
+  1517: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1518: {normal: wind, common: sunshine, rare: thunderstorms}
+  1519: {normal: thunder, common: clouds, rare: thunderstorms}
+  1520: {normal: thunder, common: wind, rare: thunderstorms}
+  1521: {normal: sunshine, common: wind, rare: thunderstorms}
+  1522: {normal: thunder, common: clouds, rare: thunderstorms}
+  1523: {normal: clouds, common: sunshine, rare: thunderstorms}
+  1524: {normal: wind, common: sunshine, rare: thunderstorms}
+  1525: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1526: {normal: sunshine, common: wind, rare: thunderstorms}
+  1527: {normal: wind, common: thunder, rare: thunderstorms}
+  1528: {normal: sunshine, common: wind, rare: thunderstorms}
+  1531: {normal: wind, common: sunshine}
+  1532: {normal: wind, common: sunshine, rare: thunderstorms}
+  1533: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1534: {normal: wind, common: thunder, rare: thunderstorms}
+  1535: {normal: sunshine, common: wind, rare: thunderstorms}
+  1536: {normal: wind, common: clouds}
+  1537: {normal: sunshine, common: wind}
+  1538: {normal: thunder, common: wind, rare: thunderstorms}
+  1540: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1541: {normal: thunderstorms}
+  1542: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1543: {normal: sunshine, common: wind, rare: thunderstorms}
+  1544: {normal: wind, common: clouds, rare: thunderstorms}
+  1545: {normal: sunshine, common: wind, rare: thunderstorms}
+  1546: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1548: {normal: clouds, common: sunshine}
+  1549: {normal: clouds, common: thunder, rare: thunderstorms}
+  1550: {normal: sunshine}
+  1551: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1552: {normal: wind, common: sunshine, rare: thunderstorms}
+  1553: {normal: sunshine, common: wind, rare: thunderstorms}
+  1554: {normal: thunderstorms}
+  1555: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1556: {normal: thunderstorms}
+  1557: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1558: {normal: sunshine, common: wind, rare: thunderstorms}
+  1559: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1560: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1561: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1564: {normal: thunder, common: clouds, rare: thunderstorms}
+  1565: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1566: {normal: thunderstorms}
+  1567: {normal: thunder, common: wind, rare: thunderstorms}
+  1568: {normal: sunshine, common: wind, rare: thunderstorms}
+  1569: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1571: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1574: {normal: thunder, common: clouds, rare: thunderstorms}
+  1575: {normal: wind, common: clouds}
+  1576: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1577: {normal: wind, common: thunder, rare: thunderstorms}
+  1579: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1580: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1581: {normal: wind, common: clouds}
+  1582: {normal: sunshine, common: wind, rare: thunderstorms}
+  1583: {normal: wind, common: thunder, rare: thunderstorms}
+  1584: {normal: thunderstorms}
+  1585: {normal: thunder, common: clouds, rare: thunderstorms}
+  1586: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1587: {normal: sunshine, common: wind, rare: thunderstorms}
+  1588: {normal: sunshine, common: wind}
+  1589: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1591: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1592: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1593: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1594: {normal: thunder, common: clouds, rare: thunderstorms}
+  1595: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1596: {normal: thunder, common: wind, rare: thunderstorms}
+  1597: {normal: wind, common: thunder, rare: thunderstorms}
+  1598: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1599: {normal: thunderstorms}
+  1600: {normal: sunshine, common: wind, rare: thunderstorms}
+  1601: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1602: {normal: thunder, common: wind, rare: thunderstorms}
+  1603: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1604: {normal: sunshine, common: wind, rare: thunderstorms}
+  1605: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1606: {normal: thunder, common: wind, rare: thunderstorms}
+  1607: {normal: thunderstorms}
+  1608: {normal: thunder, common: wind, rare: thunderstorms}
+  1609: {normal: wind, common: thunder, rare: thunderstorms}
+  1610: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1611: {normal: thunderstorms}
+  1612: {normal: wind, common: thunder, rare: thunderstorms}
+  1613: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1614: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1615: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1616: {normal: thunder, common: clouds, rare: thunderstorms}
+  1617: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1618: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1620: {normal: sunshine}
+  1621: {normal: thunder, common: wind, rare: thunderstorms}
+  1622: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1624: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1626: {normal: thunderstorms}
+  1628: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1629: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1630: {normal: thunderstorms}
+  1631: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1633: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1634: {normal: thunder, common: wind, rare: thunderstorms}
+  1635: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1636: {normal: wind, common: thunder, rare: thunderstorms}
+  1637: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1640: {normal: thunder, common: wind, rare: thunderstorms}
+  1641: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1646: {normal: thunder, common: wind, rare: thunderstorms}
+  1647: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1650: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1651: {normal: sunshine, common: wind, rare: thunderstorms}
+  1652: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1656: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1657: {normal: sunshine, common: wind, rare: thunderstorms}
+  1658: {normal: thunder, common: wind, rare: thunderstorms}
+  1659: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1661: {normal: wind, common: sunshine, rare: thunderstorms}
+  1662: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1663: {normal: sunshine, common: wind}
+  1664: {normal: thunder, common: wind, rare: thunderstorms}
+  1665: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1666: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1667: {normal: thunderstorms}
+  1668: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1669: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1671: {normal: thunderstorms}
+  1672: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1673: {normal: thunderstorms}
+  1675: {normal: wind, common: clouds, rare: thunderstorms}
+  1676: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1677: {normal: thunder, common: wind, rare: thunderstorms}
+  1678: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1679: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1680: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1681: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1682: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1683: {normal: thunderstorms}
+  1684: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1685: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1688: {normal: clouds, common: sunshine, rare: thunderstorms}
+  1689: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1691: {normal: thunder, common: wind, rare: thunderstorms}
+  1692: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1694: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1697: {normal: thunder, common: wind, rare: thunderstorms}
+  1698: {normal: wind, common: sunshine}
+  1699: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1700: {normal: sunshine, common: wind, rare: thunderstorms}
+  1701: {normal: clouds, common: thunder, rare: thunderstorms}
+  1702: {normal: thunder, common: wind, rare: thunderstorms}
+  1703: {normal: wind, common: sunshine, rare: thunderstorms}
+  1704: {normal: thunder, common: clouds, rare: thunderstorms}
+  1705: {normal: sunshine, common: wind, rare: thunderstorms}
+  1706: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1707: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1708: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1710: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1711: {normal: sunshine, common: wind, rare: thunderstorms}
+  1712: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1713: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1715: {normal: wind, common: sunshine, rare: thunderstorms}
+  1716: {normal: thunder, common: wind, rare: thunderstorms}
+  1717: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1718: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1719: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1720: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1722: {normal: wind, common: sunshine, rare: thunderstorms}
+  1723: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1725: {normal: sunshine, common: wind, rare: thunderstorms}
+  1726: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1727: {normal: wind, common: thunder, rare: thunderstorms}
+  1728: {normal: thunder, common: clouds, rare: thunderstorms}
+  1729: {normal: thunder, common: wind, rare: thunderstorms}
+  1730: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1731: {normal: clouds, common: sunshine, rare: thunderstorms}
+  1733: {normal: thunder, common: wind, rare: thunderstorms}
+  1734: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1735: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1736: {normal: thunder, common: wind, rare: thunderstorms}
+  1737: {normal: sunshine, common: clouds}
+  1738: {normal: thunder, common: wind, rare: thunderstorms}
+  1739: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1740: {normal: thunderstorms}
+  1741: {normal: clouds, common: thunder, rare: thunderstorms}
+  1742: {normal: sunshine, common: wind, rare: thunderstorms}
+  1743: {normal: wind, common: sunshine}
+  1744: {normal: clouds, common: wind, rare: thunderstorms}
+  1745: {normal: thunder, common: clouds, rare: thunderstorms}
+  1746: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1747: {normal: thunder, common: wind, rare: thunderstorms}
+  1748: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1750: {normal: wind, common: clouds}
+  1751: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1752: {normal: sunshine, common: clouds}
+  1753: {normal: wind, common: sunshine, rare: thunderstorms}
+  1754: {normal: sunshine, common: wind, rare: thunderstorms}
+  1755: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1756: {normal: sunshine, common: clouds}
+  1757: {normal: wind, common: sunshine, rare: thunderstorms}
+  1758: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1759: {normal: sunshine, common: wind, rare: thunderstorms}
+  1760: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1761: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1762: {normal: clouds, common: sunshine, rare: thunderstorms}
+  1763: {normal: sunshine, common: wind}
+  1764: {normal: wind, common: sunshine}
+  1765: {normal: clouds, common: sunshine}
+  1766: {normal: sunshine, common: wind, rare: thunderstorms}
+  1767: {normal: sunshine, common: clouds}
+  1768: {normal: clouds, common: sunshine, rare: thunderstorms}
+  1769: {normal: sunshine, common: wind}
+  1770: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1772: {normal: thunder, common: clouds, rare: thunderstorms}
+  1773: {normal: clouds, common: thunder, rare: thunderstorms}
+  1774: {normal: wind, common: clouds, rare: thunderstorms}
+  1775: {normal: thunderstorms}
+  1776: {normal: sunshine, common: wind, rare: thunderstorms}
+  1777: {normal: wind, common: sunshine, rare: thunderstorms}
+  1778: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1779: {normal: thunder, common: clouds, rare: thunderstorms}
+  1780: {normal: sunshine, common: wind, rare: thunderstorms}
+  1781: {normal: wind, common: clouds}
+  1782: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1783: {normal: wind, common: sunshine}
+  1784: {normal: clouds, common: wind, rare: thunderstorms}
+  1785: {normal: sunshine}
+  1786: {normal: wind, common: thunder, rare: thunderstorms}
+  1787: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1788: {normal: sunshine, common: wind, rare: thunderstorms}
+  1789: {normal: thunderstorms}
+  1790: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1791: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1792: {normal: thunder, common: wind, rare: thunderstorms}
+  1793: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1794: {normal: sunshine, common: wind, rare: thunderstorms}
+  1795: {normal: thunderstorms}
+  1796: {normal: wind, common: thunder, rare: thunderstorms}
+  1797: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1798: {normal: wind, common: thunder, rare: thunderstorms}
+  1799: {normal: wind, common: sunshine, rare: thunderstorms}
+  1800: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1801: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1802: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1803: {normal: thunderstorms}
+  1804: {normal: clouds, common: thunder, rare: thunderstorms}
+  1805: {normal: thunder, common: wind, rare: thunderstorms}
+  1806: {normal: wind, common: clouds}
+  1807: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1808: {normal: thunder, common: wind, rare: thunderstorms}
+  1809: {normal: sunshine, common: wind, rare: thunderstorms}
+  1810: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1811: {normal: sunshine, common: wind, rare: thunderstorms}
+  1812: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1813: {normal: wind, common: sunshine, rare: thunderstorms}
+  1814: {normal: wind, common: sunshine}
+  1815: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1816: {normal: wind, common: thunder, rare: thunderstorms}
+  1817: {normal: thunder, common: clouds, rare: thunderstorms}
+  1818: {normal: wind, common: thunder, rare: thunderstorms}
+  1819: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1820: {normal: thunder, common: wind, rare: thunderstorms}
+  1821: {normal: clouds, common: sunshine}
+  1822: {normal: clouds, common: sunshine, rare: thunderstorms}
+  1823: {normal: sunshine, common: wind}
+  1824: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1826: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1827: {normal: wind, common: thunder, rare: thunderstorms}
+  1828: {normal: sunshine, common: wind}
+  1831: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1832: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1833: {normal: sunshine, common: wind, rare: thunderstorms}
+  1834: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1835: {normal: clouds, common: sunshine}
+  1836: {normal: thunder, common: clouds, rare: thunderstorms}
+  1837: {normal: sunshine, common: wind, rare: thunderstorms}
+  1838: {normal: clouds, common: sunshine}
+  1839: {normal: wind, common: clouds, rare: thunderstorms}
+  1840: {normal: thunderstorms}
+  1841: {normal: sunshine, common: clouds}
+  1842: {normal: wind, common: thunder, rare: thunderstorms}
+  1843: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1844: {normal: clouds, common: sunshine, rare: thunderstorms}
+  1845: {normal: thunderstorms}
+  1847: {normal: clouds, common: wind, rare: thunderstorms}
+  1848: {normal: sunshine, common: wind, rare: thunderstorms}
+  1849: {normal: wind, common: thunder, rare: thunderstorms}
+  1850: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1851: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1852: {normal: sunshine, common: clouds}
+  1853: {normal: clouds, common: thunder, rare: thunderstorms}
+  1855: {normal: wind, common: clouds, rare: thunderstorms}
+  1856: {normal: wind, common: sunshine}
+  1857: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1858: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1859: {normal: wind, common: sunshine, rare: thunderstorms}
+  1860: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1861: {normal: sunshine, common: wind}
+  1862: {normal: thunder, common: clouds, rare: thunderstorms}
+  1863: {normal: thunderstorms}
+  1864: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1865: {normal: sunshine, common: wind, rare: thunderstorms}
+  1866: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1867: {normal: clouds, common: sunshine, rare: thunderstorms}
+  1869: {normal: sunshine, common: wind, rare: thunderstorms}
+  1870: {normal: wind}
+  1871: {normal: wind, common: thunder, rare: thunderstorms}
+  1872: {normal: thunderstorms}
+  1873: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1874: {normal: sunshine, common: wind, rare: thunderstorms}
+  1875: {normal: wind, common: sunshine, rare: thunderstorms}
+  1876: {normal: clouds, common: wind, rare: thunderstorms}
+  1877: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1878: {normal: wind, common: thunder, rare: thunderstorms}
+  1881: {normal: thunder, common: clouds, rare: thunderstorms}
+  1882: {normal: clouds, common: wind, rare: thunderstorms}
+  1883: {normal: wind, common: thunder, rare: thunderstorms}
+  1885: {normal: thunderstorms}
+  1886: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1887: {normal: thunder, common: wind, rare: thunderstorms}
+  1888: {normal: thunder, common: clouds, rare: thunderstorms}
+  1889: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1890: {normal: thunderstorms}
+  1891: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1892: {normal: sunshine, common: wind, rare: thunderstorms}
+  1893: {normal: clouds, common: sunshine, rare: thunderstorms}
+  1894: {normal: thunder, common: clouds, rare: thunderstorms}
+  1895: {normal: thunder, common: wind, rare: thunderstorms}
+  1896: {normal: thunder, common: clouds, rare: thunderstorms}
+  1897: {normal: wind, common: thunder, rare: thunderstorms}
+  1898: {normal: sunshine, common: wind, rare: thunderstorms}
+  1900: {normal: sunshine, common: wind}
+  1901: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1902: {normal: wind, common: thunder, rare: thunderstorms}
+  1903: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1904: {normal: thunderstorms}
+  1905: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1906: {normal: wind, common: sunshine, rare: thunderstorms}
+  1907: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1909: {normal: thunderstorms}
+  1910: {normal: thunder, common: clouds, rare: thunderstorms}
+  1911: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1912: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1913: {normal: sunshine}
+  1914: {normal: sunshine, common: wind, rare: thunderstorms}
+  1915: {normal: thunderstorms}
+  1916: {normal: clouds, common: sunshine, rare: thunderstorms}
+  1917: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1918: {normal: wind, common: sunshine, rare: thunderstorms}
+  1919: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1920: {normal: thunderstorms}
+  1921: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1922: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1923: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1924: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1925: {normal: thunderstorms}
+  1927: {normal: sunshine, common: wind, rare: thunderstorms}
+  1928: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1929: {normal: thunder, common: wind, rare: thunderstorms}
+  1931: {normal: sunshine, common: wind, rare: thunderstorms}
+  1932: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1933: {normal: sunshine, common: wind}
+  1934: {normal: clouds, common: sunshine, rare: thunderstorms}
+  1935: {normal: sunshine, common: wind, rare: thunderstorms}
+  1936: {normal: wind, common: thunder, rare: thunderstorms}
+  1937: {normal: clouds, common: sunshine, rare: thunderstorms}
+  1938: {normal: thunder, common: wind, rare: thunderstorms}
+  1939: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1940: {normal: wind, common: sunshine}
+  1941: {normal: sunshine, common: wind, rare: thunderstorms}
+  1942: {normal: sunshine, common: clouds, rare: thunderstorms}
+  1943: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1944: {normal: wind, common: clouds, rare: thunderstorms}
+  1945: {normal: thunderstorms}
+  1946: {normal: wind, common: clouds, rare: thunderstorms}
+  1947: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1948: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1949: {normal: wind, common: sunshine, rare: thunderstorms}
+  1950: {normal: thunder, common: clouds, rare: thunderstorms}
+  1951: {normal: wind, common: thunder, rare: thunderstorms}
+  1952: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1954: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1955: {normal: sunshine, common: wind, rare: thunderstorms}
+  1957: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1959: {normal: thunder, common: clouds, rare: thunderstorms}
+  1960: {normal: thunderstorms}
+  1961: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1962: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1963: {normal: thunder, common: clouds, rare: thunderstorms}
+  1964: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1966: {normal: sunshine, common: thunder, rare: thunderstorms}
+  1967: {normal: thunder, common: clouds, rare: thunderstorms}
+  1968: {normal: clouds, common: wind, rare: thunderstorms}
+  1969: {normal: thunderstorms}
+  1970: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1971: {normal: thunder, common: wind, rare: thunderstorms}
+  1972: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1973: {normal: thunder, common: wind, rare: thunderstorms}
+  1975: {normal: wind, common: sunshine, rare: thunderstorms}
+  1976: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1978: {normal: thunderstorms}
+  1979: {normal: thunder, common: wind, rare: thunderstorms}
+  1982: {normal: thunderstorms}
+  1983: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1984: {normal: thunderstorms}
+  1985: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1986: {normal: thunder, common: wind, rare: thunderstorms}
+  1987: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1989: {normal: thunderstorms}
+  1990: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1993: {normal: thunderstorms}
+  1995: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1997: {normal: thunder, common: wind, rare: thunderstorms}
+  1998: {normal: thunder, common: sunshine, rare: thunderstorms}
+  1999: {normal: thunderstorms}
+  2002: {normal: thunder, common: sunshine, rare: thunderstorms}
+  2004: {normal: thunderstorms}
+  2005: {normal: thunder, common: sunshine, rare: thunderstorms}
+  2006: {normal: sunshine, common: thunder, rare: thunderstorms}
+  2007: {normal: thunder, common: sunshine, rare: thunderstorms}
+  2008: {normal: sunshine, common: thunder, rare: thunderstorms}
+  2009: {normal: thunder, common: sunshine, rare: thunderstorms}
+  2011: {normal: thunderstorms}
+  2013: {normal: thunder, common: wind, rare: thunderstorms}
+  2014: {normal: sunshine, common: thunder, rare: thunderstorms}
+  2015: {normal: thunderstorms}
+  2016: {normal: thunder, common: sunshine, rare: thunderstorms}
+  2017: {normal: thunder, common: wind, rare: thunderstorms}
+  2018: {normal: sunshine, common: thunder, rare: thunderstorms}
+  2019: {normal: thunder, common: sunshine, rare: thunderstorms}
+  2020: {normal: thunderstorms}
+  2021: {normal: thunder, common: sunshine, rare: thunderstorms}
+  2023: {normal: sunshine, common: thunder, rare: thunderstorms}
+  2024: {normal: thunder, common: sunshine, rare: thunderstorms}
+  2025: {normal: sunshine, common: thunder, rare: thunderstorms}
+  2026: {normal: thunder, common: sunshine, rare: thunderstorms}
+  2027: {normal: sunshine, common: thunder, rare: thunderstorms}
+  2028: {normal: sunshine, common: clouds, rare: thunderstorms}
+  2029: {normal: thunder, common: sunshine, rare: thunderstorms}
+  2030: {normal: thunder, common: wind, rare: thunderstorms}
+  2031: {normal: sunshine, common: thunder, rare: thunderstorms}
+  2032: {normal: sunshine, common: wind, rare: thunderstorms}
+  2033: {normal: sunshine, common: thunder, rare: thunderstorms}
+  2034: {normal: thunderstorms}
+  2035: {normal: wind, common: clouds, rare: thunderstorms}
+  2036: {normal: thunder, common: sunshine, rare: thunderstorms}
+  2037: {normal: sunshine, common: thunder, rare: thunderstorms}
+  2039: {normal: sunshine, common: wind}
+  2040: {normal: sunshine, common: wind, rare: thunderstorms}
+  2041: {normal: thunder, common: wind, rare: thunderstorms}
+  2043: {normal: clouds, common: thunder, rare: thunderstorms}
+  2044: {normal: sunshine, common: thunder, rare: thunderstorms}
+  2045: {normal: thunderstorms}
+  2046: {normal: sunshine, common: wind}
+  2047: {normal: sunshine, common: thunder, rare: thunderstorms}
+  2048: {normal: sunshine, common: wind}
+  2049: {normal: sunshine}
+  2050: {normal: thunder, common: sunshine, rare: thunderstorms}
+  2051: {normal: thunder, common: clouds, rare: thunderstorms}
+  2052: {normal: sunshine, common: wind}
+  2053: {normal: sunshine, common: thunder, rare: thunderstorms}
+  2056: {normal: thunder, common: clouds, rare: thunderstorms}
+  2057: {normal: thunder, common: sunshine, rare: thunderstorms}
+  2059: {normal: thunderstorms}
+  2060: {normal: thunder, common: sunshine, rare: thunderstorms}
+  2062: {normal: sunshine, common: thunder, rare: thunderstorms}
+  2064: {normal: sunshine, common: wind, rare: thunderstorms}
+  2065: {normal: thunder, common: sunshine, rare: thunderstorms}
+  2066: {normal: sunshine, common: clouds, rare: thunderstorms}
+  2067: {normal: thunder, common: clouds, rare: thunderstorms}
+  2068: {normal: sunshine, common: thunder, rare: thunderstorms}
+  2069: {normal: sunshine, common: clouds, rare: thunderstorms}
+  2070: {normal: sunshine, common: thunder, rare: thunderstorms}
+  2072: {normal: thunderstorms}
+  2073: {normal: sunshine, common: thunder, rare: thunderstorms}
+  2075: {normal: sunshine, common: clouds, rare: thunderstorms}
+  2076: {normal: thunder, common: sunshine, rare: thunderstorms}
+  2078: {normal: sunshine, common: thunder, rare: thunderstorms}
+  2079: {normal: thunder, common: sunshine, rare: thunderstorms}
+  2080: {normal: thunder, common: clouds, rare: thunderstorms}
+  2081: {normal: sunshine, common: thunder, rare: thunderstorms}
+  2082: {normal: thunder, common: sunshine, rare: thunderstorms}
+  2084: {normal: wind, common: sunshine, rare: thunderstorms}
+  2085: {normal: clouds, common: sunshine, rare: thunderstorms}
+  2086: {normal: sunshine, common: thunder, rare: thunderstorms}
+  2087: {normal: thunder, common: wind, rare: thunderstorms}
+  2088: {normal: thunder, common: clouds, rare: thunderstorms}
+  2089: {normal: clouds, common: sunshine, rare: thunderstorms}
+  2090: {normal: wind, common: thunder, rare: thunderstorms}
+  2091: {normal: wind, common: sunshine, rare: thunderstorms}
+  2092: {normal: sunshine, common: thunder, rare: thunderstorms}
+  2093: {normal: thunder, common: clouds, rare: thunderstorms}
+  2094: {normal: clouds, common: wind, rare: thunderstorms}
+  2095: {normal: sunshine, common: clouds, rare: thunderstorms}
+  2096: {normal: sunshine, common: wind}
+  2097: {normal: sunshine, common: thunder, rare: thunderstorms}
+  2098: {normal: thunder, common: sunshine, rare: thunderstorms}
+  2099: {normal: clouds, common: sunshine}
+  2100: {normal: sunshine, common: clouds}
+  2101: {normal: thunder, common: sunshine, rare: thunderstorms}
+  2103: {normal: wind, common: sunshine}
+  2104: {normal: sunshine, common: wind, rare: thunderstorms}
+  2105: {normal: thunder, common: sunshine, rare: thunderstorms}
+  2106: {normal: clouds, common: sunshine, rare: thunderstorms}
+  2107: {normal: sunshine, common: thunder, rare: thunderstorms}
+  2110: {normal: thunder, common: wind, rare: thunderstorms}
+  2111: {normal: thunder, common: clouds, rare: thunderstorms}
+  2113: {normal: sunshine, common: wind, rare: thunderstorms}
+  2115: {normal: sunshine, common: thunder, rare: thunderstorms}
+  2116: {normal: clouds, common: wind}
+  2117: {normal: thunder, common: sunshine, rare: thunderstorms}
+  2118: {normal: sunshine, common: clouds, rare: thunderstorms}
+  2119: {normal: wind, common: sunshine, rare: thunderstorms}
+  2120: {normal: wind, common: thunder, rare: thunderstorms}
+  2121: {normal: sunshine, common: thunder, rare: thunderstorms}
+  2122: {normal: sunshine, common: clouds}
+  2123: {normal: thunderstorms}
+  2124: {normal: sunshine, common: clouds}
+  2125: {normal: sunshine, common: wind, rare: thunderstorms}
+  2126: {normal: sunshine, common: wind}
+  2127: {normal: thunder, common: sunshine, rare: thunderstorms}
+  2128: {normal: sunshine, common: thunder, rare: thunderstorms}
+  2129: {normal: wind, common: sunshine, rare: thunderstorms}
+  2130: {normal: thunder, common: sunshine, rare: thunderstorms}
+  2131: {normal: sunshine, common: wind, rare: thunderstorms}
+  2133: {normal: sunshine, common: clouds, rare: thunderstorms}
+  2134: {normal: wind, common: clouds}
+  2135: {normal: thunder, common: sunshine, rare: thunderstorms}
+  2136: {normal: clouds, common: sunshine, rare: thunderstorms}
+  2137: {normal: thunder, common: sunshine, rare: thunderstorms}
+  2138: {normal: wind, common: clouds}
+  2139: {normal: sunshine, common: thunder, rare: thunderstorms}
+  2140: {normal: sunshine, common: clouds, rare: thunderstorms}
+  2141: {normal: thunder, common: wind, rare: thunderstorms}
+  2142: {normal: sunshine, common: wind, rare: thunderstorms}
+  2143: {normal: thunder, common: sunshine, rare: thunderstorms}
+  2144: {normal: wind, common: sunshine, rare: thunderstorms}
+  2145: {normal: sunshine, common: wind, rare: thunderstorms}
+  2146: {normal: thunder, common: sunshine, rare: thunderstorms}
+  2147: {normal: thunder, common: clouds, rare: thunderstorms}
+  2149: {normal: sunshine, common: clouds}
+  2150: {normal: sunshine, common: thunder, rare: thunderstorms}
+  2151: {normal: sunshine, common: wind, rare: thunderstorms}
+  2153: {normal: thunder, common: wind, rare: thunderstorms}
+  2154: {normal: sunshine, common: thunder, rare: thunderstorms}
+  2155: {normal: sunshine, common: clouds, rare: thunderstorms}
+  2156: {normal: thunder, common: sunshine, rare: thunderstorms}
+  2158: {normal: sunshine, common: wind}
+  2159: {normal: thunder, common: sunshine, rare: thunderstorms}

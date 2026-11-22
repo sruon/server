@@ -1,0 +1,1406 @@
+# yaml-language-server: $schema=../../schemas/weather.schema.json
+
+weather:
+  0:    {normal: blizzards}
+  1:    {normal: snow, common: sunshine, rare: blizzards}
+  2:    {normal: blizzards}
+  3:    {normal: snow}
+  4:    {normal: snow, common: clouds, rare: blizzards}
+  6:    {normal: blizzards}
+  7:    {normal: snow, common: clouds, rare: blizzards}
+  8:    {normal: snow, common: sunshine, rare: blizzards}
+  10:   {normal: blizzards}
+  11:   {normal: snow, common: clouds, rare: blizzards}
+  12:   {normal: blizzards}
+  14:   {normal: snow, common: clouds, rare: blizzards}
+  17:   {normal: blizzards}
+  18:   {normal: snow, common: clouds}
+  19:   {normal: blizzards}
+  20:   {normal: snow, common: clouds, rare: blizzards}
+  21:   {normal: blizzards}
+  23:   {normal: snow, common: clouds}
+  24:   {normal: snow, common: clouds, rare: blizzards}
+  26:   {normal: snow, common: sunshine, rare: blizzards}
+  27:   {normal: blizzards}
+  33:   {normal: snow, common: clouds, rare: blizzards}
+  34:   {normal: blizzards}
+  38:   {normal: snow, common: clouds, rare: blizzards}
+  39:   {normal: clouds, common: snow, rare: blizzards}
+  40:   {normal: blizzards}
+  43:   {normal: snow, common: clouds, rare: blizzards}
+  44:   {normal: blizzards}
+  46:   {normal: snow, common: clouds, rare: blizzards}
+  47:   {normal: blizzards}
+  48:   {normal: snow, common: clouds}
+  49:   {normal: blizzards}
+  56:   {normal: snow}
+  57:   {normal: snow, common: clouds, rare: blizzards}
+  58:   {normal: snow, common: sunshine, rare: blizzards}
+  59:   {normal: blizzards}
+  62:   {normal: snow, common: clouds, rare: blizzards}
+  63:   {normal: snow, common: sunshine, rare: blizzards}
+  64:   {normal: clouds, common: snow, rare: blizzards}
+  65:   {normal: snow, common: clouds, rare: blizzards}
+  68:   {normal: snow}
+  69:   {normal: blizzards}
+  71:   {normal: snow, common: clouds}
+  72:   {normal: snow, common: clouds, rare: blizzards}
+  73:   {normal: snow}
+  74:   {normal: blizzards}
+  76:   {normal: snow, common: clouds, rare: blizzards}
+  77:   {normal: snow, common: clouds}
+  78:   {normal: blizzards}
+  79:   {normal: snow, common: clouds, rare: blizzards}
+  80:   {normal: blizzards}
+  81:   {normal: snow, common: clouds}
+  82:   {normal: blizzards}
+  83:   {normal: snow}
+  84:   {normal: snow, common: clouds, rare: blizzards}
+  86:   {normal: blizzards}
+  88:   {normal: snow, common: clouds, rare: blizzards}
+  89:   {normal: blizzards}
+  91:   {normal: snow, common: clouds, rare: blizzards}
+  92:   {normal: snow, common: sunshine, rare: blizzards}
+  93:   {normal: blizzards}
+  94:   {normal: snow, common: clouds, rare: blizzards}
+  97:   {normal: snow, common: clouds}
+  98:   {normal: snow, common: clouds, rare: blizzards}
+  101:  {normal: snow, common: clouds}
+  102:  {normal: blizzards}
+  103:  {normal: snow, common: clouds, rare: blizzards}
+  104:  {normal: blizzards}
+  110:  {normal: snow}
+  111:  {normal: snow, common: clouds, rare: blizzards}
+  112:  {normal: blizzards}
+  117:  {normal: snow, common: clouds, rare: blizzards}
+  118:  {normal: blizzards}
+  119:  {normal: snow, common: clouds, rare: blizzards}
+  121:  {normal: snow, common: sunshine, rare: blizzards}
+  122:  {normal: snow, common: clouds, rare: blizzards}
+  124:  {normal: blizzards}
+  126:  {normal: snow, common: clouds, rare: blizzards}
+  127:  {normal: blizzards}
+  128:  {normal: snow, common: sunshine, rare: blizzards}
+  130:  {normal: blizzards}
+  132:  {normal: snow, common: clouds, rare: blizzards}
+  135:  {normal: snow, common: sunshine, rare: blizzards}
+  136:  {normal: snow, common: clouds, rare: blizzards}
+  137:  {normal: snow, common: sunshine, rare: blizzards}
+  139:  {normal: blizzards}
+  140:  {normal: snow, common: clouds, rare: blizzards}
+  141:  {normal: snow, common: sunshine, rare: blizzards}
+  142:  {normal: blizzards}
+  143:  {normal: snow, common: sunshine, rare: blizzards}
+  144:  {normal: blizzards}
+  146:  {normal: snow, common: clouds, rare: blizzards}
+  147:  {normal: snow, common: clouds}
+  148:  {normal: snow, common: clouds, rare: blizzards}
+  149:  {normal: blizzards}
+  151:  {normal: snow, common: clouds, rare: blizzards}
+  152:  {normal: snow, common: sunshine, rare: blizzards}
+  154:  {normal: clouds, common: snow, rare: blizzards}
+  155:  {normal: blizzards}
+  156:  {normal: snow, common: clouds, rare: blizzards}
+  157:  {normal: snow, common: sunshine}
+  158:  {normal: blizzards}
+  160:  {normal: snow, common: sunshine, rare: blizzards}
+  161:  {normal: blizzards}
+  164:  {normal: snow, common: sunshine, rare: blizzards}
+  165:  {normal: blizzards}
+  166:  {normal: snow, common: sunshine, rare: blizzards}
+  167:  {normal: snow}
+  168:  {normal: snow, common: clouds, rare: blizzards}
+  170:  {normal: snow, common: sunshine, rare: blizzards}
+  171:  {normal: blizzards}
+  173:  {normal: snow, common: clouds, rare: blizzards}
+  174:  {normal: clouds, common: snow, rare: blizzards}
+  175:  {normal: snow, common: clouds, rare: blizzards}
+  176:  {normal: blizzards}
+  178:  {normal: snow, common: clouds, rare: blizzards}
+  181:  {normal: snow, common: clouds}
+  182:  {normal: snow, common: clouds, rare: blizzards}
+  183:  {normal: blizzards}
+  184:  {normal: snow, common: clouds, rare: blizzards}
+  186:  {normal: snow}
+  187:  {normal: snow, common: sunshine, rare: blizzards}
+  188:  {normal: snow}
+  189:  {normal: snow, common: clouds, rare: blizzards}
+  190:  {normal: blizzards}
+  191:  {normal: snow, common: clouds, rare: blizzards}
+  192:  {normal: blizzards}
+  193:  {normal: snow, common: clouds, rare: blizzards}
+  194:  {normal: blizzards}
+  196:  {normal: snow, common: sunshine, rare: blizzards}
+  198:  {normal: blizzards}
+  202:  {normal: snow, common: clouds, rare: blizzards}
+  203:  {normal: blizzards}
+  206:  {normal: snow, common: clouds, rare: blizzards}
+  207:  {normal: snow, common: sunshine, rare: blizzards}
+  209:  {normal: blizzards}
+  210:  {normal: snow}
+  211:  {normal: snow, common: clouds, rare: blizzards}
+  212:  {normal: blizzards}
+  215:  {normal: snow, common: clouds, rare: blizzards}
+  219:  {normal: blizzards}
+  222:  {normal: snow, common: sunshine, rare: blizzards}
+  223:  {normal: blizzards}
+  226:  {normal: snow, common: clouds}
+  227:  {normal: snow, common: clouds, rare: blizzards}
+  229:  {normal: snow, common: sunshine, rare: blizzards}
+  230:  {normal: blizzards}
+  231:  {normal: snow, common: clouds, rare: blizzards}
+  232:  {normal: blizzards}
+  234:  {normal: snow, common: clouds, rare: blizzards}
+  235:  {normal: snow, common: sunshine, rare: blizzards}
+  236:  {normal: snow, common: clouds, rare: blizzards}
+  238:  {normal: snow, common: sunshine, rare: blizzards}
+  239:  {normal: blizzards}
+  240:  {normal: sunshine, common: snow, rare: blizzards}
+  241:  {normal: snow, common: clouds, rare: blizzards}
+  242:  {normal: blizzards}
+  246:  {normal: snow, common: clouds, rare: blizzards}
+  247:  {normal: snow, common: sunshine, rare: blizzards}
+  248:  {normal: blizzards}
+  249:  {normal: snow, common: clouds, rare: blizzards}
+  251:  {normal: blizzards}
+  252:  {normal: snow, common: clouds, rare: blizzards}
+  255:  {normal: blizzards}
+  257:  {normal: snow, common: clouds, rare: blizzards}
+  258:  {normal: blizzards}
+  259:  {normal: snow, common: clouds, rare: blizzards}
+  260:  {normal: blizzards}
+  261:  {normal: snow, common: clouds, rare: blizzards}
+  262:  {normal: snow, common: sunshine, rare: blizzards}
+  263:  {normal: snow, common: clouds, rare: blizzards}
+  264:  {normal: blizzards}
+  265:  {normal: snow, common: clouds}
+  266:  {normal: blizzards}
+  269:  {normal: snow, common: clouds, rare: blizzards}
+  270:  {normal: blizzards}
+  272:  {normal: snow, common: clouds}
+  273:  {normal: snow, common: sunshine, rare: blizzards}
+  274:  {normal: snow, common: clouds, rare: blizzards}
+  275:  {normal: blizzards}
+  276:  {normal: clouds, common: snow, rare: blizzards}
+  277:  {normal: blizzards}
+  278:  {normal: snow, common: clouds, rare: blizzards}
+  280:  {normal: snow}
+  281:  {normal: blizzards}
+  282:  {normal: snow, common: clouds, rare: blizzards}
+  283:  {normal: blizzards}
+  285:  {normal: snow, common: sunshine, rare: blizzards}
+  286:  {normal: snow, common: clouds, rare: blizzards}
+  288:  {normal: blizzards}
+  289:  {normal: snow, common: sunshine, rare: blizzards}
+  290:  {normal: snow}
+  291:  {normal: snow, common: clouds, rare: blizzards}
+  292:  {normal: snow, common: sunshine, rare: blizzards}
+  293:  {normal: blizzards}
+  295:  {normal: snow, common: clouds, rare: blizzards}
+  296:  {normal: snow}
+  297:  {normal: snow, common: clouds, rare: blizzards}
+  299:  {normal: snow, common: clouds}
+  300:  {normal: snow, common: clouds, rare: blizzards}
+  301:  {normal: snow}
+  302:  {normal: blizzards}
+  304:  {normal: snow, common: sunshine, rare: blizzards}
+  305:  {normal: blizzards}
+  308:  {normal: snow, common: clouds, rare: blizzards}
+  309:  {normal: blizzards}
+  311:  {normal: snow, common: sunshine, rare: blizzards}
+  312:  {normal: snow, common: clouds, rare: blizzards}
+  313:  {normal: blizzards}
+  316:  {normal: snow, common: clouds, rare: blizzards}
+  317:  {normal: blizzards}
+  323:  {normal: snow, common: sunshine, rare: blizzards}
+  324:  {normal: snow, common: clouds, rare: blizzards}
+  326:  {normal: blizzards}
+  327:  {normal: snow}
+  328:  {normal: blizzards}
+  330:  {normal: snow, common: clouds, rare: blizzards}
+  331:  {normal: blizzards}
+  333:  {normal: snow}
+  334:  {normal: blizzards}
+  336:  {normal: snow, common: sunshine, rare: blizzards}
+  337:  {normal: blizzards}
+  338:  {normal: sunshine, common: snow, rare: blizzards}
+  339:  {normal: snow, common: clouds, rare: blizzards}
+  340:  {normal: sunshine, common: clouds, rare: blizzards}
+  341:  {normal: blizzards}
+  342:  {normal: snow, common: clouds, rare: blizzards}
+  343:  {normal: blizzards}
+  346:  {normal: snow, common: clouds, rare: blizzards}
+  347:  {normal: blizzards}
+  351:  {normal: snow, common: clouds}
+  352:  {normal: blizzards}
+  353:  {normal: snow, common: clouds, rare: blizzards}
+  354:  {normal: blizzards}
+  355:  {normal: snow, common: clouds, rare: blizzards}
+  356:  {normal: blizzards}
+  357:  {normal: snow, common: sunshine, rare: blizzards}
+  358:  {normal: snow, common: clouds, rare: blizzards}
+  359:  {normal: blizzards}
+  365:  {normal: snow, common: clouds, rare: blizzards}
+  367:  {normal: blizzards}
+  368:  {normal: snow, common: clouds, rare: blizzards}
+  369:  {normal: snow, common: sunshine, rare: blizzards}
+  370:  {normal: blizzards}
+  371:  {normal: snow, common: sunshine, rare: blizzards}
+  373:  {normal: snow, common: clouds, rare: blizzards}
+  374:  {normal: snow, common: sunshine, rare: blizzards}
+  375:  {normal: blizzards}
+  376:  {normal: snow, common: clouds, rare: blizzards}
+  377:  {normal: blizzards}
+  379:  {normal: clouds, common: snow, rare: blizzards}
+  380:  {normal: blizzards}
+  381:  {normal: snow, common: sunshine, rare: blizzards}
+  382:  {normal: blizzards}
+  384:  {normal: snow, common: sunshine, rare: blizzards}
+  385:  {normal: snow, common: clouds, rare: blizzards}
+  386:  {normal: blizzards}
+  387:  {normal: snow, common: clouds}
+  388:  {normal: blizzards}
+  390:  {normal: snow, common: clouds, rare: blizzards}
+  392:  {normal: blizzards}
+  393:  {normal: snow, common: clouds, rare: blizzards}
+  394:  {normal: blizzards}
+  397:  {normal: snow, common: clouds, rare: blizzards}
+  398:  {normal: blizzards}
+  404:  {normal: snow, common: clouds, rare: blizzards}
+  405:  {normal: snow, common: sunshine, rare: blizzards}
+  406:  {normal: blizzards}
+  408:  {normal: snow, common: clouds, rare: blizzards}
+  409:  {normal: blizzards}
+  412:  {normal: snow}
+  413:  {normal: blizzards}
+  414:  {normal: snow, common: sunshine, rare: blizzards}
+  415:  {normal: snow, common: clouds, rare: blizzards}
+  416:  {normal: snow}
+  417:  {normal: blizzards}
+  419:  {normal: snow, common: sunshine, rare: blizzards}
+  420:  {normal: blizzards}
+  423:  {normal: snow, common: clouds, rare: blizzards}
+  424:  {normal: blizzards}
+  426:  {normal: snow, common: sunshine, rare: blizzards}
+  428:  {normal: blizzards}
+  431:  {normal: snow, common: clouds, rare: blizzards}
+  432:  {normal: blizzards}
+  436:  {normal: snow}
+  437:  {normal: snow, common: clouds, rare: blizzards}
+  438:  {normal: blizzards}
+  441:  {normal: snow, common: clouds, rare: blizzards}
+  442:  {normal: blizzards}
+  444:  {normal: snow, common: clouds, rare: blizzards}
+  446:  {normal: blizzards}
+  450:  {normal: snow, common: clouds, rare: blizzards}
+  451:  {normal: blizzards}
+  452:  {normal: snow, common: clouds, rare: blizzards}
+  453:  {normal: blizzards}
+  458:  {normal: snow, common: sunshine}
+  459:  {normal: snow, common: clouds, rare: blizzards}
+  460:  {normal: blizzards}
+  462:  {normal: snow, common: clouds, rare: blizzards}
+  464:  {normal: blizzards}
+  466:  {normal: snow, common: sunshine, rare: blizzards}
+  467:  {normal: blizzards}
+  471:  {normal: snow, common: clouds, rare: blizzards}
+  472:  {normal: snow, common: sunshine}
+  473:  {normal: blizzards}
+  474:  {normal: snow, common: sunshine, rare: blizzards}
+  475:  {normal: blizzards}
+  478:  {normal: snow, common: clouds, rare: blizzards}
+  480:  {normal: snow, common: clouds}
+  481:  {normal: snow, common: clouds, rare: blizzards}
+  483:  {normal: blizzards}
+  484:  {normal: snow, common: sunshine, rare: blizzards}
+  485:  {normal: blizzards}
+  486:  {normal: snow, common: clouds, rare: blizzards}
+  487:  {normal: blizzards}
+  488:  {normal: snow, common: clouds}
+  489:  {normal: snow, common: clouds, rare: blizzards}
+  490:  {normal: snow, common: sunshine, rare: blizzards}
+  491:  {normal: blizzards}
+  493:  {normal: snow, common: sunshine, rare: blizzards}
+  494:  {normal: blizzards}
+  495:  {normal: snow, common: clouds, rare: blizzards}
+  496:  {normal: blizzards}
+  497:  {normal: snow, common: clouds, rare: blizzards}
+  498:  {normal: blizzards}
+  500:  {normal: snow, common: sunshine, rare: blizzards}
+  501:  {normal: snow}
+  502:  {normal: blizzards}
+  503:  {normal: clouds, common: snow, rare: blizzards}
+  504:  {normal: snow, common: clouds, rare: blizzards}
+  508:  {normal: blizzards}
+  511:  {normal: snow, common: clouds, rare: blizzards}
+  512:  {normal: snow}
+  513:  {normal: snow, common: sunshine, rare: blizzards}
+  514:  {normal: snow, common: clouds, rare: blizzards}
+  515:  {normal: snow, common: sunshine, rare: blizzards}
+  516:  {normal: blizzards}
+  517:  {normal: snow}
+  518:  {normal: snow, common: clouds, rare: blizzards}
+  519:  {normal: blizzards}
+  522:  {normal: snow, common: clouds, rare: blizzards}
+  524:  {normal: blizzards}
+  525:  {normal: snow, common: sunshine, rare: blizzards}
+  526:  {normal: blizzards}
+  527:  {normal: snow, common: clouds, rare: blizzards}
+  531:  {normal: blizzards}
+  533:  {normal: snow, common: clouds, rare: blizzards}
+  534:  {normal: blizzards}
+  536:  {normal: snow, common: clouds, rare: blizzards}
+  537:  {normal: blizzards}
+  540:  {normal: snow, common: clouds, rare: blizzards}
+  542:  {normal: blizzards}
+  546:  {normal: snow, common: sunshine}
+  547:  {normal: snow, common: clouds, rare: blizzards}
+  548:  {normal: blizzards}
+  549:  {normal: snow, common: sunshine, rare: blizzards}
+  550:  {normal: snow, common: clouds, rare: blizzards}
+  551:  {normal: blizzards}
+  553:  {normal: snow}
+  554:  {normal: snow, common: clouds, rare: blizzards}
+  555:  {normal: blizzards}
+  556:  {normal: snow, common: clouds, rare: blizzards}
+  558:  {normal: blizzards}
+  562:  {normal: snow, common: clouds}
+  563:  {normal: blizzards}
+  564:  {normal: snow, common: clouds, rare: blizzards}
+  565:  {normal: blizzards}
+  568:  {normal: snow, common: clouds, rare: blizzards}
+  569:  {normal: blizzards}
+  570:  {normal: snow, common: sunshine, rare: blizzards}
+  571:  {normal: blizzards}
+  572:  {normal: snow, common: sunshine, rare: blizzards}
+  573:  {normal: snow, common: clouds, rare: blizzards}
+  575:  {normal: snow, common: clouds}
+  576:  {normal: blizzards}
+  578:  {normal: snow, common: clouds, rare: blizzards}
+  579:  {normal: blizzards}
+  581:  {normal: snow, common: clouds, rare: blizzards}
+  582:  {normal: blizzards}
+  584:  {normal: snow, common: clouds, rare: blizzards}
+  585:  {normal: snow, common: sunshine, rare: blizzards}
+  586:  {normal: blizzards}
+  587:  {normal: snow, common: clouds, rare: blizzards}
+  590:  {normal: blizzards}
+  593:  {normal: snow, common: sunshine, rare: blizzards}
+  594:  {normal: snow, common: clouds, rare: blizzards}
+  596:  {normal: snow, common: sunshine, rare: blizzards}
+  597:  {normal: snow, common: clouds, rare: blizzards}
+  602:  {normal: snow, common: sunshine, rare: blizzards}
+  603:  {normal: snow, common: clouds, rare: blizzards}
+  604:  {normal: blizzards}
+  605:  {normal: snow, common: clouds, rare: blizzards}
+  606:  {normal: blizzards}
+  608:  {normal: snow, common: clouds}
+  609:  {normal: snow}
+  610:  {normal: snow, common: clouds, rare: blizzards}
+  612:  {normal: snow}
+  613:  {normal: blizzards}
+  614:  {normal: snow, common: clouds, rare: blizzards}
+  615:  {normal: snow, common: sunshine, rare: blizzards}
+  616:  {normal: blizzards}
+  617:  {normal: sunshine, common: snow, rare: blizzards}
+  618:  {normal: blizzards}
+  619:  {normal: snow, common: sunshine, rare: blizzards}
+  621:  {normal: blizzards}
+  623:  {normal: snow, common: sunshine, rare: blizzards}
+  624:  {normal: blizzards}
+  627:  {normal: snow, common: sunshine, rare: blizzards}
+  628:  {normal: blizzards}
+  629:  {normal: snow, common: clouds, rare: blizzards}
+  630:  {normal: blizzards}
+  632:  {normal: snow, common: clouds, rare: blizzards}
+  633:  {normal: blizzards}
+  636:  {normal: snow, common: clouds, rare: blizzards}
+  638:  {normal: blizzards}
+  640:  {normal: snow, common: sunshine, rare: blizzards}
+  642:  {normal: blizzards}
+  643:  {normal: snow, common: clouds, rare: blizzards}
+  644:  {normal: blizzards}
+  648:  {normal: snow, common: sunshine, rare: blizzards}
+  650:  {normal: blizzards}
+  653:  {normal: snow, common: sunshine, rare: blizzards}
+  654:  {normal: snow, common: clouds}
+  655:  {normal: blizzards}
+  656:  {normal: snow, common: sunshine, rare: blizzards}
+  657:  {normal: snow, common: clouds, rare: blizzards}
+  659:  {normal: blizzards}
+  660:  {normal: snow, common: clouds, rare: blizzards}
+  661:  {normal: snow, common: clouds}
+  662:  {normal: blizzards}
+  664:  {normal: snow}
+  666:  {normal: blizzards}
+  667:  {normal: snow, common: clouds, rare: blizzards}
+  668:  {normal: blizzards}
+  669:  {normal: snow, common: clouds, rare: blizzards}
+  671:  {normal: blizzards}
+  672:  {normal: snow, common: clouds}
+  673:  {normal: blizzards}
+  674:  {normal: snow, common: sunshine}
+  675:  {normal: blizzards}
+  677:  {normal: snow, common: clouds, rare: blizzards}
+  679:  {normal: blizzards}
+  680:  {normal: snow, common: clouds}
+  681:  {normal: blizzards}
+  683:  {normal: snow, common: sunshine, rare: blizzards}
+  684:  {normal: snow, common: clouds, rare: blizzards}
+  686:  {normal: snow, common: sunshine, rare: blizzards}
+  687:  {normal: blizzards}
+  690:  {normal: snow, common: sunshine, rare: blizzards}
+  691:  {normal: snow, common: clouds, rare: blizzards}
+  692:  {normal: blizzards}
+  693:  {normal: snow, common: sunshine, rare: blizzards}
+  694:  {normal: snow, common: clouds, rare: blizzards}
+  695:  {normal: blizzards}
+  696:  {normal: snow, common: clouds, rare: blizzards}
+  697:  {normal: blizzards}
+  698:  {normal: snow, common: clouds, rare: blizzards}
+  699:  {normal: blizzards}
+  700:  {normal: snow}
+  701:  {normal: snow, common: clouds}
+  702:  {normal: blizzards}
+  705:  {normal: snow, common: clouds, rare: blizzards}
+  706:  {normal: blizzards}
+  709:  {normal: snow, common: clouds, rare: blizzards}
+  710:  {normal: blizzards}
+  711:  {normal: clouds, common: sunshine}
+  712:  {normal: blizzards}
+  713:  {normal: snow, common: clouds, rare: blizzards}
+  717:  {normal: blizzards}
+  718:  {normal: snow, common: clouds, rare: blizzards}
+  719:  {normal: snow, common: sunshine, rare: blizzards}
+  720:  {normal: snow, common: clouds, rare: blizzards}
+  721:  {normal: blizzards}
+  722:  {normal: snow, common: sunshine, rare: blizzards}
+  723:  {normal: snow, common: clouds, rare: blizzards}
+  724:  {normal: blizzards}
+  727:  {normal: snow, common: clouds, rare: blizzards}
+  728:  {normal: snow, common: clouds}
+  729:  {normal: snow, common: sunshine, rare: blizzards}
+  730:  {normal: blizzards}
+  732:  {normal: snow, common: clouds, rare: blizzards}
+  734:  {normal: blizzards}
+  735:  {normal: snow}
+  736:  {normal: blizzards}
+  741:  {normal: snow, common: clouds, rare: blizzards}
+  744:  {normal: snow, common: sunshine, rare: blizzards}
+  745:  {normal: snow, common: clouds, rare: blizzards}
+  746:  {normal: blizzards}
+  748:  {normal: snow, common: sunshine, rare: blizzards}
+  750:  {normal: snow, common: clouds, rare: blizzards}
+  753:  {normal: snow, common: sunshine, rare: blizzards}
+  754:  {normal: blizzards}
+  755:  {normal: snow, common: clouds, rare: blizzards}
+  756:  {normal: blizzards}
+  759:  {normal: snow, common: clouds, rare: blizzards}
+  760:  {normal: blizzards}
+  761:  {normal: snow, common: clouds, rare: blizzards}
+  764:  {normal: clouds, common: snow, rare: blizzards}
+  765:  {normal: blizzards}
+  769:  {normal: snow, common: clouds, rare: blizzards}
+  771:  {normal: blizzards}
+  772:  {normal: snow, common: clouds, rare: blizzards}
+  773:  {normal: blizzards}
+  776:  {normal: clouds, common: snow}
+  777:  {normal: blizzards}
+  778:  {normal: snow, common: clouds, rare: blizzards}
+  779:  {normal: snow, common: sunshine, rare: blizzards}
+  780:  {normal: snow, common: clouds, rare: blizzards}
+  781:  {normal: blizzards}
+  782:  {normal: snow, common: clouds, rare: blizzards}
+  783:  {normal: blizzards}
+  784:  {normal: snow}
+  785:  {normal: snow, common: clouds, rare: blizzards}
+  786:  {normal: blizzards}
+  787:  {normal: snow}
+  788:  {normal: snow, common: clouds, rare: blizzards}
+  789:  {normal: blizzards}
+  790:  {normal: snow, common: clouds, rare: blizzards}
+  791:  {normal: blizzards}
+  792:  {normal: snow, common: clouds, rare: blizzards}
+  796:  {normal: blizzards}
+  797:  {normal: snow, common: sunshine, rare: blizzards}
+  798:  {normal: snow, common: clouds, rare: blizzards}
+  801:  {normal: blizzards}
+  802:  {normal: snow, common: clouds, rare: blizzards}
+  803:  {normal: blizzards}
+  807:  {normal: snow, common: clouds, rare: blizzards}
+  808:  {normal: snow, common: clouds}
+  809:  {normal: blizzards}
+  811:  {normal: snow, common: sunshine, rare: blizzards}
+  812:  {normal: snow, common: clouds, rare: blizzards}
+  814:  {normal: blizzards}
+  816:  {normal: snow, common: sunshine, rare: blizzards}
+  817:  {normal: snow, common: clouds, rare: blizzards}
+  818:  {normal: blizzards}
+  820:  {normal: snow, common: sunshine}
+  821:  {normal: snow, common: clouds, rare: blizzards}
+  822:  {normal: blizzards}
+  823:  {normal: snow, common: clouds, rare: blizzards}
+  824:  {normal: blizzards}
+  827:  {normal: snow, common: clouds, rare: blizzards}
+  828:  {normal: blizzards}
+  829:  {normal: snow, common: clouds, rare: blizzards}
+  830:  {normal: blizzards}
+  833:  {normal: snow, common: clouds, rare: blizzards}
+  834:  {normal: blizzards}
+  835:  {normal: snow, common: sunshine, rare: blizzards}
+  836:  {normal: blizzards}
+  842:  {normal: snow, common: clouds}
+  843:  {normal: blizzards}
+  845:  {normal: snow, common: clouds, rare: blizzards}
+  846:  {normal: blizzards}
+  847:  {normal: snow, common: clouds, rare: blizzards}
+  849:  {normal: blizzards}
+  854:  {normal: snow, common: clouds, rare: blizzards}
+  857:  {normal: snow}
+  858:  {normal: blizzards}
+  859:  {normal: snow, common: clouds, rare: blizzards}
+  861:  {normal: snow}
+  862:  {normal: snow, common: clouds, rare: blizzards}
+  864:  {normal: blizzards}
+  865:  {normal: snow, common: clouds, rare: blizzards}
+  866:  {normal: snow, common: sunshine, rare: blizzards}
+  867:  {normal: blizzards}
+  869:  {normal: snow, common: clouds, rare: blizzards}
+  870:  {normal: blizzards}
+  874:  {normal: snow, common: sunshine, rare: blizzards}
+  875:  {normal: blizzards}
+  877:  {normal: snow, common: clouds, rare: blizzards}
+  879:  {normal: blizzards}
+  880:  {normal: snow, common: clouds, rare: blizzards}
+  881:  {normal: blizzards}
+  882:  {normal: sunshine, common: snow}
+  883:  {normal: blizzards}
+  886:  {normal: snow, common: sunshine, rare: blizzards}
+  888:  {normal: blizzards}
+  889:  {normal: snow, common: sunshine, rare: blizzards}
+  890:  {normal: blizzards}
+  891:  {normal: snow, common: clouds, rare: blizzards}
+  895:  {normal: blizzards}
+  897:  {normal: snow, common: clouds, rare: blizzards}
+  899:  {normal: blizzards}
+  901:  {normal: snow, common: clouds}
+  902:  {normal: snow, common: sunshine, rare: blizzards}
+  903:  {normal: snow, common: clouds, rare: blizzards}
+  905:  {normal: snow, common: sunshine, rare: blizzards}
+  906:  {normal: blizzards}
+  907:  {normal: snow, common: clouds, rare: blizzards}
+  909:  {normal: blizzards}
+  910:  {normal: snow, common: clouds, rare: blizzards}
+  911:  {normal: snow, common: sunshine, rare: blizzards}
+  912:  {normal: snow, common: clouds, rare: blizzards}
+  913:  {normal: blizzards}
+  914:  {normal: snow, common: clouds, rare: blizzards}
+  915:  {normal: blizzards}
+  916:  {normal: snow}
+  917:  {normal: blizzards}
+  919:  {normal: snow, common: clouds, rare: blizzards}
+  920:  {normal: blizzards}
+  921:  {normal: snow, common: sunshine, rare: blizzards}
+  922:  {normal: blizzards}
+  924:  {normal: snow, common: sunshine, rare: blizzards}
+  925:  {normal: blizzards}
+  928:  {normal: snow, common: sunshine, rare: blizzards}
+  929:  {normal: blizzards}
+  937:  {normal: snow, common: clouds}
+  938:  {normal: blizzards}
+  939:  {normal: snow, common: clouds, rare: blizzards}
+  940:  {normal: blizzards}
+  941:  {normal: snow, common: sunshine, rare: blizzards}
+  942:  {normal: blizzards}
+  943:  {normal: snow, common: sunshine, rare: blizzards}
+  944:  {normal: snow, common: clouds, rare: blizzards}
+  945:  {normal: blizzards}
+  946:  {normal: snow, common: clouds, rare: blizzards}
+  949:  {normal: blizzards}
+  950:  {normal: snow, common: sunshine, rare: blizzards}
+  951:  {normal: snow, common: clouds, rare: blizzards}
+  952:  {normal: snow, common: clouds}
+  953:  {normal: snow}
+  954:  {normal: blizzards}
+  955:  {normal: snow, common: clouds, rare: blizzards}
+  957:  {normal: blizzards}
+  960:  {normal: snow}
+  961:  {normal: snow, common: sunshine}
+  962:  {normal: blizzards}
+  964:  {normal: snow, common: clouds, rare: blizzards}
+  966:  {normal: snow, common: clouds}
+  967:  {normal: blizzards}
+  968:  {normal: snow}
+  969:  {normal: blizzards}
+  971:  {normal: snow}
+  972:  {normal: blizzards}
+  975:  {normal: snow, common: clouds, rare: blizzards}
+  976:  {normal: snow, common: sunshine, rare: blizzards}
+  977:  {normal: snow, common: clouds, rare: blizzards}
+  978:  {normal: snow, common: sunshine, rare: blizzards}
+  979:  {normal: blizzards}
+  980:  {normal: snow, common: clouds, rare: blizzards}
+  981:  {normal: blizzards}
+  982:  {normal: snow, common: clouds, rare: blizzards}
+  983:  {normal: blizzards}
+  985:  {normal: snow, common: sunshine, rare: blizzards}
+  986:  {normal: snow}
+  987:  {normal: snow, common: clouds}
+  988:  {normal: snow, common: clouds, rare: blizzards}
+  989:  {normal: blizzards}
+  993:  {normal: snow, common: sunshine, rare: blizzards}
+  995:  {normal: snow, common: clouds, rare: blizzards}
+  996:  {normal: snow, common: sunshine, rare: blizzards}
+  997:  {normal: snow, common: clouds, rare: blizzards}
+  998:  {normal: snow, common: clouds}
+  999:  {normal: blizzards}
+  1000: {normal: snow, common: clouds, rare: blizzards}
+  1002: {normal: blizzards}
+  1003: {normal: snow, common: clouds, rare: blizzards}
+  1004: {normal: blizzards}
+  1005: {normal: snow, common: clouds, rare: blizzards}
+  1006: {normal: blizzards}
+  1008: {normal: snow, common: sunshine, rare: blizzards}
+  1010: {normal: snow}
+  1011: {normal: blizzards}
+  1012: {normal: snow}
+  1013: {normal: blizzards}
+  1014: {normal: snow, common: clouds, rare: blizzards}
+  1016: {normal: blizzards}
+  1020: {normal: snow, common: sunshine, rare: blizzards}
+  1021: {normal: blizzards}
+  1022: {normal: snow, common: sunshine}
+  1024: {normal: blizzards}
+  1028: {normal: snow, common: clouds, rare: blizzards}
+  1029: {normal: blizzards}
+  1030: {normal: snow, common: clouds, rare: blizzards}
+  1031: {normal: snow}
+  1032: {normal: snow, common: clouds, rare: blizzards}
+  1033: {normal: blizzards}
+  1036: {normal: snow, common: sunshine, rare: blizzards}
+  1038: {normal: blizzards}
+  1039: {normal: snow, common: sunshine, rare: blizzards}
+  1040: {normal: snow, common: clouds, rare: blizzards}
+  1042: {normal: blizzards}
+  1045: {normal: snow, common: sunshine, rare: blizzards}
+  1046: {normal: blizzards}
+  1050: {normal: snow, common: clouds, rare: blizzards}
+  1051: {normal: blizzards}
+  1053: {normal: snow, common: clouds, rare: blizzards}
+  1055: {normal: blizzards}
+  1056: {normal: snow, common: clouds, rare: blizzards}
+  1057: {normal: blizzards}
+  1060: {normal: snow, common: clouds, rare: blizzards}
+  1062: {normal: blizzards}
+  1065: {normal: snow, common: clouds, rare: blizzards}
+  1066: {normal: blizzards}
+  1069: {normal: snow, common: clouds, rare: blizzards}
+  1071: {normal: blizzards}
+  1073: {normal: snow, common: sunshine, rare: blizzards}
+  1074: {normal: blizzards}
+  1075: {normal: snow, common: clouds, rare: blizzards}
+  1077: {normal: snow, common: sunshine, rare: blizzards}
+  1079: {normal: snow, common: clouds, rare: blizzards}
+  1080: {normal: blizzards}
+  1081: {normal: snow}
+  1082: {normal: blizzards}
+  1083: {normal: snow, common: sunshine, rare: blizzards}
+  1085: {normal: blizzards}
+  1086: {normal: snow, common: clouds, rare: blizzards}
+  1087: {normal: blizzards}
+  1088: {normal: snow}
+  1089: {normal: blizzards}
+  1091: {normal: snow, common: clouds, rare: blizzards}
+  1092: {normal: blizzards}
+  1096: {normal: snow, common: clouds, rare: blizzards}
+  1097: {normal: snow, common: sunshine, rare: blizzards}
+  1098: {normal: clouds, common: snow, rare: blizzards}
+  1099: {normal: snow}
+  1100: {normal: blizzards}
+  1101: {normal: snow, common: clouds, rare: blizzards}
+  1102: {normal: blizzards}
+  1105: {normal: snow, common: sunshine, rare: blizzards}
+  1106: {normal: snow, common: clouds, rare: blizzards}
+  1107: {normal: blizzards}
+  1110: {normal: snow, common: clouds, rare: blizzards}
+  1111: {normal: blizzards}
+  1112: {normal: snow, common: clouds, rare: blizzards}
+  1113: {normal: snow}
+  1114: {normal: snow, common: clouds, rare: blizzards}
+  1115: {normal: blizzards}
+  1118: {normal: snow, common: sunshine, rare: blizzards}
+  1120: {normal: snow, common: clouds, rare: blizzards}
+  1122: {normal: clouds, common: snow, rare: blizzards}
+  1123: {normal: snow, common: clouds, rare: blizzards}
+  1124: {normal: blizzards}
+  1125: {normal: snow, common: clouds, rare: blizzards}
+  1126: {normal: blizzards}
+  1133: {normal: snow, common: clouds, rare: blizzards}
+  1135: {normal: blizzards}
+  1137: {normal: snow, common: clouds, rare: blizzards}
+  1138: {normal: snow, common: clouds}
+  1139: {normal: blizzards}
+  1140: {normal: snow, common: sunshine, rare: blizzards}
+  1141: {normal: blizzards}
+  1143: {normal: snow, common: sunshine, rare: blizzards}
+  1145: {normal: snow, common: clouds, rare: blizzards}
+  1149: {normal: snow, common: sunshine, rare: blizzards}
+  1150: {normal: blizzards}
+  1153: {normal: snow, common: clouds, rare: blizzards}
+  1154: {normal: blizzards}
+  1155: {normal: snow, common: clouds, rare: blizzards}
+  1156: {normal: blizzards}
+  1157: {normal: snow, common: sunshine, rare: blizzards}
+  1158: {normal: snow, common: clouds, rare: blizzards}
+  1159: {normal: blizzards}
+  1160: {normal: snow, common: clouds, rare: blizzards}
+  1162: {normal: blizzards}
+  1163: {normal: snow, common: clouds, rare: blizzards}
+  1164: {normal: snow}
+  1165: {normal: snow, common: clouds}
+  1166: {normal: snow, common: sunshine, rare: blizzards}
+  1168: {normal: snow, common: clouds, rare: blizzards}
+  1169: {normal: snow, common: sunshine, rare: blizzards}
+  1170: {normal: blizzards}
+  1172: {normal: snow, common: sunshine, rare: blizzards}
+  1173: {normal: blizzards}
+  1175: {normal: snow, common: clouds, rare: blizzards}
+  1176: {normal: snow, common: sunshine, rare: blizzards}
+  1178: {normal: blizzards}
+  1181: {normal: snow, common: clouds, rare: blizzards}
+  1182: {normal: blizzards}
+  1183: {normal: snow, common: clouds, rare: blizzards}
+  1184: {normal: snow, common: sunshine, rare: blizzards}
+  1185: {normal: blizzards}
+  1186: {normal: snow, common: clouds, rare: blizzards}
+  1187: {normal: blizzards}
+  1188: {normal: snow, common: sunshine, rare: blizzards}
+  1189: {normal: blizzards}
+  1190: {normal: snow, common: clouds, rare: blizzards}
+  1191: {normal: blizzards}
+  1192: {normal: snow, common: sunshine, rare: blizzards}
+  1193: {normal: blizzards}
+  1194: {normal: snow, common: clouds, rare: blizzards}
+  1195: {normal: blizzards}
+  1196: {normal: snow, common: clouds, rare: blizzards}
+  1197: {normal: blizzards}
+  1198: {normal: snow, common: sunshine, rare: blizzards}
+  1199: {normal: snow, common: clouds, rare: blizzards}
+  1200: {normal: blizzards}
+  1203: {normal: snow, common: clouds, rare: blizzards}
+  1204: {normal: blizzards}
+  1205: {normal: snow, common: sunshine, rare: blizzards}
+  1206: {normal: blizzards}
+  1209: {normal: snow, common: sunshine}
+  1210: {normal: snow, common: clouds, rare: blizzards}
+  1212: {normal: blizzards}
+  1213: {normal: snow, common: sunshine, rare: blizzards}
+  1214: {normal: snow}
+  1215: {normal: blizzards}
+  1217: {normal: snow, common: sunshine, rare: blizzards}
+  1218: {normal: blizzards}
+  1219: {normal: snow, common: clouds, rare: blizzards}
+  1220: {normal: blizzards}
+  1221: {normal: snow, common: clouds}
+  1222: {normal: snow, common: sunshine, rare: blizzards}
+  1223: {normal: snow}
+  1224: {normal: snow, common: clouds, rare: blizzards}
+  1226: {normal: snow, common: sunshine, rare: blizzards}
+  1227: {normal: blizzards}
+  1228: {normal: snow, common: clouds, rare: blizzards}
+  1229: {normal: blizzards}
+  1234: {normal: snow, common: sunshine, rare: blizzards}
+  1235: {normal: snow, common: clouds, rare: blizzards}
+  1236: {normal: blizzards}
+  1237: {normal: snow, common: clouds, rare: blizzards}
+  1238: {normal: snow, common: clouds}
+  1239: {normal: blizzards}
+  1240: {normal: snow, common: clouds, rare: blizzards}
+  1241: {normal: blizzards}
+  1244: {normal: snow, common: clouds, rare: blizzards}
+  1246: {normal: snow, common: sunshine, rare: blizzards}
+  1247: {normal: sunshine, common: snow, rare: blizzards}
+  1248: {normal: snow}
+  1249: {normal: snow, common: clouds, rare: blizzards}
+  1250: {normal: blizzards}
+  1253: {normal: snow, common: sunshine, rare: blizzards}
+  1254: {normal: snow, common: clouds, rare: blizzards}
+  1256: {normal: blizzards}
+  1257: {normal: snow, common: clouds, rare: blizzards}
+  1258: {normal: snow, common: sunshine, rare: blizzards}
+  1259: {normal: snow, common: clouds, rare: blizzards}
+  1260: {normal: blizzards}
+  1261: {normal: snow, common: sunshine, rare: blizzards}
+  1262: {normal: blizzards}
+  1264: {normal: snow, common: clouds, rare: blizzards}
+  1266: {normal: blizzards}
+  1272: {normal: snow, common: clouds, rare: blizzards}
+  1273: {normal: clouds, common: snow, rare: blizzards}
+  1274: {normal: blizzards}
+  1276: {normal: snow, common: clouds, rare: blizzards}
+  1278: {normal: blizzards}
+  1279: {normal: snow}
+  1280: {normal: blizzards}
+  1281: {normal: snow, common: clouds, rare: blizzards}
+  1282: {normal: blizzards}
+  1283: {normal: snow, common: sunshine, rare: blizzards}
+  1284: {normal: blizzards}
+  1285: {normal: clouds, common: snow}
+  1286: {normal: snow, common: sunshine, rare: blizzards}
+  1288: {normal: blizzards}
+  1289: {normal: snow, common: clouds, rare: blizzards}
+  1290: {normal: blizzards}
+  1293: {normal: snow, common: clouds, rare: blizzards}
+  1294: {normal: snow, common: sunshine, rare: blizzards}
+  1295: {normal: blizzards}
+  1296: {normal: snow, common: sunshine, rare: blizzards}
+  1297: {normal: snow, common: clouds, rare: blizzards}
+  1298: {normal: blizzards}
+  1301: {normal: snow, common: clouds, rare: blizzards}
+  1303: {normal: blizzards}
+  1306: {normal: snow, common: clouds, rare: blizzards}
+  1307: {normal: blizzards}
+  1308: {normal: snow, common: clouds, rare: blizzards}
+  1309: {normal: clouds, common: snow, rare: blizzards}
+  1310: {normal: blizzards}
+  1312: {normal: snow, common: sunshine}
+  1313: {normal: blizzards}
+  1314: {normal: snow, common: clouds, rare: blizzards}
+  1316: {normal: blizzards}
+  1317: {normal: snow, common: sunshine, rare: blizzards}
+  1318: {normal: blizzards}
+  1319: {normal: clouds, common: snow}
+  1320: {normal: blizzards}
+  1322: {normal: snow, common: clouds, rare: blizzards}
+  1324: {normal: blizzards}
+  1326: {normal: snow, common: clouds, rare: blizzards}
+  1327: {normal: snow, common: sunshine, rare: blizzards}
+  1328: {normal: snow, common: clouds, rare: blizzards}
+  1330: {normal: snow, common: sunshine, rare: blizzards}
+  1331: {normal: snow, common: clouds, rare: blizzards}
+  1332: {normal: blizzards}
+  1333: {normal: snow, common: clouds, rare: blizzards}
+  1334: {normal: snow, common: sunshine, rare: blizzards}
+  1335: {normal: snow, common: sunshine}
+  1336: {normal: snow, common: clouds, rare: blizzards}
+  1338: {normal: blizzards}
+  1340: {normal: snow, common: sunshine, rare: blizzards}
+  1342: {normal: blizzards}
+  1343: {normal: snow, common: clouds, rare: blizzards}
+  1344: {normal: blizzards}
+  1348: {normal: snow, common: clouds, rare: blizzards}
+  1349: {normal: blizzards}
+  1350: {normal: snow, common: clouds}
+  1351: {normal: blizzards}
+  1352: {normal: snow, common: sunshine, rare: blizzards}
+  1353: {normal: blizzards}
+  1355: {normal: snow, common: clouds, rare: blizzards}
+  1358: {normal: snow, common: clouds}
+  1359: {normal: blizzards}
+  1360: {normal: snow, common: sunshine}
+  1361: {normal: blizzards}
+  1363: {normal: snow, common: clouds, rare: blizzards}
+  1364: {normal: blizzards}
+  1365: {normal: snow}
+  1366: {normal: blizzards}
+  1370: {normal: snow, common: clouds}
+  1371: {normal: clouds, common: snow, rare: blizzards}
+  1372: {normal: blizzards}
+  1375: {normal: snow, common: sunshine, rare: blizzards}
+  1376: {normal: blizzards}
+  1378: {normal: clouds, common: snow, rare: blizzards}
+  1379: {normal: snow, common: clouds, rare: blizzards}
+  1380: {normal: blizzards}
+  1383: {normal: snow}
+  1384: {normal: snow, common: sunshine, rare: blizzards}
+  1385: {normal: blizzards}
+  1386: {normal: snow}
+  1388: {normal: blizzards}
+  1389: {normal: snow, common: clouds, rare: blizzards}
+  1390: {normal: blizzards}
+  1392: {normal: snow, common: sunshine}
+  1393: {normal: sunshine, common: snow, rare: blizzards}
+  1394: {normal: blizzards}
+  1396: {normal: snow, common: sunshine, rare: blizzards}
+  1397: {normal: blizzards}
+  1398: {normal: snow, common: sunshine, rare: blizzards}
+  1400: {normal: snow, common: clouds, rare: blizzards}
+  1401: {normal: blizzards}
+  1402: {normal: snow, common: clouds, rare: blizzards}
+  1403: {normal: blizzards}
+  1405: {normal: snow, common: sunshine, rare: blizzards}
+  1407: {normal: blizzards}
+  1409: {normal: snow, common: clouds, rare: blizzards}
+  1410: {normal: blizzards}
+  1412: {normal: snow, common: clouds, rare: blizzards}
+  1415: {normal: snow, common: sunshine, rare: blizzards}
+  1416: {normal: blizzards}
+  1419: {normal: snow, common: sunshine, rare: blizzards}
+  1420: {normal: snow, common: clouds, rare: blizzards}
+  1421: {normal: blizzards}
+  1422: {normal: snow, common: sunshine, rare: blizzards}
+  1423: {normal: snow, common: clouds, rare: blizzards}
+  1424: {normal: blizzards}
+  1426: {normal: snow, common: clouds, rare: blizzards}
+  1427: {normal: blizzards}
+  1430: {normal: snow, common: sunshine, rare: blizzards}
+  1431: {normal: snow}
+  1432: {normal: blizzards}
+  1435: {normal: snow, common: clouds, rare: blizzards}
+  1439: {normal: snow, common: sunshine, rare: blizzards}
+  1440: {normal: snow, common: clouds, rare: blizzards}
+  1441: {normal: blizzards}
+  1444: {normal: snow, common: sunshine, rare: blizzards}
+  1445: {normal: snow}
+  1446: {normal: blizzards}
+  1450: {normal: snow, common: clouds, rare: blizzards}
+  1451: {normal: blizzards}
+  1454: {normal: snow, common: clouds, rare: blizzards}
+  1456: {normal: blizzards}
+  1457: {normal: snow, common: clouds, rare: blizzards}
+  1458: {normal: snow, common: sunshine, rare: blizzards}
+  1459: {normal: snow, common: clouds, rare: blizzards}
+  1462: {normal: blizzards}
+  1463: {normal: snow}
+  1464: {normal: blizzards}
+  1465: {normal: snow}
+  1466: {normal: snow, common: clouds}
+  1467: {normal: blizzards}
+  1468: {normal: snow, common: clouds, rare: blizzards}
+  1469: {normal: blizzards}
+  1471: {normal: snow, common: sunshine, rare: blizzards}
+  1473: {normal: blizzards}
+  1474: {normal: snow, common: clouds}
+  1475: {normal: blizzards}
+  1476: {normal: snow, common: sunshine, rare: blizzards}
+  1477: {normal: blizzards}
+  1478: {normal: snow, common: sunshine}
+  1479: {normal: blizzards}
+  1480: {normal: snow, common: clouds, rare: blizzards}
+  1481: {normal: blizzards}
+  1483: {normal: snow, common: clouds, rare: blizzards}
+  1485: {normal: blizzards}
+  1486: {normal: snow, common: sunshine, rare: blizzards}
+  1487: {normal: snow}
+  1490: {normal: blizzards}
+  1491: {normal: snow, common: sunshine, rare: blizzards}
+  1492: {normal: snow, common: clouds, rare: blizzards}
+  1493: {normal: blizzards}
+  1494: {normal: snow, common: clouds, rare: blizzards}
+  1496: {normal: snow}
+  1497: {normal: blizzards}
+  1499: {normal: snow, common: clouds, rare: blizzards}
+  1501: {normal: blizzards}
+  1507: {normal: snow, common: clouds, rare: blizzards}
+  1509: {normal: snow}
+  1510: {normal: blizzards}
+  1512: {normal: snow, common: sunshine, rare: blizzards}
+  1513: {normal: blizzards}
+  1514: {normal: snow, common: clouds, rare: blizzards}
+  1516: {normal: blizzards}
+  1523: {normal: snow, common: clouds, rare: blizzards}
+  1524: {normal: snow, common: clouds}
+  1525: {normal: blizzards}
+  1526: {normal: snow, common: clouds, rare: blizzards}
+  1527: {normal: blizzards}
+  1528: {normal: snow, common: clouds, rare: blizzards}
+  1530: {normal: snow, common: sunshine, rare: blizzards}
+  1531: {normal: blizzards}
+  1532: {normal: snow, common: clouds, rare: blizzards}
+  1533: {normal: blizzards}
+  1535: {normal: snow, common: clouds, rare: blizzards}
+  1536: {normal: blizzards}
+  1537: {normal: snow, common: clouds, rare: blizzards}
+  1538: {normal: snow, common: sunshine, rare: blizzards}
+  1539: {normal: blizzards}
+  1542: {normal: snow, common: sunshine, rare: blizzards}
+  1544: {normal: blizzards}
+  1545: {normal: snow, common: sunshine, rare: blizzards}
+  1547: {normal: blizzards}
+  1549: {normal: snow}
+  1550: {normal: snow, common: clouds, rare: blizzards}
+  1551: {normal: snow, common: sunshine, rare: blizzards}
+  1552: {normal: blizzards}
+  1555: {normal: snow, common: clouds, rare: blizzards}
+  1556: {normal: blizzards}
+  1559: {normal: snow, common: sunshine, rare: blizzards}
+  1560: {normal: snow, common: clouds, rare: blizzards}
+  1561: {normal: blizzards}
+  1566: {normal: snow, common: clouds, rare: blizzards}
+  1567: {normal: snow, common: sunshine}
+  1568: {normal: snow}
+  1569: {normal: snow, common: clouds, rare: blizzards}
+  1570: {normal: snow, common: sunshine, rare: blizzards}
+  1571: {normal: blizzards}
+  1572: {normal: snow, common: clouds, rare: blizzards}
+  1573: {normal: snow}
+  1574: {normal: snow, common: clouds, rare: blizzards}
+  1575: {normal: snow, common: sunshine, rare: blizzards}
+  1576: {normal: blizzards}
+  1578: {normal: snow, common: clouds, rare: blizzards}
+  1581: {normal: snow, common: sunshine, rare: blizzards}
+  1582: {normal: blizzards}
+  1583: {normal: snow, common: sunshine}
+  1584: {normal: snow, common: clouds, rare: blizzards}
+  1587: {normal: blizzards}
+  1589: {normal: snow}
+  1590: {normal: snow, common: sunshine, rare: blizzards}
+  1593: {normal: snow, common: clouds, rare: blizzards}
+  1594: {normal: snow, common: sunshine, rare: blizzards}
+  1595: {normal: blizzards}
+  1598: {normal: snow, common: clouds, rare: blizzards}
+  1599: {normal: blizzards}
+  1600: {normal: snow, common: clouds, rare: blizzards}
+  1603: {normal: snow, common: sunshine, rare: blizzards}
+  1604: {normal: blizzards}
+  1605: {normal: snow, common: sunshine}
+  1606: {normal: snow}
+  1607: {normal: blizzards}
+  1609: {normal: snow, common: sunshine, rare: blizzards}
+  1610: {normal: snow, common: clouds, rare: blizzards}
+  1611: {normal: blizzards}
+  1612: {normal: snow, common: clouds, rare: blizzards}
+  1613: {normal: blizzards}
+  1615: {normal: snow, common: clouds, rare: blizzards}
+  1616: {normal: blizzards}
+  1619: {normal: snow, common: sunshine, rare: blizzards}
+  1620: {normal: snow}
+  1621: {normal: blizzards}
+  1628: {normal: snow, common: sunshine, rare: blizzards}
+  1629: {normal: blizzards}
+  1631: {normal: snow, common: sunshine, rare: blizzards}
+  1633: {normal: snow}
+  1634: {normal: blizzards}
+  1635: {normal: snow, common: clouds, rare: blizzards}
+  1636: {normal: blizzards}
+  1640: {normal: snow, common: clouds, rare: blizzards}
+  1641: {normal: snow}
+  1643: {normal: snow, common: sunshine}
+  1644: {normal: snow, common: clouds}
+  1645: {normal: snow}
+  1646: {normal: blizzards}
+  1647: {normal: snow, common: clouds, rare: blizzards}
+  1648: {normal: blizzards}
+  1649: {normal: snow, common: sunshine, rare: blizzards}
+  1651: {normal: blizzards}
+  1652: {normal: snow}
+  1653: {normal: blizzards}
+  1655: {normal: snow, common: clouds, rare: blizzards}
+  1656: {normal: blizzards}
+  1658: {normal: snow}
+  1659: {normal: blizzards}
+  1660: {normal: snow, common: clouds, rare: blizzards}
+  1662: {normal: blizzards}
+  1663: {normal: snow, common: sunshine, rare: blizzards}
+  1664: {normal: blizzards}
+  1665: {normal: snow, common: clouds, rare: blizzards}
+  1666: {normal: snow}
+  1667: {normal: blizzards}
+  1669: {normal: snow, common: sunshine, rare: blizzards}
+  1671: {normal: snow, common: clouds, rare: blizzards}
+  1672: {normal: blizzards}
+  1673: {normal: snow, common: sunshine, rare: blizzards}
+  1674: {normal: blizzards}
+  1677: {normal: snow}
+  1678: {normal: snow, common: sunshine, rare: blizzards}
+  1679: {normal: snow, common: clouds, rare: blizzards}
+  1680: {normal: blizzards}
+  1684: {normal: snow, common: clouds, rare: blizzards}
+  1685: {normal: blizzards}
+  1686: {normal: snow, common: sunshine, rare: blizzards}
+  1687: {normal: clouds, common: snow, rare: blizzards}
+  1688: {normal: snow, common: clouds, rare: blizzards}
+  1689: {normal: blizzards}
+  1690: {normal: snow, common: clouds, rare: blizzards}
+  1691: {normal: snow, common: clouds}
+  1692: {normal: blizzards}
+  1694: {normal: snow, common: clouds, rare: blizzards}
+  1695: {normal: blizzards}
+  1697: {normal: snow, common: clouds, rare: blizzards}
+  1698: {normal: snow, common: sunshine, rare: blizzards}
+  1699: {normal: blizzards}
+  1701: {normal: snow, common: clouds, rare: blizzards}
+  1702: {normal: blizzards}
+  1703: {normal: snow, common: clouds, rare: blizzards}
+  1705: {normal: blizzards}
+  1708: {normal: snow, common: clouds, rare: blizzards}
+  1709: {normal: blizzards}
+  1710: {normal: snow, common: clouds, rare: blizzards}
+  1711: {normal: blizzards}
+  1712: {normal: snow, common: clouds, rare: blizzards}
+  1713: {normal: blizzards}
+  1716: {normal: snow, common: sunshine, rare: blizzards}
+  1717: {normal: blizzards}
+  1718: {normal: snow, common: clouds, rare: blizzards}
+  1719: {normal: blizzards}
+  1720: {normal: snow, common: clouds, rare: blizzards}
+  1721: {normal: blizzards}
+  1722: {normal: snow, common: clouds, rare: blizzards}
+  1724: {normal: blizzards}
+  1727: {normal: snow, common: clouds, rare: blizzards}
+  1728: {normal: snow}
+  1729: {normal: blizzards}
+  1732: {normal: snow, common: clouds, rare: blizzards}
+  1734: {normal: blizzards}
+  1737: {normal: snow, common: clouds, rare: blizzards}
+  1742: {normal: blizzards}
+  1743: {normal: snow, common: clouds, rare: blizzards}
+  1745: {normal: snow, common: clouds}
+  1746: {normal: blizzards}
+  1749: {normal: snow, common: clouds, rare: blizzards}
+  1753: {normal: blizzards}
+  1754: {normal: snow, common: clouds, rare: blizzards}
+  1755: {normal: blizzards}
+  1757: {normal: snow, common: sunshine, rare: blizzards}
+  1758: {normal: snow, common: clouds, rare: blizzards}
+  1759: {normal: blizzards}
+  1760: {normal: clouds, common: snow, rare: blizzards}
+  1761: {normal: snow, common: sunshine, rare: blizzards}
+  1762: {normal: snow, common: clouds, rare: blizzards}
+  1763: {normal: blizzards}
+  1765: {normal: snow, common: clouds, rare: blizzards}
+  1766: {normal: snow, common: sunshine, rare: blizzards}
+  1768: {normal: blizzards}
+  1769: {normal: snow, common: sunshine, rare: blizzards}
+  1771: {normal: snow, common: clouds, rare: blizzards}
+  1772: {normal: blizzards}
+  1773: {normal: snow, common: clouds, rare: blizzards}
+  1775: {normal: snow, common: sunshine, rare: blizzards}
+  1777: {normal: snow, common: clouds, rare: blizzards}
+  1778: {normal: snow, common: clouds}
+  1779: {normal: blizzards}
+  1781: {normal: snow, common: sunshine, rare: blizzards}
+  1782: {normal: snow, common: clouds, rare: blizzards}
+  1783: {normal: snow, common: sunshine, rare: blizzards}
+  1784: {normal: blizzards}
+  1785: {normal: snow, common: clouds, rare: blizzards}
+  1786: {normal: blizzards}
+  1787: {normal: snow, common: sunshine, rare: blizzards}
+  1788: {normal: blizzards}
+  1795: {normal: snow}
+  1796: {normal: blizzards}
+  1798: {normal: snow, common: sunshine, rare: blizzards}
+  1799: {normal: snow}
+  1800: {normal: snow, common: sunshine, rare: blizzards}
+  1801: {normal: blizzards}
+  1803: {normal: snow, common: clouds, rare: blizzards}
+  1804: {normal: blizzards}
+  1809: {normal: snow, common: clouds, rare: blizzards}
+  1810: {normal: blizzards}
+  1812: {normal: clouds, common: snow, rare: blizzards}
+  1813: {normal: blizzards}
+  1814: {normal: snow, common: clouds}
+  1815: {normal: snow, common: clouds, rare: blizzards}
+  1817: {normal: blizzards}
+  1818: {normal: snow, common: clouds, rare: blizzards}
+  1819: {normal: blizzards}
+  1822: {normal: snow, common: sunshine, rare: blizzards}
+  1823: {normal: blizzards}
+  1824: {normal: snow, common: sunshine, rare: blizzards}
+  1826: {normal: blizzards}
+  1829: {normal: snow, common: clouds, rare: blizzards}
+  1830: {normal: snow, common: sunshine}
+  1831: {normal: blizzards}
+  1834: {normal: snow, common: sunshine, rare: blizzards}
+  1835: {normal: snow, common: clouds, rare: blizzards}
+  1837: {normal: blizzards}
+  1838: {normal: snow, common: clouds, rare: blizzards}
+  1839: {normal: blizzards}
+  1841: {normal: snow, common: sunshine, rare: blizzards}
+  1842: {normal: blizzards}
+  1843: {normal: snow, common: sunshine, rare: blizzards}
+  1844: {normal: blizzards}
+  1847: {normal: clouds, common: snow, rare: blizzards}
+  1848: {normal: blizzards}
+  1850: {normal: snow, common: sunshine, rare: blizzards}
+  1851: {normal: blizzards}
+  1854: {normal: snow, common: clouds, rare: blizzards}
+  1855: {normal: blizzards}
+  1856: {normal: snow, common: clouds, rare: blizzards}
+  1860: {normal: blizzards}
+  1863: {normal: snow, common: sunshine, rare: blizzards}
+  1864: {normal: blizzards}
+  1865: {normal: snow, common: clouds, rare: blizzards}
+  1867: {normal: blizzards}
+  1871: {normal: snow, common: clouds, rare: blizzards}
+  1872: {normal: snow, common: sunshine, rare: blizzards}
+  1873: {normal: blizzards}
+  1874: {normal: snow, common: sunshine, rare: blizzards}
+  1876: {normal: blizzards}
+  1881: {normal: snow, common: sunshine, rare: blizzards}
+  1882: {normal: blizzards}
+  1886: {normal: snow, common: clouds}
+  1887: {normal: blizzards}
+  1888: {normal: snow, common: sunshine, rare: blizzards}
+  1889: {normal: blizzards}
+  1890: {normal: snow, common: clouds, rare: blizzards}
+  1891: {normal: snow}
+  1892: {normal: snow, common: clouds, rare: blizzards}
+  1893: {normal: snow, common: sunshine}
+  1894: {normal: snow, common: clouds, rare: blizzards}
+  1896: {normal: blizzards}
+  1898: {normal: snow, common: clouds, rare: blizzards}
+  1900: {normal: blizzards}
+  1901: {normal: snow, common: clouds, rare: blizzards}
+  1902: {normal: blizzards}
+  1903: {normal: snow, common: clouds, rare: blizzards}
+  1904: {normal: snow, common: sunshine, rare: blizzards}
+  1905: {normal: snow, common: clouds, rare: blizzards}
+  1907: {normal: blizzards}
+  1908: {normal: snow}
+  1909: {normal: blizzards}
+  1912: {normal: snow, common: clouds, rare: blizzards}
+  1915: {normal: blizzards}
+  1916: {normal: snow, common: clouds, rare: blizzards}
+  1917: {normal: blizzards}
+  1920: {normal: snow, common: clouds, rare: blizzards}
+  1922: {normal: blizzards}
+  1931: {normal: snow, common: sunshine, rare: blizzards}
+  1932: {normal: snow, common: clouds, rare: blizzards}
+  1933: {normal: blizzards}
+  1934: {normal: snow, common: sunshine, rare: blizzards}
+  1935: {normal: blizzards}
+  1936: {normal: snow, common: sunshine, rare: blizzards}
+  1938: {normal: snow}
+  1940: {normal: snow, common: sunshine, rare: blizzards}
+  1941: {normal: snow, common: clouds, rare: blizzards}
+  1943: {normal: snow, common: clouds}
+  1944: {normal: snow, common: clouds, rare: blizzards}
+  1945: {normal: blizzards}
+  1946: {normal: snow, common: sunshine, rare: blizzards}
+  1947: {normal: snow, common: clouds, rare: blizzards}
+  1948: {normal: snow, common: clouds}
+  1949: {normal: blizzards}
+  1951: {normal: snow, common: sunshine, rare: blizzards}
+  1952: {normal: blizzards}
+  1957: {normal: snow, common: clouds}
+  1958: {normal: snow, common: clouds, rare: blizzards}
+  1959: {normal: snow, common: sunshine, rare: blizzards}
+  1961: {normal: blizzards}
+  1962: {normal: snow, common: clouds, rare: blizzards}
+  1963: {normal: snow, common: sunshine, rare: blizzards}
+  1964: {normal: blizzards}
+  1973: {normal: snow, common: clouds, rare: blizzards}
+  1974: {normal: blizzards}
+  1975: {normal: snow, common: sunshine, rare: blizzards}
+  1976: {normal: snow, common: clouds, rare: blizzards}
+  1978: {normal: blizzards}
+  1981: {normal: snow}
+  1982: {normal: blizzards}
+  1983: {normal: snow, common: clouds, rare: blizzards}
+  1984: {normal: blizzards}
+  1986: {normal: snow, common: clouds, rare: blizzards}
+  1988: {normal: blizzards}
+  1993: {normal: snow, common: clouds, rare: blizzards}
+  1996: {normal: blizzards}
+  1998: {normal: snow, common: sunshine}
+  1999: {normal: blizzards}
+  2001: {normal: snow, common: clouds, rare: blizzards}
+  2002: {normal: snow}
+  2003: {normal: blizzards}
+  2006: {normal: sunshine, common: snow, rare: blizzards}
+  2007: {normal: snow, common: clouds, rare: blizzards}
+  2008: {normal: blizzards}
+  2009: {normal: clouds, common: snow, rare: blizzards}
+  2010: {normal: snow, common: clouds, rare: blizzards}
+  2011: {normal: blizzards}
+  2012: {normal: snow, common: clouds, rare: blizzards}
+  2013: {normal: blizzards}
+  2016: {normal: snow, common: clouds, rare: blizzards}
+  2018: {normal: snow, common: sunshine, rare: blizzards}
+  2019: {normal: blizzards}
+  2020: {normal: snow, common: clouds, rare: blizzards}
+  2021: {normal: snow, common: sunshine, rare: blizzards}
+  2022: {normal: snow, common: clouds, rare: blizzards}
+  2023: {normal: blizzards}
+  2024: {normal: snow, common: clouds, rare: blizzards}
+  2026: {normal: blizzards}
+  2027: {normal: snow}
+  2028: {normal: snow, common: clouds}
+  2029: {normal: blizzards}
+  2035: {normal: snow, common: clouds, rare: blizzards}
+  2036: {normal: blizzards}
+  2037: {normal: snow, common: clouds, rare: blizzards}
+  2038: {normal: blizzards}
+  2039: {normal: snow}
+  2040: {normal: blizzards}
+  2041: {normal: snow, common: clouds, rare: blizzards}
+  2042: {normal: blizzards}
+  2045: {normal: snow, common: clouds, rare: blizzards}
+  2046: {normal: blizzards}
+  2047: {normal: snow, common: sunshine, rare: blizzards}
+  2048: {normal: blizzards}
+  2049: {normal: snow}
+  2050: {normal: snow, common: clouds, rare: blizzards}
+  2051: {normal: snow, common: sunshine, rare: blizzards}
+  2052: {normal: blizzards}
+  2053: {normal: snow, common: clouds, rare: blizzards}
+  2054: {normal: blizzards}
+  2055: {normal: snow, common: clouds, rare: blizzards}
+  2056: {normal: blizzards}
+  2057: {normal: snow, common: sunshine, rare: blizzards}
+  2058: {normal: blizzards}
+  2059: {normal: snow, common: clouds, rare: blizzards}
+  2061: {normal: blizzards}
+  2062: {normal: snow, common: clouds, rare: blizzards}
+  2064: {normal: clouds, common: snow, rare: blizzards}
+  2065: {normal: blizzards}
+  2067: {normal: snow, common: sunshine, rare: blizzards}
+  2068: {normal: blizzards}
+  2070: {normal: snow, common: clouds, rare: blizzards}
+  2071: {normal: snow, common: sunshine, rare: blizzards}
+  2072: {normal: snow, common: clouds, rare: blizzards}
+  2073: {normal: snow, common: sunshine, rare: blizzards}
+  2075: {normal: snow, common: clouds, rare: blizzards}
+  2077: {normal: blizzards}
+  2078: {normal: snow, common: sunshine, rare: blizzards}
+  2079: {normal: blizzards}
+  2080: {normal: snow, common: clouds, rare: blizzards}
+  2082: {normal: blizzards}
+  2085: {normal: snow, common: clouds, rare: blizzards}
+  2086: {normal: blizzards}
+  2087: {normal: snow, common: clouds}
+  2088: {normal: snow}
+  2089: {normal: snow, common: sunshine, rare: blizzards}
+  2091: {normal: blizzards}
+  2096: {normal: snow, common: sunshine, rare: blizzards}
+  2097: {normal: blizzards}
+  2103: {normal: snow, common: clouds, rare: blizzards}
+  2104: {normal: blizzards}
+  2107: {normal: snow, common: clouds, rare: blizzards}
+  2109: {normal: snow, common: sunshine, rare: blizzards}
+  2110: {normal: blizzards}
+  2111: {normal: snow, common: sunshine, rare: blizzards}
+  2112: {normal: blizzards}
+  2113: {normal: snow}
+  2114: {normal: blizzards}
+  2115: {normal: snow, common: clouds, rare: blizzards}
+  2117: {normal: blizzards}
+  2118: {normal: snow, common: clouds, rare: blizzards}
+  2119: {normal: snow, common: sunshine, rare: blizzards}
+  2120: {normal: blizzards}
+  2127: {normal: snow, common: clouds, rare: blizzards}
+  2128: {normal: blizzards}
+  2129: {normal: snow, common: sunshine, rare: blizzards}
+  2130: {normal: snow, common: clouds}
+  2131: {normal: snow, common: clouds, rare: blizzards}
+  2132: {normal: blizzards}
+  2133: {normal: snow}
+  2134: {normal: snow, common: clouds, rare: blizzards}
+  2135: {normal: blizzards}
+  2136: {normal: snow, common: sunshine, rare: blizzards}
+  2137: {normal: snow, common: clouds, rare: blizzards}
+  2138: {normal: blizzards}
+  2142: {normal: snow, common: clouds, rare: blizzards}
+  2143: {normal: snow, common: sunshine, rare: blizzards}
+  2144: {normal: snow, common: clouds, rare: blizzards}
+  2146: {normal: blizzards}
+  2148: {normal: snow}
+  2149: {normal: snow, common: sunshine}
+  2150: {normal: snow, common: clouds, rare: blizzards}
+  2152: {normal: blizzards}
+  2153: {normal: snow, common: sunshine, rare: blizzards}
+  2154: {normal: blizzards}
+  2157: {normal: snow, common: sunshine, rare: blizzards}
+  2158: {normal: blizzards}
+  2159: {normal: snow, common: clouds, rare: blizzards}

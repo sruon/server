@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=../../schemas/weather.schema.json
+
+weather:
+  0: {normal: thunderstorms}

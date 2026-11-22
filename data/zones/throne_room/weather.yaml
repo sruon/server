@@ -1,0 +1,1454 @@
+# yaml-language-server: $schema=../../schemas/weather.schema.json
+
+weather:
+  0:    {normal: snow, common: gloom}
+  1:    {normal: gloom, common: snow}
+  3:    {normal: snow}
+  4:    {normal: snow, common: clouds}
+  6:    {normal: snow, common: gloom}
+  8:    {normal: snow, common: clouds}
+  9:    {normal: snow, common: gloom}
+  12:   {normal: snow}
+  13:   {normal: snow, common: gloom}
+  14:   {normal: snow, common: clouds}
+  15:   {normal: darkness}
+  16:   {normal: snow}
+  17:   {normal: snow, common: gloom}
+  18:   {normal: snow}
+  19:   {normal: snow, common: gloom}
+  24:   {normal: snow}
+  25:   {normal: snow, common: gloom}
+  26:   {normal: snow, common: clouds}
+  28:   {normal: snow, common: gloom}
+  29:   {normal: snow}
+  31:   {normal: snow, common: gloom}
+  32:   {normal: snow}
+  33:   {normal: gloom, common: snow}
+  34:   {normal: snow, common: gloom}
+  35:   {normal: snow}
+  36:   {normal: snow, common: gloom}
+  38:   {normal: snow}
+  41:   {normal: snow, common: gloom}
+  42:   {normal: gloom, common: snow}
+  43:   {normal: snow, common: gloom}
+  44:   {normal: snow}
+  45:   {normal: snow, common: gloom}
+  46:   {normal: snow}
+  47:   {normal: snow, common: gloom}
+  48:   {normal: snow}
+  49:   {normal: gloom, common: snow}
+  50:   {normal: snow, common: gloom}
+  51:   {normal: snow}
+  52:   {normal: snow, common: gloom}
+  54:   {normal: gloom, common: snow}
+  56:   {normal: snow, common: gloom}
+  59:   {normal: gloom, common: snow}
+  60:   {normal: snow}
+  62:   {normal: snow, common: gloom}
+  63:   {normal: snow}
+  64:   {normal: snow, common: gloom}
+  66:   {normal: snow}
+  67:   {normal: snow, common: gloom}
+  68:   {normal: darkness}
+  69:   {normal: snow, common: gloom}
+  70:   {normal: snow}
+  72:   {normal: snow, common: gloom}
+  73:   {normal: snow}
+  74:   {normal: snow, common: gloom}
+  77:   {normal: snow, common: clouds}
+  78:   {normal: snow, common: gloom}
+  79:   {normal: snow}
+  80:   {normal: gloom, common: snow}
+  82:   {normal: snow, common: gloom}
+  84:   {normal: snow, common: clouds}
+  85:   {normal: snow, common: gloom}
+  90:   {normal: snow}
+  92:   {normal: gloom, common: snow}
+  93:   {normal: snow}
+  95:   {normal: gloom, common: snow}
+  96:   {normal: snow, common: gloom}
+  97:   {normal: snow}
+  98:   {normal: darkness}
+  99:   {normal: snow, common: gloom}
+  100:  {normal: snow}
+  105:  {normal: darkness}
+  106:  {normal: snow}
+  109:  {normal: snow, common: gloom}
+  110:  {normal: snow}
+  111:  {normal: gloom, common: snow}
+  113:  {normal: snow, common: gloom}
+  116:  {normal: snow}
+  117:  {normal: snow, common: clouds}
+  118:  {normal: snow}
+  119:  {normal: gloom, common: snow, rare: darkness}
+  120:  {normal: darkness}
+  121:  {normal: snow}
+  122:  {normal: snow, common: gloom}
+  123:  {normal: snow}
+  125:  {normal: snow, common: gloom}
+  127:  {normal: snow}
+  128:  {normal: snow, common: gloom}
+  133:  {normal: gloom, common: snow}
+  134:  {normal: snow}
+  136:  {normal: snow, common: gloom}
+  137:  {normal: snow}
+  138:  {normal: snow, common: gloom}
+  139:  {normal: darkness}
+  140:  {normal: snow}
+  141:  {normal: snow, common: gloom}
+  143:  {normal: snow}
+  144:  {normal: gloom, common: snow}
+  146:  {normal: snow, common: clouds}
+  147:  {normal: snow, common: gloom}
+  148:  {normal: snow}
+  150:  {normal: snow, common: gloom}
+  152:  {normal: snow}
+  153:  {normal: snow, common: clouds}
+  154:  {normal: gloom, common: snow}
+  155:  {normal: gloom, common: clouds}
+  156:  {normal: snow, common: gloom}
+  157:  {normal: gloom, common: snow}
+  158:  {normal: snow}
+  160:  {normal: snow, common: clouds}
+  161:  {normal: gloom, common: snow}
+  163:  {normal: snow, common: clouds}
+  164:  {normal: snow, common: gloom}
+  165:  {normal: snow}
+  166:  {normal: snow, common: clouds}
+  167:  {normal: snow}
+  168:  {normal: snow, common: gloom}
+  169:  {normal: snow}
+  170:  {normal: gloom, common: snow}
+  171:  {normal: snow, common: gloom}
+  173:  {normal: snow}
+  174:  {normal: snow, common: gloom}
+  178:  {normal: snow}
+  180:  {normal: snow, common: gloom}
+  181:  {normal: gloom, common: snow, rare: darkness}
+  182:  {normal: snow, common: clouds}
+  183:  {normal: darkness}
+  184:  {normal: snow, common: gloom}
+  185:  {normal: snow}
+  186:  {normal: snow, common: gloom}
+  187:  {normal: gloom, common: snow}
+  188:  {normal: darkness}
+  189:  {normal: snow, common: gloom}
+  192:  {normal: snow}
+  193:  {normal: snow, common: clouds}
+  194:  {normal: snow}
+  195:  {normal: gloom}
+  196:  {normal: snow}
+  197:  {normal: snow, common: gloom}
+  198:  {normal: snow, common: clouds}
+  199:  {normal: snow, common: gloom}
+  200:  {normal: snow}
+  201:  {normal: snow, common: gloom}
+  202:  {normal: snow, common: clouds}
+  203:  {normal: snow}
+  205:  {normal: snow, common: clouds}
+  206:  {normal: snow}
+  207:  {normal: snow, common: gloom}
+  208:  {normal: snow, common: clouds}
+  209:  {normal: snow}
+  211:  {normal: snow, common: gloom}
+  215:  {normal: snow}
+  216:  {normal: snow, common: clouds}
+  217:  {normal: snow}
+  218:  {normal: snow, common: gloom}
+  219:  {normal: snow, common: clouds}
+  220:  {normal: gloom, common: snow}
+  221:  {normal: snow}
+  222:  {normal: snow, common: gloom}
+  225:  {normal: snow}
+  228:  {normal: snow, common: gloom}
+  230:  {normal: snow}
+  231:  {normal: snow, common: clouds}
+  232:  {normal: snow}
+  233:  {normal: snow, common: gloom}
+  234:  {normal: snow}
+  236:  {normal: snow, common: gloom}
+  238:  {normal: snow}
+  239:  {normal: snow, common: gloom}
+  241:  {normal: snow}
+  242:  {normal: snow, common: clouds}
+  243:  {normal: snow}
+  244:  {normal: darkness}
+  245:  {normal: snow, common: gloom}
+  247:  {normal: gloom, common: snow, rare: darkness}
+  248:  {normal: snow, common: gloom}
+  249:  {normal: snow}
+  251:  {normal: snow, common: clouds}
+  252:  {normal: gloom, common: snow}
+  253:  {normal: snow}
+  255:  {normal: snow, common: clouds}
+  256:  {normal: snow, common: gloom}
+  260:  {normal: snow}
+  263:  {normal: snow, common: gloom}
+  265:  {normal: snow}
+  267:  {normal: snow, common: gloom}
+  270:  {normal: snow}
+  272:  {normal: snow, common: clouds}
+  273:  {normal: gloom, common: snow, rare: darkness}
+  274:  {normal: snow, common: clouds}
+  275:  {normal: snow, common: gloom}
+  276:  {normal: snow}
+  278:  {normal: snow, common: gloom}
+  280:  {normal: snow}
+  281:  {normal: gloom, common: snow}
+  282:  {normal: snow, common: gloom}
+  284:  {normal: snow}
+  287:  {normal: snow, common: gloom}
+  289:  {normal: snow}
+  291:  {normal: snow, common: clouds}
+  292:  {normal: gloom, common: snow}
+  293:  {normal: snow, common: clouds}
+  294:  {normal: snow, common: gloom}
+  297:  {normal: darkness}
+  298:  {normal: snow}
+  300:  {normal: snow, common: gloom}
+  301:  {normal: snow}
+  303:  {normal: snow, common: gloom}
+  307:  {normal: snow}
+  308:  {normal: snow, common: clouds}
+  309:  {normal: snow, common: gloom}
+  311:  {normal: snow, common: clouds}
+  313:  {normal: darkness}
+  314:  {normal: snow}
+  315:  {normal: snow, common: gloom}
+  316:  {normal: gloom, common: clouds}
+  317:  {normal: snow, common: gloom}
+  318:  {normal: snow}
+  320:  {normal: gloom, common: snow}
+  321:  {normal: snow, common: clouds}
+  322:  {normal: snow, common: gloom}
+  323:  {normal: snow}
+  324:  {normal: snow, common: clouds}
+  325:  {normal: gloom, common: snow}
+  326:  {normal: snow}
+  327:  {normal: gloom, common: snow}
+  328:  {normal: snow}
+  330:  {normal: gloom, common: clouds}
+  331:  {normal: snow}
+  334:  {normal: snow, common: gloom}
+  335:  {normal: snow}
+  336:  {normal: snow, common: gloom}
+  337:  {normal: gloom, common: snow}
+  338:  {normal: snow}
+  339:  {normal: snow, common: clouds}
+  341:  {normal: snow}
+  343:  {normal: snow, common: gloom}
+  344:  {normal: snow}
+  346:  {normal: snow, common: gloom}
+  348:  {normal: snow}
+  349:  {normal: snow, common: clouds}
+  350:  {normal: snow, common: gloom}
+  351:  {normal: snow}
+  352:  {normal: snow, common: clouds}
+  353:  {normal: snow, common: gloom}
+  354:  {normal: snow, common: clouds}
+  355:  {normal: darkness}
+  356:  {normal: gloom, common: snow}
+  357:  {normal: snow, common: gloom}
+  358:  {normal: gloom, common: snow}
+  359:  {normal: snow}
+  361:  {normal: snow, common: gloom}
+  363:  {normal: gloom, common: snow}
+  364:  {normal: snow, common: gloom}
+  365:  {normal: snow}
+  366:  {normal: snow, common: clouds}
+  367:  {normal: snow}
+  368:  {normal: snow, common: gloom}
+  369:  {normal: snow}
+  370:  {normal: snow, common: gloom}
+  371:  {normal: snow}
+  373:  {normal: snow, common: clouds}
+  374:  {normal: snow, common: gloom}
+  375:  {normal: snow}
+  376:  {normal: snow, common: gloom}
+  377:  {normal: snow}
+  378:  {normal: snow, common: gloom}
+  380:  {normal: snow}
+  382:  {normal: gloom, common: snow}
+  384:  {normal: snow}
+  385:  {normal: gloom, common: snow}
+  386:  {normal: snow}
+  387:  {normal: snow, common: gloom}
+  388:  {normal: snow}
+  389:  {normal: gloom, common: snow}
+  390:  {normal: snow}
+  391:  {normal: gloom, common: snow}
+  392:  {normal: snow}
+  393:  {normal: snow, common: clouds}
+  394:  {normal: snow}
+  395:  {normal: snow, common: gloom}
+  396:  {normal: snow}
+  398:  {normal: snow, common: gloom}
+  399:  {normal: gloom, common: snow}
+  402:  {normal: darkness}
+  403:  {normal: snow, common: gloom}
+  407:  {normal: snow}
+  408:  {normal: snow, common: gloom}
+  409:  {normal: snow}
+  410:  {normal: gloom, common: snow}
+  412:  {normal: snow, common: gloom}
+  414:  {normal: gloom, common: snow}
+  415:  {normal: snow}
+  417:  {normal: snow, common: gloom}
+  418:  {normal: snow}
+  420:  {normal: snow, common: gloom}
+  421:  {normal: snow}
+  422:  {normal: snow, common: gloom}
+  423:  {normal: snow}
+  424:  {normal: snow, common: clouds}
+  425:  {normal: snow, common: gloom}
+  427:  {normal: snow}
+  428:  {normal: snow, common: clouds}
+  430:  {normal: snow, common: gloom}
+  433:  {normal: snow, common: clouds}
+  435:  {normal: gloom, common: snow}
+  436:  {normal: clouds, common: snow}
+  437:  {normal: snow, common: gloom}
+  438:  {normal: snow}
+  439:  {normal: snow, common: gloom}
+  440:  {normal: snow, common: clouds}
+  442:  {normal: snow, common: gloom}
+  443:  {normal: snow}
+  444:  {normal: snow, common: gloom}
+  445:  {normal: snow}
+  448:  {normal: snow, common: gloom}
+  449:  {normal: snow}
+  451:  {normal: snow, common: clouds}
+  453:  {normal: snow, common: gloom}
+  455:  {normal: snow, common: clouds}
+  456:  {normal: snow}
+  457:  {normal: snow, common: gloom}
+  458:  {normal: snow, common: clouds}
+  459:  {normal: snow}
+  464:  {normal: snow, common: clouds}
+  465:  {normal: snow}
+  466:  {normal: snow, common: gloom}
+  467:  {normal: gloom, common: clouds}
+  468:  {normal: snow, common: gloom}
+  469:  {normal: snow}
+  471:  {normal: gloom, common: snow, rare: darkness}
+  472:  {normal: snow, common: gloom}
+  473:  {normal: snow}
+  474:  {normal: gloom, common: snow}
+  476:  {normal: darkness}
+  477:  {normal: snow, common: gloom}
+  479:  {normal: snow}
+  483:  {normal: gloom, common: snow}
+  484:  {normal: snow}
+  486:  {normal: darkness}
+  487:  {normal: snow, common: gloom}
+  488:  {normal: gloom, common: snow}
+  489:  {normal: snow}
+  490:  {normal: snow, common: clouds}
+  491:  {normal: gloom, common: snow}
+  492:  {normal: snow}
+  494:  {normal: snow, common: gloom}
+  495:  {normal: snow}
+  496:  {normal: gloom, common: snow}
+  497:  {normal: snow}
+  498:  {normal: gloom, common: snow}
+  499:  {normal: snow}
+  500:  {normal: snow, common: gloom}
+  504:  {normal: gloom, common: snow}
+  506:  {normal: snow, common: gloom}
+  507:  {normal: snow}
+  508:  {normal: snow, common: gloom}
+  510:  {normal: snow}
+  511:  {normal: gloom, common: snow}
+  512:  {normal: snow}
+  516:  {normal: gloom, common: snow}
+  517:  {normal: snow, common: gloom}
+  518:  {normal: snow, common: clouds}
+  519:  {normal: gloom, common: clouds}
+  520:  {normal: snow, common: gloom}
+  522:  {normal: gloom, common: snow}
+  523:  {normal: snow}
+  525:  {normal: snow, common: clouds}
+  526:  {normal: snow}
+  528:  {normal: snow, common: gloom}
+  529:  {normal: snow}
+  531:  {normal: gloom, common: snow}
+  532:  {normal: snow, common: gloom}
+  533:  {normal: snow}
+  534:  {normal: snow, common: clouds}
+  535:  {normal: snow}
+  537:  {normal: gloom, common: snow, rare: darkness}
+  538:  {normal: snow}
+  540:  {normal: snow, common: clouds}
+  541:  {normal: snow}
+  542:  {normal: snow, common: gloom}
+  543:  {normal: snow}
+  545:  {normal: snow, common: gloom}
+  547:  {normal: snow, common: clouds}
+  548:  {normal: snow}
+  552:  {normal: snow, common: gloom}
+  556:  {normal: snow}
+  559:  {normal: snow, common: gloom}
+  560:  {normal: snow, common: clouds}
+  561:  {normal: snow}
+  562:  {normal: snow, common: gloom}
+  565:  {normal: gloom, common: snow, rare: darkness}
+  566:  {normal: snow, common: gloom}
+  568:  {normal: snow}
+  569:  {normal: darkness}
+  570:  {normal: snow}
+  573:  {normal: snow, common: gloom}
+  576:  {normal: snow}
+  577:  {normal: snow, common: gloom}
+  578:  {normal: snow}
+  579:  {normal: snow, common: gloom}
+  580:  {normal: snow}
+  581:  {normal: snow, common: gloom}
+  582:  {normal: snow}
+  584:  {normal: snow, common: gloom}
+  585:  {normal: snow}
+  586:  {normal: gloom, common: snow}
+  587:  {normal: snow, common: gloom}
+  589:  {normal: snow}
+  590:  {normal: snow, common: gloom}
+  592:  {normal: snow, common: clouds}
+  594:  {normal: snow, common: gloom}
+  595:  {normal: snow}
+  596:  {normal: gloom, common: snow}
+  597:  {normal: gloom}
+  598:  {normal: snow}
+  599:  {normal: snow, common: gloom}
+  600:  {normal: snow}
+  602:  {normal: snow, common: gloom}
+  604:  {normal: snow}
+  606:  {normal: snow, common: gloom}
+  607:  {normal: gloom, common: snow}
+  608:  {normal: snow}
+  609:  {normal: snow, common: gloom}
+  610:  {normal: snow}
+  612:  {normal: snow, common: gloom}
+  613:  {normal: snow}
+  614:  {normal: snow, common: gloom}
+  616:  {normal: darkness}
+  617:  {normal: snow, common: gloom}
+  618:  {normal: snow}
+  619:  {normal: snow, common: clouds}
+  620:  {normal: snow, common: gloom}
+  622:  {normal: snow}
+  625:  {normal: snow, common: gloom}
+  626:  {normal: snow}
+  627:  {normal: snow, common: gloom}
+  628:  {normal: snow}
+  629:  {normal: gloom, common: snow}
+  630:  {normal: snow, common: gloom}
+  631:  {normal: gloom, common: snow}
+  632:  {normal: snow}
+  633:  {normal: snow, common: gloom}
+  634:  {normal: snow}
+  637:  {normal: snow, common: gloom}
+  640:  {normal: snow}
+  641:  {normal: snow, common: gloom}
+  642:  {normal: snow, common: clouds}
+  643:  {normal: snow, common: gloom}
+  644:  {normal: snow}
+  645:  {normal: snow, common: gloom}
+  648:  {normal: gloom, common: snow}
+  649:  {normal: snow, common: gloom}
+  650:  {normal: snow}
+  651:  {normal: gloom, common: snow}
+  652:  {normal: snow}
+  653:  {normal: snow, common: gloom}
+  654:  {normal: snow}
+  655:  {normal: snow, common: gloom}
+  657:  {normal: snow, common: clouds}
+  658:  {normal: gloom, common: snow}
+  660:  {normal: snow, common: clouds}
+  661:  {normal: snow, common: gloom}
+  662:  {normal: darkness}
+  663:  {normal: snow, common: clouds}
+  664:  {normal: gloom, common: snow}
+  665:  {normal: snow, common: gloom}
+  667:  {normal: snow}
+  669:  {normal: snow, common: gloom}
+  672:  {normal: snow}
+  674:  {normal: gloom, common: snow}
+  675:  {normal: snow}
+  676:  {normal: snow, common: clouds}
+  677:  {normal: snow}
+  678:  {normal: snow, common: gloom}
+  679:  {normal: darkness}
+  680:  {normal: snow, common: gloom}
+  682:  {normal: snow}
+  684:  {normal: snow, common: gloom}
+  686:  {normal: snow, common: clouds}
+  688:  {normal: snow, common: gloom}
+  690:  {normal: snow, common: clouds}
+  691:  {normal: snow}
+  694:  {normal: snow, common: gloom}
+  695:  {normal: snow, common: clouds}
+  696:  {normal: snow, common: gloom}
+  699:  {normal: snow}
+  700:  {normal: gloom, common: snow}
+  702:  {normal: snow}
+  703:  {normal: snow, common: gloom}
+  704:  {normal: gloom, common: snow, rare: darkness}
+  705:  {normal: snow, common: clouds}
+  706:  {normal: snow}
+  708:  {normal: snow, common: gloom}
+  709:  {normal: snow}
+  710:  {normal: snow, common: gloom}
+  711:  {normal: gloom, common: snow}
+  712:  {normal: snow, common: gloom}
+  713:  {normal: snow, common: clouds}
+  714:  {normal: gloom, common: snow}
+  715:  {normal: snow, common: clouds}
+  716:  {normal: gloom, common: snow}
+  717:  {normal: snow}
+  718:  {normal: snow, common: clouds}
+  719:  {normal: snow, common: gloom}
+  721:  {normal: snow}
+  722:  {normal: snow, common: clouds}
+  723:  {normal: snow, common: gloom}
+  724:  {normal: gloom, common: snow}
+  725:  {normal: snow, common: gloom}
+  728:  {normal: snow}
+  730:  {normal: snow, common: clouds}
+  731:  {normal: snow}
+  732:  {normal: snow, common: clouds}
+  734:  {normal: snow, common: gloom}
+  735:  {normal: snow}
+  737:  {normal: snow, common: gloom}
+  739:  {normal: snow}
+  740:  {normal: gloom, common: snow}
+  741:  {normal: snow, common: gloom}
+  743:  {normal: snow, common: clouds}
+  744:  {normal: snow}
+  745:  {normal: snow, common: gloom}
+  747:  {normal: gloom, common: snow, rare: darkness}
+  748:  {normal: snow, common: clouds}
+  749:  {normal: snow, common: gloom}
+  750:  {normal: snow}
+  752:  {normal: clouds, common: snow}
+  753:  {normal: snow}
+  754:  {normal: snow, common: gloom}
+  756:  {normal: snow}
+  757:  {normal: snow, common: clouds}
+  758:  {normal: snow}
+  763:  {normal: snow, common: gloom}
+  767:  {normal: snow}
+  772:  {normal: snow, common: gloom}
+  773:  {normal: snow, common: clouds}
+  774:  {normal: snow}
+  775:  {normal: snow, common: gloom}
+  777:  {normal: snow}
+  778:  {normal: snow, common: gloom}
+  779:  {normal: snow, common: clouds}
+  780:  {normal: snow, common: gloom}
+  781:  {normal: snow, common: clouds}
+  783:  {normal: snow, common: gloom}
+  785:  {normal: snow}
+  787:  {normal: snow, common: gloom}
+  788:  {normal: snow}
+  789:  {normal: snow, common: gloom}
+  790:  {normal: snow, common: clouds}
+  791:  {normal: snow}
+  793:  {normal: snow, common: gloom}
+  794:  {normal: snow, common: clouds}
+  795:  {normal: snow, common: gloom}
+  798:  {normal: snow}
+  799:  {normal: snow, common: gloom}
+  800:  {normal: snow}
+  802:  {normal: snow, common: gloom}
+  804:  {normal: gloom, common: snow, rare: darkness}
+  805:  {normal: snow}
+  806:  {normal: snow, common: gloom}
+  807:  {normal: clouds, common: snow}
+  808:  {normal: snow}
+  809:  {normal: snow, common: clouds}
+  810:  {normal: snow, common: gloom}
+  811:  {normal: snow}
+  812:  {normal: snow, common: gloom}
+  817:  {normal: snow}
+  819:  {normal: snow, common: gloom}
+  820:  {normal: snow}
+  823:  {normal: snow, common: gloom}
+  825:  {normal: gloom, common: snow}
+  826:  {normal: gloom}
+  827:  {normal: snow, common: gloom}
+  828:  {normal: snow}
+  829:  {normal: snow, common: gloom}
+  831:  {normal: snow}
+  833:  {normal: gloom, common: snow}
+  834:  {normal: snow}
+  836:  {normal: snow, common: gloom}
+  837:  {normal: snow, common: clouds}
+  838:  {normal: snow}
+  839:  {normal: gloom, common: snow}
+  840:  {normal: snow}
+  841:  {normal: snow, common: gloom}
+  842:  {normal: snow, common: clouds}
+  843:  {normal: snow, common: gloom}
+  844:  {normal: snow}
+  848:  {normal: snow, common: gloom}
+  849:  {normal: snow}
+  851:  {normal: snow, common: gloom}
+  854:  {normal: snow, common: clouds}
+  855:  {normal: gloom, common: clouds}
+  856:  {normal: snow}
+  858:  {normal: snow, common: clouds}
+  859:  {normal: snow}
+  860:  {normal: snow, common: gloom}
+  861:  {normal: snow}
+  862:  {normal: snow, common: gloom}
+  865:  {normal: snow}
+  866:  {normal: snow, common: gloom}
+  868:  {normal: snow}
+  869:  {normal: snow, common: gloom}
+  870:  {normal: snow}
+  871:  {normal: snow, common: gloom}
+  874:  {normal: snow}
+  875:  {normal: snow, common: gloom}
+  877:  {normal: snow}
+  878:  {normal: snow, common: gloom}
+  881:  {normal: snow}
+  882:  {normal: snow, common: gloom}
+  883:  {normal: snow}
+  885:  {normal: snow, common: gloom}
+  887:  {normal: snow}
+  888:  {normal: snow, common: gloom}
+  889:  {normal: clouds, common: snow}
+  890:  {normal: gloom, common: snow}
+  891:  {normal: snow}
+  893:  {normal: gloom, common: snow}
+  894:  {normal: snow}
+  895:  {normal: snow, common: gloom}
+  899:  {normal: snow}
+  900:  {normal: snow, common: gloom}
+  901:  {normal: snow}
+  902:  {normal: snow, common: clouds}
+  903:  {normal: snow, common: gloom}
+  906:  {normal: snow, common: clouds}
+  907:  {normal: snow, common: gloom}
+  909:  {normal: snow}
+  911:  {normal: snow, common: gloom}
+  913:  {normal: snow}
+  915:  {normal: snow, common: gloom}
+  917:  {normal: snow, common: clouds}
+  919:  {normal: snow}
+  921:  {normal: snow, common: gloom}
+  922:  {normal: snow}
+  923:  {normal: snow, common: clouds}
+  924:  {normal: snow}
+  925:  {normal: snow, common: clouds}
+  926:  {normal: snow, common: gloom}
+  927:  {normal: snow}
+  929:  {normal: snow, common: gloom}
+  931:  {normal: snow, common: clouds}
+  932:  {normal: snow, common: gloom}
+  933:  {normal: snow, common: clouds}
+  934:  {normal: snow}
+  935:  {normal: snow, common: gloom}
+  936:  {normal: snow, common: clouds}
+  937:  {normal: gloom, common: snow}
+  938:  {normal: snow}
+  940:  {normal: snow, common: gloom}
+  941:  {normal: snow, common: clouds}
+  942:  {normal: snow, common: gloom}
+  943:  {normal: gloom, common: snow}
+  944:  {normal: snow, common: gloom}
+  945:  {normal: snow}
+  947:  {normal: snow, common: clouds}
+  948:  {normal: snow, common: gloom}
+  949:  {normal: gloom, common: snow, rare: darkness}
+  950:  {normal: snow}
+  953:  {normal: snow, common: gloom}
+  954:  {normal: snow}
+  955:  {normal: snow, common: clouds}
+  956:  {normal: snow, common: gloom}
+  957:  {normal: gloom, common: snow, rare: darkness}
+  958:  {normal: snow}
+  960:  {normal: snow, common: gloom}
+  961:  {normal: snow}
+  962:  {normal: gloom, common: snow, rare: darkness}
+  963:  {normal: snow}
+  966:  {normal: snow, common: gloom}
+  967:  {normal: snow}
+  968:  {normal: snow, common: gloom}
+  970:  {normal: snow}
+  972:  {normal: snow, common: gloom}
+  973:  {normal: snow}
+  974:  {normal: snow, common: gloom}
+  975:  {normal: gloom, common: snow}
+  976:  {normal: snow}
+  977:  {normal: snow, common: clouds}
+  978:  {normal: snow}
+  979:  {normal: snow, common: gloom}
+  986:  {normal: snow}
+  989:  {normal: gloom, common: snow}
+  990:  {normal: snow}
+  991:  {normal: snow, common: gloom}
+  992:  {normal: snow}
+  994:  {normal: gloom, common: snow, rare: darkness}
+  995:  {normal: snow, common: gloom}
+  996:  {normal: snow}
+  997:  {normal: gloom, common: snow}
+  998:  {normal: snow}
+  1003: {normal: snow, common: gloom}
+  1004: {normal: snow}
+  1005: {normal: snow, common: gloom}
+  1006: {normal: gloom, common: snow}
+  1007: {normal: snow, common: gloom}
+  1008: {normal: snow}
+  1013: {normal: snow, common: clouds}
+  1014: {normal: snow, common: gloom}
+  1016: {normal: snow}
+  1017: {normal: snow, common: gloom}
+  1018: {normal: snow}
+  1019: {normal: snow, common: gloom}
+  1021: {normal: gloom, common: snow}
+  1022: {normal: snow}
+  1023: {normal: snow, common: clouds}
+  1024: {normal: snow}
+  1025: {normal: snow, common: gloom}
+  1026: {normal: snow}
+  1029: {normal: snow, common: gloom}
+  1030: {normal: darkness}
+  1031: {normal: snow}
+  1034: {normal: snow, common: gloom}
+  1035: {normal: snow, common: clouds}
+  1036: {normal: snow}
+  1037: {normal: snow, common: gloom}
+  1038: {normal: gloom, common: snow}
+  1039: {normal: snow, common: gloom}
+  1040: {normal: snow}
+  1041: {normal: gloom, common: snow}
+  1042: {normal: snow, common: gloom}
+  1043: {normal: snow}
+  1044: {normal: snow, common: gloom}
+  1046: {normal: snow}
+  1047: {normal: snow, common: clouds}
+  1048: {normal: snow}
+  1049: {normal: snow, common: gloom}
+  1050: {normal: snow}
+  1051: {normal: gloom, common: snow}
+  1052: {normal: snow}
+  1053: {normal: snow, common: gloom}
+  1055: {normal: snow}
+  1057: {normal: snow, common: gloom}
+  1058: {normal: snow}
+  1059: {normal: snow, common: gloom}
+  1061: {normal: snow}
+  1063: {normal: snow, common: gloom}
+  1064: {normal: snow, common: clouds}
+  1065: {normal: snow, common: gloom}
+  1067: {normal: snow}
+  1068: {normal: snow, common: gloom}
+  1071: {normal: snow}
+  1072: {normal: gloom, common: snow}
+  1073: {normal: snow, common: gloom}
+  1074: {normal: gloom, common: snow}
+  1075: {normal: snow, common: clouds}
+  1076: {normal: snow}
+  1078: {normal: snow, common: gloom}
+  1079: {normal: gloom, common: clouds}
+  1080: {normal: snow}
+  1082: {normal: gloom, common: snow}
+  1083: {normal: snow, common: gloom}
+  1084: {normal: gloom, common: snow}
+  1085: {normal: snow, common: gloom}
+  1086: {normal: snow}
+  1089: {normal: snow, common: gloom}
+  1090: {normal: snow}
+  1092: {normal: snow, common: gloom}
+  1094: {normal: snow}
+  1096: {normal: snow, common: gloom}
+  1097: {normal: gloom, common: snow, rare: darkness}
+  1098: {normal: snow}
+  1100: {normal: snow, common: gloom}
+  1103: {normal: gloom, common: snow}
+  1104: {normal: snow, common: gloom}
+  1105: {normal: snow}
+  1106: {normal: darkness}
+  1107: {normal: snow, common: gloom}
+  1112: {normal: snow}
+  1115: {normal: snow, common: gloom}
+  1117: {normal: snow}
+  1118: {normal: snow, common: clouds}
+  1119: {normal: snow, common: gloom}
+  1121: {normal: snow}
+  1123: {normal: snow, common: gloom}
+  1124: {normal: snow, common: clouds}
+  1125: {normal: snow}
+  1126: {normal: snow, common: gloom}
+  1128: {normal: snow}
+  1130: {normal: clouds, common: snow}
+  1131: {normal: gloom, common: snow}
+  1133: {normal: snow, common: gloom}
+  1136: {normal: snow}
+  1138: {normal: snow, common: gloom}
+  1139: {normal: snow}
+  1140: {normal: snow, common: clouds}
+  1141: {normal: snow}
+  1142: {normal: snow, common: gloom}
+  1145: {normal: snow}
+  1148: {normal: snow, common: gloom}
+  1149: {normal: gloom}
+  1150: {normal: gloom, common: snow}
+  1151: {normal: snow, common: gloom}
+  1152: {normal: snow, common: clouds}
+  1153: {normal: snow, common: gloom}
+  1154: {normal: snow}
+  1156: {normal: snow, common: gloom}
+  1157: {normal: gloom, common: snow}
+  1158: {normal: snow, common: gloom}
+  1159: {normal: snow, common: clouds}
+  1160: {normal: darkness}
+  1161: {normal: snow, common: gloom}
+  1162: {normal: snow, common: clouds}
+  1163: {normal: snow, common: gloom}
+  1165: {normal: snow}
+  1166: {normal: snow, common: clouds}
+  1167: {normal: snow, common: gloom}
+  1168: {normal: snow}
+  1170: {normal: snow, common: gloom}
+  1171: {normal: snow}
+  1172: {normal: snow, common: clouds}
+  1173: {normal: snow, common: gloom}
+  1174: {normal: snow}
+  1175: {normal: snow, common: gloom}
+  1176: {normal: snow}
+  1177: {normal: snow, common: clouds}
+  1178: {normal: snow, common: gloom}
+  1180: {normal: snow}
+  1181: {normal: gloom, common: snow, rare: darkness}
+  1182: {normal: snow, common: gloom}
+  1183: {normal: snow}
+  1185: {normal: snow, common: gloom}
+  1186: {normal: snow}
+  1188: {normal: snow, common: gloom}
+  1189: {normal: snow}
+  1190: {normal: snow, common: gloom}
+  1192: {normal: snow}
+  1193: {normal: snow, common: gloom}
+  1196: {normal: snow}
+  1200: {normal: gloom, common: clouds}
+  1201: {normal: gloom, common: snow}
+  1202: {normal: snow, common: gloom}
+  1206: {normal: snow}
+  1209: {normal: gloom, common: snow, rare: darkness}
+  1210: {normal: snow}
+  1213: {normal: snow, common: gloom}
+  1215: {normal: darkness}
+  1216: {normal: gloom, common: clouds}
+  1217: {normal: snow, common: gloom}
+  1218: {normal: snow}
+  1220: {normal: gloom, common: snow}
+  1221: {normal: gloom}
+  1222: {normal: snow, common: gloom}
+  1223: {normal: snow}
+  1224: {normal: snow, common: gloom}
+  1225: {normal: snow}
+  1227: {normal: snow, common: gloom}
+  1228: {normal: gloom, common: snow}
+  1229: {normal: snow, common: gloom}
+  1230: {normal: gloom, common: snow}
+  1231: {normal: snow}
+  1232: {normal: snow, common: clouds}
+  1233: {normal: snow}
+  1237: {normal: snow, common: gloom}
+  1240: {normal: snow}
+  1248: {normal: snow, common: gloom}
+  1250: {normal: snow}
+  1252: {normal: snow, common: gloom}
+  1253: {normal: snow}
+  1254: {normal: snow, common: clouds}
+  1255: {normal: snow, common: gloom}
+  1258: {normal: snow}
+  1262: {normal: snow, common: gloom}
+  1264: {normal: gloom, common: snow}
+  1265: {normal: snow}
+  1266: {normal: snow, common: gloom}
+  1267: {normal: snow}
+  1269: {normal: snow, common: gloom}
+  1270: {normal: snow}
+  1272: {normal: snow, common: gloom}
+  1273: {normal: snow}
+  1274: {normal: snow, common: gloom}
+  1275: {normal: snow}
+  1276: {normal: gloom, common: snow}
+  1277: {normal: snow, common: clouds}
+  1278: {normal: snow}
+  1281: {normal: snow, common: gloom}
+  1283: {normal: snow}
+  1284: {normal: snow, common: gloom}
+  1285: {normal: snow}
+  1286: {normal: snow, common: gloom}
+  1288: {normal: snow, common: clouds}
+  1289: {normal: snow}
+  1290: {normal: snow, common: gloom}
+  1292: {normal: snow}
+  1294: {normal: snow, common: gloom}
+  1298: {normal: snow}
+  1301: {normal: snow, common: gloom}
+  1302: {normal: darkness}
+  1303: {normal: snow, common: gloom}
+  1305: {normal: snow, common: clouds}
+  1306: {normal: snow}
+  1308: {normal: snow, common: gloom}
+  1309: {normal: snow}
+  1310: {normal: snow, common: gloom}
+  1311: {normal: snow}
+  1312: {normal: gloom, common: snow}
+  1313: {normal: snow}
+  1314: {normal: snow, common: gloom}
+  1317: {normal: snow}
+  1318: {normal: snow, common: clouds}
+  1319: {normal: snow, common: gloom}
+  1320: {normal: snow}
+  1324: {normal: snow, common: gloom}
+  1325: {normal: snow}
+  1328: {normal: snow, common: gloom}
+  1331: {normal: snow, common: clouds}
+  1332: {normal: snow, common: gloom}
+  1333: {normal: snow}
+  1335: {normal: gloom, common: snow}
+  1336: {normal: snow}
+  1340: {normal: snow, common: clouds}
+  1342: {normal: gloom, common: snow}
+  1343: {normal: snow, common: gloom}
+  1344: {normal: snow}
+  1345: {normal: snow, common: clouds}
+  1346: {normal: snow, common: gloom}
+  1348: {normal: snow}
+  1353: {normal: gloom, common: snow, rare: darkness}
+  1354: {normal: snow}
+  1356: {normal: snow, common: gloom}
+  1357: {normal: snow}
+  1358: {normal: snow, common: gloom}
+  1359: {normal: snow}
+  1365: {normal: snow, common: gloom}
+  1367: {normal: snow, common: clouds}
+  1368: {normal: snow, common: gloom}
+  1369: {normal: snow}
+  1370: {normal: darkness}
+  1371: {normal: snow}
+  1372: {normal: snow, common: gloom}
+  1373: {normal: snow, common: clouds}
+  1375: {normal: snow}
+  1376: {normal: gloom, common: snow}
+  1378: {normal: snow, common: clouds}
+  1379: {normal: snow}
+  1380: {normal: snow, common: gloom}
+  1381: {normal: snow, common: clouds}
+  1382: {normal: snow, common: gloom}
+  1383: {normal: snow}
+  1384: {normal: snow, common: gloom}
+  1389: {normal: gloom, common: snow}
+  1390: {normal: snow, common: gloom}
+  1391: {normal: snow}
+  1395: {normal: snow, common: gloom}
+  1397: {normal: snow}
+  1398: {normal: darkness}
+  1399: {normal: gloom, common: snow}
+  1400: {normal: snow, common: gloom}
+  1401: {normal: snow}
+  1403: {normal: snow, common: gloom}
+  1407: {normal: snow}
+  1408: {normal: snow, common: clouds}
+  1410: {normal: snow}
+  1411: {normal: snow, common: gloom}
+  1413: {normal: snow}
+  1419: {normal: gloom, common: snow}
+  1421: {normal: clouds, common: snow}
+  1422: {normal: snow}
+  1423: {normal: gloom, common: snow}
+  1424: {normal: snow, common: gloom}
+  1425: {normal: snow}
+  1427: {normal: darkness}
+  1428: {normal: snow, common: clouds}
+  1429: {normal: gloom, common: snow}
+  1431: {normal: snow}
+  1434: {normal: snow, common: gloom}
+  1435: {normal: gloom, common: snow}
+  1436: {normal: snow, common: gloom}
+  1437: {normal: gloom, common: snow}
+  1438: {normal: snow, common: gloom}
+  1440: {normal: gloom, common: snow}
+  1441: {normal: snow, common: gloom}
+  1442: {normal: snow, common: clouds}
+  1443: {normal: snow, common: gloom}
+  1446: {normal: snow}
+  1447: {normal: clouds, common: snow}
+  1448: {normal: snow, common: gloom}
+  1449: {normal: snow}
+  1451: {normal: snow, common: gloom}
+  1452: {normal: snow, common: clouds}
+  1453: {normal: gloom, common: snow, rare: darkness}
+  1454: {normal: snow, common: gloom}
+  1455: {normal: gloom, common: snow}
+  1456: {normal: snow, common: gloom}
+  1457: {normal: snow}
+  1458: {normal: snow, common: gloom}
+  1459: {normal: snow}
+  1461: {normal: gloom, common: snow}
+  1462: {normal: snow}
+  1465: {normal: gloom}
+  1466: {normal: snow, common: gloom}
+  1468: {normal: snow, common: clouds}
+  1469: {normal: darkness}
+  1470: {normal: snow, common: gloom}
+  1471: {normal: gloom, common: snow}
+  1472: {normal: snow}
+  1473: {normal: snow, common: gloom}
+  1477: {normal: snow, common: clouds}
+  1478: {normal: snow}
+  1479: {normal: snow, common: gloom}
+  1480: {normal: snow}
+  1481: {normal: snow, common: gloom}
+  1482: {normal: snow}
+  1483: {normal: snow, common: gloom}
+  1484: {normal: snow}
+  1485: {normal: snow, common: clouds}
+  1486: {normal: snow, common: gloom}
+  1489: {normal: snow, common: clouds}
+  1490: {normal: gloom, common: snow}
+  1491: {normal: gloom, common: snow, rare: darkness}
+  1492: {normal: snow, common: gloom}
+  1494: {normal: snow, common: clouds}
+  1495: {normal: snow, common: gloom}
+  1498: {normal: snow}
+  1499: {normal: snow, common: gloom}
+  1500: {normal: snow}
+  1503: {normal: snow, common: gloom}
+  1506: {normal: snow, common: clouds}
+  1507: {normal: snow}
+  1508: {normal: gloom, common: snow, rare: darkness}
+  1509: {normal: snow}
+  1511: {normal: snow, common: clouds}
+  1512: {normal: gloom, common: snow}
+  1513: {normal: snow}
+  1514: {normal: snow, common: gloom}
+  1515: {normal: snow}
+  1516: {normal: snow, common: gloom}
+  1518: {normal: snow, common: clouds}
+  1519: {normal: snow}
+  1520: {normal: snow, common: clouds}
+  1521: {normal: snow}
+  1523: {normal: snow, common: gloom}
+  1524: {normal: snow}
+  1526: {normal: snow, common: gloom}
+  1528: {normal: snow}
+  1529: {normal: snow, common: clouds}
+  1530: {normal: snow, common: gloom}
+  1532: {normal: gloom, common: snow}
+  1533: {normal: snow, common: gloom}
+  1535: {normal: gloom, common: snow}
+  1536: {normal: snow}
+  1540: {normal: snow, common: gloom}
+  1541: {normal: snow, common: clouds}
+  1542: {normal: gloom, common: snow}
+  1543: {normal: gloom, common: clouds}
+  1544: {normal: snow, common: clouds}
+  1545: {normal: snow}
+  1546: {normal: snow, common: gloom}
+  1547: {normal: snow}
+  1548: {normal: gloom, common: snow}
+  1549: {normal: snow, common: gloom}
+  1550: {normal: gloom, common: snow}
+  1552: {normal: snow, common: gloom}
+  1554: {normal: snow}
+  1555: {normal: gloom, common: snow}
+  1556: {normal: snow, common: gloom}
+  1559: {normal: snow}
+  1560: {normal: snow, common: gloom}
+  1561: {normal: snow}
+  1562: {normal: snow, common: gloom}
+  1563: {normal: snow}
+  1565: {normal: snow, common: gloom}
+  1566: {normal: snow}
+  1572: {normal: snow, common: gloom}
+  1573: {normal: snow}
+  1574: {normal: snow, common: gloom}
+  1575: {normal: snow}
+  1576: {normal: snow, common: gloom}
+  1577: {normal: snow, common: clouds}
+  1578: {normal: snow, common: gloom}
+  1579: {normal: snow}
+  1581: {normal: snow, common: gloom}
+  1584: {normal: snow}
+  1585: {normal: snow, common: gloom}
+  1588: {normal: snow, common: clouds}
+  1589: {normal: snow, common: gloom}
+  1592: {normal: snow}
+  1593: {normal: snow, common: gloom}
+  1594: {normal: snow, common: clouds}
+  1595: {normal: snow}
+  1596: {normal: snow, common: gloom}
+  1601: {normal: snow, common: clouds}
+  1602: {normal: snow, common: gloom}
+  1603: {normal: gloom, common: snow}
+  1604: {normal: snow, common: gloom}
+  1605: {normal: gloom, common: snow}
+  1606: {normal: snow}
+  1607: {normal: snow, common: gloom}
+  1608: {normal: snow}
+  1609: {normal: snow, common: gloom}
+  1610: {normal: snow, common: clouds}
+  1611: {normal: snow}
+  1612: {normal: snow, common: clouds}
+  1613: {normal: snow}
+  1614: {normal: snow, common: gloom}
+  1617: {normal: gloom, common: snow}
+  1618: {normal: snow}
+  1619: {normal: snow, common: gloom}
+  1621: {normal: snow}
+  1622: {normal: snow, common: clouds}
+  1623: {normal: snow, common: gloom}
+  1624: {normal: snow}
+  1626: {normal: snow, common: clouds}
+  1627: {normal: snow, common: gloom}
+  1629: {normal: snow}
+  1630: {normal: snow, common: gloom}
+  1631: {normal: snow}
+  1635: {normal: snow, common: gloom}
+  1636: {normal: snow}
+  1638: {normal: snow, common: gloom}
+  1639: {normal: snow}
+  1641: {normal: snow, common: gloom}
+  1644: {normal: snow}
+  1645: {normal: snow, common: clouds}
+  1647: {normal: snow}
+  1650: {normal: gloom, common: snow}
+  1652: {normal: snow}
+  1653: {normal: snow, common: gloom}
+  1654: {normal: snow, common: clouds}
+  1655: {normal: snow, common: gloom}
+  1662: {normal: snow}
+  1664: {normal: snow, common: clouds}
+  1665: {normal: snow, common: gloom}
+  1666: {normal: snow}
+  1668: {normal: gloom, common: snow}
+  1669: {normal: snow}
+  1670: {normal: snow, common: gloom}
+  1674: {normal: snow}
+  1675: {normal: clouds, common: snow}
+  1676: {normal: snow, common: gloom}
+  1677: {normal: snow}
+  1678: {normal: snow, common: gloom}
+  1682: {normal: snow}
+  1685: {normal: snow, common: gloom}
+  1686: {normal: snow}
+  1687: {normal: snow, common: gloom}
+  1689: {normal: snow}
+  1690: {normal: snow, common: gloom}
+  1691: {normal: snow, common: clouds}
+  1692: {normal: snow}
+  1693: {normal: snow, common: clouds}
+  1694: {normal: snow}
+  1695: {normal: snow, common: gloom}
+  1696: {normal: snow}
+  1698: {normal: snow, common: gloom}
+  1702: {normal: snow}
+  1703: {normal: snow, common: clouds}
+  1704: {normal: snow, common: gloom}
+  1706: {normal: gloom, common: snow}
+  1708: {normal: snow}
+  1709: {normal: snow, common: gloom}
+  1710: {normal: snow}
+  1712: {normal: snow, common: clouds}
+  1714: {normal: snow, common: gloom}
+  1716: {normal: snow}
+  1718: {normal: snow, common: clouds}
+  1719: {normal: snow, common: gloom}
+  1722: {normal: snow}
+  1723: {normal: snow, common: clouds}
+  1724: {normal: snow}
+  1725: {normal: snow, common: gloom}
+  1727: {normal: gloom, common: snow}
+  1728: {normal: snow}
+  1729: {normal: snow, common: clouds}
+  1730: {normal: snow}
+  1732: {normal: snow, common: gloom}
+  1733: {normal: snow}
+  1735: {normal: snow, common: clouds}
+  1736: {normal: gloom, common: snow, rare: darkness}
+  1737: {normal: snow, common: gloom}
+  1738: {normal: gloom, common: snow, rare: darkness}
+  1739: {normal: snow, common: gloom}
+  1740: {normal: snow}
+  1743: {normal: snow, common: gloom}
+  1744: {normal: gloom, common: snow}
+  1746: {normal: snow}
+  1749: {normal: snow, common: gloom}
+  1750: {normal: snow}
+  1752: {normal: snow, common: gloom}
+  1754: {normal: snow, common: clouds}
+  1755: {normal: snow}
+  1756: {normal: snow, common: gloom}
+  1757: {normal: snow}
+  1760: {normal: gloom}
+  1761: {normal: snow, common: clouds}
+  1762: {normal: snow}
+  1765: {normal: darkness}
+  1766: {normal: snow, common: gloom}
+  1767: {normal: snow, common: clouds}
+  1768: {normal: snow}
+  1770: {normal: snow, common: gloom}
+  1772: {normal: snow}
+  1773: {normal: snow, common: gloom}
+  1774: {normal: snow}
+  1775: {normal: gloom, common: snow}
+  1776: {normal: snow, common: clouds}
+  1777: {normal: snow, common: gloom}
+  1781: {normal: snow, common: clouds}
+  1782: {normal: snow, common: gloom}
+  1784: {normal: snow, common: clouds}
+  1785: {normal: snow}
+  1786: {normal: snow, common: gloom}
+  1787: {normal: gloom, common: snow, rare: darkness}
+  1788: {normal: snow, common: gloom}
+  1790: {normal: gloom, common: snow}
+  1791: {normal: snow, common: gloom}
+  1793: {normal: snow}
+  1796: {normal: snow, common: gloom}
+  1798: {normal: snow, common: clouds}
+  1799: {normal: snow}
+  1800: {normal: gloom, common: snow}
+  1801: {normal: snow, common: gloom}
+  1802: {normal: snow}
+  1803: {normal: snow, common: gloom}
+  1804: {normal: snow}
+  1805: {normal: snow, common: gloom}
+  1808: {normal: snow}
+  1810: {normal: snow, common: gloom}
+  1811: {normal: snow}
+  1812: {normal: snow, common: gloom}
+  1813: {normal: snow}
+  1815: {normal: snow, common: gloom}
+  1817: {normal: snow, common: clouds}
+  1818: {normal: snow, common: gloom}
+  1819: {normal: snow}
+  1820: {normal: gloom, common: snow}
+  1821: {normal: snow}
+  1822: {normal: snow, common: gloom}
+  1823: {normal: gloom, common: snow, rare: darkness}
+  1824: {normal: snow}
+  1825: {normal: gloom, common: snow, rare: darkness}
+  1826: {normal: snow, common: gloom}
+  1828: {normal: snow}
+  1829: {normal: gloom, common: snow}
+  1830: {normal: snow}
+  1831: {normal: gloom, common: snow, rare: darkness}
+  1832: {normal: snow, common: clouds}
+  1833: {normal: gloom, common: snow}
+  1834: {normal: snow}
+  1835: {normal: snow, common: clouds}
+  1836: {normal: gloom, common: snow}
+  1837: {normal: snow, common: gloom}
+  1839: {normal: gloom, common: snow, rare: darkness}
+  1840: {normal: snow}
+  1841: {normal: snow, common: gloom}
+  1842: {normal: snow}
+  1845: {normal: snow, common: clouds}
+  1846: {normal: snow, common: gloom}
+  1857: {normal: snow}
+  1858: {normal: snow, common: clouds}
+  1860: {normal: gloom, common: snow, rare: darkness}
+  1861: {normal: snow, common: gloom}
+  1862: {normal: gloom, common: snow}
+  1863: {normal: snow, common: gloom}
+  1864: {normal: gloom, common: snow}
+  1865: {normal: snow}
+  1867: {normal: gloom, common: snow}
+  1868: {normal: snow}
+  1869: {normal: snow, common: gloom}
+  1871: {normal: snow}
+  1872: {normal: snow, common: clouds}
+  1873: {normal: snow, common: gloom}
+  1874: {normal: snow}
+  1880: {normal: gloom, common: snow}
+  1881: {normal: snow, common: gloom}
+  1882: {normal: snow}
+  1883: {normal: gloom, common: snow}
+  1884: {normal: gloom, common: snow, rare: darkness}
+  1885: {normal: snow, common: clouds}
+  1886: {normal: gloom, common: snow}
+  1887: {normal: snow}
+  1888: {normal: snow, common: gloom}
+  1889: {normal: snow, common: clouds}
+  1890: {normal: snow}
+  1891: {normal: gloom, common: snow}
+  1893: {normal: snow}
+  1896: {normal: snow, common: gloom}
+  1901: {normal: snow}
+  1903: {normal: snow, common: clouds}
+  1904: {normal: snow, common: gloom}
+  1906: {normal: snow}
+  1909: {normal: gloom, common: snow, rare: darkness}
+  1910: {normal: darkness}
+  1911: {normal: snow, common: gloom}
+  1912: {normal: gloom, common: snow}
+  1913: {normal: snow, common: gloom}
+  1914: {normal: snow}
+  1915: {normal: snow, common: clouds}
+  1916: {normal: snow, common: gloom}
+  1918: {normal: snow}
+  1920: {normal: snow, common: gloom}
+  1922: {normal: snow}
+  1925: {normal: snow, common: gloom}
+  1927: {normal: snow}
+  1928: {normal: darkness}
+  1929: {normal: snow, common: gloom}
+  1930: {normal: snow}
+  1934: {normal: snow, common: gloom}
+  1935: {normal: snow}
+  1939: {normal: snow, common: clouds}
+  1940: {normal: snow, common: gloom}
+  1942: {normal: gloom, common: snow}
+  1943: {normal: snow, common: clouds}
+  1944: {normal: snow}
+  1945: {normal: snow, common: gloom}
+  1947: {normal: gloom}
+  1948: {normal: snow}
+  1952: {normal: snow, common: gloom}
+  1955: {normal: gloom, common: snow}
+  1956: {normal: snow, common: gloom}
+  1958: {normal: snow}
+  1959: {normal: snow, common: clouds}
+  1960: {normal: snow}
+  1963: {normal: clouds, common: snow}
+  1964: {normal: snow}
+  1965: {normal: snow, common: gloom}
+  1966: {normal: gloom, common: snow}
+  1967: {normal: snow}
+  1968: {normal: snow, common: gloom}
+  1970: {normal: snow}
+  1972: {normal: gloom, common: snow}
+  1973: {normal: snow}
+  1974: {normal: snow, common: gloom}
+  1975: {normal: snow}
+  1977: {normal: snow, common: gloom}
+  1979: {normal: snow}
+  1980: {normal: gloom, common: snow}
+  1981: {normal: snow}
+  1982: {normal: snow, common: clouds}
+  1983: {normal: snow, common: gloom}
+  1985: {normal: snow}
+  1986: {normal: gloom, common: clouds, rare: darkness}
+  1987: {normal: snow}
+  1988: {normal: snow, common: clouds}
+  1989: {normal: snow}
+  1990: {normal: snow, common: gloom}
+  1991: {normal: snow}
+  1992: {normal: snow, common: gloom}
+  1993: {normal: snow}
+  1994: {normal: snow, common: gloom}
+  1995: {normal: snow}
+  1997: {normal: snow, common: gloom}
+  2001: {normal: snow, common: clouds}
+  2002: {normal: snow, common: gloom}
+  2004: {normal: snow}
+  2005: {normal: gloom, common: snow, rare: darkness}
+  2006: {normal: snow}
+  2007: {normal: snow, common: gloom}
+  2009: {normal: snow, common: clouds}
+  2010: {normal: snow, common: gloom}
+  2011: {normal: snow}
+  2012: {normal: snow, common: gloom}
+  2014: {normal: gloom, common: clouds}
+  2015: {normal: snow}
+  2018: {normal: snow, common: gloom}
+  2019: {normal: snow}
+  2020: {normal: snow, common: gloom}
+  2021: {normal: snow}
+  2023: {normal: snow, common: gloom}
+  2024: {normal: snow, common: clouds}
+  2025: {normal: snow, common: gloom}
+  2027: {normal: snow, common: clouds}
+  2028: {normal: snow, common: gloom}
+  2029: {normal: snow}
+  2031: {normal: snow, common: clouds}
+  2032: {normal: snow, common: gloom}
+  2034: {normal: snow, common: clouds}
+  2035: {normal: snow}
+  2036: {normal: snow, common: clouds}
+  2037: {normal: snow}
+  2038: {normal: gloom, common: snow}
+  2040: {normal: snow, common: gloom}
+  2042: {normal: snow, common: clouds}
+  2043: {normal: snow}
+  2047: {normal: snow, common: gloom}
+  2048: {normal: snow}
+  2049: {normal: snow, common: gloom}
+  2050: {normal: snow}
+  2053: {normal: snow, common: gloom}
+  2054: {normal: snow}
+  2057: {normal: snow, common: gloom}
+  2059: {normal: snow, common: clouds}
+  2060: {normal: snow, common: gloom}
+  2064: {normal: snow, common: clouds}
+  2065: {normal: snow, common: gloom}
+  2066: {normal: snow}
+  2067: {normal: snow, common: clouds}
+  2069: {normal: snow, common: gloom}
+  2073: {normal: snow}
+  2077: {normal: snow, common: clouds}
+  2078: {normal: snow}
+  2079: {normal: snow, common: gloom}
+  2081: {normal: snow, common: clouds}
+  2082: {normal: snow}
+  2083: {normal: snow, common: gloom}
+  2084: {normal: gloom, common: snow}
+  2085: {normal: gloom, common: clouds}
+  2086: {normal: snow, common: clouds}
+  2087: {normal: darkness}
+  2088: {normal: snow, common: clouds}
+  2089: {normal: snow, common: gloom}
+  2090: {normal: snow, common: clouds}
+  2091: {normal: snow, common: gloom}
+  2092: {normal: snow}
+  2093: {normal: snow, common: clouds}
+  2094: {normal: gloom, common: snow}
+  2096: {normal: snow, common: gloom}
+  2097: {normal: gloom}
+  2098: {normal: snow, common: gloom}
+  2099: {normal: snow, common: clouds}
+  2100: {normal: snow}
+  2101: {normal: snow, common: gloom}
+  2105: {normal: snow}
+  2106: {normal: snow, common: gloom}
+  2107: {normal: snow, common: clouds}
+  2108: {normal: snow}
+  2109: {normal: snow, common: gloom}
+  2110: {normal: snow}
+  2111: {normal: snow, common: gloom}
+  2113: {normal: snow}
+  2115: {normal: snow, common: gloom}
+  2117: {normal: snow}
+  2119: {normal: snow, common: gloom}
+  2121: {normal: snow}
+  2122: {normal: snow, common: gloom}
+  2124: {normal: gloom}
+  2125: {normal: snow, common: clouds}
+  2126: {normal: snow, common: gloom}
+  2127: {normal: snow, common: clouds}
+  2128: {normal: snow, common: gloom}
+  2130: {normal: gloom, common: snow}
+  2131: {normal: snow, common: gloom}
+  2132: {normal: snow}
+  2133: {normal: gloom, common: snow}
+  2134: {normal: snow, common: gloom}
+  2137: {normal: snow}
+  2140: {normal: snow, common: clouds}
+  2141: {normal: gloom, common: snow}
+  2142: {normal: gloom, common: snow, rare: darkness}
+  2143: {normal: snow}
+  2144: {normal: snow, common: gloom}
+  2147: {normal: snow, common: clouds}
+  2148: {normal: snow, common: gloom}
+  2150: {normal: snow}
+  2151: {normal: snow, common: gloom}
+  2152: {normal: snow, common: clouds}
+  2153: {normal: snow, common: gloom}
+  2156: {normal: snow}
+  2157: {normal: snow, common: gloom}
+  2158: {normal: snow}

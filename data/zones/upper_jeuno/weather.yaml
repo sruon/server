@@ -1,0 +1,1283 @@
+# yaml-language-server: $schema=../../schemas/weather.schema.json
+
+weather:
+  0:    {normal: clouds, common: sunshine}
+  1:    {normal: sunshine, common: clouds}
+  2:    {normal: sunshine}
+  3:    {normal: sunshine, common: clouds}
+  6:    {normal: sunshine}
+  7:    {normal: sunshine, common: clouds}
+  9:    {normal: sunshine}
+  10:   {normal: sunshine, common: clouds}
+  11:   {normal: clouds, common: sunshine}
+  12:   {normal: sunshine}
+  13:   {normal: sunshine, common: clouds}
+  22:   {normal: clouds, common: sunshine}
+  23:   {normal: sunshine, common: clouds}
+  27:   {normal: clouds, common: sunshine}
+  28:   {normal: sunshine, common: clouds}
+  29:   {normal: sunshine}
+  31:   {normal: clouds, common: sunshine}
+  32:   {normal: sunshine}
+  33:   {normal: clouds, common: sunshine}
+  34:   {normal: sunshine, common: clouds}
+  36:   {normal: clouds, common: sunshine}
+  37:   {normal: clouds}
+  38:   {normal: sunshine, common: clouds}
+  39:   {normal: clouds, common: sunshine}
+  40:   {normal: sunshine}
+  41:   {normal: sunshine, common: clouds}
+  42:   {normal: clouds, common: sunshine}
+  43:   {normal: sunshine, common: clouds}
+  45:   {normal: clouds, common: sunshine}
+  46:   {normal: sunshine}
+  47:   {normal: sunshine, common: clouds}
+  50:   {normal: sunshine}
+  51:   {normal: clouds, common: sunshine}
+  52:   {normal: sunshine}
+  57:   {normal: clouds, common: sunshine}
+  58:   {normal: sunshine}
+  59:   {normal: clouds, common: sunshine}
+  60:   {normal: sunshine}
+  61:   {normal: sunshine, common: clouds}
+  62:   {normal: sunshine}
+  64:   {normal: sunshine, common: clouds}
+  65:   {normal: sunshine}
+  66:   {normal: sunshine, common: clouds}
+  69:   {normal: sunshine}
+  70:   {normal: clouds, common: sunshine}
+  71:   {normal: sunshine, common: clouds}
+  72:   {normal: sunshine}
+  73:   {normal: sunshine, common: clouds}
+  74:   {normal: sunshine}
+  75:   {normal: clouds, common: sunshine}
+  78:   {normal: sunshine, common: clouds}
+  80:   {normal: sunshine}
+  82:   {normal: sunshine, common: clouds}
+  84:   {normal: clouds, common: sunshine}
+  85:   {normal: sunshine, common: clouds}
+  86:   {normal: sunshine}
+  87:   {normal: sunshine, common: clouds}
+  89:   {normal: clouds, common: sunshine}
+  90:   {normal: sunshine}
+  91:   {normal: clouds}
+  92:   {normal: sunshine}
+  93:   {normal: sunshine, common: clouds}
+  94:   {normal: sunshine}
+  95:   {normal: sunshine, common: clouds}
+  96:   {normal: sunshine}
+  98:   {normal: sunshine, common: clouds}
+  102:  {normal: sunshine}
+  104:  {normal: sunshine, common: clouds}
+  107:  {normal: sunshine}
+  108:  {normal: sunshine, common: clouds}
+  110:  {normal: clouds, common: sunshine}
+  111:  {normal: sunshine}
+  112:  {normal: sunshine, common: clouds}
+  114:  {normal: clouds, common: sunshine}
+  115:  {normal: sunshine, common: clouds}
+  117:  {normal: sunshine}
+  119:  {normal: sunshine, common: clouds}
+  125:  {normal: sunshine}
+  126:  {normal: sunshine, common: clouds}
+  129:  {normal: sunshine}
+  130:  {normal: sunshine, common: clouds}
+  131:  {normal: sunshine}
+  132:  {normal: sunshine, common: clouds}
+  134:  {normal: sunshine}
+  135:  {normal: clouds, common: sunshine}
+  138:  {normal: sunshine, common: clouds}
+  139:  {normal: sunshine}
+  141:  {normal: sunshine, common: clouds}
+  150:  {normal: sunshine}
+  151:  {normal: sunshine, common: clouds}
+  153:  {normal: clouds, common: sunshine}
+  154:  {normal: sunshine, common: clouds}
+  157:  {normal: clouds, common: sunshine}
+  158:  {normal: sunshine, common: clouds}
+  159:  {normal: sunshine}
+  160:  {normal: sunshine, common: clouds}
+  161:  {normal: clouds, common: sunshine}
+  162:  {normal: sunshine, common: clouds}
+  168:  {normal: sunshine}
+  170:  {normal: clouds, common: sunshine}
+  171:  {normal: sunshine, common: clouds}
+  173:  {normal: sunshine}
+  174:  {normal: sunshine, common: clouds}
+  175:  {normal: clouds, common: sunshine}
+  177:  {normal: sunshine, common: clouds}
+  178:  {normal: sunshine}
+  179:  {normal: sunshine, common: clouds}
+  183:  {normal: clouds, common: sunshine}
+  184:  {normal: sunshine}
+  185:  {normal: clouds, common: sunshine}
+  186:  {normal: sunshine, common: clouds}
+  193:  {normal: clouds, common: sunshine}
+  194:  {normal: sunshine}
+  195:  {normal: clouds, common: sunshine}
+  196:  {normal: sunshine, common: clouds}
+  197:  {normal: sunshine}
+  198:  {normal: sunshine, common: clouds}
+  201:  {normal: clouds, common: sunshine}
+  202:  {normal: sunshine, common: clouds}
+  204:  {normal: clouds, common: sunshine}
+  205:  {normal: sunshine}
+  206:  {normal: sunshine, common: clouds}
+  212:  {normal: sunshine}
+  213:  {normal: clouds, common: sunshine}
+  214:  {normal: sunshine}
+  215:  {normal: clouds, common: sunshine}
+  219:  {normal: sunshine, common: clouds}
+  222:  {normal: sunshine}
+  223:  {normal: sunshine, common: clouds}
+  225:  {normal: sunshine}
+  226:  {normal: sunshine, common: clouds}
+  230:  {normal: sunshine}
+  231:  {normal: sunshine, common: clouds}
+  233:  {normal: sunshine}
+  234:  {normal: sunshine, common: clouds}
+  235:  {normal: clouds, common: sunshine}
+  236:  {normal: sunshine, common: clouds}
+  237:  {normal: clouds, common: sunshine}
+  238:  {normal: sunshine, common: clouds}
+  243:  {normal: sunshine}
+  244:  {normal: sunshine, common: clouds}
+  246:  {normal: clouds, common: sunshine}
+  247:  {normal: sunshine, common: clouds}
+  248:  {normal: sunshine}
+  249:  {normal: sunshine, common: clouds}
+  253:  {normal: sunshine}
+  254:  {normal: sunshine, common: clouds}
+  255:  {normal: sunshine}
+  256:  {normal: sunshine, common: clouds}
+  257:  {normal: sunshine}
+  259:  {normal: sunshine, common: clouds}
+  262:  {normal: sunshine}
+  263:  {normal: sunshine, common: clouds}
+  265:  {normal: clouds, common: sunshine}
+  266:  {normal: sunshine, common: clouds}
+  267:  {normal: sunshine}
+  268:  {normal: sunshine, common: clouds}
+  273:  {normal: clouds, common: sunshine}
+  274:  {normal: sunshine, common: clouds}
+  275:  {normal: clouds, common: sunshine}
+  276:  {normal: sunshine, common: clouds}
+  279:  {normal: sunshine}
+  280:  {normal: clouds, common: sunshine}
+  281:  {normal: sunshine, common: clouds}
+  283:  {normal: clouds, common: sunshine}
+  284:  {normal: clouds}
+  285:  {normal: sunshine}
+  286:  {normal: sunshine, common: clouds}
+  288:  {normal: clouds, common: sunshine}
+  289:  {normal: sunshine, common: clouds}
+  290:  {normal: clouds, common: sunshine}
+  291:  {normal: sunshine, common: clouds}
+  294:  {normal: sunshine}
+  296:  {normal: sunshine, common: clouds}
+  301:  {normal: sunshine}
+  305:  {normal: clouds, common: sunshine}
+  306:  {normal: sunshine}
+  307:  {normal: clouds, common: sunshine}
+  308:  {normal: sunshine, common: clouds}
+  309:  {normal: clouds, common: sunshine}
+  310:  {normal: sunshine, common: clouds}
+  311:  {normal: sunshine}
+  312:  {normal: sunshine, common: clouds}
+  316:  {normal: clouds, common: sunshine}
+  317:  {normal: sunshine, common: clouds}
+  318:  {normal: sunshine}
+  319:  {normal: sunshine, common: clouds}
+  320:  {normal: sunshine}
+  321:  {normal: sunshine, common: clouds}
+  322:  {normal: clouds, common: sunshine}
+  324:  {normal: sunshine, common: clouds}
+  325:  {normal: clouds, common: sunshine}
+  326:  {normal: sunshine}
+  327:  {normal: sunshine, common: clouds}
+  330:  {normal: clouds, common: sunshine}
+  331:  {normal: sunshine}
+  332:  {normal: sunshine, common: clouds}
+  336:  {normal: clouds, common: sunshine}
+  337:  {normal: sunshine, common: clouds}
+  338:  {normal: clouds, common: sunshine}
+  339:  {normal: sunshine, common: clouds}
+  341:  {normal: clouds, common: sunshine}
+  342:  {normal: sunshine}
+  343:  {normal: clouds, common: sunshine}
+  345:  {normal: sunshine, common: clouds}
+  346:  {normal: clouds, common: sunshine}
+  348:  {normal: sunshine, common: clouds}
+  350:  {normal: sunshine}
+  351:  {normal: sunshine, common: clouds}
+  353:  {normal: sunshine}
+  354:  {normal: sunshine, common: clouds}
+  358:  {normal: clouds, common: sunshine}
+  359:  {normal: sunshine, common: clouds}
+  361:  {normal: sunshine}
+  362:  {normal: sunshine, common: clouds}
+  364:  {normal: clouds, common: sunshine}
+  365:  {normal: sunshine}
+  367:  {normal: clouds, common: sunshine}
+  368:  {normal: sunshine, common: clouds}
+  369:  {normal: sunshine}
+  370:  {normal: clouds, common: sunshine}
+  371:  {normal: sunshine, common: clouds}
+  372:  {normal: sunshine}
+  374:  {normal: sunshine, common: clouds}
+  376:  {normal: clouds, common: sunshine}
+  377:  {normal: sunshine}
+  379:  {normal: sunshine, common: clouds}
+  380:  {normal: sunshine}
+  382:  {normal: clouds, common: sunshine}
+  383:  {normal: sunshine, common: clouds}
+  384:  {normal: sunshine}
+  386:  {normal: sunshine, common: clouds}
+  387:  {normal: sunshine}
+  389:  {normal: clouds, common: sunshine}
+  390:  {normal: sunshine}
+  392:  {normal: sunshine, common: clouds}
+  396:  {normal: sunshine}
+  397:  {normal: sunshine, common: clouds}
+  399:  {normal: sunshine}
+  400:  {normal: clouds, common: sunshine}
+  401:  {normal: sunshine}
+  402:  {normal: sunshine, common: clouds}
+  403:  {normal: sunshine}
+  404:  {normal: sunshine, common: clouds}
+  406:  {normal: clouds, common: sunshine}
+  407:  {normal: sunshine, common: clouds}
+  408:  {normal: sunshine}
+  409:  {normal: clouds, common: sunshine}
+  410:  {normal: sunshine, common: clouds}
+  411:  {normal: sunshine}
+  412:  {normal: sunshine, common: clouds}
+  413:  {normal: sunshine}
+  414:  {normal: clouds, common: sunshine}
+  416:  {normal: sunshine}
+  417:  {normal: sunshine, common: clouds}
+  419:  {normal: sunshine}
+  420:  {normal: sunshine, common: clouds}
+  427:  {normal: sunshine}
+  430:  {normal: clouds, common: sunshine}
+  432:  {normal: sunshine, common: clouds}
+  434:  {normal: clouds, common: sunshine}
+  435:  {normal: sunshine, common: clouds}
+  438:  {normal: clouds, common: sunshine}
+  439:  {normal: sunshine}
+  440:  {normal: sunshine, common: clouds}
+  441:  {normal: clouds, common: sunshine}
+  442:  {normal: sunshine, common: clouds}
+  445:  {normal: sunshine}
+  451:  {normal: clouds, common: sunshine}
+  452:  {normal: sunshine, common: clouds}
+  455:  {normal: sunshine}
+  456:  {normal: sunshine, common: clouds}
+  457:  {normal: sunshine}
+  458:  {normal: sunshine, common: clouds}
+  460:  {normal: sunshine}
+  461:  {normal: sunshine, common: clouds}
+  463:  {normal: sunshine}
+  464:  {normal: sunshine, common: clouds}
+  469:  {normal: sunshine}
+  470:  {normal: sunshine, common: clouds}
+  471:  {normal: sunshine}
+  473:  {normal: sunshine, common: clouds}
+  474:  {normal: sunshine}
+  475:  {normal: sunshine, common: clouds}
+  480:  {normal: sunshine}
+  481:  {normal: sunshine, common: clouds}
+  482:  {normal: clouds, common: sunshine}
+  483:  {normal: sunshine}
+  484:  {normal: clouds, common: sunshine}
+  485:  {normal: sunshine}
+  486:  {normal: sunshine, common: clouds}
+  490:  {normal: clouds, common: sunshine}
+  491:  {normal: sunshine, common: clouds}
+  494:  {normal: clouds, common: sunshine}
+  496:  {normal: sunshine}
+  497:  {normal: sunshine, common: clouds}
+  499:  {normal: sunshine}
+  500:  {normal: sunshine, common: clouds}
+  501:  {normal: sunshine}
+  503:  {normal: clouds, common: sunshine}
+  504:  {normal: sunshine, common: clouds}
+  505:  {normal: clouds, common: sunshine}
+  506:  {normal: sunshine, common: clouds}
+  507:  {normal: sunshine}
+  508:  {normal: sunshine, common: clouds}
+  509:  {normal: sunshine}
+  510:  {normal: sunshine, common: clouds}
+  516:  {normal: clouds, common: sunshine}
+  518:  {normal: sunshine, common: clouds}
+  519:  {normal: sunshine}
+  520:  {normal: clouds, common: sunshine}
+  521:  {normal: sunshine, common: clouds}
+  522:  {normal: clouds, common: sunshine}
+  523:  {normal: sunshine, common: clouds}
+  526:  {normal: clouds, common: sunshine}
+  527:  {normal: sunshine, common: clouds}
+  528:  {normal: clouds}
+  529:  {normal: clouds, common: sunshine}
+  530:  {normal: sunshine}
+  531:  {normal: sunshine, common: clouds}
+  532:  {normal: clouds, common: sunshine}
+  533:  {normal: sunshine}
+  534:  {normal: sunshine, common: clouds}
+  535:  {normal: clouds, common: sunshine}
+  536:  {normal: sunshine, common: clouds}
+  538:  {normal: clouds, common: sunshine}
+  540:  {normal: sunshine, common: clouds}
+  543:  {normal: sunshine}
+  548:  {normal: clouds, common: sunshine}
+  549:  {normal: sunshine}
+  550:  {normal: sunshine, common: clouds}
+  553:  {normal: clouds, common: sunshine}
+  554:  {normal: sunshine, common: clouds}
+  559:  {normal: sunshine}
+  561:  {normal: clouds, common: sunshine}
+  562:  {normal: sunshine, common: clouds}
+  566:  {normal: sunshine}
+  567:  {normal: sunshine, common: clouds}
+  570:  {normal: clouds, common: sunshine}
+  571:  {normal: sunshine}
+  572:  {normal: clouds, common: sunshine}
+  573:  {normal: sunshine, common: clouds}
+  575:  {normal: sunshine}
+  576:  {normal: sunshine, common: clouds}
+  577:  {normal: clouds, common: sunshine}
+  578:  {normal: sunshine, common: clouds}
+  579:  {normal: clouds, common: sunshine}
+  580:  {normal: sunshine}
+  581:  {normal: sunshine, common: clouds}
+  584:  {normal: clouds}
+  585:  {normal: sunshine}
+  586:  {normal: sunshine, common: clouds}
+  587:  {normal: sunshine}
+  588:  {normal: sunshine, common: clouds}
+  590:  {normal: clouds, common: sunshine}
+  592:  {normal: sunshine, common: clouds}
+  593:  {normal: clouds, common: sunshine}
+  594:  {normal: sunshine, common: clouds}
+  595:  {normal: clouds, common: sunshine}
+  596:  {normal: sunshine}
+  597:  {normal: sunshine, common: clouds}
+  601:  {normal: sunshine}
+  602:  {normal: sunshine, common: clouds}
+  603:  {normal: clouds, common: sunshine}
+  605:  {normal: sunshine, common: clouds}
+  608:  {normal: sunshine}
+  610:  {normal: sunshine, common: clouds}
+  615:  {normal: sunshine}
+  617:  {normal: clouds, common: sunshine}
+  618:  {normal: sunshine}
+  620:  {normal: sunshine, common: clouds}
+  621:  {normal: sunshine}
+  623:  {normal: clouds, common: sunshine}
+  624:  {normal: sunshine, common: clouds}
+  625:  {normal: sunshine}
+  626:  {normal: sunshine, common: clouds}
+  627:  {normal: clouds, common: sunshine}
+  628:  {normal: sunshine, common: clouds}
+  630:  {normal: sunshine}
+  632:  {normal: clouds, common: sunshine}
+  633:  {normal: clouds}
+  634:  {normal: sunshine, common: clouds}
+  638:  {normal: clouds, common: sunshine}
+  639:  {normal: sunshine, common: clouds}
+  641:  {normal: clouds, common: sunshine}
+  642:  {normal: sunshine, common: clouds}
+  643:  {normal: clouds, common: sunshine}
+  644:  {normal: sunshine, common: clouds}
+  648:  {normal: sunshine}
+  649:  {normal: sunshine, common: clouds}
+  650:  {normal: clouds, common: sunshine}
+  651:  {normal: sunshine, common: clouds}
+  655:  {normal: sunshine}
+  656:  {normal: sunshine, common: clouds}
+  657:  {normal: clouds, common: sunshine}
+  658:  {normal: sunshine}
+  660:  {normal: sunshine, common: clouds}
+  664:  {normal: clouds, common: sunshine}
+  666:  {normal: sunshine, common: clouds}
+  667:  {normal: clouds, common: sunshine}
+  668:  {normal: sunshine}
+  669:  {normal: sunshine, common: clouds}
+  670:  {normal: clouds, common: sunshine}
+  671:  {normal: sunshine, common: clouds}
+  676:  {normal: clouds, common: sunshine}
+  677:  {normal: sunshine}
+  678:  {normal: sunshine, common: clouds}
+  686:  {normal: sunshine}
+  687:  {normal: sunshine, common: clouds}
+  688:  {normal: clouds, common: sunshine}
+  690:  {normal: sunshine, common: clouds}
+  691:  {normal: sunshine}
+  693:  {normal: sunshine, common: clouds}
+  695:  {normal: clouds, common: sunshine}
+  696:  {normal: sunshine}
+  697:  {normal: sunshine, common: clouds}
+  699:  {normal: sunshine}
+  701:  {normal: sunshine, common: clouds}
+  702:  {normal: sunshine}
+  703:  {normal: sunshine, common: clouds}
+  704:  {normal: sunshine}
+  705:  {normal: sunshine, common: clouds}
+  706:  {normal: sunshine}
+  707:  {normal: sunshine, common: clouds}
+  708:  {normal: sunshine}
+  709:  {normal: clouds, common: sunshine}
+  710:  {normal: sunshine, common: clouds}
+  711:  {normal: clouds, common: sunshine}
+  712:  {normal: sunshine}
+  715:  {normal: clouds, common: sunshine}
+  719:  {normal: sunshine, common: clouds}
+  721:  {normal: sunshine}
+  722:  {normal: sunshine, common: clouds}
+  723:  {normal: clouds}
+  724:  {normal: sunshine, common: clouds}
+  726:  {normal: sunshine}
+  727:  {normal: clouds, common: sunshine}
+  728:  {normal: sunshine, common: clouds}
+  730:  {normal: clouds, common: sunshine}
+  732:  {normal: sunshine, common: clouds}
+  735:  {normal: clouds, common: sunshine}
+  737:  {normal: sunshine}
+  739:  {normal: clouds, common: sunshine}
+  740:  {normal: sunshine, common: clouds}
+  748:  {normal: sunshine}
+  750:  {normal: clouds, common: sunshine}
+  751:  {normal: sunshine, common: clouds}
+  752:  {normal: clouds, common: sunshine}
+  755:  {normal: sunshine, common: clouds}
+  758:  {normal: clouds, common: sunshine}
+  759:  {normal: sunshine, common: clouds}
+  760:  {normal: clouds, common: sunshine}
+  761:  {normal: sunshine, common: clouds}
+  762:  {normal: sunshine}
+  764:  {normal: sunshine, common: clouds}
+  770:  {normal: sunshine}
+  771:  {normal: sunshine, common: clouds}
+  772:  {normal: sunshine}
+  773:  {normal: sunshine, common: clouds}
+  775:  {normal: sunshine}
+  776:  {normal: sunshine, common: clouds}
+  780:  {normal: clouds, common: sunshine}
+  781:  {normal: sunshine, common: clouds}
+  784:  {normal: sunshine}
+  785:  {normal: sunshine, common: clouds}
+  787:  {normal: clouds, common: sunshine}
+  789:  {normal: sunshine, common: clouds}
+  791:  {normal: clouds, common: sunshine}
+  792:  {normal: sunshine, common: clouds}
+  797:  {normal: clouds, common: sunshine}
+  798:  {normal: sunshine, common: clouds}
+  801:  {normal: clouds, common: sunshine}
+  802:  {normal: sunshine, common: clouds}
+  803:  {normal: clouds, common: sunshine}
+  804:  {normal: sunshine, common: clouds}
+  807:  {normal: clouds, common: sunshine}
+  808:  {normal: sunshine, common: clouds}
+  809:  {normal: sunshine}
+  810:  {normal: sunshine, common: clouds}
+  813:  {normal: sunshine}
+  814:  {normal: sunshine, common: clouds}
+  815:  {normal: clouds, common: sunshine}
+  816:  {normal: sunshine}
+  817:  {normal: sunshine, common: clouds}
+  822:  {normal: clouds, common: sunshine}
+  825:  {normal: sunshine}
+  826:  {normal: sunshine, common: clouds}
+  827:  {normal: sunshine}
+  828:  {normal: sunshine, common: clouds}
+  830:  {normal: sunshine}
+  831:  {normal: sunshine, common: clouds}
+  832:  {normal: clouds, common: sunshine}
+  833:  {normal: sunshine, common: clouds}
+  836:  {normal: clouds, common: sunshine}
+  837:  {normal: sunshine, common: clouds}
+  838:  {normal: sunshine}
+  840:  {normal: sunshine, common: clouds}
+  841:  {normal: clouds}
+  842:  {normal: sunshine, common: clouds}
+  844:  {normal: clouds, common: sunshine}
+  845:  {normal: sunshine, common: clouds}
+  847:  {normal: sunshine}
+  848:  {normal: sunshine, common: clouds}
+  849:  {normal: clouds, common: sunshine}
+  850:  {normal: sunshine, common: clouds}
+  852:  {normal: sunshine}
+  854:  {normal: sunshine, common: clouds}
+  861:  {normal: sunshine}
+  862:  {normal: sunshine, common: clouds}
+  865:  {normal: sunshine}
+  866:  {normal: sunshine, common: clouds}
+  867:  {normal: sunshine}
+  868:  {normal: sunshine, common: clouds}
+  870:  {normal: clouds, common: sunshine}
+  871:  {normal: sunshine, common: clouds}
+  872:  {normal: sunshine}
+  873:  {normal: clouds, common: sunshine}
+  874:  {normal: sunshine}
+  875:  {normal: sunshine, common: clouds}
+  877:  {normal: sunshine}
+  878:  {normal: sunshine, common: clouds}
+  879:  {normal: clouds, common: sunshine}
+  880:  {normal: sunshine, common: clouds}
+  882:  {normal: sunshine}
+  883:  {normal: sunshine, common: clouds}
+  890:  {normal: sunshine}
+  891:  {normal: clouds, common: sunshine}
+  892:  {normal: sunshine, common: clouds}
+  894:  {normal: sunshine}
+  895:  {normal: sunshine, common: clouds}
+  902:  {normal: clouds, common: sunshine}
+  903:  {normal: sunshine, common: clouds}
+  906:  {normal: clouds, common: sunshine}
+  907:  {normal: sunshine}
+  908:  {normal: sunshine, common: clouds}
+  909:  {normal: clouds, common: sunshine}
+  911:  {normal: sunshine}
+  912:  {normal: clouds, common: sunshine}
+  913:  {normal: sunshine, common: clouds}
+  914:  {normal: sunshine}
+  915:  {normal: clouds}
+  916:  {normal: sunshine, common: clouds}
+  919:  {normal: sunshine}
+  920:  {normal: clouds, common: sunshine}
+  921:  {normal: sunshine, common: clouds}
+  922:  {normal: sunshine}
+  923:  {normal: clouds, common: sunshine}
+  924:  {normal: sunshine, common: clouds}
+  925:  {normal: clouds, common: sunshine}
+  926:  {normal: sunshine, common: clouds}
+  936:  {normal: clouds, common: sunshine}
+  937:  {normal: sunshine, common: clouds}
+  939:  {normal: sunshine}
+  940:  {normal: clouds, common: sunshine}
+  941:  {normal: sunshine}
+  942:  {normal: sunshine, common: clouds}
+  943:  {normal: sunshine}
+  944:  {normal: sunshine, common: clouds}
+  945:  {normal: sunshine}
+  947:  {normal: sunshine, common: clouds}
+  948:  {normal: clouds, common: sunshine}
+  949:  {normal: sunshine, common: clouds}
+  950:  {normal: sunshine}
+  951:  {normal: sunshine, common: clouds}
+  953:  {normal: sunshine}
+  954:  {normal: sunshine, common: clouds}
+  957:  {normal: sunshine}
+  958:  {normal: sunshine, common: clouds}
+  959:  {normal: sunshine}
+  961:  {normal: sunshine, common: clouds}
+  966:  {normal: sunshine}
+  967:  {normal: sunshine, common: clouds}
+  972:  {normal: clouds, common: sunshine}
+  973:  {normal: sunshine}
+  975:  {normal: clouds, common: sunshine}
+  976:  {normal: sunshine}
+  977:  {normal: sunshine, common: clouds}
+  980:  {normal: sunshine}
+  982:  {normal: sunshine, common: clouds}
+  983:  {normal: clouds, common: sunshine}
+  984:  {normal: sunshine, common: clouds}
+  986:  {normal: clouds, common: sunshine}
+  987:  {normal: sunshine, common: clouds}
+  988:  {normal: sunshine}
+  989:  {normal: clouds}
+  990:  {normal: sunshine, common: clouds}
+  991:  {normal: sunshine}
+  992:  {normal: clouds, common: sunshine}
+  993:  {normal: sunshine}
+  994:  {normal: sunshine, common: clouds}
+  997:  {normal: clouds, common: sunshine}
+  998:  {normal: sunshine, common: clouds}
+  1002: {normal: sunshine}
+  1004: {normal: sunshine, common: clouds}
+  1006: {normal: clouds, common: sunshine}
+  1007: {normal: sunshine}
+  1009: {normal: sunshine, common: clouds}
+  1011: {normal: sunshine}
+  1014: {normal: clouds}
+  1015: {normal: sunshine}
+  1017: {normal: clouds, common: sunshine}
+  1019: {normal: sunshine}
+  1020: {normal: clouds, common: sunshine}
+  1021: {normal: sunshine, common: clouds}
+  1024: {normal: sunshine}
+  1025: {normal: clouds, common: sunshine}
+  1026: {normal: sunshine, common: clouds}
+  1035: {normal: sunshine}
+  1039: {normal: sunshine, common: clouds}
+  1041: {normal: sunshine}
+  1042: {normal: sunshine, common: clouds}
+  1043: {normal: clouds, common: sunshine}
+  1044: {normal: sunshine}
+  1045: {normal: sunshine, common: clouds}
+  1050: {normal: sunshine}
+  1052: {normal: sunshine, common: clouds}
+  1053: {normal: sunshine}
+  1054: {normal: sunshine, common: clouds}
+  1055: {normal: clouds, common: sunshine}
+  1056: {normal: sunshine, common: clouds}
+  1060: {normal: clouds, common: sunshine}
+  1061: {normal: sunshine}
+  1062: {normal: sunshine, common: clouds}
+  1063: {normal: clouds, common: sunshine}
+  1064: {normal: sunshine}
+  1069: {normal: sunshine, common: clouds}
+  1071: {normal: clouds, common: sunshine}
+  1072: {normal: sunshine}
+  1073: {normal: sunshine, common: clouds}
+  1086: {normal: sunshine}
+  1087: {normal: sunshine, common: clouds}
+  1088: {normal: sunshine}
+  1091: {normal: sunshine, common: clouds}
+  1092: {normal: clouds, common: sunshine}
+  1093: {normal: sunshine, common: clouds}
+  1094: {normal: sunshine}
+  1096: {normal: sunshine, common: clouds}
+  1101: {normal: clouds, common: sunshine}
+  1103: {normal: sunshine, common: clouds}
+  1105: {normal: sunshine}
+  1106: {normal: clouds, common: sunshine}
+  1107: {normal: sunshine}
+  1109: {normal: sunshine, common: clouds}
+  1112: {normal: clouds, common: sunshine}
+  1115: {normal: sunshine}
+  1117: {normal: sunshine, common: clouds}
+  1120: {normal: clouds, common: sunshine}
+  1121: {normal: sunshine, common: clouds}
+  1123: {normal: sunshine}
+  1124: {normal: sunshine, common: clouds}
+  1125: {normal: clouds, common: sunshine}
+  1126: {normal: sunshine}
+  1127: {normal: sunshine, common: clouds}
+  1128: {normal: sunshine}
+  1129: {normal: sunshine, common: clouds}
+  1131: {normal: clouds, common: sunshine}
+  1133: {normal: sunshine}
+  1134: {normal: sunshine, common: clouds}
+  1136: {normal: sunshine}
+  1138: {normal: sunshine, common: clouds}
+  1139: {normal: sunshine}
+  1143: {normal: sunshine, common: clouds}
+  1146: {normal: clouds, common: sunshine}
+  1147: {normal: sunshine, common: clouds}
+  1150: {normal: sunshine}
+  1151: {normal: clouds, common: sunshine}
+  1152: {normal: sunshine}
+  1155: {normal: clouds, common: sunshine}
+  1156: {normal: sunshine, common: clouds}
+  1159: {normal: sunshine}
+  1161: {normal: clouds, common: sunshine}
+  1163: {normal: sunshine}
+  1164: {normal: clouds, common: sunshine}
+  1165: {normal: sunshine, common: clouds}
+  1167: {normal: sunshine}
+  1168: {normal: sunshine, common: clouds}
+  1171: {normal: sunshine}
+  1172: {normal: sunshine, common: clouds}
+  1173: {normal: sunshine}
+  1175: {normal: sunshine, common: clouds}
+  1177: {normal: sunshine}
+  1178: {normal: clouds, common: sunshine}
+  1179: {normal: sunshine, common: clouds}
+  1182: {normal: sunshine}
+  1183: {normal: clouds, common: sunshine}
+  1184: {normal: sunshine}
+  1185: {normal: clouds, common: sunshine}
+  1186: {normal: sunshine}
+  1188: {normal: sunshine, common: clouds}
+  1191: {normal: clouds, common: sunshine}
+  1195: {normal: sunshine, common: clouds}
+  1196: {normal: clouds, common: sunshine}
+  1197: {normal: sunshine, common: clouds}
+  1198: {normal: clouds, common: sunshine}
+  1199: {normal: sunshine, common: clouds}
+  1202: {normal: sunshine}
+  1203: {normal: sunshine, common: clouds}
+  1204: {normal: sunshine}
+  1205: {normal: sunshine, common: clouds}
+  1206: {normal: sunshine}
+  1207: {normal: sunshine, common: clouds}
+  1208: {normal: sunshine}
+  1209: {normal: clouds}
+  1211: {normal: sunshine}
+  1212: {normal: clouds, common: sunshine}
+  1213: {normal: sunshine, common: clouds}
+  1216: {normal: clouds, common: sunshine}
+  1217: {normal: sunshine, common: clouds}
+  1218: {normal: sunshine}
+  1219: {normal: sunshine, common: clouds}
+  1222: {normal: sunshine}
+  1223: {normal: sunshine, common: clouds}
+  1225: {normal: clouds, common: sunshine}
+  1226: {normal: sunshine}
+  1227: {normal: clouds, common: sunshine}
+  1228: {normal: sunshine}
+  1232: {normal: sunshine, common: clouds}
+  1236: {normal: sunshine}
+  1237: {normal: sunshine, common: clouds}
+  1240: {normal: clouds, common: sunshine}
+  1241: {normal: sunshine, common: clouds}
+  1243: {normal: sunshine}
+  1244: {normal: sunshine, common: clouds}
+  1245: {normal: clouds, common: sunshine}
+  1246: {normal: sunshine, common: clouds}
+  1247: {normal: clouds}
+  1248: {normal: sunshine, common: clouds}
+  1251: {normal: sunshine}
+  1253: {normal: clouds, common: sunshine}
+  1254: {normal: sunshine, common: clouds}
+  1256: {normal: sunshine}
+  1257: {normal: sunshine, common: clouds}
+  1259: {normal: sunshine}
+  1260: {normal: sunshine, common: clouds}
+  1262: {normal: sunshine}
+  1264: {normal: sunshine, common: clouds}
+  1266: {normal: clouds, common: sunshine}
+  1267: {normal: sunshine, common: clouds}
+  1269: {normal: sunshine}
+  1270: {normal: sunshine, common: clouds}
+  1274: {normal: clouds, common: sunshine}
+  1275: {normal: sunshine}
+  1276: {normal: sunshine, common: clouds}
+  1278: {normal: clouds, common: sunshine}
+  1280: {normal: sunshine, common: clouds}
+  1281: {normal: clouds, common: sunshine}
+  1282: {normal: sunshine}
+  1283: {normal: sunshine, common: clouds}
+  1284: {normal: clouds, common: sunshine}
+  1285: {normal: sunshine}
+  1287: {normal: sunshine, common: clouds}
+  1288: {normal: sunshine}
+  1289: {normal: sunshine, common: clouds}
+  1290: {normal: clouds, common: sunshine}
+  1291: {normal: sunshine}
+  1292: {normal: sunshine, common: clouds}
+  1293: {normal: sunshine}
+  1294: {normal: sunshine, common: clouds}
+  1295: {normal: sunshine}
+  1296: {normal: sunshine, common: clouds}
+  1299: {normal: clouds, common: sunshine}
+  1301: {normal: sunshine, common: clouds}
+  1305: {normal: clouds, common: sunshine}
+  1306: {normal: sunshine, common: clouds}
+  1309: {normal: sunshine}
+  1310: {normal: sunshine, common: clouds}
+  1313: {normal: sunshine}
+  1315: {normal: sunshine, common: clouds}
+  1316: {normal: clouds, common: sunshine}
+  1317: {normal: sunshine}
+  1318: {normal: sunshine, common: clouds}
+  1321: {normal: clouds}
+  1322: {normal: sunshine, common: clouds}
+  1325: {normal: sunshine}
+  1327: {normal: sunshine, common: clouds}
+  1331: {normal: sunshine}
+  1332: {normal: sunshine, common: clouds}
+  1333: {normal: clouds, common: sunshine}
+  1334: {normal: sunshine, common: clouds}
+  1338: {normal: sunshine}
+  1339: {normal: sunshine, common: clouds}
+  1340: {normal: clouds, common: sunshine}
+  1341: {normal: sunshine}
+  1344: {normal: clouds, common: sunshine}
+  1345: {normal: sunshine, common: clouds}
+  1346: {normal: sunshine}
+  1348: {normal: sunshine, common: clouds}
+  1349: {normal: sunshine}
+  1351: {normal: sunshine, common: clouds}
+  1352: {normal: sunshine}
+  1353: {normal: sunshine, common: clouds}
+  1357: {normal: clouds, common: sunshine}
+  1360: {normal: sunshine, common: clouds}
+  1362: {normal: clouds, common: sunshine}
+  1363: {normal: sunshine, common: clouds}
+  1366: {normal: clouds, common: sunshine}
+  1367: {normal: sunshine, common: clouds}
+  1368: {normal: clouds, common: sunshine}
+  1369: {normal: sunshine, common: clouds}
+  1370: {normal: sunshine}
+  1371: {normal: clouds, common: sunshine}
+  1373: {normal: sunshine, common: clouds}
+  1374: {normal: clouds, common: sunshine}
+  1375: {normal: sunshine}
+  1376: {normal: sunshine, common: clouds}
+  1378: {normal: sunshine}
+  1379: {normal: sunshine, common: clouds}
+  1382: {normal: clouds, common: sunshine}
+  1383: {normal: sunshine}
+  1384: {normal: sunshine, common: clouds}
+  1386: {normal: sunshine}
+  1388: {normal: sunshine, common: clouds}
+  1392: {normal: sunshine}
+  1396: {normal: sunshine, common: clouds}
+  1397: {normal: clouds}
+  1398: {normal: sunshine}
+  1400: {normal: sunshine, common: clouds}
+  1403: {normal: clouds, common: sunshine}
+  1404: {normal: sunshine, common: clouds}
+  1405: {normal: clouds, common: sunshine}
+  1406: {normal: sunshine, common: clouds}
+  1408: {normal: sunshine}
+  1409: {normal: clouds, common: sunshine}
+  1410: {normal: sunshine, common: clouds}
+  1412: {normal: sunshine}
+  1413: {normal: clouds, common: sunshine}
+  1414: {normal: sunshine, common: clouds}
+  1415: {normal: clouds, common: sunshine}
+  1416: {normal: clouds}
+  1417: {normal: sunshine, common: clouds}
+  1418: {normal: clouds, common: sunshine}
+  1419: {normal: sunshine, common: clouds}
+  1424: {normal: clouds, common: sunshine}
+  1426: {normal: sunshine, common: clouds}
+  1428: {normal: clouds, common: sunshine}
+  1429: {normal: sunshine, common: clouds}
+  1431: {normal: sunshine}
+  1433: {normal: sunshine, common: clouds}
+  1436: {normal: sunshine}
+  1437: {normal: sunshine, common: clouds}
+  1440: {normal: sunshine}
+  1441: {normal: sunshine, common: clouds}
+  1442: {normal: clouds, common: sunshine}
+  1443: {normal: sunshine, common: clouds}
+  1446: {normal: clouds, common: sunshine}
+  1447: {normal: sunshine, common: clouds}
+  1448: {normal: sunshine}
+  1449: {normal: sunshine, common: clouds}
+  1451: {normal: sunshine}
+  1454: {normal: sunshine, common: clouds}
+  1455: {normal: clouds, common: sunshine}
+  1456: {normal: sunshine, common: clouds}
+  1458: {normal: sunshine}
+  1460: {normal: clouds, common: sunshine}
+  1461: {normal: sunshine, common: clouds}
+  1462: {normal: sunshine}
+  1463: {normal: clouds, common: sunshine}
+  1464: {normal: sunshine}
+  1465: {normal: sunshine, common: clouds}
+  1467: {normal: sunshine}
+  1468: {normal: sunshine, common: clouds}
+  1471: {normal: clouds, common: sunshine}
+  1473: {normal: sunshine, common: clouds}
+  1475: {normal: clouds, common: sunshine}
+  1476: {normal: sunshine, common: clouds}
+  1482: {normal: clouds, common: sunshine}
+  1483: {normal: sunshine}
+  1484: {normal: sunshine, common: clouds}
+  1486: {normal: clouds, common: sunshine}
+  1488: {normal: sunshine}
+  1489: {normal: clouds, common: sunshine}
+  1491: {normal: sunshine, common: clouds}
+  1493: {normal: sunshine}
+  1494: {normal: clouds, common: sunshine}
+  1495: {normal: sunshine}
+  1496: {normal: sunshine, common: clouds}
+  1497: {normal: clouds, common: sunshine}
+  1498: {normal: sunshine, common: clouds}
+  1500: {normal: sunshine}
+  1501: {normal: sunshine, common: clouds}
+  1504: {normal: clouds, common: sunshine}
+  1505: {normal: sunshine, common: clouds}
+  1507: {normal: sunshine}
+  1508: {normal: sunshine, common: clouds}
+  1509: {normal: sunshine}
+  1512: {normal: sunshine, common: clouds}
+  1515: {normal: clouds, common: sunshine}
+  1516: {normal: sunshine, common: clouds}
+  1521: {normal: sunshine}
+  1522: {normal: sunshine, common: clouds}
+  1523: {normal: sunshine}
+  1524: {normal: clouds, common: sunshine}
+  1526: {normal: sunshine}
+  1528: {normal: sunshine, common: clouds}
+  1529: {normal: clouds, common: sunshine}
+  1532: {normal: sunshine}
+  1535: {normal: sunshine, common: clouds}
+  1537: {normal: sunshine}
+  1538: {normal: clouds, common: sunshine}
+  1539: {normal: sunshine, common: clouds}
+  1542: {normal: sunshine}
+  1543: {normal: sunshine, common: clouds}
+  1544: {normal: sunshine}
+  1545: {normal: sunshine, common: clouds}
+  1548: {normal: sunshine}
+  1549: {normal: clouds, common: sunshine}
+  1550: {normal: sunshine}
+  1551: {normal: sunshine, common: clouds}
+  1553: {normal: sunshine}
+  1555: {normal: clouds}
+  1556: {normal: sunshine, common: clouds}
+  1557: {normal: sunshine}
+  1558: {normal: sunshine, common: clouds}
+  1559: {normal: sunshine}
+  1560: {normal: sunshine, common: clouds}
+  1562: {normal: clouds, common: sunshine}
+  1563: {normal: sunshine, common: clouds}
+  1565: {normal: sunshine}
+  1566: {normal: sunshine, common: clouds}
+  1569: {normal: sunshine}
+  1570: {normal: sunshine, common: clouds}
+  1571: {normal: clouds, common: sunshine}
+  1572: {normal: sunshine, common: clouds}
+  1574: {normal: sunshine}
+  1575: {normal: sunshine, common: clouds}
+  1580: {normal: clouds, common: sunshine}
+  1581: {normal: sunshine}
+  1582: {normal: sunshine, common: clouds}
+  1584: {normal: sunshine}
+  1585: {normal: sunshine, common: clouds}
+  1588: {normal: sunshine}
+  1589: {normal: clouds, common: sunshine}
+  1590: {normal: sunshine, common: clouds}
+  1591: {normal: sunshine}
+  1593: {normal: clouds, common: sunshine}
+  1594: {normal: sunshine}
+  1595: {normal: sunshine, common: clouds}
+  1597: {normal: clouds, common: sunshine}
+  1598: {normal: sunshine, common: clouds}
+  1599: {normal: clouds, common: sunshine}
+  1601: {normal: sunshine, common: clouds}
+  1606: {normal: clouds, common: sunshine}
+  1607: {normal: sunshine, common: clouds}
+  1610: {normal: sunshine}
+  1611: {normal: sunshine, common: clouds}
+  1613: {normal: sunshine}
+  1616: {normal: sunshine, common: clouds}
+  1618: {normal: sunshine}
+  1620: {normal: sunshine, common: clouds}
+  1623: {normal: clouds, common: sunshine}
+  1625: {normal: sunshine, common: clouds}
+  1632: {normal: clouds}
+  1633: {normal: clouds, common: sunshine}
+  1634: {normal: sunshine, common: clouds}
+  1635: {normal: sunshine}
+  1636: {normal: sunshine, common: clouds}
+  1638: {normal: clouds, common: sunshine}
+  1639: {normal: sunshine, common: clouds}
+  1640: {normal: sunshine}
+  1642: {normal: sunshine, common: clouds}
+  1645: {normal: sunshine}
+  1646: {normal: sunshine, common: clouds}
+  1649: {normal: sunshine}
+  1650: {normal: sunshine, common: clouds}
+  1651: {normal: sunshine}
+  1652: {normal: sunshine, common: clouds}
+  1653: {normal: clouds, common: sunshine}
+  1655: {normal: sunshine}
+  1656: {normal: sunshine, common: clouds}
+  1659: {normal: sunshine}
+  1660: {normal: sunshine, common: clouds}
+  1663: {normal: clouds, common: sunshine}
+  1666: {normal: sunshine, common: clouds}
+  1669: {normal: sunshine}
+  1671: {normal: sunshine, common: clouds}
+  1672: {normal: clouds, common: sunshine}
+  1673: {normal: sunshine, common: clouds}
+  1675: {normal: sunshine}
+  1676: {normal: sunshine, common: clouds}
+  1678: {normal: clouds, common: sunshine}
+  1679: {normal: sunshine}
+  1680: {normal: clouds, common: sunshine}
+  1681: {normal: sunshine}
+  1682: {normal: clouds, common: sunshine}
+  1683: {normal: sunshine, common: clouds}
+  1684: {normal: clouds, common: sunshine}
+  1686: {normal: sunshine, common: clouds}
+  1687: {normal: clouds, common: sunshine}
+  1688: {normal: sunshine, common: clouds}
+  1689: {normal: clouds, common: sunshine}
+  1690: {normal: sunshine, common: clouds}
+  1691: {normal: clouds, common: sunshine}
+  1692: {normal: sunshine, common: clouds}
+  1698: {normal: sunshine}
+  1699: {normal: sunshine, common: clouds}
+  1701: {normal: clouds, common: sunshine}
+  1702: {normal: sunshine}
+  1704: {normal: sunshine, common: clouds}
+  1705: {normal: sunshine}
+  1707: {normal: sunshine, common: clouds}
+  1708: {normal: clouds, common: sunshine}
+  1709: {normal: sunshine}
+  1710: {normal: clouds}
+  1711: {normal: sunshine, common: clouds}
+  1712: {normal: sunshine}
+  1713: {normal: clouds, common: sunshine}
+  1714: {normal: sunshine}
+  1717: {normal: sunshine, common: clouds}
+  1718: {normal: sunshine}
+  1719: {normal: clouds, common: sunshine}
+  1720: {normal: sunshine}
+  1721: {normal: clouds, common: sunshine}
+  1722: {normal: sunshine}
+  1723: {normal: sunshine, common: clouds}
+  1727: {normal: sunshine}
+  1728: {normal: clouds, common: sunshine}
+  1729: {normal: sunshine, common: clouds}
+  1733: {normal: clouds}
+  1734: {normal: sunshine, common: clouds}
+  1735: {normal: clouds, common: sunshine}
+  1737: {normal: sunshine, common: clouds}
+  1738: {normal: sunshine}
+  1739: {normal: sunshine, common: clouds}
+  1743: {normal: clouds, common: sunshine}
+  1744: {normal: sunshine, common: clouds}
+  1745: {normal: sunshine}
+  1746: {normal: sunshine, common: clouds}
+  1750: {normal: clouds, common: sunshine}
+  1752: {normal: sunshine, common: clouds}
+  1756: {normal: sunshine}
+  1757: {normal: sunshine, common: clouds}
+  1758: {normal: clouds, common: sunshine}
+  1759: {normal: sunshine, common: clouds}
+  1761: {normal: sunshine}
+  1762: {normal: sunshine, common: clouds}
+  1763: {normal: clouds, common: sunshine}
+  1764: {normal: sunshine}
+  1769: {normal: clouds, common: sunshine}
+  1770: {normal: sunshine, common: clouds}
+  1772: {normal: clouds, common: sunshine}
+  1775: {normal: sunshine, common: clouds}
+  1776: {normal: sunshine}
+  1777: {normal: sunshine, common: clouds}
+  1778: {normal: sunshine}
+  1779: {normal: sunshine, common: clouds}
+  1782: {normal: sunshine}
+  1786: {normal: clouds, common: sunshine}
+  1787: {normal: sunshine}
+  1788: {normal: sunshine, common: clouds}
+  1789: {normal: sunshine}
+  1791: {normal: clouds, common: sunshine}
+  1792: {normal: sunshine, common: clouds}
+  1793: {normal: clouds, common: sunshine}
+  1794: {normal: sunshine}
+  1795: {normal: sunshine, common: clouds}
+  1797: {normal: sunshine}
+  1798: {normal: sunshine, common: clouds}
+  1799: {normal: sunshine}
+  1800: {normal: sunshine, common: clouds}
+  1802: {normal: clouds, common: sunshine}
+  1803: {normal: sunshine}
+  1804: {normal: clouds, common: sunshine}
+  1805: {normal: sunshine}
+  1806: {normal: clouds, common: sunshine}
+  1807: {normal: sunshine, common: clouds}
+  1811: {normal: sunshine}
+  1812: {normal: sunshine, common: clouds}
+  1813: {normal: clouds, common: sunshine}
+  1814: {normal: sunshine}
+  1815: {normal: sunshine, common: clouds}
+  1816: {normal: sunshine}
+  1817: {normal: sunshine, common: clouds}
+  1821: {normal: sunshine}
+  1822: {normal: clouds, common: sunshine}
+  1824: {normal: sunshine, common: clouds}
+  1825: {normal: sunshine}
+  1826: {normal: clouds, common: sunshine}
+  1828: {normal: sunshine}
+  1829: {normal: sunshine, common: clouds}
+  1830: {normal: sunshine}
+  1831: {normal: clouds, common: sunshine}
+  1832: {normal: sunshine, common: clouds}
+  1836: {normal: sunshine}
+  1839: {normal: sunshine, common: clouds}
+  1840: {normal: clouds}
+  1841: {normal: sunshine, common: clouds}
+  1843: {normal: sunshine}
+  1846: {normal: sunshine, common: clouds}
+  1847: {normal: sunshine}
+  1849: {normal: sunshine, common: clouds}
+  1850: {normal: sunshine}
+  1851: {normal: clouds, common: sunshine}
+  1852: {normal: sunshine, common: clouds}
+  1854: {normal: sunshine}
+  1855: {normal: clouds, common: sunshine}
+  1856: {normal: sunshine, common: clouds}
+  1857: {normal: clouds, common: sunshine}
+  1858: {normal: sunshine, common: clouds}
+  1866: {normal: clouds, common: sunshine}
+  1867: {normal: sunshine, common: clouds}
+  1868: {normal: sunshine}
+  1871: {normal: sunshine, common: clouds}
+  1872: {normal: clouds}
+  1873: {normal: sunshine, common: clouds}
+  1877: {normal: clouds}
+  1878: {normal: sunshine}
+  1879: {normal: clouds, common: sunshine}
+  1880: {normal: sunshine, common: clouds}
+  1885: {normal: clouds, common: sunshine}
+  1886: {normal: sunshine, common: clouds}
+  1889: {normal: sunshine}
+  1891: {normal: sunshine, common: clouds}
+  1894: {normal: clouds, common: sunshine}
+  1895: {normal: sunshine}
+  1897: {normal: clouds}
+  1898: {normal: clouds, common: sunshine}
+  1899: {normal: sunshine, common: clouds}
+  1900: {normal: sunshine}
+  1901: {normal: sunshine, common: clouds}
+  1903: {normal: clouds, common: sunshine}
+  1904: {normal: sunshine, common: clouds}
+  1905: {normal: clouds, common: sunshine}
+  1906: {normal: sunshine}
+  1907: {normal: sunshine, common: clouds}
+  1909: {normal: sunshine}
+  1910: {normal: sunshine, common: clouds}
+  1911: {normal: clouds, common: sunshine}
+  1913: {normal: sunshine}
+  1915: {normal: sunshine, common: clouds}
+  1916: {normal: clouds, common: sunshine}
+  1917: {normal: sunshine, common: clouds}
+  1919: {normal: clouds, common: sunshine}
+  1920: {normal: sunshine}
+  1921: {normal: sunshine, common: clouds}
+  1923: {normal: clouds, common: sunshine}
+  1924: {normal: sunshine, common: clouds}
+  1926: {normal: clouds, common: sunshine}
+  1928: {normal: sunshine}
+  1929: {normal: sunshine, common: clouds}
+  1932: {normal: sunshine}
+  1933: {normal: clouds, common: sunshine}
+  1934: {normal: sunshine, common: clouds}
+  1935: {normal: clouds, common: sunshine}
+  1937: {normal: sunshine, common: clouds}
+  1940: {normal: clouds}
+  1941: {normal: sunshine, common: clouds}
+  1942: {normal: sunshine}
+  1943: {normal: sunshine, common: clouds}
+  1946: {normal: clouds, common: sunshine}
+  1947: {normal: sunshine}
+  1948: {normal: sunshine, common: clouds}
+  1951: {normal: clouds, common: sunshine}
+  1953: {normal: sunshine, common: clouds}
+  1963: {normal: sunshine}
+  1964: {normal: clouds, common: sunshine}
+  1965: {normal: sunshine}
+  1966: {normal: sunshine, common: clouds}
+  1967: {normal: sunshine}
+  1968: {normal: sunshine, common: clouds}
+  1969: {normal: clouds, common: sunshine}
+  1970: {normal: sunshine}
+  1974: {normal: sunshine, common: clouds}
+  1976: {normal: sunshine}
+  1977: {normal: clouds, common: sunshine}
+  1979: {normal: sunshine}
+  1982: {normal: sunshine, common: clouds}
+  1983: {normal: sunshine}
+  1984: {normal: sunshine, common: clouds}
+  1986: {normal: sunshine}
+  1988: {normal: sunshine, common: clouds}
+  1990: {normal: clouds, common: sunshine}
+  1991: {normal: sunshine, common: clouds}
+  1992: {normal: clouds, common: sunshine}
+  1993: {normal: sunshine}
+  1996: {normal: clouds, common: sunshine}
+  1997: {normal: sunshine}
+  1998: {normal: sunshine, common: clouds}
+  1999: {normal: sunshine}
+  2001: {normal: clouds, common: sunshine}
+  2002: {normal: sunshine}
+  2003: {normal: sunshine, common: clouds}
+  2004: {normal: sunshine}
+  2005: {normal: sunshine, common: clouds}
+  2006: {normal: sunshine}
+  2007: {normal: sunshine, common: clouds}
+  2008: {normal: sunshine}
+  2009: {normal: sunshine, common: clouds}
+  2010: {normal: clouds, common: sunshine}
+  2011: {normal: sunshine, common: clouds}
+  2013: {normal: clouds, common: sunshine}
+  2014: {normal: sunshine}
+  2015: {normal: clouds, common: sunshine}
+  2016: {normal: sunshine, common: clouds}
+  2018: {normal: sunshine}
+  2019: {normal: clouds, common: sunshine}
+  2020: {normal: sunshine}
+  2021: {normal: sunshine, common: clouds}
+  2023: {normal: clouds, common: sunshine}
+  2024: {normal: sunshine, common: clouds}
+  2025: {normal: sunshine}
+  2028: {normal: sunshine, common: clouds}
+  2030: {normal: sunshine}
+  2031: {normal: sunshine, common: clouds}
+  2032: {normal: sunshine}
+  2033: {normal: clouds, common: sunshine}
+  2034: {normal: sunshine}
+  2035: {normal: sunshine, common: clouds}
+  2036: {normal: sunshine}
+  2037: {normal: clouds, common: sunshine}
+  2038: {normal: sunshine, common: clouds}
+  2039: {normal: sunshine}
+  2040: {normal: clouds, common: sunshine}
+  2041: {normal: sunshine, common: clouds}
+  2045: {normal: clouds, common: sunshine}
+  2046: {normal: sunshine}
+  2047: {normal: clouds, common: sunshine}
+  2049: {normal: sunshine, common: clouds}
+  2050: {normal: clouds, common: sunshine}
+  2051: {normal: sunshine, common: clouds}
+  2053: {normal: sunshine}
+  2054: {normal: sunshine, common: clouds}
+  2055: {normal: clouds, common: sunshine}
+  2056: {normal: sunshine, common: clouds}
+  2057: {normal: clouds}
+  2058: {normal: sunshine, common: clouds}
+  2061: {normal: sunshine}
+  2062: {normal: sunshine, common: clouds}
+  2064: {normal: clouds}
+  2065: {normal: sunshine}
+  2067: {normal: sunshine, common: clouds}
+  2069: {normal: sunshine}
+  2070: {normal: clouds, common: sunshine}
+  2071: {normal: sunshine, common: clouds}
+  2074: {normal: clouds, common: sunshine}
+  2075: {normal: sunshine, common: clouds}
+  2076: {normal: clouds, common: sunshine}
+  2077: {normal: sunshine, common: clouds}
+  2082: {normal: sunshine}
+  2083: {normal: sunshine, common: clouds}
+  2085: {normal: clouds, common: sunshine}
+  2086: {normal: sunshine, common: clouds}
+  2094: {normal: sunshine}
+  2095: {normal: sunshine, common: clouds}
+  2098: {normal: sunshine}
+  2100: {normal: sunshine, common: clouds}
+  2101: {normal: sunshine}
+  2102: {normal: sunshine, common: clouds}
+  2105: {normal: clouds, common: sunshine}
+  2106: {normal: sunshine, common: clouds}
+  2107: {normal: sunshine}
+  2108: {normal: clouds, common: sunshine}
+  2111: {normal: sunshine, common: clouds}
+  2113: {normal: sunshine}
+  2114: {normal: clouds, common: sunshine}
+  2116: {normal: sunshine, common: clouds}
+  2118: {normal: sunshine}
+  2119: {normal: sunshine, common: clouds}
+  2122: {normal: sunshine}
+  2123: {normal: sunshine, common: clouds}
+  2125: {normal: sunshine}
+  2127: {normal: clouds, common: sunshine}
+  2129: {normal: sunshine, common: clouds}
+  2130: {normal: sunshine}
+  2131: {normal: clouds, common: sunshine}
+  2132: {normal: sunshine, common: clouds}
+  2136: {normal: clouds, common: sunshine}
+  2137: {normal: sunshine, common: clouds}
+  2138: {normal: sunshine}
+  2139: {normal: sunshine, common: clouds}
+  2142: {normal: clouds, common: sunshine}
+  2146: {normal: clouds}
+  2147: {normal: clouds, common: sunshine}
+  2148: {normal: sunshine, common: clouds}
+  2149: {normal: clouds, common: sunshine}
+  2150: {normal: sunshine, common: clouds}
+  2151: {normal: sunshine}
+  2155: {normal: sunshine, common: clouds}
+  2157: {normal: sunshine}
+  2158: {normal: clouds, common: sunshine}
+  2159: {normal: sunshine, common: clouds}
