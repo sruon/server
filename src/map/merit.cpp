@@ -24,10 +24,10 @@
 
 #include "data/datasets/merits/dataset.h"
 #include "data/datasets/weapon_skills/dataset.h"
+#include "data/loader.h"
 #include "packets/s2c/0x0aa_magic_data.h"
 #include "packets/s2c/0x0ac_command_data.h"
 #include "utils/charutils.h"
-#include "utils/dataset_loader.h"
 
 #include <algorithm>
 #include <string>

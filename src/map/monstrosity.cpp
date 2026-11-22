@@ -26,7 +26,7 @@
 #include "data/datasets/monstrosity/dataset.h"
 #include "data/enums/key_item.h"
 #include "data/enums/monstrosity_instinct.h"
-#include "utils/dataset_loader.h"
+#include "data/loader.h"
 
 #include "common/logging.h"
 #include "common/xirand.h"

@@ -35,6 +35,7 @@
 
 #include "data/datasets/items/dataset.h"
 #include "data/enums/item_type.h"
+#include "data/loader.h"
 #include "entities/battle_entity.h"
 #include "items/item_flowerpot.h"
 #include "items/item_furnishing.h"
@@ -43,7 +44,6 @@
 #include "items/item_puppet.h"
 #include "lua/luautils.h"
 #include "packets/c2s/0x02b_translate.h"
-#include "utils/dataset_loader.h"
 
 namespace
 {

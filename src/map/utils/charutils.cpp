@@ -80,6 +80,7 @@
 #include "data/datasets/experience/dataset.h"
 #include "data/datasets/monstrosity/dataset.h"
 #include "data/enums/mob_mod.h"
+#include "data/loader.h"
 #include "grades.h"
 #include "ipc_client.h"
 #include "item_container.h"
@@ -98,7 +99,6 @@
 #include "treasure_pool.h"
 #include "unitychat.h"
 #include "universal_container.h"
-#include "utils/dataset_loader.h"
 #include "weapon_skill.h"
 #include "zone.h"
 

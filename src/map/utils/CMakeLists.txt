@@ -12,7 +12,6 @@ target_sources(xi_map_battle PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/charutils.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/char_points_queries.h
     ${CMAKE_CURRENT_SOURCE_DIR}/charutils.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/dataset_loader.h
     ${CMAKE_CURRENT_SOURCE_DIR}/dboxutils.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/dboxutils.h
     ${CMAKE_CURRENT_SOURCE_DIR}/fellowutils.cpp

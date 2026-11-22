@@ -26,6 +26,7 @@
 #include "data/enums/zone.h"
 #include "data/yaml/merge.h"
 
+#include <chrono>
 #include <cstdlib>
 #include <exception>
 #include <filesystem>
@@ -74,6 +75,37 @@ auto loadZoneFile(const xi::ZoneId zoneId) -> std::optional<typename Dataset::Re
         // Catch exceptions from workers, report the file and stop deliberately.
         ShowCriticalFmt("{} is not valid: {}", path, error.what());
         std::exit(-1);
+    }
+}
+
+template <class Dataset>
+auto loadDataset() -> typename Dataset::Records
+{
+    const auto dataPath = Dataset::kDataPath;
+    const auto start    = std::chrono::steady_clock::now();
+    const auto corePath = fmt::format("data/{}.yaml", dataPath);
+    const auto modules  = getDataModulePaths(dataPath, ".yaml");
+
+    try
+    {
+        auto       result       = Dataset::decode(loadMergedYaml(corePath, modules));
+        const auto ms           = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - start).count();
+        const auto moduleSuffix = [&]() -> std::string
+        {
+            if (modules.empty())
+            {
+                return {};
+            }
+
+            return fmt::format("  +{} module{}", modules.size(), modules.size() == 1 ? "" : "s");
+        }();
+        ShowInfoFmt("[data] {} {} entries loaded in {}ms{}", dataPath, result.size(), ms, moduleSuffix);
+        return result;
+    }
+    catch (const std::exception& error)
+    {
+        ShowErrorFmt("loadDataset({}) failed: {}", corePath, error.what());
+        throw;
     }
 }
 

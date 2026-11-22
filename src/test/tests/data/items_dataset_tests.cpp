@@ -24,8 +24,8 @@
 #include "data/enums/item.h"
 #include "data/enums/job.h"
 #include "map/data/datasets/items/dataset.h"
+#include "map/data/loader.h"
 #include "map/data/yaml/merge.h"
-#include "map/utils/dataset_loader.h"
 
 #include <catch2/catch_test_macros.hpp>
 

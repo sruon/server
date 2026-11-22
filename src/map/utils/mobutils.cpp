@@ -27,6 +27,7 @@
 #include "ai/ai_container.h"
 #include "battleutils.h"
 #include "data/enums/mob_mod.h"
+#include "data/loader.h"
 #include "grades.h"
 #include "instance.h"
 #include "items/item_weapon.h"
@@ -36,7 +37,6 @@
 #include "packets/s2c/0x028_battle2.h"
 #include "status_effect_container.h"
 #include "trait.h"
-#include "utils/dataset_loader.h"
 #include "zone_entities.h"
 #include "zoneutils.h"
 

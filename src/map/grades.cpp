@@ -24,7 +24,7 @@
 #include "common/settings.h"
 #include "data/datasets/grades/dataset.h"
 #include "data/datasets/stats/dataset.h"
-#include "utils/dataset_loader.h"
+#include "data/loader.h"
 
 #include <array>
 
