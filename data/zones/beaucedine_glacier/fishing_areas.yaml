@@ -1,0 +1,55 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  seaside:
+    id:       1
+    cylinder: {center: [435.0, -1.0, -92.0], radius: 150, height: 20}
+    pool:
+      arrowwood_log:    500
+      black_sole:       750
+      bluetail:         650
+      cone_calamary:    850
+      copper_ring:      800
+      gigant_squid:     100
+      mythril_sword:     60
+      nosteau_herring:  950
+      rusty_subligar:   500
+      tiger_cod:       1000
+      yellow_globe:    1000
+
+  ponds:
+    id: 2
+    pool:
+      arrowwood_log:  500
+      copper_ring:    800
+      emperor_fish:   200
+      icefish:        900
+      mythril_dagger:  80
+      rusty_subligar: 500
+      silver_ring:    300
+
+monsters:
+  greater_pugil:
+    spawns:     [17231873]
+    level:      10
+    difficulty: 16
+
+  vepar:
+    spawns:     [17231874]
+    level:      20
+    difficulty: 16
+
+  kraken:
+    spawns:     [17231875]
+    level:      30
+    difficulty: 16
+
+  apsaras:
+    spawns:     [17231876]
+    level:      40
+    difficulty: 16
+
+  morgawr:
+    spawns:     [17231877]
+    level:      50
+    difficulty: 16

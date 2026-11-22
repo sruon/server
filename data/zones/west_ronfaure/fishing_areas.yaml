@@ -1,0 +1,39 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  knightwell:
+    id: 1
+    pool:
+      arrowwood_log:   500
+      crayfish:       1000
+      giant_catfish:   900
+      moat_carp:      1000
+      red_terrapin:    750
+      rusty_bucket:    900
+      rusty_leggings:  500
+
+monsters:
+  tree_crab:
+    spawns:     [17186817]
+    level:      10
+    difficulty: 16
+
+  limicoline_crab:
+    spawns:     [17186818]
+    level:      40
+    difficulty: 16
+
+  land_crab:
+    spawns:     [17186819]
+    level:      30
+    difficulty: 16
+
+  vermivorous_crab:
+    spawns:     [17186820]
+    level:      40
+    difficulty: 16
+
+  passage_crab:
+    spawns:     [17186821]
+    level:      30
+    difficulty: 16

@@ -1,0 +1,44 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+difficulty: 2
+
+areas:
+  whole_zone:
+    id: 1
+    pool:
+      armored_pisces:    500
+      black_eel:         800
+      blindfish:         750
+      bugbear_mask:      700
+      copper_frog:      1000
+      copper_ring:       800
+      crayfish:         1000
+      moblin_mask:       800
+      rusty_greatsword:  400
+      rusty_pick:        400
+
+monsters:
+  snipper:
+    spawns:     [16822273]
+    level:      10
+    difficulty: 15
+
+  blind_crab:
+    spawns:     [16822274]
+    level:      10
+    difficulty: 15
+
+  cutter:
+    spawns:     [16822275]
+    level:      10
+    difficulty: 15
+
+  ghost_crab:
+    spawns:     [16822276]
+    level:      10
+    difficulty: 15
+
+  amoebic_nodule:
+    spawns:     [16822277]
+    level:      10
+    difficulty: 15

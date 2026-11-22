@@ -1,0 +1,48 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  leremieu_lagoon:
+    id:       1
+    cylinder: {center: [96.0, -5.0, 28.0], radius: 50, height: 20}
+    pool:
+      arrowwood_log:   500
+      dark_bass:      1000
+      emperor_fish:    200
+      lik:             850
+      tavnazian_goby:  850
+
+  seaside:
+    id:       2
+    cylinder: {center: [0.0, 0.0, -320.0], radius: 60, height: 20}
+    pool:
+      cobalt_jellyfish: 1000
+      greedie:          1000
+      quus:             1000
+
+  rafeloux_river:
+    id: 3
+    pool:
+      arrowwood_log:  500
+      gold_carp:      750
+      tavnazian_goby: 850
+
+monsters:
+  clipper:
+    spawns:     [16875521]
+    level:      10
+    difficulty: 15
+
+  grindylow:
+    spawns:     [16875522]
+    level:      10
+    difficulty: 15
+
+  greater_pugil:
+    spawns:     [16875523, 16875524]
+    level:      10
+    difficulty: 15
+
+  apsaras:
+    spawns:     [16875525]
+    level:      10
+    difficulty: 16

@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+monsters:
+  bigclaw:
+    spawns:     [17469441]
+    level:      10
+    difficulty: 16
+    disabled:   true
+
+  canal_leech:
+    spawns:     [17469442]
+    level:      10
+    difficulty: 16
+    disabled:   true
+
+  rock_crab:
+    spawns:     [17469443]
+    level:      10
+    difficulty: 16
+    disabled:   true
+
+  mousse:
+    spawns:     [17469445]
+    level:      10
+    difficulty: 16
+    disabled:   true

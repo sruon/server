@@ -1,0 +1,83 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  other_seaside:
+    id:       1
+    cylinder: {center: [26.6, 10.0, 182.0], radius: 20, height: 20}
+    pool:
+      bastore_sardine:      1000
+      clump_of_pamtam_kelp: 1000
+      cobalt_jellyfish:     1000
+      coral_butterfly:       900
+      coral_fragment:        200
+      norg_shell:            600
+      quus:                 1000
+      rusty_bucket:          900
+
+  pond_under_a_bridge:
+    id:       2
+    cylinder: {center: [100.0, 10.0, -19.0], radius: 22, height: 20}
+    pool:
+      bastore_bream:         250
+      bastore_sardine:      1000
+      bluetail:              650
+      clump_of_pamtam_kelp: 1000
+      cobalt_jellyfish:     1000
+      coral_butterfly:       900
+      coral_fragment:        200
+      grimmonite:            450
+      nebimonite:           1000
+      norg_shell:            600
+      quus:                 1000
+      rusty_bucket:          900
+      rusty_greatsword:      400
+
+  interior_of_hidden_door_mythril:
+    id:       3
+    cylinder: {center: [-306.0, 21.0, -62.0], radius: 20, height: 20}
+    pool:
+      bastore_bream:         250
+      bastore_sardine:      1000
+      bluetail:              650
+      clump_of_pamtam_kelp: 1000
+      cobalt_jellyfish:     1000
+      coral_butterfly:       900
+      coral_fragment:        200
+      grimmonite:            450
+      nebimonite:           1000
+      norg_shell:            600
+      quus:                 1000
+      rusty_bucket:          900
+      rusty_greatsword:      400
+      silver_shark:          500
+
+  interior_of_hidden_door_gold:
+    id:       4
+    cylinder: {center: [-256.0, 51.0, -345.0], radius: 20, height: 20}
+    pool:
+      bastore_sardine:      1000
+      clump_of_pamtam_kelp: 1000
+      cobalt_jellyfish:     1000
+      coral_butterfly:       900
+      quus:                 1000
+      rusty_bucket:          900
+
+  misc_puddles:
+    id: 5
+    pool:
+      bastore_sardine:      1000
+      clump_of_pamtam_kelp: 1000
+      cobalt_jellyfish:     1000
+      quus:                 1000
+      rusty_bucket:          900
+
+monsters:
+  big_jaw:
+    spawns:     [17498113, 17498114]
+    level:      40
+    difficulty: 16
+
+  stygian_pugil:
+    spawns:     [17498117]
+    level:      50
+    difficulty: 16

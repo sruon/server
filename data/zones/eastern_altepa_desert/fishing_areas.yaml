@@ -1,0 +1,40 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  whole_zone:
+    id: 1
+    pool:
+      copper_frog:      1000
+      copper_ring:       800
+      crayfish:         1000
+      giant_donko:       900
+      moat_carp:        1000
+      rusty_greatsword:  400
+      sandfish:         1000
+
+monsters:
+  greater_pugil:
+    spawns:     [17244161]
+    level:      50
+    difficulty: 16
+
+  cutter:
+    spawns:     [17244162]
+    level:      30
+    difficulty: 16
+
+  ironshell:
+    spawns:     [17244163]
+    level:      20
+    difficulty: 16
+
+  makara:
+    spawns:     [17244164]
+    level:      40
+    difficulty: 16
+    disabled:   true
+
+  bigclaw:
+    spawns:     [17244165]
+    level:      10
+    difficulty: 16

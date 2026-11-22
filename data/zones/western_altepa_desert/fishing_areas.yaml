@@ -1,0 +1,47 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  oasis_of_hubol:
+    id:       1
+    cylinder: {center: [-640.0, 2.0, -313.0], radius: 50, height: 20}
+    pool:
+      crayfish:       1000
+      gavial_fish:     550
+      giant_catfish:   900
+      giant_donko:     900
+      moat_carp:      1000
+      rusty_cap:       200
+      rusty_leggings:  500
+      sandfish:       1000
+
+  central_spring:
+    id: 2
+    pool:
+      crayfish:       1000
+      giant_catfish:   900
+      giant_donko:     900
+      moat_carp:      1000
+      rusty_cap:       200
+      rusty_leggings:  500
+      sandfish:       1000
+
+monsters:
+  ironshell:
+    spawns:     [17289217]
+    level:      30
+    difficulty: 16
+
+  apsaras:
+    spawns:     [17289218]
+    level:      50
+    difficulty: 16
+
+  bigclaw:
+    spawns:     [17289219, 17289220]
+    level:      20
+    difficulty: 16
+
+  razorjaw_pugil:
+    spawns:     [17289221]
+    level:      40
+    difficulty: 16

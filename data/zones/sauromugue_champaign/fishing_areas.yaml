@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  whole_zone:
+    id: 1
+    pool:
+      black_sole:      750
+      bluetail:        650
+      cone_calamary:   850
+      mythril_sword:    60
+      rusty_leggings:  500
+      rusty_subligar:  500
+      silver_shark:    500
+      tiger_cod:      1000
+      yellow_globe:   1000
+
+monsters:
+  big_jaw:
+    spawns:     [17268737]
+    level:      10
+    difficulty: 16
+
+  snipper:
+    spawns:     [17268738]
+    level:      10
+    difficulty: 16
+
+  greater_pugil:
+    spawns:     [17268739]
+    level:      10
+    difficulty: 16
+
+  cutter:
+    spawns:     [17268740]
+    level:      10
+    difficulty: 16
+
+  kraken:
+    spawns:     [17268741]
+    level:      10
+    difficulty: 16

@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  whole_zone:
+    id: 1
+    pool:
+      alabaligi:      1000
+      dark_bass:      1000
+      kayabaligi:      650
+      morinabaligi:    450
+      rusty_bucket:    900
+      rusty_subligar:  500
+      sazanbaligi:     650
+      turnabaligi:     450
+      yilanbaligi:     800
+
+monsters:
+  red_smoocher:
+    spawns:     [16990209]
+    level:      10
+    difficulty: 16
+
+  azoth_apsaras:
+    spawns:     [16990210]
+    level:      10
+    difficulty: 16
+
+  red_osculator:
+    spawns:     [16990211]
+    level:      10
+    difficulty: 16
+
+  kissing_leech:
+    spawns:     [16990212]
+    level:      10
+    difficulty: 16
+
+  mercurial_makara:
+    spawns:     [16990213]
+    level:      10
+    difficulty: 16

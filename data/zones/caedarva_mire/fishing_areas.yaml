@@ -1,0 +1,34 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  whole_zone:
+    id: 1
+    pool:
+      black_ghost:     450
+      caedarva_frog:  1000
+      crayfish:       1000
+      dark_bass:      1000
+      kaplumbaga:      800
+      rusty_leggings:  500
+      yayinbaligi:     900
+
+monsters:
+  caedarva_pondscum:
+    spawns:     [17100801]
+    level:      20
+    difficulty: 16
+
+  caedarva_marshscum:
+    spawns:     [17100802]
+    level:      30
+    difficulty: 16
+
+  suhur_mas:
+    spawns:     [17100803]
+    level:      40
+    difficulty: 16
+
+  llamhigyn_y_dwr:
+    spawns:     [17100804, 17100805]
+    level:      50
+    difficulty: 15

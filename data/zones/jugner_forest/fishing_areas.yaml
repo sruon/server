@@ -1,0 +1,106 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  crystalwater_spring:
+    id:       1
+    cylinder: {center: [300.0, 1.0, -179.833], radius: 20, height: 20}
+    pool:
+      arrowwood_log:   500
+      crayfish:       1000
+      crystal_bass:   1000
+      red_terrapin:    750
+      rusty_leggings:  500
+      rusty_pick:      400
+      rusty_subligar:  500
+      silver_ring:     300
+
+  lake_mechieume_mouth:
+    id:       2
+    cylinder: {center: [19.458, 3.0, 334.528], radius: 31, height: 20}
+    pool:
+      arrowwood_log:    500
+      crayfish:        1000
+      dark_bass:       1000
+      emperor_fish:     200
+      gold_carp:        750
+      moat_carp:       1000
+      rusty_bucket:     900
+      rusty_cap:        200
+      rusty_leggings:   500
+      silver_ring:      300
+      tricolored_carp: 1000
+
+  lake_mechieume_main:
+    id: 3
+    poly:
+      floor:  5.0
+      height:  20
+      corners:
+        - [-171.792, 598.376]
+        - [139.312, 583.303]
+        - [141.869, 322.515]
+        - [-176.356, 326.886]
+    pool:
+      arrowwood_log:    500
+      crayfish:        1000
+      dark_bass:       1000
+      giant_catfish:    900
+      gold_carp:        750
+      moat_carp:       1000
+      red_terrapin:     750
+      rusty_bucket:     900
+      rusty_cap:        200
+      rusty_leggings:   500
+      silver_ring:      300
+      tricolored_carp: 1000
+
+  maidens_spring:
+    id:       4
+    cylinder: {center: [-496.682, 9.0, 298.057], radius: 22, height: 20}
+    pool:
+      arrowwood_log:   500
+      crayfish:       1000
+      red_terrapin:    750
+      rusty_leggings:  500
+      rusty_pick:      400
+      rusty_subligar:  500
+      silver_ring:     300
+
+  river:
+    id: 5
+    pool:
+      arrowwood_log:    500
+      cheval_salmon:   1000
+      crayfish:        1000
+      gold_carp:        750
+      moat_carp:       1000
+      rusty_bucket:     900
+      rusty_leggings:   500
+      shining_trout:   1000
+      tricolored_carp: 1000
+
+monsters:
+  stag_crab:
+    spawns:     [17203201]
+    level:      10
+    difficulty: 16
+
+  spring_pugil:
+    spawns:     [17203202]
+    level:      10
+    difficulty: 16
+
+  thread_leech:
+    spawns:     [17203203]
+    level:      10
+    difficulty: 16
+
+  ferocious_pugil:
+    spawns:     [17203204]
+    level:      10
+    difficulty: 16
+
+  huge_leech:
+    spawns:     [17203205]
+    level:      10
+    difficulty: 16

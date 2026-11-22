@@ -1,0 +1,95 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  south_landing:
+    id:       1
+    cylinder: {center: [172.25, -2.0, -475.286], radius: 150, height: 20}
+    pool:
+      arrowwood_log:   500
+      crayfish:       1000
+      dark_bass:      1000
+      muddy_siredon:  1000
+      rusty_bucket:    900
+      rusty_leggings:  500
+      shining_trout:  1000
+
+  other_waterside_south:
+    id:       2
+    cylinder: {center: [-101.576, 0.0, -484.401], radius: 60, height: 20}
+    pool:
+      arrowwood_log:  500
+      crayfish:      1000
+      dark_bass:     1000
+      giant_catfish:  900
+      muddy_siredon: 1000
+      phanauet_newt: 1000
+
+  other_waterside_center:
+    id:       3
+    cylinder: {center: [-221.249, 0.0, -283.157], radius: 60, height: 20}
+    pool:
+      arrowwood_log:  500
+      crayfish:      1000
+      dark_bass:     1000
+      giant_catfish:  900
+      muddy_siredon: 1000
+      phanauet_newt: 1000
+
+  other_waterside_north:
+    id:       4
+    cylinder: {center: [-179.219, 1.0, -131.611], radius: 20, height: 20}
+    pool:
+      arrowwood_log:  500
+      crayfish:      1000
+      dark_bass:     1000
+      giant_catfish:  900
+      muddy_siredon: 1000
+      phanauet_newt: 1000
+
+  central_landing:
+    id:       5
+    cylinder: {center: [-164.099, 0.0, 59.123], radius: 80, height: 20}
+    pool:
+      arrowwood_log:  500
+      crayfish:      1000
+      dark_bass:     1000
+      muddy_siredon: 1000
+      rusty_bucket:   900
+
+  north_landing:
+    id:       6
+    cylinder: {center: [-332.92, -2.0, 564.747], radius: 150, height: 20}
+    pool:
+      arrowwood_log:   500
+      crayfish:       1000
+      dark_bass:      1000
+      muddy_siredon:  1000
+      rusty_bucket:    900
+      rusty_leggings:  500
+      shining_trout:  1000
+
+monsters:
+  snipper:
+    spawns:     [16785409]
+    level:      10
+    difficulty: 15
+
+  triangle_crab:
+    spawns:     [16785410]
+    level:      10
+    difficulty: 15
+
+  clipper:
+    spawns:     [16785411]
+    level:      10
+    difficulty: 15
+
+  greater_pugil:
+    spawns:     [16785412]
+    level:      10
+    difficulty: 15
+
+  fishtrap:
+    spawns:     [16785413]
+    level:      10
+    difficulty: 15

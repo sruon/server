@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+difficulty: 2
+
+areas:
+  whole_zone:
+    id: 1
+    pool:
+      arrowwood_log:   500
+      copper_ring:     800
+      crayfish:       1000
+      crescent_fish:   450
+      moat_carp:      1000
+      mythril_dagger:   80
+      mythril_sword:    60
+      rusty_bucket:    900
+      rusty_leggings:  500
+
+monsters:
+  demonic_pugil:
+    spawns:     [17408001, 17408002, 17408003, 17408004, 17408005]
+    level:      50
+    difficulty: 15

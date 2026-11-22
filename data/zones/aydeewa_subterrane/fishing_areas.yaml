@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  whole_zone:
+    id: 1
+    pool:
+      blindfish:       750
+      cave_cherax:     500
+      lamp_marimo:    1000
+      rusty_leggings:  500
+      rusty_subligar:  500
+
+monsters:
+  cave_mold:
+    spawns:     [17055745, 17055746]
+    level:      20
+    difficulty: 16
+
+  anautogenous_slug:
+    spawns:     [17055747]
+    level:      30
+    difficulty: 16
+
+  cave_pugil:
+    spawns:     [17055748]
+    level:      40
+    difficulty: 16
+
+  aydeewa_crab:
+    spawns:     [17055749]
+    level:      40
+    difficulty: 16

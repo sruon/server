@@ -1,0 +1,71 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  northwest_seaside:
+    id:       1
+    cylinder: {center: [-100.0, -21.0, 390.0], radius: 80, height: 20}
+    pool:
+      black_sole:         750
+      bluetail:           650
+      cone_calamary:      850
+      copper_ring:        800
+      fish_scale_shield:  500
+      gigant_squid:       100
+      nosteau_herring:    950
+      rusty_leggings:     500
+      rusty_subligar:     500
+      silver_ring:        300
+      tiger_cod:         1000
+      yellow_globe:      1000
+
+  southwest_seaside:
+    id:       2
+    cylinder: {center: [15.0, -19.0, -83.0], radius: 90, height: 20}
+    pool:
+      black_sole:       750
+      bluetail:         650
+      copper_ring:      800
+      mythril_sword:     60
+      nosteau_herring:  950
+      rusty_leggings:   500
+      rusty_subligar:   500
+      three-eyed_fish:  500
+      tiger_cod:       1000
+      yellow_globe:    1000
+
+  other_seaside:
+    id: 3
+    pool:
+      black_sole:       750
+      bluetail:         650
+      copper_ring:      800
+      nosteau_herring:  950
+      rusty_leggings:   500
+      rusty_subligar:   500
+      tiger_cod:       1000
+      yellow_globe:    1000
+
+monsters:
+  qufim_pugil:
+    spawns:     [17293313]
+    level:      10
+    difficulty: 16
+
+  sea_bishop:
+    spawns:     [17293315]
+    level:      10
+    difficulty: 16
+
+  vepar:
+    spawns:     [17293316]
+    level:      10
+    difficulty: 16
+
+  kraken:
+    spawns:     [17293317, 17293318]
+    level:      10
+    difficulty: 16
+    nm:         true
+    log:        3
+    quest:      71
+    quest_only: true

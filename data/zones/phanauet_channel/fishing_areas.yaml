@@ -1,0 +1,51 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  whole_zone:
+    id: 1
+    pool:
+      crayfish:        1000
+      dark_bass:       1000
+      giant_catfish:    900
+      gold_carp:        750
+      lungfish:         450
+      muddy_siredon:   1000
+      phanauet_newt:   1000
+      red_terrapin:     750
+      rusty_bucket:     900
+      shining_trout:   1000
+      tricolored_carp: 1000
+      tricorn:          650
+
+monsters:
+  snipper:
+    spawns:     [16781313, 16781314]
+    level:      10
+    difficulty: 15
+    delay:      11
+
+  big_jaw:
+    spawns:     [16781315]
+    level:      20
+    difficulty: 16
+
+  fishtrap:
+    spawns:     [16781316]
+    level:      30
+    difficulty: 17
+    delay:      9
+
+  protozoan:
+    spawns:     [16781317]
+    level:      40
+    difficulty: 18
+    delay:      8
+
+  aipaloovik:
+    spawns:     [16781318]
+    area:       whole_zone
+    level:      50
+    difficulty: 16
+    ranking:    1
+    rarity:     500
+    nm:         true

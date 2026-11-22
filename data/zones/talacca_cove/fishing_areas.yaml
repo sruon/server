@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+difficulty: 3
+
+areas:
+  whole_zone:
+    id: 1
+    pool:
+      ahtapot:         500
+      dil:             750
+      istakoz:        1000
+      istavrit:       1000
+      mercanbaligi:    400
+      rusty_leggings:  500
+      rusty_subligar:  500

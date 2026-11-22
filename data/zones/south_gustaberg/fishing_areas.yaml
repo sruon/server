@@ -1,0 +1,48 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  hot_springs:
+    id:       1
+    cylinder: {center: [-485.042, 44.0, -415.916], radius: 150, height: 20}
+    pool:
+      rusty_bucket:   900
+      rusty_cap:      200
+      rusty_leggings: 500
+      rusty_subligar: 500
+      silver_ring:    300
+
+  seaside:
+    id: 2
+    pool:
+      bastore_bream:     250
+      bastore_sardine:  1000
+      bladefish:         750
+      cobalt_jellyfish: 1000
+      gold_lobster:      800
+      ogre_eel:         1000
+      quus:             1000
+      rusty_leggings:    500
+      rusty_subligar:    500
+      zafmlug_bass:     1000
+
+monsters:
+  sand_crab:
+    spawns:     [17215490]
+    level:      10
+    difficulty: 16
+
+  land_crab:
+    spawns:     [17215491]
+    level:      10
+    difficulty: 16
+    disabled:   true
+
+  mole_crab:
+    spawns:     [17215492]
+    level:      10
+    difficulty: 16
+
+  passage_crab:
+    spawns:     [17215493]
+    level:      10
+    difficulty: 16

@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  whole_zone:
+    id: 1
+    pool:
+      copper_ring:  800
+      crayfish:    1000
+      moat_carp:   1000
+
+monsters:
+  uggalepih_leech:
+    spawns:     [17428481, 17428482]
+    level:      20
+    difficulty: 15
+
+  bloodsucker:
+    spawns:     [17428483, 17428484]
+    level:      30
+    difficulty: 15
+
+  bouncing_ball:
+    spawns:     [17428485]
+    level:      10
+    difficulty: 16

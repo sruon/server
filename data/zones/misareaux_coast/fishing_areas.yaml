@@ -1,0 +1,44 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  cascade_edellaine:
+    id:       1
+    cylinder: {center: [-192.0, -15.0, 640.0], radius: 62, height: 20}
+    pool:
+      dark_bass:      1000
+      gold_carp:       750
+      moat_carp:      1000
+      silver_ring:     300
+      takitaro:        500
+      tavnazian_goby:  850
+
+  seaside:
+    id:       2
+    cylinder: {center: [700.0, 0.0, -535.0], radius: 100, height: 20}
+    pool:
+      cobalt_jellyfish: 1000
+      greedie:          1000
+      quus:             1000
+
+  rafeloux_river:
+    id: 3
+    pool:
+      arrowwood_log:  500
+      gold_carp:      750
+      tavnazian_goby: 850
+
+monsters:
+  clipper:
+    spawns:     [16879617]
+    level:      10
+    difficulty: 15
+
+  grindylow:
+    spawns:     [16879618]
+    level:      10
+    difficulty: 15
+
+  greater_pugil:
+    spawns:     [16879619, 16879620]
+    level:      10
+    difficulty: 15

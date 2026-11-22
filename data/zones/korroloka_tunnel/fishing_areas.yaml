@@ -1,0 +1,54 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  salt_water:
+    id: 1
+    poly:
+      floor:  -2.0
+      height:   20
+      corners:
+        - [-72.0, 150.0]
+        - [-45.0, 150.0]
+        - [-45.0, -52.0]
+        - [-72.0, -52.0]
+    pool:
+      black_eel:         800
+      copper_frog:      1000
+      coral_fragment:    200
+      crayfish:         1000
+      moat_carp:        1000
+      rusty_bucket:      900
+      rusty_cap:         200
+      rusty_greatsword:  400
+      rusty_leggings:    500
+      rusty_pick:        400
+      rusty_subligar:    500
+      sandfish:         1000
+
+  fresh_water:
+    id: 2
+    pool:
+      coral_fragment:    200
+      quus:             1000
+      rusty_bucket:      900
+      rusty_cap:         200
+      rusty_greatsword:  400
+      rusty_leggings:    500
+      rusty_subligar:    500
+
+monsters:
+  snipper:
+    spawns:     [17485825, 17485826]
+    level:      30
+    difficulty: 16
+
+  greater_pugil:
+    spawns:     [17485827, 17485828]
+    level:      40
+    difficulty: 16
+    disabled:   true
+
+  kraken:
+    spawns:     [17485829]
+    level:      50
+    difficulty: 16

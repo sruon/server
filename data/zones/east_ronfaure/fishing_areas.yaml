@@ -1,0 +1,40 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  whole_zone:
+    id: 1
+    pool:
+      arrowwood_log:    500
+      cheval_salmon:   1000
+      copper_ring:      800
+      crayfish:        1000
+      gold_carp:        750
+      shining_trout:   1000
+      tricolored_carp: 1000
+
+monsters:
+  pugil:
+    spawns:     [17190913]
+    level:      10
+    difficulty: 16
+    disabled:   true
+
+  cheval_pugil:
+    spawns:     [17190914]
+    level:      20
+    difficulty: 16
+
+  mud_pugil:
+    spawns:     [17190915]
+    level:      30
+    difficulty: 16
+
+  pug_pugil:
+    spawns:     [17190916]
+    level:      40
+    difficulty: 16
+
+  fighting_pugil:
+    spawns:     [17190917]
+    level:      50
+    difficulty: 16

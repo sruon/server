@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  whole_zone:
+    id: 1
+    pool:
+      copper_ring:  800
+      crayfish:    1000
+      silver_ring:  300

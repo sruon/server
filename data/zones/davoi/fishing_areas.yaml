@@ -1,0 +1,72 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+difficulty: 2
+
+areas:
+  basin_of_a_waterfall:
+    id:       1
+    cylinder: {center: [180.24, 3.0, -384.46], radius: 10, height: 20}
+    pool:
+      arrowwood_log:    500
+      crayfish:        1000
+      gold_carp:        750
+      red_terrapin:     750
+      rusty_bucket:     900
+      rusty_cap:        200
+      rusty_pick:       400
+      takitaro:         500
+      tricolored_carp: 1000
+
+  wailing_pond:
+    id:       2
+    cylinder: {center: [382.24, 0.0, -180.41], radius: 20, height: 20}
+    pool:
+      rusty_bucket:     900
+      rusty_cap:        200
+      rusty_greatsword: 400
+      rusty_leggings:   500
+      rusty_pick:       400
+
+  pond:
+    id:       3
+    cylinder: {center: [198.75, 2.0, -107.22], radius: 50, height: 20}
+    pool:
+      arrowwood_log:   500
+      crayfish:       1000
+      dark_bass:      1000
+      giant_catfish:   900
+      moat_carp:      1000
+      red_terrapin:    750
+      rusty_bucket:    900
+      rusty_cap:       200
+      rusty_leggings:  500
+      rusty_pick:      400
+
+  other_waterside:
+    id: 4
+    pool:
+      crayfish:       1000
+      red_terrapin:    750
+      rusty_bucket:    900
+      rusty_leggings:  500
+
+monsters:
+  ferocious_pugil:
+    spawns:     [17387521, 17387522]
+    level:      40
+    difficulty: 16
+
+  greater_pugil:
+    spawns:     [17387523]
+    level:      30
+    difficulty: 15
+
+  gloop:
+    spawns:     [17387524]
+    level:      20
+    difficulty: 16
+
+  oil_spill:
+    spawns:     [17387525]
+    level:      50
+    difficulty: 16

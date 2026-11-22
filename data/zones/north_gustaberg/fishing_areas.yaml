@@ -1,0 +1,54 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  basin_of_waterfall:
+    id:       1
+    cylinder: {center: [-230.433, 96.0, 462.0], radius: 27, height: 20}
+    pool:
+      black_eel:        800
+      copper_frog:     1000
+      crayfish:        1000
+      gavial_fish:      550
+      gold_carp:        750
+      rusty_bucket:     900
+      rusty_leggings:   500
+      rusty_subligar:   500
+      tricolored_carp: 1000
+
+  river:
+    id: 2
+    pool:
+      black_eel:        800
+      copper_frog:     1000
+      crayfish:        1000
+      gold_carp:        750
+      rusty_bucket:     900
+      rusty_leggings:   500
+      rusty_subligar:   500
+      tricolored_carp: 1000
+
+monsters:
+  stone_crab:
+    spawns:     [17211393]
+    level:      10
+    difficulty: 16
+
+  sand_crab:
+    spawns:     [17211394]
+    level:      20
+    difficulty: 16
+
+  land_crab:
+    spawns:     [17211395]
+    level:      30
+    difficulty: 16
+
+  pug_pugil:
+    spawns:     [17211396]
+    level:      40
+    difficulty: 16
+
+  fighting_pugil:
+    spawns:     [17211397]
+    level:      50
+    difficulty: 16

@@ -1,0 +1,40 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  north_side:
+    id: 1
+    poly:
+      floor:  -6.0
+      height:   20
+      corners:
+        - [-266.3663, -30.5481]
+        - [-9.8074, -26.5344]
+        - [-7.5481, -118.5934]
+        - [-132.644, -119.7321]
+        - [-185.563, -94.3557]
+        - [-216.813, -96.579]
+        - [-227.638, -116.8496]
+        - [-248.3432, -119.6369]
+        - [-269.1239, -109.9132]
+    pool:
+      black_eel:        800
+      copper_ring:      800
+      crayfish:        1000
+      gold_carp:        750
+      moat_carp:       1000
+      rusty_bucket:     900
+      rusty_leggings:   500
+      rusty_subligar:   500
+      tricolored_carp: 1000
+
+  south_side:
+    id: 2
+    pool:
+      black_eel:       800
+      copper_ring:     800
+      dark_bass:      1000
+      giant_catfish:   900
+      moat_carp:      1000
+      rusty_bucket:    900
+      rusty_leggings:  500
+      rusty_subligar:  500

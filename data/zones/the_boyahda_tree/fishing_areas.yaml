@@ -1,0 +1,59 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+difficulty: 5
+
+areas:
+  waterfall_basin:
+    id:       1
+    cylinder: {center: [45.0, -18.0, -173.0], radius: 27, height: 20}
+    pool:
+      arrowwood_log:    500
+      copper_ring:      800
+      crayfish:        1000
+      dark_bass:       1000
+      giant_chirai:     500
+      moat_carp:       1000
+      rusty_leggings:   500
+      tricolored_carp: 1000
+
+  waterfall_basin_hidden:
+    id:       2
+    cylinder: {center: [-244.0, 10.0, -278.0], radius: 20, height: 20}
+    pool:
+      arrowwood_log:    500
+      crayfish:        1000
+      dark_bass:       1000
+      emperor_fish:     200
+      moat_carp:       1000
+      rusty_leggings:   500
+      tricolored_carp: 1000
+
+  other_waterside:
+    id: 3
+    pool:
+      arrowwood_log:   500
+      crayfish:       1000
+      dark_bass:      1000
+      moat_carp:      1000
+      rusty_leggings:  500
+
+monsters:
+  scavenger_crab:
+    spawns:     [17403905]
+    level:      20
+    difficulty: 16
+
+  stygian_pugil:
+    spawns:     [17403906]
+    level:      30
+    difficulty: 16
+
+  bouncing_ball:
+    spawns:     [17403907]
+    level:      40
+    difficulty: 16
+
+  demonic_pugil:
+    spawns:     [17403908, 17403909]
+    level:      50
+    difficulty: 15

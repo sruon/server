@@ -1,0 +1,64 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  north_seaside:
+    id:       1
+    cylinder: {center: [291.891, 7.0, 198.639], radius: 200, height: 20}
+    pool:
+      bastore_sardine:  1000
+      black_sole:        750
+      bluetail:          650
+      cobalt_jellyfish: 1000
+      cone_calamary:     850
+      mythril_sword:      60
+      nosteau_herring:   950
+      rusty_greatsword:  400
+      rusty_pick:        400
+      silver_ring:       300
+      silver_shark:      500
+      tiger_cod:        1000
+      yellow_globe:     1000
+
+  south_seaside:
+    id:       2
+    cylinder: {center: [102.172, 8.0, -489.808], radius: 150, height: 20}
+    pool:
+      bastore_sardine:  1000
+      black_sole:        750
+      bluetail:          650
+      cobalt_jellyfish: 1000
+      cone_calamary:     850
+      mythril_sword:      60
+      nosteau_herring:   950
+      rusty_greatsword:  400
+      rusty_pick:        400
+      silver_ring:       300
+      silver_shark:      500
+      tiger_cod:        1000
+      yellow_globe:     1000
+
+monsters:
+  snipper:
+    spawns:     [17207297]
+    level:      10
+    difficulty: 16
+
+  land_pugil:
+    spawns:     [17207298]
+    level:      30
+    difficulty: 16
+
+  cutter:
+    spawns:     [17207299]
+    level:      20
+    difficulty: 16
+
+  greater_pugil:
+    spawns:     [17207300]
+    level:      40
+    difficulty: 16
+
+  kraken:
+    spawns:     [17207301]
+    level:      50
+    difficulty: 16

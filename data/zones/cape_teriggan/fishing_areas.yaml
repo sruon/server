@@ -1,0 +1,40 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+difficulty: 5
+
+areas:
+  whole_zone:
+    id: 1
+    pool:
+      bastore_sardine:  1000
+      cobalt_jellyfish: 1000
+      greedie:          1000
+      quus:             1000
+      rusty_leggings:    500
+      shall_shell:       600
+      zafmlug_bass:     1000
+
+monsters:
+  razorjaw_pugil:
+    spawns:     [17240065]
+    level:      20
+    difficulty: 16
+
+  rock_crab:
+    spawns:     [17240066]
+    level:      30
+    difficulty: 16
+
+  stygian_pugil:
+    spawns:     [17240067, 17240068, 17240069]
+    level:      40
+    difficulty: 16
+
+  devil_manta:
+    spawns:     [17240070]
+    area:       whole_zone
+    level:      50
+    difficulty: 15
+    nm:         true
+    nm_flags:   [random_regen_difficult, random_heal_difficult, random_attack_difficult, reset_respawn_on_fail]
+    respawn:    [600, 600]

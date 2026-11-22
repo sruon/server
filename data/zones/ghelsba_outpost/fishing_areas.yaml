@@ -1,0 +1,48 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  pond_north:
+    id:       1
+    cylinder: {center: [-174.165, -21.0, 414.486], radius: 12, height: 20}
+    pool:
+      crayfish:      1000
+      giant_catfish:  900
+      red_terrapin:   750
+
+  pond_south:
+    id:       2
+    cylinder: {center: [-215.293, -10.0, 25.168], radius: 15, height: 20}
+    pool:
+      crayfish:      1000
+      giant_catfish:  900
+      red_terrapin:   750
+
+  river:
+    id: 3
+    pool:
+      cheval_salmon:   1000
+      crayfish:        1000
+      gold_carp:        750
+      shining_trout:   1000
+      tricolored_carp: 1000
+
+monsters:
+  pugil:
+    spawns:     [17350657, 17350658]
+    level:      10
+    difficulty: 16
+
+  pug_pugil:
+    spawns:     [17350659]
+    level:      10
+    difficulty: 16
+
+  giant_pugil:
+    spawns:     [17350660]
+    level:      10
+    difficulty: 16
+
+  puffer_pugil:
+    spawns:     [17350661]
+    level:      10
+    difficulty: 16

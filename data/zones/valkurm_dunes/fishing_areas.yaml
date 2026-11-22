@@ -1,0 +1,40 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  whole_zone:
+    id: 1
+    pool:
+      arrowwood_log:     500
+      bastore_sardine:  1000
+      cobalt_jellyfish: 1000
+      greedie:          1000
+      quus:             1000
+      rusty_bucket:      900
+      rusty_cap:         200
+      rusty_leggings:    500
+      rusty_subligar:    500
+      shall_shell:       600
+      silver_ring:       300
+      zafmlug_bass:     1000
+
+  pirates_chart:
+    id: 2
+    pool:
+      mithra_snare:   500
+      tarutaru_snare: 500
+
+monsters:
+  stag_crab:
+    spawns:     [17199105]
+    level:      10
+    difficulty: 16
+
+  puffer_pugil:
+    spawns:     [17199106]
+    level:      10
+    difficulty: 16
+
+  cutter:
+    spawns:     [17199109]
+    level:      10
+    difficulty: 16

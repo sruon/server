@@ -1,0 +1,109 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  northeast_pond:
+    id:       1
+    cylinder: {center: [380.0, 21.0, 296.0], radius: 15, height: 20}
+    pool:
+      arrowwood_log:   500
+      copper_ring:     800
+      crayfish:       1000
+      crescent_fish:   450
+      elshimo_frog:   1000
+      forest_carp:    1000
+      jungle_catfish:  500
+      moat_carp:      1000
+      monke-onke:      550
+      rusty_bucket:    900
+      rusty_leggings:  500
+      rusty_subligar:  500
+
+  gremini_falls:
+    id:       2
+    cylinder: {center: [428.0, 20.0, 278.0], radius: 32, height: 20}
+    pool:
+      arrowwood_log:   500
+      copper_ring:     800
+      crayfish:       1000
+      crescent_fish:   450
+      elshimo_frog:   1000
+      elshimo_newt:    900
+      forest_carp:    1000
+      moat_carp:      1000
+      rusty_bucket:    900
+      rusty_leggings:  500
+      rusty_subligar:  500
+
+  southwest_pond:
+    id:       3
+    cylinder: {center: [-340.0, 16.0, -456.0], radius: 15, height: 20}
+    pool:
+      arrowwood_log:   500
+      copper_ring:     800
+      crayfish:       1000
+      elshimo_newt:    900
+      forest_carp:    1000
+      jungle_catfish:  500
+      moat_carp:      1000
+      pipira:         1000
+      rusty_bucket:    900
+      rusty_leggings:  500
+      rusty_subligar:  500
+
+  southwest_waterfall_south:
+    id:       4
+    cylinder: {center: [-458.0, 17.0, -446.0], radius: 28, height: 20}
+    pool:
+      arrowwood_log:   500
+      copper_ring:     800
+      crayfish:       1000
+      elshimo_newt:    900
+      forest_carp:    1000
+      moat_carp:      1000
+      pipira:         1000
+      rusty_bucket:    900
+      rusty_leggings:  500
+      rusty_subligar:  500
+
+  southwest_waterfall_north:
+    id:       5
+    cylinder: {center: [-446.0, 17.0, -379.0], radius: 45, height: 20}
+    pool:
+      arrowwood_log:   500
+      copper_ring:     800
+      crayfish:       1000
+      elshimo_newt:    900
+      forest_carp:    1000
+      moat_carp:      1000
+      pipira:         1000
+      rusty_bucket:    900
+      rusty_leggings:  500
+      rusty_subligar:  500
+
+  other_waterside:
+    id: 6
+    pool:
+      copper_ring:     800
+      crayfish:       1000
+      elshimo_frog:   1000
+      elshimo_newt:    900
+      forest_carp:    1000
+      moat_carp:      1000
+      rusty_bucket:    900
+      rusty_leggings:  500
+
+monsters:
+  ironshell:
+    spawns:     [17281025, 17281026]
+    level:      30
+    difficulty: 15
+
+  bigclaw:
+    spawns:     [17281027, 17281028]
+    level:      20
+    difficulty: 16
+
+  bloodsucker:
+    spawns:     [17281029]
+    level:      10
+    difficulty: 16

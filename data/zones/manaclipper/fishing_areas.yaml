@@ -1,0 +1,62 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  dhalmel_rock:
+    id: 1
+    pool:
+      bastore_sardine:      1000
+      bibiki_urchin:         100
+      bibikibo:              850
+      bladefish:             750
+      bluetail:              650
+      clump_of_pamtam_kelp: 1000
+      cobalt_jellyfish:     1000
+      cone_calamary:         850
+      gugru_tuna:            900
+      gugrusaurus:           700
+      moorish_idol:          700
+      noble_lady:            700
+      quus:                 1000
+      rusty_bucket:          900
+      ryugu_titan:           700
+      titanic_sawfish:       700
+      titanictus:            500
+      trilobite:            1000
+      vongola_clam:          900
+      zafmlug_bass:         1000
+
+  maliyakaleya_reef:
+    id: 2
+
+  purgonorgo_isle:
+    id: 3
+
+monsters:
+  ghost_crab:
+    spawns:     [16789505, 16789506]
+    level:      30
+    difficulty: 15
+
+  greater_pugil:
+    spawns:     [16789507]
+    level:      40
+    difficulty: 15
+
+  kraken:
+    spawns:     [16789508]
+    level:      50
+    difficulty: 15
+
+  harajnite:
+    spawns:     [16789509]
+    area:       dhalmel_rock
+    level:      50
+    difficulty: 15
+    nm:         true
+
+  cyclopean_conch:
+    spawns:     [16789510]
+    area:       dhalmel_rock
+    level:      50
+    difficulty: 15
+    nm:         true

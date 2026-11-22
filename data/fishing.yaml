@@ -1,0 +1,2491 @@
+# yaml-language-server: $schema=schemas/fishing.schema.json
+
+fishing:
+  fish:
+    abaia:
+      id:         5476
+      size:       large
+      skill:      150
+      difficulty: 37
+      delay:      7
+      move:       13
+      length:     [170, 350]
+      ranking:    34
+      rarity:     500
+      legendary:  true
+      disabled:   true
+
+    ahtapot:
+      id:         5455
+      size:       large
+      skill:      90
+      difficulty: 31
+      delay:      8
+      move:       7
+      length:     [55, 145]
+      ranking:    25
+      rarity:     500
+
+    alabaligi:
+      id:         5461
+      skill:        37
+      difficulty:   16
+      delay:         5
+      move:         11
+      ranking:      15
+      rarity:     1000
+
+    armored_pisces:
+      id:         4316
+      size:       large
+      skill:      108
+      difficulty: 22
+      delay:      9
+      move:       12
+      length:     [50, 125]
+      ranking:    19
+      rarity:     350
+      contest:    true
+
+    arrowwood_log:
+      id:         688
+      item:       true
+      size:       large
+      skill:      4
+      difficulty: 18
+      delay:      13
+      move:       2
+      length:     [1, 3]
+      ranking:    18
+      rarity:     500
+
+    bastore_bream:
+      id:         4461
+      skill:        86
+      difficulty:   31
+      delay:         7
+      move:          9
+      ranking:      22
+      rarity:      250
+
+    bastore_sardine:
+      id:         4360
+      skill:      9
+      difficulty: 21
+      delay:      11
+      move:       6
+      ranking:    10
+      rarity:     500
+      max_hook:   3
+      flags:      [shellfish]
+
+    bastore_sweeper:
+      id:         5473
+      skill:        12
+      difficulty:   17
+      delay:         4
+      move:          2
+      ranking:      99
+      rarity:      950
+
+    betta:
+      id:         5139
+      skill:        66
+      difficulty:   16
+      delay:         3
+      move:         12
+      ranking:      10
+      rarity:      600
+
+    bhefhel_marlin:
+      id:         4479
+      size:       large
+      skill:      61
+      difficulty: 20
+      delay:      10
+      move:       11
+      length:     [60, 140]
+      ranking:    23
+      rarity:     700
+      contest:    true
+
+    bibiki_urchin:
+      id:         4318
+      water:      fresh
+      skill:      3
+      difficulty: 20
+      delay:      13
+      move:       1
+      ranking:    1
+      rarity:     50
+
+    bibikibo:
+      id:         4314
+      water:      fresh
+      skill:      8
+      difficulty: 22
+      delay:      12
+      move:       3
+      ranking:    1
+      rarity:     100
+
+    black_eel:
+      id:         4429
+      skill:        47
+      difficulty:   24
+      delay:         5
+      move:          8
+      ranking:      15
+      rarity:      800
+
+    black_ghost:
+      id:         5138
+      skill:        88
+      difficulty:   36
+      delay:         9
+      move:         11
+      ranking:      18
+      rarity:      450
+
+    black_sole:
+      id:         4384
+      skill:        96
+      difficulty:   33
+      delay:         5
+      move:         11
+      ranking:      23
+      rarity:      150
+
+    bladefish:
+      id:         4471
+      size:       large
+      skill:      71
+      difficulty: 21
+      delay:      6
+      move:       12
+      length:     [40, 120]
+      ranking:    23
+      rarity:     750
+      contest:    true
+
+    blindfish:
+      id:         4313
+      skill:        27
+      difficulty:   18
+      delay:         6
+      move:          8
+      ranking:      18
+      rarity:      750
+
+    bluetail:
+      id:         4399
+      skill:        55
+      difficulty:   24
+      delay:         4
+      move:         12
+      ranking:      14
+      rarity:      650
+
+    brass_loach:
+      id:         5469
+      skill:        42
+      difficulty:   27
+      delay:        11
+      move:          7
+      ranking:      99
+      rarity:      750
+
+    bugbear_mask:
+      id:         1624
+      item:       true
+      skill:      54
+      difficulty: 42
+      delay:      13
+      move:       2
+      ranking:    5
+      rarity:     700
+
+    ca_cuong:
+      id:         5474
+      skill:        78
+      difficulty:   17
+      delay:        12
+      move:          6
+      ranking:      99
+      rarity:      500
+
+    caedarva_frog:
+      id:         5465
+      skill:        30
+      difficulty:   17
+      delay:         6
+      move:         13
+      ranking:       5
+      rarity:     1000
+
+    cave_cherax:
+      id:         4309
+      size:       large
+      skill:      130
+      difficulty: 36
+      delay:      7
+      move:       4
+      length:     [120, 235]
+      ranking:    32
+      rarity:     500
+      legendary:  true
+      contest:    true
+
+    cheval_salmon:
+      id:         4379
+      skill:        21
+      difficulty:   21
+      delay:         7
+      move:          7
+      ranking:      17
+      rarity:     1000
+
+    clump_of_adoulinian_kelp:
+      id:         3965
+      item:       true
+      skill:      6
+      difficulty: 18
+      delay:      13
+      move:       2
+      ranking:    13
+      rarity:     1000
+
+    clump_of_pamtam_kelp:
+      id:         624
+      item:       true
+      skill:      3
+      difficulty: 24
+      delay:      13
+      move:       2
+      ranking:    13
+      rarity:     1000
+
+    cobalt_jellyfish:
+      id:         4443
+      item:       true
+      skill:      5
+      difficulty: 28
+      delay:      13
+      move:       0
+      ranking:    14
+      rarity:     700
+
+    cone_calamary:
+      id:         5128
+      skill:      48
+      difficulty: 40
+      delay:      10
+      move:       5
+      ranking:    10
+      rarity:     850
+      max_hook:   3
+      flags:      [shellfish]
+
+    copper_frog:
+      id:         4515
+      skill:        16
+      difficulty:   22
+      delay:         8
+      move:          4
+      ranking:       9
+      rarity:     1000
+
+    copper_ring:
+      id:         13454
+      item:       true
+      skill:      24
+      difficulty: 40
+      delay:      13
+      move:       2
+      ranking:    5
+      rarity:     800
+      flags:      [shellfish]
+
+    coral_butterfly:
+      id:         4580
+      skill:        40
+      difficulty:   26
+      delay:        10
+      move:          8
+      ranking:      19
+      rarity:      900
+
+    coral_fragment:
+      id:         887
+      item:       true
+      skill:      74
+      difficulty: 47
+      delay:      13
+      move:       2
+      ranking:    5
+      rarity:     200
+      flags:      [shellfish]
+
+    crayfish:
+      id:         4472
+      skill:         7
+      difficulty:   24
+      delay:        13
+      move:          6
+      ranking:       8
+      rarity:     1000
+
+    crescent_fish:
+      id:         4473
+      skill:        69
+      difficulty:   28
+      delay:         7
+      move:          8
+      ranking:      13
+      rarity:      450
+
+    crystal_bass:
+      id:         4528
+      skill:        35
+      difficulty:   24
+      delay:         7
+      move:         12
+      ranking:      17
+      rarity:     1000
+
+    damp_scroll:
+      id:         1210
+      item:       true
+      skill:      20
+      difficulty: 35
+      delay:      13
+      move:       2
+      ranking:    1
+      rarity:     1000
+
+    dark_bass:
+      id:         4428
+      skill:        33
+      difficulty:   23
+      delay:         7
+      move:          8
+      ranking:      13
+      rarity:     1000
+
+    denizanasi:
+      id:         5447
+      item:       true
+      skill:      5
+      difficulty: 28
+      delay:      13
+      move:       0
+      ranking:    14
+      rarity:     700
+
+    dil:
+      id:         5457
+      skill:        96
+      difficulty:   33
+      delay:         5
+      move:         11
+      ranking:      23
+      rarity:      150
+
+    elshimo_frog:
+      id:         4290
+      skill:        30
+      difficulty:   25
+      delay:         6
+      move:         13
+      ranking:       5
+      rarity:     1000
+
+    elshimo_newt:
+      id:         4579
+      skill:        60
+      difficulty:   26
+      delay:         8
+      move:         11
+      ranking:      19
+      rarity:      900
+
+    emperor_fish:
+      id:         4454
+      size:       large
+      skill:      91
+      difficulty: 36
+      delay:      4
+      move:       13
+      length:     [60, 180]
+      ranking:    23
+      rarity:     100
+      contest:    true
+
+    fat_greedie:
+      id:         4501
+      water:      fresh
+      skill:      24
+      difficulty: 30
+      delay:      10
+      move:       8
+      ranking:    11
+      rarity:     1000
+
+    fish_scale_shield:
+      id:         12316
+      item:       true
+      skill:      7
+      difficulty: 15
+      delay:      13
+      move:       2
+      ranking:    13
+      rarity:     500
+
+    forest_carp:
+      id:         4289
+      skill:        20
+      difficulty:   11
+      delay:         9
+      move:         11
+      ranking:      14
+      rarity:     1000
+
+    garpike:
+      id:         5472
+      skill:        83
+      difficulty:   24
+      delay:         3
+      move:         10
+      ranking:      99
+      rarity:     1000
+
+    gavial_fish:
+      id:         4477
+      size:       large
+      skill:      81
+      difficulty: 30
+      delay:      14
+      move:       15
+      length:     [40, 130]
+      ranking:    23
+      rarity:     400
+      contest:    true
+
+    gerrothorax:
+      id:         5471
+      size:       large
+      skill:      134
+      difficulty: 29
+      delay:      7
+      move:       8
+      length:     [120, 285]
+      ranking:    30
+      rarity:     500
+      legendary:  true
+
+    giant_catfish:
+      id:         4469
+      size:       large
+      skill:      31
+      difficulty: 13
+      delay:      6
+      move:       12
+      length:     [40, 130]
+      ranking:    19
+      rarity:     900
+      contest:    true
+
+    giant_chirai:
+      id:         4308
+      size:       large
+      skill:      110
+      difficulty: 25
+      delay:      4
+      move:       15
+      length:     [75, 170]
+      ranking:    27
+      rarity:     500
+      legendary:  true
+      contest:    true
+
+    giant_donko:
+      id:         4306
+      size:       large
+      skill:      50
+      difficulty: 17
+      delay:      14
+      move:       8
+      length:     [45, 150]
+      ranking:    23
+      rarity:     900
+      contest:    true
+
+    gigant_octopus:
+      id:         5475
+      size:       large
+      skill:      80
+      difficulty: 18
+      delay:      6
+      move:       9
+      length:     [65, 170]
+      ranking:    99
+      rarity:     1000
+
+    gigant_squid:
+      id:         4474
+      size:       large
+      skill:      91
+      difficulty: 43
+      delay:      7
+      move:       13
+      length:     [80, 170]
+      ranking:    23
+      rarity:     100
+      contest:    true
+
+    gil:
+      id:         65535
+      item:       true
+      skill:      1
+      difficulty: 22
+      delay:      13
+      move:       2
+      ranking:    1
+      rarity:     100
+
+    gold_carp:
+      id:         4427
+      skill:        56
+      difficulty:   18
+      delay:        10
+      move:         14
+      ranking:      14
+      rarity:      750
+
+    gold_lobster:
+      id:         4383
+      skill:      46
+      difficulty: 35
+      delay:      4
+      move:       3
+      ranking:    14
+      rarity:     800
+      flags:      [shellfish]
+
+    greedie:
+      id:         4500
+      water:      fresh
+      skill:      14
+      difficulty: 10
+      delay:      7
+      move:       14
+      ranking:    10
+      rarity:     1000
+
+    grimmonite:
+      id:         4304
+      size:       large
+      skill:      90
+      difficulty: 31
+      delay:      8
+      move:       7
+      length:     [55, 145]
+      ranking:    25
+      rarity:     450
+      contest:    true
+
+    gugru_tuna:
+      id:         4480
+      size:       large
+      water:      fresh
+      skill:      41
+      difficulty: 16
+      delay:      6
+      move:       13
+      length:     [40, 120]
+      ranking:    22
+      rarity:     850
+      flags:      [bit_10]
+      contest:    true
+
+    gugrusaurus:
+      id:              5127
+      size:            large
+      water:           fresh
+      skill:           140
+      difficulty:      39
+      delay:           6
+      move:            5
+      length:          [155, 420]
+      ranking:         33
+      rarity:          350
+      legendary:       true
+      legendary_flags: [half_time, no_rod_time_bonus, ebisu_time_bonus_only]
+      key_item:        serpent_rumors
+      contest:         true
+
+    gurnard:
+      id:         5132
+      skill:        26
+      difficulty:   13
+      delay:        11
+      move:          9
+      ranking:       5
+      rarity:      550
+
+    hamsi:
+      id:         5449
+      skill:      9
+      difficulty: 21
+      delay:      11
+      move:       6
+      ranking:    10
+      rarity:     1000
+      max_hook:   3
+      flags:      [shellfish]
+
+    hydrogauge:
+      id:         2341
+      item:       true
+      skill:      7
+      difficulty: 25
+      delay:      13
+      move:       2
+      ranking:    1
+      rarity:     1000
+      log:        6
+      quest:      25
+      quest_only: true
+
+    icefish:
+      id:         4470
+      skill:        49
+      difficulty:   38
+      delay:        11
+      move:          7
+      ranking:      14
+      rarity:      900
+      max_hook:      3
+
+    istakoz:
+      id:         5453
+      skill:        46
+      difficulty:   35
+      delay:         4
+      move:          3
+      ranking:      14
+      rarity:     1000
+
+    istavrit:
+      id:         5136
+      size:       large
+      skill:      18
+      difficulty: 13
+      delay:      11
+      move:       5
+      length:     [10, 20]
+      ranking:    16
+      rarity:     1000
+
+    istiridye:
+      id:         5456
+      skill:      53
+      difficulty: 27
+      delay:      13
+      move:       2
+      ranking:    14
+      rarity:     850
+      flags:      [shellfish]
+
+    jungle_catfish:
+      id:         4307
+      size:       large
+      skill:      80
+      difficulty: 26
+      delay:      9
+      move:       11
+      length:     [40, 110]
+      ranking:    23
+      rarity:     500
+      contest:    true
+
+    kalamar:
+      id:         5448
+      skill:      48
+      difficulty: 40
+      delay:      10
+      move:       5
+      ranking:    10
+      rarity:     850
+      max_hook:   3
+      flags:      [shellfish]
+
+    kalkanbaligi:
+      id:         5140
+      size:       large
+      water:      fresh
+      skill:      105
+      difficulty: 19
+      delay:      6
+      move:       12
+      length:     [60, 100]
+      ranking:    27
+      rarity:     500
+      flags:      [bit_10]
+      legendary:  true
+
+    kaplumbaga:
+      id:         5464
+      skill:        53
+      difficulty:   28
+      delay:         8
+      move:          5
+      ranking:      11
+      rarity:      800
+
+    kayabaligi:
+      id:         5460
+      skill:        75
+      difficulty:   30
+      delay:         7
+      move:          8
+      ranking:      10
+      rarity:      650
+
+    kilicbaligi:
+      id:         5451
+      size:       large
+      skill:      61
+      difficulty: 18
+      delay:      10
+      move:       11
+      ranking:    23
+      rarity:     800
+
+    lakerda:
+      id:         5450
+      size:       large
+      skill:      41
+      difficulty: 16
+      delay:      6
+      move:       13
+      length:     [55, 100]
+      ranking:    22
+      rarity:     900
+
+    lamp_marimo:
+      id:         2216
+      skill:         3
+      difficulty:   26
+      delay:        13
+      move:          2
+      ranking:       1
+      rarity:     1000
+
+    lik:
+      id:              5129
+      size:            large
+      skill:           140
+      difficulty:      48
+      delay:           2
+      move:            14
+      length:          [185, 460]
+      ranking:         33
+      rarity:          850
+      legendary:       true
+      legendary_flags: [add_time_bonus]
+      key_item:        serpent_rumors
+      contest:         true
+
+    lungfish:
+      id:         4315
+      skill:        32
+      difficulty:   16
+      delay:         4
+      move:          8
+      ranking:      10
+      rarity:     1000
+
+    matsya:
+      id:         5468
+      size:       large
+      skill:      150
+      difficulty: 31
+      delay:      5
+      move:       12
+      length:     [425, 950]
+      ranking:    99
+      rarity:     500
+      legendary:  true
+
+    megalodon:
+      id:         5467
+      size:       large
+      skill:      93
+      difficulty: 33
+      delay:      10
+      move:       11
+      length:     [446, 625]
+      ranking:    99
+      rarity:     1000
+
+    mercanbaligi:
+      id:         5454
+      skill:        86
+      difficulty:   31
+      delay:         7
+      move:          9
+      ranking:      22
+      rarity:      400
+
+    mithra_snare:
+      id:         5330
+      item:       true
+      skill:      30
+      difficulty: 22
+      delay:      13
+      move:       2
+      ranking:    1
+      rarity:     1000
+      quest_only: true
+
+    moat_carp:
+      id:         4401
+      skill:        11
+      difficulty:   16
+      delay:        10
+      move:          9
+      ranking:       7
+      rarity:     1000
+
+    moblin_mask:
+      id:         1638
+      item:       true
+      skill:      54
+      difficulty: 44
+      delay:      13
+      move:       2
+      ranking:    5
+      rarity:     800
+
+    mola_mola:
+      id:         5134
+      size:       large
+      water:      fresh
+      skill:      135
+      difficulty: 16
+      delay:      12
+      move:       12
+      length:     [110, 200]
+      ranking:    30
+      rarity:     500
+      flags:      [bit_10]
+      legendary:  true
+
+    monke-onke:
+      id:         4462
+      size:       large
+      skill:      51
+      difficulty: 17
+      delay:      11
+      move:       9
+      length:     [45, 115]
+      ranking:    18
+      rarity:     550
+      contest:    true
+
+    moorish_idol:
+      id:         5121
+      water:      fresh
+      skill:      26
+      difficulty: 18
+      delay:      6
+      move:       11
+      ranking:    9
+      rarity:     700
+
+    morinabaligi:
+      id:         5462
+      skill:        91
+      difficulty:   36
+      delay:         4
+      move:         13
+      ranking:      23
+      rarity:      450
+
+    muddy_siredon:
+      id:         5126
+      skill:        18
+      difficulty:   23
+      delay:        12
+      move:         11
+      ranking:       1
+      rarity:     1000
+
+    mythril_dagger:
+      id:         16451
+      item:       true
+      skill:      90
+      difficulty: 78
+      delay:      13
+      move:       2
+      ranking:    5
+      rarity:     80
+
+    mythril_sword:
+      id:         16537
+      item:       true
+      skill:      90
+      difficulty: 15
+      delay:      13
+      move:       2
+      ranking:    10
+      rarity:     60
+
+    nebimonite:
+      id:         4361
+      water:      fresh
+      skill:      27
+      difficulty: 30
+      delay:      9
+      move:       5
+      ranking:    10
+      rarity:     1000
+
+    noble_lady:
+      id:         4485
+      water:      fresh
+      skill:      66
+      difficulty: 30
+      delay:      7
+      move:       10
+      ranking:    13
+      rarity:     700
+
+    norg_shell:
+      id:         1135
+      item:       true
+      skill:      14
+      difficulty: 31
+      delay:      13
+      move:       2
+      ranking:    14
+      rarity:     600
+
+    nosteau_herring:
+      id:         4482
+      skill:        39
+      difficulty:   21
+      delay:         7
+      move:          8
+      ranking:      10
+      rarity:      950
+
+    ogre_eel:
+      id:         4481
+      skill:        35
+      difficulty:   29
+      delay:        13
+      move:         11
+      ranking:      14
+      rarity:     1000
+
+    phanauet_newt:
+      id:         5125
+      skill:         4
+      difficulty:   13
+      delay:        10
+      move:         11
+      ranking:       1
+      rarity:     1000
+
+    pipira:
+      id:         4464
+      skill:        29
+      difficulty:   11
+      delay:         6
+      move:         14
+      ranking:      10
+      rarity:     1000
+
+    pirarucu:
+      id:         5470
+      size:       large
+      skill:      81
+      difficulty: 24
+      delay:      13
+      move:       11
+      length:     [161, 210]
+      ranking:    99
+      rarity:     1000
+
+    pterygotus:
+      id:         5133
+      size:       large
+      skill:      99
+      difficulty: 28
+      delay:      8
+      move:       7
+      length:     [25, 260]
+      ranking:    24
+      rarity:     400
+
+    quus:
+      id:         4514
+      skill:        19
+      difficulty:   12
+      delay:         7
+      move:         11
+      ranking:       5
+      rarity:     1000
+      max_hook:      3
+
+    red_terrapin:
+      id:         4402
+      skill:        53
+      difficulty:   28
+      delay:         8
+      move:          5
+      ranking:      11
+      rarity:      750
+
+    rhinochimera:
+      id:         5135
+      size:       large
+      skill:      73
+      difficulty: 17
+      delay:      5
+      move:       14
+      length:     [10, 90]
+      ranking:    23
+      rarity:     450
+
+    ripped_cap:
+      id:         591
+      item:       true
+      skill:      20
+      difficulty: 36
+      delay:      13
+      move:       2
+      ranking:    13
+      rarity:     400
+      log:        2
+      quest:      23
+
+    rusty_bucket:
+      id:         90
+      item:       true
+      skill:      1
+      difficulty: 19
+      delay:      13
+      move:       2
+      ranking:    10
+      rarity:     900
+      flags:      [shellfish, rusty]
+
+    rusty_cap:
+      id:         12522
+      item:       true
+      skill:      30
+      difficulty: 38
+      delay:      13
+      move:       2
+      ranking:    5
+      rarity:     800
+      flags:      [shellfish, rusty]
+
+    rusty_greatsword:
+      id:         16606
+      item:       true
+      skill:      60
+      difficulty: 57
+      delay:      13
+      move:       2
+      ranking:    5
+      rarity:     400
+      flags:      [rusty]
+
+    rusty_leggings:
+      id:         14117
+      item:       true
+      skill:      7
+      difficulty: 26
+      delay:      13
+      move:       2
+      ranking:    18
+      rarity:     500
+      flags:      [shellfish, rusty]
+
+    rusty_pick:
+      id:         16655
+      item:       true
+      skill:      40
+      difficulty: 47
+      delay:      13
+      move:       2
+      ranking:    5
+      rarity:     400
+      flags:      [rusty]
+
+    rusty_subligar:
+      id:         14242
+      item:       true
+      skill:      5
+      difficulty: 22
+      delay:      13
+      move:       2
+      ranking:    5
+      rarity:     500
+      flags:      [rusty]
+
+    ryugu_titan:
+      id:         4305
+      size:       large
+      water:      fresh
+      skill:      150
+      difficulty: 48
+      delay:      1
+      move:       15
+      length:     [200, 490]
+      ranking:    34
+      rarity:     700
+      legendary:  true
+      contest:    true
+
+    sandfish:
+      id:         4291
+      skill:      50
+      difficulty: 36
+      delay:      3
+      move:       10
+      ranking:    13
+      rarity:     1000
+      max_hook:   3
+      flags:      [shellfish]
+
+    sazanbaligi:
+      id:         5459
+      skill:        56
+      difficulty:   18
+      delay:        10
+      move:         14
+      ranking:      14
+      rarity:      650
+
+    sea_zombie:
+      id:         4475
+      size:       large
+      water:      fresh
+      skill:      101
+      difficulty: 39
+      delay:      3
+      move:       15
+      length:     [80, 195]
+      ranking:    28
+      rarity:     350
+      legendary:  true
+      contest:    true
+
+    shall_shell:
+      id:         4484
+      skill:      53
+      difficulty: 27
+      delay:      13
+      move:       2
+      ranking:    14
+      rarity:     1000
+      flags:      [shellfish]
+
+    shining_trout:
+      id:         4354
+      skill:        37
+      difficulty:   16
+      delay:         5
+      move:         11
+      ranking:      15
+      rarity:     1000
+
+    silver_ring:
+      id:         13456
+      item:       true
+      skill:      34
+      difficulty: 40
+      delay:      13
+      move:       2
+      ranking:    5
+      rarity:     300
+      flags:      [shellfish]
+
+    silver_shark:
+      id:         4451
+      skill:        76
+      difficulty:   35
+      delay:         3
+      move:          9
+      ranking:      14
+      rarity:      500
+
+    takitaro:
+      id:         4463
+      size:       large
+      skill:      101
+      difficulty: 18
+      delay:      3
+      move:       14
+      length:     [60, 130]
+      ranking:    28
+      rarity:     500
+      flags:      [bit_10]
+      legendary:  true
+      contest:    true
+
+    tarutaru_snare:
+      id:         5329
+      item:       true
+      skill:      30
+      difficulty: 22
+      delay:      13
+      move:       2
+      ranking:    1
+      rarity:     1000
+      quest_only: true
+
+    tavnazian_goby:
+      id:         5130
+      skill:        75
+      difficulty:   30
+      delay:         7
+      move:          8
+      ranking:      10
+      rarity:      850
+
+    three-eyed_fish:
+      id:         4478
+      size:       large
+      skill:      81
+      difficulty: 22
+      delay:      10
+      move:       10
+      length:     [50, 120]
+      ranking:    25
+      rarity:     500
+      contest:    true
+
+    tiger_cod:
+      id:         4483
+      skill:        29
+      difficulty:   23
+      delay:         9
+      move:          9
+      ranking:      10
+      rarity:     1000
+
+    tiny_goldfish:
+      id:         4310
+      skill:        20
+      difficulty:   22
+      delay:         0
+      move:         14
+      ranking:       5
+      rarity:     1000
+      max_hook:      3
+
+    titanic_sawfish:
+      id:         5120
+      size:       large
+      water:      fresh
+      skill:      125
+      difficulty: 39
+      delay:      6
+      move:       13
+      length:     [75, 145]
+      ranking:    29
+      rarity:     400
+      legendary:  true
+      contest:    true
+
+    titanictus:
+      id:         4476
+      size:       large
+      water:      fresh
+      skill:      101
+      difficulty: 28
+      delay:      3
+      move:       12
+      length:     [75, 210]
+      ranking:    28
+      rarity:     350
+      legendary:  true
+      contest:    true
+
+    tricolored_carp:
+      id:         4426
+      skill:        27
+      difficulty:   19
+      delay:        12
+      move:         12
+      ranking:      13
+      rarity:     1000
+
+    tricorn:
+      id:         4319
+      size:       large
+      skill:      128
+      difficulty: 38
+      delay:      11
+      move:       9
+      length:     [105, 210]
+      ranking:    31
+      rarity:     500
+      legendary:  true
+      key_item:   frog_fishing
+      contest:    true
+
+    trilobite:
+      id:         4317
+      water:      fresh
+      skill:      59
+      difficulty: 27
+      delay:      5
+      move:       6
+      ranking:    14
+      rarity:     1000
+
+    trumpet_shell:
+      id:         5466
+      skill:        63
+      difficulty:   18
+      delay:        10
+      move:          5
+      ranking:      99
+      rarity:      550
+
+    turnabaligi:
+      id:         5137
+      size:       large
+      skill:      105
+      difficulty: 30
+      delay:      7
+      move:       12
+      length:     [65, 175]
+      ranking:    24
+      rarity:     450
+      flags:      [bit_10]
+
+    uskumru:
+      id:         5452
+      skill:        55
+      difficulty:   24
+      delay:         4
+      move:         12
+      ranking:      14
+      rarity:      550
+
+    veydal_wrasse:
+      id:         5141
+      size:       large
+      skill:      37
+      difficulty: 13
+      delay:      11
+      move:       5
+      length:     [40, 125]
+      ranking:    25
+      rarity:     400
+
+    vongola_clam:
+      id:         5131
+      water:      fresh
+      skill:      53
+      difficulty: 20
+      delay:      8
+      move:       4
+      ranking:    13
+      rarity:     900
+      flags:      [shellfish]
+
+    yayinbaligi:
+      id:         5463
+      size:       large
+      skill:      31
+      difficulty: 13
+      delay:      6
+      move:       12
+      length:     [40, 130]
+      ranking:    19
+      rarity:     900
+
+    yellow_globe:
+      id:         4403
+      skill:        17
+      difficulty:   17
+      delay:         8
+      move:          8
+      ranking:      10
+      rarity:     1000
+      max_hook:      3
+
+    yilanbaligi:
+      id:         5458
+      skill:        47
+      difficulty:   24
+      delay:         5
+      move:          8
+      ranking:      15
+      rarity:      800
+
+    zafmlug_bass:
+      id:         4385
+      skill:        43
+      difficulty:   27
+      delay:         6
+      move:          7
+      ranking:      15
+      rarity:     1000
+
+    zebra_eel:
+      id:         4288
+      skill:        70
+      difficulty:   32
+      delay:        10
+      move:         10
+      ranking:      23
+      rarity:      800
+
+  rods:
+    bamboo_fishing_rod:
+      id:          17389
+      rank:        [1, 7]
+      attack:      140
+      recovery:    60
+      time:        30
+      small_bonus: {delay: 2, move: 1}
+      large_bonus: {delay: 1}
+      multiplier:  2
+      breaks_into: broken_bamboo_fishing_rod
+
+    carbon_fishing_rod:
+      id:          17384
+      material:    synthetic
+      rank:        [1, 13]
+      attack:      100
+      recovery:    75
+      time:        43
+      small_bonus: {delay: 2, move: 1}
+      large_bonus: {delay: 1}
+      multiplier:  4
+      breaks_into: broken_carbon_fishing_rod
+
+    clothespole:
+      id:          17383
+      size:        large
+      flags:       [small_penalty]
+      rank:        [12, 12]
+      attack:      170
+      recovery:    50
+      time:        30
+      large_bonus: {delay: 1}
+      multiplier:  3
+      breaks_into: broken_clothespole
+
+    composite_fishing_rod:
+      id:          17381
+      material:    synthetic
+      size:        large
+      flags:       [small_penalty]
+      rank:        [11, 24]
+      attack:      100
+      recovery:    70
+      time:        43
+      large_bonus: {delay: 1}
+      multiplier:  2
+      breaks_into: broken_composite_fishing_rod
+
+    ebisu_fishing_rod:
+      id:               17011
+      material:         synthetic
+      flags:            [legendary_bonus]
+      rank:             [1, 30]
+      attack:           100
+      recovery:         50
+      time:             30
+      small_bonus:      {delay: 2, move: 1}
+      large_bonus:      {delay: 1}
+      multiplier:       3
+      legendary:        true
+      legendary_attack: 50
+      legendary_time:   10
+
+    ebisu_fishing_rod_+1:
+      id:               19321
+      material:         synthetic
+      flags:            [legendary_bonus]
+      rank:             [1, 30]
+      attack:           100
+      recovery:         50
+      time:             40
+      small_bonus:      {delay: 2, move: 1}
+      large_bonus:      {delay: 1}
+      multiplier:       3
+      legendary:        true
+      legendary_attack: 50
+      legendary_time:   10
+
+    fastwater_fishing_rod:
+      id:          17388
+      rank:        [1, 8]
+      attack:      135
+      recovery:    65
+      time:        30
+      small_bonus: {delay: 2, move: 1}
+      large_bonus: {delay: 1}
+      multiplier:  2
+      breaks_into: broken_fastwater_fishing_rod
+
+    glass_fiber_fishing_rod:
+      id:          17385
+      material:    synthetic
+      rank:        [1, 12]
+      attack:      100
+      recovery:    80
+      time:        45
+      small_bonus: {delay: 2, move: 1}
+      large_bonus: {delay: 1}
+      multiplier:  4
+      breaks_into: broken_glass_fiber_fishing_rod
+
+    goldfish_basket:
+      id:       17013
+      flags:    [goldfish_scooping]
+      rank:     [1, 5]
+      attack:   100
+      recovery: 50
+      time:     20
+
+    halcyon_rod:
+      id:          17015
+      material:    synthetic
+      flags:       [large_penalty]
+      rank:        [1, 18]
+      attack:      100
+      recovery:    70
+      time:        41
+      small_bonus: {delay: 2, move: 1}
+      large_bonus: {move: 2}
+      multiplier:  3
+      breaks_into: broken_halcyon_fishing_rod
+
+    hume_fishing_rod:
+      id:          17014
+      flags:       [large_penalty]
+      rank:        [1, 15]
+      attack:      125
+      recovery:    65
+      time:        30
+      small_bonus: {delay: 2, move: 1}
+      large_bonus: {move: 2}
+      multiplier:  3
+      breaks_into: broken_hume_fishing_rod
+
+    judges_rod:
+      id:               17012
+      material:         synthetic
+      rank:             [1, 40]
+      attack:           200
+      recovery:         100
+      time:             60
+      small_bonus:      {delay: 2, move: 1}
+      large_bonus:      {delay: 1}
+      multiplier:       5
+      legendary:        true
+      legendary_attack: 100
+      legendary_time:   30
+
+    lu_shangs_fishing_rod:
+      id:               17386
+      rank:             [1, 28]
+      attack:           110
+      recovery:         100
+      time:             40
+      small_bonus:      {delay: 2, move: 1}
+      large_bonus:      {delay: 1}
+      multiplier:       2
+      legendary:        true
+      legendary_attack: 20
+      legendary_time:   10
+      breaks_into:      broken_lu_shangs_fishing_rod
+
+    lu_shangs_fishing_rod_+1:
+      id:               19320
+      rank:             [1, 28]
+      attack:           110
+      recovery:         100
+      time:             50
+      small_bonus:      {delay: 2, move: 1}
+      large_bonus:      {delay: 1}
+      multiplier:       2
+      legendary:        true
+      legendary_attack: 20
+      legendary_time:   10
+      breaks_into:      broken_lu_shangs_fishing_rod_+1
+
+    maze_monger_fishing_rod:
+      id:          19319
+      material:    synthetic
+      rank:        [1, 25]
+      attack:      100
+      recovery:    100
+      time:        30
+      small_bonus: {delay: 2, move: 1}
+      large_bonus: {delay: 1, move: 10}
+      multiplier:  2
+      mmm:         true
+      breaks_into: broken_mmm_fishing_rod
+
+    mithran_fishing_rod:
+      id:          17380
+      size:        large
+      flags:       [small_penalty]
+      rank:        [8, 18]
+      attack:      130
+      recovery:    65
+      time:        30
+      large_bonus: {delay: 1}
+      multiplier:  3
+      breaks_into: broken_mithran_fishing_rod
+
+    single_hook_fishing_rod:
+      id:          17382
+      material:    synthetic
+      size:        large
+      flags:       [small_penalty]
+      rank:        [14, 13]
+      attack:      100
+      recovery:    80
+      time:        45
+      large_bonus: {delay: 1}
+      multiplier:  3
+      breaks_into: broken_single_hook_fishing_rod
+
+    tarutaru_fishing_rod:
+      id:          17387
+      rank:        [1, 9]
+      attack:      130
+      recovery:    70
+      time:        30
+      small_bonus: {delay: 2, move: 1}
+      large_bonus: {delay: 1}
+      multiplier:  4
+      breaks_into: broken_tarutaru_fishing_rod
+
+    willow_fishing_rod:
+      id:          17391
+      rank:        [1, 5]
+      attack:      150
+      recovery:    50
+      time:        30
+      small_bonus: {delay: 2, move: 1}
+      large_bonus: {delay: 1}
+      multiplier:  2
+      breaks_into: broken_willow_fishing_rod
+
+    yew_fishing_rod:
+      id:          17390
+      rank:        [1, 6]
+      attack:      145
+      recovery:    55
+      time:        30
+      small_bonus: {delay: 2, move: 1}
+      large_bonus: {delay: 1}
+      multiplier:  2
+      breaks_into: broken_yew_fishing_rod
+
+  baits:
+    ball_of_crayfish_paste:
+      id: 16997
+      catches:
+        ahtapot:          uncommon
+        bastore_bream:    uncommon
+        bastore_sweeper:  uncommon
+        black_eel:        common
+        black_sole:       uncommon
+        cobalt_jellyfish: uncommon
+        denizanasi:       uncommon
+        dil:              uncommon
+        fat_greedie:      uncommon
+        gigant_octopus:   uncommon
+        greedie:          uncommon
+        grimmonite:       uncommon
+        gurnard:          uncommon
+        istiridye:        uncommon
+        kalkanbaligi:     uncommon
+        mercanbaligi:     uncommon
+        moorish_idol:     uncommon
+        nebimonite:       common
+        shall_shell:      uncommon
+        trumpet_shell:    uncommon
+        vongola_clam:     uncommon
+        yellow_globe:     common
+        zafmlug_bass:     uncommon
+
+    ball_of_insect_paste:
+      id: 16998
+      catches:
+        blindfish:        common
+        cobalt_jellyfish: uncommon
+        crystal_bass:     uncommon
+        dark_bass:        uncommon
+        denizanasi:       uncommon
+        forest_carp:      common
+        gold_carp:        uncommon
+        icefish:          uncommon
+        moat_carp:        common
+        sandfish:         uncommon
+        sazanbaligi:      uncommon
+        tiny_goldfish:    uncommon
+        tricolored_carp:  uncommon
+
+    ball_of_sardine_paste:
+      id: 16996
+      catches:
+        abaia:            common
+        alabaligi:        uncommon
+        armored_pisces:   uncommon
+        black_eel:        uncommon
+        blindfish:        uncommon
+        cheval_salmon:    uncommon
+        cobalt_jellyfish: uncommon
+        crystal_bass:     uncommon
+        dark_bass:        common
+        denizanasi:       uncommon
+        emperor_fish:     common
+        giant_catfish:    uncommon
+        giant_chirai:     uncommon
+        giant_donko:      uncommon
+        jungle_catfish:   common
+        morinabaligi:     common
+        nosteau_herring:  uncommon
+        shining_trout:    uncommon
+        yilanbaligi:      uncommon
+
+    ball_of_trout_paste:
+      id: 16999
+      catches:
+        abaia:            common
+        alabaligi:        uncommon
+        armored_pisces:   uncommon
+        black_eel:        uncommon
+        blindfish:        uncommon
+        cheval_salmon:    uncommon
+        cobalt_jellyfish: uncommon
+        crystal_bass:     uncommon
+        dark_bass:        common
+        denizanasi:       uncommon
+        emperor_fish:     common
+        giant_catfish:    uncommon
+        giant_chirai:     uncommon
+        giant_donko:      uncommon
+        jungle_catfish:   common
+        morinabaligi:     common
+        shining_trout:    uncommon
+        yilanbaligi:      uncommon
+
+    dried_squid:
+      id:   19324
+      type: special
+
+    drill_calamary:
+      id: 17006
+      catches:
+        gugrusaurus: uncommon
+        matsya:      uncommon
+        sea_zombie:  uncommon
+
+    dwarf_pugil:
+      id: 17007
+      catches:
+        lik: uncommon
+
+    fly_lure:
+      id:    17405
+      type:  lure
+      flags: [gold_arrow_bonus]
+      catches:
+        alabaligi:        uncommon
+        betta:            common
+        bibikibo:         common
+        caedarva_frog:    uncommon
+        cheval_salmon:    common
+        cobalt_jellyfish: common
+        copper_frog:      common
+        crescent_fish:    common
+        denizanasi:       common
+        elshimo_frog:     common
+        elshimo_newt:     uncommon
+        gerrothorax:      uncommon
+        giant_chirai:     uncommon
+        kaplumbaga:       uncommon
+        lamp_marimo:      uncommon
+        muddy_siredon:    uncommon
+        phanauet_newt:    common
+        shining_trout:    common
+        takitaro:         common
+        tricorn:          uncommon
+
+    frog_lure:
+      id:   17403
+      type: lure
+      catches:
+        abaia:            uncommon
+        armored_pisces:   common
+        cobalt_jellyfish: uncommon
+        crystal_bass:     uncommon
+        dark_bass:        uncommon
+        denizanasi:       uncommon
+        elshimo_newt:     common
+        gavial_fish:      uncommon
+        giant_catfish:    uncommon
+        giant_donko:      uncommon
+        jungle_catfish:   uncommon
+        kaplumbaga:       common
+        lungfish:         uncommon
+        muddy_siredon:    common
+        phanauet_newt:    uncommon
+        pipira:           uncommon
+        red_terrapin:     common
+        ryugu_titan:      uncommon
+        yayinbaligi:      uncommon
+
+    giant_shell_bug:
+      id: 17001
+      catches:
+        copper_frog:   uncommon
+        crescent_fish: uncommon
+        crystal_bass:  uncommon
+        dark_bass:     uncommon
+        emperor_fish:  uncommon
+        red_terrapin:  uncommon
+
+    goliath_worm:
+      id: 17010
+
+    judge_fly:
+      id:   19325
+      type: lure
+
+    judge_minnow:
+      id:   17004
+      type: lure
+
+    judges_lure:
+      id:   17406
+      type: lure
+
+    large_maze_monger_ball:
+      id:   17009
+      type: lure
+      mmm:  true
+
+    little_worm:
+      id: 17396
+      catches:
+        armored_pisces:   uncommon
+        black_eel:        uncommon
+        black_ghost:      uncommon
+        blindfish:        uncommon
+        brass_loach:      uncommon
+        ca_cuong:         uncommon
+        cobalt_jellyfish: common
+        crayfish:         uncommon
+        crystal_bass:     uncommon
+        denizanasi:       common
+        forest_carp:      uncommon
+        giant_catfish:    uncommon
+        giant_donko:      uncommon
+        gold_carp:        uncommon
+        icefish:          uncommon
+        kayabaligi:       uncommon
+        lungfish:         uncommon
+        moat_carp:        uncommon
+        monke-onke:       uncommon
+        sandfish:         uncommon
+        sazanbaligi:      uncommon
+        shining_trout:    uncommon
+        tavnazian_goby:   uncommon
+        tiny_goldfish:    uncommon
+        tricolored_carp:  uncommon
+        yilanbaligi:      uncommon
+
+    lizard_lure:
+      id:   17401
+      type: lure
+      catches:
+        cobalt_jellyfish: uncommon
+        crystal_bass:     uncommon
+        dark_bass:        uncommon
+        denizanasi:       uncommon
+        garpike:          uncommon
+        gavial_fish:      common
+        giant_catfish:    uncommon
+        giant_donko:      uncommon
+        jungle_catfish:   uncommon
+        pipira:           uncommon
+        ryugu_titan:      uncommon
+
+    lufaise_fly:
+      id: 17005
+      catches:
+        blindfish:        uncommon
+        cheval_salmon:    uncommon
+        cobalt_jellyfish: uncommon
+        copper_frog:      uncommon
+        denizanasi:       uncommon
+        gerrothorax:      uncommon
+        giant_chirai:     common
+        lungfish:         uncommon
+        muddy_siredon:    uncommon
+        phanauet_newt:    uncommon
+        shining_trout:    uncommon
+        tricorn:          uncommon
+
+    lugworm:
+      id: 17395
+      catches:
+        bastore_sardine:  uncommon
+        cobalt_jellyfish: uncommon
+        coral_butterfly:  uncommon
+        denizanasi:       uncommon
+        fat_greedie:      uncommon
+        greedie:          uncommon
+        hamsi:            uncommon
+        istavrit:         common
+        lamp_marimo:      uncommon
+        moorish_idol:     uncommon
+        nosteau_herring:  uncommon
+        pterygotus:       common
+        quus:             common
+        tiger_cod:        uncommon
+        trilobite:        uncommon
+        yellow_globe:     uncommon
+        zafmlug_bass:     uncommon
+
+    maze_monger_minnow:
+      id:   19323
+      type: special
+      mmm:  true
+
+    meatball:
+      id: 17000
+      catches:
+        armored_pisces:   common
+        bastore_sweeper:  uncommon
+        bibikibo:         uncommon
+        bladefish:        common
+        blindfish:        uncommon
+        cave_cherax:      common
+        cobalt_jellyfish: common
+        crystal_bass:     uncommon
+        dark_bass:        uncommon
+        denizanasi:       common
+        elshimo_newt:     uncommon
+        garpike:          uncommon
+        gavial_fish:      common
+        gerrothorax:      uncommon
+        gugrusaurus:      common
+        jungle_catfish:   uncommon
+        megalodon:        common
+        pipira:           uncommon
+        pirarucu:         common
+        ryugu_titan:      uncommon
+        sea_zombie:       uncommon
+        silver_shark:     common
+        titanic_sawfish:  uncommon
+        titanictus:       common
+
+    minnow:
+      id:   17407
+      type: lure
+      catches:
+        abaia:            common
+        alabaligi:        uncommon
+        armored_pisces:   common
+        bastore_bream:    uncommon
+        black_ghost:      common
+        bluetail:         common
+        cave_cherax:      uncommon
+        cheval_salmon:    uncommon
+        cobalt_jellyfish: uncommon
+        cone_calamary:    common
+        crystal_bass:     common
+        dark_bass:        common
+        denizanasi:       uncommon
+        fat_greedie:      uncommon
+        garpike:          uncommon
+        gavial_fish:      uncommon
+        gerrothorax:      uncommon
+        giant_catfish:    common
+        giant_chirai:     uncommon
+        gigant_squid:     common
+        greedie:          common
+        gugru_tuna:       uncommon
+        istakoz:          uncommon
+        jungle_catfish:   common
+        kalamar:          uncommon
+        kayabaligi:       uncommon
+        lakerda:          uncommon
+        lik:              uncommon
+        lungfish:         uncommon
+        megalodon:        uncommon
+        mercanbaligi:     uncommon
+        mola_mola:        uncommon
+        pipira:           common
+        pirarucu:         uncommon
+        ryugu_titan:      uncommon
+        shining_trout:    common
+        takitaro:         uncommon
+        tavnazian_goby:   common
+        three-eyed_fish:  common
+        turnabaligi:      uncommon
+        uskumru:          uncommon
+        veydal_wrasse:    uncommon
+        yayinbaligi:      uncommon
+        zafmlug_bass:     uncommon
+
+    peeled_crayfish:
+      id: 16993
+      catches:
+        bibikibo:         uncommon
+        black_sole:       uncommon
+        cave_cherax:      uncommon
+        cobalt_jellyfish: uncommon
+        crayfish:         uncommon
+        crystal_bass:     uncommon
+        dark_bass:        uncommon
+        denizanasi:       uncommon
+        emperor_fish:     common
+        gavial_fish:      uncommon
+        giant_donko:      common
+        lungfish:         uncommon
+        monke-onke:       uncommon
+        moorish_idol:     uncommon
+        morinabaligi:     uncommon
+        takitaro:         uncommon
+        trilobite:        uncommon
+        vongola_clam:     uncommon
+        yilanbaligi:      uncommon
+
+    peeled_lobster:
+      id: 17394
+      catches:
+        ahtapot:          uncommon
+        bastore_bream:    uncommon
+        bhefhel_marlin:   uncommon
+        bibikibo:         uncommon
+        bluetail:         uncommon
+        cave_cherax:      uncommon
+        cobalt_jellyfish: uncommon
+        denizanasi:       uncommon
+        dil:              uncommon
+        grimmonite:       uncommon
+        gugru_tuna:       uncommon
+        kilicbaligi:      uncommon
+        mercanbaligi:     uncommon
+        moorish_idol:     uncommon
+        nebimonite:       uncommon
+        noble_lady:       uncommon
+        ogre_eel:         uncommon
+        ryugu_titan:      uncommon
+        titanictus:       uncommon
+
+    piece_of_rotten_meat:
+      id: 16995
+      catches:
+        cave_cherax:    common
+        elshimo_newt:   uncommon
+        jungle_catfish: uncommon
+        sea_zombie:     rare
+
+    regular_maze_monger_ball:
+      id:   17008
+      type: lure
+      mmm:  true
+
+    robber_rig:
+      id:    17002
+      type:  lure
+      flags: [poor_fish, shellfish_affinity]
+      catches:
+        abaia:            rare
+        bastore_bream:    rare
+        bastore_sardine:  rare
+        bastore_sweeper:  rare
+        bhefhel_marlin:   rare
+        bibikibo:         rare
+        black_eel:        rare
+        bladefish:        rare
+        blindfish:        rare
+        bluetail:         rare
+        cheval_salmon:    rare
+        cobalt_jellyfish: rare
+        copper_frog:      rare
+        crayfish:         rare
+        dark_bass:        rare
+        denizanasi:       rare
+        dil:              rare
+        elshimo_frog:     rare
+        elshimo_newt:     rare
+        emperor_fish:     rare
+        fat_greedie:      rare
+        forest_carp:      rare
+        garpike:          rare
+        gavial_fish:      rare
+        gerrothorax:      rare
+        giant_catfish:    rare
+        giant_donko:      rare
+        gigant_octopus:   rare
+        gold_carp:        rare
+        greedie:          rare
+        grimmonite:       rare
+        hamsi:            rare
+        istakoz:          rare
+        istiridye:        rare
+        kaplumbaga:       rare
+        kilicbaligi:      rare
+        megalodon:        rare
+        mercanbaligi:     rare
+        moat_carp:        rare
+        noble_lady:       rare
+        ogre_eel:         rare
+        pipira:           rare
+        pirarucu:         rare
+        quus:             rare
+        sandfish:         rare
+        shall_shell:      common
+        silver_shark:     rare
+        tiger_cod:        rare
+        tricolored_carp:  rare
+        trilobite:        rare
+        trumpet_shell:    rare
+        vongola_clam:     rare
+        yellow_globe:     rare
+        zafmlug_bass:     rare
+
+    rogue_rig:
+      id:    17398
+      type:  lure
+      flags: [poor_fish, shellfish_affinity]
+      catches:
+        abaia:            rare
+        bastore_bream:    rare
+        bastore_sardine:  rare
+        bhefhel_marlin:   rare
+        black_eel:        rare
+        black_sole:       rare
+        bladefish:        rare
+        blindfish:        rare
+        bluetail:         rare
+        cave_cherax:      rare
+        cobalt_jellyfish: rare
+        copper_frog:      rare
+        crayfish:         rare
+        crescent_fish:    rare
+        crystal_bass:     rare
+        dark_bass:        rare
+        denizanasi:       rare
+        dil:              rare
+        elshimo_frog:     rare
+        elshimo_newt:     rare
+        emperor_fish:     rare
+        fat_greedie:      rare
+        forest_carp:      rare
+        garpike:          rare
+        gavial_fish:      rare
+        gerrothorax:      rare
+        giant_catfish:    rare
+        giant_chirai:     rare
+        giant_donko:      rare
+        gigant_octopus:   rare
+        gigant_squid:     rare
+        gold_lobster:     rare
+        greedie:          rare
+        grimmonite:       rare
+        gugru_tuna:       rare
+        icefish:          rare
+        istakoz:          rare
+        istiridye:        rare
+        jungle_catfish:   rare
+        kaplumbaga:       rare
+        kilicbaligi:      rare
+        megalodon:        rare
+        mercanbaligi:     rare
+        monke-onke:       rare
+        nebimonite:       rare
+        noble_lady:       rare
+        nosteau_herring:  rare
+        ogre_eel:         rare
+        pipira:           rare
+        pirarucu:         rare
+        pterygotus:       rare
+        quus:             rare
+        red_terrapin:     rare
+        sandfish:         rare
+        sea_zombie:       rare
+        shall_shell:      uncommon
+        shining_trout:    rare
+        silver_shark:     rare
+        takitaro:         rare
+        three-eyed_fish:  rare
+        tiger_cod:        rare
+        titanictus:       rare
+        tricolored_carp:  rare
+        trumpet_shell:    rare
+        vongola_clam:     rare
+        yellow_globe:     rare
+        zafmlug_bass:     rare
+        zebra_eel:        rare
+
+    sabiki_rig:
+      id:       17399
+      type:     lure
+      max_hook: 3
+      catches:
+        bastore_sardine:  common
+        cobalt_jellyfish: common
+        cone_calamary:    uncommon
+        denizanasi:       common
+        hamsi:            common
+        icefish:          common
+        kalamar:          uncommon
+        lamp_marimo:      uncommon
+        quus:             uncommon
+        sandfish:         uncommon
+        yellow_globe:     common
+
+    sea_dragon_liver:
+      id: 19326
+
+    shell_bug:
+      id: 17397
+      catches:
+        black_eel:        common
+        black_ghost:      uncommon
+        blindfish:        uncommon
+        cobalt_jellyfish: uncommon
+        dark_bass:        uncommon
+        denizanasi:       uncommon
+        elshimo_frog:     uncommon
+        elshimo_newt:     uncommon
+        istavrit:         uncommon
+        jungle_catfish:   uncommon
+        kaplumbaga:       uncommon
+        kayabaligi:       uncommon
+        lungfish:         uncommon
+        muddy_siredon:    uncommon
+        phanauet_newt:    uncommon
+        pterygotus:       uncommon
+        red_terrapin:     uncommon
+        tavnazian_goby:   uncommon
+        yilanbaligi:      uncommon
+
+    shrimp_lure:
+      id:   17402
+      type: lure
+      catches:
+        ahtapot:          uncommon
+        bastore_bream:    common
+        bibikibo:         uncommon
+        black_sole:       uncommon
+        cave_cherax:      uncommon
+        cobalt_jellyfish: uncommon
+        denizanasi:       uncommon
+        dil:              uncommon
+        gigant_octopus:   common
+        gold_carp:        common
+        grimmonite:       common
+        gugru_tuna:       uncommon
+        kalkanbaligi:     common
+        lakerda:          uncommon
+        lungfish:         common
+        mercanbaligi:     common
+        mola_mola:        common
+        monke-onke:       common
+        moorish_idol:     common
+        nebimonite:       uncommon
+        noble_lady:       uncommon
+        nosteau_herring:  uncommon
+        ogre_eel:         common
+        ryugu_titan:      uncommon
+        sazanbaligi:      uncommon
+        tiger_cod:        uncommon
+        tricolored_carp:  common
+        trilobite:        uncommon
+        turnabaligi:      common
+        uskumru:          uncommon
+        veydal_wrasse:    uncommon
+        zebra_eel:        common
+
+    sinking_minnow:
+      id:    17400
+      type:  lure
+      flags: [sinking]
+      catches:
+        alabaligi:        uncommon
+        armored_pisces:   common
+        bastore_bream:    uncommon
+        bastore_sweeper:  uncommon
+        bibikibo:         uncommon
+        black_ghost:      uncommon
+        black_sole:       common
+        cave_cherax:      uncommon
+        cheval_salmon:    uncommon
+        cobalt_jellyfish: uncommon
+        crystal_bass:     common
+        dark_bass:        uncommon
+        denizanasi:       uncommon
+        dil:              uncommon
+        fat_greedie:      uncommon
+        garpike:          common
+        giant_catfish:    common
+        gigant_octopus:   uncommon
+        gold_lobster:     common
+        greedie:          uncommon
+        gugru_tuna:       common
+        istakoz:          common
+        istavrit:         uncommon
+        jungle_catfish:   uncommon
+        kalkanbaligi:     uncommon
+        kayabaligi:       common
+        lakerda:          common
+        lik:              uncommon
+        lungfish:         uncommon
+        mercanbaligi:     uncommon
+        morinabaligi:     uncommon
+        noble_lady:       common
+        ogre_eel:         uncommon
+        pterygotus:       uncommon
+        rhinochimera:     common
+        ryugu_titan:      uncommon
+        shining_trout:    common
+        takitaro:         uncommon
+        tavnazian_goby:   uncommon
+        trumpet_shell:    uncommon
+        turnabaligi:      uncommon
+        yayinbaligi:      uncommon
+        yilanbaligi:      uncommon
+        zafmlug_bass:     uncommon
+        zebra_eel:        uncommon
+
+    slice_of_bluetail:
+      id: 16992
+      catches:
+        bastore_sweeper:  common
+        bhefhel_marlin:   common
+        bibikibo:         uncommon
+        bladefish:        common
+        cobalt_jellyfish: uncommon
+        cone_calamary:    uncommon
+        denizanasi:       uncommon
+        gigant_squid:     uncommon
+        gugrusaurus:      uncommon
+        kalamar:          common
+        kilicbaligi:      common
+        mola_mola:        uncommon
+        ryugu_titan:      uncommon
+        sea_zombie:       uncommon
+        silver_shark:     uncommon
+        veydal_wrasse:    common
+
+    slice_of_cod:
+      id: 17393
+      catches:
+        bastore_sweeper:  uncommon
+        black_sole:       uncommon
+        cobalt_jellyfish: uncommon
+        cone_calamary:    uncommon
+        denizanasi:       uncommon
+        dil:              common
+        gigant_squid:     common
+        kalkanbaligi:     uncommon
+        lakerda:          uncommon
+        megalodon:        uncommon
+        mola_mola:        uncommon
+        ryugu_titan:      common
+        three-eyed_fish:  common
+        titanic_sawfish:  uncommon
+        veydal_wrasse:    uncommon
+
+    slice_of_moat_carp:
+      id: 16994
+      catches:
+        abaia:            uncommon
+        ca_cuong:         common
+        cobalt_jellyfish: uncommon
+        crayfish:         common
+        crystal_bass:     uncommon
+        dark_bass:        uncommon
+        denizanasi:       uncommon
+        emperor_fish:     uncommon
+        gavial_fish:      uncommon
+        giant_donko:      uncommon
+        pipira:           uncommon
+
+    slice_of_sardine:
+      id: 17392
+      catches:
+        bastore_bream:    uncommon
+        bladefish:        uncommon
+        bluetail:         uncommon
+        cobalt_jellyfish: uncommon
+        denizanasi:       uncommon
+        fat_greedie:      uncommon
+        giant_catfish:    uncommon
+        gold_lobster:     uncommon
+        greedie:          uncommon
+        gugru_tuna:       uncommon
+        gurnard:          uncommon
+        istakoz:          uncommon
+        istavrit:         uncommon
+        mercanbaligi:     uncommon
+        noble_lady:       uncommon
+        ogre_eel:         uncommon
+        ryugu_titan:      uncommon
+        veydal_wrasse:    uncommon
+        zafmlug_bass:     uncommon
+        zebra_eel:        common
+
+    super_scoop:
+      id:       17003
+      max_hook: 3
+      flags:    [goldfish_scooping]
+
+    worm_lure:
+      id:   17404
+      type: lure
+      catches:
+        armored_pisces:   uncommon
+        bibikibo:         uncommon
+        black_eel:        uncommon
+        black_ghost:      uncommon
+        brass_loach:      uncommon
+        cobalt_jellyfish: uncommon
+        coral_butterfly:  common
+        crystal_bass:     uncommon
+        dark_bass:        uncommon
+        denizanasi:       uncommon
+        fat_greedie:      uncommon
+        giant_donko:      uncommon
+        greedie:          uncommon
+        jungle_catfish:   uncommon
+        kayabaligi:       uncommon
+        monke-onke:       uncommon
+        moorish_idol:     common
+        pipira:           uncommon
+        rhinochimera:     uncommon
+        sandfish:         common
+        tavnazian_goby:   uncommon
+        tiny_goldfish:    uncommon
+        trilobite:        common
+        turnabaligi:      uncommon
+        yayinbaligi:      uncommon
+        yellow_globe:     common
+        yilanbaligi:      uncommon
+        zafmlug_bass:     common

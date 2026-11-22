@@ -1,0 +1,52 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  whole_zone:
+    id: 1
+    pool:
+      clump_of_pamtam_kelp: 1000
+      cobalt_jellyfish:     1000
+      gugru_tuna:            900
+      gugrusaurus:           700
+      gurnard:               550
+      mola_mola:             500
+      noble_lady:            700
+      rusty_bucket:          900
+      rusty_leggings:        500
+      veydal_wrasse:         400
+      yellow_globe:         1000
+
+monsters:
+  passage_crab:
+    spawns:     [16965635]
+    level:      10
+    difficulty: 15
+
+  gugru_jagil:
+    spawns:     [16965636]
+    level:      20
+    difficulty: 15
+
+  blanched_kraken:
+    spawns:     [16965637]
+    level:      30
+    difficulty: 15
+
+  gugru_orobon:
+    spawns:           [16965638]
+    area:             whole_zone
+    level:            40
+    difficulty:       15
+    nm:               true
+    bait:             minnow
+    alternative_bait: sinking_minnow
+
+  northern_piranu:
+    spawns:           [16965639]
+    area:             whole_zone
+    level:            50
+    difficulty:       15
+    nm:               true
+    respawn:          [14400, 21600]
+    bait:             minnow
+    alternative_bait: sinking_minnow

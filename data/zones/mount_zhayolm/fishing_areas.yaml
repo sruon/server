@@ -1,0 +1,45 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  whole_zone:
+    id: 1
+    pool:
+      denizanasi:     1000
+      hamsi:          1000
+      kalamar:         850
+      rusty_subligar:  500
+
+monsters:
+  sicklemoon_crab:
+    spawns:     [17027073]
+    level:      20
+    difficulty: 16
+
+  zazalda_clot:
+    spawns:     [17027074]
+    level:      30
+    difficulty: 16
+
+  vozold_clot:
+    spawns:     [17027075]
+    level:      40
+    difficulty: 16
+
+  zazalda_jagil:
+    spawns:     [17027076]
+    level:      30
+    difficulty: 16
+
+  vozold_jagil:
+    spawns:     [17027077]
+    level:      40
+    difficulty: 16
+
+  giant_orobon:
+    spawns:           [17027078]
+    area:             whole_zone
+    level:            50
+    difficulty:       16
+    nm:               true
+    bait:             minnow
+    alternative_bait: sinking_minnow

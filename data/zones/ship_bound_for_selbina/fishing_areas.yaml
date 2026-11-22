@@ -1,0 +1,42 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  whole_zone:
+    id: 1
+    pool:
+      bastore_sardine: 1000
+      bhefhel_marlin:   700
+      bluetail:         650
+      cone_calamary:    850
+      gugru_tuna:       900
+      nebimonite:      1000
+      noble_lady:       700
+      quus:            1000
+      rusty_subligar:   500
+      ryugu_titan:      700
+      silver_shark:     500
+      titanictus:       500
+
+monsters:
+  sea_pugil:
+    spawns:     [17678337]
+    level:      10
+    difficulty: 16
+    delay:      14
+
+  ocean_crab:
+    spawns:     [17678338]
+    level:      40
+    difficulty: 17
+    delay:      9
+
+  ocean_pugil:
+    spawns:     [17678339]
+    level:      30
+    difficulty: 16
+
+  pirate_pugil:
+    spawns:     [17678340]
+    level:      40
+    difficulty: 17
+    delay:      9

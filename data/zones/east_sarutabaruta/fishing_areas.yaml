@@ -1,0 +1,111 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  seaside:
+    id: 1
+    poly:
+      floor:  9.0
+      height:  20
+      corners:
+        - [-28.3, -680.86]
+        - [-12.1, -712.99]
+        - [-95.1, -718.31]
+        - [-134.25, -663.89]
+        - [-131.11, -642.65]
+    pool:
+      bastore_bream:         250
+      bastore_sardine:      1000
+      bladefish:             750
+      bluetail:              650
+      clump_of_pamtam_kelp: 1000
+      gold_lobster:          800
+      ogre_eel:             1000
+      quus:                 1000
+      rusty_bucket:          900
+      rusty_leggings:        500
+      rusty_subligar:        500
+
+  other_waterside_south:
+    id:       2
+    cylinder: {center: [-144.69, -5.0, -360.58], radius: 25, height: 20}
+    pool:
+      crayfish:       1000
+      rusty_subligar:  500
+
+  other_waterside_west:
+    id:       3
+    cylinder: {center: [-237.236, -1.0, -224.762], radius: 25, height: 20}
+    pool:
+      crayfish:       1000
+      rusty_subligar:  500
+
+  other_waterside_rivers:
+    id: 4
+    poly:
+      floor:  -12.0
+      height:    50
+      corners:
+        - [-59.27, -61.77]
+        - [-334.78, -62.2]
+        - [-326.67, 729.7]
+        - [534.48, 728.89]
+        - [538.0, -251.35]
+        - [-54.22, -204.03]
+    pool:
+      crayfish:       1000
+      rusty_subligar:  500
+
+  lake_tepokalipuka:
+    id: 5
+    poly:
+      floor:  -1.0
+      height:   20
+      corners:
+        - [-360.0, -204.0]
+        - [-360.0, -75.0]
+        - [-255.44, -75.0]
+        - [-235.95, -115.16]
+        - [-74.11, -115.58]
+        - [-81.45, -170.54]
+        - [-248.83, -169.08]
+        - [-263.1, -198.81]
+    pool:
+      crayfish:       1000
+      crescent_fish:   450
+      moat_carp:      1000
+      monke-onke:      550
+      pipira:         1000
+      rusty_bucket:    900
+      rusty_leggings:  500
+      rusty_subligar:  500
+
+monsters:
+  palm_crab:
+    spawns:     [17252353]
+    level:      10
+    difficulty: 16
+    delay:      14
+
+  savanna_crab:
+    spawns:     [17252354]
+    level:      20
+    difficulty: 15
+    delay:      11
+
+  mud_pugil:
+    spawns:     [17252355]
+    level:      30
+    difficulty: 16
+
+  pug_pugil:
+    spawns:     [17252356]
+    level:      40
+    difficulty: 17
+    delay:      9
+    disabled:   true
+
+  fighting_pugil:
+    spawns:     [17252357]
+    level:      50
+    difficulty: 19
+    delay:      8

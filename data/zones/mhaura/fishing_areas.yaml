@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  whole_zone:
+    id: 1
+    pool:
+      bastore_sardine:      1000
+      clump_of_pamtam_kelp: 1000
+      copper_ring:           800
+      rusty_cap:             200
+      rusty_leggings:        500
+      silver_ring:           300
+      yellow_globe:         1000

@@ -1,0 +1,47 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  whole_zone:
+    id: 1
+    pool:
+      hamsi:        1000
+      kalamar:       850
+      kalkanbaligi:  500
+      kilicbaligi:   800
+      lakerda:       900
+      uskumru:       550
+
+monsters:
+  cyan_deep_crab:
+    spawns:     [17018881]
+    level:      10
+    difficulty: 15
+
+  submarine_nipper:
+    spawns:     [17018882]
+    level:      20
+    difficulty: 15
+
+  thalassic_pugil:
+    spawns:     [17018883]
+    level:      30
+    difficulty: 15
+
+  abyssal_pugil:
+    spawns:     [17018884]
+    level:      40
+    difficulty: 15
+
+  bathybic_kulshedra:
+    spawns:     [17018885]
+    level:      50
+    difficulty: 15
+
+  orobon:
+    spawns:           [17018886]
+    area:             whole_zone
+    level:            40
+    difficulty:       15
+    nm:               true
+    bait:             minnow
+    alternative_bait: sinking_minnow

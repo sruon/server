@@ -1,0 +1,56 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  pool_e_8:
+    id:       1
+    cylinder: {center: [175.0, 17.0, 176.0], radius: 20, height: 20}
+    pool:
+      bluetail:              650
+      clump_of_pamtam_kelp: 1000
+      cobalt_jellyfish:     1000
+      coral_butterfly:       900
+      coral_fragment:        200
+      gold_lobster:          800
+      quus:                 1000
+      rusty_cap:             200
+      rusty_greatsword:      400
+      rusty_subligar:        500
+      zebra_eel:             800
+
+  pool_f_11:
+    id:       2
+    cylinder: {center: [-24.0, 17.0, -216.0], radius: 20, height: 20}
+    pool:
+      bluetail:              650
+      clump_of_pamtam_kelp: 1000
+      cobalt_jellyfish:     1000
+      coral_butterfly:       900
+      coral_fragment:        200
+      fish_scale_shield:     500
+      quus:                 1000
+      rusty_greatsword:      400
+      rusty_subligar:        500
+      ryugu_titan:           700
+
+  misc_water:
+    id: 3
+    pool:
+      clump_of_pamtam_kelp: 1000
+      cobalt_jellyfish:     1000
+      rusty_cap:             200
+
+monsters:
+  rock_crab:
+    spawns:     [17432577]
+    level:      20
+    difficulty: 15
+
+  razorjaw_pugil:
+    spawns:     [17432578]
+    level:      30
+    difficulty: 15
+
+  bloodsucker:
+    spawns:     [17432579]
+    level:      10
+    difficulty: 16

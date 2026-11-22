@@ -1,0 +1,31 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  whole_zone:
+    id: 1
+    pool:
+      arrowwood_log:  500
+      crystal_bass:  1000
+      dark_bass:     1000
+      red_terrapin:   750
+
+monsters:
+  greater_pugil:
+    spawns:     [17272833, 17272835]
+    level:      10
+    difficulty: 16
+
+  clipper:
+    spawns:     [17272834]
+    level:      10
+    difficulty: 16
+
+  bigclaw:
+    spawns:     [17272836]
+    level:      10
+    difficulty: 16
+
+  apsaras:
+    spawns:     [17272837]
+    level:      10
+    difficulty: 16

@@ -1,0 +1,151 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  pi_south_beach:
+    id: 1
+    poly:
+      floor:  0.0
+      height:  20
+      corners:
+        - [-440.0, -860.0]
+        - [-260.0, -860.0]
+        - [-260.0, -980.0]
+        - [-450.0, -980.0]
+    pool:
+      bibiki_urchin:         100
+      bibikibo:              850
+      clump_of_pamtam_kelp: 1000
+      cobalt_jellyfish:     1000
+      coral_fragment:        200
+      moorish_idol:          700
+      quus:                 1000
+      rusty_bucket:          900
+      rusty_cap:             200
+      rusty_leggings:        500
+      rusty_subligar:        500
+      shall_shell:           600
+      trilobite:            1000
+      vongola_clam:          900
+
+  pi_north_beach:
+    id:       2
+    cylinder: {center: [-360.0, 0.0, -390.0], radius: 150, height: 20}
+    pool:
+      bastore_sardine:      1000
+      bibiki_urchin:         100
+      bluetail:              650
+      clump_of_pamtam_kelp: 1000
+      cobalt_jellyfish:     1000
+      coral_fragment:        200
+      moorish_idol:          700
+      quus:                 1000
+      rusty_bucket:          900
+      rusty_cap:             200
+      rusty_leggings:        500
+      rusty_subligar:        500
+      shall_shell:           600
+      trilobite:            1000
+      vongola_clam:          900
+
+  pi_west_beach:
+    id:       3
+    cylinder: {center: [-660.0, 0.0, -680.0], radius: 150, height: 20}
+    pool:
+      bastore_sardine:      1000
+      bibiki_urchin:         100
+      bluetail:              650
+      clump_of_pamtam_kelp: 1000
+      cobalt_jellyfish:     1000
+      coral_fragment:        200
+      moorish_idol:          700
+      quus:                 1000
+      rusty_bucket:          900
+      rusty_cap:             200
+      rusty_leggings:        500
+      rusty_subligar:        500
+      shall_shell:           600
+      vongola_clam:          900
+
+  pi_east_beach:
+    id:       4
+    cylinder: {center: [-110.0, 0.0, -640.0], radius: 150, height: 20}
+    pool:
+      bastore_sardine:      1000
+      bibiki_urchin:         100
+      bluetail:              650
+      clump_of_pamtam_kelp: 1000
+      cobalt_jellyfish:     1000
+      coral_fragment:        200
+      moorish_idol:          700
+      quus:                 1000
+      rusty_bucket:          900
+      rusty_cap:             200
+      rusty_leggings:        500
+      rusty_subligar:        500
+      shall_shell:           600
+      vongola_clam:          900
+
+  bb_south_seaside:
+    id:       5
+    cylinder: {center: [309.0, -10.0, 186.0], radius: 40, height: 50}
+    pool:
+      bastore_sardine:      1000
+      bladefish:             750
+      clump_of_pamtam_kelp: 1000
+      cobalt_jellyfish:     1000
+      cone_calamary:         850
+      rusty_bucket:          900
+      rusty_cap:             200
+      rusty_leggings:        500
+      rusty_subligar:        500
+      zafmlug_bass:         1000
+
+  bb_other_seaside:
+    id: 6
+    pool:
+      bastore_sardine:      1000
+      clump_of_pamtam_kelp: 1000
+      cobalt_jellyfish:     1000
+      cone_calamary:         850
+      fish_scale_shield:     500
+      rusty_bucket:          900
+      rusty_cap:             200
+      rusty_leggings:        500
+      rusty_subligar:        500
+      zafmlug_bass:         1000
+
+monsters:
+  ghost_crab:
+    spawns:     [16793601]
+    level:      10
+    difficulty: 15
+
+  grindylow:
+    spawns:     [16793602]
+    level:      20
+    difficulty: 16
+
+  greater_pugil:
+    spawns:     [16793603]
+    level:      30
+    difficulty: 17
+
+  apsaras:
+    spawns:     [16793604]
+    level:      40
+    difficulty: 18
+
+  kraken:
+    spawns:     [16793605]
+    level:      50
+    difficulty: 19
+    disabled:   true
+
+  lancet_jagil:
+    spawns:     [16793606]
+    level:      60
+    difficulty: 20
+    ranking:    1
+    nm:         true
+    log:        4
+    quest:      30

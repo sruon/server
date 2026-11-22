@@ -1,0 +1,111 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  pool_upper_west:
+    id:       1
+    cylinder: {center: [-136.705, -59.0, -99.459], radius: 12, height: 20}
+    pool:
+      black_eel:        800
+      copper_frog:     1000
+      crayfish:        1000
+      mythril_sword:     60
+      rusty_bucket:     900
+      rusty_pick:       400
+      rusty_subligar:   500
+      tricolored_carp: 1000
+
+  pool_upper_east:
+    id:       2
+    cylinder: {center: [216.119, -59.0, -100.126], radius: 12, height: 20}
+    pool:
+      black_eel:        800
+      copper_frog:     1000
+      crayfish:        1000
+      mythril_sword:     60
+      rusty_bucket:     900
+      rusty_pick:       400
+      rusty_subligar:   500
+      tricolored_carp: 1000
+
+  pool_lower_east:
+    id:       3
+    cylinder: {center: [176.517, -39.0, -19.909], radius: 12, height: 20}
+    pool:
+      black_eel:        800
+      copper_frog:     1000
+      crayfish:        1000
+      mythril_sword:     60
+      rusty_bucket:     900
+      rusty_pick:       400
+      rusty_subligar:   500
+      tricolored_carp: 1000
+
+  interior_pool_west:
+    id:       4
+    cylinder: {center: [-80.224, -27.0, 446.559], radius: 25, height: 20}
+    pool:
+      black_eel:        800
+      copper_frog:     1000
+      crayfish:        1000
+      gavial_fish:      550
+      gold_carp:        750
+      mythril_sword:     60
+      rusty_bucket:     900
+      rusty_leggings:   500
+      rusty_pick:       400
+      rusty_subligar:   500
+      tricolored_carp: 1000
+
+  interior_pool_center:
+    id:       5
+    cylinder: {center: [39.236, -11.0, 446.13], radius: 25, height: 20}
+    pool:
+      black_eel:        800
+      copper_frog:     1000
+      crayfish:        1000
+      gavial_fish:      550
+      gold_carp:        750
+      mythril_sword:     60
+      rusty_bucket:     900
+      rusty_leggings:   500
+      rusty_pick:       400
+      rusty_subligar:   500
+      tricolored_carp: 1000
+
+  interior_pool_east:
+    id:       6
+    cylinder: {center: [120.311, -19.0, 446.192], radius: 25, height: 20}
+    pool:
+      black_eel:        800
+      copper_frog:     1000
+      crayfish:        1000
+      gavial_fish:      550
+      gold_carp:        750
+      mythril_sword:     60
+      rusty_bucket:     900
+      rusty_leggings:   500
+      rusty_pick:       400
+      rusty_subligar:   500
+      tricolored_carp: 1000
+
+monsters:
+  pirate_pugil:
+    spawns:     [17580033, 17580034]
+    level:      10
+    difficulty: 16
+
+  greater_pugil:
+    spawns:     [17580035]
+    level:      10
+    difficulty: 16
+    disabled:   true
+
+  ooze:
+    spawns:     [17580036]
+    level:      10
+    difficulty: 16
+
+  mush:
+    spawns:     [17580037]
+    level:      10
+    difficulty: 16

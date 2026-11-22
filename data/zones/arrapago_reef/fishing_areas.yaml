@@ -1,0 +1,53 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  whole_zone:
+    id: 1
+    pool:
+      ahtapot:         500
+      istakoz:        1000
+      istiridye:       850
+      mercanbaligi:    400
+      rhinochimera:    450
+      rusty_leggings:  500
+      rusty_subligar:  500
+
+monsters:
+  wootzshell:
+    spawns:     [16998401]
+    level:      10
+    difficulty: 16
+    disabled:   true
+
+  arrapago_leech:
+    spawns:     [16998402]
+    level:      10
+    difficulty: 16
+    disabled:   true
+
+  chimera_clot:
+    spawns:     [16998403]
+    level:      10
+    difficulty: 16
+    disabled:   true
+
+  lahama:
+    spawns:     [16998404]
+    level:      10
+    difficulty: 16
+    disabled:   true
+
+  llamhigyn_y_dwr:
+    spawns:     [16998405]
+    level:      10
+    difficulty: 16
+    disabled:   true
+
+  giant_orobon:
+    spawns:           [16998406]
+    area:             whole_zone
+    level:            50
+    difficulty:       15
+    nm:               true
+    bait:             minnow
+    alternative_bait: sinking_minnow

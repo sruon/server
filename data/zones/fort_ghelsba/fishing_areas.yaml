@@ -1,0 +1,22 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+monsters:
+  pug_pugil:
+    spawns:     [17354754]
+    level:      10
+    difficulty: 16
+
+  giant_pugil:
+    spawns:     [17354755]
+    level:      10
+    difficulty: 16
+
+  land_pugil:
+    spawns:     [17354757]
+    level:      10
+    difficulty: 16
+
+  orcish_fodder:
+    spawns:     [17354758]
+    level:      10
+    difficulty: 16

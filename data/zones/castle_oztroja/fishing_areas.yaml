@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=../../schemas/fishing_areas.schema.json
+
+areas:
+  pld_af_fishing_spot:
+    id:       1
+    cylinder: {center: [-80.0, 24.0, -40.0], radius: 15, height: 10}
+
+  whole_zone:
+    id: 2
+    pool:
+      crayfish: 1000
+
+monsters:
+  odontotyrannus:
+    spawns:     [17396141]
+    area:       pld_af_fishing_spot
+    level:      20
+    difficulty: 15
+    ranking:    1
+    nm:         true
+    bait:       giant_shell_bug
+    log:        0
+    quest:      91
