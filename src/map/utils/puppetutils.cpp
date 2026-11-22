@@ -135,8 +135,7 @@ void LoadAutomaton(CCharEntity* PChar)
     TracyZoneScoped;
 
     constexpr auto query = db::Query(
-        "SELECT unlocked_attachments, name, equipped_attachments FROM "
-        "char_pet LEFT JOIN pet_name ON automatonid = id "
+        "SELECT unlocked_attachments, automatonid, equipped_attachments FROM char_pet "
         "WHERE charid = ?");
 
     const auto rset = db::preparedStmt(query, PChar->id);
@@ -146,7 +145,7 @@ void LoadAutomaton(CCharEntity* PChar)
 
         if (PChar->GetMJob() == xi::Job::PUP || PChar->GetSJob() == xi::Job::PUP)
         {
-            if (const auto name = rset->get<std::string>("name"); !name.empty())
+            if (const auto name = petutils::GetPetName(rset->get<uint16>("automatonid")); !name.empty())
             {
                 PChar->automatonInfo_.automatonName = name;
             }

@@ -17254,14 +17254,11 @@ auto CLuaBaseEntity::getAutomatonName() const -> std::string
         return {};
     }
 
-    const auto rset = db::preparedStmt("SELECT name FROM "
-                                       "char_pet LEFT JOIN pet_name ON automatonid = id "
-                                       "WHERE charid = ? LIMIT 1",
-                                       m_PBaseEntity->id);
+    const auto rset = db::preparedStmt("SELECT automatonid FROM char_pet WHERE charid = ? LIMIT 1", m_PBaseEntity->id);
 
     if (rset && rset->rowsCount() && rset->next())
     {
-        return rset->get<std::string>("name");
+        return petutils::GetPetName(rset->get<uint16>("automatonid"));
     }
 
     return "";

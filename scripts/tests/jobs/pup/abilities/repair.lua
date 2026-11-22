@@ -32,7 +32,7 @@ describe('Repair', function()
         player.actions:setLevelSync(syncTarget)
         assert(player:getMainLvl() == 20, string.format('expected sync to 20, level=%d', player:getMainLvl()))
 
-        player:spawnPet(xi.petId.AUTOMATON)
+        player:spawnPet(xi.petId.HARLEQUIN_FRAME)
         local pet = player:getPet()
         assert(pet)
 

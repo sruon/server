@@ -38,7 +38,10 @@
 #include "notoriety_container.h"
 #include "petutils.h"
 
+#include "data/datasets/pet_names/dataset.h"
+#include "data/datasets/pets/dataset.h"
 #include "data/loader.h"
+#include "utils/dataset_loader.h"
 
 #include "puppetutils.h"
 #include "status_effect_container.h"
@@ -62,6 +65,7 @@ namespace
 {
 
 std::vector<Pet_t*> g_PPetList;
+xi::data::PetNames  g_PetNames;
 
 } // namespace
 
@@ -72,47 +76,49 @@ void LoadPetList()
 {
     FreePetList();
 
+    g_PetNames = xi::data::loadDataset<xi::data::datasets::pet_names::Dataset>();
+
     constexpr auto query = db::Query(
         "SELECT "
-        "pet_list.petid, "
-        "pet_list.name, "
         "modelid, "
-        "minLevel, "
-        "maxLevel, "
-        "time, "
         "mob_pools.speciesid, "
         "mob_pools.mJob, "
         "mob_pools.sJob, "
         "mob_pools.cmbSkill,"
-        "pet_list.element, "
         "hasSpellScript, spellList, "
         "slash_sdt, pierce_sdt, h2h_sdt, impact_sdt, "
         "magical_sdt, fire_sdt, ice_sdt, wind_sdt, earth_sdt, lightning_sdt, water_sdt, light_sdt, dark_sdt, "
         "fire_res_rank, ice_res_rank, wind_res_rank, earth_res_rank, lightning_res_rank, water_res_rank, light_res_rank, dark_res_rank, "
         "paralyze_res_rank, bind_res_rank, silence_res_rank, slow_res_rank, poison_res_rank, light_sleep_res_rank, dark_sleep_res_rank, blind_res_rank, stun_res_rank, gravity_res_rank, "
-        "cmbDelay, name_prefix, mob_pools.skill_list_id, damageType, "
+        "cmbDelay, name_prefix, mob_pools.skill_list_id, "
         "mob_pools.modelSize, mob_pools.modelHitboxSize "
-        "FROM pet_list, mob_pools, mob_resistances "
-        "WHERE pet_list.poolid = mob_pools.poolid AND mob_resistances.resist_id = mob_pools.resist_id");
+        "FROM mob_pools, mob_resistances "
+        "WHERE mob_pools.poolid = ? AND mob_resistances.resist_id = mob_pools.resist_id");
 
-    const auto rset = db::preparedStmt(query);
-    FOR_DB_MULTIPLE_RESULTS(rset)
+    for (const auto& entry : xi::data::loadDataset<xi::data::datasets::pets::Dataset>())
     {
+        const auto rset = db::preparedStmt(query, entry.Pool);
+        if (!rset || !rset->next())
+        {
+            ShowWarningFmt("Pet {} uses mob pool {}, which does not exist", entry.Name, entry.Pool);
+            continue;
+        }
+
         auto* Pet = new Pet_t();
 
-        Pet->PetID = rset->get<uint16>("petid");
-        Pet->name.insert(0, rset->get<std::string>("name"));
+        Pet->PetID = std::to_underlying(entry.Id);
+        Pet->name  = entry.Name;
         db::extractFromBlob(rset, "modelid", Pet->look);
 
-        Pet->minLevel        = rset->get<uint8>("minLevel");
-        Pet->maxLevel        = rset->get<uint8>("maxLevel");
-        Pet->time            = std::chrono::seconds(rset->get<uint32>("time"));
+        Pet->minLevel        = entry.MinLevel;
+        Pet->maxLevel        = entry.MaxLevel;
+        Pet->time            = entry.Duration;
         Pet->modelSize       = rset->getOrDefault<uint8>("modelSize", 0);
         Pet->modelHitboxSize = std::max<float>(0.0f, rset->getOrDefault<float>("modelHitboxSize", 0) / 10.f);
         Pet->m_Species       = rset->get<uint16>("speciesid");
         Pet->mJob            = rset->get<uint8>("mJob");
         Pet->sJob            = rset->get<uint8>("sJob");
-        Pet->m_Element       = rset->get<uint8>("element");
+        Pet->m_Element       = std::to_underlying(entry.Element);
 
         const auto& species = mobutils::GetSpeciesData(Pet->m_Species);
 
@@ -166,10 +172,20 @@ void LoadPetList()
         Pet->cmbDelay       = rset->get<uint16>("cmbDelay");
         Pet->name_prefix    = rset->get<uint8>("name_prefix");
         Pet->m_MobSkillList = rset->get<uint16>("skill_list_id");
-        Pet->m_dmgType      = rset->get<xi::DamageType>("damageType");
+        Pet->m_dmgType      = entry.DamageType;
 
         g_PPetList.emplace_back(Pet);
     }
+}
+
+auto GetPetName(const uint16 nameId) -> std::string
+{
+    if (const auto it = g_PetNames.find(nameId); it != g_PetNames.end())
+    {
+        return it->second;
+    }
+
+    return {};
 }
 
 void FreePetList()
@@ -1809,22 +1825,12 @@ void LoadPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
     {
         petType = PET_TYPE::WYVERN;
 
-        constexpr auto query = db::Query(
-            "SELECT "
-            "pet_name.name, "
-            "char_pet.wyvernid "
-            "FROM pet_name, char_pet "
-            "WHERE pet_name.id = char_pet.wyvernid AND "
-            "char_pet.charid = ?");
-        const auto rset = db::preparedStmt(query, PMaster->id);
+        const auto rset = db::preparedStmt("SELECT wyvernid FROM char_pet WHERE charid = ?", PMaster->id);
         FOR_DB_SINGLE_RESULT(rset)
         {
-            const auto wyvernid = rset->get<uint16>("wyvernid");
-
-            if (wyvernid != 0)
+            if (const auto name = GetPetName(rset->get<uint16>("wyvernid")); !name.empty())
             {
-                PPetData->name.clear();
-                PPetData->name.insert(0, rset->get<std::string>("name"));
+                PPetData->name = name;
             }
         }
     }
@@ -1849,17 +1855,9 @@ void LoadPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
 
                 PPetData->name.clear();
 
-                constexpr auto subquery = db::Query(
-                    "SELECT pet_name.name "
-                    "FROM pet_name "
-                    "WHERE pet_name.id = ? OR pet_name.id = ?");
-                const auto subrset = db::preparedStmt(subquery, chocoboname1, chocoboname2);
-                FOR_DB_SINGLE_RESULT(subrset)
+                if (chocoboname1 != 0 && chocoboname2 != 0)
                 {
-                    if (chocoboname1 != 0 && chocoboname2 != 0)
-                    {
-                        PPetData->name.insert(0, rset->get<std::string>("name"));
-                    }
+                    PPetData->name = GetPetName(chocoboname1);
                 }
             }
         }

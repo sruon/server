@@ -1,0 +1,1072 @@
+# yaml-language-server: $schema=schemas/pets.schema.json
+
+meta:
+  enum:
+    - cpp:
+        underlying: uint8_t
+        class:      PetId
+      lua:
+        table: xi.petId
+
+pets:
+  # Summoner
+  fire_spirit:
+    id:          0
+    name:        FireSpirit
+    pool:        5830
+    element:     fire
+    damage_type: slashing
+
+  ice_spirit:
+    id:          1
+    name:        IceSpirit
+    pool:        5831
+    element:     ice
+    damage_type: slashing
+
+  air_spirit:
+    id:          2
+    name:        AirSpirit
+    pool:        5832
+    element:     wind
+    damage_type: slashing
+
+  earth_spirit:
+    id:          3
+    name:        EarthSpirit
+    pool:        5833
+    element:     earth
+    damage_type: slashing
+
+  thunder_spirit:
+    id:          4
+    name:        ThunderSpirit
+    pool:        5834
+    element:     thunder
+    damage_type: slashing
+
+  water_spirit:
+    id:          5
+    name:        WaterSpirit
+    pool:        5835
+    element:     water
+    damage_type: slashing
+
+  light_spirit:
+    id:          6
+    name:        LightSpirit
+    pool:        5836
+    element:     light
+    damage_type: slashing
+
+  dark_spirit:
+    id:          7
+    name:        DarkSpirit
+    pool:        5837
+    element:     dark
+    damage_type: slashing
+
+  carbuncle:
+    id:          8
+    name:        Carbuncle
+    pool:        4588
+    element:     light
+    damage_type: slashing
+
+  fenrir:
+    id:          9
+    name:        Fenrir
+    pool:        4581
+    element:     dark
+    damage_type: slashing
+
+  ifrit:
+    id:          10
+    name:        Ifrit
+    pool:        4582
+    element:     fire
+    damage_type: slashing
+
+  titan:
+    id:          11
+    name:        Titan
+    pool:        4583
+    element:     earth
+    damage_type: slashing
+
+  leviathan:
+    id:          12
+    name:        Leviathan
+    pool:        4584
+    element:     water
+    damage_type: slashing
+
+  garuda:
+    id:          13
+    name:        Garuda
+    pool:        4585
+    element:     wind
+    damage_type: slashing
+
+  shiva:
+    id:          14
+    name:        Shiva
+    pool:        4586
+    element:     ice
+    damage_type: slashing
+
+  ramuh:
+    id:          15
+    name:        Ramuh
+    pool:        4587
+    element:     thunder
+    damage_type: slashing
+
+  diabolos:
+    id:          16
+    name:        Diabolos
+    pool:        4590
+    element:     dark
+    damage_type: slashing
+
+  alexander:
+    id:          17
+    name:        Alexander
+    pool:        4589
+    element:     light
+    damage_type: slashing
+
+  odin:
+    id:          18
+    name:        Odin
+    pool:        4591
+    element:     dark
+    damage_type: slashing
+
+  atomos:
+    id:          19
+    name:        Atomos
+    pool:        7297
+    element:     dark
+    damage_type: slashing
+
+  cait_sith:
+    id:          20
+    name:        Cait Sith
+    pool:        5775
+    element:     light
+    damage_type: blunt
+
+  siren:
+    id:          76
+    name:        Siren
+    pool:        7047
+    element:     wind
+    damage_type: slashing
+
+  # Beastmaster
+  sheep_familiar:
+    id:          21
+    name:        SheepFamiliar
+    pool:        4598
+    min_level:   23
+    max_level:   35
+    duration:    3600
+    damage_type: blunt
+
+  hare_familiar:
+    id:          22
+    name:        HareFamiliar
+    pool:        4641
+    min_level:   23
+    max_level:   35
+    duration:    5400
+    damage_type: blunt
+
+  crab_familiar:
+    id:          23
+    name:        CrabFamiliar
+    pool:        4610
+    min_level:   23
+    max_level:   55
+    duration:    1800
+    damage_type: blunt
+
+  courier_carrie:
+    id:          24
+    name:        CourierCarrie
+    pool:        4611
+    min_level:   23
+    max_level:   75
+    duration:    1800
+    damage_type: blunt
+
+  homunculus:
+    id:          25
+    name:        Homunculus
+    pool:        4616
+    min_level:   23
+    max_level:   75
+    duration:    3600
+    damage_type: blunt
+
+  flytrap_familiar:
+    id:          26
+    name:        FlytrapFamiliar
+    pool:        4619
+    min_level:   28
+    max_level:   40
+    duration:    3600
+    damage_type: blunt
+
+  tiger_familiar:
+    id:          27
+    name:        TigerFamiliar
+    pool:        4604
+    min_level:   28
+    max_level:   40
+    duration:    3600
+    damage_type: blunt
+
+  flowerpot_bill:
+    id:          28
+    name:        FlowerpotBill
+    pool:        4602
+    min_level:   28
+    max_level:   40
+    duration:    3600
+    damage_type: blunt
+
+  eft_familiar:
+    id:          29
+    name:        EftFamiliar
+    pool:        4621
+    min_level:   33
+    max_level:   45
+    duration:    3600
+    damage_type: blunt
+
+  lizard_familiar:
+    id:          30
+    name:        LizardFamiliar
+    pool:        4600
+    min_level:   33
+    max_level:   45
+    duration:    3600
+    damage_type: blunt
+
+  mayfly_familiar:
+    id:          31
+    name:        MayflyFamiliar
+    pool:        4596
+    min_level:   33
+    max_level:   45
+    duration:    3600
+    damage_type: blunt
+
+  funguar_familiar:
+    id:          32
+    name:        FunguarFamiliar
+    pool:        4614
+    min_level:   33
+    max_level:   65
+    duration:    3600
+    damage_type: blunt
+
+  beetle_familiar:
+    id:          33
+    name:        BeetleFamiliar
+    pool:        4606
+    min_level:   38
+    max_level:   45
+    duration:    3600
+    damage_type: blunt
+
+  antlion_familiar:
+    id:          34
+    name:        AntlionFamiliar
+    pool:        4625
+    min_level:   38
+    max_level:   50
+    duration:    3600
+    damage_type: blunt
+
+  mite_familiar:
+    id:          35
+    name:        MiteFamiliar
+    pool:        4623
+    min_level:   43
+    max_level:   55
+    duration:    3600
+    damage_type: blunt
+
+  lullaby_melodia:
+    id:          36
+    name:        LullabyMelodia
+    pool:        4599
+    min_level:   43
+    max_level:   55
+    duration:    3600
+    damage_type: blunt
+
+  keeneared_steffi:
+    id:          37
+    name:        KeenearedSteffi
+    pool:        4595
+    min_level:   43
+    max_level:   55
+    duration:    5400
+    damage_type: blunt
+
+  flowerpot_ben:
+    id:          38
+    name:        FlowerpotBen
+    pool:        4603
+    min_level:   51
+    max_level:   63
+    duration:    3600
+    damage_type: blunt
+
+  saber_siravarde:
+    id:          39
+    name:        SaberSiravarde
+    pool:        4605
+    min_level:   51
+    max_level:   63
+    duration:    3600
+    damage_type: blunt
+
+  coldblood_como:
+    id:          40
+    name:        ColdbloodComo
+    pool:        4601
+    min_level:   53
+    max_level:   65
+    duration:    3600
+    damage_type: blunt
+
+  shellbuster_orob:
+    id:          41
+    name:        ShellbusterOrob
+    pool:        4597
+    min_level:   53
+    max_level:   65
+    duration:    3600
+    damage_type: blunt
+
+  voracious_audrey:
+    id:          42
+    name:        VoraciousAudrey
+    pool:        4620
+    min_level:   53
+    max_level:   75
+    duration:    3600
+    damage_type: blunt
+
+  ambusher_allie:
+    id:          43
+    name:        AmbusherAllie
+    pool:        4622
+    min_level:   58
+    max_level:   75
+    duration:    3600
+    damage_type: blunt
+
+  lifedrinker_lars:
+    id:          44
+    name:        LifedrinkerLars
+    pool:        4624
+    min_level:   63
+    max_level:   75
+    duration:    3600
+    damage_type: blunt
+
+  panzer_galahad:
+    id:          45
+    name:        PanzerGalahad
+    pool:        4607
+    min_level:   63
+    max_level:   75
+    duration:    3600
+    damage_type: blunt
+
+  chopsuey_chucky:
+    id:          46
+    name:        ChopsueyChucky
+    pool:        4626
+    min_level:   63
+    max_level:   85
+    duration:    3600
+    damage_type: blunt
+
+  amigo_sabotender:
+    id:          47
+    name:        AmigoSabotender
+    pool:        4618
+    min_level:   75
+    max_level:   85
+    duration:    1800
+    damage_type: blunt
+
+  crafty_clyvonne:
+    id:          49
+    name:        CraftyClyvonne
+    pool:        4608
+    min_level:   76
+    max_level:   90
+    duration:    7200
+    damage_type: slashing
+
+  bloodclaw_shasra:
+    id:          50
+    name:        BloodclawShasr
+    pool:        4609
+    min_level:   90
+    duration:    7200
+    damage_type: slashing
+
+  lucky_lulush:
+    id:          51
+    name:        LuckyLulush
+    pool:        4612
+    min_level:   76
+    duration:    7200
+    damage_type: slashing
+
+  fatso_fargann:
+    id:          52
+    name:        FatsoFargann
+    pool:        4613
+    min_level:   81
+    duration:    7200
+    damage_type: slashing
+
+  discreet_louise:
+    id:          53
+    name:        DiscreetLouise
+    pool:        4615
+    min_level:   79
+    duration:    7200
+    damage_type: slashing
+
+  swift_sieghard:
+    id:          54
+    name:        SwiftSieghard
+    pool:        4617
+    min_level:   86
+    max_level:   94
+    duration:    7200
+    damage_type: slashing
+
+  dipper_yuly:
+    id:          55
+    name:        DipperYuly
+    pool:        4627
+    min_level:   76
+    duration:    7200
+    damage_type: slashing
+
+  flowerpot_merle:
+    id:          56
+    name:        FlowerpotMerle
+    pool:        4628
+    min_level:   76
+    duration:    10800
+    damage_type: blunt
+
+  nursery_nazuna:
+    id:          57
+    name:        NurseryNazuna
+    pool:        4629
+    min_level:   76
+    max_level:   86
+    duration:    7200
+    damage_type: slashing
+
+  mailbuster_cetas:
+    id:          58
+    name:        MailbusterCeta
+    pool:        4630
+    min_level:   85
+    max_level:   95
+    duration:    7200
+    damage_type: slashing
+
+  audacious_anna:
+    id:          59
+    name:        AudaciousAnna
+    pool:        4631
+    min_level:   85
+    max_level:   95
+    duration:    7200
+    damage_type: slashing
+
+  presto_julio:
+    id:          60
+    name:        PrestoJulio
+    pool:        4632
+    min_level:   83
+    max_level:   93
+    duration:    7200
+    damage_type: slashing
+
+  bugeyed_broncha:
+    id:          61
+    name:        BugeyedBroncha
+    pool:        4633
+    min_level:   90
+    duration:    7200
+    damage_type: slashing
+
+  gooey_gerard:
+    id:          62
+    name:        GooeyGerard
+    pool:        4634
+    min_level:   95
+    duration:    5400
+    damage_type: slashing
+
+  gorefang_hobs:
+    id:          63
+    name:        GorefangHobs
+    pool:        4635
+    min_level:   93
+    duration:    7200
+    damage_type: slashing
+
+  faithful_falcor:
+    id:          64
+    name:        FaithfulFalcor
+    pool:        4636
+    min_level:   86
+    duration:    7200
+    damage_type: slashing
+
+  crude_raphie:
+    id:          65
+    name:        CrudeRaphie
+    pool:        4637
+    min_level:   96
+    duration:    5400
+    damage_type: slashing
+
+  dapper_mac:
+    id:          66
+    name:        DapperMac
+    pool:        4638
+    min_level:   76
+    duration:    7200
+    damage_type: blunt
+
+  slippery_silas:
+    id:          67
+    name:        SlipperySilas
+    pool:        4639
+    min_level:   23
+    duration:    1800
+    damage_type: slashing
+
+  turbid_toloi:
+    id:          68
+    name:        TurbidToloi
+    pool:        4640
+    min_level:   75
+    duration:    7200
+    damage_type: slashing
+
+  sweet_caroline:
+    id:          77
+    name:        SweetCaroline
+    pool:        7500
+    min_level:   99
+    max_level:   119
+    duration:    7200
+    damage_type: blunt
+
+  amiable_roche:
+    id:          78
+    name:        AmiableRoche
+    pool:        7501
+    min_level:   99
+    max_level:   110          # nat max 110, merit max 110
+    duration:    7200
+    damage_type: slashing
+
+  headbreaker_ken:
+    id:          79
+    name:        HeadbreakerKen
+    pool:        7502
+    min_level:   99
+    max_level:   115            # nat max 115, merit max 115
+    duration:    7200
+    damage_type: slashing
+
+  anklebiter_jedd:
+    id:          80
+    name:        AnklebiterJedd
+    pool:        7503
+    min_level:   99
+    max_level:   116            # nat max 116, merit max 116
+    duration:    7200
+    damage_type: slashing
+
+  cursed_annabelle:
+    id:          81
+    name:        CursedAnnabelle
+    pool:        7504
+    min_level:   99
+    max_level:   118             # nat max 118, merit max 118
+    duration:    7200
+    damage_type: slashing
+
+  brainy_waluis:
+    id:          82
+    name:        BrainyWaluis
+    pool:        7505
+    min_level:   99
+    max_level:   113          # nat max 113, merit max 113
+    duration:    7200
+    damage_type: slashing
+
+  slime_familiar:
+    id:          83
+    name:        SlimeFamiliar
+    pool:        7506
+    min_level:   99
+    max_level:   119           # nat max 119, merit max 119
+    duration:    7200
+    damage_type: slashing
+
+  sultry_patrice:
+    id:          84
+    name:        SultryPatrice
+    pool:        7507
+    min_level:   99
+    max_level:   119           # nat max 119, merit max 119
+    duration:    7200
+    damage_type: slashing
+
+  generous_arthur:
+    id:          85
+    name:        GenerousArthur
+    pool:        7508
+    min_level:   99
+    max_level:   119            # nat max 119, merit max 119
+    duration:    7200
+    damage_type: slashing
+
+  redolent_candi:
+    id:          86
+    name:        RedolentCandi
+    pool:        7509
+    min_level:   99
+    max_level:   115           # nat max 115, merit max 119
+    duration:    7200
+    damage_type: slashing
+
+  alluring_honey:
+    id:          87
+    name:        AlluringHoney
+    pool:        7510
+    min_level:   99
+    max_level:   115           # nat max 115, merit max 119
+    duration:    7200
+    damage_type: slashing
+
+  lynx_familiar:
+    id:          88
+    name:        LynxFamiliar
+    pool:        7511
+    min_level:   99
+    max_level:   119          # nat max 119, merit max 119
+    duration:    7200
+    damage_type: slashing
+
+  vivacious_gaston:
+    id:          89
+    name:        VivaciousGaston
+    pool:        7512
+    min_level:   99
+    max_level:   119             # nat max 119, merit max 119
+    duration:    7200
+    damage_type: slashing
+
+  caring_kiyomaru:
+    id:          90
+    name:        CaringKiyomaro
+    pool:        7513
+    min_level:   99
+    max_level:   116            # nat max 116, merit max 119
+    duration:    7200
+    damage_type: blunt
+
+  vivacious_vickie:
+    id:          91
+    name:        VivaciousVickie
+    pool:        7514
+    min_level:   99
+    max_level:   116             # nat max 116, merit max 119
+    duration:    7200
+    damage_type: blunt
+
+  suspicious_alice:
+    id:          92
+    name:        SuspiciousAlice
+    pool:        7515
+    min_level:   99
+    max_level:   113             # nat max 113, merit max 113
+    duration:    7200
+    damage_type: slashing
+
+  surging_storm:
+    id:          93
+    name:        SurgingStorm
+    pool:        7516
+    min_level:   99
+    max_level:   118          # nat max 118, merit max 119
+    duration:    7200
+    damage_type: blunt
+
+  submerged_iyo:
+    id:          94
+    name:        SubmergedIyo
+    pool:        7517
+    min_level:   99
+    max_level:   118          # nat max 118, merit max 119
+    duration:    7200
+    damage_type: blunt
+
+  warlike_patrick:
+    id:          95
+    name:        WarlikePatrick
+    pool:        7518
+    min_level:   99
+    max_level:   104            # nat max 104, merit max 104
+    duration:    7200
+    damage_type: slashing
+
+  rhyming_shizuna:
+    id:          96
+    name:        RhymingShizuna
+    pool:        7519
+    min_level:   99
+    max_level:   107            # nat max 107, merit max 107
+    duration:    7200
+    damage_type: slashing
+
+  blackbeard_randy:
+    id:          97
+    name:        BlackbeardRandy
+    pool:        7520
+    min_level:   99
+    max_level:   117             # nat max 117, merit max 117
+    duration:    7200
+    damage_type: slashing
+
+  threestar_lynn:
+    id:          98
+    name:        ThreestarLynn
+    pool:        7521
+    min_level:   99
+    max_level:   119           # nat max 119, merit max 119
+    duration:    7200
+    damage_type: slashing
+
+  hurler_percival:
+    id:          99
+    name:        HurlerPercival
+    pool:        7522
+    min_level:   99
+    max_level:   116            # nat max 116, merit max 116
+    duration:    7200
+    damage_type: slashing
+
+  acuex_familiar:
+    id:          100
+    name:        AcuexFamiliar
+    pool:        7523
+    min_level:   99
+    max_level:   119           # nat max 119, merit max 119
+    duration:    7200
+    damage_type: slashing
+
+  fluffy_bredo:
+    id:          101
+    name:        FluffyBredo
+    pool:        7524
+    min_level:   99
+    max_level:   119         # nat max 119, merit max 119
+    duration:    7200
+    damage_type: slashing
+
+  weevil_familiar:
+    id:          102
+    name:        WeevilFamiliar
+    pool:        7525
+    min_level:   99
+    max_level:   119            # nat max 119, merit max 119
+    duration:    7200
+    damage_type: slashing
+
+  stalwart_angelina:
+    id:          103
+    name:        StalwartAngelina
+    pool:        7526
+    min_level:   99
+    max_level:   119              # nat max 119, merit max 119
+    duration:    7200
+    damage_type: slashing
+
+  fleet_reinhard:
+    id:          104
+    name:        FleetReinhard
+    pool:        7527
+    min_level:   99
+    max_level:   117           # nat max 117, merit max 117
+    duration:    7200
+    damage_type: slashing
+
+  sharpwit_hermes:
+    id:          105
+    name:        SharpwitHermes
+    pool:        7528
+    min_level:   99
+    max_level:   119            # nat max 119, merit max 119
+    duration:    7200
+    damage_type: blunt
+
+  porter_crab_familiar:
+    id:          106
+    name:        P.CrabFamiliar
+    pool:        7529
+    min_level:   99
+    max_level:   119            # nat max 119, merit max 119
+    duration:    7200
+    damage_type: slashing
+
+  jovial_edwin:
+    id:          107
+    name:        JovialEdwin
+    pool:        7530
+    min_level:   99
+    max_level:   119         # nat max 119, merit max 119
+    duration:    7200
+    damage_type: slashing
+
+  attentive_ibuki:
+    id:          108
+    name:        AttentiveIbuki
+    pool:        7531
+    min_level:   99
+    max_level:   109            # nat max 109, merit max 119
+    duration:    7200
+    damage_type: slashing
+
+  swooping_zhivago:
+    id:          109
+    name:        SwoopingZhivago
+    pool:        7532
+    min_level:   99
+    max_level:   119             # nat max 119, merit max 119
+    duration:    7200
+    damage_type: slashing
+
+  sunburst_malfik:
+    id:          110
+    name:        SunburstMalfik
+    pool:        7533
+    min_level:   99
+    max_level:   104            # nat max 104, merit max 119
+    duration:    7200
+    damage_type: slashing
+
+  aged_angus:
+    id:          111
+    name:        AgedAngus
+    pool:        7534
+    min_level:   99
+    max_level:   104       # nat max 104, merit max 119
+    duration:    7200
+    damage_type: slashing
+
+  scissorleg_xerin:
+    id:          112
+    name:        ScissorlegXerin
+    pool:        7535
+    min_level:   99
+    max_level:   105             # nat max 105, merit max 119
+    duration:    7200
+    damage_type: slashing
+
+  bouncing_bertha:
+    id:          113
+    name:        BouncingBertha
+    pool:        7536
+    min_level:   99
+    max_level:   105            # nat max 105, merit max 119
+    duration:    7200
+    damage_type: slashing
+
+  spider_familiar:
+    id:          114
+    name:        SpiderFamiliar
+    pool:        7537
+    min_level:   99
+    max_level:   118            # nat max 118, merit max 119
+    duration:    7200
+    damage_type: slashing
+
+  gussy_hachirobe:
+    id:          115
+    name:        GussyHachirobe
+    pool:        7538
+    min_level:   99
+    max_level:   118            # nat max 118, merit max 119
+    duration:    7200
+    damage_type: slashing
+
+  colibri_familiar:
+    id:          116
+    name:        ColibriFamiliar
+    pool:        7539
+    min_level:   99
+    max_level:   117             # nat max 117, merit max 119
+    duration:    7200
+    damage_type: slashing
+
+  choral_leera:
+    id:          117
+    name:        ChoralLeera
+    pool:        7540
+    min_level:   99
+    max_level:   119         # nat max 119, merit max 119
+    duration:    7200
+    damage_type: slashing
+
+  droopy_dortwin:
+    id:          118
+    name:        DroopyDortwin
+    pool:        7541
+    min_level:   99
+    max_level:   103           # nat max 103, merit max 119
+    duration:    7200
+    damage_type: slashing
+
+  pondering_peter:
+    id:          119
+    name:        PonderingPeter
+    pool:        7542
+    min_level:   99
+    max_level:   103            # nat max 103, merit max 119
+    duration:    7200
+    damage_type: slashing
+
+  herald_henry:
+    id:          120
+    name:        HeraldHenry
+    pool:        7543
+    min_level:   99
+    max_level:   113         # nat max 113, merit max 113
+    duration:    7200
+    damage_type: slashing
+
+  hippogryph_familiar:
+    id:          121
+    name:        Hip.Familiar
+    pool:        7544
+    min_level:   99
+    max_level:   119          # nat max 119, merit max 119
+    duration:    7200
+    damage_type: slashing
+
+  daring_roland:
+    id:          122
+    name:        DaringRoland
+    pool:        7545
+    min_level:   99
+    max_level:   119          # nat max 119, merit max 119
+    duration:    7200
+    damage_type: slashing
+
+  mosquito_familiar:
+    id:          123
+    name:        MosquitoFamiliar
+    pool:        7546
+    min_level:   99
+    max_level:   119              # nat max 119, merit max 119
+    duration:    7200
+    damage_type: slashing
+
+  left_handed_yoko:
+    id:          124
+    name:        Left-HandedYoko
+    pool:        7547
+    min_level:   99
+    max_level:   119             # nat max 119, merit max 119
+    duration:    7200
+    damage_type: slashing
+
+  brave_hero_glenn:
+    id:          125
+    name:        BraveHeroGlenn
+    pool:        7548
+    min_level:   99
+    max_level:   119            # nat max 119, merit max 119
+    duration:    7200
+    damage_type: slashing
+
+  yellow_beetle_familiar:
+    id:          126
+    name:        Y.BeetleFamiliar
+    pool:        7549
+    min_level:   99
+    max_level:   119              # nat max 119, merit max 119
+    duration:    7200
+    damage_type: slashing
+
+  energized_sefina:
+    id:          127
+    name:        EnergizedSefina
+    pool:        7550
+    min_level:   99
+    max_level:   119             # nat max 119, merit max 119
+    duration:    7200
+    damage_type: slashing
+
+  # Dragoon
+  wyvern:
+    id:          48
+    name:        Wyvern
+    pool:        5551
+    damage_type: slashing
+
+  # Puppetmaster
+  harlequin_frame:
+    id:          69
+    name:        HarlequinFrame
+    pool:        5124
+    damage_type: blunt
+
+  valoredge_frame:
+    id:          70
+    name:        ValoredgeFrame
+    pool:        5125
+    damage_type: slashing
+
+  sharpshot_frame:
+    id:          71
+    name:        SharpshotFrame
+    pool:        5126
+    damage_type: blunt
+
+  stormwaker_frame:
+    id:          72
+    name:        StormwakerFrame
+    pool:        5127
+    damage_type: blunt
+
+  # Geomancer
+  luopan:
+    id:   75
+    name: Luopan
+    pool: 6040

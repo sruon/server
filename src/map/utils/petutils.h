@@ -167,7 +167,7 @@ enum PETID
 
 struct Pet_t
 {
-    uint16        PetID; // ID in pet_list.sql
+    uint16        PetID; // id in data/pets.yaml
     look_t        look;
     std::string   name;
     xi::Ecosystem EcoSystem;
@@ -321,6 +321,7 @@ namespace petutils
 
 void LoadPetList();
 void FreePetList();
+auto GetPetName(uint16 nameId) -> std::string;
 
 void SpawnPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone);
 void SpawnMobPet(CBattleEntity* PMaster, uint32 PetID, bool preserveName = false);

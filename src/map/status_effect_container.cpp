@@ -2076,7 +2076,7 @@ void CStatusEffectContainer::TickRegen(timer::time_point tick)
 
                 if (!elementValid)
                 {
-                    ShowWarning("CStatusEffectContainer::TickRegen() - Pet %s (PetID %u) has invalid element %u for avatar perpetuation. Check pet_list.sql.",
+                    ShowWarning("CStatusEffectContainer::TickRegen() - Pet %s (PetID %u) has invalid element %u for avatar perpetuation. Check data/pets.yaml.",
                                 PPet->getName(),
                                 PPet->petID(),
                                 PPet->m_Element);

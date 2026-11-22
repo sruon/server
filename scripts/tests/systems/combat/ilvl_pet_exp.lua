@@ -23,7 +23,7 @@ describe('item level pets do not dirty EXP', function()
     it('survives a pet that outlevels its master', function()
         player:addItem(xi.item.MAGNETO)
         player:equipItem(xi.item.MAGNETO, nil, xi.slot.RANGED)
-        player:spawnPet(xi.petId.AUTOMATON)
+        player:spawnPet(xi.petId.HARLEQUIN_FRAME)
 
         local pet = player:getPet()
         assert(pet)

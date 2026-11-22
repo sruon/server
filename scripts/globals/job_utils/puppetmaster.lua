@@ -144,7 +144,7 @@ end
 
 -- On Ability Use Activate
 xi.job_utils.puppetmaster.onAbilityUseActivate = function(player, target, ability)
-    xi.pet.spawnPet(player, xi.petId.AUTOMATON)
+    xi.pet.spawnPet(player, xi.petId.HARLEQUIN_FRAME)
 
     local pet = player:getPet()
 
@@ -181,7 +181,7 @@ end
 
 -- On Ability Use Deus Ex Automata
 xi.job_utils.puppetmaster.onAbilityUseDeusExAutomata = function(player, target, ability)
-    xi.pet.spawnPet(player, xi.petId.AUTOMATON)
+    xi.pet.spawnPet(player, xi.petId.HARLEQUIN_FRAME)
     local pet = player:getPet()
 
     if pet then

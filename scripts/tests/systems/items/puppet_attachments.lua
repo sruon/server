@@ -17,7 +17,7 @@ describe('Puppet attachments', function()
 
     it('equipped attachment is visible on the spawned automaton', function()
         player:setAttachment(xi.item.STROBE_ATTACHMENT, 5)
-        player:spawnPet(xi.petId.AUTOMATON)
+        player:spawnPet(xi.petId.HARLEQUIN_FRAME)
 
         local pet         = player:getPet()
         local attachments = nil
