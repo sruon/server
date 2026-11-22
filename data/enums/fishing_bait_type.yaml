@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=../schemas/enums/_enum.schema.json
+
+# Kind of bait or lure.
+
+meta:
+  cpp:
+    underlying: uint8_t
+
+values:
+  bait:    0 # consumed on use
+  lure:    1 # reusable
+  special: 2 # one use, to fish up a monster

@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=../schemas/enums/_enum.schema.json
+
+# Water a fish lives in.
+
+meta:
+  cpp:
+    underlying: uint8_t
+
+values:
+  any:   0
+  fresh: 1
+  salt:  2

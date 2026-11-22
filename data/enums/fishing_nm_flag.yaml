@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=../schemas/enums/_enum.schema.json
+
+# Fight behaviour of a fished-up notorious monster.
+
+meta:
+  flags: true
+  cpp:
+    underlying: uint32_t
+
+values:
+  none:                    0x00
+  random_regen_easy:       0x01
+  random_regen_difficult:  0x02
+  random_heal_easy:        0x04
+  random_heal_difficult:   0x08
+  random_attack_easy:      0x10
+  random_attack_difficult: 0x20
+  reset_respawn_on_fail:   0x40

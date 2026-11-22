@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=../schemas/enums/_enum.schema.json
+
+# What a fishing rod is made of.
+
+meta:
+  cpp:
+    underlying: uint8_t
+
+values:
+  wood:      0
+  synthetic: 1

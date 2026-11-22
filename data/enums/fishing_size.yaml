@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=../schemas/enums/_enum.schema.json
+
+# Size class of a fish, item or rod.
+
+meta:
+  cpp:
+    underlying: uint8_t
+
+values:
+  small: 0
+  large: 1

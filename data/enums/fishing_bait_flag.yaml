@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=../schemas/enums/_enum.schema.json
+
+# Special handling for a bait or lure.
+
+meta:
+  flags: true
+  cpp:
+    underlying: uint32_t
+
+values:
+  none:               0x00
+  sinking:            0x01
+  item_bonus:         0x02
+  item_mega_bonus:    0x04
+  poor_fish:          0x08
+  gold_arrow_bonus:   0x10
+  goldfish_scooping:  0x20
+  shellfish_affinity: 0x40

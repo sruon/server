@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=../schemas/enums/_enum.schema.json
+
+# Special handling for a fishing rod.
+
+meta:
+  flags: true
+  cpp:
+    underlying: uint32_t
+
+values:
+  none:              0x00
+  small_penalty:     0x01
+  large_penalty:     0x02
+  legendary_bonus:   0x04
+  goldfish_scooping: 0x08

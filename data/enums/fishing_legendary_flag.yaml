@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=../schemas/enums/_enum.schema.json
+
+# Fight time rules for a legendary fish.
+
+meta:
+  flags: true
+  cpp:
+    underlying: uint32_t
+
+values:
+  none:                  0x00
+  half_time:             0x01 # halves the rod's fight time
+  no_rod_time_bonus:     0x02 # skips the legendary rod time bonus
+  ebisu_time_bonus_only: 0x04 # adds bonus time only with an Ebisu rod
+  add_time_bonus:        0x08 # adds bonus time from the rod multiplier
