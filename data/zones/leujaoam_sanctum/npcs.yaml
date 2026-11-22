@@ -267,6 +267,7 @@ npcs:
       name_prefix:  32
 
   17060014:
+    instance:     [leujaoam_cleansing, orichalcum_survey]
     script:       Ancient_Lockbox
     display_name: Ancient Lockbox
     at:           [476.000, 8.479, 39.000, 49]
@@ -282,6 +283,7 @@ npcs:
     content:         toau
 
   17060015:
+    instance:     [leujaoam_cleansing, orichalcum_survey]
     script:       Rune_of_Release
     display_name: Rune of Release
     at:           [476.000, 8.479, 40.000, 49]
@@ -297,6 +299,7 @@ npcs:
     content:  toau
 
   17060016:
+    instance:     orichalcum_survey
     script:       Mining_Point
     display_name: Mining Point
     at:           [-551.561, -51.654, 207.978]
@@ -309,6 +312,7 @@ npcs:
     content: toau
 
   17060017:
+    instance:     orichalcum_survey
     script:       Mining_Point
     display_name: Mining Point
     at:           [-540.609, -51.849, 286.021]
@@ -321,6 +325,7 @@ npcs:
     content: toau
 
   17060018:
+    instance:     orichalcum_survey
     script:       Mining_Point
     display_name: Mining Point
     at:           [-434.059, -24.539, 237.531]
@@ -333,6 +338,7 @@ npcs:
     content: toau
 
   17060019:
+    instance:     orichalcum_survey
     script:       Mining_Point
     display_name: Mining Point
     at:           [-336.109, 3.500, 180.414]
@@ -345,6 +351,7 @@ npcs:
     content: toau
 
   17060020:
+    instance:     orichalcum_survey
     script:       Mining_Point
     display_name: Mining Point
     at:           [309.551, -0.112, 199.472]
@@ -357,6 +364,7 @@ npcs:
     content: toau
 
   17060021:
+    instance:     orichalcum_survey
     script:       Mining_Point
     display_name: Mining Point
     at:           [-420.385, -13.043, 76.331]
@@ -369,6 +377,7 @@ npcs:
     content: toau
 
   17060022:
+    instance:     orichalcum_survey
     script:       Mining_Point
     display_name: Mining Point
     at:           [-372.017, -28.000, 219.106]
@@ -381,6 +390,7 @@ npcs:
     content: toau
 
   17060023:
+    instance:     orichalcum_survey
     script:       Mining_Point
     display_name: Mining Point
     at:           [-424.168, -32.041, 335.851]
@@ -393,6 +403,7 @@ npcs:
     content: toau
 
   17060024:
+    instance:     orichalcum_survey
     script:       Mining_Point
     display_name: Mining Point
     at:           [-440.346, -56.278, 162.886]
@@ -405,6 +416,7 @@ npcs:
     content: toau
 
   17060025:
+    instance:     orichalcum_survey
     script:       Mining_Point
     display_name: Mining Point
     at:           [-327.724, -27.453, 235.233]
@@ -417,6 +429,7 @@ npcs:
     content: toau
 
   17060026:
+    instance:     orichalcum_survey
     script:       Mulwahah
     display_name: Mulwahah
     at:           [-449.000, -27.685, 170.000, 251]
@@ -1520,8 +1533,9 @@ npcs:
     content: toau
 
   17060130:
-    script: _1xa
-    at:     [219.964, -11.926, -202.621]
+    instance: orichalcum_survey
+    script:   _1xa
+    at:       [219.964, -11.926, -202.621]
     render:
       look:
         type: door
@@ -1635,8 +1649,9 @@ npcs:
     content: toau
 
   17060139:
-    script: _1xj
-    at:     [39.707, -8.200, 19.963]
+    instance: leujaoam_cleansing
+    script:   _1xj
+    at:       [39.707, -8.200, 19.963]
     render:
       look:
         type: door
@@ -1648,8 +1663,9 @@ npcs:
     content: toau
 
   17060140:
-    script: _1xk
-    at:     [59.937, -7.925, 159.978]
+    instance: orichalcum_survey
+    script:   _1xk
+    at:       [59.937, -7.925, 159.978]
     render:
       look:
         type: door
@@ -1687,8 +1703,9 @@ npcs:
     content: toau
 
   17060143:
-    script: _1xn
-    at:     [357.198, -7.931, 59.770]
+    instance: leujaoam_cleansing
+    script:   _1xn
+    at:       [357.198, -7.931, 59.770]
     render:
       look:
         type: door
@@ -1738,8 +1755,9 @@ npcs:
     content: toau
 
   17060147:
-    script: _1xr
-    at:     [-60.241, -8.143, 282.958]
+    instance: leujaoam_cleansing
+    script:   _1xr
+    at:       [-60.241, -8.143, 282.958]
     render:
       look:
         type: door
@@ -1750,8 +1768,9 @@ npcs:
     status: normal
 
   17060148:
-    script: _1xs
-    at:     [19.899, -8.041, 239.859]
+    instance: leujaoam_cleansing
+    script:   _1xs
+    at:       [19.899, -8.041, 239.859]
     render:
       look:
         type: door

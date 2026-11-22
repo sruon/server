@@ -110,21 +110,6 @@ auto convertOneOf(const std::optional<wire::OneOf>& source, const std::string_vi
     return members;
 }
 
-auto convertNames(const std::optional<wire::Names>& source) -> std::vector<std::string>
-{
-    if (!source)
-    {
-        return {};
-    }
-
-    if (const auto* one = std::get_if<std::string>(&*source))
-    {
-        return { *one };
-    }
-
-    return std::get<std::vector<std::string>>(*source);
-}
-
 // A name resolves straight to its per-mille rate. A percentage is the only form needing conversion.
 auto perMille(const wire::Chance& chance, const std::string_view key) -> uint16
 {
@@ -168,7 +153,7 @@ auto convertLoot(const std::optional<wire::Loot>& source, const std::string_view
         }
     }
 
-    loot.Steal   = convertNames(source->steal);
+    loot.Steal   = shared::toNames(source->steal);
     loot.Despoil = convertWeights(source->despoil);
     return loot;
 }
@@ -239,7 +224,7 @@ auto convertSpawn(const uint32 id, const wire::Spawn& source) -> MobSpawnData
         throw std::runtime_error(fmt::format("spawn {} sets more than one of at, region, path and circuit", id));
     }
 
-    auto regions = convertNames(source.region);
+    auto regions = shared::toNames(source.region);
     if (source.region && regions.empty())
     {
         throw std::runtime_error(fmt::format("spawn {} lists no regions", id));
@@ -258,6 +243,7 @@ auto convertSpawn(const uint32 id, const wire::Spawn& source) -> MobSpawnData
         .MaxLevel     = level[1],
         .Regions      = std::move(regions),
         .Attributes   = convertAttributes(source.attributes, fmt::format("spawn {}", id)),
+        .Instances    = shared::toNames(source.instance),
     };
 
     if (source.circuit)

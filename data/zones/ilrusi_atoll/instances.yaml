@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=../../schemas/instances.schema.json
+
+instances:
+
+  golden_salvage:
+    id:         5500
+    entrance:   arrapago_reef
+    time_limit: 30
+    entry:      [386.000, -12.000, 17.000, 46]
+
+  lamia_no_13:
+    id:         5501
+    entrance:   arrapago_reef
+    time_limit: 30
+    entry:      [155.000, -7.000, -175.000, 47]
+
+  extermination:
+    id:         5502
+    entrance:   arrapago_reef
+    time_limit: 30
+    entry:      [298.099, -3.943, 135.234, 149]
+
+# Not implemented yet:
+#   demolition_duty: 5503
+#   searat_salvation: 5504
+#   apkallu_seizure: 5505
+#   lost_and_found: 5506
+#   deserter: 5507
+#   desperately_seeking_cephalopods: 5508
+#   bellerophons_bliss: 5509

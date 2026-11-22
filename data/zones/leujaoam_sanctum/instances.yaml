@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=../../schemas/instances.schema.json
+
+instances:
+
+  leujaoam_cleansing:
+    id:         6900
+    entrance:   caedarva_mire
+    time_limit: 30
+    entry:      [280.000, -7.500, 35.000, 195]
+
+  orichalcum_survey:
+    id:         6901
+    entrance:   caedarva_mire
+    time_limit: 30
+    entry:      [-432.000, -27.627, 169.000, 131]
+
+# Not implemented yet:
+#   escort_professor_chanoix: 6902
+#   shanarha_grass_conservation: 6903
+#   counting_sheep: 6904
+#   supplies_recovery: 6905
+#   azure_experiments: 6906
+#   imperial_code: 6907
+#   red_versus_blue: 6908
+#   bloody_rondo: 6909

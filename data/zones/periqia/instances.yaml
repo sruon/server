@@ -1,0 +1,31 @@
+# yaml-language-server: $schema=../../schemas/instances.schema.json
+
+instances:
+
+  shades_of_vengeance:
+    id:         5600
+    entrance:   caedarva_mire
+    time_limit: 30
+    entry:      [127.000, -15.000, -303.000, 0]
+
+  seagull_grounded:
+    id:         5601
+    entrance:   caedarva_mire
+    time_limit: 30
+    entry:      [-350.000, -15.245, 380.000, 0]
+
+  requiem:
+    id:         5602
+    entrance:   caedarva_mire
+    time_limit: 30
+    entry:      [-470.000, -9.964, -325.000, 190]
+
+# Not implemented yet:
+#   saving_private_ryaaf: 5603
+#   shooting_down_the_baron: 5604
+#   building_bridges: 5605
+#   stop_the_bloodshed: 5606
+#   defuse_the_threat: 5607
+#   operation:snake_eyes: 5608
+#   wake_the_puppet: 5609
+#   the_price_is_right: 5610

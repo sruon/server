@@ -125,14 +125,20 @@ templates:
       combat:
         skill: scythe
         delay: 250
+      resists:
+        dmg_physical:
+          slashing: -5000
+          piercing: -5000
+          blunt:    -5000
+          h2h:      -5000
       render:
         look:
           type:  standard
-          model: 960
-        entity_flags:  4227
-        animation_sub:    4
-        model_size:       1
-        hitbox:          12
+          model: 258
+        entity_flags:  131
+        animation_sub:   5
+        model_size:      1
+        hitbox:         12
       behaviors:
         aggressive:     true
         true_detection: true
@@ -781,194 +787,242 @@ templates:
 
 spawns:
   17002497:
+    instance: golden_salvage
     template: Percipient_Fish
     at:       [260.272, -2.000, 24.269, 0]
     level:    [81, 82]
   17002498:
+    instance: golden_salvage
     template: Percipient_Fish
     at:       [309.655, -7.136, 56.875, 0]
     level:    [81, 82]
   17002499:
+    instance: golden_salvage
     template: Percipient_Fish
     at:       [300.966, -3.209, 67.613, 0]
     level:    [81, 82]
   17002500:
+    instance: golden_salvage
     template: Percipient_Fish
     at:       [340.193, -5.315, 92.964, 0]
     level:    [81, 82]
   17002501:
+    instance: golden_salvage
     template: Percipient_Fish
     at:       [399.113, -7.000, 135.454, 0]
     level:    [81, 82]
   17002502:
+    instance: golden_salvage
     template: Percipient_Fish
     at:       [462.867, -3.655, 142.684, 0]
     level:    [81, 82]
   17002503:
+    instance: golden_salvage
     template: Percipient_Fish
     at:       [542.181, -6.000, 168.428, 0]
     level:    [81, 82]
   17002504:
+    instance: golden_salvage
     template: Percipient_Fish
     at:       [535.110, -4.000, 170.383, 0]
     level:    [81, 82]
   17002505:
+    instance: golden_salvage
     template: Cursed_Chest
-    at:       [509.000, -7.000, 100.000, 192]
+    at:       [1.000, 0.000, 0.000]
     level:    [73, 75]
   17002506:
+    instance: golden_salvage
     template: Cursed_Chest
-    at:       [590.000, -15.000, 103.000, 127]
+    at:       [1.000, 0.000, 0.000]
     level:    [73, 75]
   17002507:
+    instance: golden_salvage
     template: Cursed_Chest
-    at:       [346.000, -2.000, 113.000, 49]
+    at:       [1.000, 0.000, 0.000]
     level:    [73, 75]
   17002508:
+    instance: golden_salvage
     template: Cursed_Chest
-    at:       [351.000, -15.000, -14.000, 134]
+    at:       [1.000, 0.000, 0.000]
     level:    [73, 75]
   17002509:
+    instance: golden_salvage
     template: Cursed_Chest
-    at:       [305.000, -7.000, -56.000, 249]
+    at:       [1.000, 0.000, 0.000]
     level:    [73, 75]
   17002510:
+    instance: golden_salvage
     template: Cursed_Chest
-    at:       [288.000, -15.000, -105.000, 248]
+    at:       [1.000, 0.000, 0.000]
     level:    [73, 75]
   17002511:
+    instance: golden_salvage
     template: Cursed_Chest
-    at:       [331.000, -15.000, -181.000, 202]
+    at:       [1.000, 0.000, 0.000]
     level:    [73, 75]
   17002512:
+    instance: golden_salvage
     template: Cursed_Chest
-    at:       [434.000, -7.000, -123.000, 103]
+    at:       [1.000, 0.000, 0.000]
     level:    [73, 75]
   17002513:
+    instance: golden_salvage
     template: Cursed_Chest
-    at:       [330.000, -3.000, -34.000, 163]
+    at:       [1.000, 0.000, 0.000]
     level:    [73, 75]
   17002514:
+    instance: golden_salvage
     template: Cursed_Chest
-    at:       [472.000, -7.000, 228.000, 96]
+    at:       [1.000, 0.000, 0.000]
     level:    [73, 75]
   17002515:
+    instance: golden_salvage
     template: Cursed_Chest
-    at:       [221.000, -1.000, -32.000, 226]
+    at:       [1.000, 0.000, 0.000]
     level:    [73, 75]
   17002516:
+    instance: golden_salvage
     template: Cursed_Chest
-    at:       [546.000, -7.000, 161.000, 156]
+    at:       [1.000, 0.000, 0.000]
     level:    [73, 75]
   17002517:
+    instance: lamia_no_13
     template: Lamia_No13
     at:       [24.381, -4.094, -209.261, 42]
     level:    [77, 78]
   17002518:
+    instance: lamia_no_13
     template: Fallen_Volunteer
     at:       [23.354, -4.243, -208.151, 39]
     level:    [77, 78]
   17002519:
+    instance: lamia_no_13
     template: Fallen_Imperial_Wizard
     at:       [23.197, -4.286, -206.899, 41]
     level:    [77, 78]
   17002520:
+    instance: lamia_no_13
     template: Fallen_Imperial_Trooper
     at:       [23.439, -4.264, -206.303, 43]
     level:    [77, 78]
   17002521:
+    instance: extermination
     template: Carrion_Crab
     at:       [224.089, -8.515, 139.960, 223]
     level:    [77, 78]
   17002522:
+    instance: extermination
     template: Carrion_Leech
     at:       [182.643, -5.278, 172.527, 83]
     level:    [77, 78]
   17002523:
+    instance: extermination
     template: Carrion_Crab
     at:       [98.355, -6.449, 109.213, 38]
     level:    [77, 78]
   17002524:
+    instance: extermination
     template: Carrion_Crab
     at:       [97.908, -6.864, 125.906, 124]
     level:    [77, 78]
   17002525:
+    instance: extermination
     template: Carrion_Leech
     at:       [100.357, -6.039, 121.498, 117]
     level:    [77, 78]
   17002526:
+    instance: extermination
     template: Carrion_Crab
     at:       [179.587, -3.634, 95.977, 100]
     level:    [77, 78]
   17002527:
+    instance: extermination
     template: Carrion_Crab
     at:       [187.293, -3.333, 105.398, 166]
     level:    [77, 78]
   17002528:
+    instance: extermination
     template: Carrion_Crab
     at:       [190.496, -2.543, 99.269, 50]
     level:    [77, 78]
   17002529:
+    instance: extermination
     template: Carrion_Slime
     at:       [131.229, -7.275, -17.059, 17]
     level:    [77, 78]
   17002530:
+    instance: extermination
     template: Carrion_Slime
     at:       [131.466, -7.279, -21.870, 96]
     level:    [77, 78]
   17002531:
+    instance: extermination
     template: Carrion_Slime
     at:       [128.436, -7.419, -22.921, 87]
     level:    [77, 78]
   17002532:
+    instance: extermination
     template: Carrion_Crab
     at:       [312.346, -5.207, 259.552, 31]
     level:    [77, 78]
   17002533:
+    instance: extermination
     template: Carrion_Leech
     at:       [339.955, -8.721, 263.975, 238]
     level:    [77, 78]
   17002534:
+    instance: extermination
     template: Carrion_Leech
     at:       [333.305, -9.289, 264.963, 129]
     level:    [77, 78]
   17002535:
+    instance: extermination
     template: Carrion_Leech
     at:       [349.627, -2.358, 210.196, 230]
     level:    [77, 78]
   17002536:
+    instance: extermination
     template: Carrion_Leech
     at:       [353.084, -5.625, 203.472, 15]
     level:    [77, 78]
   17002537:
+    instance: extermination
     template: Carrion_Leech
     at:       [470.493, -7.645, 3747.511, 237]
     level:    [77, 78]
   17002538:
+    instance: extermination
     template: Carrion_Leech
     at:       [497.515, -4.852, 326.347, 83]
     level:    [77, 78]
   17002539:
+    instance: extermination
     template: Carrion_Toad
     at:       [491.285, -5.183, 303.975, 54]
     level:    [77, 78]
   17002540:
+    instance: extermination
     template: Carrion_Toad
     at:       [492.665, -5.847, 303.296, 90]
     level:    [77, 78]
   17002541:
+    instance: extermination
     template: Undead_Crab
     at:       [189.410, -3.663, 102.417, 145]
     level:    [79, 80]
   17002542:
+    instance: extermination
     template: Undead_Leech
     at:       [323.574, -6.361, 261.256]
     level:    [79, 80]
   17002543:
+    instance: extermination
     template: Undead_Slime
     at:       [111.220, -10.232, -26.560, 188]
     level:    [79, 80]
   17002544:
+    instance: extermination
     template: Undead_Toad
     at:       [491.285, -5.183, 303.974, 90]
     level:    [79, 80]

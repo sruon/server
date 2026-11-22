@@ -821,162 +821,199 @@ templates:
 
 spawns:
   17047553:
+    instance: imperial_agent_rescue
     template: Mamool_Ja_Warder_whm
     at:       [-52.529, 11.454, -481.784, 173]
     level:    [75, 78]
   17047554:
+    instance: imperial_agent_rescue
     template: Mamool_Ja_Warder_bst
     at:       [-56.889, 11.425, -478.689, 120]
     level:    [75, 78]
   17047555:
+    instance: imperial_agent_rescue
     template: Mamool_Jas_Lizard
     at:       [-56.888, 11.328, -478.687, 120]
     level:    [70, 72]
   17047556:
+    instance: imperial_agent_rescue
     template: Mamool_Ja_Warder_whm
     at:       [-73.562, 11.445, -476.531, 197]
     level:    [75, 78]
   17047557:
+    instance: imperial_agent_rescue
     template: Mamool_Ja_Warder_bst
     at:       [-83.271, 11.411, -451.202, 110]
     level:    [75, 78]
   17047558:
+    instance: imperial_agent_rescue
     template: Mamool_Jas_Lizard
     at:       [-83.271, 11.411, -451.202, 120]
     level:    [70, 72]
   17047559:
+    instance: imperial_agent_rescue
     template: Mamool_Ja_Warder_whm
     at:       [166.512, 1.886, -418.296, 127]
     level:    [75, 78]
   17047560:
+    instance: imperial_agent_rescue
     template: Mamool_Ja_Warder_whm
     at:       [261.726, 1.318, -421.633, 90]
     level:    [75, 78]
   17047561:
+    instance: imperial_agent_rescue
     template: Mamool_Ja_Warder_bst
     at:       [214.891, 1.294, -578.562, 204]
     level:    [75, 78]
   17047562:
+    instance: imperial_agent_rescue
     template: Mamool_Jas_Lizard
     at:       [215.239, 1.254, -580.130, 191]
     level:    [70, 72]
   17047563:
+    instance: imperial_agent_rescue
     template: Mamool_Ja_Warder_nin
     at:       [197.111, 2.415, -458.513, 140]
     level:    [75, 78]
   17047564:
+    instance: imperial_agent_rescue
     template: Mamool_Ja_Warder_nin
     at:       [215.755, 2.173, -461.893, 103]
     level:    [75, 78]
   17047565:
+    instance: imperial_agent_rescue
     template: Mamool_Ja_Warder_nin
     at:       [258.477, 5.566, -471.841, 188]
     level:    [75, 78]
   17047566:
+    instance: imperial_agent_rescue
     template: Mamool_Ja_Warder_nin
     at:       [178.120, 5.206, -522.340, 196]
     level:    [75, 78]
   17047567:
+    instance: imperial_agent_rescue
     template: Dilapidated_Gate
     at:       [220.004, 0.690, -439.999]
     level:    [75, 75]
   17047568:
+    instance: imperial_agent_rescue
     template: Dilapidated_Gate
     at:       [179.999, 0.671, -559.996]
     level:    [75, 75]
   17047569:
+    instance: imperial_agent_rescue
     template: Dilapidated_Gate
     at:       [259.999, 0.666, -559.996]
     level:    [75, 75]
   17047570:
+    instance: preemptive_strike
     template: Puk_Executioner
     at:       [-157.942, 2.320, -114.860, 40]
     level:    [74, 75]
   17047571:
+    instance: preemptive_strike
     template: Mamool_Ja_Executioner_wh
     script:   Mamool_Ja_Executioner
     at:       [-157.849, 2.542, -129.114, 98]
     level:    [76, 78]
   17047572:
+    instance: preemptive_strike
     template: Puk_Executioner
     at:       [-103.257, 1.823, -103.601, 222]
     level:    [74, 75]
   17047573:
+    instance: preemptive_strike
     template: Puk_Executioner
     at:       [-120.098, 2.422, -61.026, 39]
     level:    [74, 75]
   17047574:
+    instance: preemptive_strike
     template: Mamool_Ja_Executioner_wh
     script:   Mamool_Ja_Executioner
     at:       [-104.147, 2.025, -103.794, 135]
     level:    [76, 78]
   17047575:
+    instance: preemptive_strike
     template: Mamool_Ja_Executioner_bu
     script:   Mamool_Ja_Executioner
     at:       [-112.376, 2.299, -43.035, 134]
     level:    [76, 78]
   17047576:
+    instance: preemptive_strike
     template: Puk_Executioner
     at:       [-157.840, 2.351, -32.518, 177]
     level:    [74, 75]
   17047577:
+    instance: preemptive_strike
     template: Mamool_Ja_Executioner_ni
     script:   Mamool_Ja_Executioner
     at:       [-162.207, 2.274, -39.739, 237]
     level:    [76, 78]
   17047578:
+    instance: preemptive_strike
     template: Puk_Executioner
     at:       [-205.366, 2.479, -86.069, 16]
     level:    [74, 75]
   17047579:
+    instance: preemptive_strike
     template: Puk_Executioner
     at:       [-207.081, 2.507, -76.343, 115]
     level:    [74, 75]
   17047580:
+    instance: preemptive_strike
     template: Mamool_Ja_Executioner_wh
     script:   Mamool_Ja_Executioner
     at:       [-203.121, 2.363, -98.561, 54]
     level:    [76, 78]
   17047581:
+    instance: preemptive_strike
     template: Mamool_Ja_Executioner_bu
     script:   Mamool_Ja_Executioner
     at:       [-197.070, 2.314, -100.523, 28]
     level:    [76, 78]
   17047582:
+    instance: preemptive_strike
     template: Puk_Executioner
     at:       [-270.049, 2.495, -89.884, 213]
     level:    [74, 75]
   17047583:
+    instance: preemptive_strike
     template: Mamool_Ja_Executioner_ni
     script:   Mamool_Ja_Executioner
     at:       [-236.468, 2.155, -79.495, 157]
     level:    [76, 78]
   17047584:
+    instance: preemptive_strike
     template: Mamool_Ja_Executioner_ni
     script:   Mamool_Ja_Executioner
     at:       [-260.912, -5.261, -60.171, 78]
     level:    [76, 78]
   17047585:
+    instance: preemptive_strike
     template: Mamool_Ja_Executioner_wh
     script:   Mamool_Ja_Executioner
     at:       [-251.788, -5.083, -57.829, 32]
     level:    [76, 78]
   17047586:
+    instance: preemptive_strike
     template: Mamool_Ja_Executioner_bu
     script:   Mamool_Ja_Executioner
     at:       [-221.142, -6.149, -135.125, 169]
     level:    [76, 78]
   17047587:
+    instance: preemptive_strike
     template: Mamool_Ja_Executioner_bu
     script:   Mamool_Ja_Executioner
     at:       [-95.577, -6.317, -139.842, 10]
     level:    [76, 78]
   17047588:
+    instance: preemptive_strike
     template: Mamool_Ja_Executioner_bu
     script:   Mamool_Ja_Executioner
     at:       [-220.009, -6.254, -19.412, 62]
     level:    [76, 78]
   17047589:
+    instance: preemptive_strike
     template: Mamool_Ja_Executioner_bu
     script:   Mamool_Ja_Executioner
     at:       [-99.835, -6.195, -19.313, 119]

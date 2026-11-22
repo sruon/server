@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=../../schemas/instances.schema.json
+
+instances:
+
+  imperial_agent_rescue:
+    id:         6600
+    entrance:   bhaflau_thickets
+    time_limit: 30
+    entry:      [-20.000, 2.276, -405.000, 63]
+
+  preemptive_strike:
+    id:         6601
+    entrance:   bhaflau_thickets
+    time_limit: 30
+    entry:      [-60.350, -5.000, 27.670, 46]
+
+# Not implemented yet:
+#   sagelord_elimination: 6602
+#   breaking_morale: 6603
+#   the_double_agent: 6604
+#   imperial_treasure_retrieval: 6605
+#   blitzkrieg: 6606
+#   marids_in_the_mist: 6607
+#   azure_ailments: 6608
+#   the_susanoo_shuffle: 6609

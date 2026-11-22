@@ -3,6 +3,7 @@
 npcs:
 
   17035292:
+    instance:     lebros_supplies
     script:       Imperial_Stormer
     display_name: Imperial Stormer
     at:           [-476.615, -10.461, -355.162, 117]
@@ -25,6 +26,7 @@ npcs:
     content:  toau
 
   17035293:
+    instance:     lebros_supplies
     script:       Imperial_Stormer
     display_name: Imperial Stormer
     at:           [-476.615, -10.461, -355.162, 117]
@@ -47,6 +49,7 @@ npcs:
     content:  toau
 
   17035294:
+    instance:     lebros_supplies
     script:       Imperial_Stormer
     display_name: Imperial Stormer
     at:           [-476.615, -10.461, -355.162, 117]
@@ -69,6 +72,7 @@ npcs:
     content:  toau
 
   17035295:
+    instance:     lebros_supplies
     script:       Imperial_Stormer
     display_name: Imperial Stormer
     at:           [-476.615, -10.461, -355.162, 117]
@@ -91,6 +95,7 @@ npcs:
     content:  toau
 
   17035296:
+    instance:     lebros_supplies
     script:       Imperial_Stormer
     display_name: Imperial Stormer
     at:           [-476.615, -10.461, -355.162, 117]
@@ -113,6 +118,7 @@ npcs:
     content:  toau
 
   17035297:
+    instance:     lebros_supplies
     script:       Imperial_Stormer
     display_name: Imperial Stormer
     at:           [-476.615, -10.461, -355.162, 117]
@@ -135,6 +141,7 @@ npcs:
     content:  toau
 
   17035298:
+    instance:     lebros_supplies
     script:       Imperial_Stormer
     display_name: Imperial Stormer
     at:           [-476.615, -10.461, -355.162, 117]
@@ -157,6 +164,7 @@ npcs:
     content:  toau
 
   17035299:
+    instance:     lebros_supplies
     script:       Imperial_Stormer
     display_name: Imperial Stormer
     at:           [-476.615, -10.461, -355.162, 117]
@@ -179,6 +187,7 @@ npcs:
     content:  toau
 
   17035300:
+    instance:     lebros_supplies
     script:       Imperial_Stormer
     display_name: Imperial Stormer
     at:           [-476.615, -10.461, -355.162, 117]
@@ -201,6 +210,7 @@ npcs:
     content:  toau
 
   17035301:
+    instance:     lebros_supplies
     script:       Imperial_Stormer
     display_name: Imperial Stormer
     at:           [-476.615, -10.461, -355.162, 117]
@@ -223,6 +233,7 @@ npcs:
     content:  toau
 
   17035302:
+    instance:     lebros_supplies
     script:       Imperial_Stormer
     display_name: Imperial Stormer
     at:           [-476.615, -10.461, -355.162, 117]
@@ -245,6 +256,7 @@ npcs:
     content:  toau
 
   17035303:
+    instance:     lebros_supplies
     script:       Imperial_Stormer
     display_name: Imperial Stormer
     at:           [-476.615, -10.461, -355.162, 117]
@@ -626,6 +638,7 @@ npcs:
         model: 50
 
   17035478:
+    instance:     [excavation_duty, lebros_supplies, troll_fugitives]
     script:       Ancient_Lockbox
     display_name: Ancient Lockbox
     at:           [50.000, -40.070, 99.999]
@@ -641,6 +654,7 @@ npcs:
     content:         toau
 
   17035479:
+    instance:     [excavation_duty, lebros_supplies, troll_fugitives]
     script:       Rune_of_Release
     display_name: Rune of Release
     at:           [49.999, -40.837, 96.999]
@@ -656,6 +670,7 @@ npcs:
     content:  toau
 
   17035480:
+    instance:     lebros_supplies
     script:       Yazuhma
     display_name: Yazuhma
     at:           [-330.000, -10.000, -260.000, 128]
@@ -984,8 +999,9 @@ npcs:
     status: normal
 
   17035509:
-    script: _1r4
-    at:     [-300.000, -13.121, 280.000]
+    instance: troll_fugitives
+    script:   _1r4
+    at:       [-300.000, -13.121, 280.000]
     render:
       look:
         type: door
@@ -1047,8 +1063,9 @@ npcs:
     content: toau
 
   17035514:
-    script: _1r9
-    at:     [-240.000, -33.158, 220.000]
+    instance: troll_fugitives
+    script:   _1r9
+    at:       [-240.000, -33.158, 220.000]
     render:
       look:
         type: door
@@ -1110,8 +1127,9 @@ npcs:
     content: toau
 
   17035519:
-    script: _1re
-    at:     [-240.000, -13.258, 60.000]
+    instance: troll_fugitives
+    script:   _1re
+    at:       [-240.000, -13.258, 60.000]
     render:
       look:
         type: door
@@ -1148,8 +1166,9 @@ npcs:
     content: toau
 
   17035522:
-    script: _1rh
-    at:     [-500.000, -13.071, -40.000]
+    instance: troll_fugitives
+    script:   _1rh
+    at:       [-500.000, -13.071, -40.000]
     render:
       look:
         type: door
@@ -1161,8 +1180,9 @@ npcs:
     content: toau
 
   17035523:
-    script: _1ri
-    at:     [-280.000, -13.129, -60.000]
+    instance: lebros_supplies
+    script:   _1ri
+    at:       [-280.000, -13.129, -60.000]
     render:
       look:
         type: door
@@ -1248,8 +1268,9 @@ npcs:
     status: normal
 
   17035530:
-    script: _1rp
-    at:     [-400.000, -13.022, -180.000]
+    instance: lebros_supplies
+    script:   _1rp
+    at:       [-400.000, -13.022, -180.000]
     render:
       look:
         type: door
@@ -1345,8 +1366,9 @@ npcs:
     status: normal
 
   17035538:
-    script: _1rx
-    at:     [179.000, -43.362, 380.000]
+    instance: excavation_duty
+    script:   _1rx
+    at:       [179.000, -43.362, 380.000]
     render:
       look:
         type: door
@@ -1358,8 +1380,9 @@ npcs:
     content: toau
 
   17035539:
-    script: _1ry
-    at:     [179.000, -32.992, 100.000]
+    instance: excavation_duty
+    script:   _1ry
+    at:       [179.000, -32.992, 100.000]
     render:
       look:
         type: door
@@ -1371,8 +1394,9 @@ npcs:
     content: toau
 
   17035540:
-    script: _1rz
-    at:     [259.000, -32.862, 220.000]
+    instance: excavation_duty
+    script:   _1rz
+    at:       [259.000, -32.862, 220.000]
     render:
       look:
         type: door
@@ -1384,8 +1408,9 @@ npcs:
     content: toau
 
   17035541:
-    script: _jr0
-    at:     [300.000, -32.910, 341.000]
+    instance: excavation_duty
+    script:   _jr0
+    at:       [300.000, -32.910, 341.000]
     render:
       look:
         type: door
@@ -1396,8 +1421,9 @@ npcs:
     status: normal
 
   17035542:
-    script: _jr1
-    at:     [339.000, -32.901, 300.000]
+    instance: excavation_duty
+    script:   _jr1
+    at:       [339.000, -32.901, 300.000]
     render:
       look:
         type: door

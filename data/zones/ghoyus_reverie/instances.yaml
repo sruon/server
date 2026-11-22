@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=../../schemas/instances.schema.json
+
+instances:
+
+  doomvoid:
+    id:       12900
+    entrance: batallia_downs_s
+    entry:    [382.000, 0.000, -191.000, 74]

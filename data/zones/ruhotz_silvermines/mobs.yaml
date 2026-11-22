@@ -2094,51 +2094,61 @@ spawns:
   17158191:
     template: Ulbrecht
   17158192:
+    instance: light_in_the_darkness
     template: Sapphirine_Quadav_LITD
     script:   Sapphirine_Quadav
     at:       [-40.590, -0.500, 40.919, 231]
     level:    [60, 60]
   17158193:
+    instance: light_in_the_darkness
     template: Sapphirine_Quadav_LITD
     script:   Sapphirine_Quadav
     at:       [-37.190, 0.672, 39.170, 150]
     level:    [60, 60]
   17158194:
+    instance: light_in_the_darkness
     template: Sapphirine_Quadav_LITD
     script:   Sapphirine_Quadav
     at:       [-37.700, 0.616, 42.935, 219]
     level:    [60, 60]
   17158195:
+    instance: light_in_the_darkness
     template: Sapphirine_Quadav_LITD
     script:   Sapphirine_Quadav
     at:       [-26.250, 0.518, 52.725, 125]
     level:    [60, 60]
   17158196:
+    instance: light_in_the_darkness
     template: Sapphirine_Quadav_LITD
     script:   Sapphirine_Quadav
     at:       [-20.310, 0.524, 48.925, 151]
     level:    [60, 60]
   17158197:
+    instance: light_in_the_darkness
     template: Sapphirine_Quadav_LITD
     script:   Sapphirine_Quadav
     at:       [-31.860, 0.150, 52.442, 218]
     level:    [60, 60]
   17158198:
+    instance: light_in_the_darkness
     template: Sapphirine_Quadav_LITD
     script:   Sapphirine_Quadav
     at:       [-6.331, 0.656, 44.578, 122]
     level:    [60, 60]
   17158199:
+    instance: light_in_the_darkness
     template: Sapphirine_Quadav_LITD
     script:   Sapphirine_Quadav
     at:       [-9.359, 0.618, 44.141, 250]
     level:    [60, 60]
   17158200:
+    instance: light_in_the_darkness
     template: Sapphirine_Quadav_LITD
     script:   Sapphirine_Quadav
     at:       [-1.472, 0.500, 36.907, 107]
     level:    [60, 60]
   17158201:
+    instance: light_in_the_darkness
     template: Sapphire_Quadav_LITD
     script:   Sapphire_Quadav
     at:       [-7.613, 0.455, 35.833, 249]

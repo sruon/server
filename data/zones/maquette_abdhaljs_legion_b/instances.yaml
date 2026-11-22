@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=../../schemas/instances.schema.json
+
+instances:
+
+  ambuscade:
+    id:         30000
+    entrance:   mhaura
+    time_limit: 30
+    entry:      [137.000, 12.500, -137.000, 32]

@@ -3,6 +3,7 @@
 npcs:
 
   17076579:
+    instance:     zhayolm_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     at:           [340.000, -8.500, -460.000, 64]
@@ -18,6 +19,7 @@ npcs:
     content:  toau
 
   17076580:
+    instance:     zhayolm_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     at:           [1.000, 1.000, 1.000]
@@ -32,6 +34,7 @@ npcs:
     content: toau
 
   17076581:
+    instance:     zhayolm_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     at:           [1.000, 1.000, 1.000]
@@ -46,6 +49,7 @@ npcs:
     content: toau
 
   17076582:
+    instance:     zhayolm_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     at:           [1.000, 1.000, 1.000]
@@ -60,6 +64,7 @@ npcs:
     content: toau
 
   17076583:
+    instance:     zhayolm_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     at:           [1.000, 1.000, 1.000]
@@ -74,6 +79,7 @@ npcs:
     content: toau
 
   17076584:
+    instance:     zhayolm_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     at:           [1.000, 1.000, 1.000]
@@ -88,6 +94,7 @@ npcs:
     content: toau
 
   17076585:
+    instance:     zhayolm_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     at:           [1.000, 1.000, 1.000]
@@ -102,6 +109,7 @@ npcs:
     content: toau
 
   17076586:
+    instance:     zhayolm_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     at:           [1.000, 1.000, 1.000]
@@ -116,6 +124,7 @@ npcs:
     content: toau
 
   17076587:
+    instance:     zhayolm_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     at:           [1.000, 1.000, 1.000]
@@ -130,6 +139,7 @@ npcs:
     content: toau
 
   17076588:
+    instance:     zhayolm_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     at:           [1.000, 1.000, 1.000]
@@ -144,6 +154,7 @@ npcs:
     content: toau
 
   17076589:
+    instance:     zhayolm_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     at:           [1.000, 1.000, 1.000]
@@ -158,6 +169,7 @@ npcs:
     content: toau
 
   17076916:
+    instance:     zhayolm_remnants
     script:       Socket
     display_name: Socket
     at:           [420.000, 0.050, 46.000]
@@ -170,6 +182,7 @@ npcs:
     content:  toau
 
   17076917:
+    instance:     zhayolm_remnants
     script:       Slot
     display_name: Slot
     at:           [259.000, 0.000, 46.000]
@@ -437,6 +450,7 @@ npcs:
     content:         toau
 
   17076950:
+    instance:     zhayolm_remnants
     script:       _210
     display_name: Gilded Doors
     at:           [339.999, -2.000, -560.000]
@@ -451,6 +465,7 @@ npcs:
     content: toau
 
   17076951:
+    instance:     zhayolm_remnants
     script:       _211
     display_name: Gilded Doors
     at:           [380.000, -22.000, -520.000]
@@ -465,6 +480,7 @@ npcs:
     content: toau
 
   17076952:
+    instance:     zhayolm_remnants
     script:       _212
     display_name: Gilded Doors
     at:           [440.000, -22.000, -379.999]
@@ -479,6 +495,7 @@ npcs:
     content: toau
 
   17076953:
+    instance:     zhayolm_remnants
     script:       _213
     display_name: Gilded Doors
     at:           [299.999, -22.000, -320.000]
@@ -493,6 +510,7 @@ npcs:
     content: toau
 
   17076954:
+    instance:     zhayolm_remnants
     script:       _214
     display_name: Gilded Doors
     at:           [239.999, -22.000, -460.000]
@@ -507,6 +525,7 @@ npcs:
     content: toau
 
   17076955:
+    instance:     zhayolm_remnants
     script:       _215
     display_name: Gilded Doors
     at:           [360.000, -2.000, -140.000]
@@ -521,6 +540,7 @@ npcs:
     content: toau
 
   17076956:
+    instance:     zhayolm_remnants
     script:       _216
     display_name: Gilded Doors
     at:           [419.999, -2.000, -40.000]
@@ -535,6 +555,7 @@ npcs:
     content: toau
 
   17076957:
+    instance:     zhayolm_remnants
     script:       _217
     display_name: Gilded Doors
     at:           [320.000, -2.000, 20.000]
@@ -549,6 +570,7 @@ npcs:
     content: toau
 
   17076958:
+    instance:     zhayolm_remnants
     script:       _218
     display_name: Gilded Doors
     at:           [260.000, -2.000, -80.000]
@@ -563,6 +585,7 @@ npcs:
     content: toau
 
   17076959:
+    instance:     zhayolm_remnants
     script:       _219
     display_name: Gilded Doors
     at:           [380.000, -6.000, 400.000]
@@ -577,6 +600,7 @@ npcs:
     content: toau
 
   17076960:
+    instance:     zhayolm_remnants
     script:       _21a
     display_name: Gilded Doors
     at:           [299.999, -6.000, 520.000]
@@ -591,6 +615,7 @@ npcs:
     content: toau
 
   17076961:
+    instance:     zhayolm_remnants
     script:       _21b
     display_name: Gilded Doors
     at:           [-380.000, -2.000, -600.000]
@@ -605,6 +630,7 @@ npcs:
     content: toau
 
   17076962:
+    instance:     zhayolm_remnants
     script:       _21c
     display_name: Gilded Doors
     at:           [-299.999, -2.000, -480.000]
@@ -619,6 +645,7 @@ npcs:
     content: toau
 
   17076963:
+    instance:     zhayolm_remnants
     script:       _21d
     display_name: Gilded Doors
     at:           [-360.000, -2.000, -100.000]
@@ -633,6 +660,7 @@ npcs:
     content: toau
 
   17076964:
+    instance:     zhayolm_remnants
     script:       _21e
     display_name: Gilded Doors
     at:           [-319.999, -2.000, -100.000]
@@ -647,6 +675,7 @@ npcs:
     content: toau
 
   17076965:
+    instance:     zhayolm_remnants
     script:       _21f
     display_name: Gilded Doors
     at:           [-340.000, -2.000, 160.000]
@@ -661,6 +690,7 @@ npcs:
     content: toau
 
   17076966:
+    instance:     zhayolm_remnants
     script:       _21g
     display_name: Gilded Doors
     at:           [-340.000, -2.000, 480.000]
@@ -675,6 +705,7 @@ npcs:
     content: toau
 
   17076967:
+    instance:     zhayolm_remnants
     script:       _21h
     display_name: _21h
     at:           [-340.000, -6.000, 520.000]
@@ -689,6 +720,7 @@ npcs:
     content: toau
 
   17076968:
+    instance:     zhayolm_remnants
     script:       _21i
     display_name: Gilded Gateway
     at:           [-340.000, -6.000, 520.000]
@@ -703,6 +735,7 @@ npcs:
     content: toau
 
   17076969:
+    instance:     zhayolm_remnants
     script:       _21j
     display_name: Weather
     at:           [-340.048, -5.000, 588.136]

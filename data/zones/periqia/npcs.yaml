@@ -310,6 +310,7 @@ npcs:
         model: 50
 
   17006809:
+    instance:     [seagull_grounded, requiem]
     script:       Ancient_Lockbox
     display_name: Ancient Lockbox
     at:           [-495.000, -9.900, -72.000]
@@ -325,6 +326,7 @@ npcs:
     content:         toau
 
   17006810:
+    instance:     [seagull_grounded, requiem]
     script:       Rune_of_Release
     display_name: Rune of Release
     at:           [-495.000, -9.695, -75.000]
@@ -655,6 +657,7 @@ npcs:
     content:         toau
 
   17006837:
+    instance:     seagull_grounded
     script:       Moogle
     display_name: Moogle
     render:
@@ -718,6 +721,7 @@ npcs:
     content: toau
 
   17006842:
+    instance:     seagull_grounded
     script:       _1k2
     display_name: Door_1k2
     at:           [80.136, -18.757, 380.079]
@@ -732,6 +736,7 @@ npcs:
     content: toau
 
   17006843:
+    instance:     seagull_grounded
     script:       _1k3
     display_name: Door_1k3
     at:           [-140.080, -18.660, 320.136]
@@ -746,6 +751,7 @@ npcs:
     content: toau
 
   17006844:
+    instance:     seagull_grounded
     script:       _1k4
     display_name: Door_1k4
     at:           [-79.863, -18.675, 300.080]
@@ -774,6 +780,7 @@ npcs:
     content: toau
 
   17006846:
+    instance:     seagull_grounded
     script:       _1k6
     display_name: Door_1k6
     at:           [-339.919, -18.703, 199.863]
@@ -788,6 +795,7 @@ npcs:
     content: toau
 
   17006847:
+    instance:     seagull_grounded
     script:       _1k7
     display_name: Door_1k7
     at:           [-260.080, -18.945, 240.136]
@@ -816,6 +824,7 @@ npcs:
     content: toau
 
   17006849:
+    instance:     seagull_grounded
     script:       _1k9
     display_name: Door_1k9
     at:           [-159.863, -18.189, 140.080]
@@ -872,6 +881,7 @@ npcs:
     content: toau
 
   17006853:
+    instance:     seagull_grounded
     script:       _1kd
     display_name: Door_1kd
     at:           [-300.080, -18.374, 80.136]
@@ -928,6 +938,7 @@ npcs:
     content: toau
 
   17006857:
+    instance:     requiem
     script:       _1kh
     display_name: Door_1kh
     at:           [-460.080, -9.784, -119.863]
@@ -1096,6 +1107,7 @@ npcs:
     content: toau
 
   17006869:
+    instance:     [seagull_grounded, requiem]
     script:       _1kt
     display_name: Door_1kt
     at:           [-300.080, -17.744, -359.863]
@@ -1124,6 +1136,7 @@ npcs:
     content: toau
 
   17006871:
+    instance:     seagull_grounded
     script:       _1kv
     display_name: Door_1kv
     at:           [-119.863, -18.381, -459.919]
@@ -1152,6 +1165,7 @@ npcs:
     content: toau
 
   17006873:
+    instance:     seagull_grounded
     script:       _1kx
     display_name: Iron Gate
     at:           [-380.000, -17.428, 160.000]
@@ -1180,6 +1194,7 @@ npcs:
     content: toau
 
   17006875:
+    instance:     seagull_grounded
     script:       _1kz
     display_name: Iron Gate
     at:           [-300.000, -17.449, 160.000]
@@ -1208,6 +1223,7 @@ npcs:
     content: toau
 
   17006877:
+    instance:     seagull_grounded
     script:       _jk1
     display_name: Iron Gate
     at:           [-300.000, -17.450, 360.000]
@@ -1236,6 +1252,7 @@ npcs:
     content: toau
 
   17006879:
+    instance:     seagull_grounded
     script:       _jk3
     display_name: Iron Gate
     at:           [-440.000, -17.449, -20.000]
@@ -1264,6 +1281,7 @@ npcs:
     content: toau
 
   17006881:
+    instance:     requiem
     script:       _jk5
     display_name: Iron Gate
     at:           [-484.000, -17.432, -220.000]
@@ -1278,6 +1296,7 @@ npcs:
     content: toau
 
   17006882:
+    instance:     requiem
     script:       _jk6
     display_name: Iron Gate
     at:           [-380.000, -17.432, -284.000]
@@ -1292,6 +1311,7 @@ npcs:
     content: toau
 
   17006883:
+    instance:     requiem
     script:       _jk7
     display_name: Iron Gate
     at:           [-284.000, -17.445, -300.000]
@@ -1432,6 +1452,7 @@ npcs:
     content: toau
 
   17006893:
+    instance:     requiem
     script:       _jkh
     display_name: Hanging Bridge
     at:           [-440.000, -12.740, -200.000]
@@ -1446,6 +1467,7 @@ npcs:
     content: toau
 
   17006894:
+    instance:     requiem
     script:       _jki
     display_name: Hanging Bridge
     at:           [-360.000, -12.740, -240.000]

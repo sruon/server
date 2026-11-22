@@ -1008,126 +1008,159 @@ templates:
 
 spawns:
   17059841:
+    instance: leujaoam_cleansing
     template: Leujaoam_Worm
     at:       [283.973, -8.500, 117.171]
     level:    [76, 78]
   17059842:
+    instance: leujaoam_cleansing
     template: Leujaoam_Worm
     at:       [357.694, -4.042, 112.966, 230]
     level:    [76, 78]
   17059843:
+    instance: leujaoam_cleansing
     template: Leujaoam_Worm
     at:       [350.896, -35.359, 200.535, 39]
     level:    [76, 78]
   17059844:
+    instance: leujaoam_cleansing
     template: Leujaoam_Worm
     at:       [332.546, -36.177, 192.045, 154]
     level:    [76, 78]
   17059845:
+    instance: leujaoam_cleansing
     template: Leujaoam_Worm
     at:       [330.883, -35.903, 194.850, 59]
     level:    [76, 78]
   17059846:
+    instance: leujaoam_cleansing
     template: Leujaoam_Worm
     at:       [288.886, -35.916, 120.296, 43]
     level:    [76, 78]
   17059847:
+    instance: leujaoam_cleansing
     template: Leujaoam_Worm
     at:       [457.045, 4.135, 98.938, 174]
     level:    [76, 78]
   17059848:
+    instance: leujaoam_cleansing
     template: Leujaoam_Worm
     at:       [420.397, -2.813, 90.193, 83]
     level:    [76, 78]
   17059849:
+    instance: leujaoam_cleansing
     template: Leujaoam_Worm
     at:       [364.243, -0.006, -17.799, 120]
     level:    [76, 78]
   17059850:
+    instance: leujaoam_cleansing
     template: Leujaoam_Worm
     at:       [490.965, 8.296, -47.949, 105]
     level:    [76, 78]
   17059851:
+    instance: leujaoam_cleansing
     template: Leujaoam_Worm
     at:       [479.888, 7.716, -39.545, 57]
     level:    [76, 78]
   17059852:
+    instance: leujaoam_cleansing
     template: Leujaoam_Worm
     at:       [477.563, 7.846, -73.208, 170]
     level:    [76, 78]
   17059853:
+    instance: leujaoam_cleansing
     template: Leujaoam_Worm
     at:       [478.236, 7.749, -80.324, 76]
     level:    [76, 78]
   17059854:
+    instance: leujaoam_cleansing
     template: Leujaoam_Worm
     at:       [496.618, 8.201, -70.702, 144]
     level:    [76, 78]
   17059855:
+    instance: leujaoam_cleansing
     template: Leujaoam_Worm
     at:       [483.888, 8.027, -54.894, 92]
     level:    [76, 78]
   17059856:
+    instance: orichalcum_survey
     template: Qiqirn_Miner
     at:       [-519.519, -52.068, 196.745, 113]
   17059857:
+    instance: orichalcum_survey
     template: Qiqirn_Miner
     at:       [-538.091, -48.863, 294.327, 108]
   17059858:
+    instance: orichalcum_survey
     template: Qiqirn_Miner
     at:       [-414.927, -24.107, 247.502, 252]
   17059859:
+    instance: orichalcum_survey
     template: Qiqirn_Miner
     at:       [-318.907, 3.821, 159.317, 193]
   17059860:
+    instance: orichalcum_survey
     template: Qiqirn_Miner
     at:       [-312.961, -0.335, 217.331, 23]
   17059861:
+    instance: orichalcum_survey
     template: Qiqirn_Miner
     at:       [-428.855, -17.967, 59.715, 241]
   17059862:
+    instance: orichalcum_survey
     template: Qiqirn_Miner
     at:       [-378.242, -28.197, 178.675, 209]
   17059863:
+    instance: orichalcum_survey
     template: Qiqirn_Miner
     at:       [-417.615, -32.208, 323.733, 184]
   17059864:
+    instance: orichalcum_survey
     template: Mineral_Eater
     at:       [-424.166, -32.041, 335.851, 54]
     level:    [77, 78]
   17059865:
+    instance: orichalcum_survey
     template: Mineral_Eater
     at:       [-551.561, -51.654, 207.978, 94]
     level:    [77, 78]
   17059866:
+    instance: orichalcum_survey
     template: Mineral_Eater
     at:       [-540.609, -51.849, 286.021, 135]
     level:    [77, 78]
   17059867:
+    instance: orichalcum_survey
     template: Mineral_Eater
     at:       [-434.059, -24.539, 237.531, 19]
     level:    [77, 78]
   17059868:
+    instance: orichalcum_survey
     template: Mineral_Eater
     at:       [-336.109, 3.500, 180.414, 241]
     level:    [77, 78]
   17059869:
+    instance: orichalcum_survey
     template: Mineral_Eater
     at:       [309.551, -0.112, 199.472, 39]
     level:    [77, 78]
   17059870:
+    instance: orichalcum_survey
     template: Mineral_Eater
     at:       [-420.385, -13.043, 76.331, 217]
     level:    [77, 78]
   17059871:
+    instance: orichalcum_survey
     template: Mineral_Eater
     at:       [-372.017, -28.000, 219.106, 76]
     level:    [77, 78]
   17059872:
+    instance: orichalcum_survey
     template: Mineral_Eater
     at:       [-440.346, -56.278, 162.886, 174]
     level:    [77, 78]
   17059873:
+    instance: orichalcum_survey
     template: Mineral_Eater
     at:       [-327.724, -27.453, 235.233, 53]
     level:    [77, 78]

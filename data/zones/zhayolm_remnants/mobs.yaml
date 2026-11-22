@@ -3759,1655 +3759,2009 @@ templates:
 
 spawns:
   17076225:
+    instance: zhayolm_remnants
     template: Puk_WW
     script:   Puk
     at:       [372.000, -8.000, -452.000, 254]
     level:    [70, 70]
   17076226:
+    instance: zhayolm_remnants
     template: Puk_WW_2
     script:   Puk
     at:       [386.000, -8.000, -460.000, 83]
     level:    [70, 70]
   17076227:
+    instance: zhayolm_remnants
     template: Puk_WW_3
     script:   Puk
     at:       [371.000, -8.000, -468.000, 180]
     level:    [70, 70]
   17076228:
+    instance: zhayolm_remnants
     template: Puk_WW_3
     script:   Puk
     at:       [391.000, -8.000, -450.000, 83]
     level:    [70, 70]
   17076229:
+    instance: zhayolm_remnants
     template: Puk_WW_4
     script:   Puk
     at:       [451.000, -12.000, -457.000, 248]
     level:    [70, 70]
   17076230:
+    instance: zhayolm_remnants
     template: Puk_WW_4
     script:   Puk
     at:       [460.000, -12.000, -469.000, 140]
     level:    [70, 70]
   17076231:
+    instance: zhayolm_remnants
     template: Puk_WW_3
     script:   Puk
     at:       [468.000, -12.000, -458.000, 152]
     level:    [70, 70]
   17076232:
+    instance: zhayolm_remnants
     template: Puk_WW_3
     script:   Puk
     at:       [448.000, -12.000, -447.000, 79]
     level:    [70, 70]
   17076233:
+    instance: zhayolm_remnants
     template: Puk_WW_4
     script:   Puk
     at:       [471.000, -15.000, -543.000, 144]
     level:    [70, 70]
   17076234:
+    instance: zhayolm_remnants
     template: Puk_WW_4
     script:   Puk
     at:       [452.000, -15.000, -552.000, 230]
     level:    [70, 70]
   17076235:
+    instance: zhayolm_remnants
     template: Puk_WW_3
     script:   Puk
     at:       [447.000, -16.000, -529.000, 92]
     level:    [70, 70]
   17076236:
+    instance: zhayolm_remnants
     template: Puk_WW_3
     script:   Puk
     at:       [465.000, -16.000, -546.000, 157]
     level:    [70, 70]
   17076237:
+    instance: zhayolm_remnants
     template: Puk_WW_4
     script:   Puk
     at:       [379.000, -20.000, -542.000, 253]
     level:    [70, 70]
   17076238:
+    instance: zhayolm_remnants
     template: Puk_WW_4
     script:   Puk
     at:       [395.000, -20.000, -554.000, 161]
     level:    [70, 70]
   17076239:
+    instance: zhayolm_remnants
     template: Puk_WW_3
     script:   Puk
     at:       [373.000, -19.000, -528.000, 25]
     level:    [70, 70]
   17076240:
+    instance: zhayolm_remnants
     template: Puk_WW_3
     script:   Puk
     at:       [373.000, -19.000, -553.000, 228]
     level:    [70, 70]
   17076241:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Zenist
     at:       [421.780, -11.410, -457.220, 98]
     level:    [75, 75]
   17076242:
+    instance: zhayolm_remnants
     template: Poroggo_Gent
     at:       [365.930, -20.450, -544.010]
     level:    [75, 75]
   17076243:
+    instance: zhayolm_remnants
     template: Ziz
     at:       [380.433, -8.013, -388.903, 6]
     level:    [70, 70]
   17076244:
+    instance: zhayolm_remnants
     template: Ziz_2
     script:   Ziz
     at:       [381.623, -8.515, -378.952, 69]
     level:    [70, 70]
   17076245:
+    instance: zhayolm_remnants
     template: Ziz_3
     script:   Ziz
     at:       [383.743, -8.039, -373.170, 17]
     level:    [70, 70]
   17076246:
+    instance: zhayolm_remnants
     template: Ziz_3
     script:   Ziz
     at:       [378.567, -8.041, -387.854, 151]
     level:    [70, 70]
   17076247:
+    instance: zhayolm_remnants
     template: Ziz_4
     script:   Ziz
     at:       [372.863, -12.017, -297.835, 247]
     level:    [70, 70]
   17076248:
+    instance: zhayolm_remnants
     template: Ziz_4
     script:   Ziz
     at:       [392.181, -12.017, -297.549, 250]
     level:    [70, 70]
   17076249:
+    instance: zhayolm_remnants
     template: Ziz_3
     script:   Ziz
     at:       [387.591, -12.017, -304.992, 8]
     level:    [70, 70]
   17076250:
+    instance: zhayolm_remnants
     template: Ziz_3
     script:   Ziz
     at:       [374.053, -12.017, -297.777, 245]
     level:    [70, 70]
   17076251:
+    instance: zhayolm_remnants
     template: Ziz_4
     script:   Ziz
     at:       [455.094, -16.013, -304.065, 38]
     level:    [70, 70]
   17076252:
+    instance: zhayolm_remnants
     template: Ziz_4
     script:   Ziz
     at:       [465.283, -16.013, -307.994, 201]
     level:    [70, 70]
   17076253:
+    instance: zhayolm_remnants
     template: Ziz_3
     script:   Ziz
     at:       [466.041, -16.013, -290.765, 192]
     level:    [70, 70]
   17076254:
+    instance: zhayolm_remnants
     template: Ziz_3
     script:   Ziz
     at:       [464.179, -16.013, -294.838, 24]
     level:    [70, 70]
   17076255:
+    instance: zhayolm_remnants
     template: Ziz_4
     script:   Ziz
     at:       [459.138, -20.041, -387.587, 151]
     level:    [70, 70]
   17076256:
+    instance: zhayolm_remnants
     template: Ziz_4
     script:   Ziz
     at:       [471.862, -20.036, -382.061, 27]
     level:    [70, 70]
   17076257:
+    instance: zhayolm_remnants
     template: Ziz_3
     script:   Ziz
     at:       [462.773, -20.056, -386.308, 5]
     level:    [70, 70]
   17076258:
+    instance: zhayolm_remnants
     template: Ziz_3
     script:   Ziz
     at:       [462.967, -20.044, -373.988, 255]
     level:    [70, 70]
   17076259:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Zenist
     at:       [375.390, -9.168, -345.290, 141]
     level:    [75, 75]
   17076260:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_2
     script:   Poroggo_Gent
     at:       [454.620, -20.140, -374.180, 246]
     level:    [75, 75]
   17076261:
+    instance: zhayolm_remnants
     template: Vagrant_Lindwurm
     at:       [292.000, -7.952, -363.350, 10]
     level:    [70, 70]
   17076262:
+    instance: zhayolm_remnants
     template: Vagrant_Lindwurm_2
     script:   Vagrant_Lindwurm
     at:       [291.870, -7.951, -363.630, 6]
     level:    [70, 70]
   17076263:
+    instance: zhayolm_remnants
     template: Vagrant_Lindwurm_3
     script:   Vagrant_Lindwurm
     at:       [292.070, -7.949, -363.350, 10]
     level:    [70, 70]
   17076264:
+    instance: zhayolm_remnants
     template: Vagrant_Lindwurm_3
     script:   Vagrant_Lindwurm
     at:       [295.640, -8.043, -367.050, 187]
     level:    [70, 70]
   17076265:
+    instance: zhayolm_remnants
     template: Vagrant_Lindwurm_4
     script:   Vagrant_Lindwurm
     at:       [216.480, -11.990, -375.470, 116]
     level:    [70, 70]
   17076266:
+    instance: zhayolm_remnants
     template: Vagrant_Lindwurm_4
     script:   Vagrant_Lindwurm
     at:       [230.290, -12.000, -373.800, 255]
     level:    [70, 70]
   17076267:
+    instance: zhayolm_remnants
     template: Vagrant_Lindwurm_3
     script:   Vagrant_Lindwurm
     at:       [216.090, -11.990, -377.010, 135]
     level:    [70, 70]
   17076268:
+    instance: zhayolm_remnants
     template: Vagrant_Lindwurm_3
     script:   Vagrant_Lindwurm
     at:       [219.000, -12.000, -363.180, 224]
     level:    [70, 70]
   17076269:
+    instance: zhayolm_remnants
     template: Vagrant_Lindwurm_4
     script:   Vagrant_Lindwurm
     at:       [207.500, -16.020, -294.590, 130]
     level:    [70, 70]
   17076270:
+    instance: zhayolm_remnants
     template: Vagrant_Lindwurm_4
     script:   Vagrant_Lindwurm
     at:       [216.750, -16.000, -298.090, 17]
     level:    [70, 70]
   17076271:
+    instance: zhayolm_remnants
     template: Vagrant_Lindwurm_3
     script:   Vagrant_Lindwurm
     at:       [219.530, -16.000, -297.510, 64]
     level:    [70, 70]
   17076272:
+    instance: zhayolm_remnants
     template: Vagrant_Lindwurm_3
     script:   Vagrant_Lindwurm
     at:       [218.070, -16.010, -297.820, 33]
     level:    [70, 70]
   17076273:
+    instance: zhayolm_remnants
     template: Vagrant_Lindwurm_4
     script:   Vagrant_Lindwurm
     at:       [310.380, -19.960, -295.560, 3]
     level:    [70, 70]
   17076274:
+    instance: zhayolm_remnants
     template: Vagrant_Lindwurm_4
     script:   Vagrant_Lindwurm
     at:       [298.020, -20.000, -308.440, 155]
     level:    [70, 70]
   17076275:
+    instance: zhayolm_remnants
     template: Vagrant_Lindwurm_3
     script:   Vagrant_Lindwurm
     at:       [294.970, -19.970, -289.230, 177]
     level:    [70, 70]
   17076276:
+    instance: zhayolm_remnants
     template: Vagrant_Lindwurm_3
     script:   Vagrant_Lindwurm
     at:       [286.350, -19.960, -297.970, 169]
     level:    [70, 70]
   17076277:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Zenist
     at:       [253.380, -12.000, -380.430, 18]
     level:    [75, 75]
   17076278:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_3
     script:   Poroggo_Gent
     at:       [314.730, -20.450, -294.180]
     level:    [75, 75]
   17076279:
+    instance: zhayolm_remnants
     template: Bull_Bugard
     at:       [300.970, -8.045, -449.170, 183]
     level:    [70, 70]
   17076280:
+    instance: zhayolm_remnants
     template: Bull_Bugard_2
     script:   Bull_Bugard
     at:       [298.060, -8.041, -446.760, 96]
     level:    [70, 70]
   17076281:
+    instance: zhayolm_remnants
     template: Bull_Bugard_3
     script:   Bull_Bugard
     at:       [305.270, -8.045, -449.450, 30]
     level:    [70, 70]
   17076282:
+    instance: zhayolm_remnants
     template: Bull_Bugard_3
     script:   Bull_Bugard
     at:       [302.220, -8.038, -449.450, 246]
     level:    [70, 70]
   17076283:
+    instance: zhayolm_remnants
     template: Bull_Bugard_4
     script:   Bull_Bugard
     at:       [300.390, -12.000, -521.990, 182]
     level:    [70, 70]
   17076284:
+    instance: zhayolm_remnants
     template: Bull_Bugard_4
     script:   Bull_Bugard
     at:       [307.120, -12.010, -538.530, 164]
     level:    [70, 70]
   17076285:
+    instance: zhayolm_remnants
     template: Bull_Bugard_3
     script:   Bull_Bugard
     at:       [305.910, -12.010, -534.650, 60]
     level:    [70, 70]
   17076286:
+    instance: zhayolm_remnants
     template: Bull_Bugard_3
     script:   Bull_Bugard
     at:       [294.990, -12.010, -536.850, 245]
     level:    [70, 70]
   17076287:
+    instance: zhayolm_remnants
     template: Bull_Bugard_4
     script:   Bull_Bugard
     at:       [220.700, -16.000, -536.600, 119]
     level:    [70, 70]
   17076288:
+    instance: zhayolm_remnants
     template: Bull_Bugard_4
     script:   Bull_Bugard
     at:       [217.830, -16.000, -533.280, 71]
     level:    [70, 70]
   17076289:
+    instance: zhayolm_remnants
     template: Bull_Bugard_3
     script:   Bull_Bugard
     at:       [221.430, -16.000, -539.810, 160]
     level:    [70, 70]
   17076290:
+    instance: zhayolm_remnants
     template: Bull_Bugard_3
     script:   Bull_Bugard
     at:       [217.690, -16.000, -532.580, 71]
     level:    [70, 70]
   17076291:
+    instance: zhayolm_remnants
     template: Bull_Bugard_4
     script:   Bull_Bugard
     at:       [218.870, -19.990, -452.100, 104]
     level:    [70, 70]
   17076292:
+    instance: zhayolm_remnants
     template: Bull_Bugard_4
     script:   Bull_Bugard
     at:       [217.320, -20.000, -455.480, 187]
     level:    [70, 70]
   17076293:
+    instance: zhayolm_remnants
     template: Bull_Bugard_3
     script:   Bull_Bugard
     at:       [216.150, -20.000, -455.140, 202]
     level:    [70, 70]
   17076294:
+    instance: zhayolm_remnants
     template: Bull_Bugard_3
     script:   Bull_Bugard
     at:       [214.370, -20.000, -453.300, 240]
     level:    [70, 70]
   17076295:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Zenist
     at:       [300.290, -8.500, -490.270, 161]
     level:    [75, 75]
   17076296:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_4
     script:   Poroggo_Gent
     at:       [217.100, -20.220, -453.630, 188]
     level:    [75, 75]
   17076297:
+    instance: zhayolm_remnants
     template: Poroggo_Madame
     at:       [338.000, -8.000, -458.000, 35]
     level:    [75, 75]
   17076298:
+    instance: zhayolm_remnants
     template: Draco_Lizard
     at:       [397.960, -0.023, -127.620, 23]
     level:    [75, 75]
   17076299:
+    instance: zhayolm_remnants
     template: Draco_Lizard_2
     script:   Draco_Lizard
     at:       [392.280, -0.497, -122.920, 113]
     level:    [75, 75]
   17076300:
+    instance: zhayolm_remnants
     template: Draco_Lizard
     at:       [387.220, -0.059, -132.880, 48]
     level:    [75, 75]
   17076301:
+    instance: zhayolm_remnants
     template: Draco_Lizard_2
     script:   Draco_Lizard
     at:       [428.880, 0.001, -117.340, 75]
     level:    [75, 75]
   17076302:
+    instance: zhayolm_remnants
     template: Draco_Lizard_2
     script:   Draco_Lizard
     at:       [434.880, 0.001, -118.480, 33]
     level:    [75, 75]
   17076303:
+    instance: zhayolm_remnants
     template: Draco_Lizard
     at:       [429.910, 0.002, -114.810, 147]
     level:    [75, 75]
   17076304:
+    instance: zhayolm_remnants
     template: Draco_Lizard
     at:       [439.330, 0.002, -150.450, 148]
     level:    [75, 75]
   17076305:
+    instance: zhayolm_remnants
     template: Draco_Lizard_2
     script:   Draco_Lizard
     at:       [444.070, -0.488, -151.510, 93]
     level:    [75, 75]
   17076306:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Zenist_2
     script:   Mamool_Ja_Zenist
     at:       [382.437, -0.020, -140.020, 121]
     level:    [80, 80]
   17076307:
+    instance: zhayolm_remnants
     template: Draco_Lizard_3
     script:   Draco_Lizard
     at:       [417.820, -0.067, 53.419, 253]
     level:    [75, 75]
   17076308:
+    instance: zhayolm_remnants
     template: Draco_Lizard_2
     script:   Draco_Lizard
     at:       [423.730, -0.093, 45.495, 11]
     level:    [75, 75]
   17076309:
+    instance: zhayolm_remnants
     template: Draco_Lizard_2
     script:   Draco_Lizard
     at:       [412.340, -0.052, 46.415, 98]
     level:    [75, 75]
   17076310:
+    instance: zhayolm_remnants
     template: Draco_Lizard_3
     script:   Draco_Lizard
     at:       [411.800, -0.064, -3.019, 165]
     level:    [75, 75]
   17076311:
+    instance: zhayolm_remnants
     template: Draco_Lizard_2
     script:   Draco_Lizard
     at:       [387.740, -0.074, 18.985, 161]
     level:    [75, 75]
   17076312:
+    instance: zhayolm_remnants
     template: Draco_Lizard_3
     script:   Draco_Lizard
     at:       [394.330, -0.100, 30.110, 71]
     level:    [75, 75]
   17076313:
+    instance: zhayolm_remnants
     template: Draco_Lizard_3
     script:   Draco_Lizard
     at:       [394.550, -0.035, 20.886, 69]
     level:    [75, 75]
   17076314:
+    instance: zhayolm_remnants
     template: Draco_Lizard_2
     script:   Draco_Lizard
     at:       [397.050, -0.068, 31.788, 172]
     level:    [75, 75]
   17076315:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Savant
     at:       [425.590, -0.500, 42.956]
     level:    [80, 80]
   17076316:
+    instance: zhayolm_remnants
     template: Wyvern
     at:       [268.550, -0.358, 52.638, 194]
     level:    [75, 75]
   17076317:
+    instance: zhayolm_remnants
     template: Wyvern_2
     script:   Wyvern
     at:       [268.060, -0.074, 45.728, 8]
     level:    [75, 75]
   17076318:
+    instance: zhayolm_remnants
     template: Wyvern
     at:       [298.020, -0.405, 15.213, 222]
     level:    [75, 75]
   17076319:
+    instance: zhayolm_remnants
     template: Wyvern_2
     script:   Wyvern
     at:       [290.310, -0.035, 16.237, 182]
     level:    [75, 75]
   17076320:
+    instance: zhayolm_remnants
     template: Wyvern_2
     script:   Wyvern
     at:       [291.180, -0.065, 13.605, 92]
     level:    [75, 75]
   17076321:
+    instance: zhayolm_remnants
     template: Wyvern
     at:       [242.690, -0.056, -0.451, 203]
     level:    [75, 75]
   17076322:
+    instance: zhayolm_remnants
     template: Wyvern
     at:       [239.180, -0.061, 3.607, 119]
     level:    [75, 75]
   17076323:
+    instance: zhayolm_remnants
     template: Wyvern_2
     script:   Wyvern
     at:       [244.680, -0.064, 0.677, 161]
     level:    [75, 75]
   17076324:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Bounder
     at:       [272.130, -0.488, 49.841, 122]
     level:    [80, 80]
   17076325:
+    instance: zhayolm_remnants
     template: Wyvern_3
     script:   Wyvern
     at:       [274.660, -0.298, -107.000, 28]
     level:    [75, 75]
   17076326:
+    instance: zhayolm_remnants
     template: Wyvern_2
     script:   Wyvern
     at:       [273.220, -0.810, -103.520, 108]
     level:    [75, 75]
   17076327:
+    instance: zhayolm_remnants
     template: Wyvern_3
     script:   Wyvern
     at:       [239.830, -0.052, -150.190, 217]
     level:    [75, 75]
   17076328:
+    instance: zhayolm_remnants
     template: Wyvern_2
     script:   Wyvern
     at:       [235.140, -0.023, -149.710, 175]
     level:    [75, 75]
   17076329:
+    instance: zhayolm_remnants
     template: Wyvern_2
     script:   Wyvern
     at:       [237.620, -0.059, -151.790, 163]
     level:    [75, 75]
   17076330:
+    instance: zhayolm_remnants
     template: Wyvern_3
     script:   Wyvern
     at:       [284.970, -0.017, -150.190, 195]
     level:    [75, 75]
   17076331:
+    instance: zhayolm_remnants
     template: Wyvern_3
     script:   Wyvern
     at:       [280.380, -0.469, -156.600, 107]
     level:    [75, 75]
   17076332:
+    instance: zhayolm_remnants
     template: Wyvern_2
     script:   Wyvern
     at:       [269.820, -0.023, -157.770, 132]
     level:    [75, 75]
   17076333:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Spearman
     at:       [258.607, -0.044, -108.350, 74]
     level:    [80, 80]
   17076334:
+    instance: zhayolm_remnants
     template: Mamool_Jas_Wyvern
     at:       [248.300, -0.256, -104.530, 32]
     level:    [75, 75]
   17076335:
+    instance: zhayolm_remnants
     template: Jakko
     at:       [260.000, -0.500, 46.000, 69]
     level:    [75, 75]
   17076336:
+    instance: zhayolm_remnants
     template: Poroggo_Madame_2
     script:   Poroggo_Madame
     at:       [420.000, -0.500, 65.000, 44]
     level:    [80, 80]
   17076337:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Zenist_3
     script:   Mamool_Ja_Zenist
     at:       [255.500, -4.000, 495.500, 245]
     level:    [75, 75]
   17076338:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Zenist_4
     script:   Mamool_Ja_Zenist
     at:       [264.500, -4.000, 495.500, 229]
     level:    [75, 75]
   17076339:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Zenist_5
     script:   Mamool_Ja_Zenist
     at:       [264.500, -4.000, 504.500, 27]
     level:    [75, 75]
   17076340:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Zenist_6
     script:   Mamool_Ja_Zenist
     at:       [255.500, -4.000, 504.500, 56]
     level:    [75, 75]
   17076341:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Spearman_2
     script:   Mamool_Ja_Spearman
     at:       [224.500, -4.000, 464.500, 8]
     level:    [75, 75]
   17076342:
+    instance: zhayolm_remnants
     template: Mamool_Jas_Wyvern_2
     script:   Mamool_Jas_Wyvern
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076343:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Spearman_3
     script:   Mamool_Ja_Spearman
     at:       [215.500, -4.000, 464.500, 246]
     level:    [75, 75]
   17076344:
+    instance: zhayolm_remnants
     template: Mamool_Jas_Wyvern_2
     script:   Mamool_Jas_Wyvern
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076345:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Spearman_4
     script:   Mamool_Ja_Spearman
     at:       [215.500, -4.000, 455.500, 229]
     level:    [75, 75]
   17076346:
+    instance: zhayolm_remnants
     template: Mamool_Jas_Wyvern_2
     script:   Mamool_Jas_Wyvern
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076347:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Spearman_5
     script:   Mamool_Ja_Spearman
     at:       [224.500, -4.000, 455.500, 227]
     level:    [75, 75]
   17076348:
+    instance: zhayolm_remnants
     template: Mamool_Jas_Wyvern_2
     script:   Mamool_Jas_Wyvern
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076349:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Strapper
     at:       [253.500, -4.000, 426.500, 94]
     level:    [75, 75]
   17076350:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Strapper_2
     script:   Mamool_Ja_Strapper
     at:       [253.500, -4.000, 413.500, 156]
     level:    [75, 75]
   17076351:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Strapper_3
     script:   Mamool_Ja_Strapper
     at:       [266.500, -4.000, 413.500, 232]
     level:    [75, 75]
   17076352:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Strapper_4
     script:   Mamool_Ja_Strapper
     at:       [266.500, -4.000, 426.500, 206]
     level:    [75, 75]
   17076353:
+    instance: zhayolm_remnants
     template: Mamool_Jas_Lizard
     script:   Mamool_Ja_s_Lizard
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076354:
+    instance: zhayolm_remnants
     template: Mamool_Jas_Lizard
     script:   Mamool_Ja_s_Lizard
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076355:
+    instance: zhayolm_remnants
     template: Mamool_Jas_Lizard
     script:   Mamool_Ja_s_Lizard
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076356:
+    instance: zhayolm_remnants
     template: Mamool_Jas_Lizard
     script:   Mamool_Ja_s_Lizard
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076357:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Zenist_3
     script:   Mamool_Ja_Zenist
     at:       [299.210, -4.000, 360.257, 234]
     level:    [75, 75]
   17076358:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Spearman_6
     script:   Mamool_Ja_Spearman
     at:       [293.350, -4.000, 361.320, 79]
     level:    [75, 75]
   17076359:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Bounder_2
     script:   Mamool_Ja_Bounder
     at:       [306.780, -4.000, 359.936, 15]
     level:    [75, 75]
   17076360:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Strapper_5
     script:   Mamool_Ja_Strapper
     at:       [296.850, -4.000, 363.325, 213]
     level:    [75, 75]
   17076361:
+    instance: zhayolm_remnants
     template: Mamool_Jas_Wyvern_2
     script:   Mamool_Jas_Wyvern
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076362:
+    instance: zhayolm_remnants
     template: Mamool_Jas_Lizard
     script:   Mamool_Ja_s_Lizard
     at:       [297.660, -4.000, 363.526, 200]
     level:    [75, 75]
   17076363:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Zenist_3
     script:   Mamool_Ja_Zenist
     at:       [334.140, -4.032, 358.717, 10]
     level:    [75, 75]
   17076364:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Spearman_6
     script:   Mamool_Ja_Spearman
     at:       [311.830, -4.106, 356.631, 137]
     level:    [75, 75]
   17076365:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Bounder_3
     script:   Mamool_Ja_Bounder
     at:       [317.500, -4.492, 359.928, 212]
     level:    [75, 75]
   17076366:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Strapper_4
     script:   Mamool_Ja_Strapper
     at:       [342.760, -4.019, 357.561, 19]
     level:    [75, 75]
   17076367:
+    instance: zhayolm_remnants
     template: Mamool_Jas_Wyvern_2
     script:   Mamool_Jas_Wyvern
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076368:
+    instance: zhayolm_remnants
     template: Mamool_Jas_Lizard
     script:   Mamool_Ja_s_Lizard
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076369:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Zenist_7
     script:   Mamool_Ja_Zenist
     at:       [360.920, -4.341, 354.303, 200]
     level:    [75, 75]
   17076370:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Spearman_3
     script:   Mamool_Ja_Spearman
     at:       [350.690, -4.190, 354.740, 110]
     level:    [75, 75]
   17076371:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Bounder_3
     script:   Mamool_Ja_Bounder
     at:       [373.040, -4.085, 353.375, 6]
     level:    [75, 75]
   17076372:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Strapper_5
     script:   Mamool_Ja_Strapper
     at:       [355.370, -4.440, 360.182, 33]
     level:    [75, 75]
   17076373:
+    instance: zhayolm_remnants
     template: Mamool_Jas_Wyvern_2
     script:   Mamool_Jas_Wyvern
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076374:
+    instance: zhayolm_remnants
     template: Mamool_Jas_Lizard
     script:   Mamool_Ja_s_Lizard
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076375:
+    instance: zhayolm_remnants
     template: Archaic_Rampart
     at:       [380.000, -4.500, 376.000, 64]
     level:    [75, 75]
   17076376:
+    instance: zhayolm_remnants
     template: Wajaom_Tiger
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076377:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Savant_2
     script:   Mamool_Ja_Savant
     at:       [424.500, -4.000, 415.000, 118]
     level:    [80, 80]
   17076378:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Savant_2
     script:   Mamool_Ja_Savant
     at:       [415.500, -4.000, 415.500, 10]
     level:    [80, 80]
   17076379:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Savant_2
     script:   Mamool_Ja_Savant
     at:       [415.500, -4.000, 424.500, 100]
     level:    [80, 80]
   17076380:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Savant_2
     script:   Mamool_Ja_Savant
     at:       [424.500, -4.000, 424.500, 117]
     level:    [80, 80]
   17076381:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Sophist
     at:       [455.500, -4.000, 455.500, 190]
     level:    [80, 80]
   17076382:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Sophist
     at:       [464.500, -4.000, 455.500, 203]
     level:    [80, 80]
   17076383:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Sophist
     at:       [464.500, -4.000, 464.500, 89]
     level:    [80, 80]
   17076384:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Sophist
     at:       [455.500, -4.000, 464.500, 74]
     level:    [80, 80]
   17076385:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Mimicker
     at:       [424.500, -4.000, 495.500, 56]
     level:    [80, 80]
   17076386:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Mimicker
     at:       [424.500, -4.000, 504.500, 14]
     level:    [80, 80]
   17076387:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Mimicker
     at:       [413.500, -4.000, 506.500, 106]
     level:    [80, 80]
   17076388:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Mimicker
     at:       [413.500, -4.000, 493.500, 56]
     level:    [80, 80]
   17076389:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Savant_2
     script:   Mamool_Ja_Savant
     at:       [327.590, -4.098, 556.726, 254]
     level:    [80, 80]
   17076390:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Savant_2
     script:   Mamool_Ja_Savant
     at:       [329.850, -4.072, 561.382, 49]
     level:    [80, 80]
   17076391:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Sophist
     at:       [325.490, -4.090, 561.081, 182]
     level:    [80, 80]
   17076392:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Sophist
     at:       [324.070, -4.118, 556.669, 49]
     level:    [80, 80]
   17076393:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Mimicker
     at:       [318.890, -4.535, 557.585, 110]
     level:    [80, 80]
   17076394:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Mimicker
     at:       [321.370, -4.592, 561.757, 22]
     level:    [80, 80]
   17076395:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Mimicker
     at:       [326.980, -4.156, 561.033, 51]
     level:    [80, 80]
   17076396:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Mimicker
     at:       [301.690, -4.060, 558.442, 111]
     level:    [80, 80]
   17076397:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Savant_2
     script:   Mamool_Ja_Savant
     at:       [321.700, -5.000, 558.861, 125]
     level:    [80, 80]
   17076398:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Savant_2
     script:   Mamool_Ja_Savant
     at:       [324.160, -4.032, 556.117, 90]
     level:    [80, 80]
   17076399:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Sophist
     at:       [342.140, -4.448, 565.263, 1]
     level:    [80, 80]
   17076400:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Sophist
     at:       [357.590, -4.519, 558.734, 13]
     level:    [80, 80]
   17076401:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Mimicker
     at:       [331.010, -4.074, 554.189, 120]
     level:    [80, 80]
   17076402:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Mimicker
     at:       [345.010, -4.052, 556.969, 47]
     level:    [80, 80]
   17076403:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Savant_2
     script:   Mamool_Ja_Savant
     at:       [381.170, -4.041, 554.538, 108]
     level:    [80, 80]
   17076404:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Savant_2
     script:   Mamool_Ja_Savant
     at:       [381.570, -4.040, 553.866, 109]
     level:    [80, 80]
   17076405:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Sophist
     at:       [369.950, -4.033, 556.385, 80]
     level:    [80, 80]
   17076406:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Sophist
     at:       [380.600, -4.052, 554.966, 83]
     level:    [80, 80]
   17076407:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Mimicker
     at:       [372.340, -4.031, 555.591, 173]
     level:    [80, 80]
   17076408:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Mimicker
     at:       [387.320, -4.031, 554.846, 42]
     level:    [80, 80]
   17076409:
+    instance: zhayolm_remnants
     template: Archaic_Rampart_2
     script:   Archaic_Rampart
     at:       [300.000, -4.500, 535.000, 192]
     level:    [80, 80]
   17076410:
+    instance: zhayolm_remnants
     template: Wajaom_Tiger
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076411:
+    instance: zhayolm_remnants
     template: Poroggo_Madame_3
     script:   Poroggo_Madame
     at:       [380.000, -4.500, 389.000, 192]
     level:    [80, 80]
   17076412:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Zenist_8
     script:   Mamool_Ja_Zenist
     at:       [-304.500, 0.000, -544.500, 31]
     level:    [75, 75]
   17076413:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Spearman_7
     script:   Mamool_Ja_Spearman
     at:       [-295.500, 0.000, -544.500, 80]
     level:    [75, 75]
   17076414:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Bounder_4
     script:   Mamool_Ja_Bounder
     at:       [-291.000, 0.000, -535.500, 70]
     level:    [75, 75]
   17076415:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Strapper_6
     script:   Mamool_Ja_Strapper
     at:       [-309.000, 0.000, -535.500, 70]
     level:    [75, 75]
   17076416:
+    instance: zhayolm_remnants
     template: Mamool_Jas_Wyvern_2
     script:   Mamool_Jas_Wyvern
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076417:
+    instance: zhayolm_remnants
     template: Mamool_Jas_Lizard
     script:   Mamool_Ja_s_Lizard
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076418:
+    instance: zhayolm_remnants
     template: First_Rampart
     at:       [-246.625, -0.500, -566.775, 173]
     level:    [78, 78]
   17076419:
+    instance: zhayolm_remnants
     template: Second_Rampart
     at:       [-233.500, -0.449, -566.500, 192]
     level:    [78, 78]
   17076420:
+    instance: zhayolm_remnants
     template: Third_Rampart
     at:       [-246.500, -0.449, -513.500, 64]
     level:    [78, 78]
   17076421:
+    instance: zhayolm_remnants
     template: Fourth_Rampart
     at:       [-233.500, -0.449, -513.500, 64]
     level:    [78, 78]
   17076422:
+    instance: zhayolm_remnants
     template: Rogue_Marid
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076423:
+    instance: zhayolm_remnants
     template: Rogue_Marid
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076424:
+    instance: zhayolm_remnants
     template: Rogue_Marid
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076425:
+    instance: zhayolm_remnants
     template: Rogue_Marid
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076426:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_10
     script:   Poroggo_Gent
     at:       [-358.800, 3.482, -677.990, 157]
     level:    [75, 75]
   17076427:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_11
     script:   Poroggo_Gent
     at:       [-357.200, 3.326, -679.970, 225]
     level:    [75, 75]
   17076428:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_12
     script:   Poroggo_Gent
     at:       [-365.500, 3.917, -685.550, 135]
     level:    [75, 75]
   17076429:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_5
     script:   Poroggo_Gent
     at:       [-362.000, 3.471, -684.670, 62]
     level:    [75, 75]
   17076430:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_10
     script:   Poroggo_Gent
     at:       [-349.200, 3.801, -675.940, 93]
     level:    [75, 75]
   17076431:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_11
     script:   Poroggo_Gent
     at:       [-339.400, 3.916, -673.790, 137]
     level:    [75, 75]
   17076432:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_12
     script:   Poroggo_Gent
     at:       [-348.300, 3.831, -678.680, 115]
     level:    [75, 75]
   17076433:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_5
     script:   Poroggo_Gent
     at:       [-349.600, 3.937, -673.390, 130]
     level:    [75, 75]
   17076434:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Savant_3
     script:   Mamool_Ja_Savant
     at:       [-368.300, -0.081, -537.880, 123]
     level:    [80, 80]
   17076435:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Savant_4
     script:   Mamool_Ja_Savant
     at:       [-383.300, -0.168, -535.750, 171]
     level:    [80, 80]
   17076436:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Sophist_2
     script:   Mamool_Ja_Sophist
     at:       [-375.000, -0.067, -537.530, 22]
     level:    [80, 80]
   17076437:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Sophist_3
     script:   Mamool_Ja_Sophist
     at:       [-369.400, 0.002, -537.260, 246]
     level:    [80, 80]
   17076438:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Mimicker_2
     script:   Mamool_Ja_Mimicker
     at:       [-383.900, -0.451, -541.750, 19]
     level:    [80, 80]
   17076439:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Mimicker_2
     script:   Mamool_Ja_Mimicker
     at:       [-383.200, -0.002, -529.200, 158]
     level:    [80, 80]
   17076440:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Savant_5
     script:   Mamool_Ja_Savant
     at:       [-368.300, -0.081, -537.880, 123]
     level:    [80, 80]
   17076441:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Savant_5
     script:   Mamool_Ja_Savant
     at:       [-383.300, -0.168, -535.750, 171]
     level:    [80, 80]
   17076442:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Sophist_4
     script:   Mamool_Ja_Sophist
     at:       [-375.000, -0.067, -537.530, 22]
     level:    [80, 80]
   17076443:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Sophist_5
     script:   Mamool_Ja_Sophist
     at:       [-369.400, 0.002, -537.260, 246]
     level:    [80, 80]
   17076444:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Mimicker_3
     script:   Mamool_Ja_Mimicker
     at:       [-383.900, -0.451, -541.750, 19]
     level:    [80, 80]
   17076445:
+    instance: zhayolm_remnants
     template: Mamool_Ja_Mimicker_4
     script:   Mamool_Ja_Mimicker
     at:       [-383.200, -0.002, -529.200, 158]
     level:    [80, 80]
   17076446:
+    instance: zhayolm_remnants
     template: First_Rampart
     at:       [-433.500, -0.449, -566.500, 192]
     level:    [78, 78]
   17076447:
+    instance: zhayolm_remnants
     template: Second_Rampart
     at:       [-446.500, -0.449, -566.500, 192]
     level:    [78, 78]
   17076448:
+    instance: zhayolm_remnants
     template: Third_Rampart
     at:       [-433.500, -0.449, -513.500, 64]
     level:    [78, 78]
   17076449:
+    instance: zhayolm_remnants
     template: Fourth_Rampart
     at:       [-446.500, -0.449, -513.500, 64]
     level:    [78, 78]
   17076450:
+    instance: zhayolm_remnants
     template: Rogue_Marid
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076451:
+    instance: zhayolm_remnants
     template: Rogue_Marid
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076452:
+    instance: zhayolm_remnants
     template: Rogue_Marid
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076453:
+    instance: zhayolm_remnants
     template: Rogue_Marid
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076454:
+    instance: zhayolm_remnants
     template: First_Rampart
     at:       [-433.500, -0.449, -566.500, 192]
     level:    [78, 78]
   17076455:
+    instance: zhayolm_remnants
     template: Second_Rampart
     at:       [-446.500, -0.449, -566.500, 192]
     level:    [78, 78]
   17076456:
+    instance: zhayolm_remnants
     template: Third_Rampart
     at:       [-433.500, -0.449, -513.500, 64]
     level:    [78, 78]
   17076457:
+    instance: zhayolm_remnants
     template: Fourth_Rampart
     at:       [-446.500, -0.449, -513.500, 64]
     level:    [78, 78]
   17076458:
+    instance: zhayolm_remnants
     template: Rogue_Marid
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076459:
+    instance: zhayolm_remnants
     template: Rogue_Marid
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076460:
+    instance: zhayolm_remnants
     template: Rogue_Marid
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076461:
+    instance: zhayolm_remnants
     template: Rogue_Marid
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076462:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_7
     script:   Poroggo_Gent
     at:       [-352.500, -4.084, -403.050, 61]
     level:    [75, 75]
   17076463:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_8
     script:   Poroggo_Gent
     at:       [-354.600, -4.027, -396.570, 30]
     level:    [75, 75]
   17076464:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_9
     script:   Poroggo_Gent
     at:       [-362.000, -4.473, -396.470, 77]
     level:    [75, 75]
   17076465:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_6
     script:   Poroggo_Gent
     at:       [-356.900, -4.434, -401.050, 175]
     level:    [75, 75]
   17076466:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_6
     script:   Poroggo_Gent
     at:       [-361.600, -4.565, -402.760, 116]
     level:    [75, 75]
   17076467:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_6
     script:   Poroggo_Gent
     at:       [-364.200, -4.050, -393.630, 225]
     level:    [75, 75]
   17076468:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_6
     script:   Poroggo_Gent
     at:       [-350.100, -4.035, -406.110, 89]
     level:    [75, 75]
   17076469:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_6
     script:   Poroggo_Gent
     at:       [-336.300, -4.034, -402.740, 254]
     level:    [75, 75]
   17076470:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_6
     script:   Poroggo_Gent
     at:       [-328.500, -4.186, -397.430, 163]
     level:    [75, 75]
   17076471:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_6
     script:   Poroggo_Gent
     at:       [-345.200, -4.065, -397.700, 2]
     level:    [75, 75]
   17076472:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_6
     script:   Poroggo_Gent
     at:       [-345.100, -4.046, -403.640, 137]
     level:    [75, 75]
   17076473:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_6
     script:   Poroggo_Gent
     at:       [-335.100, -4.059, -397.890, 126]
     level:    [75, 75]
   17076474:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_7
     script:   Poroggo_Gent
     at:       [-352.500, -4.084, -403.050, 61]
     level:    [75, 75]
   17076475:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_8
     script:   Poroggo_Gent
     at:       [-354.600, -4.027, -396.570, 30]
     level:    [75, 75]
   17076476:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_9
     script:   Poroggo_Gent
     at:       [-362.000, -4.473, -396.470, 77]
     level:    [75, 75]
   17076477:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_6
     script:   Poroggo_Gent
     at:       [-356.900, -4.434, -401.050, 175]
     level:    [75, 75]
   17076478:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_6
     script:   Poroggo_Gent
     at:       [-361.600, -4.565, -402.760, 116]
     level:    [75, 75]
   17076479:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_6
     script:   Poroggo_Gent
     at:       [-364.200, -4.050, -393.630, 225]
     level:    [75, 75]
   17076480:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_6
     script:   Poroggo_Gent
     at:       [-350.100, -4.035, -406.110, 89]
     level:    [75, 75]
   17076481:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_6
     script:   Poroggo_Gent
     at:       [-336.300, -4.034, -402.740, 254]
     level:    [75, 75]
   17076482:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_6
     script:   Poroggo_Gent
     at:       [-328.500, -4.186, -397.430, 163]
     level:    [75, 75]
   17076483:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_6
     script:   Poroggo_Gent
     at:       [-345.200, -4.065, -397.700, 2]
     level:    [75, 75]
   17076484:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_6
     script:   Poroggo_Gent
     at:       [-345.100, -4.046, -403.640, 137]
     level:    [75, 75]
   17076485:
+    instance: zhayolm_remnants
     template: Poroggo_Gent_6
     script:   Poroggo_Gent
     at:       [-335.100, -4.059, -397.890, 126]
     level:    [75, 75]
   17076486:
+    instance: zhayolm_remnants
     template: Poroggo_Madame_4
     script:   Poroggo_Madame
     at:       [-355.800, 3.858, -675.460, 203]
     level:    [80, 80]
   17076487:
+    instance: zhayolm_remnants
     template: Poroggo_Madame_5
     script:   Poroggo_Madame
     at:       [-350.800, -3.858, -390.000, 71]
     level:    [80, 80]
   17076488:
+    instance: zhayolm_remnants
     template: Archaic_Gear
     at:       [-340.000, 0.000, -229.000]
     level:    [75, 75]
   17076489:
+    instance: zhayolm_remnants
     template: Archaic_Gear
     at:       [-331.000, 0.000, -229.000]
     level:    [75, 75]
   17076490:
+    instance: zhayolm_remnants
     template: Archaic_Gear
     at:       [-331.000, 0.000, -220.000, 64]
     level:    [75, 75]
   17076491:
+    instance: zhayolm_remnants
     template: Archaic_Gear
     at:       [-331.000, 0.000, -211.000, 192]
     level:    [75, 75]
   17076492:
+    instance: zhayolm_remnants
     template: Archaic_Gear
     at:       [-340.000, 0.000, -211.000, 128]
     level:    [75, 75]
   17076493:
+    instance: zhayolm_remnants
     template: Archaic_Gear
     at:       [-349.000, 0.000, -211.000]
     level:    [75, 75]
   17076494:
+    instance: zhayolm_remnants
     template: Archaic_Gear
     at:       [-349.000, 0.000, -220.000, 192]
     level:    [75, 75]
   17076495:
+    instance: zhayolm_remnants
     template: Archaic_Gear
     at:       [-349.000, 0.000, -229.000, 192]
     level:    [75, 75]
   17076496:
+    instance: zhayolm_remnants
     template: Archaic_Rampart_3
     script:   Archaic_Rampart
     at:       [-340.000, -4.500, -131.000, 64]
     level:    [75, 75]
   17076497:
+    instance: zhayolm_remnants
     template: Archaic_Rampart_3
     script:   Archaic_Rampart
     at:       [-331.000, -4.500, -140.000, 128]
     level:    [75, 75]
   17076498:
+    instance: zhayolm_remnants
     template: Archaic_Rampart_3
     script:   Archaic_Rampart
     at:       [-349.000, -4.500, -140.000]
     level:    [75, 75]
   17076499:
+    instance: zhayolm_remnants
     template: Slime_Mold
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076500:
+    instance: zhayolm_remnants
     template: Slime_Mold
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076501:
+    instance: zhayolm_remnants
     template: Slime_Mold
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076502:
+    instance: zhayolm_remnants
     template: Archaic_Chariot
     at:       [-300.000, -0.500, -100.000]
     level:    [75, 75]
   17076503:
+    instance: zhayolm_remnants
     template: Archaic_Gear
     at:       [-260.000, 0.000, -103.500, 192]
     level:    [75, 75]
   17076504:
+    instance: zhayolm_remnants
     template: Archaic_Gear
     at:       [-260.000, 0.000, -95.500, 128]
     level:    [75, 75]
   17076505:
+    instance: zhayolm_remnants
     template: Archaic_Gear
     at:       [-256.000, 0.000, -100.000, 192]
     level:    [75, 75]
   17076506:
+    instance: zhayolm_remnants
     template: Archaic_Gear
     at:       [-264.000, 0.000, -100.000, 128]
     level:    [75, 75]
   17076507:
+    instance: zhayolm_remnants
     template: Archaic_Gear
     at:       [-233.500, 0.000, -126.500, 64]
     level:    [75, 75]
   17076508:
+    instance: zhayolm_remnants
     template: Archaic_Gear
     at:       [-233.500, 0.000, -73.500, 192]
     level:    [75, 75]
   17076509:
+    instance: zhayolm_remnants
     template: Archaic_Gear
     at:       [-286.500, 0.000, -73.500]
     level:    [75, 75]
   17076510:
+    instance: zhayolm_remnants
     template: Archaic_Gear
     at:       [-286.500, 0.000, -126.500, 128]
     level:    [75, 75]
   17076511:
+    instance: zhayolm_remnants
     template: Archaic_Gear
     at:       [-309.000, 0.000, -180.000, 96]
     level:    [75, 75]
   17076512:
+    instance: zhayolm_remnants
     template: Archaic_Gear
     at:       [-300.000, 0.000, -171.000, 160]
     level:    [75, 75]
   17076513:
+    instance: zhayolm_remnants
     template: Archaic_Gear
     at:       [-291.000, 0.000, -180.000, 96]
     level:    [75, 75]
   17076514:
+    instance: zhayolm_remnants
     template: Archaic_Gear
     at:       [-300.000, 0.000, -189.000, 160]
     level:    [75, 75]
   17076515:
+    instance: zhayolm_remnants
     template: Archaic_Rampart_4
     script:   Archaic_Rampart
     at:       [-283.000, -0.500, -180.000, 128]
     level:    [80, 80]
   17076516:
+    instance: zhayolm_remnants
     template: Wajaom_Tiger
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076517:
+    instance: zhayolm_remnants
     template: Archaic_Gears
     at:       [-331.000, 0.000, 29.000, 192]
     level:    [75, 75]
   17076518:
+    instance: zhayolm_remnants
     template: Archaic_Gears
     at:       [-340.000, 0.000, 29.000, 192]
     level:    [75, 75]
   17076519:
+    instance: zhayolm_remnants
     template: Archaic_Gears
     at:       [-349.000, 0.000, 29.000, 128]
     level:    [75, 75]
   17076520:
+    instance: zhayolm_remnants
     template: Archaic_Gears
     at:       [-349.000, 0.000, 20.000, 128]
     level:    [75, 75]
   17076521:
+    instance: zhayolm_remnants
     template: Archaic_Gears
     at:       [-349.000, 0.000, 11.000, 64]
     level:    [75, 75]
   17076522:
+    instance: zhayolm_remnants
     template: Archaic_Gears
     at:       [-340.000, 0.000, 11.000, 64]
     level:    [75, 75]
   17076523:
+    instance: zhayolm_remnants
     template: Archaic_Gears
     at:       [-331.000, 0.000, 11.000]
     level:    [75, 75]
   17076524:
+    instance: zhayolm_remnants
     template: Archaic_Gears
     at:       [-331.000, 0.000, 20.000]
     level:    [75, 75]
   17076525:
+    instance: zhayolm_remnants
     template: Archaic_Gears
     at:       [-341.000, 0.000, 20.000, 194]
     level:    [75, 75]
   17076526:
+    instance: zhayolm_remnants
     template: Archaic_Gears
     at:       [-341.000, 0.000, 20.000, 193]
     level:    [75, 75]
   17076527:
+    instance: zhayolm_remnants
     template: Archaic_Gears
     at:       [-341.000, 0.000, 20.000, 211]
     level:    [75, 75]
   17076528:
+    instance: zhayolm_remnants
     template: Archaic_Gears
     at:       [-341.000, 0.000, 20.000, 43]
     level:    [75, 75]
   17076529:
+    instance: zhayolm_remnants
     template: Archaic_Rampart_5
     script:   Archaic_Rampart
     at:       [-340.000, 3.500, -69.000, 192]
     level:    [80, 80]
   17076530:
+    instance: zhayolm_remnants
     template: Archaic_Rampart_5
     script:   Archaic_Rampart
     at:       [-331.000, 3.500, -60.000, 128]
     level:    [80, 80]
   17076531:
+    instance: zhayolm_remnants
     template: Archaic_Rampart_5
     script:   Archaic_Rampart
     at:       [-349.000, 3.500, -60.000, 252]
     level:    [80, 80]
   17076532:
+    instance: zhayolm_remnants
     template: Mindgazer
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076533:
+    instance: zhayolm_remnants
     template: Mindgazer
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076534:
+    instance: zhayolm_remnants
     template: Mindgazer
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076535:
+    instance: zhayolm_remnants
     template: Archaic_Chariot
     at:       [-380.000, -0.500, -100.000, 128]
     level:    [75, 75]
   17076536:
+    instance: zhayolm_remnants
     template: Archaic_Gears_2
     script:   Archaic_Gears
     at:       [-420.000, 0.000, -96.000]
     level:    [80, 80]
   17076537:
+    instance: zhayolm_remnants
     template: Archaic_Gears_2
     script:   Archaic_Gears
     at:       [-420.000, 0.000, -104.000, 128]
     level:    [80, 80]
   17076538:
+    instance: zhayolm_remnants
     template: Archaic_Gears_2
     script:   Archaic_Gears
     at:       [-416.000, 0.000, -100.000, 192]
     level:    [80, 80]
   17076539:
+    instance: zhayolm_remnants
     template: Archaic_Gears_2
     script:   Archaic_Gears
     at:       [-424.000, 0.000, -100.000, 64]
     level:    [80, 80]
   17076540:
+    instance: zhayolm_remnants
     template: Archaic_Gears_2
     script:   Archaic_Gears
     at:       [-393.500, 0.000, -73.500, 64]
     level:    [80, 80]
   17076541:
+    instance: zhayolm_remnants
     template: Archaic_Gears_2
     script:   Archaic_Gears
     at:       [-446.500, 0.000, -73.500, 64]
     level:    [80, 80]
   17076542:
+    instance: zhayolm_remnants
     template: Archaic_Gears_2
     script:   Archaic_Gears
     at:       [-393.500, 0.000, -126.500, 64]
     level:    [80, 80]
   17076543:
+    instance: zhayolm_remnants
     template: Archaic_Gears_2
     script:   Archaic_Gears
     at:       [-393.500, 0.000, -73.500, 64]
     level:    [80, 80]
   17076544:
+    instance: zhayolm_remnants
     template: Archaic_Gears_2
     script:   Archaic_Gears
     at:       [-446.500, 0.000, -126.500, 128]
     level:    [80, 80]
   17076545:
+    instance: zhayolm_remnants
     template: Archaic_Gears_2
     script:   Archaic_Gears
     at:       [-393.500, 0.000, -126.500]
     level:    [80, 80]
   17076546:
+    instance: zhayolm_remnants
     template: Archaic_Gears_2
     script:   Archaic_Gears
     at:       [-446.500, 0.000, -73.500, 128]
     level:    [80, 80]
   17076547:
+    instance: zhayolm_remnants
     template: Archaic_Gears_2
     script:   Archaic_Gears
     at:       [-446.500, 0.000, -126.500]
     level:    [80, 80]
   17076548:
+    instance: zhayolm_remnants
     template: Archaic_Gears_2
     script:   Archaic_Gears
     at:       [-375.500, 0.000, -19.000, 128]
     level:    [80, 80]
   17076549:
+    instance: zhayolm_remnants
     template: Archaic_Gears_2
     script:   Archaic_Gears
     at:       [-375.500, 0.000, -21.000]
     level:    [80, 80]
   17076550:
+    instance: zhayolm_remnants
     template: Archaic_Gears_2
     script:   Archaic_Gears
     at:       [-384.500, 0.000, -21.000]
     level:    [80, 80]
   17076551:
+    instance: zhayolm_remnants
     template: Archaic_Gears_2
     script:   Archaic_Gears
     at:       [-384.500, 0.000, -19.000]
     level:    [80, 80]
   17076552:
+    instance: zhayolm_remnants
     template: Archaic_Gears_2
     script:   Archaic_Gears
     at:       [-390.000, 0.000, -24.500, 64]
     level:    [80, 80]
   17076553:
+    instance: zhayolm_remnants
     template: Archaic_Gears_2
     script:   Archaic_Gears
     at:       [-390.000, 0.000, -15.500, 64]
     level:    [80, 80]
   17076554:
+    instance: zhayolm_remnants
     template: Archaic_Gears_2
     script:   Archaic_Gears
     at:       [-370.000, 0.000, -24.500, 64]
     level:    [80, 80]
   17076555:
+    instance: zhayolm_remnants
     template: Archaic_Gears_2
     script:   Archaic_Gears
     at:       [-370.000, 0.000, -15.500, 64]
     level:    [80, 80]
   17076556:
+    instance: zhayolm_remnants
     template: Archaic_Rampart_4
     script:   Archaic_Rampart
     at:       [-397.000, -0.500, -20.000]
     level:    [80, 80]
   17076557:
+    instance: zhayolm_remnants
     template: Torama
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076558:
+    instance: zhayolm_remnants
     template: Poroggo_Madame_6
     script:   Poroggo_Madame
     at:       [-348.000, -4.020, -142.320, 27]
     level:    [80, 80]
   17076559:
+    instance: zhayolm_remnants
     template: Poroggo_Madame_7
     script:   Poroggo_Madame
     at:       [-340.000, 4.000, -59.000, 193]
     level:    [80, 80]
   17076560:
+    instance: zhayolm_remnants
     template: Archaic_Chariot_2
     script:   Archaic_Chariot
     at:       [-340.200, -0.039, 251.345, 50]
     level:    [80, 80]
   17076561:
+    instance: zhayolm_remnants
     template: Archaic_Gears_2
     script:   Archaic_Gears
     at:       [-338.200, -0.500, 278.000, 128]
     level:    [80, 80]
   17076562:
+    instance: zhayolm_remnants
     template: Archaic_Gears_2
     script:   Archaic_Gears
     at:       [-338.200, -0.449, 262.000, 128]
     level:    [80, 80]
   17076563:
+    instance: zhayolm_remnants
     template: Archaic_Gears_2
     script:   Archaic_Gears
     at:       [-338.200, -0.500, 242.000, 128]
     level:    [80, 80]
   17076564:
+    instance: zhayolm_remnants
     template: Archaic_Gears_2
     script:   Archaic_Gears
     at:       [-338.200, -0.992, 222.000, 128]
     level:    [80, 80]
   17076565:
+    instance: zhayolm_remnants
     template: Archaic_Gears_2
     script:   Archaic_Gears
     at:       [-338.200, -0.500, 202.000, 128]
     level:    [80, 80]
   17076566:
+    instance: zhayolm_remnants
     template: Archaic_Gears_2
     script:   Archaic_Gears
     at:       [-341.700, -0.500, 276.000]
     level:    [80, 80]
   17076567:
+    instance: zhayolm_remnants
     template: Archaic_Gears_2
     script:   Archaic_Gears
     at:       [-341.700, -0.123, 257.000]
     level:    [80, 80]
   17076568:
+    instance: zhayolm_remnants
     template: Archaic_Gears_2
     script:   Archaic_Gears
     at:       [-341.700, -0.500, 238.000]
     level:    [80, 80]
   17076569:
+    instance: zhayolm_remnants
     template: Archaic_Gears_2
     script:   Archaic_Gears
     at:       [-341.700, -0.992, 218.000]
     level:    [80, 80]
   17076570:
+    instance: zhayolm_remnants
     template: Archaic_Gears_2
     script:   Archaic_Gears
     at:       [-341.700, -0.500, 198.000]
     level:    [80, 80]
   17076571:
+    instance: zhayolm_remnants
     template: Archaic_Gear_2
     script:   Archaic_Gear
     at:       [-342.700, -0.435, 250.745, 167]
     level:    [80, 80]
   17076572:
+    instance: zhayolm_remnants
     template: Archaic_Gear_2
     script:   Archaic_Gear
     at:       [-336.200, -0.466, 250.745, 211]
     level:    [80, 80]
   17076573:
+    instance: zhayolm_remnants
     template: Archaic_Rampart_6
     script:   Archaic_Rampart
     at:       [-416.000, -0.660, 260.000]
     level:    [80, 80]
   17076574:
+    instance: zhayolm_remnants
     template: Greater_Manticore
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076575:
+    instance: zhayolm_remnants
     template: Archaic_Rampart_6
     script:   Archaic_Rampart
     at:       [-265.000, -0.500, 220.000, 128]
     level:    [80, 80]
   17076576:
+    instance: zhayolm_remnants
     template: Greater_Manticore
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17076577:
+    instance: zhayolm_remnants
     template: Poroggo_Madame_8
     script:   Poroggo_Madame
     at:       [-340.000, 0.000, 170.000, 188]
     level:    [80, 80]
   17076578:
+    instance: zhayolm_remnants
     template: Battleclad_Chariot
     at:       [-340.000, -4.448, 566.500, 64]
     level:    [80, 80]

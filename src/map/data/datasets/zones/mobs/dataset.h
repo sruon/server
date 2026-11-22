@@ -96,6 +96,8 @@ struct MobSpawnData
     std::vector<position_t>  Route;   // a `path` arrives folded back on itself, so every route is a closed loop
 
     MobAttributesOverrides Attributes{};
+
+    std::vector<std::string> Instances;
 };
 
 struct MobSlotMemberData

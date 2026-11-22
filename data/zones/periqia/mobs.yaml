@@ -876,66 +876,82 @@ templates:
 
 spawns:
   17006593:
+    instance: seagull_grounded
     template: Excaliace
     at:       [-322.000, -16.500, 380.000, 128]
     level:    [75, 75]
   17006594:
+    instance: seagull_grounded
     template: Arrapago_Crab
     at:       [-377.359, -15.778, 297.049, 162]
     level:    [72, 74]
   17006595:
+    instance: seagull_grounded
     template: Arrapago_Crab
     at:       [-372.792, -15.869, 299.414, 169]
     level:    [72, 74]
   17006596:
+    instance: seagull_grounded
     template: Arrapago_Crab
     at:       [-382.212, -15.736, 300.797, 1]
     level:    [72, 74]
   17006597:
+    instance: seagull_grounded
     template: Arrapago_Crab
-    at:       [-296.028, -15.806, 26.763, 255]
+    at:       [-296.028, -15.806, 266.763, 255]
     level:    [72, 74]
   17006598:
+    instance: seagull_grounded
     template: Arrapago_Crab
     at:       [-302.256, -15.765, 259.201, 186]
     level:    [72, 74]
   17006599:
+    instance: seagull_grounded
     template: Arrapago_Crab
     at:       [-302.615, -15.774, 256.504, 12]
     level:    [72, 74]
   17006600:
+    instance: seagull_grounded
     template: Arrapago_Crab
     at:       [-380.292, -15.769, 221.872, 100]
     level:    [72, 74]
   17006601:
+    instance: seagull_grounded
     template: Arrapago_Crab
     at:       [-378.139, -15.787, 216.940, 24]
     level:    [72, 74]
   17006602:
+    instance: seagull_grounded
     template: Arrapago_Crab
     at:       [-371.213, -15.917, 221.388, 243]
     level:    [72, 74]
   17006603:
+    instance: seagull_grounded
     template: Debaucher
     at:       [-337.030, -15.734, 145.834, 136]
     level:    [77, 79]
   17006604:
+    instance: seagull_grounded
     template: Periqia_Pugil
     at:       [-383.949, -15.961, 132.729, 145]
     level:    [75, 77]
   17006605:
+    instance: seagull_grounded
     template: Periqia_Pugil
     at:       [-381.782, -16.120, 125.265, 51]
     level:    [75, 77]
   17006606:
+    instance: seagull_grounded
     template: Periqia_Pugil
     at:       [-295.049, -16.253, 149.465, 176]
     level:    [75, 77]
   17006607:
+    instance: seagull_grounded
     template: Periqia_Pugil
     at:       [-292.721, -16.229, 143.438, 141]
     level:    [75, 77]
   17006608:
+    instance: seagull_grounded
     template: Periqia_Pugil
     at:       [-353.685, -15.835, 140.631, 75]
     level:    [75, 77]
@@ -943,102 +959,127 @@ spawns:
     template: Periqia_Pugil
     level:    [75, 77]
   17006610:
+    instance: seagull_grounded
     template: Debaucher
     at:       [-419.548, -16.485, 16.857, 67]
     level:    [77, 79]
   17006611:
+    instance: seagull_grounded
     template: Debaucher
     at:       [-472.284, -10.180, -65.855, 118]
     level:    [77, 79]
   17006612:
+    instance: requiem
     template: Putrid_Immortal_Guard
     at:       [-454.915, -4.121, -255.058, 78]
     level:    [77, 77]
   17006613:
+    instance: requiem
     template: Putrid_Immortal_Guard
     at:       [-450.889, -6.673, -258.272, 3]
     level:    [77, 77]
   17006614:
+    instance: requiem
     template: Batteilant_Bhoot
     at:       [-499.716, -16.174, -179.635, 65]
     level:    [75, 77]
   17006615:
+    instance: requiem
     template: Batteilant_Bhoot
     at:       [-499.622, -16.164, -180.989, 50]
     level:    [75, 77]
   17006616:
+    instance: requiem
     template: Darkling_Draugar
     at:       [-500.338, -15.800, -145.716, 255]
     level:    [75, 76]
   17006617:
+    instance: requiem
     template: Draconic_Draugar
     at:       [-501.451, -15.801, -145.041, 153]
     level:    [75, 76]
   17006618:
+    instance: requiem
     template: Draugars_Wyvern
     at:       [-501.451, -15.801, -145.041, 153]
     level:    [70, 71]
   17006619:
+    instance: requiem
     template: Darkling_Draugar
     at:       [-538.905, -15.775, -146.001, 13]
     level:    [75, 76]
   17006620:
+    instance: requiem
     template: Darkling_Draugar
     at:       [-538.621, -16.070, -143.620, 24]
     level:    [75, 76]
   17006621:
+    instance: requiem
     template: Draconic_Draugar
     at:       [-534.770, -15.908, -212.742, 253]
     level:    [75, 76]
   17006622:
+    instance: requiem
     template: Draugars_Wyvern
     at:       [-534.770, -15.908, -212.742, 253]
     level:    [70, 71]
   17006623:
+    instance: requiem
     template: Draconic_Draugar
     at:       [-537.336, -15.916, -212.358, 141]
     level:    [75, 76]
   17006624:
+    instance: requiem
     template: Draugars_Wyvern
     at:       [-537.336, -15.916, -212.358, 141]
     level:    [70, 71]
   17006625:
+    instance: requiem
     template: Batteilant_Bhoot
     at:       [-376.720, -16.225, -338.743, 97]
     level:    [75, 77]
   17006626:
+    instance: requiem
     template: Batteilant_Bhoot
     at:       [-388.673, -16.288, -341.172, 238]
     level:    [75, 77]
   17006627:
+    instance: requiem
     template: Darkling_Draugar
     at:       [-425.841, -16.123, -406.870, 134]
     level:    [75, 76]
   17006628:
+    instance: requiem
     template: Draconic_Draugar
     at:       [-424.116, -16.120, -410.327, 22]
     level:    [75, 76]
   17006629:
+    instance: requiem
     template: Draugars_Wyvern
     at:       [-424.116, -16.120, -410.327, 22]
     level:    [70, 71]
   17006630:
+    instance: requiem
     template: Darkling_Draugar
     at:       [-381.819, -15.802, -373.410, 128]
     level:    [75, 76]
   17006631:
+    instance: requiem
     template: Draconic_Draugar
     at:       [-381.304, -15.840, -374.144, 131]
     level:    [75, 76]
   17006632:
+    instance: requiem
     template: Draugars_Wyvern
     at:       [-381.304, -15.840, -374.144, 131]
     level:    [70, 71]
   17006633:
+    instance: requiem
     template: Darkling_Draugar
     at:       [-340.229, -15.681, -337.999, 62]
     level:    [75, 76]
   17006634:
+    instance: requiem
     template: Darkling_Draugar
     at:       [-344.746, -15.934, -336.741, 33]
     level:    [75, 76]
@@ -1390,42 +1431,52 @@ spawns:
     template: Lamia_No17
     level:    [75, 75]
   17006754:
+    instance: shades_of_vengeance
     template: K23H1-LAMIA
     at:       [187.232, -4.371, -343.446, 132]
     level:    [71, 73]
   17006755:
+    instance: shades_of_vengeance
     template: K23H1-LAMIA
     at:       [174.391, -4.495, -344.815, 153]
     level:    [71, 73]
   17006756:
+    instance: shades_of_vengeance
     template: K23H1-LAMIA
     at:       [172.923, -4.896, -338.839, 143]
     level:    [71, 73]
   17006757:
+    instance: shades_of_vengeance
     template: K23H1-LAMIA
     at:       [190.983, -4.176, -343.306, 66]
     level:    [71, 73]
   17006758:
+    instance: shades_of_vengeance
     template: K23H1-LAMIA
     at:       [184.440, -7.630, -332.818, 109]
     level:    [71, 73]
   17006759:
+    instance: shades_of_vengeance
     template: K23H1-LAMIA
     at:       [189.242, -8.342, -329.798, 37]
     level:    [71, 73]
   17006760:
+    instance: shades_of_vengeance
     template: K23H1-LAMIA
     at:       [182.423, -7.253, -335.776, 90]
     level:    [71, 73]
   17006761:
+    instance: shades_of_vengeance
     template: K23H1-LAMIA
     at:       [182.679, -7.210, -336.365, 110]
     level:    [71, 73]
   17006762:
+    instance: shades_of_vengeance
     template: K23H1-LAMIA
     at:       [174.192, -4.539, -342.509, 117]
     level:    [71, 73]
   17006763:
+    instance: shades_of_vengeance
     template: K23H1-LAMIA
     at:       [179.826, -7.960, -331.734, 115]
     level:    [71, 73]

@@ -970,6 +970,7 @@ npcs:
     content: wotg
 
   17158388:
+    instance:     light_in_the_darkness
     script:       Volker
     display_name: Volker
     render:
@@ -983,7 +984,8 @@ npcs:
     content:  wotg
 
   17158389:
-    script: csnpc
+    instance: light_in_the_darkness
+    script:   csnpc
     render:
       look:
         type:  equipped
@@ -1003,7 +1005,8 @@ npcs:
     content:  wotg
 
   17158390:
-    script: csnpc
+    instance: light_in_the_darkness
+    script:   csnpc
     render:
       look:
         type:  standard
@@ -1015,7 +1018,8 @@ npcs:
     content:  wotg
 
   17158391:
-    script: csnpc
+    instance: light_in_the_darkness
+    script:   csnpc
     render:
       look:
         type:  standard
@@ -1027,7 +1031,8 @@ npcs:
     content:  wotg
 
   17158392:
-    script: csnpc
+    instance: light_in_the_darkness
+    script:   csnpc
     render:
       look:
         type:  standard
@@ -1039,7 +1044,8 @@ npcs:
     content:  wotg
 
   17158393:
-    script: csnpc
+    instance: light_in_the_darkness
+    script:   csnpc
     render:
       look:
         type:  standard
@@ -1051,25 +1057,29 @@ npcs:
     content:  wotg
 
   17158394:
+    instance: light_in_the_darkness
     render:
       look:
         type:  standard
         model: 50
 
   17158395:
+    instance: light_in_the_darkness
     render:
       look:
         type:  standard
         model: 50
 
   17158396:
+    instance: light_in_the_darkness
     render:
       look:
         type:  standard
         model: 50
 
   17158397:
-    script: csnpc
+    instance: light_in_the_darkness
+    script:   csnpc
     render:
       look:
         type:  standard
@@ -1081,7 +1091,8 @@ npcs:
     content:  wotg
 
   17158398:
-    script: csnpc
+    instance: light_in_the_darkness
+    script:   csnpc
     render:
       look:
         type:  standard

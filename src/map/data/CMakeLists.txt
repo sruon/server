@@ -15,6 +15,7 @@ set(DATA_CORE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/shared_types/mob_attributes/dataset.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/shared_types/mob_attributes/dataset.h
     ${CMAKE_CURRENT_SOURCE_DIR}/shared_types/mob_attributes/yaml.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/shared_types/names.h
     ${CMAKE_CURRENT_SOURCE_DIR}/shared_types/position.h
     ${CMAKE_CURRENT_SOURCE_DIR}/shared_types/render.h
     ${CMAKE_CURRENT_SOURCE_DIR}/yaml/enum_keyed_map.h
@@ -39,6 +40,7 @@ add_data_dataset(zones/settings)
 add_data_dataset(zones/npcs)
 add_data_dataset(zones/mobs)
 add_data_dataset(zones/regions)
+add_data_dataset(zones/instances)
 
 target_sources(xi_map_battle PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/loader.h

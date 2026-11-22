@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=../../schemas/instances.schema.json
+
+instances:
+
+  excavation_duty:
+    id:         6300
+    entrance:   mount_zhayolm
+    time_limit: 30
+    entry:      [124.999, -39.309, 19.999, 0]
+
+  lebros_supplies:
+    id:         6301
+    entrance:   mount_zhayolm
+    time_limit: 30
+    entry:      [-333.000, -9.921, -259.999, 255]
+
+  troll_fugitives:
+    id:         6302
+    entrance:   mount_zhayolm
+    time_limit: 30
+    entry:      [-459.912, -9.860, 342.319, 0]
+
+# Not implemented yet:
+#   evade_and_escape: 6303
+#   siegemaster_assassination: 6304
+#   apkallu_breeding: 6305
+#   wamoura_farm_raid: 6306
+#   egg_conservation: 6307
+#   operation:black_pearl: 6308
+#   better_than_one: 6309

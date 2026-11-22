@@ -29,6 +29,7 @@
 #include "data/enums/roam_flag.h"
 #include "data/enums/species.h"
 #include "data/shared_types/mob_attributes/yaml.h"
+#include "data/shared_types/names.h"
 #include "data/yaml/enum_token.h"
 
 #include <glaze/glaze.hpp>
@@ -60,8 +61,8 @@ using Chance = std::variant<yaml::EnumToken<xi::DropRate>, double>;
 //   nothing:      10.0
 using OneOf = std::variant<std::vector<std::string>, std::map<std::string, double>>;
 
-// One name, or several where the source names more than one: a few stealable items, or the regions a spawn may pick from.
-using Names = std::variant<std::string, std::vector<std::string>>;
+// One name, or several where the source names more than one: a few stealable items, the regions a spawn may pick from, or the instances it joins.
+using Names = shared::Names;
 
 struct Loot
 {
@@ -104,6 +105,7 @@ struct Spawn
     std::optional<std::vector<std::vector<float>>> circuit;
     std::optional<std::array<uint8, 2>>            level;
     std::optional<shared::MobAttributes>           attributes;
+    std::optional<Names>                           instance;
 };
 
 struct Slot
@@ -196,6 +198,7 @@ struct glz::json_schema<xi::data::datasets::zones::mobs::wire::Spawn>
     glz::schema circuit{ .description = "Patrol route as x, y, z waypoints. Walked as a closed loop, the last waypoint leading back to the first. Mutually exclusive with at, region and path." };
     glz::schema level{ .description = "Minimum and maximum level. Defaults to 0, 0." };
     glz::schema attributes{ .description = "Attribute overrides for this spawn alone, applied over its template." };
+    glz::schema instance{ .description = "Instance in instances.yaml this spawn belongs to, or a list of them. Spawns in an instanced zone only load as part of an instance." };
 };
 
 template <>

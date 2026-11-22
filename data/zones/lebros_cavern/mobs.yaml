@@ -557,208 +557,256 @@ templates:
 
 spawns:
   17035265:
+    instance: excavation_duty
     template: Volcanic_Bomb
     at:       [104.849, -30.782, 71.223, 31]
     level:    [76, 77]
   17035266:
+    instance: excavation_duty
     template: Volcanic_Bomb
     at:       [171.747, -30.054, 56.534, 2]
     level:    [76, 77]
   17035267:
+    instance: excavation_duty
     template: Volcanic_Bomb
     at:       [183.383, -30.205, 128.727, 74]
     level:    [76, 77]
   17035268:
+    instance: excavation_duty
     template: Qiqirn_Ceramist
     at:       [182.794, -30.495, 175.626, 235]
     level:    [77, 78]
   17035269:
+    instance: excavation_duty
     template: Qiqirn_Volcanist
     at:       [174.561, -30.499, 173.275, 208]
     level:    [77, 78]
   17035270:
+    instance: excavation_duty
     template: Volcanic_Bomb
     at:       [187.156, -36.638, 225.025, 47]
     level:    [76, 77]
   17035271:
+    instance: excavation_duty
     template: Volcanic_Bomb
     at:       [180.990, -38.810, 239.351, 182]
     level:    [76, 77]
   17035272:
+    instance: excavation_duty
     template: Volcanic_Bomb
     at:       [180.053, -32.766, 208.615, 65]
     level:    [76, 77]
   17035273:
+    instance: excavation_duty
     template: Qiqirn_Ceramist
     at:       [183.520, -40.267, 255.747, 35]
     level:    [77, 78]
   17035274:
+    instance: excavation_duty
     template: Qiqirn_Volcanist
     at:       [161.072, -40.596, 319.473, 30]
     level:    [77, 78]
   17035275:
+    instance: excavation_duty
     template: Qiqirn_Volcanist
     at:       [160.968, -40.624, 326.377, 92]
     level:    [77, 78]
   17035276:
+    instance: excavation_duty
     template: Qiqirn_Ceramist
     at:       [257.380, -30.656, 191.686, 215]
     level:    [77, 78]
   17035277:
+    instance: excavation_duty
     template: Qiqirn_Ceramist
     at:       [285.401, -29.157, 261.043, 7]
     level:    [77, 78]
   17035278:
+    instance: excavation_duty
     template: Qiqirn_Ceramist
     at:       [299.235, -29.639, 249.027, 86]
     level:    [77, 78]
   17035279:
+    instance: excavation_duty
     template: Qiqirn_Volcanist
     at:       [330.191, -30.537, 339.250, 253]
     level:    [77, 78]
   17035280:
+    instance: excavation_duty
     template: Volcanic_Bomb
     at:       [372.723, -30.584, 332.945, 38]
     level:    [76, 77]
   17035281:
+    instance: excavation_duty
     template: Volcanic_Bomb
     at:       [252.169, -30.026, 341.965, 78]
     level:    [76, 77]
   17035282:
+    instance: excavation_duty
     template: Brittle_Rock
     at:       [179.000, -42.362, 380.000]
     level:    [75, 75]
   17035283:
+    instance: excavation_duty
     template: Brittle_Rock
     at:       [179.000, -42.362, 380.000]
     level:    [75, 75]
   17035284:
+    instance: excavation_duty
     template: Brittle_Rock
     at:       [179.000, -32.992, 100.000]
     level:    [75, 75]
   17035285:
+    instance: excavation_duty
     template: Brittle_Rock
     at:       [179.000, -32.992, 100.000]
     level:    [75, 75]
   17035286:
+    instance: excavation_duty
     template: Brittle_Rock
     at:       [259.000, -32.862, 220.000]
     level:    [75, 75]
   17035287:
+    instance: excavation_duty
     template: Brittle_Rock
     at:       [259.000, -32.862, 220.000]
     level:    [75, 75]
   17035288:
+    instance: excavation_duty
     template: Brittle_Rock
     at:       [300.000, -32.909, 341.000]
     level:    [75, 75]
   17035289:
+    instance: excavation_duty
     template: Brittle_Rock
     at:       [300.000, -32.909, 341.000]
     level:    [75, 75]
   17035290:
+    instance: excavation_duty
     template: Brittle_Rock
     at:       [339.000, -32.901, 300.000]
     level:    [75, 75]
   17035291:
+    instance: excavation_duty
     template: Brittle_Rock
     at:       [339.000, -32.901, 300.000]
     level:    [75, 75]
   17035304:
+    instance: lebros_supplies
     template: Crimson_Eruca
     at:       [-400.341, -9.500, -383.901, 79]
     level:    [77, 78]
   17035305:
+    instance: lebros_supplies
     template: Crimson_Eruca
     at:       [-311.642, -8.924, -219.153, 137]
     level:    [77, 78]
   17035306:
+    instance: lebros_supplies
     template: Crimson_Eruca
     at:       [-319.234, -8.581, -177.190, 131]
     level:    [77, 78]
   17035307:
+    instance: lebros_supplies
     template: Crimson_Eruca
     at:       [-512.092, -10.054, -162.526, 235]
     level:    [77, 78]
   17035308:
+    instance: lebros_supplies
     template: Crimson_Eruca
     at:       [-555.575, -10.872, -149.561, 201]
     level:    [77, 78]
   17035309:
+    instance: lebros_supplies
     template: Crimson_Eruca
     at:       [-154.116, -10.063, -279.954, 230]
     level:    [77, 78]
   17035310:
+    instance: troll_fugitives
     template: Broken_Troll_Soldier_pld
     script:   Broken_Troll_Soldier
     at:       [-367.600, -10.530, 230.561, 18]
     level:    [77, 80]
   17035311:
+    instance: troll_fugitives
     template: Broken_Troll_Soldier_war
     script:   Broken_Troll_Soldier
     at:       [-370.700, -10.490, 240.790, 177]
     level:    [77, 80]
   17035312:
+    instance: troll_fugitives
     template: Broken_Troll_Soldier_war
     script:   Broken_Troll_Soldier
     at:       [-348.100, -10.020, 232.170, 130]
     level:    [77, 80]
   17035313:
+    instance: troll_fugitives
     template: Broken_Troll_Soldier_rdm
     script:   Broken_Troll_Soldier
     at:       [-491.300, -10.570, 157.789, 74]
     level:    [77, 80]
   17035314:
+    instance: troll_fugitives
     template: Broken_Troll_Soldier_mnk
     script:   Broken_Troll_Soldier
     at:       [-473.500, -10.320, 159.927, 14]
     level:    [78, 80]
   17035315:
+    instance: troll_fugitives
     template: Broken_Troll_Soldier_mnk
     script:   Broken_Troll_Soldier
     at:       [-488.000, -10.520, 158.824, 209]
     level:    [78, 80]
   17035316:
+    instance: troll_fugitives
     template: Broken_Troll_Soldier_mnk
     script:   Broken_Troll_Soldier
     at:       [-294.200, -10.600, 183.402, 142]
     level:    [78, 80]
   17035317:
+    instance: troll_fugitives
     template: Broken_Troll_Soldier_pld
     script:   Broken_Troll_Soldier
     at:       [-460.700, -10.280, 89.837, 123]
     level:    [77, 80]
   17035318:
+    instance: troll_fugitives
     template: Broken_Troll_Soldier_rdm
     script:   Broken_Troll_Soldier
     at:       [-431.300, -10.440, -6.488, 200]
     level:    [77, 80]
   17035319:
+    instance: troll_fugitives
     template: Broken_Troll_Soldier_pld
     script:   Broken_Troll_Soldier
     at:       [-442.600, -10.390, 5.018, 45]
     level:    [77, 80]
   17035320:
+    instance: troll_fugitives
     template: Broken_Troll_Soldier_war
     script:   Broken_Troll_Soldier
     at:       [-503.700, -10.130, -17.160, 234]
     level:    [77, 80]
   17035321:
+    instance: troll_fugitives
     template: Broken_Troll_Soldier_rdm
     script:   Broken_Troll_Soldier
     at:       [-271.900, -10.090, 77.684, 221]
     level:    [77, 80]
   17035322:
+    instance: troll_fugitives
     template: Broken_Troll_Soldier_pld
     script:   Broken_Troll_Soldier
     at:       [-281.800, -10.390, 83.448, 16]
     level:    [77, 80]
   17035323:
+    instance: troll_fugitives
     template: Broken_Troll_Soldier_mnk
     script:   Broken_Troll_Soldier
     at:       [-273.500, -10.300, 77.054, 183]
     level:    [78, 80]
   17035324:
+    instance: troll_fugitives
     template: Broken_Troll_Soldier_rdm
     script:   Broken_Troll_Soldier
     at:       [-253.900, -24.060, 212.110, 218]

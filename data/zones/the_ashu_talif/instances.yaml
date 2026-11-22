@@ -1,0 +1,20 @@
+# yaml-language-server: $schema=../../schemas/instances.schema.json
+
+instances:
+
+  the_black_coffin:
+    id:         6000
+    entrance:   arrapago_reef
+    time_limit: 30
+    entry:      [0.000, -22.000, 24.000, 64]
+
+  against_all_odds:
+    id:         6001
+    entrance:   arrapago_reef
+    time_limit: 30
+    entry:      [-9.000, -22.000, 17.000, 252]
+
+# Not implemented yet:
+#   scouting_the_ashu_talif: 6002
+#   royal_painter_escort: 6003
+#   targeting_the_captain: 6004

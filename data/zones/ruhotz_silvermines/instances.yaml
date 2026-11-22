@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=../../schemas/instances.schema.json
+
+instances:
+
+  light_in_the_darkness:
+    id:       9300
+    entrance: pashhow_marshlands_s
+    entry:    [-22.500, 1.600, 40.000, 192]
+
+  fire_in_the_hole:
+    id:       9301
+    entrance: north_gustaberg_s
+    entry:    [156.000, 0.000, -60.000, 0]
+
+# Not implemented yet:
+#   doomvoid: 9301

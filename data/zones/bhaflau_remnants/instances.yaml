@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=../../schemas/instances.schema.json
+
+instances:
+
+  bhaflau_remnants:
+    id:         7500
+    entrance:   alzadaal_undersea_ruins
+    time_limit: 100
+    entry:      [340.000, 19.000, -552.000, 191]
+
+# Not implemented yet:
+#   bhaflau_remnants_ii: 7501

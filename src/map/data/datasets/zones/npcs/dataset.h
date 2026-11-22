@@ -75,6 +75,8 @@ struct NpcData
     bool                   King{};
     xi::Content            Content{};
     Maybe<ElevatorData>    Elevator;
+
+    std::vector<std::string> Instances;
 };
 
 // Ordered by targid, matching the order the SQL loader saw.

@@ -3,6 +3,7 @@
 npcs:
 
   17088787:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     at:           [340.000, 15.500, -220.000, 192]
@@ -18,6 +19,7 @@ npcs:
     content:  toau
 
   17088788:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     at:           [-327.500, -1.000, -287.500, 96]
@@ -29,6 +31,7 @@ npcs:
     widescan: true
 
   17088789:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     at:           [-327.500, -1.000, -312.500, 160]
@@ -40,6 +43,7 @@ npcs:
     widescan: true
 
   17088790:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     at:           [-352.500, -1.000, -312.500, 224]
@@ -51,6 +55,7 @@ npcs:
     widescan: true
 
   17088791:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     at:           [-309.000, -4.500, 149.000, 32]
@@ -62,6 +67,7 @@ npcs:
     widescan: true
 
   17088792:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     at:           [-291.000, -4.500, 149.000, 96]
@@ -73,6 +79,7 @@ npcs:
     widescan: true
 
   17088793:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     at:           [-291.000, -4.500, 131.000, 160]
@@ -84,6 +91,7 @@ npcs:
     widescan: true
 
   17088794:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     at:           [-309.000, -4.500, 131.000, 224]
@@ -95,6 +103,7 @@ npcs:
     widescan: true
 
   17088795:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     at:           [-229.000, -4.500, 29.000, 32]
@@ -106,6 +115,7 @@ npcs:
     widescan: true
 
   17088796:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     at:           [-211.000, -4.500, 29.000, 96]
@@ -117,6 +127,7 @@ npcs:
     widescan: true
 
   17088797:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     at:           [-211.000, -4.500, 11.000, 160]
@@ -128,6 +139,7 @@ npcs:
     widescan: true
 
   17088798:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     at:           [-229.000, -4.500, 11.000, 224]
@@ -139,6 +151,7 @@ npcs:
     widescan: true
 
   17088799:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     at:           [-309.000, -0.500, -11.000, 32]
@@ -150,6 +163,7 @@ npcs:
     widescan: true
 
   17088800:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     at:           [-291.000, -0.500, -11.000, 96]
@@ -161,6 +175,7 @@ npcs:
     widescan: true
 
   17088801:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     at:           [-291.000, -0.500, -29.000, 160]
@@ -172,6 +187,7 @@ npcs:
     widescan: true
 
   17088802:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     at:           [-309.000, -0.500, -29.000, 224]
@@ -183,6 +199,7 @@ npcs:
     widescan: true
 
   17088803:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     at:           [-261.782, -4.500, 81.390, 10]
@@ -194,6 +211,7 @@ npcs:
     widescan: true
 
   17088804:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     at:           [-259.187, -4.449, 83.218, 239]
@@ -205,6 +223,7 @@ npcs:
     widescan: true
 
   17088805:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     render:
@@ -214,6 +233,7 @@ npcs:
     widescan: true
 
   17088806:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     at:           [288.365, 3.550, -496.688, 175]
@@ -225,6 +245,7 @@ npcs:
     widescan: true
 
   17088807:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     render:
@@ -234,6 +255,7 @@ npcs:
     widescan: true
 
   17088808:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     render:
@@ -243,6 +265,7 @@ npcs:
     widescan: true
 
   17088809:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     render:
@@ -252,6 +275,7 @@ npcs:
     widescan: true
 
   17088810:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     render:
@@ -261,6 +285,7 @@ npcs:
     widescan: true
 
   17088811:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     at:           [-207.130, -5.000, -367.134, 96]
@@ -272,6 +297,7 @@ npcs:
     widescan: true
 
   17088812:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     render:
@@ -281,6 +307,7 @@ npcs:
     widescan: true
 
   17088813:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     render:
@@ -290,6 +317,7 @@ npcs:
     widescan: true
 
   17088814:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     render:
@@ -299,6 +327,7 @@ npcs:
     widescan: true
 
   17088815:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     render:
@@ -308,6 +337,7 @@ npcs:
     widescan: true
 
   17088816:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     render:
@@ -317,6 +347,7 @@ npcs:
     widescan: true
 
   17088817:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     render:
@@ -326,6 +357,7 @@ npcs:
     widescan: true
 
   17088818:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     render:
@@ -335,6 +367,7 @@ npcs:
     widescan: true
 
   17088819:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     render:
@@ -344,6 +377,7 @@ npcs:
     widescan: true
 
   17088820:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     render:
@@ -353,6 +387,7 @@ npcs:
     widescan: true
 
   17088821:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     render:
@@ -362,6 +397,7 @@ npcs:
     widescan: true
 
   17088822:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     render:
@@ -371,6 +407,7 @@ npcs:
     widescan: true
 
   17088823:
+    instance:     silver_sea_remnants
     script:       Armoury_Crate
     display_name: Armoury Crate
     at:           [340.000, 15.000, -220.000, 192]
@@ -414,6 +451,7 @@ npcs:
     widescan: true
 
   17089352:
+    instance:     silver_sea_remnants
     script:       Socket
     display_name: Socket
     at:           [260.000, 0.050, 513.500]
@@ -426,6 +464,7 @@ npcs:
     content:  toau
 
   17089353:
+    instance:     silver_sea_remnants
     script:       Slot
     display_name: Slot
     at:           [-326.500, 0.050, 513.500]
@@ -693,6 +732,7 @@ npcs:
     content:         toau
 
   17089386:
+    instance:     silver_sea_remnants
     script:       _240
     display_name: Gilded Doors
     at:           [340.000, 13.987, -200.000]
@@ -707,6 +747,7 @@ npcs:
     content: toau
 
   17089387:
+    instance:     silver_sea_remnants
     script:       _241
     display_name: Gilded Doors
     at:           [320.000, 13.987, -220.000]
@@ -721,6 +762,7 @@ npcs:
     content: toau
 
   17089388:
+    instance:     silver_sea_remnants
     script:       _242
     display_name: Gilded Doors
     at:           [360.000, 13.987, -220.000]
@@ -735,6 +777,7 @@ npcs:
     content: toau
 
   17089389:
+    instance:     silver_sea_remnants
     script:       _243
     display_name: Gilded Doors
     at:           [220.000, 9.987, -360.000]
@@ -749,6 +792,7 @@ npcs:
     content: toau
 
   17089390:
+    instance:     silver_sea_remnants
     script:       _244
     display_name: Gilded Doors
     at:           [220.000, 1.987, -440.000]
@@ -763,6 +807,7 @@ npcs:
     content: toau
 
   17089391:
+    instance:     silver_sea_remnants
     script:       _245
     display_name: Gilded Doors
     at:           [320.000, 1.987, -500.000]
@@ -777,6 +822,7 @@ npcs:
     content: toau
 
   17089392:
+    instance:     silver_sea_remnants
     script:       _246
     display_name: Gilded Doors
     at:           [360.000, 1.987, -500.000]
@@ -791,6 +837,7 @@ npcs:
     content: toau
 
   17089393:
+    instance:     silver_sea_remnants
     script:       _247
     display_name: Gilded Doors
     at:           [460.000, 1.987, -440.000]
@@ -805,6 +852,7 @@ npcs:
     content: toau
 
   17089394:
+    instance:     silver_sea_remnants
     script:       _248
     display_name: Gilded Doors
     at:           [460.000, 9.987, -360.000]
@@ -819,6 +867,7 @@ npcs:
     content: toau
 
   17089395:
+    instance:     silver_sea_remnants
     script:       _249
     display_name: Gilded Doors
     at:           [339.899, -2.012, -440.000]
@@ -833,6 +882,7 @@ npcs:
     content: toau
 
   17089396:
+    instance:     silver_sea_remnants
     script:       _24a
     display_name: Gilded Doors
     at:           [340.000, -2.012, -320.000]
@@ -847,6 +897,7 @@ npcs:
     content: toau
 
   17089397:
+    instance:     silver_sea_remnants
     script:       _24b
     display_name: Gilded Doors
     at:           [260.000, 1.987, 360.000]
@@ -861,6 +912,7 @@ npcs:
     content: toau
 
   17089398:
+    instance:     silver_sea_remnants
     script:       _24a
     display_name: Gilded Doors
     at:           [180.000, -2.012, 360.000]
@@ -875,6 +927,7 @@ npcs:
     content: toau
 
   17089399:
+    instance:     silver_sea_remnants
     script:       _24d
     display_name: Gilded Doors
     at:           [280.000, -6.012, 420.000]
@@ -889,6 +942,7 @@ npcs:
     content: toau
 
   17089400:
+    instance:     silver_sea_remnants
     script:       _24e
     display_name: Gilded Doors
     at:           [260.000, -2.012, 480.000]
@@ -903,6 +957,7 @@ npcs:
     content: toau
 
   17089401:
+    instance:     silver_sea_remnants
     script:       _24f
     display_name: Gilded Doors
     at:           [260.000, -2.012, 600.000]
@@ -917,6 +972,7 @@ npcs:
     content: toau
 
   17089402:
+    instance:     silver_sea_remnants
     script:       _24g
     display_name: Gilded Doors
     at:           [420.000, -2.012, 600.000]
@@ -931,6 +987,7 @@ npcs:
     content: toau
 
   17089403:
+    instance:     silver_sea_remnants
     script:       _24h
     display_name: Gilded Doors
     at:           [420.000, -2.012, 480.000]
@@ -945,6 +1002,7 @@ npcs:
     content: toau
 
   17089404:
+    instance:     silver_sea_remnants
     script:       _24i
     display_name: Gilded Doors
     at:           [400.000, -6.012, 420.000]
@@ -959,6 +1017,7 @@ npcs:
     content: toau
 
   17089405:
+    instance:     silver_sea_remnants
     script:       _24j
     display_name: Gilded Doors
     at:           [500.000, -2.012, 360.000]
@@ -973,6 +1032,7 @@ npcs:
     content: toau
 
   17089406:
+    instance:     silver_sea_remnants
     script:       _24k
     display_name: Gilded Doors
     at:           [420.000, 1.987, 360.000]
@@ -987,6 +1047,7 @@ npcs:
     content: toau
 
   17089407:
+    instance:     silver_sea_remnants
     script:       _24l
     display_name: Gilded Doors
     at:           [-400.000, -2.012, -540.000]
@@ -1001,6 +1062,7 @@ npcs:
     content: toau
 
   17089408:
+    instance:     silver_sea_remnants
     script:       _24m
     display_name: Gilded Doors
     at:           [-460.000, -6.012, -320.000]
@@ -1015,6 +1077,7 @@ npcs:
     content: toau
 
   17089409:
+    instance:     silver_sea_remnants
     script:       _24n
     display_name: Gilded Doors
     at:           [-400.000, -2.012, -300.000]
@@ -1029,6 +1092,7 @@ npcs:
     content: toau
 
   17089410:
+    instance:     silver_sea_remnants
     script:       _24o
     display_name: Gilded Doors
     at:           [-280.000, -2.012, -300.000]
@@ -1043,6 +1107,7 @@ npcs:
     content: toau
 
   17089411:
+    instance:     silver_sea_remnants
     script:       _24p
     display_name: Gilded Doors
     at:           [-219.990, -6.012, -320.000]
@@ -1057,6 +1122,7 @@ npcs:
     content: toau
 
   17089412:
+    instance:     silver_sea_remnants
     script:       _24q
     display_name: Gilded Doors
     at:           [-280.000, -2.012, -540.000]
@@ -1071,6 +1137,7 @@ npcs:
     content: toau
 
   17089413:
+    instance:     silver_sea_remnants
     script:       _24r
     display_name: Gilded Doors
     at:           [-340.000, -2.012, -480.000]
@@ -1085,6 +1152,7 @@ npcs:
     content: toau
 
   17089414:
+    instance:     silver_sea_remnants
     script:       _24s
     display_name: Gilded Doors
     at:           [-340.000, -2.012, -360.000]
@@ -1099,6 +1167,7 @@ npcs:
     content: toau
 
   17089415:
+    instance:     silver_sea_remnants
     script:       _24t
     display_name: Gilded Doors
     at:           [-360.000, -2.012, 20.000]
@@ -1113,6 +1182,7 @@ npcs:
     content: toau
 
   17089416:
+    instance:     silver_sea_remnants
     script:       _24u
     display_name: Gilded Doors
     at:           [-320.000, -2.012, 20.000]
@@ -1127,6 +1197,7 @@ npcs:
     content: toau
 
   17089417:
+    instance:     silver_sea_remnants
     script:       _24v
     display_name: Gilded Doors
     at:           [-340.000, -2.012, 640.000]
@@ -1141,6 +1212,7 @@ npcs:
     content: toau
 
   17089418:
+    instance:     silver_sea_remnants
     script:       _24w
     display_name: _24w
     at:           [-340.000, -6.000, 600.000]
@@ -1155,6 +1227,7 @@ npcs:
     content: toau
 
   17089419:
+    instance:     silver_sea_remnants
     script:       _24x
     display_name: Gilded Gateway
     at:           [-340.000, -6.000, 600.000]
@@ -1183,7 +1256,8 @@ npcs:
     content: toau
 
   17089421:
-    script: blank
+    instance: silver_sea_remnants
+    script:   blank
     render:
       look:
         type:  standard

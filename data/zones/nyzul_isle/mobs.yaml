@@ -6817,1166 +6817,1437 @@ templates:
 
 spawns:
   17092629:
+    instance: nyzul_isle_investigation
     template: Archaic_Rampart
     at:       [1.000, 1.000, 1.000]
     level:    [75, 76]
   17092630:
+    instance: nyzul_isle_investigation
     template: Archaic_Rampart
     at:       [1.000, 1.000, 1.000]
     level:    [75, 76]
   17092631:
+    instance: nyzul_isle_investigation
     template: Greatclaw
     at:       [1.000, 1.000, 1.000]
     level:    [68, 70]
   17092632:
+    instance: nyzul_isle_investigation
     template: Greatclaw
     at:       [1.000, 1.000, 1.000]
     level:    [68, 70]
   17092633:
+    instance: nyzul_isle_investigation
     template: Greatclaw
     at:       [1.000, 1.000, 1.000]
     level:    [68, 70]
   17092634:
+    instance: nyzul_isle_investigation
     template: Greatclaw
     at:       [1.000, 1.000, 1.000]
     level:    [68, 70]
   17092635:
+    instance: nyzul_isle_investigation
     template: Greatclaw
     at:       [1.000, 1.000, 1.000]
     level:    [68, 70]
   17092636:
+    instance: nyzul_isle_investigation
     template: Greatclaw
     at:       [1.000, 1.000, 1.000]
     level:    [68, 70]
   17092637:
+    instance: nyzul_isle_investigation
     template: Stygian_Pugil
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092638:
+    instance: nyzul_isle_investigation
     template: Stygian_Pugil
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092639:
+    instance: nyzul_isle_investigation
     template: Stygian_Pugil
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092640:
+    instance: nyzul_isle_investigation
     template: Stygian_Pugil
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092641:
+    instance: nyzul_isle_investigation
     template: Kulshedra
     at:       [1.000, 1.000, 1.000]
     level:    [70, 72]
   17092642:
+    instance: nyzul_isle_investigation
     template: Kulshedra
     at:       [1.000, 1.000, 1.000]
     level:    [70, 72]
   17092643:
+    instance: nyzul_isle_investigation
     template: Bouncing_Ball_NI
     script:   Bouncing_Ball
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092644:
+    instance: nyzul_isle_investigation
     template: Bouncing_Ball_NI
     script:   Bouncing_Ball
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092645:
+    instance: nyzul_isle_investigation
     template: Bouncing_Ball_NI
     script:   Bouncing_Ball
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092646:
+    instance: nyzul_isle_investigation
     template: Thousand_Eyes_NI
     script:   Thousand_Eyes
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092647:
+    instance: nyzul_isle_investigation
     template: Thousand_Eyes_NI
     script:   Thousand_Eyes
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092648:
+    instance: nyzul_isle_investigation
     template: Thousand_Eyes_NI
     script:   Thousand_Eyes
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092649:
+    instance: nyzul_isle_investigation
     template: Mousse_NI
     script:   Mousse
     at:       [1.000, 1.000, 1.000]
     level:    [71, 73]
   17092650:
+    instance: nyzul_isle_investigation
     template: Mousse_NI
     script:   Mousse
     at:       [1.000, 1.000, 1.000]
     level:    [71, 73]
   17092651:
+    instance: nyzul_isle_investigation
     template: Mousse_NI
     script:   Mousse
     at:       [1.000, 1.000, 1.000]
     level:    [71, 73]
   17092652:
+    instance: nyzul_isle_investigation
     template: Mousse_NI
     script:   Mousse
     at:       [1.000, 1.000, 1.000]
     level:    [71, 73]
   17092653:
+    instance: nyzul_isle_investigation
     template: Black_Pudding
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092654:
+    instance: nyzul_isle_investigation
     template: Black_Pudding
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092655:
+    instance: nyzul_isle_investigation
     template: Killing_Weapon_NI
     script:   Killing_Weapon
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092656:
+    instance: nyzul_isle_investigation
     template: Killing_Weapon_NI
     script:   Killing_Weapon
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092657:
+    instance: nyzul_isle_investigation
     template: Ominous_Weapon_NI
     script:   Ominous_Weapon
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092658:
+    instance: nyzul_isle_investigation
     template: Ominous_Weapon_NI
     script:   Ominous_Weapon
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092659:
+    instance: nyzul_isle_investigation
     template: Magic_Flagon_NI
     script:   Magic_Flagon
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092660:
+    instance: nyzul_isle_investigation
     template: Magic_Flagon_NI
     script:   Magic_Flagon
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092661:
+    instance: nyzul_isle_investigation
     template: Friars_Lantern
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092662:
+    instance: nyzul_isle_investigation
     template: Friars_Lantern
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092663:
+    instance: nyzul_isle_investigation
     template: Sweeping_Cluster
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092664:
+    instance: nyzul_isle_investigation
     template: Sweeping_Cluster
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092665:
+    instance: nyzul_isle_investigation
     template: Friars_Lantern
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092666:
+    instance: nyzul_isle_investigation
     template: Friars_Lantern
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092667:
+    instance: nyzul_isle_investigation
     template: Garm
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092668:
+    instance: nyzul_isle_investigation
     template: Garm
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092669:
+    instance: nyzul_isle_investigation
     template: Garm
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092670:
+    instance: nyzul_isle_investigation
     template: Tainted_Flesh_NI
     script:   Tainted_Flesh
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092671:
+    instance: nyzul_isle_investigation
     template: Tainted_Flesh_NI
     script:   Tainted_Flesh
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092672:
+    instance: nyzul_isle_investigation
     template: Tainted_Flesh_NI
     script:   Tainted_Flesh
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092673:
+    instance: nyzul_isle_investigation
     template: Draugar
     at:       [1.000, 1.000, 1.000]
     level:    [67, 70]
   17092674:
+    instance: nyzul_isle_investigation
     template: Draugar
     at:       [1.000, 1.000, 1.000]
     level:    [67, 70]
   17092675:
+    instance: nyzul_isle_investigation
     template: Draugar
     at:       [1.000, 1.000, 1.000]
     level:    [67, 70]
   17092676:
+    instance: nyzul_isle_investigation
     template: Draugar
     at:       [1.000, 1.000, 1.000]
     level:    [67, 70]
   17092677:
+    instance: nyzul_isle_investigation
     template: Bhoot_NI
     script:   Bhoot
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092678:
+    instance: nyzul_isle_investigation
     template: Bhoot_NI
     script:   Bhoot
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092679:
+    instance: nyzul_isle_investigation
     template: Carmine_Eruca_NI
     script:   Carmine_Eruca
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092680:
+    instance: nyzul_isle_investigation
     template: Carmine_Eruca_NI
     script:   Carmine_Eruca
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092681:
+    instance: nyzul_isle_investigation
     template: Carmine_Eruca_NI
     script:   Carmine_Eruca
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092682:
+    instance: nyzul_isle_investigation
     template: Spinner_NI
     script:   Spinner
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092683:
+    instance: nyzul_isle_investigation
     template: Spinner_NI
     script:   Spinner
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092684:
+    instance: nyzul_isle_investigation
     template: Spinner_NI
     script:   Spinner
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092685:
+    instance: nyzul_isle_investigation
     template: Wamouracampa
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092686:
+    instance: nyzul_isle_investigation
     template: Wamouracampa
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092687:
+    instance: nyzul_isle_investigation
     template: Wamouracampa
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092688:
+    instance: nyzul_isle_investigation
     template: Wamouracampa
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092689:
+    instance: nyzul_isle_investigation
     template: Wamoura
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092690:
+    instance: nyzul_isle_investigation
     template: Wamoura
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092691:
+    instance: nyzul_isle_investigation
     template: Imp
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092692:
+    instance: nyzul_isle_investigation
     template: Imp
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092693:
+    instance: nyzul_isle_investigation
     template: Imp
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092694:
+    instance: nyzul_isle_investigation
     template: Imp
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092695:
+    instance: nyzul_isle_investigation
     template: Imp
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092696:
+    instance: nyzul_isle_investigation
     template: Imp
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092697:
+    instance: nyzul_isle_investigation
     template: Imp
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092698:
+    instance: nyzul_isle_investigation
     template: Imp
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092699:
+    instance: nyzul_isle_investigation
     template: Imp
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092700:
+    instance: nyzul_isle_investigation
     template: Imp
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092701:
+    instance: nyzul_isle_investigation
     template: Psycheflayer
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092702:
+    instance: nyzul_isle_investigation
     template: Psycheflayer
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092703:
+    instance: nyzul_isle_investigation
     template: Puk_WW
     script:   Puk
     at:       [1.000, 1.000, 1.000]
     level:    [67, 70]
   17092704:
+    instance: nyzul_isle_investigation
     template: Puk_WW
     script:   Puk
     at:       [1.000, 1.000, 1.000]
     level:    [67, 70]
   17092705:
+    instance: nyzul_isle_investigation
     template: Puk_WW
     script:   Puk
     at:       [1.000, 1.000, 1.000]
     level:    [67, 70]
   17092706:
+    instance: nyzul_isle_investigation
     template: Puk_WW
     script:   Puk
     at:       [1.000, 1.000, 1.000]
     level:    [67, 70]
   17092707:
+    instance: nyzul_isle_investigation
     template: Puk_WW
     script:   Puk
     at:       [1.000, 1.000, 1.000]
     level:    [67, 70]
   17092708:
+    instance: nyzul_isle_investigation
     template: Puk_WW
     script:   Puk
     at:       [1.000, 1.000, 1.000]
     level:    [67, 70]
   17092709:
+    instance: nyzul_isle_investigation
     template: Puk_WW
     script:   Puk
     at:       [1.000, 1.000, 1.000]
     level:    [67, 70]
   17092710:
+    instance: nyzul_isle_investigation
     template: Puk_WW
     script:   Puk
     at:       [1.000, 1.000, 1.000]
     level:    [67, 70]
   17092711:
+    instance: nyzul_isle_investigation
     template: Puk_WW
     script:   Puk
     at:       [1.000, 1.000, 1.000]
     level:    [67, 70]
   17092712:
+    instance: nyzul_isle_investigation
     template: Puk_WW
     script:   Puk
     at:       [1.000, 1.000, 1.000]
     level:    [67, 70]
   17092713:
+    instance: nyzul_isle_investigation
     template: Wyvern
     at:       [1.000, 1.000, 1.000]
     level:    [73, 75]
   17092714:
+    instance: nyzul_isle_investigation
     template: Wyvern
     at:       [1.000, 1.000, 1.000]
     level:    [73, 75]
   17092715:
+    instance: nyzul_isle_investigation
     template: Marsh_Murre
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092716:
+    instance: nyzul_isle_investigation
     template: Marsh_Murre
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092717:
+    instance: nyzul_isle_investigation
     template: Marsh_Murre
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092718:
+    instance: nyzul_isle_investigation
     template: Lesser_Colibri
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092719:
+    instance: nyzul_isle_investigation
     template: Lesser_Colibri
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092720:
+    instance: nyzul_isle_investigation
     template: Lesser_Colibri
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092721:
+    instance: nyzul_isle_investigation
     template: Ziz
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092722:
+    instance: nyzul_isle_investigation
     template: Ziz
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092723:
+    instance: nyzul_isle_investigation
     template: Ziz
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092724:
+    instance: nyzul_isle_investigation
     template: Ziz
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092725:
+    instance: nyzul_isle_investigation
     template: Peryton
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092726:
+    instance: nyzul_isle_investigation
     template: Peryton
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092727:
+    instance: nyzul_isle_investigation
     template: Wild_Karakul
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092728:
+    instance: nyzul_isle_investigation
     template: Wild_Karakul
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092729:
+    instance: nyzul_isle_investigation
     template: Wild_Karakul
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092730:
+    instance: nyzul_isle_investigation
     template: Wajaom_Tiger
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092731:
+    instance: nyzul_isle_investigation
     template: Wajaom_Tiger
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092732:
+    instance: nyzul_isle_investigation
     template: Wajaom_Tiger
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092733:
+    instance: nyzul_isle_investigation
     template: Manticore
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092734:
+    instance: nyzul_isle_investigation
     template: Manticore
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092735:
+    instance: nyzul_isle_investigation
     template: Manticore
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092736:
+    instance: nyzul_isle_investigation
     template: Manticore
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092737:
+    instance: nyzul_isle_investigation
     template: Marid
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092738:
+    instance: nyzul_isle_investigation
     template: Marid
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092739:
+    instance: nyzul_isle_investigation
     template: Death_Cap
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092740:
+    instance: nyzul_isle_investigation
     template: Death_Cap
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092741:
+    instance: nyzul_isle_investigation
     template: Death_Cap
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092742:
+    instance: nyzul_isle_investigation
     template: Puktrap_NI
     script:   Puktrap
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092743:
+    instance: nyzul_isle_investigation
     template: Puktrap_NI
     script:   Puktrap
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092744:
+    instance: nyzul_isle_investigation
     template: Puktrap_NI
     script:   Puktrap
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092745:
+    instance: nyzul_isle_investigation
     template: Leshy
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092746:
+    instance: nyzul_isle_investigation
     template: Leshy
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092747:
+    instance: nyzul_isle_investigation
     template: Leshy
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092748:
+    instance: nyzul_isle_investigation
     template: Leshy
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092749:
+    instance: nyzul_isle_investigation
     template: Ameretat_NI
     script:   Ameretat
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092750:
+    instance: nyzul_isle_investigation
     template: Ameretat_NI
     script:   Ameretat
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092751:
+    instance: nyzul_isle_investigation
     template: Sand_Lizard
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092752:
+    instance: nyzul_isle_investigation
     template: Sand_Lizard
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092753:
+    instance: nyzul_isle_investigation
     template: Sand_Lizard
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092754:
+    instance: nyzul_isle_investigation
     template: Deinonychus
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092755:
+    instance: nyzul_isle_investigation
     template: Deinonychus
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092756:
+    instance: nyzul_isle_investigation
     template: Deinonychus
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092757:
+    instance: nyzul_isle_investigation
     template: Bull_Bugard
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092758:
+    instance: nyzul_isle_investigation
     template: Bull_Bugard
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092759:
+    instance: nyzul_isle_investigation
     template: Bull_Bugard
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092760:
+    instance: nyzul_isle_investigation
     template: Bull_Bugard
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092761:
+    instance: nyzul_isle_investigation
     template: Locus_Wivre
     script:   Wivre
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092762:
+    instance: nyzul_isle_investigation
     template: Locus_Wivre
     script:   Wivre
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092763:
+    instance: nyzul_isle_investigation
     template: Bouncing_Ball_NI
     script:   Bouncing_Ball
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092764:
+    instance: nyzul_isle_investigation
     template: Bouncing_Ball_NI
     script:   Bouncing_Ball
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092765:
+    instance: nyzul_isle_investigation
     template: Bouncing_Ball_NI
     script:   Bouncing_Ball
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092766:
+    instance: nyzul_isle_investigation
     template: Bouncing_Ball_NI
     script:   Bouncing_Ball
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092767:
+    instance: nyzul_isle_investigation
     template: Bouncing_Ball_NI
     script:   Bouncing_Ball
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092768:
+    instance: nyzul_isle_investigation
     template: Thousand_Eyes_NI
     script:   Thousand_Eyes
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092769:
+    instance: nyzul_isle_investigation
     template: Thousand_Eyes_NI
     script:   Thousand_Eyes
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092770:
+    instance: nyzul_isle_investigation
     template: Thousand_Eyes_NI
     script:   Thousand_Eyes
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092771:
+    instance: nyzul_isle_investigation
     template: Thousand_Eyes_NI
     script:   Thousand_Eyes
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092772:
+    instance: nyzul_isle_investigation
     template: Thousand_Eyes_NI
     script:   Thousand_Eyes
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092773:
+    instance: nyzul_isle_investigation
     template: Mousse_NI
     script:   Mousse
     at:       [1.000, 1.000, 1.000]
     level:    [71, 73]
   17092774:
+    instance: nyzul_isle_investigation
     template: Mousse_NI
     script:   Mousse
     at:       [1.000, 1.000, 1.000]
     level:    [71, 73]
   17092775:
+    instance: nyzul_isle_investigation
     template: Peryton
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092776:
+    instance: nyzul_isle_investigation
     template: Peryton
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092777:
+    instance: nyzul_isle_investigation
     template: Peryton
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092778:
+    instance: nyzul_isle_investigation
     template: Peryton
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092779:
+    instance: nyzul_isle_investigation
     template: Peryton
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092780:
+    instance: nyzul_isle_investigation
     template: Peryton
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092781:
+    instance: nyzul_isle_investigation
     template: Peryton
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092782:
+    instance: nyzul_isle_investigation
     template: Peryton
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092783:
+    instance: nyzul_isle_investigation
     template: Peryton
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092784:
+    instance: nyzul_isle_investigation
     template: Peryton
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092785:
+    instance: nyzul_isle_investigation
     template: Mousse_NI
     script:   Mousse
     at:       [1.000, 1.000, 1.000]
     level:    [71, 73]
   17092786:
+    instance: nyzul_isle_investigation
     template: Mousse_NI
     script:   Mousse
     at:       [1.000, 1.000, 1.000]
     level:    [71, 73]
   17092787:
+    instance: nyzul_isle_investigation
     template: Draugar
     at:       [1.000, 1.000, 1.000]
     level:    [67, 70]
   17092788:
+    instance: nyzul_isle_investigation
     template: Draugar
     at:       [1.000, 1.000, 1.000]
     level:    [67, 70]
   17092789:
+    instance: nyzul_isle_investigation
     template: Draugar
     at:       [1.000, 1.000, 1.000]
     level:    [67, 70]
   17092790:
+    instance: nyzul_isle_investigation
     template: Draugar
     at:       [1.000, 1.000, 1.000]
     level:    [67, 70]
   17092791:
+    instance: nyzul_isle_investigation
     template: Draugar
     at:       [1.000, 1.000, 1.000]
     level:    [67, 70]
   17092792:
+    instance: nyzul_isle_investigation
     template: Draugar
     at:       [1.000, 1.000, 1.000]
     level:    [67, 70]
   17092793:
+    instance: nyzul_isle_investigation
     template: Draugar
     at:       [1.000, 1.000, 1.000]
     level:    [67, 70]
   17092794:
+    instance: nyzul_isle_investigation
     template: Draugar
     at:       [1.000, 1.000, 1.000]
     level:    [67, 70]
   17092795:
+    instance: nyzul_isle_investigation
     template: Draugar
     at:       [1.000, 1.000, 1.000]
     level:    [67, 70]
   17092796:
+    instance: nyzul_isle_investigation
     template: Draugar
     at:       [1.000, 1.000, 1.000]
     level:    [67, 70]
   17092797:
+    instance: nyzul_isle_investigation
     template: Mousse_NI
     script:   Mousse
     at:       [1.000, 1.000, 1.000]
     level:    [71, 73]
   17092798:
+    instance: nyzul_isle_investigation
     template: Mousse_NI
     script:   Mousse
     at:       [1.000, 1.000, 1.000]
     level:    [71, 73]
   17092799:
+    instance: nyzul_isle_investigation
     template: Mousse_NI
     script:   Mousse
     at:       [1.000, 1.000, 1.000]
     level:    [71, 73]
   17092800:
+    instance: nyzul_isle_investigation
     template: Mousse_NI
     script:   Mousse
     at:       [1.000, 1.000, 1.000]
     level:    [71, 73]
   17092801:
+    instance: nyzul_isle_investigation
     template: Mousse_NI
     script:   Mousse
     at:       [1.000, 1.000, 1.000]
     level:    [71, 73]
   17092802:
+    instance: nyzul_isle_investigation
     template: Mousse_NI
     script:   Mousse
     at:       [1.000, 1.000, 1.000]
     level:    [71, 73]
   17092803:
+    instance: nyzul_isle_investigation
     template: Mousse_NI
     script:   Mousse
     at:       [1.000, 1.000, 1.000]
     level:    [71, 73]
   17092804:
+    instance: nyzul_isle_investigation
     template: Mousse_NI
     script:   Mousse
     at:       [1.000, 1.000, 1.000]
     level:    [71, 73]
   17092805:
+    instance: nyzul_isle_investigation
     template: Black_Pudding
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092806:
+    instance: nyzul_isle_investigation
     template: Black_Pudding
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092807:
+    instance: nyzul_isle_investigation
     template: Black_Pudding
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092808:
+    instance: nyzul_isle_investigation
     template: Black_Pudding
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092809:
+    instance: nyzul_isle_investigation
     template: Black_Pudding
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092810:
+    instance: nyzul_isle_investigation
     template: Black_Pudding
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092811:
+    instance: nyzul_isle_investigation
     template: Killing_Weapon_NI
     script:   Killing_Weapon
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092812:
+    instance: nyzul_isle_investigation
     template: Killing_Weapon_NI
     script:   Killing_Weapon
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092813:
+    instance: nyzul_isle_investigation
     template: Killing_Weapon_NI
     script:   Killing_Weapon
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092814:
+    instance: nyzul_isle_investigation
     template: Ominous_Weapon_NI
     script:   Ominous_Weapon
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092815:
+    instance: nyzul_isle_investigation
     template: Ominous_Weapon_NI
     script:   Ominous_Weapon
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092816:
+    instance: nyzul_isle_investigation
     template: Ominous_Weapon_NI
     script:   Ominous_Weapon
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092817:
+    instance: nyzul_isle_investigation
     template: Magic_Flagon_NI
     script:   Magic_Flagon
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092818:
+    instance: nyzul_isle_investigation
     template: Magic_Flagon_NI
     script:   Magic_Flagon
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092819:
+    instance: nyzul_isle_investigation
     template: Magic_Flagon_NI
     script:   Magic_Flagon
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092820:
+    instance: nyzul_isle_investigation
     template: Magic_Flagon_NI
     script:   Magic_Flagon
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092821:
+    instance: nyzul_isle_investigation
     template: Magic_Flagon_NI
     script:   Magic_Flagon
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092822:
+    instance: nyzul_isle_investigation
     template: Magic_Flagon_NI
     script:   Magic_Flagon
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092823:
+    instance: nyzul_isle_investigation
     template: Dahak
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092824:
+    instance: nyzul_isle_investigation
     template: Bat_Eye
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092825:
+    instance: nyzul_isle_investigation
     template: Shadow_Eye
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092826:
+    instance: nyzul_isle_investigation
     template: Bomb_King
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092827:
+    instance: nyzul_isle_investigation
     template: Juggler_Hecatomb
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092828:
+    instance: nyzul_isle_investigation
     template: Smothered_Schmidt
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092829:
+    instance: nyzul_isle_investigation
     template: Hellion
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092830:
+    instance: nyzul_isle_investigation
     template: Leaping_Lizzy
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092831:
+    instance: nyzul_isle_investigation
     template: Tom_Tit_Tat
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092832:
+    instance: nyzul_isle_investigation
     template: Jaggedy-Eared_Jack
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092833:
+    instance: nyzul_isle_investigation
     template: Cactuar_Cantautor
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092834:
+    instance: nyzul_isle_investigation
     template: Gargantua
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092835:
+    instance: nyzul_isle_investigation
     template: Gyre-Carlin_NI
     script:   Gyre-Carlin
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092836:
+    instance: nyzul_isle_investigation
     template: Asphyxiated_Amsel
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092837:
+    instance: nyzul_isle_investigation
     template: Frostmane
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092838:
+    instance: nyzul_isle_investigation
     template: Peallaidh_NI
     script:   Peallaidh
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092839:
+    instance: nyzul_isle_investigation
     template: Carnero
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092840:
+    instance: nyzul_isle_investigation
     template: Falcatus_Aranei
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092841:
+    instance: nyzul_isle_investigation
     template: Emergent_Elm
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092842:
+    instance: nyzul_isle_investigation
     template: Old_Two-Wings
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092843:
+    instance: nyzul_isle_investigation
     template: Aiatar
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092844:
+    instance: nyzul_isle_investigation
     template: Intulo
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092845:
+    instance: nyzul_isle_investigation
     template: Orctrap
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092846:
+    instance: nyzul_isle_investigation
     template: Valkurm_Emperor
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092847:
+    instance: nyzul_isle_investigation
     template: Crushed_Krause
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092848:
+    instance: nyzul_isle_investigation
     template: Stinging_Sophie
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092849:
+    instance: nyzul_isle_investigation
     template: Serpopard_Ishtar
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092850:
+    instance: nyzul_isle_investigation
     template: Western_Shadow
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092851:
+    instance: nyzul_isle_investigation
     template: Bloodtear_Baldurf
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092852:
+    instance: nyzul_isle_investigation
     template: Zizzy_Zillah
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092853:
+    instance: nyzul_isle_investigation
     template: Ellyllon
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092854:
+    instance: nyzul_isle_investigation
     template: Mischievous_Micholas
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092855:
+    instance: nyzul_isle_investigation
     template: Leech_King
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092856:
+    instance: nyzul_isle_investigation
     template: Eastern_Shadow
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092857:
+    instance: nyzul_isle_investigation
     template: Nunyenunc
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092858:
+    instance: nyzul_isle_investigation
     template: Helldiver
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092859:
+    instance: nyzul_isle_investigation
     template: Taisaijin
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092860:
+    instance: nyzul_isle_investigation
     template: Fungus_Beetle
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092861:
+    instance: nyzul_isle_investigation
     template: Friar_Rush
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092862:
+    instance: nyzul_isle_investigation
     template: Pulverized_Pfeffer
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092863:
+    instance: nyzul_isle_investigation
     template: Argus
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092864:
+    instance: nyzul_isle_investigation
     template: Bloodpool_Vorax
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092865:
+    instance: nyzul_isle_investigation
     template: Nightmare_Vase
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092866:
+    instance: nyzul_isle_investigation
     template: Daggerclaw_Dracos
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092867:
+    instance: nyzul_isle_investigation
     template: Northern_Shadow
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092868:
+    instance: nyzul_isle_investigation
     template: Fraelissa
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092869:
+    instance: nyzul_isle_investigation
     template: Roc
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092870:
+    instance: nyzul_isle_investigation
     template: Sabotender_Bailarin
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092871:
+    instance: nyzul_isle_investigation
     template: Aquarius
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092872:
+    instance: nyzul_isle_investigation
     template: Energetic_Eruca
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092873:
+    instance: nyzul_isle_investigation
     template: Spiny_Spipi
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092874:
+    instance: nyzul_isle_investigation
     template: Trickster_Kinetix
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092875:
+    instance: nyzul_isle_investigation
     template: Drooling_Daisy
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092876:
+    instance: nyzul_isle_investigation
     template: Bonnacon
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092877:
+    instance: nyzul_isle_investigation
     template: Taisaijin
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092878:
+    instance: nyzul_isle_investigation
     template: Golden_Bat
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092879:
+    instance: nyzul_isle_investigation
     template: Steelfleece_Baldarich
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092880:
+    instance: nyzul_isle_investigation
     template: Sabotender_Mariachi
     at:       [1.000, 1.000, 1.000]
     level:    [70, 72]
   17092881:
+    instance: nyzul_isle_investigation
     template: Ungur
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092882:
+    instance: nyzul_isle_investigation
     template: Swamfisk
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092883:
+    instance: nyzul_isle_investigation
     template: Buburimboo
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092884:
+    instance: nyzul_isle_investigation
     template: Keeper_of_Halidom
     at:       [1.000, 1.000, 1.000]
   17092885:
+    instance: nyzul_isle_investigation
     template: Serket
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092886:
+    instance: nyzul_isle_investigation
     template: Dune_Widow
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092887:
+    instance: nyzul_isle_investigation
     template: Odqan
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092888:
+    instance: nyzul_isle_investigation
     template: Burned_Bergmann
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092889:
+    instance: nyzul_isle_investigation
     template: Tom_Tit_Tat
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092890:
+    instance: nyzul_isle_investigation
     template: Tyrannic_Tunnok
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092891:
+    instance: nyzul_isle_investigation
     template: Bloodsucker_NI
     script:   Bloodsucker
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092892:
+    instance: nyzul_isle_investigation
     template: Tottering_Toby
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092893:
+    instance: nyzul_isle_investigation
     template: Southern_Shadow
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092894:
+    instance: nyzul_isle_investigation
     template: Sharp-Eared_Ropipi
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092895:
+    instance: nyzul_isle_investigation
     template: Taisaijin
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092896:
+    instance: nyzul_isle_investigation
     template: Panzer_Percival
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092897:
+    instance: nyzul_isle_investigation
     template: Vouivre
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092898:
+    instance: nyzul_isle_investigation
     template: Jolly_Green
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092899:
+    instance: nyzul_isle_investigation
     template: Tumbling_Truffle
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
@@ -7985,620 +8256,823 @@ spawns:
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092901:
+    instance: nyzul_isle_investigation
     template: Amikiri
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092902:
+    instance: nyzul_isle_investigation
     template: Stray_Mary
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092903:
+    instance: nyzul_isle_investigation
     template: Sewer_Syrup
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092904:
+    instance: nyzul_isle_investigation
     template: Unut
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092905:
+    instance: nyzul_isle_investigation
     template: Simurgh
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092906:
+    instance: nyzul_isle_investigation
     template: Pelican
     at:       [1.000, 1.000, 1.000]
     level:    [80, 81]
   17092907:
+    instance: nyzul_isle_investigation
     template: Cargo_Crab_Colin
     at:       [1.000, 1.000, 1.000]
   17092908:
+    instance: nyzul_isle_investigation
     template: Wounded_Wurfel
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092909:
+    instance: nyzul_isle_investigation
     template: Peg_Powler
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092910:
+    instance: nyzul_isle_investigation
     template: Tom_Tit_Tat
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092911:
+    instance: nyzul_isle_investigation
     template: Jaded_Jody
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092912:
+    instance: nyzul_isle_investigation
     template: Maighdean_Uaine
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092913:
+    instance: nyzul_isle_investigation
     template: Taisaijin
     at:       [1.000, 1.000, 1.000]
     level:    [75, 80]
   17092914:
+    instance: nyzul_isle_investigation
     template: Archaic_Gear
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092915:
+    instance: nyzul_isle_investigation
     template: Archaic_Gear
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092916:
+    instance: nyzul_isle_investigation
     template: Archaic_Gear
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092917:
+    instance: nyzul_isle_investigation
     template: Archaic_Gear
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092918:
+    instance: nyzul_isle_investigation
     template: Archaic_Gear
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092919:
+    instance: nyzul_isle_investigation
     template: Archaic_Gears
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092920:
+    instance: nyzul_isle_investigation
     template: Archaic_Gears
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092921:
+    instance: nyzul_isle_investigation
     template: Archaic_Gears
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092922:
+    instance: nyzul_isle_investigation
     template: Archaic_Gears
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092923:
+    instance: nyzul_isle_investigation
     template: Archaic_Gears
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092924:
+    instance: nyzul_isle_investigation
     template: Archaic_Gear
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092925:
+    instance: nyzul_isle_investigation
     template: Archaic_Gear
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092926:
+    instance: nyzul_isle_investigation
     template: Archaic_Gear
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092927:
+    instance: nyzul_isle_investigation
     template: Archaic_Gear
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092928:
+    instance: nyzul_isle_investigation
     template: Archaic_Gear
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092929:
+    instance: nyzul_isle_investigation
     template: Archaic_Gear
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092930:
+    instance: nyzul_isle_investigation
     template: Archaic_Gear
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092931:
+    instance: nyzul_isle_investigation
     template: Archaic_Gear
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092932:
+    instance: nyzul_isle_investigation
     template: Archaic_Gear
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092933:
+    instance: nyzul_isle_investigation
     template: Archaic_Gear
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092934:
+    instance: nyzul_isle_investigation
     template: Archaic_Gears
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092935:
+    instance: nyzul_isle_investigation
     template: Archaic_Gears
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092936:
+    instance: nyzul_isle_investigation
     template: Archaic_Gears
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092937:
+    instance: nyzul_isle_investigation
     template: Archaic_Gears
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092938:
+    instance: nyzul_isle_investigation
     template: Archaic_Gears
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092939:
+    instance: nyzul_isle_investigation
     template: Archaic_Gear
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092940:
+    instance: nyzul_isle_investigation
     template: Archaic_Gear
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092941:
+    instance: nyzul_isle_investigation
     template: Archaic_Gear
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092942:
+    instance: nyzul_isle_investigation
     template: Archaic_Gear
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092943:
+    instance: nyzul_isle_investigation
     template: Archaic_Gear
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092944:
+    instance: nyzul_isle_investigation
     template: Mokke
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092945:
+    instance: nyzul_isle_investigation
     template: Mokka
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092946:
+    instance: nyzul_isle_investigation
     template: Mokku
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092947:
+    instance: nyzul_isle_investigation
     template: Vile_Wahdaha
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092948:
+    instance: nyzul_isle_investigation
     template: Vile_Ineef
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092949:
+    instance: nyzul_isle_investigation
     template: Vile_Yabeewa
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092950:
+    instance: nyzul_isle_investigation
     template: Uriri_Samariri
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092951:
+    instance: nyzul_isle_investigation
     template: Eriri_Samariri
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092952:
+    instance: nyzul_isle_investigation
     template: Oriri_Samariri
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092953:
+    instance: nyzul_isle_investigation
     template: Ginger_Custard
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092954:
+    instance: nyzul_isle_investigation
     template: Anise_Custard
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092955:
+    instance: nyzul_isle_investigation
     template: Cumin_Custard
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092956:
+    instance: nyzul_isle_investigation
     template: Nutmeg_Custard
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092957:
+    instance: nyzul_isle_investigation
     template: Mint_Custard
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092958:
+    instance: nyzul_isle_investigation
     template: Cinnamon_Custard
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092959:
+    instance: nyzul_isle_investigation
     template: Caraway_Custard
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092960:
+    instance: nyzul_isle_investigation
     template: Vanilla_Custard
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092961:
+    instance: nyzul_isle_investigation
     template: Gem_Heister_Roorooroon
     at:       [1.000, 1.000, 1.000]
   17092962:
+    instance: nyzul_isle_investigation
     template: Qiqirn_Mine
     at:       [1.000, 1.000, 1.000]
     level:    [75, 75]
   17092963:
+    instance: nyzul_isle_investigation
     template: Stealth_Bomber_Gagaroon
     at:       [1.000, 1.000, 1.000]
   17092964:
+    instance: nyzul_isle_investigation
     template: Quick_Draw_Sasaroon
     at:       [1.000, 1.000, 1.000]
   17092965:
+    instance: nyzul_isle_investigation
     template: Shielded_Chariot
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092966:
+    instance: nyzul_isle_investigation
     template: Battledressed_Chariot
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092967:
+    instance: nyzul_isle_investigation
     template: Long-Gunned_Chariot
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092968:
+    instance: nyzul_isle_investigation
     template: Long-Horned_Chariot
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092969:
+    instance: nyzul_isle_investigation
     template: Heraldic_Imp
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092970:
+    instance: nyzul_isle_investigation
     template: Heraldic_Imp
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092971:
+    instance: nyzul_isle_investigation
     template: Heraldic_Imp
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092972:
+    instance: nyzul_isle_investigation
     template: Heraldic_Imp
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092973:
+    instance: nyzul_isle_investigation
     template: Heraldic_Imp
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092974:
+    instance: nyzul_isle_investigation
     template: Psycheflayer
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092975:
+    instance: nyzul_isle_investigation
     template: Psycheflayer
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092976:
+    instance: nyzul_isle_investigation
     template: Psycheflayer
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092977:
+    instance: nyzul_isle_investigation
     template: Psycheflayer
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092978:
+    instance: nyzul_isle_investigation
     template: Psycheflayer
     at:       [1.000, 1.000, 1.000]
     level:    [66, 68]
   17092979:
+    instance: nyzul_isle_investigation
     template: Poroggo_Gent
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092980:
+    instance: nyzul_isle_investigation
     template: Poroggo_Gent
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092981:
+    instance: nyzul_isle_investigation
     template: Poroggo_Gent
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092982:
+    instance: nyzul_isle_investigation
     template: Poroggo_Gent
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092983:
+    instance: nyzul_isle_investigation
     template: Poroggo_Gent
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092984:
+    instance: nyzul_isle_investigation
     template: Ebony_Pudding
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092985:
+    instance: nyzul_isle_investigation
     template: Ebony_Pudding
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092986:
+    instance: nyzul_isle_investigation
     template: Ebony_Pudding
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092987:
+    instance: nyzul_isle_investigation
     template: Ebony_Pudding
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092988:
+    instance: nyzul_isle_investigation
     template: Ebony_Pudding
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092989:
+    instance: nyzul_isle_investigation
     template: Qiqirn_Treasure_Hunter
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092990:
+    instance: nyzul_isle_investigation
     template: Qiqirn_Treasure_Hunter
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092991:
+    instance: nyzul_isle_investigation
     template: Qiqirn_Archaeologist
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092992:
+    instance: nyzul_isle_investigation
     template: Qiqirn_Archaeologist
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092993:
+    instance: nyzul_isle_investigation
     template: Qiqirn_Archaeologist
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092994:
+    instance: nyzul_isle_investigation
     template: Racing_Chariot
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092995:
+    instance: nyzul_isle_investigation
     template: Racing_Chariot
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092996:
+    instance: nyzul_isle_investigation
     template: Racing_Chariot
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092997:
+    instance: nyzul_isle_investigation
     template: Racing_Chariot
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092998:
+    instance: nyzul_isle_investigation
     template: Racing_Chariot
     at:       [1.000, 1.000, 1.000]
     level:    [76, 77]
   17092999:
-    script: Adamantoise
-    at:     [1.000, 1.000, 1.000]
+    instance: nyzul_isle_investigation
+    script:   Adamantoise
+    at:       [1.000, 1.000, 1.000]
   17093000:
+    instance: nyzul_isle_investigation
     template: Behemoth
     at:       [1.000, 1.000, 1.000]
     level:    [80, 80]
   17093001:
+    instance: nyzul_isle_investigation
     template: Fafnir
     at:       [1.000, 1.000, 1.000]
     level:    [80, 80]
   17093002:
+    instance: nyzul_isle_investigation
     template: Khimaira
     at:       [1.000, 1.000, 1.000]
     level:    [80, 80]
   17093003:
+    instance: nyzul_isle_investigation
     template: Hydra
     at:       [1.000, 1.000, 1.000]
     level:    [80, 80]
   17093004:
+    instance: nyzul_isle_investigation
     template: Cerberus
     at:       [1.000, 1.000, 1.000]
     level:    [80, 80]
   17093005:
+    instance: nyzul_isle_investigation
     template: Amanita
   17093006:
+    instance: nyzul_isle_investigation
     template: Tococo
   17093007:
+    instance: nyzul_isle_investigation
     template: Duke_Decapod
   17093008:
+    instance: nyzul_isle_investigation
     template: Rambukk
   17093009:
+    instance: nyzul_isle_investigation
     template: Numbing_Norman
   17093010:
+    instance: nyzul_isle_investigation
     template: Yara_Ma_Yha_Who
   17093011:
+    instance: nyzul_isle_investigation
     template: Barbastelle
   17093012:
+    instance: nyzul_isle_investigation
     template: Doppelganger_Gog
   17093013:
+    instance: nyzul_isle_investigation
     template: Nocuous_Weapon
   17093014:
+    instance: nyzul_isle_investigation
     template: Ghillie_Dhu
   17093015:
+    instance: nyzul_isle_investigation
     template: Slumbering_Samwell
   17093016:
+    instance: nyzul_isle_investigation
     template: Habrok
   17093017:
+    instance: nyzul_isle_investigation
     template: Teporingo
   17093018:
+    instance: nyzul_isle_investigation
     template: Desmodont
   17093019:
+    instance: nyzul_isle_investigation
     template: Maltha
   17093020:
+    instance: nyzul_isle_investigation
     template: Wake_Warder_Wanda
   17093021:
+    instance: nyzul_isle_investigation
     template: Chocoboleech
   17093022:
+    instance: nyzul_isle_investigation
     template: Doppelganger_Dio
   17093023:
-    script: Gwyllgi
+    instance: nyzul_isle_investigation
+    script:   Gwyllgi
   17093024:
+    instance: nyzul_isle_investigation
     template: Hercules_Beetle
   17093025:
-    script: Yal-un_Eke
+    instance: nyzul_isle_investigation
+    script:   Yal-un_Eke
   17093026:
+    instance: nyzul_isle_investigation
     template: Skewer_Sam
   17093027:
+    instance: nyzul_isle_investigation
     template: Edacious_Opo-opo
   17093028:
+    instance: nyzul_isle_investigation
     template: Hippomaritimus
   17093029:
+    instance: nyzul_isle_investigation
     template: Kirata
   17093030:
+    instance: nyzul_isle_investigation
     template: Mucoid_Mass
   17093031:
+    instance: nyzul_isle_investigation
     template: Sekhmet
   17093032:
+    instance: nyzul_isle_investigation
     template: Patripatan
   17093033:
     template: Dosetsu_Tree
   17093034:
+    instance: nyzul_isle_investigation
     template: Mycophile
   17093035:
+    instance: nyzul_isle_investigation
     template: Koropokkur
   17093036:
+    instance: nyzul_isle_investigation
     template: Serra
   17093037:
+    instance: nyzul_isle_investigation
     template: Noble_Mold
   17093038:
+    instance: nyzul_isle_investigation
     template: Megalobugard
   17093039:
+    instance: nyzul_isle_investigation
     template: Waraxe_Beak
   17093040:
+    instance: nyzul_isle_investigation
     template: Herbage_Hunter
   17093041:
-    script: Hazmat
+    instance: nyzul_isle_investigation
+    script:   Hazmat
   17093042:
+    instance: nyzul_isle_investigation
     template: Death_from_Above
   17093043:
+    instance: nyzul_isle_investigation
     template: Hovering_Hotpot
   17093044:
+    instance: nyzul_isle_investigation
     template: Skull_of_Gluttony
   17093045:
+    instance: nyzul_isle_investigation
     template: Skull_of_Sloth
   17093046:
+    instance: nyzul_isle_investigation
     template: Skull_of_Pride
   17093047:
+    instance: nyzul_isle_investigation
     template: Diamond_Daig
   17093048:
+    instance: nyzul_isle_investigation
     template: Nussknacker
   17093049:
+    instance: nyzul_isle_investigation
     template: Cwn_Cyrff
   17093050:
-    script: Okyupete
+    instance: nyzul_isle_investigation
+    script:   Okyupete
   17093051:
+    instance: nyzul_isle_investigation
     template: Boroka
   17093052:
+    instance: nyzul_isle_investigation
     template: Habetrot
   17093053:
+    instance: nyzul_isle_investigation
     template: Skull_of_Greed
   17093054:
+    instance: nyzul_isle_investigation
     template: Skull_of_Lust
   17093055:
+    instance: nyzul_isle_investigation
     template: Skull_of_Envy
   17093056:
+    instance: nyzul_isle_investigation
     template: Skull_of_Wrath
   17093057:
+    instance: nyzul_isle_investigation
     template: Demonic_Tiphia
   17093058:
+    instance: nyzul_isle_investigation
     template: Woodland_Sage
   17093059:
-    script: Picolaton
+    instance: nyzul_isle_investigation
+    script:   Picolaton
   17093060:
+    instance: nyzul_isle_investigation
     template: Amemet
   17093061:
-    script: Rogue_Receptacle
+    instance: nyzul_isle_investigation
+    script:   Rogue_Receptacle
   17093062:
+    instance: nyzul_isle_investigation
     template: Arachne
   17093063:
+    instance: nyzul_isle_investigation
     template: Oni_Carcass
   17093064:
-    script: Splacknuck
+    instance: nyzul_isle_investigation
+    script:   Splacknuck
   17093065:
+    instance: nyzul_isle_investigation
     template: Shii
   17093066:
+    instance: nyzul_isle_investigation
     template: Yowie
   17093067:
+    instance: nyzul_isle_investigation
     template: Drexerion_the_Condemned
   17093068:
+    instance: nyzul_isle_investigation
     template: Lizardtrap
   17093069:
+    instance: nyzul_isle_investigation
     template: Phanduron_the_Condemned
   17093070:
-    script: Gloom_Eye
+    instance: nyzul_isle_investigation
+    script:   Gloom_Eye
   17093071:
-    script: Barbaric_Weapon
+    instance: nyzul_isle_investigation
+    script:   Barbaric_Weapon
   17093072:
-    script: Calchas
+    instance: nyzul_isle_investigation
+    script:   Calchas
   17093073:
+    instance: nyzul_isle_investigation
     template: Ose
   17093074:
+    instance: nyzul_isle_investigation
     template: Lumber_Jack
   17093075:
+    instance: nyzul_isle_investigation
     template: Elel
   17093076:
+    instance: nyzul_isle_investigation
     template: Lindwurm
   17093077:
+    instance: nyzul_isle_investigation
     template: Narasimha
   17093078:
+    instance: nyzul_isle_investigation
     template: Lord_of_Onzozo
   17093079:
+    instance: nyzul_isle_investigation
     template: Nis_Puk
   17093080:
+    instance: nyzul_isle_investigation
     template: Ancient_Goobbue
   17093081:
+    instance: nyzul_isle_investigation
     template: Voluptuous_Vivian
   17093082:
+    instance: nyzul_isle_investigation
     template: Kreutzet
   17093083:
+    instance: nyzul_isle_investigation
     template: Ogama
   17093084:
+    instance: nyzul_isle_investigation
     template: Tarasque
   17093085:
+    instance: nyzul_isle_investigation
     template: Ash_Dragon
   17093086:
+    instance: nyzul_isle_investigation
     template: Charybdis
   17093087:
-    script: Copper_Borer
+    instance: nyzul_isle_investigation
+    script:   Copper_Borer
   17093088:
+    instance: nyzul_isle_investigation
     template: Bune
   17093089:
+    instance: nyzul_isle_investigation
     template: Mahishasura
   17093090:
-    script: Gharial
+    instance: nyzul_isle_investigation
+    script:   Gharial
   17093091:
-    script: Aynu-kaysey
+    instance: nyzul_isle_investigation
+    script:   Aynu-kaysey
   17093092:
-    script: Killer_Jonny
+    instance: nyzul_isle_investigation
+    script:   Killer_Jonny
   17093093:
-    script: Ignamoth
+    instance: nyzul_isle_investigation
+    script:   Ignamoth
   17093094:
+    instance: nyzul_isle_investigation
     template: King_Arthro
   17093095:
+    instance: nyzul_isle_investigation
     template: Genbu
   17093096:
+    instance: nyzul_isle_investigation
     template: Seiryu
   17093097:
+    instance: nyzul_isle_investigation
     template: Fafnir
     level:    [80, 80]
   17093098:
+    instance: nyzul_isle_investigation
     template: Behemoth
     level:    [80, 80]
   17093099:
+    instance: nyzul_isle_investigation
     template: Khimaira
     level:    [80, 80]
   17093100:
+    instance: nyzul_isle_investigation
     template: Suzaku
   17093101:
+    instance: nyzul_isle_investigation
     template: Byakko
   17093102:
+    instance: nyzul_isle_investigation
     template: Adamantoise
     level:    [80, 80]
   17093103:
+    instance: nyzul_isle_investigation
     template: Cerberus
     level:    [80, 80]
   17093104:
+    instance: nyzul_isle_investigation
     template: Hydra
     level:    [80, 80]
   17093105:
@@ -8662,27 +9136,33 @@ spawns:
   17093131:
     script: Dvali_Jonah
   17093132:
+    instance: path_of_darkness
     template: Amnaf_blu
     script:   Amnaf_BLU
     at:       [500.000, -0.500, -540.000, 64]
     level:    [77, 79]
   17093133:
+    instance: path_of_darkness
     template: Amnaf_Psycheflayer
     at:       [459.000, 0.449, -434.000, 61]
     level:    [80, 80]
   17093134:
+    instance: path_of_darkness
     template: Imperial_Gear
     at:       [496.467, -0.486, -536.520, 34]
     level:    [75, 75]
   17093135:
+    instance: path_of_darkness
     template: Imperial_Gear
     at:       [497.298, -0.463, -544.038, 27]
     level:    [75, 75]
   17093136:
+    instance: path_of_darkness
     template: Imperial_Gear
     at:       [503.229, -0.345, -542.553, 68]
     level:    [75, 75]
   17093137:
+    instance: path_of_darkness
     template: Imperial_Gear
     at:       [503.107, -0.230, -545.704, 111]
     level:    [75, 75]
@@ -8699,18 +9179,22 @@ spawns:
     template: Imperial_Gears
     level:    [75, 75]
   17093142:
+    instance: path_of_darkness
     template: Naja_Salaheem
     at:       [503.107, -0.230, -545.704, 111]
     level:    [75, 75]
   17093143:
+    instance: nashmeiras_plea
     template: Razfahd
     at:       [-486.500, -4.449, 420.000]
     level:    [76, 76]
   17093144:
+    instance: nashmeiras_plea
     template: Alexander_NP
     at:       [-486.500, -4.449, 420.000]
     level:    [80, 80]
   17093145:
+    instance: nashmeiras_plea
     template: Raubahn
     at:       [-481.075, -4.500, 423.191]
     level:    [80, 80]
@@ -8719,18 +9203,22 @@ spawns:
   17093147:
     template: Balrahn
   17093148:
+    instance: waking_the_colossus
     template: Alexander_WTC
     at:       [-483.716, -3.950, 419.987]
     level:    [80, 80]
   17093149:
+    instance: waking_the_colossus
     template: Alexander_Image
     at:       [-483.716, -3.950, 419.987]
     level:    [70, 70]
   17093150:
+    instance: waking_the_colossus
     template: Alexander_Image
     at:       [-483.716, -3.950, 419.987]
     level:    [70, 70]
   17093151:
+    instance: waking_the_colossus
     template: Alexander_Image
     at:       [-483.716, -3.950, 419.987]
     level:    [70, 70]

@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=../../schemas/instances.schema.json
+
+instances:
+
+  arrapago_remnants:
+    id:         7400
+    entrance:   alzadaal_undersea_ruins
+    time_limit: 100
+    entry:      [340.000, 0.000, -246.000, 63]
+
+# Not implemented yet:
+#   arrapago_remnants_ii: 7401

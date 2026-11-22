@@ -942,1191 +942,1465 @@ templates:
 
 spawns:
   17088513:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_mnk
     script:   Ashu_Talif_Crew
     at:       [380.410, 15.500, -259.440]
     level:    [73, 75]
   17088514:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_mnk
     script:   Ashu_Talif_Crew
     at:       [469.150, 11.498, -327.440]
     level:    [73, 75]
   17088515:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rng
     script:   Ashu_Talif_Crew
     at:       [471.800, 11.500, -351.910]
     level:    [73, 75]
   17088516:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rdm
     script:   Ashu_Talif_Crew
     at:       [496.550, 11.550, -352.470]
     level:    [73, 75]
   17088517:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_cor
     script:   Ashu_Talif_Crew
     at:       [496.510, 11.550, -327.540]
     level:    [73, 75]
   17088518:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_mnk
     script:   Ashu_Talif_Crew
     at:       [469.270, 15.500, -250.880]
     level:    [73, 75]
   17088519:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rdm
     script:   Ashu_Talif_Crew
     at:       [473.970, 15.500, -269.500]
     level:    [73, 75]
   17088520:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rng
     script:   Ashu_Talif_Crew
     at:       [416.040, 11.550, -352.830]
     level:    [73, 75]
   17088521:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_cor
     script:   Ashu_Talif_Crew
     at:       [424.950, 11.550, -353.730]
     level:    [73, 75]
   17088522:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rdm
     script:   Ashu_Talif_Crew
     at:       [408.150, 15.500, -408.260]
     level:    [73, 75]
   17088523:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rng
     script:   Ashu_Talif_Crew
     at:       [430.300, 15.500, -409.770]
     level:    [73, 75]
   17088524:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_mnk
     script:   Ashu_Talif_Crew
     at:       [476.370, 3.500, -470.490]
     level:    [73, 75]
   17088525:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_cor
     script:   Ashu_Talif_Crew
     at:       [462.600, 3.500, -457.250]
     level:    [73, 75]
   17088526:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_mnk
     script:   Ashu_Talif_Crew
     at:       [401.590, 3.500, -530.450]
     level:    [73, 75]
   17088527:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rdm
     script:   Ashu_Talif_Crew
     at:       [394.200, 3.500, -480.490]
     level:    [73, 75]
   17088528:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rng
     script:   Ashu_Talif_Crew
     at:       [402.430, 3.500, -530.870]
     level:    [73, 75]
   17088529:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_cor
     script:   Ashu_Talif_Crew
     at:       [393.400, 3.500, -487.450]
     level:    [73, 75]
   17088530:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_mnk
     script:   Ashu_Talif_Crew
     at:       [392.940, 3.500, -519.190]
     level:    [73, 75]
   17088531:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rdm
     script:   Ashu_Talif_Crew
     at:       [390.300, 3.500, -494.370]
     level:    [73, 75]
   17088532:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rng
     script:   Ashu_Talif_Crew
     at:       [409.790, 3.500, -476.440]
     level:    [73, 75]
   17088533:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_cor
     script:   Ashu_Talif_Crew
     at:       [396.470, 3.550, -476.040]
     level:    [73, 75]
   17088534:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_mnk
     script:   Ashu_Talif_Crew
     at:       [300.000, 15.500, -260.000, 192]
     level:    [73, 75]
   17088535:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_mnk
     script:   Ashu_Talif_Crew
     at:       [180.000, 11.500, -331.000]
     level:    [73, 75]
   17088536:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rdm
     script:   Ashu_Talif_Crew
     at:       [171.000, 11.500, -340.000]
     level:    [73, 75]
   17088537:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rng
     script:   Ashu_Talif_Crew
     at:       [189.000, 11.500, -340.000]
     level:    [73, 75]
   17088538:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_cor
     script:   Ashu_Talif_Crew
     at:       [180.000, 11.500, -349.000]
     level:    [73, 75]
   17088539:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_mnk
     script:   Ashu_Talif_Crew
     at:       [220.000, 15.500, -251.000, 128]
     level:    [73, 75]
   17088540:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rdm
     script:   Ashu_Talif_Crew
     at:       [211.000, 15.500, -260.000, 128]
     level:    [73, 75]
   17088541:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rng
     script:   Ashu_Talif_Crew
     at:       [229.000, 15.500, -260.000, 128]
     level:    [73, 75]
   17088542:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_cor
     script:   Ashu_Talif_Crew
     at:       [220.000, 15.500, -269.000, 128]
     level:    [73, 75]
   17088543:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_mnk
     script:   Ashu_Talif_Crew
     at:       [260.000, 11.500, -331.000, 128]
     level:    [73, 75]
   17088544:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rdm
     script:   Ashu_Talif_Crew
     at:       [251.000, 11.500, -340.000, 104]
     level:    [73, 75]
   17088545:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rng
     script:   Ashu_Talif_Crew
     at:       [269.000, 11.500, -340.000, 107]
     level:    [73, 75]
   17088546:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_cor
     script:   Ashu_Talif_Crew
     at:       [260.000, 11.500, -349.000, 128]
     level:    [73, 75]
   17088547:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_mnk
     script:   Ashu_Talif_Crew
     at:       [260.000, 15.500, -411.000, 192]
     level:    [73, 75]
   17088548:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rdm
     script:   Ashu_Talif_Crew
     at:       [251.000, 15.500, -420.000, 192]
     level:    [73, 75]
   17088549:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rng
     script:   Ashu_Talif_Crew
     at:       [269.000, 15.500, -420.000, 192]
     level:    [73, 75]
   17088550:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_cor
     script:   Ashu_Talif_Crew
     at:       [260.000, 15.500, -429.000, 192]
     level:    [73, 75]
   17088551:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_mnk
     script:   Ashu_Talif_Crew
     at:       [289.000, 3.550, -501.000, 128]
     level:    [73, 75]
   17088552:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rdm
     script:   Ashu_Talif_Crew
     at:       [289.000, 3.550, -499.000, 128]
     level:    [73, 75]
   17088553:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rng
     script:   Ashu_Talif_Crew
     at:       [288.000, 3.550, -503.000, 128]
     level:    [73, 75]
   17088554:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_cor
     script:   Ashu_Talif_Crew
     at:       [288.000, 3.550, -497.000, 128]
     level:    [73, 75]
   17088555:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_mnk
     script:   Ashu_Talif_Crew
     at:       [287.000, 3.500, -506.000, 128]
     level:    [73, 75]
   17088556:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rdm
     script:   Ashu_Talif_Crew
     at:       [287.000, 3.500, -495.000, 128]
     level:    [73, 75]
   17088557:
+    instance: silver_sea_remnants
     template: Hammerblow_Majanun
     at:       [286.500, 3.550, -500.000, 128]
     level:    [75, 75]
   17088558:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_mnk
     script:   Ashu_Talif_Crew
     at:       [312.690, -0.449, -382.690]
     level:    [76, 77]
   17088559:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rdm
     script:   Ashu_Talif_Crew
     at:       [324.390, -0.500, -399.240]
     level:    [76, 77]
   17088560:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rng
     script:   Ashu_Talif_Crew
     at:       [343.510, -0.449, -355.110]
     level:    [76, 77]
   17088561:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_cor
     script:   Ashu_Talif_Crew
     at:       [364.470, -0.500, -401.170]
     level:    [76, 77]
   17088562:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_mnk
     script:   Ashu_Talif_Crew
     at:       [352.480, -1.000, -397.830]
     level:    [76, 77]
   17088563:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rdm
     script:   Ashu_Talif_Crew
     at:       [322.500, -0.500, -408.960]
     level:    [76, 77]
   17088564:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rng
     script:   Ashu_Talif_Crew
     at:       [354.310, -1.000, -362.120]
     level:    [76, 77]
   17088565:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_cor
     script:   Ashu_Talif_Crew
     at:       [357.360, -0.500, -409.660]
     level:    [76, 77]
   17088566:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_mnk
     script:   Ashu_Talif_Crew
     at:       [349.500, -0.500, -385.390]
     level:    [76, 77]
   17088567:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rdm
     script:   Ashu_Talif_Crew
     at:       [337.670, -0.449, -385.660]
     level:    [76, 77]
   17088568:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rng
     script:   Ashu_Talif_Crew
     at:       [344.340, -0.500, -392.710]
     level:    [76, 77]
   17088569:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_cor
     script:   Ashu_Talif_Crew
     at:       [358.570, -0.500, -387.610]
     level:    [76, 77]
   17088570:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_mnk
     script:   Ashu_Talif_Crew
     at:       [349.020, -0.500, -359.610]
     level:    [76, 77]
   17088571:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rdm
     script:   Ashu_Talif_Crew
     at:       [330.410, -0.500, -378.190]
     level:    [76, 77]
   17088572:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rng
     script:   Ashu_Talif_Crew
     at:       [351.400, -1.000, -363.120]
     level:    [76, 77]
   17088573:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_cor
     script:   Ashu_Talif_Crew
     at:       [346.990, -0.500, -412.810]
     level:    [76, 77]
   17088574:
+    instance: silver_sea_remnants
     template: Heraldic_Imp
     at:       [247.750, 3.453, 302.454, 188]
     level:    [73, 75]
   17088575:
+    instance: silver_sea_remnants
     template: Heraldic_Imp
     at:       [285.350, 4.030, 325.700]
     level:    [73, 75]
   17088576:
+    instance: silver_sea_remnants
     template: Heraldic_Imp
     at:       [243.510, 3.915, 275.404, 45]
     level:    [73, 75]
   17088577:
+    instance: silver_sea_remnants
     template: Heraldic_Imp
     at:       [293.600, 3.995, 285.760, 33]
     level:    [73, 75]
   17088578:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_mnk
     script:   Ashu_Talif_Crew
     at:       [270.970, 3.500, 332.838]
     level:    [73, 75]
   17088579:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rdm
     script:   Ashu_Talif_Crew
     at:       [264.439, 3.549, 306.746]
     level:    [73, 75]
   17088580:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rng
     script:   Ashu_Talif_Crew
     at:       [240.910, 3.500, 306.391]
     level:    [73, 75]
   17088581:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_mnk
     script:   Ashu_Talif_Crew
     at:       [279.440, 3.499, 333.330]
     level:    [73, 75]
   17088582:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_mnk
     script:   Ashu_Talif_Crew
     at:       [272.022, 3.000, 308.375]
     level:    [73, 75]
   17088583:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rdm
     script:   Ashu_Talif_Crew
     at:       [292.190, 3.500, 290.028]
     level:    [73, 75]
   17088584:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rng
     script:   Ashu_Talif_Crew
     at:       [276.596, 3.500, 304.422]
     level:    [73, 75]
   17088585:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_mnk
     script:   Ashu_Talif_Crew
     at:       [257.400, 3.499, 286.428]
     level:    [73, 75]
   17088586:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_mnk
     script:   Ashu_Talif_Crew
     at:       [228.370, 3.500, 306.601]
     level:    [73, 75]
   17088587:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rdm
     script:   Ashu_Talif_Crew
     at:       [254.770, 3.500, 317.940]
     level:    [73, 75]
   17088588:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rng
     script:   Ashu_Talif_Crew
     at:       [271.716, 3.000, 288.407]
     level:    [73, 75]
   17088589:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_cor
     script:   Ashu_Talif_Crew
     at:       [243.520, 3.000, 287.502]
     level:    [73, 75]
   17088590:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rdm
     script:   Ashu_Talif_Crew
     at:       [257.850, 3.500, 291.082]
     level:    [73, 75]
   17088591:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_mnk
     script:   Ashu_Talif_Crew
     at:       [249.720, 3.000, 312.795]
     level:    [73, 75]
   17088592:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rng
     script:   Ashu_Talif_Crew
     at:       [270.571, 3.500, 280.703]
     level:    [73, 75]
   17088593:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_cor
     script:   Ashu_Talif_Crew
     at:       [269.053, 3.500, 324.708]
     level:    [73, 75]
   17088594:
+    instance: silver_sea_remnants
     template: Deadpan_Devilet
     at:       [259.750, -0.500, 509.194, 190]
     level:    [79, 79]
   17088595:
+    instance: silver_sea_remnants
     template: Dekka
     at:       [260.480, -0.500, 562.206, 179]
     level:    [79, 80]
   17088596:
+    instance: silver_sea_remnants
     template: Gakke
     at:       [260.000, -0.449, 513.500, 78]
     level:    [79, 79]
   17088597:
+    instance: silver_sea_remnants
     template: Devilet
     at:       [398.429, 3.445, 298.407, 94]
     level:    [79, 80]
   17088598:
+    instance: silver_sea_remnants
     template: Devilet
     at:       [426.308, 3.871, 269.726, 43]
     level:    [79, 80]
   17088599:
+    instance: silver_sea_remnants
     template: Devilet
     at:       [428.911, 3.506, 317.286, 142]
     level:    [79, 80]
   17088600:
+    instance: silver_sea_remnants
     template: Devilet
     at:       [388.051, 3.500, 326.132, 200]
     level:    [79, 80]
   17088601:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_mnk
     script:   Ashu_Talif_Crew
     at:       [446.675, 3.500, 312.403]
     level:    [73, 75]
   17088602:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rdm
     script:   Ashu_Talif_Crew
     at:       [391.069, 3.500, 308.364, 71]
     level:    [73, 75]
   17088603:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rng
     script:   Ashu_Talif_Crew
     at:       [403.405, 3.500, 288.575, 45]
     level:    [73, 75]
   17088604:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_cor
     script:   Ashu_Talif_Crew
     at:       [401.573, 3.509, 315.187, 59]
     level:    [73, 75]
   17088605:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_mnk
     script:   Ashu_Talif_Crew
     at:       [434.851, 3.500, 327.989, 240]
     level:    [73, 75]
   17088606:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rdm
     script:   Ashu_Talif_Crew
     at:       [423.829, 3.505, 283.145, 207]
     level:    [73, 75]
   17088607:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rng
     script:   Ashu_Talif_Crew
     at:       [419.232, 3.500, 319.039, 242]
     level:    [73, 75]
   17088608:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_mnk
     script:   Ashu_Talif_Crew
     at:       [404.387, 3.486, 317.602, 215]
     level:    [73, 75]
   17088609:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_mnk
     script:   Ashu_Talif_Crew
     at:       [402.239, 3.499, 285.483, 59]
     level:    [73, 75]
   17088610:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rdm
     script:   Ashu_Talif_Crew
     at:       [395.811, 3.500, 309.087, 17]
     level:    [73, 75]
   17088611:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rng
     script:   Ashu_Talif_Crew
     at:       [431.832, 3.358, 322.556, 163]
     level:    [73, 75]
   17088612:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_cor
     script:   Ashu_Talif_Crew
     at:       [404.368, 3.494, 301.851, 121]
     level:    [73, 75]
   17088613:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_mnk
     script:   Ashu_Talif_Crew
     at:       [411.713, 3.500, 279.157, 15]
     level:    [73, 75]
   17088614:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rdm
     script:   Ashu_Talif_Crew
     at:       [432.203, 3.483, 316.417, 182]
     level:    [73, 75]
   17088615:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rng
     script:   Ashu_Talif_Crew
     at:       [445.672, 3.500, 288.384, 97]
     level:    [73, 75]
   17088616:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_cor
     script:   Ashu_Talif_Crew
     at:       [394.008, 3.666, 287.445, 8]
     level:    [73, 75]
   17088617:
+    instance: silver_sea_remnants
     template: Powderkeg_Yanadahn
     at:       [437.360, 3.000, 311.552, 192]
     level:    [80, 80]
   17088618:
+    instance: silver_sea_remnants
     template: Heraldic_Imp
     at:       [420.690, -0.449, 511.221]
     level:    [73, 75]
   17088619:
+    instance: silver_sea_remnants
     template: Heraldic_Imp
     at:       [437.440, -1.000, 532.013, 193]
     level:    [73, 75]
   17088620:
+    instance: silver_sea_remnants
     template: Heraldic_Imp
     at:       [400.270, -0.859, 542.460, 120]
     level:    [73, 75]
   17088621:
+    instance: silver_sea_remnants
     template: Heraldic_Imp
     at:       [432.900, -0.910, 541.573]
     level:    [73, 75]
   17088622:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_mnk
     script:   Ashu_Talif_Crew
     at:       [404.110, -0.500, 514.609]
     level:    [73, 75]
   17088623:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rdm
     script:   Ashu_Talif_Crew
     at:       [439.050, -0.500, 559.846]
     level:    [73, 75]
   17088624:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rng
     script:   Ashu_Talif_Crew
     at:       [419.700, -0.500, 547.763]
     level:    [73, 75]
   17088625:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_cor
     script:   Ashu_Talif_Crew
     at:       [435.020, -0.500, 511.292]
     level:    [73, 75]
   17088626:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_mnk
     script:   Ashu_Talif_Crew
     at:       [409.470, -1.000, 530.473]
     level:    [73, 75]
   17088627:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rdm
     script:   Ashu_Talif_Crew
     at:       [438.230, -0.639, 555.981]
     level:    [73, 75]
   17088628:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rng
     script:   Ashu_Talif_Crew
     at:       [426.960, -0.449, 540.218]
     level:    [73, 75]
   17088629:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_cor
     script:   Ashu_Talif_Crew
     at:       [435.980, -1.000, 552.385]
     level:    [73, 75]
   17088630:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rdm
     script:   Ashu_Talif_Crew
     at:       [401.660, -0.500, 536.495]
     level:    [73, 75]
   17088631:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_mnk
     script:   Ashu_Talif_Crew
     at:       [429.210, -0.500, 533.820]
     level:    [73, 75]
   17088632:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rng
     script:   Ashu_Talif_Crew
     at:       [386.120, -0.500, 573.278]
     level:    [73, 75]
   17088633:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_mnk
     script:   Ashu_Talif_Crew
     at:       [422.180, -0.449, 564.390]
     level:    [73, 75]
   17088634:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_mnk
     script:   Ashu_Talif_Crew
     at:       [436.820, -1.000, 551.703]
     level:    [73, 75]
   17088635:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rdm
     script:   Ashu_Talif_Crew
     at:       [452.100, -0.500, 521.124]
     level:    [73, 75]
   17088636:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_rng
     script:   Ashu_Talif_Crew
     at:       [404.640, -0.500, 542.135]
     level:    [73, 75]
   17088637:
+    instance: silver_sea_remnants
     template: Ashu_Talif_Crew_cor
     script:   Ashu_Talif_Crew
     at:       [399.300, -0.500, 518.236]
     level:    [73, 75]
   17088638:
+    instance: silver_sea_remnants
     template: Archaic_Rampart
     at:       [-366.500, -0.449, -513.500, 32]
     level:    [80, 82]
   17088639:
+    instance: silver_sea_remnants
     template: Haunt_SSR
     script:   Haunt
     at:       [-365.600, -0.296, -518.800, 79]
     level:    [75, 76]
   17088640:
+    instance: silver_sea_remnants
     template: Garm
     level:    [75, 76]
   17088641:
+    instance: silver_sea_remnants
     template: Guard_Skeleton_blm_SSR
     script:   Guard_Skeleton
     at:       [-363.400, -0.439, -520.000, 48]
     level:    [75, 76]
   17088642:
+    instance: silver_sea_remnants
     template: Archaic_Rampart
     at:       [-313.500, -0.449, -513.500, 96]
     level:    [80, 82]
   17088643:
+    instance: silver_sea_remnants
     template: Haunt_SSR
     script:   Haunt
     at:       [-316.900, -0.537, -518.590, 222]
     level:    [75, 76]
   17088644:
+    instance: silver_sea_remnants
     template: Garm
     at:       [-319.079, -0.045, -509.290, 138]
     level:    [75, 76]
   17088645:
+    instance: silver_sea_remnants
     template: Doom_Mage_SSR
     script:   Doom_Mage
     at:       [-318.700, -0.217, -512.130, 162]
     level:    [75, 76]
   17088646:
+    instance: silver_sea_remnants
     template: Archaic_Rampart
     at:       [-313.500, -0.449, -566.500, 160]
     level:    [80, 82]
   17088647:
+    instance: silver_sea_remnants
     template: Haunt_SSR
     script:   Haunt
     at:       [-312.600, -0.256, -558.910, 125]
     level:    [75, 76]
   17088648:
+    instance: silver_sea_remnants
     template: Garm
     at:       [-319.935, -0.503, -554.172, 127]
     level:    [75, 76]
   17088649:
+    instance: silver_sea_remnants
     template: Guard_Skeleton_blm_SSR
     script:   Guard_Skeleton
     at:       [-315.800, -0.449, -548.130, 94]
     level:    [75, 76]
   17088650:
+    instance: silver_sea_remnants
     template: Archaic_Rampart
     at:       [-366.500, -0.449, -566.500, 224]
     level:    [80, 82]
   17088651:
+    instance: silver_sea_remnants
     template: Haunt_SSR
     script:   Haunt
     level:    [75, 76]
   17088652:
+    instance: silver_sea_remnants
     template: Garm
     at:       [-364.378, -0.449, -564.379, 224]
     level:    [75, 76]
   17088653:
+    instance: silver_sea_remnants
     template: Doom_Mage_SSR
     script:   Doom_Mage
     level:    [75, 76]
   17088654:
+    instance: silver_sea_remnants
     template: Archaic_Gear
     at:       [-327.000, -0.490, -538.190, 176]
     level:    [80, 82]
   17088655:
+    instance: silver_sea_remnants
     template: Archaic_Gear
     at:       [-358.100, -0.912, -525.360]
     level:    [80, 82]
   17088656:
+    instance: silver_sea_remnants
     template: Archaic_Gears
     at:       [-323.800, -0.500, -535.940, 120]
     level:    [80, 82]
   17088657:
+    instance: silver_sea_remnants
     template: Archaic_Gears
     at:       [-337.100, -0.537, -524.780, 100]
     level:    [80, 82]
   17088658:
+    instance: silver_sea_remnants
     template: Devilet
     at:       [-342.400, -0.104, -331.030]
     level:    [79, 80]
   17088659:
+    instance: silver_sea_remnants
     template: Archaic_Gear
     at:       [-366.500, 0.050, -326.500, 163]
     level:    [80, 82]
   17088660:
+    instance: silver_sea_remnants
     template: Archaic_Gear
     at:       [-341.500, -0.523, -311.930, 165]
     level:    [80, 82]
   17088661:
+    instance: silver_sea_remnants
     template: Archaic_Gear
     at:       [-290.300, -0.039, -300.960, 239]
     level:    [80, 82]
   17088662:
+    instance: silver_sea_remnants
     template: Archaic_Gear
     at:       [-340.000, 0.050, -306.500, 166]
     level:    [80, 82]
   17088663:
+    instance: silver_sea_remnants
     template: Archaic_Gear
     at:       [-317.500, -0.009, -330.440, 116]
     level:    [80, 82]
   17088664:
+    instance: silver_sea_remnants
     template: Archaic_Gear
     at:       [-334.100, -0.504, -305.860, 100]
     level:    [80, 82]
   17088665:
+    instance: silver_sea_remnants
     template: Archaic_Gear
     at:       [-333.500, 0.050, -300.000, 110]
     level:    [80, 82]
   17088666:
+    instance: silver_sea_remnants
     template: Archaic_Gear
     at:       [-343.100, -0.541, -298.550, 100]
     level:    [80, 82]
   17088667:
+    instance: silver_sea_remnants
     template: Gyroscopic_Gear
     at:       [-354.690, -1.000, -317.750]
     level:    [80, 82]
   17088668:
+    instance: silver_sea_remnants
     template: Don_Poroggo
     at:       [-340.000, -0.449, -326.500, 156]
     level:    [82, 82]
   17088669:
+    instance: silver_sea_remnants
     template: Archaic_Rampart
     at:       [-486.500, -4.448, -353.500, 32]
     level:    [80, 82]
   17088670:
+    instance: silver_sea_remnants
     template: Haunt_SSR
     script:   Haunt
     at:       [-468.200, -4.151, -352.890, 222]
     level:    [75, 76]
   17088671:
+    instance: silver_sea_remnants
     template: Garm
     at:       [-468.515, -4.539, -373.721, 239]
     level:    [75, 76]
   17088672:
+    instance: silver_sea_remnants
     template: Guard_Skeleton_war_SSR
     script:   Guard_Skeleton
     at:       [-479.700, -4.537, -360.940, 4]
     level:    [75, 76]
   17088673:
+    instance: silver_sea_remnants
     template: Archaic_Rampart
     at:       [-433.500, -4.448, -353.500, 96]
     level:    [80, 82]
   17088674:
+    instance: silver_sea_remnants
     template: Haunt_SSR
     script:   Haunt
     at:       [-435.800, -4.436, -355.400, 163]
     level:    [75, 76]
   17088675:
+    instance: silver_sea_remnants
     template: Garm
     at:       [-437.295, -4.539, -358.885, 215]
     level:    [75, 76]
   17088676:
+    instance: silver_sea_remnants
     template: Doom_Mage_SSR
     script:   Doom_Mage
     at:       [-436.000, -4.453, -355.880, 106]
     level:    [75, 76]
   17088677:
+    instance: silver_sea_remnants
     template: Archaic_Rampart
     at:       [-433.500, -4.448, -406.500, 160]
     level:    [80, 82]
   17088678:
+    instance: silver_sea_remnants
     template: Haunt_SSR
     script:   Haunt
     at:       [-437.300, -4.467, -403.080, 154]
     level:    [75, 76]
   17088679:
+    instance: silver_sea_remnants
     template: Garm
     level:    [75, 76]
   17088680:
+    instance: silver_sea_remnants
     template: Guard_Skeleton_war_SSR
     script:   Guard_Skeleton
     at:       [-449.600, -4.539, -399.710, 112]
     level:    [75, 76]
   17088681:
+    instance: silver_sea_remnants
     template: Archaic_Rampart
     at:       [-486.500, -4.448, -406.500, 224]
     level:    [80, 82]
   17088682:
+    instance: silver_sea_remnants
     template: Haunt_SSR
     script:   Haunt
     at:       [-482.400, -4.533, -402.940, 172]
     level:    [75, 76]
   17088683:
+    instance: silver_sea_remnants
     template: Garm
     at:       [-484.585, -4.501, -405.245, 59]
     level:    [75, 76]
   17088684:
+    instance: silver_sea_remnants
     template: Doom_Mage_SSR
     script:   Doom_Mage
     at:       [-458.200, -4.539, -399.180, 122]
     level:    [75, 76]
   17088685:
+    instance: silver_sea_remnants
     template: Archaic_Gear
     at:       [-448.100, -4.539, -399.190, 229]
     level:    [80, 82]
   17088686:
+    instance: silver_sea_remnants
     template: Archaic_Gear
     at:       [-436.600, -4.539, -405.030, 163]
     level:    [80, 82]
   17088687:
+    instance: silver_sea_remnants
     template: Archaic_Gear
     at:       [-472.700, -4.539, -373.240, 238]
     level:    [80, 82]
   17088688:
+    instance: silver_sea_remnants
     template: Archaic_Gear
     at:       [-470.800, -4.539, -370.250, 234]
     level:    [80, 82]
   17088689:
+    instance: silver_sea_remnants
     template: Archaic_Gears
     at:       [-443.000, -4.539, -410.320, 119]
     level:    [80, 82]
   17088690:
+    instance: silver_sea_remnants
     template: Archaic_Gears
     at:       [-446.300, -4.532, -400.620, 164]
     level:    [80, 82]
   17088691:
+    instance: silver_sea_remnants
     template: Archaic_Gears
     at:       [-476.700, -4.539, -362.800, 109]
     level:    [80, 82]
   17088692:
+    instance: silver_sea_remnants
     template: Archaic_Gears
     at:       [-436.200, -4.452, -392.040, 169]
     level:    [80, 82]
   17088693:
+    instance: silver_sea_remnants
     template: Archaic_Rampart
     at:       [-232.500, -4.500, -367.500, 32]
     level:    [80, 82]
   17088694:
+    instance: silver_sea_remnants
     template: Haunt_SSR
     script:   Haunt
     level:    [75, 76]
   17088695:
+    instance: silver_sea_remnants
     template: Garm
     level:    [75, 76]
   17088696:
+    instance: silver_sea_remnants
     template: Guard_Skeleton_blm_SSR
     script:   Guard_Skeleton
     level:    [75, 76]
   17088697:
+    instance: silver_sea_remnants
     template: Archaic_Rampart
     at:       [-207.500, -5.000, -367.500, 96]
     level:    [80, 82]
   17088698:
+    instance: silver_sea_remnants
     template: Haunt_SSR
     script:   Haunt
     level:    [75, 76]
   17088699:
+    instance: silver_sea_remnants
     template: Garm
     level:    [75, 76]
   17088700:
+    instance: silver_sea_remnants
     template: Doom_Mage_SSR
     script:   Doom_Mage
     level:    [75, 76]
   17088701:
+    instance: silver_sea_remnants
     template: Archaic_Rampart
     at:       [-207.500, -5.000, -392.500, 160]
     level:    [80, 82]
   17088702:
+    instance: silver_sea_remnants
     template: Haunt_SSR
     script:   Haunt
     level:    [75, 76]
   17088703:
+    instance: silver_sea_remnants
     template: Garm
     level:    [75, 76]
   17088704:
+    instance: silver_sea_remnants
     template: Guard_Skeleton_blm_SSR
     script:   Guard_Skeleton
     level:    [75, 76]
   17088705:
+    instance: silver_sea_remnants
     template: Archaic_Rampart
     at:       [-232.500, -5.000, -392.500, 224]
     level:    [80, 82]
   17088706:
+    instance: silver_sea_remnants
     template: Haunt_SSR
     script:   Haunt
     level:    [75, 76]
   17088707:
+    instance: silver_sea_remnants
     template: Garm
     level:    [75, 76]
   17088708:
+    instance: silver_sea_remnants
     template: Doom_Mage_SSR
     script:   Doom_Mage
     level:    [75, 76]
   17088709:
+    instance: silver_sea_remnants
     template: Archaic_Gear
     at:       [-220.600, -4.211, -404.210, 38]
     level:    [80, 82]
   17088710:
+    instance: silver_sea_remnants
     template: Archaic_Gear
     at:       [-246.200, -4.315, -364.410, 43]
     level:    [80, 82]
   17088711:
+    instance: silver_sea_remnants
     template: Archaic_Gear
     at:       [-222.700, -4.342, -359.030, 60]
     level:    [80, 82]
   17088712:
+    instance: silver_sea_remnants
     template: Archaic_Gear
     at:       [-247.600, -4.178, -368.720, 106]
     level:    [80, 82]
   17088713:
+    instance: silver_sea_remnants
     template: Archaic_Gears
     at:       [-249.200, -4.482, -352.120, 169]
     level:    [80, 82]
   17088714:
+    instance: silver_sea_remnants
     template: Archaic_Gears
     at:       [-217.400, -4.414, -401.170, 156]
     level:    [80, 82]
   17088715:
+    instance: silver_sea_remnants
     template: Archaic_Gears
     at:       [-218.000, -4.397, -401.380, 156]
     level:    [80, 82]
   17088716:
+    instance: silver_sea_remnants
     template: Archaic_Gears
     at:       [-249.400, -4.078, -378.940, 77]
     level:    [80, 82]
   17088717:
+    instance: silver_sea_remnants
     template: Gyroscopic_Gears
     at:       [-225.700, -4.500, -354.630, 91]
     level:    [80, 82]
   17088718:
+    instance: silver_sea_remnants
     template: Archaic_Gear
     at:       [-372.300, -0.096, 208.766, 167]
     level:    [80, 82]
   17088719:
+    instance: silver_sea_remnants
     template: Archaic_Gear
     at:       [-374.600, -0.050, 226.492, 10]
     level:    [80, 82]
   17088720:
+    instance: silver_sea_remnants
     template: Archaic_Gears
     at:       [-379.400, -0.035, 225.830, 23]
     level:    [80, 82]
   17088721:
+    instance: silver_sea_remnants
     template: Archaic_Gears
     at:       [-387.800, -0.063, 205.994, 127]
     level:    [80, 82]
   17088722:
+    instance: silver_sea_remnants
     template: Archaic_Gear
     at:       [-378.000, -4.000, 139.811, 120]
     level:    [80, 82]
   17088723:
+    instance: silver_sea_remnants
     template: Archaic_Gear
     at:       [-375.900, -4.004, 148.057, 239]
     level:    [80, 82]
   17088724:
+    instance: silver_sea_remnants
     template: Archaic_Gears
     at:       [-371.100, -4.006, 129.179, 118]
     level:    [80, 82]
   17088725:
+    instance: silver_sea_remnants
     template: Archaic_Gears
     at:       [-379.400, -4.000, 128.930, 13]
     level:    [80, 82]
   17088726:
+    instance: silver_sea_remnants
     template: Archaic_Chariot
     at:       [-420.000, -4.448, 73.500, 192]
     level:    [80, 82]
   17088727:
+    instance: silver_sea_remnants
     template: Archaic_Rampart
     at:       [-446.500, -4.448, 86.500]
     level:    [80, 82]
   17088728:
+    instance: silver_sea_remnants
     template: Night_Eft
     level:    [73, 73]
   17088729:
+    instance: silver_sea_remnants
     template: Sand_Lizard
     level:    [73, 73]
   17088730:
+    instance: silver_sea_remnants
     template: Deinonychus
     level:    [73, 73]
   17088731:
+    instance: silver_sea_remnants
     template: Archaic_Rampart
     at:       [-393.500, -4.448, 86.500, 128]
     level:    [80, 82]
   17088732:
+    instance: silver_sea_remnants
     template: Night_Eft
     level:    [73, 73]
   17088733:
+    instance: silver_sea_remnants
     template: Sand_Lizard
     level:    [73, 73]
   17088734:
+    instance: silver_sea_remnants
     template: Deinonychus
     level:    [73, 73]
   17088735:
+    instance: silver_sea_remnants
     template: Archaic_Rampart
     at:       [-393.500, -4.448, 73.500, 128]
     level:    [80, 82]
   17088736:
+    instance: silver_sea_remnants
     template: Night_Eft
     level:    [73, 73]
   17088737:
+    instance: silver_sea_remnants
     template: Sand_Lizard
     level:    [73, 73]
   17088738:
+    instance: silver_sea_remnants
     template: Deinonychus
     level:    [73, 73]
   17088739:
+    instance: silver_sea_remnants
     template: Archaic_Rampart
     at:       [-446.500, -4.448, 73.500]
     level:    [80, 82]
   17088740:
+    instance: silver_sea_remnants
     template: Night_Eft
     level:    [73, 73]
   17088741:
+    instance: silver_sea_remnants
     template: Sand_Lizard
     level:    [73, 73]
   17088742:
+    instance: silver_sea_remnants
     template: Deinonychus
     level:    [73, 73]
   17088743:
+    instance: silver_sea_remnants
     template: Archaic_Gear
     at:       [-462.300, -4.000, 30.092, 215]
     level:    [80, 82]
   17088744:
+    instance: silver_sea_remnants
     template: Archaic_Gear
     at:       [-470.200, -4.005, 25.613, 10]
     level:    [80, 82]
   17088745:
+    instance: silver_sea_remnants
     template: Archaic_Gears
     at:       [-457.700, -4.001, 21.039, 102]
     level:    [80, 82]
   17088746:
+    instance: silver_sea_remnants
     template: Archaic_Gears
     at:       [-458.000, -4.005, 33.659, 129]
     level:    [80, 82]
   17088747:
+    instance: silver_sea_remnants
     template: Archaic_Gear
     at:       [-375.500, -0.032, -24.986, 104]
     level:    [80, 82]
   17088748:
+    instance: silver_sea_remnants
     template: Archaic_Gear
     at:       [-383.200, -0.035, -30.909, 115]
     level:    [80, 82]
   17088749:
+    instance: silver_sea_remnants
     template: Archaic_Gears
     at:       [-374.900, -0.023, -22.761, 109]
     level:    [80, 82]
   17088750:
+    instance: silver_sea_remnants
     template: Archaic_Gears
     at:       [-371.500, -0.017, -25.295, 137]
     level:    [80, 82]
   17088751:
+    instance: silver_sea_remnants
     template: Archaic_Gear
     at:       [-301.300, -3.996, 171.804, 26]
     level:    [80, 82]
   17088752:
+    instance: silver_sea_remnants
     template: Archaic_Gear
     at:       [-306.500, -3.698, 176.373, 66]
     level:    [80, 82]
   17088753:
+    instance: silver_sea_remnants
     template: Archaic_Gear
     at:       [-300.700, -4.006, 170.552, 195]
     level:    [80, 82]
   17088754:
+    instance: silver_sea_remnants
     template: Archaic_Gear
     at:       [-300.900, -4.011, 168.494, 195]
     level:    [80, 82]
   17088755:
+    instance: silver_sea_remnants
     template: Archaic_Gear
     at:       [-261.200, -4.045, 50.473, 190]
     level:    [80, 82]
   17088756:
+    instance: silver_sea_remnants
     template: Archaic_Gear
     at:       [-260.700, -4.067, 35.088, 194]
     level:    [80, 82]
   17088757:
+    instance: silver_sea_remnants
     template: Archaic_Gears
     at:       [-237.300, -4.001, 71.442, 132]
     level:    [80, 82]
   17088758:
+    instance: silver_sea_remnants
     template: Archaic_Gears
     at:       [-288.900, -4.015, 90.538, 234]
     level:    [80, 82]
   17088759:
+    instance: silver_sea_remnants
     template: Archaic_Gears
     at:       [-269.100, -4.014, 73.704, 127]
     level:    [80, 82]
   17088760:
+    instance: silver_sea_remnants
     template: Archaic_Gears
     at:       [-268.500, -4.018, 74.133, 248]
     level:    [80, 82]
   17088761:
+    instance: silver_sea_remnants
     template: Archaic_Gears
     at:       [-229.000, -4.014, 78.818, 202]
     level:    [80, 82]
   17088762:
+    instance: silver_sea_remnants
     template: Archaic_Gears
     at:       [-246.000, -4.015, 83.472, 10]
     level:    [80, 82]
   17088763:
+    instance: silver_sea_remnants
     template: Archaic_Gears
     at:       [-253.400, -4.017, 84.732, 49]
     level:    [80, 82]
   17088764:
+    instance: silver_sea_remnants
     template: Archaic_Gears
     at:       [-249.700, -4.015, 84.080, 3]
     level:    [80, 82]
   17088765:
+    instance: silver_sea_remnants
     template: Archaic_Gears
     at:       [-239.200, -4.014, 89.861, 139]
     level:    [80, 82]
   17088766:
+    instance: silver_sea_remnants
     template: Archaic_Gears
     at:       [-274.800, -4.025, 73.732, 221]
     level:    [80, 82]
   17088767:
+    instance: silver_sea_remnants
     template: Archaic_Chariot
     at:       [-260.000, -4.448, 73.500, 192]
     level:    [80, 82]
   17088768:
+    instance: silver_sea_remnants
     template: Archaic_Rampart
     at:       [-286.500, -4.448, 86.500]
     level:    [80, 82]
   17088769:
+    instance: silver_sea_remnants
     template: Night_Eft
     level:    [73, 73]
   17088770:
+    instance: silver_sea_remnants
     template: Sand_Lizard
     level:    [73, 73]
   17088771:
+    instance: silver_sea_remnants
     template: Deinonychus
     level:    [73, 73]
   17088772:
+    instance: silver_sea_remnants
     template: Archaic_Rampart
     at:       [-233.500, -4.448, 86.500, 128]
     level:    [80, 82]
   17088773:
+    instance: silver_sea_remnants
     template: Night_Eft
     level:    [73, 73]
   17088774:
+    instance: silver_sea_remnants
     template: Sand_Lizard
     level:    [73, 73]
   17088775:
+    instance: silver_sea_remnants
     template: Deinonychus
     level:    [73, 73]
   17088776:
+    instance: silver_sea_remnants
     template: Archaic_Rampart
     at:       [-233.500, -4.448, 73.500, 128]
     level:    [80, 82]
   17088777:
+    instance: silver_sea_remnants
     template: Night_Eft
     at:       [-233.700, -4.448, 70.513, 67]
     level:    [73, 73]
   17088778:
+    instance: silver_sea_remnants
     template: Sand_Lizard
     level:    [73, 73]
   17088779:
+    instance: silver_sea_remnants
     template: Deinonychus
     level:    [73, 73]
   17088780:
+    instance: silver_sea_remnants
     template: Archaic_Rampart
     at:       [-286.500, -4.448, 73.500]
     level:    [80, 82]
   17088781:
+    instance: silver_sea_remnants
     template: Night_Eft
     at:       [-233.700, -4.448, 70.513, 67]
     level:    [73, 73]
   17088782:
+    instance: silver_sea_remnants
     template: Sand_Lizard
     level:    [73, 73]
   17088783:
+    instance: silver_sea_remnants
     template: Deinonychus
     level:    [73, 73]
   17088784:
+    instance: silver_sea_remnants
     template: Archaic_Rampart
     at:       [-260.000, -4.448, 86.500, 192]
     level:    [80, 82]
   17088785:
+    instance: silver_sea_remnants
     template: Citadel_Chelonian
     level:    [73, 73]
   17088786:
+    instance: silver_sea_remnants
     template: Long-Armed_Chariot
     at:       [-340.000, -4.448, 553.500, 192]
     level:    [83, 85]

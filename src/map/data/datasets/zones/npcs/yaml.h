@@ -26,6 +26,7 @@
 #include "data/enums/elevator.h"
 #include "data/enums/status.h"
 #include "data/shared_types/look.h"
+#include "data/shared_types/names.h"
 #include "data/shared_types/render.h"
 #include "data/yaml/enum_token.h"
 #include "data/yaml/schema_annotations.h"
@@ -65,6 +66,7 @@ struct Npc
     std::optional<bool>                         widescan;
     std::optional<yaml::EnumToken<xi::Content>> content;
     std::optional<Lift>                         elevator;
+    std::optional<shared::Names>                instance;
 };
 
 struct Document
@@ -90,6 +92,7 @@ struct glz::json_schema<xi::data::datasets::zones::npcs::wire::Npc>
     glz::schema widescan{ .description = "Whether the NPC appears on widescan. Defaults to false." };
     glz::schema content{ .description = "Content tag gating this NPC. Omitted means always enabled." };
     glz::schema elevator{ .description = "Present when this NPC is an elevator platform." };
+    glz::schema instance{ .description = "Instance in instances.yaml this NPC belongs to, or a list of them. NPCs in an instanced zone only load as part of an instance." };
 };
 
 template <>

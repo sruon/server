@@ -548,23 +548,28 @@ spawns:
   17838145:
     script: Sverdhried_qm
   17838146:
+    instance: behind_the_sluices
     template: Arciela
     at:       [-130.000, -6.300, -370.000, 224]
     level:    [108, 108]
   17838147:
+    instance: behind_the_sluices
     template: The_Keeper
     at:       [-108.000, -6.267, -348.000, 96]
     level:    [110, 110]
   17838148:
+    instance: behind_the_sluices
     template: Mistdagger
     at:       [-111.000, -6.265, -351.000, 96]
     level:    [108, 108]
   17838149:
+    instance: behind_the_sluices
     template: The_Briars_elv
     script:   The_Briars
     at:       [-114.000, -6.267, -348.000, 96]
     level:    [108, 108]
   17838150:
+    instance: behind_the_sluices
     template: The_Briars_gal
     script:   The_Briars
     at:       [-108.000, -6.301, -354.000, 96]

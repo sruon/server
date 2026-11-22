@@ -23,6 +23,7 @@
 
 #include "data/datasets/zones/npcs/yaml.h"
 #include "data/shared_types/look.h"
+#include "data/shared_types/names.h"
 #include "data/shared_types/position.h"
 #include "data/yaml/read.h"
 
@@ -113,6 +114,7 @@ auto Dataset::decode(const std::string_view text) -> Records
             .King            = source.render.king.value_or(false),
             .Content         = yaml::resolveEnum(source.content),
             .Elevator        = convertElevator(source.elevator, id),
+            .Instances       = shared::toNames(source.instance),
         });
     }
 

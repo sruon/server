@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=../../schemas/instances.schema.json
+
+instances:
+
+  zhayolm_remnants:
+    id:         7300
+    entrance:   alzadaal_undersea_ruins
+    time_limit: 100
+    entry:      [340.000, 0.000, -592.000, 192]
+
+# Not implemented yet:
+#   zhayolm_remnants_ii: 7301

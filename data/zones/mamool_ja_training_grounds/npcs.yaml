@@ -350,6 +350,7 @@ npcs:
         model: 50
 
   17047808:
+    instance:     [imperial_agent_rescue, preemptive_strike]
     script:       Ancient_Lockbox
     display_name: Ancient Lockbox
     at:           [220.000, 1.619, -502.999]
@@ -364,6 +365,7 @@ npcs:
     content:         toau
 
   17047809:
+    instance:     [imperial_agent_rescue, preemptive_strike]
     script:       Rune_of_Release
     display_name: Rune of Release
     at:           [220.000, 1.465, -504.999]
@@ -378,6 +380,7 @@ npcs:
     content: toau
 
   17047810:
+    instance:     imperial_agent_rescue
     script:       Brujeel
     display_name: Brujeel
     at:           [183.865, 0.682, -583.247, 187]
@@ -443,6 +446,7 @@ npcs:
     widescan: true
 
   17047815:
+    instance:     imperial_agent_rescue
     script:       Supplies_Crate
     display_name: Supplies Crate
     at:           [-18.000, 2.140, -379.999, 128]
@@ -640,6 +644,7 @@ npcs:
     widescan: true
 
   17047832:
+    instance:     imperial_agent_rescue
     script:       Zahakahm
     display_name: Zahakahm
     at:           [283.834, 2.502, -420.320, 2]
@@ -688,8 +693,9 @@ npcs:
       moving: 1
 
   17047836:
-    script: NPC[11e]
-    at:     [-100.441, -3.806, 56.659, 79]
+    instance: preemptive_strike
+    script:   NPC[11e]
+    at:       [-100.441, -3.806, 56.659, 79]
     render:
       look:
         type:  standard
@@ -963,8 +969,9 @@ npcs:
     content: toau
 
   17047864:
-    script: _1u4
-    at:     [-20.001, 0.459, -399.989]
+    instance: imperial_agent_rescue
+    script:   _1u4
+    at:       [-20.001, 0.459, -399.989]
     render:
       look:
         type: door
@@ -976,8 +983,9 @@ npcs:
     content: toau
 
   17047865:
-    script: _1u5
-    at:     [120.000, 0.461, -500.003]
+    instance: imperial_agent_rescue
+    script:   _1u5
+    at:       [120.000, 0.461, -500.003]
     render:
       look:
         type: door
@@ -989,8 +997,9 @@ npcs:
     content: toau
 
   17047866:
-    script: _1u6
-    at:     [159.995, 0.441, -419.996]
+    instance: imperial_agent_rescue
+    script:   _1u6
+    at:       [159.995, 0.441, -419.996]
     render:
       look:
         type: door
@@ -1002,8 +1011,9 @@ npcs:
     content: toau
 
   17047867:
-    script: _1u7
-    at:     [280.002, 0.454, -419.996]
+    instance: imperial_agent_rescue
+    script:   _1u7
+    at:       [280.002, 0.454, -419.996]
     render:
       look:
         type: door
@@ -1027,8 +1037,9 @@ npcs:
     status: normal
 
   17047869:
-    script: _1u9
-    at:     [-240.004, -8.470, -139.996]
+    instance: preemptive_strike
+    script:   _1u9
+    at:       [-240.004, -8.470, -139.996]
     render:
       look:
         type: door
@@ -1040,8 +1051,9 @@ npcs:
     content: toau
 
   17047870:
-    script: _1ua
-    at:     [-139.997, -8.494, -199.993]
+    instance: preemptive_strike
+    script:   _1ua
+    at:       [-139.997, -8.494, -199.993]
     render:
       look:
         type: door
@@ -1053,8 +1065,9 @@ npcs:
     content: toau
 
   17047871:
-    script: _1ub
-    at:     [-99.999, -8.494, -159.995]
+    instance: preemptive_strike
+    script:   _1ub
+    at:       [-99.999, -8.494, -159.995]
     render:
       look:
         type: door
@@ -1102,8 +1115,9 @@ npcs:
     status: normal
 
   17047875:
-    script: _1uf
-    at:     [-80.001, -5.492, 20.000]
+    instance: preemptive_strike
+    script:   _1uf
+    at:       [-80.001, -5.492, 20.000]
     render:
       look:
         type: door
@@ -1115,8 +1129,9 @@ npcs:
     content: toau
 
   17047876:
-    script: _1ug
-    at:     [-40.000, -8.474, 19.996]
+    instance: preemptive_strike
+    script:   _1ug
+    at:       [-40.000, -8.474, 19.996]
     render:
       look:
         type: door
@@ -1365,8 +1380,9 @@ npcs:
     status: normal
 
   17047896:
-    script: _ju0
-    at:     [19.998, 0.835, -520.010]
+    instance: imperial_agent_rescue
+    script:   _ju0
+    at:       [19.998, 0.835, -520.010]
     render:
       look:
         type: door
@@ -1378,8 +1394,9 @@ npcs:
     content: toau
 
   17047897:
-    script: _ju1
-    at:     [160.000, 0.762, -500.001]
+    instance: imperial_agent_rescue
+    script:   _ju1
+    at:       [160.000, 0.762, -500.001]
     render:
       look:
         type: door
@@ -1391,8 +1408,9 @@ npcs:
     content: toau
 
   17047898:
-    script: _ju2
-    at:     [180.001, 0.746, -439.999]
+    instance: imperial_agent_rescue
+    script:   _ju2
+    at:       [180.001, 0.746, -439.999]
     render:
       look:
         type: door
@@ -1404,8 +1422,9 @@ npcs:
     content: toau
 
   17047899:
-    script: _ju3
-    at:     [220.004, 0.790, -439.999]
+    instance: imperial_agent_rescue
+    script:   _ju3
+    at:       [220.004, 0.790, -439.999]
     render:
       look:
         type: door
@@ -1417,8 +1436,9 @@ npcs:
     content: toau
 
   17047900:
-    script: _ju4
-    at:     [260.001, 0.734, -439.999]
+    instance: imperial_agent_rescue
+    script:   _ju4
+    at:       [260.001, 0.734, -439.999]
     render:
       look:
         type: door
@@ -1430,8 +1450,9 @@ npcs:
     content: toau
 
   17047901:
-    script: _ju5
-    at:     [179.998, 0.771, -559.996]
+    instance: imperial_agent_rescue
+    script:   _ju5
+    at:       [179.998, 0.771, -559.996]
     render:
       look:
         type: door
@@ -1443,8 +1464,9 @@ npcs:
     content: toau
 
   17047902:
-    script: _ju6
-    at:     [220.001, 0.811, -559.996]
+    instance: imperial_agent_rescue
+    script:   _ju6
+    at:       [220.001, 0.811, -559.996]
     render:
       look:
         type: door
@@ -1456,8 +1478,9 @@ npcs:
     content: toau
 
   17047903:
-    script: _ju7
-    at:     [259.999, 0.766, -559.996]
+    instance: imperial_agent_rescue
+    script:   _ju7
+    at:       [259.999, 0.766, -559.996]
     render:
       look:
         type: door
@@ -1625,6 +1648,7 @@ npcs:
     status: normal
 
   17047917:
+    instance:     imperial_agent_rescue
     script:       _jul
     display_name: Pot Hatch
     at:           [183.522, 0.144, -581.294]
@@ -1639,6 +1663,7 @@ npcs:
     content: toau
 
   17047918:
+    instance:     imperial_agent_rescue
     script:       _jum
     display_name: Pot Hatch
     at:           [267.011, 0.347, -582.291]
@@ -1653,6 +1678,7 @@ npcs:
     content: toau
 
   17047919:
+    instance:     imperial_agent_rescue
     script:       _jun
     display_name: Pot Hatch
     at:           [220.903, -0.704, -415.604]

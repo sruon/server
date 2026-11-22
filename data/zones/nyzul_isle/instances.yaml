@@ -1,0 +1,46 @@
+# yaml-language-server: $schema=../../schemas/instances.schema.json
+
+instances:
+
+  path_of_darkness:
+    id:         7700
+    entrance:   alzadaal_undersea_ruins
+    time_limit: 30
+    entry:      [500.000, 0.000, -572.000, 192]
+    music:
+      day:          143
+      night:        143
+      battle_solo:  143
+      battle_party: 143
+
+  nashmeiras_plea:
+    id:         7701
+    entrance:   alzadaal_undersea_ruins
+    time_limit: 45
+    entry:      [-444.000, -4.000, 420.000, 127]
+    music:
+      day:          143
+      night:        143
+      battle_solo:  143
+      battle_party: 143
+
+  waking_the_colossus:
+    id:         7702
+    entrance:   alzadaal_undersea_ruins
+    time_limit: 15
+    entry:      [-444.000, -4.000, 420.000, 127]
+    music:
+      day:          187
+      night:        187
+      battle_solo:  187
+      battle_party: 187
+
+  nyzul_isle_investigation:
+    id:         7704
+    entrance:   alzadaal_undersea_ruins
+    time_limit: 30
+    entry:      [-20.000, -4.000, -20.000, 196]
+
+# Not implemented yet:
+#   forging_a_new_myth: 7703
+#   nyzul_isle_uncharted_survey: 7705

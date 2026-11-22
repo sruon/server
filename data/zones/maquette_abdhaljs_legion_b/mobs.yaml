@@ -1047,6 +1047,7 @@ spawns:
   17952866:
     script: Auspicious_Entity
   17952867:
-    script: Bozzetto_Breadwinner
-    at:     [160.000, 12.000, -160.000, 160]
-    level:  [119, 0]
+    instance: ambuscade
+    script:   Bozzetto_Breadwinner
+    at:       [160.000, 12.000, -160.000, 160]
+    level:    [119, 0]

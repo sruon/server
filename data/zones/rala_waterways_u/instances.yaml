@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=../../schemas/instances.schema.json
+
+instances:
+
+  behind_the_sluices:
+    id:       25900
+    entrance: rala_waterways
+    entry:    [-153.000, -5.700, -380.000, 0]

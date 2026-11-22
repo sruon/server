@@ -195,6 +195,7 @@ npcs:
         model: 50
 
   17002654:
+    instance:     [golden_salvage, lamia_no_13, extermination]
     script:       Ancient_Lockbox
     display_name: Ancient Lockbox
     at:           [380.000, -7.756, 61.999]
@@ -210,6 +211,7 @@ npcs:
     content:         toau
 
   17002655:
+    instance:     [golden_salvage, lamia_no_13, extermination]
     script:       Rune_of_Release
     display_name: Rune of Release
     at:           [380.000, -7.894, 64.999]
@@ -996,8 +998,9 @@ npcs:
     content: toau
 
   17002719:
-    script: _1jc
-    at:     [98.908, -10.562, -34.255]
+    instance: [lamia_no_13, extermination]
+    script:   _1jc
+    at:       [98.908, -10.562, -34.255]
     render:
       look:
         type: door
@@ -1009,8 +1012,9 @@ npcs:
     content: toau
 
   17002720:
-    script: _1jd
-    at:     [79.081, -3.499, -141.455]
+    instance: [golden_salvage, lamia_no_13]
+    script:   _1jd
+    at:       [79.081, -3.499, -141.455]
     render:
       look:
         type: door
@@ -1059,8 +1063,9 @@ npcs:
     status: normal
 
   17002724:
-    script: _1jh
-    at:     [40.136, -14.523, 59.919]
+    instance: golden_salvage
+    script:   _1jh
+    at:       [40.136, -14.523, 59.919]
     render:
       look:
         type: door
@@ -1072,8 +1077,9 @@ npcs:
     content: toau
 
   17002725:
-    script: _1ji
-    at:     [205.627, -3.499, -40.799]
+    instance: golden_salvage
+    script:   _1ji
+    at:       [205.627, -3.499, -40.799]
     render:
       look:
         type: door
@@ -1085,8 +1091,9 @@ npcs:
     content: toau
 
   17002726:
-    script: _1jj
-    at:     [217.523, -3.499, 0.913]
+    instance: [golden_salvage, extermination]
+    script:   _1jj
+    at:       [217.523, -3.499, 0.913]
     render:
       look:
         type: door
@@ -1149,8 +1156,9 @@ npcs:
     content: toau
 
   17002731:
-    script: _1jo
-    at:     [242.683, -8.518, 93.763]
+    instance: [golden_salvage, extermination]
+    script:   _1jo
+    at:       [242.683, -8.518, 93.763]
     render:
       look:
         type: door
@@ -1162,8 +1170,9 @@ npcs:
     content: toau
 
   17002732:
-    script: _1jp
-    at:     [380.079, -14.523, 75.136]
+    instance: golden_salvage
+    script:   _1jp
+    at:       [380.079, -14.523, 75.136]
     render:
       look:
         type: door
@@ -1175,8 +1184,9 @@ npcs:
     content: toau
 
   17002733:
-    script: _1jq
-    at:     [385.854, -3.499, 158.774]
+    instance: [golden_salvage, extermination]
+    script:   _1jq
+    at:       [385.854, -3.499, 158.774]
     render:
       look:
         type: door
@@ -1188,8 +1198,9 @@ npcs:
     content: toau
 
   17002734:
-    script: _1jr
-    at:     [517.066, -8.518, 255.814]
+    instance: extermination
+    script:   _1jr
+    at:       [517.066, -8.518, 255.814]
     render:
       look:
         type: door
@@ -1311,8 +1322,9 @@ npcs:
     status: normal
 
   17002744:
-    script: _jj1
-    at:     [35.305, -6.500, -265.811]
+    instance: lamia_no_13
+    script:   _jj1
+    at:       [35.305, -6.500, -265.811]
     render:
       look:
         type: door
@@ -1324,8 +1336,9 @@ npcs:
     content: toau
 
   17002745:
-    script: _jj2
-    at:     [79.030, -6.000, -104.141]
+    instance: lamia_no_13
+    script:   _jj2
+    at:       [79.030, -6.000, -104.141]
     render:
       look:
         type: door
@@ -1337,8 +1350,9 @@ npcs:
     content: toau
 
   17002746:
-    script: _jj3
-    at:     [155.291, -6.500, 66.189]
+    instance: extermination
+    script:   _jj3
+    at:       [155.291, -6.500, 66.189]
     render:
       look:
         type: door
@@ -1362,8 +1376,9 @@ npcs:
     status: normal
 
   17002748:
-    script: _jj5
-    at:     [266.242, -6.500, 239.291]
+    instance: extermination
+    script:   _jj5
+    at:       [266.242, -6.500, 239.291]
     render:
       look:
         type: door
@@ -1411,8 +1426,9 @@ npcs:
     status: normal
 
   17002752:
-    script: _jj9
-    at:     [464.223, -6.500, -437.038]
+    instance: golden_salvage
+    script:   _jj9
+    at:       [464.223, -6.500, -437.038]
     render:
       look:
         type: door
@@ -1423,8 +1439,9 @@ npcs:
     status: normal
 
   17002753:
-    script: _jja
-    at:     [320.895, -6.500, 65.576]
+    instance: golden_salvage
+    script:   _jja
+    at:       [320.895, -6.500, 65.576]
     render:
       look:
         type: door
@@ -1436,8 +1453,9 @@ npcs:
     content: toau
 
   17002754:
-    script: _jjb
-    at:     [371.905, -6.500, 118.838]
+    instance: golden_salvage
+    script:   _jjb
+    at:       [371.905, -6.500, 118.838]
     render:
       look:
         type: door
@@ -1449,8 +1467,9 @@ npcs:
     content: toau
 
   17002755:
-    script: _jjc
-    at:     [427.680, -6.500, 292.455]
+    instance: extermination
+    script:   _jjc
+    at:       [427.680, -6.500, 292.455]
     render:
       look:
         type: door
