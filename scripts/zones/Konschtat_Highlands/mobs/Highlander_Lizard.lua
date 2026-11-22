@@ -13,7 +13,7 @@ entity.onMobInitialize = function(mob)
     mob:addMod(xi.mod.STORETP, 25) -- May need adjustment.
 
     -- Hits especially hard for his level, even by NM standards.
-    mob:addMod(xi.mod.ATT, 50) -- May need adjustment along with cmbDmgMult in mob_pools.sql
+    mob:addMod(xi.mod.ATT, 50) -- May need adjustment along with the template dmg_mult in mobs.yaml
 end
 
 entity.onMobDeath = function(mob, player, optParams)

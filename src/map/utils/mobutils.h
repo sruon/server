@@ -27,6 +27,7 @@
 #include <common/types/hash_map.h>
 
 #include "data/datasets/ecosystems/dataset.h"
+#include "data/datasets/mob_pools/dataset.h"
 #include "data/enums/ecosystem.h"
 #include "data/enums/family.h"
 #include "entities/mob_entity.h"
@@ -83,6 +84,10 @@ void ApplyStatRanks(T& out, const xi::data::StatRanksData& stats)
 
 void LoadSpeciesData();
 auto GetSpeciesData(uint16 speciesId) -> const SpeciesInfo&;
+void LoadMobPools();
+auto GetMobPool(uint32 poolId) -> const xi::data::MobPoolData*;
+auto ResolvePoolAttributes(const xi::data::MobPoolData& pool) -> xi::data::MobAttributesData;
+void ApplyPool(CMobEntity* PMob, const xi::data::MobPoolData& pool);
 void ApplySpecies(CMobEntity* PMob);
 void ApplySpecies(CMobEntity* PMob, const xi::data::MobAttributesData& attributes);
 void CalculateMobStats(CMobEntity* PMob, bool recover = true);
@@ -105,11 +110,9 @@ auto GetSubJobStats(uint8 rank, uint16 level, uint16 stat) -> uint16;
 auto MonipulatorBaseHP(xi::Job mjob, xi::Job sjob, uint8 level) -> uint32;
 void GetAvailableSpells(CMobEntity* PMob);
 void InitializeMob(CMobEntity* PMob);
-void LoadSqlModifiers();
 void Cleanup();
 
-// get modifiers for pool / spawn
-auto GetMobPoolMods(uint32 poolId, bool create = false) -> ModsList_t*;
+// get modifiers for spawn
 auto GetMobSpawnMods(uint32 mobId, bool create = false) -> ModsList_t*;
 
 void AddSqlModifiers(CMobEntity* PMob);

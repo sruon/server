@@ -21,17 +21,6 @@ INSERT INTO delivery_box (charid, charname, box, slot, itemid, itemsubid, quanti
 INSERT INTO delivery_box VALUES (charid, 'name here', 1, 0, itemid, 0, quantity, NULL, 0, 'The MHMU', 0, 0);
 ```
 
-## Find All Mobs Without Pets
-
-```sql
-select ms.mobid, ms.mobname, pt.pet_offset 
-from mob_spawn_points ms
-inner join mob_groups gr on ms.groupid = gr.groupid and gr.zoneid = ((ms.mobid >> 12) & 0xFFF)
-inner join mob_pools pl on gr.poolid = pl.poolid 
-left join mob_pets pt on pt.mob_mobid = ms.mobid 
-where pl.mJob IN (9, 14, 15, 18) and pt.pet_offset IS NULL;
-```
-
 ## Expansion icons
 
 Icons are set per-account now, in the accounts table. Change the default value in the table design to the value you want everyone to have (without having to set it every time someone creates an account).

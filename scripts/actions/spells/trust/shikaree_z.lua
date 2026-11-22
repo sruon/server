@@ -23,7 +23,7 @@ end
 spellObject.onMobSpawn = function(mob)
     xi.trust.message(mob, xi.trust.messageOffset.SPAWN)
 
-    -- MPP mod migrated to sql/mob_pool_mods to apply at spawn
+    -- MPP mod migrated to data/mob_pools.yaml to apply at spawn
     mob:addMod(xi.mod.STORETP, 174)
     mob:addMod(xi.mod.JUMP_TP_BONUS, 164)
 

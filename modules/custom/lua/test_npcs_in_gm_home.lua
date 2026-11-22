@@ -171,7 +171,7 @@ m:addOverride('xi.zones.GM_Home.Zone.onInitialize', function(zone)
         -- You can use regular model ids (See docs/model_ids.txt, or play around with !costume)
         look = 2430,
 
-        -- You can also use the raw packet look information (as a string), as seen in npc_list and mob_pools
+        -- You can also use the raw packet look information (as a string), as seen in npc_list
         -- look = '0x0100020500101120003000400050006000700000',
 
         -- Set the position using in-game x, y and z

@@ -1,5 +1,5 @@
 -----------------------------------
--- Mob pools, same as the pools in mob_pools.sql
+-- Mob pools, same as the template and pool ids in data/zones/*/mobs.yaml and data/mob_pools.yaml
 -- Usually used for some custom mobskill effects for NMs
 -----------------------------------
 xi = xi or {}

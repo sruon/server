@@ -207,7 +207,6 @@ struct Pet_t
     uint16 m_MobSkillList;
 
     // magic stuff
-    bool   hasSpellScript;
     uint16 spellList;
 
     // resists
@@ -276,7 +275,6 @@ struct Pet_t
     , evaRank(0)
     , accRank(0)
     , m_MobSkillList(0)
-    , hasSpellScript(false)
     , spellList(0)
     , slash_sdt(0)
     , pierce_sdt(0)

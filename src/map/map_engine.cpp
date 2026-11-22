@@ -196,6 +196,7 @@ auto MapEngine::init() -> Task<void>
     effects::LoadEffectsParameters();
     grade::LoadGrades();
     mobutils::LoadSpeciesData();
+    mobutils::LoadMobPools();
     battleutils::LoadSkillTable();
     meritNameSpace::LoadMeritsList();
     ability::LoadAbilitiesList();
@@ -204,7 +205,6 @@ auto MapEngine::init() -> Task<void>
     battleutils::LoadPetSkillsList();
     petutils::LoadPetList();
     trustutils::LoadTrustList();
-    mobutils::LoadSqlModifiers();
     jobpointutils::LoadGifts();
     daily::LoadDailyItems();
     roeutils::UpdateUnityRankings();

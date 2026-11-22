@@ -30,6 +30,7 @@
 #include <common/types/hash_map.h>
 
 #include "common/enum_traits.h"
+#include "data/datasets/mob_pools/dataset.h"
 #include "data/datasets/zones/mobs/dataset.h"
 #include "data/datasets/zones/npcs/dataset.h"
 #include "data/datasets/zones/settings/dataset.h"
@@ -195,17 +196,21 @@ auto comparableName(const std::string_view name) -> std::string
 
 // Every name the client can see on an npc or a mob, read once.
 // Zone entities come from the zone files.
-// Trusts, pets and instance-only entities are still rows in the SQL tables.
+// Trusts, pets and instance mobs come from the mob pools; instance npcs are still rows in npc_list.
 auto entityNames() -> const std::unordered_set<std::string>&
 {
     static const auto names = []
     {
         std::unordered_set<std::string> collected;
 
-        const auto poolNames = db::preparedStmt("SELECT packet_name FROM mob_pools WHERE packet_name != ''");
-        FOR_DB_MULTIPLE_RESULTS(poolNames)
+        using MobPools         = xi::data::datasets::mob_pools::Dataset;
+        const auto poolModules = xi::data::getDataModulePaths(MobPools::kDataPath, ".yaml");
+        for (const auto& [id, pool] : MobPools::decode(xi::data::loadMergedYaml("data/mob_pools.yaml", poolModules)))
         {
-            collected.emplace(comparableName(poolNames->get<std::string>("packet_name")));
+            if (!pool.DisplayName.empty())
+            {
+                collected.emplace(comparableName(pool.DisplayName));
+            }
         }
 
         const auto npcNames = db::preparedStmt("SELECT polutils_name FROM npc_list WHERE polutils_name != ''");

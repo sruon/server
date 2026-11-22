@@ -72,46 +72,44 @@ void LoadPetList()
 {
     FreePetList();
 
-    constexpr auto query = db::Query(
-        "SELECT "
-        "pet_list.petid, "
-        "pet_list.name, "
-        "modelid, "
-        "minLevel, "
-        "maxLevel, "
-        "time, "
-        "mob_pools.speciesid, "
-        "mob_pools.mJob, "
-        "mob_pools.sJob, "
-        "mob_pools.cmbSkill,"
-        "pet_list.element, "
-        "hasSpellScript, spellList, "
-        "slash_sdt, pierce_sdt, h2h_sdt, impact_sdt, "
-        "magical_sdt, fire_sdt, ice_sdt, wind_sdt, earth_sdt, lightning_sdt, water_sdt, light_sdt, dark_sdt, "
-        "fire_res_rank, ice_res_rank, wind_res_rank, earth_res_rank, lightning_res_rank, water_res_rank, light_res_rank, dark_res_rank, "
-        "paralyze_res_rank, bind_res_rank, silence_res_rank, slow_res_rank, poison_res_rank, light_sleep_res_rank, dark_sleep_res_rank, blind_res_rank, stun_res_rank, gravity_res_rank, "
-        "cmbDelay, name_prefix, mob_pools.skill_list_id, damageType, "
-        "mob_pools.modelSize, mob_pools.modelHitboxSize "
-        "FROM pet_list, mob_pools, mob_resistances "
-        "WHERE pet_list.poolid = mob_pools.poolid AND mob_resistances.resist_id = mob_pools.resist_id");
-
-    const auto rset = db::preparedStmt(query);
+    const auto rset = db::preparedStmt("SELECT petid, name, poolid, minLevel, maxLevel, time, element, damageType FROM pet_list");
     FOR_DB_MULTIPLE_RESULTS(rset)
     {
+        const auto* pool = mobutils::GetMobPool(rset->get<uint32>("poolid"));
+        if (pool == nullptr)
+        {
+            continue;
+        }
+
+        const auto attributes = mobutils::ResolvePoolAttributes(*pool);
+        const auto resist     = [&attributes](const xi::Mod modifier) -> int16
+        {
+            const auto it = attributes.Resists.find(modifier);
+            if (it == attributes.Resists.end())
+            {
+                return 0;
+            }
+
+            return it->second;
+        };
+
         auto* Pet = new Pet_t();
 
         Pet->PetID = rset->get<uint16>("petid");
         Pet->name.insert(0, rset->get<std::string>("name"));
-        db::extractFromBlob(rset, "modelid", Pet->look);
+        if (attributes.Look)
+        {
+            Pet->look = look_t(attributes.Look->data());
+        }
 
         Pet->minLevel        = rset->get<uint8>("minLevel");
         Pet->maxLevel        = rset->get<uint8>("maxLevel");
         Pet->time            = std::chrono::seconds(rset->get<uint32>("time"));
-        Pet->modelSize       = rset->getOrDefault<uint8>("modelSize", 0);
-        Pet->modelHitboxSize = std::max<float>(0.0f, rset->getOrDefault<float>("modelHitboxSize", 0) / 10.f);
-        Pet->m_Species       = rset->get<uint16>("speciesid");
-        Pet->mJob            = rset->get<uint8>("mJob");
-        Pet->sJob            = rset->get<uint8>("sJob");
+        Pet->modelSize       = attributes.ModelSize.value_or(0);
+        Pet->modelHitboxSize = std::max<float>(0.0f, attributes.Hitbox.value_or(0) / 10.f);
+        Pet->m_Species       = static_cast<uint16>(pool->Species);
+        Pet->mJob            = static_cast<uint8>(attributes.MainJob.value_or(xi::Job::WAR));
+        Pet->sJob            = static_cast<uint8>(attributes.SubJob.value_or(xi::Job::WAR));
         Pet->m_Element       = rset->get<uint8>("element");
 
         const auto& species = mobutils::GetSpeciesData(Pet->m_Species);
@@ -121,51 +119,50 @@ void LoadPetList()
 
         mobutils::ApplyStatRanks(*Pet, species.MobAttributes.Stats);
 
-        Pet->hasSpellScript = rset->get<bool>("hasSpellScript");
-        Pet->spellList      = rset->get<uint16>("spellList");
+        Pet->spellList = pool->SpellList;
 
         // Specific Dmage Taken, as a %
-        Pet->slash_sdt  = rset->get<int16>("slash_sdt");
-        Pet->pierce_sdt = rset->get<int16>("pierce_sdt");
-        Pet->hth_sdt    = rset->get<int16>("h2h_sdt");
-        Pet->impact_sdt = rset->get<int16>("impact_sdt");
+        Pet->slash_sdt  = resist(xi::Mod::SLASH_SDT);
+        Pet->pierce_sdt = resist(xi::Mod::PIERCE_SDT);
+        Pet->hth_sdt    = resist(xi::Mod::HTH_SDT);
+        Pet->impact_sdt = resist(xi::Mod::IMPACT_SDT);
 
-        Pet->magical_sdt = rset->get<int16>("magical_sdt"); // Modifier 389, base 10000 stored as signed integer. Positives signify less damage.
+        Pet->magical_sdt = resist(xi::Mod::UDMGMAGIC);
 
-        Pet->fire_sdt    = rset->get<int16>("fire_sdt");      // Modifier 54, base 10000 stored as signed integer. Positives signify less damage.
-        Pet->ice_sdt     = rset->get<int16>("ice_sdt");       // Modifier 55, base 10000 stored as signed integer. Positives signify less damage.
-        Pet->wind_sdt    = rset->get<int16>("wind_sdt");      // Modifier 56, base 10000 stored as signed integer. Positives signify less damage.
-        Pet->earth_sdt   = rset->get<int16>("earth_sdt");     // Modifier 57, base 10000 stored as signed integer. Positives signify less damage.
-        Pet->thunder_sdt = rset->get<int16>("lightning_sdt"); // Modifier 58, base 10000 stored as signed integer. Positives signify less damage.
-        Pet->water_sdt   = rset->get<int16>("water_sdt");     // Modifier 59, base 10000 stored as signed integer. Positives signify less damage.
-        Pet->light_sdt   = rset->get<int16>("light_sdt");     // Modifier 60, base 10000 stored as signed integer. Positives signify less damage.
-        Pet->dark_sdt    = rset->get<int16>("dark_sdt");      // Modifier 61, base 10000 stored as signed integer. Positives signify less damage.
+        Pet->fire_sdt    = resist(xi::Mod::FIRE_SDT);
+        Pet->ice_sdt     = resist(xi::Mod::ICE_SDT);
+        Pet->wind_sdt    = resist(xi::Mod::WIND_SDT);
+        Pet->earth_sdt   = resist(xi::Mod::EARTH_SDT);
+        Pet->thunder_sdt = resist(xi::Mod::THUNDER_SDT);
+        Pet->water_sdt   = resist(xi::Mod::WATER_SDT);
+        Pet->light_sdt   = resist(xi::Mod::LIGHT_SDT);
+        Pet->dark_sdt    = resist(xi::Mod::DARK_SDT);
 
         // resistances
-        Pet->fire_res_rank    = rset->get<int8>("fire_res_rank");
-        Pet->ice_res_rank     = rset->get<int8>("ice_res_rank");
-        Pet->wind_res_rank    = rset->get<int8>("wind_res_rank");
-        Pet->earth_res_rank   = rset->get<int8>("earth_res_rank");
-        Pet->thunder_res_rank = rset->get<int8>("lightning_res_rank");
-        Pet->water_res_rank   = rset->get<int8>("water_res_rank");
-        Pet->light_res_rank   = rset->get<int8>("light_res_rank");
-        Pet->dark_res_rank    = rset->get<int8>("dark_res_rank");
+        Pet->fire_res_rank    = resist(xi::Mod::FIRE_RES_RANK);
+        Pet->ice_res_rank     = resist(xi::Mod::ICE_RES_RANK);
+        Pet->wind_res_rank    = resist(xi::Mod::WIND_RES_RANK);
+        Pet->earth_res_rank   = resist(xi::Mod::EARTH_RES_RANK);
+        Pet->thunder_res_rank = resist(xi::Mod::THUNDER_RES_RANK);
+        Pet->water_res_rank   = resist(xi::Mod::WATER_RES_RANK);
+        Pet->light_res_rank   = resist(xi::Mod::LIGHT_RES_RANK);
+        Pet->dark_res_rank    = resist(xi::Mod::DARK_RES_RANK);
 
-        Pet->paralyze_res_rank    = rset->get<int8>("paralyze_res_rank");
-        Pet->bind_res_rank        = rset->get<int8>("bind_res_rank");
-        Pet->silence_res_rank     = rset->get<int8>("silence_res_rank");
-        Pet->slow_res_rank        = rset->get<int8>("slow_res_rank");
-        Pet->poison_res_rank      = rset->get<int8>("poison_res_rank");
-        Pet->light_sleep_res_rank = rset->get<int8>("light_sleep_res_rank");
-        Pet->dark_sleep_res_rank  = rset->get<int8>("dark_sleep_res_rank");
-        Pet->blind_res_rank       = rset->get<int8>("blind_res_rank");
-        Pet->stun_res_rank        = rset->get<int8>("stun_res_rank");
-        Pet->gravity_res_rank     = rset->get<int8>("gravity_res_rank");
+        Pet->paralyze_res_rank    = resist(xi::Mod::PARALYZE_RES_RANK);
+        Pet->bind_res_rank        = resist(xi::Mod::BIND_RES_RANK);
+        Pet->silence_res_rank     = resist(xi::Mod::SILENCE_RES_RANK);
+        Pet->slow_res_rank        = resist(xi::Mod::SLOW_RES_RANK);
+        Pet->poison_res_rank      = resist(xi::Mod::POISON_RES_RANK);
+        Pet->light_sleep_res_rank = resist(xi::Mod::LIGHT_SLEEP_RES_RANK);
+        Pet->dark_sleep_res_rank  = resist(xi::Mod::DARK_SLEEP_RES_RANK);
+        Pet->blind_res_rank       = resist(xi::Mod::BLIND_RES_RANK);
+        Pet->stun_res_rank        = resist(xi::Mod::STUN_RES_RANK);
+        Pet->gravity_res_rank     = resist(xi::Mod::GRAVITY_RES_RANK);
 
-        Pet->cmbSkill       = rset->get<xi::SkillType>("cmbSkill");
-        Pet->cmbDelay       = rset->get<uint16>("cmbDelay");
-        Pet->name_prefix    = rset->get<uint8>("name_prefix");
-        Pet->m_MobSkillList = rset->get<uint16>("skill_list_id");
+        Pet->cmbSkill       = attributes.CombatSkill.value_or(xi::SkillType::None);
+        Pet->cmbDelay       = attributes.Delay.value_or(240);
+        Pet->name_prefix    = attributes.NamePrefix.value_or(0);
+        Pet->m_MobSkillList = pool->SkillList;
         Pet->m_dmgType      = rset->get<xi::DamageType>("damageType");
 
         g_PPetList.emplace_back(Pet);

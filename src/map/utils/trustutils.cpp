@@ -154,16 +154,12 @@ HashMap<uint16, std::unique_ptr<TrustData>> g_PTrustData;
 
 void trustutils::LoadTrustList()
 {
-    const auto rset = db::preparedStmt("SELECT "
-                                       "spell_list.spellid, mob_pools.poolid "
-                                       "FROM spell_list, mob_pools "
-                                       "WHERE spell_list.spellid >= 896 AND mob_pools.poolid = (spell_list.spellid + 5000) ORDER BY spell_list.spellid");
-
-    if (rset && rset->rowsCount())
+    const auto rset = db::preparedStmt("SELECT spellid FROM spell_list WHERE spellid >= 896 ORDER BY spellid");
+    FOR_DB_MULTIPLE_RESULTS(rset)
     {
-        while (rset->next())
+        const auto trustSpellId = rset->get<uint32>("spellid");
+        if (mobutils::GetMobPool(trustSpellId + 5000) != nullptr)
         {
-            const auto trustSpellId = rset->get<uint32>(0);
             BuildTrustData(trustSpellId);
         }
     }
@@ -210,128 +206,103 @@ namespace
 
 void BuildTrustData(uint32 TrustID)
 {
-    const auto rset = db::preparedStmt("SELECT "
-                                       "mob_pools.poolid, "
-                                       "mob_pools.name, "
-                                       "mob_pools.packet_name, "
-                                       "mob_pools.modelid, "
-                                       "mob_pools.speciesid, "
-                                       "mob_pools.mJob, "
-                                       "mob_pools.sJob, "
-                                       "mob_pools.spellList, "
-                                       "mob_pools.cmbSkill, "
-                                       "mob_pools.cmbDelay, "
-                                       "mob_pools.cmbDmgMult, "
-                                       "mob_pools.name_prefix, "
-                                       "mob_pools.skill_list_id, "
-                                       "mob_pools.modelSize, "
-                                       "mob_pools.modelHitboxSize, "
-                                       "spell_list.spellid, "
-                                       "mob_resistances.slash_sdt, mob_resistances.pierce_sdt, "
-                                       "mob_resistances.h2h_sdt, mob_resistances.impact_sdt, "
-                                       "mob_resistances.magical_sdt, "
-                                       "mob_resistances.fire_sdt, mob_resistances.ice_sdt, "
-                                       "mob_resistances.wind_sdt, mob_resistances.earth_sdt, "
-                                       "mob_resistances.lightning_sdt, mob_resistances.water_sdt, "
-                                       "mob_resistances.light_sdt, mob_resistances.dark_sdt, "
-                                       "mob_resistances.fire_res_rank, mob_resistances.ice_res_rank, "
-                                       "mob_resistances.wind_res_rank, mob_resistances.earth_res_rank, "
-                                       "mob_resistances.lightning_res_rank, mob_resistances.water_res_rank, "
-                                       "mob_resistances.light_res_rank, mob_resistances.dark_res_rank, "
-                                       "mob_resistances.paralyze_res_rank, mob_resistances.bind_res_rank, "
-                                       "mob_resistances.silence_res_rank, mob_resistances.slow_res_rank, "
-                                       "mob_resistances.poison_res_rank, mob_resistances.light_sleep_res_rank, "
-                                       "mob_resistances.dark_sleep_res_rank, mob_resistances.blind_res_rank, "
-                                       "mob_resistances.stun_res_rank, mob_resistances.gravity_res_rank "
-                                       "FROM spell_list, mob_pools, mob_resistances "
-                                       "WHERE spell_list.spellid = ? "
-                                       "AND (spell_list.spellid + 5000) = mob_pools.poolid "
-                                       "AND mob_pools.resist_id = mob_resistances.resist_id "
-                                       "ORDER BY spell_list.spellid",
-                                       TrustID);
-
-    if (rset && rset->rowsCount())
+    const auto* pool = mobutils::GetMobPool(TrustID + 5000);
+    if (pool == nullptr)
     {
-        while (rset->next())
-        {
-            auto data = std::make_unique<TrustData>();
-
-            data->trustID = TrustID;
-
-            if (passiveTrustIDs.contains(static_cast<SpellID>(data->trustID)))
-            {
-                data->isPassiveTrust = true;
-            }
-
-            data->pool        = rset->get<uint32>("poolid");
-            data->name        = rset->get<std::string>("name");
-            data->packet_name = rset->get<std::string>("packet_name");
-
-            db::extractFromBlob(rset, "modelid", data->look);
-
-            data->m_Species = rset->get<uint16>("speciesid");
-            data->mJob      = rset->get<uint8>("mJob");
-            data->sJob      = rset->get<uint8>("sJob");
-            data->spellList = rset->get<uint16>("spellList");
-
-            data->cmbSkill   = rset->get<uint8>("cmbSkill");
-            data->cmbDelay   = rset->get<uint16>("cmbDelay");
-            data->cmbDmgMult = rset->get<uint16>("cmbDmgMult");
-
-            data->name_prefix    = rset->get<uint8>("name_prefix");
-            data->m_MobSkillList = rset->get<uint16>("skill_list_id");
-
-            data->modelSize       = rset->getOrDefault<uint8>("modelSize", 0);
-            data->modelHitboxSize = std::max<float>(0.0f, rset->getOrDefault<float>("modelHitboxSize", 0) / 10.f);
-            const auto& species   = mobutils::GetSpeciesData(data->m_Species);
-
-            data->EcoSystem = species.Ecosystem;
-
-            data->baseSpeed      = 62;
-            data->animationSpeed = 50;
-
-            mobutils::ApplyStatRanks(*data, species.MobAttributes.Stats);
-
-            // resistances
-            data->slash_sdt  = rset->get<int16>("slash_sdt");
-            data->pierce_sdt = rset->get<int16>("pierce_sdt");
-            data->hth_sdt    = rset->get<int16>("h2h_sdt");
-            data->impact_sdt = rset->get<int16>("impact_sdt");
-
-            data->magical_sdt = rset->get<int16>("magical_sdt"); // Modifier 389, base 10000 stored as signed integer. Positives signify less damage.
-
-            data->fire_sdt    = rset->get<int16>("fire_sdt");      // Modifier 54, base 10000 stored as signed integer. Positives signify less damage.
-            data->ice_sdt     = rset->get<int16>("ice_sdt");       // Modifier 55, base 10000 stored as signed integer. Positives signify less damage.
-            data->wind_sdt    = rset->get<int16>("wind_sdt");      // Modifier 56, base 10000 stored as signed integer. Positives signify less damage.
-            data->earth_sdt   = rset->get<int16>("earth_sdt");     // Modifier 57, base 10000 stored as signed integer. Positives signify less damage.
-            data->thunder_sdt = rset->get<int16>("lightning_sdt"); // Modifier 58, base 10000 stored as signed integer. Positives signify less damage.
-            data->water_sdt   = rset->get<int16>("water_sdt");     // Modifier 59, base 10000 stored as signed integer. Positives signify less damage.
-            data->light_sdt   = rset->get<int16>("light_sdt");     // Modifier 60, base 10000 stored as signed integer. Positives signify less damage.
-            data->dark_sdt    = rset->get<int16>("dark_sdt");      // Modifier 61, base 10000 stored as signed integer. Positives signify less damage.
-
-            data->fire_res_rank    = rset->get<int8>("fire_res_rank");
-            data->ice_res_rank     = rset->get<int8>("ice_res_rank");
-            data->wind_res_rank    = rset->get<int8>("wind_res_rank");
-            data->earth_res_rank   = rset->get<int8>("earth_res_rank");
-            data->thunder_res_rank = rset->get<int8>("lightning_res_rank");
-            data->water_res_rank   = rset->get<int8>("water_res_rank");
-            data->light_res_rank   = rset->get<int8>("light_res_rank");
-            data->dark_res_rank    = rset->get<int8>("dark_res_rank");
-
-            data->paralyze_res_rank    = rset->get<int8>("paralyze_res_rank");
-            data->bind_res_rank        = rset->get<int8>("bind_res_rank");
-            data->silence_res_rank     = rset->get<int8>("silence_res_rank");
-            data->slow_res_rank        = rset->get<int8>("slow_res_rank");
-            data->poison_res_rank      = rset->get<int8>("poison_res_rank");
-            data->light_sleep_res_rank = rset->get<int8>("light_sleep_res_rank");
-            data->dark_sleep_res_rank  = rset->get<int8>("dark_sleep_res_rank");
-            data->blind_res_rank       = rset->get<int8>("blind_res_rank");
-            data->stun_res_rank        = rset->get<int8>("stun_res_rank");
-            data->gravity_res_rank     = rset->get<int8>("gravity_res_rank");
-
-            g_PTrustData[TrustID] = std::move(data);
-        }
+        return;
     }
+
+    const auto attributes = mobutils::ResolvePoolAttributes(*pool);
+    const auto resist     = [&attributes](const xi::Mod modifier) -> int16
+    {
+        const auto it = attributes.Resists.find(modifier);
+        if (it == attributes.Resists.end())
+        {
+            return 0;
+        }
+
+        return it->second;
+    };
+
+    auto data = std::make_unique<TrustData>();
+
+    data->trustID = TrustID;
+
+    if (passiveTrustIDs.contains(static_cast<SpellID>(data->trustID)))
+    {
+        data->isPassiveTrust = true;
+    }
+
+    data->pool        = pool->Id;
+    data->name        = pool->Name;
+    data->packet_name = pool->DisplayName;
+
+    if (attributes.Look)
+    {
+        data->look = look_t(attributes.Look->data());
+    }
+
+    data->m_Species = static_cast<uint16>(pool->Species);
+    data->mJob      = static_cast<uint8>(attributes.MainJob.value_or(xi::Job::WAR));
+    data->sJob      = static_cast<uint8>(attributes.SubJob.value_or(xi::Job::WAR));
+    data->spellList = pool->SpellList;
+
+    data->cmbSkill   = static_cast<uint8>(attributes.CombatSkill.value_or(xi::SkillType::None));
+    data->cmbDelay   = attributes.Delay.value_or(240);
+    data->cmbDmgMult = attributes.DamageMultiplier.value_or(100);
+
+    data->name_prefix    = attributes.NamePrefix.value_or(0);
+    data->m_MobSkillList = pool->SkillList;
+
+    data->modelSize       = attributes.ModelSize.value_or(0);
+    data->modelHitboxSize = std::max<float>(0.0f, attributes.Hitbox.value_or(0) / 10.f);
+    const auto& species   = mobutils::GetSpeciesData(data->m_Species);
+
+    data->EcoSystem = species.Ecosystem;
+
+    data->baseSpeed      = 62;
+    data->animationSpeed = 50;
+
+    mobutils::ApplyStatRanks(*data, species.MobAttributes.Stats);
+
+    // resistances
+    data->slash_sdt  = resist(xi::Mod::SLASH_SDT);
+    data->pierce_sdt = resist(xi::Mod::PIERCE_SDT);
+    data->hth_sdt    = resist(xi::Mod::HTH_SDT);
+    data->impact_sdt = resist(xi::Mod::IMPACT_SDT);
+
+    data->magical_sdt = resist(xi::Mod::UDMGMAGIC);
+
+    data->fire_sdt    = resist(xi::Mod::FIRE_SDT);
+    data->ice_sdt     = resist(xi::Mod::ICE_SDT);
+    data->wind_sdt    = resist(xi::Mod::WIND_SDT);
+    data->earth_sdt   = resist(xi::Mod::EARTH_SDT);
+    data->thunder_sdt = resist(xi::Mod::THUNDER_SDT);
+    data->water_sdt   = resist(xi::Mod::WATER_SDT);
+    data->light_sdt   = resist(xi::Mod::LIGHT_SDT);
+    data->dark_sdt    = resist(xi::Mod::DARK_SDT);
+
+    data->fire_res_rank    = resist(xi::Mod::FIRE_RES_RANK);
+    data->ice_res_rank     = resist(xi::Mod::ICE_RES_RANK);
+    data->wind_res_rank    = resist(xi::Mod::WIND_RES_RANK);
+    data->earth_res_rank   = resist(xi::Mod::EARTH_RES_RANK);
+    data->thunder_res_rank = resist(xi::Mod::THUNDER_RES_RANK);
+    data->water_res_rank   = resist(xi::Mod::WATER_RES_RANK);
+    data->light_res_rank   = resist(xi::Mod::LIGHT_RES_RANK);
+    data->dark_res_rank    = resist(xi::Mod::DARK_RES_RANK);
+
+    data->paralyze_res_rank    = resist(xi::Mod::PARALYZE_RES_RANK);
+    data->bind_res_rank        = resist(xi::Mod::BIND_RES_RANK);
+    data->silence_res_rank     = resist(xi::Mod::SILENCE_RES_RANK);
+    data->slow_res_rank        = resist(xi::Mod::SLOW_RES_RANK);
+    data->poison_res_rank      = resist(xi::Mod::POISON_RES_RANK);
+    data->light_sleep_res_rank = resist(xi::Mod::LIGHT_SLEEP_RES_RANK);
+    data->dark_sleep_res_rank  = resist(xi::Mod::DARK_SLEEP_RES_RANK);
+    data->blind_res_rank       = resist(xi::Mod::BLIND_RES_RANK);
+    data->stun_res_rank        = resist(xi::Mod::STUN_RES_RANK);
+    data->gravity_res_rank     = resist(xi::Mod::GRAVITY_RES_RANK);
+
+    g_PTrustData[TrustID] = std::move(data);
 }
 
 auto LoadTrust(CCharEntity* PMaster, uint32 TrustID) -> CTrustEntity*

@@ -10,7 +10,7 @@ entity.onMobSpawn = function(mob)
     mob:setMod(xi.mod.UDMGPHYS, -2500)
     mob:setMod(xi.mod.WATER_ABSORB, 100)
     -- res rank for mob that absorbs is always lowest value
-    -- set here as this shares a mob_resistances row with many other eles
+    -- set here as this shares its resists with many other eles
     mob:setMod(xi.mod.WATER_RES_RANK, -3)
     mob:addImmunity(xi.immunity.LIGHT_SLEEP)
     mob:addImmunity(xi.immunity.DARK_SLEEP)

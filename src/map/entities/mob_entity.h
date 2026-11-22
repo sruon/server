@@ -218,7 +218,7 @@ public:
     bool   m_ItemDespoiled;  // if true, mob has already been despoiled. reset on respawn.
     uint16 m_Species;
     uint16 m_Family;
-    uint16 m_MobSkillList; // Mob skill list defined from mob_pools
+    uint16 m_MobSkillList; // Mob skill list defined from the mob template or pool
     uint32 m_Pool;         // pool the mob came from
 
     CMobSpellList*           m_SpellListContainer; // The spells list container for this mob

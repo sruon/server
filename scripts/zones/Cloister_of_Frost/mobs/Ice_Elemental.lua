@@ -21,7 +21,7 @@ entity.onMobSpawn = function(mob)
     mob:setMod(xi.mod.UDMGPHYS, -2500)
     mob:setMod(xi.mod.ICE_ABSORB, 100)
     -- res rank for mob that absorbs is always lowest value
-    -- set here as this shares a mob_resistances row with many other eles
+    -- set here as this shares its resists with many other eles
     mob:setMod(xi.mod.ICE_RES_RANK, -3)
     mob:setMobMod(xi.mobMod.SKIP_ALLEGIANCE_CHECK, 1)
     mob:setMobMod(xi.mobMod.MAGIC_DELAY, 12)

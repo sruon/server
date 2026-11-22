@@ -46,12 +46,16 @@ namespace mobutils
 namespace
 {
 
-ModsMap_t mobPoolModsList;
 ModsMap_t mobSpawnModsList;
 
 using EcosystemsDataset = xi::data::datasets::ecosystems::Dataset;
+using MobPoolsDataset   = xi::data::datasets::mob_pools::Dataset;
 
 HashMap<uint16, SpeciesInfo> speciesData;
+xi::data::MobPools           mobPools;
+
+constexpr uint16 kDefaultMobDelay            = 240;
+constexpr uint16 kDefaultMobDamageMultiplier = 100;
 
 } // namespace
 
@@ -154,6 +158,78 @@ auto GetSpeciesData(const uint16 speciesId) -> const SpeciesInfo&
     }
 
     return it->second;
+}
+
+void LoadMobPools()
+{
+    mobPools = xi::data::loadDataset<MobPoolsDataset>();
+}
+
+auto GetMobPool(const uint32 poolId) -> const xi::data::MobPoolData*
+{
+    const auto it = mobPools.find(poolId);
+    if (it == mobPools.end())
+    {
+        return nullptr;
+    }
+
+    return &it->second;
+}
+
+auto ResolvePoolAttributes(const xi::data::MobPoolData& pool) -> xi::data::MobAttributesData
+{
+    auto attributes = GetSpeciesData(static_cast<uint16>(pool.Species)).MobAttributes;
+    xi::data::applyOverrides(attributes, pool.Attributes);
+    return attributes;
+}
+
+void ApplyPool(CMobEntity* PMob, const xi::data::MobPoolData& pool)
+{
+    const auto attributes = ResolvePoolAttributes(pool);
+
+    if (attributes.Look)
+    {
+        PMob->look = look_t(attributes.Look->data());
+    }
+
+    PMob->SetMJob(static_cast<uint8>(attributes.MainJob.value_or(xi::Job::WAR)));
+    PMob->SetSJob(static_cast<uint8>(attributes.SubJob.value_or(xi::Job::WAR)));
+
+    auto* mainWeapon = static_cast<CItemWeapon*>(PMob->m_Weapons[SLOT_MAIN]);
+    mainWeapon->setMaxHit(1);
+    mainWeapon->setSkillType(attributes.CombatSkill.value_or(xi::SkillType::None));
+    mainWeapon->setDelay(attributes.Delay.value_or(kDefaultMobDelay));
+    mainWeapon->setBaseDelay(attributes.Delay.value_or(kDefaultMobDelay));
+
+    PMob->m_dmgMult = attributes.DamageMultiplier.value_or(kDefaultMobDamageMultiplier);
+
+    PMob->m_Behavior = attributes.Behavior.value_or(xi::Behavior::None);
+    PMob->m_Type     = pool.Type;
+    PMob->m_Immunity = attributes.Immune.value_or(xi::Immunity::None);
+
+    for (const auto& [id, value] : attributes.Resists)
+    {
+        PMob->setModifier(id, value);
+    }
+
+    PMob->m_Species     = static_cast<uint16>(pool.Species);
+    PMob->m_name_prefix = attributes.NamePrefix.value_or(0);
+    ApplySpecies(PMob);
+    PMob->m_flags = static_cast<xi::EntityFlags>(attributes.EntityFlags.value_or(0));
+
+    PMob->animationsub = attributes.AnimationSub.value_or(0);
+
+    PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(pool.SpellList);
+
+    PMob->m_Pool = pool.Id;
+
+    PMob->namevis         = static_cast<xi::NameVis>(attributes.NameVis.value_or(0));
+    PMob->modelHitboxSize = std::max<float>(0.0f, attributes.Hitbox.value_or(0) / 10.f);
+    PMob->modelSize       = attributes.ModelSize.value_or(0);
+    PMob->m_Aggro         = attributes.Aggressive;
+    PMob->m_MobSkillList  = pool.SkillList;
+    PMob->m_Link          = static_cast<uint8>(attributes.Links);
+    PMob->m_TrueDetection = attributes.TrueDetection;
 }
 
 /************************************************************************
@@ -1564,42 +1640,6 @@ void InitializeMob(CMobEntity* PMob)
     }
 }
 
-/*
-Loads up mob mods from the mob_pool_mods table. This will allow you to change
-a mobs regen rate, magic defense, triple attack rate from a table instead of hardcoding it.
-
-Usage:
-
-    Goblin Diggers have a vermin killer trait, so find its poolid and put it in mod_pool_mods table.
-
-Species-wide mods live in data/ecosystems.yaml instead.
-*/
-void LoadSqlModifiers()
-{
-    // load pool mods
-    auto rset = db::preparedStmt("SELECT poolid, modid, value, is_mob_mod "
-                                 "FROM mob_pool_mods");
-    FOR_DB_MULTIPLE_RESULTS(rset)
-    {
-        const auto  pool     = rset->get<uint16>("poolid");
-        ModsList_t* poolMods = GetMobPoolMods(pool, true);
-
-        const auto id = rset->get<xi::Mod>("modid");
-
-        auto* mod = new CModifier(id);
-        mod->setModAmount(rset->get<int16>("value"));
-
-        if (rset->get<bool>("is_mob_mod"))
-        {
-            poolMods->mobMods.emplace_back(mod);
-        }
-        else
-        {
-            poolMods->mods.emplace_back(mod);
-        }
-    }
-}
-
 void Cleanup()
 {
     // Manually delete and clean up pointers
@@ -1620,45 +1660,6 @@ void Cleanup()
         }
     }
     mobSpawnModsList.clear();
-
-    for (auto mobPoolMods : mobPoolModsList)
-    {
-        if (mobPoolMods.second)
-        {
-            for (auto mobMods : mobPoolMods.second->mobMods)
-            {
-                destroy(mobMods);
-            }
-
-            for (auto mods : mobPoolMods.second->mods)
-            {
-                destroy(mods);
-            }
-            destroy(mobPoolMods.second);
-        }
-    }
-    mobPoolModsList.clear();
-}
-
-auto GetMobPoolMods(uint32 poolId, bool create) -> ModsList_t*
-{
-    if (mobPoolModsList[poolId])
-    {
-        return mobPoolModsList[poolId];
-    }
-
-    if (create)
-    {
-        // create new one
-        ModsList_t* mods = new ModsList_t;
-        mods->id         = poolId;
-
-        mobPoolModsList[poolId] = mods;
-
-        return mods;
-    }
-
-    return nullptr;
 }
 
 auto GetMobSpawnMods(uint32 mobId, bool create) -> ModsList_t*
@@ -1697,20 +1698,16 @@ void AddSqlModifiers(CMobEntity* PMob)
         PMob->setMobMod(id, value);
     }
 
-    // find my pools mods
-    ModsList_t* PPoolMods = GetMobPoolMods(PMob->m_Pool);
-
-    if (PPoolMods != nullptr)
+    if (const auto* pool = GetMobPool(PMob->m_Pool))
     {
-        // add them
-        for (auto& mod : PPoolMods->mods)
+        for (const auto& [id, value] : pool->Attributes.Mods)
         {
-            PMob->addModifier(mod->getModID(), mod->getModAmount());
+            PMob->addModifier(id, value);
         }
 
-        for (auto& mobMod : PPoolMods->mobMods)
+        for (const auto& [id, value] : pool->Attributes.MobMods)
         {
-            PMob->setMobMod(static_cast<xi::MobMod>(mobMod->getModID()), mobMod->getModAmount());
+            PMob->setMobMod(id, value);
         }
     }
 
@@ -1736,34 +1733,25 @@ auto InstantiateAlly(const uint32 groupid, const xi::ZoneId zoneID, CInstance* i
 {
     CMobEntity* PMob = nullptr;
 
-    const auto rset = db::preparedStmt("SELECT zoneid, mob_groups.name, packet_name, respawntime, "
-                                       "spawntype, dropid, mob_groups.HP, mob_groups.MP, "
-                                       "mob_spawn_points.minLevel, mob_spawn_points.maxLevel, modelid, mJob, "
-                                       "sJob, cmbSkill, cmbDmgMult, cmbDelay, "
-                                       "behavior, links, mobType, immunity, "
-                                       "slash_sdt, pierce_sdt, "
-                                       "h2h_sdt, impact_sdt, magical_sdt, "
-                                       "fire_sdt, ice_sdt, wind_sdt, earth_sdt, lightning_sdt, water_sdt, light_sdt, dark_sdt, "
-                                       "fire_res_rank, ice_res_rank, wind_res_rank, earth_res_rank, lightning_res_rank, water_res_rank, light_res_rank, dark_res_rank, "
-                                       "paralyze_res_rank, bind_res_rank, silence_res_rank, slow_res_rank, poison_res_rank, light_sleep_res_rank, dark_sleep_res_rank, blind_res_rank, stun_res_rank, gravity_res_rank, "
-                                       "mob_pools.speciesid, name_prefix, entityFlags, animationsub, "
-                                       "hasSpellScript, spellList, "
-                                       "mob_groups.poolid, allegiance, namevis, aggro, "
-                                       "mob_pools.skill_list_id, mob_pools.true_detection, "
-                                       "mob_pools.modelSize, mob_pools.modelHitboxSize "
+    const auto rset = db::preparedStmt("SELECT mob_groups.name, poolid, respawntime, spawntype, dropid, mob_groups.HP, mob_groups.MP, "
+                                       "mob_spawn_points.minLevel, mob_spawn_points.maxLevel, allegiance "
                                        "FROM mob_groups INNER JOIN mob_spawn_points ON mob_groups.groupid = mob_spawn_points.groupid "
-                                       "INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid "
-                                       "INNER JOIN mob_resistances ON mob_pools.resist_id = mob_resistances.resist_id "
                                        "WHERE mob_groups.groupid = ? AND mob_groups.zoneid = ?",
                                        groupid,
                                        zoneID);
     FOR_DB_SINGLE_RESULT(rset)
     {
+        const auto* pool = GetMobPool(rset->get<uint32>("poolid"));
+        if (pool == nullptr)
+        {
+            return nullptr;
+        }
+
         PMob            = new CMobEntity();
         PMob->PInstance = instance;
 
         PMob->name.insert(0, rset->get<std::string>("name"));
-        PMob->packetName.insert(0, rset->get<std::string>("packet_name"));
+        PMob->packetName = pool->DisplayName;
 
         PMob->m_RespawnTime = std::chrono::seconds(rset->get<uint32>("respawntime"));
         PMob->m_SpawnType   = rset->get<xi::SpawnType>("spawntype");
@@ -1775,82 +1763,10 @@ auto InstantiateAlly(const uint32 groupid, const xi::ZoneId zoneID, CInstance* i
         PMob->m_minLevel = rset->get<uint8>("minLevel");
         PMob->m_maxLevel = rset->get<uint8>("maxLevel");
 
-        uint16 sqlModelID[10];
-        db::extractFromBlob(rset, "modelid", sqlModelID);
-        PMob->look = look_t(sqlModelID);
-
-        PMob->SetMJob(rset->get<uint8>("mJob"));
-        PMob->SetSJob(rset->get<uint8>("sJob"));
-
-        static_cast<CItemWeapon*>(PMob->m_Weapons[SLOT_MAIN])->setMaxHit(1);
-        static_cast<CItemWeapon*>(PMob->m_Weapons[SLOT_MAIN])->setSkillType(rset->get<xi::SkillType>("cmbSkill"));
-        PMob->m_dmgMult = rset->get<uint16>("cmbDmgMult");
-        static_cast<CItemWeapon*>(PMob->m_Weapons[SLOT_MAIN])->setDelay(rset->get<uint16>("cmbDelay"));
-        static_cast<CItemWeapon*>(PMob->m_Weapons[SLOT_MAIN])->setBaseDelay(rset->get<uint16>("cmbDelay"));
-
-        PMob->m_Behavior = rset->get<xi::Behavior>("behavior");
-        PMob->m_Type     = rset->get<xi::MobType>("mobType");
-        PMob->m_Immunity = rset->get<xi::Immunity>("immunity");
-
-        PMob->setModifier(xi::Mod::SLASH_SDT, rset->get<int16>("slash_sdt"));
-        PMob->setModifier(xi::Mod::PIERCE_SDT, rset->get<int16>("pierce_sdt"));
-        PMob->setModifier(xi::Mod::HTH_SDT, rset->get<int16>("h2h_sdt"));
-        PMob->setModifier(xi::Mod::IMPACT_SDT, rset->get<int16>("impact_sdt"));
-
-        PMob->setModifier(xi::Mod::UDMGMAGIC, rset->get<int16>("magical_sdt")); // Modifier 389, base 10000 stored as signed integer. Positives signify less damage.
-
-        PMob->setModifier(xi::Mod::FIRE_SDT, rset->get<int16>("fire_sdt"));         // Modifier 54, base 10000 stored as signed integer. Positives signify less damage.
-        PMob->setModifier(xi::Mod::ICE_SDT, rset->get<int16>("ice_sdt"));           // Modifier 55, base 10000 stored as signed integer. Positives signify less damage.
-        PMob->setModifier(xi::Mod::WIND_SDT, rset->get<int16>("wind_sdt"));         // Modifier 56, base 10000 stored as signed integer. Positives signify less damage.
-        PMob->setModifier(xi::Mod::EARTH_SDT, rset->get<int16>("earth_sdt"));       // Modifier 57, base 10000 stored as signed integer. Positives signify less damage.
-        PMob->setModifier(xi::Mod::THUNDER_SDT, rset->get<int16>("lightning_sdt")); // Modifier 58, base 10000 stored as signed integer. Positives signify less damage.
-        PMob->setModifier(xi::Mod::WATER_SDT, rset->get<int16>("water_sdt"));       // Modifier 59, base 10000 stored as signed integer. Positives signify less damage.
-        PMob->setModifier(xi::Mod::LIGHT_SDT, rset->get<int16>("light_sdt"));       // Modifier 60, base 10000 stored as signed integer. Positives signify less damage.
-        PMob->setModifier(xi::Mod::DARK_SDT, rset->get<int16>("dark_sdt"));         // Modifier 61, base 10000 stored as signed integer. Positives signify less damage.
-
-        PMob->setModifier(xi::Mod::FIRE_RES_RANK, rset->get<int8>("fire_res_rank"));
-        PMob->setModifier(xi::Mod::ICE_RES_RANK, rset->get<int8>("ice_res_rank"));
-        PMob->setModifier(xi::Mod::WIND_RES_RANK, rset->get<int8>("wind_res_rank"));
-        PMob->setModifier(xi::Mod::EARTH_RES_RANK, rset->get<int8>("earth_res_rank"));
-        PMob->setModifier(xi::Mod::THUNDER_RES_RANK, rset->get<int8>("lightning_res_rank"));
-        PMob->setModifier(xi::Mod::WATER_RES_RANK, rset->get<int8>("water_res_rank"));
-        PMob->setModifier(xi::Mod::LIGHT_RES_RANK, rset->get<int8>("light_res_rank"));
-        PMob->setModifier(xi::Mod::DARK_RES_RANK, rset->get<int8>("dark_res_rank"));
-
-        PMob->setModifier(xi::Mod::PARALYZE_RES_RANK, rset->get<int8>("paralyze_res_rank"));
-        PMob->setModifier(xi::Mod::BIND_RES_RANK, rset->get<int8>("bind_res_rank"));
-        PMob->setModifier(xi::Mod::SILENCE_RES_RANK, rset->get<int8>("silence_res_rank"));
-        PMob->setModifier(xi::Mod::SLOW_RES_RANK, rset->get<int8>("slow_res_rank"));
-        PMob->setModifier(xi::Mod::POISON_RES_RANK, rset->get<int8>("poison_res_rank"));
-        PMob->setModifier(xi::Mod::LIGHT_SLEEP_RES_RANK, rset->get<int8>("light_sleep_res_rank"));
-        PMob->setModifier(xi::Mod::DARK_SLEEP_RES_RANK, rset->get<int8>("dark_sleep_res_rank"));
-        PMob->setModifier(xi::Mod::BLIND_RES_RANK, rset->get<int8>("blind_res_rank"));
-        PMob->setModifier(xi::Mod::STUN_RES_RANK, rset->get<int8>("stun_res_rank"));
-        PMob->setModifier(xi::Mod::GRAVITY_RES_RANK, rset->get<int8>("gravity_res_rank"));
-
-        PMob->m_Species     = rset->get<uint16>("speciesid");
-        PMob->m_name_prefix = rset->get<uint8>("name_prefix");
-        ApplySpecies(PMob);
+        ApplyPool(PMob, *pool);
         PMob->setMobMod(xi::MobMod::Charmable, 0); // Allies are never charmable
-        PMob->m_flags = rset->get<xi::EntityFlags>("entityFlags");
 
-        // Special sub animation for Mob (yovra, jailer of love, phuabo)
-        // yovra 1: On top/in the sky, 2: , 3: On top/in the sky
-        // phuabo 1: Underwater, 2: Out of the water, 3: Goes back underwater
-        PMob->animationsub = rset->get<uint32>("animationsub");
-
-        PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(rset->get<uint16>("spellList"));
-
-        PMob->m_Pool = rset->get<uint32>("poolid");
-
-        PMob->allegiance      = rset->get<xi::Allegiance>("allegiance");
-        PMob->namevis         = rset->get<xi::NameVis>("namevis");
-        PMob->modelHitboxSize = std::max<float>(0.0f, rset->getOrDefault<float>("modelHitboxSize", 0) / 10.f);
-        PMob->modelSize       = rset->getOrDefault<uint8>("modelSize", 0);
-        PMob->m_Aggro         = rset->get<bool>("aggro");
-        PMob->m_MobSkillList  = rset->get<uint16>("skill_list_id");
-        PMob->m_Link          = rset->get<uint8>("links");
-        PMob->m_TrueDetection = rset->get<bool>("true_detection");
+        PMob->allegiance = rset->get<xi::Allegiance>("allegiance");
 
         if (instance)
         {
@@ -1894,31 +1810,21 @@ auto InstantiateDynamicMob(const uint32 groupid, const xi::ZoneId groupZoneId, c
 {
     auto* PMob = new CMobEntity();
 
-    const auto rset = db::preparedStmt("SELECT zoneid, mob_groups.name, packet_name, respawntime, "
-                                       "spawntype, dropid, mob_groups.HP, mob_groups.MP, "
-                                       "modelid, mJob, "
-                                       "sJob, cmbSkill, cmbDmgMult, cmbDelay, "
-                                       "behavior, links, mobType, immunity, "
-                                       "slash_sdt, pierce_sdt, "
-                                       "h2h_sdt, impact_sdt, magical_sdt, fire_sdt, "
-                                       "ice_sdt, wind_sdt, earth_sdt, lightning_sdt, "
-                                       "water_sdt, light_sdt, dark_sdt, fire_res_rank, "
-                                       "ice_res_rank, wind_res_rank, earth_res_rank, lightning_res_rank, "
-                                       "water_res_rank, light_res_rank, dark_res_rank, "
-                                       "mob_pools.speciesid, name_prefix, entityFlags, animationsub, "
-                                       "hasSpellScript, spellList, "
-                                       "mob_groups.poolid, allegiance, namevis, aggro, "
-                                       "mob_pools.modelSize, mob_pools.modelHitboxSize, "
-                                       "mob_pools.skill_list_id, mob_pools.true_detection "
-                                       "FROM mob_groups INNER JOIN mob_pools ON mob_groups.poolid = mob_pools.poolid "
-                                       "INNER JOIN mob_resistances ON mob_pools.resist_id = mob_resistances.resist_id "
-                                       "WHERE mob_groups.groupid = ? AND mob_groups.zoneid = ?",
+    const auto rset = db::preparedStmt("SELECT name, poolid, respawntime, spawntype, dropid, HP, MP, allegiance "
+                                       "FROM mob_groups "
+                                       "WHERE groupid = ? AND zoneid = ?",
                                        groupid,
                                        groupZoneId);
     FOR_DB_SINGLE_RESULT(rset)
     {
+        const auto* pool = GetMobPool(rset->get<uint32>("poolid"));
+        if (pool == nullptr)
+        {
+            return PMob;
+        }
+
         PMob->name.insert(0, rset->get<std::string>("name"));
-        PMob->packetName.insert(0, rset->get<std::string>("packet_name"));
+        PMob->packetName = pool->DisplayName;
 
         PMob->m_RespawnTime = std::chrono::seconds(rset->get<uint32>("respawntime"));
         PMob->m_SpawnType   = rset->get<xi::SpawnType>("spawntype");
@@ -1927,67 +1833,9 @@ auto InstantiateDynamicMob(const uint32 groupid, const xi::ZoneId groupZoneId, c
         PMob->HPmodifier = rset->get<uint32>("HP");
         PMob->MPmodifier = rset->get<uint32>("MP");
 
-        uint16 sqlModelID[10];
-        db::extractFromBlob(rset, "modelid", sqlModelID);
-        PMob->look = look_t(sqlModelID);
+        ApplyPool(PMob, *pool);
 
-        PMob->SetMJob(rset->get<uint8>("mJob"));
-        PMob->SetSJob(rset->get<uint8>("sJob"));
-
-        static_cast<CItemWeapon*>(PMob->m_Weapons[SLOT_MAIN])->setMaxHit(1);
-        static_cast<CItemWeapon*>(PMob->m_Weapons[SLOT_MAIN])->setSkillType(rset->get<xi::SkillType>("cmbSkill"));
-        PMob->m_dmgMult = rset->get<uint16>("cmbDmgMult");
-        static_cast<CItemWeapon*>(PMob->m_Weapons[SLOT_MAIN])->setDelay(rset->get<uint16>("cmbDelay"));
-        static_cast<CItemWeapon*>(PMob->m_Weapons[SLOT_MAIN])->setBaseDelay(rset->get<uint16>("cmbDelay"));
-
-        PMob->m_Behavior = rset->get<xi::Behavior>("behavior");
-        PMob->m_Type     = rset->get<xi::MobType>("mobType");
-        PMob->m_Immunity = rset->get<xi::Immunity>("immunity");
-
-        PMob->setModifier(xi::Mod::SLASH_SDT, rset->get<int16>("slash_sdt"));
-        PMob->setModifier(xi::Mod::PIERCE_SDT, rset->get<int16>("pierce_sdt"));
-        PMob->setModifier(xi::Mod::HTH_SDT, rset->get<int16>("h2h_sdt"));
-        PMob->setModifier(xi::Mod::IMPACT_SDT, rset->get<int16>("impact_sdt"));
-
-        PMob->setModifier(xi::Mod::UDMGMAGIC, rset->get<int16>("magical_sdt")); // Modifier 389, base 10000 stored as signed integer. Positives signify less damage.
-
-        PMob->setModifier(xi::Mod::FIRE_SDT, rset->get<int16>("fire_sdt"));         // Modifier 54, base 10000 stored as signed integer. Positives signify less damage.
-        PMob->setModifier(xi::Mod::ICE_SDT, rset->get<int16>("ice_sdt"));           // Modifier 55, base 10000 stored as signed integer. Positives signify less damage.
-        PMob->setModifier(xi::Mod::WIND_SDT, rset->get<int16>("wind_sdt"));         // Modifier 56, base 10000 stored as signed integer. Positives signify less damage.
-        PMob->setModifier(xi::Mod::EARTH_SDT, rset->get<int16>("earth_sdt"));       // Modifier 57, base 10000 stored as signed integer. Positives signify less damage.
-        PMob->setModifier(xi::Mod::THUNDER_SDT, rset->get<int16>("lightning_sdt")); // Modifier 58, base 10000 stored as signed integer. Positives signify less damage.
-        PMob->setModifier(xi::Mod::WATER_SDT, rset->get<int16>("water_sdt"));       // Modifier 59, base 10000 stored as signed integer. Positives signify less damage.
-        PMob->setModifier(xi::Mod::LIGHT_SDT, rset->get<int16>("light_sdt"));       // Modifier 60, base 10000 stored as signed integer. Positives signify less damage.
-        PMob->setModifier(xi::Mod::DARK_SDT, rset->get<int16>("dark_sdt"));         // Modifier 61, base 10000 stored as signed integer. Positives signify less damage.
-
-        PMob->setModifier(xi::Mod::FIRE_RES_RANK, rset->get<int8>("fire_res_rank"));
-        PMob->setModifier(xi::Mod::ICE_RES_RANK, rset->get<int8>("ice_res_rank"));
-        PMob->setModifier(xi::Mod::WIND_RES_RANK, rset->get<int8>("wind_res_rank"));
-        PMob->setModifier(xi::Mod::EARTH_RES_RANK, rset->get<int8>("earth_res_rank"));
-        PMob->setModifier(xi::Mod::THUNDER_RES_RANK, rset->get<int8>("lightning_res_rank"));
-        PMob->setModifier(xi::Mod::WATER_RES_RANK, rset->get<int8>("water_res_rank"));
-        PMob->setModifier(xi::Mod::LIGHT_RES_RANK, rset->get<int8>("light_res_rank"));
-        PMob->setModifier(xi::Mod::DARK_RES_RANK, rset->get<int8>("dark_res_rank"));
-
-        PMob->m_Species     = rset->get<uint16>("speciesid");
-        PMob->m_name_prefix = rset->get<uint8>("name_prefix");
-        ApplySpecies(PMob);
-        PMob->m_flags = rset->get<xi::EntityFlags>("entityFlags");
-
-        PMob->animationsub = rset->get<uint32>("animationsub");
-
-        PMob->m_SpellListContainer = mobSpellList::GetMobSpellList(rset->get<uint16>("spellList"));
-
-        PMob->m_Pool = rset->get<uint32>("poolid");
-
-        PMob->allegiance      = rset->get<xi::Allegiance>("allegiance");
-        PMob->namevis         = rset->get<xi::NameVis>("namevis");
-        PMob->modelHitboxSize = std::max<float>(0.0f, rset->getOrDefault<float>("modelHitboxSize", 0) / 10.f);
-        PMob->modelSize       = rset->getOrDefault<uint8>("modelSize", 0);
-        PMob->m_Aggro         = rset->get<bool>("aggro");
-        PMob->m_MobSkillList  = rset->get<uint16>("skill_list_id");
-        PMob->m_Link          = rset->get<uint8>("links");
-        PMob->m_TrueDetection = rset->get<bool>("true_detection");
+        PMob->allegiance = rset->get<xi::Allegiance>("allegiance");
 
         mobutils::InitializeMob(PMob);
         mobutils::AddSqlModifiers(PMob);
