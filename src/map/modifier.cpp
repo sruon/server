@@ -42,13 +42,13 @@ void CModifier::setModAmount(int16 amount)
     m_amount = amount;
 }
 
-CPetModifier::CPetModifier(xi::Mod type, PetModType pettype, int16 amount)
+CPetModifier::CPetModifier(xi::Mod type, xi::PetModType pettype, int16 amount)
 : CModifier(type, amount)
 , m_pettype(pettype)
 {
 }
 
-auto CPetModifier::getPetModType() const -> PetModType
+auto CPetModifier::getPetModType() const -> xi::PetModType
 {
     return m_pettype;
 }

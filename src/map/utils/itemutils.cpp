@@ -485,7 +485,7 @@ void LoadItemList()
         const auto ItemID  = rset->get<uint16>("itemId");
         const auto modID   = rset->get<xi::Mod>("modId");
         const auto value   = rset->get<int16>("value");
-        const auto petType = rset->get<PetModType>("petType");
+        const auto petType = rset->get<xi::PetModType>("petType");
 
         if (auto* tpl = itemTemplates[ItemID].get(); tpl != nullptr && tpl->isType(ITEM_EQUIPMENT))
         {

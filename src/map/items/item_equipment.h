@@ -105,7 +105,7 @@ public:
 
     void addPetModifier(CPetModifier modifier);
 
-    void addPetModifier(xi::Mod mod, PetModType petType, int16 modValue)
+    void addPetModifier(xi::Mod mod, xi::PetModType petType, int16 modValue)
     {
         return addPetModifier(CPetModifier(mod, petType, modValue));
     };
@@ -113,7 +113,7 @@ public:
     void addLatent(xi::Latent ConditionsID, uint16 ConditionsValue, xi::Mod ModValue, int16 ModPower);
 
     auto delModifier(xi::Mod mod, int16 modValue) -> bool;
-    auto delPetModifier(xi::Mod mod, PetModType petType, int16 modValue) -> bool;
+    auto delPetModifier(xi::Mod mod, xi::PetModType petType, int16 modValue) -> bool;
 
     std::vector<CModifier>    modList;
     std::vector<CPetModifier> petModList;

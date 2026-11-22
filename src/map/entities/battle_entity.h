@@ -238,9 +238,9 @@ public:
     void restoreModifiers(); // restore to saved state
     void savePetModifiers(); // saves dynamic pet modifiers
 
-    void addPetModifier(xi::Mod type, PetModType, int16 amount);
-    void setPetModifier(xi::Mod type, PetModType, int16 amount);
-    void delPetModifier(xi::Mod type, PetModType, int16 amount);
+    void addPetModifier(xi::Mod type, xi::PetModType, int16 amount);
+    void setPetModifier(xi::Mod type, xi::PetModType, int16 amount);
+    void delPetModifier(xi::Mod type, xi::PetModType, int16 amount);
     void addPetModifiers(std::vector<CPetModifier>* modList);
     void delPetModifiers(std::vector<CPetModifier>* modList);
     void applyPetModifiers(CPetEntity* PPet);
@@ -393,13 +393,13 @@ private:
     timer::time_point m_battleStartTime;
     uint16            m_battleID = 0; // Current battle the entity is participating in. Battle ID must match in order for entities to interact with each other.
 
-    HashMap<xi::Mod, int16, EnumClassHash>                                     m_modStat;     // array of modifiers
-    HashMap<xi::Mod, int16, EnumClassHash>                                     m_modStatSave; // saved state
-    HashMap<PetModType, HashMap<xi::Mod, int16, EnumClassHash>, EnumClassHash> m_petMod;
+    HashMap<xi::Mod, int16, EnumClassHash>                                         m_modStat;     // array of modifiers
+    HashMap<xi::Mod, int16, EnumClassHash>                                         m_modStatSave; // saved state
+    HashMap<xi::PetModType, HashMap<xi::Mod, int16, EnumClassHash>, EnumClassHash> m_petMod;
 
     // The mod maps MUST be node-based (HashMap): references into them are held while
     // other entries are inserted, and a flat/dense map relocates its storage on growth.
     static_assert(std::is_same_v<decltype(m_modStat), HashMap<xi::Mod, int16, EnumClassHash>>);
     static_assert(std::is_same_v<decltype(m_modStatSave), HashMap<xi::Mod, int16, EnumClassHash>>);
-    static_assert(std::is_same_v<decltype(m_petMod), HashMap<PetModType, HashMap<xi::Mod, int16, EnumClassHash>, EnumClassHash>>);
+    static_assert(std::is_same_v<decltype(m_petMod), HashMap<xi::PetModType, HashMap<xi::Mod, int16, EnumClassHash>, EnumClassHash>>);
 };

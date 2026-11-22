@@ -2101,7 +2101,7 @@ auto CBattleEntity::getMaxGearMod(xi::Mod modID) -> int16
     return maxModValue;
 }
 
-void CBattleEntity::addPetModifier(xi::Mod type, PetModType petmod, int16 amount)
+void CBattleEntity::addPetModifier(xi::Mod type, xi::PetModType petmod, int16 amount)
 {
     TracyZoneScoped;
 
@@ -2114,7 +2114,7 @@ void CBattleEntity::addPetModifier(xi::Mod type, PetModType petmod, int16 amount
     }
 }
 
-void CBattleEntity::setPetModifier(xi::Mod type, PetModType petmod, int16 amount)
+void CBattleEntity::setPetModifier(xi::Mod type, xi::PetModType petmod, int16 amount)
 {
     TracyZoneScoped;
 
@@ -2127,7 +2127,7 @@ void CBattleEntity::setPetModifier(xi::Mod type, PetModType petmod, int16 amount
     }
 }
 
-void CBattleEntity::delPetModifier(xi::Mod type, PetModType petmod, int16 amount)
+void CBattleEntity::delPetModifier(xi::Mod type, xi::PetModType petmod, int16 amount)
 {
     TracyZoneScoped;
 

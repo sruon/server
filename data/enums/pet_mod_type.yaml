@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=../schemas/enums/_enum.schema.json
+
+# Which pet an item's pet modifier applies to.
+meta:
+  cpp:
+    underlying: uint8_t
+
+values:
+  all:        0
+  avatar:     1
+  wyvern:     2
+  automaton:  3
+  harlequin:  4
+  valoredge:  5
+  sharpshot:  6
+  stormwaker: 7
+  luopan:     8

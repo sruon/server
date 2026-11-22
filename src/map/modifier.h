@@ -18,6 +18,7 @@
 
 #include "common/cbasetypes.h"
 #include "data/enums/mod.h"
+#include "data/enums/pet_mod_type.h"
 
 // temporary workaround for using enum class as unordered_map key until compilers support it
 struct EnumClassHash
@@ -48,25 +49,12 @@ private:
     int16   m_amount{ 0 };
 };
 
-enum class PetModType
-{
-    All        = 0,
-    Avatar     = 1,
-    Wyvern     = 2,
-    Automaton  = 3,
-    Harlequin  = 4,
-    Valoredge  = 5,
-    Sharpshot  = 6,
-    Stormwaker = 7,
-    Luopan     = 8
-};
-
 class CPetModifier : public CModifier
 {
 public:
-    CPetModifier(xi::Mod type, PetModType pettype, int16 amount = 0);
-    auto getPetModType() const -> PetModType;
+    CPetModifier(xi::Mod type, xi::PetModType pettype, int16 amount = 0);
+    auto getPetModType() const -> xi::PetModType;
 
 private:
-    PetModType m_pettype{ PetModType::All };
+    xi::PetModType m_pettype{ xi::PetModType::All };
 };
