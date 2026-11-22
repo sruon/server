@@ -1,0 +1,1623 @@
+# yaml-language-server: $schema=schemas/gardening_results.schema.json
+#
+# What a flowerpot yields at harvest, by plant and the crystals it was fed.
+# Plants are fed one crystal. Trees are fed two; a pair is listed once and applies in either feed order, unless the reverse order is listed too.
+# Results share out the harvest strength in list order: the first covers 0 up to its weight, the next the band after it, and so on.
+
+gardening_results:
+  plants:
+    herb_seeds:
+      none:
+        - {item: 936, quantity: [12, 24], weight: 30} # Rock Salt
+        - {item: 957, quantity: [4, 8], weight: 30}   # Amaryllis
+        - {item: 772, quantity: [1, 2], weight: 20}   # Green Rock
+        - {item: 4386, quantity: [1, 2], weight: 20}  # King Truffle
+      fire:
+        - {item: 4097, quantity: [4, 12], weight: 40} # Ice Crystal
+        - {item: 612, quantity: [12, 24], weight: 30} # Kazham Peppers
+        - {item: 5195, quantity: [4, 8], weight: 30}  # Sprig Of Misareaux Parsley
+      ice:
+        - {item: 936, quantity: [12, 24], weight: 30} # Rock Salt
+        - {item: 4098, quantity: [4, 12], weight: 20} # Wind Crystal
+        - {item: 636, quantity: [4, 8], weight: 20}   # Chamomile
+        - {item: 4374, quantity: [1, 5], weight: 30}  # Sleepshroom
+      wind:
+        - {item: 17396, quantity: [12, 24], weight: 30} # Little Worm
+        - {item: 4099, quantity: [4, 12], weight: 20}   # Earth Crystal
+        - {item: 638, quantity: [4, 8], weight: 30}     # Sage
+        - {item: 772, quantity: [1, 2], weight: 20}     # Green Rock
+      earth:
+        - {item: 4100, quantity: [4, 12], weight: 40} # Lightning Crystal
+        - {item: 948, quantity: [4, 8], weight: 30}   # Carnation
+        - {item: 626, quantity: [4, 8], weight: 30}   # Black Pepper
+      thunder:
+        - {item: 4101, quantity: [4, 12], weight: 40} # Water Crystal
+        - {item: 614, quantity: [4, 8], weight: 30}   # Mhaura Garlic
+        - {item: 4565, quantity: [1, 5], weight: 30}  # Sobbing Fungus
+      water:
+        - {item: 4096, quantity: [4, 12], weight: 40} # Fire Crystal
+        - {item: 623, quantity: [4, 8], weight: 30}   # Bay Leaves
+        - {item: 1590, quantity: [1, 5], weight: 30}  # Holy Basil
+      light:
+        - {item: 4103, quantity: [4, 12], weight: 40} # Dark Crystal
+        - {item: 614, quantity: [6, 12], weight: 30}  # Mhaura Garlic
+        - {item: 2112, quantity: [1, 5], weight: 30}  # Vanilla
+      dark:
+        - {item: 4102, quantity: [4, 12], weight: 40} # Light Crystal
+        - {item: 957, quantity: [4, 8], weight: 30}   # Amaryllis
+        - {item: 4566, quantity: [1, 2], weight: 30}  # Deathball
+
+    grain_seeds:
+      none:
+        - {item: 936, quantity: [12, 24], weight: 30} # Rock Salt
+        - {item: 958, quantity: [1, 5], weight: 30}   # Marguerite
+        - {item: 769, quantity: [1, 2], weight: 20}   # Red Rock
+        - {item: 4448, quantity: [1, 2], weight: 20}  # Puffball
+      fire:
+        - {item: 17396, quantity: [12, 24], weight: 30} # Little Worm
+        - {item: 4097, quantity: [4, 12], weight: 20}   # Ice Crystal
+        - {item: 620, quantity: [8, 16], weight: 30}    # Tarutaru Rice
+        - {item: 769, quantity: [1, 2], weight: 20}     # Red Rock
+      ice:
+        - {item: 4098, quantity: [4, 12], weight: 60} # Wind Crystal
+        - {item: 632, quantity: [12, 24], weight: 40} # Kukuru Bean
+      wind:
+        - {item: 4099, quantity: [4, 12], weight: 60} # Earth Crystal
+        - {item: 629, quantity: [12, 24], weight: 40} # Millioncorn
+      earth:
+        - {item: 4100, quantity: [4, 12], weight: 60} # Lightning Crystal
+        - {item: 620, quantity: [4, 8], weight: 40}   # Tarutaru Rice
+      thunder:
+        - {item: 4101, quantity: [4, 12], weight: 40} # Water Crystal
+        - {item: 958, quantity: [1, 5], weight: 30}   # Marguerite
+        - {item: 4450, quantity: [1, 5], weight: 30}  # Coral Fungus
+      water:
+        - {item: 936, quantity: [12, 24], weight: 30} # Rock Salt
+        - {item: 4096, quantity: [4, 12], weight: 40} # Fire Crystal
+        - {item: 618, quantity: [12, 24], weight: 30} # Blue Peas
+      light:
+        - {item: 4103, quantity: [4, 12], weight: 60}  # Dark Crystal
+        - {item: 4505, quantity: [12, 24], weight: 40} # Sunflower Seeds
+      dark:
+        - {item: 4102, quantity: [4, 12], weight: 40} # Light Crystal
+        - {item: 620, quantity: [8, 16], weight: 30}  # Tarutaru Rice
+        - {item: 4450, quantity: [1, 5], weight: 30}  # Coral Fungus
+
+    vegetable_seeds:
+      none:
+        - {item: 936, quantity: [12, 24], weight: 30} # Rock Salt
+        - {item: 949, quantity: [6, 12], weight: 30}  # Rain Lily
+        - {item: 771, quantity: [1, 2], weight: 20}   # Yellow Rock
+        - {item: 4373, quantity: [1, 2], weight: 20}  # Woozyshroom
+      fire:
+        - {item: 4097, quantity: [4, 12], weight: 40} # Ice Crystal
+        - {item: 619, quantity: [8, 16], weight: 30}  # Popoto
+        - {item: 5651, quantity: [1, 5], weight: 30}  # Burdock
+      ice:
+        - {item: 4098, quantity: [4, 12], weight: 60} # Wind Crystal
+        - {item: 834, quantity: [1, 5], weight: 40}   # Saruta Cotton
+      wind:
+        - {item: 936, quantity: [12, 24], weight: 40} # Rock Salt
+        - {item: 4099, quantity: [4, 12], weight: 30} # Earth Crystal
+        - {item: 4545, quantity: [6, 12], weight: 30} # Bunch Of Gysahl Greens
+      earth:
+        - {item: 17396, quantity: [12, 24], weight: 30} # Little Worm
+        - {item: 4100, quantity: [4, 12], weight: 30}   # Lightning Crystal
+        - {item: 4382, quantity: [8, 16], weight: 20}   # Frost Turnip
+        - {item: 771, quantity: [1, 2], weight: 20}     # Yellow Rock
+      thunder:
+        - {item: 4101, quantity: [4, 12], weight: 60} # Water Crystal
+        - {item: 4387, quantity: [1, 5], weight: 40}  # Wild Onion
+      water:
+        - {item: 4096, quantity: [4, 12], weight: 40} # Fire Crystal
+        - {item: 4366, quantity: [8, 16], weight: 30} # La Theine Cabbage
+        - {item: 5907, quantity: [1, 2], weight: 30}  # Winterflower
+      light:
+        - {item: 4103, quantity: [4, 12], weight: 60} # Dark Crystal
+        - {item: 617, quantity: [1, 5], weight: 40}   # Ginger
+      dark:
+        - {item: 4102, quantity: [4, 12], weight: 40} # Light Crystal
+        - {item: 4373, quantity: [1, 2], weight: 30}  # Woozyshroom
+        - {item: 4447, quantity: [1, 2], weight: 30}  # Scream Fungus
+
+    wildgrass_seeds:
+      none:
+        - {item: 936, quantity: [12, 24], weight: 30} # Rock Salt
+        - {item: 4366, quantity: [6, 12], weight: 20} # La Theine Cabbage
+        - {item: 774, quantity: [1, 2], weight: 30}   # Purple Rock
+        - {item: 2205, quantity: [1, 5], weight: 20}  # Gregarious Worm
+      fire:
+        - {item: 4097, quantity: [4, 12], weight: 40}  # Ice Crystal
+        - {item: 4545, quantity: [12, 24], weight: 30} # Gysahl Greens
+        - {item: 2202, quantity: [8, 16], weight: 30}  # Clump Of Garidav Wildgrass
+      ice:
+        - {item: 4098, quantity: [4, 12], weight: 40} # Wind Crystal
+        - {item: 5608, quantity: [6, 12], weight: 30} # Zegham Carrot
+        - {item: 5606, quantity: [6, 12], weight: 30} # Azouph Greens
+      wind:
+        - {item: 4099, quantity: [4, 12], weight: 60} # Earth Crystal
+        - {item: 4545, quantity: [8, 16], weight: 40} # Bunch Of Gysahl Greens
+      earth:
+        - {item: 936, quantity: [12, 24], weight: 40} # Rock Salt
+        - {item: 4100, quantity: [4, 12], weight: 30} # Lightning Crystal
+        - {item: 5607, quantity: [8, 16], weight: 30} # Vomp Carrot
+      thunder:
+        - {item: 17396, quantity: [12, 24], weight: 30} # Little Worm
+        - {item: 4101, quantity: [4, 12], weight: 20}   # Water Crystal
+        - {item: 5605, quantity: [8, 16], weight: 30}   # Sharug Greens
+        - {item: 774, quantity: [1, 2], weight: 20}     # Purple Rock
+      water:
+        - {item: 4096, quantity: [4, 12], weight: 60} # Fire Crystal
+        - {item: 2201, quantity: [8, 16], weight: 40} # Clump Of Tokopekko Wildgrass
+      light:
+        - {item: 4103, quantity: [4, 12], weight: 60} # Dark Crystal
+        - {item: 2203, quantity: [1, 5], weight: 40}  # Cupid Worm
+      dark:
+        - {item: 4102, quantity: [4, 12], weight: 60} # Light Crystal
+        - {item: 2204, quantity: [1, 5], weight: 40}  # Parasite Worm
+
+  trees:
+    fruit_seeds:
+      none:
+        none:
+          - {item: 936, quantity: [12, 24], weight: 30} # Rock Salt
+          - {item: 4449, quantity: [1, 2], weight: 30}  # Reishi Mushroom
+          - {item: 4468, quantity: [6, 12], weight: 20} # Pamamas
+          - {item: 770, quantity: [1, 2], weight: 20}   # Blue Rock
+        fire:
+          - {item: 936, quantity: [12, 24], weight: 15} # Rock Salt
+          - {item: 4097, quantity: [6, 12], weight: 15} # Ice Crystal
+          - {item: 4449, quantity: [1, 2], weight: 15}  # Reishi Mushroom
+          - {item: 4392, quantity: [6, 12], weight: 15} # Saruta Orange
+          - {item: 4468, quantity: [6, 12], weight: 10} # Pamamas
+          - {item: 4445, quantity: [8, 16], weight: 10} # Yagudo Cherry
+          - {item: 770, quantity: [1, 2], weight: 10}   # Blue Rock
+          - {item: 769, quantity: [1, 2], weight: 10}   # Red Rock
+        ice:
+          - {item: 936, quantity: [12, 24], weight: 15} # Rock Salt
+          - {item: 4098, quantity: [6, 12], weight: 15} # Wind Crystal
+          - {item: 4449, quantity: [1, 2], weight: 15}  # Reishi Mushroom
+          - {item: 4390, quantity: [6, 12], weight: 15} # Mithran Tomato
+          - {item: 4468, quantity: [6, 12], weight: 10} # Pamamas
+          - {item: 4503, quantity: [6, 12], weight: 10} # Buburimu Grape
+          - {item: 770, quantity: [1, 2], weight: 10}   # Blue Rock
+          - {item: 773, quantity: [1, 2], weight: 10}   # Translucent Rock
+        wind:
+          - {item: 936, quantity: [12, 24], weight: 15} # Rock Salt
+          - {item: 4099, quantity: [6, 12], weight: 15} # Earth Crystal
+          - {item: 4449, quantity: [1, 2], weight: 15}  # Reishi Mushroom
+          - {item: 4431, quantity: [6, 12], weight: 15} # Bunch Of San dOrian Grapes
+          - {item: 4468, quantity: [6, 12], weight: 10} # Pamamas
+          - {item: 4365, quantity: [6, 12], weight: 10} # Rolanberry
+          - {item: 770, quantity: [1, 2], weight: 10}   # Blue Rock
+          - {item: 772, quantity: [1, 2], weight: 10}   # Green Rock
+        earth:
+          - {item: 936, quantity: [12, 24], weight: 15} # Rock Salt
+          - {item: 4100, quantity: [6, 12], weight: 15} # Lightning Crystal
+          - {item: 4449, quantity: [1, 2], weight: 15}  # Reishi Mushroom
+          - {item: 4389, quantity: [8, 16], weight: 15} # San dOrian Carrot
+          - {item: 4468, quantity: [6, 12], weight: 10} # Pamamas
+          - {item: 4388, quantity: [8, 16], weight: 10} # Eggplant
+          - {item: 770, quantity: [1, 2], weight: 10}   # Blue Rock
+          - {item: 771, quantity: [1, 2], weight: 10}   # Yellow Rock
+        thunder:
+          - {item: 936, quantity: [12, 24], weight: 15} # Rock Salt
+          - {item: 4101, quantity: [6, 12], weight: 10} # Water Crystal
+          - {item: 4449, quantity: [1, 2], weight: 15}  # Reishi Mushroom
+          - {item: 4412, quantity: [6, 12], weight: 10} # Thundermelon
+          - {item: 4468, quantity: [6, 12], weight: 10} # Pamamas
+          - {item: 4352, quantity: [6, 12], weight: 10} # Derfland Pear
+          - {item: 770, quantity: [1, 2], weight: 10}   # Blue Rock
+          - {item: 4450, quantity: [6, 12], weight: 10} # Coral Fungus
+          - {item: 774, quantity: [1, 2], weight: 10}   # Purple Rock
+        water:
+          - {item: 936, quantity: [12, 24], weight: 15}   # Rock Salt
+          - {item: 17396, quantity: [12, 24], weight: 10} # Little Worm
+          - {item: 4449, quantity: [1, 2], weight: 15}    # Reishi Mushroom
+          - {item: 4096, quantity: [6, 12], weight: 10}   # Fire Crystal
+          - {item: 4468, quantity: [6, 12], weight: 10}   # Pamamas
+          - {item: 4491, quantity: [6, 12], weight: 10}   # Watermelon
+          - {item: 770, quantity: [1, 2], weight: 20}     # Blue Rock
+          - {item: 4432, quantity: [6, 12], weight: 10}   # Kazham Pineapple
+        light:
+          - {item: 936, quantity: [12, 24], weight: 15} # Rock Salt
+          - {item: 4103, quantity: [6, 12], weight: 15} # Dark Crystal
+          - {item: 4449, quantity: [1, 2], weight: 30}  # Reishi Mushroom
+          - {item: 4363, quantity: [6, 12], weight: 10} # Faerie Apple
+          - {item: 4468, quantity: [6, 12], weight: 10} # Pamamas
+          - {item: 770, quantity: [1, 2], weight: 10}   # Blue Rock
+          - {item: 776, quantity: [1, 2], weight: 10}   # White Rock
+        dark:
+          - {item: 936, quantity: [12, 24], weight: 15} # Rock Salt
+          - {item: 4102, quantity: [6, 12], weight: 15} # Light Crystal
+          - {item: 4449, quantity: [1, 2], weight: 15}  # Reishi Mushroom
+          - {item: 4392, quantity: [6, 12], weight: 15} # Saruta Orange
+          - {item: 4468, quantity: [6, 12], weight: 10} # Pamamas
+          - {item: 4375, quantity: [6, 12], weight: 10} # Danceshroom
+          - {item: 770, quantity: [1, 2], weight: 10}   # Blue Rock
+          - {item: 775, quantity: [1, 2], weight: 10}   # Black Rock
+      fire:
+        fire:
+          - {item: 4097, quantity: [6, 12], weight: 30} # Ice Crystal
+          - {item: 4392, quantity: [6, 12], weight: 30} # Saruta Orange
+          - {item: 4445, quantity: [8, 16], weight: 20} # Yagudo Cherry
+          - {item: 769, quantity: [1, 2], weight: 20}   # Red Rock
+        ice:
+          - {item: 4097, quantity: [6, 12], weight: 15} # Ice Crystal
+          - {item: 4098, quantity: [6, 12], weight: 15} # Wind Crystal
+          - {item: 4392, quantity: [6, 12], weight: 15} # Saruta Orange
+          - {item: 4390, quantity: [6, 12], weight: 15} # Mithran Tomato
+          - {item: 4445, quantity: [8, 16], weight: 10} # Yagudo Cherry
+          - {item: 4503, quantity: [6, 12], weight: 10} # Buburimu Grape
+          - {item: 769, quantity: [1, 2], weight: 10}   # Red Rock
+          - {item: 773, quantity: [1, 2], weight: 10}   # Translucent Rock
+        wind:
+          - {item: 4097, quantity: [6, 12], weight: 15} # Ice Crystal
+          - {item: 4099, quantity: [6, 12], weight: 15} # Earth Crystal
+          - {item: 4392, quantity: [6, 12], weight: 15} # Saruta Orange
+          - {item: 4431, quantity: [6, 12], weight: 15} # Bunch Of San dOrian Grapes
+          - {item: 4445, quantity: [8, 16], weight: 10} # Yagudo Cherry
+          - {item: 4365, quantity: [6, 12], weight: 10} # Rolanberry
+          - {item: 769, quantity: [1, 2], weight: 10}   # Red Rock
+          - {item: 772, quantity: [1, 2], weight: 10}   # Green Rock
+        earth:
+          - {item: 4097, quantity: [6, 12], weight: 15} # Ice Crystal
+          - {item: 4100, quantity: [6, 12], weight: 15} # Lightning Crystal
+          - {item: 4392, quantity: [6, 12], weight: 15} # Saruta Orange
+          - {item: 4389, quantity: [8, 16], weight: 15} # San dOrian Carrot
+          - {item: 4445, quantity: [8, 16], weight: 10} # Yagudo Cherry
+          - {item: 4388, quantity: [8, 16], weight: 10} # Eggplant
+          - {item: 769, quantity: [1, 2], weight: 10}   # Red Rock
+          - {item: 771, quantity: [1, 2], weight: 10}   # Yellow Rock
+        thunder:
+          - {item: 4097, quantity: [6, 12], weight: 15} # Ice Crystal
+          - {item: 4101, quantity: [6, 12], weight: 10} # Water Crystal
+          - {item: 4392, quantity: [6, 12], weight: 15} # Saruta Orange
+          - {item: 4412, quantity: [6, 12], weight: 10} # Thundermelon
+          - {item: 4445, quantity: [8, 16], weight: 10} # Yagudo Cherry
+          - {item: 4352, quantity: [6, 12], weight: 10} # Derfland Pear
+          - {item: 769, quantity: [1, 2], weight: 10}   # Red Rock
+          - {item: 4450, quantity: [6, 12], weight: 10} # Coral Fungus
+          - {item: 774, quantity: [1, 2], weight: 10}   # Purple Rock
+        water:
+          - {item: 4097, quantity: [6, 12], weight: 15}   # Ice Crystal
+          - {item: 17396, quantity: [12, 24], weight: 10} # Little Worm
+          - {item: 4392, quantity: [6, 12], weight: 15}   # Saruta Orange
+          - {item: 4096, quantity: [6, 12], weight: 10}   # Fire Crystal
+          - {item: 4445, quantity: [8, 16], weight: 10}   # Yagudo Cherry
+          - {item: 4491, quantity: [6, 12], weight: 10}   # Watermelon
+          - {item: 769, quantity: [1, 2], weight: 10}     # Red Rock
+          - {item: 4432, quantity: [6, 12], weight: 10}   # Kazham Pineapple
+          - {item: 770, quantity: [1, 2], weight: 10}     # Blue Rock
+        light:
+          - {item: 4097, quantity: [6, 12], weight: 15} # Ice Crystal
+          - {item: 4103, quantity: [6, 12], weight: 15} # Dark Crystal
+          - {item: 4392, quantity: [6, 12], weight: 15} # Saruta Orange
+          - {item: 4363, quantity: [6, 12], weight: 10} # Faerie Apple
+          - {item: 4445, quantity: [8, 16], weight: 10} # Yagudo Cherry
+          - {item: 4449, quantity: [1, 2], weight: 15}  # Reishi Mushroom
+          - {item: 769, quantity: [1, 2], weight: 10}   # Red Rock
+          - {item: 776, quantity: [1, 2], weight: 10}   # White Rock
+        dark:
+          - {item: 4097, quantity: [6, 12], weight: 15} # Ice Crystal
+          - {item: 4102, quantity: [6, 12], weight: 15} # Light Crystal
+          - {item: 4392, quantity: [6, 12], weight: 30} # Saruta Orange
+          - {item: 4445, quantity: [8, 16], weight: 10} # Yagudo Cherry
+          - {item: 4375, quantity: [6, 12], weight: 10} # Danceshroom
+          - {item: 769, quantity: [1, 2], weight: 10}   # Red Rock
+          - {item: 775, quantity: [1, 2], weight: 10}   # Black Rock
+      ice:
+        ice:
+          - {item: 4098, quantity: [6, 12], weight: 30} # Wind Crystal
+          - {item: 4390, quantity: [6, 12], weight: 30} # Mithran Tomato
+          - {item: 4503, quantity: [6, 12], weight: 20} # Buburimu Grape
+          - {item: 773, quantity: [1, 2], weight: 20}   # Translucent Rock
+        wind:
+          - {item: 4098, quantity: [6, 12], weight: 15} # Wind Crystal
+          - {item: 4099, quantity: [6, 12], weight: 15} # Earth Crystal
+          - {item: 4390, quantity: [6, 12], weight: 15} # Mithran Tomato
+          - {item: 4431, quantity: [6, 12], weight: 15} # Bunch Of San dOrian Grapes
+          - {item: 4503, quantity: [6, 12], weight: 10} # Buburimu Grape
+          - {item: 4365, quantity: [6, 12], weight: 10} # Rolanberry
+          - {item: 773, quantity: [1, 2], weight: 10}   # Translucent Rock
+          - {item: 772, quantity: [1, 2], weight: 10}   # Green Rock
+        earth:
+          - {item: 4098, quantity: [6, 12], weight: 15} # Wind Crystal
+          - {item: 4100, quantity: [6, 12], weight: 15} # Lightning Crystal
+          - {item: 4390, quantity: [6, 12], weight: 15} # Mithran Tomato
+          - {item: 4389, quantity: [8, 16], weight: 15} # San dOrian Carrot
+          - {item: 4503, quantity: [6, 12], weight: 10} # Buburimu Grape
+          - {item: 4388, quantity: [8, 16], weight: 10} # Eggplant
+          - {item: 773, quantity: [1, 2], weight: 10}   # Translucent Rock
+          - {item: 771, quantity: [1, 2], weight: 10}   # Yellow Rock
+        thunder:
+          - {item: 4098, quantity: [6, 12], weight: 15} # Wind Crystal
+          - {item: 4101, quantity: [6, 12], weight: 10} # Water Crystal
+          - {item: 4390, quantity: [6, 12], weight: 15} # Mithran Tomato
+          - {item: 4412, quantity: [6, 12], weight: 10} # Thundermelon
+          - {item: 4503, quantity: [6, 12], weight: 10} # Buburimu Grape
+          - {item: 4352, quantity: [6, 12], weight: 10} # Derfland Pear
+          - {item: 773, quantity: [1, 2], weight: 10}   # Translucent Rock
+          - {item: 4450, quantity: [6, 12], weight: 10} # Coral Fungus
+          - {item: 774, quantity: [1, 2], weight: 10}   # Purple Rock
+        water:
+          - {item: 4098, quantity: [6, 12], weight: 15}   # Wind Crystal
+          - {item: 17396, quantity: [12, 24], weight: 10} # Little Worm
+          - {item: 4390, quantity: [6, 12], weight: 15}   # Mithran Tomato
+          - {item: 4096, quantity: [6, 12], weight: 10}   # Fire Crystal
+          - {item: 4503, quantity: [6, 12], weight: 10}   # Buburimu Grape
+          - {item: 4491, quantity: [6, 12], weight: 10}   # Watermelon
+          - {item: 773, quantity: [1, 2], weight: 10}     # Translucent Rock
+          - {item: 4432, quantity: [6, 12], weight: 10}   # Kazham Pineapple
+          - {item: 770, quantity: [1, 2], weight: 10}     # Blue Rock
+        light:
+          - {item: 4098, quantity: [6, 12], weight: 15} # Wind Crystal
+          - {item: 4103, quantity: [6, 12], weight: 15} # Dark Crystal
+          - {item: 4390, quantity: [6, 12], weight: 15} # Mithran Tomato
+          - {item: 4363, quantity: [6, 12], weight: 10} # Faerie Apple
+          - {item: 4503, quantity: [6, 12], weight: 10} # Buburimu Grape
+          - {item: 4449, quantity: [1, 2], weight: 15}  # Reishi Mushroom
+          - {item: 773, quantity: [1, 2], weight: 10}   # Translucent Rock
+          - {item: 776, quantity: [1, 2], weight: 10}   # White Rock
+        dark:
+          - {item: 4098, quantity: [6, 12], weight: 15} # Wind Crystal
+          - {item: 4102, quantity: [6, 12], weight: 15} # Light Crystal
+          - {item: 4390, quantity: [6, 12], weight: 15} # Mithran Tomato
+          - {item: 4392, quantity: [6, 12], weight: 15} # Saruta Orange
+          - {item: 4503, quantity: [6, 12], weight: 10} # Buburimu Grape
+          - {item: 4375, quantity: [6, 12], weight: 10} # Danceshroom
+          - {item: 773, quantity: [1, 2], weight: 10}   # Translucent Rock
+          - {item: 775, quantity: [1, 2], weight: 10}   # Black Rock
+      wind:
+        wind:
+          - {item: 4099, quantity: [6, 12], weight: 30} # Earth Crystal
+          - {item: 4431, quantity: [6, 12], weight: 30} # Bunch Of San dOrian Grapes
+          - {item: 4365, quantity: [6, 12], weight: 20} # Rolanberry
+          - {item: 772, quantity: [1, 2], weight: 20}   # Green Rock
+        earth:
+          - {item: 4099, quantity: [6, 12], weight: 15} # Earth Crystal
+          - {item: 4100, quantity: [6, 12], weight: 15} # Lightning Crystal
+          - {item: 4431, quantity: [6, 12], weight: 15} # Bunch Of San dOrian Grapes
+          - {item: 4389, quantity: [8, 16], weight: 15} # San dOrian Carrot
+          - {item: 4365, quantity: [6, 12], weight: 10} # Rolanberry
+          - {item: 4388, quantity: [8, 16], weight: 10} # Eggplant
+          - {item: 772, quantity: [1, 2], weight: 10}   # Green Rock
+          - {item: 771, quantity: [1, 2], weight: 10}   # Yellow Rock
+        thunder:
+          - {item: 4099, quantity: [6, 12], weight: 15} # Earth Crystal
+          - {item: 4101, quantity: [6, 12], weight: 10} # Water Crystal
+          - {item: 4431, quantity: [6, 12], weight: 15} # Bunch Of San dOrian Grapes
+          - {item: 4412, quantity: [6, 12], weight: 10} # Thundermelon
+          - {item: 4365, quantity: [6, 12], weight: 10} # Rolanberry
+          - {item: 4352, quantity: [6, 12], weight: 10} # Derfland Pear
+          - {item: 772, quantity: [1, 2], weight: 10}   # Green Rock
+          - {item: 4450, quantity: [6, 12], weight: 10} # Coral Fungus
+          - {item: 774, quantity: [1, 2], weight: 10}   # Purple Rock
+        water:
+          - {item: 4099, quantity: [6, 12], weight: 15}   # Earth Crystal
+          - {item: 17396, quantity: [12, 24], weight: 10} # Little Worm
+          - {item: 4431, quantity: [6, 12], weight: 15}   # Bunch Of San dOrian Grapes
+          - {item: 4096, quantity: [6, 12], weight: 10}   # Fire Crystal
+          - {item: 4365, quantity: [6, 12], weight: 10}   # Rolanberry
+          - {item: 4491, quantity: [6, 12], weight: 10}   # Watermelon
+          - {item: 772, quantity: [1, 2], weight: 10}     # Green Rock
+          - {item: 4432, quantity: [6, 12], weight: 10}   # Kazham Pineapple
+          - {item: 770, quantity: [1, 2], weight: 10}     # Blue Rock
+        light:
+          - {item: 4099, quantity: [6, 12], weight: 15} # Earth Crystal
+          - {item: 4103, quantity: [6, 12], weight: 15} # Dark Crystal
+          - {item: 4431, quantity: [6, 12], weight: 15} # Bunch Of San dOrian Grapes
+          - {item: 4363, quantity: [6, 12], weight: 10} # Faerie Apple
+          - {item: 4365, quantity: [6, 12], weight: 10} # Rolanberry
+          - {item: 4449, quantity: [1, 2], weight: 15}  # Reishi Mushroom
+          - {item: 772, quantity: [1, 2], weight: 10}   # Green Rock
+          - {item: 776, quantity: [1, 2], weight: 10}   # White Rock
+        dark:
+          - {item: 4099, quantity: [6, 12], weight: 15} # Earth Crystal
+          - {item: 4102, quantity: [6, 12], weight: 15} # Light Crystal
+          - {item: 4431, quantity: [6, 12], weight: 15} # Bunch Of San dOrian Grapes
+          - {item: 4392, quantity: [6, 12], weight: 15} # Saruta Orange
+          - {item: 4365, quantity: [6, 12], weight: 10} # Rolanberry
+          - {item: 4375, quantity: [6, 12], weight: 10} # Danceshroom
+          - {item: 772, quantity: [1, 2], weight: 10}   # Green Rock
+          - {item: 775, quantity: [1, 2], weight: 10}   # Black Rock
+      earth:
+        earth:
+          - {item: 4100, quantity: [6, 12], weight: 30} # Lightning Crystal
+          - {item: 4389, quantity: [8, 16], weight: 30} # San dOrian Carrot
+          - {item: 4388, quantity: [8, 16], weight: 20} # Eggplant
+          - {item: 771, quantity: [1, 2], weight: 20}   # Yellow Rock
+        thunder:
+          - {item: 4100, quantity: [6, 12], weight: 15} # Lightning Crystal
+          - {item: 4101, quantity: [6, 12], weight: 10} # Water Crystal
+          - {item: 4389, quantity: [8, 16], weight: 15} # San dOrian Carrot
+          - {item: 4412, quantity: [6, 12], weight: 10} # Thundermelon
+          - {item: 4388, quantity: [8, 16], weight: 10} # Eggplant
+          - {item: 4352, quantity: [6, 12], weight: 10} # Derfland Pear
+          - {item: 771, quantity: [1, 2], weight: 10}   # Yellow Rock
+          - {item: 4450, quantity: [6, 12], weight: 10} # Coral Fungus
+          - {item: 774, quantity: [1, 2], weight: 10}   # Purple Rock
+        water:
+          - {item: 4100, quantity: [6, 12], weight: 15}   # Lightning Crystal
+          - {item: 17396, quantity: [12, 24], weight: 10} # Little Worm
+          - {item: 4389, quantity: [8, 16], weight: 15}   # San dOrian Carrot
+          - {item: 4096, quantity: [6, 12], weight: 10}   # Fire Crystal
+          - {item: 4388, quantity: [8, 16], weight: 10}   # Eggplant
+          - {item: 4491, quantity: [6, 12], weight: 10}   # Watermelon
+          - {item: 771, quantity: [1, 2], weight: 10}     # Yellow Rock
+          - {item: 4432, quantity: [6, 12], weight: 10}   # Kazham Pineapple
+          - {item: 770, quantity: [1, 2], weight: 10}     # Blue Rock
+        light:
+          - {item: 4100, quantity: [6, 12], weight: 15} # Lightning Crystal
+          - {item: 4103, quantity: [6, 12], weight: 15} # Dark Crystal
+          - {item: 4389, quantity: [8, 16], weight: 15} # San dOrian Carrot
+          - {item: 4363, quantity: [6, 12], weight: 10} # Faerie Apple
+          - {item: 4388, quantity: [8, 16], weight: 10} # Eggplant
+          - {item: 4449, quantity: [1, 2], weight: 15}  # Reishi Mushroom
+          - {item: 771, quantity: [1, 2], weight: 10}   # Yellow Rock
+          - {item: 776, quantity: [1, 2], weight: 10}   # White Rock
+        dark:
+          - {item: 4100, quantity: [6, 12], weight: 15} # Lightning Crystal
+          - {item: 4102, quantity: [6, 12], weight: 15} # Light Crystal
+          - {item: 4389, quantity: [8, 16], weight: 15} # San dOrian Carrot
+          - {item: 4392, quantity: [6, 12], weight: 15} # Saruta Orange
+          - {item: 4388, quantity: [8, 16], weight: 10} # Eggplant
+          - {item: 4375, quantity: [6, 12], weight: 10} # Danceshroom
+          - {item: 771, quantity: [1, 2], weight: 10}   # Yellow Rock
+          - {item: 775, quantity: [1, 2], weight: 10}   # Black Rock
+      thunder:
+        thunder:
+          - {item: 4101, quantity: [6, 12], weight: 20} # Water Crystal
+          - {item: 4412, quantity: [6, 12], weight: 20} # Thundermelon
+          - {item: 4352, quantity: [6, 12], weight: 20} # Derfland Pear
+          - {item: 4450, quantity: [6, 12], weight: 20} # Coral Fungus
+          - {item: 774, quantity: [1, 2], weight: 20}   # Purple Rock
+        water:
+          - {item: 4101, quantity: [6, 12], weight: 10}   # Water Crystal
+          - {item: 17396, quantity: [12, 24], weight: 10} # Little Worm
+          - {item: 4412, quantity: [6, 12], weight: 10}   # Thundermelon
+          - {item: 4096, quantity: [6, 12], weight: 10}   # Fire Crystal
+          - {item: 4352, quantity: [6, 12], weight: 10}   # Derfland Pear
+          - {item: 4491, quantity: [6, 12], weight: 10}   # Watermelon
+          - {item: 4450, quantity: [6, 12], weight: 10}   # Coral Fungus
+          - {item: 4432, quantity: [6, 12], weight: 10}   # Kazham Pineapple
+          - {item: 774, quantity: [1, 2], weight: 10}     # Purple Rock
+          - {item: 770, quantity: [1, 2], weight: 10}     # Blue Rock
+        light:
+          - {item: 4101, quantity: [6, 12], weight: 10} # Water Crystal
+          - {item: 4103, quantity: [6, 12], weight: 15} # Dark Crystal
+          - {item: 4412, quantity: [6, 12], weight: 10} # Thundermelon
+          - {item: 4363, quantity: [6, 12], weight: 10} # Faerie Apple
+          - {item: 4352, quantity: [6, 12], weight: 10} # Derfland Pear
+          - {item: 4449, quantity: [1, 2], weight: 15}  # Reishi Mushroom
+          - {item: 4450, quantity: [6, 12], weight: 10} # Coral Fungus
+          - {item: 776, quantity: [1, 2], weight: 10}   # White Rock
+          - {item: 774, quantity: [1, 2], weight: 10}   # Purple Rock
+        dark:
+          - {item: 4101, quantity: [6, 12], weight: 10} # Water Crystal
+          - {item: 4102, quantity: [6, 12], weight: 15} # Light Crystal
+          - {item: 4412, quantity: [6, 12], weight: 10} # Thundermelon
+          - {item: 4392, quantity: [6, 12], weight: 15} # Saruta Orange
+          - {item: 4352, quantity: [6, 12], weight: 10} # Derfland Pear
+          - {item: 4375, quantity: [6, 12], weight: 10} # Danceshroom
+          - {item: 4450, quantity: [6, 12], weight: 10} # Coral Fungus
+          - {item: 775, quantity: [1, 2], weight: 10}   # Black Rock
+          - {item: 774, quantity: [1, 2], weight: 10}   # Purple Rock
+      water:
+        water:
+          - {item: 17396, quantity: [12, 24], weight: 20} # Little Worm
+          - {item: 4096, quantity: [6, 12], weight: 20}   # Fire Crystal
+          - {item: 4491, quantity: [6, 12], weight: 20}   # Watermelon
+          - {item: 4432, quantity: [6, 12], weight: 20}   # Kazham Pineapple
+          - {item: 770, quantity: [1, 2], weight: 20}     # Blue Rock
+        light:
+          - {item: 17396, quantity: [12, 24], weight: 10} # Little Worm
+          - {item: 4103, quantity: [6, 12], weight: 15}   # Dark Crystal
+          - {item: 4096, quantity: [6, 12], weight: 10}   # Fire Crystal
+          - {item: 4363, quantity: [6, 12], weight: 10}   # Faerie Apple
+          - {item: 4491, quantity: [6, 12], weight: 10}   # Watermelon
+          - {item: 4449, quantity: [1, 2], weight: 15}    # Reishi Mushroom
+          - {item: 4432, quantity: [6, 12], weight: 10}   # Kazham Pineapple
+          - {item: 776, quantity: [1, 2], weight: 10}     # White Rock
+          - {item: 770, quantity: [1, 2], weight: 10}     # Blue Rock
+        dark:
+          - {item: 17396, quantity: [12, 24], weight: 10} # Little Worm
+          - {item: 4102, quantity: [6, 12], weight: 15}   # Light Crystal
+          - {item: 4096, quantity: [6, 12], weight: 10}   # Fire Crystal
+          - {item: 4392, quantity: [6, 12], weight: 15}   # Saruta Orange
+          - {item: 4491, quantity: [6, 12], weight: 10}   # Watermelon
+          - {item: 4375, quantity: [6, 12], weight: 10}   # Danceshroom
+          - {item: 4432, quantity: [6, 12], weight: 10}   # Kazham Pineapple
+          - {item: 775, quantity: [1, 2], weight: 10}     # Black Rock
+          - {item: 770, quantity: [1, 2], weight: 10}     # Blue Rock
+      light:
+        light:
+          - {item: 4103, quantity: [6, 12], weight: 30} # Dark Crystal
+          - {item: 4363, quantity: [6, 12], weight: 20} # Faerie Apple
+          - {item: 4449, quantity: [1, 2], weight: 30}  # Reishi Mushroom
+          - {item: 776, quantity: [1, 2], weight: 20}   # White Rock
+        dark:
+          - {item: 4103, quantity: [6, 12], weight: 15} # Dark Crystal
+          - {item: 4102, quantity: [6, 12], weight: 15} # Light Crystal
+          - {item: 4363, quantity: [6, 12], weight: 10} # Faerie Apple
+          - {item: 4392, quantity: [6, 12], weight: 15} # Saruta Orange
+          - {item: 4449, quantity: [1, 2], weight: 15}  # Reishi Mushroom
+          - {item: 4375, quantity: [6, 12], weight: 10} # Danceshroom
+          - {item: 776, quantity: [1, 2], weight: 10}   # White Rock
+          - {item: 775, quantity: [1, 2], weight: 10}   # Black Rock
+      dark:
+        dark:
+          - {item: 4102, quantity: [6, 12], weight: 30} # Light Crystal
+          - {item: 4392, quantity: [6, 12], weight: 30} # Saruta Orange
+          - {item: 4375, quantity: [6, 12], weight: 20} # Danceshroom
+          - {item: 775, quantity: [1, 2], weight: 20}   # Black Rock
+
+    cactus_stems:
+      none:
+        none:
+          - {item: 936, quantity: [24, 48], weight: 84} # Rock Salt
+          - {item: 646, quantity: [1, 2], weight: 16}   # Adaman Ore
+        fire:
+          - {item: 936, quantity: [24, 48], weight: 42}   # Rock Salt
+          - {item: 17396, quantity: [24, 48], weight: 15} # Little Worm
+          - {item: 646, quantity: [1, 2], weight: 8}      # Adaman Ore
+          - {item: 4097, quantity: [12, 24], weight: 15}  # Ice Crystal
+          - {item: 640, quantity: [8, 16], weight: 10}    # Copper Ore
+          - {item: 769, quantity: [1, 5], weight: 10}     # Red Rock
+        ice:
+          - {item: 936, quantity: [24, 48], weight: 42}   # Rock Salt
+          - {item: 17396, quantity: [24, 48], weight: 15} # Little Worm
+          - {item: 646, quantity: [1, 2], weight: 8}      # Adaman Ore
+          - {item: 4098, quantity: [12, 24], weight: 15}  # Wind Crystal
+          - {item: 737, quantity: [1, 5], weight: 10}     # Gold Ore
+          - {item: 773, quantity: [1, 5], weight: 10}     # Translucent Rock
+        wind:
+          - {item: 936, quantity: [24, 48], weight: 57}  # Rock Salt
+          - {item: 646, quantity: [1, 2], weight: 8}     # Adaman Ore
+          - {item: 4099, quantity: [12, 24], weight: 15} # Earth Crystal
+          - {item: 641, quantity: [8, 16], weight: 10}   # Tin Ore
+          - {item: 772, quantity: [1, 5], weight: 10}    # Green Rock
+        earth:
+          - {item: 936, quantity: [24, 48], weight: 57}  # Rock Salt
+          - {item: 646, quantity: [1, 2], weight: 8}     # Adaman Ore
+          - {item: 4100, quantity: [12, 24], weight: 15} # Lightning Crystal
+          - {item: 643, quantity: [4, 12], weight: 10}   # Iron Ore
+          - {item: 771, quantity: [1, 5], weight: 10}    # Yellow Rock
+        thunder:
+          - {item: 936, quantity: [24, 48], weight: 57}  # Rock Salt
+          - {item: 646, quantity: [1, 2], weight: 8}     # Adaman Ore
+          - {item: 4101, quantity: [12, 24], weight: 15} # Water Crystal
+          - {item: 736, quantity: [1, 5], weight: 10}    # Silver Ore
+          - {item: 774, quantity: [1, 5], weight: 10}    # Purple Rock
+        water:
+          - {item: 936, quantity: [24, 48], weight: 57}  # Rock Salt
+          - {item: 646, quantity: [1, 2], weight: 8}     # Adaman Ore
+          - {item: 768, quantity: [12, 24], weight: 15}  # Flint Stone
+          - {item: 4096, quantity: [12, 24], weight: 10} # Fire Crystal
+          - {item: 770, quantity: [1, 5], weight: 10}    # Blue Rock
+        light:
+          - {item: 936, quantity: [24, 48], weight: 57}  # Rock Salt
+          - {item: 646, quantity: [1, 2], weight: 8}     # Adaman Ore
+          - {item: 4103, quantity: [12, 24], weight: 15} # Dark Crystal
+          - {item: 642, quantity: [4, 12], weight: 10}   # Zinc Ore
+          - {item: 776, quantity: [1, 5], weight: 10}    # White Rock
+        dark:
+          - {item: 936, quantity: [24, 48], weight: 52}  # Rock Salt
+          - {item: 646, quantity: [1, 2], weight: 8}     # Adaman Ore
+          - {item: 4102, quantity: [12, 24], weight: 10} # Light Crystal
+          - {item: 845, quantity: [4, 8], weight: 10}    # Black Chocobo Feather
+          - {item: 775, quantity: [1, 5], weight: 10}    # Black Rock
+          - {item: 645, quantity: [1, 2], weight: 10}    # Darksteel Ore
+      fire:
+        fire:
+          - {item: 17396, quantity: [24, 48], weight: 30} # Little Worm
+          - {item: 4097, quantity: [12, 24], weight: 30}  # Ice Crystal
+          - {item: 640, quantity: [8, 16], weight: 20}    # Copper Ore
+          - {item: 769, quantity: [1, 5], weight: 20}     # Red Rock
+        ice:
+          - {item: 17396, quantity: [24, 48], weight: 30} # Little Worm
+          - {item: 4097, quantity: [12, 24], weight: 15}  # Ice Crystal
+          - {item: 4098, quantity: [12, 24], weight: 15}  # Wind Crystal
+          - {item: 640, quantity: [8, 16], weight: 10}    # Copper Ore
+          - {item: 737, quantity: [1, 5], weight: 10}     # Gold Ore
+          - {item: 769, quantity: [1, 5], weight: 10}     # Red Rock
+          - {item: 773, quantity: [1, 5], weight: 10}     # Translucent Rock
+        wind:
+          - {item: 17396, quantity: [24, 48], weight: 15} # Little Worm
+          - {item: 936, quantity: [24, 48], weight: 15}   # Rock Salt
+          - {item: 4097, quantity: [12, 24], weight: 15}  # Ice Crystal
+          - {item: 4099, quantity: [12, 24], weight: 15}  # Earth Crystal
+          - {item: 640, quantity: [8, 16], weight: 10}    # Copper Ore
+          - {item: 641, quantity: [8, 16], weight: 10}    # Tin Ore
+          - {item: 769, quantity: [1, 5], weight: 10}     # Red Rock
+          - {item: 772, quantity: [1, 5], weight: 10}     # Green Rock
+        earth:
+          - {item: 17396, quantity: [24, 48], weight: 15} # Little Worm
+          - {item: 936, quantity: [24, 48], weight: 15}   # Rock Salt
+          - {item: 4097, quantity: [12, 24], weight: 15}  # Ice Crystal
+          - {item: 4100, quantity: [12, 24], weight: 15}  # Lightning Crystal
+          - {item: 640, quantity: [8, 16], weight: 10}    # Copper Ore
+          - {item: 643, quantity: [4, 12], weight: 10}    # Iron Ore
+          - {item: 769, quantity: [1, 5], weight: 10}     # Red Rock
+          - {item: 771, quantity: [1, 5], weight: 10}     # Yellow Rock
+        thunder:
+          - {item: 17396, quantity: [24, 48], weight: 15} # Little Worm
+          - {item: 936, quantity: [24, 48], weight: 15}   # Rock Salt
+          - {item: 4097, quantity: [12, 24], weight: 15}  # Ice Crystal
+          - {item: 4101, quantity: [12, 24], weight: 15}  # Water Crystal
+          - {item: 640, quantity: [8, 16], weight: 10}    # Copper Ore
+          - {item: 736, quantity: [1, 5], weight: 10}     # Silver Ore
+          - {item: 769, quantity: [1, 5], weight: 10}     # Red Rock
+          - {item: 774, quantity: [1, 5], weight: 10}     # Purple Rock
+        water:
+          - {item: 17396, quantity: [24, 48], weight: 15} # Little Worm
+          - {item: 936, quantity: [24, 48], weight: 15}   # Rock Salt
+          - {item: 4097, quantity: [12, 24], weight: 15}  # Ice Crystal
+          - {item: 768, quantity: [12, 24], weight: 15}   # Flint Stone
+          - {item: 640, quantity: [8, 16], weight: 10}    # Copper Ore
+          - {item: 4096, quantity: [12, 24], weight: 10}  # Fire Crystal
+          - {item: 769, quantity: [1, 5], weight: 10}     # Red Rock
+          - {item: 770, quantity: [1, 5], weight: 10}     # Blue Rock
+        light:
+          - {item: 17396, quantity: [24, 48], weight: 15} # Little Worm
+          - {item: 936, quantity: [24, 48], weight: 15}   # Rock Salt
+          - {item: 4097, quantity: [12, 24], weight: 15}  # Ice Crystal
+          - {item: 4103, quantity: [12, 24], weight: 15}  # Dark Crystal
+          - {item: 640, quantity: [8, 16], weight: 10}    # Copper Ore
+          - {item: 642, quantity: [4, 12], weight: 10}    # Zinc Ore
+          - {item: 769, quantity: [1, 5], weight: 10}     # Red Rock
+          - {item: 776, quantity: [1, 5], weight: 10}     # White Rock
+        dark:
+          - {item: 17396, quantity: [24, 48], weight: 15} # Little Worm
+          - {item: 936, quantity: [24, 48], weight: 10}   # Rock Salt
+          - {item: 4097, quantity: [12, 24], weight: 15}  # Ice Crystal
+          - {item: 4102, quantity: [12, 24], weight: 10}  # Light Crystal
+          - {item: 640, quantity: [8, 16], weight: 10}    # Copper Ore
+          - {item: 845, quantity: [4, 8], weight: 10}     # Black Chocobo Feather
+          - {item: 769, quantity: [1, 5], weight: 10}     # Red Rock
+          - {item: 775, quantity: [1, 5], weight: 10}     # Black Rock
+          - {item: 645, quantity: [1, 2], weight: 10}     # Darksteel Ore
+      ice:
+        ice:
+          - {item: 17396, quantity: [24, 48], weight: 30} # Little Worm
+          - {item: 4098, quantity: [12, 24], weight: 30}  # Wind Crystal
+          - {item: 737, quantity: [1, 5], weight: 20}     # Gold Ore
+          - {item: 773, quantity: [1, 5], weight: 20}     # Translucent Rock
+        wind:
+          - {item: 17396, quantity: [24, 48], weight: 15} # Little Worm
+          - {item: 936, quantity: [24, 48], weight: 15}   # Rock Salt
+          - {item: 4098, quantity: [12, 24], weight: 15}  # Wind Crystal
+          - {item: 4099, quantity: [12, 24], weight: 15}  # Earth Crystal
+          - {item: 737, quantity: [1, 5], weight: 10}     # Gold Ore
+          - {item: 641, quantity: [8, 16], weight: 10}    # Tin Ore
+          - {item: 773, quantity: [1, 5], weight: 10}     # Translucent Rock
+          - {item: 772, quantity: [1, 5], weight: 10}     # Green Rock
+        earth:
+          - {item: 17396, quantity: [24, 48], weight: 15} # Little Worm
+          - {item: 936, quantity: [24, 48], weight: 15}   # Rock Salt
+          - {item: 4098, quantity: [12, 24], weight: 15}  # Wind Crystal
+          - {item: 4100, quantity: [12, 24], weight: 15}  # Lightning Crystal
+          - {item: 737, quantity: [1, 5], weight: 10}     # Gold Ore
+          - {item: 643, quantity: [4, 12], weight: 10}    # Iron Ore
+          - {item: 773, quantity: [1, 5], weight: 10}     # Translucent Rock
+          - {item: 771, quantity: [1, 5], weight: 10}     # Yellow Rock
+        thunder:
+          - {item: 17396, quantity: [24, 48], weight: 15} # Little Worm
+          - {item: 936, quantity: [24, 48], weight: 15}   # Rock Salt
+          - {item: 4098, quantity: [12, 24], weight: 15}  # Wind Crystal
+          - {item: 4101, quantity: [12, 24], weight: 15}  # Water Crystal
+          - {item: 737, quantity: [1, 5], weight: 10}     # Gold Ore
+          - {item: 736, quantity: [1, 5], weight: 10}     # Silver Ore
+          - {item: 773, quantity: [1, 5], weight: 10}     # Translucent Rock
+          - {item: 774, quantity: [1, 5], weight: 10}     # Purple Rock
+        water:
+          - {item: 17396, quantity: [24, 48], weight: 15} # Little Worm
+          - {item: 936, quantity: [24, 48], weight: 15}   # Rock Salt
+          - {item: 4098, quantity: [12, 24], weight: 15}  # Wind Crystal
+          - {item: 768, quantity: [12, 24], weight: 15}   # Flint Stone
+          - {item: 737, quantity: [1, 5], weight: 10}     # Gold Ore
+          - {item: 4096, quantity: [12, 24], weight: 10}  # Fire Crystal
+          - {item: 773, quantity: [1, 5], weight: 10}     # Translucent Rock
+          - {item: 770, quantity: [1, 5], weight: 10}     # Blue Rock
+        light:
+          - {item: 17396, quantity: [24, 48], weight: 15} # Little Worm
+          - {item: 936, quantity: [24, 48], weight: 15}   # Rock Salt
+          - {item: 4098, quantity: [12, 24], weight: 15}  # Wind Crystal
+          - {item: 4103, quantity: [12, 24], weight: 15}  # Dark Crystal
+          - {item: 737, quantity: [1, 5], weight: 10}     # Gold Ore
+          - {item: 642, quantity: [4, 12], weight: 10}    # Zinc Ore
+          - {item: 773, quantity: [1, 5], weight: 10}     # Translucent Rock
+          - {item: 776, quantity: [1, 5], weight: 10}     # White Rock
+        dark:
+          - {item: 17396, quantity: [24, 48], weight: 15} # Little Worm
+          - {item: 936, quantity: [24, 48], weight: 10}   # Rock Salt
+          - {item: 4098, quantity: [12, 24], weight: 15}  # Wind Crystal
+          - {item: 4102, quantity: [12, 24], weight: 10}  # Light Crystal
+          - {item: 737, quantity: [1, 5], weight: 10}     # Gold Ore
+          - {item: 845, quantity: [4, 8], weight: 10}     # Black Chocobo Feather
+          - {item: 773, quantity: [1, 5], weight: 10}     # Translucent Rock
+          - {item: 775, quantity: [1, 5], weight: 10}     # Black Rock
+          - {item: 645, quantity: [1, 2], weight: 10}     # Darksteel Ore
+      wind:
+        wind:
+          - {item: 936, quantity: [24, 48], weight: 30}  # Rock Salt
+          - {item: 4099, quantity: [12, 24], weight: 30} # Earth Crystal
+          - {item: 641, quantity: [8, 16], weight: 20}   # Tin Ore
+          - {item: 772, quantity: [1, 5], weight: 20}    # Green Rock
+        earth:
+          - {item: 936, quantity: [24, 48], weight: 30}  # Rock Salt
+          - {item: 4099, quantity: [12, 24], weight: 15} # Earth Crystal
+          - {item: 4100, quantity: [12, 24], weight: 15} # Lightning Crystal
+          - {item: 641, quantity: [8, 16], weight: 10}   # Tin Ore
+          - {item: 643, quantity: [4, 12], weight: 10}   # Iron Ore
+          - {item: 772, quantity: [1, 5], weight: 10}    # Green Rock
+          - {item: 771, quantity: [1, 5], weight: 10}    # Yellow Rock
+        thunder:
+          - {item: 936, quantity: [24, 48], weight: 30}  # Rock Salt
+          - {item: 4099, quantity: [12, 24], weight: 15} # Earth Crystal
+          - {item: 4101, quantity: [12, 24], weight: 15} # Water Crystal
+          - {item: 641, quantity: [8, 16], weight: 10}   # Tin Ore
+          - {item: 736, quantity: [1, 5], weight: 10}    # Silver Ore
+          - {item: 772, quantity: [1, 5], weight: 10}    # Green Rock
+          - {item: 774, quantity: [1, 5], weight: 10}    # Purple Rock
+        water:
+          - {item: 936, quantity: [24, 48], weight: 30}  # Rock Salt
+          - {item: 4099, quantity: [12, 24], weight: 15} # Earth Crystal
+          - {item: 768, quantity: [12, 24], weight: 15}  # Flint Stone
+          - {item: 641, quantity: [8, 16], weight: 10}   # Tin Ore
+          - {item: 4096, quantity: [12, 24], weight: 10} # Fire Crystal
+          - {item: 772, quantity: [1, 5], weight: 10}    # Green Rock
+          - {item: 770, quantity: [1, 5], weight: 10}    # Blue Rock
+        light:
+          - {item: 936, quantity: [24, 48], weight: 30}  # Rock Salt
+          - {item: 4099, quantity: [12, 24], weight: 15} # Earth Crystal
+          - {item: 4103, quantity: [12, 24], weight: 15} # Dark Crystal
+          - {item: 641, quantity: [8, 16], weight: 10}   # Tin Ore
+          - {item: 642, quantity: [4, 12], weight: 10}   # Zinc Ore
+          - {item: 772, quantity: [1, 5], weight: 10}    # Green Rock
+          - {item: 776, quantity: [1, 5], weight: 10}    # White Rock
+        dark:
+          - {item: 936, quantity: [24, 48], weight: 25}  # Rock Salt
+          - {item: 4099, quantity: [12, 24], weight: 15} # Earth Crystal
+          - {item: 4102, quantity: [12, 24], weight: 10} # Light Crystal
+          - {item: 641, quantity: [8, 16], weight: 10}   # Tin Ore
+          - {item: 845, quantity: [4, 8], weight: 10}    # Black Chocobo Feather
+          - {item: 772, quantity: [1, 5], weight: 10}    # Green Rock
+          - {item: 775, quantity: [1, 5], weight: 10}    # Black Rock
+          - {item: 645, quantity: [1, 2], weight: 10}    # Darksteel Ore
+      earth:
+        earth:
+          - {item: 936, quantity: [24, 48], weight: 30}  # Rock Salt
+          - {item: 4100, quantity: [12, 24], weight: 30} # Lightning Crystal
+          - {item: 643, quantity: [4, 12], weight: 20}   # Iron Ore
+          - {item: 771, quantity: [1, 5], weight: 20}    # Yellow Rock
+        thunder:
+          - {item: 936, quantity: [24, 48], weight: 30}  # Rock Salt
+          - {item: 4100, quantity: [12, 24], weight: 15} # Lightning Crystal
+          - {item: 4101, quantity: [12, 24], weight: 15} # Water Crystal
+          - {item: 643, quantity: [4, 12], weight: 10}   # Iron Ore
+          - {item: 736, quantity: [1, 5], weight: 10}    # Silver Ore
+          - {item: 771, quantity: [1, 5], weight: 10}    # Yellow Rock
+          - {item: 774, quantity: [1, 5], weight: 10}    # Purple Rock
+        water:
+          - {item: 936, quantity: [24, 48], weight: 30}  # Rock Salt
+          - {item: 4100, quantity: [12, 24], weight: 15} # Lightning Crystal
+          - {item: 768, quantity: [12, 24], weight: 15}  # Flint Stone
+          - {item: 643, quantity: [4, 12], weight: 10}   # Iron Ore
+          - {item: 4096, quantity: [12, 24], weight: 10} # Fire Crystal
+          - {item: 771, quantity: [1, 5], weight: 10}    # Yellow Rock
+          - {item: 770, quantity: [1, 5], weight: 10}    # Blue Rock
+        light:
+          - {item: 936, quantity: [24, 48], weight: 30}  # Rock Salt
+          - {item: 4100, quantity: [12, 24], weight: 15} # Lightning Crystal
+          - {item: 4103, quantity: [12, 24], weight: 15} # Dark Crystal
+          - {item: 643, quantity: [4, 12], weight: 10}   # Iron Ore
+          - {item: 642, quantity: [4, 12], weight: 10}   # Zinc Ore
+          - {item: 771, quantity: [1, 5], weight: 10}    # Yellow Rock
+          - {item: 776, quantity: [1, 5], weight: 10}    # White Rock
+        dark:
+          - {item: 936, quantity: [24, 48], weight: 25}  # Rock Salt
+          - {item: 4100, quantity: [12, 24], weight: 15} # Lightning Crystal
+          - {item: 4102, quantity: [12, 24], weight: 10} # Light Crystal
+          - {item: 643, quantity: [4, 12], weight: 10}   # Iron Ore
+          - {item: 845, quantity: [4, 8], weight: 10}    # Black Chocobo Feather
+          - {item: 771, quantity: [1, 5], weight: 10}    # Yellow Rock
+          - {item: 775, quantity: [1, 5], weight: 10}    # Black Rock
+          - {item: 645, quantity: [1, 2], weight: 10}    # Darksteel Ore
+      thunder:
+        thunder:
+          - {item: 936, quantity: [24, 48], weight: 30}  # Rock Salt
+          - {item: 4101, quantity: [12, 24], weight: 30} # Water Crystal
+          - {item: 736, quantity: [1, 5], weight: 20}    # Silver Ore
+          - {item: 774, quantity: [1, 5], weight: 20}    # Purple Rock
+        water:
+          - {item: 936, quantity: [24, 48], weight: 30}  # Rock Salt
+          - {item: 4101, quantity: [12, 24], weight: 15} # Water Crystal
+          - {item: 768, quantity: [12, 24], weight: 15}  # Flint Stone
+          - {item: 736, quantity: [1, 5], weight: 10}    # Silver Ore
+          - {item: 4096, quantity: [12, 24], weight: 10} # Fire Crystal
+          - {item: 774, quantity: [1, 5], weight: 10}    # Purple Rock
+          - {item: 770, quantity: [1, 5], weight: 10}    # Blue Rock
+        light:
+          - {item: 936, quantity: [24, 48], weight: 30}  # Rock Salt
+          - {item: 4101, quantity: [12, 24], weight: 15} # Water Crystal
+          - {item: 4103, quantity: [12, 24], weight: 15} # Dark Crystal
+          - {item: 736, quantity: [1, 5], weight: 10}    # Silver Ore
+          - {item: 642, quantity: [4, 12], weight: 10}   # Zinc Ore
+          - {item: 774, quantity: [1, 5], weight: 10}    # Purple Rock
+          - {item: 776, quantity: [1, 5], weight: 10}    # White Rock
+        dark:
+          - {item: 936, quantity: [24, 48], weight: 25}  # Rock Salt
+          - {item: 4101, quantity: [12, 24], weight: 15} # Water Crystal
+          - {item: 4102, quantity: [12, 24], weight: 10} # Light Crystal
+          - {item: 736, quantity: [1, 5], weight: 10}    # Silver Ore
+          - {item: 845, quantity: [4, 8], weight: 10}    # Black Chocobo Feather
+          - {item: 774, quantity: [1, 5], weight: 10}    # Purple Rock
+          - {item: 775, quantity: [1, 5], weight: 10}    # Black Rock
+          - {item: 645, quantity: [1, 2], weight: 10}    # Darksteel Ore
+      water:
+        water:
+          - {item: 936, quantity: [24, 48], weight: 30}  # Rock Salt
+          - {item: 768, quantity: [12, 24], weight: 30}  # Flint Stone
+          - {item: 4096, quantity: [12, 24], weight: 20} # Fire Crystal
+          - {item: 770, quantity: [1, 5], weight: 20}    # Blue Rock
+        light:
+          - {item: 936, quantity: [24, 48], weight: 30}  # Rock Salt
+          - {item: 768, quantity: [12, 24], weight: 15}  # Flint Stone
+          - {item: 4103, quantity: [12, 24], weight: 15} # Dark Crystal
+          - {item: 4096, quantity: [12, 24], weight: 10} # Fire Crystal
+          - {item: 642, quantity: [4, 12], weight: 10}   # Zinc Ore
+          - {item: 770, quantity: [1, 5], weight: 10}    # Blue Rock
+          - {item: 776, quantity: [1, 5], weight: 10}    # White Rock
+        dark:
+          - {item: 936, quantity: [24, 48], weight: 25}  # Rock Salt
+          - {item: 768, quantity: [12, 24], weight: 15}  # Flint Stone
+          - {item: 4102, quantity: [12, 24], weight: 10} # Light Crystal
+          - {item: 4096, quantity: [12, 24], weight: 10} # Fire Crystal
+          - {item: 845, quantity: [4, 8], weight: 10}    # Black Chocobo Feather
+          - {item: 770, quantity: [1, 5], weight: 10}    # Blue Rock
+          - {item: 775, quantity: [1, 5], weight: 10}    # Black Rock
+          - {item: 645, quantity: [1, 2], weight: 10}    # Darksteel Ore
+      light:
+        light:
+          - {item: 936, quantity: [24, 48], weight: 30}  # Rock Salt
+          - {item: 4103, quantity: [12, 24], weight: 30} # Dark Crystal
+          - {item: 642, quantity: [4, 12], weight: 20}   # Zinc Ore
+          - {item: 776, quantity: [1, 5], weight: 20}    # White Rock
+        dark:
+          - {item: 936, quantity: [24, 48], weight: 25}  # Rock Salt
+          - {item: 4103, quantity: [12, 24], weight: 15} # Dark Crystal
+          - {item: 4102, quantity: [12, 24], weight: 10} # Light Crystal
+          - {item: 642, quantity: [4, 12], weight: 10}   # Zinc Ore
+          - {item: 845, quantity: [4, 8], weight: 10}    # Black Chocobo Feather
+          - {item: 776, quantity: [1, 5], weight: 10}    # White Rock
+          - {item: 775, quantity: [1, 5], weight: 10}    # Black Rock
+          - {item: 645, quantity: [1, 2], weight: 10}    # Darksteel Ore
+      dark:
+        dark:
+          - {item: 936, quantity: [24, 48], weight: 20}  # Rock Salt
+          - {item: 4102, quantity: [12, 24], weight: 20} # Light Crystal
+          - {item: 845, quantity: [4, 8], weight: 20}    # Black Chocobo Feather
+          - {item: 775, quantity: [1, 5], weight: 20}    # Black Rock
+          - {item: 645, quantity: [1, 2], weight: 20}    # Darksteel Ore
+
+    tree_cuttings:
+      none:
+        none:
+          - {item: 936, quantity: [4, 8], weight: 26}     # Rock Salt
+          - {item: 17397, quantity: [24, 48], weight: 26} # Shell Bug
+          - {item: 1225, quantity: [4, 8], weight: 20}    # Gold Nugget
+          - {item: 1238, quantity: [1, 2], weight: 28}    # Tree Saplings
+        fire:
+          - {item: 936, quantity: [4, 8], weight: 23}     # Rock Salt
+          - {item: 17397, quantity: [24, 48], weight: 13} # Shell Bug
+          - {item: 4097, quantity: [12, 24], weight: 10}  # Ice Crystal
+          - {item: 1225, quantity: [4, 8], weight: 10}    # Gold Nugget
+          - {item: 1231, quantity: [12, 24], weight: 10}  # Brass Nugget
+          - {item: 1238, quantity: [1, 2], weight: 14}    # Tree Saplings
+          - {item: 941, quantity: [8, 16], weight: 10}    # Red Rose
+          - {item: 751, quantity: [1, 5], weight: 10}     # Platinum Beastcoin
+        ice:
+          - {item: 936, quantity: [4, 8], weight: 13}     # Rock Salt
+          - {item: 17396, quantity: [12, 24], weight: 15} # Little Worm
+          - {item: 17397, quantity: [24, 48], weight: 13} # Shell Bug
+          - {item: 4098, quantity: [12, 24], weight: 15}  # Wind Crystal
+          - {item: 1225, quantity: [4, 8], weight: 10}    # Gold Nugget
+          - {item: 920, quantity: [4, 8], weight: 10}     # Malboro Vine
+          - {item: 1238, quantity: [1, 2], weight: 14}    # Tree Saplings
+          - {item: 1235, quantity: [4, 12], weight: 10}   # Steel Nugget
+        wind:
+          - {item: 936, quantity: [4, 8], weight: 28}     # Rock Salt
+          - {item: 17397, quantity: [24, 48], weight: 13} # Shell Bug
+          - {item: 4099, quantity: [12, 24], weight: 15}  # Earth Crystal
+          - {item: 1225, quantity: [4, 8], weight: 10}    # Gold Nugget
+          - {item: 1230, quantity: [8, 16], weight: 10}   # Copper Nugget
+          - {item: 1238, quantity: [1, 2], weight: 14}    # Tree Saplings
+          - {item: 748, quantity: [1, 5], weight: 10}     # Gold Beastcoin
+        earth:
+          - {item: 936, quantity: [4, 8], weight: 23}     # Rock Salt
+          - {item: 17397, quantity: [24, 48], weight: 13} # Shell Bug
+          - {item: 4100, quantity: [12, 24], weight: 10}  # Lightning Crystal
+          - {item: 1225, quantity: [4, 8], weight: 10}    # Gold Nugget
+          - {item: 841, quantity: [4, 12], weight: 10}    # Yagudo Feather
+          - {item: 1238, quantity: [1, 2], weight: 14}    # Tree Saplings
+          - {item: 839, quantity: [4, 8], weight: 10}     # Crawler Cocoon
+          - {item: 1234, quantity: [4, 12], weight: 10}   # Iron Nugget
+        thunder:
+          - {item: 936, quantity: [4, 8], weight: 23}     # Rock Salt
+          - {item: 17397, quantity: [24, 48], weight: 13} # Shell Bug
+          - {item: 4101, quantity: [12, 24], weight: 10}  # Water Crystal
+          - {item: 1225, quantity: [4, 8], weight: 10}    # Gold Nugget
+          - {item: 1233, quantity: [4, 12], weight: 10}   # Silver Nugget
+          - {item: 1238, quantity: [1, 2], weight: 14}    # Tree Saplings
+          - {item: 918, quantity: [1, 2], weight: 10}     # Mistletoe
+          - {item: 749, quantity: [1, 5], weight: 10}     # Mythril Beastcoin
+        water:
+          - {item: 936, quantity: [4, 8], weight: 23}     # Rock Salt
+          - {item: 17397, quantity: [24, 48], weight: 13} # Shell Bug
+          - {item: 4096, quantity: [12, 24], weight: 10}  # Fire Crystal
+          - {item: 1225, quantity: [4, 8], weight: 10}    # Gold Nugget
+          - {item: 1232, quantity: [8, 16], weight: 10}   # Bronze Nugget
+          - {item: 1238, quantity: [1, 2], weight: 14}    # Tree Saplings
+          - {item: 750, quantity: [4, 8], weight: 10}     # Silver Beastcoin
+          - {item: 1226, quantity: [4, 12], weight: 10}   # Mythril Nugget
+        light:
+          - {item: 936, quantity: [4, 8], weight: 23}     # Rock Salt
+          - {item: 17397, quantity: [24, 48], weight: 13} # Shell Bug
+          - {item: 4103, quantity: [12, 24], weight: 10}  # Dark Crystal
+          - {item: 1225, quantity: [4, 8], weight: 10}    # Gold Nugget
+          - {item: 4570, quantity: [4, 12], weight: 10}   # Bird Egg
+          - {item: 1238, quantity: [1, 2], weight: 14}    # Tree Saplings
+          - {item: 842, quantity: [1, 5], weight: 10}     # Giant Bird Feather
+          - {item: 1227, quantity: [4, 12], weight: 10}   # Platinum Nugget
+        dark:
+          - {item: 936, quantity: [4, 8], weight: 23}     # Rock Salt
+          - {item: 17397, quantity: [24, 48], weight: 13} # Shell Bug
+          - {item: 4102, quantity: [12, 24], weight: 10}  # Light Crystal
+          - {item: 1225, quantity: [4, 8], weight: 10}    # Gold Nugget
+          - {item: 4274, quantity: [4, 8], weight: 10}    # Persikos
+          - {item: 1238, quantity: [1, 2], weight: 14}    # Tree Saplings
+          - {item: 845, quantity: [4, 8], weight: 10}     # Black Chocobo Feather
+          - {item: 1228, quantity: [4, 12], weight: 10}   # Darksteel Nugget
+      fire:
+        fire:
+          - {item: 936, quantity: [12, 24], weight: 20}  # Rock Salt
+          - {item: 4097, quantity: [12, 24], weight: 20} # Ice Crystal
+          - {item: 1231, quantity: [12, 24], weight: 20} # Brass Nugget
+          - {item: 941, quantity: [8, 16], weight: 20}   # Red Rose
+          - {item: 751, quantity: [1, 5], weight: 20}    # Platinum Beastcoin
+        ice:
+          - {item: 936, quantity: [12, 24], weight: 10}   # Rock Salt
+          - {item: 17396, quantity: [12, 24], weight: 15} # Little Worm
+          - {item: 4097, quantity: [12, 24], weight: 10}  # Ice Crystal
+          - {item: 4098, quantity: [12, 24], weight: 15}  # Wind Crystal
+          - {item: 1231, quantity: [12, 24], weight: 10}  # Brass Nugget
+          - {item: 920, quantity: [4, 8], weight: 10}     # Malboro Vine
+          - {item: 941, quantity: [8, 16], weight: 10}    # Red Rose
+          - {item: 1235, quantity: [4, 12], weight: 10}   # Steel Nugget
+          - {item: 751, quantity: [1, 5], weight: 10}     # Platinum Beastcoin
+        wind:
+          - {item: 936, quantity: [12, 24], weight: 25}  # Rock Salt
+          - {item: 4097, quantity: [12, 24], weight: 10} # Ice Crystal
+          - {item: 4099, quantity: [12, 24], weight: 15} # Earth Crystal
+          - {item: 1231, quantity: [12, 24], weight: 10} # Brass Nugget
+          - {item: 1230, quantity: [8, 16], weight: 10}  # Copper Nugget
+          - {item: 941, quantity: [8, 16], weight: 10}   # Red Rose
+          - {item: 748, quantity: [1, 5], weight: 10}    # Gold Beastcoin
+          - {item: 751, quantity: [1, 5], weight: 10}    # Platinum Beastcoin
+        earth:
+          - {item: 936, quantity: [12, 24], weight: 20}  # Rock Salt
+          - {item: 4097, quantity: [12, 24], weight: 10} # Ice Crystal
+          - {item: 4100, quantity: [12, 24], weight: 10} # Lightning Crystal
+          - {item: 1231, quantity: [12, 24], weight: 10} # Brass Nugget
+          - {item: 841, quantity: [4, 12], weight: 10}   # Yagudo Feather
+          - {item: 941, quantity: [8, 16], weight: 10}   # Red Rose
+          - {item: 839, quantity: [4, 8], weight: 10}    # Crawler Cocoon
+          - {item: 751, quantity: [1, 5], weight: 10}    # Platinum Beastcoin
+          - {item: 1234, quantity: [4, 12], weight: 10}  # Iron Nugget
+        thunder:
+          - {item: 936, quantity: [12, 24], weight: 20}  # Rock Salt
+          - {item: 4097, quantity: [12, 24], weight: 10} # Ice Crystal
+          - {item: 4101, quantity: [12, 24], weight: 10} # Water Crystal
+          - {item: 1231, quantity: [12, 24], weight: 10} # Brass Nugget
+          - {item: 1233, quantity: [4, 12], weight: 10}  # Silver Nugget
+          - {item: 941, quantity: [8, 16], weight: 10}   # Red Rose
+          - {item: 918, quantity: [1, 2], weight: 10}    # Mistletoe
+          - {item: 751, quantity: [1, 5], weight: 10}    # Platinum Beastcoin
+          - {item: 749, quantity: [1, 5], weight: 10}    # Mythril Beastcoin
+        water:
+          - {item: 936, quantity: [12, 24], weight: 20}  # Rock Salt
+          - {item: 4097, quantity: [12, 24], weight: 10} # Ice Crystal
+          - {item: 4096, quantity: [12, 24], weight: 10} # Fire Crystal
+          - {item: 1231, quantity: [12, 24], weight: 10} # Brass Nugget
+          - {item: 1232, quantity: [8, 16], weight: 10}  # Bronze Nugget
+          - {item: 941, quantity: [8, 16], weight: 10}   # Red Rose
+          - {item: 750, quantity: [4, 8], weight: 10}    # Silver Beastcoin
+          - {item: 751, quantity: [1, 5], weight: 10}    # Platinum Beastcoin
+          - {item: 1226, quantity: [4, 12], weight: 10}  # Mythril Nugget
+        light:
+          - {item: 936, quantity: [12, 24], weight: 20}  # Rock Salt
+          - {item: 4097, quantity: [12, 24], weight: 10} # Ice Crystal
+          - {item: 4103, quantity: [12, 24], weight: 10} # Dark Crystal
+          - {item: 1231, quantity: [12, 24], weight: 10} # Brass Nugget
+          - {item: 4570, quantity: [4, 12], weight: 10}  # Bird Egg
+          - {item: 941, quantity: [8, 16], weight: 10}   # Red Rose
+          - {item: 842, quantity: [1, 5], weight: 10}    # Giant Bird Feather
+          - {item: 751, quantity: [1, 5], weight: 10}    # Platinum Beastcoin
+          - {item: 1227, quantity: [4, 12], weight: 10}  # Platinum Nugget
+        dark:
+          - {item: 936, quantity: [12, 24], weight: 20}  # Rock Salt
+          - {item: 4097, quantity: [12, 24], weight: 10} # Ice Crystal
+          - {item: 4102, quantity: [12, 24], weight: 10} # Light Crystal
+          - {item: 1231, quantity: [12, 24], weight: 10} # Brass Nugget
+          - {item: 4274, quantity: [4, 8], weight: 10}   # Persikos
+          - {item: 941, quantity: [8, 16], weight: 10}   # Red Rose
+          - {item: 845, quantity: [4, 8], weight: 10}    # Black Chocobo Feather
+          - {item: 751, quantity: [1, 5], weight: 10}    # Platinum Beastcoin
+          - {item: 1228, quantity: [4, 12], weight: 10}  # Darksteel Nugget
+      ice:
+        ice:
+          - {item: 17396, quantity: [12, 24], weight: 30} # Little Worm
+          - {item: 4098, quantity: [12, 24], weight: 30}  # Wind Crystal
+          - {item: 920, quantity: [4, 8], weight: 20}     # Malboro Vine
+          - {item: 1235, quantity: [4, 12], weight: 20}   # Steel Nugget
+        wind:
+          - {item: 17396, quantity: [12, 24], weight: 15} # Little Worm
+          - {item: 936, quantity: [12, 24], weight: 15}   # Rock Salt
+          - {item: 4098, quantity: [12, 24], weight: 15}  # Wind Crystal
+          - {item: 4099, quantity: [12, 24], weight: 15}  # Earth Crystal
+          - {item: 920, quantity: [4, 8], weight: 10}     # Malboro Vine
+          - {item: 1230, quantity: [8, 16], weight: 10}   # Copper Nugget
+          - {item: 1235, quantity: [4, 12], weight: 10}   # Steel Nugget
+          - {item: 748, quantity: [1, 5], weight: 10}     # Gold Beastcoin
+        earth:
+          - {item: 17396, quantity: [12, 24], weight: 15} # Little Worm
+          - {item: 936, quantity: [12, 24], weight: 10}   # Rock Salt
+          - {item: 4098, quantity: [12, 24], weight: 15}  # Wind Crystal
+          - {item: 4100, quantity: [12, 24], weight: 10}  # Lightning Crystal
+          - {item: 920, quantity: [4, 8], weight: 10}     # Malboro Vine
+          - {item: 841, quantity: [4, 12], weight: 10}    # Yagudo Feather
+          - {item: 1235, quantity: [4, 12], weight: 10}   # Steel Nugget
+          - {item: 839, quantity: [4, 8], weight: 10}     # Crawler Cocoon
+          - {item: 1234, quantity: [4, 12], weight: 10}   # Iron Nugget
+        thunder:
+          - {item: 17396, quantity: [12, 24], weight: 15} # Little Worm
+          - {item: 936, quantity: [12, 24], weight: 10}   # Rock Salt
+          - {item: 4098, quantity: [12, 24], weight: 15}  # Wind Crystal
+          - {item: 4101, quantity: [12, 24], weight: 10}  # Water Crystal
+          - {item: 920, quantity: [4, 8], weight: 10}     # Malboro Vine
+          - {item: 1233, quantity: [4, 12], weight: 10}   # Silver Nugget
+          - {item: 1235, quantity: [4, 12], weight: 10}   # Steel Nugget
+          - {item: 918, quantity: [1, 2], weight: 10}     # Mistletoe
+          - {item: 749, quantity: [1, 5], weight: 10}     # Mythril Beastcoin
+        water:
+          - {item: 17396, quantity: [12, 24], weight: 15} # Little Worm
+          - {item: 936, quantity: [12, 24], weight: 10}   # Rock Salt
+          - {item: 4098, quantity: [12, 24], weight: 15}  # Wind Crystal
+          - {item: 4096, quantity: [12, 24], weight: 10}  # Fire Crystal
+          - {item: 920, quantity: [4, 8], weight: 10}     # Malboro Vine
+          - {item: 1232, quantity: [8, 16], weight: 10}   # Bronze Nugget
+          - {item: 1235, quantity: [4, 12], weight: 10}   # Steel Nugget
+          - {item: 750, quantity: [4, 8], weight: 10}     # Silver Beastcoin
+          - {item: 1226, quantity: [4, 12], weight: 10}   # Mythril Nugget
+        light:
+          - {item: 17396, quantity: [12, 24], weight: 15} # Little Worm
+          - {item: 936, quantity: [12, 24], weight: 10}   # Rock Salt
+          - {item: 4098, quantity: [12, 24], weight: 15}  # Wind Crystal
+          - {item: 4103, quantity: [12, 24], weight: 10}  # Dark Crystal
+          - {item: 920, quantity: [4, 8], weight: 10}     # Malboro Vine
+          - {item: 4570, quantity: [4, 12], weight: 10}   # Bird Egg
+          - {item: 1235, quantity: [4, 12], weight: 10}   # Steel Nugget
+          - {item: 842, quantity: [1, 5], weight: 10}     # Giant Bird Feather
+          - {item: 1227, quantity: [4, 12], weight: 10}   # Platinum Nugget
+        dark:
+          - {item: 17396, quantity: [12, 24], weight: 15} # Little Worm
+          - {item: 936, quantity: [12, 24], weight: 10}   # Rock Salt
+          - {item: 4098, quantity: [12, 24], weight: 15}  # Wind Crystal
+          - {item: 4102, quantity: [12, 24], weight: 10}  # Light Crystal
+          - {item: 920, quantity: [4, 8], weight: 10}     # Malboro Vine
+          - {item: 4274, quantity: [4, 8], weight: 10}    # Persikos
+          - {item: 1235, quantity: [4, 12], weight: 10}   # Steel Nugget
+          - {item: 845, quantity: [4, 8], weight: 10}     # Black Chocobo Feather
+          - {item: 1228, quantity: [4, 12], weight: 10}   # Darksteel Nugget
+      wind:
+        wind:
+          - {item: 936, quantity: [12, 24], weight: 30}  # Rock Salt
+          - {item: 4099, quantity: [12, 24], weight: 30} # Earth Crystal
+          - {item: 1230, quantity: [8, 16], weight: 20}  # Copper Nugget
+          - {item: 748, quantity: [1, 5], weight: 20}    # Gold Beastcoin
+        earth:
+          - {item: 936, quantity: [12, 24], weight: 25}  # Rock Salt
+          - {item: 4099, quantity: [12, 24], weight: 15} # Earth Crystal
+          - {item: 4100, quantity: [12, 24], weight: 10} # Lightning Crystal
+          - {item: 1230, quantity: [8, 16], weight: 10}  # Copper Nugget
+          - {item: 841, quantity: [4, 12], weight: 10}   # Yagudo Feather
+          - {item: 748, quantity: [1, 5], weight: 10}    # Gold Beastcoin
+          - {item: 839, quantity: [4, 8], weight: 10}    # Crawler Cocoon
+          - {item: 1234, quantity: [4, 12], weight: 10}  # Iron Nugget
+        thunder:
+          - {item: 936, quantity: [12, 24], weight: 25}  # Rock Salt
+          - {item: 4099, quantity: [12, 24], weight: 15} # Earth Crystal
+          - {item: 4101, quantity: [12, 24], weight: 10} # Water Crystal
+          - {item: 1230, quantity: [8, 16], weight: 10}  # Copper Nugget
+          - {item: 1233, quantity: [4, 12], weight: 10}  # Silver Nugget
+          - {item: 748, quantity: [1, 5], weight: 10}    # Gold Beastcoin
+          - {item: 918, quantity: [1, 2], weight: 10}    # Mistletoe
+          - {item: 749, quantity: [1, 5], weight: 10}    # Mythril Beastcoin
+        water:
+          - {item: 936, quantity: [12, 24], weight: 25}  # Rock Salt
+          - {item: 4099, quantity: [12, 24], weight: 15} # Earth Crystal
+          - {item: 4096, quantity: [12, 24], weight: 10} # Fire Crystal
+          - {item: 1230, quantity: [8, 16], weight: 10}  # Copper Nugget
+          - {item: 1232, quantity: [8, 16], weight: 10}  # Bronze Nugget
+          - {item: 748, quantity: [1, 5], weight: 10}    # Gold Beastcoin
+          - {item: 750, quantity: [4, 8], weight: 10}    # Silver Beastcoin
+          - {item: 1226, quantity: [4, 12], weight: 10}  # Mythril Nugget
+        light:
+          - {item: 936, quantity: [12, 24], weight: 25}  # Rock Salt
+          - {item: 4099, quantity: [12, 24], weight: 15} # Earth Crystal
+          - {item: 4103, quantity: [12, 24], weight: 10} # Dark Crystal
+          - {item: 1230, quantity: [8, 16], weight: 10}  # Copper Nugget
+          - {item: 4570, quantity: [4, 12], weight: 10}  # Bird Egg
+          - {item: 748, quantity: [1, 5], weight: 10}    # Gold Beastcoin
+          - {item: 842, quantity: [1, 5], weight: 10}    # Giant Bird Feather
+          - {item: 1227, quantity: [4, 12], weight: 10}  # Platinum Nugget
+        dark:
+          - {item: 936, quantity: [12, 24], weight: 25}  # Rock Salt
+          - {item: 4099, quantity: [12, 24], weight: 15} # Earth Crystal
+          - {item: 4102, quantity: [12, 24], weight: 10} # Light Crystal
+          - {item: 1230, quantity: [8, 16], weight: 10}  # Copper Nugget
+          - {item: 4274, quantity: [4, 8], weight: 10}   # Persikos
+          - {item: 748, quantity: [1, 5], weight: 10}    # Gold Beastcoin
+          - {item: 845, quantity: [4, 8], weight: 10}    # Black Chocobo Feather
+          - {item: 1228, quantity: [4, 12], weight: 10}  # Darksteel Nugget
+      earth:
+        earth:
+          - {item: 936, quantity: [12, 24], weight: 20}  # Rock Salt
+          - {item: 4100, quantity: [12, 24], weight: 20} # Lightning Crystal
+          - {item: 841, quantity: [4, 12], weight: 20}   # Yagudo Feather
+          - {item: 839, quantity: [4, 8], weight: 20}    # Crawler Cocoon
+          - {item: 1234, quantity: [4, 12], weight: 20}  # Iron Nugget
+        thunder:
+          - {item: 936, quantity: [12, 24], weight: 20}  # Rock Salt
+          - {item: 4100, quantity: [12, 24], weight: 10} # Lightning Crystal
+          - {item: 4101, quantity: [12, 24], weight: 10} # Water Crystal
+          - {item: 841, quantity: [4, 12], weight: 10}   # Yagudo Feather
+          - {item: 1233, quantity: [4, 12], weight: 10}  # Silver Nugget
+          - {item: 839, quantity: [4, 8], weight: 10}    # Crawler Cocoon
+          - {item: 918, quantity: [1, 2], weight: 10}    # Mistletoe
+          - {item: 1234, quantity: [4, 12], weight: 10}  # Iron Nugget
+          - {item: 749, quantity: [1, 5], weight: 10}    # Mythril Beastcoin
+        water:
+          - {item: 936, quantity: [12, 24], weight: 20}  # Rock Salt
+          - {item: 4100, quantity: [12, 24], weight: 10} # Lightning Crystal
+          - {item: 4096, quantity: [12, 24], weight: 10} # Fire Crystal
+          - {item: 841, quantity: [4, 12], weight: 10}   # Yagudo Feather
+          - {item: 1232, quantity: [8, 16], weight: 10}  # Bronze Nugget
+          - {item: 839, quantity: [4, 8], weight: 10}    # Crawler Cocoon
+          - {item: 750, quantity: [4, 8], weight: 10}    # Silver Beastcoin
+          - {item: 1234, quantity: [4, 12], weight: 10}  # Iron Nugget
+          - {item: 1226, quantity: [4, 12], weight: 10}  # Mythril Nugget
+        light:
+          - {item: 936, quantity: [12, 24], weight: 20}  # Rock Salt
+          - {item: 4100, quantity: [12, 24], weight: 10} # Lightning Crystal
+          - {item: 4103, quantity: [12, 24], weight: 10} # Dark Crystal
+          - {item: 841, quantity: [4, 12], weight: 10}   # Yagudo Feather
+          - {item: 4570, quantity: [4, 12], weight: 10}  # Bird Egg
+          - {item: 839, quantity: [4, 8], weight: 10}    # Crawler Cocoon
+          - {item: 842, quantity: [1, 5], weight: 10}    # Giant Bird Feather
+          - {item: 1234, quantity: [4, 12], weight: 10}  # Iron Nugget
+          - {item: 1227, quantity: [4, 12], weight: 10}  # Platinum Nugget
+        dark:
+          - {item: 936, quantity: [12, 24], weight: 20}  # Rock Salt
+          - {item: 4100, quantity: [12, 24], weight: 10} # Lightning Crystal
+          - {item: 4102, quantity: [12, 24], weight: 10} # Light Crystal
+          - {item: 841, quantity: [4, 12], weight: 10}   # Yagudo Feather
+          - {item: 4274, quantity: [4, 8], weight: 10}   # Persikos
+          - {item: 839, quantity: [4, 8], weight: 10}    # Crawler Cocoon
+          - {item: 845, quantity: [4, 8], weight: 10}    # Black Chocobo Feather
+          - {item: 1234, quantity: [4, 12], weight: 10}  # Iron Nugget
+          - {item: 1228, quantity: [4, 12], weight: 10}  # Darksteel Nugget
+      thunder:
+        thunder:
+          - {item: 936, quantity: [12, 24], weight: 20}  # Rock Salt
+          - {item: 4101, quantity: [12, 24], weight: 20} # Water Crystal
+          - {item: 1233, quantity: [4, 12], weight: 20}  # Silver Nugget
+          - {item: 918, quantity: [1, 2], weight: 20}    # Mistletoe
+          - {item: 749, quantity: [1, 5], weight: 20}    # Mythril Beastcoin
+        water:
+          - {item: 936, quantity: [12, 24], weight: 20}  # Rock Salt
+          - {item: 4101, quantity: [12, 24], weight: 10} # Water Crystal
+          - {item: 4096, quantity: [12, 24], weight: 10} # Fire Crystal
+          - {item: 1233, quantity: [4, 12], weight: 10}  # Silver Nugget
+          - {item: 1232, quantity: [8, 16], weight: 10}  # Bronze Nugget
+          - {item: 918, quantity: [1, 2], weight: 10}    # Mistletoe
+          - {item: 750, quantity: [4, 8], weight: 10}    # Silver Beastcoin
+          - {item: 749, quantity: [1, 5], weight: 10}    # Mythril Beastcoin
+          - {item: 1226, quantity: [4, 12], weight: 10}  # Mythril Nugget
+        light:
+          - {item: 936, quantity: [12, 24], weight: 20}  # Rock Salt
+          - {item: 4101, quantity: [12, 24], weight: 10} # Water Crystal
+          - {item: 4103, quantity: [12, 24], weight: 10} # Dark Crystal
+          - {item: 1233, quantity: [4, 12], weight: 10}  # Silver Nugget
+          - {item: 4570, quantity: [4, 12], weight: 10}  # Bird Egg
+          - {item: 918, quantity: [1, 2], weight: 10}    # Mistletoe
+          - {item: 842, quantity: [1, 5], weight: 10}    # Giant Bird Feather
+          - {item: 749, quantity: [1, 5], weight: 10}    # Mythril Beastcoin
+          - {item: 1227, quantity: [4, 12], weight: 10}  # Platinum Nugget
+        dark:
+          - {item: 936, quantity: [12, 24], weight: 20}  # Rock Salt
+          - {item: 4101, quantity: [12, 24], weight: 10} # Water Crystal
+          - {item: 4102, quantity: [12, 24], weight: 10} # Light Crystal
+          - {item: 1233, quantity: [4, 12], weight: 10}  # Silver Nugget
+          - {item: 4274, quantity: [4, 8], weight: 10}   # Persikos
+          - {item: 918, quantity: [1, 2], weight: 10}    # Mistletoe
+          - {item: 845, quantity: [4, 8], weight: 10}    # Black Chocobo Feather
+          - {item: 749, quantity: [1, 5], weight: 10}    # Mythril Beastcoin
+          - {item: 1228, quantity: [4, 12], weight: 10}  # Darksteel Nugget
+      water:
+        water:
+          - {item: 936, quantity: [12, 24], weight: 20}  # Rock Salt
+          - {item: 4096, quantity: [12, 24], weight: 20} # Fire Crystal
+          - {item: 1232, quantity: [8, 16], weight: 20}  # Bronze Nugget
+          - {item: 750, quantity: [4, 8], weight: 20}    # Silver Beastcoin
+          - {item: 1226, quantity: [4, 12], weight: 20}  # Mythril Nugget
+        light:
+          - {item: 936, quantity: [12, 24], weight: 20}  # Rock Salt
+          - {item: 4096, quantity: [12, 24], weight: 10} # Fire Crystal
+          - {item: 4103, quantity: [12, 24], weight: 10} # Dark Crystal
+          - {item: 1232, quantity: [8, 16], weight: 10}  # Bronze Nugget
+          - {item: 4570, quantity: [4, 12], weight: 10}  # Bird Egg
+          - {item: 750, quantity: [4, 8], weight: 10}    # Silver Beastcoin
+          - {item: 842, quantity: [1, 5], weight: 10}    # Giant Bird Feather
+          - {item: 1226, quantity: [4, 12], weight: 10}  # Mythril Nugget
+          - {item: 1227, quantity: [4, 12], weight: 10}  # Platinum Nugget
+        dark:
+          - {item: 936, quantity: [12, 24], weight: 20}  # Rock Salt
+          - {item: 4096, quantity: [12, 24], weight: 10} # Fire Crystal
+          - {item: 4102, quantity: [12, 24], weight: 10} # Light Crystal
+          - {item: 1232, quantity: [8, 16], weight: 10}  # Bronze Nugget
+          - {item: 4274, quantity: [4, 8], weight: 10}   # Persikos
+          - {item: 750, quantity: [4, 8], weight: 10}    # Silver Beastcoin
+          - {item: 845, quantity: [4, 8], weight: 10}    # Black Chocobo Feather
+          - {item: 1226, quantity: [4, 12], weight: 10}  # Mythril Nugget
+          - {item: 1228, quantity: [4, 12], weight: 10}  # Darksteel Nugget
+      light:
+        light:
+          - {item: 936, quantity: [12, 24], weight: 20}  # Rock Salt
+          - {item: 4103, quantity: [12, 24], weight: 20} # Dark Crystal
+          - {item: 4570, quantity: [4, 12], weight: 20}  # Bird Egg
+          - {item: 842, quantity: [1, 5], weight: 20}    # Giant Bird Feather
+          - {item: 1227, quantity: [4, 12], weight: 20}  # Platinum Nugget
+        dark:
+          - {item: 936, quantity: [12, 24], weight: 20}  # Rock Salt
+          - {item: 4103, quantity: [12, 24], weight: 10} # Dark Crystal
+          - {item: 4102, quantity: [12, 24], weight: 10} # Light Crystal
+          - {item: 4570, quantity: [4, 12], weight: 10}  # Bird Egg
+          - {item: 4274, quantity: [4, 8], weight: 10}   # Persikos
+          - {item: 842, quantity: [1, 5], weight: 10}    # Giant Bird Feather
+          - {item: 845, quantity: [4, 8], weight: 10}    # Black Chocobo Feather
+          - {item: 1227, quantity: [4, 12], weight: 10}  # Platinum Nugget
+          - {item: 1228, quantity: [4, 12], weight: 10}  # Darksteel Nugget
+      dark:
+        dark:
+          - {item: 936, quantity: [12, 24], weight: 20}  # Rock Salt
+          - {item: 4102, quantity: [12, 24], weight: 20} # Light Crystal
+          - {item: 4274, quantity: [4, 8], weight: 20}   # Persikos
+          - {item: 845, quantity: [4, 8], weight: 20}    # Black Chocobo Feather
+          - {item: 1228, quantity: [4, 12], weight: 20}  # Darksteel Nugget
+
+    tree_saplings:
+      none:
+        none:
+          - {item: 936, quantity: [12, 24], weight: 30} # Rock Salt
+          - {item: 4449, quantity: [1, 2], weight: 30}  # Reishi Mushroom
+          - {item: 1309, quantity: [4, 12], weight: 28} # Gold Leaf
+          - {item: 1261, quantity: [1, 1], weight: 12}  # Light Ore
+        fire:
+          - {item: 936, quantity: [12, 24], weight: 15} # Rock Salt
+          - {item: 4105, quantity: [1, 2], weight: 24}  # Ice Cluster
+          - {item: 4449, quantity: [1, 2], weight: 15}  # Reishi Mushroom
+          - {item: 628, quantity: [1, 2], weight: 20}   # Cinnamon
+          - {item: 1309, quantity: [4, 12], weight: 14} # Gold Leaf
+          - {item: 1255, quantity: [1, 1], weight: 6}   # Fire Ore
+          - {item: 1261, quantity: [1, 1], weight: 6}   # Light Ore
+        ice:
+          - {item: 936, quantity: [12, 24], weight: 15} # Rock Salt
+          - {item: 4106, quantity: [1, 2], weight: 24}  # Wind Cluster
+          - {item: 4449, quantity: [1, 2], weight: 15}  # Reishi Mushroom
+          - {item: 1310, quantity: [6, 12], weight: 20} # Platinum Leaf
+          - {item: 1309, quantity: [4, 12], weight: 14} # Gold Leaf
+          - {item: 1256, quantity: [1, 1], weight: 6}   # Ice Ore
+          - {item: 1261, quantity: [1, 1], weight: 6}   # Light Ore
+        wind:
+          - {item: 936, quantity: [12, 24], weight: 15} # Rock Salt
+          - {item: 4107, quantity: [1, 2], weight: 24}  # Earth Cluster
+          - {item: 4449, quantity: [1, 2], weight: 15}  # Reishi Mushroom
+          - {item: 635, quantity: [24, 48], weight: 20} # Clump Of Windurstian Tea Leaves
+          - {item: 1309, quantity: [4, 12], weight: 14} # Gold Leaf
+          - {item: 1257, quantity: [1, 1], weight: 6}   # Wind Ore
+          - {item: 1261, quantity: [1, 1], weight: 6}   # Light Ore
+        earth:
+          - {item: 936, quantity: [12, 24], weight: 15} # Rock Salt
+          - {item: 4108, quantity: [1, 2], weight: 24}  # Lightning Cluster
+          - {item: 4449, quantity: [1, 2], weight: 15}  # Reishi Mushroom
+          - {item: 4273, quantity: [8, 16], weight: 20} # Kitron
+          - {item: 1309, quantity: [4, 12], weight: 14} # Gold Leaf
+          - {item: 1258, quantity: [1, 1], weight: 6}   # Earth Ore
+          - {item: 1261, quantity: [1, 1], weight: 6}   # Light Ore
+        thunder:
+          - {item: 936, quantity: [12, 24], weight: 15} # Rock Salt
+          - {item: 4109, quantity: [1, 2], weight: 24}  # Water Cluster
+          - {item: 4449, quantity: [1, 2], weight: 15}  # Reishi Mushroom
+          - {item: 1307, quantity: [8, 16], weight: 20} # Silver Leaf
+          - {item: 1309, quantity: [4, 12], weight: 14} # Gold Leaf
+          - {item: 1259, quantity: [1, 1], weight: 6}   # Lightning Ore
+          - {item: 1261, quantity: [1, 1], weight: 6}   # Light Ore
+        water:
+          - {item: 936, quantity: [12, 24], weight: 15} # Rock Salt
+          - {item: 4104, quantity: [1, 2], weight: 24}  # Fire Cluster
+          - {item: 4449, quantity: [1, 2], weight: 15}  # Reishi Mushroom
+          - {item: 1308, quantity: [6, 12], weight: 20} # Mythril Leaf
+          - {item: 1309, quantity: [4, 12], weight: 14} # Gold Leaf
+          - {item: 1260, quantity: [1, 1], weight: 6}   # Water Ore
+          - {item: 1261, quantity: [1, 1], weight: 6}   # Light Ore
+        light:
+          - {item: 936, quantity: [12, 24], weight: 15}   # Rock Salt
+          - {item: 17397, quantity: [24, 48], weight: 15} # Shell Bug
+          - {item: 4449, quantity: [1, 2], weight: 15}    # Reishi Mushroom
+          - {item: 4111, quantity: [1, 2], weight: 15}    # Dark Cluster
+          - {item: 1309, quantity: [4, 12], weight: 34}   # Gold Leaf
+          - {item: 1261, quantity: [1, 1], weight: 6}     # Light Ore
+        dark:
+          - {item: 936, quantity: [12, 24], weight: 30} # Rock Salt
+          - {item: 4449, quantity: [1, 2], weight: 15}  # Reishi Mushroom
+          - {item: 4110, quantity: [1, 2], weight: 15}  # Light Cluster
+          - {item: 1309, quantity: [4, 12], weight: 14} # Gold Leaf
+          - {item: 4274, quantity: [4, 8], weight: 14}  # Persikos
+          - {item: 1261, quantity: [1, 1], weight: 6}   # Light Ore
+          - {item: 1262, quantity: [1, 1], weight: 6}   # Dark Ore
+      fire:
+        fire:
+          - {item: 4105, quantity: [1, 2], weight: 48} # Ice Cluster
+          - {item: 628, quantity: [1, 2], weight: 40}  # Cinnamon
+          - {item: 1255, quantity: [1, 1], weight: 12} # Fire Ore
+        ice:
+          - {item: 4105, quantity: [1, 2], weight: 24}  # Ice Cluster
+          - {item: 4106, quantity: [1, 2], weight: 24}  # Wind Cluster
+          - {item: 628, quantity: [1, 2], weight: 20}   # Cinnamon
+          - {item: 1310, quantity: [6, 12], weight: 20} # Platinum Leaf
+          - {item: 1255, quantity: [1, 1], weight: 6}   # Fire Ore
+          - {item: 1256, quantity: [1, 1], weight: 6}   # Ice Ore
+        wind:
+          - {item: 4105, quantity: [1, 2], weight: 24}  # Ice Cluster
+          - {item: 4107, quantity: [1, 2], weight: 24}  # Earth Cluster
+          - {item: 628, quantity: [1, 2], weight: 20}   # Cinnamon
+          - {item: 635, quantity: [24, 48], weight: 20} # Clump Of Windurstian Tea Leaves
+          - {item: 1255, quantity: [1, 1], weight: 6}   # Fire Ore
+          - {item: 1257, quantity: [1, 1], weight: 6}   # Wind Ore
+        earth:
+          - {item: 4105, quantity: [1, 2], weight: 24}  # Ice Cluster
+          - {item: 4108, quantity: [1, 2], weight: 24}  # Lightning Cluster
+          - {item: 628, quantity: [1, 2], weight: 20}   # Cinnamon
+          - {item: 4273, quantity: [8, 16], weight: 20} # Kitron
+          - {item: 1255, quantity: [1, 1], weight: 6}   # Fire Ore
+          - {item: 1258, quantity: [1, 1], weight: 6}   # Earth Ore
+        thunder:
+          - {item: 4105, quantity: [1, 2], weight: 24}  # Ice Cluster
+          - {item: 4109, quantity: [1, 2], weight: 24}  # Water Cluster
+          - {item: 628, quantity: [1, 2], weight: 20}   # Cinnamon
+          - {item: 1307, quantity: [8, 16], weight: 20} # Silver Leaf
+          - {item: 1255, quantity: [1, 1], weight: 6}   # Fire Ore
+          - {item: 1259, quantity: [1, 1], weight: 6}   # Lightning Ore
+        water:
+          - {item: 4105, quantity: [1, 2], weight: 24}  # Ice Cluster
+          - {item: 4104, quantity: [1, 2], weight: 24}  # Fire Cluster
+          - {item: 628, quantity: [1, 2], weight: 20}   # Cinnamon
+          - {item: 1308, quantity: [6, 12], weight: 20} # Mythril Leaf
+          - {item: 1255, quantity: [1, 1], weight: 6}   # Fire Ore
+          - {item: 1260, quantity: [1, 1], weight: 6}   # Water Ore
+        light:
+          - {item: 4105, quantity: [1, 2], weight: 24}    # Ice Cluster
+          - {item: 17397, quantity: [24, 48], weight: 15} # Shell Bug
+          - {item: 628, quantity: [1, 2], weight: 20}     # Cinnamon
+          - {item: 4111, quantity: [1, 2], weight: 15}    # Dark Cluster
+          - {item: 1255, quantity: [1, 1], weight: 6}     # Fire Ore
+          - {item: 1309, quantity: [4, 12], weight: 20}   # Gold Leaf
+        dark:
+          - {item: 4105, quantity: [1, 2], weight: 24}  # Ice Cluster
+          - {item: 936, quantity: [12, 24], weight: 15} # Rock Salt
+          - {item: 628, quantity: [1, 2], weight: 20}   # Cinnamon
+          - {item: 4110, quantity: [1, 2], weight: 15}  # Light Cluster
+          - {item: 1255, quantity: [1, 1], weight: 6}   # Fire Ore
+          - {item: 4274, quantity: [4, 8], weight: 14}  # Persikos
+          - {item: 1262, quantity: [1, 1], weight: 6}   # Dark Ore
+      ice:
+        ice:
+          - {item: 4106, quantity: [1, 2], weight: 48}  # Wind Cluster
+          - {item: 1310, quantity: [6, 12], weight: 40} # Platinum Leaf
+          - {item: 1256, quantity: [1, 1], weight: 12}  # Ice Ore
+        wind:
+          - {item: 4106, quantity: [1, 2], weight: 24}  # Wind Cluster
+          - {item: 4107, quantity: [1, 2], weight: 24}  # Earth Cluster
+          - {item: 1310, quantity: [6, 12], weight: 20} # Platinum Leaf
+          - {item: 635, quantity: [24, 48], weight: 20} # Clump Of Windurstian Tea Leaves
+          - {item: 1256, quantity: [1, 1], weight: 6}   # Ice Ore
+          - {item: 1257, quantity: [1, 1], weight: 6}   # Wind Ore
+        earth:
+          - {item: 4106, quantity: [1, 2], weight: 24}  # Wind Cluster
+          - {item: 4108, quantity: [1, 2], weight: 24}  # Lightning Cluster
+          - {item: 1310, quantity: [6, 12], weight: 20} # Platinum Leaf
+          - {item: 4273, quantity: [8, 16], weight: 20} # Kitron
+          - {item: 1256, quantity: [1, 1], weight: 6}   # Ice Ore
+          - {item: 1258, quantity: [1, 1], weight: 6}   # Earth Ore
+        thunder:
+          - {item: 4106, quantity: [1, 2], weight: 24}  # Wind Cluster
+          - {item: 4109, quantity: [1, 2], weight: 24}  # Water Cluster
+          - {item: 1310, quantity: [6, 12], weight: 20} # Platinum Leaf
+          - {item: 1307, quantity: [8, 16], weight: 20} # Silver Leaf
+          - {item: 1256, quantity: [1, 1], weight: 6}   # Ice Ore
+          - {item: 1259, quantity: [1, 1], weight: 6}   # Lightning Ore
+        water:
+          - {item: 4106, quantity: [1, 2], weight: 24}  # Wind Cluster
+          - {item: 4104, quantity: [1, 2], weight: 24}  # Fire Cluster
+          - {item: 1310, quantity: [6, 12], weight: 20} # Platinum Leaf
+          - {item: 1308, quantity: [6, 12], weight: 20} # Mythril Leaf
+          - {item: 1256, quantity: [1, 1], weight: 6}   # Ice Ore
+          - {item: 1260, quantity: [1, 1], weight: 6}   # Water Ore
+        light:
+          - {item: 4106, quantity: [1, 2], weight: 24}    # Wind Cluster
+          - {item: 17397, quantity: [24, 48], weight: 15} # Shell Bug
+          - {item: 1310, quantity: [6, 12], weight: 20}   # Platinum Leaf
+          - {item: 4111, quantity: [1, 2], weight: 15}    # Dark Cluster
+          - {item: 1256, quantity: [1, 1], weight: 6}     # Ice Ore
+          - {item: 1309, quantity: [4, 12], weight: 20}   # Gold Leaf
+        dark:
+          - {item: 4106, quantity: [1, 2], weight: 24}  # Wind Cluster
+          - {item: 936, quantity: [12, 24], weight: 15} # Rock Salt
+          - {item: 1310, quantity: [6, 12], weight: 20} # Platinum Leaf
+          - {item: 4110, quantity: [1, 2], weight: 15}  # Light Cluster
+          - {item: 1256, quantity: [1, 1], weight: 6}   # Ice Ore
+          - {item: 4274, quantity: [4, 8], weight: 14}  # Persikos
+          - {item: 1262, quantity: [1, 1], weight: 6}   # Dark Ore
+      wind:
+        wind:
+          - {item: 4107, quantity: [1, 2], weight: 48}  # Earth Cluster
+          - {item: 635, quantity: [24, 48], weight: 40} # Clump Of Windurstian Tea Leaves
+          - {item: 1257, quantity: [1, 1], weight: 12}  # Wind Ore
+        earth:
+          - {item: 4107, quantity: [1, 2], weight: 24}  # Earth Cluster
+          - {item: 4108, quantity: [1, 2], weight: 24}  # Lightning Cluster
+          - {item: 635, quantity: [24, 48], weight: 20} # Clump Of Windurstian Tea Leaves
+          - {item: 4273, quantity: [8, 16], weight: 20} # Kitron
+          - {item: 1257, quantity: [1, 1], weight: 6}   # Wind Ore
+          - {item: 1258, quantity: [1, 1], weight: 6}   # Earth Ore
+        thunder:
+          - {item: 4107, quantity: [1, 2], weight: 24}  # Earth Cluster
+          - {item: 4109, quantity: [1, 2], weight: 24}  # Water Cluster
+          - {item: 635, quantity: [24, 48], weight: 20} # Clump Of Windurstian Tea Leaves
+          - {item: 1307, quantity: [8, 16], weight: 20} # Silver Leaf
+          - {item: 1257, quantity: [1, 1], weight: 6}   # Wind Ore
+          - {item: 1259, quantity: [1, 1], weight: 6}   # Lightning Ore
+        water:
+          - {item: 4107, quantity: [1, 2], weight: 24}  # Earth Cluster
+          - {item: 4104, quantity: [1, 2], weight: 24}  # Fire Cluster
+          - {item: 635, quantity: [24, 48], weight: 20} # Clump Of Windurstian Tea Leaves
+          - {item: 1308, quantity: [6, 12], weight: 20} # Mythril Leaf
+          - {item: 1257, quantity: [1, 1], weight: 6}   # Wind Ore
+          - {item: 1260, quantity: [1, 1], weight: 6}   # Water Ore
+        light:
+          - {item: 4107, quantity: [1, 2], weight: 24}    # Earth Cluster
+          - {item: 17397, quantity: [24, 48], weight: 15} # Shell Bug
+          - {item: 635, quantity: [24, 48], weight: 20}   # Clump Of Windurstian Tea Leaves
+          - {item: 4111, quantity: [1, 2], weight: 15}    # Dark Cluster
+          - {item: 1257, quantity: [1, 1], weight: 6}     # Wind Ore
+          - {item: 1309, quantity: [4, 12], weight: 20}   # Gold Leaf
+        dark:
+          - {item: 4107, quantity: [1, 2], weight: 24}  # Earth Cluster
+          - {item: 936, quantity: [12, 24], weight: 15} # Rock Salt
+          - {item: 635, quantity: [24, 48], weight: 20} # Clump Of Windurstian Tea Leaves
+          - {item: 4110, quantity: [1, 2], weight: 15}  # Light Cluster
+          - {item: 1257, quantity: [1, 1], weight: 6}   # Wind Ore
+          - {item: 4274, quantity: [4, 8], weight: 14}  # Persikos
+          - {item: 1262, quantity: [1, 1], weight: 6}   # Dark Ore
+      earth:
+        earth:
+          - {item: 4108, quantity: [1, 2], weight: 48}  # Lightning Cluster
+          - {item: 4273, quantity: [8, 16], weight: 40} # Kitron
+          - {item: 1258, quantity: [1, 1], weight: 12}  # Earth Ore
+        thunder:
+          - {item: 4108, quantity: [1, 2], weight: 24}  # Lightning Cluster
+          - {item: 4109, quantity: [1, 2], weight: 24}  # Water Cluster
+          - {item: 4273, quantity: [8, 16], weight: 20} # Kitron
+          - {item: 1307, quantity: [8, 16], weight: 20} # Silver Leaf
+          - {item: 1258, quantity: [1, 1], weight: 6}   # Earth Ore
+          - {item: 1259, quantity: [1, 1], weight: 6}   # Lightning Ore
+        water:
+          - {item: 4108, quantity: [1, 2], weight: 24}  # Lightning Cluster
+          - {item: 4104, quantity: [1, 2], weight: 24}  # Fire Cluster
+          - {item: 4273, quantity: [8, 16], weight: 20} # Kitron
+          - {item: 1308, quantity: [6, 12], weight: 20} # Mythril Leaf
+          - {item: 1258, quantity: [1, 1], weight: 6}   # Earth Ore
+          - {item: 1260, quantity: [1, 1], weight: 6}   # Water Ore
+        light:
+          - {item: 4108, quantity: [1, 2], weight: 24}    # Lightning Cluster
+          - {item: 17397, quantity: [24, 48], weight: 15} # Shell Bug
+          - {item: 4273, quantity: [8, 16], weight: 20}   # Kitron
+          - {item: 4111, quantity: [1, 2], weight: 15}    # Dark Cluster
+          - {item: 1258, quantity: [1, 1], weight: 6}     # Earth Ore
+          - {item: 1309, quantity: [4, 12], weight: 20}   # Gold Leaf
+        dark:
+          - {item: 4108, quantity: [1, 2], weight: 24}  # Lightning Cluster
+          - {item: 936, quantity: [12, 24], weight: 15} # Rock Salt
+          - {item: 4273, quantity: [8, 16], weight: 20} # Kitron
+          - {item: 4110, quantity: [1, 2], weight: 15}  # Light Cluster
+          - {item: 1258, quantity: [1, 1], weight: 6}   # Earth Ore
+          - {item: 4274, quantity: [4, 8], weight: 14}  # Persikos
+          - {item: 1262, quantity: [1, 1], weight: 6}   # Dark Ore
+      thunder:
+        thunder:
+          - {item: 4109, quantity: [1, 2], weight: 48}  # Water Cluster
+          - {item: 1307, quantity: [8, 16], weight: 40} # Silver Leaf
+          - {item: 1259, quantity: [1, 1], weight: 12}  # Lightning Ore
+        water:
+          - {item: 4109, quantity: [1, 2], weight: 24}  # Water Cluster
+          - {item: 4104, quantity: [1, 2], weight: 24}  # Fire Cluster
+          - {item: 1307, quantity: [8, 16], weight: 20} # Silver Leaf
+          - {item: 1308, quantity: [6, 12], weight: 20} # Mythril Leaf
+          - {item: 1259, quantity: [1, 1], weight: 6}   # Lightning Ore
+          - {item: 1260, quantity: [1, 1], weight: 6}   # Water Ore
+        light:
+          - {item: 4109, quantity: [1, 2], weight: 24}    # Water Cluster
+          - {item: 17397, quantity: [24, 48], weight: 15} # Shell Bug
+          - {item: 1307, quantity: [8, 16], weight: 20}   # Silver Leaf
+          - {item: 4111, quantity: [1, 2], weight: 15}    # Dark Cluster
+          - {item: 1259, quantity: [1, 1], weight: 6}     # Lightning Ore
+          - {item: 1309, quantity: [4, 12], weight: 20}   # Gold Leaf
+        dark:
+          - {item: 4109, quantity: [1, 2], weight: 24}  # Water Cluster
+          - {item: 936, quantity: [12, 24], weight: 15} # Rock Salt
+          - {item: 1307, quantity: [8, 16], weight: 20} # Silver Leaf
+          - {item: 4110, quantity: [1, 2], weight: 15}  # Light Cluster
+          - {item: 1259, quantity: [1, 1], weight: 6}   # Lightning Ore
+          - {item: 4274, quantity: [4, 8], weight: 14}  # Persikos
+          - {item: 1262, quantity: [1, 1], weight: 6}   # Dark Ore
+      water:
+        water:
+          - {item: 4104, quantity: [1, 2], weight: 48}  # Fire Cluster
+          - {item: 1308, quantity: [6, 12], weight: 40} # Mythril Leaf
+          - {item: 1260, quantity: [1, 1], weight: 12}  # Water Ore
+        light:
+          - {item: 4104, quantity: [1, 2], weight: 24}    # Fire Cluster
+          - {item: 17397, quantity: [24, 48], weight: 15} # Shell Bug
+          - {item: 1308, quantity: [6, 12], weight: 20}   # Mythril Leaf
+          - {item: 4111, quantity: [1, 2], weight: 15}    # Dark Cluster
+          - {item: 1260, quantity: [1, 1], weight: 6}     # Water Ore
+          - {item: 1309, quantity: [4, 12], weight: 20}   # Gold Leaf
+        dark:
+          - {item: 4104, quantity: [1, 2], weight: 24}  # Fire Cluster
+          - {item: 936, quantity: [12, 24], weight: 15} # Rock Salt
+          - {item: 1308, quantity: [6, 12], weight: 20} # Mythril Leaf
+          - {item: 4110, quantity: [1, 2], weight: 15}  # Light Cluster
+          - {item: 1260, quantity: [1, 1], weight: 6}   # Water Ore
+          - {item: 4274, quantity: [4, 8], weight: 14}  # Persikos
+          - {item: 1262, quantity: [1, 1], weight: 6}   # Dark Ore
+      light:
+        light:
+          - {item: 17397, quantity: [24, 48], weight: 30} # Shell Bug
+          - {item: 4111, quantity: [1, 2], weight: 30}    # Dark Cluster
+          - {item: 1309, quantity: [4, 12], weight: 40}   # Gold Leaf
+        dark:
+          - {item: 17397, quantity: [24, 48], weight: 15} # Shell Bug
+          - {item: 936, quantity: [12, 24], weight: 15}   # Rock Salt
+          - {item: 4111, quantity: [1, 2], weight: 15}    # Dark Cluster
+          - {item: 4110, quantity: [1, 2], weight: 15}    # Light Cluster
+          - {item: 1309, quantity: [4, 12], weight: 20}   # Gold Leaf
+          - {item: 4274, quantity: [4, 8], weight: 14}    # Persikos
+          - {item: 1262, quantity: [1, 1], weight: 6}     # Dark Ore
+      dark:
+        dark:
+          - {item: 936, quantity: [12, 24], weight: 30} # Rock Salt
+          - {item: 4110, quantity: [1, 2], weight: 30}  # Light Cluster
+          - {item: 4274, quantity: [4, 8], weight: 28}  # Persikos
+          - {item: 1262, quantity: [1, 1], weight: 12}  # Dark Ore

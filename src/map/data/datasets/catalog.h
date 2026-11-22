@@ -29,6 +29,8 @@
 #include "data/datasets/ecosystems/yaml.h"
 #include "data/datasets/experience/dataset.h"
 #include "data/datasets/experience/yaml.h"
+#include "data/datasets/gardening_results/dataset.h"
+#include "data/datasets/gardening_results/yaml.h"
 #include "data/datasets/grades/dataset.h"
 #include "data/datasets/grades/yaml.h"
 #include "data/datasets/merits/dataset.h"
@@ -79,7 +81,7 @@ struct DatasetCatalog
     }
 };
 
-using Catalog     = DatasetCatalog<animation_locks::Dataset, status_effects::Dataset, ecosystems::Dataset, merits::Dataset, grades::Dataset, stats::Dataset, skills::Dataset, experience::Dataset, monstrosity::Dataset, weapon_skills::Dataset, despoil_effects::Dataset>;
+using Catalog     = DatasetCatalog<animation_locks::Dataset, status_effects::Dataset, ecosystems::Dataset, merits::Dataset, grades::Dataset, stats::Dataset, skills::Dataset, experience::Dataset, monstrosity::Dataset, weapon_skills::Dataset, despoil_effects::Dataset, gardening_results::Dataset>;
 using ZoneCatalog = DatasetCatalog<zones::settings::Dataset, zones::npcs::Dataset, zones::mobs::Dataset, zones::regions::Dataset>;
 
 } // namespace xi::data::datasets

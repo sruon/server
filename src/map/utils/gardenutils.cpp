@@ -26,10 +26,13 @@
 #include "common/logging.h"
 #include "common/vana_time.h"
 
+#include "data/datasets/gardening_results/dataset.h"
+
 #include "entities/char_entity.h"
 #include "item_container.h"
 #include "items/item_flowerpot.h"
 #include "packets/s2c/0x020_item_attr.h"
+#include "utils/dataset_loader.h"
 
 constexpr uint32 VANADAY_SECONDS            = 3456;
 constexpr uint32 VANADAYS_TO_WILT           = 36;
@@ -39,57 +42,16 @@ constexpr uint32 VANATIME_FOR_WILT_STAGE    = 65535 * VANADAY_SECONDS;
 namespace
 {
 
-std::map<uint32, GardenResultList_t> g_pGardenResultMap; // global map of gardening results
+xi::data::GardeningResults gGardeningResults;
 
 } // namespace
-
-GardenResult_t::GardenResult_t() = default;
-
-GardenResult_t::GardenResult_t(uint16 ItemID, uint8 MinQuantity, uint8 MaxQuantity, uint8 Weight)
-: ItemID(ItemID)
-, MinQuantity(MinQuantity)
-, MaxQuantity(MaxQuantity)
-, Weight(Weight)
-{
-}
 
 namespace gardenutils
 {
 
-namespace
-{
-
-void LoadResultList()
-{
-    const auto rset = db::preparedStmt("SELECT resultId, seed, element1, element2, result, min_quantity, max_quantity, weight FROM gardening_results");
-
-    if (rset && rset->rowsCount())
-    {
-        while (rset->next())
-        {
-            uint8 SeedID   = rset->get<uint8>("seed");
-            uint8 Element1 = rset->get<uint8>("element1");
-            uint8 Element2 = rset->get<uint8>("element2");
-
-            uint32 uid = (SeedID << 8) + (Element1 << 4) + Element2;
-
-            GardenResultList_t& resultList = g_pGardenResultMap[uid];
-
-            uint16 ItemID      = rset->get<uint16>("result");
-            uint8  MinQuantity = rset->get<uint8>("min_quantity");
-            uint8  MaxQuantity = rset->get<uint8>("max_quantity");
-            uint8  Weight      = rset->get<uint8>("weight");
-
-            resultList.emplace_back(ItemID, MinQuantity, MaxQuantity, Weight);
-        }
-    }
-}
-
-} // namespace
-
 void Initialize()
 {
-    LoadResultList();
+    gGardeningResults = xi::data::loadDataset<xi::data::datasets::gardening_results::Dataset>();
 }
 
 void UpdateGardening(CCharEntity* PChar, SendPacket sendPacket)
@@ -285,12 +247,17 @@ auto CalculateResults(CCharEntity* PChar, CItemFlowerpot* PItem) -> std::tuple<u
 
     strength += (int16)((100 - strength) * (PItem->getStrength() / 32.0f));
 
-    uint32 resultUid = (PItem->getPlant() << 8) + (PItem->getCommonCrystalFeed() << 4) + PItem->getExtraCrystalFeed();
+    const auto entry = gGardeningResults.find({ PItem->getPlant(), static_cast<xi::Element>(PItem->getExtraCrystalFeed()), static_cast<xi::Element>(PItem->getCommonCrystalFeed()) });
+    if (entry == gGardeningResults.end())
+    {
+        ShowErrorFmt("gardenutils::CalculateResults: {} has no results for plant {}", PChar->getName(), PItem->getPlant());
+        return std::make_tuple(0, 0);
+    }
 
-    GardenResult_t      item;
-    int8                cumulativeWeight = 0;
-    GardenResultList_t& resultList       = g_pGardenResultMap[resultUid];
-    for (GardenResult_t& result : resultList)
+    const auto&               resultList = entry->second;
+    xi::data::GardeningResult item;
+    int16                     cumulativeWeight = 0;
+    for (const auto& result : resultList)
     {
         cumulativeWeight += result.Weight;
         if (strength < cumulativeWeight)
@@ -299,7 +266,7 @@ auto CalculateResults(CCharEntity* PChar, CItemFlowerpot* PItem) -> std::tuple<u
             break;
         }
     }
-    if (item.ItemID == 0)
+    if (item.ItemId == 0)
     {
         item = resultList.back();
     }
@@ -316,7 +283,7 @@ auto CalculateResults(CCharEntity* PChar, CItemFlowerpot* PItem) -> std::tuple<u
     // The final result is truncated instead of rounded, so only p>=1.0 will return a higher than maximum yield. It's special-cased to avoid this.
     const uint8 quantity = percentage >= 1.0f ? item.MaxQuantity : (item.MinQuantity + percentage * (1 + item.MaxQuantity - item.MinQuantity));
 
-    return std::make_tuple(item.ItemID, quantity);
+    return std::make_tuple(item.ItemId, quantity);
 }
 
 void GrowToNextStage(CItemFlowerpot* PItem, bool growFromFeed /*= false*/)

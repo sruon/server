@@ -28,18 +28,6 @@
 class CCharEntity;
 class CItemFlowerpot;
 
-struct GardenResult_t
-{
-    GardenResult_t();
-    GardenResult_t(uint16 ItemID, uint8 MinQuantity, uint8 MaxQuantity, uint8 Weight);
-    uint16 ItemID      = 0;
-    uint8  MinQuantity = 0;
-    uint8  MaxQuantity = 0;
-    uint8  Weight      = 0;
-};
-
-using GardenResultList_t = std::vector<GardenResult_t>;
-
 namespace gardenutils
 {
 
