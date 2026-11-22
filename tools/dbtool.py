@@ -1377,19 +1377,13 @@ def update_sql_from_db(table_name):
                         updated_values.append(f"'{escaped_value}'")
                     # Number
                     else:
-                        # mob_droplist and pet_skills use variables for certain fields
+                        # mob_droplist uses variables for certain fields
                         if (
                             table_name == "mob_droplist"
                             and i == 5
                             and str(value) in sql_variables
                         ):
                             updated_values.append(sql_variables[str(value)])
-                        elif table_name == "pet_skills" and i == 9:
-                            var_list = []
-                            for var in sql_variables.keys():
-                                if value & int(var):
-                                    var_list.append(sql_variables[var])
-                            updated_values.append(" | ".join(var_list))
                         else:
                             # Get float formatting from the cursor description.
                             # https://github.com/mariadb-corporation/mariadb-connector-python/blob/67d3062ad597cca8d5419b2af2ad8b62528204e5/mariadb/mariadb_cursor.c#L777-L787
