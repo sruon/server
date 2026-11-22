@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=schemas/despoil_effects.schema.json
+#
+# The effect Despoil lands on the target, keyed by the item stolen.
+
+despoil_effects:
+  644:  defense_down   # Mythril Ore
+  842:  accuracy_down  # Giant Bird Feather
+  881:  defense_down   # Crab Shell
+  955:  magic_def_down # Golem Shard
+  2334: magic_atk_down # Poroggo Hat
+  4376: attack_down    # Meat Jerky
+  4400: slow           # Land Crab Meat

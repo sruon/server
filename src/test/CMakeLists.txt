@@ -56,6 +56,7 @@ xi_add_executable(xi_test testserver.rc
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/char_points_queries_tests.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/data/data_binding_tests.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/database_tests.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/tests/data/despoil_effects_dataset_tests.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/data/ecosystems_tree_tests.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/data/experience_dataset_tests.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/data/merits_dataset_tests.cpp

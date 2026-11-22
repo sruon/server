@@ -72,6 +72,7 @@
 #include "utils/battleutils.h"
 
 #include "utils/charutils.h"
+#include "utils/dataset_loader.h"
 #include "utils/instanceutils.h"
 #include "utils/itemutils.h"
 #include "utils/mobutils.h"
@@ -87,6 +88,7 @@
 #include "besieged_system.h"
 #include "conquest_system.h"
 #include "daily_system.h"
+#include "data/datasets/despoil_effects/dataset.h"
 #include "data/datasets/zones/mobs/dataset.h"
 #include "data/datasets/zones/npcs/dataset.h"
 #include "data/enums/mob_mod.h"
@@ -6047,10 +6049,10 @@ auto GetDespoilDebuff(uint16 itemId) -> uint16
 {
     TracyZoneScoped;
 
-    const auto rset = db::preparedStmt("SELECT effectId FROM despoil_effects WHERE itemId = ? LIMIT 1", itemId);
-    if (rset && rset->rowsCount() && rset->next())
+    static const auto effects = xi::data::loadDataset<xi::data::datasets::despoil_effects::Dataset>();
+    if (const auto effect = effects.find(itemId); effect != effects.end())
     {
-        return rset->get<uint16>("effectId");
+        return static_cast<uint16>(effect->second);
     }
 
     return 0;

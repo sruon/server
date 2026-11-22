@@ -554,7 +554,7 @@ struct ChocoboDigResult
 // Utility method: checks for and loads a lua function for events
 auto LoadEventScript(CCharEntity* PChar, const char* functionName) -> sol::function;
 
-auto GetDespoilDebuff(uint16 itemId) -> uint16; // Ask the database for an effectId based on Item despoiled (returns 0 if not in db)
+auto GetDespoilDebuff(uint16 itemId) -> uint16; // effect id despoiling the item lands, 0 when it has none
 
 void OnFurniturePlaced(CCharEntity* PChar, CItemFurnishing* itemId);
 void OnFurnitureRemoved(CCharEntity* PChar, CItemFurnishing* itemId);
