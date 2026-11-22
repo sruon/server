@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=../schemas/enums/_enum.schema.json
+
+# Behaviour flags shared by mob and pet skills.
+
+meta:
+  flags: true
+  cpp:
+    underlying: uint16_t
+
+values:
+  none:           0x000
+  astral_flow:    0x002 # avatar astral flow blood pact
+  no_tp_cost:     0x004 # does not deduct tp
+  no_start_msg:   0x010 # no "<mob> readies <skill>" message
+  no_finish_msg:  0x020 # no finish message when the skill completes
+  bloodpact_rage: 0x040
+  bloodpact_ward: 0x080
+  always_animate: 0x100 # animation completes even with no target in range
