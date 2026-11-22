@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=../schemas/enums/_enum.schema.json
+
+meta:
+  cpp:
+    underlying: uint8_t
+  lua:
+    table: xi.craftRank
+
+values:
+  amateur:      0
+  recruit:      1
+  initiate:     2
+  novice:       3
+  apprentice:   4
+  journeyman:   5
+  craftsman:    6
+  artisan:      7
+  adept:        8
+  veteran:      9
+  expert:      10
+  authority:   11
+  luminary:    12
+  master:      13
+  grandmaster: 14
+  legend:      15
