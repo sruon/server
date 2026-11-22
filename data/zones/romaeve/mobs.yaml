@@ -118,7 +118,7 @@ templates:
     id:            6843
     species:       evil_weapon
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 110
     attributes:
       combat:
@@ -142,7 +142,7 @@ templates:
     id:            1194
     species:       magic_pot
     type:          [notorious]
-    spell_list_id: 36
+    spell_list:    magicpot
     skill_list_id: 175
     attributes:
       combat:
@@ -196,7 +196,7 @@ templates:
   Infernal_Weapon:
     id:            2077
     species:       evil_weapon
-    spell_list_id: 42
+    spell_list:    evilweapon
     skill_list_id: 110
     attributes:
       combat:
@@ -221,7 +221,7 @@ templates:
   Jackpot:
     id:            2117
     species:       magic_pot
-    spell_list_id: 36
+    spell_list:    magicpot
     skill_list_id: 175
     attributes:
       jobs: [blm, rdm]
@@ -239,7 +239,7 @@ templates:
     id:            6844
     species:       evil_weapon
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 110
     attributes:
       combat:
@@ -309,7 +309,7 @@ templates:
   Magic_Flagon:
     id:            2476
     species:       magic_pot
-    spell_list_id: 36
+    spell_list:    magicpot
     skill_list_id: 175
     attributes:
       combat:
@@ -446,7 +446,7 @@ templates:
     id:            4725
     species:       mimic
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 183
     attributes:
       combat:
@@ -567,7 +567,7 @@ templates:
     id:            2873
     species:       magic_pot
     type:          [notorious]
-    spell_list_id: 36
+    spell_list:    magicpot
     skill_list_id: 175
     attributes:
       combat:
@@ -613,7 +613,7 @@ templates:
   Ominous_Weapon:
     id:            2974
     species:       evil_weapon
-    spell_list_id: 42
+    spell_list:    evilweapon
     skill_list_id: 110
     attributes:
       combat:
@@ -669,7 +669,7 @@ templates:
     id:            3603
     species:       evil_weapon
     type:          [notorious]
-    spell_list_id: 42
+    spell_list:    evilweapon
     skill_list_id: 110
     attributes:
       combat:
@@ -721,7 +721,7 @@ templates:
   Thunder_Elemental:
     id:            3912
     species:       thunder_elemental
-    spell_list_id: 16
+    spell_list:    elemental_thunder
     skill_list_id: 105
     attributes:
       combat:
@@ -754,7 +754,7 @@ templates:
   Water_Elemental:
     id:            4309
     species:       water_elemental
-    spell_list_id: 15
+    spell_list:    elemental_water
     skill_list_id: 106
     attributes:
       combat:

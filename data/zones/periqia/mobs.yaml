@@ -49,7 +49,7 @@ templates:
   Batteilant_Bhoot:
     id:            360
     species:       bhoot
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -73,7 +73,7 @@ templates:
   Black_Baron:
     id:            431
     species:       imp
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       combat:
@@ -128,7 +128,7 @@ templates:
   Chigoe_Breeder:
     id:            715
     species:       lamiae
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 171
     attributes:
       combat:
@@ -209,7 +209,7 @@ templates:
   Darkling_Draugar:
     id:            905
     species:       draugar
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 227
     attributes:
       combat:
@@ -354,7 +354,7 @@ templates:
   Experimental_Undead_blm:
     id:            5469
     species:       fomor
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 115
     attributes:
       combat:
@@ -378,7 +378,7 @@ templates:
   Experimental_Undead_brd:
     id:            5468
     species:       fomor
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 115
     attributes:
       combat:
@@ -465,7 +465,7 @@ templates:
     id:            2257
     species:       dvergr
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 90
     attributes:
       combat:
@@ -503,7 +503,7 @@ templates:
   Lamia_No14:
     id:            2341
     species:       lamiae
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 171
     attributes:
       combat:
@@ -524,7 +524,7 @@ templates:
   Lamia_No17:
     id:            2343
     species:       lamiae
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 171
     attributes:
       combat:
@@ -546,7 +546,7 @@ templates:
     id:            2425
     species:       animated_weapons
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 23
     attributes:
       combat:
@@ -579,7 +579,7 @@ templates:
     id:            2481
     species:       animated_weapons
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 21
     attributes:
       jobs: [pld, pld]
@@ -606,7 +606,7 @@ templates:
   Maymun_09:
     id:            2591
     species:       automaton
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 31
     attributes:
       combat:
@@ -624,7 +624,7 @@ templates:
   Maymun_21:
     id:            2592
     species:       automaton
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 28
     attributes:
       combat:
@@ -642,7 +642,7 @@ templates:
   Maymun_27:
     id:            2593
     species:       automaton
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 30
     attributes:
       combat:
@@ -660,7 +660,7 @@ templates:
   Maymun_33:
     id:            2594
     species:       automaton
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 28
     attributes:
       combat:
@@ -678,7 +678,7 @@ templates:
   Maymun_53:
     id:            2595
     species:       automaton
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 31
     attributes:
       combat:
@@ -696,7 +696,7 @@ templates:
   Maymun_74:
     id:            2596
     species:       automaton
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 30
     attributes:
       combat:
@@ -714,7 +714,7 @@ templates:
   Merrow_No16:
     id:            2624
     species:       merrow
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 182
     attributes:
       combat:
@@ -735,7 +735,7 @@ templates:
   Merrow_Shadowdancer:
     id:            2627
     species:       merrow
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 182
     attributes:
       combat:
@@ -817,7 +817,7 @@ templates:
     id:            3294
     display_name:  Qutrub
     species:       qutrub
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 203
     attributes:
       combat:

@@ -24,7 +24,7 @@ templates:
   Air_Elemental:
     id:            71
     species:       air_elemental
-    spell_list_id: 12
+    spell_list:    elemental_air
     skill_list_id: 99
     attributes:
       combat:
@@ -223,7 +223,7 @@ templates:
   Imp:
     id:            2065
     species:       imp
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       combat:
@@ -366,7 +366,7 @@ templates:
   Thunder_Elemental:
     id:            3912
     species:       thunder_elemental
-    spell_list_id: 16
+    spell_list:    elemental_thunder
     skill_list_id: 105
     attributes:
       combat:
@@ -398,7 +398,7 @@ templates:
   Utukku_S:
     id:            4112
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:

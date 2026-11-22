@@ -74,7 +74,7 @@ templates:
     id:            143
     species:       animated_weapons
     type:          [notorious]
-    spell_list_id: 91
+    spell_list:    animated_claymore
     skill_list_id: 14
     attributes:
       combat:
@@ -115,7 +115,7 @@ templates:
     id:            144
     species:       animated_weapons
     type:          [notorious]
-    spell_list_id: 94
+    spell_list:    animated_dagger
     skill_list_id: 11
     attributes:
       combat:
@@ -235,7 +235,7 @@ templates:
     id:            147
     species:       animated_weapons
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 9
     attributes:
       combat:
@@ -276,7 +276,7 @@ templates:
     id:            148
     species:       animated_weapons
     type:          [notorious]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 16
     attributes:
       combat:
@@ -317,7 +317,7 @@ templates:
     id:            149
     species:       animated_weapons
     type:          [notorious]
-    spell_list_id: 95
+    spell_list:    animated_knuckles
     skill_list_id: 15
     attributes:
       combat:
@@ -359,7 +359,7 @@ templates:
     id:            150
     species:       animated_weapons
     type:          [notorious]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 17
     attributes:
       combat:
@@ -440,7 +440,7 @@ templates:
     id:            152
     species:       animated_weapons
     type:          [notorious]
-    spell_list_id: 87
+    spell_list:    animated_longsword
     skill_list_id: 24
     attributes:
       combat:
@@ -481,7 +481,7 @@ templates:
     id:            153
     species:       animated_weapons
     type:          [notorious]
-    spell_list_id: 92
+    spell_list:    animated_scythe
     skill_list_id: 20
     attributes:
       combat:
@@ -522,7 +522,7 @@ templates:
     id:            154
     species:       animated_weapons
     type:          [notorious]
-    spell_list_id: 96
+    spell_list:    animated_shield
     skill_list_id: 21
     attributes:
       combat:
@@ -605,7 +605,7 @@ templates:
     id:            156
     species:       animated_weapons
     type:          [notorious]
-    spell_list_id: 89
+    spell_list:    animated_staff
     skill_list_id: 23
     attributes:
       combat:
@@ -646,7 +646,7 @@ templates:
     id:            157
     species:       animated_weapons
     type:          [notorious]
-    spell_list_id: 90
+    spell_list:    animated_tabar
     skill_list_id: 8
     attributes:
       combat:
@@ -687,7 +687,7 @@ templates:
     id:            158
     species:       animated_weapons
     type:          [notorious]
-    spell_list_id: 93
+    spell_list:    animated_tachi
     skill_list_id: 13
     attributes:
       combat:
@@ -725,10 +725,10 @@ templates:
           item:   divine_fragment
 
   Arch_Dynamis_Lord:
-    id:            6059
-    species:       shadow_lord
-    type:          [notorious]
-    spell_list_id: 86
+    id:         6059
+    species:    shadow_lord
+    type:       [notorious]
+    spell_list: dynamis_lord
     attributes:
       speed: 60
       combat:
@@ -791,7 +791,7 @@ templates:
   Avatar_Icon:
     id:            294
     species:       yagudo_statue
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 95
     attributes:
       combat:
@@ -832,7 +832,7 @@ templates:
     id:            6056
     species:       dynamis_kindred
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 2111
     attributes:
       combat:
@@ -904,7 +904,7 @@ templates:
     id:            6057
     species:       dynamis_kindred
     type:          [notorious]
-    spell_list_id: 30
+    spell_list:    yagudo_smn
     skill_list_id: 2111
     attributes:
       combat:
@@ -1067,7 +1067,7 @@ templates:
     id:            1131
     species:       dynamis_kindred
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 2111
     attributes:
       combat:
@@ -1149,7 +1149,7 @@ templates:
     id:            6053
     species:       dynamis_kindred
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 2111
     attributes:
       combat:
@@ -1192,7 +1192,7 @@ templates:
     id:            1135
     species:       dynamis_kindred
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 2111
     attributes:
       combat:
@@ -1234,7 +1234,7 @@ templates:
     id:            1154
     species:       shadow_lord
     type:          [notorious]
-    spell_list_id: 86
+    spell_list:    dynamis_lord
     skill_list_id: 361
     attributes:
       combat:
@@ -1326,7 +1326,7 @@ templates:
   Goblin_Replica:
     id:            1707
     species:       goblin_statue
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 92
     attributes:
       combat:
@@ -1390,7 +1390,7 @@ templates:
     id:            2047
     species:       yagudo_statue
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 95
     attributes:
       combat:
@@ -1424,7 +1424,7 @@ templates:
   Kindred_Bard:
     id:            2232
     species:       dynamis_kindred
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 2111
     attributes:
       combat:
@@ -1459,7 +1459,7 @@ templates:
   Kindred_Bard_HI:
     id:            6615
     species:       dynamis_kindred
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 2111
     attributes:
       combat:
@@ -1566,7 +1566,7 @@ templates:
   Kindred_Black_Mage:
     id:            2234
     species:       dynamis_kindred
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2111
     attributes:
       combat:
@@ -1602,7 +1602,7 @@ templates:
   Kindred_Black_Mage_HI:
     id:            6618
     species:       dynamis_kindred
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2111
     attributes:
       combat:
@@ -1640,7 +1640,7 @@ templates:
   Kindred_Dark_Knight:
     id:            2235
     species:       dynamis_kindred
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 2111
     attributes:
       combat:
@@ -1676,7 +1676,7 @@ templates:
   Kindred_Dark_Knight_HI:
     id:            6620
     species:       dynamis_kindred
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 2111
     attributes:
       combat:
@@ -1854,7 +1854,7 @@ templates:
   Kindred_Ninja:
     id:            2238
     species:       dynamis_kindred
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 2111
     attributes:
       combat:
@@ -1891,7 +1891,7 @@ templates:
   Kindred_Ninja_HI:
     id:            6623
     species:       dynamis_kindred
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 2111
     attributes:
       combat:
@@ -1930,7 +1930,7 @@ templates:
   Kindred_Paladin:
     id:            2239
     species:       dynamis_kindred
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 2111
     attributes:
       combat:
@@ -1965,7 +1965,7 @@ templates:
   Kindred_Paladin_HI:
     id:            6624
     species:       dynamis_kindred
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 2111
     attributes:
       combat:
@@ -2072,7 +2072,7 @@ templates:
   Kindred_Red_Mage:
     id:            2241
     species:       dynamis_kindred
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 2111
     attributes:
       combat:
@@ -2107,7 +2107,7 @@ templates:
   Kindred_Red_Mage_HI:
     id:            6626
     species:       dynamis_kindred
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 2111
     attributes:
       combat:
@@ -2216,7 +2216,7 @@ templates:
   Kindred_Summoner:
     id:            2243
     species:       dynamis_kindred
-    spell_list_id: 31
+    spell_list:    kindred_smn
     skill_list_id: 2111
     attributes:
       combat:
@@ -2252,7 +2252,7 @@ templates:
   Kindred_Summoner_HI:
     id:            6629
     species:       dynamis_kindred
-    spell_list_id: 31
+    spell_list:    kindred_smn
     skill_list_id: 2111
     attributes:
       combat:
@@ -2428,7 +2428,7 @@ templates:
   Kindred_White_Mage:
     id:            2250
     species:       dynamis_kindred
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 2111
     attributes:
       combat:
@@ -2463,7 +2463,7 @@ templates:
   Kindred_White_Mage_HI:
     id:            6633
     species:       dynamis_kindred
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 2111
     attributes:
       combat:
@@ -2659,7 +2659,7 @@ templates:
     id:            6054
     species:       dynamis_kindred
     type:          [notorious]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 2111
     attributes:
       combat:
@@ -2742,7 +2742,7 @@ templates:
     id:            2573
     species:       dynamis_kindred
     type:          [notorious]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 2111
     attributes:
       combat:
@@ -2784,7 +2784,7 @@ templates:
     id:            2575
     species:       dynamis_kindred
     type:          [notorious]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 2111
     attributes:
       combat:
@@ -2827,7 +2827,7 @@ templates:
     id:            2576
     species:       dynamis_kindred
     type:          [notorious]
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 2111
     attributes:
       combat:
@@ -2869,7 +2869,7 @@ templates:
     id:            2577
     species:       dynamis_kindred
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2111
     attributes:
       combat:
@@ -2911,7 +2911,7 @@ templates:
     id:            2578
     species:       dynamis_kindred
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 2111
     attributes:
       combat:
@@ -2976,7 +2976,7 @@ templates:
     id:            3198
     species:       dynamis_kindred
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 2111
     attributes:
       combat:
@@ -3017,7 +3017,7 @@ templates:
     id:            5121
     species:       dynamis_ahriman
     type:          [notorious]
-    spell_list_id: 11
+    spell_list:    ahriman
     skill_list_id: 2110
     attributes:
       combat:
@@ -3046,7 +3046,7 @@ templates:
     id:            3467
     species:       animated_weapons
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 14
     attributes:
       combat:
@@ -3198,7 +3198,7 @@ templates:
     id:            3471
     species:       animated_weapons
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 9
     attributes:
       combat:
@@ -3237,7 +3237,7 @@ templates:
     id:            3472
     species:       animated_weapons
     type:          [notorious]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 16
     attributes:
       combat:
@@ -3315,7 +3315,7 @@ templates:
     id:            3474
     species:       animated_weapons
     type:          [notorious]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 17
     attributes:
       combat:
@@ -3392,7 +3392,7 @@ templates:
     id:            3476
     species:       animated_weapons
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 24
     attributes:
       combat:
@@ -3431,7 +3431,7 @@ templates:
     id:            3477
     species:       animated_weapons
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 20
     attributes:
       combat:
@@ -3470,7 +3470,7 @@ templates:
     id:            3478
     species:       animated_weapons
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 21
     attributes:
       combat:
@@ -3547,7 +3547,7 @@ templates:
     id:            3480
     species:       animated_weapons
     type:          [notorious]
-    spell_list_id: 88
+    spell_list:    satellite_staves
     skill_list_id: 23
     attributes:
       combat:
@@ -3661,7 +3661,7 @@ templates:
   Serjeant_Tombstone:
     id:            3548
     species:       orc_statue
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 93
     attributes:
       combat:
@@ -3702,7 +3702,7 @@ templates:
     id:            3759
     species:       goblin_statue
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 92
     attributes:
       combat:
@@ -3738,7 +3738,7 @@ templates:
     id:            3941
     species:       orc_statue
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 93
     attributes:
       combat:
@@ -3808,7 +3808,7 @@ templates:
     id:            4149
     species:       dynamis_ahriman
     type:          [notorious]
-    spell_list_id: 11
+    spell_list:    ahriman
     skill_list_id: 2110
     attributes:
       combat:

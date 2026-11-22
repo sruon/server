@@ -165,7 +165,7 @@ templates:
   Areuhat:
     id:            227
     species:       elvaan
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 145
     attributes:
       combat:
@@ -237,7 +237,7 @@ templates:
   Azima:
     id:            311
     species:       humes
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 149
     attributes:
       combat:
@@ -355,7 +355,7 @@ templates:
     id:            5143
     species:       fomor
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 115
     attributes:
       combat:
@@ -424,7 +424,7 @@ templates:
   Cardian_Prototype:
     id:            637
     species:       batons
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 61
     attributes:
       combat:
@@ -723,7 +723,7 @@ templates:
   Divine_Assassin:
     id:            1056
     species:       yagudo_s
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 360
     attributes:
       combat:
@@ -829,7 +829,7 @@ templates:
   Dusk_Raider:
     id:            1143
     species:       humes
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 149
     attributes:
       combat:
@@ -856,7 +856,7 @@ templates:
   Duskraven:
     id:            1141
     species:       humes
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 149
     attributes:
       combat:
@@ -883,7 +883,7 @@ templates:
   Earth_Elemental:
     id:            1160
     species:       earth_elemental
-    spell_list_id: 13
+    spell_list:    elemental_earth
     skill_list_id: 101
     attributes:
       combat:
@@ -917,7 +917,7 @@ templates:
     id:            5144
     species:       fomor
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 115
     attributes:
       combat:
@@ -1057,7 +1057,7 @@ templates:
   Ferreous_Coffin:
     id:            1324
     species:       galks
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 146
     attributes:
       combat:
@@ -1238,7 +1238,7 @@ templates:
   Ice_Fiend:
     id:            2044
     species:       ice_elemental
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 103
     attributes:
       combat:
@@ -1329,7 +1329,7 @@ templates:
   Kagetora:
     id:            2179
     species:       humes
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 149
     attributes:
       combat:
@@ -1358,7 +1358,7 @@ templates:
     display_name:  Kaiser_Behemoth
     species:       behemoth
     type:          [notorious, battlefield]
-    spell_list_id: 126
+    spell_list:    casting_behemoth
     skill_list_id: 479
     attributes:
       combat:
@@ -1412,7 +1412,7 @@ templates:
   Kazan_the_Peerless:
     id:            2198
     species:       yagudo_s
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 360
     attributes:
       combat:
@@ -1435,7 +1435,7 @@ templates:
   Khadem_Quemquoma:
     id:            2216
     species:       scorpion
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 217
     attributes:
       combat:
@@ -1457,7 +1457,7 @@ templates:
   Kilhwch:
     id:            2226
     species:       humes
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 149
     attributes:
       combat:
@@ -1507,7 +1507,7 @@ templates:
     id:            5146
     species:       sandworm
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 215
     attributes:
       combat:
@@ -1547,7 +1547,7 @@ templates:
   Lewenhart:
     id:            2403
     species:       humes
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 149
     attributes:
       combat:
@@ -1628,7 +1628,7 @@ templates:
   Luminous_Coalescence:
     id:            2451
     species:       light_elemental
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 104
     attributes:
       combat:
@@ -1765,7 +1765,7 @@ templates:
   Muu_Buxu_the_Elusive:
     id:            2776
     species:       yagudo_s
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 360
     attributes:
       combat:
@@ -1892,7 +1892,7 @@ templates:
   Plenilune_Ronin:
     id:            3158
     species:       yagudo_s
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 360
     attributes:
       combat:
@@ -1913,7 +1913,7 @@ templates:
   Popochu:
     id:            3176
     species:       dhalmel
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 80
     attributes:
       combat:
@@ -2009,7 +2009,7 @@ templates:
   Raigegue_R_dOraguille:
     id:            3310
     species:       corse
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 74
     attributes:
       combat:
@@ -2034,7 +2034,7 @@ templates:
   Rainemard:
     id:            3312
     species:       elvaan
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 145
     attributes:
       combat:
@@ -2158,7 +2158,7 @@ templates:
   Shadoweye:
     id:            6608
     species:       ahriman
-    spell_list_id: 11
+    spell_list:    ahriman
     skill_list_id: 4
     attributes:
       combat:
@@ -2228,7 +2228,7 @@ templates:
   Shadowfang_Void:
     id:            3564
     species:       dark_elemental
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 100
     attributes:
       combat:
@@ -2359,7 +2359,7 @@ templates:
   Thunder_Elemental:
     id:            3912
     species:       thunder_elemental
-    spell_list_id: 16
+    spell_list:    elemental_thunder
     skill_list_id: 105
     attributes:
       combat:
@@ -2392,7 +2392,7 @@ templates:
   Thunder_Fiend:
     id:            3913
     species:       thunder_elemental
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 105
     attributes:
       combat:
@@ -2494,7 +2494,7 @@ templates:
     id:            4211
     species:       air_elemental
     type:          [battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 99
     attributes:
       combat:
@@ -2544,7 +2544,7 @@ templates:
     id:            4213
     species:       air_elemental
     type:          [battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 99
     attributes:
       combat:
@@ -2662,7 +2662,7 @@ templates:
   Yagudo_Abbot_outdoor_S:
     id:            6264
     species:       yagudo_s
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 360
     attributes:
       combat:
@@ -2697,7 +2697,7 @@ templates:
   Yagudo_Genja:
     id:            4420
     species:       whitehead_yagudo_s
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 270
     attributes:
       combat:
@@ -2743,7 +2743,7 @@ templates:
   Yagudo_Lutenist_past:
     id:            5492
     species:       yagudo_s
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 270
     attributes:
       combat:
@@ -2780,7 +2780,7 @@ templates:
   Yagudo_Missionary:
     id:            4433
     species:       yagudo_s
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 270
     attributes:
       combat:
@@ -2813,7 +2813,7 @@ templates:
   Yagudo_Prior_past:
     id:            5491
     species:       yagudo_s
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 270
     attributes:
       combat:
@@ -2854,7 +2854,7 @@ templates:
   Yagudo_Pythoness:
     id:            4447
     species:       yagudo_s
-    spell_list_id: 30
+    spell_list:    yagudo_smn
     skill_list_id: 270
     attributes:
       combat:
@@ -3000,7 +3000,7 @@ templates:
   Yagudos_Elemental:
     id:            4454
     species:       air_elemental
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 99
     attributes:
       combat:

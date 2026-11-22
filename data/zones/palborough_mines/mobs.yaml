@@ -5,7 +5,7 @@ templates:
   Amber_Quadav:
     id:            103
     species:       quadav
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 202
     attributes:
       combat:
@@ -39,7 +39,7 @@ templates:
   Amethyst_Quadav:
     id:            107
     species:       quadav
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 202
     attributes:
       combat:
@@ -86,7 +86,7 @@ templates:
     id:            6101
     species:       red_poroggo
     type:          [notorious]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 2053
     attributes:
       combat:
@@ -159,7 +159,7 @@ templates:
   Brass_Quadav:
     id:            525
     species:       quadav
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 202
     attributes:
       combat:
@@ -373,7 +373,7 @@ templates:
   Greater_Quadav:
     id:            1808
     species:       quadav
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 202
     attributes:
       combat:
@@ -524,7 +524,7 @@ templates:
     id:            2897
     species:       quadav
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 202
     attributes:
       combat:
@@ -562,7 +562,7 @@ templates:
     id:            2916
     species:       quadav
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 202
     attributes:
       combat:
@@ -645,7 +645,7 @@ templates:
   Onyx_Quadav:
     id:            2986
     species:       quadav
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 202
     attributes:
       combat:
@@ -862,7 +862,7 @@ templates:
   Veteran_Quadav:
     id:            4226
     species:       quadav
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 202
     attributes:
       combat:
@@ -940,7 +940,7 @@ templates:
     id:            4511
     species:       quadav
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 202
     attributes:
       combat:

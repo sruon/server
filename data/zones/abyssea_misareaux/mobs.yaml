@@ -6,7 +6,7 @@ templates:
     id:            25
     species:       cluster
     type:          [notorious]
-    spell_list_id: 230
+    spell_list:    abyssic_cluster
     skill_list_id: 883
     attributes:
       combat:
@@ -63,7 +63,7 @@ templates:
     id:            108
     species:       amphiptere
     type:          [notorious]
-    spell_list_id: 231
+    spell_list:    amhuluk
     skill_list_id: 884
     attributes:
       combat:
@@ -153,7 +153,7 @@ templates:
     id:            276
     species:       spider
     type:          [notorious]
-    spell_list_id: 232
+    spell_list:    athamas
     skill_list_id: 236
     attributes:
       combat:
@@ -211,7 +211,7 @@ templates:
     id:            293
     species:       colibri
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 72
     attributes:
       combat:
@@ -260,9 +260,9 @@ templates:
         type: [scripted]
 
   Bastion_Mage:
-    id:            357
-    species:       humes
-    spell_list_id: 21
+    id:         357
+    species:    humes
+    spell_list: beastmen_blm
     attributes:
       combat:
         skill: staff
@@ -305,7 +305,7 @@ templates:
   Brine_Crab:
     id:            533
     species:       crab
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 77
     attributes:
       combat:
@@ -634,7 +634,7 @@ templates:
   Ephemeral_Amoeban:
     id:            1243
     species:       amoeban
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 5
     attributes:
       combat:
@@ -665,7 +665,7 @@ templates:
   Ephemeral_Murex:
     id:            1246
     species:       murex
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 187
     attributes:
       combat:
@@ -696,7 +696,7 @@ templates:
   Escarp_Murex:
     id:            1258
     species:       murex
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 187
     attributes:
       combat:
@@ -909,7 +909,7 @@ templates:
     id:            1932
     species:       red_poroggo
     type:          [notorious]
-    spell_list_id: 233
+    spell_list:    heqet
     skill_list_id: 893
     attributes:
       combat:
@@ -1072,7 +1072,7 @@ templates:
     id:            2195
     species:       crab
     type:          [notorious]
-    spell_list_id: 234
+    spell_list:    karkatakam
     skill_list_id: 372
     attributes:
       combat:
@@ -1095,7 +1095,7 @@ templates:
     id:            2302
     species:       knight
     type:          [notorious]
-    spell_list_id: 157
+    spell_list:    kutharei
     skill_list_id: 899
     attributes:
       combat:
@@ -1270,7 +1270,7 @@ templates:
     id:            2781
     species:       bird_ghrah
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 122
     attributes:
       combat:
@@ -1500,7 +1500,7 @@ templates:
   Protoamoeban:
     id:            3210
     species:       amoeban
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 5
     attributes:
       combat:
@@ -1530,7 +1530,7 @@ templates:
   Qiqirn_Bewitcher:
     id:            3247
     species:       qiqirn
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 199
     attributes:
       combat:
@@ -1709,7 +1709,7 @@ templates:
     id:            3695
     species:       bugard
     type:          [notorious]
-    spell_list_id: 235
+    spell_list:    sobek
     skill_list_id: 906
     attributes:
       combat:
@@ -1847,7 +1847,7 @@ templates:
     id:            4007
     species:       phuabo
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 194
     attributes:
       combat:

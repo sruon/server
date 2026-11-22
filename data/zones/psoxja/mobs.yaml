@@ -53,7 +53,7 @@ templates:
   Blubber_Eyes_PX:
     id:            6386
     species:       hecteye
-    spell_list_id: 10
+    spell_list:    hecteyes
     skill_list_id: 2091
     attributes:
       combat:
@@ -117,7 +117,7 @@ templates:
   Cryptonberry_Cutter:
     id:            849
     species:       tonberry
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 500
     attributes:
       combat:
@@ -160,7 +160,7 @@ templates:
   Cryptonberry_Harrier:
     id:            852
     species:       tonberry
-    spell_list_id: 32
+    spell_list:    tonberry_smn
     skill_list_id: 500
     attributes:
       combat:
@@ -197,7 +197,7 @@ templates:
   Cryptonberry_Plaguer:
     id:            854
     species:       cryptonberry
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 500
     attributes:
       combat:
@@ -273,7 +273,7 @@ templates:
   Dark_Elemental:
     id:            913
     species:       dark_elemental
-    spell_list_id: 18
+    spell_list:    elemental_dark
     skill_list_id: 100
     attributes:
       combat:
@@ -306,7 +306,7 @@ templates:
   Demonic_Millstone:
     id:            975
     species:       magic_pot
-    spell_list_id: 36
+    spell_list:    magicpot
     skill_list_id: 175
     attributes:
       combat:
@@ -536,7 +536,7 @@ templates:
     id:            1464
     species:       gargoyles
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 83
     attributes:
       combat:
@@ -559,7 +559,7 @@ templates:
     id:            1465
     species:       gargoyles
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 83
     attributes:
       combat:
@@ -582,7 +582,7 @@ templates:
     id:            1466
     species:       gargoyles
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 84
     attributes:
       combat:
@@ -605,7 +605,7 @@ templates:
     id:            1467
     species:       gargoyles
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 84
     attributes:
       combat:
@@ -1056,7 +1056,7 @@ templates:
   Gazer_PX:
     id:            6387
     species:       hecteye
-    spell_list_id: 10
+    spell_list:    hecteyes
     skill_list_id: 2091
     attributes:
       combat:
@@ -1085,7 +1085,7 @@ templates:
   Goblin_Alchemist:
     id:            1634
     species:       goblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:
@@ -1198,7 +1198,7 @@ templates:
   Goblin_Enchanter:
     id:            1654
     species:       goblin
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 133
     attributes:
       combat:
@@ -1409,7 +1409,7 @@ templates:
     id:            1750
     species:       tonberry
     type:          [notorious]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 243
     attributes:
       combat:
@@ -1473,7 +1473,7 @@ templates:
   Ice_Elemental:
     id:            2043
     species:       ice_elemental
-    spell_list_id: 14
+    spell_list:    elemental_ice
     skill_list_id: 103
     attributes:
       combat:
@@ -1541,7 +1541,7 @@ templates:
   Magic_Millstone:
     id:            2479
     species:       magic_pot
-    spell_list_id: 36
+    spell_list:    magicpot
     skill_list_id: 175
     attributes:
       combat:
@@ -1571,7 +1571,7 @@ templates:
   Maledict_Millstone:
     id:            2495
     species:       magic_pot
-    spell_list_id: 36
+    spell_list:    magicpot
     skill_list_id: 175
     attributes:
       combat:
@@ -1633,7 +1633,7 @@ templates:
   Million_Eyes_PX:
     id:            6389
     species:       hecteye
-    spell_list_id: 10
+    spell_list:    hecteyes
     skill_list_id: 2091
     attributes:
       combat:
@@ -1687,7 +1687,7 @@ templates:
     id:            2922
     species:       golem
     type:          [notorious]
-    spell_list_id: 105
+    spell_list:    nunyunuwi
     skill_list_id: 135
     attributes:
       combat:
@@ -1834,7 +1834,7 @@ templates:
   Thousand_Eyes_PX:
     id:            3900
     species:       hecteye
-    spell_list_id: 10
+    spell_list:    hecteyes
     skill_list_id: 2091
     attributes:
       combat:
@@ -1867,7 +1867,7 @@ templates:
     id:            3971
     species:       fire_elemental
     type:          [called]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 102
     attributes:
       combat:

@@ -1451,7 +1451,7 @@ templates:
     display_name:  Alexander
     species:       alexander
     type:          [notorious, event]
-    spell_list_id: 214
+    spell_list:    alexander_np
     skill_list_id: 784
     attributes:
       combat:
@@ -4600,7 +4600,7 @@ templates:
     id:            6961
     species:       odin
     type:          [notorious, battlefield]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 41
     attributes:
       combat:

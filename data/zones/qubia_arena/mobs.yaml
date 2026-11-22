@@ -28,7 +28,7 @@ templates:
     id:            72
     species:       magic_pot
     type:          [battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 175
     attributes:
       combat:
@@ -54,7 +54,7 @@ templates:
     id:            117
     species:       spider
     type:          [battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 236
     attributes:
       combat:
@@ -82,7 +82,7 @@ templates:
     id:            127
     species:       skeleton
     type:          [notorious, battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 227
     attributes:
       combat:
@@ -133,7 +133,7 @@ templates:
     id:            160
     species:       ghost
     type:          [notorious, battlefield]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 2065
     attributes:
       combat:
@@ -162,7 +162,7 @@ templates:
     id:            223
     species:       skeleton
     type:          [notorious, battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 227
     attributes:
       combat:
@@ -225,7 +225,7 @@ templates:
     id:            385
     species:       yellow_bee
     type:          [battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 2060
     attributes:
       combat:
@@ -410,7 +410,7 @@ templates:
     id:            938
     species:       orcish_warmachine
     type:          [notorious, battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 190
     attributes:
       combat:
@@ -535,7 +535,7 @@ templates:
     id:            1163
     species:       magic_pot
     type:          [battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 175
     attributes:
       combat:
@@ -588,7 +588,7 @@ templates:
     id:            1343
     species:       magic_pot
     type:          [battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 175
     attributes:
       combat:
@@ -638,7 +638,7 @@ templates:
     id:            1497
     species:       doll
     type:          [notorious, battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 85
     attributes:
       combat:
@@ -664,7 +664,7 @@ templates:
     display_name:  Generic_Doll
     species:       doll
     type:          [notorious, battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 85
     attributes:
       combat:
@@ -689,7 +689,7 @@ templates:
     display_name:  Generic_Doll
     species:       doll
     type:          [notorious, battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 85
     attributes:
       combat:
@@ -715,7 +715,7 @@ templates:
     display_name:  Ghul-I-Beaban
     species:       skeleton
     type:          [battlefield]
-    spell_list_id: 305
+    spell_list:    ghul_i_beaban_blm
     skill_list_id: 227
     attributes:
       combat:
@@ -744,7 +744,7 @@ templates:
     display_name:  Ghul-I-Beaban
     species:       skeleton
     type:          [battlefield]
-    spell_list_id: 304
+    spell_list:    ghul_i_beaban_drk
     skill_list_id: 227
     attributes:
       combat:
@@ -846,7 +846,7 @@ templates:
     id:            2045
     species:       magic_pot
     type:          [battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 175
     attributes:
       combat:
@@ -953,7 +953,7 @@ templates:
     display_name:  Maat
     species:       humes
     type:          [notorious, battlefield]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 335
     attributes:
       combat:
@@ -979,7 +979,7 @@ templates:
     display_name:  Maat
     species:       humes
     type:          [notorious, battlefield]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 335
     attributes:
       combat:
@@ -1006,7 +1006,7 @@ templates:
     display_name:  Maat
     species:       humes
     type:          [notorious, battlefield]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 335
     attributes:
       combat:
@@ -1032,7 +1032,7 @@ templates:
     id:            2494
     species:       shadow
     type:          [battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 898
     attributes:
       combat:
@@ -1060,7 +1060,7 @@ templates:
     display_name:  Maldaramet_B_DAurphe
     species:       shadow
     type:          [battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 898
     attributes:
       combat:
@@ -1084,7 +1084,7 @@ templates:
     id:            2588
     species:       ghost
     type:          [notorious, battlefield]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 2065
     attributes:
       combat:
@@ -1309,7 +1309,7 @@ templates:
     id:            3227
     species:       ghost
     type:          [notorious, battlefield]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 2065
     attributes:
       combat:
@@ -1360,7 +1360,7 @@ templates:
     id:            3385
     species:       orc
     type:          [notorious, battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 189
     attributes:
       combat:
@@ -1385,7 +1385,7 @@ templates:
     id:            3386
     species:       orc
     type:          [notorious, battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 189
     attributes:
       combat:
@@ -1478,7 +1478,7 @@ templates:
     id:            3533
     species:       quadav
     type:          [battlefield]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 408
     attributes:
       combat:
@@ -1502,7 +1502,7 @@ templates:
     id:            3535
     species:       yagudo
     type:          [battlefield]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 409
     attributes:
       combat:
@@ -1526,7 +1526,7 @@ templates:
     id:            3612
     species:       ghost
     type:          [notorious, battlefield]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 2065
     attributes:
       combat:
@@ -1579,7 +1579,7 @@ templates:
     id:            3915
     species:       magic_pot
     type:          [battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 175
     attributes:
       combat:
@@ -1700,7 +1700,7 @@ templates:
     id:            4205
     species:       kindred
     type:          [battlefield]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 358
     attributes:
       combat:
@@ -1726,7 +1726,7 @@ templates:
     id:            4294
     species:       warchief
     type:          [notorious, battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 189
     attributes:
       combat:
@@ -1780,7 +1780,7 @@ templates:
     id:            4312
     species:       magic_pot
     type:          [battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 175
     attributes:
       combat:

@@ -189,7 +189,7 @@ templates:
   Areuhat:
     id:            227
     species:       elvaan
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 145
     attributes:
       combat:
@@ -217,7 +217,7 @@ templates:
   Ashmea_B_Greinner:
     id:            260
     species:       elvaan
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 145
     attributes:
       combat:
@@ -266,7 +266,7 @@ templates:
   Azima:
     id:            311
     species:       humes
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 149
     attributes:
       combat:
@@ -562,7 +562,7 @@ templates:
   Conqueror_Bakgodek:
     id:            777
     species:       warchief
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 189
     attributes:
       combat:
@@ -627,7 +627,7 @@ templates:
   Deathlord_Rojgnoj:
     id:            935
     species:       orc_s
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 189
     attributes:
       combat:
@@ -670,7 +670,7 @@ templates:
     id:            1026
     species:       ghost
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -689,7 +689,7 @@ templates:
   Dusk_Raider:
     id:            1143
     species:       humes
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 149
     attributes:
       combat:
@@ -716,7 +716,7 @@ templates:
   Duskraven:
     id:            1141
     species:       humes
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 149
     attributes:
       combat:
@@ -743,7 +743,7 @@ templates:
   Earth_Elemental:
     id:            1160
     species:       earth_elemental
-    spell_list_id: 13
+    spell_list:    elemental_earth
     skill_list_id: 101
     attributes:
       combat:
@@ -776,7 +776,7 @@ templates:
   Eastern_Spriggan:
     id:            1166
     species:       shadow
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 223
     attributes:
       combat:
@@ -846,7 +846,7 @@ templates:
     id:            6885
     species:       fomor
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 115
     attributes:
       combat:
@@ -936,7 +936,7 @@ templates:
   Febrenard_C_Brunnaut:
     id:            1313
     species:       elvaan
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 145
     attributes:
       combat:
@@ -962,7 +962,7 @@ templates:
   Feldrautte_I_Rouhent:
     id:            1321
     species:       elvaan
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 145
     attributes:
       combat:
@@ -995,7 +995,7 @@ templates:
   Ferreous_Coffin:
     id:            1324
     species:       galks
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 146
     attributes:
       combat:
@@ -1065,7 +1065,7 @@ templates:
   Gazer:
     id:            1481
     species:       hecteye
-    spell_list_id: 10
+    spell_list:    hecteyes
     skill_list_id: 139
     attributes:
       combat:
@@ -1135,7 +1135,7 @@ templates:
     id:            5178
     species:       corse
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 74
     attributes:
       combat:
@@ -1163,7 +1163,7 @@ templates:
   Goblin_Blastmaster:
     id:            1638
     species:       goblin_s
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -1197,7 +1197,7 @@ templates:
   Goblin_Corpsman:
     id:            1646
     species:       goblin_s
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:
@@ -1337,7 +1337,7 @@ templates:
   Gold_Badger_Esquire:
     id:            1752
     species:       elvaan
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 145
     attributes:
       combat:
@@ -1365,7 +1365,7 @@ templates:
   Gutrender_Trooper:
     id:            1852
     species:       orc_s
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 189
     attributes:
       combat:
@@ -1414,7 +1414,7 @@ templates:
   Ice_Elemental:
     id:            2043
     species:       ice_elemental
-    spell_list_id: 14
+    spell_list:    elemental_ice
     skill_list_id: 103
     attributes:
       combat:
@@ -1554,7 +1554,7 @@ templates:
   Kagetora:
     id:            2179
     species:       humes
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 149
     attributes:
       combat:
@@ -1583,7 +1583,7 @@ templates:
     display_name:  Kaiser_Behemoth
     species:       behemoth
     type:          [notorious, battlefield]
-    spell_list_id: 126
+    spell_list:    casting_behemoth
     skill_list_id: 479
     attributes:
       combat:
@@ -1610,7 +1610,7 @@ templates:
   Kilhwch:
     id:            2226
     species:       humes
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 149
     attributes:
       combat:
@@ -1668,7 +1668,7 @@ templates:
   Leonoyne:
     id:            2390
     species:       elvaan
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 145
     attributes:
       combat:
@@ -1712,7 +1712,7 @@ templates:
   Lewenhart:
     id:            2403
     species:       humes
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 149
     attributes:
       combat:
@@ -1739,7 +1739,7 @@ templates:
   Lich_ENS:
     id:            6557
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -1901,7 +1901,7 @@ templates:
   Norvallen_Knight:
     id:            2909
     species:       elvaan
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 145
     attributes:
       combat:
@@ -1974,7 +1974,7 @@ templates:
     display_name:  One-eyed_Gwajboj
     species:       masked_orc_s
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 189
     attributes:
       combat:
@@ -2060,7 +2060,7 @@ templates:
   Orcish_Cursemaker:
     id:            3004
     species:       orc_s
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 189
     attributes:
       combat:
@@ -2150,7 +2150,7 @@ templates:
   Orcish_Trooper_past:
     id:            6284
     species:       orc_s
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 189
     attributes:
       combat:
@@ -2222,7 +2222,7 @@ templates:
   Popochu:
     id:            3176
     species:       dhalmel
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 80
     attributes:
       combat:
@@ -2268,7 +2268,7 @@ templates:
   Raigegue_R_dOraguille:
     id:            3310
     species:       corse
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 74
     attributes:
       combat:
@@ -2293,7 +2293,7 @@ templates:
   Rainemard:
     id:            3312
     species:       elvaan
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 145
     attributes:
       combat:
@@ -2319,7 +2319,7 @@ templates:
   Revenant_SoZ_ENS_FY:
     id:            3358
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -2391,7 +2391,7 @@ templates:
   Royal_Banneret:
     id:            3400
     species:       elvaan
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 145
     attributes:
       combat:
@@ -2419,7 +2419,7 @@ templates:
   Royal_Esquire:
     id:            3401
     species:       elvaan
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 145
     attributes:
       combat:
@@ -2445,7 +2445,7 @@ templates:
   Royal_Guard:
     id:            3403
     species:       elvaan
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 145
     attributes:
       combat:
@@ -2473,7 +2473,7 @@ templates:
   Royal_Knight:
     id:            3405
     species:       elvaan
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 145
     attributes:
       combat:
@@ -2501,7 +2501,7 @@ templates:
   Royal_Palliator:
     id:            3407
     species:       elvaan
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 145
     attributes:
       combat:
@@ -2529,7 +2529,7 @@ templates:
   Royal_Provisioner:
     id:            3408
     species:       elvaan
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 145
     attributes:
       combat:
@@ -2556,7 +2556,7 @@ templates:
     id:            6135
     species:       quadav_s
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 202
     attributes:
       combat:
@@ -2630,7 +2630,7 @@ templates:
   Shadoweye:
     id:            6608
     species:       ahriman
-    spell_list_id: 11
+    spell_list:    ahriman
     skill_list_id: 4
     attributes:
       combat:
@@ -2700,7 +2700,7 @@ templates:
   Shadowfang_Void:
     id:            3564
     species:       dark_elemental
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 100
     attributes:
       combat:
@@ -2854,7 +2854,7 @@ templates:
   Southern_Spriggan:
     id:            3710
     species:       shadow
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 223
     attributes:
       combat:
@@ -2881,7 +2881,7 @@ templates:
   Spinebeak_Neckchopper:
     id:            3730
     species:       orc_s
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 189
     attributes:
       combat:
@@ -2902,7 +2902,7 @@ templates:
   Steelhide_Protector:
     id:            3767
     species:       orc_s
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 189
     attributes:
       combat:
@@ -2923,7 +2923,7 @@ templates:
   Temple_Knight:
     id:            3873
     species:       elvaan
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 145
     attributes:
       combat:
@@ -2952,7 +2952,7 @@ templates:
     id:            6886
     species:       fomor
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 115
     attributes:
       combat:
@@ -3062,7 +3062,7 @@ templates:
   Valaineral_R_Davilles:
     id:            4121
     species:       elvaan
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 145
     attributes:
       combat:

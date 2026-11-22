@@ -34,7 +34,7 @@ templates:
     id:            7594
     species:       heavy_troll
     type:          [battlefield]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 247
     attributes:
       combat:
@@ -59,7 +59,7 @@ templates:
     id:            2063
     species:       flan
     type:          [notorious, battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 112
     attributes:
       combat:
@@ -89,7 +89,7 @@ templates:
     id:            2189
     species:       tarutaru
     type:          [battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 153
     attributes:
       jobs: [blm, blm]
@@ -137,7 +137,7 @@ templates:
     id:            3219
     species:       flan
     type:          [battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 112
     attributes:
       combat:
@@ -181,7 +181,7 @@ templates:
     id:            4058
     species:       flan
     type:          [notorious, battlefield]
-    spell_list_id: 507
+    spell_list:    two_faced_flan
     skill_list_id: 416
     attributes:
       combat:
@@ -212,7 +212,7 @@ templates:
     id:            4123
     species:       automaton
     type:          [notorious, battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 363
     attributes:
       combat:

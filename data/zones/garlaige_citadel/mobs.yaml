@@ -36,7 +36,7 @@ templates:
   Bhuta:
     id:            407
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -196,7 +196,7 @@ templates:
   Clockwork_Pod_GC:
     id:            6596
     species:       magic_pot
-    spell_list_id: 36
+    spell_list:    magicpot
     skill_list_id: 175
     attributes:
       combat:
@@ -275,7 +275,7 @@ templates:
   Droma_GC:
     id:            6597
     species:       magic_pot
-    spell_list_id: 36
+    spell_list:    magicpot
     skill_list_id: 175
     attributes:
       combat:
@@ -308,7 +308,7 @@ templates:
   Earth_Elemental:
     id:            1160
     species:       earth_elemental
-    spell_list_id: 13
+    spell_list:    elemental_earth
     skill_list_id: 101
     attributes:
       combat:
@@ -369,7 +369,7 @@ templates:
   Fallen_Evacuee_blm:
     id:            1283
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -437,7 +437,7 @@ templates:
   Fallen_Mage:
     id:            1288
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -495,7 +495,7 @@ templates:
   Fallen_Officer_blm:
     id:            1290
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -565,7 +565,7 @@ templates:
   Fallen_Soldier_blm:
     id:            1291
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -785,10 +785,10 @@ templates:
           item:   nail_puller
 
   Hazmat:
-    id:            5767
-    species:       bomb
-    type:          [notorious]
-    spell_list_id: 295
+    id:         5767
+    species:    bomb
+    type:       [notorious]
+    spell_list: bomb_queen
     attributes:
       combat:
         skill: club
@@ -841,7 +841,7 @@ templates:
     id:            5841
     species:       magic_pot
     type:          [notorious]
-    spell_list_id: 36
+    spell_list:    magicpot
     skill_list_id: 998
     attributes:
       combat:
@@ -903,7 +903,7 @@ templates:
     display_name:  Light_Elemental
     species:       light_elemental
     type:          [notorious]
-    spell_list_id: 19
+    spell_list:    elemental_light
     skill_list_id: 104
     attributes:
       combat:
@@ -932,7 +932,7 @@ templates:
   Magic_Jug:
     id:            2478
     species:       magic_pot
-    spell_list_id: 36
+    spell_list:    magicpot
     skill_list_id: 175
     attributes:
       combat:
@@ -1128,7 +1128,7 @@ templates:
   Revenant_NGS_EN_GC:
     id:            6511
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -1160,7 +1160,7 @@ templates:
     id:            5147
     species:       flan
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 112
     attributes:
       combat:
@@ -1190,7 +1190,7 @@ templates:
     id:            3549
     species:       great_scorpion
     type:          [notorious]
-    spell_list_id: 46
+    spell_list:    serket
     skill_list_id: 273
     attributes:
       combat:
@@ -1330,7 +1330,7 @@ templates:
   Thunder_Elemental:
     id:            3912
     species:       thunder_elemental
-    spell_list_id: 16
+    spell_list:    elemental_thunder
     skill_list_id: 105
     attributes:
       combat:
@@ -1365,7 +1365,7 @@ templates:
   Vault_Weapon:
     id:            4207
     species:       evil_weapon
-    spell_list_id: 42
+    spell_list:    evilweapon
     skill_list_id: 110
     attributes:
       combat:
@@ -1454,7 +1454,7 @@ templates:
   Wraith:
     id:            4379
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:

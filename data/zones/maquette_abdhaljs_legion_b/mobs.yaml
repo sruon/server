@@ -73,7 +73,7 @@ templates:
     id:            5749
     species:       adamantoise
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2
     attributes:
       combat:
@@ -96,7 +96,7 @@ templates:
     id:            5750
     species:       harpeia
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 471
     attributes:
       combat:
@@ -323,7 +323,7 @@ templates:
     id:            5783
     species:       green_mantid
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 340
     attributes:
       combat:
@@ -344,7 +344,7 @@ templates:
     id:            5794
     species:       cerberus
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 62
     attributes:
       combat:
@@ -373,7 +373,7 @@ templates:
     id:            5776
     species:       botulus
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 112
     attributes:
       combat:
@@ -416,7 +416,7 @@ templates:
     id:            5777
     species:       gallu
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 467
     attributes:
       combat:
@@ -436,7 +436,7 @@ templates:
     id:            5780
     species:       harpeia
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 471
     attributes:
       combat:
@@ -481,7 +481,7 @@ templates:
     id:            5779
     species:       red_mantid
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 340
     attributes:
       combat:
@@ -526,7 +526,7 @@ templates:
     id:            5797
     species:       corse
     type:          [battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 74
     attributes:
       combat:
@@ -549,7 +549,7 @@ templates:
     id:            5796
     species:       dvergr
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 316
     attributes:
       combat:
@@ -586,7 +586,7 @@ templates:
     id:            5799
     species:       dvergr
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 316
     attributes:
       combat:
@@ -623,7 +623,7 @@ templates:
     id:            5800
     species:       kumakatok
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 74
     attributes:
       combat:
@@ -644,7 +644,7 @@ templates:
     id:            5784
     species:       naraka
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 472
     attributes:
       combat:
@@ -671,7 +671,7 @@ templates:
     id:            5798
     species:       vampyr
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 309
     attributes:
       combat:
@@ -690,7 +690,7 @@ templates:
   Soaring_Vampyr:
     id:            5795
     species:       vampyr
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 252
     attributes:
       combat:
@@ -744,7 +744,7 @@ templates:
     species:       amphiptere
     type:          [notorious]
     roam:          [stealth]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 6
     attributes:
       combat:
@@ -762,10 +762,10 @@ templates:
         type: [scripted]
 
   Veiled_Gigaworm:
-    id:            5804
-    species:       sandworm
-    type:          [notorious]
-    spell_list_id: 5
+    id:         5804
+    species:    sandworm
+    type:       [notorious]
+    spell_list: beastmen_drk
     attributes:
       combat:
         skill: scythe

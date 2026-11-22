@@ -294,7 +294,7 @@ templates:
     id:            4519
     species:       uragnite
     type:          [notorious]
-    spell_list_id: 498
+    spell_list:    zoredonite
     skill_list_id: 251
     attributes:
       combat:

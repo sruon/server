@@ -6,7 +6,7 @@ templates:
     id:            4720
     species:       harpeia
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 471
     attributes:
       combat:
@@ -37,7 +37,7 @@ templates:
     id:            4721
     species:       pixie
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 195
     attributes:
       combat:
@@ -69,7 +69,7 @@ templates:
   Air_Elemental:
     id:            71
     species:       air_elemental
-    spell_list_id: 12
+    spell_list:    elemental_air
     skill_list_id: 99
     attributes:
       combat:
@@ -102,7 +102,7 @@ templates:
     id:            592
     species:       legendary_tigers
     type:          [notorious]
-    spell_list_id: 26
+    spell_list:    byakko
     skill_list_id: 279
     attributes:
       combat:
@@ -165,7 +165,7 @@ templates:
   Dark_Elemental:
     id:            913
     species:       dark_elemental
-    spell_list_id: 18
+    spell_list:    elemental_dark
     skill_list_id: 100
     attributes:
       combat:
@@ -232,7 +232,7 @@ templates:
   Earth_Elemental:
     id:            1160
     species:       earth_elemental
-    spell_list_id: 13
+    spell_list:    elemental_earth
     skill_list_id: 101
     attributes:
       combat:
@@ -281,7 +281,7 @@ templates:
   Fire_Elemental:
     id:            1341
     species:       fire_elemental
-    spell_list_id: 17
+    spell_list:    elemental_fire
     skill_list_id: 102
     attributes:
       combat:
@@ -343,7 +343,7 @@ templates:
     id:            1491
     species:       legendary_adamantoise
     type:          [notorious]
-    spell_list_id: 24
+    spell_list:    genbu
     skill_list_id: 277
     attributes:
       combat:
@@ -472,7 +472,7 @@ templates:
   Ice_Elemental:
     id:            2043
     species:       ice_elemental
-    spell_list_id: 14
+    spell_list:    elemental_ice
     skill_list_id: 103
     attributes:
       combat:
@@ -506,7 +506,7 @@ templates:
     display_name:  Kirin
     species:       legendary_manticore
     type:          [notorious]
-    spell_list_id: 23
+    spell_list:    kirin
     skill_list_id: 281
     attributes:
       combat:
@@ -559,7 +559,7 @@ templates:
   Light_Elemental:
     id:            2413
     species:       light_elemental
-    spell_list_id: 19
+    spell_list:    elemental_light
     skill_list_id: 104
     attributes:
       combat:
@@ -622,7 +622,7 @@ templates:
     id:            3540
     species:       legendary_wyvern
     type:          [notorious]
-    spell_list_id: 25
+    spell_list:    seiryu
     skill_list_id: 278
     attributes:
       combat:
@@ -687,7 +687,7 @@ templates:
   Sprinkler:
     id:            3744
     species:       magic_pot
-    spell_list_id: 36
+    spell_list:    magicpot
     skill_list_id: 175
     attributes:
       combat:
@@ -728,7 +728,7 @@ templates:
     id:            3816
     species:       legendary_roc
     type:          [notorious]
-    spell_list_id: 27
+    spell_list:    suzaku
     skill_list_id: 280
     attributes:
       combat:
@@ -798,7 +798,7 @@ templates:
   Thunder_Elemental:
     id:            3912
     species:       thunder_elemental
-    spell_list_id: 16
+    spell_list:    elemental_thunder
     skill_list_id: 105
     attributes:
       combat:
@@ -830,7 +830,7 @@ templates:
   Water_Elemental:
     id:            4309
     species:       water_elemental
-    spell_list_id: 15
+    spell_list:    elemental_water
     skill_list_id: 106
     attributes:
       combat:

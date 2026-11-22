@@ -81,7 +81,7 @@ templates:
     id:            1190
     species:       taurus
     type:          [notorious, battlefield]
-    spell_list_id: 203
+    spell_list:    eldertaur
     skill_list_id: 317
     attributes:
       combat:
@@ -112,7 +112,7 @@ templates:
     id:            2668
     species:       taurus
     type:          [notorious, battlefield]
-    spell_list_id: 202
+    spell_list:    mindertaur
     skill_list_id: 318
     attributes:
       combat:
@@ -173,7 +173,7 @@ templates:
     display_name:  Snow_Devil
     species:       snoll
     type:          [battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 232
     attributes:
       combat:

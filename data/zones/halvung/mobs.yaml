@@ -157,7 +157,7 @@ templates:
     id:            416
     species:       bomb
     type:          [notorious]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 2090
     attributes:
       combat:
@@ -187,7 +187,7 @@ templates:
   Black_Pudding:
     id:            437
     species:       flan
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 112
     attributes:
       combat:
@@ -218,7 +218,7 @@ templates:
   Chiliarch_Gordarvor:
     id:            718
     species:       heavy_troll
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 246
     attributes:
       combat:
@@ -299,7 +299,7 @@ templates:
     id:            1020
     species:       gold_flan
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 299
     attributes:
       combat:
@@ -370,7 +370,7 @@ templates:
   Earth_Elemental:
     id:            1160
     species:       earth_elemental
-    spell_list_id: 13
+    spell_list:    elemental_earth
     skill_list_id: 101
     attributes:
       combat:
@@ -403,7 +403,7 @@ templates:
   Ebony_Pudding:
     id:            1170
     species:       flan
-    spell_list_id: 430
+    spell_list:    ebony_pudding
     skill_list_id: 112
     attributes:
       combat:
@@ -464,7 +464,7 @@ templates:
   Fire_Elemental:
     id:            1341
     species:       fire_elemental
-    spell_list_id: 17
+    spell_list:    elemental_fire
     skill_list_id: 102
     attributes:
       combat:
@@ -528,7 +528,7 @@ templates:
   Friars_Lantern:
     id:            1426
     species:       bomb
-    spell_list_id: 17
+    spell_list:    elemental_fire
     skill_list_id: 56
     attributes:
       combat:
@@ -559,7 +559,7 @@ templates:
   Friars_Lantern_Grow:
     id:            6587
     species:       bomb
-    spell_list_id: 295
+    spell_list:    bomb_queen
     skill_list_id: 2090
     attributes:
       combat:
@@ -644,7 +644,7 @@ templates:
   Hetairoi_Zarwarkur:
     id:            1938
     species:       heavy_troll
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 246
     attributes:
       combat:
@@ -666,7 +666,7 @@ templates:
     id:            1947
     species:       heavy_troll
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 247
     attributes:
       combat:
@@ -690,7 +690,7 @@ templates:
   Hilltroll_Mirror_Guard:
     id:            1948
     species:       light_troll
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 246
     attributes:
       combat:
@@ -715,7 +715,7 @@ templates:
     id:            2267
     species:       heavy_troll
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 246
     attributes:
       combat:
@@ -779,7 +779,7 @@ templates:
   Moblin_Billionaire:
     id:            2686
     species:       moblin
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 184
     attributes:
       combat:
@@ -814,7 +814,7 @@ templates:
   Moblin_Millionaire:
     id:            2697
     species:       moblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 184
     attributes:
       combat:
@@ -852,7 +852,7 @@ templates:
     id:            2794
     species:       moblin
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 184
     attributes:
       combat:
@@ -1027,7 +1027,7 @@ templates:
     id:            3339
     species:       bomb
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 300
     attributes:
       combat:
@@ -1098,7 +1098,7 @@ templates:
   Troll_Cameist:
     id:            4010
     species:       light_troll
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 246
     attributes:
       combat:
@@ -1168,7 +1168,7 @@ templates:
     id:            4013
     display_name:  Troll_Cuirasser
     species:       heavy_troll
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 246
     attributes:
       combat:
@@ -1235,7 +1235,7 @@ templates:
   Troll_Gemologist:
     id:            4017
     species:       heavy_troll
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 247
     attributes:
       combat:
@@ -1335,7 +1335,7 @@ templates:
   Troll_Lapidarist:
     id:            4022
     species:       heavy_troll
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 247
     attributes:
       combat:
@@ -1403,7 +1403,7 @@ templates:
   Troll_Mythril_Guard:
     id:            4024
     species:       heavy_troll
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 247
     attributes:
       combat:
@@ -1524,7 +1524,7 @@ templates:
   Troll_Targeteer:
     id:            4036
     species:       heavy_troll
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 247
     attributes:
       combat:
@@ -1558,7 +1558,7 @@ templates:
   Trolls_Automaton:
     id:            4035
     species:       automaton
-    spell_list_id: 567
+    spell_list:    harlequin_frame
     skill_list_id: 363
     attributes:
       combat:
@@ -1743,7 +1743,7 @@ templates:
     id:            4366
     species:       heavy_troll
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 247
     attributes:
       combat:

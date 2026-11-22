@@ -5,7 +5,7 @@ templates:
   1st_Gold_Musketeer:
     id:            1
     species:       humes
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 149
     attributes:
       combat:
@@ -32,7 +32,7 @@ templates:
   1st_Iron_Musketeer:
     id:            2
     species:       humes
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 149
     attributes:
       combat:
@@ -141,7 +141,7 @@ templates:
   8th_Iron_Musketeer:
     id:            13
     species:       humes
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 149
     attributes:
       combat:
@@ -289,7 +289,7 @@ templates:
   Brass_Quadav_past:
     id:            6240
     species:       quadav
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 202
     attributes:
       combat:
@@ -312,7 +312,7 @@ templates:
   Bronze_Quadav_past:
     id:            6243
     species:       quadav
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 202
     attributes:
       combat:
@@ -335,7 +335,7 @@ templates:
   Cadet_Woundpatcher_I:
     id:            600
     species:       humes
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 149
     attributes:
       combat:
@@ -358,7 +358,7 @@ templates:
   Cadet_Woundpatcher_II:
     id:            601
     species:       humes
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 149
     attributes:
       combat:
@@ -381,7 +381,7 @@ templates:
   Cadet_Woundpatcher_III:
     id:            602
     species:       humes
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 149
     attributes:
       combat:
@@ -405,7 +405,7 @@ templates:
     id:            609
     species:       cait_sith
     type:          [notorious, battlefield]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 60
     attributes:
       combat:
@@ -520,7 +520,7 @@ templates:
   Darksteel_Quadav:
     id:            907
     species:       quadav
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 202
     attributes:
       combat:
@@ -1051,7 +1051,7 @@ templates:
   Iron_Quadav:
     id:            2102
     species:       quadav
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 202
     attributes:
       combat:
@@ -1162,7 +1162,7 @@ templates:
   Magnes_Quadav:
     id:            2486
     species:       quadav
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 202
     attributes:
       combat:
@@ -1570,7 +1570,7 @@ templates:
   Republican_Infantry:
     id:            3352
     species:       galks
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 146
     attributes:
       combat:
@@ -1632,7 +1632,7 @@ templates:
     id:            7037
     display_name:  Sapphire_Quadav
     species:       quadav
-    spell_list_id: 455
+    spell_list:    sapphirine_quadav_litd
     skill_list_id: 202
     attributes:
       combat:
@@ -1656,7 +1656,7 @@ templates:
     id:            7036
     display_name:  Sapphire_Quadav
     species:       quadav
-    spell_list_id: 455
+    spell_list:    sapphirine_quadav_litd
     skill_list_id: 202
     attributes:
       combat:
@@ -1755,7 +1755,7 @@ templates:
   Steel_Quadav:
     id:            3769
     species:       quadav
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 202
     attributes:
       combat:

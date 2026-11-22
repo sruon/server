@@ -7,7 +7,7 @@ templates:
     display_name:  August
     species:       humes
     type:          [battlefield]
-    spell_list_id: 397
+    spell_list:    trust_august
     skill_list_id: 1099
     attributes:
       combat:
@@ -112,7 +112,7 @@ templates:
     display_name:  Teodor
     species:       humes
     type:          [battlefield]
-    spell_list_id: 399
+    spell_list:    trust_teodor
     skill_list_id: 1101
     attributes:
       combat:

@@ -224,7 +224,7 @@ templates:
   Fire_Elemental:
     id:            1341
     species:       fire_elemental
-    spell_list_id: 17
+    spell_list:    elemental_fire
     skill_list_id: 102
     attributes:
       combat:
@@ -432,7 +432,7 @@ templates:
   Goblin_Reaper:
     id:            1705
     species:       armored_goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -509,7 +509,7 @@ templates:
   Goblin_Shaman:
     id:            1710
     species:       goblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -655,10 +655,10 @@ templates:
         handful_of_fish_scales:  0
 
   Hoar-knuckled_Rimberry:
-    id:            5857
-    species:       tonberry
-    type:          [notorious]
-    spell_list_id: 238
+    id:         5857
+    species:    tonberry
+    type:       [notorious]
+    spell_list: hoar_knuckled_rimberry
     attributes:
       combat:
         skill: hand_to_hand
@@ -709,7 +709,7 @@ templates:
     id:            1972
     species:       goblin
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -732,7 +732,7 @@ templates:
     id:            1974
     species:       goblin
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -776,7 +776,7 @@ templates:
     id:            1979
     species:       goblin
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 133
     attributes:
       combat:
@@ -841,7 +841,7 @@ templates:
     id:            1984
     species:       goblin
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:
@@ -889,7 +889,7 @@ templates:
     id:            2187
     species:       yellow_sahagin
     type:          [notorious]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 213
     attributes:
       combat:
@@ -914,7 +914,7 @@ templates:
     id:            2188
     species:       yellow_sahagin
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 213
     attributes:
       combat:
@@ -1018,7 +1018,7 @@ templates:
     id:            2899
     species:       tonberry
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 243
     attributes:
       combat:
@@ -1041,7 +1041,7 @@ templates:
     id:            2900
     species:       tonberry
     type:          [notorious]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 243
     attributes:
       combat:
@@ -1064,7 +1064,7 @@ templates:
     id:            2901
     species:       tonberry
     type:          [notorious]
-    spell_list_id: 32
+    spell_list:    tonberry_smn
     skill_list_id: 243
     attributes:
       combat:
@@ -1165,7 +1165,7 @@ templates:
   Tonberry_Chopper:
     id:            3950
     species:       tonberry
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 243
     attributes:
       combat:
@@ -1270,7 +1270,7 @@ templates:
   Tonberry_Decimator:
     id:            3954
     species:       tonberry
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 243
     attributes:
       combat:
@@ -1296,7 +1296,7 @@ templates:
   Tonberry_Harasser:
     id:            3956
     species:       tonberry
-    spell_list_id: 32
+    spell_list:    tonberry_smn
     skill_list_id: 243
     attributes:
       combat:
@@ -1334,7 +1334,7 @@ templates:
     id:            3956
     display_name:  Tonberry_Harasser
     species:       tonberry
-    spell_list_id: 32
+    spell_list:    tonberry_smn
     skill_list_id: 243
     attributes:
       combat:
@@ -1371,7 +1371,7 @@ templates:
   Tonberry_Hexer:
     id:            3958
     species:       tonberry
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 243
     attributes:
       combat:
@@ -1409,7 +1409,7 @@ templates:
     id:            3958
     display_name:  Tonberry_Hexer
     species:       tonberry
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 243
     attributes:
       combat:
@@ -1438,7 +1438,7 @@ templates:
     id:            3958
     display_name:  Tonberry_Hexer
     species:       tonberry
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 243
     attributes:
       combat:
@@ -1475,7 +1475,7 @@ templates:
   Tonberry_Jinxer:
     id:            3960
     species:       tonberry
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 243
     attributes:
       combat:
@@ -1571,7 +1571,7 @@ templates:
     id:            3971
     species:       fire_elemental
     type:          [called]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 102
     attributes:
       combat:
@@ -1619,7 +1619,7 @@ templates:
   Water_Elemental:
     id:            4309
     species:       water_elemental
-    spell_list_id: 15
+    spell_list:    elemental_water
     skill_list_id: 106
     attributes:
       combat:

@@ -31,7 +31,7 @@ templates:
     id:            6100
     species:       khimaira
     type:          [notorious]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 2050
     attributes:
       combat:
@@ -56,7 +56,7 @@ templates:
   Bat_Eye:
     id:            374
     species:       ahriman
-    spell_list_id: 11
+    spell_list:    ahriman
     skill_list_id: 4
     attributes:
       combat:
@@ -148,7 +148,7 @@ templates:
   Dark_Elemental:
     id:            913
     species:       dark_elemental
-    spell_list_id: 18
+    spell_list:    elemental_dark
     skill_list_id: 100
     attributes:
       combat:
@@ -182,7 +182,7 @@ templates:
     id:            7013
     species:       skeleton
     type:          [notorious]
-    spell_list_id: 440
+    spell_list:    erebus
     skill_list_id: 227
     attributes:
       combat:
@@ -236,7 +236,7 @@ templates:
     id:            7014
     species:       doomed
     type:          [notorious]
-    spell_list_id: 441
+    spell_list:    feuerunke
     skill_list_id: 86
     attributes:
       combat:
@@ -301,7 +301,7 @@ templates:
   Ghast_blm:
     id:            1511
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -556,7 +556,7 @@ templates:
     id:            7012
     species:       ghost
     type:          [notorious]
-    spell_list_id: 439
+    spell_list:    gjenganger
     skill_list_id: 121
     attributes:
       combat:
@@ -691,7 +691,7 @@ templates:
   Goblin_Reaper:
     id:            1705
     species:       armored_goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -768,7 +768,7 @@ templates:
   Goblin_Shaman:
     id:            1710
     species:       goblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -978,7 +978,7 @@ templates:
     id:            1972
     species:       goblin
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -1001,7 +1001,7 @@ templates:
     id:            1974
     species:       goblin
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -1045,7 +1045,7 @@ templates:
     id:            1979
     species:       goblin
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 133
     attributes:
       combat:
@@ -1110,7 +1110,7 @@ templates:
     id:            1984
     species:       goblin
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:
@@ -1163,7 +1163,7 @@ templates:
   Ice_Elemental:
     id:            2043
     species:       ice_elemental
-    spell_list_id: 14
+    spell_list:    elemental_ice
     skill_list_id: 103
     attributes:
       combat:
@@ -1197,7 +1197,7 @@ templates:
     id:            4708
     species:       green_naraka
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 472
     attributes:
       combat:
@@ -1488,7 +1488,7 @@ templates:
   Lugat:
     id:            2447
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -1879,7 +1879,7 @@ templates:
     id:            6999
     species:       zilant
     type:          [notorious]
-    spell_list_id: 454
+    spell_list:    yilbegan
     skill_list_id: 470
     attributes:
       combat:

@@ -235,7 +235,7 @@ templates:
     id:            1
     species:       rabbit
     spells:        [stone]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
 spawns:
   17186822: { template: Forest_Hare }
 )";

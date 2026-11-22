@@ -25,7 +25,7 @@ templates:
   Apex_Bhoot:
     id:            4829
     species:       bhoot
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 52
     attributes:
       combat:
@@ -45,9 +45,9 @@ templates:
         respawn: 300
 
   Apex_Cyhiraeth:
-    id:            4827
-    species:       corpselight
-    spell_list_id: 21
+    id:         4827
+    species:    corpselight
+    spell_list: beastmen_blm
     attributes:
       combat:
         skill: club
@@ -69,7 +69,7 @@ templates:
     display_name:  Apex_Draugar
     species:       draugar
     type:          [battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 89
     attributes:
       combat:
@@ -113,7 +113,7 @@ templates:
     id:            4826
     display_name:  Apex_Draugar
     species:       draugar
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 89
     attributes:
       combat:
@@ -175,7 +175,7 @@ templates:
   Apex_Vodoriga:
     id:            4823
     species:       gargouille
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 118
     attributes:
       combat:
@@ -241,7 +241,7 @@ templates:
   Conniving_Unseelie:
     id:            5451
     species:       pixie
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 195
     attributes:
       combat:
@@ -266,7 +266,7 @@ templates:
     id:            6580
     display_name:  Deserter_Draugar
     species:       draugar
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 89
     attributes:
       combat:
@@ -313,7 +313,7 @@ templates:
     id:            6578
     display_name:  Deserter_Draugar
     species:       draugar
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 89
     attributes:
       combat:
@@ -355,7 +355,7 @@ templates:
   Disheveled_Naraka:
     id:            5450
     species:       naraka
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 472
     attributes:
       combat:
@@ -425,9 +425,9 @@ templates:
         respawn: 3600
 
   Dolorous_Cyhiraeth:
-    id:            5434
-    species:       corpselight
-    spell_list_id: 21
+    id:         5434
+    species:    corpselight
+    spell_list: beastmen_blm
     attributes:
       combat:
         skill: club
@@ -487,7 +487,7 @@ templates:
   Enigmatic_Vampyr:
     id:            5444
     species:       vampyr
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 252
     attributes:
       combat:
@@ -528,7 +528,7 @@ templates:
     id:            5456
     species:       fomor
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 115
     attributes:
       combat:
@@ -551,7 +551,7 @@ templates:
     id:            5457
     species:       fomor
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 115
     attributes:
       combat:
@@ -574,7 +574,7 @@ templates:
     id:            5458
     species:       fomor
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 115
     attributes:
       combat:
@@ -597,7 +597,7 @@ templates:
     id:            5459
     species:       fomor
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 115
     attributes:
       combat:
@@ -621,7 +621,7 @@ templates:
     display_name:  Indomitable_Spurned
     species:       fomor
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 115
     attributes:
       combat:
@@ -645,7 +645,7 @@ templates:
     display_name:  Indomitable_Spurned
     species:       fomor
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 115
     attributes:
       combat:
@@ -669,7 +669,7 @@ templates:
     display_name:  Indomitable_Spurned
     species:       fomor
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 115
     attributes:
       combat:
@@ -692,7 +692,7 @@ templates:
     id:            5460
     species:       fomor
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 115
     attributes:
       combat:
@@ -714,7 +714,7 @@ templates:
   Inimical_Corse:
     id:            5462
     species:       corse
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 74
     attributes:
       combat:
@@ -779,7 +779,7 @@ templates:
   Powercrazed_Dvergr:
     id:            5447
     species:       dvergr
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 316
     attributes:
       combat:
@@ -821,7 +821,7 @@ templates:
   Scowling_Vodoriga:
     id:            5445
     species:       gargouille
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 118
     attributes:
       combat:
@@ -866,7 +866,7 @@ templates:
   Spurned_Deeparrow:
     id:            5438
     species:       fomor
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 115
     attributes:
       combat:
@@ -890,7 +890,7 @@ templates:
   Spurned_Elementalist:
     id:            5439
     species:       fomor
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 115
     attributes:
       combat:
@@ -914,7 +914,7 @@ templates:
   Spurned_Engraver:
     id:            5440
     species:       fomor
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 115
     attributes:
       combat:
@@ -938,7 +938,7 @@ templates:
   Spurned_Fluteslinger:
     id:            5436
     species:       fomor
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 115
     attributes:
       combat:
@@ -962,7 +962,7 @@ templates:
   Spurned_Hexer:
     id:            5442
     species:       fomor
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 115
     attributes:
       combat:
@@ -986,7 +986,7 @@ templates:
   Spurned_Nightstalker:
     id:            5437
     species:       fomor
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 115
     attributes:
       combat:
@@ -1010,7 +1010,7 @@ templates:
   Spurned_Saboteur:
     id:            5435
     species:       fomor
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 115
     attributes:
       combat:
@@ -1034,7 +1034,7 @@ templates:
   Spurned_Valiant:
     id:            5441
     species:       fomor
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 115
     attributes:
       combat:
@@ -1076,7 +1076,7 @@ templates:
   Unrepentant_Byrgen:
     id:            5452
     species:       byrgen
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 100
     attributes:
       combat:
@@ -1097,7 +1097,7 @@ templates:
   Wayward_Bhoot:
     id:            5433
     species:       bhoot
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 52
     attributes:
       combat:

@@ -5,7 +5,7 @@ templates:
   Air_Elemental:
     id:            71
     species:       air_elemental
-    spell_list_id: 12
+    spell_list:    elemental_air
     skill_list_id: 99
     attributes:
       combat:
@@ -122,7 +122,7 @@ templates:
   Doom_Mage:
     id:            1083
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -155,7 +155,7 @@ templates:
   Doom_Soldier:
     id:            1085
     species:       skeleton
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 227
     attributes:
       combat:
@@ -219,7 +219,7 @@ templates:
   Fantasma:
     id:            1295
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -249,7 +249,7 @@ templates:
   Fire_Elemental:
     id:            1341
     species:       fire_elemental
-    spell_list_id: 17
+    spell_list:    elemental_fire
     skill_list_id: 102
     attributes:
       combat:
@@ -344,7 +344,7 @@ templates:
   Goblin_Alchemist:
     id:            1634
     species:       goblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:
@@ -448,7 +448,7 @@ templates:
   Goblin_Doctor:
     id:            1649
     species:       goblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:
@@ -476,7 +476,7 @@ templates:
   Goblin_Duelist:
     id:            1653
     species:       goblin
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 133
     attributes:
       combat:
@@ -567,7 +567,7 @@ templates:
   Goblin_Professor:
     id:            1704
     species:       goblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -707,7 +707,7 @@ templates:
     id:            1972
     species:       goblin
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -730,7 +730,7 @@ templates:
     id:            1974
     species:       goblin
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -774,7 +774,7 @@ templates:
     id:            1979
     species:       goblin
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 133
     attributes:
       combat:
@@ -839,7 +839,7 @@ templates:
     id:            1984
     species:       goblin
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:

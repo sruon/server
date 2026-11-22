@@ -245,7 +245,7 @@ templates:
     id:            295
     species:       yagudo_statue
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 95
     attributes:
       combat:
@@ -277,7 +277,7 @@ templates:
     id:            317
     species:       dynamis_yagudo
     type:          [notorious]
-    spell_list_id: 30
+    spell_list:    yagudo_smn
     skill_list_id: 710
     attributes:
       combat:
@@ -410,7 +410,7 @@ templates:
     id:            1088
     species:       dynamis_yagudo
     type:          [notorious]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 710
     attributes:
       combat:
@@ -479,7 +479,7 @@ templates:
     id:            1354
     species:       dynamis_orc
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2104
     attributes:
       combat:
@@ -514,7 +514,7 @@ templates:
     id:            1610
     species:       dynamis_quadav
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 705
     attributes:
       combat:
@@ -552,7 +552,7 @@ templates:
   Goblin_Replica:
     id:            1707
     species:       goblin_statue
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 92
     attributes:
       combat:
@@ -590,7 +590,7 @@ templates:
     id:            1716
     species:       goblin_statue
     type:          [notorious]
-    spell_list_id: 40
+    spell_list:    goblin_statue
     skill_list_id: 92
     attributes:
       combat:
@@ -623,7 +623,7 @@ templates:
     id:            1772
     species:       dynamis_goblin
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 373
     attributes:
       combat:
@@ -941,7 +941,7 @@ templates:
   Manifest_Icon:
     id:            5122
     species:       yagudo_statue
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 95
     attributes:
       combat:
@@ -1858,7 +1858,7 @@ templates:
     id:            3347
     species:       dynamis_yagudo
     type:          [notorious]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 710
     attributes:
       combat:
@@ -1892,7 +1892,7 @@ templates:
   Serjeant_Tombstone:
     id:            3548
     species:       orc_statue
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 93
     attributes:
       combat:
@@ -1929,7 +1929,7 @@ templates:
     id:            3583
     species:       dynamis_goblin
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 373
     attributes:
       combat:
@@ -2009,7 +2009,7 @@ templates:
     id:            3884
     species:       dynamis_quadav
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 705
     attributes:
       combat:
@@ -2085,7 +2085,7 @@ templates:
   Vanguard_Alchemist:
     id:            4133
     species:       dynamis_goblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 2108
     attributes:
       combat:
@@ -2119,7 +2119,7 @@ templates:
     id:            4133
     display_name:  Vanguard_Alchemist
     species:       dynamis_goblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 2108
     attributes:
       combat:
@@ -2153,7 +2153,7 @@ templates:
     id:            7255
     display_name:  Vanguard_Alchemist
     species:       dynamis_goblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 2108
     attributes:
       combat:
@@ -2284,7 +2284,7 @@ templates:
   Vanguard_Amputator:
     id:            4135
     species:       dynamis_orc
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 2102
     attributes:
       combat:
@@ -2318,7 +2318,7 @@ templates:
     id:            4135
     display_name:  Vanguard_Amputator
     species:       dynamis_orc
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 2102
     attributes:
       combat:
@@ -2352,7 +2352,7 @@ templates:
     id:            7220
     display_name:  Vanguard_Amputator
     species:       dynamis_orc
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 2102
     attributes:
       combat:
@@ -2385,7 +2385,7 @@ templates:
   Vanguard_Armorer:
     id:            4136
     species:       dynamis_goblin
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 2108
     attributes:
       combat:
@@ -2421,7 +2421,7 @@ templates:
     id:            4136
     display_name:  Vanguard_Armorer
     species:       dynamis_goblin
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 2108
     attributes:
       combat:
@@ -2457,7 +2457,7 @@ templates:
     id:            7246
     display_name:  Vanguard_Armorer
     species:       dynamis_goblin
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 2108
     attributes:
       combat:
@@ -2490,7 +2490,7 @@ templates:
   Vanguard_Assassin:
     id:            4137
     species:       dynamis_yagudo
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 2106
     attributes:
       combat:
@@ -2526,7 +2526,7 @@ templates:
     id:            4137
     display_name:  Vanguard_Assassin
     species:       dynamis_yagudo
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 2106
     attributes:
       combat:
@@ -2562,7 +2562,7 @@ templates:
     id:            7229
     display_name:  Vanguard_Assassin
     species:       dynamis_yagudo
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 2106
     attributes:
       combat:
@@ -2595,7 +2595,7 @@ templates:
   Vanguard_Backstabber:
     id:            4138
     species:       dynamis_orc
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 2102
     attributes:
       combat:
@@ -2631,7 +2631,7 @@ templates:
     id:            4138
     display_name:  Vanguard_Backstabber
     species:       dynamis_orc
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 2102
     attributes:
       combat:
@@ -2667,7 +2667,7 @@ templates:
     id:            7216
     display_name:  Vanguard_Backstabber
     species:       dynamis_orc
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 2102
     attributes:
       combat:
@@ -2805,7 +2805,7 @@ templates:
   Vanguard_Bugler:
     id:            4140
     species:       dynamis_orc
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 2102
     attributes:
       combat:
@@ -2841,7 +2841,7 @@ templates:
     id:            4140
     display_name:  Vanguard_Bugler
     species:       dynamis_orc
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 2102
     attributes:
       combat:
@@ -2877,7 +2877,7 @@ templates:
     id:            7227
     display_name:  Vanguard_Bugler
     species:       dynamis_orc
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 2102
     attributes:
       combat:
@@ -2910,7 +2910,7 @@ templates:
   Vanguard_Chanter:
     id:            4141
     species:       dynamis_yagudo
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 2106
     attributes:
       combat:
@@ -2946,7 +2946,7 @@ templates:
     id:            4141
     display_name:  Vanguard_Chanter
     species:       dynamis_yagudo
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 2106
     attributes:
       combat:
@@ -2982,7 +2982,7 @@ templates:
     id:            7237
     display_name:  Vanguard_Chanter
     species:       dynamis_yagudo
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 2106
     attributes:
       combat:
@@ -3015,7 +3015,7 @@ templates:
   Vanguard_Constable:
     id:            4142
     species:       dynamis_quadav
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 2107
     attributes:
       combat:
@@ -3050,7 +3050,7 @@ templates:
     id:            4142
     display_name:  Vanguard_Constable
     species:       dynamis_quadav
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 2107
     attributes:
       combat:
@@ -3085,7 +3085,7 @@ templates:
     id:            7205
     display_name:  Vanguard_Constable
     species:       dynamis_quadav
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 2107
     attributes:
       combat:
@@ -3119,7 +3119,7 @@ templates:
   Vanguard_Defender:
     id:            4143
     species:       dynamis_quadav
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 2107
     attributes:
       combat:
@@ -3156,7 +3156,7 @@ templates:
     id:            4143
     display_name:  Vanguard_Defender
     species:       dynamis_quadav
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 2107
     attributes:
       combat:
@@ -3193,7 +3193,7 @@ templates:
     id:            7200
     display_name:  Vanguard_Defender
     species:       dynamis_quadav
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 2107
     attributes:
       combat:
@@ -3227,7 +3227,7 @@ templates:
   Vanguard_Dollmaster:
     id:            4144
     species:       dynamis_orc
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 2102
     attributes:
       combat:
@@ -3261,7 +3261,7 @@ templates:
     id:            4144
     display_name:  Vanguard_Dollmaster
     species:       dynamis_orc
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 2102
     attributes:
       combat:
@@ -3295,7 +3295,7 @@ templates:
     id:            7223
     display_name:  Vanguard_Dollmaster
     species:       dynamis_orc
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 2102
     attributes:
       combat:
@@ -3532,7 +3532,7 @@ templates:
   Vanguard_Enchanter:
     id:            4147
     species:       dynamis_goblin
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 2108
     attributes:
       combat:
@@ -3568,7 +3568,7 @@ templates:
     id:            4147
     display_name:  Vanguard_Enchanter
     species:       dynamis_goblin
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 2108
     attributes:
       combat:
@@ -3604,7 +3604,7 @@ templates:
     id:            7244
     display_name:  Vanguard_Enchanter
     species:       dynamis_goblin
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 2108
     attributes:
       combat:
@@ -3637,7 +3637,7 @@ templates:
   Vanguard_Exemplar:
     id:            4148
     species:       dynamis_yagudo
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 2106
     attributes:
       combat:
@@ -3673,7 +3673,7 @@ templates:
     id:            4148
     display_name:  Vanguard_Exemplar
     species:       dynamis_yagudo
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 2106
     attributes:
       combat:
@@ -3709,7 +3709,7 @@ templates:
     id:            7233
     display_name:  Vanguard_Exemplar
     species:       dynamis_yagudo
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 2106
     attributes:
       combat:
@@ -4251,7 +4251,7 @@ templates:
   Vanguard_Hitman:
     id:            4155
     species:       dynamis_goblin
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 2108
     attributes:
       combat:
@@ -4287,7 +4287,7 @@ templates:
     id:            4155
     display_name:  Vanguard_Hitman
     species:       dynamis_goblin
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 2108
     attributes:
       combat:
@@ -4323,7 +4323,7 @@ templates:
     id:            7252
     display_name:  Vanguard_Hitman
     species:       dynamis_goblin
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 2108
     attributes:
       combat:
@@ -4461,7 +4461,7 @@ templates:
   Vanguard_Inciter:
     id:            4157
     species:       dynamis_yagudo
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 2106
     attributes:
       combat:
@@ -4497,7 +4497,7 @@ templates:
     id:            4157
     display_name:  Vanguard_Inciter
     species:       dynamis_yagudo
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 2106
     attributes:
       combat:
@@ -4533,7 +4533,7 @@ templates:
     id:            7236
     display_name:  Vanguard_Inciter
     species:       dynamis_yagudo
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 2106
     attributes:
       combat:
@@ -4566,7 +4566,7 @@ templates:
   Vanguard_Kusa:
     id:            4158
     species:       dynamis_quadav
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 2107
     attributes:
       combat:
@@ -4603,7 +4603,7 @@ templates:
     id:            4158
     display_name:  Vanguard_Kusa
     species:       dynamis_quadav
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 2107
     attributes:
       combat:
@@ -4640,7 +4640,7 @@ templates:
     id:            7207
     display_name:  Vanguard_Kusa
     species:       dynamis_quadav
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 2107
     attributes:
       combat:
@@ -4776,7 +4776,7 @@ templates:
   Vanguard_Maestro:
     id:            4160
     species:       dynamis_goblin
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 2108
     attributes:
       combat:
@@ -4812,7 +4812,7 @@ templates:
     id:            4160
     display_name:  Vanguard_Maestro
     species:       dynamis_goblin
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 2108
     attributes:
       combat:
@@ -4848,7 +4848,7 @@ templates:
     id:            7248
     display_name:  Vanguard_Maestro
     species:       dynamis_goblin
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 2108
     attributes:
       combat:
@@ -4982,7 +4982,7 @@ templates:
   Vanguard_Mesmerizer:
     id:            4162
     species:       dynamis_orc
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2102
     attributes:
       combat:
@@ -5016,7 +5016,7 @@ templates:
     id:            4162
     display_name:  Vanguard_Mesmerizer
     species:       dynamis_orc
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2102
     attributes:
       combat:
@@ -5050,7 +5050,7 @@ templates:
     id:            7224
     display_name:  Vanguard_Mesmerizer
     species:       dynamis_orc
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2102
     attributes:
       combat:
@@ -5181,7 +5181,7 @@ templates:
   Vanguard_Minstrel:
     id:            4164
     species:       dynamis_quadav
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 2107
     attributes:
       combat:
@@ -5218,7 +5218,7 @@ templates:
     id:            4164
     display_name:  Vanguard_Minstrel
     species:       dynamis_quadav
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 2107
     attributes:
       combat:
@@ -5255,7 +5255,7 @@ templates:
     id:            7209
     display_name:  Vanguard_Minstrel
     species:       dynamis_quadav
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 2107
     attributes:
       combat:
@@ -5289,7 +5289,7 @@ templates:
   Vanguard_Neckchopper:
     id:            4165
     species:       dynamis_orc
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 2102
     attributes:
       combat:
@@ -5325,7 +5325,7 @@ templates:
     id:            4165
     display_name:  Vanguard_Neckchopper
     species:       dynamis_orc
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 2102
     attributes:
       combat:
@@ -5361,7 +5361,7 @@ templates:
     id:            7213
     display_name:  Vanguard_Neckchopper
     species:       dynamis_orc
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 2102
     attributes:
       combat:
@@ -5394,7 +5394,7 @@ templates:
   Vanguard_Necromancer:
     id:            4166
     species:       dynamis_goblin
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 2108
     attributes:
       combat:
@@ -5428,7 +5428,7 @@ templates:
     id:            4166
     display_name:  Vanguard_Necromancer
     species:       dynamis_goblin
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 2108
     attributes:
       combat:
@@ -5462,7 +5462,7 @@ templates:
     id:            7250
     display_name:  Vanguard_Necromancer
     species:       dynamis_goblin
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 2108
     attributes:
       combat:
@@ -5597,7 +5597,7 @@ templates:
   Vanguard_Oracle:
     id:            4168
     species:       dynamis_yagudo
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 2106
     attributes:
       combat:
@@ -5632,7 +5632,7 @@ templates:
     id:            4168
     display_name:  Vanguard_Oracle
     species:       dynamis_yagudo
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 2106
     attributes:
       combat:
@@ -6270,7 +6270,7 @@ templates:
   Vanguard_Prelate:
     id:            4175
     species:       dynamis_yagudo
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2106
     attributes:
       combat:
@@ -6304,7 +6304,7 @@ templates:
     id:            4175
     display_name:  Vanguard_Prelate
     species:       dynamis_yagudo
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2106
     attributes:
       combat:
@@ -6338,7 +6338,7 @@ templates:
     id:            7238
     display_name:  Vanguard_Prelate
     species:       dynamis_yagudo
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2106
     attributes:
       combat:
@@ -6371,7 +6371,7 @@ templates:
   Vanguard_Priest:
     id:            4176
     species:       dynamis_yagudo
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 2106
     attributes:
       combat:
@@ -6405,7 +6405,7 @@ templates:
     id:            4176
     display_name:  Vanguard_Priest
     species:       dynamis_yagudo
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 2106
     attributes:
       combat:
@@ -6439,7 +6439,7 @@ templates:
     id:            7235
     display_name:  Vanguard_Priest
     species:       dynamis_yagudo
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 2106
     attributes:
       combat:
@@ -6472,7 +6472,7 @@ templates:
   Vanguard_Protector:
     id:            4177
     species:       dynamis_quadav
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 2107
     attributes:
       combat:
@@ -6509,7 +6509,7 @@ templates:
     id:            4177
     display_name:  Vanguard_Protector
     species:       dynamis_quadav
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 2107
     attributes:
       combat:
@@ -6546,7 +6546,7 @@ templates:
     id:            7198
     display_name:  Vanguard_Protector
     species:       dynamis_quadav
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 2107
     attributes:
       combat:
@@ -6983,7 +6983,7 @@ templates:
   Vanguard_Shaman:
     id:            4182
     species:       dynamis_goblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2108
     attributes:
       combat:
@@ -7017,7 +7017,7 @@ templates:
     id:            4182
     display_name:  Vanguard_Shaman
     species:       dynamis_goblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2108
     attributes:
       combat:
@@ -7051,7 +7051,7 @@ templates:
     id:            7247
     display_name:  Vanguard_Shaman
     species:       dynamis_goblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2108
     attributes:
       combat:
@@ -7282,7 +7282,7 @@ templates:
   Vanguard_Thaumaturge:
     id:            4191
     species:       dynamis_quadav
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2107
     attributes:
       combat:
@@ -7316,7 +7316,7 @@ templates:
     id:            4191
     display_name:  Vanguard_Thaumaturge
     species:       dynamis_quadav
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2107
     attributes:
       combat:
@@ -7350,7 +7350,7 @@ templates:
     id:            7202
     display_name:  Vanguard_Thaumaturge
     species:       dynamis_quadav
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2107
     attributes:
       combat:
@@ -7383,7 +7383,7 @@ templates:
   Vanguard_Tinkerer:
     id:            4192
     species:       dynamis_goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 2108
     attributes:
       combat:
@@ -7419,7 +7419,7 @@ templates:
     id:            4192
     display_name:  Vanguard_Tinkerer
     species:       dynamis_goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 2108
     attributes:
       combat:
@@ -7455,7 +7455,7 @@ templates:
     id:            7256
     display_name:  Vanguard_Tinkerer
     species:       dynamis_goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 2108
     attributes:
       combat:
@@ -7488,7 +7488,7 @@ templates:
   Vanguard_Trooper:
     id:            4193
     species:       dynamis_orc
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 2102
     attributes:
       combat:
@@ -7524,7 +7524,7 @@ templates:
     id:            4193
     display_name:  Vanguard_Trooper
     species:       dynamis_orc
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 2102
     attributes:
       combat:
@@ -7560,7 +7560,7 @@ templates:
     id:            7212
     display_name:  Vanguard_Trooper
     species:       dynamis_orc
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 2102
     attributes:
       combat:
@@ -7593,7 +7593,7 @@ templates:
   Vanguard_Undertaker:
     id:            4194
     species:       dynamis_quadav
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 2107
     attributes:
       combat:
@@ -7627,7 +7627,7 @@ templates:
     id:            4194
     display_name:  Vanguard_Undertaker
     species:       dynamis_quadav
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 2107
     attributes:
       combat:
@@ -7661,7 +7661,7 @@ templates:
     id:            7211
     display_name:  Vanguard_Undertaker
     species:       dynamis_quadav
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 2107
     attributes:
       combat:
@@ -7694,7 +7694,7 @@ templates:
   Vanguard_Vexer:
     id:            4195
     species:       dynamis_orc
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 2102
     attributes:
       combat:
@@ -7730,7 +7730,7 @@ templates:
     id:            4195
     display_name:  Vanguard_Vexer
     species:       dynamis_orc
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 2102
     attributes:
       combat:
@@ -7766,7 +7766,7 @@ templates:
     id:            7215
     display_name:  Vanguard_Vexer
     species:       dynamis_orc
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 2102
     attributes:
       combat:
@@ -7799,7 +7799,7 @@ templates:
   Vanguard_Vigilante:
     id:            4196
     species:       dynamis_quadav
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 2107
     attributes:
       combat:
@@ -7836,7 +7836,7 @@ templates:
     id:            4196
     display_name:  Vanguard_Vigilante
     species:       dynamis_quadav
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 2107
     attributes:
       combat:
@@ -7873,7 +7873,7 @@ templates:
     id:            7204
     display_name:  Vanguard_Vigilante
     species:       dynamis_quadav
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 2107
     attributes:
       combat:
@@ -8009,7 +8009,7 @@ templates:
   Vanguard_Visionary:
     id:            4198
     species:       dynamis_yagudo
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 2106
     attributes:
       combat:
@@ -8045,7 +8045,7 @@ templates:
     id:            4198
     display_name:  Vanguard_Visionary
     species:       dynamis_yagudo
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 2106
     attributes:
       combat:
@@ -8081,7 +8081,7 @@ templates:
     id:            7231
     display_name:  Vanguard_Visionary
     species:       dynamis_yagudo
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 2106
     attributes:
       combat:
@@ -8262,7 +8262,7 @@ templates:
     id:            4186
     species:       bird
     type:          [called]
-    spell_list_id: 52
+    spell_list:    vanguard_s_crow
     skill_list_id: 55
     attributes:
       combat:
@@ -8301,7 +8301,7 @@ templates:
     id:            4187
     species:       hecteye
     type:          [called]
-    spell_list_id: 51
+    spell_list:    vanguard_s_hecteyes
     skill_list_id: 139
     attributes:
       combat:
@@ -8340,7 +8340,7 @@ templates:
     id:            4188
     species:       scorpion
     type:          [called]
-    spell_list_id: 53
+    spell_list:    vanguard_s_scorpion
     skill_list_id: 217
     attributes:
       combat:
@@ -8377,7 +8377,7 @@ templates:
     id:            4189
     species:       slime
     type:          [called]
-    spell_list_id: 54
+    spell_list:    vanguard_s_slime
     skill_list_id: 229
     attributes:
       combat:
@@ -8441,7 +8441,7 @@ templates:
     id:            4289
     species:       orc_statue
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 93
     attributes:
       combat:
@@ -8507,7 +8507,7 @@ templates:
     id:            4363
     species:       slime
     type:          [called]
-    spell_list_id: 54
+    spell_list:    vanguard_s_slime
     skill_list_id: 229
     attributes:
       combat:

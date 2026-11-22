@@ -5,7 +5,7 @@ templates:
   Air_Elemental:
     id:            71
     species:       air_elemental
-    spell_list_id: 12
+    spell_list:    elemental_air
     skill_list_id: 99
     attributes:
       combat:
@@ -180,7 +180,7 @@ templates:
     id:            668
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -247,7 +247,7 @@ templates:
     id:            1003
     species:       ghost
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -327,7 +327,7 @@ templates:
   Fire_Elemental:
     id:            1341
     species:       fire_elemental
-    spell_list_id: 17
+    spell_list:    elemental_fire
     skill_list_id: 102
     attributes:
       combat:
@@ -361,7 +361,7 @@ templates:
     id:            1609
     species:       ghost
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -383,7 +383,7 @@ templates:
   Goblin_Alchemist:
     id:            1634
     species:       goblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:
@@ -560,7 +560,7 @@ templates:
     id:            1763
     species:       ghost
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -646,7 +646,7 @@ templates:
   Haunt:
     id:            1900
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -681,7 +681,7 @@ templates:
     id:            2214
     species:       beetle
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 49
     attributes:
       combat:
@@ -728,7 +728,7 @@ templates:
     id:            6417
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -766,7 +766,7 @@ templates:
     id:            2292
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -1011,7 +1011,7 @@ templates:
     species:       worm
     type:          [notorious]
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -1301,7 +1301,7 @@ templates:
     species:       worm
     type:          [notorious]
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -1355,7 +1355,7 @@ templates:
     id:            5180
     species:       uragnite
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 251
     attributes:
       combat:

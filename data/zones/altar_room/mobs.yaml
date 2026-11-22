@@ -57,7 +57,7 @@ templates:
   Goo_Pake_the_Bloodhound:
     id:            1762
     species:       yagudo
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 360
     attributes:
       combat:
@@ -82,7 +82,7 @@ templates:
     id:            2205
     species:       yagudo
     type:          [notorious]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 360
     attributes:
       combat:
@@ -106,7 +106,7 @@ templates:
   Laa_Yaku_the_Austere:
     id:            2309
     species:       yagudo
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 360
     attributes:
       combat:
@@ -131,7 +131,7 @@ templates:
   Poo_Yozo_the_Babbler:
     id:            3175
     species:       yagudo
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 360
     attributes:
       combat:
@@ -157,7 +157,7 @@ templates:
     id:            4408
     species:       yagudo
     type:          [notorious]
-    spell_list_id: 30
+    spell_list:    yagudo_smn
     skill_list_id: 270
     attributes:
       combat:
@@ -205,7 +205,7 @@ templates:
   Yagudos_Elemental:
     id:            4454
     species:       air_elemental
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 99
     attributes:
       combat:

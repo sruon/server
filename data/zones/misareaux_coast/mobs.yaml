@@ -5,7 +5,7 @@ templates:
   Air_Elemental:
     id:            71
     species:       air_elemental
-    spell_list_id: 12
+    spell_list:    elemental_air
     skill_list_id: 99
     attributes:
       combat:
@@ -39,7 +39,7 @@ templates:
     id:            98
     species:       elvaan
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 149
     attributes:
       combat:
@@ -148,7 +148,7 @@ templates:
     id:            466
     species:       crab
     type:          [notorious]
-    spell_list_id: 555
+    spell_list:    bloody_coffin
     skill_list_id: 76
     attributes:
       combat:
@@ -170,7 +170,7 @@ templates:
     id:            484
     species:       bugard
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 58
     attributes:
       combat:
@@ -295,7 +295,7 @@ templates:
   Dark_Elemental:
     id:            913
     species:       dark_elemental
-    spell_list_id: 18
+    spell_list:    elemental_dark
     skill_list_id: 100
     attributes:
       combat:
@@ -393,7 +393,7 @@ templates:
   Fomor_Bard:
     id:            1380
     species:       fomor
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 115
     attributes:
       combat:
@@ -421,7 +421,7 @@ templates:
   Fomor_Black_Mage:
     id:            1382
     species:       fomor
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 115
     attributes:
       combat:
@@ -443,7 +443,7 @@ templates:
   Fomor_Dark_Knight:
     id:            1383
     species:       fomor
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 115
     attributes:
       combat:
@@ -508,7 +508,7 @@ templates:
   Fomor_Ninja:
     id:            1386
     species:       fomor
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 115
     attributes:
       combat:
@@ -530,7 +530,7 @@ templates:
   Fomor_Paladin:
     id:            1387
     species:       fomor
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 115
     attributes:
       combat:
@@ -602,7 +602,7 @@ templates:
   Fomor_Red_Mage:
     id:            1389
     species:       fomor
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 115
     attributes:
       combat:
@@ -651,7 +651,7 @@ templates:
   Fomor_Summoner:
     id:            1391
     species:       fomor
-    spell_list_id: 34
+    spell_list:    fomor_smn
     skill_list_id: 115
     attributes:
       combat:
@@ -720,7 +720,7 @@ templates:
   Fomors_Elemental:
     id:            1395
     species:       earth_elemental
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 101
     attributes:
       combat:
@@ -976,7 +976,7 @@ templates:
     id:            1792
     species:       gigas
     type:          [notorious]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 126
     attributes:
       combat:
@@ -1349,7 +1349,7 @@ templates:
   Orcish_Trooper_MC:
     id:            6283
     species:       orc
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 189
     attributes:
       combat:
@@ -1478,7 +1478,7 @@ templates:
   Thunder_Elemental:
     id:            3912
     species:       thunder_elemental
-    spell_list_id: 16
+    spell_list:    elemental_thunder
     skill_list_id: 105
     attributes:
       combat:

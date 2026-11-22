@@ -25,6 +25,7 @@
 #include "data/enums/allegiance.h"
 #include "data/enums/content.h"
 #include "data/enums/drop_rate.h"
+#include "data/enums/mob_spell_list.h"
 #include "data/enums/mob_type.h"
 #include "data/enums/roam_flag.h"
 #include "data/enums/species.h"
@@ -85,7 +86,7 @@ struct Template
     std::optional<std::vector<yaml::EnumToken<xi::MobType>>>  type;
     std::optional<std::vector<yaml::EnumToken<xi::RoamFlag>>> roam;
     std::optional<std::vector<std::string>>                   spells;
-    std::optional<uint16>                                     spell_list_id; // superseded by spells
+    std::optional<yaml::EnumToken<xi::MobSpellList>>          spell_list;
     std::optional<uint16>                                     skill_list_id; // TODO: Bring in actual skills rather than a global list
     std::optional<shared::MobAttributes>                      attributes;
     std::optional<Loot>                                       loot;
@@ -176,8 +177,8 @@ struct glz::json_schema<xi::data::datasets::zones::mobs::wire::Template>
     glz::schema species{ .description = "Species in data/ecosystems.yaml. Its attributes, and its family's and ecosystem's, are the base this template overrides." };
     glz::schema type{ .description = "Mob classification flags, such as notorious. Defaults to an empty list.", .uniqueItems = true };
     glz::schema roam{ .description = "Roaming behaviour flags. Defaults to an empty list.", .uniqueItems = true };
-    glz::schema spells{ .description = "Spells this mob casts. Mutually exclusive with spell_list_id.", .uniqueItems = true };
-    glz::schema spell_list_id{ .description = "Spell list id. Defaults 0, meaning none. Mutually exclusive with spells." };
+    glz::schema spells{ .description = "Spells this mob casts. Mutually exclusive with spell_list.", .uniqueItems = true };
+    glz::schema spell_list{ .description = "Shared spell list from data/mob_spell_lists.yaml. Omit for none. Mutually exclusive with spells." };
     glz::schema skill_list_id{ .description = "Mob skill list id. Defaults to 0, meaning none." };
     glz::schema attributes{ .description = "Attribute overrides applied over the species chain. Same block families and species use." };
     glz::schema loot{ .description = "What this mob yields when killed, stolen from or despoiled." };

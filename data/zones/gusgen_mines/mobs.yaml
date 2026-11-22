@@ -34,7 +34,7 @@ templates:
   Accursed_Sorcerer:
     id:            6537
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -64,7 +64,7 @@ templates:
     id:            113
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -128,7 +128,7 @@ templates:
     id:            267
     species:       ghost
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -191,7 +191,7 @@ templates:
   Banshee_GM:
     id:            6502
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -255,7 +255,7 @@ templates:
   Bogy:
     id:            485
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -288,7 +288,7 @@ templates:
     id:            585
     species:       ghost
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -324,7 +324,7 @@ templates:
     id:            845
     species:       ghost
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -359,7 +359,7 @@ templates:
   Earth_Elemental:
     id:            1160
     species:       earth_elemental
-    spell_list_id: 13
+    spell_list:    elemental_earth
     skill_list_id: 101
     attributes:
       combat:
@@ -396,7 +396,7 @@ templates:
     display_name:  Earth_Elemental
     species:       earth_elemental
     type:          [notorious]
-    spell_list_id: 13
+    spell_list:    elemental_earth
     skill_list_id: 101
     attributes:
       combat:
@@ -548,7 +548,7 @@ templates:
   Ghast_blm_GM:
     id:            6550
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -580,7 +580,7 @@ templates:
   Ghoul_blm_GM:
     id:            6552
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -731,7 +731,7 @@ templates:
     id:            2165
     species:       evil_weapon
     type:          [notorious]
-    spell_list_id: 42
+    spell_list:    evilweapon
     skill_list_id: 110
     attributes:
       combat:
@@ -922,7 +922,7 @@ templates:
     id:            3050
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -1007,7 +1007,7 @@ templates:
     id:            3226
     species:       ghost
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -1072,7 +1072,7 @@ templates:
     id:            6416
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -1162,7 +1162,7 @@ templates:
     id:            3680
     species:       ghost
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -1222,7 +1222,7 @@ templates:
   Thunder_Elemental:
     id:            3912
     species:       thunder_elemental
-    spell_list_id: 16
+    spell_list:    elemental_thunder
     skill_list_id: 105
     attributes:
       combat:
@@ -1258,7 +1258,7 @@ templates:
     id:            4284
     species:       ghost
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -1316,7 +1316,7 @@ templates:
   Wight_blm:
     id:            6570
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -1395,7 +1395,7 @@ templates:
     id:            4378
     species:       ghost
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:

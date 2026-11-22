@@ -139,10 +139,10 @@ templates:
         hp: 1120
 
   Bomb_Queen:
-    id:            498
-    species:       bomb
-    type:          [notorious]
-    spell_list_id: 295
+    id:         498
+    species:    bomb
+    type:       [notorious]
+    spell_list: bomb_queen
     attributes:
       combat:
         skill: staff
@@ -176,7 +176,7 @@ templates:
   Cailleach_Bheur:
     id:            607
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -258,7 +258,7 @@ templates:
   Dodomeki:
     id:            1073
     species:       hecteye
-    spell_list_id: 10
+    spell_list:    hecteyes
     skill_list_id: 139
     attributes:
       combat:
@@ -319,7 +319,7 @@ templates:
     id:            1401
     species:       goblin
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:
@@ -361,7 +361,7 @@ templates:
   Goblin_Alchemist:
     id:            1634
     species:       goblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:
@@ -581,7 +581,7 @@ templates:
     id:            5175
     species:       earth_wyrm
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 263
     attributes:
       combat:

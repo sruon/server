@@ -257,7 +257,7 @@ templates:
     id:            969
     species:       blue_sahagin
     type:          [notorious]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 213
     attributes:
       combat:
@@ -325,7 +325,7 @@ templates:
     id:            972
     species:       blue_sahagin
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 213
     attributes:
       combat:
@@ -347,7 +347,7 @@ templates:
   Fire_Elemental:
     id:            1341
     species:       fire_elemental
-    spell_list_id: 17
+    spell_list:    elemental_fire
     skill_list_id: 102
     attributes:
       combat:
@@ -492,7 +492,7 @@ templates:
   Goblin_Reaper:
     id:            1705
     species:       armored_goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -643,7 +643,7 @@ templates:
     id:            1972
     species:       goblin
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -666,7 +666,7 @@ templates:
     id:            1974
     species:       goblin
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -710,7 +710,7 @@ templates:
     id:            1979
     species:       goblin
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 133
     attributes:
       combat:
@@ -775,7 +775,7 @@ templates:
     id:            1984
     species:       goblin
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:
@@ -947,7 +947,7 @@ templates:
   Lake_Sahagin:
     id:            2321
     species:       yellow_sahagin
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 213
     attributes:
       combat:
@@ -1031,7 +1031,7 @@ templates:
     id:            2647
     species:       yellow_sahagin
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 213
     attributes:
       combat:
@@ -1198,7 +1198,7 @@ templates:
     id:            6845
     species:       blue_sahagin
     type:          [notorious]
-    spell_list_id: 502
+    spell_list:    pyuu_the_spatemaker
     skill_list_id: 248
     attributes:
       combat:
@@ -1230,7 +1230,7 @@ templates:
   River_Sahagin:
     id:            3373
     species:       yellow_sahagin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 213
     attributes:
       combat:
@@ -1265,7 +1265,7 @@ templates:
   Rivulet_Sahagin:
     id:            3374
     species:       yellow_sahagin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 213
     attributes:
       combat:
@@ -1429,7 +1429,7 @@ templates:
   Stream_Sahagin:
     id:            3788
     species:       yellow_sahagin
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 213
     attributes:
       combat:
@@ -1465,7 +1465,7 @@ templates:
     id:            3788
     display_name:  Stream_Sahagin
     species:       yellow_sahagin
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 213
     attributes:
       combat:
@@ -1565,7 +1565,7 @@ templates:
   Water_Elemental:
     id:            4309
     species:       water_elemental
-    spell_list_id: 15
+    spell_list:    elemental_water
     skill_list_id: 106
     attributes:
       combat:

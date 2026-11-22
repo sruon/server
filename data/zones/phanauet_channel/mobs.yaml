@@ -166,7 +166,7 @@ templates:
     id:            3048
     species:       blue_wyvern
     type:          [battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 714
     attributes:
       combat:
@@ -251,7 +251,7 @@ templates:
     id:            3796
     species:       orc
     type:          [notorious]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 713
     attributes:
       combat:
@@ -321,7 +321,7 @@ templates:
   Thunder_Elemental:
     id:            3912
     species:       thunder_elemental
-    spell_list_id: 16
+    spell_list:    elemental_thunder
     skill_list_id: 105
     attributes:
       combat:
@@ -355,7 +355,7 @@ templates:
     id:            4242
     species:       doomed
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 86
     attributes:
       combat:
@@ -391,7 +391,7 @@ templates:
   Water_Elemental:
     id:            4309
     species:       water_elemental
-    spell_list_id: 15
+    spell_list:    elemental_water
     skill_list_id: 106
     attributes:
       combat:

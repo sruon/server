@@ -6,7 +6,7 @@ templates:
     id:            27
     species:       yellow_sahagin
     type:          [notorious]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 213
     attributes:
       combat:
@@ -167,7 +167,7 @@ templates:
     id:            476
     display_name:  Blubber_Eyes_PX
     species:       hecteye
-    spell_list_id: 10
+    spell_list:    hecteyes
     skill_list_id: 139
     attributes:
       combat:
@@ -320,7 +320,7 @@ templates:
   Coastal_Sahagin:
     id:            752
     species:       yellow_sahagin
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 213
     attributes:
       combat:
@@ -371,7 +371,7 @@ templates:
     id:            795
     species:       yellow_sahagin
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 213
     attributes:
       combat:
@@ -452,7 +452,7 @@ templates:
     id:            999
     species:       yellow_sahagin
     type:          [notorious]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 213
     attributes:
       combat:
@@ -560,7 +560,7 @@ templates:
     id:            1443
     species:       yellow_sahagin
     type:          [notorious]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 213
     attributes:
       combat:
@@ -595,7 +595,7 @@ templates:
   Ghast_blm:
     id:            1511
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -807,7 +807,7 @@ templates:
   Lagoon_Sahagin:
     id:            2317
     species:       yellow_sahagin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 213
     attributes:
       combat:
@@ -851,7 +851,7 @@ templates:
   Lake_Sahagin:
     id:            2321
     species:       yellow_sahagin
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 213
     attributes:
       combat:
@@ -993,7 +993,7 @@ templates:
   Mindgazer_SSG:
     id:            6390
     species:       hecteye
-    spell_list_id: 10
+    spell_list:    hecteyes
     skill_list_id: 139
     attributes:
       combat:
@@ -1092,7 +1092,7 @@ templates:
     id:            2803
     species:       skeleton
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -1161,7 +1161,7 @@ templates:
     id:            2914
     species:       yellow_sahagin
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 213
     attributes:
       combat:
@@ -1402,7 +1402,7 @@ templates:
   Riparian_Sahagin:
     id:            3369
     species:       yellow_sahagin
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 213
     attributes:
       combat:
@@ -1440,7 +1440,7 @@ templates:
   Rivulet_Sahagin:
     id:            3374
     species:       yellow_sahagin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 213
     attributes:
       combat:
@@ -1723,7 +1723,7 @@ templates:
     id:            3558
     species:       yellow_sahagin
     type:          [notorious]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 213
     attributes:
       combat:
@@ -1786,7 +1786,7 @@ templates:
   Spring_Sahagin:
     id:            3743
     species:       yellow_sahagin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 213
     attributes:
       combat:
@@ -1847,7 +1847,7 @@ templates:
   Swamp_Sahagin:
     id:            3822
     species:       yellow_sahagin
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 213
     attributes:
       combat:
@@ -1891,7 +1891,7 @@ templates:
   Thunder_Elemental:
     id:            3912
     species:       thunder_elemental
-    spell_list_id: 16
+    spell_list:    elemental_thunder
     skill_list_id: 105
     attributes:
       combat:
@@ -2025,7 +2025,7 @@ templates:
   Water_Elemental:
     id:            4309
     species:       water_elemental
-    spell_list_id: 15
+    spell_list:    elemental_water
     skill_list_id: 106
     attributes:
       combat:
@@ -2117,7 +2117,7 @@ templates:
     id:            4383
     species:       blue_sahagin
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 213
     attributes:
       combat:
@@ -2155,7 +2155,7 @@ templates:
     id:            4467
     species:       yellow_sahagin
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 213
     attributes:
       combat:

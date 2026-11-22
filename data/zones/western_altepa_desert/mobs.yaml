@@ -5,7 +5,7 @@ templates:
   Antican_Eques:
     id:            171
     species:       antica
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 25
     attributes:
       combat:
@@ -76,7 +76,7 @@ templates:
   Antican_Hoplomachus:
     id:            176
     species:       antica
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 25
     attributes:
       combat:
@@ -112,7 +112,7 @@ templates:
   Antican_Lanista:
     id:            177
     species:       antica
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 25
     attributes:
       combat:
@@ -148,7 +148,7 @@ templates:
   Antican_Retiarius:
     id:            185
     species:       antica
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 25
     attributes:
       combat:
@@ -242,7 +242,7 @@ templates:
     id:            6105
     species:       behemoth
     type:          [notorious]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 51
     attributes:
       combat:
@@ -586,7 +586,7 @@ templates:
     id:            1010
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -624,7 +624,7 @@ templates:
   Earth_Elemental:
     id:            1160
     species:       earth_elemental
-    spell_list_id: 13
+    spell_list:    elemental_earth
     skill_list_id: 101
     attributes:
       combat:
@@ -658,7 +658,7 @@ templates:
     id:            1165
     species:       manticore
     type:          [notorious, event]
-    spell_list_id: 44
+    spell_list:    easternsphinx
     skill_list_id: 179
     attributes:
       combat:
@@ -683,7 +683,7 @@ templates:
   Fallen_Knight:
     id:            1287
     species:       skeleton
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 227
     attributes:
       combat:
@@ -722,7 +722,7 @@ templates:
   Fire_Elemental:
     id:            1341
     species:       fire_elemental
-    spell_list_id: 17
+    spell_list:    elemental_fire
     skill_list_id: 102
     attributes:
       combat:
@@ -823,7 +823,7 @@ templates:
   Goblin_Enchanter:
     id:            1654
     species:       goblin
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 133
     attributes:
       combat:
@@ -1028,7 +1028,7 @@ templates:
   Lich:
     id:            2407
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -1278,7 +1278,7 @@ templates:
     id:            4324
     species:       manticore
     type:          [notorious, event]
-    spell_list_id: 43
+    spell_list:    westernsphinx
     skill_list_id: 179
     attributes:
       combat:

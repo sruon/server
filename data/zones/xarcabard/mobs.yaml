@@ -6,7 +6,7 @@ templates:
     id:            6110
     species:       kindred
     type:          [notorious]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 358
     attributes:
       combat:
@@ -30,7 +30,7 @@ templates:
     id:            6111
     species:       kindred
     type:          [notorious]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 358
     attributes:
       combat:
@@ -55,7 +55,7 @@ templates:
     id:            6112
     species:       kindred
     type:          [notorious]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 358
     attributes:
       combat:
@@ -216,7 +216,7 @@ templates:
     id:            510
     species:       hound
     type:          [notorious]
-    spell_list_id: 100
+    spell_list:    boreal_hound
     skill_list_id: 142
     attributes:
       combat:
@@ -248,7 +248,7 @@ templates:
     id:            511
     species:       tiger
     type:          [notorious]
-    spell_list_id: 101
+    spell_list:    boreal_tiger
     skill_list_id: 242
     attributes:
       combat:
@@ -275,7 +275,7 @@ templates:
     id:            693
     species:       light_elemental
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 104
     attributes:
       combat:
@@ -328,7 +328,7 @@ templates:
   Dark_Elemental:
     id:            913
     species:       dark_elemental
-    spell_list_id: 18
+    spell_list:    elemental_dark
     skill_list_id: 100
     attributes:
       combat:
@@ -389,7 +389,7 @@ templates:
   Demon_Knight:
     id:            988
     species:       kindred
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 169
     attributes:
       combat:
@@ -427,7 +427,7 @@ templates:
     id:            988
     display_name:  Demon_Knight
     species:       kindred
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 169
     attributes:
       combat:
@@ -486,7 +486,7 @@ templates:
   Demon_Warlock:
     id:            995
     species:       kindred
-    spell_list_id: 31
+    spell_list:    kindred_smn
     skill_list_id: 169
     attributes:
       combat:
@@ -514,7 +514,7 @@ templates:
   Demon_Wizard:
     id:            997
     species:       kindred
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 169
     attributes:
       combat:
@@ -546,7 +546,7 @@ templates:
     id:            997
     display_name:  Demon_Wizard
     species:       kindred
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 169
     attributes:
       combat:
@@ -576,7 +576,7 @@ templates:
   Demons_Elemental:
     id:            994
     species:       dark_elemental
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 100
     attributes:
       combat:
@@ -630,7 +630,7 @@ templates:
     id:            7013
     species:       skeleton
     type:          [notorious]
-    spell_list_id: 440
+    spell_list:    erebus
     skill_list_id: 227
     attributes:
       combat:
@@ -654,7 +654,7 @@ templates:
     id:            1252
     species:       ghost
     type:          [notorious]
-    spell_list_id: 553
+    spell_list:    ereshkigal
     skill_list_id: 121
     attributes:
       combat:
@@ -689,7 +689,7 @@ templates:
   Etemmu:
     id:            1260
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -721,7 +721,7 @@ templates:
   Evil_Eye:
     id:            1264
     species:       ahriman
-    spell_list_id: 11
+    spell_list:    ahriman
     skill_list_id: 4
     attributes:
       combat:
@@ -754,7 +754,7 @@ templates:
     id:            7014
     species:       doomed
     type:          [notorious]
-    spell_list_id: 441
+    spell_list:    feuerunke
     skill_list_id: 86
     attributes:
       combat:
@@ -919,7 +919,7 @@ templates:
     id:            7012
     species:       ghost
     type:          [notorious]
-    spell_list_id: 439
+    spell_list:    gjenganger
     skill_list_id: 121
     attributes:
       combat:
@@ -1055,7 +1055,7 @@ templates:
     id:            1972
     species:       goblin
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -1078,7 +1078,7 @@ templates:
     id:            1974
     species:       goblin
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -1122,7 +1122,7 @@ templates:
     id:            1979
     species:       goblin
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 133
     attributes:
       combat:
@@ -1187,7 +1187,7 @@ templates:
     id:            1984
     species:       goblin
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:
@@ -1209,7 +1209,7 @@ templates:
   Ice_Elemental:
     id:            2043
     species:       ice_elemental
-    spell_list_id: 14
+    spell_list:    elemental_ice
     skill_list_id: 103
     attributes:
       combat:
@@ -1243,7 +1243,7 @@ templates:
     id:            2276
     species:       tiger
     type:          [notorious]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 242
     attributes:
       combat:
@@ -1438,7 +1438,7 @@ templates:
   Lost_Soul_blm:
     id:            2442
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -1526,7 +1526,7 @@ templates:
     id:            3576
     species:       ahriman
     type:          [notorious]
-    spell_list_id: 11
+    spell_list:    ahriman
     skill_list_id: 4
     attributes:
       combat:
@@ -1585,7 +1585,7 @@ templates:
     id:            6999
     species:       zilant
     type:          [notorious]
-    spell_list_id: 454
+    spell_list:    yilbegan
     skill_list_id: 470
     attributes:
       combat:

@@ -88,7 +88,7 @@ templates:
   Bogy:
     id:            485
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -183,7 +183,7 @@ templates:
     id:            788
     species:       yagudo
     type:          [notorious]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 360
     attributes:
       combat:
@@ -270,7 +270,7 @@ templates:
   Earth_Elemental:
     id:            1160
     species:       earth_elemental
-    spell_list_id: 13
+    spell_list:    elemental_earth
     skill_list_id: 101
     attributes:
       combat:
@@ -304,7 +304,7 @@ templates:
     id:            7009
     species:       fly
     type:          [notorious]
-    spell_list_id: 438
+    spell_list:    farrucafly
     skill_list_id: 1153
     attributes:
       combat:
@@ -329,7 +329,7 @@ templates:
   Fire_Elemental:
     id:            1341
     species:       fire_elemental
-    spell_list_id: 17
+    spell_list:    elemental_fire
     skill_list_id: 102
     attributes:
       combat:
@@ -467,7 +467,7 @@ templates:
   Goblin_Gambler:
     id:            1666
     species:       goblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -503,7 +503,7 @@ templates:
   Goblin_Leecher:
     id:            1683
     species:       goblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:
@@ -590,7 +590,7 @@ templates:
   Goblin_Tinkerer:
     id:            1738
     species:       armored_goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -700,7 +700,7 @@ templates:
     id:            1972
     species:       goblin
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -723,7 +723,7 @@ templates:
     id:            1974
     species:       goblin
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -767,7 +767,7 @@ templates:
     id:            1979
     species:       goblin
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 133
     attributes:
       combat:
@@ -832,7 +832,7 @@ templates:
     id:            1984
     species:       goblin
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:
@@ -912,7 +912,7 @@ templates:
     id:            5189
     species:       strigoi
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 309
     attributes:
       combat:
@@ -1268,7 +1268,7 @@ templates:
   Sprite:
     id:            3745
     species:       pixie
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 195
     attributes:
       combat:
@@ -1325,7 +1325,7 @@ templates:
     id:            3887
     species:       yagudo
     type:          [notorious]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 360
     attributes:
       combat:
@@ -1348,7 +1348,7 @@ templates:
     id:            3888
     species:       yagudo
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 360
     attributes:
       combat:
@@ -1394,7 +1394,7 @@ templates:
     id:            3890
     species:       yagudo
     type:          [notorious]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 360
     attributes:
       combat:
@@ -1439,7 +1439,7 @@ templates:
     id:            3892
     species:       yagudo
     type:          [notorious]
-    spell_list_id: 30
+    spell_list:    yagudo_smn
     skill_list_id: 360
     attributes:
       combat:
@@ -1462,7 +1462,7 @@ templates:
     id:            3893
     species:       yagudo
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 360
     attributes:
       combat:
@@ -1534,7 +1534,7 @@ templates:
     id:            4287
     species:       cockatrice
     type:          [notorious]
-    spell_list_id: 55
+    spell_list:    waraxe_beak
     skill_list_id: 70
     attributes:
       combat:
@@ -1654,7 +1654,7 @@ templates:
   Yagudo_Mendicant:
     id:            4432
     species:       yagudo
-    spell_list_id: 30
+    spell_list:    yagudo_smn
     skill_list_id: 270
     attributes:
       combat:
@@ -1697,7 +1697,7 @@ templates:
   Yagudo_Missionary:
     id:            4433
     species:       yagudo
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 270
     attributes:
       combat:
@@ -1767,7 +1767,7 @@ templates:
   Yagudo_Piper:
     id:            4441
     species:       yagudo
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 270
     attributes:
       combat:
@@ -1812,7 +1812,7 @@ templates:
   Yagudo_Priest:
     id:            4444
     species:       yagudo
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 270
     attributes:
       combat:
@@ -1862,7 +1862,7 @@ templates:
     id:            4444
     display_name:  Yagudo_Priest
     species:       yagudo
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 270
     attributes:
       combat:
@@ -1890,7 +1890,7 @@ templates:
   Yagudo_Theologist:
     id:            4456
     species:       yagudo
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 270
     attributes:
       combat:
@@ -1930,7 +1930,7 @@ templates:
     id:            4456
     display_name:  Yagudo_Theologist
     species:       yagudo
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 270
     attributes:
       combat:
@@ -2045,7 +2045,7 @@ templates:
   Yagudos_Elemental:
     id:            4454
     species:       air_elemental
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 99
     attributes:
       combat:
@@ -2068,7 +2068,7 @@ templates:
     id:            6999
     species:       zilant
     type:          [notorious]
-    spell_list_id: 454
+    spell_list:    yilbegan
     skill_list_id: 470
     attributes:
       combat:
@@ -2218,7 +2218,7 @@ templates:
   Zombie_blm:
     id:            6574
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:

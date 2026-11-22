@@ -234,7 +234,7 @@ templates:
   Cornered_Heartwing:
     id:            5018
     species:       heartwing
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 343
     attributes:
       combat:
@@ -385,7 +385,7 @@ templates:
   Frenzied_Mantis:
     id:            5008
     species:       green_mantid
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 340
     attributes:
       combat:
@@ -414,9 +414,9 @@ templates:
           item:   celadon_yggrete_rock
 
   Irascible_Baelfyr:
-    id:            6696
-    species:       baelfyr
-    spell_list_id: 3
+    id:         6696
+    species:    baelfyr
+    spell_list: beastmen_rdm
     attributes:
       combat:
         skill: club
@@ -559,7 +559,7 @@ templates:
     id:            6912
     species:       gnat
     type:          [notorious]
-    spell_list_id: 509
+    spell_list:    mastop
     skill_list_id: 2022
     attributes:
       combat:
@@ -608,7 +608,7 @@ templates:
     id:            6909
     species:       green_mantid
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 340
     attributes:
       combat:
@@ -855,7 +855,7 @@ templates:
   Unbridled_Ungeweder:
     id:            2245
     species:       ungeweder
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 105
     attributes:
       combat:
@@ -913,7 +913,7 @@ templates:
   Unfettered_Twitherym:
     id:            4862
     species:       twitherym
-    spell_list_id: 508
+    spell_list:    unfettered_twitherym
     skill_list_id: 2017
     attributes:
       combat:

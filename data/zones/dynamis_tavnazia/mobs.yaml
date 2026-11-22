@@ -40,7 +40,7 @@ templates:
     id:            1028
     species:       diabolos
     type:          [notorious]
-    spell_list_id: 108
+    spell_list:    diabolos_club
     skill_list_id: 35
     attributes:
       combat:
@@ -75,7 +75,7 @@ templates:
     id:            1029
     species:       diabolos
     type:          [notorious]
-    spell_list_id: 107
+    spell_list:    diabolos_diamond
     skill_list_id: 35
     attributes:
       combat:
@@ -110,7 +110,7 @@ templates:
     id:            1030
     species:       diabolos
     type:          [notorious]
-    spell_list_id: 106
+    spell_list:    diabolos_heart
     skill_list_id: 35
     attributes:
       combat:
@@ -142,10 +142,10 @@ templates:
           one_of: [lungo-nango_jadeshell, montiont_silverpiece, one_hundred_byne_bill]
 
   Diabolos_Letum:
-    id:            6050
-    species:       diabolos
-    type:          [notorious]
-    spell_list_id: 21
+    id:         6050
+    species:    diabolos
+    type:       [notorious]
+    spell_list: beastmen_blm
     attributes:
       combat:
         skill: scythe
@@ -184,10 +184,10 @@ templates:
           one_of: [lungo-nango_jadeshell, montiont_silverpiece, one_hundred_byne_bill]
 
   Diabolos_Nox:
-    id:            6051
-    species:       diabolos
-    type:          [notorious]
-    spell_list_id: 21
+    id:         6051
+    species:    diabolos
+    type:       [notorious]
+    spell_list: beastmen_blm
     attributes:
       combat:
         skill: scythe
@@ -225,10 +225,10 @@ templates:
           one_of: [lungo-nango_jadeshell, montiont_silverpiece, one_hundred_byne_bill]
 
   Diabolos_Somnus:
-    id:            6052
-    species:       diabolos
-    type:          [notorious]
-    spell_list_id: 21
+    id:         6052
+    species:    diabolos
+    type:       [notorious]
+    spell_list: beastmen_blm
     attributes:
       combat:
         skill: scythe
@@ -303,7 +303,7 @@ templates:
     id:            4091
     species:       diabolos
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 35
     attributes:
       combat:
@@ -422,7 +422,7 @@ templates:
   Goblin_Replica:
     id:            1707
     species:       goblin_statue
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 92
     attributes:
       combat:
@@ -459,7 +459,7 @@ templates:
   Hydra_Bard:
     id:            2019
     species:       hydra_fomor
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 359
     attributes:
       combat:
@@ -528,7 +528,7 @@ templates:
   Hydra_Black_Mage:
     id:            2021
     species:       hydra_fomor
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 359
     attributes:
       combat:
@@ -563,7 +563,7 @@ templates:
   Hydra_Dark_Knight:
     id:            2022
     species:       hydra_fomor
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 359
     attributes:
       combat:
@@ -667,7 +667,7 @@ templates:
   Hydra_Ninja:
     id:            2025
     species:       hydra_fomor
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 359
     attributes:
       combat:
@@ -702,7 +702,7 @@ templates:
   Hydra_Paladin:
     id:            2026
     species:       hydra_fomor
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 359
     attributes:
       combat:
@@ -771,7 +771,7 @@ templates:
   Hydra_Red_Mage:
     id:            2028
     species:       hydra_fomor
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 359
     attributes:
       combat:
@@ -840,7 +840,7 @@ templates:
   Hydra_Summoner:
     id:            2030
     species:       hydra_fomor
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 359
     attributes:
       combat:
@@ -942,7 +942,7 @@ templates:
   Hydra_White_Mage:
     id:            2036
     species:       hydra_fomor
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 359
     attributes:
       combat:
@@ -1002,7 +1002,7 @@ templates:
     id:            2032
     species:       hound
     type:          [called]
-    spell_list_id: 85
+    spell_list:    hydra_s_hound
     skill_list_id: 143
     attributes:
       combat:
@@ -1068,7 +1068,7 @@ templates:
     id:            2047
     species:       yagudo_statue
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 95
     attributes:
       combat:
@@ -1102,7 +1102,7 @@ templates:
   Kindred_Bard:
     id:            2232
     species:       dynamis_kindred
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 358
     attributes:
       combat:
@@ -1175,7 +1175,7 @@ templates:
   Kindred_Black_Mage:
     id:            2234
     species:       dynamis_kindred
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 358
     attributes:
       combat:
@@ -1213,7 +1213,7 @@ templates:
   Kindred_Dark_Knight:
     id:            2235
     species:       dynamis_kindred
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 358
     attributes:
       combat:
@@ -1323,7 +1323,7 @@ templates:
   Kindred_Ninja:
     id:            2238
     species:       dynamis_kindred
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 358
     attributes:
       combat:
@@ -1362,7 +1362,7 @@ templates:
   Kindred_Paladin:
     id:            2239
     species:       dynamis_kindred
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 358
     attributes:
       combat:
@@ -1435,7 +1435,7 @@ templates:
   Kindred_Red_Mage:
     id:            2241
     species:       dynamis_kindred
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 358
     attributes:
       combat:
@@ -1509,7 +1509,7 @@ templates:
   Kindred_Summoner:
     id:            2243
     species:       dynamis_kindred
-    spell_list_id: 31
+    spell_list:    kindred_smn
     skill_list_id: 358
     attributes:
       combat:
@@ -1618,7 +1618,7 @@ templates:
   Kindred_White_Mage:
     id:            2250
     species:       dynamis_kindred
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 358
     attributes:
       combat:
@@ -1733,7 +1733,7 @@ templates:
   Manifest_Icon:
     id:            5122
     species:       yagudo_statue
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 95
     attributes:
       combat:
@@ -2024,7 +2024,7 @@ templates:
     id:            2875
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -2067,7 +2067,7 @@ templates:
     id:            5121
     species:       dynamis_ahriman
     type:          [notorious]
-    spell_list_id: 11
+    spell_list:    ahriman
     skill_list_id: 4
     attributes:
       combat:
@@ -2095,7 +2095,7 @@ templates:
   Serjeant_Tombstone:
     id:            3548
     species:       orc_statue
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 93
     attributes:
       combat:
@@ -2132,7 +2132,7 @@ templates:
     id:            3759
     species:       goblin_statue
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 92
     attributes:
       combat:
@@ -2168,7 +2168,7 @@ templates:
     id:            3941
     species:       orc_statue
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 93
     attributes:
       combat:
@@ -2203,7 +2203,7 @@ templates:
     id:            4149
     species:       dynamis_ahriman
     type:          [notorious]
-    spell_list_id: 11
+    spell_list:    ahriman
     skill_list_id: 4
     attributes:
       combat:

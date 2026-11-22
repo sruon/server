@@ -431,7 +431,7 @@ templates:
   Dread_Dealing_Dredodak:
     id:            1114
     species:       moblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 184
     attributes:
       combat:
@@ -454,7 +454,7 @@ templates:
   Earth_Elemental:
     id:            1160
     species:       earth_elemental
-    spell_list_id: 13
+    spell_list:    elemental_earth
     skill_list_id: 101
     attributes:
       combat:
@@ -657,7 +657,7 @@ templates:
   Goblin_Hammerman:
     id:            1674
     species:       goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -728,7 +728,7 @@ templates:
   Goblin_Oilman:
     id:            1691
     species:       goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -767,7 +767,7 @@ templates:
     id:            1703
     species:       goblin
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 133
     attributes:
       combat:
@@ -862,7 +862,7 @@ templates:
     id:            1746
     species:       goblin
     type:          [notorious]
-    spell_list_id: 462
+    spell_list:    goblin_wolfman
     skill_list_id: 1172
     attributes:
       combat:
@@ -936,7 +936,7 @@ templates:
   Grimoire_Guru_Grimogek:
     id:            1816
     species:       moblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 184
     attributes:
       combat:
@@ -959,7 +959,7 @@ templates:
   Moblin_Ashman:
     id:            2685
     species:       moblin
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 184
     attributes:
       combat:
@@ -998,7 +998,7 @@ templates:
   Moblin_Chapman:
     id:            2687
     species:       moblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 184
     attributes:
       combat:
@@ -1036,7 +1036,7 @@ templates:
   Moblin_Coalman:
     id:            2689
     species:       moblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 184
     attributes:
       combat:
@@ -1073,7 +1073,7 @@ templates:
     id:            2689
     display_name:  Moblin_Coalman
     species:       moblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 184
     attributes:
       combat:
@@ -1109,7 +1109,7 @@ templates:
   Moblin_Gasman:
     id:            2694
     species:       moblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 184
     attributes:
       combat:
@@ -1146,7 +1146,7 @@ templates:
     id:            2694
     display_name:  Moblin_Gasman
     species:       moblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 184
     attributes:
       combat:
@@ -1182,7 +1182,7 @@ templates:
   Moblin_Gurneyman:
     id:            2696
     species:       moblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 184
     attributes:
       combat:
@@ -1216,7 +1216,7 @@ templates:
   Moblin_Pickman:
     id:            2698
     species:       moblin
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 184
     attributes:
       combat:
@@ -1250,7 +1250,7 @@ templates:
   Moblin_Pikeman:
     id:            2699
     species:       moblin
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 184
     attributes:
       combat:
@@ -1287,7 +1287,7 @@ templates:
     id:            2699
     display_name:  Moblin_Pikeman
     species:       moblin
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 184
     attributes:
       combat:
@@ -1424,7 +1424,7 @@ templates:
   Moblin_Witchman:
     id:            2708
     species:       moblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 184
     attributes:
       combat:
@@ -1527,7 +1527,7 @@ templates:
   Thunder_Elemental:
     id:            3912
     species:       thunder_elemental
-    spell_list_id: 16
+    spell_list:    elemental_thunder
     skill_list_id: 105
     attributes:
       combat:

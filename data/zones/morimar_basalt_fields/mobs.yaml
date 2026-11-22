@@ -181,7 +181,7 @@ templates:
     id:            6930
     species:       fire_elemental
     type:          [notorious]
-    spell_list_id: 17
+    spell_list:    elemental_fire
     skill_list_id: 102
     attributes:
       combat:
@@ -242,7 +242,7 @@ templates:
   Felsic_Eruca:
     id:            4859
     species:       eruca
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 107
     attributes:
       combat:
@@ -300,7 +300,7 @@ templates:
   Hoarfrost_Gefyrst:
     id:            5105
     species:       gefyrst
-    spell_list_id: 14
+    spell_list:    elemental_ice
     skill_list_id: 103
     attributes:
       combat:
@@ -322,7 +322,7 @@ templates:
     id:            6929
     species:       adamantoise
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2
     attributes:
       combat:
@@ -707,7 +707,7 @@ templates:
   Twirling_Heartwing:
     id:            4779
     species:       heartwing
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 343
     attributes:
       combat:
@@ -725,7 +725,7 @@ templates:
   Volatile_Matamata:
     id:            4867
     species:       matamata
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 275
     attributes:
       combat:

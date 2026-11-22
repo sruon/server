@@ -50,7 +50,7 @@ templates:
     id:            1506
     species:       yagudo
     type:          [notorious, battlefield, event]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 777
     attributes:
       combat:
@@ -75,7 +75,7 @@ templates:
     display_name:  Gessho
     species:       yagudo
     type:          [notorious, battlefield, event]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 777
     attributes:
       combat:
@@ -131,7 +131,7 @@ templates:
     id:            2071
     species:       imp
     type:          [battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 414
     attributes:
       combat:
@@ -158,7 +158,7 @@ templates:
     display_name:  Imp_Bandsman
     species:       imp
     type:          [battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 423
     attributes:
       combat:
@@ -206,7 +206,7 @@ templates:
     display_name:  Lamia_Exon
     species:       lamiae
     type:          [battlefield]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 171
     attributes:
       combat:
@@ -349,7 +349,7 @@ templates:
     id:            4123
     species:       automaton
     type:          [notorious, battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 426
     attributes:
       combat:

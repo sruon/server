@@ -46,7 +46,7 @@ templates:
     id:            5711
     species:       pixie
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 195
     attributes:
       jobs: [blm, blm]
@@ -74,7 +74,7 @@ templates:
     id:            5703
     species:       red_golems
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 135
     attributes:
       combat:
@@ -100,7 +100,7 @@ templates:
     id:            5699
     species:       orange_wyrm
     type:          [notorious]
-    spell_list_id: 78
+    spell_list:    tiamat
     skill_list_id: 393
     attributes:
       combat:
@@ -130,7 +130,7 @@ templates:
     id:            5700
     species:       dragon
     type:          [notorious]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 87
     attributes:
       combat:
@@ -213,10 +213,10 @@ templates:
         type: [scripted]
 
   Bucca:
-    id:            5710
-    species:       pixie
-    type:          [notorious]
-    spell_list_id: 21
+    id:         5710
+    species:    pixie
+    type:       [notorious]
+    spell_list: beastmen_blm
     attributes:
       combat:
         skill: staff
@@ -304,7 +304,7 @@ templates:
   Eschan_Corse:
     id:            6482
     species:       corse
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 74
     attributes:
       combat:
@@ -516,7 +516,7 @@ templates:
   Eschan_Sorcerer:
     id:            6569
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -637,7 +637,7 @@ templates:
     id:            5538
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -727,7 +727,7 @@ templates:
     id:            5702
     species:       hecteye
     type:          [notorious]
-    spell_list_id: 10
+    spell_list:    hecteyes
     skill_list_id: 139
     attributes:
       combat:
@@ -776,7 +776,7 @@ templates:
     species:       worm
     type:          [notorious]
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -933,7 +933,7 @@ templates:
     id:            6816
     species:       corse
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 74
     attributes:
       combat:
@@ -983,7 +983,7 @@ templates:
     id:            5723
     species:       skeleton
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 227
     attributes:
       combat:
@@ -1033,7 +1033,7 @@ templates:
     id:            5712
     species:       gallu
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 467
     attributes:
       combat:
@@ -1110,7 +1110,7 @@ templates:
     id:            5705
     species:       taurus
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 240
     attributes:
       combat:
@@ -1206,7 +1206,7 @@ templates:
     id:            5619
     species:       harpeia
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 471
     attributes:
       combat:
@@ -1360,7 +1360,7 @@ templates:
     id:            5616
     species:       cerberus
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 62
     attributes:
       combat:

@@ -6,7 +6,7 @@ templates:
     id:            555
     species:       ghost
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -30,7 +30,7 @@ templates:
   Chillgaze_Foddrud:
     id:            719
     species:       orc
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 189
     attributes:
       combat:
@@ -390,7 +390,7 @@ templates:
     id:            3019
     species:       orc
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 189
     attributes:
       combat:
@@ -430,7 +430,7 @@ templates:
     id:            3027
     species:       warchief
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 189
     attributes:
       combat:
@@ -502,7 +502,7 @@ templates:
   Orcish_Protector:
     id:            3031
     species:       orc
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 189
     attributes:
       combat:
@@ -533,7 +533,7 @@ templates:
   Orcish_Trooper:
     id:            3039
     species:       orc
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 189
     attributes:
       combat:
@@ -611,7 +611,7 @@ templates:
   Orcish_Warchief:
     id:            3043
     species:       orc
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 189
     attributes:
       combat:
@@ -651,7 +651,7 @@ templates:
     id:            3044
     species:       orc
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 189
     attributes:
       combat:
@@ -693,7 +693,7 @@ templates:
   Orcish_Zerker:
     id:            3046
     species:       orc
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 189
     attributes:
       combat:
@@ -739,7 +739,7 @@ templates:
     id:            3075
     species:       warchief
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 189
     attributes:
       combat:
@@ -809,7 +809,7 @@ templates:
   Rictusgrin_Prakpok:
     id:            3362
     species:       orc
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 189
     attributes:
       combat:

@@ -5,7 +5,7 @@ templates:
   Air_Elemental:
     id:            71
     species:       air_elemental
-    spell_list_id: 12
+    spell_list:    elemental_air
     skill_list_id: 99
     attributes:
       combat:
@@ -70,7 +70,7 @@ templates:
     id:            6103
     species:       golem
     type:          [notorious]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 2047
     attributes:
       combat:
@@ -454,7 +454,7 @@ templates:
     id:            5188
     species:       flytrap
     type:          [notorious]
-    spell_list_id: 303
+    spell_list:    lizardtrap
     skill_list_id: 114
     attributes:
       combat:
@@ -508,7 +508,7 @@ templates:
     id:            2720
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -653,7 +653,7 @@ templates:
     id:            2910
     species:       vampyr
     type:          [notorious]
-    spell_list_id: 293
+    spell_list:    nosferatu
     skill_list_id: 309
     attributes:
       combat:
@@ -756,7 +756,7 @@ templates:
     id:            3089
     species:       corpselight
     type:          [notorious, called]
-    spell_list_id: 560
+    spell_list:    pandemoniumx_blm
     skill_list_id: 91
     attributes:
       combat:
@@ -799,7 +799,7 @@ templates:
     id:            3090
     species:       dvergr
     type:          [notorious]
-    spell_list_id: 560
+    spell_list:    pandemoniumx_blm
     skill_list_id: 316
     attributes:
       combat:
@@ -868,7 +868,7 @@ templates:
     display_name:  Pandemonium_Warden
     species:       warden
     type:          [notorious]
-    spell_list_id: 560
+    spell_list:    pandemoniumx_blm
     skill_list_id: 316
     attributes:
       combat:
@@ -937,7 +937,7 @@ templates:
     display_name:  Pandemonium_Warden
     species:       warden
     type:          [notorious]
-    spell_list_id: 560
+    spell_list:    pandemoniumx_blm
     skill_list_id: 316
     attributes:
       combat:
@@ -1006,7 +1006,7 @@ templates:
     display_name:  Pandemonium_Warden
     species:       warden
     type:          [notorious]
-    spell_list_id: 560
+    spell_list:    pandemoniumx_blm
     skill_list_id: 316
     attributes:
       combat:
@@ -1075,7 +1075,7 @@ templates:
     display_name:  Pandemonium_Warden
     species:       warden
     type:          [notorious]
-    spell_list_id: 560
+    spell_list:    pandemoniumx_blm
     skill_list_id: 316
     attributes:
       combat:
@@ -1144,7 +1144,7 @@ templates:
     display_name:  Pandemonium_Warden
     species:       warden
     type:          [notorious]
-    spell_list_id: 560
+    spell_list:    pandemoniumx_blm
     skill_list_id: 316
     attributes:
       combat:
@@ -1213,7 +1213,7 @@ templates:
     display_name:  Pandemonium_Warden
     species:       warden
     type:          [notorious]
-    spell_list_id: 560
+    spell_list:    pandemoniumx_blm
     skill_list_id: 316
     attributes:
       combat:
@@ -1553,7 +1553,7 @@ templates:
     id:            5335
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:

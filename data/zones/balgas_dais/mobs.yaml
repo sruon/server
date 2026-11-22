@@ -90,7 +90,7 @@ templates:
     id:            425
     species:       crawler
     type:          [notorious, battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 79
     attributes:
       combat:
@@ -166,7 +166,7 @@ templates:
     id:            684
     species:       yagudo
     type:          [battlefield]
-    spell_list_id: 30
+    spell_list:    yagudo_smn
     skill_list_id: 360
     attributes:
       combat:
@@ -194,7 +194,7 @@ templates:
     id:            6868
     species:       mimic
     type:          [notorious, battlefield]
-    spell_list_id: 568
+    spell_list:    chest_oplenty
     skill_list_id: 2114
     attributes:
       combat:
@@ -227,7 +227,7 @@ templates:
     id:            6869
     species:       mimic
     type:          [notorious, battlefield]
-    spell_list_id: 568
+    spell_list:    chest_oplenty
     skill_list_id: 2114
     attributes:
       combat:
@@ -260,7 +260,7 @@ templates:
     id:            874
     species:       yagudo
     type:          [battlefield]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 360
     attributes:
       combat:
@@ -288,7 +288,7 @@ templates:
     display_name:  Cuu_Doko_the_Blizzard
     species:       yagudo
     type:          [battlefield]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 360
     attributes:
       combat:
@@ -383,7 +383,7 @@ templates:
     id:            1149
     species:       korrigan
     type:          [battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 178
     attributes:
       combat:
@@ -413,7 +413,7 @@ templates:
     display_name:  Dvorovoi
     species:       korrigan
     type:          [battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 178
     attributes:
       combat:
@@ -464,7 +464,7 @@ templates:
     id:            1601
     species:       yagudo
     type:          [battlefield]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 360
     attributes:
       combat:
@@ -491,7 +491,7 @@ templates:
     display_name:  Gii_Jaha_the_Raucous
     species:       yagudo
     type:          [battlefield]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 360
     attributes:
       combat:
@@ -515,7 +515,7 @@ templates:
     id:            1602
     species:       treant
     type:          [battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 245
     attributes:
       combat:
@@ -562,7 +562,7 @@ templates:
     id:            1748
     species:       treant
     type:          [battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 245
     attributes:
       combat:
@@ -586,7 +586,7 @@ templates:
     id:            2171
     species:       yagudo
     type:          [notorious, battlefield]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 360
     attributes:
       combat:
@@ -613,7 +613,7 @@ templates:
     id:            6875
     species:       yagudo
     type:          [notorious, battlefield]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 360
     attributes:
       combat:
@@ -638,7 +638,7 @@ templates:
     id:            2258
     species:       batons
     type:          [notorious, battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 61
     attributes:
       combat:
@@ -664,7 +664,7 @@ templates:
     id:            2259
     species:       coins
     type:          [notorious, battlefield]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 61
     attributes:
       combat:
@@ -690,7 +690,7 @@ templates:
     id:            2260
     species:       cups
     type:          [notorious, battlefield]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 61
     attributes:
       combat:
@@ -716,7 +716,7 @@ templates:
     id:            2261
     species:       swords
     type:          [notorious, battlefield]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 61
     attributes:
       combat:
@@ -868,7 +868,7 @@ templates:
     display_name:  Maat
     species:       humes
     type:          [notorious, battlefield]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 335
     attributes:
       combat:
@@ -916,7 +916,7 @@ templates:
     id:            2467
     species:       coeurl
     type:          [notorious, battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 469
     attributes:
       combat:
@@ -1036,7 +1036,7 @@ templates:
     id:            2822
     species:       dhalmel
     type:          [battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 80
     attributes:
       combat:
@@ -1085,7 +1085,7 @@ templates:
     id:            2927
     species:       yagudo
     type:          [battlefield]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 360
     attributes:
       combat:
@@ -1137,7 +1137,7 @@ templates:
     id:            2990
     species:       opo_opo
     type:          [battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 188
     attributes:
       combat:
@@ -1164,7 +1164,7 @@ templates:
     id:            3116
     species:       leech
     type:          [battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 724
     attributes:
       combat:
@@ -1213,7 +1213,7 @@ templates:
     id:            3132
     species:       leech
     type:          [battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 723
     attributes:
       combat:
@@ -1238,7 +1238,7 @@ templates:
     id:            3214
     species:       leech
     type:          [battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 722
     attributes:
       combat:
@@ -1263,7 +1263,7 @@ templates:
     id:            3283
     species:       batons
     type:          [notorious, battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 61
     attributes:
       combat:
@@ -1293,7 +1293,7 @@ templates:
     id:            3285
     species:       cups
     type:          [notorious, battlefield]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 61
     attributes:
       combat:
@@ -1325,7 +1325,7 @@ templates:
     id:            3515
     species:       ahriman
     type:          [notorious, battlefield]
-    spell_list_id: 11
+    spell_list:    ahriman
     skill_list_id: 4
     attributes:
       combat:
@@ -1376,7 +1376,7 @@ templates:
     id:            4077
     species:       treant
     type:          [battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 245
     attributes:
       combat:
@@ -1478,7 +1478,7 @@ templates:
     id:            6874
     species:       yagudo
     type:          [notorious, battlefield]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 360
     attributes:
       combat:
@@ -1520,7 +1520,7 @@ templates:
   Yagudos_Elemental:
     id:            4454
     species:       air_elemental
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 99
     attributes:
       combat:
@@ -1543,7 +1543,7 @@ templates:
     id:            4474
     species:       yagudo
     type:          [battlefield]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 360
     attributes:
       combat:
@@ -1570,7 +1570,7 @@ templates:
     display_name:  Yoo_Mihi_the_Haze
     species:       yagudo
     type:          [battlefield]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 360
     attributes:
       combat:
@@ -1618,7 +1618,7 @@ templates:
     id:            4526
     species:       yagudo
     type:          [battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 360
     attributes:
       combat:
@@ -1646,7 +1646,7 @@ templates:
     display_name:  Zuu_Xowu_the_Darksmoke
     species:       yagudo
     type:          [battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 360
     attributes:
       combat:

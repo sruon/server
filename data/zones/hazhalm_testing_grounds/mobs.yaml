@@ -6,7 +6,7 @@ templates:
     id:            133
     species:       corse
     type:          [notorious, battlefield]
-    spell_list_id: 537
+    spell_list:    andhrimnir
     skill_list_id: 2046
     attributes:
       combat:
@@ -64,7 +64,7 @@ templates:
     id:            234
     species:       red_poroggo
     type:          [notorious, battlefield]
-    spell_list_id: 540
+    spell_list:    ariri_samariri
     skill_list_id: 2053
     attributes:
       combat:
@@ -133,7 +133,7 @@ templates:
     id:            334
     species:       ephramadian
     type:          [notorious, battlefield]
-    spell_list_id: 538
+    spell_list:    balrahn
     skill_list_id: 234
     attributes:
       combat:
@@ -218,7 +218,7 @@ templates:
     display_name:  Berserkr
     species:       kindred
     type:          [notorious]
-    spell_list_id: 533
+    spell_list:    berserkr_blm
     skill_list_id: 358
     attributes:
       combat:
@@ -250,7 +250,7 @@ templates:
     display_name:  Berserkr
     species:       kindred
     type:          [notorious]
-    spell_list_id: 534
+    spell_list:    berserkr_drk
     skill_list_id: 358
     attributes:
       combat:
@@ -309,7 +309,7 @@ templates:
     id:            521
     species:       kindred
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 358
     attributes:
       combat:
@@ -393,7 +393,7 @@ templates:
     id:            571
     species:       kindred
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 358
     attributes:
       combat:
@@ -487,7 +487,7 @@ templates:
     id:            829
     species:       ghost
     type:          [notorious]
-    spell_list_id: 522
+    spell_list:    craven_einherjar
     skill_list_id: 121
     attributes:
       combat:
@@ -518,7 +518,7 @@ templates:
     display_name:  Craven_Einherjar
     species:       bhoot
     type:          [notorious]
-    spell_list_id: 522
+    spell_list:    craven_einherjar
     skill_list_id: 121
     attributes:
       combat:
@@ -562,7 +562,7 @@ templates:
     display_name:  Dark_Elemental
     species:       dark_elemental
     type:          [notorious]
-    spell_list_id: 523
+    spell_list:    dark_elemental_einherjar
     skill_list_id: 100
     attributes:
       combat:
@@ -704,7 +704,7 @@ templates:
     species:       worm
     type:          [notorious]
     roam:          [worm]
-    spell_list_id: 524
+    spell_list:    einherjar_eater
     skill_list_id: 258
     attributes:
       combat:
@@ -733,7 +733,7 @@ templates:
     id:            1273
     species:       green_poroggo
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 196
     attributes:
       combat:
@@ -929,7 +929,7 @@ templates:
     id:            1870
     species:       kindred
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 358
     attributes:
       combat:
@@ -958,7 +958,7 @@ templates:
     id:            1871
     species:       kindred
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 358
     attributes:
       combat:
@@ -1147,7 +1147,7 @@ templates:
     id:            1927
     species:       valkyr
     type:          [called, battlefield]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 115
     attributes:
       combat:
@@ -1251,7 +1251,7 @@ templates:
     id:            1962
     species:       kindred
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 358
     attributes:
       combat:
@@ -1306,7 +1306,7 @@ templates:
     id:            1997
     species:       kindred
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 358
     attributes:
       combat:
@@ -1438,7 +1438,7 @@ templates:
     id:            2049
     species:       bhoot
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 52
     attributes:
       combat:
@@ -1496,7 +1496,7 @@ templates:
     id:            2422
     species:       flan
     type:          [notorious]
-    spell_list_id: 530
+    spell_list:    liquified_einherjar
     skill_list_id: 112
     attributes:
       combat:
@@ -1531,7 +1531,7 @@ templates:
     id:            7083
     species:       bomb
     type:          [notorious]
-    spell_list_id: 529
+    spell_list:    logi
     skill_list_id: 2039
     attributes:
       combat:
@@ -1562,7 +1562,7 @@ templates:
     display_name:  Logi
     species:       bomb
     type:          [notorious]
-    spell_list_id: 529
+    spell_list:    logi
     skill_list_id: 2039
     attributes:
       combat:
@@ -1621,7 +1621,7 @@ templates:
     id:            2561
     species:       ahriman
     type:          [notorious]
-    spell_list_id: 531
+    spell_list:    margygr
     skill_list_id: 4
     attributes:
       combat:
@@ -1679,7 +1679,7 @@ templates:
     id:            2716
     species:       flan
     type:          [notorious, battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 2052
     attributes:
       combat:
@@ -1735,7 +1735,7 @@ templates:
     id:            2756
     species:       dvergr
     type:          [notorious, battlefield]
-    spell_list_id: 541
+    spell_list:    motsognir
     skill_list_id: 90
     attributes:
       combat:
@@ -1857,7 +1857,7 @@ templates:
     id:            2941
     species:       odin
     type:          [battlefield]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 41
     attributes:
       combat:
@@ -1894,7 +1894,7 @@ templates:
     id:            2942
     species:       imp
     type:          [notorious]
-    spell_list_id: 527
+    spell_list:    odins_jester
     skill_list_id: 165
     attributes:
       combat:
@@ -1927,7 +1927,7 @@ templates:
     id:            2943
     species:       imp
     type:          [notorious]
-    spell_list_id: 527
+    spell_list:    odins_jester
     skill_list_id: 165
     attributes:
       combat:
@@ -1987,7 +1987,7 @@ templates:
     id:            3062
     species:       valkyr
     type:          [called, battlefield]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 115
     attributes:
       combat:
@@ -2012,7 +2012,7 @@ templates:
     id:            3349
     species:       kindred
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 358
     attributes:
       combat:
@@ -2092,7 +2092,7 @@ templates:
     display_name:  Rotting_Huskarl
     species:       skeleton
     type:          [notorious]
-    spell_list_id: 525
+    spell_list:    rotting_huskarl_blm
     skill_list_id: 2033
     attributes:
       combat:
@@ -2123,7 +2123,7 @@ templates:
     display_name:  Rotting_Huskarl
     species:       skeleton
     type:          [notorious]
-    spell_list_id: 526
+    spell_list:    rotting_huskarl_drk
     skill_list_id: 2033
     attributes:
       combat:
@@ -2365,7 +2365,7 @@ templates:
     display_name:  Soulflayer
     species:       soulflayer
     type:          [notorious]
-    spell_list_id: 532
+    spell_list:    soulflayer_einherjar
     skill_list_id: 2040
     attributes:
       combat:
@@ -2466,7 +2466,7 @@ templates:
     id:            3921
     species:       kindred
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 358
     attributes:
       combat:
@@ -2658,7 +2658,7 @@ templates:
     id:            4130
     species:       vampyr
     type:          [notorious, battlefield]
-    spell_list_id: 542
+    spell_list:    vampyr_jarl
     skill_list_id: 2054
     attributes:
       combat:
@@ -2707,7 +2707,7 @@ templates:
     display_name:  Vanquished_Einherjar
     species:       draugar
     type:          [notorious]
-    spell_list_id: 536
+    spell_list:    vanquished_einherjar_blm
     skill_list_id: 88
     attributes:
       combat:
@@ -2741,7 +2741,7 @@ templates:
     display_name:  Vanquished_Einherjar
     species:       draugar
     type:          [notorious]
-    spell_list_id: 535
+    spell_list:    vanquished_einherjar_drk
     skill_list_id: 88
     attributes:
       combat:
@@ -2807,7 +2807,7 @@ templates:
     id:            4276
     species:       hecteye
     type:          [notorious]
-    spell_list_id: 528
+    spell_list:    waldgeist
     skill_list_id: 2037
     attributes:
       combat:

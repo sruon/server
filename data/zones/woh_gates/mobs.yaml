@@ -41,7 +41,7 @@ templates:
   Bergschrund_Gefyrst:
     id:            6697
     species:       gefyrst
-    spell_list_id: 14
+    spell_list:    elemental_ice
     skill_list_id: 103
     attributes:
       combat:
@@ -302,7 +302,7 @@ templates:
     id:            6421
     species:       morion
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -525,7 +525,7 @@ templates:
   Touched_Gefyrst:
     id:            6698
     species:       gefyrst
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 103
     attributes:
       combat:
@@ -571,7 +571,7 @@ templates:
   Velkk_Junglemancer:
     id:            5220
     species:       blue_velkk
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 342
     attributes:
       combat:
@@ -596,7 +596,7 @@ templates:
   Velkk_Mindmelter:
     id:            5218
     species:       red_velkk
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 342
     attributes:
       combat:

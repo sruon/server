@@ -5,7 +5,7 @@ templates:
   Air_Elemental:
     id:            71
     species:       air_elemental
-    spell_list_id: 12
+    spell_list:    elemental_air
     skill_list_id: 99
     attributes:
       combat:
@@ -147,7 +147,7 @@ templates:
   Dustbuster:
     id:            1144
     species:       magic_pot
-    spell_list_id: 36
+    spell_list:    magicpot
     skill_list_id: 175
     attributes:
       combat:
@@ -187,7 +187,7 @@ templates:
   Earth_Elemental:
     id:            1160
     species:       earth_elemental
-    spell_list_id: 13
+    spell_list:    elemental_earth
     skill_list_id: 101
     attributes:
       combat:
@@ -251,7 +251,7 @@ templates:
   Fire_Elemental:
     id:            1341
     species:       fire_elemental
-    spell_list_id: 17
+    spell_list:    elemental_fire
     skill_list_id: 102
     attributes:
       combat:
@@ -283,7 +283,7 @@ templates:
   Ice_Elemental:
     id:            2043
     species:       ice_elemental
-    spell_list_id: 14
+    spell_list:    elemental_ice
     skill_list_id: 103
     attributes:
       combat:
@@ -347,7 +347,7 @@ templates:
   Mystic_Weapon:
     id:            2792
     species:       evil_weapon
-    spell_list_id: 42
+    spell_list:    evilweapon
     skill_list_id: 110
     attributes:
       combat:
@@ -398,7 +398,7 @@ templates:
     id:            3763
     species:       magic_pot
     type:          [notorious]
-    spell_list_id: 36
+    spell_list:    magicpot
     skill_list_id: 175
     attributes:
       combat:
@@ -438,7 +438,7 @@ templates:
   Thunder_Elemental:
     id:            3912
     species:       thunder_elemental
-    spell_list_id: 16
+    spell_list:    elemental_thunder
     skill_list_id: 105
     attributes:
       combat:
@@ -520,7 +520,7 @@ templates:
   Water_Elemental:
     id:            4309
     species:       water_elemental
-    spell_list_id: 15
+    spell_list:    elemental_water
     skill_list_id: 106
     attributes:
       combat:

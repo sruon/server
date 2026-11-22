@@ -119,7 +119,7 @@ templates:
   Debauched_Unseelie:
     id:            5240
     species:       pixie
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 195
     attributes:
       combat:
@@ -195,9 +195,9 @@ templates:
         respawn: 300
 
   Enshrouded_Cyhiraeth:
-    id:            5251
-    species:       corpselight
-    spell_list_id: 21
+    id:         5251
+    species:    corpselight
+    spell_list: beastmen_blm
     attributes:
       combat:
         skill: club
@@ -269,7 +269,7 @@ templates:
   Horrific_Bhoot:
     id:            5260
     species:       bhoot
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 52
     attributes:
       combat:
@@ -316,7 +316,7 @@ templates:
     id:            5316
     display_name:  Legionless_Draugar
     species:       draugar
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 89
     attributes:
       combat:
@@ -361,7 +361,7 @@ templates:
     id:            5244
     display_name:  Legionless_Draugar
     species:       draugar
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 89
     attributes:
       combat:
@@ -404,7 +404,7 @@ templates:
   Phlegmatic_Byrgen:
     id:            5241
     species:       byrgen
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 100
     attributes:
       combat:
@@ -454,7 +454,7 @@ templates:
     display_name:  Procrustean_Draugar
     species:       draugar
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 89
     attributes:
       combat:
@@ -496,7 +496,7 @@ templates:
   Shunned_Deeparrow:
     id:            5237
     species:       fomor
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 115
     attributes:
       combat:
@@ -518,7 +518,7 @@ templates:
   Shunned_Elementalist:
     id:            5254
     species:       fomor
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 115
     attributes:
       combat:
@@ -540,7 +540,7 @@ templates:
   Shunned_Engraver:
     id:            5255
     species:       fomor
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 115
     attributes:
       combat:
@@ -562,7 +562,7 @@ templates:
   Shunned_Fluteslinger:
     id:            5253
     species:       fomor
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 115
     attributes:
       combat:
@@ -584,7 +584,7 @@ templates:
   Shunned_Hexer:
     id:            5239
     species:       fomor
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 115
     attributes:
       combat:
@@ -606,7 +606,7 @@ templates:
   Shunned_Nightstalker:
     id:            5238
     species:       fomor
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 115
     attributes:
       combat:
@@ -628,7 +628,7 @@ templates:
   Shunned_Saboteur:
     id:            5252
     species:       fomor
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 115
     attributes:
       combat:
@@ -650,7 +650,7 @@ templates:
   Shunned_Valiant:
     id:            5256
     species:       fomor
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 115
     attributes:
       combat:
@@ -713,7 +713,7 @@ templates:
     id:            5266
     species:       fomor
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 115
     attributes:
       combat:

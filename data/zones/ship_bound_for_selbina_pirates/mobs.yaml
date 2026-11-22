@@ -6,7 +6,7 @@ templates:
     id:            428
     species:       skeleton
     type:          [notorious]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 227
     attributes:
       combat:
@@ -38,7 +38,7 @@ templates:
     id:            5878
     display_name:  Crossbones
     species:       skeleton
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 227
     attributes:
       combat:
@@ -94,7 +94,7 @@ templates:
     id:            1213
     species:       ghost
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -172,7 +172,7 @@ templates:
   Phantom:
     id:            3127
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -367,7 +367,7 @@ templates:
   Ship_Wight:
     id:            3605
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:

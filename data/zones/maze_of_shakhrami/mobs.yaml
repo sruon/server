@@ -6,7 +6,7 @@ templates:
     id:            28
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -46,7 +46,7 @@ templates:
   Air_Elemental:
     id:            71
     species:       air_elemental
-    spell_list_id: 12
+    spell_list:    elemental_air
     skill_list_id: 99
     attributes:
       combat:
@@ -110,7 +110,7 @@ templates:
     id:            228
     species:       hecteye
     type:          [notorious]
-    spell_list_id: 10
+    spell_list:    hecteyes
     skill_list_id: 139
     attributes:
       combat:
@@ -345,7 +345,7 @@ templates:
     display_name:  Dark_Elemental
     species:       dark_elemental
     type:          [notorious]
-    spell_list_id: 18
+    spell_list:    elemental_dark
     skill_list_id: 100
     attributes:
       combat:
@@ -374,7 +374,7 @@ templates:
   Earth_Elemental:
     id:            1160
     species:       earth_elemental
-    spell_list_id: 13
+    spell_list:    elemental_earth
     skill_list_id: 101
     attributes:
       combat:
@@ -599,7 +599,7 @@ templates:
   Goblin_Gambler:
     id:            1666
     species:       goblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -639,7 +639,7 @@ templates:
   Goblin_Leecher:
     id:            1683
     species:       goblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:
@@ -769,7 +769,7 @@ templates:
   Goblin_Shaman:
     id:            1710
     species:       goblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -851,7 +851,7 @@ templates:
   Goblin_Tinkerer:
     id:            1738
     species:       armored_goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -1079,7 +1079,7 @@ templates:
     id:            2599
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -1285,7 +1285,7 @@ templates:
     species:       worm
     type:          [notorious]
     roam:          [worm]
-    spell_list_id: 181
+    spell_list:    trembler_tabitha
     skill_list_id: 258
     attributes:
       combat:
@@ -1343,7 +1343,7 @@ templates:
   Wendigo_blm_MoS:
     id:            6568
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -1372,7 +1372,7 @@ templates:
   Wight_blm:
     id:            6570
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:

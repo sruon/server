@@ -8,7 +8,7 @@ templates:
     species:       fire_elemental
     type:          [battlefield]
     roam:          [scripted]
-    spell_list_id: 17
+    spell_list:    elemental_fire
     skill_list_id: 102
     attributes:
       combat:

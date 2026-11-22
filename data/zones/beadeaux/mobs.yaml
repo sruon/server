@@ -46,7 +46,7 @@ templates:
     display_name:  BiGho_Headtaker
     species:       quadav
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 202
     attributes:
       combat:
@@ -141,7 +141,7 @@ templates:
   Brass_Quadav:
     id:            525
     species:       quadav
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 202
     attributes:
       combat:
@@ -182,7 +182,7 @@ templates:
   Bronze_Quadav:
     id:            538
     species:       quadav
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 202
     attributes:
       combat:
@@ -411,7 +411,7 @@ templates:
   Darksteel_Quadav:
     id:            907
     species:       quadav
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 202
     attributes:
       combat:
@@ -524,7 +524,7 @@ templates:
   Emerald_Quadav:
     id:            1207
     species:       quadav
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 202
     attributes:
       combat:
@@ -566,7 +566,7 @@ templates:
     id:            1482
     species:       quadav
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 202
     attributes:
       combat:
@@ -605,7 +605,7 @@ templates:
   Garnet_Quadav:
     id:            1472
     species:       quadav
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 202
     attributes:
       combat:
@@ -649,7 +649,7 @@ templates:
     id:            1509
     species:       quadav
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 202
     attributes:
       combat:
@@ -827,7 +827,7 @@ templates:
   Iron_Quadav:
     id:            2102
     species:       quadav
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 202
     attributes:
       combat:
@@ -949,7 +949,7 @@ templates:
     id:            7089
     species:       quadav
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 202
     attributes:
       combat:
@@ -1011,7 +1011,7 @@ templates:
   Mythril_Quadav:
     id:            2795
     species:       quadav
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 202
     attributes:
       combat:
@@ -1055,7 +1055,7 @@ templates:
     id:            7090
     species:       quadav
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 202
     attributes:
       combat:
@@ -1175,7 +1175,7 @@ templates:
   Sapphire_Quadav:
     id:            3463
     species:       quadav
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 202
     attributes:
       combat:
@@ -1262,7 +1262,7 @@ templates:
   Spinel_Quadav:
     id:            3731
     species:       quadav
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 202
     attributes:
       combat:
@@ -1301,7 +1301,7 @@ templates:
   Steel_Quadav:
     id:            3769
     species:       quadav
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 202
     attributes:
       combat:
@@ -1340,7 +1340,7 @@ templates:
   Thunder_Elemental:
     id:            3912
     species:       thunder_elemental
-    spell_list_id: 16
+    spell_list:    elemental_thunder
     skill_list_id: 105
     attributes:
       combat:
@@ -1373,7 +1373,7 @@ templates:
   Topaz_Quadav:
     id:            3974
     species:       quadav
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 202
     attributes:
       combat:
@@ -1413,7 +1413,7 @@ templates:
   Water_Elemental:
     id:            4309
     species:       water_elemental
-    spell_list_id: 15
+    spell_list:    elemental_water
     skill_list_id: 106
     attributes:
       combat:
@@ -1446,7 +1446,7 @@ templates:
   Zircon_Quadav:
     id:            4506
     species:       quadav
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 202
     attributes:
       combat:
@@ -1486,7 +1486,7 @@ templates:
     id:            4522
     species:       quadav
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 202
     attributes:
       combat:

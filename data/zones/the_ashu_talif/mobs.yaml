@@ -56,7 +56,7 @@ templates:
     display_name:  Ashu_Talif_Crew
     species:       fomor
     type:          [notorious, battlefield]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 115
     attributes:
       combat:
@@ -217,7 +217,7 @@ templates:
     id:            1506
     species:       yagudo
     type:          [notorious, battlefield, event]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 777
     attributes:
       combat:
@@ -244,7 +244,7 @@ templates:
     id:            1776
     species:       humes
     type:          [notorious, event]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 146
     attributes:
       combat:
@@ -279,7 +279,7 @@ templates:
   Swiftwinged_Gekko:
     id:            3826
     species:       imp
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       combat:
@@ -299,7 +299,7 @@ templates:
   Watch_Imp:
     id:            4305
     species:       imp
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       combat:
@@ -319,7 +319,7 @@ templates:
   Windjammer_Imp:
     id:            4348
     species:       imp
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       combat:

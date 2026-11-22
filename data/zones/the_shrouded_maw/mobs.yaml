@@ -7,7 +7,7 @@ templates:
     display_name:  Diabolos
     species:       diabolos
     type:          [notorious, battlefield]
-    spell_list_id: 115
+    spell_list:    diabolos_darkness_named
     skill_list_id: 378
     attributes:
       combat:
@@ -36,7 +36,7 @@ templates:
     display_name:  Diabolos
     species:       diabolos
     type:          [notorious, battlefield]
-    spell_list_id: 149
+    spell_list:    diabolos_waking_dream
     skill_list_id: 378
     attributes:
       combat:
@@ -64,7 +64,7 @@ templates:
     display_name:  Diabolos
     species:       diabolos
     type:          [notorious, battlefield]
-    spell_list_id: 149
+    spell_list:    diabolos_waking_dream
     skill_list_id: 378
     attributes:
       combat:
@@ -140,7 +140,7 @@ templates:
     id:            3104
     species:       diremite
     type:          [battlefield]
-    spell_list_id: 110
+    spell_list:    pasuk
     skill_list_id: 81
     attributes:
       combat:

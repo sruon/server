@@ -31,7 +31,7 @@ templates:
     id:            135
     species:       worm
     roam:          [worm]
-    spell_list_id: 272
+    spell_list:    anemic_aloysius
     skill_list_id: 953
     attributes:
       combat:
@@ -65,7 +65,7 @@ templates:
     id:            195
     species:       khimaira
     type:          [notorious]
-    spell_list_id: 273
+    spell_list:    apademak
     skill_list_id: 954
     attributes:
       combat:
@@ -154,9 +154,9 @@ templates:
           item:   callers_earring
 
   Baelfyr:
-    id:            323
-    species:       baelfyr
-    spell_list_id: 3
+    id:         323
+    species:    baelfyr
+    spell_list: beastmen_rdm
     attributes:
       combat:
         skill: club
@@ -273,7 +273,7 @@ templates:
   Byrgen:
     id:            593
     species:       byrgen
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 100
     attributes:
       combat:
@@ -330,7 +330,7 @@ templates:
     id:            722
     species:       shiva
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 44
     attributes:
       combat:
@@ -358,7 +358,7 @@ templates:
   Crag_Limule:
     id:            826
     species:       limule
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 173
     attributes:
       combat:
@@ -390,7 +390,7 @@ templates:
     id:            1025
     species:       khimaira
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 168
     attributes:
       combat:
@@ -423,7 +423,7 @@ templates:
     id:            1173
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -461,7 +461,7 @@ templates:
     id:            1212
     species:       gargouille
     type:          [notorious]
-    spell_list_id: 274
+    spell_list:    empousa
     skill_list_id: 961
     attributes:
       combat:
@@ -493,7 +493,7 @@ templates:
   Ermit_Imp:
     id:            1256
     species:       imp
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       combat:
@@ -525,7 +525,7 @@ templates:
   Floe_Amoeban:
     id:            1371
     species:       amoeban
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 5
     attributes:
       combat:
@@ -573,9 +573,9 @@ templates:
         type: [scripted]
 
   Gefyrst:
-    id:            1487
-    species:       gefyrst
-    spell_list_id: 3
+    id:         1487
+    species:    gefyrst
+    spell_list: beastmen_rdm
     attributes:
       combat:
         skill: club
@@ -624,7 +624,7 @@ templates:
   Ice_Elemental:
     id:            2043
     species:       ice_elemental
-    spell_list_id: 14
+    spell_list:    elemental_ice
     skill_list_id: 103
     attributes:
       combat:
@@ -648,7 +648,7 @@ templates:
   Iceberg_Murex:
     id:            2040
     species:       murex
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 187
     attributes:
       combat:
@@ -787,7 +787,7 @@ templates:
     id:            2106
     species:       black_wyrm
     type:          [notorious]
-    spell_list_id: 275
+    spell_list:    isgebind
     skill_list_id: 965
     attributes:
       combat:
@@ -903,7 +903,7 @@ templates:
     id:            2952
     species:       leviathan
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 40
     attributes:
       combat:
@@ -965,7 +965,7 @@ templates:
     id:            3092
     species:       omega
     type:          [notorious]
-    spell_list_id: 276
+    spell_list:    pantokrator_100_to_25
     skill_list_id: 968
     attributes:
       combat:
@@ -992,7 +992,7 @@ templates:
   Range_Clionid:
     id:            3322
     species:       clionid
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 65
     attributes:
       combat:
@@ -1277,7 +1277,7 @@ templates:
   Ungeweder:
     id:            4099
     species:       ungeweder
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 105
     attributes:
       combat:
@@ -1300,7 +1300,7 @@ templates:
     id:            4104
     species:       snoll
     type:          [notorious]
-    spell_list_id: 278
+    spell_list:    upas_kamuy
     skill_list_id: 972
     attributes:
       combat:
@@ -1361,7 +1361,7 @@ templates:
     id:            4223
     species:       wyvern
     type:          [notorious]
-    spell_list_id: 279
+    spell_list:    veri_selen
     skill_list_id: 973
     attributes:
       combat:
@@ -1403,7 +1403,7 @@ templates:
   Water_Elemental:
     id:            4309
     species:       water_elemental
-    spell_list_id: 15
+    spell_list:    elemental_water
     skill_list_id: 106
     attributes:
       combat:

@@ -5,7 +5,7 @@ templates:
   Beady_Panopt:
     id:            5027
     species:       panopt
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 376
     attributes:
       combat:
@@ -91,7 +91,7 @@ templates:
   Burning_Mantis:
     id:            5023
     species:       red_mantid
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 340
     attributes:
       combat:
@@ -254,7 +254,7 @@ templates:
   Jungle_Baelfyr:
     id:            4861
     species:       baelfyr
-    spell_list_id: 17
+    spell_list:    elemental_fire
     skill_list_id: 102
     attributes:
       combat:
@@ -496,7 +496,7 @@ templates:
   Shy_Heartwing:
     id:            4748
     species:       heartwing
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 343
     attributes:
       combat:
@@ -702,7 +702,7 @@ templates:
   Wooded_Ungeweder:
     id:            4738
     species:       ungeweder
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 101
     attributes:
       combat:

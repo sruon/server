@@ -6,7 +6,7 @@ templates:
     id:            6119
     species:       soulflayer
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 233
     attributes:
       combat:
@@ -30,7 +30,7 @@ templates:
     id:            6097
     species:       vampyr
     type:          [notorious]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 2054
     attributes:
       combat:
@@ -84,7 +84,7 @@ templates:
     id:            5207
     species:       blue_poroggo
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 196
     attributes:
       combat:
@@ -321,7 +321,7 @@ templates:
   Dark_Bugler:
     id:            910
     species:       imp
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       combat:
@@ -345,7 +345,7 @@ templates:
   Dark_Elemental:
     id:            913
     species:       dark_elemental
-    spell_list_id: 18
+    spell_list:    elemental_dark
     skill_list_id: 100
     attributes:
       combat:
@@ -400,7 +400,7 @@ templates:
     species:       odin
     type:          [notorious]
     roam:          [scripted]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 42
     attributes:
       combat:
@@ -442,7 +442,7 @@ templates:
     id:            6120
     species:       soulflayer
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 233
     attributes:
       combat:
@@ -467,7 +467,7 @@ templates:
     id:            5195
     display_name:  Draugar_Servant
     species:       draugar
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 89
     attributes:
       combat:
@@ -528,7 +528,7 @@ templates:
     id:            1111
     display_name:  Draugar_Servant
     species:       draugar
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 89
     attributes:
       combat:
@@ -684,7 +684,7 @@ templates:
     id:            5202
     display_name:  Ephramadian_Shade
     species:       fomor
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 115
     attributes:
       combat:
@@ -795,7 +795,7 @@ templates:
   Guard_Bhoot:
     id:            1833
     species:       bhoot
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 52
     attributes:
       combat:
@@ -824,7 +824,7 @@ templates:
   Guard_Skeleton_blm:
     id:            1835
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -888,7 +888,7 @@ templates:
   Heraldic_Imp_CM:
     id:            6636
     species:       imp
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       combat:
@@ -1103,7 +1103,7 @@ templates:
     id:            6748
     display_name:  Lamia_Idolater
     species:       qutrub
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 203
     attributes:
       combat:
@@ -1135,7 +1135,7 @@ templates:
     id:            2335
     display_name:  Lamia_Idolater
     species:       qutrub
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 203
     attributes:
       combat:
@@ -1167,7 +1167,7 @@ templates:
     id:            6672
     display_name:  Lamia_Necromancer
     species:       lamiae
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 171
     attributes:
       combat:
@@ -1201,7 +1201,7 @@ templates:
     id:            2349
     species:       lamiae
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 171
     attributes:
       combat:
@@ -1292,7 +1292,7 @@ templates:
   Locus_Imp:
     id:            7356
     species:       imp
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       combat:
@@ -1338,7 +1338,7 @@ templates:
     id:            2489
     species:       soulflayer
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 234
     attributes:
       combat:
@@ -1463,7 +1463,7 @@ templates:
   Merrow_Shadowdancer:
     id:            2627
     species:       merrow
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 182
     attributes:
       combat:
@@ -1526,7 +1526,7 @@ templates:
     id:            2752
     species:       qutrub
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 203
     attributes:
       combat:
@@ -1623,7 +1623,7 @@ templates:
   Orderly_Imp:
     id:            3049
     species:       imp
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       combat:
@@ -1814,7 +1814,7 @@ templates:
     id:            6575
     display_name:  Reserve_Draugar
     species:       draugar
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 89
     attributes:
       combat:
@@ -1940,7 +1940,7 @@ templates:
   Soulflayer:
     id:            3704
     species:       soulflayer
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 233
     attributes:
       combat:
@@ -2025,7 +2025,7 @@ templates:
   Thunder_Elemental:
     id:            3912
     species:       thunder_elemental
-    spell_list_id: 16
+    spell_list:    elemental_thunder
     skill_list_id: 105
     attributes:
       combat:
@@ -2177,7 +2177,7 @@ templates:
     id:            4221
     species:       imp
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 301
     attributes:
       combat:
@@ -2225,7 +2225,7 @@ templates:
   Water_Elemental:
     id:            4309
     species:       water_elemental
-    spell_list_id: 15
+    spell_list:    elemental_water
     skill_list_id: 106
     attributes:
       combat:
@@ -2287,7 +2287,7 @@ templates:
     id:            4503
     species:       imp
     type:          [notorious]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 166
     attributes:
       combat:

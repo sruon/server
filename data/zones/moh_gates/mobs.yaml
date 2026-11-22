@@ -103,7 +103,7 @@ templates:
   Cave_Panopt:
     id:            5082
     species:       panopt
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 376
     attributes:
       combat:
@@ -128,7 +128,7 @@ templates:
     id:            5088
     species:       eruca
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 107
     attributes:
       combat:
@@ -147,7 +147,7 @@ templates:
   Consecrated_Baelfyr:
     id:            4818
     species:       baelfyr
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 101
     attributes:
       combat:
@@ -169,7 +169,7 @@ templates:
   Crestfallen_Baelfyr:
     id:            4920
     species:       baelfyr
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 101
     attributes:
       combat:
@@ -319,7 +319,7 @@ templates:
   Gleeful_Ungeweder:
     id:            5092
     species:       ungeweder
-    spell_list_id: 17
+    spell_list:    elemental_fire
     skill_list_id: 102
     attributes:
       combat:
@@ -380,7 +380,7 @@ templates:
     id:            5473
     species:       baelfyr
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 102
     attributes:
       combat:
@@ -703,7 +703,7 @@ templates:
     id:            4817
     species:       gefyrst
     type:          [notorious]
-    spell_list_id: 14
+    spell_list:    elemental_ice
     skill_list_id: 103
     attributes:
       combat:

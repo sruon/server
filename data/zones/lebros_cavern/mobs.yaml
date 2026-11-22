@@ -6,7 +6,7 @@ templates:
     id:            438
     species:       cerberus
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 62
     attributes:
       combat:
@@ -85,7 +85,7 @@ templates:
   Broken_Troll_Soldier_pld:
     id:            5470
     species:       heavy_troll
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 246
     attributes:
       combat:
@@ -110,7 +110,7 @@ templates:
   Broken_Troll_Soldier_rdm:
     id:            5472
     species:       light_troll
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 246
     attributes:
       combat:
@@ -197,7 +197,7 @@ templates:
   Djahama:
     id:            1070
     species:       humes
-    spell_list_id: 8
+    spell_list:    beastmen_blu
     skill_list_id: 149
     attributes:
       combat:
@@ -215,7 +215,7 @@ templates:
   Jorporbor_the_Hellraker:
     id:            2157
     species:       heavy_troll
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 246
     attributes:
       combat:
@@ -259,7 +259,7 @@ templates:
   Kudjreel:
     id:            2291
     species:       humes
-    spell_list_id: 8
+    spell_list:    beastmen_blu
     skill_list_id: 149
     attributes:
       combat:
@@ -278,7 +278,7 @@ templates:
     id:            2903
     species:       fire_elemental
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 102
     attributes:
       combat:
@@ -502,7 +502,7 @@ templates:
   Vulcanian_Bomb:
     id:            4263
     species:       bomb
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 56
     attributes:
       combat:

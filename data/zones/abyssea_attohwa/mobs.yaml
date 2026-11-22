@@ -67,7 +67,7 @@ templates:
     id:            116
     species:       hecteye
     type:          [notorious]
-    spell_list_id: 215
+    spell_list:    amun
     skill_list_id: 856
     attributes:
       combat:
@@ -137,9 +137,9 @@ templates:
         type: [scripted]
 
   Bastion_Mage:
-    id:            357
-    species:       humes
-    spell_list_id: 21
+    id:         357
+    species:    humes
+    spell_list: beastmen_blm
     attributes:
       combat:
         skill: staff
@@ -165,7 +165,7 @@ templates:
     id:            398
     species:       slug
     type:          [notorious]
-    spell_list_id: 216
+    spell_list:    berstuk
     skill_list_id: 857
     attributes:
       combat:
@@ -196,7 +196,7 @@ templates:
     id:            448
     species:       eruca
     type:          [notorious]
-    spell_list_id: 217
+    spell_list:    blazing_eruca
     skill_list_id: 858
     attributes:
       combat:
@@ -282,7 +282,7 @@ templates:
   Crevice_Amoeban:
     id:            835
     species:       amoeban
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 5
     attributes:
       combat:
@@ -373,7 +373,7 @@ templates:
   Defile_Scorpion:
     id:            956
     species:       scorpion
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 217
     attributes:
       combat:
@@ -421,7 +421,7 @@ templates:
     id:            1117
     species:       bhoot
     type:          [notorious]
-    spell_list_id: 218
+    spell_list:    drekavac
     skill_list_id: 859
     attributes:
       combat:
@@ -497,7 +497,7 @@ templates:
     id:            1236
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -532,7 +532,7 @@ templates:
   Ephemeral_Amoeban:
     id:            1243
     species:       amoeban
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 5
     attributes:
       combat:
@@ -563,7 +563,7 @@ templates:
   Ephemeral_Murex:
     id:            1246
     species:       murex
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 187
     attributes:
       combat:
@@ -595,7 +595,7 @@ templates:
     id:            1259
     species:       euvhi
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 109
     attributes:
       combat:
@@ -705,7 +705,7 @@ templates:
     id:            1789
     species:       wamouracampa
     type:          [notorious]
-    spell_list_id: 219
+    spell_list:    granite_borer
     skill_list_id: 862
     attributes:
       combat:
@@ -916,7 +916,7 @@ templates:
     id:            2109
     species:       wamoura
     type:          [notorious]
-    spell_list_id: 236
+    spell_list:    itzpapalotl
     skill_list_id: 864
     attributes:
       combat:
@@ -984,7 +984,7 @@ templates:
     id:            2219
     species:       draugar
     type:          [notorious]
-    spell_list_id: 220
+    spell_list:    kharon
     skill_list_id: 868
     attributes:
       combat:
@@ -1045,7 +1045,7 @@ templates:
     id:            2459
     species:       coeurl
     type:          [notorious]
-    spell_list_id: 221
+    spell_list:    maahes
     skill_list_id: 869
     attributes:
       combat:
@@ -1070,7 +1070,7 @@ templates:
     id:            2650
     species:       treant
     type:          [notorious]
-    spell_list_id: 222
+    spell_list:    mielikki
     skill_list_id: 870
     attributes:
       combat:
@@ -1127,7 +1127,7 @@ templates:
   Myriadeyes:
     id:            2785
     species:       hecteye
-    spell_list_id: 10
+    spell_list:    hecteyes
     skill_list_id: 139
     attributes:
       combat:
@@ -1223,7 +1223,7 @@ templates:
     species:       worm
     type:          [notorious]
     roam:          [worm]
-    spell_list_id: 223
+    spell_list:    pallid_percy
     skill_list_id: 872
     attributes:
       combat:
@@ -1251,7 +1251,7 @@ templates:
   Qiqirn_Bewitcher:
     id:            3247
     species:       qiqirn
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 199
     attributes:
       combat:
@@ -1374,7 +1374,7 @@ templates:
   Rock_Murex:
     id:            3382
     species:       murex
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 187
     attributes:
       combat:
@@ -1454,7 +1454,7 @@ templates:
     id:            3678
     species:       black_feathered
     type:          [notorious]
-    spell_list_id: 225
+    spell_list:    smok
     skill_list_id: 874
     attributes:
       combat:
@@ -1490,7 +1490,7 @@ templates:
   Spuk:
     id:            3746
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -1597,7 +1597,7 @@ templates:
   Svarbhanu:
     id:            4662
     species:       dragon
-    spell_list_id: 224
+    spell_list:    svarbhanu
     skill_list_id: 873
     attributes:
       combat:
@@ -1663,7 +1663,7 @@ templates:
     id:            3932
     species:       corse
     type:          [notorious]
-    spell_list_id: 226
+    spell_list:    titlacauan
     skill_list_id: 877
     attributes:
       combat:
@@ -1698,7 +1698,7 @@ templates:
   Treacle_Slug:
     id:            3989
     species:       slug
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 231
     attributes:
       combat:
@@ -1730,7 +1730,7 @@ templates:
     species:       chigoe
     type:          [notorious]
     roam:          [stealth]
-    spell_list_id: 227
+    spell_list:    tunga_mode1
     skill_list_id: 64
     attributes:
       combat:
@@ -1762,7 +1762,7 @@ templates:
     id:            4080
     species:       sandworm
     type:          [notorious]
-    spell_list_id: 229
+    spell_list:    ulhuadshi
     skill_list_id: 878
     attributes:
       combat:
@@ -1931,7 +1931,7 @@ templates:
     id:            4400
     species:       rook
     type:          [notorious]
-    spell_list_id: 156
+    spell_list:    yaanei
     skill_list_id: 882
     attributes:
       combat:

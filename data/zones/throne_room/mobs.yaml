@@ -6,7 +6,7 @@ templates:
     id:            811
     species:       kindred
     type:          [battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 358
     attributes:
       combat:
@@ -35,7 +35,7 @@ templates:
     display_name:  Count_Andromalius
     species:       kindred
     type:          [battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 358
     attributes:
       combat:
@@ -118,7 +118,7 @@ templates:
   Demons_Elemental:
     id:            994
     species:       dark_elemental
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 100
     attributes:
       combat:
@@ -141,7 +141,7 @@ templates:
     id:            1130
     species:       kindred
     type:          [battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 358
     attributes:
       combat:
@@ -171,7 +171,7 @@ templates:
     display_name:  Duke_Amduscias
     species:       kindred
     type:          [battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 358
     attributes:
       combat:
@@ -413,7 +413,7 @@ templates:
     display_name:  Shadow_Lord
     species:       shadow_lord
     type:          [notorious, battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 2101
     attributes:
       combat:
@@ -439,7 +439,7 @@ templates:
     display_name:  Shadow_Lord
     species:       shadow_lord
     type:          [notorious, battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 2101
     attributes:
       combat:

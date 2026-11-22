@@ -49,7 +49,7 @@ templates:
     id:            4844
     species:       goblin_statue
     type:          [notorious]
-    spell_list_id: 47
+    spell_list:    goblin_golem
     skill_list_id: 92
     attributes:
       combat:
@@ -235,7 +235,7 @@ templates:
     id:            554
     species:       dynamis_goblin
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 373
     attributes:
       combat:
@@ -280,7 +280,7 @@ templates:
     id:            745
     species:       dynamis_goblin
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 373
     attributes:
       combat:
@@ -325,7 +325,7 @@ templates:
     id:            1052
     species:       dynamis_goblin
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 373
     attributes:
       combat:
@@ -370,7 +370,7 @@ templates:
     id:            1199
     species:       dynamis_goblin
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 373
     attributes:
       combat:
@@ -415,7 +415,7 @@ templates:
     id:            1251
     species:       dynamis_goblin
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 373
     attributes:
       combat:
@@ -460,7 +460,7 @@ templates:
     id:            4653
     species:       dynamis_goblin
     type:          [notorious]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 373
     attributes:
       combat:
@@ -505,7 +505,7 @@ templates:
     id:            2841
     species:       slime
     type:          [called]
-    spell_list_id: 54
+    spell_list:    vanguard_s_slime
     skill_list_id: 229
     attributes:
       combat:
@@ -537,7 +537,7 @@ templates:
     id:            1444
     species:       dynamis_goblin
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 373
     attributes:
       combat:
@@ -582,7 +582,7 @@ templates:
     id:            1668
     species:       goblin_statue
     type:          [notorious]
-    spell_list_id: 47
+    spell_list:    goblin_golem
     skill_list_id: 92
     attributes:
       combat:
@@ -633,7 +633,7 @@ templates:
   Goblin_Replica:
     id:            1707
     species:       goblin_statue
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 92
     attributes:
       combat:
@@ -673,7 +673,7 @@ templates:
     id:            1716
     species:       goblin_statue
     type:          [notorious]
-    spell_list_id: 40
+    spell_list:    goblin_statue
     skill_list_id: 92
     attributes:
       combat:
@@ -706,7 +706,7 @@ templates:
     id:            1935
     species:       dynamis_goblin
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 373
     attributes:
       combat:
@@ -751,7 +751,7 @@ templates:
     id:            2007
     species:       dynamis_goblin
     type:          [notorious]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 373
     attributes:
       combat:
@@ -796,7 +796,7 @@ templates:
     id:            2115
     species:       dynamis_goblin
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 373
     attributes:
       combat:
@@ -841,7 +841,7 @@ templates:
     id:            2116
     species:       dynamis_goblin
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 373
     attributes:
       combat:
@@ -1061,7 +1061,7 @@ templates:
     id:            2747
     species:       dynamis_goblin
     type:          [notorious]
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 373
     attributes:
       combat:
@@ -1106,7 +1106,7 @@ templates:
     id:            2751
     species:       dynamis_goblin
     type:          [notorious]
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 373
     attributes:
       combat:
@@ -1195,7 +1195,7 @@ templates:
     id:            4241
     species:       dynamis_goblin
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 373
     attributes:
       combat:
@@ -1352,7 +1352,7 @@ templates:
     id:            3507
     species:       dynamis_goblin
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 373
     attributes:
       combat:
@@ -1397,7 +1397,7 @@ templates:
     id:            3674
     species:       dynamis_goblin
     type:          [notorious]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 373
     attributes:
       combat:
@@ -1486,7 +1486,7 @@ templates:
     id:            3692
     species:       dynamis_goblin
     type:          [notorious]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 373
     attributes:
       combat:
@@ -1574,7 +1574,7 @@ templates:
     id:            3917
     species:       dynamis_goblin
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 373
     attributes:
       combat:
@@ -1663,7 +1663,7 @@ templates:
     id:            4047
     species:       dynamis_goblin
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 373
     attributes:
       combat:
@@ -1708,7 +1708,7 @@ templates:
     id:            4064
     species:       dynamis_goblin
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 373
     attributes:
       combat:
@@ -1752,7 +1752,7 @@ templates:
   Vanguard_Alchemist:
     id:            4133
     species:       dynamis_goblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 2108
     attributes:
       combat:
@@ -1792,7 +1792,7 @@ templates:
     id:            4133
     display_name:  Vanguard_Alchemist
     species:       dynamis_goblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 2108
     attributes:
       combat:
@@ -1834,7 +1834,7 @@ templates:
     id:            7255
     display_name:  Vanguard_Alchemist
     species:       dynamis_goblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 2108
     attributes:
       combat:
@@ -1995,7 +1995,7 @@ templates:
   Vanguard_Armorer:
     id:            4136
     species:       dynamis_goblin
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 2108
     attributes:
       combat:
@@ -2037,7 +2037,7 @@ templates:
     id:            4136
     display_name:  Vanguard_Armorer
     species:       dynamis_goblin
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 2108
     attributes:
       combat:
@@ -2081,7 +2081,7 @@ templates:
     id:            7246
     display_name:  Vanguard_Armorer
     species:       dynamis_goblin
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 2108
     attributes:
       combat:
@@ -2240,7 +2240,7 @@ templates:
   Vanguard_Enchanter:
     id:            4147
     species:       dynamis_goblin
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 2108
     attributes:
       combat:
@@ -2282,7 +2282,7 @@ templates:
     id:            4147
     display_name:  Vanguard_Enchanter
     species:       dynamis_goblin
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 2108
     attributes:
       combat:
@@ -2326,7 +2326,7 @@ templates:
     id:            7244
     display_name:  Vanguard_Enchanter
     species:       dynamis_goblin
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 2108
     attributes:
       combat:
@@ -2367,7 +2367,7 @@ templates:
   Vanguard_Hitman:
     id:            4155
     species:       dynamis_goblin
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 2108
     attributes:
       combat:
@@ -2409,7 +2409,7 @@ templates:
     id:            4155
     display_name:  Vanguard_Hitman
     species:       dynamis_goblin
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 2108
     attributes:
       combat:
@@ -2453,7 +2453,7 @@ templates:
     id:            7252
     display_name:  Vanguard_Hitman
     species:       dynamis_goblin
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 2108
     attributes:
       combat:
@@ -2494,7 +2494,7 @@ templates:
   Vanguard_Maestro:
     id:            4160
     species:       dynamis_goblin
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 2108
     attributes:
       combat:
@@ -2536,7 +2536,7 @@ templates:
     id:            4160
     display_name:  Vanguard_Maestro
     species:       dynamis_goblin
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 2108
     attributes:
       combat:
@@ -2580,7 +2580,7 @@ templates:
     id:            7248
     display_name:  Vanguard_Maestro
     species:       dynamis_goblin
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 2108
     attributes:
       combat:
@@ -2621,7 +2621,7 @@ templates:
   Vanguard_Necromancer:
     id:            4166
     species:       dynamis_goblin
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 2108
     attributes:
       combat:
@@ -2661,7 +2661,7 @@ templates:
     id:            4166
     display_name:  Vanguard_Necromancer
     species:       dynamis_goblin
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 2108
     attributes:
       combat:
@@ -2703,7 +2703,7 @@ templates:
     id:            7250
     display_name:  Vanguard_Necromancer
     species:       dynamis_goblin
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 2108
     attributes:
       combat:
@@ -3112,7 +3112,7 @@ templates:
   Vanguard_Shaman:
     id:            4182
     species:       dynamis_goblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2108
     attributes:
       combat:
@@ -3152,7 +3152,7 @@ templates:
     id:            4182
     display_name:  Vanguard_Shaman
     species:       dynamis_goblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2108
     attributes:
       combat:
@@ -3194,7 +3194,7 @@ templates:
     id:            7247
     display_name:  Vanguard_Shaman
     species:       dynamis_goblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2108
     attributes:
       combat:
@@ -3356,7 +3356,7 @@ templates:
   Vanguard_Tinkerer:
     id:            4192
     species:       dynamis_goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 2108
     attributes:
       combat:
@@ -3398,7 +3398,7 @@ templates:
     id:            4192
     display_name:  Vanguard_Tinkerer
     species:       dynamis_goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 2108
     attributes:
       combat:
@@ -3442,7 +3442,7 @@ templates:
     id:            7256
     display_name:  Vanguard_Tinkerer
     species:       dynamis_goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 2108
     attributes:
       combat:
@@ -3630,7 +3630,7 @@ templates:
     id:            4189
     species:       slime
     type:          [called]
-    spell_list_id: 54
+    spell_list:    vanguard_s_slime
     skill_list_id: 229
     attributes:
       combat:
@@ -3738,7 +3738,7 @@ templates:
     id:            3843
     species:       dynamis_goblin
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 373
     attributes:
       combat:

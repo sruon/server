@@ -6,7 +6,7 @@ templates:
     id:            6108
     species:       orobon
     type:          [notorious]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 191
     attributes:
       combat:
@@ -46,7 +46,7 @@ templates:
     id:            5047
     species:       carrier_crab
     type:          [battlefield]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 77
     attributes:
       combat:

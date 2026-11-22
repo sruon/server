@@ -36,7 +36,7 @@ templates:
     id:            6420
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:

@@ -25,7 +25,7 @@ templates:
     id:            5496
     species:       humes
     type:          [battlefield]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 486
     attributes:
       combat:
@@ -148,7 +148,7 @@ templates:
     id:            5512
     species:       humes
     type:          [battlefield]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 149
     attributes:
       combat:
@@ -190,7 +190,7 @@ templates:
     id:            5514
     species:       humes
     type:          [battlefield]
-    spell_list_id: 457
+    spell_list:    mistdagger
     skill_list_id: 1159
     attributes:
       combat:
@@ -285,7 +285,7 @@ templates:
     display_name:  The_Briars
     species:       humes
     type:          [battlefield]
-    spell_list_id: 458
+    spell_list:    the_briars_elv
     skill_list_id: 1160
     attributes:
       combat:
@@ -317,7 +317,7 @@ templates:
     display_name:  The_Briars
     species:       humes
     type:          [battlefield]
-    spell_list_id: 459
+    spell_list:    cernunnos
     skill_list_id: 1161
     attributes:
       combat:
@@ -347,7 +347,7 @@ templates:
     id:            5513
     species:       humes
     type:          [battlefield]
-    spell_list_id: 456
+    spell_list:    the_keeper
     skill_list_id: 1158
     attributes:
       combat:

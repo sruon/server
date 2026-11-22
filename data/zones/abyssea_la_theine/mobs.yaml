@@ -83,7 +83,7 @@ templates:
     id:            319
     species:       pixie
     type:          [notorious]
-    spell_list_id: 176
+    spell_list:    baba_yaga
     skill_list_id: 810
     attributes:
       combat:
@@ -308,7 +308,7 @@ templates:
     id:            633
     species:       pixie
     type:          [notorious]
-    spell_list_id: 177
+    spell_list:    carabosse
     skill_list_id: 812
     attributes:
       jobs: [whm, rdm]
@@ -502,7 +502,7 @@ templates:
   Ephemeral_Clionid:
     id:            1244
     species:       clionid
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 65
     attributes:
       combat:
@@ -533,7 +533,7 @@ templates:
     id:            7109
     display_name:  Ephemeral_Clionid
     species:       clionid
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 65
     attributes:
       combat:
@@ -564,7 +564,7 @@ templates:
     id:            7108
     display_name:  Ephemeral_Clionid
     species:       clionid
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 65
     attributes:
       combat:
@@ -594,7 +594,7 @@ templates:
     id:            7110
     display_name:  Ephemeral_Clionid
     species:       clionid
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 65
     attributes:
       combat:
@@ -624,7 +624,7 @@ templates:
   Ephemeral_Limule:
     id:            1245
     species:       limule
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 173
     attributes:
       combat:
@@ -657,7 +657,7 @@ templates:
     id:            7113
     display_name:  Ephemeral_Limule
     species:       limule
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 173
     attributes:
       combat:
@@ -690,7 +690,7 @@ templates:
     id:            7112
     display_name:  Ephemeral_Limule
     species:       limule
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 173
     attributes:
       combat:
@@ -722,7 +722,7 @@ templates:
     id:            7114
     display_name:  Ephemeral_Limule
     species:       limule
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 173
     attributes:
       combat:
@@ -754,7 +754,7 @@ templates:
   Farfadet:
     id:            1301
     species:       pixie
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 195
     attributes:
       combat:
@@ -812,7 +812,7 @@ templates:
   Gigadaphnia:
     id:            1548
     species:       limule
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 173
     attributes:
       combat:
@@ -844,7 +844,7 @@ templates:
     id:            6708
     display_name:  Gigadaphnia
     species:       limule
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 173
     attributes:
       combat:
@@ -1083,7 +1083,7 @@ templates:
     id:            2104
     species:       corpselight
     type:          [notorious]
-    spell_list_id: 178
+    spell_list:    irrlicht
     skill_list_id: 834
     attributes:
       combat:
@@ -1176,7 +1176,7 @@ templates:
     id:            2380
     species:       fly
     type:          [notorious]
-    spell_list_id: 179
+    spell_list:    la_theine_liege
     skill_list_id: 113
     attributes:
       combat:
@@ -1317,7 +1317,7 @@ templates:
     species:       worm
     type:          [notorious]
     roam:          [worm]
-    spell_list_id: 180
+    spell_list:    megamaw_mikey
     skill_list_id: 821
     attributes:
       combat:
@@ -1431,7 +1431,7 @@ templates:
     id:            3080
     species:       yovra
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 824
     attributes:
       combat:
@@ -1618,7 +1618,7 @@ templates:
     id:            3180
     species:       green_poroggo
     type:          [notorious]
-    spell_list_id: 182
+    spell_list:    poroggo_dom_juan
     skill_list_id: 827
     attributes:
       combat:
@@ -1648,7 +1648,7 @@ templates:
   Poroggo_Seducteur:
     id:            3185
     species:       green_poroggo
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 196
     attributes:
       combat:
@@ -1677,7 +1677,7 @@ templates:
   Psychopomp:
     id:            3216
     species:       corpselight
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 91
     attributes:
       combat:
@@ -1703,7 +1703,7 @@ templates:
     id:            3380
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -1840,7 +1840,7 @@ templates:
     id:            3975
     species:       funguar
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 828
     attributes:
       combat:
@@ -1889,7 +1889,7 @@ templates:
   Veld_Clionid:
     id:            4216
     species:       clionid
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 65
     attributes:
       combat:
@@ -1918,7 +1918,7 @@ templates:
     id:            6707
     display_name:  Veld_Clionid
     species:       clionid
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 65
     attributes:
       combat:

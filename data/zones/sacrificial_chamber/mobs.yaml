@@ -6,7 +6,7 @@ templates:
     id:            877
     species:       tonberry
     type:          [notorious, battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 243
     attributes:
       combat:
@@ -33,7 +33,7 @@ templates:
     display_name:  Cyaneous-toed_Yallberry
     species:       tonberry
     type:          [notorious, battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 243
     attributes:
       combat:
@@ -83,7 +83,7 @@ templates:
     id:            2038
     species:       blue_sahagin
     type:          [notorious, battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 213
     attributes:
       combat:
@@ -108,7 +108,7 @@ templates:
     display_name:  Hyohh_the_Conchblower
     species:       blue_sahagin
     type:          [notorious, battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 213
     attributes:
       combat:
@@ -130,7 +130,7 @@ templates:
     id:            2729
     species:       tonberry
     type:          [notorious, battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 336
     attributes:
       combat:
@@ -247,7 +247,7 @@ templates:
     id:            3328
     species:       blue_sahagin
     type:          [notorious, battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 213
     attributes:
       combat:
@@ -273,7 +273,7 @@ templates:
     display_name:  Rauu_the_Whaleswooner
     species:       blue_sahagin
     type:          [notorious, battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 213
     attributes:
       combat:
@@ -295,7 +295,7 @@ templates:
     id:            3425
     species:       tonberry
     type:          [notorious, battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 243
     attributes:
       combat:
@@ -323,7 +323,7 @@ templates:
     display_name:  Sable-tongued_Gonberry
     species:       tonberry
     type:          [notorious, battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 243
     attributes:
       combat:
@@ -389,7 +389,7 @@ templates:
     id:            3584
     species:       tarutaru
     type:          [battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 153
     attributes:
       combat:
@@ -430,7 +430,7 @@ templates:
     display_name:  Tonberrys_Elemental
     species:       fire_elemental
     type:          [battlefield]
-    spell_list_id: 19
+    spell_list:    elemental_light
     skill_list_id: 102
     attributes:
       combat:

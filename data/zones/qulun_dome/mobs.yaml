@@ -6,7 +6,7 @@ templates:
     id:            46
     species:       quadav
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 202
     attributes:
       combat:
@@ -86,7 +86,7 @@ templates:
   Darksteel_Quadav:
     id:            907
     species:       quadav
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 202
     attributes:
       combat:
@@ -140,7 +140,7 @@ templates:
     id:            1034
     species:       quadav
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 202
     attributes:
       combat:
@@ -192,7 +192,7 @@ templates:
   HuRhe_Marrowgorger:
     id:            2017
     species:       quadav
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 202
     attributes:
       combat:
@@ -235,7 +235,7 @@ templates:
   MuZha_Infernoblade:
     id:            2780
     species:       quadav
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 202
     attributes:
       combat:
@@ -257,7 +257,7 @@ templates:
   NoBhu_Unyielding:
     id:            2915
     species:       quadav
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 202
     attributes:
       combat:
@@ -312,7 +312,7 @@ templates:
     id:            3410
     species:       quadav
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 202
     attributes:
       combat:
@@ -354,7 +354,7 @@ templates:
   Sapphire_Quadav:
     id:            3463
     species:       quadav
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 202
     attributes:
       combat:
@@ -401,7 +401,7 @@ templates:
   SoHyu_Quakemaker:
     id:            3716
     species:       quadav
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 202
     attributes:
       combat:
@@ -425,7 +425,7 @@ templates:
     display_name:  ZaDha_Adamantking
     species:       quadav
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 202
     attributes:
       combat:

@@ -60,10 +60,10 @@ templates:
         handful_of_fish_scales:  0
 
   Bastet:
-    id:            6841
-    species:       coeurl
-    type:          [notorious]
-    spell_list_id: 493
+    id:         6841
+    species:    coeurl
+    type:       [notorious]
+    spell_list: bastet
     attributes:
       combat:
         skill: dagger
@@ -126,7 +126,7 @@ templates:
   Blest_Bones:
     id:            4728
     species:       skeleton
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 227
     attributes:
       combat:
@@ -288,7 +288,7 @@ templates:
   Goblin_Doyen:
     id:            1651
     species:       goblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -314,7 +314,7 @@ templates:
   Goblin_Enchanter:
     id:            1654
     species:       goblin
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 133
     attributes:
       combat:
@@ -385,7 +385,7 @@ templates:
   Goblin_Gambler:
     id:            1666
     species:       goblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -421,7 +421,7 @@ templates:
   Goblin_Leecher:
     id:            1683
     species:       goblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:
@@ -573,7 +573,7 @@ templates:
   Goblin_Reaper:
     id:            1705
     species:       armored_goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -616,7 +616,7 @@ templates:
     id:            1705
     display_name:  Goblin_Reaper
     species:       armored_goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -982,7 +982,7 @@ templates:
     id:            1972
     species:       goblin
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -1005,7 +1005,7 @@ templates:
     id:            1974
     species:       goblin
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -1049,7 +1049,7 @@ templates:
     id:            1979
     species:       goblin
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 133
     attributes:
       combat:
@@ -1114,7 +1114,7 @@ templates:
     id:            1984
     species:       goblin
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:
@@ -1137,7 +1137,7 @@ templates:
     id:            4730
     species:       ghost
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -1307,7 +1307,7 @@ templates:
   Lost_Soul_blm:
     id:            2442
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -1403,7 +1403,7 @@ templates:
     id:            2898
     species:       funguar
     type:          [notorious]
-    spell_list_id: 15
+    spell_list:    elemental_water
     skill_list_id: 116
     attributes:
       combat:
@@ -1486,7 +1486,7 @@ templates:
   Revenant_SoZ_ENS_FY:
     id:            3358
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -1548,7 +1548,7 @@ templates:
   Rot_Prowler:
     id:            3398
     species:       skeleton
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 227
     attributes:
       combat:
@@ -1633,7 +1633,7 @@ templates:
   Thunder_Elemental:
     id:            3912
     species:       thunder_elemental
-    spell_list_id: 16
+    spell_list:    elemental_thunder
     skill_list_id: 105
     attributes:
       combat:
@@ -1666,7 +1666,7 @@ templates:
   Water_Elemental:
     id:            4309
     species:       water_elemental
-    spell_list_id: 15
+    spell_list:    elemental_water
     skill_list_id: 106
     attributes:
       combat:

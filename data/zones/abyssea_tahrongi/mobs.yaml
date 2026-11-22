@@ -6,7 +6,7 @@ templates:
     id:            4549
     species:       eft
     type:          [notorious]
-    spell_list_id: 183
+    spell_list:    abas
     skill_list_id: 830
     attributes:
       combat:
@@ -106,7 +106,7 @@ templates:
   Beholder:
     id:            388
     species:       hecteye
-    spell_list_id: 10
+    spell_list:    hecteyes
     skill_list_id: 139
     attributes:
       combat:
@@ -191,7 +191,7 @@ templates:
   Bog_Body:
     id:            4537
     species:       qutrub
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 203
     attributes:
       combat:
@@ -225,7 +225,7 @@ templates:
     id:            4545
     species:       corpselight
     type:          [notorious]
-    spell_list_id: 184
+    spell_list:    cannered_noz
     skill_list_id: 834
     attributes:
       combat:
@@ -310,9 +310,9 @@ templates:
         scorpion_claw:  0
 
   Caoineag:
-    id:            628
-    species:       corpselight
-    spell_list_id: 21
+    id:         628
+    species:    corpselight
+    spell_list: beastmen_blm
     attributes:
       combat:
         skill: club
@@ -337,7 +337,7 @@ templates:
     id:            4554
     species:       mandragora
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 835
     attributes:
       combat:
@@ -375,7 +375,7 @@ templates:
     id:            4559
     species:       adamantoise
     type:          [notorious]
-    spell_list_id: 185
+    spell_list:    chukwa
     skill_list_id: 836
     attributes:
       combat:
@@ -441,7 +441,7 @@ templates:
     id:            4557
     species:       earth_wyrm
     type:          [notorious]
-    spell_list_id: 186
+    spell_list:    cuelebre
     skill_list_id: 837
     attributes:
       combat:
@@ -474,7 +474,7 @@ templates:
   Ephemeral_Clionid:
     id:            1244
     species:       clionid
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 65
     attributes:
       combat:
@@ -506,7 +506,7 @@ templates:
     id:            7109
     display_name:  Ephemeral_Clionid
     species:       clionid
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 65
     attributes:
       combat:
@@ -538,7 +538,7 @@ templates:
     id:            7108
     display_name:  Ephemeral_Clionid
     species:       clionid
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 65
     attributes:
       combat:
@@ -569,7 +569,7 @@ templates:
     id:            7110
     display_name:  Ephemeral_Clionid
     species:       clionid
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 65
     attributes:
       combat:
@@ -600,7 +600,7 @@ templates:
   Ephemeral_Limule:
     id:            1245
     species:       limule
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 173
     attributes:
       combat:
@@ -634,7 +634,7 @@ templates:
     id:            7113
     display_name:  Ephemeral_Limule
     species:       limule
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 173
     attributes:
       combat:
@@ -668,7 +668,7 @@ templates:
     id:            7112
     display_name:  Ephemeral_Limule
     species:       limule
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 173
     attributes:
       combat:
@@ -701,7 +701,7 @@ templates:
     id:            7114
     display_name:  Ephemeral_Limule
     species:       limule
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 173
     attributes:
       combat:
@@ -762,7 +762,7 @@ templates:
     id:            4555
     species:       sandworm
     type:          [notorious]
-    spell_list_id: 187
+    spell_list:    glavoid
     skill_list_id: 839
     attributes:
       combat:
@@ -800,7 +800,7 @@ templates:
   Gulch_Limule:
     id:            1843
     species:       limule
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 173
     attributes:
       combat:
@@ -833,7 +833,7 @@ templates:
     id:            1843
     display_name:  Gulch_Limule
     species:       limule
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 173
     attributes:
       combat:
@@ -866,7 +866,7 @@ templates:
   Gully_Clionid:
     id:            1845
     species:       clionid
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 65
     attributes:
       combat:
@@ -898,7 +898,7 @@ templates:
     id:            4542
     species:       clionid
     type:          [notorious]
-    spell_list_id: 201
+    spell_list:    halimede
     skill_list_id: 852
     attributes:
       combat:
@@ -1005,7 +1005,7 @@ templates:
     id:            4566
     species:       bishop
     type:          [notorious]
-    spell_list_id: 153
+    spell_list:    iratham_hp_50to100
     skill_list_id: 841
     attributes:
       combat:
@@ -1073,7 +1073,7 @@ templates:
     id:            4553
     species:       weeper
     type:          [notorious]
-    spell_list_id: 188
+    spell_list:    lachrymater_fireday
     skill_list_id: 842
     attributes:
       combat:
@@ -1108,7 +1108,7 @@ templates:
     id:            4556
     species:       adamantoise
     type:          [notorious]
-    spell_list_id: 196
+    spell_list:    lacovie
     skill_list_id: 843
     attributes:
       combat:
@@ -1169,7 +1169,7 @@ templates:
     id:            4563
     species:       qutrub
     type:          [notorious]
-    spell_list_id: 197
+    spell_list:    manananggal
     skill_list_id: 854
     attributes:
       combat:
@@ -1202,7 +1202,7 @@ templates:
     id:            4558
     species:       corse
     type:          [notorious]
-    spell_list_id: 198
+    spell_list:    mictlantecuhtli
     skill_list_id: 844
     attributes:
       combat:
@@ -1376,7 +1376,7 @@ templates:
     id:            4544
     species:       hecteye
     type:          [notorious]
-    spell_list_id: 200
+    spell_list:    ophanim
     skill_list_id: 848
     attributes:
       combat:
@@ -1434,7 +1434,7 @@ templates:
     id:            4562
     species:       legendary_roc
     type:          [notorious]
-    spell_list_id: 199
+    spell_list:    quetzalli
     skill_list_id: 280
     attributes:
       combat:
@@ -1551,7 +1551,7 @@ templates:
     id:            4546
     species:       flock_bat
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 850
     attributes:
       combat:
@@ -1576,7 +1576,7 @@ templates:
     id:            4539
     species:       craver
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 707
     attributes:
       combat:
@@ -1615,7 +1615,7 @@ templates:
     id:            4543
     species:       limule
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 851
     attributes:
       combat:
@@ -1646,7 +1646,7 @@ templates:
   Wiederganger:
     id:            4535
     species:       corse
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 74
     attributes:
       combat:

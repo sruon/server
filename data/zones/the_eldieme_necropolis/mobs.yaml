@@ -66,7 +66,7 @@ templates:
   Blood_Soul:
     id:            473
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -102,7 +102,7 @@ templates:
     id:            876
     species:       hound
     type:          [notorious]
-    spell_list_id: 104
+    spell_list:    cwn_cyrff
     skill_list_id: 143
     attributes:
       combat:
@@ -129,7 +129,7 @@ templates:
   Dark_Stalker_blm:
     id:            5410
     species:       shadow
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 221
     attributes:
       combat:
@@ -285,7 +285,7 @@ templates:
   Earth_Elemental:
     id:            1160
     species:       earth_elemental
-    spell_list_id: 13
+    spell_list:    elemental_earth
     skill_list_id: 101
     attributes:
       combat:
@@ -318,7 +318,7 @@ templates:
   Fallen_Knight_EN:
     id:            6545
     species:       skeleton
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 227
     attributes:
       combat:
@@ -376,7 +376,7 @@ templates:
   Gazer:
     id:            1481
     species:       hecteye
-    spell_list_id: 10
+    spell_list:    hecteyes
     skill_list_id: 139
     attributes:
       combat:
@@ -408,7 +408,7 @@ templates:
   Haunt_EN:
     id:            6508
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -470,7 +470,7 @@ templates:
   Hellbound_Warlock:
     id:            6536
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -519,7 +519,7 @@ templates:
   Ice_Elemental:
     id:            2043
     species:       ice_elemental
-    spell_list_id: 14
+    spell_list:    elemental_ice
     skill_list_id: 103
     attributes:
       combat:
@@ -554,7 +554,7 @@ templates:
     display_name:  Ice_Elemental
     species:       ice_elemental
     type:          [notorious]
-    spell_list_id: 14
+    spell_list:    elemental_ice
     skill_list_id: 103
     attributes:
       combat:
@@ -583,7 +583,7 @@ templates:
   Ka_blm:
     id:            5405
     species:       shadow
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 221
     attributes:
       combat:
@@ -721,7 +721,7 @@ templates:
   Lich:
     id:            2407
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -753,7 +753,7 @@ templates:
   Lich_C_Magnus:
     id:            2408
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -781,7 +781,7 @@ templates:
   Lost_Soul_blm_EN:
     id:            6560
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -932,7 +932,7 @@ templates:
     id:            2802
     species:       skeleton
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -1032,7 +1032,7 @@ templates:
   Revenant_NGS_EN_GC:
     id:            6511
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -1063,7 +1063,7 @@ templates:
   Shade_drk:
     id:            5400
     species:       shadow
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 221
     attributes:
       combat:
@@ -1313,7 +1313,7 @@ templates:
     id:            3658
     species:       skeleton
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -1344,7 +1344,7 @@ templates:
     id:            3659
     species:       skeleton
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -1403,7 +1403,7 @@ templates:
   Spriggan_blm:
     id:            5415
     species:       shadow
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 221
     attributes:
       combat:
@@ -1561,7 +1561,7 @@ templates:
   Tomb_Mage:
     id:            3943
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -1672,7 +1672,7 @@ templates:
   Utukku_EN_FY:
     id:            6512
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -1707,7 +1707,7 @@ templates:
     id:            4484
     species:       skeleton
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:

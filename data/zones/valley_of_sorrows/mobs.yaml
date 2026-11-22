@@ -46,7 +46,7 @@ templates:
   Air_Elemental:
     id:            71
     species:       air_elemental
-    spell_list_id: 12
+    spell_list:    elemental_air
     skill_list_id: 99
     attributes:
       combat:
@@ -137,7 +137,7 @@ templates:
   Fire_Elemental:
     id:            1341
     species:       fire_elemental
-    spell_list_id: 17
+    spell_list:    elemental_fire
     skill_list_id: 102
     attributes:
       combat:
@@ -214,7 +214,7 @@ templates:
     id:            6856
     species:       adamantoise
     type:          [notorious]
-    spell_list_id: 185
+    spell_list:    chukwa
     skill_list_id: 836
     attributes:
       combat:

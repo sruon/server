@@ -52,10 +52,10 @@ templates:
           item:   wyvern_wing
 
   Alexander_Image:
-    id:            7088
-    species:       alexander
-    type:          [notorious, called, battlefield]
-    spell_list_id: 547
+    id:         7088
+    species:    alexander
+    type:       [notorious, called, battlefield]
+    spell_list: alexander_image
     attributes:
       combat:
         skill: club
@@ -81,7 +81,7 @@ templates:
     display_name:  Alexander
     species:       alexander
     type:          [notorious, event]
-    spell_list_id: 214
+    spell_list:    alexander_np
     skill_list_id: 784
     attributes:
       combat:
@@ -106,7 +106,7 @@ templates:
     display_name:  Alexander
     species:       alexander
     type:          [notorious, battlefield]
-    spell_list_id: 546
+    spell_list:    alexander_wtc
     skill_list_id: 784
     attributes:
       combat:
@@ -226,7 +226,7 @@ templates:
     id:            5310
     species:       soulflayer
     type:          [notorious, event]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 233
     attributes:
       combat:
@@ -250,7 +250,7 @@ templates:
     id:            110
     species:       humes
     type:          [notorious, event]
-    spell_list_id: 212
+    spell_list:    amnaf_blu
     skill_list_id: 782
     attributes:
       combat:
@@ -299,7 +299,7 @@ templates:
     id:            159
     species:       flan
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 112
     attributes:
       combat:
@@ -442,7 +442,7 @@ templates:
     id:            228
     species:       hecteye
     type:          [notorious]
-    spell_list_id: 10
+    spell_list:    hecteyes
     skill_list_id: 139
     attributes:
       combat:
@@ -492,7 +492,7 @@ templates:
     id:            267
     species:       ghost
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -523,7 +523,7 @@ templates:
     id:            334
     species:       ephramadian
     type:          [notorious, battlefield]
-    spell_list_id: 538
+    spell_list:    balrahn
     skill_list_id: 234
     attributes:
       combat:
@@ -569,7 +569,7 @@ templates:
   Bat_Eye:
     id:            374
     species:       ahriman
-    spell_list_id: 11
+    spell_list:    ahriman
     skill_list_id: 4
     attributes:
       combat:
@@ -656,7 +656,7 @@ templates:
   Bhoot_NI:
     id:            6514
     species:       bhoot
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 52
     attributes:
       combat:
@@ -683,7 +683,7 @@ templates:
   Black_Pudding:
     id:            437
     species:       flan
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 112
     attributes:
       combat:
@@ -855,7 +855,7 @@ templates:
     id:            513
     species:       hippogryph
     type:          [notorious]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 141
     attributes:
       combat:
@@ -995,7 +995,7 @@ templates:
     id:            585
     species:       ghost
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -1026,7 +1026,7 @@ templates:
     id:            592
     species:       legendary_tigers
     type:          [notorious]
-    spell_list_id: 26
+    spell_list:    byakko
     skill_list_id: 279
     attributes:
       combat:
@@ -1110,7 +1110,7 @@ templates:
     id:            635
     species:       flan
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 112
     attributes:
       combat:
@@ -1304,7 +1304,7 @@ templates:
     id:            728
     species:       flan
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 112
     attributes:
       combat:
@@ -1330,7 +1330,7 @@ templates:
     id:            845
     species:       ghost
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -1361,7 +1361,7 @@ templates:
     id:            860
     species:       flan
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 112
     attributes:
       combat:
@@ -1387,7 +1387,7 @@ templates:
     id:            876
     species:       hound
     type:          [notorious]
-    spell_list_id: 104
+    spell_list:    cwn_cyrff
     skill_list_id: 143
     attributes:
       combat:
@@ -1524,7 +1524,7 @@ templates:
     id:            979
     species:       yellow_bee
     type:          [notorious]
-    spell_list_id: 98
+    spell_list:    demonic_tiphia
     skill_list_id: 700
     attributes:
       combat:
@@ -1573,7 +1573,7 @@ templates:
     id:            1033
     species:       beetle
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 49
     attributes:
       combat:
@@ -1685,7 +1685,7 @@ templates:
   Draugar:
     id:            1110
     species:       draugar
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 89
     attributes:
       combat:
@@ -1862,7 +1862,7 @@ templates:
   Ebony_Pudding:
     id:            1170
     species:       flan
-    spell_list_id: 430
+    spell_list:    ebony_pudding
     skill_list_id: 112
     attributes:
       combat:
@@ -1912,7 +1912,7 @@ templates:
     id:            1196
     species:       corse
     type:          [notorious]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 74
     attributes:
       combat:
@@ -2030,7 +2030,7 @@ templates:
   Eriri_Samariri:
     id:            1254
     species:       red_poroggo
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 196
     attributes:
       combat:
@@ -2157,7 +2157,7 @@ templates:
   Friars_Lantern:
     id:            1426
     species:       bomb
-    spell_list_id: 17
+    spell_list:    elemental_fire
     skill_list_id: 56
     attributes:
       combat:
@@ -2328,7 +2328,7 @@ templates:
     id:            1491
     species:       legendary_adamantoise
     type:          [notorious]
-    spell_list_id: 24
+    spell_list:    genbu
     skill_list_id: 277
     attributes:
       combat:
@@ -2380,7 +2380,7 @@ templates:
     id:            1604
     species:       flan
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 112
     attributes:
       combat:
@@ -2591,7 +2591,7 @@ templates:
   Heraldic_Imp:
     id:            1933
     species:       imp
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       combat:
@@ -2683,7 +2683,7 @@ templates:
     id:            5841
     species:       magic_pot
     type:          [notorious]
-    spell_list_id: 36
+    spell_list:    magicpot
     skill_list_id: 998
     attributes:
       combat:
@@ -2751,7 +2751,7 @@ templates:
   Imp:
     id:            2065
     species:       imp
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       combat:
@@ -2941,7 +2941,7 @@ templates:
     id:            2165
     species:       evil_weapon
     type:          [notorious]
-    spell_list_id: 42
+    spell_list:    evilweapon
     skill_list_id: 110
     attributes:
       combat:
@@ -3034,7 +3034,7 @@ templates:
     id:            2254
     species:       crab
     type:          [notorious]
-    spell_list_id: 79
+    spell_list:    king_arthro
     skill_list_id: 77
     attributes:
       combat:
@@ -3286,7 +3286,7 @@ templates:
     id:            5188
     species:       flytrap
     type:          [notorious]
-    spell_list_id: 303
+    spell_list:    lizardtrap
     skill_list_id: 114
     attributes:
       combat:
@@ -3413,7 +3413,7 @@ templates:
     id:            2439
     species:       sea_monk
     type:          [notorious]
-    spell_list_id: 152
+    spell_list:    lord_of_onzozo
     skill_list_id: 218
     attributes:
       combat:
@@ -3437,7 +3437,7 @@ templates:
     id:            2450
     species:       beetle
     type:          [notorious]
-    spell_list_id: 56
+    spell_list:    lumber_jack
     skill_list_id: 49
     attributes:
       combat:
@@ -3462,7 +3462,7 @@ templates:
   Magic_Flagon_NI:
     id:            6599
     species:       magic_pot
-    spell_list_id: 36
+    spell_list:    magicpot
     skill_list_id: 175
     attributes:
       combat:
@@ -3537,7 +3537,7 @@ templates:
     id:            2498
     species:       slime
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 228
     attributes:
       combat:
@@ -3665,7 +3665,7 @@ templates:
     id:            2676
     species:       flan
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 112
     attributes:
       combat:
@@ -3720,7 +3720,7 @@ templates:
     id:            2713
     species:       imp
     type:          [battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       combat:
@@ -3742,7 +3742,7 @@ templates:
     id:            2714
     species:       imp
     type:          [battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       combat:
@@ -3764,7 +3764,7 @@ templates:
     id:            2715
     species:       imp
     type:          [battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       combat:
@@ -3810,7 +3810,7 @@ templates:
     id:            4574
     species:       slime
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 228
     attributes:
       combat:
@@ -3833,7 +3833,7 @@ templates:
     id:            2784
     species:       funguar
     type:          [notorious]
-    spell_list_id: 99
+    spell_list:    mycophile
     skill_list_id: 116
     attributes:
       combat:
@@ -3898,7 +3898,7 @@ templates:
     id:            2873
     species:       magic_pot
     type:          [notorious]
-    spell_list_id: 36
+    spell_list:    magicpot
     skill_list_id: 175
     attributes:
       combat:
@@ -3957,7 +3957,7 @@ templates:
     id:            2898
     species:       funguar
     type:          [notorious]
-    spell_list_id: 15
+    spell_list:    elemental_water
     skill_list_id: 116
     attributes:
       combat:
@@ -3980,7 +3980,7 @@ templates:
     id:            4567
     species:       evil_weapon
     type:          [notorious]
-    spell_list_id: 42
+    spell_list:    evilweapon
     skill_list_id: 110
     attributes:
       combat:
@@ -4114,7 +4114,7 @@ templates:
     id:            2925
     species:       flan
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 112
     attributes:
       combat:
@@ -4221,7 +4221,7 @@ templates:
   Ominous_Weapon_NI:
     id:            6594
     species:       evil_weapon
-    spell_list_id: 42
+    spell_list:    evilweapon
     skill_list_id: 110
     attributes:
       combat:
@@ -4294,7 +4294,7 @@ templates:
   Oriri_Samariri:
     id:            3053
     species:       red_poroggo
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 196
     attributes:
       combat:
@@ -4339,7 +4339,7 @@ templates:
     id:            3095
     species:       beetle
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 49
     attributes:
       combat:
@@ -4514,7 +4514,7 @@ templates:
     id:            3125
     species:       shadow
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 221
     attributes:
       combat:
@@ -4551,7 +4551,7 @@ templates:
   Poroggo_Gent:
     id:            3181
     species:       green_poroggo
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 196
     attributes:
       combat:
@@ -4579,7 +4579,7 @@ templates:
   Psycheflayer:
     id:            3215
     species:       soulflayer
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 233
     attributes:
       combat:
@@ -4663,7 +4663,7 @@ templates:
     id:            3226
     species:       ghost
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -4834,7 +4834,7 @@ templates:
     id:            3327
     species:       humes
     type:          [notorious, battlefield, event]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 783
     attributes:
       combat:
@@ -4855,10 +4855,10 @@ templates:
         type: [scripted]
 
   Razfahd:
-    id:            3332
-    species:       alexander
-    type:          [notorious, event]
-    spell_list_id: 214
+    id:         3332
+    species:    alexander
+    type:       [notorious, event]
+    spell_list: alexander_np
     attributes:
       combat:
         skill: sword
@@ -4880,7 +4880,7 @@ templates:
     id:            3376
     species:       roc
     type:          [notorious]
-    spell_list_id: 45
+    spell_list:    roc_brd
     skill_list_id: 1004
     attributes:
       combat:
@@ -4998,7 +4998,7 @@ templates:
     id:            3540
     species:       legendary_wyvern
     type:          [notorious]
-    spell_list_id: 25
+    spell_list:    seiryu
     skill_list_id: 278
     attributes:
       combat:
@@ -5025,7 +5025,7 @@ templates:
     id:            5537
     species:       coeurl
     type:          [notorious]
-    spell_list_id: 137
+    spell_list:    sekhmet
     skill_list_id: 494
     attributes:
       combat:
@@ -5052,7 +5052,7 @@ templates:
     id:            3549
     species:       great_scorpion
     type:          [notorious]
-    spell_list_id: 46
+    spell_list:    serket
     skill_list_id: 273
     attributes:
       combat:
@@ -5162,7 +5162,7 @@ templates:
     id:            3576
     species:       ahriman
     type:          [notorious]
-    spell_list_id: 11
+    spell_list:    ahriman
     skill_list_id: 4
     attributes:
       combat:
@@ -5278,7 +5278,7 @@ templates:
     id:            3630
     species:       legendary_roc
     type:          [notorious]
-    spell_list_id: 45
+    spell_list:    roc_brd
     skill_list_id: 1004
     attributes:
       combat:
@@ -5415,7 +5415,7 @@ templates:
     id:            3658
     species:       skeleton
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -5438,7 +5438,7 @@ templates:
     id:            3659
     species:       skeleton
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -5503,7 +5503,7 @@ templates:
     id:            3680
     species:       ghost
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -5534,7 +5534,7 @@ templates:
     id:            3709
     species:       shadow
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 223
     attributes:
       combat:
@@ -5790,7 +5790,7 @@ templates:
     id:            3816
     species:       legendary_roc
     type:          [notorious]
-    spell_list_id: 27
+    spell_list:    suzaku
     skill_list_id: 280
     attributes:
       combat:
@@ -5898,7 +5898,7 @@ templates:
     id:            3839
     species:       hecteye
     type:          [notorious]
-    spell_list_id: 81
+    spell_list:    taisaijin
     skill_list_id: 139
     attributes:
       combat:
@@ -5971,7 +5971,7 @@ templates:
   Thousand_Eyes_NI:
     id:            6392
     species:       hecteye
-    spell_list_id: 10
+    spell_list:    hecteyes
     skill_list_id: 139
     attributes:
       combat:
@@ -6215,7 +6215,7 @@ templates:
   Uriri_Samariri:
     id:            4108
     species:       red_poroggo
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 196
     attributes:
       combat:
@@ -6265,7 +6265,7 @@ templates:
     id:            4200
     species:       flan
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 112
     attributes:
       combat:
@@ -6289,7 +6289,7 @@ templates:
   Vile_Ineef:
     id:            4231
     species:       soulflayer
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 233
     attributes:
       combat:
@@ -6310,7 +6310,7 @@ templates:
   Vile_Wahdaha:
     id:            4232
     species:       soulflayer
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 233
     attributes:
       combat:
@@ -6333,7 +6333,7 @@ templates:
   Vile_Yabeewa:
     id:            4234
     species:       soulflayer
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 233
     attributes:
       combat:
@@ -6435,7 +6435,7 @@ templates:
     id:            5741
     species:       crab
     type:          [notorious]
-    spell_list_id: 151
+    spell_list:    wake_warder_wanda
     skill_list_id: 775
     attributes:
       combat:
@@ -6513,7 +6513,7 @@ templates:
     id:            4287
     species:       cockatrice
     type:          [notorious]
-    spell_list_id: 55
+    spell_list:    waraxe_beak
     skill_list_id: 70
     attributes:
       combat:
@@ -6626,7 +6626,7 @@ templates:
     id:            4378
     species:       ghost
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:

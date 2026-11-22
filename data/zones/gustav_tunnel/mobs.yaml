@@ -70,7 +70,7 @@ templates:
     id:            339
     species:       ghost
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -127,10 +127,10 @@ templates:
         hp: 10500
 
   Bompupu:
-    id:            6905
-    species:       tarutaru
-    type:          [notorious]
-    spell_list_id: 7
+    id:         6905
+    species:    tarutaru
+    type:       [notorious]
+    spell_list: beastmen_nin
     attributes:
       combat:
         skill: sword
@@ -160,7 +160,7 @@ templates:
     id:            4580
     species:       entozoon
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -269,7 +269,7 @@ templates:
   Doom_Guard:
     id:            1082
     species:       skeleton
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 227
     attributes:
       combat:
@@ -299,7 +299,7 @@ templates:
   Doom_Mage:
     id:            1083
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -331,7 +331,7 @@ templates:
   Doom_Soldier:
     id:            1085
     species:       skeleton
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 227
     attributes:
       combat:
@@ -363,7 +363,7 @@ templates:
   Doom_Warlock:
     id:            1087
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -400,7 +400,7 @@ templates:
   Earth_Elemental:
     id:            1160
     species:       earth_elemental
-    spell_list_id: 13
+    spell_list:    elemental_earth
     skill_list_id: 101
     attributes:
       combat:
@@ -433,7 +433,7 @@ templates:
   Erlik:
     id:            1255
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -462,7 +462,7 @@ templates:
   Fire_Elemental:
     id:            1341
     species:       fire_elemental
-    spell_list_id: 17
+    spell_list:    elemental_fire
     skill_list_id: 102
     attributes:
       combat:
@@ -519,7 +519,7 @@ templates:
   Goblin_Alchemist:
     id:            1634
     species:       goblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:
@@ -676,7 +676,7 @@ templates:
   Goblin_Reaper:
     id:            1705
     species:       armored_goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -839,10 +839,10 @@ templates:
           item:   eisentaenzer
 
   Gorattz:
-    id:            6904
-    species:       galks
-    type:          [notorious]
-    spell_list_id: 7
+    id:         6904
+    species:    galks
+    type:       [notorious]
+    spell_list: beastmen_nin
     attributes:
       combat:
         skill: sword
@@ -1154,7 +1154,7 @@ templates:
     id:            6903
     species:       humes
     type:          [notorious]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 149
     attributes:
       combat:
@@ -1216,7 +1216,7 @@ templates:
     id:            3856
     species:       skeleton
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:

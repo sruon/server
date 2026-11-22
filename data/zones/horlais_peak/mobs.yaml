@@ -29,7 +29,7 @@ templates:
     id:            230
     species:       ram
     type:          [battlefield]
-    spell_list_id: 521
+    spell_list:    aries
     skill_list_id: 208
     attributes:
       combat:
@@ -166,7 +166,7 @@ templates:
     id:            6866
     species:       orc
     type:          [notorious, battlefield]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 189
     attributes:
       combat:
@@ -212,7 +212,7 @@ templates:
     id:            6868
     species:       mimic
     type:          [notorious, battlefield]
-    spell_list_id: 568
+    spell_list:    chest_oplenty
     skill_list_id: 2114
     attributes:
       combat:
@@ -245,7 +245,7 @@ templates:
     id:            723
     species:       behemoth
     type:          [notorious, battlefield]
-    spell_list_id: 126
+    spell_list:    casting_behemoth
     skill_list_id: 51
     attributes:
       combat:
@@ -273,7 +273,7 @@ templates:
     id:            6869
     species:       mimic
     type:          [notorious, battlefield]
-    spell_list_id: 568
+    spell_list:    chest_oplenty
     skill_list_id: 2114
     attributes:
       combat:
@@ -306,7 +306,7 @@ templates:
     id:            773
     species:       hecteye
     type:          [notorious, battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 139
     attributes:
       combat:
@@ -401,7 +401,7 @@ templates:
     id:            919
     species:       orc
     type:          [notorious, battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 189
     attributes:
       combat:
@@ -476,7 +476,7 @@ templates:
     id:            1101
     species:       dragon
     type:          [notorious, battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 2073
     attributes:
       combat:
@@ -629,7 +629,7 @@ templates:
     id:            1923
     species:       rabbit
     type:          [notorious, battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 206
     attributes:
       combat:
@@ -657,7 +657,7 @@ templates:
     display_name:  Helltail_Harry
     species:       rabbit
     type:          [notorious, battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 206
     attributes:
       combat:
@@ -703,7 +703,7 @@ templates:
     id:            2011
     species:       fly
     type:          [notorious, battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 997
     attributes:
       combat:
@@ -731,7 +731,7 @@ templates:
     id:            2086
     species:       orc
     type:          [notorious, battlefield]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 189
     attributes:
       combat:
@@ -759,7 +759,7 @@ templates:
     display_name:  Invulnerable_Mazzgozz
     species:       orc
     type:          [notorious, battlefield]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 189
     attributes:
       combat:
@@ -808,7 +808,7 @@ templates:
     id:            2202
     species:       orc
     type:          [notorious, battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 189
     attributes:
       combat:
@@ -836,7 +836,7 @@ templates:
     display_name:  Keeneyed_Aufwuf
     species:       orc
     type:          [notorious, battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 189
     attributes:
       combat:
@@ -912,7 +912,7 @@ templates:
     display_name:  Maat
     species:       humes
     type:          [notorious, battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 335
     attributes:
       combat:
@@ -1082,7 +1082,7 @@ templates:
     id:            3026
     species:       orcish_warmachine
     type:          [notorious, battlefield]
-    spell_list_id: 71
+    spell_list:    orcish_onager
     skill_list_id: 190
     attributes:
       speed: 120
@@ -1131,7 +1131,7 @@ templates:
     id:            3136
     species:       beetle
     type:          [notorious, battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 49
     attributes:
       combat:
@@ -1205,7 +1205,7 @@ templates:
     id:            3693
     species:       hecteye
     type:          [notorious, battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 492
     attributes:
       combat:
@@ -1232,7 +1232,7 @@ templates:
     id:            3740
     species:       ahriman
     type:          [notorious, battlefield]
-    spell_list_id: 11
+    spell_list:    ahriman
     skill_list_id: 4
     attributes:
       combat:
@@ -1255,7 +1255,7 @@ templates:
     id:            4097
     species:       orc
     type:          [notorious, battlefield]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 189
     attributes:
       combat:
@@ -1283,7 +1283,7 @@ templates:
     display_name:  Undefeatable_Sappdapp
     species:       orc
     type:          [notorious, battlefield]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 189
     attributes:
       combat:

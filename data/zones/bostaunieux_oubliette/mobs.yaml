@@ -393,7 +393,7 @@ templates:
   Gespenst:
     id:            1505
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -425,7 +425,7 @@ templates:
     id:            7161
     display_name:  Gespenst
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -456,7 +456,7 @@ templates:
   Haunt:
     id:            1900
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -515,7 +515,7 @@ templates:
     id:            2548
     species:       ghost
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -604,7 +604,7 @@ templates:
   Nachtmahr:
     id:            6509
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -668,7 +668,7 @@ templates:
     id:            3125
     species:       shadow
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 221
     attributes:
       combat:
@@ -830,7 +830,7 @@ templates:
   Wurdalak:
     id:            6582
     species:       vampyr
-    spell_list_id: 293
+    spell_list:    nosferatu
     skill_list_id: 309
     attributes:
       combat:

@@ -371,7 +371,7 @@ templates:
   Goblin_Shaman:
     id:            1710
     species:       goblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -478,7 +478,7 @@ templates:
   Hobgoblin_Alastor:
     id:            1968
     species:       armored_goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -568,7 +568,7 @@ templates:
   Hobgoblin_Fascinator:
     id:            1975
     species:       goblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -634,7 +634,7 @@ templates:
   Hobgoblin_Physician:
     id:            1977
     species:       goblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:
@@ -654,7 +654,7 @@ templates:
   Hobgoblin_Toreador:
     id:            1981
     species:       goblin
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 133
     attributes:
       combat:
@@ -1348,7 +1348,7 @@ templates:
     id:            3591
     species:       uragnite
     type:          [notorious]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 251
     attributes:
       combat:
@@ -1379,7 +1379,7 @@ templates:
     id:            3592
     species:       water_elemental
     type:          [notorious]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 106
     attributes:
       combat:

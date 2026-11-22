@@ -6,7 +6,7 @@ templates:
     id:            70
     species:       ghost
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -29,7 +29,7 @@ templates:
     id:            5726
     species:       skeleton
     type:          [notorious]
-    spell_list_id: 147
+    spell_list:    ankou
     skill_list_id: 227
     attributes:
       combat:
@@ -59,7 +59,7 @@ templates:
     id:            6889
     species:       animated_weapons
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 14
     attributes:
       combat:
@@ -123,7 +123,7 @@ templates:
     id:            656
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -158,7 +158,7 @@ templates:
     id:            671
     species:       treant
     type:          [notorious]
-    spell_list_id: 497
+    spell_list:    cemetery_cherry
     skill_list_id: 245
     attributes:
       combat:
@@ -228,7 +228,7 @@ templates:
     id:            797
     species:       skeleton
     type:          [notorious, event]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 227
     attributes:
       combat:
@@ -252,7 +252,7 @@ templates:
     id:            798
     species:       skeleton
     type:          [notorious, event]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 227
     attributes:
       combat:
@@ -298,7 +298,7 @@ templates:
   Crypt_Ghost:
     id:            857
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -361,7 +361,7 @@ templates:
   Enchanted_Bones_blm:
     id:            1214
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -498,7 +498,7 @@ templates:
   Goblin_Gambler:
     id:            1666
     species:       goblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -566,7 +566,7 @@ templates:
   Goblin_Leecher:
     id:            1683
     species:       goblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:
@@ -699,7 +699,7 @@ templates:
   Goblin_Tinkerer:
     id:            1738
     species:       armored_goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -741,7 +741,7 @@ templates:
   Goblin_Weaver:
     id:            1744
     species:       goblin
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 133
     attributes:
       combat:
@@ -847,7 +847,7 @@ templates:
     id:            5164
     species:       naraka
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 472
     attributes:
       combat:
@@ -906,7 +906,7 @@ templates:
     id:            2105
     species:       skeleton
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -1061,7 +1061,7 @@ templates:
   Locus_Lemures:
     id:            2388
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -1091,7 +1091,7 @@ templates:
   Locus_Spartoi_Sorcerer:
     id:            7059
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -1166,7 +1166,7 @@ templates:
     id:            6391
     display_name:  Thousand_Eyes_KRT
     species:       hecteye
-    spell_list_id: 10
+    spell_list:    hecteyes
     skill_list_id: 139
     attributes:
       combat:
@@ -1198,7 +1198,7 @@ templates:
     id:            3946
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -1266,7 +1266,7 @@ templates:
   Nachzehrer_blm:
     id:            6563
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -1378,7 +1378,7 @@ templates:
     display_name:  Rock_Eater
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -1417,7 +1417,7 @@ templates:
   Spartoi_Sorcerer:
     id:            3719
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -1485,7 +1485,7 @@ templates:
   Spook:
     id:            3739
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -1523,7 +1523,7 @@ templates:
     id:            3780
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -1593,7 +1593,7 @@ templates:
     id:            4261
     species:       dark_wyrm
     type:          [notorious]
-    spell_list_id: 57
+    spell_list:    vrtra
     skill_list_id: 391
     attributes:
       combat:

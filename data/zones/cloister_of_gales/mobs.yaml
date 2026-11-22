@@ -8,7 +8,7 @@ templates:
     species:       air_elemental
     type:          [battlefield]
     roam:          [scripted]
-    spell_list_id: 12
+    spell_list:    elemental_air
     skill_list_id: 99
     attributes:
       combat:
@@ -227,7 +227,7 @@ templates:
     id:            2951
     species:       manticore
     type:          [battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 179
     attributes:
       combat:

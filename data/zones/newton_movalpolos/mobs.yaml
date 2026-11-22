@@ -6,7 +6,7 @@ templates:
     id:            6109
     species:       corse
     type:          [notorious]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 2046
     attributes:
       combat:
@@ -218,7 +218,7 @@ templates:
   Earth_Elemental:
     id:            1160
     species:       earth_elemental
-    spell_list_id: 13
+    spell_list:    elemental_earth
     skill_list_id: 101
     attributes:
       combat:
@@ -252,7 +252,7 @@ templates:
     id:            1645
     species:       goblin
     type:          [notorious]
-    spell_list_id: 463
+    spell_list:    goblin_collector
     skill_list_id: 1172
     attributes:
       combat:
@@ -353,7 +353,7 @@ templates:
   Goblin_Hangman:
     id:            1675
     species:       goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -530,7 +530,7 @@ templates:
   Goblin_Packman:
     id:            1692
     species:       goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -675,7 +675,7 @@ templates:
   Moblin_Aidman:
     id:            2684
     species:       moblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 184
     attributes:
       combat:
@@ -714,7 +714,7 @@ templates:
     id:            2684
     display_name:  Moblin_Aidman
     species:       moblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 184
     attributes:
       combat:
@@ -752,7 +752,7 @@ templates:
   Moblin_Draftsman:
     id:            2690
     species:       moblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 184
     attributes:
       combat:
@@ -796,7 +796,7 @@ templates:
   Moblin_Engineman:
     id:            2692
     species:       moblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 184
     attributes:
       combat:
@@ -843,7 +843,7 @@ templates:
     id:            2692
     display_name:  Moblin_Engineman
     species:       moblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 184
     attributes:
       combat:
@@ -889,7 +889,7 @@ templates:
   Moblin_Groundman:
     id:            2695
     species:       moblin
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 184
     attributes:
       combat:
@@ -961,7 +961,7 @@ templates:
   Moblin_Scalpelman:
     id:            2704
     species:       moblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 184
     attributes:
       combat:
@@ -995,7 +995,7 @@ templates:
   Moblin_Tankman:
     id:            2705
     species:       moblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 184
     attributes:
       combat:
@@ -1033,7 +1033,7 @@ templates:
   Moblin_Topsman:
     id:            2706
     species:       moblin
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 184
     attributes:
       combat:
@@ -1070,7 +1070,7 @@ templates:
     id:            2706
     display_name:  Moblin_Topsman
     species:       moblin
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 184
     attributes:
       combat:
@@ -1106,7 +1106,7 @@ templates:
   Moblin_Workman:
     id:            2709
     species:       moblin
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 184
     attributes:
       combat:
@@ -1318,7 +1318,7 @@ templates:
     id:            6718
     species:       goblin
     type:          [notorious]
-    spell_list_id: 485
+    spell_list:    sword_sorcerer_solisoq
     skill_list_id: 133
     attributes:
       combat:
@@ -1352,7 +1352,7 @@ templates:
   Thunder_Elemental:
     id:            3912
     species:       thunder_elemental
-    spell_list_id: 16
+    spell_list:    elemental_thunder
     skill_list_id: 105
     attributes:
       combat:

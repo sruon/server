@@ -404,7 +404,7 @@ templates:
   Doom_Mage_TC:
     id:            6539
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -438,7 +438,7 @@ templates:
   Doom_Soldier_TC:
     id:            6540
     species:       skeleton
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 227
     attributes:
       combat:
@@ -472,7 +472,7 @@ templates:
   Drowned_Bones:
     id:            6534
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -503,7 +503,7 @@ templates:
   Fallen_Knight:
     id:            1287
     species:       skeleton
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 227
     attributes:
       combat:
@@ -744,7 +744,7 @@ templates:
   Lich:
     id:            2407
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -775,7 +775,7 @@ templates:
     id:            2482
     species:       dark_elemental
     type:          [notorious]
-    spell_list_id: 18
+    spell_list:    elemental_dark
     skill_list_id: 100
     attributes:
       combat:
@@ -860,7 +860,7 @@ templates:
   Mindcraver:
     id:            2667
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -1032,7 +1032,7 @@ templates:
   Poroggo_Excavator:
     id:            6377
     species:       green_poroggo
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 196
     attributes:
       combat:

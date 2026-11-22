@@ -148,7 +148,7 @@ templates:
     id:            707
     species:       moblin
     type:          [notorious, battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 184
     attributes:
       combat:
@@ -176,7 +176,7 @@ templates:
     id:            1206
     species:       elvaan
     type:          [notorious, battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 2
     attributes:
       combat:
@@ -202,7 +202,7 @@ templates:
     id:            1296
     species:       humes
     type:          [battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 149
     attributes:
       render:
@@ -224,7 +224,7 @@ templates:
     id:            1297
     species:       automaton
     type:          [notorious, battlefield]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 363
     attributes:
       combat:
@@ -249,7 +249,7 @@ templates:
     id:            1298
     species:       carbuncle
     type:          [battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 34
     attributes:
       combat:
@@ -321,7 +321,7 @@ templates:
     id:            1452
     species:       galks
     type:          [notorious, battlefield]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 2
     attributes:
       combat:
@@ -344,10 +344,10 @@ templates:
         mp: 3600
 
   Gloom_Phantom:
-    id:            6160
-    species:       goblin
-    type:          [notorious]
-    spell_list_id: 1
+    id:         6160
+    species:    goblin
+    type:       [notorious]
+    spell_list: default_buff
     attributes:
       combat:
         skill: hand_to_hand
@@ -368,7 +368,7 @@ templates:
     id:            2006
     species:       humes
     type:          [notorious, battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 2
     attributes:
       combat:
@@ -389,10 +389,10 @@ templates:
         mp: 3000
 
   Jabbos:
-    id:            6161
-    species:       galks
-    type:          [notorious]
-    spell_list_id: 1
+    id:         6161
+    species:    galks
+    type:       [notorious]
+    spell_list: default_buff
     attributes:
       combat:
         skill: hand_to_hand
@@ -422,7 +422,7 @@ templates:
     id:            2680
     species:       mithra
     type:          [notorious, battlefield]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 2
     attributes:
       combat:
@@ -448,7 +448,7 @@ templates:
     id:            2688
     species:       moblin
     type:          [battlefield]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 184
     attributes:
       combat:
@@ -496,7 +496,7 @@ templates:
     id:            2707
     species:       moblin
     type:          [battlefield]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 184
     attributes:
       combat:
@@ -522,7 +522,7 @@ templates:
     id:            2766
     species:       moblin
     type:          [notorious, battlefield]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 184
     attributes:
       combat:
@@ -577,7 +577,7 @@ templates:
     id:            3850
     species:       tarutaru
     type:          [notorious, battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 2
     attributes:
       combat:
@@ -603,7 +603,7 @@ templates:
     id:            4005
     species:       moblin
     type:          [notorious, battlefield]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 184
     attributes:
       combat:
@@ -631,7 +631,7 @@ templates:
     id:            4057
     species:       moblin
     type:          [battlefield]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 184
     attributes:
       combat:

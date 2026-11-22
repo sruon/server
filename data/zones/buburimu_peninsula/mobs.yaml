@@ -26,7 +26,7 @@ templates:
   Air_Elemental:
     id:            71
     species:       air_elemental
-    spell_list_id: 12
+    spell_list:    elemental_air
     skill_list_id: 99
     attributes:
       combat:
@@ -86,7 +86,7 @@ templates:
   Bogy:
     id:            485
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -120,7 +120,7 @@ templates:
     id:            4734
     species:       botulus
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 112
     attributes:
       combat:
@@ -295,7 +295,7 @@ templates:
   Ghoul_blm:
     id:            1518
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -492,7 +492,7 @@ templates:
   Goblin_Gambler:
     id:            1666
     species:       goblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -528,7 +528,7 @@ templates:
   Goblin_Guide:
     id:            1672
     species:       armored_goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -555,7 +555,7 @@ templates:
   Goblin_Leecher:
     id:            1683
     species:       goblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:
@@ -642,7 +642,7 @@ templates:
   Goblin_Shaman:
     id:            1710
     species:       goblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -696,7 +696,7 @@ templates:
   Goblin_Thespian:
     id:            1735
     species:       goblin
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 133
     attributes:
       combat:
@@ -724,7 +724,7 @@ templates:
   Goblin_Tinkerer:
     id:            1738
     species:       armored_goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -831,7 +831,7 @@ templates:
     id:            1972
     species:       goblin
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -854,7 +854,7 @@ templates:
     id:            1974
     species:       goblin
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -898,7 +898,7 @@ templates:
     id:            1979
     species:       goblin
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 133
     attributes:
       combat:
@@ -963,7 +963,7 @@ templates:
     id:            1984
     species:       goblin
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:
@@ -1033,7 +1033,7 @@ templates:
   Pixie:
     id:            3148
     species:       pixie
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 195
     attributes:
       combat:
@@ -1307,7 +1307,7 @@ templates:
     id:            3887
     species:       yagudo
     type:          [notorious]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 360
     attributes:
       combat:
@@ -1330,7 +1330,7 @@ templates:
     id:            3888
     species:       yagudo
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 360
     attributes:
       combat:
@@ -1376,7 +1376,7 @@ templates:
     id:            3890
     species:       yagudo
     type:          [notorious]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 360
     attributes:
       combat:
@@ -1421,7 +1421,7 @@ templates:
     id:            3892
     species:       yagudo
     type:          [notorious]
-    spell_list_id: 30
+    spell_list:    yagudo_smn
     skill_list_id: 360
     attributes:
       combat:
@@ -1444,7 +1444,7 @@ templates:
     id:            3893
     species:       yagudo
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 360
     attributes:
       combat:
@@ -1467,7 +1467,7 @@ templates:
     id:            5741
     species:       crab
     type:          [notorious]
-    spell_list_id: 151
+    spell_list:    wake_warder_wanda
     skill_list_id: 775
     attributes:
       combat:
@@ -1498,7 +1498,7 @@ templates:
   Water_Elemental:
     id:            4309
     species:       water_elemental
-    spell_list_id: 15
+    spell_list:    elemental_water
     skill_list_id: 106
     attributes:
       combat:
@@ -1578,7 +1578,7 @@ templates:
   Yagudos_Elemental:
     id:            4454
     species:       air_elemental
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 99
     attributes:
       combat:

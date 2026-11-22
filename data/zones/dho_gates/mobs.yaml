@@ -318,7 +318,7 @@ templates:
     id:            6418
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -580,7 +580,7 @@ templates:
   Velkk_Archmagus:
     id:            5523
     species:       blue_velkk
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 342
     attributes:
       combat:
@@ -624,7 +624,7 @@ templates:
   Velkk_Cyclonicist:
     id:            5522
     species:       blue_velkk
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 342
     attributes:
       combat:
@@ -668,7 +668,7 @@ templates:
   Velkk_Magus:
     id:            4977
     species:       blue_velkk
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 342
     attributes:
       combat:
@@ -692,7 +692,7 @@ templates:
   Velkk_Manipulator:
     id:            4903
     species:       blue_velkk
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 342
     attributes:
       combat:
@@ -790,7 +790,7 @@ templates:
   Velkk_Stormcaller:
     id:            4978
     species:       blue_velkk
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 342
     attributes:
       combat:
@@ -835,7 +835,7 @@ templates:
   Velkk_Vaticinator:
     id:            4899
     species:       red_velkk
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 342
     attributes:
       combat:
@@ -862,7 +862,7 @@ templates:
     id:            4985
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:

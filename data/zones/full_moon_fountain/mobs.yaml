@@ -6,7 +6,7 @@ templates:
     id:            30
     species:       batons
     type:          [notorious, battlefield]
-    spell_list_id: 556
+    spell_list:    ace_of_batons
     skill_list_id: 61
     attributes:
       combat:
@@ -34,7 +34,7 @@ templates:
     display_name:  Ace_of_Batons
     species:       batons
     type:          [notorious, battlefield]
-    spell_list_id: 556
+    spell_list:    ace_of_batons
     skill_list_id: 61
     attributes:
       combat:
@@ -61,7 +61,7 @@ templates:
     id:            31
     species:       coins
     type:          [notorious, battlefield]
-    spell_list_id: 557
+    spell_list:    ace_of_coins
     skill_list_id: 61
     attributes:
       combat:
@@ -89,7 +89,7 @@ templates:
     display_name:  Ace_of_Coins
     species:       coins
     type:          [notorious, battlefield]
-    spell_list_id: 557
+    spell_list:    ace_of_coins
     skill_list_id: 61
     attributes:
       combat:
@@ -116,7 +116,7 @@ templates:
     id:            32
     species:       cups
     type:          [notorious, battlefield]
-    spell_list_id: 558
+    spell_list:    ace_of_cups
     skill_list_id: 61
     attributes:
       combat:
@@ -144,7 +144,7 @@ templates:
     display_name:  Ace_of_Cups
     species:       cups
     type:          [notorious, battlefield]
-    spell_list_id: 558
+    spell_list:    ace_of_cups
     skill_list_id: 61
     attributes:
       combat:
@@ -171,7 +171,7 @@ templates:
     id:            33
     species:       swords
     type:          [notorious, battlefield]
-    spell_list_id: 559
+    spell_list:    ace_of_swords
     skill_list_id: 61
     attributes:
       combat:
@@ -199,7 +199,7 @@ templates:
     display_name:  Ace_of_Swords
     species:       swords
     type:          [notorious, battlefield]
-    spell_list_id: 559
+    spell_list:    ace_of_swords
     skill_list_id: 61
     attributes:
       combat:
@@ -226,7 +226,7 @@ templates:
     id:            75
     species:       tarutaru
     type:          [battlefield]
-    spell_list_id: 134
+    spell_list:    ajido_marujido
     skill_list_id: 481
     attributes:
       combat:
@@ -577,7 +577,7 @@ templates:
     id:            4462
     species:       manticore
     type:          [battlefield]
-    spell_list_id: 135
+    spell_list:    yali
     skill_list_id: 179
     attributes:
       combat:

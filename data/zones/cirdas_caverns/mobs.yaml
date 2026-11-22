@@ -28,7 +28,7 @@ templates:
     id:            6941
     species:       byrgen
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 100
     attributes:
       combat:
@@ -545,7 +545,7 @@ templates:
     id:            4757
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:

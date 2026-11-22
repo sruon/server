@@ -5,7 +5,7 @@ templates:
   Bashful_Heartwing:
     id:            5098
     species:       heartwing
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 343
     attributes:
       combat:
@@ -740,7 +740,7 @@ templates:
   Treefrost_Gefyrst:
     id:            4972
     species:       gefyrst
-    spell_list_id: 14
+    spell_list:    elemental_ice
     skill_list_id: 103
     attributes:
       combat:
@@ -819,7 +819,7 @@ templates:
   Velkk_Sage:
     id:            4967
     species:       blue_velkk
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 342
     attributes:
       combat:

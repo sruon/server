@@ -5,7 +5,7 @@ templates:
   Air_Elemental:
     id:            71
     species:       air_elemental
-    spell_list_id: 12
+    spell_list:    elemental_air
     skill_list_id: 99
     attributes:
       combat:
@@ -70,7 +70,7 @@ templates:
   Boribaba:
     id:            6538
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -167,7 +167,7 @@ templates:
   Goblin_Alchemist:
     id:            1634
     species:       goblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:
@@ -284,7 +284,7 @@ templates:
   Goblin_Enchanter:
     id:            1654
     species:       goblin
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 133
     attributes:
       combat:
@@ -477,7 +477,7 @@ templates:
   Goblin_Reaper:
     id:            1705
     species:       armored_goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -748,7 +748,7 @@ templates:
     id:            2439
     species:       sea_monk
     type:          [notorious]
-    spell_list_id: 152
+    spell_list:    lord_of_onzozo
     skill_list_id: 218
     attributes:
       combat:
@@ -839,7 +839,7 @@ templates:
     id:            2790
     species:       goblin
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -1085,7 +1085,7 @@ templates:
     id:            4074
     species:       roc
     type:          [notorious]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 125
     attributes:
       combat:
@@ -1128,7 +1128,7 @@ templates:
   Water_Elemental:
     id:            4309
     species:       water_elemental
-    spell_list_id: 15
+    spell_list:    elemental_water
     skill_list_id: 106
     attributes:
       combat:

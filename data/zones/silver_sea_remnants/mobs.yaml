@@ -287,7 +287,7 @@ templates:
     display_name:  Ashu_Talif_Crew
     species:       fomor
     type:          [notorious, battlefield]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 115
     attributes:
       combat:
@@ -365,7 +365,7 @@ templates:
   Deadpan_Devilet:
     id:            933
     species:       imp
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       combat:
@@ -409,7 +409,7 @@ templates:
     id:            963
     species:       imp
     type:          [battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       combat:
@@ -443,7 +443,7 @@ templates:
     id:            1017
     species:       imp
     type:          [battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       speed:           250
@@ -469,7 +469,7 @@ templates:
   Don_Poroggo:
     id:            1079
     species:       red_poroggo
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 196
     attributes:
       combat:
@@ -500,7 +500,7 @@ templates:
   Doom_Mage_SSR:
     id:            6533
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -522,7 +522,7 @@ templates:
     id:            1448
     species:       imp
     type:          [battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       combat:
@@ -564,7 +564,7 @@ templates:
   Guard_Skeleton_blm_SSR:
     id:            6555
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -696,7 +696,7 @@ templates:
   Haunt_SSR:
     id:            6507
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -716,7 +716,7 @@ templates:
   Heraldic_Imp:
     id:            1933
     species:       imp
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       combat:
@@ -739,7 +739,7 @@ templates:
   Imp:
     id:            2065
     species:       imp
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       combat:
@@ -873,7 +873,7 @@ templates:
     id:            3191
     species:       fomor
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 115
     attributes:
       combat:
@@ -902,7 +902,7 @@ templates:
   Psycheflayer:
     id:            3215
     species:       soulflayer
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 233
     attributes:
       combat:

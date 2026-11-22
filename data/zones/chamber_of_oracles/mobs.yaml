@@ -53,7 +53,7 @@ templates:
     id:            673
     species:       antica
     type:          [notorious, battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 25
     attributes:
       combat:
@@ -172,7 +172,7 @@ templates:
     id:            1655
     species:       goblin
     type:          [notorious, battlefield]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 133
     attributes:
       combat:
@@ -235,7 +235,7 @@ templates:
     id:            1989
     species:       antica
     type:          [notorious, battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 25
     attributes:
       combat:
@@ -264,7 +264,7 @@ templates:
     display_name:  Hoplomachus_XI-XXVI
     species:       antica
     type:          [notorious, battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 25
     attributes:
       combat:
@@ -336,7 +336,7 @@ templates:
     display_name:  Maat
     species:       humes
     type:          [notorious, battlefield]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 335
     attributes:
       combat:
@@ -451,7 +451,7 @@ templates:
     id:            3234
     species:       manticore
     type:          [battlefield]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 179
     attributes:
       combat:
@@ -499,7 +499,7 @@ templates:
     id:            3357
     species:       antica
     type:          [notorious, battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 25
     attributes:
       combat:
@@ -528,7 +528,7 @@ templates:
     display_name:  Retiarius_XI-XIX
     species:       antica
     type:          [notorious, battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 25
     attributes:
       combat:
@@ -578,7 +578,7 @@ templates:
     id:            3429
     species:       sabotender
     type:          [battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 212
     attributes:
       combat:
@@ -653,7 +653,7 @@ templates:
     id:            4000
     species:       antica
     type:          [notorious, battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 25
     attributes:
       combat:

@@ -134,7 +134,7 @@ templates:
   Arch_Demon:
     id:            226
     species:       kindred
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 169
     attributes:
       combat:
@@ -785,7 +785,7 @@ templates:
     id:            812
     species:       kindred
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 169
     attributes:
       combat:
@@ -959,7 +959,7 @@ templates:
   Emerald_Quadav:
     id:            1207
     species:       quadav
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 202
     attributes:
       combat:
@@ -1002,7 +1002,7 @@ templates:
     id:            5786
     species:       elvaan
     type:          [battlefield]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 483
     attributes:
       combat:
@@ -1648,7 +1648,7 @@ templates:
   Laa_Yaku_the_Austere:
     id:            2309
     species:       yagudo
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 360
     attributes:
       combat:
@@ -2051,7 +2051,7 @@ templates:
   Nickel_Quadav:
     id:            2837
     species:       quadav
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 202
     attributes:
       combat:
@@ -2265,7 +2265,7 @@ templates:
   Orcish_Hexspinner_past:
     id:            5558
     species:       orc
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 189
     attributes:
       combat:
@@ -2346,7 +2346,7 @@ templates:
   Orcish_Trooper_past:
     id:            6284
     species:       orc
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 189
     attributes:
       combat:
@@ -2690,7 +2690,7 @@ templates:
   Sapphirine_Quadav:
     id:            3464
     species:       quadav
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 202
     attributes:
       combat:
@@ -2759,7 +2759,7 @@ templates:
     id:            3549
     species:       great_scorpion
     type:          [notorious]
-    spell_list_id: 46
+    spell_list:    serket
     skill_list_id: 273
     attributes:
       combat:
@@ -3614,7 +3614,7 @@ templates:
   Yagudo_Drummer_past:
     id:            5490
     species:       yagudo
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 270
     attributes:
       combat:
@@ -3674,7 +3674,7 @@ templates:
   Yagudo_Herald_past:
     id:            5486
     species:       yagudo
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 270
     attributes:
       combat:
@@ -3753,7 +3753,7 @@ templates:
   Yagudo_Priest_past:
     id:            5484
     species:       yagudo
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 270
     attributes:
       combat:
@@ -3775,7 +3775,7 @@ templates:
   Yagudo_Prior_past:
     id:            5491
     species:       yagudo
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 270
     attributes:
       combat:
@@ -3831,7 +3831,7 @@ templates:
   Yagudo_Theologist:
     id:            4456
     species:       yagudo
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 270
     attributes:
       combat:
@@ -3894,7 +3894,7 @@ templates:
   Zircon_Quadav_past:
     id:            5825
     species:       quadav
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 202
     attributes:
       combat:

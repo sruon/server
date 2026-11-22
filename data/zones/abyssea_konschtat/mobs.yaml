@@ -63,7 +63,7 @@ templates:
     id:            232
     species:       ahriman
     type:          [notorious]
-    spell_list_id: 165
+    spell_list:    arimaspi
     skill_list_id: 4
     attributes:
       combat:
@@ -93,7 +93,7 @@ templates:
     id:            261
     species:       soulflayer
     type:          [notorious]
-    spell_list_id: 166
+    spell_list:    ashtaerh_the_gallvexed
     skill_list_id: 234
     attributes:
       combat:
@@ -112,7 +112,7 @@ templates:
     id:            326
     species:       imp
     type:          [notorious]
-    spell_list_id: 167
+    spell_list:    bakka
     skill_list_id: 789
     attributes:
       combat:
@@ -195,7 +195,7 @@ templates:
     id:            457
     species:       tonberry
     type:          [notorious]
-    spell_list_id: 168
+    spell_list:    bloodeye_vileberry
     skill_list_id: 792
     attributes:
       combat:
@@ -235,7 +235,7 @@ templates:
     id:            458
     species:       leech
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 793
     attributes:
       combat:
@@ -312,7 +312,7 @@ templates:
   Cryptonberry_Occultist:
     id:            853
     species:       tonberry
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 243
     attributes:
       combat:
@@ -349,7 +349,7 @@ templates:
     id:            7132
     display_name:  Cryptonberry_Occultist
     species:       tonberry
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 243
     attributes:
       combat:
@@ -384,7 +384,7 @@ templates:
   Dapifer_Imp:
     id:            902
     species:       imp
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       combat:
@@ -416,7 +416,7 @@ templates:
     id:            7130
     display_name:  Dapifer_Imp
     species:       imp
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       combat:
@@ -446,7 +446,7 @@ templates:
   Deep_Eye:
     id:            951
     species:       ahriman
-    spell_list_id: 11
+    spell_list:    ahriman
     skill_list_id: 4
     attributes:
       combat:
@@ -481,7 +481,7 @@ templates:
     id:            7126
     display_name:  Deep_Eye
     species:       ahriman
-    spell_list_id: 11
+    spell_list:    ahriman
     skill_list_id: 4
     attributes:
       combat:
@@ -515,7 +515,7 @@ templates:
     id:            1001
     species:       gorger
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 137
     attributes:
       combat:
@@ -537,7 +537,7 @@ templates:
   Dybbuk:
     id:            1150
     species:       psychopomp
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 91
     attributes:
       combat:
@@ -563,7 +563,7 @@ templates:
     id:            7128
     display_name:  Dybbuk
     species:       corpselight
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 91
     attributes:
       combat:
@@ -628,7 +628,7 @@ templates:
   Ephemeral_Clionid:
     id:            1244
     species:       clionid
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 65
     attributes:
       combat:
@@ -660,7 +660,7 @@ templates:
     id:            7109
     display_name:  Ephemeral_Clionid
     species:       clionid
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 65
     attributes:
       combat:
@@ -692,7 +692,7 @@ templates:
     id:            7108
     display_name:  Ephemeral_Clionid
     species:       clionid
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 65
     attributes:
       combat:
@@ -723,7 +723,7 @@ templates:
     id:            7110
     display_name:  Ephemeral_Clionid
     species:       clionid
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 65
     attributes:
       combat:
@@ -754,7 +754,7 @@ templates:
   Ephemeral_Limule:
     id:            1245
     species:       limule
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 173
     attributes:
       combat:
@@ -788,7 +788,7 @@ templates:
     id:            7113
     display_name:  Ephemeral_Limule
     species:       limule
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 173
     attributes:
       combat:
@@ -822,7 +822,7 @@ templates:
     id:            7112
     display_name:  Ephemeral_Limule
     species:       limule
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 173
     attributes:
       combat:
@@ -855,7 +855,7 @@ templates:
     id:            7114
     display_name:  Ephemeral_Limule
     species:       limule
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 173
     attributes:
       combat:
@@ -968,7 +968,7 @@ templates:
     id:            1457
     species:       treant
     type:          [notorious]
-    spell_list_id: 169
+    spell_list:    gangly_gean
     skill_list_id: 799
     attributes:
       combat:
@@ -1057,7 +1057,7 @@ templates:
   Guimauve:
     id:            1840
     species:       flan
-    spell_list_id: 170
+    spell_list:    guimauve
     skill_list_id: 299
     attributes:
       combat:
@@ -1087,7 +1087,7 @@ templates:
   Gunge_Slug:
     id:            1848
     species:       slug
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 231
     attributes:
       combat:
@@ -1118,7 +1118,7 @@ templates:
     id:            7120
     display_name:  Gunge_Slug
     species:       slug
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 231
     attributes:
       combat:
@@ -1169,7 +1169,7 @@ templates:
     id:            1869
     species:       gorger
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 138
     attributes:
       combat:
@@ -1508,7 +1508,7 @@ templates:
     id:            2389
     species:       slug
     type:          [notorious]
-    spell_list_id: 171
+    spell_list:    lentor
     skill_list_id: 804
     attributes:
       combat:
@@ -1535,7 +1535,7 @@ templates:
     id:            2395
     species:       ahriman
     type:          [notorious]
-    spell_list_id: 164
+    spell_list:    lesser_arimaspi
     skill_list_id: 4
     attributes:
       combat:
@@ -1557,7 +1557,7 @@ templates:
   Ley_Clionid:
     id:            2404
     species:       clionid
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 65
     attributes:
       combat:
@@ -1590,7 +1590,7 @@ templates:
     id:            7107
     display_name:  Ley_Clionid
     species:       clionid
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 65
     attributes:
       combat:
@@ -1621,7 +1621,7 @@ templates:
   Licorice:
     id:            2409
     species:       flan
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 112
     attributes:
       combat:
@@ -1651,7 +1651,7 @@ templates:
     id:            7122
     display_name:  Licorice
     species:       flan
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 112
     attributes:
       combat:
@@ -1939,7 +1939,7 @@ templates:
   Qaitu:
     id:            3244
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -1973,7 +1973,7 @@ templates:
     id:            7129
     display_name:  Qaitu
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -2239,7 +2239,7 @@ templates:
     id:            3633
     species:       treant
     type:          [notorious]
-    spell_list_id: 172
+    spell_list:    siranpa_kamuy
     skill_list_id: 853
     attributes:
       combat:
@@ -2259,7 +2259,7 @@ templates:
   Sods_Limule:
     id:            3696
     species:       limule
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 173
     attributes:
       combat:
@@ -2293,7 +2293,7 @@ templates:
     id:            7111
     display_name:  Sods_Limule
     species:       limule
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 173
     attributes:
       combat:
@@ -2420,7 +2420,7 @@ templates:
     id:            3962
     species:       tonberry
     type:          [notorious]
-    spell_list_id: 173
+    spell_list:    tonberry_lieje
     skill_list_id: 243
     attributes:
       combat:
@@ -2522,7 +2522,7 @@ templates:
     species:       amphiptere
     type:          [notorious]
     roam:          [stealth]
-    spell_list_id: 174
+    spell_list:    turul
     skill_list_id: 807
     attributes:
       combat:

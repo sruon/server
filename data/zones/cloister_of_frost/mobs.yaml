@@ -31,7 +31,7 @@ templates:
     species:       ice_elemental
     type:          [battlefield]
     roam:          [scripted]
-    spell_list_id: 14
+    spell_list:    elemental_ice
     skill_list_id: 103
     attributes:
       combat:

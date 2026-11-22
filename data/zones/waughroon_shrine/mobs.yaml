@@ -41,7 +41,7 @@ templates:
     id:            304
     species:       carbuncle
     type:          [battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 34
     attributes:
       combat:
@@ -65,7 +65,7 @@ templates:
     display_name:  Ayakashi
     species:       carbuncle
     type:          [battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 34
     attributes:
       combat:
@@ -137,7 +137,7 @@ templates:
     id:            6868
     species:       mimic
     type:          [notorious, battlefield]
-    spell_list_id: 568
+    spell_list:    chest_oplenty
     skill_list_id: 2114
     attributes:
       combat:
@@ -170,7 +170,7 @@ templates:
     id:            6869
     species:       mimic
     type:          [notorious, battlefield]
-    spell_list_id: 568
+    spell_list:    chest_oplenty
     skill_list_id: 2114
     attributes:
       combat:
@@ -203,7 +203,7 @@ templates:
     id:            929
     species:       quadav
     type:          [battlefield]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 202
     attributes:
       combat:
@@ -251,7 +251,7 @@ templates:
     id:            1167
     species:       quadav
     type:          [battlefield]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 202
     attributes:
       combat:
@@ -278,7 +278,7 @@ templates:
     display_name:  EaTho_Cruelheart
     species:       quadav
     type:          [battlefield]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 202
     attributes:
       combat:
@@ -324,7 +324,7 @@ templates:
     species:       worm
     type:          [battlefield]
     roam:          [worm]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 258
     attributes:
       combat:
@@ -352,7 +352,7 @@ templates:
     species:       worm
     type:          [battlefield]
     roam:          [worm]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 258
     attributes:
       combat:
@@ -376,7 +376,7 @@ templates:
     species:       worm
     type:          [battlefield]
     roam:          [worm]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 258
     attributes:
       combat:
@@ -404,7 +404,7 @@ templates:
     species:       worm
     type:          [battlefield]
     roam:          [worm]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 258
     attributes:
       combat:
@@ -429,7 +429,7 @@ templates:
     species:       worm
     type:          [battlefield]
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -452,7 +452,7 @@ templates:
     id:            1447
     species:       kindred
     type:          [notorious, battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 358
     attributes:
       combat:
@@ -482,7 +482,7 @@ templates:
     id:            1777
     species:       quadav
     type:          [notorious, battlefield]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 202
     attributes:
       combat:
@@ -514,7 +514,7 @@ templates:
     id:            1910
     species:       crab
     type:          [battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 77
     attributes:
       combat:
@@ -538,7 +538,7 @@ templates:
     id:            2200
     species:       quadav
     type:          [battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 202
     attributes:
       combat:
@@ -565,7 +565,7 @@ templates:
     display_name:  KaNha_Jabbertongue
     species:       quadav
     type:          [battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 202
     attributes:
       combat:
@@ -618,7 +618,7 @@ templates:
     id:            2305
     species:       quadav
     type:          [battlefield]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 202
     attributes:
       combat:
@@ -645,7 +645,7 @@ templates:
     display_name:  KuTya_Hotblood
     species:       quadav
     type:          [battlefield]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 202
     attributes:
       combat:
@@ -693,7 +693,7 @@ templates:
     display_name:  Maat
     species:       humes
     type:          [notorious, battlefield]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 335
     attributes:
       combat:
@@ -767,7 +767,7 @@ templates:
     id:            2468
     species:       bird
     type:          [notorious, battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 55
     attributes:
       combat:
@@ -838,7 +838,7 @@ templates:
     id:            2646
     species:       sapling
     type:          [notorious, battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 216
     attributes:
       combat:
@@ -887,7 +887,7 @@ templates:
     id:            2981
     species:       fire_elemental
     type:          [battlefield]
-    spell_list_id: 17
+    spell_list:    elemental_fire
     skill_list_id: 102
     attributes:
       combat:
@@ -916,7 +916,7 @@ templates:
     id:            2983
     species:       kindred
     type:          [notorious, battlefield]
-    spell_list_id: 143
+    spell_list:    onki
     skill_list_id: 358
     attributes:
       combat:
@@ -945,7 +945,7 @@ templates:
     id:            3064
     species:       ahriman
     type:          [battlefield]
-    spell_list_id: 11
+    spell_list:    ahriman
     skill_list_id: 4
     attributes:
       combat:
@@ -1071,7 +1071,7 @@ templates:
     id:            3196
     species:       slime
     type:          [battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 229
     attributes:
       combat:
@@ -1098,7 +1098,7 @@ templates:
     id:            3282
     species:       slime
     type:          [battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 229
     attributes:
       combat:
@@ -1123,7 +1123,7 @@ templates:
     id:            3325
     species:       kindred
     type:          [notorious, battlefield]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 358
     attributes:
       combat:
@@ -1153,7 +1153,7 @@ templates:
     id:            3491
     species:       quadav
     type:          [notorious, battlefield]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 202
     attributes:
       combat:
@@ -1185,7 +1185,7 @@ templates:
     id:            3536
     species:       ahriman
     type:          [notorious, battlefield]
-    spell_list_id: 11
+    spell_list:    ahriman
     skill_list_id: 4
     attributes:
       combat:
@@ -1210,7 +1210,7 @@ templates:
     id:            3847
     species:       adamantoise
     type:          [notorious, battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 2
     attributes:
       combat:
@@ -1285,7 +1285,7 @@ templates:
     id:            3927
     species:       legendary_roc
     type:          [notorious, battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 2064
     attributes:
       combat:
@@ -1311,7 +1311,7 @@ templates:
     id:            3928
     species:       legendary_roc
     type:          [notorious, battlefield]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 2064
     attributes:
       combat:
@@ -1337,7 +1337,7 @@ templates:
     id:            3929
     species:       legendary_roc
     type:          [notorious, battlefield]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 2064
     attributes:
       combat:
@@ -1363,7 +1363,7 @@ templates:
     id:            3930
     species:       legendary_roc
     type:          [notorious, battlefield]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 2064
     attributes:
       combat:
@@ -1434,7 +1434,7 @@ templates:
     id:            4521
     species:       quadav
     type:          [battlefield]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 202
     attributes:
       combat:
@@ -1461,7 +1461,7 @@ templates:
     display_name:  ZoDhu_Legslicer
     species:       quadav
     type:          [battlefield]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 202
     attributes:
       combat:

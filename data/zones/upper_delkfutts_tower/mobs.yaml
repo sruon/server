@@ -373,7 +373,7 @@ templates:
     id:            2111
     species:       ghost
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -549,7 +549,7 @@ templates:
   Light_Elemental:
     id:            2413
     species:       light_elemental
-    spell_list_id: 19
+    spell_list:    elemental_light
     skill_list_id: 104
     attributes:
       combat:
@@ -580,7 +580,7 @@ templates:
   Magic_Pot_UDT:
     id:            6600
     species:       magic_pot
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 175
     attributes:
       combat:
@@ -618,7 +618,7 @@ templates:
   Magic_Urn:
     id:            2483
     species:       magic_pot
-    spell_list_id: 36
+    spell_list:    magicpot
     skill_list_id: 175
     attributes:
       combat:
@@ -712,7 +712,7 @@ templates:
   Phasma_UDT:
     id:            6510
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -778,7 +778,7 @@ templates:
   Thunder_Elemental:
     id:            3912
     species:       thunder_elemental
-    spell_list_id: 16
+    spell_list:    elemental_thunder
     skill_list_id: 105
     attributes:
       combat:

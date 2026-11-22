@@ -6,7 +6,7 @@ templates:
     id:            54
     species:       dark_elemental
     type:          [called]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 100
     attributes:
       combat:
@@ -219,7 +219,7 @@ templates:
   Indoor_aern_blm:
     id:            6176
     species:       aern
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 442
     attributes:
       combat:
@@ -255,7 +255,7 @@ templates:
   Indoor_aern_brd:
     id:            6182
     species:       aern
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 442
     attributes:
       combat:
@@ -358,7 +358,7 @@ templates:
   Indoor_aern_drk:
     id:            6180
     species:       aern
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 441
     attributes:
       combat:
@@ -429,7 +429,7 @@ templates:
   Indoor_aern_nin:
     id:            6185
     species:       aern
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 3
     attributes:
       combat:
@@ -463,7 +463,7 @@ templates:
   Indoor_aern_pld:
     id:            6179
     species:       aern
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 441
     attributes:
       combat:
@@ -500,7 +500,7 @@ templates:
   Indoor_aern_rdm:
     id:            6177
     species:       aern
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 441
     attributes:
       combat:
@@ -707,7 +707,7 @@ templates:
   Indoor_aern_whm:
     id:            6175
     species:       aern
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 439
     attributes:
       combat:
@@ -771,7 +771,7 @@ templates:
     id:            2113
     species:       bird_ghrah
     type:          [notorious]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 122
     attributes:
       combat:
@@ -831,7 +831,7 @@ templates:
     id:            3269
     species:       aern
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 441
     attributes:
       combat:
@@ -856,7 +856,7 @@ templates:
     id:            4651
     species:       aern
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 439
     attributes:
       combat:

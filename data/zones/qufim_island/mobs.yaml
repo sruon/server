@@ -96,7 +96,7 @@ templates:
     id:            6113
     species:       dragon
     type:          [notorious]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 2049
     attributes:
       combat:
@@ -117,7 +117,7 @@ templates:
   Banshee:
     id:            338
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -763,7 +763,7 @@ templates:
     id:            1972
     species:       goblin
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -786,7 +786,7 @@ templates:
     id:            1974
     species:       goblin
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -830,7 +830,7 @@ templates:
     id:            1979
     species:       goblin
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 133
     attributes:
       combat:
@@ -895,7 +895,7 @@ templates:
     id:            1984
     species:       goblin
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:
@@ -989,7 +989,7 @@ templates:
     id:            4694
     species:       green_mantid
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 340
     attributes:
       combat:
@@ -1078,7 +1078,7 @@ templates:
     display_name:  Land_Worm
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -1115,7 +1115,7 @@ templates:
   Light_Elemental:
     id:            2413
     species:       light_elemental
-    spell_list_id: 19
+    spell_list:    elemental_light
     skill_list_id: 104
     attributes:
       combat:
@@ -1169,7 +1169,7 @@ templates:
     id:            2496
     species:       evil_weapon
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 110
     attributes:
       combat:
@@ -1376,7 +1376,7 @@ templates:
   Thunder_Elemental:
     id:            3912
     species:       thunder_elemental
-    spell_list_id: 16
+    spell_list:    elemental_thunder
     skill_list_id: 105
     attributes:
       combat:
@@ -1459,7 +1459,7 @@ templates:
   Wight_blm:
     id:            6570
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:

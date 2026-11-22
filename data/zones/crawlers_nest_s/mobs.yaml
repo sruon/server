@@ -5,7 +5,7 @@ templates:
   1st_Gold_Musketeer:
     id:            1
     species:       humes
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 149
     attributes:
       combat:
@@ -32,7 +32,7 @@ templates:
   1st_Iron_Musketeer:
     id:            2
     species:       humes
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 149
     attributes:
       combat:
@@ -60,7 +60,7 @@ templates:
   1st_Legion_Aidman:
     id:            4
     species:       humes
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 149
     attributes:
       combat:
@@ -105,7 +105,7 @@ templates:
   1st_Legion_Reiter:
     id:            6
     species:       galks
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 146
     attributes:
       combat:
@@ -213,7 +213,7 @@ templates:
   8th_Iron_Musketeer:
     id:            13
     species:       humes
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 149
     attributes:
       combat:
@@ -482,7 +482,7 @@ templates:
     id:            7571
     display_name:  Apex Fire Elemental
     species:       fire_elemental
-    spell_list_id: 17
+    spell_list:    elemental_fire
     skill_list_id: 102
     attributes:
       combat:
@@ -635,7 +635,7 @@ templates:
     display_name:  Apex Mycelar
     species:       mycelar
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 116
     attributes:
       combat:
@@ -736,7 +736,7 @@ templates:
     id:            7572
     display_name:  Apex Water Elemental
     species:       water_elemental
-    spell_list_id: 15
+    spell_list:    elemental_water
     skill_list_id: 106
     attributes:
       combat:
@@ -787,7 +787,7 @@ templates:
   Areuhat:
     id:            227
     species:       elvaan
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 145
     attributes:
       combat:
@@ -833,7 +833,7 @@ templates:
   Azima:
     id:            311
     species:       humes
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 149
     attributes:
       combat:
@@ -919,7 +919,7 @@ templates:
   Beadeaux_Vanguard:
     id:            381
     species:       quadav_s
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 202
     attributes:
       combat:
@@ -943,7 +943,7 @@ templates:
     display_name:  BiGho_Headtaker
     species:       quadav_s
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 202
     attributes:
       combat:
@@ -968,7 +968,7 @@ templates:
     id:            516
     species:       horned_quadav_s
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 202
     attributes:
       combat:
@@ -1043,7 +1043,7 @@ templates:
   Brass_Quadav_past:
     id:            6240
     species:       quadav_s
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 202
     attributes:
       combat:
@@ -1094,7 +1094,7 @@ templates:
   Bronze_Quadav_past:
     id:            6243
     species:       quadav_s
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 202
     attributes:
       combat:
@@ -1300,7 +1300,7 @@ templates:
     display_name:  DeVyu_Headhunter
     species:       quadav_s
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 202
     attributes:
       combat:
@@ -1343,7 +1343,7 @@ templates:
     id:            1066
     species:       quadav_s
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 202
     attributes:
       combat:
@@ -1367,7 +1367,7 @@ templates:
   DiDhas_Elite_Guard:
     id:            1067
     species:       quadav_s
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 202
     attributes:
       combat:
@@ -1420,7 +1420,7 @@ templates:
   Dusk_Raider:
     id:            1143
     species:       humes
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 149
     attributes:
       combat:
@@ -1447,7 +1447,7 @@ templates:
   Duskraven:
     id:            1141
     species:       humes
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 149
     attributes:
       combat:
@@ -1562,7 +1562,7 @@ templates:
   Emerald_Quadav:
     id:            1207
     species:       quadav_s
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 202
     attributes:
       combat:
@@ -1634,7 +1634,7 @@ templates:
   Ferreous_Coffin:
     id:            1324
     species:       galks
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 146
     attributes:
       combat:
@@ -1662,7 +1662,7 @@ templates:
   Field_Woundpatcher:
     id:            1332
     species:       humes
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 149
     attributes:
       combat:
@@ -1712,7 +1712,7 @@ templates:
   Fire_Elemental:
     id:            1341
     species:       fire_elemental
-    spell_list_id: 17
+    spell_list:    elemental_fire
     skill_list_id: 102
     attributes:
       combat:
@@ -1809,7 +1809,7 @@ templates:
   GoBhus_Elite_Raider:
     id:            1780
     species:       quadav_s
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 202
     attributes:
       combat:
@@ -1855,7 +1855,7 @@ templates:
   GoDhas_Elite_Raider:
     id:            1782
     species:       quadav_s
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 202
     attributes:
       combat:
@@ -1941,7 +1941,7 @@ templates:
   Heliodor_Quadav:
     id:            1917
     species:       quadav_s
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 202
     attributes:
       combat:
@@ -2010,7 +2010,7 @@ templates:
   Kagetora:
     id:            2179
     species:       humes
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 149
     attributes:
       combat:
@@ -2039,7 +2039,7 @@ templates:
     display_name:  Kaiser_Behemoth
     species:       behemoth
     type:          [notorious, battlefield]
-    spell_list_id: 126
+    spell_list:    casting_behemoth
     skill_list_id: 479
     attributes:
       combat:
@@ -2112,7 +2112,7 @@ templates:
   Kilhwch:
     id:            2226
     species:       humes
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 149
     attributes:
       combat:
@@ -2140,7 +2140,7 @@ templates:
   Kurt:
     id:            2300
     species:       humes
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 149
     attributes:
       combat:
@@ -2218,7 +2218,7 @@ templates:
   Lewenhart:
     id:            2403
     species:       humes
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 149
     attributes:
       combat:
@@ -2420,7 +2420,7 @@ templates:
   Ludwig:
     id:            2445
     species:       humes
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 149
     attributes:
       combat:
@@ -2450,7 +2450,7 @@ templates:
     id:            4696
     species:       fomor
     type:          [notorious]
-    spell_list_id: 8
+    spell_list:    beastmen_blu
     skill_list_id: 115
     attributes:
       combat:
@@ -2747,7 +2747,7 @@ templates:
   Popochu:
     id:            3176
     species:       dhalmel
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 80
     attributes:
       combat:
@@ -2910,7 +2910,7 @@ templates:
   Qulun_Heavyshell:
     id:            3293
     species:       quadav_s
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 202
     attributes:
       combat:
@@ -2932,7 +2932,7 @@ templates:
   Raigegue_R_dOraguille:
     id:            3310
     species:       corse
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 74
     attributes:
       combat:
@@ -2957,7 +2957,7 @@ templates:
   Rainemard:
     id:            3312
     species:       elvaan
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 145
     attributes:
       combat:
@@ -3049,7 +3049,7 @@ templates:
   Sapphirine_Quadav:
     id:            3464
     species:       quadav_s
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 202
     attributes:
       combat:
@@ -3090,7 +3090,7 @@ templates:
   Shadoweye:
     id:            6608
     species:       ahriman
-    spell_list_id: 11
+    spell_list:    ahriman
     skill_list_id: 4
     attributes:
       combat:
@@ -3160,7 +3160,7 @@ templates:
   Shadowfang_Void:
     id:            3564
     species:       dark_elemental
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 100
     attributes:
       combat:
@@ -3400,7 +3400,7 @@ templates:
   Water_Elemental:
     id:            4309
     species:       water_elemental
-    spell_list_id: 15
+    spell_list:    elemental_water
     skill_list_id: 106
     attributes:
       combat:

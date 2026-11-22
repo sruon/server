@@ -6,7 +6,7 @@ templates:
     id:            6087
     species:       orc_statue
     type:          [notorious]
-    spell_list_id: 49
+    spell_list:    overlord_s_tombstone
     skill_list_id: 93
     attributes:
       combat:
@@ -60,7 +60,7 @@ templates:
     id:            363
     species:       dynamis_orc
     type:          [notorious]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 2104
     attributes:
       combat:
@@ -87,7 +87,7 @@ templates:
     id:            6081
     species:       dynamis_orc
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2104
     attributes:
       combat:
@@ -134,7 +134,7 @@ templates:
     id:            6084
     species:       dynamis_orc
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 2104
     attributes:
       combat:
@@ -205,7 +205,7 @@ templates:
     id:            6083
     species:       hecteye
     type:          [called]
-    spell_list_id: 10
+    spell_list:    hecteyes
     skill_list_id: 139
     attributes:
       combat:
@@ -238,7 +238,7 @@ templates:
     id:            3076
     species:       orc_statue
     type:          [notorious]
-    spell_list_id: 49
+    spell_list:    overlord_s_tombstone
     skill_list_id: 93
     attributes:
       combat:
@@ -291,7 +291,7 @@ templates:
     id:            3340
     species:       dynamis_orc
     type:          [notorious]
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 2104
     attributes:
       combat:
@@ -337,7 +337,7 @@ templates:
   Serjeant_Tombstone:
     id:            3548
     species:       orc_statue
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 93
     attributes:
       combat:
@@ -376,7 +376,7 @@ templates:
     id:            3705
     species:       dynamis_orc
     type:          [notorious]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 2104
     attributes:
       combat:
@@ -403,7 +403,7 @@ templates:
     id:            6085
     species:       dynamis_orc
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 2105
     attributes:
       combat:
@@ -450,7 +450,7 @@ templates:
     id:            6082
     species:       dynamis_orc
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 2104
     attributes:
       combat:
@@ -496,7 +496,7 @@ templates:
   Vanguard_Amputator:
     id:            4135
     species:       dynamis_orc
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 2102
     attributes:
       combat:
@@ -538,7 +538,7 @@ templates:
     id:            4135
     display_name:  Vanguard_Amputator
     species:       dynamis_orc
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 2102
     attributes:
       combat:
@@ -579,7 +579,7 @@ templates:
   Vanguard_Backstabber:
     id:            4138
     species:       dynamis_orc
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 2102
     attributes:
       combat:
@@ -623,7 +623,7 @@ templates:
     id:            4138
     display_name:  Vanguard_Backstabber
     species:       dynamis_orc
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 2102
     attributes:
       combat:
@@ -668,7 +668,7 @@ templates:
   Vanguard_Bugler:
     id:            4140
     species:       dynamis_orc
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 2102
     attributes:
       combat:
@@ -712,7 +712,7 @@ templates:
     id:            4140
     display_name:  Vanguard_Bugler
     species:       dynamis_orc
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 2102
     attributes:
       combat:
@@ -757,7 +757,7 @@ templates:
   Vanguard_Dollmaster:
     id:            4144
     species:       dynamis_orc
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 2102
     attributes:
       combat:
@@ -799,7 +799,7 @@ templates:
     id:            4144
     display_name:  Vanguard_Dollmaster
     species:       dynamis_orc
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 2102
     attributes:
       combat:
@@ -1265,7 +1265,7 @@ templates:
   Vanguard_Mesmerizer:
     id:            4162
     species:       dynamis_orc
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2102
     attributes:
       combat:
@@ -1307,7 +1307,7 @@ templates:
     id:            4162
     display_name:  Vanguard_Mesmerizer
     species:       dynamis_orc
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2102
     attributes:
       combat:
@@ -1350,7 +1350,7 @@ templates:
   Vanguard_Neckchopper:
     id:            4165
     species:       dynamis_orc
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 2102
     attributes:
       combat:
@@ -1394,7 +1394,7 @@ templates:
     id:            4165
     display_name:  Vanguard_Neckchopper
     species:       dynamis_orc
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 2102
     attributes:
       combat:
@@ -1589,7 +1589,7 @@ templates:
   Vanguard_Trooper:
     id:            4193
     species:       dynamis_orc
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 2102
     attributes:
       combat:
@@ -1633,7 +1633,7 @@ templates:
     id:            4193
     display_name:  Vanguard_Trooper
     species:       dynamis_orc
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 2102
     attributes:
       combat:
@@ -1678,7 +1678,7 @@ templates:
   Vanguard_Vexer:
     id:            4195
     species:       dynamis_orc
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 2102
     attributes:
       combat:
@@ -1722,7 +1722,7 @@ templates:
     id:            4195
     display_name:  Vanguard_Vexer
     species:       dynamis_orc
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 2102
     attributes:
       combat:
@@ -1779,7 +1779,7 @@ templates:
     id:            4187
     species:       hecteye
     type:          [called]
-    spell_list_id: 51
+    spell_list:    vanguard_s_hecteyes
     skill_list_id: 139
     attributes:
       combat:
@@ -1842,7 +1842,7 @@ templates:
     id:            4243
     species:       dynamis_orc
     type:          [notorious]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 2104
     attributes:
       combat:
@@ -1889,7 +1889,7 @@ templates:
     id:            4289
     species:       orc_statue
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 93
     attributes:
       combat:

@@ -57,7 +57,7 @@ templates:
   Crackling_Ungeweder:
     id:            4767
     species:       ungeweder
-    spell_list_id: 17
+    spell_list:    elemental_fire
     skill_list_id: 102
     attributes:
       combat:
@@ -80,7 +80,7 @@ templates:
   Diffident_Heartwing:
     id:            4963
     species:       heartwing
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 343
     attributes:
       combat:
@@ -377,7 +377,7 @@ templates:
     id:            6937
     species:       blue_velkk
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 342
     attributes:
       combat:
@@ -439,7 +439,7 @@ templates:
     id:            6936
     species:       harpeia
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 471
     attributes:
       combat:
@@ -737,7 +737,7 @@ templates:
   Velkk_Inquisitor:
     id:            4992
     species:       blue_velkk
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 342
     attributes:
       combat:
@@ -761,7 +761,7 @@ templates:
     display_name:  Velkk_Inquisitor
     species:       blue_velkk
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 342
     attributes:
       combat:

@@ -5,7 +5,7 @@ templates:
   Earth_Elemental:
     id:            1160
     species:       earth_elemental
-    spell_list_id: 13
+    spell_list:    elemental_earth
     skill_list_id: 101
     attributes:
       combat:
@@ -38,7 +38,7 @@ templates:
     id:            1834
     species:       hippogryph
     type:          [notorious, battlefield]
-    spell_list_id: 554
+    spell_list:    beloved_of_the_atlantes
     skill_list_id: 140
     attributes:
       combat:
@@ -68,10 +68,10 @@ templates:
         hp: 1000
 
   Gullin_Baelfyr:
-    id:            6950
-    species:       baelfyr
-    type:          [battlefield]
-    spell_list_id: 3
+    id:         6950
+    species:    baelfyr
+    type:       [battlefield]
+    spell_list: beastmen_rdm
     attributes:
       combat:
         skill: club
@@ -92,7 +92,7 @@ templates:
     id:            6953
     species:       byrgen
     type:          [battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 100
     attributes:
       combat:
@@ -111,11 +111,11 @@ templates:
         type: [scripted]
 
   Gullin_Gefyrst:
-    id:            6951
-    display_name:  Gefyrst
-    species:       gefyrst
-    type:          [battlefield]
-    spell_list_id: 3
+    id:           6951
+    display_name: Gefyrst
+    species:      gefyrst
+    type:         [battlefield]
+    spell_list:   beastmen_rdm
     attributes:
       combat:
         skill: club
@@ -136,7 +136,7 @@ templates:
     id:            6952
     species:       ungeweder
     type:          [battlefield]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 105
     attributes:
       combat:
@@ -231,7 +231,7 @@ templates:
     id:            2499
     species:       mammet
     type:          [notorious, battlefield]
-    spell_list_id: 29
+    spell_list:    mammet
     skill_list_id: 503
     attributes:
       combat:
@@ -265,7 +265,7 @@ templates:
     id:            2501
     species:       mammet
     type:          [battlefield]
-    spell_list_id: 549
+    spell_list:    t3_ga_spells
     skill_list_id: 503
     attributes:
       combat:
@@ -320,7 +320,7 @@ templates:
     id:            3070
     species:       earth_wyrm
     type:          [notorious, battlefield]
-    spell_list_id: 109
+    spell_list:    ouryu_the_savage
     skill_list_id: 259
     attributes:
       combat:
@@ -349,7 +349,7 @@ templates:
     display_name:  Ouryu
     species:       earth_wyrm
     type:          [notorious, battlefield]
-    spell_list_id: 109
+    spell_list:    ouryu_the_savage
     skill_list_id: 259
     attributes:
       combat:

@@ -30,7 +30,7 @@ templates:
     id:            444
     species:       uragnite
     type:          [battlefield]
-    spell_list_id: 433
+    spell_list:    bladmall
     skill_list_id: 251
     attributes:
       combat:
@@ -77,7 +77,7 @@ templates:
     id:            599
     species:       skeleton
     type:          [battlefield]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -99,7 +99,7 @@ templates:
     id:            1250
     species:       ghost
     type:          [battlefield]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -121,7 +121,7 @@ templates:
     id:            1860
     species:       corse
     type:          [notorious, battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 74
     attributes:
       combat:
@@ -150,7 +150,7 @@ templates:
     id:            2832
     species:       uragnite
     type:          [battlefield]
-    spell_list_id: 434
+    spell_list:    nepionic_bladmall
     skill_list_id: 251
     attributes:
       combat:
@@ -228,7 +228,7 @@ templates:
     species:       eft
     type:          [notorious, battlefield]
     roam:          [scripted]
-    spell_list_id: 133
+    spell_list:    race_runner
     skill_list_id: 98
     attributes:
       combat:
@@ -254,7 +254,7 @@ templates:
     id:            3598
     species:       mithra
     type:          [notorious, battlefield]
-    spell_list_id: 464
+    spell_list:    shikaree_x
     skill_list_id: 1165
     attributes:
       combat:
@@ -281,7 +281,7 @@ templates:
     display_name:  Shikaree_X
     species:       mithra
     type:          [notorious, battlefield]
-    spell_list_id: 464
+    spell_list:    shikaree_x
     skill_list_id: 1165
     attributes:
       combat:
@@ -350,7 +350,7 @@ templates:
     id:            3600
     species:       mithra
     type:          [battlefield]
-    spell_list_id: 465
+    spell_list:    shikaree_y
     skill_list_id: 1166
     attributes:
       combat:
@@ -378,7 +378,7 @@ templates:
     display_name:  Shikaree_Y
     species:       mithra
     type:          [battlefield]
-    spell_list_id: 465
+    spell_list:    shikaree_y
     skill_list_id: 1166
     attributes:
       combat:
@@ -405,7 +405,7 @@ templates:
     id:            3601
     species:       mithra
     type:          [notorious, battlefield]
-    spell_list_id: 466
+    spell_list:    shikaree_z
     skill_list_id: 1167
     attributes:
       combat:
@@ -433,7 +433,7 @@ templates:
     display_name:  Shikaree_Z
     species:       mithra
     type:          [notorious, battlefield]
-    spell_list_id: 466
+    spell_list:    shikaree_z
     skill_list_id: 1167
     attributes:
       combat:

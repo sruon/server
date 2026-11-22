@@ -6,7 +6,7 @@ templates:
     id:            128
     species:       magic_pot
     type:          [notorious]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 175
     attributes:
       combat:
@@ -69,7 +69,7 @@ templates:
   Antican_Antesignanus:
     id:            166
     species:       antica
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 25
     attributes:
       combat:
@@ -180,7 +180,7 @@ templates:
     id:            178
     species:       antica
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 25
     attributes:
       combat:
@@ -252,7 +252,7 @@ templates:
     id:            180
     species:       antica
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 25
     attributes:
       combat:
@@ -288,7 +288,7 @@ templates:
     id:            181
     species:       antica
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 25
     attributes:
       combat:
@@ -326,7 +326,7 @@ templates:
   Antican_Princeps:
     id:            182
     species:       antica
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 25
     attributes:
       combat:
@@ -365,7 +365,7 @@ templates:
     id:            183
     species:       antica
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 25
     attributes:
       combat:
@@ -399,7 +399,7 @@ templates:
   Antican_Quaestor:
     id:            184
     species:       antica
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 25
     attributes:
       combat:
@@ -439,7 +439,7 @@ templates:
   Antican_Signifer:
     id:            188
     species:       antica
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 25
     attributes:
       combat:
@@ -569,7 +569,7 @@ templates:
     id:            674
     species:       antica
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 25
     attributes:
       combat:
@@ -620,7 +620,7 @@ templates:
     id:            6902
     species:       antica
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 25
     attributes:
       combat:
@@ -644,7 +644,7 @@ templates:
     id:            1033
     species:       beetle
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 49
     attributes:
       combat:
@@ -798,7 +798,7 @@ templates:
     id:            1987
     species:       sea_monk
     type:          [notorious]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 218
     attributes:
       combat:
@@ -957,7 +957,7 @@ templates:
     id:            3193
     species:       antica
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 25
     attributes:
       combat:
@@ -981,7 +981,7 @@ templates:
     id:            3201
     species:       antica
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 25
     attributes:
       combat:
@@ -1180,7 +1180,7 @@ templates:
     id:            3453
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -1213,7 +1213,7 @@ templates:
     id:            3454
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -1447,7 +1447,7 @@ templates:
     id:            3999
     species:       antica
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 25
     attributes:
       combat:

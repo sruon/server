@@ -5,7 +5,7 @@ templates:
   Air_Elemental:
     id:            71
     species:       air_elemental
-    spell_list_id: 12
+    spell_list:    elemental_air
     skill_list_id: 99
     attributes:
       combat:
@@ -64,7 +64,7 @@ templates:
     id:            314
     species:       skeleton
     type:          [event]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -141,7 +141,7 @@ templates:
     id:            476
     display_name:  Blubber_Eyes_PX
     species:       hecteye
-    spell_list_id: 10
+    spell_list:    hecteyes
     skill_list_id: 139
     attributes:
       combat:
@@ -172,7 +172,7 @@ templates:
     id:            608
     species:       fomor
     type:          [notorious]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 2098
     attributes:
       combat:
@@ -201,7 +201,7 @@ templates:
   Dark_Elemental:
     id:            913
     species:       dark_elemental
-    spell_list_id: 18
+    spell_list:    elemental_dark
     skill_list_id: 100
     attributes:
       combat:
@@ -235,7 +235,7 @@ templates:
     id:            1196
     species:       corse
     type:          [notorious]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 74
     attributes:
       combat:
@@ -274,7 +274,7 @@ templates:
   Fomor_Bard:
     id:            1380
     species:       fomor
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 115
     attributes:
       combat:
@@ -335,7 +335,7 @@ templates:
   Fomor_Black_Mage:
     id:            1382
     species:       fomor
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 115
     attributes:
       combat:
@@ -366,7 +366,7 @@ templates:
   Fomor_Dark_Knight:
     id:            1383
     species:       fomor
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 115
     attributes:
       combat:
@@ -458,7 +458,7 @@ templates:
   Fomor_Ninja:
     id:            1386
     species:       fomor
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 115
     attributes:
       combat:
@@ -491,7 +491,7 @@ templates:
   Fomor_Paladin:
     id:            1387
     species:       fomor
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 115
     attributes:
       combat:
@@ -592,7 +592,7 @@ templates:
   Fomor_Red_Mage:
     id:            1389
     species:       fomor
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 115
     attributes:
       combat:
@@ -655,7 +655,7 @@ templates:
   Fomor_Summoner:
     id:            1391
     species:       fomor
-    spell_list_id: 34
+    spell_list:    fomor_smn
     skill_list_id: 115
     attributes:
       combat:
@@ -786,7 +786,7 @@ templates:
   Fomors_Elemental:
     id:            1395
     species:       earth_elemental
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 101
     attributes:
       combat:
@@ -809,7 +809,7 @@ templates:
     id:            1395
     display_name:  Fomors_Elemental
     species:       earth_elemental
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 101
     attributes:
       combat:
@@ -853,7 +853,7 @@ templates:
   Gazer:
     id:            1481
     species:       hecteye
-    spell_list_id: 10
+    spell_list:    hecteyes
     skill_list_id: 139
     attributes:
       combat:
@@ -920,7 +920,7 @@ templates:
     id:            2074
     species:       fomor
     type:          [notorious]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 2098
     attributes:
       combat:
@@ -950,7 +950,7 @@ templates:
     id:            2210
     species:       corse
     type:          [notorious, event]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 74
     attributes:
       combat:
@@ -983,7 +983,7 @@ templates:
   Lich:
     id:            2407
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -1123,7 +1123,7 @@ templates:
     id:            2964
     species:       ghost
     type:          [notorious]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 121
     attributes:
       combat:
@@ -1217,7 +1217,7 @@ templates:
   Thunder_Elemental:
     id:            3912
     species:       thunder_elemental
-    spell_list_id: 16
+    spell_list:    elemental_thunder
     skill_list_id: 105
     attributes:
       combat:
@@ -1250,7 +1250,7 @@ templates:
   Utukku_S:
     id:            4112
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:

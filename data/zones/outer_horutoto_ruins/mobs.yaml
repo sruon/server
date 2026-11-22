@@ -6,7 +6,7 @@ templates:
     id:            4568
     species:       skeleton
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -202,7 +202,7 @@ templates:
     id:            870
     species:       batons
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 61
     attributes:
       combat:
@@ -359,7 +359,7 @@ templates:
   Eight_of_Batons:
     id:            1183
     species:       batons
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 61
     attributes:
       combat:
@@ -386,7 +386,7 @@ templates:
   Eight_of_Coins:
     id:            1184
     species:       coins
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 61
     attributes:
       combat:
@@ -413,7 +413,7 @@ templates:
   Eight_of_Cups:
     id:            1185
     species:       cups
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 61
     attributes:
       combat:
@@ -440,7 +440,7 @@ templates:
   Eight_of_Swords:
     id:            1186
     species:       swords
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 61
     attributes:
       combat:
@@ -493,7 +493,7 @@ templates:
   Five_of_Batons:
     id:            1350
     species:       batons
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 61
     attributes:
       combat:
@@ -522,7 +522,7 @@ templates:
   Five_of_Coins:
     id:            1351
     species:       coins
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 61
     attributes:
       combat:
@@ -551,7 +551,7 @@ templates:
   Five_of_Cups:
     id:            1352
     species:       cups
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 61
     attributes:
       combat:
@@ -580,7 +580,7 @@ templates:
   Five_of_Swords:
     id:            1353
     species:       swords
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 61
     attributes:
       combat:
@@ -609,7 +609,7 @@ templates:
   Four_of_Batons:
     id:            1415
     species:       batons
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 61
     attributes:
       combat:
@@ -636,7 +636,7 @@ templates:
   Four_of_Coins:
     id:            1416
     species:       coins
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 61
     attributes:
       combat:
@@ -663,7 +663,7 @@ templates:
   Four_of_Cups:
     id:            1417
     species:       cups
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 61
     attributes:
       combat:
@@ -690,7 +690,7 @@ templates:
   Four_of_Swords:
     id:            1418
     species:       swords
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 61
     attributes:
       combat:
@@ -744,7 +744,7 @@ templates:
   Ghoul_blm:
     id:            1518
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -919,7 +919,7 @@ templates:
   Goblin_Tinkerer:
     id:            1738
     species:       armored_goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -957,7 +957,7 @@ templates:
   Goblin_Weaver:
     id:            1744
     species:       goblin
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 133
     attributes:
       combat:
@@ -1003,7 +1003,7 @@ templates:
     id:            2118
     species:       batons
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2109
     attributes:
       combat:
@@ -1030,7 +1030,7 @@ templates:
     id:            2119
     species:       coins
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 2109
     attributes:
       combat:
@@ -1057,7 +1057,7 @@ templates:
     id:            2120
     species:       cups
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 2109
     attributes:
       combat:
@@ -1084,7 +1084,7 @@ templates:
     id:            2121
     species:       swords
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 2109
     attributes:
       combat:
@@ -1159,7 +1159,7 @@ templates:
   Nine_of_Batons:
     id:            2883
     species:       batons
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 61
     attributes:
       combat:
@@ -1186,7 +1186,7 @@ templates:
   Nine_of_Coins:
     id:            2884
     species:       coins
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 61
     attributes:
       combat:
@@ -1213,7 +1213,7 @@ templates:
   Nine_of_Cups:
     id:            2885
     species:       cups
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 61
     attributes:
       combat:
@@ -1240,7 +1240,7 @@ templates:
   Nine_of_Swords:
     id:            2886
     species:       swords
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 61
     attributes:
       combat:
@@ -1268,7 +1268,7 @@ templates:
     id:            3284
     species:       coins
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 61
     attributes:
       combat:
@@ -1299,7 +1299,7 @@ templates:
     id:            3286
     species:       swords
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 61
     attributes:
       combat:
@@ -1353,7 +1353,7 @@ templates:
   Seven_of_Batons:
     id:            3553
     species:       batons
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 61
     attributes:
       combat:
@@ -1380,7 +1380,7 @@ templates:
   Seven_of_Coins:
     id:            3554
     species:       coins
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 61
     attributes:
       combat:
@@ -1407,7 +1407,7 @@ templates:
   Seven_of_Cups:
     id:            3555
     species:       cups
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 61
     attributes:
       combat:
@@ -1434,7 +1434,7 @@ templates:
   Seven_of_Swords:
     id:            3556
     species:       swords
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 61
     attributes:
       combat:
@@ -1461,7 +1461,7 @@ templates:
   Six_of_Batons:
     id:            3637
     species:       batons
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 61
     attributes:
       combat:
@@ -1490,7 +1490,7 @@ templates:
   Six_of_Coins:
     id:            3638
     species:       coins
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 61
     attributes:
       combat:
@@ -1519,7 +1519,7 @@ templates:
   Six_of_Cups:
     id:            3639
     species:       cups
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 61
     attributes:
       combat:
@@ -1548,7 +1548,7 @@ templates:
   Six_of_Swords:
     id:            3640
     species:       swords
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 61
     attributes:
       combat:
@@ -1606,7 +1606,7 @@ templates:
   Ten_of_Batons:
     id:            3876
     species:       batons
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 61
     attributes:
       combat:
@@ -1633,7 +1633,7 @@ templates:
   Ten_of_Coins:
     id:            3877
     species:       coins
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 61
     attributes:
       combat:
@@ -1660,7 +1660,7 @@ templates:
   Ten_of_Cups:
     id:            3878
     species:       cups
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 61
     attributes:
       combat:
@@ -1689,7 +1689,7 @@ templates:
   Ten_of_Swords:
     id:            3879
     species:       swords
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 61
     attributes:
       combat:
@@ -1743,7 +1743,7 @@ templates:
   Three_of_Batons:
     id:            3903
     species:       batons
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 61
     attributes:
       combat:
@@ -1769,7 +1769,7 @@ templates:
   Three_of_Coins:
     id:            3904
     species:       coins
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 61
     attributes:
       combat:
@@ -1795,7 +1795,7 @@ templates:
   Three_of_Cups:
     id:            3905
     species:       cups
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 61
     attributes:
       combat:
@@ -1821,7 +1821,7 @@ templates:
   Three_of_Swords:
     id:            3906
     species:       swords
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 61
     attributes:
       combat:
@@ -1849,7 +1849,7 @@ templates:
     display_name:  Thunder_Elemental
     species:       thunder_elemental
     type:          [notorious]
-    spell_list_id: 16
+    spell_list:    elemental_thunder
     skill_list_id: 105
     attributes:
       combat:
@@ -1879,7 +1879,7 @@ templates:
   Two_of_Batons:
     id:            4059
     species:       batons
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 61
     attributes:
       combat:
@@ -1904,7 +1904,7 @@ templates:
   Two_of_Coins:
     id:            4060
     species:       coins
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 61
     attributes:
       combat:
@@ -1930,7 +1930,7 @@ templates:
   Two_of_Cups:
     id:            4061
     species:       cups
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 61
     attributes:
       combat:
@@ -1956,7 +1956,7 @@ templates:
   Two_of_Swords:
     id:            4062
     species:       swords
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 61
     attributes:
       combat:

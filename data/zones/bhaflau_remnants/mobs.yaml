@@ -323,7 +323,7 @@ templates:
   Black_Pudding:
     id:            437
     species:       flan
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 112
     attributes:
       combat:
@@ -347,7 +347,7 @@ templates:
     id:            437
     display_name:  Black_Pudding
     species:       flan
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 112
     attributes:
       combat:
@@ -502,7 +502,7 @@ templates:
   Demented_Jalaawa:
     id:            967
     species:       soulflayer
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 233
     attributes:
       combat:
@@ -529,7 +529,7 @@ templates:
     id:            1209
     species:       flan
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 112
     attributes:
       combat:
@@ -569,7 +569,7 @@ templates:
     id:            1372
     species:       flan
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 112
     attributes:
       combat:
@@ -922,7 +922,7 @@ templates:
   Troll_Cameist:
     id:            4010
     species:       light_troll
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 246
     attributes:
       combat:
@@ -946,7 +946,7 @@ templates:
     id:            4010
     display_name:  Troll_Cameist
     species:       light_troll
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 246
     attributes:
       combat:
@@ -976,7 +976,7 @@ templates:
     id:            4010
     display_name:  Troll_Cameist
     species:       light_troll
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 246
     attributes:
       combat:
@@ -1088,7 +1088,7 @@ templates:
   Troll_Gemologist:
     id:            4017
     species:       heavy_troll
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 247
     attributes:
       combat:
@@ -1112,7 +1112,7 @@ templates:
     id:            4017
     display_name:  Troll_Gemologist
     species:       heavy_troll
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 247
     attributes:
       combat:
@@ -1142,7 +1142,7 @@ templates:
     id:            4017
     display_name:  Troll_Gemologist
     species:       heavy_troll
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 247
     attributes:
       combat:
@@ -1282,7 +1282,7 @@ templates:
   Troll_Lapidarist:
     id:            4022
     species:       heavy_troll
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 247
     attributes:
       combat:
@@ -1306,7 +1306,7 @@ templates:
     id:            4022
     display_name:  Troll_Lapidarist
     species:       heavy_troll
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 247
     attributes:
       combat:
@@ -1336,7 +1336,7 @@ templates:
     id:            4022
     display_name:  Troll_Lapidarist
     species:       heavy_troll
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 247
     attributes:
       combat:
@@ -1528,7 +1528,7 @@ templates:
   Trolls_Automaton:
     id:            4035
     species:       automaton
-    spell_list_id: 567
+    spell_list:    harlequin_frame
     skill_list_id: 363
     attributes:
       combat:
@@ -1551,7 +1551,7 @@ templates:
     id:            4035
     display_name:  Trolls_Automaton
     species:       automaton
-    spell_list_id: 567
+    spell_list:    harlequin_frame
     skill_list_id: 363
     attributes:
       combat:
@@ -1576,7 +1576,7 @@ templates:
     id:            4035
     display_name:  Trolls_Automaton
     species:       automaton
-    spell_list_id: 567
+    spell_list:    harlequin_frame
     skill_list_id: 363
     attributes:
       combat:

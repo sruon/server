@@ -5,7 +5,7 @@ templates:
   Air_Elemental:
     id:            71
     species:       air_elemental
-    spell_list_id: 12
+    spell_list:    elemental_air
     skill_list_id: 99
     attributes:
       combat:
@@ -40,7 +40,7 @@ templates:
     species:       antlion
     type:          [notorious]
     roam:          [ambush]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 357
     attributes:
       combat:
@@ -100,7 +100,7 @@ templates:
   Arch_Corse:
     id:            225
     species:       corse
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 74
     attributes:
       combat:
@@ -224,10 +224,10 @@ templates:
         pinch_of_bomb_ash: 0
 
   Bloody_Skull:
-    id:            6815
-    species:       corpselight
-    type:          [notorious]
-    spell_list_id: 21
+    id:         6815
+    species:    corpselight
+    type:       [notorious]
+    spell_list: beastmen_blm
     attributes:
       combat:
         skill: club
@@ -346,7 +346,7 @@ templates:
     id:            733
     species:       corse
     type:          [notorious]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 74
     attributes:
       combat:
@@ -387,7 +387,7 @@ templates:
   Corse:
     id:            801
     species:       corse
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 74
     attributes:
       combat:
@@ -487,7 +487,7 @@ templates:
   Earth_Elemental:
     id:            1160
     species:       earth_elemental
-    spell_list_id: 13
+    spell_list:    elemental_earth
     skill_list_id: 101
     attributes:
       combat:
@@ -568,7 +568,7 @@ templates:
     id:            6814
     species:       dvergr
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 316
     attributes:
       combat:
@@ -608,7 +608,7 @@ templates:
     id:            1369
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -784,7 +784,7 @@ templates:
   Goblin_Reaper:
     id:            1705
     species:       armored_goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -861,7 +861,7 @@ templates:
   Goblin_Shaman:
     id:            1710
     species:       goblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -1002,7 +1002,7 @@ templates:
   Hecteyes_AC:
     id:            6388
     species:       hecteye
-    spell_list_id: 10
+    spell_list:    hecteyes
     skill_list_id: 2091
     attributes:
       combat:
@@ -1060,7 +1060,7 @@ templates:
   Lich:
     id:            2407
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -1208,7 +1208,7 @@ templates:
     id:            6816
     species:       corse
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 74
     attributes:
       combat:
@@ -1260,7 +1260,7 @@ templates:
     id:            5723
     species:       skeleton
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 227
     attributes:
       combat:
@@ -1408,7 +1408,7 @@ templates:
     id:            5537
     species:       coeurl
     type:          [notorious]
-    spell_list_id: 137
+    spell_list:    sekhmet
     skill_list_id: 494
     attributes:
       combat:
@@ -1443,7 +1443,7 @@ templates:
     id:            3916
     species:       orange_wyrm
     type:          [notorious]
-    spell_list_id: 78
+    spell_list:    tiamat
     skill_list_id: 393
     attributes:
       combat:
@@ -1488,7 +1488,7 @@ templates:
   Tomb_Mage:
     id:            3943
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -1697,7 +1697,7 @@ templates:
     id:            4396
     species:       corse
     type:          [notorious]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 768
     attributes:
       combat:
@@ -1738,7 +1738,7 @@ templates:
   Xolotls_Hound_Warrior:
     id:            4397
     species:       skeleton
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 227
     attributes:
       combat:

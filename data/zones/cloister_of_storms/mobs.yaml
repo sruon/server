@@ -179,7 +179,7 @@ templates:
     species:       thunder_elemental
     type:          [battlefield]
     roam:          [scripted]
-    spell_list_id: 16
+    spell_list:    elemental_thunder
     skill_list_id: 105
     attributes:
       combat:
@@ -208,7 +208,7 @@ templates:
     id:            3914
     species:       evil_weapon
     type:          [notorious, battlefield]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 110
     attributes:
       combat:

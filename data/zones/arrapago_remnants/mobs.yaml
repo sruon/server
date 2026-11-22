@@ -268,7 +268,7 @@ templates:
     id:            1015
     species:       bhoot
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 52
     attributes:
       combat:
@@ -345,7 +345,7 @@ templates:
   Gespenst:
     id:            1505
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -430,7 +430,7 @@ templates:
   Lamia_Dancer:
     id:            2328
     species:       lamiae
-    spell_list_id: 33
+    spell_list:    lamiae_smn
     skill_list_id: 171
     attributes:
       combat:
@@ -517,7 +517,7 @@ templates:
   Lamia_Graverobber:
     id:            2334
     species:       lamiae
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 171
     attributes:
       combat:
@@ -546,7 +546,7 @@ templates:
   Lamias_Elemental:
     id:            2359
     species:       dark_elemental
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 100
     attributes:
       combat:
@@ -566,7 +566,7 @@ templates:
   Merrow_Chantress:
     id:            2619
     species:       merrow
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 182
     attributes:
       combat:
@@ -651,7 +651,7 @@ templates:
   Merrow_Shadowdancer:
     id:            2627
     species:       merrow
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 182
     attributes:
       combat:
@@ -787,7 +787,7 @@ templates:
     id:            3197
     species:       flan
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 112
     attributes:
       combat:
@@ -820,7 +820,7 @@ templates:
   Psycheflayer:
     id:            3215
     species:       soulflayer
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 233
     attributes:
       combat:
@@ -854,7 +854,7 @@ templates:
   Qiqirn_Astrologer:
     id:            3246
     species:       qiqirn
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 199
     attributes:
       combat:
@@ -961,7 +961,7 @@ templates:
     id:            3294
     display_name:  Qutrub
     species:       qutrub
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 203
     attributes:
       combat:
@@ -989,7 +989,7 @@ templates:
     id:            3355
     display_name:  Reserve_Draugar
     species:       draugar
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 89
     attributes:
       combat:
@@ -1060,7 +1060,7 @@ templates:
     id:            5193
     display_name:  Reserve_Draugar
     species:       draugar
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 89
     attributes:
       combat:
@@ -1202,7 +1202,7 @@ templates:
   Vile_Wahzil:
     id:            4233
     species:       imp
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 233
     attributes:
       combat:

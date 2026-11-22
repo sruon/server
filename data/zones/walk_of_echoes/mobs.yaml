@@ -95,7 +95,7 @@ templates:
     id:            164
     species:       antlion
     type:          [notorious, battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 26
     attributes:
       combat:
@@ -162,7 +162,7 @@ templates:
     id:            5276
     species:       adamantoise
     type:          [notorious, battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 277
     attributes:
       combat:
@@ -236,7 +236,7 @@ templates:
     id:            609
     species:       cait_sith
     type:          [notorious, battlefield]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 60
     attributes:
       combat:
@@ -281,7 +281,7 @@ templates:
     id:            621
     species:       cerberus
     type:          [notorious, battlefield]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 62
     attributes:
       combat:
@@ -421,7 +421,7 @@ templates:
     id:            5308
     species:       ungeweder
     type:          [notorious, battlefield]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 105
     attributes:
       combat:
@@ -460,7 +460,7 @@ templates:
     id:            5309
     species:       byrgen
     type:          [battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 100
     attributes:
       combat:
@@ -496,7 +496,7 @@ templates:
     id:            5307
     species:       gefyrst
     type:          [battlefield]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 103
     attributes:
       combat:
@@ -600,7 +600,7 @@ templates:
     id:            1892
     species:       khimaira
     type:          [notorious, battlefield]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 168
     attributes:
       combat:
@@ -625,7 +625,7 @@ templates:
     id:            5287
     species:       iron_giant
     type:          [notorious, battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 350
     attributes:
       combat:
@@ -648,7 +648,7 @@ templates:
     id:            5288
     species:       iron_giant
     type:          [notorious, battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 350
     attributes:
       combat:
@@ -713,7 +713,7 @@ templates:
     id:            5275
     species:       adamantoise
     type:          [notorious, battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2
     attributes:
       combat:
@@ -817,7 +817,7 @@ templates:
     id:            5292
     species:       harpeia
     type:          [notorious, battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 471
     attributes:
       combat:
@@ -845,7 +845,7 @@ templates:
     id:            5291
     species:       harpeia
     type:          [notorious, battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 471
     attributes:
       combat:
@@ -910,7 +910,7 @@ templates:
     id:            2416
     species:       humes
     type:          [notorious, battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 474
     attributes:
       combat:
@@ -993,7 +993,7 @@ templates:
     id:            5300
     species:       king
     type:          [notorious, battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 450
     attributes:
       combat:
@@ -1077,7 +1077,7 @@ templates:
     id:            5303
     species:       knight
     type:          [notorious, battlefield]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 450
     attributes:
       combat:
@@ -1224,7 +1224,7 @@ templates:
     id:            3100
     species:       tiger
     type:          [notorious, battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 242
     attributes:
       combat:
@@ -1319,7 +1319,7 @@ templates:
     id:            3305
     species:       shadow
     type:          [notorious, battlefield]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 446
     attributes:
       combat:
@@ -1346,7 +1346,7 @@ templates:
     id:            5293
     species:       harpeia
     type:          [notorious, battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 471
     attributes:
       combat:
@@ -1416,7 +1416,7 @@ templates:
     id:            5306
     species:       baelfyr
     type:          [notorious, battlefield]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 102
     attributes:
       combat:
@@ -1439,7 +1439,7 @@ templates:
     id:            5302
     species:       bishop
     type:          [notorious, battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 450
     attributes:
       combat:
@@ -1462,7 +1462,7 @@ templates:
     id:            5301
     species:       pawn
     type:          [notorious, battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 450
     attributes:
       combat:
@@ -1502,7 +1502,7 @@ templates:
     id:            5286
     species:       naraka
     type:          [notorious, battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 472
     attributes:
       combat:
@@ -1568,7 +1568,7 @@ templates:
     id:            5304
     species:       pawn
     type:          [notorious, battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 450
     attributes:
       combat:

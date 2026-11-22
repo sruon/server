@@ -8,7 +8,7 @@ templates:
     species:       earth_elemental
     type:          [battlefield]
     roam:          [scripted]
-    spell_list_id: 13
+    spell_list:    elemental_earth
     skill_list_id: 101
     attributes:
       combat:
@@ -37,7 +37,7 @@ templates:
     id:            1451
     species:       hecteye
     type:          [battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 139
     attributes:
       combat:

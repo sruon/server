@@ -242,7 +242,7 @@ templates:
     id:            979
     species:       yellow_bee
     type:          [notorious]
-    spell_list_id: 98
+    spell_list:    demonic_tiphia
     skill_list_id: 700
     attributes:
       combat:
@@ -474,7 +474,7 @@ templates:
   Fire_Elemental:
     id:            1341
     species:       fire_elemental
-    spell_list_id: 17
+    spell_list:    elemental_fire
     skill_list_id: 102
     attributes:
       combat:
@@ -1171,7 +1171,7 @@ templates:
   Water_Elemental:
     id:            4309
     species:       water_elemental
-    spell_list_id: 15
+    spell_list:    elemental_water
     skill_list_id: 106
     attributes:
       combat:
@@ -1210,7 +1210,7 @@ templates:
     display_name:  Water_Elemental
     species:       water_elemental
     type:          [notorious]
-    spell_list_id: 15
+    spell_list:    elemental_water
     skill_list_id: 106
     attributes:
       combat:

@@ -224,10 +224,10 @@ templates:
         type: [scripted]
 
   Ascended_Cyhiraeth:
-    id:            5568
-    species:       corpselight
-    type:          [notorious]
-    spell_list_id: 21
+    id:         5568
+    species:    corpselight
+    type:       [notorious]
+    spell_list: beastmen_blm
     attributes:
       jobs: [blm, war]
       render:
@@ -262,7 +262,7 @@ templates:
     id:            5576
     species:       gefyrst
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 103
     attributes:
       combat:
@@ -280,7 +280,7 @@ templates:
     id:            5574
     species:       hippogryph
     type:          [notorious]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 141
     attributes:
       combat:
@@ -446,7 +446,7 @@ templates:
     id:            5571
     species:       panopt
     type:          [notorious]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 376
     attributes:
       combat:
@@ -470,7 +470,7 @@ templates:
     id:            5572
     species:       green_poroggo
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 196
     attributes:
       combat:
@@ -539,7 +539,7 @@ templates:
     id:            5577
     species:       ungeweder
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 105
     attributes:
       combat:
@@ -556,9 +556,9 @@ templates:
         type: [scripted]
 
   Asphyxiating_Cyhiraeth:
-    id:            5380
-    species:       corpselight
-    spell_list_id: 21
+    id:         5380
+    species:    corpselight
+    spell_list: beastmen_blm
     attributes:
       combat:
         skill: club
@@ -582,7 +582,7 @@ templates:
     id:            6104
     species:       hydra
     type:          [notorious]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 164
     attributes:
       combat:
@@ -671,7 +671,7 @@ templates:
     id:            5584
     species:       corse
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 74
     attributes:
       combat:
@@ -695,7 +695,7 @@ templates:
     id:            5612
     species:       amphiptere
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 6
     attributes:
       combat:
@@ -965,7 +965,7 @@ templates:
   Jeering_Pixie:
     id:            5383
     species:       pixie
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 195
     attributes:
       combat:
@@ -988,7 +988,7 @@ templates:
     id:            5585
     species:       ahriman
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 4
     attributes:
       combat:
@@ -1079,7 +1079,7 @@ templates:
   Macabre_Skeleton:
     id:            5377
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -1125,7 +1125,7 @@ templates:
     id:            5581
     species:       tonberry
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 243
     attributes:
       combat:
@@ -1168,7 +1168,7 @@ templates:
   Obstreperous_Panopt:
     id:            5367
     species:       panopt
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 376
     attributes:
       combat:
@@ -1193,7 +1193,7 @@ templates:
   Officious_Unseelie:
     id:            5376
     species:       pixie
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 195
     attributes:
       combat:
@@ -1219,7 +1219,7 @@ templates:
     id:            5594
     species:       cerberus
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 62
     attributes:
       combat:
@@ -1271,7 +1271,7 @@ templates:
     id:            5610
     species:       sandworm
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 215
     attributes:
       combat:
@@ -1381,7 +1381,7 @@ templates:
     id:            5613
     species:       black_wyrm
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 263
     attributes:
       combat:
@@ -1684,7 +1684,7 @@ templates:
     id:            5590
     species:       harpeia
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 471
     attributes:
       combat:
@@ -1712,7 +1712,7 @@ templates:
     id:            5583
     species:       soulflayer
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 234
     attributes:
       combat:
@@ -1755,7 +1755,7 @@ templates:
     id:            5597
     species:       siren
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 471
     attributes:
       combat:
@@ -1801,7 +1801,7 @@ templates:
     id:            5381
     display_name:  Thunder_Elemental
     species:       thunder_elemental
-    spell_list_id: 16
+    spell_list:    elemental_thunder
     skill_list_id: 105
     attributes:
       combat:
@@ -1828,7 +1828,7 @@ templates:
     id:            5602
     species:       naraka
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 472
     attributes:
       combat:
@@ -1884,7 +1884,7 @@ templates:
     id:            5604
     species:       naraka
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 472
     attributes:
       combat:
@@ -1912,7 +1912,7 @@ templates:
   Wanton_Danaid:
     id:            5388
     species:       danaid
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 195
     attributes:
       combat:
@@ -1935,7 +1935,7 @@ templates:
     id:            5374
     display_name:  Water_Elemental
     species:       water_elemental
-    spell_list_id: 15
+    spell_list:    elemental_water
     skill_list_id: 106
     attributes:
       combat:
@@ -1961,7 +1961,7 @@ templates:
   Wretched_Poroggo:
     id:            5375
     species:       green_poroggo
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 196
     attributes:
       combat:
@@ -1989,7 +1989,7 @@ templates:
     display_name:  Wretched_Poroggo
     species:       green_poroggo
     type:          [fished]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 196
     attributes:
       combat:
@@ -2054,7 +2054,7 @@ templates:
     id:            5598
     species:       botulus
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 112
     attributes:
       combat:
@@ -2100,7 +2100,7 @@ templates:
     id:            5601
     species:       botulus
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 112
     attributes:
       combat:
@@ -2149,7 +2149,7 @@ templates:
     id:            5599
     species:       botulus
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 112
     attributes:
       combat:
@@ -2198,7 +2198,7 @@ templates:
     id:            5600
     species:       botulus
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 112
     attributes:
       combat:

@@ -6,7 +6,7 @@ templates:
     id:            6890
     species:       harpeia
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 471
     attributes:
       combat:
@@ -127,7 +127,7 @@ templates:
     display_name:  Fire_Elemental
     species:       fire_elemental
     type:          [notorious]
-    spell_list_id: 17
+    spell_list:    elemental_fire
     skill_list_id: 102
     attributes:
       combat:
@@ -261,7 +261,7 @@ templates:
   Goblin_Bladesmith:
     id:            6660
     species:       armored_goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -424,7 +424,7 @@ templates:
   Goblin_Conjurer:
     id:            6670
     species:       goblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -546,7 +546,7 @@ templates:
   Goblin_Healer:
     id:            6664
     species:       goblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:
@@ -622,7 +622,7 @@ templates:
   Goblin_Tinkerer:
     id:            1738
     species:       armored_goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -662,7 +662,7 @@ templates:
   Goblin_Weaver:
     id:            1744
     species:       goblin
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 133
     attributes:
       combat:
@@ -888,7 +888,7 @@ templates:
     id:            3780
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -1131,7 +1131,7 @@ templates:
     id:            6415
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:

@@ -7,7 +7,7 @@ templates:
     display_name:  Ealdnarche
     species:       humes
     type:          [notorious, battlefield]
-    spell_list_id: 432
+    spell_list:    ealdnarche_apoc_nigh
     skill_list_id: 1144
     attributes:
       speed: 80
@@ -58,7 +58,7 @@ templates:
     display_name:  Kamlanaut
     species:       humes
     type:          [notorious, battlefield]
-    spell_list_id: 431
+    spell_list:    kamlanaut_apoc_nigh
     skill_list_id: 1143
     attributes:
       combat:
@@ -105,7 +105,7 @@ templates:
     id:            4820
     species:       promathia
     type:          [notorious, battlefield]
-    spell_list_id: 128
+    spell_list:    promathia_2
     skill_list_id: 478
     attributes:
       combat:
@@ -128,7 +128,7 @@ templates:
     id:            3199
     species:       elvaan
     type:          [battlefield]
-    spell_list_id: 129
+    spell_list:    prishe
     skill_list_id: 476
     attributes:
       combat:
@@ -156,7 +156,7 @@ templates:
     display_name:  Promathia
     species:       promathia
     type:          [notorious, battlefield]
-    spell_list_id: 127
+    spell_list:    promathia_1
     skill_list_id: 134
     attributes:
       combat:
@@ -188,7 +188,7 @@ templates:
     display_name:  Promathia
     species:       promathia
     type:          [notorious, battlefield]
-    spell_list_id: 128
+    spell_list:    promathia_2
     skill_list_id: 478
     attributes:
       combat:

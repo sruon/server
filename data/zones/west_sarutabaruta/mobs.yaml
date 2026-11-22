@@ -398,7 +398,7 @@ templates:
     id:            7009
     species:       fly
     type:          [notorious]
-    spell_list_id: 438
+    spell_list:    farrucafly
     skill_list_id: 1153
     attributes:
       combat:
@@ -569,7 +569,7 @@ templates:
   Goblin_Weaver:
     id:            1744
     species:       goblin
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 133
     attributes:
       combat:
@@ -699,7 +699,7 @@ templates:
   Magicked_Bones_blm:
     id:            6562
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -1122,7 +1122,7 @@ templates:
   Pixie:
     id:            3148
     species:       pixie
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 195
     attributes:
       combat:
@@ -1145,7 +1145,7 @@ templates:
   Pyracmon:
     id:            3241
     species:       ahriman
-    spell_list_id: 11
+    spell_list:    ahriman
     skill_list_id: 4
     attributes:
       render:
@@ -1356,10 +1356,10 @@ templates:
       steal: four-leaf_mandragora_bud
 
   Virvatuli:
-    id:            5148
-    species:       corpselight
-    type:          [notorious]
-    spell_list_id: 21
+    id:         5148
+    species:    corpselight
+    type:       [notorious]
+    spell_list: beastmen_blm
     attributes:
       combat:
         skill: staff
@@ -1397,7 +1397,7 @@ templates:
   Yagudo_Acolyte:
     id:            4405
     species:       yagudo
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 270
     attributes:
       combat:
@@ -1444,7 +1444,7 @@ templates:
     id:            6979
     display_name:  Yagudo_Condottiere
     species:       yagudo
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 270
     attributes:
       combat:
@@ -1536,7 +1536,7 @@ templates:
     id:            6978
     display_name:  Yagudo_Priest
     species:       yagudo
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 270
     attributes:
       combat:
@@ -1562,7 +1562,7 @@ templates:
   Yagudo_Scribe:
     id:            4448
     species:       yagudo
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 270
     attributes:
       combat:
@@ -1605,7 +1605,7 @@ templates:
     id:            6972
     display_name:  Yagudo_Theologist
     species:       yagudo
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 270
     attributes:
       combat:
@@ -1661,7 +1661,7 @@ templates:
     id:            6999
     species:       zilant
     type:          [notorious]
-    spell_list_id: 454
+    spell_list:    yilbegan
     skill_list_id: 470
     attributes:
       combat:

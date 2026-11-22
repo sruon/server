@@ -47,7 +47,7 @@ templates:
     id:            6107
     species:       wivre
     type:          [notorious]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 2045
     attributes:
       combat:
@@ -499,7 +499,7 @@ templates:
   Shivering_Heartwing:
     id:            6699
     species:       heartwing
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 343
     attributes:
       combat:

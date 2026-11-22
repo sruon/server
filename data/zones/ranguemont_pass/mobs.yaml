@@ -5,7 +5,7 @@ templates:
   Bat_Eye:
     id:            374
     species:       ahriman
-    spell_list_id: 11
+    spell_list:    ahriman
     skill_list_id: 4
     attributes:
       combat:
@@ -284,7 +284,7 @@ templates:
   Goblin_Gambler:
     id:            1666
     species:       goblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -324,7 +324,7 @@ templates:
   Goblin_Hoodoo:
     id:            6657
     species:       goblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -363,7 +363,7 @@ templates:
   Goblin_Leecher:
     id:            1683
     species:       goblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:
@@ -538,7 +538,7 @@ templates:
   Goblin_Weaver:
     id:            1744
     species:       goblin
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 133
     attributes:
       combat:
@@ -627,7 +627,7 @@ templates:
   Hecteyes_RP:
     id:            1912
     species:       hecteye
-    spell_list_id: 10
+    spell_list:    hecteyes
     skill_list_id: 139
     attributes:
       combat:
@@ -660,7 +660,7 @@ templates:
   Hovering_Oculus:
     id:            6606
     species:       ahriman
-    spell_list_id: 11
+    spell_list:    ahriman
     skill_list_id: 4
     attributes:
       combat:
@@ -698,7 +698,7 @@ templates:
     id:            6883
     species:       hecteye
     type:          [notorious]
-    spell_list_id: 10
+    spell_list:    hecteyes
     skill_list_id: 139
     attributes:
       combat:
@@ -745,7 +745,7 @@ templates:
     id:            4574
     species:       slime
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 228
     attributes:
       combat:
@@ -880,7 +880,7 @@ templates:
   Taisai:
     id:            3838
     species:       hecteye
-    spell_list_id: 10
+    spell_list:    hecteyes
     skill_list_id: 139
     attributes:
       combat:
@@ -911,7 +911,7 @@ templates:
     id:            3839
     species:       hecteye
     type:          [notorious]
-    spell_list_id: 81
+    spell_list:    taisaijin
     skill_list_id: 139
     attributes:
       combat:
@@ -948,7 +948,7 @@ templates:
     id:            4041
     species:       sea_monk
     type:          [notorious]
-    spell_list_id: 83
+    spell_list:    tros
     skill_list_id: 218
     attributes:
       combat:

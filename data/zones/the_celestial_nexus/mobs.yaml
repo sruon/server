@@ -7,7 +7,7 @@ templates:
     display_name:  Ark_Angel_EV
     species:       elvaan
     type:          [battlefield]
-    spell_list_id: 37
+    spell_list:    arkangelev
     skill_list_id: 352
     attributes:
       combat:
@@ -62,7 +62,7 @@ templates:
     display_name:  Ark_Angel_HM
     species:       humes
     type:          [battlefield]
-    spell_list_id: 38
+    spell_list:    arkangelhm
     skill_list_id: 354
     attributes:
       combat:
@@ -117,7 +117,7 @@ templates:
     display_name:  Ark_Angel_TT
     species:       tarutaru
     type:          [battlefield]
-    spell_list_id: 39
+    spell_list:    arkangeltt
     skill_list_id: 356
     attributes:
       combat:
@@ -215,7 +215,7 @@ templates:
     id:            1158
     species:       humes
     type:          [battlefield]
-    spell_list_id: 22
+    spell_list:    eald_narche
     skill_list_id: 150
     attributes:
       combat:
@@ -241,7 +241,7 @@ templates:
     display_name:  Ealdnarche
     species:       humes
     type:          [battlefield]
-    spell_list_id: 22
+    spell_list:    eald_narche
     skill_list_id: 150
     attributes:
       combat:
@@ -264,7 +264,7 @@ templates:
     display_name:  Ealdnarche_2
     species:       humes
     type:          [battlefield]
-    spell_list_id: 112
+    spell_list:    eald_narche_2
     skill_list_id: 394
     attributes:
       speed: 80
@@ -289,7 +289,7 @@ templates:
     display_name:  Ealdnarche_2
     species:       humes
     type:          [battlefield]
-    spell_list_id: 112
+    spell_list:    eald_narche_2
     skill_list_id: 394
     attributes:
       speed: 80
@@ -317,7 +317,7 @@ templates:
     display_name:  Ealdnarche
     species:       humes
     type:          [battlefield]
-    spell_list_id: 112
+    spell_list:    eald_narche_2
     skill_list_id: 394
     attributes:
       speed: 80
@@ -393,7 +393,7 @@ templates:
     display_name:  Kamlanaut
     species:       humes
     type:          [battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 351
     attributes:
       combat:

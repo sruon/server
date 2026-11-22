@@ -6,7 +6,7 @@ templates:
     id:            235
     species:       elvaan
     type:          [notorious, battlefield]
-    spell_list_id: 37
+    spell_list:    arkangelev
     skill_list_id: 352
     attributes:
       combat:
@@ -37,7 +37,7 @@ templates:
     display_name:  Ark_Angel_EV
     species:       elvaan
     type:          [notorious, battlefield]
-    spell_list_id: 37
+    spell_list:    arkangelev
     skill_list_id: 352
     attributes:
       combat:
@@ -154,7 +154,7 @@ templates:
     id:            237
     species:       humes
     type:          [notorious, battlefield]
-    spell_list_id: 38
+    spell_list:    arkangelhm
     skill_list_id: 354
     attributes:
       combat:
@@ -202,7 +202,7 @@ templates:
     display_name:  Ark_Angel_HM
     species:       humes
     type:          [notorious, battlefield]
-    spell_list_id: 38
+    spell_list:    arkangelhm
     skill_list_id: 354
     attributes:
       combat:
@@ -336,7 +336,7 @@ templates:
     id:            242
     species:       tarutaru
     type:          [notorious, battlefield]
-    spell_list_id: 39
+    spell_list:    arkangeltt
     skill_list_id: 356
     attributes:
       combat:
@@ -367,7 +367,7 @@ templates:
     display_name:  Ark_Angel_TT
     species:       tarutaru
     type:          [notorious, battlefield]
-    spell_list_id: 39
+    spell_list:    arkangeltt
     skill_list_id: 356
     attributes:
       combat:
@@ -394,7 +394,7 @@ templates:
     id:            239
     species:       korrigan
     type:          [notorious, battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 178
     attributes:
       combat:
@@ -424,7 +424,7 @@ templates:
     display_name:  Ark_Angels_Mandragora
     species:       korrigan
     type:          [notorious, battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 178
     attributes:
       combat:

@@ -36,7 +36,7 @@ templates:
     id:            102
     species:       cerberus
     type:          [notorious]
-    spell_list_id: 258
+    spell_list:    amarok
     skill_list_id: 930
     attributes:
       combat:
@@ -76,7 +76,7 @@ templates:
     id:            161
     species:       tiger
     type:          [notorious]
-    spell_list_id: 259
+    spell_list:    ansherekh
     skill_list_id: 242
     attributes:
       combat:
@@ -107,7 +107,7 @@ templates:
   Arid_Limule:
     id:            229
     species:       limule
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 173
     attributes:
       combat:
@@ -167,9 +167,9 @@ templates:
         crab_shell:              0
 
   Baelfyr:
-    id:            323
-    species:       baelfyr
-    spell_list_id: 3
+    id:         323
+    species:    baelfyr
+    spell_list: beastmen_rdm
     attributes:
       combat:
         skill: club
@@ -228,7 +228,7 @@ templates:
     id:            368
     species:       chariot
     type:          [notorious]
-    spell_list_id: 260
+    spell_list:    battlerigged_chariot
     skill_list_id: 932
     attributes:
       combat:
@@ -392,7 +392,7 @@ templates:
   Byrgen:
     id:            593
     species:       byrgen
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 100
     attributes:
       combat:
@@ -481,7 +481,7 @@ templates:
     id:            859
     species:       sabotender
     type:          [notorious]
-    spell_list_id: 261
+    spell_list:    cuijatender
     skill_list_id: 937
     attributes:
       combat:
@@ -517,7 +517,7 @@ templates:
   Desert_Clionid:
     id:            1005
     species:       clionid
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 65
     attributes:
       combat:
@@ -581,7 +581,7 @@ templates:
     id:            1106
     species:       earth_wyrm
     type:          [notorious]
-    spell_list_id: 262
+    spell_list:    dragua
     skill_list_id: 938
     attributes:
       combat:
@@ -680,7 +680,7 @@ templates:
   Earth_Elemental:
     id:            1160
     species:       earth_elemental
-    spell_list_id: 13
+    spell_list:    elemental_earth
     skill_list_id: 101
     attributes:
       combat:
@@ -790,7 +790,7 @@ templates:
   Fire_Elemental:
     id:            1341
     species:       fire_elemental
-    spell_list_id: 17
+    spell_list:    elemental_fire
     skill_list_id: 102
     attributes:
       combat:
@@ -840,9 +840,9 @@ templates:
         giant_bird_feather: 0
 
   Gefyrst:
-    id:            1487
-    species:       gefyrst
-    spell_list_id: 3
+    id:         1487
+    species:    gefyrst
+    spell_list: beastmen_rdm
     attributes:
       combat:
         skill: club
@@ -891,7 +891,7 @@ templates:
     id:            1913
     species:       scorpion
     type:          [notorious]
-    spell_list_id: 263
+    spell_list:    hedjedjet_pre_50
     skill_list_id: 941
     attributes:
       combat:
@@ -1082,7 +1082,7 @@ templates:
   Oasis_Amoeban:
     id:            2930
     species:       amoeban
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 5
     attributes:
       combat:
@@ -1114,7 +1114,7 @@ templates:
     id:            3061
     species:       orthrus
     type:          [notorious]
-    spell_list_id: 265
+    spell_list:    orthrus
     skill_list_id: 944
     attributes:
       combat:
@@ -1151,7 +1151,7 @@ templates:
     id:            3071
     species:       gagana
     type:          [notorious]
-    spell_list_id: 266
+    spell_list:    ouzelum
     skill_list_id: 125
     attributes:
       combat:
@@ -1187,7 +1187,7 @@ templates:
     id:            3323
     species:       bishop
     type:          [notorious]
-    spell_list_id: 160
+    spell_list:    rani_hp_75to100
     skill_list_id: 947
     attributes:
       combat:
@@ -1217,7 +1217,7 @@ templates:
   Sand_Murex:
     id:            3457
     species:       murex
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 187
     attributes:
       combat:
@@ -1306,7 +1306,7 @@ templates:
     id:            3585
     species:       manticore
     type:          [notorious]
-    spell_list_id: 267
+    spell_list:    sharabha_100_to_50
     skill_list_id: 948
     attributes:
       combat:
@@ -1430,7 +1430,7 @@ templates:
   Ungeweder:
     id:            4099
     species:       ungeweder
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 105
     attributes:
       combat:
@@ -1453,7 +1453,7 @@ templates:
     id:            4116
     species:       ladybug
     type:          [notorious]
-    spell_list_id: 270
+    spell_list:    vadleany
     skill_list_id: 951
     attributes:
       combat:
@@ -1489,7 +1489,7 @@ templates:
     id:            4316
     species:       puk
     type:          [notorious]
-    spell_list_id: 271
+    spell_list:    waugyl
     skill_list_id: 952
     attributes:
       combat:

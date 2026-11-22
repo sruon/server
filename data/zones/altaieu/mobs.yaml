@@ -6,7 +6,7 @@ templates:
     id:            21
     species:       aern
     type:          [notorious]
-    spell_list_id: 145
+    spell_list:    dobsonfly
     skill_list_id: 329
     attributes:
       combat:
@@ -49,7 +49,7 @@ templates:
     id:            54
     species:       dark_elemental
     type:          [called]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 100
     attributes:
       combat:
@@ -294,7 +294,7 @@ templates:
   Omaern_blm:
     id:            6206
     species:       aern
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 442
     attributes:
       combat:
@@ -329,7 +329,7 @@ templates:
   Omaern_brd:
     id:            6212
     species:       aern
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 442
     attributes:
       combat:
@@ -429,7 +429,7 @@ templates:
   Omaern_drk:
     id:            6210
     species:       aern
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 441
     attributes:
       combat:
@@ -498,7 +498,7 @@ templates:
   Omaern_nin:
     id:            6215
     species:       aern
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 3
     attributes:
       combat:
@@ -531,7 +531,7 @@ templates:
   Omaern_pld:
     id:            6209
     species:       aern
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 441
     attributes:
       combat:
@@ -567,7 +567,7 @@ templates:
   Omaern_rdm:
     id:            6207
     species:       aern
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 441
     attributes:
       combat:
@@ -770,7 +770,7 @@ templates:
   Omaern_whm:
     id:            6205
     species:       aern
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 439
     attributes:
       combat:
@@ -1077,7 +1077,7 @@ templates:
     id:            5886
     species:       aern
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 442
     attributes:
       combat:
@@ -1102,7 +1102,7 @@ templates:
     id:            5882
     species:       aern
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 441
     attributes:
       combat:
@@ -1153,7 +1153,7 @@ templates:
     id:            5887
     species:       aern
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 441
     attributes:
       combat:
@@ -1179,7 +1179,7 @@ templates:
     id:            5883
     species:       aern
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 441
     attributes:
       combat:
@@ -1279,7 +1279,7 @@ templates:
     id:            5879
     species:       aern
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 439
     attributes:
       combat:
@@ -1331,7 +1331,7 @@ templates:
   Ulaern_blm:
     id:            6191
     species:       aern
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 442
     attributes:
       combat:
@@ -1365,7 +1365,7 @@ templates:
   Ulaern_brd:
     id:            6197
     species:       aern
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 442
     attributes:
       combat:
@@ -1462,7 +1462,7 @@ templates:
   Ulaern_drk:
     id:            6195
     species:       aern
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 441
     attributes:
       combat:
@@ -1529,7 +1529,7 @@ templates:
   Ulaern_nin:
     id:            6200
     species:       aern
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 3
     attributes:
       combat:
@@ -1561,7 +1561,7 @@ templates:
   Ulaern_pld:
     id:            6194
     species:       aern
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 441
     attributes:
       combat:
@@ -1594,7 +1594,7 @@ templates:
   Ulaern_rdm:
     id:            6192
     species:       aern
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 441
     attributes:
       combat:
@@ -1789,7 +1789,7 @@ templates:
   Ulaern_whm:
     id:            6190
     species:       aern
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 439
     attributes:
       combat:

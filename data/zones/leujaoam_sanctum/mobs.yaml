@@ -6,7 +6,7 @@ templates:
     id:            59
     species:       humes
     type:          [called]
-    spell_list_id: 8
+    spell_list:    beastmen_blu
     skill_list_id: 149
     attributes:
       combat:
@@ -30,7 +30,7 @@ templates:
     id:            353
     species:       humes
     type:          [battlefield]
-    spell_list_id: 8
+    spell_list:    beastmen_blu
     skill_list_id: 149
     attributes:
       combat:
@@ -94,7 +94,7 @@ templates:
   Count_Dracula:
     id:            813
     species:       vampyr
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 252
     attributes:
       combat:
@@ -135,7 +135,7 @@ templates:
     id:            901
     species:       humes
     type:          [battlefield]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 149
     attributes:
       combat:
@@ -211,7 +211,7 @@ templates:
   Gasharyad:
     id:            1474
     species:       humes
-    spell_list_id: 8
+    spell_list:    beastmen_blu
     skill_list_id: 149
     attributes:
       combat:
@@ -230,7 +230,7 @@ templates:
   Gelid_Bhoot:
     id:            1489
     species:       bhoot
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 52
     attributes:
       combat:
@@ -269,7 +269,7 @@ templates:
     id:            1512
     species:       humes
     type:          [called]
-    spell_list_id: 8
+    spell_list:    beastmen_blu
     skill_list_id: 149
     attributes:
       combat:
@@ -293,7 +293,7 @@ templates:
     id:            1866
     species:       humes
     type:          [called]
-    spell_list_id: 8
+    spell_list:    beastmen_blu
     skill_list_id: 149
     attributes:
       combat:
@@ -317,7 +317,7 @@ templates:
     id:            1963
     species:       humes
     type:          [called]
-    spell_list_id: 8
+    spell_list:    beastmen_blu
     skill_list_id: 149
     attributes:
       combat:
@@ -340,7 +340,7 @@ templates:
   Imp:
     id:            2065
     species:       imp
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       combat:
@@ -381,7 +381,7 @@ templates:
     id:            2288
     species:       humes
     type:          [called]
-    spell_list_id: 8
+    spell_list:    beastmen_blu
     skill_list_id: 149
     attributes:
       combat:
@@ -405,7 +405,7 @@ templates:
     id:            2290
     species:       bhoot
     type:          [battlefield]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 52
     attributes:
       combat:
@@ -429,7 +429,7 @@ templates:
     id:            2301
     species:       humes
     type:          [battlefield]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 149
     attributes:
       combat:
@@ -471,7 +471,7 @@ templates:
   Lamia_Prosector:
     id:            2355
     species:       lamiae
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 171
     attributes:
       combat:
@@ -511,7 +511,7 @@ templates:
     id:            2401
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -535,7 +535,7 @@ templates:
     id:            2560
     species:       humes
     type:          [called]
-    spell_list_id: 8
+    spell_list:    beastmen_blu
     skill_list_id: 149
     attributes:
       combat:
@@ -559,7 +559,7 @@ templates:
     id:            2671
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -584,7 +584,7 @@ templates:
     id:            2810
     species:       humes
     type:          [called]
-    spell_list_id: 8
+    spell_list:    beastmen_blu
     skill_list_id: 149
     attributes:
       combat:
@@ -606,7 +606,7 @@ templates:
     id:            2960
     species:       humes
     type:          [battlefield]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 149
     attributes:
       combat:
@@ -649,7 +649,7 @@ templates:
     id:            3279
     species:       humes
     type:          [called]
-    spell_list_id: 8
+    spell_list:    beastmen_blu
     skill_list_id: 149
     attributes:
       combat:
@@ -690,7 +690,7 @@ templates:
     id:            5751
     species:       humes
     type:          [battlefield]
-    spell_list_id: 8
+    spell_list:    beastmen_blu
     skill_list_id: 149
     attributes:
       combat:
@@ -732,7 +732,7 @@ templates:
     id:            3443
     species:       humes
     type:          [battlefield]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 149
     attributes:
       combat:
@@ -771,7 +771,7 @@ templates:
     id:            3447
     species:       humes
     type:          [called]
-    spell_list_id: 8
+    spell_list:    beastmen_blu
     skill_list_id: 149
     attributes:
       combat:
@@ -812,7 +812,7 @@ templates:
     id:            3586
     species:       humes
     type:          [called]
-    spell_list_id: 8
+    spell_list:    beastmen_blu
     skill_list_id: 149
     attributes:
       combat:
@@ -836,7 +836,7 @@ templates:
     id:            3590
     species:       humes
     type:          [called]
-    spell_list_id: 8
+    spell_list:    beastmen_blu
     skill_list_id: 149
     attributes:
       combat:
@@ -877,7 +877,7 @@ templates:
     id:            4073
     species:       humes
     type:          [called]
-    spell_list_id: 8
+    spell_list:    beastmen_blu
     skill_list_id: 149
     attributes:
       combat:
@@ -901,7 +901,7 @@ templates:
     id:            4075
     species:       humes
     type:          [called]
-    spell_list_id: 8
+    spell_list:    beastmen_blu
     skill_list_id: 149
     attributes:
       combat:
@@ -923,7 +923,7 @@ templates:
     id:            4202
     species:       humes
     type:          [called]
-    spell_list_id: 8
+    spell_list:    beastmen_blu
     skill_list_id: 149
     attributes:
       combat:
@@ -947,7 +947,7 @@ templates:
     id:            4326
     species:       humes
     type:          [called]
-    spell_list_id: 8
+    spell_list:    beastmen_blu
     skill_list_id: 149
     attributes:
       combat:
@@ -971,7 +971,7 @@ templates:
     id:            4469
     species:       humes
     type:          [called]
-    spell_list_id: 8
+    spell_list:    beastmen_blu
     skill_list_id: 149
     attributes:
       combat:

@@ -6,7 +6,7 @@ templates:
     id:            4664
     species:       knight
     type:          [notorious, battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 450
     attributes:
       combat:
@@ -66,7 +66,7 @@ templates:
     display_name:  Pil
     species:       bishop
     type:          [notorious, battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 450
     attributes:
       combat:
@@ -91,7 +91,7 @@ templates:
     id:            4654
     species:       provenance_watcher
     type:          [battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 462
     attributes:
       combat:
@@ -116,7 +116,7 @@ templates:
     id:            4663
     species:       rook
     type:          [notorious, battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 450
     attributes:
       combat:
@@ -158,7 +158,7 @@ templates:
     id:            4665
     species:       pawn
     type:          [notorious, battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 450
     attributes:
       combat:
@@ -200,7 +200,7 @@ templates:
     id:            4667
     species:       king
     type:          [notorious, battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 450
     attributes:
       combat:
@@ -225,7 +225,7 @@ templates:
     id:            4666
     species:       queen
     type:          [notorious, battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 450
     attributes:
       combat:

@@ -5,7 +5,7 @@ templates:
   Air_Elemental:
     id:            71
     species:       air_elemental
-    spell_list_id: 12
+    spell_list:    elemental_air
     skill_list_id: 99
     attributes:
       combat:
@@ -66,7 +66,7 @@ templates:
     id:            114
     species:       uragnite
     type:          [notorious]
-    spell_list_id: 280
+    spell_list:    amphitrite
     skill_list_id: 977
     attributes:
       combat:
@@ -98,7 +98,7 @@ templates:
     id:            270
     species:       chariot
     type:          [notorious]
-    spell_list_id: 281
+    spell_list:    assailer_chariot
     skill_list_id: 978
     attributes:
       combat:
@@ -146,7 +146,7 @@ templates:
     id:            309
     species:       black_wyrm
     type:          [notorious]
-    spell_list_id: 282
+    spell_list:    azdaja
     skill_list_id: 979
     attributes:
       combat:
@@ -182,9 +182,9 @@ templates:
           item:   stone_of_wieldance
 
   Baelfyr:
-    id:            323
-    species:       baelfyr
-    spell_list_id: 3
+    id:         323
+    species:    baelfyr
+    spell_list: beastmen_rdm
     attributes:
       combat:
         skill: club
@@ -207,7 +207,7 @@ templates:
     id:            492
     species:       goblin
     type:          [notorious]
-    spell_list_id: 283
+    spell_list:    aby_grauberg_goblin_nm
     skill_list_id: 980
     attributes:
       combat:
@@ -236,7 +236,7 @@ templates:
     id:            587
     species:       goblin
     type:          [notorious]
-    spell_list_id: 283
+    spell_list:    aby_grauberg_goblin_nm
     skill_list_id: 981
     attributes:
       combat:
@@ -268,7 +268,7 @@ templates:
   Byrgen:
     id:            593
     species:       byrgen
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 100
     attributes:
       combat:
@@ -291,7 +291,7 @@ templates:
   Dark_Elemental:
     id:            913
     species:       dark_elemental
-    spell_list_id: 18
+    spell_list:    elemental_dark
     skill_list_id: 100
     attributes:
       combat:
@@ -402,7 +402,7 @@ templates:
     id:            1367
     species:       goblin
     type:          [notorious]
-    spell_list_id: 284
+    spell_list:    fleshflayer_killakriq
     skill_list_id: 983
     attributes:
       combat:
@@ -451,7 +451,7 @@ templates:
     id:            1434
     species:       pixie
     type:          [notorious]
-    spell_list_id: 285
+    spell_list:    fuath
     skill_list_id: 984
     attributes:
       combat:
@@ -526,9 +526,9 @@ templates:
           one_of: [raiders_seal_body, aoidos_seal_body, tantra_seal_body, callers_seal_body]
 
   Gefyrst:
-    id:            1487
-    species:       gefyrst
-    spell_list_id: 3
+    id:         1487
+    species:    gefyrst
+    spell_list: beastmen_rdm
     attributes:
       combat:
         skill: club
@@ -613,7 +613,7 @@ templates:
   Goblin_Meatgrinder:
     id:            1686
     species:       armored_goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -648,7 +648,7 @@ templates:
   Goblin_Plunderer:
     id:            1700
     species:       goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -682,7 +682,7 @@ templates:
   Hillock_Murex:
     id:            1945
     species:       murex
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 187
     attributes:
       combat:
@@ -714,7 +714,7 @@ templates:
     id:            2055
     species:       pugil
     type:          [notorious]
-    spell_list_id: 286
+    spell_list:    ika_roa
     skill_list_id: 197
     attributes:
       combat:
@@ -805,7 +805,7 @@ templates:
   Knoll_Clionid:
     id:            2274
     species:       clionid
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 65
     attributes:
       combat:
@@ -835,7 +835,7 @@ templates:
     id:            2441
     species:       pixie
     type:          [notorious]
-    spell_list_id: 287
+    spell_list:    lorelei
     skill_list_id: 988
     attributes:
       combat:
@@ -870,7 +870,7 @@ templates:
     id:            2474
     species:       diabolos
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 35
     attributes:
       combat:
@@ -933,7 +933,7 @@ templates:
     id:            2665
     species:       ajattara
     type:          [notorious]
-    spell_list_id: 288
+    spell_list:    minaruja
     skill_list_id: 990
     attributes:
       combat:
@@ -1076,7 +1076,7 @@ templates:
   Pond_Amoeban:
     id:            3173
     species:       amoeban
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 5
     attributes:
       combat:
@@ -1139,7 +1139,7 @@ templates:
     id:            3313
     species:       bishop
     type:          [notorious]
-    spell_list_id: 163
+    spell_list:    raja
     skill_list_id: 992
     attributes:
       combat:
@@ -1169,7 +1169,7 @@ templates:
     id:            3350
     species:       chariot
     type:          [notorious]
-    spell_list_id: 289
+    spell_list:    rencounter_chariot
     skill_list_id: 63
     attributes:
       combat:
@@ -1217,7 +1217,7 @@ templates:
   Seelie:
     id:            3538
     species:       pixie
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 195
     attributes:
       combat:
@@ -1243,7 +1243,7 @@ templates:
   Sensenmann:
     id:            3542
     species:       skeleton
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 227
     attributes:
       combat:
@@ -1276,7 +1276,7 @@ templates:
   Sinister_Seidel:
     id:            3631
     species:       magic_pot
-    spell_list_id: 36
+    spell_list:    magicpot
     skill_list_id: 175
     attributes:
       combat:
@@ -1326,7 +1326,7 @@ templates:
   Stream_Limule:
     id:            3787
     species:       limule
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 173
     attributes:
       combat:
@@ -1403,7 +1403,7 @@ templates:
     id:            3859
     species:       magic_pot
     type:          [notorious]
-    spell_list_id: 290
+    spell_list:    teekesselchen
     skill_list_id: 175
     attributes:
       combat:
@@ -1437,7 +1437,7 @@ templates:
     id:            3883
     species:       pixie
     type:          [notorious]
-    spell_list_id: 291
+    spell_list:    teugghia
     skill_list_id: 995
     attributes:
       combat:
@@ -1469,7 +1469,7 @@ templates:
   Ungeweder:
     id:            4099
     species:       ungeweder
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 105
     attributes:
       combat:
@@ -1491,7 +1491,7 @@ templates:
   Unseelie:
     id:            4101
     species:       undeen
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 195
     attributes:
       combat:
@@ -1535,7 +1535,7 @@ templates:
     id:            4395
     species:       skeleton
     type:          [notorious]
-    spell_list_id: 292
+    spell_list:    xibalba
     skill_list_id: 227
     attributes:
       combat:

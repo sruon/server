@@ -5,7 +5,7 @@ templates:
   Banshee:
     id:            338
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -105,7 +105,7 @@ templates:
   Evil_Spirit_MDT:
     id:            6506
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -140,7 +140,7 @@ templates:
     id:            1502
     species:       evil_weapon
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 110
     attributes:
       combat:
@@ -489,7 +489,7 @@ templates:
   Goblin_Shaman:
     id:            1710
     species:       goblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -609,7 +609,7 @@ templates:
   Light_Elemental:
     id:            2413
     species:       light_elemental
-    spell_list_id: 19
+    spell_list:    elemental_light
     skill_list_id: 104
     attributes:
       combat:
@@ -640,7 +640,7 @@ templates:
   Magic_Jar:
     id:            2477
     species:       magic_pot
-    spell_list_id: 36
+    spell_list:    magicpot
     skill_list_id: 175
     attributes:
       combat:
@@ -669,7 +669,7 @@ templates:
   Magic_Pot:
     id:            2480
     species:       magic_pot
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 175
     attributes:
       combat:
@@ -924,7 +924,7 @@ templates:
   Scythe_Victim_blm:
     id:            6564
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -1001,7 +1001,7 @@ templates:
   Thunder_Elemental:
     id:            3912
     species:       thunder_elemental
-    spell_list_id: 16
+    spell_list:    elemental_thunder
     skill_list_id: 105
     attributes:
       combat:

@@ -5,7 +5,7 @@ templates:
   Bloody_Vrukwuk:
     id:            468
     species:       orc
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 189
     attributes:
       combat:
@@ -77,7 +77,7 @@ templates:
     id:            766
     species:       bat
     type:          [notorious, battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 2014
     attributes:
       combat:
@@ -149,7 +149,7 @@ templates:
   Fogweaver_Mozzfuzz:
     id:            1378
     species:       orc
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 189
     attributes:
       combat:
@@ -175,7 +175,7 @@ templates:
     id:            1441
     species:       flock_bat
     type:          [battlefield]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 2015
     attributes:
       combat:
@@ -439,7 +439,7 @@ templates:
   Orcish_Mesmerizer:
     id:            3022
     species:       orc
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 189
     attributes:
       combat:
@@ -479,7 +479,7 @@ templates:
   Orcish_Neckchopper:
     id:            3023
     species:       orc
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 189
     attributes:
       combat:
@@ -767,7 +767,7 @@ templates:
     id:            3899
     species:       orc
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 189
     attributes:
       combat:

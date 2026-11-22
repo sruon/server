@@ -6,7 +6,7 @@ templates:
     id:            331
     species:       funguar
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 116
     attributes:
       combat:
@@ -248,7 +248,7 @@ templates:
     id:            519
     species:       quadav
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 201
     attributes:
       combat:
@@ -356,7 +356,7 @@ templates:
   Bogy:
     id:            485
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -389,7 +389,7 @@ templates:
   Brass_Quadav:
     id:            525
     species:       quadav
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 202
     attributes:
       combat:
@@ -425,7 +425,7 @@ templates:
     id:            525
     display_name:  Brass_Quadav
     species:       quadav
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 202
     attributes:
       combat:
@@ -455,7 +455,7 @@ templates:
     id:            525
     display_name:  Brass_Quadav
     species:       quadav
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 202
     attributes:
       combat:
@@ -517,7 +517,7 @@ templates:
     id:            753
     species:       quadav
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 202
     attributes:
       combat:
@@ -789,7 +789,7 @@ templates:
   Goblin_Gambler:
     id:            1666
     species:       goblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -825,7 +825,7 @@ templates:
   Goblin_Leecher:
     id:            1683
     species:       goblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:
@@ -912,7 +912,7 @@ templates:
   Goblin_Tinkerer:
     id:            1738
     species:       armored_goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -1002,7 +1002,7 @@ templates:
   Greater_Quadav:
     id:            1808
     species:       quadav
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 202
     attributes:
       combat:
@@ -1036,7 +1036,7 @@ templates:
     id:            7001
     species:       worm
     type:          [notorious]
-    spell_list_id: 436
+    spell_list:    ground_guzzler
     skill_list_id: 258
     attributes:
       combat:
@@ -1056,7 +1056,7 @@ templates:
   Heliodor_Quadav:
     id:            1917
     species:       quadav
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 202
     attributes:
       combat:
@@ -1108,7 +1108,7 @@ templates:
     id:            1972
     species:       goblin
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -1131,7 +1131,7 @@ templates:
     id:            1974
     species:       goblin
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -1175,7 +1175,7 @@ templates:
     id:            1979
     species:       goblin
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 133
     attributes:
       combat:
@@ -1240,7 +1240,7 @@ templates:
     id:            1984
     species:       goblin
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:
@@ -1434,7 +1434,7 @@ templates:
     id:            2636
     species:       quadav
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 202
     attributes:
       combat:
@@ -1464,7 +1464,7 @@ templates:
     id:            2637
     species:       quadav
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 202
     attributes:
       combat:
@@ -1494,7 +1494,7 @@ templates:
     id:            2638
     species:       quadav
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 202
     attributes:
       combat:
@@ -1524,7 +1524,7 @@ templates:
     id:            2639
     species:       quadav
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 202
     attributes:
       combat:
@@ -1610,7 +1610,7 @@ templates:
     id:            2642
     species:       quadav
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 202
     attributes:
       combat:
@@ -1640,7 +1640,7 @@ templates:
     id:            5312
     species:       wantonberry
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 243
     attributes:
       combat:
@@ -1799,7 +1799,7 @@ templates:
   Onyx_Quadav:
     id:            2986
     species:       quadav
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 202
     attributes:
       combat:
@@ -1833,7 +1833,7 @@ templates:
     id:            2986
     display_name:  Onyx_Quadav
     species:       quadav
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 202
     attributes:
       combat:
@@ -1866,7 +1866,7 @@ templates:
   Sapphirine_Quadav:
     id:            3464
     species:       quadav
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 202
     attributes:
       combat:
@@ -1924,7 +1924,7 @@ templates:
     id:            7003
     species:       hecteye
     type:          [notorious]
-    spell_list_id: 437
+    spell_list:    shoggoth
     skill_list_id: 139
     attributes:
       combat:
@@ -1981,7 +1981,7 @@ templates:
   Sprite:
     id:            3745
     species:       pixie
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 195
     attributes:
       combat:
@@ -2151,7 +2151,7 @@ templates:
   Thunder_Elemental:
     id:            3912
     species:       thunder_elemental
-    spell_list_id: 16
+    spell_list:    elemental_thunder
     skill_list_id: 105
     attributes:
       combat:
@@ -2185,7 +2185,7 @@ templates:
     id:            6831
     species:       morbol
     type:          [notorious]
-    spell_list_id: 500
+    spell_list:    toxic_tamlyn
     skill_list_id: 186
     attributes:
       combat:
@@ -2217,7 +2217,7 @@ templates:
   Veteran_Quadav:
     id:            4226
     species:       quadav
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 202
     attributes:
       combat:
@@ -2250,7 +2250,7 @@ templates:
   Water_Elemental:
     id:            4309
     species:       water_elemental
-    spell_list_id: 15
+    spell_list:    elemental_water
     skill_list_id: 106
     attributes:
       combat:
@@ -2319,7 +2319,7 @@ templates:
     id:            6999
     species:       zilant
     type:          [notorious]
-    spell_list_id: 454
+    spell_list:    yilbegan
     skill_list_id: 470
     attributes:
       combat:
@@ -2469,7 +2469,7 @@ templates:
   Zombie_blm:
     id:            6574
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:

@@ -6,7 +6,7 @@ templates:
     id:            6092
     species:       yagudo_statue
     type:          [notorious]
-    spell_list_id: 50
+    spell_list:    tzee_xicu_idol
     skill_list_id: 95
     attributes:
       combat:
@@ -56,7 +56,7 @@ templates:
   Avatar_Icon:
     id:            294
     species:       yagudo_statue
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 95
     attributes:
       combat:
@@ -95,7 +95,7 @@ templates:
     id:            295
     species:       yagudo_statue
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 95
     attributes:
       combat:
@@ -127,7 +127,7 @@ templates:
     id:            6089
     species:       dynamis_yagudo
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 710
     attributes:
       combat:
@@ -174,7 +174,7 @@ templates:
     id:            1864
     species:       dynamis_yagudo
     type:          [notorious]
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 710
     attributes:
       combat:
@@ -221,7 +221,7 @@ templates:
     id:            2437
     species:       dynamis_yagudo
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 710
     attributes:
       combat:
@@ -268,7 +268,7 @@ templates:
     id:            2464
     species:       dynamis_yagudo
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 710
     attributes:
       combat:
@@ -295,7 +295,7 @@ templates:
     id:            2777
     species:       dynamis_yagudo
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 710
     attributes:
       combat:
@@ -322,7 +322,7 @@ templates:
     id:            6090
     species:       dynamis_yagudo
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 710
     attributes:
       combat:
@@ -369,7 +369,7 @@ templates:
     id:            6091
     species:       dynamis_yagudo
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 710
     attributes:
       combat:
@@ -416,7 +416,7 @@ templates:
     id:            4070
     species:       yagudo_statue
     type:          [notorious]
-    spell_list_id: 50
+    spell_list:    tzee_xicu_idol
     skill_list_id: 95
     attributes:
       combat:
@@ -464,7 +464,7 @@ templates:
   Vanguard_Assassin:
     id:            4137
     species:       dynamis_yagudo
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 2106
     attributes:
       combat:
@@ -508,7 +508,7 @@ templates:
     id:            4137
     display_name:  Vanguard_Assassin
     species:       dynamis_yagudo
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 2106
     attributes:
       combat:
@@ -554,7 +554,7 @@ templates:
     id:            7229
     display_name:  Vanguard_Assassin
     species:       dynamis_yagudo
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 2106
     attributes:
       combat:
@@ -597,7 +597,7 @@ templates:
   Vanguard_Chanter:
     id:            4141
     species:       dynamis_yagudo
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 2106
     attributes:
       combat:
@@ -641,7 +641,7 @@ templates:
     id:            4141
     display_name:  Vanguard_Chanter
     species:       dynamis_yagudo
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 2106
     attributes:
       combat:
@@ -687,7 +687,7 @@ templates:
     id:            7237
     display_name:  Vanguard_Chanter
     species:       dynamis_yagudo
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 2106
     attributes:
       combat:
@@ -730,7 +730,7 @@ templates:
   Vanguard_Exemplar:
     id:            4148
     species:       dynamis_yagudo
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 2106
     attributes:
       combat:
@@ -774,7 +774,7 @@ templates:
     id:            4148
     display_name:  Vanguard_Exemplar
     species:       dynamis_yagudo
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 2106
     attributes:
       combat:
@@ -820,7 +820,7 @@ templates:
     id:            7233
     display_name:  Vanguard_Exemplar
     species:       dynamis_yagudo
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 2106
     attributes:
       combat:
@@ -863,7 +863,7 @@ templates:
   Vanguard_Inciter:
     id:            4157
     species:       dynamis_yagudo
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 2106
     attributes:
       combat:
@@ -907,7 +907,7 @@ templates:
     id:            4157
     display_name:  Vanguard_Inciter
     species:       dynamis_yagudo
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 2106
     attributes:
       combat:
@@ -953,7 +953,7 @@ templates:
     id:            7236
     display_name:  Vanguard_Inciter
     species:       dynamis_yagudo
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 2106
     attributes:
       combat:
@@ -1256,7 +1256,7 @@ templates:
   Vanguard_Oracle:
     id:            4168
     species:       dynamis_yagudo
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 2106
     attributes:
       combat:
@@ -1299,7 +1299,7 @@ templates:
     id:            4168
     display_name:  Vanguard_Oracle
     species:       dynamis_yagudo
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 2106
     attributes:
       combat:
@@ -1344,7 +1344,7 @@ templates:
     id:            7241
     display_name:  Vanguard_Oracle
     species:       dynamis_yagudo
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 2106
     attributes:
       combat:
@@ -1648,7 +1648,7 @@ templates:
   Vanguard_Prelate:
     id:            4175
     species:       dynamis_yagudo
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2106
     attributes:
       combat:
@@ -1690,7 +1690,7 @@ templates:
     id:            4175
     display_name:  Vanguard_Prelate
     species:       dynamis_yagudo
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2106
     attributes:
       combat:
@@ -1734,7 +1734,7 @@ templates:
     id:            7238
     display_name:  Vanguard_Prelate
     species:       dynamis_yagudo
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2106
     attributes:
       combat:
@@ -1777,7 +1777,7 @@ templates:
   Vanguard_Priest:
     id:            4176
     species:       dynamis_yagudo
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 2106
     attributes:
       combat:
@@ -1819,7 +1819,7 @@ templates:
     id:            4176
     display_name:  Vanguard_Priest
     species:       dynamis_yagudo
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 2106
     attributes:
       combat:
@@ -1863,7 +1863,7 @@ templates:
     id:            7235
     display_name:  Vanguard_Priest
     species:       dynamis_yagudo
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 2106
     attributes:
       combat:
@@ -2288,7 +2288,7 @@ templates:
   Vanguard_Visionary:
     id:            4198
     species:       dynamis_yagudo
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 2106
     attributes:
       combat:
@@ -2332,7 +2332,7 @@ templates:
     id:            4198
     display_name:  Vanguard_Visionary
     species:       dynamis_yagudo
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 2106
     attributes:
       combat:
@@ -2378,7 +2378,7 @@ templates:
     id:            7231
     display_name:  Vanguard_Visionary
     species:       dynamis_yagudo
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 2106
     attributes:
       combat:
@@ -2443,7 +2443,7 @@ templates:
     id:            4186
     species:       bird
     type:          [called]
-    spell_list_id: 52
+    spell_list:    vanguard_s_crow
     skill_list_id: 55
     attributes:
       combat:
@@ -2553,7 +2553,7 @@ templates:
     id:            4399
     species:       dynamis_yagudo
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 710
     attributes:
       combat:
@@ -2600,7 +2600,7 @@ templates:
     id:            4896
     species:       dynamis_yagudo
     type:          [notorious]
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 710
     attributes:
       combat:

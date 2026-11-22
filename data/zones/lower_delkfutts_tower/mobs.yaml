@@ -6,7 +6,7 @@ templates:
     id:            5162
     species:       akoman
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 4
     attributes:
       combat:
@@ -59,7 +59,7 @@ templates:
   Bogy_LDT:
     id:            6504
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -116,7 +116,7 @@ templates:
     id:            1049
     species:       doll
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 85
     attributes:
       combat:
@@ -485,7 +485,7 @@ templates:
   Goblin_Gambler:
     id:            1666
     species:       goblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -507,7 +507,7 @@ templates:
   Goblin_Leecher:
     id:            1683
     species:       goblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:
@@ -634,7 +634,7 @@ templates:
   Illusory_Pot:
     id:            2058
     species:       magic_pot
-    spell_list_id: 36
+    spell_list:    magicpot
     skill_list_id: 175
     attributes:
       combat:
@@ -655,7 +655,7 @@ templates:
   Light_Elemental:
     id:            2413
     species:       light_elemental
-    spell_list_id: 19
+    spell_list:    elemental_light
     skill_list_id: 104
     attributes:
       combat:
@@ -686,7 +686,7 @@ templates:
   Magic_Pot:
     id:            2480
     species:       magic_pot
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 175
     attributes:
       combat:
@@ -715,7 +715,7 @@ templates:
   Magic_Urn:
     id:            2483
     species:       magic_pot
-    spell_list_id: 36
+    spell_list:    magicpot
     skill_list_id: 175
     attributes:
       combat:
@@ -748,7 +748,7 @@ templates:
     id:            3055
     species:       evil_weapon
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 110
     attributes:
       combat:
@@ -798,7 +798,7 @@ templates:
   Thunder_Elemental:
     id:            3912
     species:       thunder_elemental
-    spell_list_id: 16
+    spell_list:    elemental_thunder
     skill_list_id: 105
     attributes:
       combat:
@@ -832,7 +832,7 @@ templates:
     id:            5427
     species:       doll
     type:          [notorious]
-    spell_list_id: 131
+    spell_list:    tyrant
     skill_list_id: 85
     attributes:
       combat:

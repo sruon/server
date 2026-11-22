@@ -164,7 +164,7 @@ templates:
     species:       water_elemental
     type:          [battlefield]
     roam:          [scripted]
-    spell_list_id: 15
+    spell_list:    elemental_water
     skill_list_id: 106
     attributes:
       combat:

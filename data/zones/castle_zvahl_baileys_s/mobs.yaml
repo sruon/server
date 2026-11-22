@@ -5,7 +5,7 @@ templates:
   1st_Gold_Musketeer:
     id:            1
     species:       humes
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 149
     attributes:
       combat:
@@ -85,7 +85,7 @@ templates:
   8th_Iron_Musketeer:
     id:            13
     species:       humes
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 149
     attributes:
       combat:
@@ -155,7 +155,7 @@ templates:
     id:            5553
     display_name:  Adaman_Quadav
     species:       quadav_s
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 202
     attributes:
       combat:
@@ -380,7 +380,7 @@ templates:
   Areuhat:
     id:            227
     species:       elvaan
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 145
     attributes:
       combat:
@@ -408,7 +408,7 @@ templates:
   Ashmea_B_Greinner:
     id:            260
     species:       elvaan
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 145
     attributes:
       combat:
@@ -457,7 +457,7 @@ templates:
   Azima:
     id:            311
     species:       humes
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 149
     attributes:
       combat:
@@ -516,7 +516,7 @@ templates:
   Beadeaux_Vanguard:
     id:            381
     species:       quadav_s
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 202
     attributes:
       combat:
@@ -540,7 +540,7 @@ templates:
     display_name:  BiGho_Headtaker
     species:       quadav_s
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 202
     attributes:
       combat:
@@ -778,7 +778,7 @@ templates:
   Dark_Elemental:
     id:            913
     species:       dark_elemental
-    spell_list_id: 18
+    spell_list:    elemental_dark
     skill_list_id: 100
     attributes:
       combat:
@@ -813,7 +813,7 @@ templates:
     display_name:  DeVyu_Headhunter
     species:       quadav_s
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 202
     attributes:
       combat:
@@ -837,7 +837,7 @@ templates:
   Deathlord_Rojgnoj:
     id:            935
     species:       orc_s
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 189
     attributes:
       combat:
@@ -934,7 +934,7 @@ templates:
   Demon_Befouler:
     id:            983
     species:       kindred
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 169
     attributes:
       combat:
@@ -967,7 +967,7 @@ templates:
   Demon_Condemner:
     id:            5223
     species:       kindred
-    spell_list_id: 31
+    spell_list:    kindred_smn
     skill_list_id: 169
     attributes:
       combat:
@@ -999,7 +999,7 @@ templates:
     id:            7193
     display_name:  Demon_Condemner
     species:       kindred
-    spell_list_id: 31
+    spell_list:    kindred_smn
     skill_list_id: 169
     attributes:
       combat:
@@ -1030,7 +1030,7 @@ templates:
   Demon_Corrupter:
     id:            5221
     species:       kindred
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 169
     attributes:
       combat:
@@ -1062,7 +1062,7 @@ templates:
     id:            7191
     display_name:  Demon_Corrupter
     species:       kindred
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 169
     attributes:
       combat:
@@ -1093,7 +1093,7 @@ templates:
   Demon_Entomber:
     id:            5222
     species:       kindred
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 169
     attributes:
       combat:
@@ -1125,7 +1125,7 @@ templates:
     id:            7192
     display_name:  Demon_Entomber
     species:       kindred
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 169
     attributes:
       combat:
@@ -1156,7 +1156,7 @@ templates:
   Demon_Justiciar:
     id:            987
     species:       kindred
-    spell_list_id: 31
+    spell_list:    kindred_smn
     skill_list_id: 169
     attributes:
       jobs: [smn, smn]
@@ -1187,7 +1187,7 @@ templates:
   Demon_Magus:
     id:            990
     species:       kindred
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 169
     attributes:
       jobs: [blm, blm]
@@ -1304,7 +1304,7 @@ templates:
   Demons_Elemental:
     id:            994
     species:       dark_elemental
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 100
     attributes:
       combat:
@@ -1384,7 +1384,7 @@ templates:
   Divine_Assassin:
     id:            1056
     species:       yagudo_s
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 360
     attributes:
       combat:
@@ -1405,7 +1405,7 @@ templates:
   Doom_Lens_CZBS:
     id:            6607
     species:       ahriman
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 4
     attributes:
       combat:
@@ -1441,7 +1441,7 @@ templates:
   Dusk_Raider:
     id:            1143
     species:       humes
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 149
     attributes:
       combat:
@@ -1468,7 +1468,7 @@ templates:
   Duskraven:
     id:            1141
     species:       humes
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 149
     attributes:
       combat:
@@ -1524,7 +1524,7 @@ templates:
   Errand_Imp:
     id:            5234
     species:       imp
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       combat:
@@ -1618,7 +1618,7 @@ templates:
   Feldrautte_I_Rouhent:
     id:            1321
     species:       elvaan
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 145
     attributes:
       combat:
@@ -1651,7 +1651,7 @@ templates:
   Ferreous_Coffin:
     id:            1324
     species:       galks
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 146
     attributes:
       combat:
@@ -1701,7 +1701,7 @@ templates:
   Foredoomer_Demon:
     id:            6611
     species:       kindred
-    spell_list_id: 31
+    spell_list:    kindred_smn
     skill_list_id: 169
     attributes:
       jobs: [smn, smn]
@@ -1797,7 +1797,7 @@ templates:
   GoBhus_Elite_Raider:
     id:            1780
     species:       quadav_s
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 202
     attributes:
       combat:
@@ -1841,7 +1841,7 @@ templates:
   Gold_Badger_Esquire:
     id:            1752
     species:       elvaan
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 145
     attributes:
       combat:
@@ -1927,7 +1927,7 @@ templates:
   Ice_Elemental:
     id:            2043
     species:       ice_elemental
-    spell_list_id: 14
+    spell_list:    elemental_ice
     skill_list_id: 103
     attributes:
       combat:
@@ -2006,7 +2006,7 @@ templates:
   Iron_Quadav_CZBS:
     id:            6246
     species:       quadav_s
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 202
     attributes:
       combat:
@@ -2104,7 +2104,7 @@ templates:
   Kagetora:
     id:            2179
     species:       humes
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 149
     attributes:
       combat:
@@ -2133,7 +2133,7 @@ templates:
     display_name:  Kaiser_Behemoth
     species:       behemoth
     type:          [notorious, battlefield]
-    spell_list_id: 126
+    spell_list:    casting_behemoth
     skill_list_id: 479
     attributes:
       combat:
@@ -2160,7 +2160,7 @@ templates:
   Kazan_the_Peerless:
     id:            2198
     species:       yagudo_s
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 360
     attributes:
       combat:
@@ -2183,7 +2183,7 @@ templates:
   Kilhwch:
     id:            2226
     species:       humes
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 149
     attributes:
       combat:
@@ -2211,7 +2211,7 @@ templates:
   Kurt:
     id:            2300
     species:       humes
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 149
     attributes:
       combat:
@@ -2276,7 +2276,7 @@ templates:
   Lewenhart:
     id:            2403
     species:       humes
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 149
     attributes:
       combat:
@@ -2357,7 +2357,7 @@ templates:
   Ludwig:
     id:            2445
     species:       humes
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 149
     attributes:
       combat:
@@ -2408,7 +2408,7 @@ templates:
   Magnes_Quadav_CZBS:
     id:            6255
     species:       quadav_s
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 202
     attributes:
       combat:
@@ -2481,7 +2481,7 @@ templates:
   Muu_Buxu_the_Elusive:
     id:            2776
     species:       yagudo_s
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 360
     attributes:
       combat:
@@ -2521,7 +2521,7 @@ templates:
   Norvallen_Knight:
     id:            2909
     species:       elvaan
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 145
     attributes:
       combat:
@@ -2592,7 +2592,7 @@ templates:
   Ogler:
     id:            2950
     species:       ahriman
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 4
     attributes:
       combat:
@@ -2628,7 +2628,7 @@ templates:
   Orcish_Augur_CZBS:
     id:            6293
     species:       orc_s
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 189
     attributes:
       combat:
@@ -2738,7 +2738,7 @@ templates:
   Orcish_Protector_CZBS:
     id:            6292
     species:       orc_s
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 189
     attributes:
       combat:
@@ -2798,7 +2798,7 @@ templates:
   Orcish_Warlord_CZBS:
     id:            6295
     species:       orc_s
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 189
     attributes:
       combat:
@@ -2873,7 +2873,7 @@ templates:
   Plenilune_Ronin:
     id:            3158
     species:       yagudo_s
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 360
     attributes:
       combat:
@@ -2894,7 +2894,7 @@ templates:
   Popochu:
     id:            3176
     species:       dhalmel
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 80
     attributes:
       combat:
@@ -2990,7 +2990,7 @@ templates:
   Qulun_Heavyshell:
     id:            3293
     species:       quadav_s
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 202
     attributes:
       combat:
@@ -3012,7 +3012,7 @@ templates:
   Raigegue_R_dOraguille:
     id:            3310
     species:       corse
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 74
     attributes:
       combat:
@@ -3037,7 +3037,7 @@ templates:
   Rainemard:
     id:            3312
     species:       elvaan
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 145
     attributes:
       combat:
@@ -3103,7 +3103,7 @@ templates:
   Royal_Knight:
     id:            3405
     species:       elvaan
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 145
     attributes:
       combat:
@@ -3231,7 +3231,7 @@ templates:
   Shadoweye:
     id:            6608
     species:       ahriman
-    spell_list_id: 11
+    spell_list:    ahriman
     skill_list_id: 4
     attributes:
       combat:
@@ -3301,7 +3301,7 @@ templates:
   Shadowfang_Void:
     id:            3564
     species:       dark_elemental
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 100
     attributes:
       combat:
@@ -3325,7 +3325,7 @@ templates:
     id:            5235
     species:       kindred
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 169
     attributes:
       combat:
@@ -3508,7 +3508,7 @@ templates:
   Soulsearer_Demon:
     id:            5225
     species:       kindred
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 169
     attributes:
       jobs: [blm, blm]
@@ -3550,7 +3550,7 @@ templates:
   Spinebeak_Neckchopper:
     id:            3730
     species:       orc_s
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 189
     attributes:
       combat:
@@ -3571,7 +3571,7 @@ templates:
   Star_Ruby_Quadav_CZBS:
     id:            6256
     species:       quadav_s
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 202
     attributes:
       combat:
@@ -3659,7 +3659,7 @@ templates:
   Vajra_Quadav_CZBS:
     id:            6253
     species:       quadav_s
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 202
     attributes:
       combat:
@@ -3709,7 +3709,7 @@ templates:
   Woebringer_Demon:
     id:            6610
     species:       kindred
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 169
     attributes:
       jobs: [drk, drk]
@@ -3741,7 +3741,7 @@ templates:
   Yagudo_Chanter_past:
     id:            5493
     species:       yagudo_s
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 270
     attributes:
       combat:
@@ -3774,7 +3774,7 @@ templates:
   Yagudo_Eradicator_past:
     id:            4417
     species:       yagudo_s
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 270
     attributes:
       combat:
@@ -3805,7 +3805,7 @@ templates:
   Yagudo_High_Priest_past:
     id:            5478
     species:       yagudo_s
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 270
     attributes:
       combat:
@@ -3875,7 +3875,7 @@ templates:
   Yagudo_Prelate_past:
     id:            4442
     species:       yagudo_s
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 270
     attributes:
       combat:

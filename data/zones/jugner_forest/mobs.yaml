@@ -6,7 +6,7 @@ templates:
     id:            5152
     species:       pixie
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 195
     attributes:
       combat:
@@ -62,7 +62,7 @@ templates:
   Bogy:
     id:            485
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -153,7 +153,7 @@ templates:
     id:            682
     species:       treant
     type:          [notorious]
-    spell_list_id: 459
+    spell_list:    cernunnos
     skill_list_id: 245
     attributes:
       combat:
@@ -420,7 +420,7 @@ templates:
   Giollemitte_B_Feroun:
     id:            1605
     species:       shadow
-    spell_list_id: 550
+    spell_list:    giollemitte_b_feroun
     skill_list_id: 221
     attributes:
       combat:
@@ -551,7 +551,7 @@ templates:
   Goblin_Gambler:
     id:            1666
     species:       goblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -587,7 +587,7 @@ templates:
   Goblin_Leecher:
     id:            1683
     species:       goblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:
@@ -674,7 +674,7 @@ templates:
   Goblin_Tinkerer:
     id:            1738
     species:       armored_goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -731,7 +731,7 @@ templates:
     id:            1878
     species:       orc
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 189
     attributes:
       combat:
@@ -753,7 +753,7 @@ templates:
     id:            1879
     species:       orc
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 189
     attributes:
       combat:
@@ -820,7 +820,7 @@ templates:
     id:            1882
     species:       orc
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 189
     attributes:
       combat:
@@ -908,7 +908,7 @@ templates:
     id:            1972
     species:       goblin
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -931,7 +931,7 @@ templates:
     id:            1974
     species:       goblin
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -975,7 +975,7 @@ templates:
     id:            1979
     species:       goblin
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 133
     attributes:
       combat:
@@ -1040,7 +1040,7 @@ templates:
     id:            1984
     species:       goblin
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:
@@ -1124,7 +1124,7 @@ templates:
     id:            2254
     species:       crab
     type:          [notorious]
-    spell_list_id: 79
+    spell_list:    king_arthro
     skill_list_id: 77
     attributes:
       combat:
@@ -1490,7 +1490,7 @@ templates:
   Orcish_Cursemaker:
     id:            3004
     species:       orc
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 189
     attributes:
       combat:
@@ -1522,7 +1522,7 @@ templates:
     id:            3004
     display_name:  Orcish_Cursemaker
     species:       orc
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 189
     attributes:
       combat:
@@ -1551,7 +1551,7 @@ templates:
     id:            3004
     display_name:  Orcish_Cursemaker
     species:       orc
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 189
     attributes:
       combat:
@@ -1668,7 +1668,7 @@ templates:
   Orcish_Neckchopper:
     id:            3023
     species:       orc
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 189
     attributes:
       combat:
@@ -1699,7 +1699,7 @@ templates:
   Orcish_Serjeant:
     id:            3032
     species:       orc
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 189
     attributes:
       combat:
@@ -1731,7 +1731,7 @@ templates:
     id:            3032
     display_name:  Orcish_Serjeant
     species:       orc
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 189
     attributes:
       combat:
@@ -1760,7 +1760,7 @@ templates:
     id:            3032
     display_name:  Orcish_Serjeant
     species:       orc
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 189
     attributes:
       combat:
@@ -1822,7 +1822,7 @@ templates:
     id:            3048
     species:       blue_wyvern
     type:          [battlefield]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 714
     attributes:
       combat:
@@ -1842,7 +1842,7 @@ templates:
     id:            3095
     species:       beetle
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 49
     attributes:
       combat:
@@ -1985,7 +1985,7 @@ templates:
   Skeleton_Esquire:
     id:            3645
     species:       skeleton
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 227
     attributes:
       combat:
@@ -2064,7 +2064,7 @@ templates:
   Sprite:
     id:            3745
     species:       pixie
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 195
     attributes:
       combat:
@@ -2238,7 +2238,7 @@ templates:
   Thunder_Elemental:
     id:            3912
     species:       thunder_elemental
-    spell_list_id: 16
+    spell_list:    elemental_thunder
     skill_list_id: 105
     attributes:
       combat:
@@ -2332,7 +2332,7 @@ templates:
   Water_Elemental:
     id:            4309
     species:       water_elemental
-    spell_list_id: 15
+    spell_list:    elemental_water
     skill_list_id: 106
     attributes:
       combat:
@@ -2420,7 +2420,7 @@ templates:
     id:            6999
     species:       zilant
     type:          [notorious]
-    spell_list_id: 454
+    spell_list:    yilbegan
     skill_list_id: 470
     attributes:
       combat:
@@ -2570,7 +2570,7 @@ templates:
   Zombie_blm:
     id:            6574
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:

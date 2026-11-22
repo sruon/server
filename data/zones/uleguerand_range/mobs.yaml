@@ -229,7 +229,7 @@ templates:
   Demons_Elemental:
     id:            994
     species:       dark_elemental
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 100
     attributes:
       combat:
@@ -251,7 +251,7 @@ templates:
   Doom_Mage:
     id:            1083
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -283,7 +283,7 @@ templates:
   Doom_Soldier:
     id:            1085
     species:       skeleton
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 227
     attributes:
       combat:
@@ -317,7 +317,7 @@ templates:
   Dread_Demon_UR:
     id:            1115
     species:       kindred
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 169
     attributes:
       combat:
@@ -392,7 +392,7 @@ templates:
   Fachan:
     id:            1278
     species:       ahriman
-    spell_list_id: 11
+    spell_list:    ahriman
     skill_list_id: 4
     attributes:
       combat:
@@ -455,7 +455,7 @@ templates:
     id:            6096
     species:       snoll
     type:          [notorious]
-    spell_list_id: 307
+    spell_list:    frost_flambeau
     skill_list_id: 232
     attributes:
       combat:
@@ -488,7 +488,7 @@ templates:
     id:            1507
     species:       buffalo
     type:          [notorious]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 424
     attributes:
       combat:
@@ -553,7 +553,7 @@ templates:
     id:            1618
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -619,7 +619,7 @@ templates:
   Ice_Elemental:
     id:            2043
     species:       ice_elemental
-    spell_list_id: 14
+    spell_list:    elemental_ice
     skill_list_id: 103
     attributes:
       combat:
@@ -678,7 +678,7 @@ templates:
     id:            2156
     species:       blue_wyrm
     type:          [notorious]
-    spell_list_id: 111
+    spell_list:    jormungand
     skill_list_id: 392
     attributes:
       combat:
@@ -729,7 +729,7 @@ templates:
   Judicator_Demon_UR:
     id:            2164
     species:       kindred
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 169
     attributes:
       combat:
@@ -764,7 +764,7 @@ templates:
   Kindred_Black_Mage_UR:
     id:            6617
     species:       kindred
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 358
     attributes:
       combat:
@@ -800,7 +800,7 @@ templates:
   Kindred_Dark_Knight_UR:
     id:            6619
     species:       kindred
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 358
     attributes:
       combat:
@@ -833,7 +833,7 @@ templates:
   Kindred_Summoner_UR:
     id:            6628
     species:       kindred
-    spell_list_id: 31
+    spell_list:    kindred_smn
     skill_list_id: 358
     attributes:
       combat:
@@ -994,7 +994,7 @@ templates:
   Mindgazer:
     id:            2669
     species:       hecteye
-    spell_list_id: 10
+    spell_list:    hecteyes
     skill_list_id: 2091
     attributes:
       combat:
@@ -1079,7 +1079,7 @@ templates:
     id:            2761
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -1115,7 +1115,7 @@ templates:
     species:       worm
     type:          [notorious]
     roam:          [worm]
-    spell_list_id: 504
+    spell_list:    mountain_worm_nm
     skill_list_id: 258
     attributes:
       combat:
@@ -1204,7 +1204,7 @@ templates:
   Phasma:
     id:            3130
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -1265,7 +1265,7 @@ templates:
   Scowlenkos:
     id:            5325
     species:       ahriman
-    spell_list_id: 11
+    spell_list:    ahriman
     skill_list_id: 4
     attributes:
       combat:
@@ -1297,10 +1297,10 @@ templates:
     content: abyssea
 
   Skvader:
-    id:            5860
-    species:       rabbit
-    type:          [notorious]
-    spell_list_id: 20
+    id:         5860
+    species:    rabbit
+    type:       [notorious]
+    spell_list: beastmen_whm
     attributes:
       combat:
         skill: scythe
@@ -1327,7 +1327,7 @@ templates:
   Smolenkos:
     id:            3679
     species:       ahriman
-    spell_list_id: 11
+    spell_list:    ahriman
     skill_list_id: 4
     attributes:
       combat:
@@ -1413,7 +1413,7 @@ templates:
   Srei_Ap:
     id:            3749
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -1445,7 +1445,7 @@ templates:
   Stygian_Demon_UR:
     id:            3801
     species:       kindred
-    spell_list_id: 31
+    spell_list:    kindred_smn
     skill_list_id: 169
     attributes:
       combat:

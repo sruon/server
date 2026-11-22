@@ -31,7 +31,7 @@ templates:
   Air_Elemental:
     id:            71
     species:       air_elemental
-    spell_list_id: 12
+    spell_list:    elemental_air
     skill_list_id: 99
     attributes:
       combat:
@@ -68,7 +68,7 @@ templates:
     display_name:  Air_Elemental
     species:       air_elemental
     type:          [notorious]
-    spell_list_id: 12
+    spell_list:    elemental_air
     skill_list_id: 99
     attributes:
       combat:
@@ -208,10 +208,10 @@ templates:
         slice_of_hare_meat: 0
 
   Bombast:
-    id:            5169
-    species:       bomb
-    type:          [notorious]
-    spell_list_id: 461
+    id:         5169
+    species:    bomb
+    type:       [notorious]
+    spell_list: bombast
     attributes:
       combat:
         skill: club
@@ -416,7 +416,7 @@ templates:
     id:            1503
     species:       ghost
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -443,7 +443,7 @@ templates:
     id:            1504
     species:       evil_weapon
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 110
     attributes:
       combat:
@@ -597,7 +597,7 @@ templates:
   Goblin_Gambler:
     id:            1666
     species:       goblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -637,7 +637,7 @@ templates:
   Goblin_Leecher:
     id:            1683
     species:       goblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:
@@ -769,7 +769,7 @@ templates:
   Goblin_Shaman:
     id:            1710
     species:       goblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -847,7 +847,7 @@ templates:
   Goblin_Tinkerer:
     id:            1738
     species:       armored_goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -994,7 +994,7 @@ templates:
     id:            5168
     species:       crab
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 77
     attributes:
       combat:
@@ -1194,7 +1194,7 @@ templates:
     id:            3169
     species:       earth_elemental
     type:          [notorious]
-    spell_list_id: 13
+    spell_list:    elemental_earth
     skill_list_id: 101
     attributes:
       combat:
@@ -1681,7 +1681,7 @@ templates:
   Water_Elemental:
     id:            4309
     species:       water_elemental
-    spell_list_id: 15
+    spell_list:    elemental_water
     skill_list_id: 106
     attributes:
       combat:

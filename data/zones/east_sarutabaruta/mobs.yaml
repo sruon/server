@@ -481,7 +481,7 @@ templates:
   Goblin_Weaver:
     id:            1744
     species:       goblin
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 133
     attributes:
       combat:
@@ -525,7 +525,7 @@ templates:
     id:            6162
     species:       swords
     type:          [battlefield]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 61
     attributes:
       combat:
@@ -576,7 +576,7 @@ templates:
   Magicked_Bones_blm:
     id:            6562
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -721,7 +721,7 @@ templates:
   Pixie:
     id:            3148
     species:       pixie
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 195
     attributes:
       combat:
@@ -818,7 +818,7 @@ templates:
   Pyracmon:
     id:            3241
     species:       ahriman
-    spell_list_id: 11
+    spell_list:    ahriman
     skill_list_id: 4
     attributes:
       render:
@@ -1062,7 +1062,7 @@ templates:
   Yagudo_Acolyte:
     id:            4405
     species:       yagudo
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 270
     attributes:
       combat:
@@ -1168,7 +1168,7 @@ templates:
   Yagudo_Scribe:
     id:            4448
     species:       yagudo
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 270
     attributes:
       combat:
@@ -1231,7 +1231,7 @@ templates:
     id:            6166
     species:       yagudo
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 270
     attributes:
       combat:

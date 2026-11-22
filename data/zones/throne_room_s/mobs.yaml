@@ -30,7 +30,7 @@ templates:
     id:            5829
     species:       kindred
     type:          [notorious, battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 358
     attributes:
       combat:
@@ -56,7 +56,7 @@ templates:
     id:            4498
     species:       galks
     type:          [notorious, battlefield]
-    spell_list_id: 396
+    spell_list:    trust_balamor
     skill_list_id: 480
     attributes:
       combat:

@@ -6,7 +6,7 @@ templates:
     id:            430
     species:       sage
     type:          [battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 176
     attributes:
       combat:
@@ -81,7 +81,7 @@ templates:
     id:            6688
     species:       sage
     type:          [notorious]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 176
     attributes:
       combat:
@@ -106,7 +106,7 @@ templates:
     id:            7597
     species:       two_headed
     type:          [battlefield]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 285
     attributes:
       combat:
@@ -160,7 +160,7 @@ templates:
     id:            2370
     species:       knight_ja
     type:          [battlefield, event]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 780
     attributes:
       combat:
@@ -185,7 +185,7 @@ templates:
     id:            7598
     species:       sage
     type:          [battlefield]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 176
     attributes:
       combat:
@@ -234,7 +234,7 @@ templates:
     id:            6955
     species:       sage
     type:          [battlefield]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 176
     attributes:
       combat:
@@ -282,7 +282,7 @@ templates:
     id:            6956
     species:       sage
     type:          [battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 176
     attributes:
       combat:
@@ -331,7 +331,7 @@ templates:
     id:            6958
     species:       warrior
     type:          [battlefield]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 176
     attributes:
       combat:
@@ -405,7 +405,7 @@ templates:
     id:            3327
     species:       humes
     type:          [notorious, battlefield, event]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 783
     attributes:
       combat:
@@ -478,7 +478,7 @@ templates:
     id:            3567
     species:       warrior
     type:          [battlefield]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 176
     attributes:
       combat:
@@ -552,7 +552,7 @@ templates:
     id:            4332
     species:       sage
     type:          [battlefield]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 176
     attributes:
       combat:

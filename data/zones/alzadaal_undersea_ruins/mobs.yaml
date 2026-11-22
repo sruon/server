@@ -7,7 +7,7 @@ templates:
     display_name:  Alexander
     species:       alexander
     type:          [notorious]
-    spell_list_id: 214
+    spell_list:    alexander_np
     skill_list_id: 784
     attributes:
       combat:
@@ -215,7 +215,7 @@ templates:
     id:            2834
     species:       soulflayer
     type:          [notorious]
-    spell_list_id: 460
+    spell_list:    nepionic_soulflayer
     skill_list_id: 234
     attributes:
       combat:
@@ -303,7 +303,7 @@ templates:
     id:            3069
     species:       vampyr
     type:          [notorious]
-    spell_list_id: 150
+    spell_list:    oupire
     skill_list_id: 284
     attributes:
       combat:
@@ -482,7 +482,7 @@ templates:
     id:            6757
     species:       vampyr
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 284
     attributes:
       combat:
@@ -508,7 +508,7 @@ templates:
     id:            4594
     species:       acrolith
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 302
     attributes:
       combat:

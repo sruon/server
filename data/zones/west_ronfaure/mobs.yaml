@@ -164,7 +164,7 @@ templates:
     id:            656
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -277,7 +277,7 @@ templates:
   Enchanted_Bones_blm:
     id:            1214
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -532,7 +532,7 @@ templates:
   Goblin_Weaver:
     id:            1744
     species:       goblin
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 133
     attributes:
       combat:
@@ -628,7 +628,7 @@ templates:
   Lancing_Lamorak:
     id:            5166
     species:       beetle
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 49
     attributes:
       combat:
@@ -799,7 +799,7 @@ templates:
     id:            6975
     display_name:  Orcish_Cursemaker
     species:       orc
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 189
     attributes:
       combat:
@@ -937,7 +937,7 @@ templates:
   Orcish_Mesmerizer:
     id:            3022
     species:       orc
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 189
     attributes:
       combat:
@@ -969,7 +969,7 @@ templates:
   Orcish_Serjeant:
     id:            3032
     species:       orc
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 189
     attributes:
       combat:
@@ -1029,7 +1029,7 @@ templates:
   Pixie:
     id:            3148
     species:       pixie
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 195
     attributes:
       combat:
@@ -1052,7 +1052,7 @@ templates:
   Pyracmon:
     id:            3241
     species:       ahriman
-    spell_list_id: 11
+    spell_list:    ahriman
     skill_list_id: 4
     attributes:
       render:
@@ -1195,7 +1195,7 @@ templates:
     id:            4053
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:

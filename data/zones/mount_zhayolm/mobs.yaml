@@ -6,7 +6,7 @@ templates:
     id:            118
     species:       dragon
     type:          [notorious]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 298
     attributes:
       combat:
@@ -116,7 +116,7 @@ templates:
     id:            6098
     species:       flan
     type:          [notorious]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 2052
     attributes:
       combat:
@@ -320,7 +320,7 @@ templates:
   Dark_Bugler:
     id:            910
     species:       imp
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       combat:
@@ -374,7 +374,7 @@ templates:
     species:       odin
     type:          [notorious]
     roam:          [scripted]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 42
     attributes:
       combat:
@@ -396,7 +396,7 @@ templates:
   Earth_Elemental:
     id:            1160
     species:       earth_elemental
-    spell_list_id: 13
+    spell_list:    elemental_earth
     skill_list_id: 101
     attributes:
       combat:
@@ -429,7 +429,7 @@ templates:
   Ebony_Pudding:
     id:            1170
     species:       flan
-    spell_list_id: 430
+    spell_list:    ebony_pudding
     skill_list_id: 112
     attributes:
       combat:
@@ -460,7 +460,7 @@ templates:
   Elders_Imp:
     id:            6751
     species:       imp
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       combat:
@@ -547,7 +547,7 @@ templates:
   Fire_Elemental:
     id:            1341
     species:       fire_elemental
-    spell_list_id: 17
+    spell_list:    elemental_fire
     skill_list_id: 102
     attributes:
       combat:
@@ -581,7 +581,7 @@ templates:
     id:            1460
     species:       light_troll
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 246
     attributes:
       combat:
@@ -638,7 +638,7 @@ templates:
     id:            1469
     species:       heavy_troll
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 246
     attributes:
       combat:
@@ -714,7 +714,7 @@ templates:
   Hilltroll_Dark_Knight:
     id:            1946
     species:       heavy_troll
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 247
     attributes:
       combat:
@@ -776,7 +776,7 @@ templates:
   Hilltroll_Paladin:
     id:            1950
     species:       heavy_troll
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 247
     attributes:
       combat:
@@ -872,7 +872,7 @@ templates:
   Hilltroll_Red_Mage:
     id:            1953
     species:       light_troll
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 246
     attributes:
       combat:
@@ -965,7 +965,7 @@ templates:
     id:            2223
     species:       plated_troll
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 308
     attributes:
       combat:
@@ -1123,7 +1123,7 @@ templates:
   Phasma:
     id:            3130
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -1189,7 +1189,7 @@ templates:
     id:            3465
     species:       cerberus
     type:          [notorious]
-    spell_list_id: 139
+    spell_list:    sarameya
     skill_list_id: 314
     attributes:
       combat:
@@ -1405,7 +1405,7 @@ templates:
     id:            6685
     display_name:  Troll_Cuirasser
     species:       heavy_troll
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 246
     attributes:
       combat:
@@ -1494,7 +1494,7 @@ templates:
   Trolls_Automaton:
     id:            4035
     species:       automaton
-    spell_list_id: 567
+    spell_list:    harlequin_frame
     skill_list_id: 363
     attributes:
       combat:
@@ -1517,7 +1517,7 @@ templates:
     id:            5191
     species:       imp
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       combat:

@@ -143,7 +143,7 @@ templates:
     id:            6102
     species:       morbol
     type:          [notorious]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 2044
     attributes:
       combat:
@@ -165,7 +165,7 @@ templates:
   Bhoot:
     id:            404
     species:       bhoot
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 52
     attributes:
       combat:
@@ -195,7 +195,7 @@ templates:
     id:            465
     species:       draugar
     type:          [notorious]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 88
     attributes:
       combat:
@@ -229,7 +229,7 @@ templates:
     id:            573
     species:       imp
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       combat:
@@ -273,7 +273,7 @@ templates:
   Dark_Elemental:
     id:            913
     species:       dark_elemental
-    spell_list_id: 18
+    spell_list:    elemental_dark
     skill_list_id: 100
     attributes:
       combat:
@@ -307,7 +307,7 @@ templates:
     id:            5198
     species:       qutrub
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 203
     attributes:
       combat:
@@ -333,7 +333,7 @@ templates:
     id:            5195
     display_name:  Draugar_Servant
     species:       draugar
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 89
     attributes:
       combat:
@@ -394,7 +394,7 @@ templates:
     id:            1111
     display_name:  Draugar_Servant
     species:       draugar
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 89
     attributes:
       combat:
@@ -591,7 +591,7 @@ templates:
     id:            5202
     display_name:  Ephramadian_Shade
     species:       fomor
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 115
     attributes:
       combat:
@@ -676,7 +676,7 @@ templates:
   Fallen_Imperial_Trooper:
     id:            1285
     species:       fallen
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 115
     attributes:
       combat:
@@ -697,7 +697,7 @@ templates:
   Fallen_Imperial_Wizard:
     id:            1286
     species:       fallen
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 115
     attributes:
       combat:
@@ -760,7 +760,7 @@ templates:
   Heraldic_Imp:
     id:            1933
     species:       imp
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       combat:
@@ -791,7 +791,7 @@ templates:
   Ice_Elemental:
     id:            2043
     species:       ice_elemental
-    spell_list_id: 14
+    spell_list:    elemental_ice
     skill_list_id: 103
     attributes:
       combat:
@@ -909,7 +909,7 @@ templates:
   Lamia_Bellydancer:
     id:            2324
     species:       lamiae
-    spell_list_id: 33
+    spell_list:    lamiae_smn
     skill_list_id: 171
     attributes:
       combat:
@@ -944,7 +944,7 @@ templates:
   Lamia_Dancer:
     id:            2328
     species:       lamiae
-    spell_list_id: 33
+    spell_list:    lamiae_smn
     skill_list_id: 171
     attributes:
       combat:
@@ -1051,7 +1051,7 @@ templates:
   Lamia_Exon:
     id:            2331
     species:       lamiae
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 171
     attributes:
       combat:
@@ -1106,7 +1106,7 @@ templates:
   Lamia_Graverobber:
     id:            2334
     species:       lamiae
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 171
     attributes:
       combat:
@@ -1144,7 +1144,7 @@ templates:
     id:            6748
     display_name:  Lamia_Idolater
     species:       qutrub
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 203
     attributes:
       combat:
@@ -1180,7 +1180,7 @@ templates:
     id:            2335
     display_name:  Lamia_Idolater
     species:       qutrub
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 203
     attributes:
       combat:
@@ -1216,7 +1216,7 @@ templates:
     id:            2338
     display_name:  Lamia_Necromancer
     species:       lamiae
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 171
     attributes:
       combat:
@@ -1290,7 +1290,7 @@ templates:
     id:            2345
     species:       lamiae
     type:          [notorious]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 171
     attributes:
       combat:
@@ -1323,7 +1323,7 @@ templates:
   Lamia_No24:
     id:            2348
     species:       lamiae
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 171
     attributes:
       combat:
@@ -1446,7 +1446,7 @@ templates:
   Lamias_Elemental:
     id:            2359
     species:       dark_elemental
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 100
     attributes:
       combat:
@@ -1552,7 +1552,7 @@ templates:
   Lamie_Necromancer:
     id:            2364
     species:       lamiae
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 171
     attributes:
       combat:
@@ -1859,7 +1859,7 @@ templates:
   Merrow_Bladedancer:
     id:            2617
     species:       merrow
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 182
     attributes:
       combat:
@@ -1894,7 +1894,7 @@ templates:
   Merrow_Chantress:
     id:            2619
     species:       merrow
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 182
     attributes:
       combat:
@@ -2028,7 +2028,7 @@ templates:
     id:            2625
     species:       merrow
     type:          [notorious]
-    spell_list_id: 8
+    spell_list:    beastmen_blu
     skill_list_id: 182
     attributes:
       combat:
@@ -2074,7 +2074,7 @@ templates:
   Merrow_Shadowdancer:
     id:            2627
     species:       merrow
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 182
     attributes:
       combat:
@@ -2111,7 +2111,7 @@ templates:
   Merrow_Songstress:
     id:            2629
     species:       merrow
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 182
     attributes:
       combat:
@@ -2345,7 +2345,7 @@ templates:
   Nix_Bladedancer:
     id:            2893
     species:       merrow
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 182
     attributes:
       combat:
@@ -2380,7 +2380,7 @@ templates:
   Nix_Songstress:
     id:            2894
     species:       merrow
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 182
     attributes:
       combat:
@@ -2566,7 +2566,7 @@ templates:
   Phasma:
     id:            3130
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -2737,7 +2737,7 @@ templates:
   Qutrub:
     id:            6127
     species:       qutrub
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 203
     attributes:
       combat:
@@ -2760,7 +2760,7 @@ templates:
     id:            6747
     display_name:  Qutrub
     species:       qutrub
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 203
     attributes:
       combat:
@@ -2793,7 +2793,7 @@ templates:
     id:            3294
     display_name:  Qutrub
     species:       qutrub
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 203
     attributes:
       combat:
@@ -2826,7 +2826,7 @@ templates:
     id:            3355
     display_name:  Reserve_Draugar
     species:       draugar
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 89
     attributes:
       combat:
@@ -2891,7 +2891,7 @@ templates:
     id:            5193
     display_name:  Reserve_Draugar
     species:       draugar
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 89
     attributes:
       combat:
@@ -2956,7 +2956,7 @@ templates:
     id:            6749
     display_name:  Seneschal_Imp
     species:       imp
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       combat:
@@ -2988,7 +2988,7 @@ templates:
   Soulflayer:
     id:            3704
     species:       soulflayer
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 233
     attributes:
       combat:
@@ -3022,7 +3022,7 @@ templates:
     id:            4217
     species:       skeleton
     type:          [notorious]
-    spell_list_id: 300
+    spell_list:    velionis
     skill_list_id: 292
     attributes:
       combat:
@@ -3093,7 +3093,7 @@ templates:
     id:            4490
     species:       qutrub
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 303
     attributes:
       combat:

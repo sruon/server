@@ -178,7 +178,7 @@ templates:
   Orcish_Cursemaker:
     id:            3004
     species:       orc
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 189
     attributes:
       combat:
@@ -428,7 +428,7 @@ templates:
   Orcish_Mesmerizer:
     id:            3022
     species:       orc
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 189
     attributes:
       combat:
@@ -468,7 +468,7 @@ templates:
   Orcish_Neckchopper:
     id:            3023
     species:       orc
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 189
     attributes:
       combat:
@@ -528,7 +528,7 @@ templates:
   Orcish_Serjeant:
     id:            3032
     species:       orc
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 189
     attributes:
       combat:

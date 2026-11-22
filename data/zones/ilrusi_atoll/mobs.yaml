@@ -143,7 +143,7 @@ templates:
     id:            885
     species:       merrow
     type:          [battlefield]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 182
     attributes:
       combat:
@@ -167,7 +167,7 @@ templates:
     id:            886
     species:       merrow
     type:          [battlefield]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 182
     attributes:
       combat:
@@ -229,7 +229,7 @@ templates:
   Draugar:
     id:            1110
     species:       draugar
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 89
     attributes:
       combat:
@@ -252,7 +252,7 @@ templates:
     id:            5743
     species:       draugar
     type:          [battlefield]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 89
     attributes:
       combat:
@@ -273,7 +273,7 @@ templates:
   Fallen_Imperial_Trooper:
     id:            1285
     species:       fallen
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 115
     attributes:
       combat:
@@ -294,7 +294,7 @@ templates:
   Fallen_Imperial_Wizard:
     id:            1286
     species:       fallen
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 115
     attributes:
       combat:
@@ -353,7 +353,7 @@ templates:
   Imp:
     id:            2065
     species:       imp
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       combat:
@@ -377,7 +377,7 @@ templates:
     id:            2172
     species:       lamiae
     type:          [battlefield]
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 171
     attributes:
       combat:

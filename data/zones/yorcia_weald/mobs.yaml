@@ -5,7 +5,7 @@ templates:
   Abashed_Heartwing:
     id:            4811
     species:       heartwing
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 343
     attributes:
       combat:
@@ -302,7 +302,7 @@ templates:
     id:            6925
     species:       ahriman
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 4
     attributes:
       combat:
@@ -475,7 +475,7 @@ templates:
   Rustled_Panopt:
     id:            4769
     species:       panopt
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 376
     attributes:
       combat:
@@ -623,7 +623,7 @@ templates:
   Stolid_Byrgen:
     id:            4941
     species:       byrgen
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 100
     attributes:
       combat:
@@ -669,7 +669,7 @@ templates:
     id:            4872
     species:       panopt
     type:          [notorious]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 376
     attributes:
       combat:

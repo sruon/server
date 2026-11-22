@@ -70,7 +70,7 @@ templates:
     id:            235
     species:       elvaan
     type:          [notorious, battlefield]
-    spell_list_id: 37
+    spell_list:    arkangelev
     skill_list_id: 352
     attributes:
       combat:
@@ -142,7 +142,7 @@ templates:
     id:            237
     species:       humes
     type:          [notorious, battlefield]
-    spell_list_id: 38
+    spell_list:    arkangelhm
     skill_list_id: 354
     attributes:
       combat:
@@ -229,7 +229,7 @@ templates:
     id:            242
     species:       tarutaru
     type:          [notorious, battlefield]
-    spell_list_id: 39
+    spell_list:    arkangeltt
     skill_list_id: 356
     attributes:
       combat:
@@ -256,7 +256,7 @@ templates:
     id:            6991
     species:       gnat
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 131
     attributes:
       combat:
@@ -323,7 +323,7 @@ templates:
     id:            5672
     species:       flan
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 112
     attributes:
       combat:
@@ -390,7 +390,7 @@ templates:
     id:            6981
     species:       pawn
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 450
     attributes:
       combat:
@@ -434,7 +434,7 @@ templates:
     display_name:  Byakko
     species:       legendary_tigers
     type:          [notorious]
-    spell_list_id: 26
+    spell_list:    byakko
     skill_list_id: 279
     attributes:
       combat:
@@ -507,7 +507,7 @@ templates:
     id:            5670
     species:       imp
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       combat:
@@ -533,7 +533,7 @@ templates:
   Eschan_Amoeban:
     id:            5622
     species:       amoeban
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 5
     attributes:
       combat:
@@ -554,7 +554,7 @@ templates:
   Eschan_Clionid:
     id:            5623
     species:       clionid
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 65
     attributes:
       combat:
@@ -678,7 +678,7 @@ templates:
     id:            5653
     species:       dark_elemental
     type:          [called]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 100
     attributes:
       combat:
@@ -722,7 +722,7 @@ templates:
   Eschan_Limule:
     id:            5620
     species:       limule
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 173
     attributes:
       combat:
@@ -741,7 +741,7 @@ templates:
   Eschan_Murex:
     id:            5621
     species:       murex
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 187
     attributes:
       combat:
@@ -860,7 +860,7 @@ templates:
     display_name:  Genbu
     species:       legendary_adamantoise
     type:          [notorious]
-    spell_list_id: 24
+    spell_list:    genbu
     skill_list_id: 277
     attributes:
       combat:
@@ -888,7 +888,7 @@ templates:
     id:            5676
     species:       gallu
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 467
     attributes:
       combat:
@@ -913,7 +913,7 @@ templates:
     id:            5677
     species:       kindred
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 358
     attributes:
       combat:
@@ -938,7 +938,7 @@ templates:
   Ilaern_blm:
     id:            6221
     species:       aern
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 442
     attributes:
       combat:
@@ -959,7 +959,7 @@ templates:
   Ilaern_brd:
     id:            6227
     species:       aern
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 442
     attributes:
       combat:
@@ -1023,7 +1023,7 @@ templates:
   Ilaern_drk:
     id:            6225
     species:       aern
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 441
     attributes:
       combat:
@@ -1066,7 +1066,7 @@ templates:
   Ilaern_nin:
     id:            6230
     species:       aern
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 3
     attributes:
       combat:
@@ -1087,7 +1087,7 @@ templates:
   Ilaern_pld:
     id:            6224
     species:       aern
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 441
     attributes:
       combat:
@@ -1109,7 +1109,7 @@ templates:
   Ilaern_rdm:
     id:            6222
     species:       aern
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 441
     attributes:
       combat:
@@ -1234,7 +1234,7 @@ templates:
   Ilaern_whm:
     id:            6220
     species:       aern
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 439
     attributes:
       combat:
@@ -1279,7 +1279,7 @@ templates:
     id:            5687
     species:       amoeban
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 5
     attributes:
       combat:
@@ -1304,7 +1304,7 @@ templates:
     id:            5685
     species:       clionid
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 65
     attributes:
       combat:
@@ -1348,7 +1348,7 @@ templates:
     id:            5686
     species:       murex
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 187
     attributes:
       combat:
@@ -1371,7 +1371,7 @@ templates:
     id:            6983
     species:       bishop
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 450
     attributes:
       combat:
@@ -1397,7 +1397,7 @@ templates:
     id:            5669
     species:       king
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 450
     attributes:
       combat:
@@ -1426,7 +1426,7 @@ templates:
     display_name:  Kirin
     species:       legendary_manticore
     type:          [notorious]
-    spell_list_id: 23
+    spell_list:    kirin
     skill_list_id: 281
     attributes:
       combat:
@@ -1477,7 +1477,7 @@ templates:
     id:            5694
     species:       earth_wyrm
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 259
     attributes:
       combat:
@@ -1501,7 +1501,7 @@ templates:
     id:            5668
     species:       knight
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 450
     attributes:
       combat:
@@ -1546,7 +1546,7 @@ templates:
     id:            6984
     species:       queen
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 450
     attributes:
       combat:
@@ -1586,10 +1586,10 @@ templates:
         type: [scripted]
 
   Naga_Raja:
-    id:            5634
-    species:       blue_wyrm
-    type:          [notorious]
-    spell_list_id: 1
+    id:         5634
+    species:    blue_wyrm
+    type:       [notorious]
+    spell_list: default_buff
     attributes:
       combat:
         skill:    scythe
@@ -1614,9 +1614,9 @@ templates:
         hp: 3400000
 
   Naga_Rajas_Lamia_1:
-    id:            5635
-    species:       lamiae
-    spell_list_id: 28
+    id:         5635
+    species:    lamiae
+    spell_list: undead
     attributes:
       combat:
         skill: axe
@@ -1705,7 +1705,7 @@ templates:
     id:            5683
     species:       corpselight
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 74
     attributes:
       combat:
@@ -1862,7 +1862,7 @@ templates:
     id:            6982
     species:       rook
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 450
     attributes:
       combat:
@@ -1905,7 +1905,7 @@ templates:
     id:            5673
     species:       vampyr
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 309
     attributes:
       combat:
@@ -1931,7 +1931,7 @@ templates:
     display_name:  Seiryu
     species:       legendary_wyvern
     type:          [notorious]
-    spell_list_id: 25
+    spell_list:    seiryu
     skill_list_id: 278
     attributes:
       combat:
@@ -1960,7 +1960,7 @@ templates:
     display_name:  Suzaku
     species:       legendary_roc
     type:          [notorious]
-    spell_list_id: 27
+    spell_list:    suzaku
     skill_list_id: 280
     attributes:
       combat:
@@ -2069,7 +2069,7 @@ templates:
     id:            5697
     species:       aern
     type:          [notorious]
-    spell_list_id: 145
+    spell_list:    dobsonfly
     skill_list_id: 329
     attributes:
       combat:
@@ -2122,7 +2122,7 @@ templates:
     id:            5656
     species:       euvhi
     type:          [notorious]
-    spell_list_id: 138
+    spell_list:    jailer_of_faith
     skill_list_id: 109
     attributes:
       combat:
@@ -2149,7 +2149,7 @@ templates:
     id:            6980
     species:       bird_ghrah
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 124
     attributes:
       combat:
@@ -2483,7 +2483,7 @@ templates:
     display_name:  Warders_Xzomit
     species:       xzomit
     type:          [notorious]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 269
     attributes:
       combat:

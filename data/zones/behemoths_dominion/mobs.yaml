@@ -64,7 +64,7 @@ templates:
   Bhuta:
     id:            407
     species:       ghost
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 121
     attributes:
       combat:
@@ -118,7 +118,7 @@ templates:
     id:            1074
     species:       goblin
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:
@@ -261,7 +261,7 @@ templates:
     id:            2387
     species:       evil_weapon
     type:          [notorious]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 110
     attributes:
       combat:
@@ -316,7 +316,7 @@ templates:
   Light_Elemental:
     id:            2413
     species:       light_elemental
-    spell_list_id: 19
+    spell_list:    elemental_light
     skill_list_id: 104
     attributes:
       combat:
@@ -347,7 +347,7 @@ templates:
   Lost_Soul_blm:
     id:            2442
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -493,7 +493,7 @@ templates:
     display_name:  Pil
     species:       bishop
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 450
     attributes:
       combat:
@@ -521,7 +521,7 @@ templates:
     id:            6855
     species:       behemoth
     type:          [notorious]
-    spell_list_id: 126
+    spell_list:    casting_behemoth
     skill_list_id: 51
     attributes:
       combat:
@@ -546,7 +546,7 @@ templates:
   Thunder_Elemental:
     id:            3912
     species:       thunder_elemental
-    spell_list_id: 16
+    spell_list:    elemental_thunder
     skill_list_id: 105
     attributes:
       combat:

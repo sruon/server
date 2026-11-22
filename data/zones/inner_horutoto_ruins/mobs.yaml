@@ -265,7 +265,7 @@ templates:
   Goblin_Gambler:
     id:            1666
     species:       goblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 133
     attributes:
       combat:
@@ -307,7 +307,7 @@ templates:
   Goblin_Leecher:
     id:            1683
     species:       goblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 133
     attributes:
       combat:
@@ -405,7 +405,7 @@ templates:
   Goblin_Metallurgist:
     id:            6663
     species:       armored_goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -563,7 +563,7 @@ templates:
   Goblin_Weaver:
     id:            1744
     species:       goblin
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 133
     attributes:
       combat:
@@ -663,7 +663,7 @@ templates:
     id:            2498
     species:       slime
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 228
     attributes:
       combat:
@@ -697,7 +697,7 @@ templates:
     id:            4567
     species:       evil_weapon
     type:          [notorious]
-    spell_list_id: 42
+    spell_list:    evilweapon
     skill_list_id: 110
     attributes:
       combat:
@@ -726,7 +726,7 @@ templates:
   Skinnymajinx:
     id:            6535
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:
@@ -785,7 +785,7 @@ templates:
     id:            3669
     species:       goblin
     type:          [notorious]
-    spell_list_id: 499
+    spell_list:    slendlix_spindlethumb
     skill_list_id: 133
     attributes:
       combat:
@@ -844,7 +844,7 @@ templates:
   Wendigo_blm:
     id:            4320
     species:       skeleton
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 227
     attributes:
       combat:

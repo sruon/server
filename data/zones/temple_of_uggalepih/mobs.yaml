@@ -6,7 +6,7 @@ templates:
     id:            6728
     species:       tonberry
     type:          [notorious]
-    spell_list_id: 32
+    spell_list:    tonberry_smn
     skill_list_id: 243
     attributes:
       combat:
@@ -30,7 +30,7 @@ templates:
     id:            399
     species:       tonberry
     type:          [notorious]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 243
     attributes:
       combat:
@@ -99,7 +99,7 @@ templates:
     id:            501
     species:       tonberry
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 243
     attributes:
       combat:
@@ -212,7 +212,7 @@ templates:
     id:            6729
     species:       dark_elemental
     type:          [called]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 100
     attributes:
       combat:
@@ -291,7 +291,7 @@ templates:
   Cook_Minberry:
     id:            785
     species:       tonberry
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 243
     attributes:
       combat:
@@ -336,7 +336,7 @@ templates:
     id:            787
     species:       tonberry
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 243
     attributes:
       combat:
@@ -359,7 +359,7 @@ templates:
     id:            836
     species:       tonberry
     type:          [notorious]
-    spell_list_id: 32
+    spell_list:    tonberry_smn
     skill_list_id: 243
     attributes:
       combat:
@@ -434,7 +434,7 @@ templates:
   Fire_Elemental:
     id:            1341
     species:       fire_elemental
-    spell_list_id: 17
+    spell_list:    elemental_fire
     skill_list_id: 102
     attributes:
       combat:
@@ -533,7 +533,7 @@ templates:
   Hover_Tank:
     id:            1995
     species:       magic_pot
-    spell_list_id: 36
+    spell_list:    magicpot
     skill_list_id: 175
     attributes:
       combat:
@@ -860,7 +860,7 @@ templates:
     id:            3434
     species:       magic_pot
     type:          [notorious]
-    spell_list_id: 36
+    spell_list:    magicpot
     skill_list_id: 175
     attributes:
       combat:
@@ -932,7 +932,7 @@ templates:
     id:            3713
     species:       tonberry
     type:          [notorious]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 243
     attributes:
       combat:
@@ -976,7 +976,7 @@ templates:
     id:            3714
     species:       tonberry
     type:          [notorious]
-    spell_list_id: 32
+    spell_list:    tonberry_smn
     skill_list_id: 243
     attributes:
       combat:
@@ -1097,7 +1097,7 @@ templates:
   Tonberry_Cutter:
     id:            3952
     species:       tonberry
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 243
     attributes:
       combat:
@@ -1142,7 +1142,7 @@ templates:
   Tonberry_Dismayer:
     id:            3955
     species:       tonberry
-    spell_list_id: 32
+    spell_list:    tonberry_smn
     skill_list_id: 243
     attributes:
       combat:
@@ -1181,7 +1181,7 @@ templates:
   Tonberry_Harrier:
     id:            3957
     species:       tonberry
-    spell_list_id: 32
+    spell_list:    tonberry_smn
     skill_list_id: 243
     attributes:
       combat:
@@ -1221,7 +1221,7 @@ templates:
     id:            3961
     species:       tonberry
     type:          [notorious]
-    spell_list_id: 32
+    spell_list:    tonberry_smn
     skill_list_id: 243
     attributes:
       combat:
@@ -1259,7 +1259,7 @@ templates:
   Tonberry_Maledictor:
     id:            3963
     species:       tonberry
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 243
     attributes:
       combat:
@@ -1338,7 +1338,7 @@ templates:
   Tonberry_Stabber:
     id:            3968
     species:       tonberry
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 243
     attributes:
       combat:
@@ -1442,7 +1442,7 @@ templates:
     id:            3971
     species:       fire_elemental
     type:          [called]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 102
     attributes:
       combat:
@@ -1551,7 +1551,7 @@ templates:
   Water_Elemental:
     id:            4309
     species:       water_elemental
-    spell_list_id: 15
+    spell_list:    elemental_water
     skill_list_id: 106
     attributes:
       combat:

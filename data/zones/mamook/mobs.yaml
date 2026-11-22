@@ -5,7 +5,7 @@ templates:
   Air_Elemental:
     id:            71
     species:       air_elemental
-    spell_list_id: 12
+    spell_list:    elemental_air
     skill_list_id: 99
     attributes:
       combat:
@@ -229,7 +229,7 @@ templates:
     id:            921
     species:       sage
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 176
     attributes:
       combat:
@@ -262,7 +262,7 @@ templates:
     id:            1019
     species:       sage
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 176
     attributes:
       combat:
@@ -370,7 +370,7 @@ templates:
     id:            1846
     species:       warrior
     type:          [notorious]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 285
     attributes:
       combat:
@@ -424,7 +424,7 @@ templates:
     id:            2008
     species:       warrior
     type:          [notorious]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 176
     attributes:
       combat:
@@ -458,7 +458,7 @@ templates:
     display_name:  Hundredfaced_Hapool_Ja
     species:       warrior
     type:          [notorious]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 176
     attributes:
       combat:
@@ -512,7 +512,7 @@ templates:
     id:            2089
     species:       blue_poroggo
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 297
     attributes:
       combat:
@@ -639,7 +639,7 @@ templates:
     id:            213
     display_name:  Mamool_Ja_Blusterer
     species:       sage
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 177
     attributes:
       combat:
@@ -707,7 +707,7 @@ templates:
   Mamool_Ja_Chamberlain:
     id:            2511
     species:       sage
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 176
     attributes:
       combat:
@@ -731,7 +731,7 @@ templates:
   Mamool_Ja_Conservator:
     id:            2512
     species:       warrior
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 176
     attributes:
       combat:
@@ -790,7 +790,7 @@ templates:
   Mamool_Ja_Frogman:
     id:            2518
     species:       yellow_sahagin
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 213
     attributes:
       combat:
@@ -826,7 +826,7 @@ templates:
     id:            212
     display_name:  Mamool_Ja_Infiltrator
     species:       warrior
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 176
     attributes:
       combat:
@@ -898,7 +898,7 @@ templates:
     id:            211
     display_name:  Mamool_Ja_Mimer
     species:       warrior
-    spell_list_id: 8
+    spell_list:    beastmen_blu
     skill_list_id: 176
     attributes:
       combat:
@@ -934,7 +934,7 @@ templates:
   Mamool_Ja_Mimicker:
     id:            2526
     species:       warrior
-    spell_list_id: 8
+    spell_list:    beastmen_blu
     skill_list_id: 176
     attributes:
       combat:
@@ -992,7 +992,7 @@ templates:
     id:            210
     display_name:  Mamool_Ja_Philosopher
     species:       sage
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 177
     attributes:
       combat:
@@ -1060,7 +1060,7 @@ templates:
   Mamool_Ja_Savant:
     id:            2533
     species:       sage
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 177
     attributes:
       combat:
@@ -1095,7 +1095,7 @@ templates:
   Mamool_Ja_Sophist:
     id:            2534
     species:       sage
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 177
     attributes:
       combat:
@@ -1234,7 +1234,7 @@ templates:
   Mamool_Ja_Treasurer:
     id:            2543
     species:       sage
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 176
     attributes:
       combat:
@@ -1257,7 +1257,7 @@ templates:
   Mamool_Ja_Zenist:
     id:            2545
     species:       warrior
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 176
     attributes:
       combat:
@@ -1510,7 +1510,7 @@ templates:
   Poroggo:
     id:            3177
     species:       green_poroggo
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 196
     attributes:
       combat:
@@ -1539,7 +1539,7 @@ templates:
   Poroggo_Casanova:
     id:            3178
     species:       green_poroggo
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 196
     attributes:
       combat:
@@ -1715,7 +1715,7 @@ templates:
     id:            6969
     display_name:  Sagelord_Molaal_Ja
     species:       sage
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 176
     attributes:
       combat:
@@ -1772,7 +1772,7 @@ templates:
   Shadelurking_Zolool_Ja:
     id:            3560
     species:       warrior
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 176
     attributes:
       combat:
@@ -1923,7 +1923,7 @@ templates:
     id:            4295
     species:       toad
     type:          [called]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 196
     attributes:
       combat:

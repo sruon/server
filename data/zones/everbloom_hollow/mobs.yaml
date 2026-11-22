@@ -45,7 +45,7 @@ templates:
   Aragoneu_Knight:
     id:            208
     species:       elvaan
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 145
     attributes:
       combat:
@@ -74,7 +74,7 @@ templates:
     id:            224
     species:       ahriman
     type:          [notorious]
-    spell_list_id: 11
+    spell_list:    ahriman
     skill_list_id: 4
     attributes:
       combat:
@@ -113,7 +113,7 @@ templates:
     id:            5788
     species:       orcish_warmachine
     type:          [notorious]
-    spell_list_id: 84
+    spell_list:    death_clan_destroyer
     skill_list_id: 190
     attributes:
       combat:
@@ -256,7 +256,7 @@ templates:
     id:            5786
     species:       elvaan
     type:          [battlefield]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 483
     attributes:
       combat:
@@ -279,7 +279,7 @@ templates:
     id:            5785
     species:       goblin_statue
     type:          [notorious, battlefield]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 93
     attributes:
       combat:
@@ -361,7 +361,7 @@ templates:
     id:            1349
     species:       galks
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 146
     attributes:
       combat:
@@ -555,7 +555,7 @@ templates:
   Iron_Ram_Knight:
     id:            2103
     species:       elvaan
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 145
     attributes:
       combat:
@@ -618,7 +618,7 @@ templates:
     id:            2254
     species:       crab
     type:          [notorious]
-    spell_list_id: 79
+    spell_list:    king_arthro
     skill_list_id: 77
     attributes:
       combat:
@@ -773,7 +773,7 @@ templates:
     id:            5787
     species:       elvaan
     type:          [battlefield]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 483
     attributes:
       combat:
@@ -935,7 +935,7 @@ templates:
   Nickel_Quadav:
     id:            2837
     species:       quadav
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 202
     attributes:
       combat:
@@ -981,7 +981,7 @@ templates:
   Norvallen_Knight:
     id:            2909
     species:       elvaan
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 145
     attributes:
       combat:
@@ -1011,7 +1011,7 @@ templates:
     display_name:  One-eyed_Gwajboj
     species:       orc
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 189
     attributes:
       combat:
@@ -1112,7 +1112,7 @@ templates:
   Orcish_Hexspinner_past:
     id:            5558
     species:       orc
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 189
     attributes:
       combat:
@@ -1152,7 +1152,7 @@ templates:
   Orcish_Serjeant:
     id:            3032
     species:       orc
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 189
     attributes:
       combat:
@@ -1190,7 +1190,7 @@ templates:
   Orcish_Trooper_past:
     id:            6284
     species:       orc
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 189
     attributes:
       combat:
@@ -1355,7 +1355,7 @@ templates:
   Rongelouts_N_Distaud:
     id:            3389
     species:       elvaan
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 145
     attributes:
       combat:
@@ -1400,7 +1400,7 @@ templates:
   Royal_Guard:
     id:            3403
     species:       elvaan
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 145
     attributes:
       combat:
@@ -1450,7 +1450,7 @@ templates:
   Royal_Knight:
     id:            3405
     species:       elvaan
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 145
     attributes:
       combat:
@@ -1479,7 +1479,7 @@ templates:
     id:            3410
     species:       quadav
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 202
     attributes:
       combat:
@@ -1744,7 +1744,7 @@ templates:
   Yagudo_Abbot_outdoor_S:
     id:            6264
     species:       yagudo
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 360
     attributes:
       combat:
@@ -1766,7 +1766,7 @@ templates:
   Yagudo_Missionary:
     id:            4433
     species:       yagudo
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 270
     attributes:
       combat:

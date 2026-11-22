@@ -6,7 +6,7 @@ templates:
     id:            349
     species:       kindred
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 169
     attributes:
       combat:
@@ -79,7 +79,7 @@ templates:
     id:            812
     species:       kindred
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 169
     attributes:
       combat:
@@ -120,7 +120,7 @@ templates:
   Deadly_Iris:
     id:            932
     species:       ahriman
-    spell_list_id: 11
+    spell_list:    ahriman
     skill_list_id: 4
     attributes:
       combat:
@@ -157,7 +157,7 @@ templates:
   Demon_Knight:
     id:            988
     species:       kindred
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 169
     attributes:
       combat:
@@ -227,7 +227,7 @@ templates:
   Demon_Warlock:
     id:            995
     species:       kindred
-    spell_list_id: 31
+    spell_list:    kindred_smn
     skill_list_id: 169
     attributes:
       combat:
@@ -260,7 +260,7 @@ templates:
   Demon_Wizard:
     id:            997
     species:       kindred
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 169
     attributes:
       combat:
@@ -311,7 +311,7 @@ templates:
   Demons_Elemental:
     id:            994
     species:       dark_elemental
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 100
     attributes:
       combat:
@@ -368,7 +368,7 @@ templates:
   Emerald_Quadav:
     id:            1207
     species:       quadav
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 202
     attributes:
       combat:
@@ -407,7 +407,7 @@ templates:
   Evil_Eye:
     id:            1264
     species:       ahriman
-    spell_list_id: 11
+    spell_list:    ahriman
     skill_list_id: 4
     attributes:
       combat:
@@ -478,7 +478,7 @@ templates:
   Goblin_Enchanter:
     id:            1654
     species:       goblin
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 133
     attributes:
       combat:
@@ -600,7 +600,7 @@ templates:
   Goblin_Reaper:
     id:            1705
     species:       armored_goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 133
     attributes:
       combat:
@@ -772,7 +772,7 @@ templates:
   Iron_Quadav:
     id:            2102
     species:       quadav
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 202
     attributes:
       combat:
@@ -811,7 +811,7 @@ templates:
   Morbid_Eye:
     id:            2738
     species:       ahriman
-    spell_list_id: 11
+    spell_list:    ahriman
     skill_list_id: 4
     attributes:
       combat:
@@ -848,7 +848,7 @@ templates:
   Mythril_Quadav:
     id:            2795
     species:       quadav
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 202
     attributes:
       combat:
@@ -1041,7 +1041,7 @@ templates:
   Orcish_Trooper:
     id:            3039
     species:       orc
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 189
     attributes:
       combat:
@@ -1119,7 +1119,7 @@ templates:
   Orcish_Warchief:
     id:            3043
     species:       orc
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 189
     attributes:
       combat:
@@ -1160,7 +1160,7 @@ templates:
   Orcish_Zerker:
     id:            3046
     species:       orc
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 189
     attributes:
       combat:
@@ -1207,7 +1207,7 @@ templates:
   Spinel_Quadav:
     id:            3731
     species:       quadav
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 202
     attributes:
       combat:
@@ -1244,7 +1244,7 @@ templates:
   Steel_Quadav:
     id:            3769
     species:       quadav
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 202
     attributes:
       combat:
@@ -1285,7 +1285,7 @@ templates:
   Topaz_Quadav:
     id:            3974
     species:       quadav
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 202
     attributes:
       combat:
@@ -1328,7 +1328,7 @@ templates:
     id:            4239
     species:       kindred
     type:          [notorious]
-    spell_list_id: 31
+    spell_list:    kindred_smn
     skill_list_id: 169
     attributes:
       combat:
@@ -1362,7 +1362,7 @@ templates:
   Yagudo_Abbot:
     id:            4404
     species:       yagudo
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 360
     attributes:
       combat:
@@ -1401,7 +1401,7 @@ templates:
   Yagudo_Chanter:
     id:            4410
     species:       yagudo
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 270
     attributes:
       combat:
@@ -1438,7 +1438,7 @@ templates:
   Yagudo_Conquistador:
     id:            4413
     species:       yagudo
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 270
     attributes:
       combat:
@@ -1519,7 +1519,7 @@ templates:
   Yagudo_Lutenist:
     id:            4431
     species:       yagudo
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 270
     attributes:
       combat:
@@ -1552,7 +1552,7 @@ templates:
   Yagudo_Prior:
     id:            4445
     species:       yagudo
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 270
     attributes:
       combat:

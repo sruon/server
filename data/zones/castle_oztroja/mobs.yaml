@@ -98,7 +98,7 @@ templates:
   Earth_Elemental:
     id:            1160
     species:       earth_elemental
-    spell_list_id: 13
+    spell_list:    elemental_earth
     skill_list_id: 101
     attributes:
       combat:
@@ -133,7 +133,7 @@ templates:
   Fire_Elemental:
     id:            1341
     species:       fire_elemental
-    spell_list_id: 17
+    spell_list:    elemental_fire
     skill_list_id: 102
     attributes:
       combat:
@@ -198,7 +198,7 @@ templates:
     id:            4573
     species:       yagudo
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 270
     attributes:
       combat:
@@ -408,7 +408,7 @@ templates:
     id:            3298
     species:       yagudo
     type:          [notorious]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 360
     attributes:
       combat:
@@ -440,7 +440,7 @@ templates:
     id:            4576
     species:       yagudo
     type:          [notorious]
-    spell_list_id: 306
+    spell_list:    saa_doyi_the_fervid
     skill_list_id: 270
     attributes:
       combat:
@@ -469,7 +469,7 @@ templates:
     id:            4072
     species:       manifest
     type:          [notorious]
-    spell_list_id: 30
+    spell_list:    yagudo_smn
     skill_list_id: 360
     attributes:
       combat:
@@ -541,7 +541,7 @@ templates:
     id:            4402
     species:       yagudo
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 360
     attributes:
       combat:
@@ -570,7 +570,7 @@ templates:
   Yagudo_Abbot:
     id:            4404
     species:       yagudo
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 360
     attributes:
       combat:
@@ -607,7 +607,7 @@ templates:
   Yagudo_Assassin:
     id:            4407
     species:       yagudo
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 270
     attributes:
       combat:
@@ -649,7 +649,7 @@ templates:
     id:            4408
     species:       yagudo
     type:          [notorious]
-    spell_list_id: 30
+    spell_list:    yagudo_smn
     skill_list_id: 270
     attributes:
       combat:
@@ -687,7 +687,7 @@ templates:
   Yagudo_Chanter:
     id:            4410
     species:       yagudo
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 270
     attributes:
       combat:
@@ -722,7 +722,7 @@ templates:
   Yagudo_Conductor:
     id:            4412
     species:       yagudo
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 270
     attributes:
       combat:
@@ -766,7 +766,7 @@ templates:
   Yagudo_Conquistador:
     id:            4413
     species:       yagudo
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 270
     attributes:
       combat:
@@ -811,7 +811,7 @@ templates:
   Yagudo_Drummer:
     id:            4416
     species:       yagudo
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 270
     attributes:
       combat:
@@ -884,7 +884,7 @@ templates:
   Yagudo_Herald:
     id:            4423
     species:       yagudo
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 270
     attributes:
       combat:
@@ -918,7 +918,7 @@ templates:
     id:            4425
     species:       yagudo
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 270
     attributes:
       combat:
@@ -1034,7 +1034,7 @@ templates:
   Yagudo_Lutenist:
     id:            4431
     species:       yagudo
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 270
     attributes:
       combat:
@@ -1069,7 +1069,7 @@ templates:
   Yagudo_Muralist:
     id:            4434
     species:       yagudo
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 270
     attributes:
       combat:
@@ -1089,7 +1089,7 @@ templates:
   Yagudo_Oracle:
     id:            4437
     species:       yagudo
-    spell_list_id: 30
+    spell_list:    yagudo_smn
     skill_list_id: 270
     attributes:
       combat:
@@ -1161,7 +1161,7 @@ templates:
   Yagudo_Prelate:
     id:            5494
     species:       yagudo
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 270
     attributes:
       combat:
@@ -1210,7 +1210,7 @@ templates:
   Yagudo_Priest:
     id:            4444
     species:       yagudo
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 270
     attributes:
       combat:
@@ -1255,7 +1255,7 @@ templates:
   Yagudo_Prior:
     id:            4445
     species:       yagudo
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 270
     attributes:
       combat:
@@ -1357,7 +1357,7 @@ templates:
   Yagudo_Theologist:
     id:            4456
     species:       yagudo
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 270
     attributes:
       combat:
@@ -1489,7 +1489,7 @@ templates:
   Yagudos_Elemental:
     id:            4454
     species:       air_elemental
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 99
     attributes:
       combat:

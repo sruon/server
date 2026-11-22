@@ -37,7 +37,7 @@ templates:
   Air_Elemental:
     id:            71
     species:       air_elemental
-    spell_list_id: 12
+    spell_list:    elemental_air
     skill_list_id: 99
     attributes:
       combat:
@@ -71,7 +71,7 @@ templates:
     id:            215
     species:       fomor
     type:          [notorious]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 115
     attributes:
       combat:
@@ -123,7 +123,7 @@ templates:
     id:            641
     species:       fly
     type:          [notorious]
-    spell_list_id: 145
+    spell_list:    dobsonfly
     skill_list_id: 334
     attributes:
       combat:
@@ -215,7 +215,7 @@ templates:
   Earth_Elemental:
     id:            1160
     species:       earth_elemental
-    spell_list_id: 13
+    spell_list:    elemental_earth
     skill_list_id: 101
     attributes:
       combat:
@@ -435,7 +435,7 @@ templates:
     id:            3070
     species:       earth_wyrm
     type:          [notorious, battlefield]
-    spell_list_id: 109
+    spell_list:    ouryu_the_savage
     skill_list_id: 259
     attributes:
       combat:
@@ -497,7 +497,7 @@ templates:
     display_name:  Ouryu
     species:       earth_wyrm
     type:          [notorious, battlefield]
-    spell_list_id: 109
+    spell_list:    ouryu_the_savage
     skill_list_id: 259
     attributes:
       combat:
@@ -587,7 +587,7 @@ templates:
     id:            3596
     species:       flytrap
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 114
     attributes:
       combat:
@@ -614,7 +614,7 @@ templates:
   Thunder_Elemental:
     id:            3912
     species:       thunder_elemental
-    spell_list_id: 16
+    spell_list:    elemental_thunder
     skill_list_id: 105
     attributes:
       combat:
@@ -647,7 +647,7 @@ templates:
   Water_Elemental:
     id:            4309
     species:       water_elemental
-    spell_list_id: 15
+    spell_list:    elemental_water
     skill_list_id: 106
     attributes:
       combat:
@@ -683,7 +683,7 @@ templates:
     species:       worm
     type:          [battlefield]
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:

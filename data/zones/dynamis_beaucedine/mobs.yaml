@@ -74,7 +74,7 @@ templates:
     id:            141
     species:       dynamis_ahriman
     type:          [notorious]
-    spell_list_id: 2
+    spell_list:    default_no_buff
     skill_list_id: 2110
     attributes:
       combat:
@@ -150,7 +150,7 @@ templates:
     id:            257
     species:       dynamis_goblin
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 373
     attributes:
       combat:
@@ -192,7 +192,7 @@ templates:
   Avatar_Icon:
     id:            294
     species:       yagudo_statue
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 95
     attributes:
       combat:
@@ -233,7 +233,7 @@ templates:
     id:            295
     species:       yagudo_statue
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 95
     attributes:
       combat:
@@ -265,7 +265,7 @@ templates:
     id:            401
     species:       dynamis_quadav
     type:          [notorious]
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 705
     attributes:
       combat:
@@ -314,7 +314,7 @@ templates:
     id:            408
     species:       dynamis_yagudo
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 710
     attributes:
       combat:
@@ -401,7 +401,7 @@ templates:
     id:            529
     species:       dynamis_goblin
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 373
     attributes:
       combat:
@@ -444,7 +444,7 @@ templates:
     id:            594
     species:       dynamis_yagudo
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 710
     attributes:
       combat:
@@ -486,10 +486,10 @@ templates:
       steal: tukuku_whiteshell
 
   Cavanneche:
-    id:            6067
-    species:       dynamis_fomor
-    type:          [notorious]
-    spell_list_id: 5
+    id:         6067
+    species:    dynamis_fomor
+    type:       [notorious]
+    spell_list: beastmen_drk
     attributes:
       combat:
         skill: scythe
@@ -650,7 +650,7 @@ templates:
     id:            1021
     species:       dynamis_quadav
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 705
     attributes:
       combat:
@@ -699,7 +699,7 @@ templates:
     id:            934
     species:       dynamis_orc
     type:          [notorious]
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 2104
     attributes:
       combat:
@@ -993,7 +993,7 @@ templates:
     id:            1484
     species:       dynamis_quadav
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 705
     attributes:
       combat:
@@ -1086,7 +1086,7 @@ templates:
     id:            1542
     species:       dynamis_goblin
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 373
     attributes:
       combat:
@@ -1176,7 +1176,7 @@ templates:
   Goblin_Replica:
     id:            1707
     species:       goblin_statue
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 92
     attributes:
       combat:
@@ -1218,7 +1218,7 @@ templates:
     id:            1716
     species:       goblin_statue
     type:          [notorious]
-    spell_list_id: 40
+    spell_list:    goblin_statue
     skill_list_id: 92
     attributes:
       combat:
@@ -1418,7 +1418,7 @@ templates:
     id:            1909
     species:       dynamis_orc
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 2104
     attributes:
       combat:
@@ -1463,7 +1463,7 @@ templates:
     id:            1914
     species:       dynamis_yagudo
     type:          [notorious]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 710
     attributes:
       combat:
@@ -1591,7 +1591,7 @@ templates:
   Hydra_Bard:
     id:            2019
     species:       hydra_fomor
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 359
     attributes:
       combat:
@@ -1626,7 +1626,7 @@ templates:
   Hydra_Bard_HI:
     id:            6486
     species:       dynamis_fomor
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 359
     attributes:
       combat:
@@ -1733,7 +1733,7 @@ templates:
   Hydra_Black_Mage:
     id:            2021
     species:       hydra_fomor
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 359
     attributes:
       combat:
@@ -1768,7 +1768,7 @@ templates:
   Hydra_Black_Mage_HI:
     id:            6488
     species:       dynamis_fomor
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 359
     attributes:
       combat:
@@ -1805,7 +1805,7 @@ templates:
   Hydra_Dark_Knight:
     id:            2022
     species:       hydra_fomor
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 359
     attributes:
       combat:
@@ -1840,7 +1840,7 @@ templates:
   Hydra_Dark_Knight_HI:
     id:            6489
     species:       dynamis_fomor
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 359
     attributes:
       combat:
@@ -2019,7 +2019,7 @@ templates:
   Hydra_Ninja:
     id:            2025
     species:       hydra_fomor
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 359
     attributes:
       combat:
@@ -2054,7 +2054,7 @@ templates:
   Hydra_Ninja_HI:
     id:            6492
     species:       dynamis_fomor
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 359
     attributes:
       combat:
@@ -2091,7 +2091,7 @@ templates:
   Hydra_Paladin:
     id:            2026
     species:       hydra_fomor
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 359
     attributes:
       combat:
@@ -2126,7 +2126,7 @@ templates:
   Hydra_Paladin_HI:
     id:            6493
     species:       dynamis_fomor
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 359
     attributes:
       combat:
@@ -2233,7 +2233,7 @@ templates:
   Hydra_Red_Mage:
     id:            2028
     species:       hydra_fomor
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 359
     attributes:
       combat:
@@ -2268,7 +2268,7 @@ templates:
   Hydra_Red_Mage_HI:
     id:            6495
     species:       dynamis_fomor
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 359
     attributes:
       combat:
@@ -2375,7 +2375,7 @@ templates:
   Hydra_Summoner:
     id:            2030
     species:       hydra_fomor
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 359
     attributes:
       combat:
@@ -2410,7 +2410,7 @@ templates:
   Hydra_Summoner_HI:
     id:            6497
     species:       dynamis_fomor
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 359
     attributes:
       combat:
@@ -2585,7 +2585,7 @@ templates:
   Hydra_White_Mage:
     id:            2036
     species:       hydra_fomor
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 359
     attributes:
       combat:
@@ -2620,7 +2620,7 @@ templates:
   Hydra_White_Mage_HI:
     id:            6500
     species:       dynamis_fomor
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 359
     attributes:
       combat:
@@ -2682,7 +2682,7 @@ templates:
     id:            2032
     species:       hound
     type:          [called]
-    spell_list_id: 85
+    spell_list:    hydra_s_hound
     skill_list_id: 143
     attributes:
       combat:
@@ -2747,7 +2747,7 @@ templates:
     id:            2148
     species:       dynamis_orc
     type:          [notorious]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 2104
     attributes:
       combat:
@@ -2932,7 +2932,7 @@ templates:
     id:            2281
     species:       dynamis_yagudo
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 710
     attributes:
       combat:
@@ -2977,7 +2977,7 @@ templates:
     id:            2303
     species:       dynamis_yagudo
     type:          [notorious]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 710
     attributes:
       combat:
@@ -3108,7 +3108,7 @@ templates:
     id:            2683
     species:       dynamis_quadav
     type:          [notorious]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 705
     attributes:
       combat:
@@ -3273,7 +3273,7 @@ templates:
     id:            2740
     species:       dynamis_goblin
     type:          [notorious]
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 373
     attributes:
       combat:
@@ -3316,7 +3316,7 @@ templates:
     id:            2778
     species:       dynamis_quadav
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 705
     attributes:
       combat:
@@ -3365,7 +3365,7 @@ templates:
     id:            2814
     species:       dynamis_quadav
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 705
     attributes:
       combat:
@@ -3458,7 +3458,7 @@ templates:
     id:            2928
     species:       dynamis_quadav
     type:          [notorious]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 705
     attributes:
       combat:
@@ -3537,10 +3537,10 @@ templates:
         chr: a
 
   Pignonpausard:
-    id:            6065
-    species:       dynamis_fomor
-    type:          [notorious]
-    spell_list_id: 20
+    id:         6065
+    species:    dynamis_fomor
+    type:       [notorious]
+    spell_list: beastmen_whm
     attributes:
       combat:
         skill: club
@@ -3615,7 +3615,7 @@ templates:
     id:            3238
     species:       dynamis_yagudo
     type:          [notorious]
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 710
     attributes:
       combat:
@@ -3689,10 +3689,10 @@ templates:
           one_of: [attestation_of_celerity, attestation_of_sacrifice, attestation_of_harmony]
 
   Rearguard_Eye:
-    id:            6064
-    species:       dynamis_ahriman
-    type:          [notorious]
-    spell_list_id: 11
+    id:         6064
+    species:    dynamis_ahriman
+    type:       [notorious]
+    spell_list: ahriman
     attributes:
       combat:
         skill: staff
@@ -3762,7 +3762,7 @@ templates:
     id:            3412
     species:       dynamis_goblin
     type:          [notorious]
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 373
     attributes:
       combat:
@@ -3848,7 +3848,7 @@ templates:
   Serjeant_Tombstone:
     id:            3548
     species:       orc_statue
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 93
     attributes:
       combat:
@@ -3931,7 +3931,7 @@ templates:
     id:            3650
     species:       dynamis_orc
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 2104
     attributes:
       combat:
@@ -4158,7 +4158,7 @@ templates:
     id:            3729
     species:       dynamis_orc
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 2104
     attributes:
       combat:
@@ -4203,7 +4203,7 @@ templates:
     id:            3829
     species:       dynamis_goblin
     type:          [notorious]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 373
     attributes:
       combat:
@@ -4246,7 +4246,7 @@ templates:
     id:            3857
     species:       dynamis_quadav
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 705
     attributes:
       combat:
@@ -4366,7 +4366,7 @@ templates:
     id:            3849
     species:       dynamis_orc
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2104
     attributes:
       combat:
@@ -4411,7 +4411,7 @@ templates:
     id:            3940
     species:       dynamis_goblin
     type:          [notorious]
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 373
     attributes:
       combat:
@@ -4454,7 +4454,7 @@ templates:
     id:            4084
     species:       dynamis_orc
     type:          [notorious]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 2104
     attributes:
       combat:
@@ -4498,7 +4498,7 @@ templates:
   Vanguard_Alchemist:
     id:            4133
     species:       dynamis_goblin
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 2108
     attributes:
       combat:
@@ -4571,7 +4571,7 @@ templates:
   Vanguard_Amputator:
     id:            4135
     species:       dynamis_orc
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 2102
     attributes:
       combat:
@@ -4612,7 +4612,7 @@ templates:
   Vanguard_Armorer:
     id:            4136
     species:       dynamis_goblin
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 2108
     attributes:
       combat:
@@ -4651,7 +4651,7 @@ templates:
   Vanguard_Assassin:
     id:            4137
     species:       dynamis_yagudo
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 2106
     attributes:
       combat:
@@ -4692,7 +4692,7 @@ templates:
   Vanguard_Backstabber:
     id:            4138
     species:       dynamis_orc
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 2102
     attributes:
       combat:
@@ -4776,7 +4776,7 @@ templates:
   Vanguard_Bugler:
     id:            4140
     species:       dynamis_orc
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 2102
     attributes:
       combat:
@@ -4819,7 +4819,7 @@ templates:
   Vanguard_Chanter:
     id:            4141
     species:       dynamis_yagudo
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 2106
     attributes:
       combat:
@@ -4860,7 +4860,7 @@ templates:
   Vanguard_Constable:
     id:            4142
     species:       dynamis_quadav
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 2107
     attributes:
       combat:
@@ -4900,7 +4900,7 @@ templates:
   Vanguard_Defender:
     id:            4143
     species:       dynamis_quadav
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 2107
     attributes:
       combat:
@@ -4942,7 +4942,7 @@ templates:
   Vanguard_Dollmaster:
     id:            4144
     species:       dynamis_orc
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 2102
     attributes:
       combat:
@@ -5061,7 +5061,7 @@ templates:
   Vanguard_Enchanter:
     id:            4147
     species:       dynamis_goblin
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 2108
     attributes:
       combat:
@@ -5100,7 +5100,7 @@ templates:
   Vanguard_Exemplar:
     id:            4148
     species:       dynamis_yagudo
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 2106
     attributes:
       combat:
@@ -5142,7 +5142,7 @@ templates:
     id:            4149
     species:       dynamis_ahriman
     type:          [notorious]
-    spell_list_id: 11
+    spell_list:    ahriman
     skill_list_id: 2110
     attributes:
       combat:
@@ -5383,7 +5383,7 @@ templates:
   Vanguard_Hitman:
     id:            4155
     species:       dynamis_goblin
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 2108
     attributes:
       combat:
@@ -5465,7 +5465,7 @@ templates:
   Vanguard_Inciter:
     id:            4157
     species:       dynamis_yagudo
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 2106
     attributes:
       combat:
@@ -5506,7 +5506,7 @@ templates:
   Vanguard_Kusa:
     id:            4158
     species:       dynamis_quadav
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 2107
     attributes:
       combat:
@@ -5588,7 +5588,7 @@ templates:
   Vanguard_Maestro:
     id:            4160
     species:       dynamis_goblin
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 2108
     attributes:
       combat:
@@ -5666,7 +5666,7 @@ templates:
   Vanguard_Mesmerizer:
     id:            4162
     species:       dynamis_orc
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2102
     attributes:
       combat:
@@ -5745,7 +5745,7 @@ templates:
   Vanguard_Minstrel:
     id:            4164
     species:       dynamis_quadav
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 2107
     attributes:
       combat:
@@ -5787,7 +5787,7 @@ templates:
   Vanguard_Neckchopper:
     id:            4165
     species:       dynamis_orc
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 2102
     attributes:
       combat:
@@ -5830,7 +5830,7 @@ templates:
   Vanguard_Necromancer:
     id:            4166
     species:       dynamis_goblin
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 2108
     attributes:
       combat:
@@ -5907,7 +5907,7 @@ templates:
   Vanguard_Oracle:
     id:            4168
     species:       dynamis_yagudo
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 2106
     attributes:
       combat:
@@ -6183,7 +6183,7 @@ templates:
   Vanguard_Prelate:
     id:            4175
     species:       dynamis_yagudo
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2106
     attributes:
       combat:
@@ -6222,7 +6222,7 @@ templates:
   Vanguard_Priest:
     id:            4176
     species:       dynamis_yagudo
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 2106
     attributes:
       combat:
@@ -6261,7 +6261,7 @@ templates:
   Vanguard_Protector:
     id:            4177
     species:       dynamis_quadav
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 2107
     attributes:
       combat:
@@ -6458,7 +6458,7 @@ templates:
   Vanguard_Shaman:
     id:            4182
     species:       dynamis_goblin
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2108
     attributes:
       combat:
@@ -6571,7 +6571,7 @@ templates:
   Vanguard_Thaumaturge:
     id:            4191
     species:       dynamis_quadav
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 2107
     attributes:
       combat:
@@ -6610,7 +6610,7 @@ templates:
   Vanguard_Tinkerer:
     id:            4192
     species:       dynamis_goblin
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 2108
     attributes:
       combat:
@@ -6649,7 +6649,7 @@ templates:
   Vanguard_Trooper:
     id:            4193
     species:       dynamis_orc
-    spell_list_id: 4
+    spell_list:    beastmen_pld
     skill_list_id: 2102
     attributes:
       combat:
@@ -6692,7 +6692,7 @@ templates:
   Vanguard_Undertaker:
     id:            4194
     species:       dynamis_quadav
-    spell_list_id: 141
+    spell_list:    avatar_smn
     skill_list_id: 2107
     attributes:
       combat:
@@ -6731,7 +6731,7 @@ templates:
   Vanguard_Vexer:
     id:            4195
     species:       dynamis_orc
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 2102
     attributes:
       combat:
@@ -6774,7 +6774,7 @@ templates:
   Vanguard_Vigilante:
     id:            4196
     species:       dynamis_quadav
-    spell_list_id: 5
+    spell_list:    beastmen_drk
     skill_list_id: 2107
     attributes:
       combat:
@@ -6856,7 +6856,7 @@ templates:
   Vanguard_Visionary:
     id:            4198
     species:       dynamis_yagudo
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 2106
     attributes:
       combat:
@@ -6957,7 +6957,7 @@ templates:
     id:            4186
     species:       bird
     type:          [called]
-    spell_list_id: 52
+    spell_list:    vanguard_s_crow
     skill_list_id: 55
     attributes:
       combat:
@@ -6995,7 +6995,7 @@ templates:
     id:            4187
     species:       hecteye
     type:          [called]
-    spell_list_id: 51
+    spell_list:    vanguard_s_hecteyes
     skill_list_id: 139
     attributes:
       combat:
@@ -7033,7 +7033,7 @@ templates:
     id:            4188
     species:       scorpion
     type:          [called]
-    spell_list_id: 53
+    spell_list:    vanguard_s_scorpion
     skill_list_id: 217
     attributes:
       combat:
@@ -7069,7 +7069,7 @@ templates:
     id:            4189
     species:       slime
     type:          [called]
-    spell_list_id: 54
+    spell_list:    vanguard_s_slime
     skill_list_id: 229
     attributes:
       combat:
@@ -7162,7 +7162,7 @@ templates:
     id:            4289
     species:       orc_statue
     type:          [notorious]
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 93
     attributes:
       combat:
@@ -7194,7 +7194,7 @@ templates:
     id:            4330
     species:       dynamis_goblin
     type:          [notorious]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 373
     attributes:
       combat:
@@ -7270,7 +7270,7 @@ templates:
     id:            4380
     species:       dynamis_orc
     type:          [notorious]
-    spell_list_id: 20
+    spell_list:    beastmen_whm
     skill_list_id: 2104
     attributes:
       combat:
@@ -7360,7 +7360,7 @@ templates:
     id:            4394
     species:       dynamis_yagudo
     type:          [notorious]
-    spell_list_id: 6
+    spell_list:    beastmen_brd
     skill_list_id: 710
     attributes:
       combat:

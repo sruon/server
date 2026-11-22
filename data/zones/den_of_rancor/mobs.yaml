@@ -6,7 +6,7 @@ templates:
     id:            6882
     species:       hecteye
     type:          [notorious]
-    spell_list_id: 10
+    spell_list:    hecteyes
     skill_list_id: 139
     attributes:
       combat:
@@ -63,7 +63,7 @@ templates:
     id:            424
     species:       tonberry
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 243
     attributes:
       combat:
@@ -176,7 +176,7 @@ templates:
     id:            640
     species:       tonberry
     type:          [notorious]
-    spell_list_id: 32
+    spell_list:    tonberry_smn
     skill_list_id: 243
     attributes:
       combat:
@@ -215,7 +215,7 @@ templates:
     id:            6414
     species:       worm
     roam:          [worm]
-    spell_list_id: 9
+    spell_list:    worm
     skill_list_id: 258
     attributes:
       combat:
@@ -253,7 +253,7 @@ templates:
     id:            669
     species:       tonberry
     type:          [notorious]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 243
     attributes:
       combat:
@@ -438,7 +438,7 @@ templates:
   Fire_Elemental:
     id:            1341
     species:       fire_elemental
-    spell_list_id: 17
+    spell_list:    elemental_fire
     skill_list_id: 102
     attributes:
       combat:
@@ -503,7 +503,7 @@ templates:
     id:            1877
     species:       hecteye
     type:          [notorious]
-    spell_list_id: 1
+    spell_list:    default_buff
     skill_list_id: 139
     attributes:
       combat:
@@ -546,7 +546,7 @@ templates:
   Million_Eyes_DR:
     id:            2662
     species:       hecteye
-    spell_list_id: 10
+    spell_list:    hecteyes
     skill_list_id: 139
     attributes:
       combat:
@@ -617,7 +617,7 @@ templates:
     id:            2718
     species:       hecteye
     type:          [notorious]
-    spell_list_id: 10
+    spell_list:    hecteyes
     skill_list_id: 139
     attributes:
       combat:
@@ -851,7 +851,7 @@ templates:
     id:            3711
     species:       kingberry
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 243
     attributes:
       combat:
@@ -959,7 +959,7 @@ templates:
   Tonberry_Beleaguerer:
     id:            3949
     species:       tonberry
-    spell_list_id: 32
+    spell_list:    tonberry_smn
     skill_list_id: 243
     attributes:
       combat:
@@ -999,7 +999,7 @@ templates:
     id:            3953
     species:       tonberry
     type:          [notorious]
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 243
     attributes:
       combat:
@@ -1045,7 +1045,7 @@ templates:
   Tonberry_Imprecator:
     id:            3959
     species:       tonberry
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 243
     attributes:
       combat:
@@ -1085,7 +1085,7 @@ templates:
     id:            3964
     species:       tonberry
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 243
     attributes:
       combat:
@@ -1134,7 +1134,7 @@ templates:
   Tonberry_Slasher:
     id:            3967
     species:       tonberry
-    spell_list_id: 7
+    spell_list:    beastmen_nin
     skill_list_id: 243
     attributes:
       combat:
@@ -1258,7 +1258,7 @@ templates:
     id:            3971
     species:       fire_elemental
     type:          [called]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 102
     attributes:
       combat:
@@ -1312,7 +1312,7 @@ templates:
   Water_Elemental:
     id:            4309
     species:       water_elemental
-    spell_list_id: 15
+    spell_list:    elemental_water
     skill_list_id: 106
     attributes:
       combat:

@@ -113,9 +113,9 @@ templates:
         type: [scripted]
 
   Bastion_Mage:
-    id:            357
-    species:       humes
-    spell_list_id: 21
+    id:         357
+    species:    humes
+    spell_list: beastmen_blm
     attributes:
       combat:
         skill: staff
@@ -169,7 +169,7 @@ templates:
     id:            572
     species:       taurus
     type:          [notorious]
-    spell_list_id: 245
+    spell_list:    bukhis
     skill_list_id: 910
     attributes:
       combat:
@@ -215,7 +215,7 @@ templates:
     id:            712
     species:       djinn
     type:          [notorious]
-    spell_list_id: 246
+    spell_list:    chhir_batti
     skill_list_id: 911
     attributes:
       combat:
@@ -243,7 +243,7 @@ templates:
   Clammy_Imp:
     id:            734
     species:       imp
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 165
     attributes:
       combat:
@@ -434,7 +434,7 @@ templates:
     id:            1140
     species:       warden
     type:          [notorious]
-    spell_list_id: 247
+    spell_list:    durinn
     skill_list_id: 929
     attributes:
       combat:
@@ -486,7 +486,7 @@ templates:
     id:            1148
     species:       warden
     type:          [notorious]
-    spell_list_id: 248
+    spell_list:    dvalinn
     skill_list_id: 913
     attributes:
       combat:
@@ -586,7 +586,7 @@ templates:
   Ephemeral_Amoeban:
     id:            1243
     species:       amoeban
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 5
     attributes:
       combat:
@@ -617,7 +617,7 @@ templates:
   Ephemeral_Murex:
     id:            1246
     species:       murex
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 187
     attributes:
       combat:
@@ -649,7 +649,7 @@ templates:
     id:            1436
     species:       ramuh
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 914
     attributes:
       combat:
@@ -729,7 +729,7 @@ templates:
     id:            1890
     species:       opo_opo
     type:          [notorious]
-    spell_list_id: 249
+    spell_list:    hanuman
     skill_list_id: 916
     attributes:
       combat:
@@ -805,7 +805,7 @@ templates:
     id:            1998
     species:       pugil
     type:          [notorious]
-    spell_list_id: 250
+    spell_list:    hrosshvalur
     skill_list_id: 917
     attributes:
       combat:
@@ -861,7 +861,7 @@ templates:
     id:            2057
     species:       sea_monk
     type:          [notorious]
-    spell_list_id: 251
+    spell_list:    iku_turso
     skill_list_id: 919
     attributes:
       combat:
@@ -970,7 +970,7 @@ templates:
     id:            2178
     species:       soulflayer
     type:          [notorious]
-    spell_list_id: 252
+    spell_list:    kadraeth_the_hatespawn
     skill_list_id: 920
     attributes:
       combat:
@@ -999,7 +999,7 @@ templates:
     id:            2194
     species:       monoceros
     type:          [notorious]
-    spell_list_id: 257
+    spell_list:    karkadann
     skill_list_id: 921
     attributes:
       combat:
@@ -1030,7 +1030,7 @@ templates:
     id:            2212
     species:       hpemde
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 144
     attributes:
       combat:
@@ -1095,7 +1095,7 @@ templates:
     id:            2440
     species:       vampyr
     type:          [notorious]
-    spell_list_id: 253
+    spell_list:    lord_varney
     skill_list_id: 923
     attributes:
       combat:
@@ -1185,7 +1185,7 @@ templates:
     id:            3101
     species:       crawler
     type:          [notorious]
-    spell_list_id: 254
+    spell_list:    pascerpot
     skill_list_id: 79
     attributes:
       combat:
@@ -1237,7 +1237,7 @@ templates:
   Pneumaflayer:
     id:            3161
     species:       soulflayer
-    spell_list_id: 28
+    spell_list:    undead
     skill_list_id: 233
     attributes:
       combat:
@@ -1271,7 +1271,7 @@ templates:
   Qiqirn_Bewitcher:
     id:            3247
     species:       qiqirn
-    spell_list_id: 3
+    spell_list:    beastmen_rdm
     skill_list_id: 199
     attributes:
       combat:
@@ -1339,7 +1339,7 @@ templates:
     id:            3314
     species:       tiger
     type:          [notorious]
-    spell_list_id: 255
+    spell_list:    rakshas
     skill_list_id: 926
     attributes:
       combat:
@@ -1400,7 +1400,7 @@ templates:
   River_Murex:
     id:            3372
     species:       murex
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 187
     attributes:
       combat:
@@ -1496,7 +1496,7 @@ templates:
     id:            3528
     species:       ruszor
     type:          [notorious]
-    spell_list_id: 256
+    spell_list:    sedna
     skill_list_id: 927
     attributes:
       combat:
@@ -1566,7 +1566,7 @@ templates:
   Shewriwhile:
     id:            3594
     species:       corpselight
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 91
     attributes:
       combat:
@@ -1592,7 +1592,7 @@ templates:
     id:            3632
     species:       pawn
     type:          [notorious]
-    spell_list_id: 158
+    spell_list:    sippoy_hp_50to100
     skill_list_id: 450
     attributes:
       combat:
@@ -1762,7 +1762,7 @@ templates:
   Stream_Amoeban:
     id:            3786
     species:       amoeban
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 5
     attributes:
       combat:
@@ -1954,7 +1954,7 @@ templates:
     id:            4392
     species:       ladybug
     type:          [notorious]
-    spell_list_id: 21
+    spell_list:    beastmen_blm
     skill_list_id: 390
     attributes:
       combat:
