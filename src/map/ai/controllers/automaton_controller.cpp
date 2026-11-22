@@ -24,10 +24,11 @@
 #include "ai/ai_container.h"
 #include "ai/states/ability_state.h"
 #include "ai/states/weaponskill_state.h"
-#include "common/database.h"
 #include "common/types/flat_hash_map.h"
 #include "common/types/hash_map.h"
 #include "common/utils.h"
+#include "data/datasets/automaton_abilities/dataset.h"
+#include "data/datasets/automaton_spells/dataset.h"
 #include "data/enums/automaton_frame.h"
 #include "data/enums/automaton_head.h"
 #include "enmity_container.h"
@@ -38,6 +39,7 @@
 #include "recast_container.h"
 #include "status_effect_container.h"
 #include "utils/battleutils.h"
+#include "utils/dataset_loader.h"
 #include "utils/itemutils.h"
 #include "utils/puppetutils.h"
 
@@ -1702,25 +1704,20 @@ HashMap<uint16, AutomatonAbility>                   autoAbilityList;
 
 void LoadAutomatonSpellList()
 {
-    const auto rset = db::preparedStmt("SELECT spellid, skilllevel, heads, enfeeble, immunity, removes FROM automaton_spells");
-
-    FOR_DB_MULTIPLE_RESULTS(rset)
+    for (const auto& entry : xi::data::loadDataset<xi::data::datasets::automaton_spells::Dataset>())
     {
-        SpellID id = rset->get<SpellID>("spellid");
+        const auto id = static_cast<SpellID>(entry.Id);
 
         AutomatonSpell PSpell{
-            .skilllevel = rset->get<uint16>("skilllevel"),
-            .heads      = rset->get<uint8>("heads"),
-            .enfeeble   = rset->get<xi::StatusEffect>("enfeeble"),
-            .immunity   = rset->get<xi::Immunity>("immunity"),
-            .removes    = {}, // Will handle in a moment
+            .skilllevel = entry.SkillLevel,
+            .enfeeble   = entry.Enfeeble,
+            .immunity   = entry.Immunity,
+            .removes    = entry.Removes,
         };
 
-        uint32 removes = rset->get<uint32>("removes");
-        while (removes > 0)
+        for (const auto head : entry.Heads)
         {
-            PSpell.removes.emplace_back(static_cast<xi::StatusEffect>(removes & 0xFF));
-            removes = removes >> 8;
+            PSpell.heads |= 1 << (std::to_underlying(head) - 1);
         }
 
         if (!PSpell.removes.empty())
@@ -1769,22 +1766,14 @@ auto FindNaSpell(const CStatusEffect* PStatus) -> Maybe<SpellID>
 
 void LoadAutomatonAbilities()
 {
-    const auto rset = db::preparedStmt("SELECT abilityid, abilityname, reqframe, skilllevel FROM automaton_abilities");
-
-    FOR_DB_MULTIPLE_RESULTS(rset)
+    for (const auto& entry : xi::data::loadDataset<xi::data::datasets::automaton_abilities::Dataset>())
     {
-        uint16 id = rset->get<uint16>("abilityid");
-
-        const AutomatonAbility PAbility{
-            .requiredFrame = rset->get<uint8>("reqframe"),
-            .skillLevel    = rset->get<uint16>("skilllevel"),
+        autoAbilityList[entry.Id] = AutomatonAbility{
+            .requiredFrame = std::to_underlying(entry.Frame),
+            .skillLevel    = entry.SkillLevel,
         };
 
-        autoAbilityList[id] = PAbility;
-
-        const auto abilityName = rset->get<std::string>("abilityname");
-
-        const auto filename = fmt::format("./scripts/actions/abilities/pets/automaton/{}.lua", abilityName);
+        const auto filename = fmt::format("./scripts/actions/abilities/pets/automaton/{}.lua", entry.Name);
         luautils::LoadLuaObjectFromFile(filename);
     }
 }

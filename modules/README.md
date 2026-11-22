@@ -94,6 +94,13 @@ era/sql/rov
 
 Listing plain `era` applies every era SQL folder regardless of your content settings, so list `era/lua` and the `era/sql/<expansion>` folders separately.
 
+Some expansions also patch data YAML from `era/data/<expansion>/`. Those are listed the same way, next to their SQL folder:
+
+```txt
+era/sql/wotg
+era/data/wotg
+```
+
 ## Upgrading an existing init.txt
 
 `init.txt` is usually marked `assume-unchanged`, so an update will not fix your copy. Two changes need action:

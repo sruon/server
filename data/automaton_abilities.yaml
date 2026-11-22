@@ -1,0 +1,103 @@
+# yaml-language-server: $schema=schemas/automaton_abilities.schema.json
+
+automaton_abilities:
+  chimera_ripper:
+    id:    1940
+    frame: valoredge
+
+  string_clipper:
+    id:    1941
+    frame: valoredge
+
+  arcuballista:
+    id:    1942
+    frame: sharpshot
+
+  slapstick:
+    id:    1943
+    frame: stormwaker
+
+  shield_bash:
+    id:    1944
+    frame: valoredge
+
+  provoke:
+    id: 1945
+
+  shock_absorber:
+    id: 1946
+
+  flashbulb:
+    id: 1947
+
+  mana_converter:
+    id: 1948
+
+  ranged_attack:
+    id:    1949
+    frame: sharpshot
+
+  eraser:
+    id: 2021
+
+  reactive_shield:
+    id: 2031
+
+  cannibal_blade:
+    id:          2065
+    frame:       valoredge
+    skill_level: 150
+
+  daze:
+    id:          2066
+    frame:       sharpshot
+    skill_level: 150
+
+  knockout:
+    id:          2067
+    frame:       stormwaker
+    skill_level: 145
+
+  economizer:
+    id: 2068
+
+  replicator:
+    id: 2132
+
+  bone_crusher:
+    id:          2299
+    frame:       valoredge
+    skill_level: 245
+
+  armor_piercer:
+    id:          2300
+    frame:       sharpshot
+    skill_level: 245
+
+  magic_mortar:
+    id:          2301
+    frame:       stormwaker
+    skill_level: 225
+
+  string_shredder:
+    id:          2743
+    frame:       valoredge
+    skill_level: 324
+
+  armor_shatterer:
+    id:          2744
+    frame:       sharpshot
+    skill_level: 324
+
+  heat_capacitor:
+    id: 2745
+
+  barrage_turbine:
+    id:    2746
+    frame: sharpshot
+
+  disruptor:
+    id: 2747
+
+  regulator:
+    id: 3485

@@ -1,0 +1,437 @@
+# yaml-language-server: $schema=schemas/automaton_spells.schema.json
+
+automaton_spells:
+  cure:
+    id:          1
+    skill_level: 12
+    heads:       [harlequin, valoredge, sharpshot, stormwaker, soulsoother]
+    removes:     [lullaby, sleep_ii, sleep_i]
+
+  cure_ii:
+    id:          2
+    skill_level: 45
+    heads:       [harlequin, valoredge, sharpshot, stormwaker, soulsoother]
+
+  cure_iii:
+    id:          3
+    skill_level: 81
+    heads:       [harlequin, valoredge, sharpshot, stormwaker, soulsoother]
+
+  cure_iv:
+    id:          4
+    skill_level: 147
+    heads:       [harlequin, valoredge, sharpshot, stormwaker, soulsoother]
+
+  cure_v:
+    id:          5
+    skill_level: 207
+    heads:       [soulsoother]
+
+  cure_vi:
+    id:          6
+    skill_level: 313
+    heads:       [soulsoother]
+
+  poisona:
+    id:          14
+    skill_level: 27
+    heads:       [soulsoother]
+    removes:     [poison]
+
+  paralyna:
+    id:          15
+    skill_level: 36
+    heads:       [soulsoother]
+    removes:     [paralysis]
+
+  blindna:
+    id:          16
+    skill_level: 45
+    heads:       [soulsoother]
+    removes:     [blindness]
+
+  silena:
+    id:          17
+    skill_level: 60
+    heads:       [soulsoother]
+    removes:     [silence]
+
+  stona:
+    id:          18
+    skill_level: 120
+    heads:       [soulsoother]
+    removes:     [petrification]
+
+  viruna:
+    id:          19
+    skill_level: 105
+    heads:       [soulsoother]
+    removes:     [plague, disease]
+
+  cursna:
+    id:          20
+    skill_level: 90
+    heads:       [soulsoother]
+    removes:     [bane, curse_ii, curse_i]
+
+  dia:
+    id:       23
+    heads:    [harlequin, sharpshot, stormwaker, soulsoother, spiritreaver]
+    enfeeble: dia
+
+  dia_ii:
+    id:          24
+    skill_level: 96
+    heads:       [harlequin, sharpshot, stormwaker, soulsoother, spiritreaver]
+    enfeeble:    dia
+
+  protect:
+    id:          43
+    skill_level: 24
+    heads:       [stormwaker, soulsoother]
+
+  protect_ii:
+    id:          44
+    skill_level: 84
+    heads:       [stormwaker, soulsoother]
+
+  protect_iii:
+    id:          45
+    skill_level: 144
+    heads:       [stormwaker, soulsoother]
+
+  protect_iv:
+    id:          46
+    skill_level: 217
+    heads:       [stormwaker, soulsoother]
+
+  protect_v:
+    id:          47
+    skill_level: 281
+    heads:       [soulsoother]
+
+  shell:
+    id:          48
+    skill_level: 54
+    heads:       [stormwaker, soulsoother]
+
+  shell_ii:
+    id:          49
+    skill_level: 114
+    heads:       [stormwaker, soulsoother]
+
+  shell_iii:
+    id:          50
+    skill_level: 188
+    heads:       [stormwaker, soulsoother]
+
+  shell_iv:
+    id:          51
+    skill_level: 241
+    heads:       [stormwaker, soulsoother]
+
+  shell_v:
+    id:          52
+    skill_level: 347
+    heads:       [stormwaker, soulsoother]
+
+  stoneskin:
+    id:          54
+    skill_level: 105
+    heads:       [stormwaker]
+
+  slow:
+    id:          56
+    skill_level: 42
+    heads:       [harlequin, sharpshot, stormwaker, soulsoother, spiritreaver]
+    enfeeble:    slow
+    immunity:    slow
+
+  haste:
+    id:          57
+    skill_level: 147
+    heads:       [stormwaker, soulsoother]
+
+  paralyze:
+    id:          58
+    skill_level: 21
+    heads:       [harlequin, sharpshot, stormwaker, soulsoother, spiritreaver]
+    enfeeble:    paralysis
+    immunity:    paralyze
+
+  silence:
+    id:          59
+    skill_level: 57
+    heads:       [harlequin, sharpshot, stormwaker, soulsoother, spiritreaver]
+    enfeeble:    silence
+    immunity:    silence
+
+  phalanx:
+    id:          106
+    skill_level: 99
+    heads:       [stormwaker]
+
+  regen:
+    id:          108
+    skill_level: 66
+    heads:       [soulsoother]
+
+  regen_ii:
+    id:          110
+    skill_level: 135
+    heads:       [soulsoother]
+
+  regen_iii:
+    id:          111
+    skill_level: 232
+    heads:       [soulsoother]
+
+  protectra_v:
+    id:          129
+    skill_level: 425
+    heads:       [soulsoother]
+
+  shellra_v:
+    id:          134
+    skill_level: 434
+    heads:       [soulsoother]
+
+  erase:
+    id:          143
+    skill_level: 99
+    heads:       [soulsoother]
+
+  fire:
+    id:          144
+    skill_level: 60
+    heads:       [stormwaker, spiritreaver]
+
+  fire_ii:
+    id:          145
+    skill_level: 153
+    heads:       [stormwaker, spiritreaver]
+
+  fire_iii:
+    id:          146
+    skill_level: 251
+    heads:       [stormwaker, spiritreaver]
+
+  fire_iv:
+    id:          147
+    skill_level: 281
+    heads:       [stormwaker, spiritreaver]
+
+  fire_v:
+    id:          148
+    skill_level: 349
+    heads:       [spiritreaver]
+
+  blizzard:
+    id:          149
+    skill_level: 75
+    heads:       [stormwaker, spiritreaver]
+
+  blizzard_ii:
+    id:          150
+    skill_level: 178
+    heads:       [stormwaker, spiritreaver]
+
+  blizzard_iii:
+    id:          151
+    skill_level: 256
+    heads:       [stormwaker, spiritreaver]
+
+  blizzard_iv:
+    id:          152
+    skill_level: 286
+    heads:       [stormwaker, spiritreaver]
+
+  blizzard_v:
+    id:          153
+    skill_level: 368
+    heads:       [spiritreaver]
+
+  aero:
+    id:          154
+    skill_level: 45
+    heads:       [stormwaker, spiritreaver]
+
+  aero_ii:
+    id:          155
+    skill_level: 138
+    heads:       [stormwaker, spiritreaver]
+
+  aero_iii:
+    id:          156
+    skill_level: 246
+    heads:       [stormwaker, spiritreaver]
+
+  aero_iv:
+    id:          157
+    skill_level: 276
+    heads:       [stormwaker, spiritreaver]
+
+  aero_v:
+    id:          158
+    skill_level: 331
+    heads:       [spiritreaver]
+
+  stone:
+    id:          159
+    skill_level: 15
+    heads:       [stormwaker, spiritreaver]
+
+  stone_ii:
+    id:          160
+    skill_level: 108
+    heads:       [stormwaker, spiritreaver]
+
+  stone_iii:
+    id:          161
+    skill_level: 227
+    heads:       [stormwaker, spiritreaver]
+
+  stone_iv:
+    id:          162
+    skill_level: 266
+    heads:       [stormwaker, spiritreaver]
+
+  stone_v:
+    id:          163
+    skill_level: 296
+    heads:       [spiritreaver]
+
+  thunder:
+    id:          164
+    skill_level: 90
+    heads:       [stormwaker, spiritreaver]
+
+  thunder_ii:
+    id:          165
+    skill_level: 203
+    heads:       [stormwaker, spiritreaver]
+
+  thunder_iii:
+    id:          166
+    skill_level: 261
+    heads:       [stormwaker, spiritreaver]
+
+  thunder_iv:
+    id:          167
+    skill_level: 291
+    heads:       [stormwaker, spiritreaver]
+
+  thunder_v:
+    id:          168
+    skill_level: 389
+    heads:       [spiritreaver]
+
+  water:
+    id:          169
+    skill_level: 30
+    heads:       [stormwaker, spiritreaver]
+
+  water_ii:
+    id:          170
+    skill_level: 123
+    heads:       [stormwaker, spiritreaver]
+
+  water_iii:
+    id:          171
+    skill_level: 236
+    heads:       [stormwaker, spiritreaver]
+
+  water_iv:
+    id:          172
+    skill_level: 271
+    heads:       [stormwaker, spiritreaver]
+
+  water_v:
+    id:          173
+    skill_level: 313
+    heads:       [spiritreaver]
+
+  poison:
+    id:          220
+    skill_level: 18
+    heads:       [harlequin, sharpshot, stormwaker, soulsoother, spiritreaver]
+    enfeeble:    poison
+    immunity:    poison
+
+  poison_ii:
+    id:          221
+    skill_level: 141
+    heads:       [harlequin, stormwaker, soulsoother, spiritreaver]
+    enfeeble:    poison
+    immunity:    poison
+
+  bio:
+    id:          230
+    skill_level: 33
+    heads:       [harlequin, sharpshot, stormwaker, soulsoother, spiritreaver]
+    enfeeble:    bio
+
+  bio_ii:
+    id:          231
+    skill_level: 111
+    heads:       [harlequin, sharpshot, stormwaker, soulsoother, spiritreaver]
+    enfeeble:    bio
+
+  drain:
+    id:          245
+    skill_level: 45
+    heads:       [spiritreaver]
+
+  aspir:
+    id:          247
+    skill_level: 78
+    heads:       [spiritreaver]
+
+  aspir_ii:
+    id:          248
+    skill_level: 331
+    heads:       [spiritreaver]
+
+  blind:
+    id:          254
+    skill_level: 27
+    heads:       [harlequin, sharpshot, stormwaker, soulsoother, spiritreaver]
+    enfeeble:    blindness
+    immunity:    blind
+
+  dispel:
+    id:          260
+    skill_level: 105
+    heads:       [stormwaker]
+
+  absorb_int:
+    id:          270
+    skill_level: 120
+    heads:       [spiritreaver]
+    enfeeble:    int_down
+
+  dread_spikes:
+    id:          277
+    skill_level: 256
+    heads:       [spiritreaver]
+
+  addle:
+    id:          286
+    skill_level: 337
+    heads:       [harlequin, sharpshot, stormwaker, soulsoother, spiritreaver]
+    enfeeble:    addle
+
+  regen_iv:
+    id:          477
+    skill_level: 337
+    heads:       [soulsoother]
+
+  haste_ii:
+    id:          511
+    skill_level: 410
+    heads:       [stormwaker]
+
+  atomos:
+    id:          847
+    skill_level: 368
+    heads:       [spiritreaver]

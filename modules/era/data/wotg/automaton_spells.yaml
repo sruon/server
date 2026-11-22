@@ -1,0 +1,43 @@
+# Automaton spell adjustments (WoTG era)
+# https://wiki.ffo.jp/html/8523.html
+# https://forum.square-enix.com/ffxi/threads/18132
+
+automaton_spells:
+  cure_vi:      {skill_level: 999}
+  protect:      {skill_level: 999}
+  protect_ii:   {skill_level: 999}
+  protect_iii:  {skill_level: 999}
+  protect_iv:   {skill_level: 999}
+  protect_v:    {skill_level: 999}
+  shell:        {skill_level: 999}
+  shell_ii:     {skill_level: 999}
+  shell_iii:    {skill_level: 999}
+  shell_iv:     {skill_level: 999}
+  shell_v:      {skill_level: 999}
+  stoneskin:    {skill_level: 999}
+  haste:        {skill_level: 999}
+  phalanx:      {skill_level: 999}
+  protectra_v:  {skill_level: 999}
+  shellra_v:    {skill_level: 999}
+  erase:        {skill_level: 999}
+  fire_v:       {skill_level: 999}
+  blizzard_v:   {skill_level: 999}
+  aero_v:       {skill_level: 999}
+  stone_v:      {skill_level: 999}
+  thunder_v:    {skill_level: 999}
+  water_v:      {skill_level: 999}
+  poison_ii:    {skill_level: 999}
+  aspir_ii:     {skill_level: 999}
+  dispel:       {skill_level: 999}
+  dread_spikes: {skill_level: 999}
+  addle:        {skill_level: 999}
+  regen_iv:     {skill_level: 999}
+  haste_ii:     {skill_level: 999}
+  atomos:       {skill_level: 999}
+
+  fire_iv:     {heads: [spiritreaver]}
+  blizzard_iv: {heads: [spiritreaver]}
+  aero_iv:     {heads: [spiritreaver]}
+  stone_iv:    {heads: [spiritreaver]}
+  thunder_iv:  {heads: [spiritreaver]}
+  water_iv:    {heads: [spiritreaver]}
