@@ -22,9 +22,11 @@
 #include <common/types/hash_map.h>
 
 #include <algorithm>
-#include <cstring>
+#include <cstdlib>
+#include <utility>
 
-#include "lua/luautils.h"
+#include "data/datasets/mob_spell_lists/dataset.h"
+#include "utils/dataset_loader.h"
 
 #include "mob_spell_list.h"
 
@@ -71,30 +73,28 @@ void LoadMobSpellList()
 {
     PMobSpellList[0] = std::make_unique<CMobSpellList>(0); // Add empty spell list for mobSpellListId 0
 
-    constexpr auto query = db::Query(
-        "SELECT mob_spell_lists.spell_list_id, "
-        "mob_spell_lists.spell_id, "
-        "mob_spell_lists.min_level, "
-        "mob_spell_lists.max_level, "
-        "spell_list.content_tag "
-        "FROM mob_spell_lists JOIN spell_list ON spell_list.spellid = mob_spell_lists.spell_id "
-        "WHERE spell_list_id < ? "
-        "ORDER BY min_level ASC");
-
-    const auto rset = db::preparedStmt(query, MAX_MOBSPELLLIST_ID);
-    FOR_DB_MULTIPLE_RESULTS(rset)
+    for (const auto& list : xi::data::loadDataset<xi::data::datasets::mob_spell_lists::Dataset>())
     {
-        const auto spellListId = rset->get<uint16>("spell_list_id");
-        const auto spellId     = rset->get<uint16>("spell_id");
-        const auto minLvl      = rset->get<uint16>("min_level");
-        const auto maxLvl      = rset->get<uint16>("max_level");
+        auto PSpellList = std::make_unique<CMobSpellList>(list.Id);
 
-        if (!PMobSpellList.contains(spellListId))
+        for (const auto& entry : list.Spells)
         {
-            PMobSpellList.emplace(spellListId, std::make_unique<CMobSpellList>(spellListId));
+            const auto spellId = spell::lookupIdByName(entry.Name);
+            if (!spellId)
+            {
+                ShowCriticalFmt("LoadMobSpellList: spell list '{}' names unknown spell '{}'", list.Name, entry.Name);
+                std::exit(-1);
+            }
+
+            PSpellList->AddSpell(*spellId, entry.MinLevel, entry.MaxLevel);
         }
 
-        PMobSpellList[spellListId]->AddSpell(static_cast<SpellID>(spellId), minLvl, maxLvl);
+        std::ranges::sort(PSpellList->m_spellList, {}, [](const MobSpell_t& entry)
+                          {
+                              return std::pair{ entry.min_level, entry.spellId };
+                          });
+
+        PMobSpellList[list.Id] = std::move(PSpellList);
     }
 }
 

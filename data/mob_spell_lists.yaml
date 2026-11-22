@@ -1,0 +1,6704 @@
+# yaml-language-server: $schema=schemas/mob_spell_lists.schema.json
+
+meta:
+  enum:
+    - cpp:
+        underlying: uint16_t
+        class:      MobSpellList
+        none:       true
+      lua:
+        table: xi.mobSpellList
+
+mob_spell_lists:
+  # Used for mobs with their cast logic defined in lua and buff out of combat.
+  default_buff:
+    id: 1
+    spells:
+      knights_minne: {min_level: 0} # Placeholder entry. Needs to be a buff.
+
+  # Used for mobs with their cast logic defined in lua but do not buff out of combat.
+  default_no_buff:
+    id: 2
+    spells:
+      foe_lullaby: {min_level: 0} # Placeholder entry. Needs to be a debuff.
+
+  beastmen_rdm:
+    id: 3
+    spells:
+      cure:         {min_level: 3, max_level: 13}
+      cure_ii:      {min_level: 14, max_level: 25}
+      cure_iii:     {min_level: 26, max_level: 48}
+      cure_iv:      {min_level: 48}
+      dia:          {max_level: 30}
+      dia_ii:       {min_level: 31, max_level: 59}
+      dia_iii:      {min_level: 60}
+      diaga:        {min_level: 15, max_level: 54}
+      diaga_ii:     {min_level: 55, max_level: 70}
+      diaga_iii:    {min_level: 71}
+      protect:      {min_level: 7, max_level: 26}
+      protect_ii:   {min_level: 27, max_level: 46}
+      protect_iii:  {min_level: 47, max_level: 62}
+      protect_iv:   {min_level: 63, max_level: 76}
+      protect_v:    {min_level: 80}
+      shell:        {min_level: 17, max_level: 36}
+      shell_ii:     {min_level: 37, max_level: 56}
+      shell_iii:    {min_level: 57, max_level: 67}
+      shell_iv:     {min_level: 68, max_level: 86}
+      shell_v:      {min_level: 87}
+      blink:        {min_level: 23}
+      stoneskin:    {min_level: 34}
+      aquaveil:     {min_level: 12}
+      slow:         {min_level: 13}
+      haste:        {min_level: 48}
+      paralyze:     {min_level: 6}
+      silence:      {min_level: 18}
+      enfire:       {min_level: 24}
+      enblizzard:   {min_level: 22}
+      enaero:       {min_level: 20}
+      enstone:      {min_level: 18}
+      enthunder:    {min_level: 16}
+      enwater:      {min_level: 27}
+      regen:        {min_level: 21, max_level: 75}
+      regen_ii:     {min_level: 80}
+      fire:         {min_level: 19, max_level: 49}
+      fire_ii:      {min_level: 50, max_level: 70}
+      fire_iii:     {min_level: 71, max_level: 85}
+      fire_iv:      {min_level: 86}
+      blizzard:     {min_level: 24, max_level: 54}
+      blizzard_ii:  {min_level: 55, max_level: 72}
+      blizzard_iii: {min_level: 73, max_level: 88}
+      blizzard_iv:  {min_level: 89}
+      aero:         {min_level: 14, max_level: 44}
+      aero_ii:      {min_level: 45, max_level: 68}
+      aero_iii:     {min_level: 69, max_level: 82}
+      aero_iv:      {min_level: 83}
+      stone:        {min_level: 4, max_level: 34}
+      stone_ii:     {min_level: 35, max_level: 64}
+      stone_iii:    {min_level: 65, max_level: 76}
+      stone_iv:     {min_level: 77}
+      thunder:      {min_level: 29, max_level: 59}
+      thunder_ii:   {min_level: 60, max_level: 74}
+      thunder_iii:  {min_level: 75, max_level: 91}
+      thunder_iv:   {min_level: 89}
+      water:        {min_level: 9, max_level: 39}
+      water_ii:     {min_level: 40, max_level: 66}
+      water_iii:    {min_level: 67, max_level: 88}
+      water_iv:     {min_level: 80}
+      gravity:      {min_level: 21}
+      poison:       {min_level: 5, max_level: 45}
+      poison_ii:    {min_level: 46}
+      bio:          {min_level: 10, max_level: 35}
+      bio_ii:       {min_level: 36, max_level: 70}
+      bio_iii:      {min_level: 71}
+      sleep:        {min_level: 25, max_level: 45}
+      blind:        {min_level: 8}
+      bind:         {min_level: 11}
+      sleep_ii:     {min_level: 46}
+      dispel:       {min_level: 32}
+
+  beastmen_pld:
+    id: 4
+    spells:
+      cure:        {min_level: 5, max_level: 16}
+      cure_ii:     {min_level: 17, max_level: 29}
+      cure_iii:    {min_level: 30, max_level: 54}
+      cure_iv:     {min_level: 55}
+      banish:      {min_level: 7, max_level: 33}
+      banish_ii:   {min_level: 34, max_level: 65}
+      protect:     {min_level: 10, max_level: 29}
+      protect_ii:  {min_level: 30, max_level: 49}
+      protect_iii: {min_level: 50, max_level: 69}
+      protect_iv:  {min_level: 70, max_level: 89}
+      protect_v:   {min_level: 90}
+      shell:       {min_level: 20, max_level: 39}
+      shell_ii:    {min_level: 40, max_level: 59}
+      shell_iii:   {min_level: 60, max_level: 79}
+      shell_iv:    {min_level: 80}
+      flash:       {min_level: 37}
+
+  beastmen_drk:
+    id: 5
+    spells:
+      fire:         {min_level: 23, max_level: 34}
+      fire_ii:      {min_level: 60, max_level: 71}
+      fire_iii:     {min_level: 88}
+      blizzard:     {min_level: 29, max_level: 41}
+      blizzard_ii:  {min_level: 66, max_level: 78}
+      blizzard_iii: {min_level: 92}
+      aero:         {min_level: 17, max_level: 28}
+      aero_ii:      {min_level: 54, max_level: 65}
+      aero_iii:     {min_level: 84, max_level: 91}
+      stone:        {min_level: 5, max_level: 16}
+      stone_ii:     {min_level: 42, max_level: 53}
+      stone_iii:    {min_level: 76, max_level: 83}
+      thunder:      {min_level: 35, max_level: 71}
+      thunder_ii:   {min_level: 72, max_level: 83}
+      thunder_iii:  {min_level: 96}
+      water:        {min_level: 11, max_level: 22}
+      water_ii:     {min_level: 48, max_level: 59}
+      water_iii:    {min_level: 80, max_level: 87}
+      poison:       {min_level: 6, max_level: 45}
+      poison_ii:    {min_level: 46}
+      poisonga:     {min_level: 26, max_level: 50}
+      bio:          {min_level: 15, max_level: 39}
+      bio_ii:       {min_level: 40}
+      absorb-acc:   {min_level: 61}
+      drain:        {min_level: 10}
+      aspir:        {min_level: 20}
+      stun:         {min_level: 37}
+      sleep:        {min_level: 30, max_level: 55}
+      bind:         {min_level: 20}
+      sleep_ii:     {min_level: 56}
+      absorb-str:   {min_level: 43}
+      absorb-dex:   {min_level: 41}
+      absorb-vit:   {min_level: 35}
+      absorb-agi:   {min_level: 37}
+      absorb-int:   {min_level: 39}
+      absorb-mnd:   {min_level: 31}
+      absorb-chr:   {min_level: 33}
+      absorb-tp:    {min_level: 45}
+
+  beastmen_brd:
+    id: 6
+    spells:
+      foe_requiem:       {min_level: 7, max_level: 16}
+      foe_requiem_ii:    {min_level: 17, max_level: 36}
+      foe_requiem_iii:   {min_level: 37, max_level: 46}
+      foe_requiem_iv:    {min_level: 47, max_level: 56}
+      foe_requiem_v:     {min_level: 57, max_level: 66}
+      foe_requiem_vi:    {min_level: 67, max_level: 75}
+      foe_requiem_vii:   {min_level: 76}
+      horde_lullaby:     {min_level: 27, max_level: 91}
+      horde_lullaby_ii:  {min_level: 92}
+      armys_paeon:       {min_level: 5, max_level: 14}
+      armys_paeon_ii:    {min_level: 15, max_level: 34}
+      armys_paeon_iii:   {min_level: 35, max_level: 44}
+      armys_paeon_iv:    {min_level: 45, max_level: 64}
+      armys_paeon_v:     {min_level: 65, max_level: 77}
+      armys_paeon_vi:    {min_level: 78}
+      knights_minne:     {max_level: 20}
+      knights_minne_ii:  {min_level: 21, max_level: 40}
+      knights_minne_iii: {min_level: 41, max_level: 60}
+      knights_minne_iv:  {min_level: 61}
+      valor_minuet:      {min_level: 3, max_level: 22}
+      valor_minuet_ii:   {min_level: 23, max_level: 42}
+      valor_minuet_iii:  {min_level: 43, max_level: 62}
+      valor_minuet_iv:   {min_level: 63}
+      sword_madrigal:    {min_level: 11, max_level: 50}
+      blade_madrigal:    {min_level: 51}
+      sheepfoe_mambo:    {min_level: 13, max_level: 52}
+      dragonfoe_mambo:   {min_level: 53}
+      advancing_march:   {min_level: 29, max_level: 59}
+      victory_march:     {min_level: 60}
+      battlefield_elegy: {min_level: 39, max_level: 58}
+      carnage_elegy:     {min_level: 59}
+      dextrous_etude:    {min_level: 32}
+      quick_etude:       {min_level: 28}
+      swift_etude:       {min_level: 68}
+      uncanny_etude:     {min_level: 72}
+      magic_finale:      {min_level: 33}
+      foe_lullaby:       {min_level: 16}
+
+  beastmen_nin:
+    id: 7
+    spells:
+      katon_ichi:    {min_level: 15, max_level: 39}
+      katon_ni:      {min_level: 40, max_level: 72}
+      katon_san:     {min_level: 73}
+      hyoton_ichi:   {min_level: 15, max_level: 39}
+      hyoton_ni:     {min_level: 40, max_level: 72}
+      hyoton_san:    {min_level: 73}
+      huton_ichi:    {min_level: 15, max_level: 39}
+      huton_ni:      {min_level: 40, max_level: 72}
+      huton_san:     {min_level: 73}
+      doton_ichi:    {min_level: 15, max_level: 39}
+      doton_ni:      {min_level: 40, max_level: 72}
+      doton_san:     {min_level: 73}
+      raiton_ichi:   {min_level: 15, max_level: 39}
+      raiton_ni:     {min_level: 40, max_level: 72}
+      raiton_san:    {min_level: 73}
+      suiton_ichi:   {min_level: 15, max_level: 39}
+      suiton_ni:     {min_level: 40, max_level: 72}
+      suiton_san:    {min_level: 73}
+      utsusemi_ichi: {min_level: 12, max_level: 36}
+      utsusemi_ni:   {min_level: 37, max_level: 72}
+      utsusemi_san:  {min_level: 73}
+      jubaku_ichi:   {min_level: 30, max_level: 64}
+      jubaku_ni:     {min_level: 65}
+      hojo_ichi:     {min_level: 23, max_level: 47}
+      hojo_ni:       {min_level: 48, max_level: 75}
+      hojo_san:      {min_level: 76}
+      kurayami_ichi: {min_level: 19, max_level: 43}
+      kurayami_ni:   {min_level: 44, max_level: 72}
+      kurayami_san:  {min_level: 73}
+      dokumori_ichi: {min_level: 27, max_level: 55}
+      dokumori_ni:   {min_level: 56, max_level: 74}
+      dokumori_san:  {min_level: 76}
+
+  beastmen_blu:
+    id: 8
+    spells:
+      metallic_body:   {min_level: 8}
+      screwdriver:     {min_level: 26}
+      mp_drainkiss:    {min_level: 42}
+      sandspin:        {}
+      terror_touch:    {min_level: 40}
+      digest:          {min_level: 36}
+      sickle_slash:    {min_level: 48}
+      cocoon:          {min_level: 8}
+      filamented_hold: {min_level: 52}
+      pollen:          {}
+      radiant_breath:  {min_level: 54}
+      jet_stream:      {min_level: 38}
+      sound_blast:     {min_level: 32}
+      feather_tickle:  {min_level: 64}
+      yawn:            {min_level: 64}
+      voracious_trunk: {min_level: 64}
+      claw_cyclone:    {min_level: 20}
+      1000_needles:    {min_level: 62}
+      pinecone_bomb:   {min_level: 36}
+      sprout_smack:    {min_level: 4}
+      soporific:       {min_level: 24}
+      wild_oats:       {min_level: 4}
+      bad_breath:      {min_level: 61}
+      awful_eye:       {min_level: 46}
+      infrasonics:     {min_level: 65}
+      sandspray:       {min_level: 66}
+      hydro_shot:      {min_level: 63}
+
+  worm:
+    id: 9
+    spells:
+      stoneskin:   {min_level: 28}
+      stone:       {max_level: 25}
+      stone_ii:    {min_level: 26, max_level: 50}
+      stone_iii:   {min_level: 51, max_level: 67}
+      stone_iv:    {min_level: 68}
+      stonega:     {min_level: 15, max_level: 39}
+      stonega_ii:  {min_level: 40, max_level: 63}
+      stonega_iii: {min_level: 63}
+      quake:       {min_level: 54}
+      rasp:        {min_level: 18}
+      bind:        {min_level: 7}
+
+  hecteyes:
+    id: 10
+    spells:
+      fire:         {min_level: 13, max_level: 25}
+      fire_ii:      {min_level: 38, max_level: 47}
+      fire_iii:     {min_level: 62, max_level: 72}
+      fire_iv:      {min_level: 76, max_level: 85}
+      fire_v:       {min_level: 86}
+      aero:         {min_level: 9, max_level: 33}
+      aero_ii:      {min_level: 34, max_level: 47}
+      aero_iii:     {min_level: 59, max_level: 71}
+      aero_iv:      {min_level: 72, max_level: 82}
+      aero_v:       {min_level: 83}
+      thunder:      {min_level: 21, max_level: 45}
+      thunder_ii:   {min_level: 46, max_level: 55}
+      thunder_iii:  {min_level: 66, max_level: 74}
+      thunder_iv:   {min_level: 75, max_level: 91}
+      thunder_v:    {min_level: 92}
+      water:        {min_level: 5, max_level: 29}
+      water_ii:     {min_level: 30, max_level: 54}
+      water_iii:    {min_level: 55, max_level: 66}
+      water_iv:     {min_level: 70, max_level: 79}
+      water_v:      {min_level: 80}
+      firaga:       {min_level: 28, max_level: 52}
+      firaga_ii:    {min_level: 53, max_level: 60}
+      firaga_iii:   {min_level: 69}
+      aeroga:       {min_level: 23, max_level: 47}
+      aeroga_ii:    {min_level: 48, max_level: 56}
+      aeroga_iii:   {min_level: 67}
+      thundaga:     {min_level: 36, max_level: 60}
+      thundaga_ii:  {min_level: 61, max_level: 72}
+      thundaga_iii: {min_level: 73}
+      flare:        {min_level: 60}
+      burn:         {min_level: 24, max_level: 50}
+      choke:        {min_level: 24, max_level: 50}
+      drain:        {min_level: 12}
+      aspir:        {min_level: 25}
+      blaze_spikes: {min_level: 10}
+      stun:         {min_level: 45}
+      sleep:        {min_level: 20, max_level: 40}
+      blind:        {min_level: 4}
+      bind:         {min_level: 7}
+      sleep_ii:     {min_level: 41, max_level: 55}
+
+  ahriman:
+    id: 11
+    spells:
+      fire:         {min_level: 13, max_level: 22}
+      fire_ii:      {min_level: 38, max_level: 47}
+      fire_iii:     {min_level: 62, max_level: 67}
+      fire_iv:      {min_level: 73, max_level: 85}
+      fire_v:       {min_level: 86}
+      aero:         {min_level: 9, max_level: 16}
+      aero_ii:      {min_level: 34, max_level: 41}
+      aero_iii:     {min_level: 59, max_level: 64}
+      aero_iv:      {min_level: 72, max_level: 82}
+      aero_v:       {min_level: 83}
+      thunder:      {min_level: 21, max_level: 34}
+      thunder_ii:   {min_level: 46, max_level: 54}
+      thunder_iii:  {min_level: 66, max_level: 70}
+      thunder_iv:   {min_level: 75, max_level: 91}
+      thunder_v:    {min_level: 92}
+      blizzaga:     {min_level: 32, max_level: 39}
+      blizzaga_ii:  {min_level: 57, max_level: 62}
+      blizzaga_iii: {min_level: 71}
+      aeroga:       {min_level: 23, max_level: 31}
+      aeroga_ii:    {min_level: 48, max_level: 57}
+      aeroga_iii:   {min_level: 67}
+      thundaga:     {min_level: 36, max_level: 43}
+      thundaga_ii:  {min_level: 61, max_level: 66}
+      thundaga_iii: {min_level: 73}
+      waterga:      {min_level: 19, max_level: 27}
+      waterga_ii:   {min_level: 44, max_level: 53}
+      waterga_iii:  {min_level: 65, max_level: 70}
+      bio:          {min_level: 10, max_level: 34}
+      bio_ii:       {min_level: 35}
+      drain:        {min_level: 12}
+      blaze_spikes: {min_level: 10}
+      bind:         {min_level: 7}
+      sleepga:      {min_level: 31, max_level: 55}
+      sleepga_ii:   {min_level: 56}
+
+  elemental_air:
+    id: 12
+    spells:
+      blink:      {min_level: 19}
+      silence:    {min_level: 15}
+      enaero:     {min_level: 20}
+      aero:       {min_level: 9, max_level: 33}
+      aero_ii:    {min_level: 34, max_level: 58}
+      aero_iii:   {min_level: 59, max_level: 71}
+      aero_iv:    {min_level: 72, max_level: 82}
+      aero_v:     {min_level: 83}
+      aeroga:     {min_level: 23, max_level: 47}
+      aeroga_ii:  {min_level: 48, max_level: 66}
+      aeroga_iii: {min_level: 67}
+      tornado:    {min_level: 52}
+      gravity:    {min_level: 21}
+      choke:      {min_level: 20, max_level: 50}
+
+  elemental_earth:
+    id: 13
+    spells:
+      stoneskin:   {min_level: 28}
+      slow:        {min_level: 13, max_level: 74}
+      slow_ii:     {min_level: 75}
+      enstone:     {min_level: 18}
+      stone:       {max_level: 25}
+      stone_ii:    {min_level: 26, max_level: 50}
+      stone_iii:   {min_level: 51, max_level: 67}
+      stone_iv:    {min_level: 68, max_level: 76}
+      stone_v:     {min_level: 77}
+      stonega:     {min_level: 15, max_level: 39}
+      stonega_ii:  {min_level: 40, max_level: 62}
+      stonega_iii: {min_level: 63}
+      quake:       {min_level: 54}
+      rasp:        {min_level: 18, max_level: 50}
+
+  elemental_ice:
+    id: 14
+    spells:
+      paralyze:     {min_level: 4}
+      enblizzard:   {min_level: 22}
+      blizzard:     {min_level: 17, max_level: 41}
+      blizzard_ii:  {min_level: 42, max_level: 63}
+      blizzard_iii: {min_level: 64, max_level: 73}
+      blizzard_iv:  {min_level: 74, max_level: 88}
+      blizzard_v:   {min_level: 89}
+      blizzaga:     {min_level: 32, max_level: 56}
+      blizzaga_ii:  {min_level: 57, max_level: 70}
+      blizzaga_iii: {min_level: 71}
+      freeze:       {min_level: 50}
+      frost:        {min_level: 22, max_level: 50}
+      ice_spikes:   {min_level: 20}
+      bind:         {min_level: 7}
+
+  elemental_water:
+    id: 15
+    spells:
+      aquaveil:    {min_level: 10}
+      enwater:     {min_level: 27}
+      water:       {min_level: 5, max_level: 29}
+      water_ii:    {min_level: 30, max_level: 54}
+      water_iii:   {min_level: 55, max_level: 69}
+      water_iv:    {min_level: 70, max_level: 79}
+      water_v:     {min_level: 80}
+      waterga:     {min_level: 19, max_level: 43}
+      waterga_ii:  {min_level: 44, max_level: 64}
+      waterga_iii: {min_level: 65}
+      flood:       {min_level: 58}
+      poison:      {min_level: 3, max_level: 42}
+      poison_ii:   {min_level: 43}
+      poisonga:    {min_level: 24, max_level: 59}
+      drown:       {min_level: 27, max_level: 50}
+
+  elemental_thunder:
+    id: 16
+    spells:
+      enthunder:    {min_level: 16}
+      thunder:      {min_level: 21, max_level: 45}
+      thunder_ii:   {min_level: 46, max_level: 65}
+      thunder_iii:  {min_level: 66, max_level: 74}
+      thunder_iv:   {min_level: 75, max_level: 91}
+      thunder_v:    {min_level: 92}
+      thundaga:     {min_level: 36, max_level: 60}
+      thundaga_ii:  {min_level: 61, max_level: 72}
+      thundaga_iii: {min_level: 73}
+      burst:        {min_level: 56}
+      shock:        {min_level: 16, max_level: 50}
+      shock_spikes: {min_level: 30}
+      stun:         {min_level: 37}
+
+  elemental_fire:
+    id: 17
+    spells:
+      enfire:       {min_level: 24}
+      fire:         {min_level: 13, max_level: 37}
+      fire_ii:      {min_level: 38, max_level: 61}
+      fire_iii:     {min_level: 62, max_level: 72}
+      fire_iv:      {min_level: 73, max_level: 85}
+      fire_v:       {min_level: 86}
+      firaga:       {min_level: 28, max_level: 52}
+      firaga_ii:    {min_level: 53, max_level: 68}
+      firaga_iii:   {min_level: 69}
+      flare:        {min_level: 60}
+      burn:         {min_level: 24, max_level: 50}
+      blaze_spikes: {min_level: 10}
+
+  elemental_dark:
+    id: 18
+    spells:
+      bio:        {min_level: 10, max_level: 35}
+      bio_ii:     {min_level: 36, max_level: 74}
+      bio_iii:    {min_level: 75}
+      absorb-acc: {min_level: 61}
+      drain:      {min_level: 12}
+      aspir:      {min_level: 25}
+      stun:       {min_level: 37}
+      dispel:     {min_level: 32}
+      absorb-str: {min_level: 43}
+      absorb-dex: {min_level: 41}
+      absorb-vit: {min_level: 35}
+      absorb-agi: {min_level: 37}
+      absorb-int: {min_level: 39}
+      absorb-mnd: {min_level: 31}
+      absorb-chr: {min_level: 33}
+      sleepga:    {min_level: 31, max_level: 55}
+      sleepga_ii: {min_level: 56}
+      absorb-tp:  {min_level: 45}
+
+  elemental_light:
+    id: 19
+    spells:
+      cure:         {max_level: 10}
+      cure_ii:      {min_level: 11, max_level: 20}
+      cure_iii:     {min_level: 21, max_level: 40}
+      cure_iv:      {min_level: 41, max_level: 60}
+      cure_v:       {min_level: 61, max_level: 79}
+      cure_vi:      {min_level: 80}
+      holy:         {min_level: 50, max_level: 94}
+      holy_ii:      {min_level: 95}
+      dia:          {max_level: 30}
+      dia_ii:       {min_level: 31, max_level: 59}
+      dia_iii:      {min_level: 60}
+      banish:       {min_level: 5, max_level: 29}
+      banish_ii:    {min_level: 30, max_level: 64}
+      banish_iii:   {min_level: 65, max_level: 89}
+      banish_iv:    {min_level: 90}
+      banishga:     {min_level: 15, max_level: 39}
+      banishga_ii:  {min_level: 40, max_level: 70}
+      banishga_iii: {min_level: 71}
+      protect:      {min_level: 7, max_level: 26}
+      protect_ii:   {min_level: 27, max_level: 46}
+      protect_iii:  {min_level: 47, max_level: 62}
+      protect_iv:   {min_level: 63, max_level: 75}
+      protect_v:    {min_level: 76}
+      shell:        {min_level: 17, max_level: 36}
+      shell_ii:     {min_level: 37, max_level: 56}
+      shell_iii:    {min_level: 57, max_level: 67}
+      shell_iv:     {min_level: 68, max_level: 75}
+      shell_v:      {min_level: 76}
+      regen:        {min_level: 21, max_level: 43}
+      regen_ii:     {min_level: 44, max_level: 65}
+      regen_iii:    {min_level: 66, max_level: 85}
+      flash:        {min_level: 45}
+      regen_iv:     {min_level: 86}
+
+  beastmen_whm:
+    id: 20
+    spells:
+      cure:         {max_level: 10}
+      cure_ii:      {min_level: 11, max_level: 20}
+      cure_iii:     {min_level: 21, max_level: 40}
+      cure_iv:      {min_level: 41, max_level: 60}
+      cure_v:       {min_level: 61, max_level: 79}
+      cure_vi:      {min_level: 80}
+      poisona:      {min_level: 6}
+      paralyna:     {min_level: 9}
+      blindna:      {min_level: 14}
+      silena:       {min_level: 19}
+      stona:        {min_level: 39}
+      viruna:       {min_level: 34}
+      cursna:       {min_level: 29}
+      holy:         {min_level: 50, max_level: 94}
+      holy_ii:      {min_level: 95}
+      dia:          {min_level: 3, max_level: 35}
+      dia_ii:       {min_level: 36, max_level: 64}
+      dia_iii:      {min_level: 65}
+      banish:       {min_level: 5, max_level: 29}
+      banish_ii:    {min_level: 30, max_level: 60}
+      banish_iii:   {min_level: 61, max_level: 72}
+      banish_iv:    {min_level: 73}
+      diaga:        {min_level: 18, max_level: 54}
+      diaga_ii:     {min_level: 60, max_level: 73}
+      diaga_iii:    {min_level: 74}
+      banishga:     {min_level: 15, max_level: 39}
+      banishga_ii:  {min_level: 40, max_level: 68}
+      banishga_iii: {min_level: 69}
+      protect:      {min_level: 7, max_level: 26}
+      protect_ii:   {min_level: 27, max_level: 46}
+      protect_iii:  {min_level: 47, max_level: 62}
+      protect_iv:   {min_level: 63, max_level: 75}
+      protect_v:    {min_level: 80}
+      shell:        {min_level: 17, max_level: 36}
+      shell_ii:     {min_level: 37, max_level: 56}
+      shell_iii:    {min_level: 57, max_level: 67}
+      shell_iv:     {min_level: 68, max_level: 75}
+      shell_v:      {min_level: 80}
+      blink:        {min_level: 19}
+      stoneskin:    {min_level: 28}
+      aquaveil:     {min_level: 10}
+      slow:         {min_level: 13}
+      haste:        {min_level: 40}
+      paralyze:     {min_level: 4}
+      silence:      {min_level: 15}
+      regen:        {min_level: 21, max_level: 43}
+      regen_ii:     {min_level: 44, max_level: 65}
+      regen_iii:    {min_level: 66}
+      flash:        {min_level: 45}
+      erase:        {min_level: 32}
+      regen_iv:     {min_level: 86}
+
+  beastmen_blm:
+    id: 21
+    spells:
+      fire:         {min_level: 13, max_level: 22}
+      fire_ii:      {min_level: 38, max_level: 47}
+      fire_iii:     {min_level: 62, max_level: 67}
+      fire_iv:      {min_level: 73, max_level: 85}
+      fire_v:       {min_level: 86}
+      blizzard:     {min_level: 17, max_level: 27}
+      blizzard_ii:  {min_level: 42, max_level: 53}
+      blizzard_iii: {min_level: 64, max_level: 68}
+      blizzard_iv:  {min_level: 74, max_level: 88}
+      blizzard_v:   {min_level: 89}
+      aero:         {min_level: 9, max_level: 18}
+      aero_ii:      {min_level: 34, max_level: 44}
+      aero_iii:     {min_level: 59, max_level: 66}
+      aero_iv:      {min_level: 72, max_level: 82}
+      aero_v:       {min_level: 83}
+      stone:        {max_level: 10}
+      stone_ii:     {min_level: 26, max_level: 35}
+      stone_iii:    {min_level: 51, max_level: 60}
+      stone_iv:     {min_level: 68, max_level: 73}
+      stone_v:      {min_level: 77}
+      thunder:      {min_level: 21, max_level: 46}
+      thunder_ii:   {min_level: 46, max_level: 55}
+      thunder_iii:  {min_level: 66, max_level: 70}
+      thunder_iv:   {min_level: 75, max_level: 92}
+      thunder_v:    {min_level: 92}
+      water:        {min_level: 5, max_level: 12}
+      water_ii:     {min_level: 30, max_level: 40}
+      water_iii:    {min_level: 55, max_level: 61}
+      water_iv:     {min_level: 70, max_level: 78}
+      water_v:      {min_level: 80}
+      firaga:       {min_level: 28, max_level: 35}
+      firaga_ii:    {min_level: 53, max_level: 60}
+      firaga_iii:   {min_level: 69, max_level: 90}
+      blizzaga:     {min_level: 32, max_level: 39}
+      blizzaga_ii:  {min_level: 57, max_level: 62}
+      blizzaga_iii: {min_level: 71}
+      aeroga:       {min_level: 23, max_level: 31}
+      aeroga_ii:    {min_level: 48, max_level: 56}
+      aeroga_iii:   {min_level: 67, max_level: 71}
+      stonega:      {min_level: 15, max_level: 22}
+      stonega_ii:   {min_level: 40, max_level: 47}
+      stonega_iii:  {min_level: 63, max_level: 67}
+      thundaga:     {min_level: 36, max_level: 43}
+      thundaga_ii:  {min_level: 61, max_level: 65}
+      thundaga_iii: {min_level: 73}
+      waterga:      {min_level: 19, max_level: 27}
+      waterga_ii:   {min_level: 44, max_level: 52}
+      waterga_iii:  {min_level: 65}
+      flare:        {min_level: 60}
+      freeze:       {min_level: 50}
+      tornado:      {min_level: 52}
+      quake:        {min_level: 54}
+      burst:        {min_level: 56}
+      flood:        {min_level: 58}
+      poison:       {min_level: 3, max_level: 17}
+      poison_ii:    {min_level: 43, max_level: 64}
+      poisonga:     {min_level: 24, max_level: 71}
+      poisonga_ii:  {min_level: 72}
+      bio:          {min_level: 10, max_level: 34}
+      bio_ii:       {min_level: 35}
+      burn:         {min_level: 24}
+      frost:        {min_level: 22}
+      choke:        {min_level: 20}
+      rasp:         {min_level: 18}
+      shock:        {min_level: 16}
+      drown:        {min_level: 27}
+      drain:        {min_level: 12}
+      aspir:        {min_level: 25, max_level: 82}
+      aspir_ii:     {min_level: 83}
+      blaze_spikes: {min_level: 10}
+      stun:         {min_level: 45}
+      sleep:        {min_level: 20, max_level: 40}
+      blind:        {min_level: 4}
+      bind:         {min_level: 7}
+      sleep_ii:     {min_level: 41}
+      sleepga:      {min_level: 31, max_level: 55}
+      sleepga_ii:   {min_level: 56}
+
+  eald_narche:
+    id: 22
+    spells:
+      flare:      {min_level: 75}
+      freeze:     {min_level: 75}
+      tornado:    {min_level: 75}
+      quake:      {min_level: 75}
+      burst:      {min_level: 75}
+      flood:      {min_level: 75}
+      sleepga_ii: {min_level: 75}
+
+  kirin:
+    id: 23
+    spells:
+      stone_v:    {}
+      stonega_iv: {}
+      quake:      {}
+      rasp:       {}
+      sleepga:    {}
+
+  genbu:
+    id: 24
+    spells:
+      water_iv:     {}
+      waterga_iii:  {}
+      flood:        {}
+      poisonga_iii: {}
+      drown:        {}
+
+  seiryu:
+    id: 25
+    spells:
+      blink:      {}
+      aero_iv:    {}
+      aeroga_iii: {}
+      tornado:    {}
+      gravity:    {}
+      choke:      {}
+
+  byakko:
+    id: 26
+    spells:
+      holy:         {}
+      dia_iii:      {}
+      banish_iv:    {}
+      diaga_iii:    {}
+      banishga_iii: {}
+
+  suzaku:
+    id: 27
+    spells:
+      fire_iv:    {}
+      firaga_iii: {}
+      flare:      {}
+      burn:       {}
+
+  undead:
+    id: 28
+    spells:
+      fire:         {min_level: 13, max_level: 20}
+      fire_ii:      {min_level: 38, max_level: 45}
+      fire_iii:     {min_level: 62, max_level: 72}
+      fire_iv:      {min_level: 73, max_level: 85}
+      fire_v:       {min_level: 86}
+      blizzard:     {min_level: 17, max_level: 25}
+      blizzard_ii:  {min_level: 42, max_level: 54}
+      blizzard_iii: {min_level: 64, max_level: 67}
+      blizzard_iv:  {min_level: 74, max_level: 88}
+      blizzard_v:   {min_level: 89}
+      aero:         {min_level: 9, max_level: 15}
+      aero_ii:      {min_level: 34, max_level: 41}
+      aero_iii:     {min_level: 59, max_level: 63}
+      aero_iv:      {min_level: 72, max_level: 82}
+      aero_v:       {min_level: 83}
+      stone:        {max_level: 8}
+      stone_ii:     {min_level: 26, max_level: 34}
+      stone_iii:    {min_level: 51, max_level: 58}
+      stone_iv:     {min_level: 68, max_level: 72}
+      stone_v:      {min_level: 77}
+      thunder:      {min_level: 21, max_level: 30}
+      thunder_ii:   {min_level: 46, max_level: 54}
+      thunder_iii:  {min_level: 66, max_level: 69}
+      thunder_iv:   {min_level: 75, max_level: 92}
+      thunder_v:    {min_level: 92}
+      water:        {min_level: 5, max_level: 29}
+      water_ii:     {min_level: 30, max_level: 37}
+      water_iii:    {min_level: 55, max_level: 61}
+      water_iv:     {min_level: 70, max_level: 79}
+      water_v:      {min_level: 80}
+      firaga:       {min_level: 28, max_level: 35}
+      firaga_ii:    {min_level: 53, max_level: 60}
+      firaga_iii:   {min_level: 69}
+      blizzaga:     {min_level: 32, max_level: 39}
+      blizzaga_ii:  {min_level: 57, max_level: 61}
+      blizzaga_iii: {min_level: 71}
+      aeroga:       {min_level: 23, max_level: 31}
+      aeroga_ii:    {min_level: 48, max_level: 55}
+      aeroga_iii:   {min_level: 67}
+      stonega:      {min_level: 15, max_level: 22}
+      stonega_ii:   {min_level: 40, max_level: 47}
+      stonega_iii:  {min_level: 63, max_level: 72}
+      thundaga:     {min_level: 36, max_level: 44}
+      thundaga_ii:  {min_level: 61, max_level: 64}
+      thundaga_iii: {min_level: 73}
+      waterga:      {min_level: 19, max_level: 27}
+      waterga_ii:   {min_level: 44, max_level: 47}
+      freeze:       {min_level: 50}
+      quake:        {min_level: 54}
+      gravity:      {min_level: 21}
+      poison:       {min_level: 3, max_level: 25}
+      poison_ii:    {min_level: 43, max_level: 64}
+      poisonga:     {min_level: 24, max_level: 69}
+      poisonga_ii:  {min_level: 70}
+      bio:          {min_level: 10, max_level: 34}
+      bio_ii:       {min_level: 35, max_level: 82}
+      bio_iii:      {min_level: 83}
+      frost:        {min_level: 22, max_level: 50}
+      drain:        {min_level: 12}
+      aspir:        {min_level: 25, max_level: 82}
+      aspir_ii:     {min_level: 83}
+      ice_spikes:   {min_level: 20}
+      stun:         {min_level: 45}
+      sleep:        {min_level: 20}
+      blind:        {min_level: 4}
+      bind:         {min_level: 7}
+      sleep_ii:     {min_level: 41}
+      sleepga:      {min_level: 31, max_level: 55}
+      sleepga_ii:   {min_level: 56}
+
+  mammet:
+    id: 29
+    spells:
+      firaga:       {min_level: 43, max_level: 44}
+      firaga_ii:    {min_level: 55, max_level: 56}
+      firaga_iii:   {min_level: 75, max_level: 75}
+      blizzaga:     {min_level: 43, max_level: 44}
+      blizzaga_ii:  {min_level: 55, max_level: 56}
+      blizzaga_iii: {min_level: 75, max_level: 75}
+      aeroga:       {min_level: 43, max_level: 44}
+      aeroga_ii:    {min_level: 55, max_level: 56}
+      aeroga_iii:   {min_level: 75, max_level: 75}
+      stonega:      {min_level: 43, max_level: 44}
+      stonega_ii:   {min_level: 55, max_level: 56}
+      stonega_iii:  {min_level: 75, max_level: 75}
+      thundaga:     {min_level: 43, max_level: 44}
+      thundaga_ii:  {min_level: 55, max_level: 56}
+      thundaga_iii: {min_level: 75, max_level: 75}
+      waterga:      {min_level: 43, max_level: 44}
+      waterga_ii:   {min_level: 55, max_level: 56}
+      waterga_iii:  {min_level: 75, max_level: 75}
+
+  yagudo_smn:
+    id: 30
+    spells:
+      fire_spirit:  {}
+      air_spirit:   {}
+      earth_spirit: {}
+
+  kindred_smn:
+    id: 31
+    spells:
+      ice_spirit:     {}
+      thunder_spirit: {}
+      dark_spirit:    {}
+
+  tonberry_smn:
+    id: 32
+    spells:
+      fire_spirit:  {}
+      water_spirit: {}
+      light_spirit: {}
+
+  lamiae_smn:
+    id: 33
+    spells:
+      ice_spirit:   {}
+      water_spirit: {}
+      dark_spirit:  {}
+
+  fomor_smn:
+    id: 34
+    spells:
+      fire_spirit:    {}
+      ice_spirit:     {}
+      air_spirit:     {}
+      earth_spirit:   {}
+      thunder_spirit: {}
+
+  aern_smn:
+    id: 35
+    spells:
+      fire_spirit:    {}
+      air_spirit:     {}
+      thunder_spirit: {}
+      water_spirit:   {}
+      light_spirit:   {}
+      dark_spirit:    {}
+
+  magicpot:
+    id: 36
+    spells:
+      fire:         {min_level: 13, max_level: 22}
+      fire_ii:      {min_level: 38, max_level: 47}
+      fire_iii:     {min_level: 62, max_level: 67}
+      fire_iv:      {min_level: 73, max_level: 85}
+      fire_v:       {min_level: 86}
+      blizzard:     {min_level: 17, max_level: 27}
+      blizzard_ii:  {min_level: 42, max_level: 53}
+      blizzard_iii: {min_level: 64, max_level: 68}
+      blizzard_iv:  {min_level: 74, max_level: 88}
+      blizzard_v:   {min_level: 89}
+      aero:         {min_level: 9, max_level: 18}
+      aero_ii:      {min_level: 34, max_level: 44}
+      aero_iii:     {min_level: 59, max_level: 66}
+      aero_iv:      {min_level: 72, max_level: 82}
+      aero_v:       {min_level: 83}
+      stone:        {max_level: 10}
+      stone_ii:     {min_level: 26, max_level: 35}
+      stone_iii:    {min_level: 51, max_level: 60}
+      stone_iv:     {min_level: 68, max_level: 73}
+      stone_v:      {min_level: 77}
+      thunder:      {min_level: 21, max_level: 46}
+      thunder_ii:   {min_level: 46, max_level: 55}
+      thunder_iii:  {min_level: 66, max_level: 70}
+      thunder_iv:   {min_level: 75, max_level: 92}
+      thunder_v:    {min_level: 92}
+      water:        {min_level: 5, max_level: 12}
+      water_ii:     {min_level: 30, max_level: 40}
+      water_iii:    {min_level: 55, max_level: 61}
+      water_iv:     {min_level: 70, max_level: 78}
+      water_v:      {min_level: 80}
+      firaga:       {min_level: 28, max_level: 35}
+      firaga_ii:    {min_level: 53, max_level: 60}
+      firaga_iii:   {min_level: 69, max_level: 90}
+      blizzaga:     {min_level: 32, max_level: 39}
+      blizzaga_ii:  {min_level: 57, max_level: 62}
+      blizzaga_iii: {min_level: 71}
+      aeroga:       {min_level: 23, max_level: 31}
+      aeroga_ii:    {min_level: 48, max_level: 56}
+      aeroga_iii:   {min_level: 67, max_level: 71}
+      stonega:      {min_level: 15, max_level: 22}
+      stonega_ii:   {min_level: 40, max_level: 47}
+      stonega_iii:  {min_level: 63, max_level: 67}
+      thundaga:     {min_level: 36, max_level: 43}
+      thundaga_ii:  {min_level: 61, max_level: 65}
+      thundaga_iii: {min_level: 73}
+      waterga:      {min_level: 19, max_level: 27}
+      waterga_ii:   {min_level: 44, max_level: 52}
+      waterga_iii:  {min_level: 65}
+      flare:        {min_level: 60}
+      tornado:      {min_level: 52}
+      flood:        {min_level: 58}
+      poison:       {min_level: 3, max_level: 17}
+      poison_ii:    {min_level: 43, max_level: 64}
+      poisonga:     {min_level: 24, max_level: 71}
+      poisonga_ii:  {min_level: 72}
+      bio:          {min_level: 10, max_level: 34}
+      bio_ii:       {min_level: 35}
+      aspir:        {min_level: 25, max_level: 82}
+      aspir_ii:     {min_level: 83}
+      blaze_spikes: {min_level: 10}
+      stun:         {min_level: 45}
+      sleep:        {min_level: 20, max_level: 40}
+      blind:        {min_level: 4}
+      bind:         {min_level: 7}
+      sleep_ii:     {min_level: 41}
+      sleepga:      {min_level: 31, max_level: 55}
+      sleepga_ii:   {min_level: 56}
+
+  arkangelev:
+    id: 37
+    spells:
+      cure_iv:    {}
+      poisona:    {}
+      paralyna:   {}
+      blindna:    {}
+      silena:     {}
+      stona:      {}
+      holy:       {}
+      dia_iii:    {}
+      banish_iv:  {}
+      diaga_ii:   {}
+      protect_iv: {}
+      shell_iv:   {}
+      blink:      {}
+      stoneskin:  {}
+      regen:      {}
+      flash:      {}
+
+  arkangelhm:
+    id: 38
+    spells:
+      utsusemi_ichi: {}
+      utsusemi_ni:   {}
+      jubaku_ni:     {}
+      hojo_ni:       {}
+      kurayami_ni:   {}
+      dokumori_ni:   {}
+
+  arkangeltt:
+    id: 39
+    spells:
+      fire_ii:      {}
+      fire_iv:      {}
+      blizzard_ii:  {}
+      blizzard_iv:  {}
+      aero_ii:      {}
+      aero_iv:      {}
+      stone_ii:     {}
+      stone_iv:     {}
+      thunder_ii:   {}
+      thunder_iv:   {}
+      water_ii:     {}
+      water_iv:     {}
+      firaga_iii:   {}
+      blizzaga_iii: {}
+      aeroga_iii:   {}
+      stonega_iii:  {}
+      thundaga_iii: {}
+      waterga_iii:  {}
+      flare:        {}
+      freeze:       {}
+      tornado:      {}
+      quake:        {}
+      burst:        {}
+      flood:        {}
+      poison:       {}
+      poisonga:     {}
+      bio_ii:       {}
+      drain:        {}
+      aspir:        {}
+      blaze_spikes: {}
+      stun:         {}
+      sleep_ii:     {}
+      absorb-str:   {}
+      absorb-dex:   {}
+      absorb-vit:   {}
+      absorb-agi:   {}
+      absorb-int:   {}
+      absorb-mnd:   {}
+      absorb-chr:   {}
+      sleepga_ii:   {}
+      absorb-tp:    {}
+
+  goblin_statue:
+    id: 40
+    spells:
+      haste:        {}
+      protectra_iv: {}
+      shellra_iv:   {}
+
+  mother_globe:
+    id: 41
+    spells:
+      thunder_iv:   {}
+      thundaga_iii: {}
+      burst:        {}
+      shock:        {}
+
+  evilweapon:
+    id: 42
+    spells:
+      cure:         {min_level: 3, max_level: 13}
+      cure_ii:      {min_level: 14, max_level: 25}
+      cure_iii:     {min_level: 26, max_level: 48}
+      cure_iv:      {min_level: 48}
+      dia:          {max_level: 30}
+      dia_ii:       {min_level: 31, max_level: 72}
+      dia_iii:      {min_level: 73}
+      diaga:        {min_level: 15, max_level: 54}
+      diaga_ii:     {min_level: 55, max_level: 70}
+      diaga_iii:    {min_level: 71}
+      protect:      {min_level: 7, max_level: 26}
+      protect_ii:   {min_level: 27, max_level: 46}
+      protect_iii:  {min_level: 47, max_level: 62}
+      protect_iv:   {min_level: 63, max_level: 76}
+      protect_v:    {min_level: 80}
+      shell:        {min_level: 17, max_level: 36}
+      shell_ii:     {min_level: 37, max_level: 56}
+      shell_iii:    {min_level: 57, max_level: 67}
+      shell_iv:     {min_level: 68, max_level: 86}
+      shell_v:      {min_level: 87}
+      blink:        {min_level: 23}
+      stoneskin:    {min_level: 34}
+      aquaveil:     {min_level: 12}
+      slow:         {min_level: 13}
+      haste:        {min_level: 48}
+      paralyze:     {min_level: 6}
+      silence:      {min_level: 18}
+      enthunder:    {min_level: 16}
+      enwater:      {min_level: 27}
+      regen:        {min_level: 21, max_level: 75}
+      regen_ii:     {min_level: 80}
+      fire:         {min_level: 19, max_level: 49}
+      fire_ii:      {min_level: 50, max_level: 70}
+      fire_iii:     {min_level: 71, max_level: 85}
+      fire_iv:      {min_level: 86}
+      blizzard:     {min_level: 24, max_level: 54}
+      blizzard_ii:  {min_level: 55, max_level: 72}
+      blizzard_iii: {min_level: 73, max_level: 88}
+      blizzard_iv:  {min_level: 89}
+      aero:         {min_level: 14, max_level: 44}
+      aero_ii:      {min_level: 45, max_level: 68}
+      aero_iii:     {min_level: 69, max_level: 82}
+      aero_iv:      {min_level: 83}
+      stone:        {min_level: 4, max_level: 34}
+      stone_ii:     {min_level: 35, max_level: 64}
+      stone_iii:    {min_level: 65, max_level: 76}
+      stone_iv:     {min_level: 77}
+      thunder:      {min_level: 29, max_level: 59}
+      thunder_ii:   {min_level: 60, max_level: 74}
+      thunder_iii:  {min_level: 75, max_level: 91}
+      thunder_iv:   {min_level: 89}
+      water:        {min_level: 9, max_level: 39}
+      water_ii:     {min_level: 40, max_level: 66}
+      water_iii:    {min_level: 67, max_level: 88}
+      water_iv:     {min_level: 80}
+      gravity:      {min_level: 21}
+      bio:          {min_level: 10, max_level: 35}
+      bio_ii:       {min_level: 36, max_level: 72}
+      bio_iii:      {min_level: 73}
+      sleep:        {min_level: 25, max_level: 45}
+      sleep_ii:     {min_level: 46}
+      dispel:       {min_level: 32}
+
+  westernsphinx:
+    id: 43
+    spells:
+      slowga: {}
+
+  easternsphinx:
+    id: 44
+    spells:
+      dispelga: {}
+
+  roc_brd:
+    id: 45
+    spells:
+      horde_lullaby:  {}
+      massacre_elegy: {}
+      magic_finale:   {}
+
+  serket:
+    id: 46
+    spells:
+      bindga: {}
+
+  goblin_golem:
+    id: 47
+    spells:
+      poisona:      {min_level: 6}
+      paralyna:     {min_level: 9}
+      blindna:      {min_level: 14}
+      silena:       {min_level: 19}
+      stona:        {min_level: 39}
+      viruna:       {min_level: 34}
+      cursna:       {min_level: 29}
+      haste:        {}
+      protectra_iv: {}
+      shellra_iv:   {}
+      death:        {}
+
+  gu_dha_effigy:
+    id: 48
+    spells:
+      sleepga: {}
+      bindga:  {}
+      breakga: {}
+      graviga: {}
+      death:   {}
+
+  overlord_s_tombstone:
+    id: 49
+    spells:
+      sleepga:  {}
+      paralyga: {}
+      bindga:   {}
+      graviga:  {}
+      death:    {}
+
+  tzee_xicu_idol:
+    id: 50
+    spells:
+      fire_iv:      {min_level: 73, max_level: 85}
+      blizzard_iv:  {min_level: 74, max_level: 88}
+      aero_iv:      {min_level: 72, max_level: 82}
+      stone_v:      {min_level: 77}
+      thunder_iv:   {min_level: 75, max_level: 92}
+      water_iv:     {min_level: 70, max_level: 78}
+      blizzaga_iii: {min_level: 71}
+      aeroga_iii:   {min_level: 67, max_level: 71}
+      stonega:      {min_level: 15, max_level: 22}
+      stonega_ii:   {min_level: 40, max_level: 47}
+      stonega_iii:  {min_level: 63, max_level: 67}
+      thundaga:     {min_level: 36, max_level: 43}
+      thundaga_ii:  {min_level: 61, max_level: 65}
+      thundaga_iii: {min_level: 73}
+      waterga_iii:  {min_level: 65}
+      death:        {}
+
+  vanguard_s_hecteyes:
+    id: 51
+    spells:
+      dispelga: {}
+
+  vanguard_s_crow:
+    id: 52
+    spells:
+      silencega: {}
+
+  vanguard_s_scorpion:
+    id: 53
+    spells:
+      breakga: {}
+
+  vanguard_s_slime:
+    id: 54
+    spells:
+      paralyga: {}
+
+  waraxe_beak:
+    id: 55
+    spells:
+      stone_iii:   {}
+      stone_iv:    {}
+      stonega_iii: {}
+      stonega_iv:  {}
+      dispelga:    {}
+      breakga:     {}
+      graviga:     {}
+
+  lumber_jack:
+    id: 56
+    spells:
+      enstone:    {}
+      stonega_iv: {}
+      break:      {}
+
+  vrtra:
+    id: 57
+    spells:
+      bio_iii:    {}
+      sleepga_ii: {}
+      dispelga:   {}
+      blindga:    {}
+
+  orcish_onager:
+    id: 71
+    spells:
+      bindga: {}
+
+  tiamat:
+    id: 78
+    spells:
+      firaga_iii:   {}
+      blaze_spikes: {}
+
+  king_arthro:
+    id: 79
+    spells:
+      enwater:     {}
+      waterga_iv:  {}
+      poisonga_ii: {}
+      drown:       {}
+
+  citipati:
+    id: 80
+    spells:
+      thunder_iii: {}
+      water_iv:    {}
+      blizzaga_ii: {}
+      poisonga_ii: {}
+      bio_iii:     {}
+      frost:       {}
+      choke:       {}
+      drown:       {}
+      drain:       {}
+      aspir:       {}
+      ice_spikes:  {}
+      sleepga:     {}
+      silencega:   {}
+
+  taisaijin:
+    id: 81
+    spells:
+      refresh:      {min_level: 10}
+      fire_iii:     {min_level: 62, max_level: 72}
+      aero_iii:     {min_level: 59, max_level: 71}
+      thunder_iii:  {min_level: 66, max_level: 74}
+      water_iii:    {min_level: 55, max_level: 66}
+      firaga_ii:    {min_level: 53, max_level: 60}
+      aeroga_iii:   {min_level: 67}
+      thundaga_ii:  {min_level: 61, max_level: 72}
+      flare:        {min_level: 60}
+      quake:        {min_level: 10}
+      bio_iii:      {min_level: 10}
+      drain:        {min_level: 12}
+      aspir:        {min_level: 25}
+      blaze_spikes: {min_level: 10}
+      stun:         {min_level: 45}
+      blind:        {min_level: 4}
+      bind:         {min_level: 7}
+
+  pyuu_the_spatemaker_82:
+    id: 82
+    spells:
+      water_iv:    {min_level: 10}
+      waterga_iii: {min_level: 10}
+
+  tros:
+    id: 83
+    spells:
+      waterga_ii: {min_level: 10}
+      blindga:    {min_level: 10}
+
+  death_clan_destroyer:
+    id: 84
+    spells:
+      curaga_ii: {min_level: 10}
+
+  hydra_s_hound:
+    id: 85
+    spells:
+      blindga: {min_level: 10}
+
+  dynamis_lord:
+    id: 86
+    spells:
+      firaga_iii:   {min_level: 10}
+      blizzaga_iii: {min_level: 10}
+      aeroga_iii:   {min_level: 10}
+      stonega_iii:  {min_level: 10}
+      thundaga_iii: {min_level: 10}
+      waterga_iii:  {min_level: 10}
+      sleepga:      {min_level: 10}
+      slowga:       {min_level: 10}
+      silencega:    {min_level: 10}
+      dispelga:     {min_level: 10}
+      bindga:       {min_level: 10}
+      breakga:      {min_level: 10}
+      death:        {min_level: 10}
+
+  animated_longsword:
+    id: 87
+    spells:
+      cure:        {min_level: 5, max_level: 16}
+      cure_ii:     {min_level: 17, max_level: 29}
+      cure_iii:    {min_level: 30, max_level: 54}
+      cure_iv:     {min_level: 55}
+      holy:        {min_level: 55, max_level: 98}
+      holy_ii:     {min_level: 99}
+      banish:      {min_level: 7, max_level: 33}
+      banish_ii:   {min_level: 34}
+      protect:     {min_level: 10, max_level: 29}
+      protect_ii:  {min_level: 30, max_level: 49}
+      protect_iii: {min_level: 50, max_level: 69}
+      protect_iv:  {min_level: 70, max_level: 89}
+      protect_v:   {min_level: 90}
+      shell:       {min_level: 20, max_level: 39}
+      shell_ii:    {min_level: 40, max_level: 59}
+      shell_iii:   {min_level: 60, max_level: 79}
+      shell_iv:    {min_level: 80}
+      flash:       {min_level: 37}
+      dispelga:    {min_level: 30, max_level: 49}
+
+  satellite_staves:
+    id: 88
+    spells:
+      cure_iv:     {min_level: 37}
+      stone_iii:   {min_level: 37}
+      stonega_ii:  {min_level: 37}
+      stonega_iii: {min_level: 37}
+
+  animated_staff:
+    id: 89
+    spells:
+      stone_iii:   {min_level: 37}
+      stonega_iii: {min_level: 37}
+      stonega_iv:  {min_level: 37}
+      sleepga:     {min_level: 37}
+      breakga:     {min_level: 37}
+
+  animated_tabar:
+    id: 90
+    spells:
+      sleepga:  {min_level: 37}
+      paralyga: {min_level: 37}
+
+  animated_claymore:
+    id: 91
+    spells:
+      blizzaga_iii: {min_level: 37}
+      ice_spikes:   {min_level: 37}
+      sleepga:      {min_level: 37}
+
+  animated_scythe:
+    id: 92
+    spells:
+      blindga: {min_level: 37}
+
+  animated_tachi:
+    id: 93
+    spells:
+      silencega: {min_level: 37}
+
+  animated_dagger:
+    id: 94
+    spells:
+      aeroga_iii:  {min_level: 37}
+      poisonga_ii: {min_level: 37}
+
+  animated_knuckles:
+    id: 95
+    spells:
+      protectra_iv: {min_level: 37}
+      blaze_spikes: {min_level: 37}
+      hastega:      {min_level: 37}
+
+  animated_shield:
+    id: 96
+    spells:
+      phalanx: {min_level: 37}
+      sleepga: {min_level: 37}
+
+  stubborn_dredvodd:
+    id: 97
+    spells:
+      stoneskin: {}
+
+  demonic_tiphia:
+    id: 98
+    spells:
+      erase:      {}
+      sleepga_ii: {}
+      paralyga:   {}
+
+  mycophile:
+    id: 99
+    spells:
+      poison:   {}
+      bio:      {}
+      blind:    {}
+      virus:    {}
+      paralyga: {}
+
+  boreal_hound:
+    id: 100
+    spells:
+      blizzaga_ii: {}
+      freeze:      {}
+      ice_spikes:  {}
+
+  boreal_tiger:
+    id: 101
+    spells:
+      firaga_ii:    {}
+      flare:        {}
+      blaze_spikes: {}
+
+  boreal_coerul:
+    id: 102
+    spells:
+      thundaga_ii:  {}
+      burst:        {}
+      shock_spikes: {}
+
+  ultima:
+    id: 103
+    spells:
+      holy_ii: {min_level: 75}
+
+  cwn_cyrff:
+    id: 104
+    spells:
+      drain:      {}
+      aspir:      {}
+      curse:      {}
+      sleepga_ii: {}
+      paralyga:   {}
+      blindga:    {}
+
+  nunyunuwi:
+    id: 105
+    spells:
+      dispelga: {}
+      bindga:   {}
+
+  diabolos_heart:
+    id: 106
+    spells:
+      bio_iii:    {}
+      drain:      {}
+      aspir:      {}
+      dispel:     {}
+      sleepga_ii: {}
+      dispelga:   {}
+      blindga:    {}
+      death:      {}
+
+  diabolos_diamond:
+    id: 107
+    spells:
+      bio_iii:    {}
+      drain:      {}
+      aspir:      {}
+      sleepga_ii: {}
+      blindga:    {}
+      death:      {}
+
+  diabolos_club:
+    id: 108
+    spells:
+      bio_iii:    {}
+      drain:      {}
+      aspir:      {}
+      sleepga_ii: {}
+      dispelga:   {}
+      blindga:    {}
+      death:      {}
+
+  # Ouryu (Ouryu from CoP 4-3 The Savage)
+  ouryu_the_savage:
+    id: 109
+    spells:
+      stoneskin:  {}
+      stonega_ii: {}
+      slowga:     {}
+
+  pasuk:
+    id: 110
+    spells:
+      drain: {}
+      aspir: {}
+
+  jormungand:
+    id: 111
+    spells:
+      blizzaga_iii: {}
+      ice_spikes:   {}
+      paralyga:     {}
+      bindga:       {}
+
+  eald_narche_2:
+    id: 112
+    spells:
+      flare:      {min_level: 75}
+      freeze:     {min_level: 75}
+      tornado:    {min_level: 75}
+      quake:      {min_level: 75}
+      burst:      {min_level: 75}
+      flood:      {min_level: 75}
+      sleepga_ii: {min_level: 75}
+      bindga:     {min_level: 75}
+
+  deviator:
+    id: 113
+    spells:
+      banishga_ii: {}
+      firaga_ii:   {}
+      blizzaga_ii: {}
+      aeroga_ii:   {}
+      stonega_ii:  {}
+      thundaga_ii: {}
+      waterga_ii:  {}
+      poisonga_ii: {}
+      sleepga_ii:  {}
+
+  diabolos_darkness_named:
+    id: 115
+    spells:
+      bio_ii:   {}
+      drain:    {}
+      aspir:    {}
+      blind:    {}
+      sleep_ii: {}
+      sleepga:  {}
+
+  golden_tongued_culberry:
+    id: 116
+    spells:
+      cure_iv:      {}
+      fire_iv:      {}
+      blizzard_iv:  {}
+      aero_iv:      {}
+      stone_iv:     {}
+      thunder_iv:   {}
+      water_iv:     {}
+      firaga_iii:   {}
+      blizzaga_iii: {}
+      aeroga_iii:   {}
+      stonega_iii:  {}
+      thundaga_iii: {}
+      waterga_iii:  {}
+      drain:        {}
+      sleepga_ii:   {}
+      paralyga:     {}
+      silencega:    {}
+      death:        {}
+
+  dark_spark:
+    id: 117
+    spells:
+      bio_iii: {}
+      drain:   {}
+      aspir:   {}
+
+  disaster_idol_firesday:
+    id: 118
+    spells:
+      enfire:       {}
+      fire_iv:      {}
+      fire_v:       {}
+      firaga_iii:   {}
+      flare:        {}
+      burn:         {}
+      blaze_spikes: {}
+
+  disaster_idol_earthsday:
+    id: 119
+    spells:
+      stoneskin:   {}
+      enstone:     {}
+      stone_iv:    {}
+      stone_v:     {}
+      stonega_iii: {}
+      quake:       {}
+      rasp:        {}
+
+  disaster_idol_watersday:
+    id: 120
+    spells:
+      aquaveil:    {}
+      enwater:     {}
+      water_iv:    {}
+      water_v:     {}
+      waterga_iii: {}
+      flood:       {}
+      poisonga_ii: {}
+      drown:       {}
+
+  disaster_idol_windsday:
+    id: 121
+    spells:
+      blink:      {}
+      silence:    {}
+      enaero:     {}
+      aero_iv:    {}
+      aero_v:     {}
+      aeroga_iii: {}
+      tornado:    {}
+      choke:      {}
+
+  disaster_idol_iceday:
+    id: 122
+    spells:
+      paralyze:     {}
+      blizzard_iv:  {}
+      blizzard_v:   {}
+      blizzaga_iii: {}
+      freeze:       {}
+      frost:        {}
+      ice_spikes:   {}
+      bind:         {}
+
+  disaster_idol_lightningsday:
+    id: 123
+    spells:
+      enthunder:    {}
+      thunder_iv:   {}
+      thunder_v:    {}
+      thundaga_iii: {}
+      burst:        {}
+      shock:        {}
+      shock_spikes: {}
+      stun:         {}
+
+  disaster_idol_lightsday:
+    id: 124
+    spells:
+      holy:         {}
+      holy_ii:      {}
+      dia_ii:       {}
+      banish_iii:   {}
+      banish_iv:    {}
+      diaga_ii:     {}
+      banishga_iii: {}
+      protect_iv:   {}
+      shell_iv:     {}
+      blink:        {}
+      stoneskin:    {}
+      haste:        {}
+      regen:        {}
+      flash:        {}
+      dispelga:     {}
+
+  disaster_idol_darksday:
+    id: 125
+    spells:
+      bio_iii:    {}
+      absorb-acc: {}
+      drain:      {}
+      aspir:      {}
+      blind:      {}
+      dispel:     {}
+      absorb-str: {}
+      absorb-dex: {}
+      absorb-vit: {}
+      absorb-agi: {}
+      absorb-int: {}
+      absorb-mnd: {}
+      absorb-chr: {}
+      sleepga:    {}
+      sleepga_ii: {}
+      absorb-tp:  {}
+
+  casting_behemoth:
+    id: 126
+    spells:
+      meteor: {}
+
+  promathia_1:
+    id: 127
+    spells:
+      comet: {}
+
+  promathia_2:
+    id: 128
+    spells:
+      meteor: {}
+      comet:  {}
+
+  prishe:
+    id: 129
+    spells:
+      cure_iv:      {}
+      cure_v:       {}
+      holy:         {}
+      banish_iii:   {}
+      banishga_iii: {}
+
+  bedrock_barry:
+    id: 130
+    spells:
+      rasp: {}
+
+  tyrant:
+    id: 131
+    spells:
+      flash: {}
+
+  alastor_antlion:
+    id: 132
+    spells:
+      stoneskin:   {}
+      stone_iv:    {}
+      stonega_iii: {}
+      quake:       {}
+      breakga:     {}
+
+  race_runner:
+    id: 133
+    spells:
+      blink:      {}
+      aero_v:     {}
+      aeroga_iii: {}
+      gravity:    {}
+
+  ajido_marujido:
+    id: 134
+    spells:
+      burst: {}
+      flood: {}
+
+  yali:
+    id: 135
+    spells:
+      slowga:   {}
+      dispelga: {}
+
+  aern_s_wynav:
+    id: 136
+    spells:
+      foe_requiem_v:    {}
+      horde_lullaby:    {}
+      armys_paeon_v:    {}
+      knights_minne_iv: {}
+      valor_minuet_iv:  {}
+      blade_madrigal:   {}
+      carnage_elegy:    {}
+      magic_finale:     {}
+      maidens_virelai:  {}
+
+  sekhmet:
+    id: 137
+    spells:
+      diaga_ii:  {}
+      slow:      {}
+      paralyze:  {}
+      silence:   {}
+      gravity:   {}
+      poison_ii: {}
+      sleep:     {}
+      blind:     {}
+      bind:      {}
+      sleep_ii:  {}
+      dispel:    {}
+
+  jailer_of_faith:
+    id: 138
+    spells:
+      stone_iv:    {}
+      stonega_iii: {}
+      slowga:      {}
+      breakga:     {}
+
+  sarameya:
+    id: 139
+    spells:
+      fire_iii:     {}
+      fire_iv:      {}
+      firaga_ii:    {}
+      firaga_iii:   {}
+      flare:        {}
+      flare_ii:     {}
+      burn:         {}
+      blaze_spikes: {}
+
+  jailer_of_hope:
+    id: 140
+    spells:
+      thundaga_iii: {}
+      burst_ii:     {}
+
+  avatar_smn:
+    id: 141
+    spells:
+      carbuncle: {}
+      ifrit:     {}
+      titan:     {}
+      leviathan: {}
+      garuda:    {}
+      shiva:     {}
+      ramuh:     {}
+
+  onki:
+    id: 143
+    spells:
+      fire_spirit: {}
+
+  bahamut:
+    id: 144
+    spells:
+      cure_v:    {}
+      protect_v: {}
+      shell_v:   {}
+      stoneskin: {}
+      phalanx:   {}
+      fire_v:    {}
+      firaga_iv: {}
+      flare_ii:  {}
+      silencega: {}
+      dispelga:  {}
+      graviga:   {}
+
+  dobsonfly:
+    id: 145
+    spells:
+      haste:   {}
+      aero_ii: {}
+      slowga:  {}
+
+  duke_decapod:
+    id: 146
+    spells:
+      water: {max_level: 10}
+
+  ankou:
+    id: 147
+    spells:
+      bio:   {}
+      drain: {}
+      aspir: {}
+
+  blighting_brand:
+    id: 148
+    spells:
+      paralyze: {}
+      bio_ii:   {}
+      sleep:    {}
+      blind:    {}
+
+  diabolos_waking_dream:
+    id: 149
+    spells:
+      drain:      {}
+      aspir:      {}
+      sleepga_ii: {}
+      dispelga:   {}
+
+  oupire:
+    id: 150
+    spells:
+      fire_iv:      {}
+      blizzard_iv:  {}
+      aero_iv:      {}
+      stone_iv:     {}
+      thunder_iv:   {}
+      water_iv:     {}
+      firaga_iii:   {}
+      blizzaga_iii: {}
+      aeroga_iii:   {}
+      stonega_iii:  {}
+      thundaga_iii: {}
+      waterga_iii:  {}
+      poisonga_iii: {}
+      sleepga_ii:   {}
+      dispelga:     {}
+      blindga:      {}
+      bindga:       {}
+      breakga:      {}
+      graviga:      {}
+
+  wake_warder_wanda:
+    id: 151
+    spells:
+      drown: {}
+
+  lord_of_onzozo:
+    id: 152
+    spells:
+      waterga_iii: {}
+      flood:       {}
+      blindga:     {}
+
+  iratham_hp_50to100:
+    id: 153
+    spells:
+      firaga_iii: {}
+      firaga_iv:  {}
+      flare:      {}
+      sleep_ii:   {}
+
+  iratham_hp_under_50:
+    id: 154
+    spells:
+      blizzaga_iii: {}
+      blizzaga_iv:  {}
+      freeze:       {}
+      sleep_ii:     {}
+
+  iratham_hp_under_20:
+    id: 155
+    spells:
+      blizzaga_iii: {}
+      blizzaga_iv:  {}
+      freeze:       {}
+      comet:        {}
+      sleep_ii:     {}
+
+  yaanei:
+    id: 156
+    spells:
+      stone_v:     {}
+      thunder_v:   {}
+      stonega_iv:  {}
+      thundaga_iv: {}
+      break:       {}
+      sleepga_ii:  {}
+      slowga:      {}
+      breakga:     {}
+
+  kutharei:
+    id: 157
+    spells:
+      fire_iv:   {}
+      aero_iv:   {}
+      firaga_iv: {}
+      aeroga_iv: {}
+      addle:     {}
+      silencega: {}
+      dispelga:  {}
+      graviga:   {}
+
+  sippoy_hp_50to100:
+    id: 158
+    spells:
+      blizzard_v: {}
+      water_v:    {}
+      stun:       {}
+      paralyga:   {}
+      blindga:    {}
+      bindga:     {}
+
+  sippoy_hp_under_50:
+    id: 159
+    spells:
+      blizzard_v:  {}
+      water_v:     {}
+      blizzaga_iv: {}
+      waterga_iv:  {}
+      stun:        {}
+      paralyga:    {}
+      blindga:     {}
+      bindga:      {}
+
+  rani_hp_75to100:
+    id: 160
+    spells:
+      flash:        {}
+      firaga_iii:   {}
+      blizzaga_iii: {}
+      aeroga_iii:   {}
+      stonega_iii:  {}
+      thundaga_iii: {}
+      waterga_iii:  {}
+      poison_iii:   {}
+      drain:        {}
+      aspir:        {}
+      sleepga_ii:   {}
+      addle:        {}
+      paralyga:     {}
+      silencega:    {}
+
+  rani_hp_50to75:
+    id: 161
+    spells:
+      flash:        {}
+      firaga_iii:   {}
+      blizzaga_iii: {}
+      aeroga_iii:   {}
+      stonega_iii:  {}
+      thundaga_iii: {}
+      waterga_iii:  {}
+      flare:        {}
+      freeze:       {}
+      tornado:      {}
+      quake:        {}
+      burst:        {}
+      flood:        {}
+      poison_iii:   {}
+      drain:        {}
+      aspir:        {}
+      sleepga_ii:   {}
+      addle:        {}
+      paralyga:     {}
+      silencega:    {}
+
+  rani_hp_under_50:
+    id: 162
+    spells:
+      flash:       {}
+      firaga_iv:   {}
+      blizzaga_iv: {}
+      aeroga_iv:   {}
+      stonega_iv:  {}
+      thundaga_iv: {}
+      waterga_iv:  {}
+      meteor:      {}
+      poison_iii:  {}
+      drain:       {}
+      aspir:       {}
+      sleepga_ii:  {}
+      addle:       {}
+      paralyga:    {}
+      silencega:   {}
+
+  raja:
+    id: 163
+    spells:
+      firaga_iv:   {}
+      blizzaga_iv: {}
+      aeroga_iv:   {}
+      stonega_iv:  {}
+      thundaga_iv: {}
+      waterga_iv:  {}
+      curse:       {}
+      slowga:      {}
+      blindga:     {}
+
+  lesser_arimaspi:
+    id: 164
+    spells:
+      fire_iv:     {}
+      fire_v:      {}
+      blizzard_iv: {}
+      blizzard_v:  {}
+      aero_iv:     {}
+      aero_v:      {}
+      stone_iv:    {}
+      stone_v:     {}
+      thunder_iv:  {}
+      thunder_v:   {}
+      water_iv:    {}
+      water_v:     {}
+      break:       {}
+      sleep_ii:    {}
+
+  arimaspi:
+    id: 165
+    spells:
+      fire_iv:     {}
+      fire_v:      {}
+      blizzard_iv: {}
+      blizzard_v:  {}
+      aero_iv:     {}
+      aero_v:      {}
+      stone_iv:    {}
+      stone_v:     {}
+      thunder_iv:  {}
+      thunder_v:   {}
+      water_iv:    {}
+      water_v:     {}
+      stun:        {}
+      curse:       {}
+      sleep_ii:    {}
+
+  ashtaerh_the_gallvexed:
+    id: 166
+    spells:
+      thunder_iv:   {}
+      thunder_v:    {}
+      thundaga_iii: {}
+      thundaga_iv:  {}
+      waterga_iii:  {}
+      waterga_iv:   {}
+
+  bakka:
+    id: 167
+    spells:
+      blizzard_iv:  {}
+      blizzard_v:   {}
+      blizzaga_iii: {}
+      blizzaga_iv:  {}
+      freeze:       {}
+      frost:        {}
+      paralyga:     {}
+      bindga:       {}
+
+  bloodeye_vileberry:
+    id: 168
+    spells:
+      firaga_iii:   {}
+      blizzaga_iii: {}
+      aeroga_iii:   {}
+      stonega_iii:  {}
+      thundaga_iii: {}
+      waterga_iii:  {}
+      poisonga_iii: {}
+      break:        {}
+      paralyga:     {}
+      bindga:       {}
+      graviga:      {}
+      death:        {}
+
+  gangly_gean:
+    id: 169
+    spells:
+      thunder_iv:   {}
+      water_iv:     {}
+      thundaga_iii: {}
+      waterga_iii:  {}
+      poisonga_ii:  {}
+      stun:         {}
+      sleepga_ii:   {}
+
+  guimauve:
+    id: 170
+    spells:
+      blizzard_iv: {}
+      aeroga:      {}
+      stonega_iii: {}
+      paralyga:    {}
+      slowga:      {}
+      silencega:   {}
+
+  lentor:
+    id: 171
+    spells:
+      water_v:     {}
+      waterga_iii: {}
+      waterga_iv:  {}
+
+  siranpa_kamuy:
+    id: 172
+    spells:
+      aero_iv:     {}
+      stone_iv:    {}
+      aeroga_iii:  {}
+      stonega_iii: {}
+      silencega:   {}
+
+  tonberry_lieje:
+    id: 173
+    spells:
+      fire_iv:    {}
+      fire_v:     {}
+      firaga_iii: {}
+      firaga_iv:  {}
+      flare:      {}
+      flare_ii:   {}
+
+  turul:
+    id: 174
+    spells:
+      aero_iv:      {}
+      thunder_iv:   {}
+      thunder_v:    {}
+      aeroga_iii:   {}
+      thundaga_iii: {}
+      thundaga_iv:  {}
+      silencega:    {}
+
+  turul_low_hp:
+    id: 175
+    spells:
+      aero_iv:      {}
+      aero_v:       {}
+      thunder_iv:   {}
+      thunder_v:    {}
+      aeroga_iii:   {}
+      aeroga_iv:    {}
+      thundaga_iii: {}
+      thundaga_iv:  {}
+      tornado:      {}
+      burst:        {}
+      stun:         {}
+      silencega:    {}
+
+  baba_yaga:
+    id: 176
+    spells:
+      aeroga_iii: {}
+      silencega:  {}
+      graviga:    {}
+
+  carabosse:
+    id: 177
+    spells:
+      cure_v:    {}
+      cure_vi:   {}
+      protect_v: {}
+      shell_v:   {}
+      stoneskin: {}
+
+  irrlicht:
+    id: 178
+    spells:
+      blizzaga_ii: {}
+      sleepga_ii:  {}
+      dispelga:    {}
+      bindga:      {}
+
+  la_theine_liege:
+    id: 179
+    spells:
+      aeroga: {}
+
+  megamaw_mikey:
+    id: 180
+    spells:
+      stone_v:     {}
+      stonega_iii: {}
+      quake:       {}
+
+  trembler_tabitha:
+    id: 181
+    spells:
+      quake: {}
+
+  poroggo_dom_juan:
+    id: 182
+    spells:
+      waterga_iii: {}
+      poisonga_ii: {}
+
+  abas:
+    id: 183
+    spells:
+      water_iv:    {}
+      waterga_iii: {}
+      flood:       {}
+      poisonga_ii: {}
+
+  cannered_noz:
+    id: 184
+    spells:
+      blizzard_iv:  {}
+      blizzard_v:   {}
+      blizzaga_iii: {}
+      blizzaga_iv:  {}
+      freeze:       {}
+      freeze_ii:    {}
+      sleepga_ii:   {}
+      paralyga:     {}
+      silencega:    {}
+      graviga:      {}
+      death:        {}
+
+  chukwa:
+    id: 185
+    spells:
+      stonega_iv: {}
+      waterga_iv: {}
+      quake_ii:   {}
+      flood_ii:   {}
+
+  cuelebre:
+    id: 186
+    spells:
+      stoneskin: {}
+      slowga:    {}
+      breakga:   {}
+
+  glavoid:
+    id: 187
+    spells:
+      stonega_iv: {}
+      quake_ii:   {}
+      slowga:     {}
+
+  lachrymater_fireday:
+    id: 188
+    spells:
+      fire_iv:      {}
+      firaga_iii:   {}
+      flare:        {}
+      burn:         {}
+      blaze_spikes: {}
+
+  lachrymater_iceday:
+    id: 189
+    spells:
+      blizzard_iv:  {}
+      blizzaga_iii: {}
+      freeze:       {}
+      frost:        {}
+      ice_spikes:   {}
+
+  lachrymater_earthday:
+    id: 190
+    spells:
+      stone_iv:    {}
+      stonega_iii: {}
+      quake:       {}
+      rasp:        {}
+
+  lachrymater_thunderday:
+    id: 191
+    spells:
+      thunder_iv:   {}
+      thundaga_iii: {}
+      burst:        {}
+      shock_spikes: {}
+
+  lachrymater_waterday:
+    id: 192
+    spells:
+      water_iv:    {}
+      waterga_iii: {}
+      flood:       {}
+      drown:       {}
+
+  lachrymater_windday:
+    id: 193
+    spells:
+      aero_iv:    {}
+      aeroga_iii: {}
+      tornado:    {}
+      choke:      {}
+
+  lachrymater_darkday:
+    id: 194
+    spells:
+      bio_ii:     {}
+      absorb-acc: {}
+      drain:      {}
+      aspir:      {}
+      absorb-str: {}
+      absorb-dex: {}
+      absorb-vit: {}
+      absorb-agi: {}
+      absorb-int: {}
+      absorb-mnd: {}
+      absorb-chr: {}
+      sleepga:    {}
+
+  lachrymater_lightday:
+    id: 195
+    spells:
+      holy:         {}
+      dia_iii:      {}
+      banish_iv:    {}
+      banishga_iii: {}
+
+  lacovie:
+    id: 196
+    spells:
+      slow_ii: {}
+      stone_v: {}
+      quake:   {}
+      break:   {}
+
+  manananggal:
+    id: 197
+    spells:
+      blizzard_ii: {}
+      bio_ii:      {}
+      absorb-dex:  {}
+      absorb-vit:  {}
+      absorb-tp:   {}
+
+  mictlantecuhtli:
+    id: 198
+    spells:
+      fire_iv:      {}
+      blizzard_iv:  {}
+      stone_iv:     {}
+      thunder_iv:   {}
+      water_iv:     {}
+      firaga_iii:   {}
+      blizzaga_iii: {}
+      stonega_iii:  {}
+      thundaga_iii: {}
+      waterga_iii:  {}
+      flare:        {}
+      freeze:       {}
+      tornado:      {}
+      quake:        {}
+      burst:        {}
+      flood:        {}
+      drain:        {}
+      sleep_ii:     {}
+      sleepga_ii:   {}
+
+  quetzalli:
+    id: 199
+    spells:
+      fire_v:    {}
+      firaga_iv: {}
+      flare:     {}
+
+  ophanim:
+    id: 200
+    spells:
+      firaga_iii:   {}
+      blizzaga_iii: {}
+      stonega_iii:  {}
+      thundaga_iii: {}
+      waterga_iii:  {}
+      bio_ii:       {}
+      drain:        {}
+      aspir:        {}
+      blaze_spikes: {}
+
+  halimede:
+    id: 201
+    spells:
+      blizzaga_iii: {}
+      waterga_iii:  {}
+      freeze:       {}
+      flood:        {}
+      poisonga_ii:  {}
+      paralyga:     {}
+
+  mindertaur:
+    id: 202
+    spells:
+      cure_v:    {}
+      banish_ii: {}
+      flash:     {}
+
+  eldertaur:
+    id: 203
+    spells:
+      cure_v:     {}
+      protect_iv: {}
+      shell_iii:  {}
+
+  firespirit:
+    id: 204
+    spells:
+      fire:     {min_level: 13, max_level: 37}
+      fire_ii:  {min_level: 38, max_level: 61}
+      fire_iii: {min_level: 62, max_level: 72}
+      fire_iv:  {min_level: 73, max_level: 85}
+      fire_v:   {min_level: 86}
+      flare:    {min_level: 60}
+      burn:     {min_level: 24}
+
+  icespirit:
+    id: 205
+    spells:
+      paralyze:     {min_level: 4}
+      blizzard:     {min_level: 17, max_level: 41}
+      blizzard_ii:  {min_level: 42, max_level: 63}
+      blizzard_iii: {min_level: 64, max_level: 73}
+      blizzard_iv:  {min_level: 74, max_level: 88}
+      blizzard_v:   {min_level: 89}
+      freeze:       {min_level: 50}
+      frost:        {min_level: 22}
+      bind:         {min_level: 7}
+
+  airspirit:
+    id: 206
+    spells:
+      silence:  {min_level: 15}
+      aero:     {min_level: 9, max_level: 33}
+      aero_ii:  {min_level: 34, max_level: 58}
+      aero_iii: {min_level: 59, max_level: 71}
+      aero_iv:  {min_level: 72, max_level: 82}
+      aero_v:   {min_level: 83}
+      gravity:  {min_level: 21}
+      choke:    {min_level: 20}
+
+  earthspirit:
+    id: 207
+    spells:
+      slow:      {min_level: 13}
+      stone:     {max_level: 25}
+      stone_ii:  {min_level: 26, max_level: 50}
+      stone_iii: {min_level: 51, max_level: 67}
+      stone_iv:  {min_level: 68, max_level: 76}
+      stone_v:   {min_level: 77}
+      quake:     {min_level: 54}
+      rasp:      {min_level: 18}
+
+  thunderspirit:
+    id: 208
+    spells:
+      thunder:     {min_level: 21, max_level: 45}
+      thunder_ii:  {min_level: 46, max_level: 65}
+      thunder_iii: {min_level: 66, max_level: 74}
+      thunder_iv:  {min_level: 75, max_level: 91}
+      thunder_v:   {min_level: 92}
+      burst:       {min_level: 56}
+      shock:       {min_level: 16}
+
+  waterspirit:
+    id: 209
+    spells:
+      water:     {min_level: 5, max_level: 29}
+      water_ii:  {min_level: 30, max_level: 54}
+      water_iii: {min_level: 55, max_level: 69}
+      water_iv:  {min_level: 70, max_level: 79}
+      water_v:   {min_level: 80}
+      flood:     {min_level: 58}
+      poison:    {min_level: 3, max_level: 41}
+      poison_ii: {min_level: 42}
+      drown:     {min_level: 27}
+
+  lightspirit:
+    id: 210
+    spells:
+      cure:        {max_level: 10}
+      cure_ii:     {min_level: 11, max_level: 20}
+      cure_iii:    {min_level: 21, max_level: 40}
+      cure_iv:     {min_level: 41, max_level: 60}
+      cure_v:      {min_level: 61}
+      curaga:      {min_level: 16, max_level: 30}
+      curaga_ii:   {min_level: 31, max_level: 50}
+      curaga_iii:  {min_level: 51, max_level: 70}
+      curaga_iv:   {min_level: 71}
+      holy:        {min_level: 50, max_level: 94}
+      holy_ii:     {min_level: 95}
+      dia:         {max_level: 30}
+      dia_ii:      {min_level: 31}
+      banish:      {min_level: 5, max_level: 29}
+      banish_ii:   {min_level: 30, max_level: 64}
+      banish_iii:  {min_level: 65, max_level: 89}
+      banish_iv:   {min_level: 90}
+      protect:     {min_level: 7, max_level: 26}
+      protect_ii:  {min_level: 27, max_level: 46}
+      protect_iii: {min_level: 47, max_level: 62}
+      protect_iv:  {min_level: 63, max_level: 75}
+      protect_v:   {min_level: 76}
+      shell:       {min_level: 17, max_level: 36}
+      shell_ii:    {min_level: 37, max_level: 56}
+      shell_iii:   {min_level: 57, max_level: 67}
+      shell_iv:    {min_level: 68, max_level: 75}
+      shell_v:     {min_level: 76}
+      haste:       {min_level: 40}
+      regen:       {min_level: 21}
+      flash:       {min_level: 37}
+
+  darkspirit:
+    id: 211
+    spells:
+      bio:        {min_level: 10, max_level: 34}
+      bio_ii:     {min_level: 35}
+      drain:      {min_level: 10}
+      aspir:      {min_level: 20}
+      stun:       {min_level: 37}
+      sleep:      {min_level: 20}
+      blind:      {}
+      sleep_ii:   {min_level: 41}
+      dispel:     {min_level: 32}
+      absorb-str: {min_level: 43}
+      absorb-dex: {min_level: 41}
+      absorb-vit: {min_level: 35}
+      absorb-agi: {min_level: 37}
+      absorb-int: {min_level: 39}
+      absorb-mnd: {min_level: 31}
+      absorb-chr: {min_level: 33}
+      sleepga:    {min_level: 31, max_level: 55}
+      sleepga_ii: {min_level: 56}
+      absorb-tp:  {min_level: 45}
+
+  amnaf_blu:
+    id: 212
+    spells:
+      tail_slap:        {}
+      hysteric_barrage: {}
+
+  raubahn:
+    id: 213
+    spells:
+      eyes_on_me: {}
+
+  alexander_np:
+    id: 214
+    spells:
+      holy_ii:      {}
+      dia_iii:      {}
+      banish_iv:    {}
+      diaga_iii:    {}
+      banishga_iii: {}
+
+  amun:
+    id: 215
+    spells:
+      fire_v:    {}
+      aero_v:    {}
+      firaga_iv: {}
+      aeroga_iv: {}
+      silencega: {}
+
+  berstuk:
+    id: 216
+    spells:
+      water_v:    {}
+      waterga_iv: {}
+      graviga:    {}
+      waterja:    {}
+
+  blazing_eruca:
+    id: 217
+    spells:
+      fire_v:    {}
+      firaga_iv: {}
+      addle:     {}
+
+  drekavac:
+    id: 218
+    spells:
+      aquaveil:   {}
+      rainstorm:  {}
+      water_v:    {}
+      waterga_iv: {}
+      gain-mnd:   {}
+      waterja:    {}
+
+  granite_borer:
+    id: 219
+    spells:
+      fire_v:    {}
+      firaga_iv: {}
+
+  kharon:
+    id: 220
+    spells:
+      absorb-tp:    {}
+      dread_spikes: {}
+
+  maahes:
+    id: 221
+    spells:
+      thunder_iv:   {}
+      thunder_v:    {}
+      thundaga_iii: {}
+      thundaga_iv:  {}
+
+  mielikki:
+    id: 222
+    spells:
+      sandstorm:   {}
+      stone_v:     {}
+      stonega_iii: {}
+      stonega_iv:  {}
+      addle:       {}
+      stoneja:     {}
+
+  pallid_percy:
+    id: 223
+    spells:
+      aero_v:     {}
+      stone_v:    {}
+      aeroga_iv:  {}
+      stonega_iv: {}
+      slowga:     {}
+      silencega:  {}
+      graviga:    {}
+
+  svarbhanu:
+    id: 224
+    spells:
+      break:  {}
+      addle:  {}
+      slowga: {}
+
+  smok:
+    id: 225
+    spells:
+      fire_v:    {}
+      firaga_iv: {}
+      flare:     {}
+      addle:     {}
+
+  titlacauan:
+    id: 226
+    spells:
+      firaga_iv:   {}
+      blizzaga_iv: {}
+      comet:       {}
+      drain:       {}
+      paralyga:    {}
+      dispelga:    {}
+      death:       {}
+
+  tunga_mode1:
+    id: 227
+    spells:
+      stonega_iii: {}
+      break:       {}
+      slowga:      {}
+      dispelga:    {}
+      breakga:     {}
+
+  tunga_mode2:
+    id: 228
+    spells:
+      stone_v:    {}
+      stonega_iv: {}
+      break:      {}
+      breakga:    {}
+
+  ulhuadshi:
+    id: 229
+    spells:
+      stonega_iv: {}
+      slowga:     {}
+      stoneja:    {}
+
+  abyssic_cluster:
+    id: 230
+    spells:
+      fire_v:       {}
+      firaga_iv:    {}
+      flare_ii:     {}
+      blaze_spikes: {}
+
+  amhuluk:
+    id: 231
+    spells:
+      aeroga_iv: {}
+      tornado:   {}
+      drain:     {}
+      silencega: {}
+      graviga:   {}
+
+  athamas:
+    id: 232
+    spells:
+      addle:     {}
+      silencega: {}
+      graviga:   {}
+
+  heqet:
+    id: 233
+    spells:
+      slow:       {}
+      waterga:    {}
+      waterga_ii: {}
+      waterga_iv: {}
+      addle:      {}
+      slowga:     {}
+      waterja:    {}
+
+  karkatakam:
+    id: 234
+    spells:
+      waterga_ii: {}
+      flood:      {}
+
+  sobek:
+    id: 235
+    spells:
+      blizzaga_iv: {}
+      sleepga_ii:  {}
+      paralyga:    {}
+      dispelga:    {}
+      bindga:      {}
+
+  itzpapalotl:
+    id: 236
+    spells:
+      firaga_iv: {}
+
+  likho:
+    id: 237
+    spells:
+      firaga_ii: {}
+
+  hoar_knuckled_rimberry:
+    id: 238
+    spells:
+      hyoton_ni: {}
+      jubaku_ni: {}
+
+  dee_zelko_85:
+    id: 239
+    spells:
+      aero:       {}
+      aeroga:     {}
+      bio_iii:    {}
+      stun:       {}
+      sleepga_ii: {}
+
+  dee_zelko_70:
+    id: 240
+    spells:
+      aero_ii:    {}
+      aeroga:     {}
+      bio_iii:    {}
+      stun:       {}
+      sleepga_ii: {}
+
+  dee_zelko_55:
+    id: 241
+    spells:
+      aero_iii:   {}
+      aeroga_ii:  {}
+      bio_iii:    {}
+      stun:       {}
+      sleepga_ii: {}
+
+  dee_zelko_40:
+    id: 242
+    spells:
+      aero_iv:    {}
+      aeroga_ii:  {}
+      bio_iii:    {}
+      stun:       {}
+      sleepga_ii: {}
+
+  dee_zelko_25:
+    id: 243
+    spells:
+      aeroga_iii: {}
+      tornado:    {}
+      bio_iii:    {}
+      stun:       {}
+      sleepga_ii: {}
+
+  dee_zelko_0:
+    id: 244
+    spells:
+      aeroga_iii: {}
+      tornado_ii: {}
+      bio_iii:    {}
+      stun:       {}
+      sleepga_ii: {}
+
+  bukhis:
+    id: 245
+    spells:
+      blizzard_v:  {}
+      blizzaga_iv: {}
+      paralyga:    {}
+      bindga:      {}
+
+  chhir_batti:
+    id: 246
+    spells:
+      blink:     {}
+      stoneskin: {}
+      haste:     {}
+      voidstorm: {}
+      paralyga:  {}
+      slowga:    {}
+      silencega: {}
+      bindga:    {}
+
+  durinn:
+    id: 247
+    spells:
+      firaga_iv:   {}
+      blizzaga_iv: {}
+      aeroga_iv:   {}
+      stonega_iv:  {}
+      thundaga_iv: {}
+      waterga_iv:  {}
+      flare:       {}
+      freeze:      {}
+      tornado:     {}
+      quake:       {}
+      burst:       {}
+      flood:       {}
+      paralyga:    {}
+      silencega:   {}
+
+  dvalinn:
+    id: 248
+    spells:
+      firaga_iii:   {}
+      blizzaga_iii: {}
+      aeroga_iii:   {}
+      stonega_iii:  {}
+      thundaga_iii: {}
+      waterga_iii:  {}
+      paralyga:     {}
+      slowga:       {}
+      silencega:    {}
+      bindga:       {}
+      graviga:      {}
+
+  hanuman:
+    id: 249
+    spells:
+      aeroga_iii: {}
+      sleepga_ii: {}
+      silencega:  {}
+      graviga:    {}
+
+  hrosshvalur:
+    id: 250
+    spells:
+      waterja: {}
+
+  iku_turso:
+    id: 251
+    spells:
+      water_v:    {}
+      waterga_iv: {}
+      waterja:    {}
+
+  kadraeth_the_hatespawn:
+    id: 252
+    spells:
+      thundaga_iv: {}
+      stun:        {}
+
+  lord_varney:
+    id: 253
+    spells:
+      blink:     {}
+      haste:     {}
+      aero_iv:   {}
+      aero_v:    {}
+      aeroga_iv: {}
+      silencega: {}
+      graviga:   {}
+
+  pascerpot:
+    id: 254
+    spells:
+      holy:         {}
+      holy_ii:      {}
+      banishga_iii: {}
+      paralyze:     {}
+      silence:      {}
+      paralyga:     {}
+      slowga:       {}
+      silencega:    {}
+
+  rakshas:
+    id: 255
+    spells:
+      firaga_iii:  {}
+      stonega_iii: {}
+      break:       {}
+      addle:       {}
+      slowga:      {}
+
+  sedna:
+    id: 256
+    spells:
+      aquaveil:   {}
+      water_v:    {}
+      waterga_iv: {}
+      flood:      {}
+      dispelga:   {}
+      waterja:    {}
+
+  karkadann:
+    id: 257
+    spells:
+      thundaga_iv: {}
+
+  amarok:
+    id: 258
+    spells:
+      fire_iv:    {}
+      firaga_iii: {}
+      addle:      {}
+
+  ansherekh:
+    id: 259
+    spells:
+      fire_iv: {}
+      addle:   {}
+
+  battlerigged_chariot:
+    id: 260
+    spells:
+      fire_iv:    {}
+      firaga_iii: {}
+      flare:      {}
+      addle:      {}
+
+  cuijatender:
+    id: 261
+    spells:
+      paralyga:  {}
+      silencega: {}
+
+  dragua:
+    id: 262
+    spells:
+      stoneskin:  {}
+      stone_v:    {}
+      stonega_iv: {}
+      slowga:     {}
+      stoneja:    {}
+
+  hedjedjet_pre_50:
+    id: 263
+    spells:
+      bindga: {}
+
+  hedjedjet_post_50:
+    id: 264
+    spells:
+      bindga:  {}
+      breakga: {}
+
+  orthrus:
+    id: 265
+    spells:
+      fire_iii:     {}
+      fire_iv:      {}
+      fire_v:       {}
+      firaga_iii:   {}
+      firaga_iv:    {}
+      flare:        {}
+      blaze_spikes: {}
+
+  ouzelum:
+    id: 266
+    spells:
+      fire_iv:   {}
+      fire_v:    {}
+      aero_iv:   {}
+      aero_v:    {}
+      addle:     {}
+      silencega: {}
+
+  sharabha_100_to_50:
+    id: 267
+    spells:
+      stone_iv:    {}
+      stonega_iii: {}
+
+  sharabha_50_to_25:
+    id: 268
+    spells:
+      stone_v: {}
+      stoneja: {}
+
+  sharabha_below_25:
+    id: 269
+    spells:
+      stone_v:    {}
+      stonega_iv: {}
+      stoneja:    {}
+
+  vadleany:
+    id: 270
+    spells:
+      aero_v:    {}
+      aeroga_iv: {}
+      tornado:   {}
+      aeroja:    {}
+
+  waugyl:
+    id: 271
+    spells:
+      sandstorm:    {}
+      rainstorm:    {}
+      windstorm:    {}
+      firestorm:    {}
+      hailstorm:    {}
+      thunderstorm: {}
+      voidstorm:    {}
+      aurorastorm:  {}
+
+  anemic_aloysius:
+    id: 272
+    spells:
+      stone_v:     {}
+      stonega_ii:  {}
+      stonega_iii: {}
+      stonega_iv:  {}
+      slowga:      {}
+      stoneja:     {}
+
+  apademak:
+    id: 273
+    spells:
+      thunder_iv:   {}
+      thunder_v:    {}
+      thundaga_iii: {}
+      thundaga_iv:  {}
+
+  empousa:
+    id: 274
+    spells:
+      drain:        {}
+      dread_spikes: {}
+      dispelga:     {}
+
+  isgebind:
+    id: 275
+    spells:
+      blizzard_iv:  {}
+      blizzard_v:   {}
+      blizzaga_iii: {}
+      blizzaga_iv:  {}
+
+  pantokrator_100_to_25:
+    id: 276
+    spells:
+      fire_v:       {}
+      blizzard_v:   {}
+      aero_v:       {}
+      stone_v:      {}
+      thunder_v:    {}
+      water_v:      {}
+      firaga_iii:   {}
+      blizzaga_iii: {}
+      aeroga_iii:   {}
+      stonega_iii:  {}
+      thundaga_iii: {}
+      waterga_iii:  {}
+      slowga:       {}
+      silencega:    {}
+      graviga:      {}
+
+  pantokrator_below_25:
+    id: 277
+    spells:
+      fire_v:      {}
+      blizzard_v:  {}
+      aero_v:      {}
+      stone_v:     {}
+      thunder_v:   {}
+      water_v:     {}
+      firaga_iv:   {}
+      blizzaga_iv: {}
+      aeroga_iv:   {}
+      stonega_iv:  {}
+      thundaga_iv: {}
+      waterga_iv:  {}
+      slowga:      {}
+      silencega:   {}
+      graviga:     {}
+
+  upas_kamuy:
+    id: 278
+    spells:
+      blizzard_iv: {}
+      blizzard_v:  {}
+      freeze:      {}
+      freeze_ii:   {}
+
+  veri_selen:
+    id: 279
+    spells:
+      aero_iv:    {}
+      aero_v:     {}
+      aeroga_ii:  {}
+      aeroga_iii: {}
+      silencega:  {}
+
+  amphitrite:
+    id: 280
+    spells:
+      firaga_iii:  {}
+      stonega_iii: {}
+      waterga_iii: {}
+
+  assailer_chariot:
+    id: 281
+    spells:
+      thunder_iv:   {}
+      thundaga_iii: {}
+      shock:        {}
+
+  azdaja:
+    id: 282
+    spells:
+      firaga_iv:   {}
+      blizzaga_iv: {}
+      aeroga_iv:   {}
+      stonega_iv:  {}
+      thundaga_iv: {}
+      stun:        {}
+      dispel:      {}
+      sleepga_ii:  {}
+      addle:       {}
+      silencega:   {}
+      bindga:      {}
+      breakga:     {}
+      graviga:     {}
+
+  aby_grauberg_goblin_nm:
+    id: 283
+    spells:
+      fire_v:    {}
+      firaga_iv: {}
+      firaja:    {}
+
+  fleshflayer_killakriq:
+    id: 284
+    spells:
+      firaga_iii: {}
+      burn:       {}
+      addle:      {}
+
+  fuath:
+    id: 285
+    spells:
+      firaga_iii:   {}
+      blizzaga_iii: {}
+      aeroga_iii:   {}
+      stonega_iii:  {}
+      thundaga_iii: {}
+      waterga_iii:  {}
+      drain:        {}
+      aspir:        {}
+
+  ika_roa:
+    id: 286
+    spells:
+      waterga_ii:  {}
+      waterga_iii: {}
+      waterga_iv:  {}
+      waterja:     {}
+
+  lorelei:
+    id: 287
+    spells:
+      diaga_iii: {}
+      aero_v:    {}
+      aeroga_iv: {}
+      paralyga:  {}
+      slowga:    {}
+      silencega: {}
+      aeroja:    {}
+
+  minaruja:
+    id: 288
+    spells:
+      aero_v:    {}
+      aeroga_iv: {}
+      slowga:    {}
+      silencega: {}
+
+  rencounter_chariot:
+    id: 289
+    spells:
+      firaga_iv:   {}
+      thundaga_iv: {}
+      burn:        {}
+      shock:       {}
+      absorb-int:  {}
+      absorb-mnd:  {}
+
+  teekesselchen:
+    id: 290
+    spells:
+      firaga_iv:   {}
+      blizzaga_iv: {}
+      aeroga_iv:   {}
+      stonega_iv:  {}
+      thundaga_iv: {}
+      waterga_iv:  {}
+      sleepga_ii:  {}
+      slowga:      {}
+      silencega:   {}
+      breakga:     {}
+
+  teugghia:
+    id: 291
+    spells:
+      firaga_iv:   {}
+      blizzaga_iv: {}
+      aeroga_iv:   {}
+      stonega_iv:  {}
+      thundaga_iv: {}
+      waterga_iv:  {}
+      sleepga_ii:  {}
+      addle:       {}
+      paralyga:    {}
+      bindga:      {}
+      graviga:     {}
+
+  xibalba:
+    id: 292
+    spells:
+      aero_v:     {}
+      aeroga_ii:  {}
+      aeroga_iii: {}
+      stun:       {}
+      sleepga:    {}
+      silencega:  {}
+      blindga:    {}
+      graviga:    {}
+      death:      {}
+      aeroja:     {}
+
+  nosferatu:
+    id: 293
+    spells:
+      absorb-acc:   {}
+      drain:        {}
+      drain_ii:     {}
+      stun:         {}
+      absorb-tp:    {}
+      dread_spikes: {}
+
+  honor:
+    id: 294
+    spells:
+      paralyga:  {}
+      silencega: {}
+
+  # Bomb_Queen / Big Bomb / Friars Lantern
+  bomb_queen:
+    id: 295
+    spells:
+      enfire:       {min_level: 24}
+      fire_iv:      {min_level: 73, max_level: 85}
+      firaga_iii:   {min_level: 69}
+      flare:        {min_level: 60}
+      burn:         {min_level: 24}
+      blaze_spikes: {min_level: 10}
+
+  gotoh_zha_the_redolent_blm:
+    id: 296
+    spells:
+      fire_iv:      {}
+      blizzard_iv:  {}
+      aero_iv:      {}
+      stone_iv:     {}
+      thunder_iv:   {}
+      water_iv:     {}
+      firaga_iii:   {}
+      blizzaga_iii: {}
+      aeroga_iii:   {}
+      stonega_iii:  {}
+      thundaga_iii: {}
+      waterga_iii:  {}
+      shock_spikes: {}
+      sleepga:      {}
+      sleepga_ii:   {}
+
+  gotoh_zha_the_redolent_whm:
+    id: 297
+    spells:
+      cure_v:       {}
+      curaga_iv:    {}
+      poisona:      {}
+      paralyna:     {}
+      blindna:      {}
+      silena:       {}
+      stona:        {}
+      viruna:       {}
+      cursna:       {}
+      holy:         {}
+      banishga_iii: {}
+      protect_iv:   {}
+      shell_iv:     {}
+      aquaveil:     {}
+      haste:        {}
+      silence:      {}
+      barblizzard:  {}
+      flash:        {}
+
+  drumskull_zogdregg:
+    id: 298
+    spells:
+      stonega_iii: {}
+
+  humanoid_blu:
+    id: 299
+    spells:
+      venom_shell:       {min_level: 42}
+      metallic_body:     {min_level: 61}
+      screwdriver:       {min_level: 26}
+      mp_drainkiss:      {min_level: 42}
+      death_ray:         {min_level: 34}
+      sandspin:          {}
+      smite_of_rage:     {min_level: 34}
+      bludgeon:          {min_level: 18}
+      refueling:         {min_level: 48}
+      ice_break:         {min_level: 50}
+      blitzstrahl:       {min_level: 44}
+      self-destruct:     {min_level: 50}
+      mysterious_light:  {min_level: 40}
+      cold_wave:         {min_level: 52}
+      poison_breath:     {min_level: 22}
+      stinking_gas:      {min_level: 44}
+      memento_mori:      {min_level: 62}
+      terror_touch:      {min_level: 40}
+      spinal_cleave:     {min_level: 63}
+      blood_saber:       {min_level: 48}
+      digest:            {min_level: 36}
+      mandibular_bite:   {min_level: 44}
+      cursed_sphere:     {min_level: 18}
+      sickle_slash:      {min_level: 48}
+      cocoon:            {min_level: 8}
+      filamented_hold:   {min_level: 52}
+      pollen:            {max_level: 29}
+      power_attack:      {min_level: 4}
+      death_scissors:    {min_level: 60}
+      magnetite_cloud:   {min_level: 46}
+      eyes_on_me:        {min_level: 61}
+      frenetic_rip:      {min_level: 63}
+      frightful_roar:    {min_level: 50}
+      hecatomb_wave:     {min_level: 54}
+      body_slam:         {min_level: 62}
+      radiant_breath:    {min_level: 54}
+      helldive:          {min_level: 16}
+      jet_stream:        {min_level: 38}
+      blood_drain:       {min_level: 20}
+      sound_blast:       {min_level: 32}
+      feather_tickle:    {min_level: 64}
+      feather_barrier:   {min_level: 56}
+      jettatura:         {min_level: 48}
+      yawn:              {min_level: 64}
+      foot_kick:         {}
+      wild_carrot:       {min_level: 30, max_level: 57}
+      voracious_trunk:   {min_level: 64}
+      healing_breeze:    {min_level: 16}
+      chaotic_eye:       {min_level: 32}
+      sheep_song:        {min_level: 16}
+      ram_charge:        {min_level: 73}
+      claw_cyclone:      {min_level: 20}
+      lowing:            {min_level: 71}
+      dimensional_death: {min_level: 60}
+      heat_breath:       {min_level: 71}
+      blank_gaze:        {min_level: 38}
+      magic_fruit:       {min_level: 58}
+      uppercut:          {min_level: 38}
+      1000_needles:      {min_level: 62}
+      pinecone_bomb:     {min_level: 36}
+      sprout_smack:      {min_level: 4}
+      soporific:         {min_level: 24}
+      queasyshroom:      {min_level: 8}
+      wild_oats:         {min_level: 4}
+      bad_breath:        {min_level: 61}
+      geist_wall:        {min_level: 46}
+      awful_eye:         {min_level: 46}
+      infrasonics:       {min_level: 65}
+      disseverment:      {min_level: 72}
+      actinic_burst:     {min_level: 74}
+      reactor_cool:      {min_level: 74}
+      saline_coat:       {min_level: 72}
+      plasma_charge:     {min_level: 75}
+      temporal_shift:    {min_level: 73}
+      vertical_cleave:   {min_level: 75}
+      blastbomb:         {min_level: 18}
+      battle_dance:      {min_level: 12}
+      sandspray:         {min_level: 66}
+      grand_slam:        {min_level: 30}
+      head_butt:         {min_level: 12}
+      bomb_toss:         {min_level: 28}
+      frypan:            {min_level: 63}
+      flying_hip_press:  {min_level: 58}
+      hydro_shot:        {min_level: 63}
+      diamondhide:       {min_level: 67}
+      enervation:        {min_level: 67}
+      light_of_penance:  {min_level: 58}
+      warm-up:           {min_level: 68}
+      firespit:          {min_level: 68}
+      feather_storm:     {min_level: 12}
+      tail_slap:         {min_level: 69}
+      hysteric_barrage:  {min_level: 69}
+      amplification:     {min_level: 70}
+      cannonball:        {min_level: 70}
+      mind_blast:        {min_level: 73}
+      exuviation:        {min_level: 75}
+      magic_hammer:      {min_level: 74}
+      zephyr_mantle:     {min_level: 65}
+
+  velionis:
+    id: 300
+    spells:
+      fire_iii:     {}
+      blizzard_iii: {}
+      aero_iii:     {}
+      stone_iii:    {}
+      thunder_iii:  {}
+      water_iii:    {}
+      firaga_ii:    {}
+      blizzaga_ii:  {}
+      aeroga_ii:    {}
+      stonega_ii:   {}
+      thundaga_ii:  {}
+      waterga_ii:   {}
+
+  marquis_forneus:
+    id: 301
+    spells:
+      absorb-acc:   {}
+      drain:        {}
+      aspir:        {}
+      stun:         {}
+      absorb-str:   {}
+      absorb-dex:   {}
+      absorb-vit:   {}
+      absorb-agi:   {}
+      absorb-int:   {}
+      absorb-mnd:   {}
+      absorb-chr:   {}
+      absorb-tp:    {}
+      dread_spikes: {}
+
+  chamrosh:
+    id: 302
+    spells:
+      aero_iv:    {}
+      aeroga_ii:  {}
+      aeroga_iii: {}
+      tornado:    {}
+      silencega:  {}
+
+  lizardtrap:
+    id: 303
+    spells:
+      blizzard_iv:  {}
+      blizzaga_iii: {}
+      paralyga:     {}
+
+  ghul_i_beaban_drk:
+    id: 304
+    spells:
+      fire:       {}
+      thunder:    {}
+      absorb-str: {}
+      absorb-dex: {}
+      absorb-vit: {}
+      absorb-agi: {}
+      absorb-int: {}
+      absorb-mnd: {}
+      absorb-chr: {}
+
+  ghul_i_beaban_blm:
+    id: 305
+    spells:
+      fire_ii:     {}
+      blizzard_ii: {}
+      firaga:      {}
+      blizzaga:    {}
+
+  saa_doyi_the_fervid:
+    id: 306
+    spells:
+      katon_ichi: {}
+
+  frost_flambeau:
+    id: 307
+    spells:
+      blizzaga_ii: {}
+
+  trust_shantotto:
+    id: 308
+    spells:
+      fire:         {min_level: 13}
+      fire_ii:      {min_level: 38}
+      fire_iii:     {min_level: 62}
+      fire_iv:      {min_level: 73}
+      fire_v:       {min_level: 86}
+      blizzard:     {min_level: 17}
+      blizzard_ii:  {min_level: 42}
+      blizzard_iii: {min_level: 64}
+      blizzard_iv:  {min_level: 74}
+      blizzard_v:   {min_level: 89}
+      aero:         {min_level: 9}
+      aero_ii:      {min_level: 34}
+      aero_iii:     {min_level: 59}
+      aero_iv:      {min_level: 72}
+      aero_v:       {min_level: 83}
+      stone:        {}
+      stone_ii:     {min_level: 26}
+      stone_iii:    {min_level: 51}
+      stone_iv:     {min_level: 68}
+      stone_v:      {min_level: 77}
+      thunder:      {min_level: 21}
+      thunder_ii:   {min_level: 46}
+      thunder_iii:  {min_level: 66}
+      thunder_iv:   {min_level: 75}
+      thunder_v:    {min_level: 92}
+      water:        {min_level: 5}
+      water_ii:     {min_level: 30}
+      water_iii:    {min_level: 55}
+      water_iv:     {min_level: 70}
+      water_v:      {min_level: 80}
+
+  trust_kupipi:
+    id: 310
+    spells:
+      cure:          {}
+      cure_ii:       {min_level: 11}
+      cure_iii:      {min_level: 21}
+      cure_iv:       {min_level: 41}
+      cure_v:        {min_level: 61}
+      cure_vi:       {min_level: 80}
+      poisona:       {min_level: 6}
+      paralyna:      {min_level: 9}
+      blindna:       {min_level: 14}
+      silena:        {min_level: 19}
+      stona:         {min_level: 39}
+      viruna:        {min_level: 34}
+      cursna:        {min_level: 29}
+      slow:          {min_level: 13}
+      paralyze:      {min_level: 6}
+      flash:         {min_level: 45}
+      protectra:     {min_level: 7}
+      protectra_ii:  {min_level: 27}
+      protectra_iii: {min_level: 47}
+      protectra_iv:  {min_level: 63}
+      protectra_v:   {min_level: 75}
+      shellra:       {min_level: 17}
+      shellra_ii:    {min_level: 37}
+      shellra_iii:   {min_level: 57}
+      shellra_iv:    {min_level: 68}
+      shellra_v:     {min_level: 75}
+      erase:         {min_level: 32}
+
+  trust_excenmille:
+    id: 311
+    spells:
+      cure:     {min_level:  5}
+      cure_ii:  {min_level: 17}
+      cure_iii: {min_level: 30}
+      cure_iv:  {min_level: 55}
+      flash:    {min_level: 45}
+
+  trust_curilla:
+    id: 314
+    spells:
+      cure:     {min_level:  5}
+      cure_ii:  {min_level: 17}
+      cure_iii: {min_level: 30}
+      cure_iv:  {min_level: 55}
+      flash:    {min_level: 45}
+
+  trust_ajido_marujido:
+    id: 316
+    spells:
+      cure:         {}
+      cure_ii:      {min_level: 11}
+      cure_iii:     {min_level: 21}
+      cure_iv:      {min_level: 41}
+      cure_v:       {min_level: 61}
+      cure_vi:      {min_level: 80}
+      slow:         {min_level: 26}
+      paralyze:     {min_level: 12}
+      fire:         {min_level: 13}
+      fire_ii:      {min_level: 38}
+      fire_iii:     {min_level: 62}
+      fire_iv:      {min_level: 73}
+      fire_v:       {min_level: 86}
+      blizzard:     {min_level: 17}
+      blizzard_ii:  {min_level: 42}
+      blizzard_iii: {min_level: 64}
+      blizzard_iv:  {min_level: 74}
+      blizzard_v:   {min_level: 89}
+      aero:         {min_level: 9}
+      aero_ii:      {min_level: 34}
+      aero_iii:     {min_level: 59}
+      aero_iv:      {min_level: 72}
+      aero_v:       {min_level: 83}
+      stone:        {}
+      stone_ii:     {min_level: 26}
+      stone_iii:    {min_level: 51}
+      stone_iv:     {min_level: 68}
+      stone_v:      {min_level: 77}
+      thunder:      {min_level: 21}
+      thunder_ii:   {min_level: 46}
+      thunder_iii:  {min_level: 66}
+      thunder_iv:   {min_level: 75}
+      thunder_v:    {min_level: 92}
+      water:        {min_level: 5}
+      water_ii:     {min_level: 30}
+      water_iii:    {min_level: 55}
+      water_iv:     {min_level: 70}
+      water_v:      {min_level: 80}
+      dispel:       {min_level: 64}
+
+  trust_trion:
+    id: 317
+    spells:
+      cure:     {min_level:  5}
+      cure_ii:  {min_level: 17}
+      cure_iii: {min_level: 30}
+      cure_iv:  {min_level: 55}
+      flash:    {min_level: 37}
+
+  trust_zeid:
+    id: 318
+    spells:
+      absorb-acc: {min_level: 61}
+      drain:      {min_level: 10}
+      drain_ii:   {min_level: 62}
+      aspir:      {min_level: 20}
+      aspir_ii:   {min_level: 78}
+      stun:       {min_level: 37}
+      absorb-str: {min_level: 43}
+      absorb-dex: {min_level: 41}
+      absorb-vit: {min_level: 35}
+      absorb-agi: {min_level: 37}
+      absorb-int: {min_level: 39}
+      absorb-mnd: {min_level: 31}
+      absorb-chr: {min_level: 33}
+      absorb-tp:  {min_level: 45}
+
+  trust_mihli_aliapoh:
+    id: 321
+    spells:
+      cure:          {}
+      cure_ii:       {min_level: 11}
+      cure_iii:      {min_level: 21}
+      cure_iv:       {min_level: 41}
+      cure_v:        {min_level: 61}
+      cure_vi:       {min_level: 80}
+      poisona:       {min_level: 6}
+      paralyna:      {min_level: 9}
+      blindna:       {min_level: 14}
+      silena:        {min_level: 19}
+      stona:         {min_level: 39}
+      viruna:        {min_level: 34}
+      cursna:        {min_level: 29}
+      protect:       {min_level: 7}
+      protect_ii:    {min_level: 27}
+      protect_iii:   {min_level: 47}
+      protect_iv:    {min_level: 63}
+      protect_v:     {min_level: 76}
+      shell:         {min_level: 17}
+      shell_ii:      {min_level: 37}
+      shell_iii:     {min_level: 57}
+      shell_iv:      {min_level: 68}
+      shell_v:       {min_level: 76}
+      slow:          {min_level: 13}
+      paralyze:      {min_level: 4}
+      esuna:         {min_level: 32}
+      protectra:     {min_level: 7}
+      protectra_ii:  {min_level: 27}
+      protectra_iii: {min_level: 47}
+      protectra_iv:  {min_level: 63}
+      protectra_v:   {min_level: 75}
+      shellra:       {min_level: 17}
+      shellra_ii:    {min_level: 37}
+      shellra_iii:   {min_level: 57}
+      shellra_iv:    {min_level: 68}
+      shellra_v:     {min_level: 75}
+      erase:         {min_level: 32}
+
+  trust_valaineral:
+    id: 322
+    spells:
+      cure:        {min_level:  5}
+      cure_ii:     {min_level: 17}
+      cure_iii:    {min_level: 30}
+      cure_iv:     {min_level: 55}
+      protect:     {min_level:  7}
+      protect_ii:  {min_level: 27}
+      protect_iii: {min_level: 47}
+      protect_iv:  {min_level: 63}
+      protect_v:   {min_level: 77}
+      reprisal:    {min_level: 61}
+      phalanx:     {min_level: 77}
+      flash:       {min_level: 37}
+      enlight:     {min_level: 85}
+
+  trust_joachim:
+    id: 323
+    spells:
+      cure:              {min_level:  2}
+      cure_ii:           {min_level: 22}
+      cure_iii:          {min_level: 42}
+      cure_iv:           {min_level: 82}
+      poisona:           {min_level: 12}
+      paralyna:          {min_level: 18}
+      blindna:           {min_level: 28}
+      silena:            {min_level: 38}
+      stona:             {min_level: 78}
+      viruna:            {min_level: 68}
+      cursna:            {min_level: 58}
+      armys_paeon:       {min_level:  5}
+      armys_paeon_ii:    {min_level: 15}
+      armys_paeon_iii:   {min_level: 35}
+      armys_paeon_iv:    {min_level: 45}
+      armys_paeon_v:     {min_level: 65}
+      armys_paeon_vi:    {min_level: 78}
+      mages_ballad:      {min_level: 25}
+      mages_ballad_ii:   {min_level: 55}
+      mages_ballad_iii:  {min_level: 85}
+      sword_madrigal:    {min_level: 11}
+      blade_madrigal:    {min_level: 51}
+      advancing_march:   {min_level: 29}
+      victory_march:     {min_level: 60}
+      battlefield_elegy: {min_level: 39}
+      carnage_elegy:     {min_level: 59}
+
+  trust_prishe:
+    id: 325
+    spells:
+      cure:     {min_level:  2}
+      cure_ii:  {min_level: 22}
+      cure_iii: {min_level: 42}
+      cure_iv:  {min_level: 82}
+
+  trust_ulmia:
+    id: 326
+    spells:
+      mages_ballad:      {min_level: 25}
+      mages_ballad_ii:   {min_level: 55}
+      mages_ballad_iii:  {min_level: 85}
+      knights_minne:     {}
+      knights_minne_ii:  {min_level: 21}
+      knights_minne_iii: {min_level: 41}
+      knights_minne_iv:  {min_level: 61}
+      knights_minne_v:   {min_level: 80}
+      valor_minuet:      {min_level: 3}
+      valor_minuet_ii:   {min_level: 23}
+      valor_minuet_iii:  {min_level: 43}
+      valor_minuet_iv:   {min_level: 63}
+      valor_minuet_v:    {min_level: 87}
+      sword_madrigal:    {min_level: 11}
+      blade_madrigal:    {min_level: 51}
+      archers_prelude:   {min_level: 71}
+      advancing_march:   {min_level: 29}
+      victory_march:     {min_level: 60}
+      sentinels_scherzo: {min_level: 82}
+
+  trust_shikaree_z:
+    id: 327
+    spells:
+      cure:     {min_level:  2}
+      cure_ii:  {min_level: 22}
+      cure_iii: {min_level: 42}
+      cure_iv:  {min_level: 82}
+      poisona:  {min_level: 12}
+      paralyna: {min_level: 18}
+      blindna:  {min_level: 28}
+      silena:   {min_level: 38}
+      stona:    {min_level: 78}
+      viruna:   {min_level: 68}
+      cursna:   {min_level: 58}
+      haste:    {min_level: 80}
+      erase:    {min_level: 64}
+
+  trust_cherukiki:
+    id: 328
+    spells:
+      cure:          {}
+      cure_ii:       {min_level: 11}
+      cure_iii:      {min_level: 21}
+      cure_iv:       {min_level: 41}
+      cure_v:        {min_level: 61}
+      cure_vi:       {min_level: 80}
+      slow:          {min_level: 13}
+      haste:         {min_level: 40}
+      paralyze:      {min_level: 4}
+      silence:       {min_level: 4}
+      regen:         {min_level: 21}
+      regen_ii:      {min_level: 44}
+      regen_iii:     {min_level: 66}
+      protectra:     {min_level: 7}
+      protectra_ii:  {min_level: 27}
+      protectra_iii: {min_level: 47}
+      protectra_iv:  {min_level: 63}
+      protectra_v:   {min_level: 75}
+      shellra:       {min_level: 17}
+      shellra_ii:    {min_level: 37}
+      shellra_iii:   {min_level: 57}
+      shellra_iv:    {min_level: 68}
+      shellra_v:     {min_level: 75}
+      regen_iv:      {min_level: 86}
+
+  trust_gessho:
+    id: 330
+    spells:
+      utsusemi_ichi: {min_level: 12}
+      utsusemi_ni:   {min_level: 37}
+      hojo_ichi:     {min_level: 23}
+      hojo_ni:       {min_level: 48}
+      kurayami_ichi: {min_level: 19}
+      kurayami_ni:   {min_level: 44}
+
+  trust_gadalar:
+    id: 331
+    spells:
+      firaga:       {min_level: 28}
+      firaga_ii:    {min_level: 53}
+      firaga_iii:   {min_level: 69}
+      blaze_spikes: {min_level: 10}
+
+  trust_rainemard:
+    id: 332
+    spells:
+      protect:     {min_level:  7}
+      protect_ii:  {min_level: 27}
+      protect_iii: {min_level: 47}
+      protect_iv:  {min_level: 63}
+      protect_v:   {min_level: 77}
+      shell:       {min_level: 17}
+      shell_ii:    {min_level: 37}
+      shell_iii:   {min_level: 57}
+      shell_iv:    {min_level: 68}
+      shell_v:     {min_level: 87}
+      haste:       {min_level: 40}
+      enfire:      {min_level: 24}
+      enblizzard:  {min_level: 22}
+      enaero:      {min_level: 20}
+      enstone:     {min_level: 18}
+      enthunder:   {min_level: 16}
+      enwater:     {min_level: 27}
+      phalanx:     {min_level: 33}
+      phalanx_ii:  {min_level: 33}
+      refresh:     {min_level: 41}
+      refresh_ii:  {min_level: 82}
+      haste_ii:    {min_level: 96}
+      distract:    {min_level: 35}
+      distract_ii: {min_level: 85}
+      frazzle:     {min_level: 42}
+      frazzle_ii:  {min_level: 92}
+
+  trust_ingrid:
+    id: 333
+    spells:
+      cursna:     {min_level: 29}
+      banish:     {min_level:  5}
+      banish_ii:  {min_level: 30}
+      banish_iii: {min_level: 65}
+      haste:      {min_level: 40}
+
+  trust_lehko_habhoka:
+    id: 334
+    spells:
+      fire:        {min_level: 26}
+      fire_ii:     {min_level: 76}
+      blizzard:    {min_level: 34}
+      blizzard_ii: {min_level: 84}
+      aero:        {min_level: 18}
+      aero_ii:     {min_level: 68}
+      stone:       {min_level:  2}
+      stone_ii:    {min_level: 52}
+      thunder:     {min_level: 42}
+      thunder_ii:  {min_level: 92}
+      water:       {min_level: 10}
+      water_ii:    {min_level: 60}
+
+  trust_nashmeira:
+    id: 335
+    spells:
+      cure:     {min_level:  2}
+      cure_ii:  {min_level: 22}
+      cure_iii: {min_level: 42}
+      cure_iv:  {min_level: 82}
+      poisona:  {min_level: 12}
+      paralyna: {min_level: 18}
+      blindna:  {min_level: 28}
+      silena:   {min_level: 38}
+      stona:    {min_level: 78}
+      viruna:   {min_level: 68}
+      cursna:   {min_level: 58}
+      erase:    {min_level: 64}
+
+  trust_ovjang:
+    id: 337
+    spells:
+      slow:         {min_level: 13}
+      paralyze:     {min_level:  6}
+      silence:      {min_level: 18}
+      fire:         {min_level: 19}
+      fire_ii:      {min_level: 50}
+      fire_iii:     {min_level: 71}
+      fire_iv:      {min_level: 86}
+      blizzard:     {min_level: 24}
+      blizzard_ii:  {min_level: 55}
+      blizzard_iii: {min_level: 73}
+      blizzard_iv:  {min_level: 89}
+      aero:         {min_level: 14}
+      aero_ii:      {min_level: 45}
+      aero_iii:     {min_level: 69}
+      aero_iv:      {min_level: 83}
+      stone:        {min_level:  4}
+      stone_ii:     {min_level: 35}
+      stone_iii:    {min_level: 65}
+      stone_iv:     {min_level: 77}
+      thunder:      {min_level: 29}
+      thunder_ii:   {min_level: 60}
+      thunder_iii:  {min_level: 75}
+      thunder_iv:   {min_level: 92}
+      water:        {min_level:  9}
+      water_ii:     {min_level: 40}
+      water_iii:    {min_level: 67}
+      water_iv:     {min_level: 80}
+      dispel:       {min_level: 32}
+
+  trust_fablinix:
+    id: 344
+    spells:
+      cure:     {min_level:  8}
+      cure_ii:  {min_level: 26}
+      cure_iii: {min_level: 52}
+      cure_iv:  {min_level: 96}
+      enwater:  {min_level: 27}
+      stun:     {min_level: 45}
+
+  trust_d_shantotto:
+    id: 346
+    spells:
+      fire:         {min_level: 9}
+      fire_ii:      {min_level: 34}
+      fire_iii:     {min_level: 59}
+      fire_iv:      {min_level: 72}
+      fire_v:       {min_level: 83}
+      blizzard:     {min_level: 17}
+      blizzard_ii:  {min_level: 42}
+      blizzard_iii: {min_level: 64}
+      blizzard_iv:  {min_level: 74}
+      blizzard_v:   {min_level: 89}
+      aero:         {min_level: 9}
+      aero_ii:      {min_level: 34}
+      aero_iii:     {min_level: 59}
+      aero_iv:      {min_level: 72}
+      aero_v:       {min_level: 83}
+      stone:        {}
+      stone_ii:     {min_level: 26}
+      stone_iii:    {min_level: 51}
+      stone_iv:     {min_level: 68}
+      stone_v:      {min_level: 77}
+      thunder:      {min_level: 21}
+      thunder_ii:   {min_level: 46}
+      thunder_iii:  {min_level: 66}
+      thunder_iv:   {min_level: 75}
+      thunder_v:    {min_level: 92}
+      water:        {min_level: 5}
+      water_ii:     {min_level: 30}
+      water_iii:    {min_level: 55}
+      water_iv:     {min_level: 70}
+      water_v:      {min_level: 80}
+
+  trust_karaha_baruha:
+    id: 348
+    spells:
+      cure:          {}
+      cure_ii:       {min_level: 11}
+      cure_iii:      {min_level: 21}
+      cure_iv:       {min_level: 41}
+      cure_v:        {min_level: 61}
+      cure_vi:       {min_level: 80}
+      haste:         {min_level: 40}
+      barthunder:    {min_level: 25}
+      barwater:      {min_level: 5}
+      barfira:       {min_level: 17}
+      barblizzara:   {min_level: 21}
+      baraera:       {min_level: 13}
+      barstonra:     {min_level: 5}
+      barthundra:    {min_level: 25}
+      barwatera:     {min_level: 9}
+      protect:       {min_level: 7}
+      protect_ii:    {min_level: 27}
+      protect_iii:   {min_level: 47}
+      protect_iv:    {min_level: 63}
+      protect_v:     {min_level: 75}
+      protectra:     {min_level: 7}
+      protectra_ii:  {min_level: 27}
+      protectra_iii: {min_level: 47}
+      protectra_iv:  {min_level: 63}
+      protectra_v:   {min_level: 75}
+      shell:         {min_level: 17}
+      shell_ii:      {min_level: 37}
+      shell_iii:     {min_level: 57}
+      shell_iv:      {min_level: 68}
+      shell_v:       {min_level: 75}
+      shellra:       {min_level: 17}
+      shellra_ii:    {min_level: 37}
+      shellra_iii:   {min_level: 57}
+      shellra_iv:    {min_level: 68}
+      shellra_v:     {min_level: 75}
+
+  trust_noillurie:
+    id: 354
+    spells:
+      cure:     {min_level:  2}
+      cure_ii:  {min_level: 22}
+      cure_iii: {min_level: 42}
+      cure_iv:  {min_level: 82}
+
+  trust_ferreous_coffin:
+    id: 356
+    spells:
+      cure:      {}
+      cure_ii:   {min_level: 11}
+      cure_iii:  {min_level: 21}
+      cure_iv:   {min_level: 41}
+      cure_v:    {min_level: 61}
+      cure_vi:   {min_level: 80}
+      raise:     {min_level: 25}
+      raise_ii:  {min_level: 56}
+      paralyna:  {min_level: 9}
+      blindna:   {min_level: 14}
+      silena:    {min_level: 19}
+      stona:     {min_level: 39}
+      viruna:    {min_level: 34}
+      cursna:    {min_level: 29}
+      haste:     {min_level: 40}
+      raise_iii: {min_level: 70}
+      erase:     {min_level: 32}
+
+  trust_rahal:
+    id: 363
+    spells:
+      cure:     {min_level:  5}
+      cure_ii:  {min_level: 17}
+      cure_iii: {min_level: 30}
+      cure_iv:  {min_level: 55}
+      phalanx:  {min_level: 77}
+      flash:    {min_level: 37}
+      enlight:  {min_level: 85}
+
+  trust_koru_moru:
+    id: 364
+    spells:
+      cure:        {min_level: 3}
+      cure_ii:     {min_level: 14}
+      cure_iii:    {min_level: 26}
+      cure_iv:     {min_level: 48}
+      dia:         {}
+      dia_ii:      {min_level: 31}
+      dia_iii:     {min_level: 75}
+      protect:     {min_level: 7}
+      protect_ii:  {min_level: 27}
+      protect_iii: {min_level: 47}
+      protect_iv:  {min_level: 63}
+      protect_v:   {min_level: 77}
+      shell:       {min_level: 17}
+      shell_ii:    {min_level: 37}
+      shell_iii:   {min_level: 57}
+      shell_iv:    {min_level: 68}
+      shell_v:     {min_level: 87}
+      slow:        {min_level: 13}
+      haste:       {min_level: 40}
+      slow_ii:     {min_level: 75}
+      phalanx_ii:  {min_level: 75}
+      refresh:     {min_level: 41}
+      dispel:      {min_level: 32}
+      refresh_ii:  {min_level: 82}
+      haste_ii:    {min_level: 96}
+      distract:    {min_level: 35}
+      distract_ii: {min_level: 85}
+      flurry:      {min_level: 48}
+      flurry_ii:   {min_level: 96}
+
+  trust_pieuje_uc:
+    id: 365
+    spells:
+      cure:          {}
+      cure_ii:       {min_level: 11}
+      cure_iii:      {min_level: 21}
+      cure_iv:       {min_level: 41}
+      cure_v:        {min_level: 61}
+      cure_vi:       {min_level: 80}
+      poisona:       {min_level: 6}
+      paralyna:      {min_level: 9}
+      blindna:       {min_level: 14}
+      silena:        {min_level: 19}
+      stona:         {min_level: 39}
+      viruna:        {min_level: 34}
+      cursna:        {min_level: 29}
+      haste:         {min_level: 40}
+      esuna:         {min_level: 32}
+      auspice:       {min_level: 55}
+      regen:         {min_level: 21}
+      regen_ii:      {min_level: 44}
+      regen_iii:     {min_level: 66}
+      flash:         {min_level: 45}
+      protectra:     {min_level: 7}
+      protectra_ii:  {min_level: 27}
+      protectra_iii: {min_level: 47}
+      protectra_iv:  {min_level: 63}
+      protectra_v:   {min_level: 75}
+      shellra:       {min_level: 17}
+      shellra_ii:    {min_level: 37}
+      shellra_iii:   {min_level: 57}
+      shellra_iv:    {min_level: 68}
+      shellra_v:     {min_level: 75}
+      erase:         {min_level: 32}
+      regen_iv:      {min_level: 86}
+
+  trust_apururu_uc:
+    id: 367
+    spells:
+      cure:          {}
+      cure_ii:       {min_level: 11}
+      cure_iii:      {min_level: 21}
+      cure_iv:       {min_level: 41}
+      cure_v:        {min_level: 61}
+      cure_vi:       {min_level: 80}
+      curaga:        {min_level: 16}
+      curaga_ii:     {min_level: 31}
+      curaga_iii:    {min_level: 51}
+      curaga_iv:     {min_level: 71}
+      curaga_v:      {min_level: 91}
+      poisona:       {min_level: 6}
+      paralyna:      {min_level: 9}
+      blindna:       {min_level: 14}
+      silena:        {min_level: 19}
+      stona:         {min_level: 39}
+      viruna:        {min_level: 34}
+      cursna:        {min_level: 29}
+      protect:       {min_level: 7}
+      protect_ii:    {min_level: 27}
+      protect_iii:   {min_level: 47}
+      protect_iv:    {min_level: 63}
+      protect_v:     {min_level: 76}
+      shell:         {min_level: 17}
+      shell_ii:      {min_level: 37}
+      shell_iii:     {min_level: 57}
+      shell_iv:      {min_level: 68}
+      shell_v:       {min_level: 76}
+      stoneskin:     {min_level: 28}
+      haste:         {min_level: 40}
+      protectra:     {min_level: 7}
+      protectra_ii:  {min_level: 27}
+      protectra_iii: {min_level: 47}
+      protectra_iv:  {min_level: 63}
+      protectra_v:   {min_level: 75}
+      shellra:       {min_level: 17}
+      shellra_ii:    {min_level: 37}
+      shellra_iii:   {min_level: 57}
+      shellra_iv:    {min_level: 68}
+      shellra_v:     {min_level: 75}
+      erase:         {min_level: 32}
+
+  trust_rughadjeen:
+    id: 373
+    spells:
+      cure:     {}
+      cure_ii:  {min_level: 11}
+      cure_iii: {min_level: 21}
+      cure_iv:  {min_level: 41}
+      raise:    {min_level: 50}
+      holy:     {min_level: 55}
+      flash:    {min_level: 37}
+
+  trust_kukki_chebukki:
+    id: 374
+    spells:
+      fire:         {min_level: 13}
+      fire_ii:      {min_level: 38}
+      fire_iii:     {min_level: 62}
+      fire_iv:      {min_level: 73}
+      fire_v:       {min_level: 86}
+      blizzard:     {min_level: 17}
+      blizzard_ii:  {min_level: 42}
+      blizzard_iii: {min_level: 64}
+      blizzard_iv:  {min_level: 74}
+      blizzard_v:   {min_level: 89}
+      aero:         {min_level: 9}
+      aero_ii:      {min_level: 34}
+      aero_iii:     {min_level: 59}
+      aero_iv:      {min_level: 72, max_level: 82}
+      aero_v:       {min_level: 83}
+      stone:        {}
+      stone_ii:     {min_level: 26}
+      stone_iii:    {min_level: 51}
+      stone_iv:     {min_level: 68}
+      stone_v:      {min_level: 77}
+      thunder:      {min_level: 21}
+      thunder_ii:   {min_level: 46}
+      thunder_iii:  {min_level: 66}
+      thunder_iv:   {min_level: 75}
+      thunder_v:    {min_level: 92}
+      water:        {min_level: 5}
+      water_ii:     {min_level: 30}
+      water_iii:    {min_level: 55}
+      water_iv:     {min_level: 70}
+      water_v:      {min_level: 80}
+      firaga:       {min_level: 28}
+      firaga_ii:    {min_level: 53}
+      firaga_iii:   {min_level: 69}
+      blizzaga:     {min_level: 32}
+      blizzaga_ii:  {min_level: 57}
+      blizzaga_iii: {min_level: 71}
+      aeroga:       {min_level: 23}
+      aeroga_ii:    {min_level: 48}
+      aeroga_iii:   {min_level: 67}
+      stonega:      {min_level: 15}
+      stonega_ii:   {min_level: 40}
+      stonega_iii:  {min_level: 63}
+      thundaga:     {min_level: 36}
+      thundaga_ii:  {min_level: 61}
+      thundaga_iii: {min_level: 73}
+      waterga:      {min_level: 19}
+      waterga_ii:   {min_level: 44}
+      waterga_iii:  {min_level: 65}
+      burn:         {min_level: 24}
+      frost:        {min_level: 22}
+      choke:        {min_level: 20}
+      rasp:         {min_level: 18}
+      shock:        {min_level: 16}
+      drown:        {min_level: 27}
+      sleepga:      {min_level: 31}
+      sleepga_ii:   {min_level: 56}
+      firaja:       {min_level: 90}
+      blizzaja:     {min_level: 93}
+      aeroja:       {min_level: 87}
+      stoneja:      {min_level: 81}
+      thundaja:     {min_level: 87}
+      waterja:      {min_level: 84}
+
+  trust_arciela:
+    id: 378
+    spells:
+      protect:     {min_level:  7}
+      protect_ii:  {min_level: 27}
+      protect_iii: {min_level: 47}
+      protect_iv:  {min_level: 63}
+      protect_v:   {min_level: 77}
+      shell:       {min_level: 17}
+      shell_ii:    {min_level: 37}
+      shell_iii:   {min_level: 57}
+      shell_iv:    {min_level: 68}
+      shell_v:     {min_level: 87}
+      slow:        {min_level: 13}
+      haste:       {min_level: 40}
+      paralyze:    {min_level:  4}
+      slow_ii:     {min_level: 75}
+      paralyze_ii: {min_level: 75}
+      refresh:     {min_level: 41}
+      refresh_ii:  {min_level: 82}
+      haste_ii:    {min_level: 96}
+
+  trust_adelheid:
+    id: 381
+    spells:
+      cure:         {min_level:  5}
+      cure_ii:      {min_level: 17}
+      cure_iii:     {min_level: 30}
+      cure_iv:      {min_level: 55}
+      sandstorm:    {min_level: 41}
+      rainstorm:    {min_level: 42}
+      windstorm:    {min_level: 43}
+      firestorm:    {min_level: 44}
+      hailstorm:    {min_level: 45}
+      thunderstorm: {min_level: 46}
+      voidstorm:    {min_level: 47}
+      aurorastorm:  {min_level: 48}
+      fire:         {min_level: 16}
+      fire_ii:      {min_level: 42}
+      fire_iii:     {min_level: 63}
+      fire_iv:      {min_level: 73}
+      fire_v:       {min_level: 91}
+      blizzard:     {min_level: 20}
+      blizzard_ii:  {min_level: 46}
+      blizzard_iii: {min_level: 66}
+      blizzard_iv:  {min_level: 74}
+      blizzard_v:   {min_level: 95}
+      aero:         {min_level: 12}
+      aero_ii:      {min_level: 38}
+      aero_iii:     {min_level: 60}
+      aero_iv:      {min_level: 72}
+      aero_v:       {min_level: 87}
+      stone:        {min_level:  4}
+      stone_ii:     {min_level: 30}
+      stone_iii:    {min_level: 54}
+      stone_iv:     {min_level: 70}
+      stone_v:      {min_level: 79}
+      thunder:      {min_level: 24}
+      thunder_ii:   {min_level: 51}
+      thunder_iii:  {min_level: 69}
+      thunder_iv:   {min_level: 75}
+      thunder_v:    {min_level: 99}
+      water:        {min_level:  8}
+      water_ii:     {min_level: 34}
+      water_iii:    {min_level: 57}
+      water_iv:     {min_level: 71}
+      water_v:      {min_level: 83}
+      stun:         {min_level: 45}
+      geohelix:     {min_level: 18}
+      hydrohelix:   {min_level: 20}
+      anemohelix:   {min_level: 22}
+      pyrohelix:    {min_level: 24}
+      cryohelix:    {min_level: 26}
+      ionohelix:    {min_level: 28}
+      noctohelix:   {min_level: 30}
+      luminohelix:  {min_level: 32}
+
+  trust_amchuchu:
+    id: 382
+    spells:
+      protect:     {min_level: 20}
+      protect_ii:  {min_level: 40}
+      protect_iii: {min_level: 60}
+      protect_iv:  {min_level: 80}
+      shell:       {min_level: 10}
+      shell_ii:    {min_level: 30}
+      shell_iii:   {min_level: 50}
+      shell_iv:    {min_level: 70}
+      shell_v:     {min_level: 90}
+      stoneskin:   {min_level: 55}
+      phalanx:     {min_level: 68}
+      regen:       {min_level: 23}
+      refresh:     {min_level: 62}
+      regen_ii:    {min_level: 48}
+      regen_iii:   {min_level: 70}
+      flash:       {min_level: 45}
+      regen_iv:    {min_level: 99}
+      foil:        {min_level: 58}
+      barfire:     {min_level: 16}
+      barblizzard: {min_level: 20}
+      baraero:     {min_level: 12}
+      barstone:    {min_level:  4}
+      barthunder:  {min_level: 24}
+      barwater:    {min_level:  8}
+      barsleep:    {min_level:  6}
+      barblind:    {min_level: 17}
+      barsilence:  {min_level: 22}
+      barpetrify:  {min_level: 42}
+      barvirus:    {min_level: 38}
+      baramnesia:  {min_level: 76}
+
+  trust_halver:
+    id: 385
+    spells:
+      cure:     {min_level:  5}
+      cure_ii:  {min_level: 17}
+      cure_iii: {min_level: 30}
+      cure_iv:  {min_level: 55}
+      flash:    {min_level: 37}
+
+  trust_leonoyne:
+    id: 387
+    spells:
+      blizzaga:     {min_level: 32}
+      blizzaga_ii:  {min_level: 57}
+      blizzaga_iii: {min_level: 71}
+      ice_spikes:   {min_level: 20}
+
+  trust_kayeel_payeel:
+    id: 389
+    spells:
+      blizzard:     {min_level: 17}
+      blizzard_ii:  {min_level: 42}
+      blizzard_iii: {min_level: 64}
+      blizzard_iv:  {min_level: 74}
+      blizzard_v:   {min_level: 89}
+      thunder:      {min_level: 21}
+      thunder_ii:   {min_level: 46}
+      thunder_iii:  {min_level: 66}
+      thunder_iv:   {min_level: 75}
+      thunder_v:    {min_level: 92}
+      blizzaga:     {min_level: 32}
+      blizzaga_ii:  {min_level: 57}
+      blizzaga_iii: {min_level: 71}
+      thundaga:     {min_level: 36}
+      thundaga_ii:  {min_level: 61}
+      thundaga_iii: {min_level: 73}
+      freeze:       {min_level: 50}
+      freeze_ii:    {min_level: 75}
+      burst:        {min_level: 56}
+      burst_ii:     {min_level: 75}
+      blizzaja:     {min_level: 93}
+      thundaja:     {min_level: 87}
+
+  trust_robel_akbel:
+    id: 390
+    spells:
+      fire:         {min_level: 13}
+      fire_ii:      {min_level: 38}
+      fire_iii:     {min_level: 62}
+      fire_iv:      {min_level: 73}
+      fire_v:       {min_level: 86}
+      blizzard:     {min_level: 17}
+      blizzard_ii:  {min_level: 42}
+      blizzard_iii: {min_level: 64}
+      blizzard_iv:  {min_level: 74}
+      blizzard_v:   {min_level: 89}
+      aero:         {min_level: 9}
+      aero_ii:      {min_level: 34}
+      aero_iii:     {min_level: 59}
+      aero_iv:      {min_level: 72, max_level: 82}
+      aero_v:       {min_level: 83}
+      stone:        {}
+      stone_ii:     {min_level: 26}
+      stone_iii:    {min_level: 51}
+      stone_iv:     {min_level: 68}
+      stone_v:      {min_level: 77}
+      thunder:      {min_level: 21}
+      thunder_ii:   {min_level: 46}
+      thunder_iii:  {min_level: 66}
+      thunder_iv:   {min_level: 75}
+      thunder_v:    {min_level: 92}
+      water:        {min_level: 5}
+      water_ii:     {min_level: 30}
+      water_iii:    {min_level: 55}
+      water_iv:     {min_level: 70}
+      water_v:      {min_level: 80}
+      firaga:       {min_level: 28}
+      firaga_ii:    {min_level: 53}
+      firaga_iii:   {min_level: 69}
+      blizzaga:     {min_level: 32}
+      blizzaga_ii:  {min_level: 57}
+      blizzaga_iii: {min_level: 71}
+      aeroga:       {min_level: 23}
+      aeroga_ii:    {min_level: 48}
+      aeroga_iii:   {min_level: 67}
+      stonega:      {min_level: 15}
+      stonega_ii:   {min_level: 40}
+      stonega_iii:  {min_level: 63}
+      thundaga:     {min_level: 36}
+      thundaga_ii:  {min_level: 61}
+      thundaga_iii: {min_level: 73}
+      waterga:      {min_level: 19}
+      waterga_ii:   {min_level: 44}
+      waterga_iii:  {min_level: 65}
+      stun:         {min_level: 45}
+      firaja:       {min_level: 90}
+      blizzaja:     {min_level: 93}
+      aeroja:       {min_level: 87}
+      stoneja:      {min_level: 81}
+      thundaja:     {min_level: 87}
+      waterja:      {min_level: 84}
+
+  trust_yoran_oran_uc:
+    id: 393
+    spells:
+      cure:          {}
+      cure_ii:       {min_level: 11}
+      cure_iii:      {min_level: 21}
+      cure_iv:       {min_level: 41}
+      cure_v:        {min_level: 61}
+      cure_vi:       {min_level: 80}
+      poisona:       {min_level: 6}
+      paralyna:      {min_level: 9}
+      blindna:       {min_level: 14}
+      silena:        {min_level: 19}
+      stona:         {min_level: 39}
+      viruna:        {min_level: 34}
+      cursna:        {min_level: 29}
+      haste:         {min_level: 40}
+      protectra:     {min_level: 7}
+      protectra_ii:  {min_level: 27}
+      protectra_iii: {min_level: 47}
+      protectra_iv:  {min_level: 63}
+      protectra_v:   {min_level: 75}
+      shellra:       {min_level: 17}
+      shellra_ii:    {min_level: 37}
+      shellra_iii:   {min_level: 57}
+      shellra_iv:    {min_level: 68}
+      shellra_v:     {min_level: 75}
+      erase:         {min_level: 32}
+
+  trust_sylvie_uc:
+    id: 394
+    spells:
+      cure:           {min_level:  2}
+      cure_ii:        {min_level: 22}
+      cure_iii:       {min_level: 42}
+      cure_iv:        {min_level: 82}
+      poisona:        {min_level: 12}
+      paralyna:       {min_level: 18}
+      blindna:        {min_level: 28}
+      silena:         {min_level: 38}
+      stona:          {min_level: 78}
+      viruna:         {min_level: 68}
+      cursna:         {min_level: 58}
+      haste:          {min_level: 80}
+      indi-regen:     {min_level: 15}
+      indi-refresh:   {min_level: 30}
+      indi-haste:     {min_level: 93}
+      indi-fury:      {min_level: 34}
+      indi-acumen:    {min_level: 46}
+      indi-precision: {min_level: 10}
+      indi-frailty:   {min_level: 76}
+
+  trust_balamor:
+    id: 396
+    spells:
+      absorb-str: {min_level: 43}
+      absorb-dex: {min_level: 41}
+      absorb-vit: {min_level: 35}
+      absorb-agi: {min_level: 37}
+      absorb-int: {min_level: 39}
+      absorb-mnd: {min_level: 31}
+      absorb-chr: {min_level: 33}
+
+  trust_august:
+    id: 397
+    spells:
+      cure:     {min_level:  5}
+      cure_ii:  {min_level: 17}
+      cure_iii: {min_level: 30}
+      cure_iv:  {min_level: 55}
+      holy:     {min_level: 55}
+      holy_ii:  {min_level: 99}
+      reprisal: {min_level: 61}
+      flash:    {min_level: 37}
+
+  trust_rosulatia:
+    id: 398
+    spells:
+      stone:       {}
+      stone_ii:    {min_level: 26}
+      stone_iii:   {min_level: 51}
+      stone_iv:    {min_level: 68}
+      stone_v:     {min_level: 77}
+      stonega:     {min_level: 15}
+      stonega_ii:  {min_level: 40}
+      stonega_iii: {min_level: 63}
+
+  trust_teodor:
+    id: 399
+    spells:
+      firaga:       {min_level: 28}
+      firaga_ii:    {min_level: 53}
+      firaga_iii:   {min_level: 69}
+      blizzaga:     {min_level: 32}
+      blizzaga_ii:  {min_level: 57}
+      blizzaga_iii: {min_level: 71}
+      aeroga:       {min_level: 23}
+      aeroga_ii:    {min_level: 48}
+      aeroga_iii:   {min_level: 67}
+      stonega:      {min_level: 15}
+      stonega_ii:   {min_level: 40}
+      stonega_iii:  {min_level: 63}
+      thundaga:     {min_level: 36}
+      thundaga_ii:  {min_level: 61}
+      thundaga_iii: {min_level: 73}
+      waterga:      {min_level: 19}
+      waterga_ii:   {min_level: 44}
+      waterga_iii:  {min_level: 65}
+      firaja:       {min_level: 90}
+      blizzaja:     {min_level: 93}
+      aeroja:       {min_level: 87}
+      stoneja:      {min_level: 81}
+      thundaja:     {min_level: 87}
+      waterja:      {min_level: 84}
+
+  trust_ullegore:
+    id: 400
+    spells:
+      fire:         {min_level: 13}
+      fire_ii:      {min_level: 38}
+      fire_iii:     {min_level: 62}
+      fire_iv:      {min_level: 73}
+      fire_v:       {min_level: 86}
+      blizzard:     {min_level: 17}
+      blizzard_ii:  {min_level: 42}
+      blizzard_iii: {min_level: 64}
+      blizzard_iv:  {min_level: 74}
+      blizzard_v:   {min_level: 89}
+      aero:         {min_level: 9}
+      aero_ii:      {min_level: 34}
+      aero_iii:     {min_level: 59}
+      aero_iv:      {min_level: 72, max_level: 82}
+      aero_v:       {min_level: 83}
+      stone:        {}
+      stone_ii:     {min_level: 26}
+      stone_iii:    {min_level: 51}
+      stone_iv:     {min_level: 68}
+      stone_v:      {min_level: 77}
+      thunder:      {min_level: 21}
+      thunder_ii:   {min_level: 46}
+      thunder_iii:  {min_level: 66}
+      thunder_iv:   {min_level: 75}
+      thunder_v:    {min_level: 92}
+      water:        {min_level: 5}
+      water_ii:     {min_level: 30}
+      water_iii:    {min_level: 55}
+      water_iv:     {min_level: 70}
+      water_v:      {min_level: 80}
+      comet:        {min_level: 94}
+      stun:         {min_level: 45}
+
+  trust_king_of_hearts:
+    id: 402
+    spells:
+      cure:        {min_level: 2}
+      cure_ii:     {min_level: 22}
+      cure_iii:    {min_level: 42}
+      cure_iv:     {min_level: 82}
+      poisona:     {min_level: 12}
+      paralyna:    {min_level: 18}
+      blindna:     {min_level: 28}
+      silena:      {min_level: 38}
+      stona:       {min_level: 78}
+      viruna:      {min_level: 68}
+      cursna:      {min_level: 58}
+      dia:         {}
+      dia_ii:      {min_level: 31}
+      dia_iii:     {min_level: 75}
+      protect:     {min_level: 7}
+      protect_ii:  {min_level: 27}
+      protect_iii: {min_level: 47}
+      protect_iv:  {min_level: 63}
+      protect_v:   {min_level: 77}
+      shell:       {min_level: 17}
+      shell_ii:    {min_level: 37}
+      shell_iii:   {min_level: 57}
+      shell_iv:    {min_level: 68}
+      shell_v:     {min_level: 87}
+      haste:       {min_level: 40}
+      phalanx:     {min_level: 33}
+      phalanx_ii:  {min_level: 75}
+      refresh:     {min_level: 41}
+      erase:       {min_level: 64}
+      firaga:      {min_level: 28}
+      firaga_ii:   {min_level: 53}
+      firaga_iii:  {min_level: 69}
+      firaga_iv:   {min_level: 90}
+      dispel:      {min_level: 32}
+      refresh_ii:  {min_level: 82}
+      temper:      {min_level: 95}
+      haste_ii:    {min_level: 96}
+
+  trust_aahm:
+    id: 405
+    spells:
+      utsusemi_ichi: {min_level: 12}
+      utsusemi_ni:   {min_level: 37}
+      hojo_ichi:     {min_level: 23}
+      hojo_ni:       {min_level: 48}
+      kurayami_ichi: {min_level: 19}
+      kurayami_ni:   {min_level: 44}
+      migawari_ichi: {min_level: 88}
+
+  trust_aaev:
+    id: 406
+    spells:
+      cure:     {min_level:  5}
+      cure_ii:  {min_level: 17}
+      cure_iii: {min_level: 30}
+      cure_iv:  {min_level: 55}
+      holy:     {min_level: 55}
+      holy_ii:  {min_level: 99}
+      reprisal: {min_level: 61}
+      phalanx:  {min_level: 77}
+      flash:    {min_level: 37}
+      enlight:  {min_level: 85}
+
+  trust_aatt:
+    id: 408
+    spells:
+      fire:         {min_level: 13}
+      fire_ii:      {min_level: 38}
+      fire_iii:     {min_level: 62}
+      fire_iv:      {min_level: 73}
+      fire_v:       {min_level: 86}
+      blizzard:     {min_level: 17}
+      blizzard_ii:  {min_level: 42}
+      blizzard_iii: {min_level: 64}
+      blizzard_iv:  {min_level: 74}
+      blizzard_v:   {min_level: 89}
+      aero:         {min_level: 9}
+      aero_ii:      {min_level: 34}
+      aero_iii:     {min_level: 59}
+      aero_iv:      {min_level: 72, max_level: 82}
+      aero_v:       {min_level: 83}
+      stone:        {}
+      stone_ii:     {min_level: 26}
+      stone_iii:    {min_level: 51}
+      stone_iv:     {min_level: 68}
+      stone_v:      {min_level: 77}
+      thunder:      {min_level: 21}
+      thunder_ii:   {min_level: 46}
+      thunder_iii:  {min_level: 66}
+      thunder_iv:   {min_level: 75}
+      thunder_v:    {min_level: 92}
+      water:        {min_level: 5}
+      water_ii:     {min_level: 30}
+      water_iii:    {min_level: 55}
+      water_iv:     {min_level: 70}
+      water_v:      {min_level: 80}
+      poison:       {min_level: 3, max_level: 41}
+      poison_ii:    {min_level: 42}
+      bio:          {min_level: 10, max_level: 34}
+      bio_ii:       {min_level: 35}
+      aspir:        {min_level: 20}
+      aspir_ii:     {min_level: 20}
+      stun:         {min_level: 45}
+      sleepga:      {min_level: 31, max_level: 55}
+      sleepga_ii:   {min_level: 56}
+
+  trust_iroha:
+    id: 410
+    spells:
+      protectra:     {min_level:  7}
+      protectra_ii:  {min_level: 27}
+      protectra_iii: {min_level: 47}
+      protectra_iv:  {min_level: 63}
+      protectra_v:   {min_level: 75}
+      shellra:       {min_level: 17}
+      shellra_ii:    {min_level: 37}
+      shellra_iii:   {min_level: 57}
+      shellra_iv:    {min_level: 68}
+      shellra_v:     {min_level: 75}
+
+  trust_ygnas:
+    id: 411
+    spells:
+      cure:          {}
+      cure_ii:       {min_level: 11}
+      cure_iii:      {min_level: 21}
+      cure_iv:       {min_level: 41}
+      cure_v:        {min_level: 61}
+      cure_vi:       {min_level: 80}
+      poisona:       {min_level: 6}
+      paralyna:      {min_level: 9}
+      blindna:       {min_level: 14}
+      silena:        {min_level: 19}
+      stona:         {min_level: 39}
+      viruna:        {min_level: 34}
+      cursna:        {min_level: 29}
+      protect:       {min_level: 7}
+      protect_ii:    {min_level: 27}
+      protect_iii:   {min_level: 47}
+      protect_iv:    {min_level: 63}
+      protect_v:     {min_level: 76}
+      shell:         {min_level: 17}
+      shell_ii:      {min_level: 37}
+      shell_iii:     {min_level: 57}
+      shell_iv:      {min_level: 68}
+      shell_v:       {min_level: 76}
+      haste:         {min_level: 40}
+      protectra:     {min_level: 7}
+      protectra_ii:  {min_level: 27}
+      protectra_iii: {min_level: 47}
+      protectra_iv:  {min_level: 63}
+      protectra_v:   {min_level: 75}
+      shellra:       {min_level: 17}
+      shellra_ii:    {min_level: 37}
+      shellra_iii:   {min_level: 57}
+      shellra_iv:    {min_level: 68}
+      shellra_v:     {min_level: 75}
+      erase:         {min_level: 32}
+
+  trust_lion_ii:
+    id: 418
+    spells:
+      utsusemi_ichi: {min_level: 12}
+      utsusemi_ni:   {min_level: 37}
+
+  trust_zeid_ii:
+    id: 419
+    spells:
+      absorb-attri: {min_level: 91}
+      stun:         {min_level: 37}
+
+  trust_prishe_ii:
+    id: 420
+    spells:
+      curaga:     {min_level: 16}
+      curaga_ii:  {min_level: 31}
+      curaga_iii: {min_level: 51}
+      curaga_iv:  {min_level: 71}
+      curaga_v:   {min_level: 91}
+
+  trust_nashmeira_ii:
+    id: 421
+    spells:
+      cure:       {}
+      cure_ii:    {min_level: 11}
+      cure_iii:   {min_level: 21}
+      cure_iv:    {min_level: 41}
+      cure_v:     {min_level: 61}
+      cure_vi:    {min_level: 80}
+      curaga:     {min_level: 16}
+      curaga_ii:  {min_level: 31}
+      curaga_iii: {min_level: 51}
+      curaga_iv:  {min_level: 71}
+      curaga_v:   {min_level: 91}
+      poisona:    {min_level: 6}
+      paralyna:   {min_level: 9}
+      blindna:    {min_level: 14}
+      silena:     {min_level: 19}
+      stona:      {min_level: 39}
+      viruna:     {min_level: 34}
+      cursna:     {min_level: 29}
+      erase:      {min_level: 32}
+
+  trust_mumor_ii:
+    id: 424
+    spells:
+      fire:         {min_level: 13}
+      fire_ii:      {min_level: 38}
+      fire_iii:     {min_level: 62}
+      fire_iv:      {min_level: 73}
+      fire_v:       {min_level: 86}
+      blizzard:     {min_level: 17}
+      blizzard_ii:  {min_level: 42}
+      blizzard_iii: {min_level: 64}
+      blizzard_iv:  {min_level: 74}
+      blizzard_v:   {min_level: 89}
+      aero:         {min_level: 9}
+      aero_ii:      {min_level: 34}
+      aero_iii:     {min_level: 59}
+      aero_iv:      {min_level: 72, max_level: 82}
+      aero_v:       {min_level: 83}
+      stone:        {}
+      stone_ii:     {min_level: 26}
+      stone_iii:    {min_level: 51}
+      stone_iv:     {min_level: 68}
+      stone_v:      {min_level: 77}
+      thunder:      {min_level: 21}
+      thunder_ii:   {min_level: 46}
+      thunder_iii:  {min_level: 66}
+      thunder_iv:   {min_level: 75}
+      thunder_v:    {min_level: 92}
+      water:        {min_level: 5}
+      water_ii:     {min_level: 30}
+      water_iii:    {min_level: 55}
+      water_iv:     {min_level: 70}
+      water_v:      {min_level: 80}
+      firaga:       {min_level: 28}
+      firaga_ii:    {min_level: 53}
+      firaga_iii:   {min_level: 69}
+      blizzaga:     {min_level: 32}
+      blizzaga_ii:  {min_level: 57}
+      blizzaga_iii: {min_level: 71}
+      aeroga:       {min_level: 23}
+      aeroga_ii:    {min_level: 48}
+      aeroga_iii:   {min_level: 67}
+      stonega:      {min_level: 15}
+      stonega_ii:   {min_level: 40}
+      stonega_iii:  {min_level: 63}
+      thundaga:     {min_level: 36}
+      thundaga_ii:  {min_level: 61}
+      thundaga_iii: {min_level: 73}
+      waterga:      {min_level: 19}
+      waterga_ii:   {min_level: 44}
+      waterga_iii:  {min_level: 65}
+      stun:         {min_level: 45}
+      firaja:       {min_level: 90}
+      blizzaja:     {min_level: 93}
+      aeroja:       {min_level: 87}
+      stoneja:      {min_level: 81}
+      thundaja:     {min_level: 87}
+      waterja:      {min_level: 84}
+
+  trust_ingrid_ii:
+    id: 425
+    spells:
+      cursna:     {min_level: 29}
+      holy:       {min_level: 50, max_level: 94}
+      holy_ii:    {min_level: 95}
+      banish:     {min_level: 5, max_level: 29}
+      banish_ii:  {min_level: 30, max_level: 64}
+      banish_iii: {min_level: 65, max_level: 89}
+
+  trust_arciela_ii:
+    id: 426
+    spells:
+      slow:         {min_level: 13}
+      haste:        {min_level: 40}
+      paralyze:     {min_level: 4}
+      slow_ii:      {min_level: 75}
+      paralyze_ii:  {min_level: 75}
+      refresh:      {min_level: 41}
+      fire:         {min_level: 9}
+      fire_ii:      {min_level: 34}
+      fire_iii:     {min_level: 59}
+      fire_iv:      {min_level: 72}
+      fire_v:       {min_level: 99}
+      blizzard:     {min_level: 24}
+      blizzard_ii:  {min_level: 56}
+      blizzard_iii: {min_level: 73}
+      blizzard_iv:  {min_level: 89}
+      blizzard_v:   {min_level: 99}
+      aero:         {min_level: 9}
+      aero_ii:      {min_level: 34}
+      aero_iii:     {min_level: 59}
+      aero_iv:      {min_level: 72}
+      aero_v:       {min_level: 99}
+      stone:        {}
+      stone_ii:     {min_level: 26}
+      stone_iii:    {min_level: 51}
+      stone_iv:     {min_level: 68}
+      stone_v:      {min_level: 99}
+      thunder:      {min_level: 21}
+      thunder_ii:   {min_level: 46}
+      thunder_iii:  {min_level: 66}
+      thunder_iv:   {min_level: 75}
+      thunder_v:    {min_level: 99}
+      water:        {min_level: 5}
+      water_ii:     {min_level: 30}
+      water_iii:    {min_level: 55}
+      water_iv:     {min_level: 70}
+      water_v:      {min_level: 99}
+      dispel:       {min_level: 64}
+      addle:        {min_level: 83}
+      refresh_ii:   {min_level: 82}
+      haste_ii:     {min_level: 96}
+      flurry:       {min_level: 48}
+      flurry_ii:    {min_level: 96}
+
+  trust_iroha_ii:
+    id: 427
+    spells:
+      protectra:     {min_level:  7}
+      protectra_ii:  {min_level: 27}
+      protectra_iii: {min_level: 47}
+      protectra_iv:  {min_level: 63}
+      protectra_v:   {min_level: 75}
+      shellra:       {min_level: 17}
+      shellra_ii:    {min_level: 37}
+      shellra_iii:   {min_level: 57}
+      shellra_iv:    {min_level: 68}
+      shellra_v:     {min_level: 75}
+      flare_ii:      {min_level: 75}
+
+  trust_shantotto_ii:
+    id: 428
+    spells:
+      fire:     {min_level: 9}
+      blizzard: {min_level: 17}
+      aero:     {min_level: 9}
+      stone:    {}
+      thunder:  {min_level: 21}
+      water:    {min_level: 5}
+
+  siren:
+    id: 429
+    spells:
+      massacre_elegy:   {}
+      magic_finale:     {}
+      wind_threnody_ii: {}
+
+  ebony_pudding:
+    id: 430
+    spells:
+      fire_iv:      {min_level: 24}
+      blizzard_iv:  {min_level: 24}
+      aero_iv:      {min_level: 24}
+      stone_iv:     {min_level: 24}
+      thunder_iv:   {min_level: 24}
+      water_iv:     {min_level: 24}
+      firaga_iii:   {min_level: 69}
+      blizzaga_iii: {min_level: 71}
+      aeroga_iii:   {min_level: 67}
+      stonega_iii:  {min_level: 63}
+      thundaga_iii: {min_level: 73}
+      waterga_iii:  {min_level: 65}
+      flare:        {min_level: 60}
+      freeze:       {min_level: 50}
+      tornado:      {min_level: 52}
+      quake:        {min_level: 54}
+      burst:        {min_level: 56}
+      flood:        {min_level: 58}
+      bio_ii:       {min_level: 35}
+      burn:         {min_level: 24}
+      frost:        {min_level: 22}
+      choke:        {min_level: 20}
+      rasp:         {min_level: 18}
+      shock:        {min_level: 16}
+      drown:        {min_level: 27}
+      drain:        {min_level: 12}
+      aspir:        {min_level: 25}
+      blaze_spikes: {min_level: 10}
+      stun:         {min_level: 45}
+      blind:        {min_level:  4}
+      bind:         {min_level:  7}
+      sleepga:      {min_level: 31}
+      sleepga_ii:   {min_level: 56}
+
+  kamlanaut_apoc_nigh:
+    id: 431
+    spells:
+      paralyga:  {min_level: 76}
+      slowga:    {min_level: 75}
+      silencega: {min_level: 75}
+      dispelga:  {min_level: 75}
+      graviga:   {min_level: 76}
+
+  ealdnarche_apoc_nigh:
+    id: 432
+    spells:
+      firaga_iii:   {min_level: 75}
+      blizzaga_iii: {min_level: 75}
+      aeroga_iii:   {min_level: 75}
+      stonega_iii:  {min_level: 75}
+      thundaga_iii: {min_level: 75}
+      waterga_iii:  {min_level: 75}
+      sleepga_ii:   {min_level: 75}
+      bindga:       {min_level: 75}
+
+  bladmall:
+    id: 433
+    spells:
+      protect_iv:  {min_level: 63}
+      shellra_iv:  {min_level: 68}
+      water_iv:    {min_level: 70}
+      waterga_ii:  {min_level: 44}
+      waterga_iii: {min_level: 65}
+      flood:       {}
+
+  nepionic_bladmall:
+    id: 434
+    spells:
+      cure_iv:    {min_level: 41}
+      protect_iv: {min_level: 63}
+      shell_iv:   {min_level: 68}
+
+  trust_matsui_p:
+    id: 435
+    spells:
+      blizzard: {min_level: 24}
+
+  ground_guzzler:
+    id: 436
+    spells:
+      stoneskin:   {min_level: 68}
+      stonega_iii: {min_level: 63}
+      quake:       {min_level: 54}
+      rasp:        {min_level: 18}
+      bind:        {min_level:  7}
+
+  shoggoth:
+    id: 437
+    spells:
+      fire_iv:      {}
+      blizzard_iv:  {}
+      aero_iv:      {}
+      stone_iv:     {}
+      thunder_iv:   {}
+      water_iv:     {}
+      firaga_iii:   {}
+      blizzaga_iii: {}
+      aeroga_iii:   {}
+      stonega_iii:  {}
+      thundaga_iii: {}
+      waterga_iii:  {}
+      sleepga_ii:   {}
+
+  farrucafly:
+    id: 438
+    spells:
+      blink:      {}
+      aero_iv:    {}
+      aeroga_iii: {}
+      silencega:  {}
+      graviga:    {}
+
+  gjenganger:
+    id: 439
+    spells:
+      fire_iv:      {}
+      blizzard_iv:  {}
+      aero_iv:      {}
+      stone_iv:     {}
+      thunder_iv:   {}
+      water_iv:     {}
+      firaga_iii:   {}
+      blizzaga_iii: {}
+      aeroga_iii:   {}
+      stonega_iii:  {}
+      thundaga_iii: {}
+      waterga_iii:  {}
+      flare:        {}
+      freeze:       {}
+      tornado:      {}
+      quake:        {}
+      burst:        {}
+      flood:        {}
+      drain:        {}
+      aspir:        {}
+
+  erebus:
+    id: 440
+    spells:
+      fire_iv:      {}
+      blizzard_iv:  {}
+      aero_iv:      {}
+      stone_iv:     {}
+      thunder_iv:   {}
+      water_iv:     {}
+      firaga_iii:   {}
+      blizzaga_iii: {}
+      aeroga_iii:   {}
+      stonega_iii:  {}
+      thundaga_iii: {}
+      waterga_iii:  {}
+
+  feuerunke:
+    id: 441
+    spells:
+      slowga: {}
+
+  dawon:
+    id: 442
+    spells:
+      haste:      {}
+      aeroga_iii: {}
+      silencega:  {}
+      graviga:    {}
+
+  aither:
+    id: 443
+    spells:
+      silence:    {}
+      enaero:     {}
+      aero_iv:    {}
+      aeroga_iii: {}
+      tornado:    {}
+      gravity:    {}
+      choke:      {}
+
+  pruina:
+    id: 444
+    spells:
+      paralyze:      {}
+      blizzard_iv:   {}
+      blizzaga_iii:  {}
+      freeze:        {}
+      frost:         {}
+      ice_spikes:    {}
+      bind:          {}
+      enblizzard_ii: {}
+
+  deorc:
+    id: 445
+    spells:
+      bio_iii:    {}
+      drain:      {}
+      aspir:      {}
+      stun:       {}
+      dispel:     {}
+      absorb-agi: {}
+      absorb-int: {}
+      absorb-mnd: {}
+      absorb-chr: {}
+      sleepga_ii: {}
+
+  beorht:
+    id: 446
+    spells:
+      holy:         {}
+      dia_ii:       {}
+      banish_iii:   {}
+      diaga_ii:     {}
+      banishga_iii: {}
+      protect_iv:   {}
+      shell_iv:     {}
+      blink:        {}
+      stoneskin:    {}
+      aquaveil:     {}
+      haste:        {}
+      regen:        {}
+      flash:        {}
+
+  eorthe:
+    id: 447
+    spells:
+      stoneskin:   {}
+      enstone:     {}
+      stone_iv:    {}
+      stonega_iii: {}
+      quake:       {}
+      rasp:        {}
+
+  thunor:
+    id: 448
+    spells:
+      enthunder:    {}
+      thunder_iv:   {}
+      thundaga_iii: {}
+      burst:        {}
+      shock:        {}
+      shock_spikes: {}
+
+  puretos:
+    id: 449
+    spells:
+      enfire:       {}
+      fire_iv:      {}
+      firaga_iii:   {}
+      flare:        {}
+      burn:         {}
+      blaze_spikes: {}
+
+  lacus:
+    id: 450
+    spells:
+      aquaveil:    {}
+      enwater:     {}
+      water_iv:    {}
+      waterga_iii: {}
+      flood:       {}
+      poisonga_ii: {}
+
+  skuld:
+    id: 451
+    spells:
+      fire_iv:      {}
+      blizzard_iv:  {}
+      aero_iv:      {}
+      stone_iv:     {}
+      thunder_iv:   {}
+      water_iv:     {}
+      firaga_iii:   {}
+      blizzaga_iii: {}
+      aeroga_iii:   {}
+      stonega_iii:  {}
+      thundaga_iii: {}
+      waterga_iii:  {}
+      paralyga:     {}
+      slowga:       {}
+      dispelga:     {}
+      bindga:       {}
+      graviga:      {}
+
+  urd:
+    id: 452
+    spells:
+      cure_iv:    {}
+      protect_iv: {}
+      shell_iv:   {}
+      stoneskin:  {}
+      regen:      {}
+
+  verthandi:
+    id: 453
+    spells:
+      holy_ii:   {}
+      protect_v: {}
+      shell_v:   {}
+      stoneskin: {}
+      regen:     {}
+
+  yilbegan:
+    id: 454
+    spells:
+      firaga_iii:   {min_level: 91, max_level: 91}
+      blizzaga_iii: {min_level: 90, max_level: 90}
+      aeroga_iii:   {min_level: 91, max_level: 91}
+      stonega_iii:  {min_level: 90, max_level: 90}
+      thundaga_iii: {min_level: 91, max_level: 91}
+      waterga_iii:  {min_level: 90, max_level: 90}
+      paralyga:     {min_level: 90, max_level: 90}
+      slowga:       {min_level: 90, max_level: 90}
+      silencega:    {min_level: 91, max_level: 91}
+      bindga:       {min_level: 90, max_level: 90}
+      graviga:      {min_level: 91, max_level: 91}
+
+  sapphirine_quadav_litd:
+    id: 455
+    spells:
+      protect_iii: {}
+      shell_iii:   {}
+      blink:       {}
+      aquaveil:    {}
+      haste:       {}
+
+  the_keeper:
+    id: 456
+    spells:
+      fire_iii:     {}
+      blizzard_iii: {}
+      aero_iii:     {}
+      stone_iii:    {}
+      water_iii:    {}
+      firaga_ii:    {}
+      blizzaga_ii:  {}
+      aeroga_ii:    {}
+      stonega_ii:   {}
+      waterga_ii:   {}
+
+  mistdagger:
+    id: 457
+    spells:
+      utsusemi_ni: {}
+      yurin_ichi:  {}
+      kakka_ichi:  {}
+
+  the_briars_elv:
+    id: 458
+    spells:
+      diaga_ii:    {}
+      protect_v:   {}
+      shell_v:     {}
+      haste:       {}
+      slow_ii:     {}
+      paralyze_ii: {}
+
+  cernunnos:
+    id: 459
+    spells:
+      cure_iii:    {}
+      cure_iv:     {}
+      cure_v:      {}
+      protect_iv:  {}
+      shell_iv:    {}
+      stoneskin:   {}
+      stone_iv:    {}
+      stonega_iii: {}
+      break:       {}
+
+  nepionic_soulflayer:
+    id: 460
+    spells:
+      blizzard_iii: {}
+      thunder_iii:  {}
+      water_iii:    {}
+      blizzaga_ii:  {}
+      stonega_iii:  {}
+      thundaga_ii:  {}
+      waterga_iii:  {}
+      burst:        {}
+      flood:        {}
+      poisonga_ii:  {}
+      bio_ii:       {}
+      burn:         {}
+      frost:        {}
+      choke:        {}
+      rasp:         {}
+      shock:        {}
+      drown:        {}
+      drain:        {}
+      aspir:        {}
+      ice_spikes:   {}
+      stun:         {}
+      sleep:        {}
+      blind:        {}
+      bind:         {}
+      sleep_ii:     {}
+      sleepga:      {}
+      sleepga_ii:   {}
+
+  bombast:
+    id: 461
+    spells:
+      burn: {}
+
+  goblin_wolfman:
+    id: 462
+    spells:
+      drain:      {min_level: 10}
+      aspir:      {min_level: 20}
+      stun:       {min_level: 20}
+      absorb-str: {min_level: 43}
+      absorb-dex: {min_level: 41}
+      absorb-vit: {min_level: 35}
+      absorb-agi: {min_level: 37}
+      absorb-int: {min_level: 39}
+      absorb-mnd: {min_level: 31}
+      absorb-chr: {min_level: 33}
+      absorb-tp:  {min_level: 45}
+
+  goblin_collector:
+    id: 463
+    spells:
+      holy:         {min_level: 45}
+      diaga_iii:    {min_level: 45}
+      banishga_iii: {min_level: 45}
+
+  shikaree_x:
+    id: 464
+    spells:
+      katon_ichi:    {}
+      hyoton_ichi:   {}
+      huton_ichi:    {}
+      doton_ichi:    {}
+      raiton_ichi:   {}
+      suiton_ichi:   {}
+      utsusemi_ni:   {}
+      jubaku_ichi:   {}
+      hojo_ichi:     {}
+      kurayami_ichi: {}
+      dokumori_ichi: {}
+
+  shikaree_y:
+    id: 465
+    spells:
+      fire_ii:     {}
+      blizzard_ii: {}
+      aero_ii:     {}
+      stone_ii:    {}
+      thunder_ii:  {}
+      water_ii:    {}
+      poison:      {}
+      bio_ii:      {}
+      drain:       {}
+      aspir:       {}
+      absorb-str:  {}
+      absorb-dex:  {}
+      absorb-vit:  {}
+      absorb-agi:  {}
+      absorb-int:  {}
+      absorb-mnd:  {}
+      absorb-chr:  {}
+      absorb-tp:   {}
+
+  shikaree_z:
+    id: 466
+    spells:
+      poisona:  {}
+      paralyna: {}
+      dia:      {}
+      banish:   {}
+      diaga:    {}
+      banishga: {}
+      blink:    {}
+      aquaveil: {}
+
+  ixzdei_blm:
+    id: 467
+    spells:
+      fire_iv:      {}
+      blizzard_iv:  {}
+      aero_iv:      {}
+      stone_iv:     {}
+      thunder_iv:   {}
+      water_iv:     {}
+      firaga_iii:   {}
+      blizzaga_iii: {}
+      aeroga_iii:   {}
+      stonega_iii:  {}
+
+  ixzdei_rdm:
+    id: 468
+    spells:
+      stonega_iii: {}
+      blind:       {}
+      dispel:      {}
+
+  ixghrah_manafont_sleepga_ii:
+    id: 469
+    spells:
+      sleepga_ii: {}
+
+  ixghrah_manafont_banishga_iii:
+    id: 470
+    spells:
+      banishga_iii: {}
+
+  ixghrah_manafont_blizzaga_iii:
+    id: 471
+    spells:
+      blizzaga_iii: {}
+
+  ixghrah_manafont_aeroga_iii:
+    id: 472
+    spells:
+      aeroga_iii: {}
+
+  ixghrah_manafont_stonega_iii:
+    id: 473
+    spells:
+      stonega_iii: {}
+
+  ixghrah_manafont_thundaga_iii:
+    id: 474
+    spells:
+      thundaga_iii: {}
+
+  ixghrah_manafont_waterga_iii:
+    id: 475
+    spells:
+      waterga_iii: {}
+
+  ixghrah_manafont_firaga_iii:
+    id: 476
+    spells:
+      firaga_iii: {}
+
+  ghrah_dark:
+    id: 477
+    spells:
+      bio_iii:    {}
+      drain:      {}
+      aspir:      {}
+      stun:       {}
+      dispel:     {}
+      absorb-agi: {}
+      absorb-int: {}
+      absorb-mnd: {}
+      absorb-chr: {}
+      sleepga:    {}
+      sleepga_ii: {}
+
+  ghrah_light:
+    id: 478
+    spells:
+      holy:       {}
+      dia_ii:     {}
+      banish_iii: {}
+      diaga_ii:   {}
+      shell_iv:   {}
+      blink:      {}
+      regen:      {}
+      flash:      {}
+
+  ghrah_ice:
+    id: 479
+    spells:
+      paralyze:     {}
+      enblizzard:   {}
+      blizzaga_iii: {}
+      freeze:       {}
+      frost:        {}
+      ice_spikes:   {}
+      bind:         {}
+
+  ghrah_wind:
+    id: 480
+    spells:
+      blink:      {}
+      silence:    {}
+      enaero:     {}
+      aero_iv:    {}
+      aeroga_iii: {}
+      tornado:    {}
+      gravity:    {}
+      choke:      {}
+
+  ghrah_earth:
+    id: 481
+    spells:
+      stoneskin:   {}
+      enstone:     {}
+      stone_v:     {}
+      stonega_iii: {}
+      rasp:        {}
+
+  ghrah_lightning:
+    id: 482
+    spells:
+      enthunder:    {}
+      thunder_iv:   {}
+      thundaga_iii: {}
+      burst:        {}
+      shock:        {}
+      shock_spikes: {}
+
+  ghrah_water:
+    id: 483
+    spells:
+      aquaveil:    {}
+      water_v:     {}
+      waterga_iii: {}
+      flood:       {}
+      poisonga_ii: {}
+      drown:       {}
+
+  ghrah_fire:
+    id: 484
+    spells:
+      fire_iv:    {}
+      firaga_iii: {}
+      flare:      {}
+      burn:       {}
+
+  sword_sorcerer_solisoq:
+    id: 485
+    spells:
+      holy:     {min_level: 45}
+      diaga_ii: {min_level: 45}
+
+  hakutaku:
+    id: 486
+    spells:
+      enfire:       {}
+      fire_iv:      {}
+      fire_v:       {}
+      firaga_iii:   {}
+      flare:        {}
+      burn:         {}
+      blaze_spikes: {}
+
+  shen:
+    id: 487
+    spells:
+      water_iv:    {}
+      waterga_iii: {}
+      drown:       {}
+
+  shens_filtrate:
+    id: 488
+    spells:
+      water_iv:    {}
+      waterga_iii: {}
+      flood:       {}
+
+  cherukiki_cop:
+    id: 489
+    spells:
+      cure_iv:     {}
+      holy:        {}
+      diaga_ii:    {}
+      banishga_ii: {}
+      protect_iv:  {}
+      shell_iii:   {}
+      slow:        {}
+      haste:       {}
+      paralyze:    {}
+      silence:     {}
+      regen_iii:   {}
+      flash:       {}
+
+  kukki_chebukki_cop:
+    id: 490
+    spells:
+      fire_iii:     {}
+      blizzard_iii: {}
+      stone_iii:    {}
+      thunder_iii:  {}
+      firaga_ii:    {}
+      stonega_iii:  {}
+      thundaga_ii:  {}
+      waterga_iii:  {}
+      poisonga_ii:  {}
+      bio_iii:      {}
+      burn:         {}
+      frost:        {}
+      choke:        {}
+      rasp:         {}
+      shock:        {}
+      drown:        {}
+      drain:        {}
+      aspir:        {}
+      bind:         {}
+      sleepga_ii:   {}
+
+  blackbeard:
+    id: 491
+    spells:
+      thunder_iii: {}
+      thundaga_ii: {}
+      waterga_iii: {}
+      freeze:      {}
+      burst:       {}
+      flood:       {}
+      ice_spikes:  {}
+      stun:        {}
+      sleepga_ii:  {}
+
+  silverhook:
+    id: 492
+    spells:
+      blizzard_iii: {}
+      blizzaga_ii:  {}
+      waterga_iii:  {}
+      freeze:       {}
+      burst:        {}
+      flood:        {}
+      ice_spikes:   {}
+      stun:         {}
+      sleep:        {}
+      sleepga_ii:   {}
+
+  bastet:
+    id: 493
+    spells:
+      thunder_ii:   {}
+      thundaga_ii:  {}
+      burst:        {}
+      shock:        {}
+      shock_spikes: {}
+      stun:         {}
+
+  ullikummi:
+    id: 494
+    spells:
+      diaga_ii:     {}
+      banishga_iii: {}
+      flash:        {}
+
+  olla_grande:
+    id: 495
+    spells:
+      holy:         {min_level: 50, max_level: 94}
+      dia_ii:       {min_level: 36}
+      banish_iv:    {min_level: 73}
+      diaga_iii:    {min_level: 74}
+      banishga_iii: {min_level: 69}
+      blink:        {min_level: 19}
+      stoneskin:    {min_level: 28}
+      slow:         {min_level: 13}
+      haste:        {min_level: 40}
+      paralyze:     {min_level: 4}
+      silence:      {min_level: 15}
+      regen_iii:    {min_level: 66}
+      flash:        {min_level: 45}
+
+  cemetery_cherry:
+    id: 497
+    spells:
+      sleepga_ii: {}
+      paralyga:   {}
+      graviga:    {}
+
+  zoredonite:
+    id: 498
+    spells:
+      cure_iii:   {}
+      banish_iii: {}
+      flash:      {}
+
+  slendlix_spindlethumb:
+    id: 499
+    spells:
+      cure_iii: {}
+      dia:      {}
+      diaga:    {}
+
+  toxic_tamlyn:
+    id: 500
+    spells:
+      bio_ii: {}
+
+  zirnitra:
+    id: 501
+    spells:
+      silencega: {min_level: 75}
+
+  pyuu_the_spatemaker:
+    id: 502
+    spells:
+      water_iv:    {}
+      waterga_iii: {}
+
+  erle:
+    id: 503
+    spells:
+      aero_iii:  {}
+      aeroga_ii: {}
+      tornado:   {}
+
+  mountain_worm_nm:
+    id: 504
+    spells:
+      stoneskin:   {min_level: 28}
+      stone_iv:    {min_level: 68, max_level: 76}
+      stonega_iii: {min_level: 63}
+      quake:       {min_level: 54}
+      rasp:        {min_level: 18, max_level: 50}
+      bind:        {min_level: 7}
+
+  # Poroggo with Providence
+  providence:
+    id: 506
+    spells:
+      haste:   {}
+      breakga: {}
+      bindga:  {}
+      blindga: {}
+      graviga: {}
+      slowga:  {}
+      death:   {}
+
+  # Two-faced Flan from Happy Caster ISNM3000
+  two_faced_flan:
+    id: 507
+    spells:
+      fire_iv:      {}
+      blizzard_iv:  {}
+      aero_iv:      {}
+      stone_iv:     {}
+      thunder_iv:   {}
+      water_iv:     {}
+      firaga_iii:   {}
+      blizzaga_iii: {}
+      aeroga_iii:   {}
+      stonega_iii:  {}
+      thundaga_iii: {}
+      waterga_iii:  {}
+      sleepga_ii:   {}
+      bindga:       {}
+
+  unfettered_twitherym:
+    id: 508
+    spells:
+      graviga:   {}
+      paralyga:  {}
+      bindga:    {}
+      slowga:    {}
+      silencega: {}
+      dispelga:  {}
+      aeroga_iv: {}
+
+  mastop:
+    id: 509
+    spells:
+      addle:     {min_level: 83}
+      stun:      {min_level: 37}
+      slowga:    {min_level: 44}
+      silencega: {min_level: 75}
+      sleepga:   {min_level: 31}
+      dispelga:  {min_level: 38}
+      breakga:   {min_level: 49}
+
+  jailer_of_love_fire:
+    id: 513
+    spells:
+      fire_iv:    {}
+      firaga_iii: {}
+
+  jailer_of_love_ice:
+    id: 514
+    spells:
+      blizzard_iv:  {}
+      blizzaga_iii: {}
+      bindga:       {}
+      paralyga:     {}
+
+  jailer_of_love_wind:
+    id: 515
+    spells:
+      aero_iv:    {}
+      aeroga_iii: {}
+      silencega:  {}
+      graviga:    {}
+
+  jailer_of_love_earth:
+    id: 516
+    spells:
+      stone_iv:    {}
+      stonega_iii: {}
+      slowga:      {}
+      breakga:     {}
+
+  # Jailer of Love (Thunder)
+  jailer_of_love_lightning:
+    id: 517
+    spells:
+      thunder_iv:   {}
+      thundaga_iii: {}
+
+  jailer_of_love_water:
+    id: 518
+    spells:
+      water_iv:    {}
+      waterga_iii: {}
+      poisonga_ii: {}
+
+  jailer_of_love_light:
+    id: 519
+    spells:
+      holy:         {}
+      banish_iii:   {}
+      diaga_iii:    {}
+      banishga_iii: {}
+
+  jailer_of_love_dark:
+    id: 520
+    spells:
+      bio_iii:    {}
+      sleepga_ii: {}
+      dispelga:   {}
+      blindga:    {}
+
+  # Aries (KS30 Today's Horoscope Ram)
+  aries:
+    id: 521
+    spells:
+      stoneskin: {}
+      paralyga:  {}
+
+  craven_einherjar:
+    id: 522
+    spells:
+      blizzard_iv:  {}
+      blizzaga_iii: {}
+      freeze:       {}
+      frost:        {}
+      ice_spikes:   {}
+      bind:         {}
+
+  dark_elemental_einherjar:
+    id: 523
+    spells:
+      bio_iii:    {}
+      drain:      {}
+      aspir:      {}
+      stun:       {}
+      dispel:     {}
+      absorb-str: {}
+      absorb-dex: {}
+      absorb-vit: {}
+      absorb-agi: {}
+      absorb-int: {}
+      absorb-mnd: {}
+      absorb-chr: {}
+      sleepga:    {}
+      sleepga_ii: {}
+
+  einherjar_eater:
+    id: 524
+    spells:
+      stoneskin:   {}
+      stone_iv:    {}
+      stonega_iii: {}
+      quake:       {}
+      rasp:        {}
+      bind:        {}
+
+  rotting_huskarl_blm:
+    id: 525
+    spells:
+      aero_iv:      {}
+      thunder_iv:   {}
+      water_iv:     {}
+      blizzaga_iii: {}
+      thundaga_iii: {}
+      burst:        {}
+      flood:        {}
+      gravity:      {}
+      poisonga_ii:  {}
+      bio_iii:      {}
+      frost:        {}
+      choke:        {}
+      rasp:         {}
+      drown:        {}
+      drain:        {}
+      aspir:        {}
+      ice_spikes:   {}
+      stun:         {}
+      sleep:        {}
+      blind:        {}
+      bind:         {}
+      sleep_ii:     {}
+      sleepga:      {}
+      sleepga_ii:   {}
+
+  rotting_huskarl_drk:
+    id: 526
+    spells:
+      blizzard_ii: {}
+      stone_iii:   {}
+      thunder_ii:  {}
+      water_iii:   {}
+      poison_ii:   {}
+      bio_ii:      {}
+      drain:       {}
+      aspir:       {}
+      stun:        {}
+      bind:        {}
+      absorb-str:  {}
+      absorb-dex:  {}
+      absorb-agi:  {}
+      absorb-int:  {}
+      absorb-tp:   {}
+
+  # Odin's Jester, Odin's Fool
+  odins_jester:
+    id: 527
+    spells:
+      blizzard_iii: {}
+      aero_iii:     {}
+      thunder_iii:  {}
+      water_iii:    {}
+      firaga_ii:    {}
+      thundaga_ii:  {}
+      poisonga_ii:  {}
+      bio_ii:       {}
+      burn:         {}
+      choke:        {}
+      drown:        {}
+      aspir:        {}
+      blaze_spikes: {}
+      stun:         {}
+      sleep:        {}
+      blind:        {}
+      bind:         {}
+      sleep_ii:     {}
+      sleepga:      {}
+
+  waldgeist:
+    id: 528
+    spells:
+      fire_iv:      {}
+      blizzard_iv:  {}
+      aero_iv:      {}
+      thunder_iv:   {}
+      water_iv:     {}
+      water_v:      {}
+      firaga_iii:   {}
+      aeroga_iii:   {}
+      thundaga_iii: {}
+      flare:        {}
+      poisonga_ii:  {}
+      bio_ii:       {}
+      burn:         {}
+      frost:        {}
+      choke:        {}
+      drown:        {}
+      drain:        {}
+      aspir:        {}
+      blaze_spikes: {}
+      stun:         {}
+      sleep:        {}
+      blind:        {}
+      sleep_ii:     {}
+
+  logi:
+    id: 529
+    spells:
+      enfire:       {}
+      fire_iv:      {}
+      firaga_iii:   {}
+      flare:        {}
+      burn:         {}
+      blaze_spikes: {}
+
+  liquified_einherjar:
+    id: 530
+    spells:
+      fire_iv:      {}
+      thunder_iv:   {}
+      firaga_iii:   {}
+      stonega_iii:  {}
+      flare:        {}
+      quake:        {}
+      burst:        {}
+      bio_ii:       {}
+      burn:         {}
+      rasp:         {}
+      shock:        {}
+      drain:        {}
+      aspir:        {}
+      blaze_spikes: {}
+      stun:         {}
+      blind:        {}
+      sleepga:      {}
+      sleepga_ii:   {}
+
+  margygr:
+    id: 531
+    spells:
+      fire_iv:      {}
+      blizzard_iv:  {}
+      aero_iv:      {}
+      thunder_iv:   {}
+      water_iv:     {}
+      firaga_iii:   {}
+      thundaga_iii: {}
+      flare:        {}
+      poisonga_ii:  {}
+      bio_ii:       {}
+      burn:         {}
+      frost:        {}
+      choke:        {}
+      drown:        {}
+      drain:        {}
+      aspir:        {}
+      blaze_spikes: {}
+      stun:         {}
+      sleep:        {}
+      blind:        {}
+      bind:         {}
+      sleep_ii:     {}
+      sleepga:      {}
+      sleepga_ii:   {}
+
+  soulflayer_einherjar:
+    id: 532
+    spells:
+      blizzard_iv:  {}
+      aero_iv:      {}
+      thunder_iv:   {}
+      water_iv:     {}
+      blizzaga_iii: {}
+      thundaga_iii: {}
+      burst:        {}
+      flood:        {}
+      gravity:      {}
+      poisonga_ii:  {}
+      bio_iii:      {}
+      frost:        {}
+      choke:        {}
+      rasp:         {}
+      drown:        {}
+      drain:        {}
+      aspir:        {}
+      ice_spikes:   {}
+      stun:         {}
+      blind:        {}
+      bind:         {}
+      sleep_ii:     {}
+      sleepga_ii:   {}
+
+  berserkr_blm:
+    id: 533
+    spells:
+      fire_iv:      {}
+      aero_iv:      {}
+      thunder_iv:   {}
+      thundaga_iii: {}
+      flare:        {}
+      poison:       {}
+      bio_ii:       {}
+      burn:         {}
+      frost:        {}
+      choke:        {}
+      drown:        {}
+      drain:        {}
+      aspir:        {}
+      blaze_spikes: {}
+      stun:         {}
+      sleepga:      {}
+
+  berserkr_drk:
+    id: 534
+    spells:
+      fire_ii:     {}
+      blizzard_ii: {}
+      aero_ii:     {}
+      stone_iii:   {}
+      thunder_ii:  {}
+      poison:      {}
+      drain:       {}
+      aspir:       {}
+      stun:        {}
+      absorb-str:  {}
+      absorb-dex:  {}
+      absorb-vit:  {}
+      absorb-agi:  {}
+      absorb-int:  {}
+      absorb-mnd:  {}
+      absorb-chr:  {}
+      absorb-tp:   {}
+
+  vanquished_einherjar_drk:
+    id: 535
+    spells:
+      aero_ii:    {}
+      thunder_ii: {}
+      poison_ii:  {}
+      drain:      {}
+      aspir:      {}
+      stun:       {}
+      sleep_ii:   {}
+      absorb-str: {}
+      absorb-dex: {}
+      absorb-vit: {}
+      absorb-agi: {}
+      absorb-int: {}
+      absorb-tp:  {}
+
+  vanquished_einherjar_blm:
+    id: 536
+    spells:
+      blizzard_iv:  {}
+      aero_iv:      {}
+      thundaga_iii: {}
+      flood:        {}
+      bio_iii:      {}
+      frost:        {}
+      choke:        {}
+      drain:        {}
+      aspir:        {}
+      ice_spikes:   {}
+      blind:        {}
+      bind:         {}
+      sleepga:      {}
+
+  andhrimnir:
+    id: 537
+    spells:
+      firaga_iii:   {}
+      blizzaga_iii: {}
+      aeroga_iii:   {}
+      stonega_iii:  {}
+      thundaga_iii: {}
+      waterga_iii:  {}
+      poisonga_ii:  {}
+      bio_iii:      {}
+      choke:        {}
+      drown:        {}
+      blaze_spikes: {}
+      ice_spikes:   {}
+      shock_spikes: {}
+      stun:         {}
+      bind:         {}
+      sleepga_ii:   {}
+
+  balrahn:
+    id: 538
+    spells:
+      firaga_iii:   {}
+      blizzaga_iii: {}
+      thundaga_iii: {}
+
+  mokkuralfi:
+    id: 539
+    spells:
+      firaga_ii:    {}
+      firaga_iii:   {}
+      blizzaga_ii:  {}
+      blizzaga_iii: {}
+      aeroga_ii:    {}
+      stonega_ii:   {}
+      thundaga_ii:  {}
+      thundaga_iii: {}
+      waterga_ii:   {}
+      poisonga_ii:  {}
+      bio_iii:      {}
+      burn:         {}
+      choke:        {}
+      shock:        {}
+      drain:        {}
+      blaze_spikes: {}
+      ice_spikes:   {}
+      shock_spikes: {}
+      sleepga_ii:   {}
+
+  ariri_samariri:
+    id: 540
+    spells:
+      firaga_iii:   {}
+      blizzaga_iii: {}
+      thundaga_iii: {}
+      poisonga_ii:  {}
+      bio_iii:      {}
+      drain:        {}
+      shock_spikes: {}
+      stun:         {}
+      sleepga_ii:   {}
+      graviga:      {}
+
+  motsognir:
+    id: 541
+    spells:
+      fire_iv:      {}
+      blizzard_iv:  {}
+      thunder_iv:   {}
+      firaga_iii:   {}
+      blizzaga_iii: {}
+      thundaga_iii: {}
+      poisonga_ii:  {}
+      bio_iii:      {}
+      burn:         {}
+      choke:        {}
+      shock:        {}
+      stun:         {}
+      blind:        {}
+      bind:         {}
+      sleepga_ii:   {}
+
+  vampyr_jarl:
+    id: 542
+    spells:
+      poisonga_ii:  {}
+      bio_iii:      {}
+      drain_ii:     {}
+      stun:         {}
+      absorb-str:   {}
+      absorb-dex:   {}
+      absorb-vit:   {}
+      absorb-agi:   {}
+      sleepga_ii:   {}
+      absorb-tp:    {}
+      dread_spikes: {}
+      bindga:       {}
+
+  alexander_wtc:
+    id: 546
+    spells:
+      holy_ii:      {}
+      dia_iii:      {}
+      banish_iv:    {}
+      diaga_iii:    {}
+      banishga_iii: {}
+      protect_iv:   {}
+      shell_iv:     {}
+      protectra_iv: {}
+      shellra_iv:   {}
+
+  alexander_image:
+    id: 547
+    spells:
+      holy:         {}
+      banish_iii:   {}
+      diaga_ii:     {}
+      banishga_iii: {}
+      flash:        {}
+
+  # Ouryu (Ouryu from Ouryu Cometh)
+  ouryu_ouryu_cometh:
+    id: 548
+    spells:
+      stoneskin:   {}
+      stonega_iii: {}
+      breakga:     {}
+      break:       {}
+
+  # T3 Elemental Ga Spells - Mammet-800
+  t3_ga_spells:
+    id: 549
+    spells:
+      firaga_iii:   {}
+      blizzaga_iii: {}
+      aeroga_iii:   {}
+      stonega_iii:  {}
+      thundaga_iii: {}
+      waterga_iii:  {}
+
+  giollemitte_b_feroun:
+    id: 550
+    spells:
+      flash: {min_level: 37}
+
+  # Marquis Andrealphus (DRK)
+  marquis_andrealphus:
+    id: 551
+    spells:
+      fire:       {}
+      thunder:    {}
+      blizzard:   {}
+      aero:       {}
+      stone_ii:   {}
+      water_ii:   {}
+      poison:     {}
+      bio_ii:     {}
+      drain:      {}
+      aspir:      {}
+      absorb-str: {}
+      absorb-dex: {}
+      absorb-vit: {}
+      absorb-agi: {}
+      absorb-int: {}
+      absorb-mnd: {}
+      absorb-chr: {}
+      absorb-tp:  {}
+
+  # Demon Secretary (BLM)
+  demon_secretary:
+    id: 552
+    spells:
+      fire_ii:      {}
+      blizzard_ii:  {}
+      thunder_ii:   {}
+      water_ii:     {}
+      firaga:       {}
+      aeroga_ii:    {}
+      stonega_ii:   {}
+      thundaga:     {}
+      poison_ii:    {}
+      bio_ii:       {}
+      burn:         {}
+      frost:        {}
+      choke:        {}
+      drown:        {}
+      drain:        {}
+      aspir:        {}
+      blaze_spikes: {}
+      stun:         {}
+      sleep:        {}
+      blind:        {}
+      bind:         {}
+      sleep_ii:     {}
+      sleepga:      {}
+
+  # Xarcabard NM Ereshkigal
+  ereshkigal:
+    id: 553
+    spells:
+      blizzard_ii: {}
+      blizzaga:    {}
+      freeze:      {}
+      bio_ii:      {}
+      ice_spikes:  {}
+
+  beloved_of_the_atlantes:
+    id: 554
+    spells:
+      foe_requiem_v:   {}
+      armys_paeon_iv:  {}
+      advancing_march: {}
+      carnage_elegy:   {}
+      foe_lullaby:     {}
+
+  # Bloody Coffin (RDM)
+  bloody_coffin:
+    id: 555
+    spells:
+      diaga_ii:   {min_level: 45}
+      slow:       {}
+      haste:      {}
+      enwater:    {}
+      regen:      {}
+      ice_spikes: {}
+      blind:      {}
+
+  # Ace of Batons (BLM) Windurst Mission 9-2
+  ace_of_batons:
+    id: 556
+    spells:
+      banishga_iii: {}
+      stone_iv:     {}
+      flare:        {}
+      drown:        {}
+      stun:         {}
+
+  # Ace of Coins (RDM) Windurst Mission 9-2
+  ace_of_coins:
+    id: 557
+    spells:
+      diaga_ii:    {}
+      blink:       {}
+      fire_ii:     {}
+      blizzard_ii: {}
+      stone_iii:   {}
+      water_ii:    {}
+      bio_ii:      {}
+
+  # Ace of Cups (WHM) Windurst Mission 9-2
+  ace_of_cups:
+    id: 558
+    spells:
+      cure_v:    {}
+      paralyna:  {}
+      blindna:   {}
+      silena:    {}
+      holy:      {}
+      dia_ii:    {}
+      diaga_ii:  {}
+      blink:     {}
+      stoneskin: {}
+
+  # Ace of Cups (PLD) Windurst Mission 9-2
+  ace_of_swords:
+    id: 559
+    spells:
+      cure_iv:   {}
+      banish_ii: {}
+      flash:     {}
+
+  # Pandemonium Warden/Lamp (BLM)
+  pandemoniumx_blm:
+    id: 560
+    spells:
+      fire_iv:     {}
+      blizzard_iv: {}
+      thunder_iv:  {}
+      poisonga_ii: {}
+      bio_iii:     {}
+      burn:        {}
+      choke:       {}
+      shock:       {}
+      ice_spikes:  {}
+      stun:        {}
+      blind:       {}
+      bind:        {}
+      sleepga_ii:  {}
+
+  pandemoniumlamp_rdm:
+    id: 561
+    spells:
+      cure_iv:      {}
+      dia_iii:      {}
+      protect_iv:   {}
+      shell_iv:     {}
+      blink:        {}
+      stoneskin:    {}
+      aquaveil:     {}
+      slow:         {}
+      haste:        {}
+      paralyze:     {}
+      silence:      {}
+      regen_ii:     {}
+      fire_iii:     {}
+      blizzard_iii: {}
+      aero_iii:     {}
+      stone_iii:    {}
+      thunder_iii:  {}
+      water_iii:    {}
+      gravity:      {}
+      poison_ii:    {}
+      bio_iii:      {}
+      sleep:        {}
+      blind:        {}
+      bind:         {}
+      sleep_ii:     {}
+      dispel:       {}
+
+  pandemoniumlamp_whm:
+    id: 562
+    spells:
+      cure_v:     {}
+      poisona:    {}
+      paralyna:   {}
+      blindna:    {}
+      silena:     {}
+      stona:      {}
+      viruna:     {}
+      cursna:     {}
+      holy:       {}
+      dia_iii:    {}
+      banish_iv:  {}
+      protect_iv: {}
+      shell_iv:   {}
+      blink:      {}
+      stoneskin:  {}
+      aquaveil:   {}
+      slow:       {}
+      haste:      {}
+      paralyze:   {}
+      silence:    {}
+      regen_iii:  {}
+      flash:      {}
+      erase:      {}
+
+  pandemoniumlamp_nin:
+    id: 563
+    spells:
+      katon_san:    {}
+      hyoton_san:   {}
+      huton_san:    {}
+      doton_san:    {}
+      raiton_san:   {}
+      suiton_san:   {}
+      utsusemi_san: {}
+      jubaku_ni:    {}
+      hojo_san:     {}
+      kurayami_san: {}
+      dokumori_san: {}
+
+  # Book Browser Bokabraq (BLM) Go! Go! Gobmuffin!
+  book_browser_bokabraq:
+    id: 564
+    spells:
+      fire_ii:      {}
+      stone_iii:    {}
+      thunder_ii:   {}
+      water_ii:     {}
+      aeroga_ii:    {}
+      stonega_ii:   {}
+      tornado:      {}
+      poison_ii:    {}
+      burn:         {}
+      frost:        {}
+      choke:        {}
+      drown:        {}
+      drain:        {}
+      aspir:        {}
+      blaze_spikes: {}
+      stun:         {}
+      sleep:        {}
+      blind:        {}
+      bind:         {}
+      sleep_ii:     {}
+      sleepga:      {}
+
+  # Chemical Cook Chemachiq (WHM) Go! Go! Gobmuffin!
+  chemical_cook_chemachiq:
+    id: 565
+    spells:
+      cure_iv:     {}
+      poisona:     {}
+      silena:      {}
+      holy:        {}
+      dia_ii:      {}
+      banish_ii:   {}
+      diaga_ii:    {}
+      banishga_ii: {}
+      protect_iii: {}
+      shell_ii:    {}
+      blink:       {}
+      stoneskin:   {}
+      aquaveil:    {}
+      slow:        {}
+      haste:       {}
+      silence:     {}
+      flash:       {}
+
+  stormwalker_frame:
+    id: 566
+    spells:
+      aero:       {}
+      bio_ii:     {}
+      blink:      {}
+      blizzard:   {}
+      dia_ii:     {}
+      diaga:      {}
+      dispel:     {}
+      enwater:    {}
+      fire:       {}
+      gravity:    {}
+      protect_ii: {}
+      poison:     {}
+      regen:      {}
+      shell_ii:   {}
+      stone_ii:   {}
+      stoneskin:  {}
+      thunder:    {}
+      water:      {}
+      aquaveil:   {}
+
+  harlequin_frame:
+    id: 567
+    spells:
+      dia: {}
+
+  chest_oplenty:
+    id: 568
+    spells:
+      firaga_iii:   {} # Capture needed
+      blizzaga_iii: {} # Capture needed
+      aeroga_iii:   {} # Capture needed
+      stonega_iii:  {} # Capture needed
+      thundaga_iii: {} # Capture needed
+      waterga_iii:  {} # Capture needed
+      flare_ii:     {} # Capture needed
+      freeze_ii:    {} # Capture needed
+      tornado_ii:   {} # Capture needed
+      quake_ii:     {} # Capture needed
+      burst_ii:     {} # Capture needed
+      flood_ii:     {} # Capture needed
+      comet:        {} # Capture needed
+      absorb-tp:    {} # Capture needed
+      death:        {}

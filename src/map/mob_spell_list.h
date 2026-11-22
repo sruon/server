@@ -28,8 +28,6 @@
 
 #include "spell.h"
 
-#define MAX_MOBSPELLLIST_ID 5000
-
 struct MobSpell_t
 {
     SpellID spellId;
