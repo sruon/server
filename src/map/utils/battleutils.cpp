@@ -235,7 +235,7 @@ void LoadMobSkillsList()
             ShowWarningFmt("Mob skill {} ({}) has both TARGET_SELF and TARGET_ENEMY set", PMobSkill->getName(), PMobSkill->getID());
         }
         PMobSkill->setValidTargets(validTargets);
-        PMobSkill->setFlag(rset->get<uint16>("mob_skill_flag"));
+        PMobSkill->setFlag(rset->get<xi::MobSkillFlag>("mob_skill_flag"));
         PMobSkill->setParam(rset->get<int16>("mob_skill_param"));
         PMobSkill->setKnockback(rset->get<Knockback>("knockback"));
         PMobSkill->setPrimarySkillchain(rset->get<uint8>("primary_sc"));

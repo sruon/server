@@ -33,7 +33,7 @@ CMobSkill::CMobSkill(uint16 id)
 , m_Aoe(0)
 , m_AoeRadius(0)
 , m_Distance(0)
-, m_Flag(0)
+, m_Flag(xi::MobSkillFlag::None)
 , m_ValidTarget(xi::TargetType::None)
 , m_AnimationTime(0s)
 , m_ActivationTime(0s)
@@ -81,24 +81,24 @@ auto CMobSkill::isSingle() const -> bool
 auto CMobSkill::isTpFreeSkill() const -> bool
 {
     // Do not remove users TP when using the skill
-    return m_Flag & SKILLFLAG_NO_TP_COST;
+    return hasFlag(xi::MobSkillFlag::NoTpCost);
 }
 
 auto CMobSkill::isAstralFlow() const -> bool
 {
-    return m_Flag & SKILLFLAG_ASTRAL_FLOW;
+    return hasFlag(xi::MobSkillFlag::AstralFlow);
 }
 
 auto CMobSkill::isBloodPactRage() const -> bool
 {
     // means it is a BP Rage
-    return m_Flag & SKILLFLAG_BLOODPACT_RAGE;
+    return hasFlag(xi::MobSkillFlag::BloodpactRage);
 }
 
 auto CMobSkill::isBloodPactWard() const -> bool
 {
     // means it is a BP Ward
-    return m_Flag & SKILLFLAG_BLOODPACT_WARD;
+    return hasFlag(xi::MobSkillFlag::BloodpactWard);
 }
 
 void CMobSkill::setID(uint16 id)
@@ -156,7 +156,7 @@ void CMobSkill::setDistance(float distance)
     m_Distance = distance;
 }
 
-void CMobSkill::setFlag(uint16 flag)
+void CMobSkill::setFlag(const xi::MobSkillFlag flag)
 {
     m_Flag = flag;
 }
@@ -255,9 +255,14 @@ auto CMobSkill::getMsgForAction() const -> uint16
     return getID();
 }
 
-auto CMobSkill::getFlag() const -> uint16
+auto CMobSkill::getFlag() const -> xi::MobSkillFlag
 {
     return m_Flag;
+}
+
+auto CMobSkill::hasFlag(const xi::MobSkillFlag flag) const -> bool
+{
+    return (m_Flag & flag) != xi::MobSkillFlag::None;
 }
 
 auto CMobSkill::getAoe() const -> uint8

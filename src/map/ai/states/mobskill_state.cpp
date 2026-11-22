@@ -117,7 +117,7 @@ auto CMobSkillState::init() -> StateErrorOr<void>
                     .results = {
                         {
                             .param     = m_PSkill->getID(),
-                            .messageID = m_PSkill->getFlag() & SKILLFLAG_NO_START_MSG ? MsgBasic::None : MsgBasic::ReadiesWeaponskill,
+                            .messageID = m_PSkill->hasFlag(xi::MobSkillFlag::NoStartMsg) ? MsgBasic::None : MsgBasic::ReadiesWeaponskill,
                         },
                     },
                 },
@@ -231,7 +231,7 @@ auto CMobSkillState::Update(const timer::time_point tick) -> bool
         m_PEntity->OnMobSkillFinished(*this, action);
 
         // Zero message ID
-        if (m_PSkill->getFlag() & SKILLFLAG_NO_FINISH_MSG)
+        if (m_PSkill->hasFlag(xi::MobSkillFlag::NoFinishMsg))
         {
             action.ForEachResult(
                 [&](action_result_t& result)

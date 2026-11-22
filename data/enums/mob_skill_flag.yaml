@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=../schemas/enums/_enum.schema.json
+
+meta:
+  flags: true
+  cpp:
+    underlying: uint16_t
+
+values:
+  none:           0x000
+  astral_flow:    0x002 # avatar Astral Flow blood pacts
+  no_tp_cost:     0x004 # TP is not deducted automatically
+  no_start_msg:   0x010 # no "<mob> readies <skill>" message
+  no_finish_msg:  0x020 # no message when the skill completes
+  bloodpact_rage: 0x040
+  bloodpact_ward: 0x080
+  always_animate: 0x100 # the animation completes even with no targets in range

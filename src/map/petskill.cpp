@@ -77,24 +77,24 @@ auto CPetSkill::isSingle() const -> bool
 auto CPetSkill::isTpFreeSkill() const -> bool
 {
     // Do not remove users TP when using the skill
-    return m_Flag & SKILLFLAG_NO_TP_COST;
+    return m_Flag & std::to_underlying(xi::MobSkillFlag::NoTpCost);
 }
 
 auto CPetSkill::isAstralFlow() const -> bool
 {
-    return m_Flag & SKILLFLAG_ASTRAL_FLOW;
+    return m_Flag & std::to_underlying(xi::MobSkillFlag::AstralFlow);
 }
 
 auto CPetSkill::isBloodPactRage() const -> bool
 {
     // means it is a BP Rage
-    return m_Flag & SKILLFLAG_BLOODPACT_RAGE;
+    return m_Flag & std::to_underlying(xi::MobSkillFlag::BloodpactRage);
 }
 
 auto CPetSkill::isBloodPactWard() const -> bool
 {
     // means it is a BP Ward
-    return m_Flag & SKILLFLAG_BLOODPACT_WARD;
+    return m_Flag & std::to_underlying(xi::MobSkillFlag::BloodpactWard);
 }
 
 void CPetSkill::setID(uint16 id)

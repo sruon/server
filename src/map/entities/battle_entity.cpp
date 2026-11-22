@@ -2931,7 +2931,7 @@ void CBattleEntity::OnMobSkillFinished(CMobSkillState& state, action_t& action)
     // No targets, perhaps something like Super Jump or otherwise untargetable
     if (targets == 0)
     {
-        if (PSkill->getFlag() & SKILLFLAG_ALWAYS_ANIMATE)
+        if (PSkill->hasFlag(xi::MobSkillFlag::AlwaysAnimate))
         {
             // Animation completes even if no targets in range
             action_target_t& actionTarget = action.addTarget(id);

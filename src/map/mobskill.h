@@ -27,23 +27,11 @@
 #include "enums/action/animation.h"
 #include "enums/action/knockback.h"
 
+#include "data/enums/mob_skill_flag.h"
 #include "data/enums/target_type.h"
 #include <vector>
 
 class CBattleEntity;
-
-enum SKILLFLAG
-{
-    SKILLFLAG_NONE        = 0x000,
-    SKILLFLAG_ASTRAL_FLOW = 0x002, // Player's Avatar Astral Flow blood pacts. TODO: give player pet skills their own separate enum, move avatar stuff there.
-    SKILLFLAG_NO_TP_COST  = 0x004, // Don't auto deduct TP
-    // 0x008 is available
-    SKILLFLAG_NO_START_MSG   = 0x010, // Doesn't emit "<mob> readies <skill>"
-    SKILLFLAG_NO_FINISH_MSG  = 0x020, // Doesn't emit finish message when mobskill state completes
-    SKILLFLAG_BLOODPACT_RAGE = 0x040,
-    SKILLFLAG_BLOODPACT_WARD = 0x080,
-    SKILLFLAG_ALWAYS_ANIMATE = 0x100, // Animation completes even if no targets in range
-};
 
 enum AOE_TYPE
 {
@@ -73,7 +61,8 @@ public:
     auto getAnimationID() const -> ActionAnimation;
     auto getAoe() const -> uint8;
     auto getDistance() const -> float;
-    auto getFlag() const -> uint16;
+    auto getFlag() const -> xi::MobSkillFlag;
+    auto hasFlag(xi::MobSkillFlag flag) const -> bool;
     auto getAnimationTime() const -> timer::duration;
     auto getActivationTime() const -> timer::duration;
     auto getMsg() const -> MsgBasic;
@@ -102,7 +91,7 @@ public:
     void setAoe(uint8 aoe);
     void setAoeRadius(float aoeRadius);
     void setDistance(float distance);
-    void setFlag(uint16 flag);
+    void setFlag(xi::MobSkillFlag flag);
     void setAnimationTime(timer::duration AnimationTime);
     void setActivationTime(timer::duration ActivationTime);
     void setMsg(MsgBasic msg);
@@ -126,28 +115,28 @@ public:
     void setName(const std::string& name);
 
 private:
-    uint16          m_ID;
-    uint16          m_TotalTargets;
-    uint32          m_primaryTargetID; // Primary target ID
-    int16           m_Param;
-    uint16          m_AnimID;
-    uint8           m_Aoe;       // Defines the type of AOE
-    float           m_AoeRadius; // Radius of any aoe skill
-    float           m_Distance;  // Distance at which the skill will be triggered
-    uint16          m_Flag;
-    xi::TargetType  m_ValidTarget;
-    timer::duration m_AnimationTime;  // how long the tp animation lasts for in ms
-    timer::duration m_ActivationTime; // how long the mob prepares the tp move for
-    MsgBasic        m_Message;        // message param, scripters can edit this depending on self/resist/etc.
-    int16           m_TP;             // the tp at the time of finish readying (for scripts)
-    int32           m_HP;             // HP at the time of using mob skill (for scripts)
-    uint8           m_HPP;            // HPP at the time of using mob skill (for scripts)
-    Knockback       m_knockback;      // knockback value (0-7)
-    uint8           m_primarySkillchain;
-    uint8           m_secondarySkillchain;
-    uint8           m_tertiarySkillchain;
-    xi::AttackType  m_attackType{ xi::AttackType::None };
-    bool            m_isCritical{ false };
+    uint16           m_ID;
+    uint16           m_TotalTargets;
+    uint32           m_primaryTargetID; // Primary target ID
+    int16            m_Param;
+    uint16           m_AnimID;
+    uint8            m_Aoe;       // Defines the type of AOE
+    float            m_AoeRadius; // Radius of any aoe skill
+    float            m_Distance;  // Distance at which the skill will be triggered
+    xi::MobSkillFlag m_Flag;
+    xi::TargetType   m_ValidTarget;
+    timer::duration  m_AnimationTime;  // how long the tp animation lasts for in ms
+    timer::duration  m_ActivationTime; // how long the mob prepares the tp move for
+    MsgBasic         m_Message;        // message param, scripters can edit this depending on self/resist/etc.
+    int16            m_TP;             // the tp at the time of finish readying (for scripts)
+    int32            m_HP;             // HP at the time of using mob skill (for scripts)
+    uint8            m_HPP;            // HPP at the time of using mob skill (for scripts)
+    Knockback        m_knockback;      // knockback value (0-7)
+    uint8            m_primarySkillchain;
+    uint8            m_secondarySkillchain;
+    uint8            m_tertiarySkillchain;
+    xi::AttackType   m_attackType{ xi::AttackType::None };
+    bool             m_isCritical{ false };
 
     Maybe<uint8> m_FinalAnimationSub; // If non-null, entity will get this new animation sub after state exits
 
