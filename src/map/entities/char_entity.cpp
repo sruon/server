@@ -2022,7 +2022,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
             CPetSkill*  PPetSkill  = battleutils::GetPetSkill(PAbility->getID());
 
             // is a real pet (charmed pets won't return a valid PPetEntity)
-            // and has pet ability in the pet_skills sql table
+            // and has a pet skill in data/pet_skills.yaml
             if (PPetEntity && PPetSkill) // don't display msg and notify pet
             {
                 // For jug pet abilities, the JobAbility FINISH packet targets the player, not the pet

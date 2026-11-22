@@ -42,11 +42,13 @@
 #include "ai/ai_container.h"
 #include "ai/controllers/pet_controller.h"
 #include "ai/controllers/player_charm_controller.h"
+#include "ai/helpers/targetfind.h"
 #include "ai/states/magic_state.h"
 #include "attack.h"
 #include "attackutils.h"
 #include "charutils.h"
 #include "data/datasets/animation_locks/dataset.h"
+#include "data/datasets/pet_skills/dataset.h"
 #include "data/datasets/skills/dataset.h"
 #include "data/datasets/weapon_skills/dataset.h"
 #include "data/enums/claim_type.h"
@@ -260,32 +262,58 @@ void LoadMobSkillsList()
 
 void LoadPetSkillsList()
 {
-    // Load all pet skills
-    const auto rset = db::preparedStmt("SELECT pet_skill_id, pet_anim_id, pet_skill_name, "
-                                       "pet_skill_aoe, pet_skill_radius, pet_skill_distance, pet_anim_time, pet_prepare_time, "
-                                       "pet_valid_targets, pet_message, pet_skill_flag, pet_skill_param, pet_skill_finish_category, knockback, primary_sc, secondary_sc, tertiary_sc, mob_skill_id "
-                                       "FROM pet_skills");
-    FOR_DB_MULTIPLE_RESULTS(rset)
+    for (const auto& entry : xi::data::loadDataset<xi::data::datasets::pet_skills::Dataset>())
     {
-        auto* PPetSkill = new CPetSkill(rset->get<uint16>("pet_skill_id"));
+        auto* PPetSkill = new CPetSkill(std::to_underlying(entry.Id));
 
-        PPetSkill->setAnimationID(rset->get<uint16>("pet_anim_id"));
-        PPetSkill->setName(rset->get<std::string>("pet_skill_name"));
-        PPetSkill->setAoe(rset->get<uint8>("pet_skill_aoe"));
-        PPetSkill->setRadius(rset->get<uint8>("pet_skill_radius"));
-        PPetSkill->setDistance(rset->get<float>("pet_skill_distance"));
-        PPetSkill->setAnimationTime(std::chrono::milliseconds(rset->get<uint32>("pet_anim_time")));
-        PPetSkill->setActivationTime(std::chrono::milliseconds(rset->get<uint32>("pet_prepare_time")));
-        PPetSkill->setValidTargets(rset->get<uint16>("pet_valid_targets"));
-        PPetSkill->setMsg(rset->get<MsgBasic>("pet_message"));
-        PPetSkill->setFlag(rset->get<uint8>("pet_skill_flag"));
-        PPetSkill->setParam(rset->get<int16>("pet_skill_param"));
-        PPetSkill->setSkillFinishCategory(rset->get<uint8>("pet_skill_finish_category"));
-        PPetSkill->setKnockback(rset->get<uint8>("knockback"));
-        PPetSkill->setPrimarySkillchain(rset->get<uint8>("primary_sc"));
-        PPetSkill->setSecondarySkillchain(rset->get<uint8>("secondary_sc"));
-        PPetSkill->setTertiarySkillchain(rset->get<uint8>("tertiary_sc"));
-        PPetSkill->setMobSkillID(rset->get<uint16>("mob_skill_id"));
+        PPetSkill->setAnimationID(entry.Animation);
+        PPetSkill->setName(entry.Name);
+
+        if (entry.Area)
+        {
+            if (const auto* sphere = std::get_if<xi::data::AoeSphereData>(&*entry.Area))
+            {
+                if (sphere->Origin == xi::SphereOrigin::Caster)
+                {
+                    PPetSkill->setAoe(std::to_underlying(AOE_RADIUS::ATTACKER));
+                }
+                else
+                {
+                    PPetSkill->setAoe(std::to_underlying(AOE_RADIUS::TARGET));
+                }
+
+                PPetSkill->setRadius(static_cast<uint8>(sphere->Radius));
+            }
+            else
+            {
+                PPetSkill->setAoe(4);
+                PPetSkill->setRadius(static_cast<uint8>(std::get<xi::data::AoeConeData>(*entry.Area).Distance));
+            }
+        }
+        else
+        {
+            PPetSkill->setRadius(static_cast<uint8>(entry.MasterRange));
+        }
+
+        std::array<uint8, 3> skillchains{};
+        for (std::size_t index = 0; index < entry.Skillchain.size(); ++index)
+        {
+            skillchains[index] = std::to_underlying(entry.Skillchain[index]);
+        }
+
+        PPetSkill->setDistance(entry.Range);
+        PPetSkill->setAnimationTime(entry.AnimationTime);
+        PPetSkill->setActivationTime(entry.PrepareTime);
+        PPetSkill->setValidTargets(std::to_underlying(entry.Target));
+        PPetSkill->setMsg(static_cast<MsgBasic>(entry.Message));
+        PPetSkill->setFlag(static_cast<uint8>(std::to_underlying(entry.Flags)));
+        PPetSkill->setParam(entry.Param);
+        PPetSkill->setSkillFinishCategory(entry.FinishCategory);
+        PPetSkill->setKnockback(entry.Knockback);
+        PPetSkill->setPrimarySkillchain(skillchains[0]);
+        PPetSkill->setSecondarySkillchain(skillchains[1]);
+        PPetSkill->setTertiarySkillchain(skillchains[2]);
+        PPetSkill->setMobSkillID(entry.MobSkill);
         g_PPetSkillList[PPetSkill->getID()] = PPetSkill;
 
         auto filename = fmt::format("./scripts/actions/abilities/pets/{}.lua", PPetSkill->getName());

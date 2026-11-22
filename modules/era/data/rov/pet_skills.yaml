@@ -1,0 +1,205 @@
+# Pet skills as they were before the Rhapsodies of Vana'diel updates.
+#
+# Ward blood pacts reached 10 yalms instead of 14 until the March 2015 update.
+# TODO: the exact value needs more verification.
+# https://forum.square-enix.com/ffxi/threads/46531-Mar-26-2015-%28JST%29-Version-Update
+#
+# Blood pacts readied in 3 seconds.
+# https://wiki.ffo.jp/html/32936.html
+#
+# Jug pet ready moves had longer readying and animation times until the January 2020 update.
+# https://wiki.ffo.jp/html/38465.html
+
+pet_skills:
+  carbuncle:
+    healing_ruby:    {prepare_time: 3000}
+    poison_nails:    {prepare_time: 3000}
+    shining_ruby:    {aoe: {sphere: {radius: 10}}, prepare_time: 3000}
+    glittering_ruby: {aoe: {sphere: {radius: 10}}, prepare_time: 3000}
+    meteorite:       {prepare_time: 3000}
+    healing_ruby_ii: {aoe: {sphere: {radius: 10}}, prepare_time: 3000}
+    searing_light:   {prepare_time: 3000}
+    soothing_ruby:   {aoe: {sphere: {radius: 10}}, prepare_time: 3000}
+  fenrir:
+    moonlit_charge:  {prepare_time: 3000}
+    crescent_fang:   {prepare_time: 3000}
+    lunar_cry:       {prepare_time: 3000}
+    lunar_roar:      {prepare_time: 3000}
+    ecliptic_growl:  {aoe: {sphere: {radius: 10}}, prepare_time: 3000}
+    ecliptic_howl:   {aoe: {sphere: {radius: 10}}, prepare_time: 3000}
+    eclipse_bite:    {prepare_time: 3000}
+    howling_moon:    {prepare_time: 3000}
+    heavenward_howl: {aoe: {sphere: {radius: 10}}}
+  ifrit:
+    punch:          {prepare_time: 3000}
+    fire_ii:        {prepare_time: 3000}
+    burning_strike: {prepare_time: 3000}
+    double_punch:   {prepare_time: 3000}
+    crimson_howl:   {aoe: {sphere: {radius: 10}}, prepare_time: 3000}
+    fire_iv:        {prepare_time: 3000}
+    flaming_crush:  {prepare_time: 3000}
+    meteor_strike:  {prepare_time: 3000}
+    inferno:        {prepare_time: 3000}
+    inferno_howl:   {aoe: {sphere: {radius: 10}}}
+  titan:
+    rock_throw:      {prepare_time: 3000}
+    stone_ii:        {prepare_time: 3000}
+    rock_buster:     {prepare_time: 3000}
+    megalith_throw:  {prepare_time: 3000}
+    earthen_ward:    {aoe: {sphere: {radius: 10}}, prepare_time: 3000}
+    stone_iv:        {prepare_time: 3000}
+    mountain_buster: {prepare_time: 3000}
+    geocrush:        {prepare_time: 3000}
+    earthen_fury:    {prepare_time: 3000}
+  leviathan:
+    barracuda_dive:   {prepare_time: 3000}
+    water_ii:         {prepare_time: 3000}
+    tail_whip:        {prepare_time: 3000}
+    spring_water:     {aoe: {sphere: {radius: 10}}, prepare_time: 3000}
+    slowga:           {prepare_time: 3000}
+    water_iv:         {prepare_time: 3000}
+    spinning_dive:    {prepare_time: 3000}
+    grand_fall:       {prepare_time: 3000}
+    tidal_wave:       {prepare_time: 3000}
+    soothing_current: {aoe: {sphere: {radius: 10}}}
+  garuda:
+    claw:            {prepare_time: 3000}
+    aero_ii:         {prepare_time: 3000}
+    whispering_wind: {aoe: {sphere: {radius: 10}}, prepare_time: 3000}
+    hastega:         {aoe: {sphere: {radius: 10}}, prepare_time: 3000}
+    aerial_armor:    {aoe: {sphere: {radius: 10}}, prepare_time: 3000}
+    aero_iv:         {prepare_time: 3000}
+    predator_claws:  {prepare_time: 3000}
+    wind_blade:      {prepare_time: 3000}
+    aerial_blast:    {prepare_time: 3000}
+    fleet_wind:      {aoe: {sphere: {radius: 10}}}
+    hastega_ii:      {aoe: {sphere: {radius: 10}}}
+  shiva:
+    axe_kick:         {prepare_time: 3000}
+    blizzard_ii:      {prepare_time: 3000}
+    frost_armor:      {aoe: {sphere: {radius: 10}}, prepare_time: 3000}
+    sleepga:          {prepare_time: 3000}
+    double_slap:      {prepare_time: 3000}
+    blizzard_iv:      {prepare_time: 3000}
+    rush:             {prepare_time: 3000}
+    heavenly_strike:  {prepare_time: 3000}
+    diamond_dust:     {prepare_time: 3000}
+    crystal_blessing: {aoe: {sphere: {radius: 10}}}
+  ramuh:
+    shock_strike:    {prepare_time: 3000}
+    thunder_ii:      {prepare_time: 3000}
+    rolling_thunder: {aoe: {sphere: {radius: 10}}, prepare_time: 3000}
+    thunderspark:    {prepare_time: 3000}
+    lightning_armor: {aoe: {sphere: {radius: 10}}, prepare_time: 3000}
+    thunder_iv:      {prepare_time: 3000}
+    chaotic_strike:  {prepare_time: 3000}
+    thunderstorm:    {prepare_time: 3000}
+    judgment_bolt:   {prepare_time: 3000}
+  diabolos:
+    camisado:        {prepare_time: 3000}
+    somnolence:      {prepare_time: 3000}
+    nightmare:       {prepare_time: 3000}
+    ultimate_terror: {prepare_time: 3000}
+    noctoshield:     {aoe: {sphere: {radius: 10}}, prepare_time: 3000}
+    dream_shroud:    {aoe: {sphere: {radius: 10}}, prepare_time: 3000}
+    nether_blast:    {prepare_time: 3000}
+    ruinous_omen:    {prepare_time: 3000}
+  jug_pets:
+    foot_kick:       {animation_time: 2033, prepare_time:  200}
+    dust_cloud:      {animation_time: 3216, prepare_time:  200}
+    whirl_claws:     {animation_time: 1350, prepare_time:  200}
+    head_butt:       {animation_time: 1500, prepare_time:  800}
+    dream_flower:    {animation_time: 2000, prepare_time: 1200}
+    wild_oats:       {animation_time: 2000, prepare_time:  800}
+    leaf_dagger:     {animation_time: 2000, prepare_time: 1200}
+    scream:          {animation_time: 2000, prepare_time:  800}
+    roar:            {animation_time: 2666, prepare_time: 1000}
+    razor_fang:      {animation_time: 2900, prepare_time: 1000}
+    claw_cyclone:    {animation_time: 3316, prepare_time: 1000}
+    tail_blow:       {animation_time: 2183, prepare_time: 1000}
+    fireball:        {animation_time: 2000, prepare_time: 1000}
+    blockhead:       {animation_time: 1633, prepare_time: 1000}
+    brain_crush:     {animation_time: 1633, prepare_time: 1000}
+    infrasonics:     {animation_time: 2866, prepare_time: 1000}
+    secretion:       {animation_time: 2666, prepare_time: 1000}
+    lamb_chop:       {animation_time: 3000, prepare_time:  500}
+    rage:            {animation_time: 3500, prepare_time:  200}
+    sheep_charge:    {animation_time: 3000, prepare_time:  500}
+    sheep_song:      {animation_time: 3000, prepare_time: 1000}
+    bubble_shower:   {animation_time: 2333, prepare_time: 2000}
+    bubble_curtain:  {animation_time: 2333, prepare_time: 1000}
+    big_scissors:    {animation_time: 2483, prepare_time: 1000}
+    scissor_guard:   {animation_time: 1700, prepare_time: 1000}
+    metallic_body:   {animation_time: 1950, prepare_time: 1000}
+    needleshot:      {animation_time: 1750, prepare_time: 1000}
+    random_needles:  {animation_time: 3283, prepare_time: 2000}
+    frogkick:        {animation_time: 2000, prepare_time: 1500}
+    spore:           {animation_time: 2000, prepare_time: 1500}
+    queasyshroom:    {animation_time: 2000, prepare_time: 1500}
+    numbshroom:      {animation_time: 2000, prepare_time: 1500}
+    shakeshroom:     {animation_time: 2000, prepare_time: 1500}
+    silence_gas:     {animation_time: 2000, prepare_time: 1500}
+    dark_spore:      {animation_time: 2000, prepare_time: 1500}
+    hi_freq_field:   {animation_time: 1700, prepare_time: 1000}
+    rhino_attack:    {animation_time: 1800, prepare_time: 1000}
+    rhino_guard:     {animation_time: 2700, prepare_time: 1000}
+    spoil:           {animation_time: 1900, prepare_time: 1000}
+    cursed_sphere:   {animation_time: 2750, prepare_time: 1000}
+    venom:           {animation_time: 3016, prepare_time: 1000}
+    sandblast:       {animation_time: 2000, prepare_time: 1000}
+    sandpit:         {animation_time: 1600, prepare_time: 1000}
+    venom_spray:     {animation_time: 1683, prepare_time: 1000}
+    mandibular_bite: {animation_time: 2133, prepare_time: 1000}
+    soporific:       {animation_time: 2000, prepare_time: 1500}
+    gloeosuccus:     {animation_time: 2000, prepare_time: 1500}
+    palsy_pollen:    {animation_time: 2000, prepare_time: 1500}
+    geist_wall:      {animation_time: 2400, prepare_time: 1000}
+    numbing_noise:   {animation_time: 1533, prepare_time: 1000}
+    nimble_snap:     {animation_time: 1800, prepare_time: 1000}
+    cyclotail:       {animation_time: 2133, prepare_time: 1000}
+    toxic_spit:      {animation_time: 1750, prepare_time: 1000}
+    double_claw:     {animation_time: 2000, prepare_time:  800}
+    grapple:         {animation_time: 2000, prepare_time: 1500}
+    spinning_top:    {animation_time: 2000, prepare_time:  800}
+    filamented_hold: {animation_time: 2000, prepare_time: 1500}
+    chaotic_eye:     {animation_time: 2133, prepare_time: 1000}
+    blaster:         {animation_time: 2400, prepare_time: 1000}
+    suction:         {animation_time: 2733, prepare_time: 1000}
+    drainkiss:       {animation_time: 2166, prepare_time: 1000}
+    snow_cloud:      {animation_time: 2000, prepare_time:  200}
+    wild_carrot:     {animation_time: 5000, prepare_time: 3000}
+    sudden_lunge:    {animation_time: 2000, prepare_time: 1800}
+    spiral_spin:     {animation_time: 2000, prepare_time: 1000}
+    noisome_powder:  {animation_time: 2000, prepare_time: 1000}
+    acid_mist:       {animation_time: 3166, prepare_time: 1000}
+    tp_drainkiss:    {animation_time: 2616, prepare_time: 1000}
+    scythe_tail:     {animation_time: 2000, prepare_time: 1000}
+    ripper_fang:     {animation_time: 2283, prepare_time: 1000}
+    chomp_rush:      {animation_time: 2400, prepare_time: 1000}
+    charged_whisker: {animation_time: 2000, prepare_time: 2000}
+    purulent_ooze:   {animation_time: 2000, prepare_time: 1000}
+    corrosive_ooze:  {animation_time: 2000, prepare_time: 1000}
+    back_heel:       {animation_time: 2000, prepare_time: 1500}
+    jettatura:       {animation_time: 2000, prepare_time: 1500}
+    choke_breath:    {animation_time: 2000, prepare_time: 1500}
+    fantod:          {animation_time: 2000, prepare_time: 1500}
+    tortoise_stomp:  {animation_time: 2000, prepare_time: 1500}
+    harden_shell:    {animation_time: 2000, prepare_time: 1500}
+    aqua_breath:     {animation_time: 2000, prepare_time: 1500}
+    wing_slap:       {animation_time: 2000, prepare_time: 1500}
+    beak_lunge:      {animation_time: 2000, prepare_time: 1500}
+    intimidate:      {animation_time: 2000, prepare_time: 1000}
+    recoil_dive:     {animation_time: 2000, prepare_time: 1500}
+    water_wall:      {animation_time: 2116, prepare_time: 1000}
+    somersault:      {animation_time: 2466, prepare_time: 1000}
+    pecking_flurry:  {animation_time: 2000, prepare_time: 1500}
+    sickle_slash:    {animation_time: 2000, prepare_time: 1500}
+    acid_spray:      {animation_time: 2000, prepare_time: 1500}
+    spider_web:      {animation_time: 2000, prepare_time: 1500}
+    fluid_toss:      {animation_time: 1833, prepare_time: 1000}
+    fluid_spread:    {animation_time: 2500, prepare_time: 1000}
+    digest:          {animation_time: 4166, prepare_time: 1000}
+    crossthrash:     {animation_time: 2000, prepare_time: 1500}
+    predatory_glare: {animation_time: 3300, prepare_time: 1000}
+    hoof_volley:     {animation_time: 3000, prepare_time: 1500}
+    nihility_song:   {animation_time: 2000, prepare_time: 1500}

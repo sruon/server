@@ -1,0 +1,2040 @@
+# yaml-language-server: $schema=schemas/pet_skills.schema.json
+#
+# Skills used by avatars, wyverns, jug pets and luopans, grouped by who uses them.
+# The id matches the player ability that orders the skill.
+
+meta:
+  enum:
+    - section: pet_skills.*
+      cpp:
+        underlying: uint16_t
+        class:      PetSkill
+
+pet_skills:
+  carbuncle:
+    healing_ruby:
+      id:        512
+      animation: 0
+      range:     20
+      target:    [self, player_party]
+      message:   318
+      flags:     [bloodpact_ward]
+
+    poison_nails:
+      id:         513
+      animation:  1
+      message:    317
+      flags:      [bloodpact_rage]
+      skillchain: [transfixion]
+
+    shining_ruby:
+      id:        514
+      animation: 2
+      range:     20
+      target:    [self, player_party]
+      aoe:       {sphere: {origin: caster, radius: 14}}
+      message:   319
+      flags:     [no_tp_cost, bloodpact_ward]
+
+    glittering_ruby:
+      id:        515
+      animation: 3
+      range:     20
+      target:    [self, player_party]
+      aoe:       {sphere: {origin: caster, radius: 14}}
+      message:   319
+      flags:     [no_tp_cost, bloodpact_ward]
+
+    meteorite:
+      id:        516
+      animation: 4
+      range:     5
+      message:   317
+      flags:     [bloodpact_rage]
+
+    healing_ruby_ii:
+      id:        517
+      animation: 5
+      range:     20
+      target:    [self, player_party]
+      aoe:       {sphere: {origin: caster, radius: 14}}
+      message:   318
+      flags:     [bloodpact_ward]
+
+    searing_light:
+      id:        518
+      animation: 6
+      range:     5
+      aoe:       {sphere: {origin: caster, radius: 10}}
+      message:   317
+      flags:     [astral_flow, no_tp_cost, bloodpact_rage]
+
+    holy_mist:
+      id:        519
+      animation: 7
+      range:     5
+      message:   317
+      flags:     [bloodpact_rage]
+
+    soothing_ruby:
+      id:        520
+      animation: 8
+      range:     20
+      target:    [self, player_party]
+      aoe:       {sphere: {origin: caster, radius: 14}}
+      message:   323
+      flags:     [no_tp_cost, bloodpact_ward]
+
+    pacifying_ruby:
+      id:        773
+      animation: 9
+      range:     20
+      target:    [self, player_party]
+      message:   323
+      flags:     [no_tp_cost, bloodpact_ward]
+
+  cait_sith:
+    regal_scratch:
+      id:         521
+      animation:  161
+      message:    317
+      flags:      [bloodpact_rage]
+      skillchain: [scission]
+
+    mewing_lullaby:
+      id:        522
+      animation: 162
+      range:     5
+      aoe:       {sphere: {origin: caster, radius: 10}}
+      message:   317
+      flags:     [no_tp_cost, bloodpact_ward]
+
+    eerie_eye:
+      id:        523
+      animation: 163
+      aoe:       {cone: {origin: front, distance: 0}}
+      message:   317
+      flags:     [no_tp_cost, bloodpact_ward]
+
+    level_x_holy:
+      id:        524
+      name:      level_X_holy
+      animation: 164                                    # Animation ID is for die roll of 1: 164-169
+      range:     12
+      aoe:       {sphere: {origin: caster, radius: 10}}
+      message:   317
+      flags:     [bloodpact_rage]
+
+    raise_ii:
+      id:        525
+      animation: 159
+      range:     20
+      target:    [player_dead]
+      flags:     [no_tp_cost, bloodpact_ward]
+
+    reraise_ii:
+      id:        526
+      animation: 160
+      range:     20
+      target:    [player]
+      message:   316
+      flags:     [no_tp_cost, bloodpact_ward]
+
+    altana_s_favor:
+      id:        527
+      animation: 170
+      range:     20
+      target:    [self, player_party, player_dead]
+      aoe:       {sphere: {origin: caster, radius: 20}}
+      message:   316
+      flags:     [astral_flow, no_tp_cost, bloodpact_ward]
+
+    regal_gash:
+      id:               780
+      animation:        174
+      prepare_time:    1500
+      message:          185
+      finish_category:   11
+
+  fenrir:
+    moonlit_charge:
+      id:         528
+      animation:  16
+      message:    317
+      flags:      [bloodpact_rage]
+      skillchain: [compression]
+
+    crescent_fang:
+      id:         529
+      animation:  17
+      message:    317
+      flags:      [bloodpact_rage]
+      skillchain: [transfixion]
+
+    lunar_cry:
+      id:        530
+      animation: 18
+      range:     12
+      message:   144
+      flags:     [no_tp_cost, bloodpact_ward]
+
+    lunar_roar:
+      id:        531
+      animation: 20
+      range:     5
+      aoe:       {sphere: {origin: caster, radius: 10}}
+      flags:     [no_tp_cost, bloodpact_ward]
+
+    ecliptic_growl:
+      id:        532
+      animation: 19
+      range:     20
+      target:    [self, player_party]
+      aoe:       {sphere: {origin: caster, radius: 14}}
+      message:   364
+      flags:     [no_tp_cost, bloodpact_ward]
+
+    ecliptic_howl:
+      id:        533
+      animation: 22
+      range:     20
+      target:    [self, player_party]
+      aoe:       {sphere: {origin: caster, radius: 14}}
+      message:   146
+      flags:     [no_tp_cost, bloodpact_ward]
+
+    eclipse_bite:
+      id:         534
+      animation:  21
+      message:    317
+      flags:      [bloodpact_rage]
+      skillchain: [gravitation, scission]
+
+    howling_moon:
+      id:        536
+      animation: 24
+      range:     5
+      aoe:       {sphere: {origin: caster, radius: 10}}
+      message:   317
+      flags:     [astral_flow, no_tp_cost, bloodpact_rage]
+
+    lunar_bay:
+      id:        537
+      animation: 25
+      range:     5
+      message:   317
+      flags:     [bloodpact_rage]
+
+    heavenward_howl:
+      id:        538
+      animation: 26
+      range:     20
+      target:    [self, player_party]
+      aoe:       {sphere: {origin: caster, radius: 14}}
+      message:   319
+      flags:     [no_tp_cost, bloodpact_ward]
+
+    impact:
+      id:        539
+      animation: 27
+      range:     12
+      message:   317
+      flags:     [bloodpact_rage]
+
+  ifrit:
+    punch:
+      id:         544
+      animation:  32
+      message:    317
+      flags:      [bloodpact_rage]
+      skillchain: [liquefaction]
+
+    fire_ii:
+      id:        545
+      animation: 33
+      range:     10
+      message:   317
+      flags:     [bloodpact_rage]
+
+    burning_strike:
+      id:         546
+      animation:  34
+      message:    317
+      flags:      [bloodpact_rage]
+      skillchain: [impaction]
+
+    double_punch:
+      id:         547
+      animation:  35
+      message:    317
+      flags:      [bloodpact_rage]
+      skillchain: [compression]
+
+    crimson_howl:
+      id:        548
+      animation: 36
+      range:     20
+      target:    [self, player_party]
+      aoe:       {sphere: {origin: caster, radius: 14}}
+      message:   319
+      flags:     [no_tp_cost, bloodpact_ward]
+
+    fire_iv:
+      id:        549
+      animation: 37
+      range:     10
+      message:   317
+      flags:     [bloodpact_rage]
+
+    flaming_crush:
+      id:         550
+      animation:  38
+      message:    317
+      flags:      [bloodpact_rage]
+      skillchain: [fusion, reverberation]
+
+    meteor_strike:
+      id:        551
+      animation: 39
+      range:     12
+      message:   317
+      flags:     [bloodpact_rage]
+
+    inferno:
+      id:        552
+      animation: 40
+      range:     5
+      aoe:       {sphere: {origin: caster, radius: 10}}
+      message:   317
+      flags:     [astral_flow, no_tp_cost, bloodpact_rage]
+
+    inferno_howl:
+      id:        553
+      animation: 41
+      range:     20
+      target:    [self, player_party]
+      aoe:       {sphere: {origin: caster, radius: 14}}
+      message:   319
+      flags:     [no_tp_cost, bloodpact_ward]
+
+    conflag_strike:
+      id:        554
+      animation: 42
+      range:     12
+      message:   317
+      flags:     [bloodpact_rage]
+
+  titan:
+    rock_throw:
+      id:         560
+      animation:  48
+      range:      12
+      message:    317
+      flags:      [bloodpact_rage]
+      skillchain: [scission]
+
+    stone_ii:
+      id:        561
+      animation: 49
+      range:     10
+      message:   317
+      flags:     [bloodpact_rage]
+
+    rock_buster:
+      id:         562
+      animation:  50
+      message:    317
+      flags:      [bloodpact_rage]
+      skillchain: [reverberation]
+
+    megalith_throw:
+      id:         563
+      animation:  51
+      range:      12
+      message:    317
+      flags:      [bloodpact_rage]
+      skillchain: [induration]
+
+    earthen_ward:
+      id:        564
+      animation: 52
+      range:     20
+      target:    [self, player_party]
+      aoe:       {sphere: {origin: caster, radius: 14}}
+      message:   319
+      flags:     [no_tp_cost, bloodpact_ward]
+
+    stone_iv:
+      id:        565
+      animation: 53
+      range:     10
+      message:   317
+      flags:     [bloodpact_rage]
+
+    mountain_buster:
+      id:         566
+      animation:  54
+      message:    317
+      flags:      [bloodpact_rage]
+      skillchain: [gravitation, induration]
+
+    geocrush:
+      id:        567
+      animation: 55
+      range:     12
+      message:   317
+      flags:     [bloodpact_rage]
+
+    earthen_fury:
+      id:        568
+      animation: 56
+      range:     5
+      aoe:       {sphere: {origin: caster, radius: 10}}
+      message:   317
+      flags:     [astral_flow, no_tp_cost, bloodpact_rage]
+
+    earthen_armor:
+      id:        569
+      animation: 57
+      range:     20
+      target:    [self, player_party]
+      aoe:       {sphere: {origin: caster, radius: 14}}
+      message:   319
+      flags:     [no_tp_cost, bloodpact_ward]
+
+    crag_throw:
+      id:         570
+      animation:  58
+      range:      12
+      message:    317
+      flags:      [bloodpact_rage]
+      skillchain: [gravitation, scission]
+
+  leviathan:
+    barracuda_dive:
+      id:         576
+      animation:  64
+      message:    317
+      flags:      [bloodpact_rage]
+      skillchain: [reverberation]
+
+    water_ii:
+      id:        577
+      animation: 65
+      range:     10
+      message:   317
+      flags:     [bloodpact_rage]
+
+    tail_whip:
+      id:         578
+      animation:  66
+      message:    317
+      flags:      [bloodpact_rage]
+      skillchain: [detonation]
+
+    spring_water:
+      id:        579
+      animation: 67
+      range:     20
+      target:    [self, player_party]
+      aoe:       {sphere: {origin: caster, radius: 14}}
+      message:   318
+      flags:     [bloodpact_ward]
+
+    slowga:
+      id:        580
+      animation: 68
+      range:     5
+      aoe:       {sphere: {origin: caster, radius: 10}}
+      message:   320
+      flags:     [no_tp_cost, bloodpact_ward]
+
+    water_iv:
+      id:        581
+      animation: 69
+      range:     10
+      message:   317
+      flags:     [bloodpact_rage]
+
+    spinning_dive:
+      id:         582
+      animation:  70
+      message:    317
+      flags:      [bloodpact_rage]
+      skillchain: [distortion, detonation]
+
+    grand_fall:
+      id:        583
+      animation: 71
+      range:     12
+      message:   317
+      flags:     [bloodpact_rage]
+
+    tidal_wave:
+      id:        584
+      animation: 72
+      range:     5
+      aoe:       {sphere: {origin: caster, radius: 10}}
+      message:   317
+      flags:     [astral_flow, no_tp_cost, bloodpact_rage]
+
+    tidal_roar:
+      id:        585
+      animation: 73
+      range:     5
+      aoe:       {sphere: {origin: caster, radius: 10}}
+      message:   320
+      flags:     [no_tp_cost, bloodpact_ward]
+
+    soothing_current:
+      id:        586
+      animation: 74
+      range:     20
+      target:    [self, player_party]
+      aoe:       {sphere: {origin: caster, radius: 14}}
+      message:   319
+      flags:     [bloodpact_ward]
+
+  garuda:
+    claw:
+      id:         592
+      animation:  80
+      message:    317
+      flags:      [bloodpact_rage]
+      skillchain: [detonation]
+
+    aero_ii:
+      id:        593
+      animation: 81
+      range:     10
+      message:   317
+      flags:     [bloodpact_rage]
+
+    whispering_wind:
+      id:        594
+      animation: 82
+      range:     20
+      target:    [self, player_party]
+      aoe:       {sphere: {origin: caster, radius: 14}}
+      message:   318
+      flags:     [bloodpact_ward]
+
+    hastega:
+      id:        595
+      animation: 83
+      range:     20
+      target:    [self, player_party]
+      aoe:       {sphere: {origin: caster, radius: 14}}
+      message:   319
+      flags:     [no_tp_cost, bloodpact_ward]
+
+    aerial_armor:
+      id:        596
+      animation: 84
+      range:     20
+      target:    [self, player_party]
+      aoe:       {sphere: {origin: caster, radius: 14}}
+      message:   319
+      flags:     [no_tp_cost, bloodpact_ward]
+
+    aero_iv:
+      id:        597
+      animation: 85
+      range:     10
+      message:   317
+      flags:     [bloodpact_rage]
+
+    predator_claws:
+      id:         598
+      animation:  86
+      message:    317
+      flags:      [bloodpact_rage]
+      skillchain: [fragmentation, scission]
+
+    wind_blade:
+      id:        599
+      animation: 87
+      range:     12
+      message:   317
+      flags:     [bloodpact_rage]
+
+    aerial_blast:
+      id:        600
+      animation: 88
+      range:     5
+      aoe:       {sphere: {origin: caster, radius: 10}}
+      message:   317
+      flags:     [astral_flow, no_tp_cost, bloodpact_rage]
+
+    fleet_wind:
+      id:        601
+      animation: 89
+      range:     20
+      target:    [self, player_party]
+      aoe:       {sphere: {origin: caster, radius: 14}}
+      message:   319
+      flags:     [no_tp_cost, bloodpact_ward]
+
+    hastega_ii:
+      id:        602
+      animation: 90
+      range:     20
+      target:    [self, player_party]
+      aoe:       {sphere: {origin: caster, radius: 14}}
+      message:   319
+      flags:     [no_tp_cost, bloodpact_ward]
+
+  shiva:
+    axe_kick:
+      id:         608
+      animation:  96
+      message:    317
+      flags:      [bloodpact_rage]
+      skillchain: [induration]
+
+    blizzard_ii:
+      id:        609
+      animation: 97
+      range:     10
+      message:   317
+      flags:     [bloodpact_rage]
+
+    frost_armor:
+      id:        610
+      animation: 98
+      range:     20
+      target:    [self, player_party]
+      aoe:       {sphere: {origin: caster, radius: 14}}
+      message:   319
+      flags:     [no_tp_cost, bloodpact_ward]
+
+    sleepga:
+      id:        611
+      animation: 99
+      range:     5
+      aoe:       {sphere: {origin: caster, radius: 10}}
+      message:   320
+      flags:     [no_tp_cost, bloodpact_ward]
+
+    double_slap:
+      id:         612
+      animation:  100
+      message:    317
+      flags:      [bloodpact_rage]
+      skillchain: [scission]
+
+    blizzard_iv:
+      id:        613
+      animation: 101
+      range:     10
+      message:   317
+      flags:     [bloodpact_rage]
+
+    rush:
+      id:         614
+      animation:  102
+      message:    317
+      flags:      [bloodpact_rage]
+      skillchain: [distortion, scission]
+
+    heavenly_strike:
+      id:        615
+      animation: 103
+      range:     12
+      message:   317
+      flags:     [bloodpact_rage]
+
+    diamond_dust:
+      id:        616
+      animation: 104
+      range:     5
+      aoe:       {sphere: {origin: caster, radius: 10}}
+      message:   317
+      flags:     [astral_flow, no_tp_cost, bloodpact_rage]
+
+    diamond_storm:
+      id:        617
+      animation: 105
+      range:     5
+      aoe:       {sphere: {origin: caster, radius: 10}}
+      message:   320
+      flags:     [no_tp_cost, bloodpact_ward]
+
+    crystal_blessing:
+      id:        618
+      animation: 106
+      range:     20
+      target:    [self, player_party]
+      aoe:       {sphere: {origin: caster, radius: 14}}
+      message:   319
+      flags:     [no_tp_cost, bloodpact_ward]
+
+  ramuh:
+    shock_strike:
+      id:         624
+      animation:  112
+      message:    317
+      flags:      [bloodpact_rage]
+      skillchain: [impaction]
+
+    thunder_ii:
+      id:        625
+      animation: 113
+      range:     10
+      message:   317
+      flags:     [bloodpact_rage]
+
+    rolling_thunder:
+      id:        626
+      animation: 114
+      range:     20
+      target:    [self, player_party]
+      aoe:       {sphere: {origin: caster, radius: 14}}
+      message:   319
+      flags:     [no_tp_cost, bloodpact_ward]
+
+    thunderspark:
+      id:        627
+      animation: 115
+      range:     5
+      aoe:       {sphere: {origin: caster, radius: 10}}
+      message:   317
+      flags:     [bloodpact_rage]
+
+    lightning_armor:
+      id:        628
+      animation: 116
+      range:     20
+      target:    [self, player_party]
+      aoe:       {sphere: {origin: caster, radius: 14}}
+      message:   319
+      flags:     [no_tp_cost, bloodpact_ward]
+
+    thunder_iv:
+      id:        629
+      animation: 117
+      range:     10
+      message:   317
+      flags:     [bloodpact_rage]
+
+    chaotic_strike:
+      id:         630
+      animation:  118
+      message:    317
+      flags:      [bloodpact_rage]
+      skillchain: [fragmentation, transfixion]
+
+    thunderstorm:
+      id:        631
+      animation: 119
+      range:     12
+      message:   317
+      flags:     [bloodpact_rage]
+
+    judgment_bolt:
+      id:        632
+      animation: 120
+      range:     5
+      aoe:       {sphere: {origin: caster, radius: 10}}
+      message:   317
+      flags:     [astral_flow, no_tp_cost, bloodpact_rage]
+
+    shock_squall:
+      id:        633
+      animation: 121
+      range:     12
+      aoe:       {sphere: {origin: caster, radius: 10}}
+      message:   645
+      flags:     [no_tp_cost, bloodpact_ward]
+
+    volt_strike:
+      id:         634
+      animation:  122
+      message:    317
+      flags:      [bloodpact_rage]
+      skillchain: [fragmentation, scission]
+
+  diabolos:
+    camisado:
+      id:         656
+      animation:  141
+      range:      10
+      message:    317
+      flags:      [bloodpact_rage]
+      skillchain: [compression]
+
+    somnolence:
+      id:        657
+      animation: 142
+      range:     5
+      message:   317
+      flags:     [no_tp_cost, bloodpact_ward]
+
+    nightmare:
+      id:        658
+      animation: 146
+      range:     5
+      aoe:       {sphere: {origin: caster, radius: 10}}
+      message:   146
+      flags:     [no_tp_cost, bloodpact_ward]
+
+    ultimate_terror:
+      id:        659                                    # No LUA yet
+      animation: 144
+      range:     5
+      aoe:       {sphere: {origin: caster, radius: 10}}
+      message:   144
+      flags:     [no_tp_cost, bloodpact_ward]
+
+    noctoshield:
+      id:        660
+      animation: 143
+      range:     20
+      target:    [self, player_party]
+      aoe:       {sphere: {origin: caster, radius: 14}}
+      message:   319
+      flags:     [no_tp_cost, bloodpact_ward]
+
+    dream_shroud:
+      id:        661
+      animation: 145
+      range:     20
+      target:    [self, player_party]
+      aoe:       {sphere: {origin: caster, radius: 14}}
+      message:   414
+      flags:     [no_tp_cost, bloodpact_ward]
+
+    nether_blast:
+      id:        662
+      animation: 148
+      range:     12
+      message:   317
+      flags:     [bloodpact_rage]
+
+    ruinous_omen:
+      id:        664
+      animation: 149
+      range:     5
+      aoe:       {sphere: {origin: caster, radius: 10}}
+      message:   317
+      flags:     [astral_flow, no_tp_cost, bloodpact_rage]
+
+    night_terror:
+      id:        665              # No LUA yet
+      animation: 153
+      range:     5
+      message:   317
+      flags:     [bloodpact_rage]
+
+    pavor_nocturnus:
+      id:        666                          # No LUA yet
+      animation: 155
+      range:     12
+      message:   646
+      flags:     [no_tp_cost, bloodpact_ward]
+
+    blindside:
+      id:         667                        # No LUA yet
+      animation:  173
+      range:      10
+      message:    317
+      flags:      [bloodpact_rage]
+      skillchain: [gravitation, transfixion]
+
+  atomos:
+    deconstruction:
+      id:        668
+      animation: 171
+      range:     21
+      message:   323
+      flags:     [bloodpact_rage]
+
+    chronoshift:
+      id:        669
+      animation: 172
+      range:     0
+      target:    [self, player_party]
+      aoe:       {sphere: {origin: caster, radius: 14}}
+      message:   283
+      flags:     [bloodpact_ward]
+
+  alexander:
+    perfect_defense:
+      id:        671
+      animation: 152
+      range:     0
+      target:    [self, player_party]
+      aoe:       {sphere: {origin: caster, radius: 10}}
+      message:   316
+      flags:     [astral_flow, no_tp_cost, bloodpact_ward]
+
+  siren:
+    clarsach_call:
+      id:        960
+      animation: 175
+      range:     5
+      aoe:       {sphere: {origin: caster, radius: 10}}
+      message:   317
+      flags:     [astral_flow, no_tp_cost, bloodpact_rage]
+
+    welt:
+      id:        961
+      animation: 176
+      message:   317
+      flags:     [bloodpact_rage]
+
+    roundhouse:
+      id:        964
+      animation: 179
+      message:   317
+      flags:     [bloodpact_rage]
+
+    sonic_buffet:
+      id:        967
+      animation: 182
+      range:     10
+      message:   317
+      flags:     [bloodpact_rage]
+
+    tornado_ii:
+      id:        968
+      animation: 183
+      range:     10
+      message:   317
+      flags:     [bloodpact_rage]
+
+    hysteric_assault:
+      id:        970
+      animation: 185
+      message:   802
+      flags:     [bloodpact_rage]
+
+  wyvern:
+    healing_breath_iv:
+      id:           639
+      animation:    156
+      range:        12
+      target:       [self, player_party]
+      prepare_time: 1500
+      message:      318
+      flags:        [no_tp_cost]
+
+    healing_breath:
+      id:           640
+      animation:    128
+      range:        12
+      target:       [self, player_party]
+      prepare_time: 1500
+      message:      318
+      flags:        [no_tp_cost]
+
+    healing_breath_ii:
+      id:           641
+      animation:    129
+      range:        12
+      target:       [self, player_party]
+      prepare_time: 1500
+      message:      318
+      flags:        [no_tp_cost]
+
+    healing_breath_iii:
+      id:           642
+      animation:    130
+      range:        12
+      target:       [self, player_party]
+      prepare_time: 1500
+      message:      318
+      flags:        [no_tp_cost]
+
+    remove_poison:
+      id:           643
+      animation:    131
+      range:        12
+      target:       [self, player_party]
+      prepare_time: 1500
+      message:      123
+      flags:        [no_tp_cost]
+
+    remove_blindness:
+      id:           644
+      animation:    132
+      range:        12
+      target:       [self, player_party]
+      prepare_time: 1500
+      message:      123
+      flags:        [no_tp_cost]
+
+    remove_paralysis:
+      id:           645
+      animation:    133
+      range:        12
+      target:       [self, player_party]
+      prepare_time: 1500
+      message:      123
+      flags:        [no_tp_cost]
+
+    flame_breath:
+      id:           646
+      animation:    134
+      range:        8
+      prepare_time: 1500
+      message:      317
+      flags:        [no_tp_cost]
+
+    frost_breath:
+      id:           647
+      animation:    135
+      range:        8
+      prepare_time: 1500
+      message:      317
+      flags:        [no_tp_cost]
+
+    gust_breath:
+      id:           648
+      animation:    136
+      range:        8
+      prepare_time: 1500
+      message:      317
+      flags:        [no_tp_cost]
+
+    sand_breath:
+      id:           649
+      animation:    137
+      range:        8
+      prepare_time: 1500
+      message:      317
+      flags:        [no_tp_cost]
+
+    lightning_breath:
+      id:           650
+      animation:    138
+      range:        8
+      prepare_time: 1500
+      message:      317
+      flags:        [no_tp_cost]
+
+    hydro_breath:
+      id:           651
+      animation:    139
+      range:        8
+      prepare_time: 1500
+      message:      317
+      flags:        [no_tp_cost]
+
+    super_climb:
+      id:           652
+      animation:    140
+      range:        0
+      target:       [self]
+      prepare_time: 0
+      message:      100
+      flags:        [no_tp_cost]
+
+    remove_curse:
+      id:           653
+      animation:    157
+      range:        12
+      target:       [self, player_party]
+      prepare_time: 1500
+      message:      123
+      flags:        [no_tp_cost]
+
+    remove_disease:
+      id:           654
+      animation:    158
+      range:        12
+      target:       [self, player_party]
+      prepare_time: 1500
+      message:      123
+      flags:        [no_tp_cost]
+
+  jug_pets:
+    foot_kick:
+      id:           672
+      mob_skill:    3840
+      animation:    1
+      prepare_time: 200
+      message:      185
+      skillchain:   [reverberation]
+
+    dust_cloud:
+      id:           673
+      mob_skill:    3841
+      animation:    2
+      aoe:          {cone: {origin: front, distance: 10}}
+      prepare_time: 200
+      message:      185
+
+    whirl_claws:
+      id:           674
+      mob_skill:    3842
+      animation:    3
+      aoe:          {sphere: {origin: caster, radius: 10}}
+      prepare_time: 200
+      message:      185
+      skillchain:   [impaction]
+
+    head_butt:
+      id:             675
+      mob_skill:      3843
+      animation:      44
+      animation_time: 1500
+      prepare_time:   250
+      message:        185
+      skillchain:     [detonation]
+
+    dream_flower:
+      id:           676
+      mob_skill:    3844
+      animation:    45
+      aoe:          {sphere: {origin: caster, radius: 10}}
+      prepare_time: 250
+      message:      242
+
+    wild_oats:
+      id:           677
+      mob_skill:    3845
+      animation:    46
+      prepare_time: 250
+      message:      185
+      skillchain:   [transfixion]
+
+    leaf_dagger:
+      id:           678
+      mob_skill:    3846
+      animation:    49
+      prepare_time: 250
+      message:      185
+      skillchain:   [scission]
+
+    scream:
+      id:           679
+      mob_skill:    3847
+      animation:    50
+      aoe:          {sphere: {origin: caster, radius: 10}}
+      prepare_time: 250
+      message:      185
+
+    roar:
+      id:           680
+      mob_skill:    3848
+      animation:    14
+      aoe:          {sphere: {origin: caster, radius: 10}}
+      prepare_time: 250
+      message:      242
+
+    razor_fang:
+      id:           681
+      mob_skill:    3849
+      animation:    15
+      prepare_time: 250
+      message:      185
+      skillchain:   [impaction]
+
+    claw_cyclone:
+      id:           682
+      mob_skill:    3850
+      animation:    17
+      aoe:          {cone: {origin: front, distance: 10}}
+      prepare_time: 250
+      message:      185
+      skillchain:   [scission]
+
+    tail_blow:
+      id:           683
+      mob_skill:    3851
+      animation:    110
+      prepare_time: 250
+      message:      185
+      skillchain:   [impaction]
+
+    fireball:
+      id:           684
+      mob_skill:    3852
+      animation:    111
+      aoe:          {sphere: {origin: caster, radius: 10}}
+      prepare_time: 250
+      message:      185
+
+    blockhead:
+      id:           685
+      mob_skill:    3853
+      animation:    112
+      prepare_time: 250
+      message:      185
+      skillchain:   [reverberation]
+
+    brain_crush:
+      id:           686
+      mob_skill:    3854
+      animation:    113
+      prepare_time: 250
+      message:      185
+      skillchain:   [liquefaction]
+
+    infrasonics:
+      id:           687
+      mob_skill:    3855
+      animation:    116
+      aoe:          {cone: {origin: front, distance: 10}}
+      prepare_time: 250
+      message:      238
+
+    secretion:
+      id:           688
+      mob_skill:    3856
+      animation:    117
+      target:       [self, player_party]
+      master_range: 8
+      prepare_time: 0
+      message:      238
+
+    lamb_chop:
+      id:           689
+      mob_skill:    3857
+      animation:    4
+      prepare_time: 250
+      message:      185
+      skillchain:   [impaction]
+
+    rage:
+      id:           690
+      mob_skill:    3858
+      animation:    5
+      target:       [self, player_party]
+      master_range: 8
+      prepare_time: 0
+      message:      238
+
+    sheep_charge:
+      id:           691
+      mob_skill:    3859
+      animation:    6
+      prepare_time: 250
+      message:      185
+      skillchain:   [reverberation]
+
+    sheep_song:
+      id:           692
+      mob_skill:    3860
+      animation:    8
+      aoe:          {sphere: {origin: caster, radius: 10}}
+      prepare_time: 250
+      message:      185
+
+    bubble_shower:
+      id:           693
+      mob_skill:    3861
+      animation:    186
+      aoe:          {sphere: {origin: caster, radius: 10}}
+      prepare_time: 250
+      message:      185
+
+    bubble_curtain:
+      id:           694
+      mob_skill:    3862
+      animation:    187
+      target:       [self, player_party]
+      master_range: 8
+      prepare_time: 0
+      message:      238
+
+    big_scissors:
+      id:           695
+      mob_skill:    3863
+      animation:    188
+      prepare_time: 250
+      message:      185
+      skillchain:   [scission]
+
+    scissor_guard:
+      id:           696
+      mob_skill:    3864
+      animation:    189
+      target:       [self, player_party]
+      master_range: 8
+      prepare_time: 0
+      message:      238
+
+    metallic_body:
+      id:           697
+      mob_skill:    3865
+      animation:    192
+      target:       [self, player_party]
+      master_range: 8
+      prepare_time: 0
+      message:      238
+
+    needleshot:
+      id:           698
+      mob_skill:    3866
+      animation:    65
+      prepare_time: 250
+      message:      185
+      skillchain:   [transfixion]
+
+    random_needles:
+      id:           699
+      mob_skill:    3867
+      animation:    66
+      aoe:          {sphere: {origin: caster, radius: 10}}
+      prepare_time: 250
+      message:      185
+      skillchain:   [darkness, fragmentation]
+
+    frogkick:
+      id:           700
+      mob_skill:    3868
+      animation:    52
+      prepare_time: 250
+      message:      185
+      skillchain:   [compression]
+
+    spore:
+      id:            701
+      mob_skill:    3869
+      animation:      53
+      prepare_time:  250
+      message:       185
+
+    queasyshroom:
+      id:            702
+      mob_skill:    3870
+      animation:      54
+      prepare_time:  250
+      message:       243
+
+    numbshroom:
+      id:            703
+      mob_skill:    3871
+      animation:      55
+      prepare_time:  250
+      message:       243
+
+    shakeshroom:
+      id:            704
+      mob_skill:    3872
+      animation:      56
+      prepare_time:  250
+      message:       243
+
+    silence_gas:
+      id:           705
+      mob_skill:    3873
+      animation:    58
+      aoe:          {cone: {origin: front, distance: 10}}
+      prepare_time: 250
+      message:      185
+
+    dark_spore:
+      id:           706
+      mob_skill:    3874
+      animation:    59
+      aoe:          {cone: {origin: front, distance: 10}}
+      prepare_time: 250
+      message:      185
+
+    power_attack:
+      id:           707
+      mob_skill:    3875
+      animation:    82
+      prepare_time: 250
+      message:      185
+      skillchain:   [reverberation]
+
+    hi_freq_field:
+      id:           708
+      name:         hi-freq_field
+      mob_skill:    3876
+      animation:    83
+      aoe:          {cone: {origin: front, distance: 10}}
+      prepare_time: 250
+      message:      185
+
+    rhino_attack:
+      id:           709
+      mob_skill:    3877
+      animation:    84
+      prepare_time: 250
+      message:      185
+      skillchain:   [detonation]
+
+    rhino_guard:
+      id:           710
+      mob_skill:    3878
+      animation:    85
+      target:       [self]
+      prepare_time: 250
+      message:      238
+
+    spoil:
+      id:            711
+      mob_skill:    3879
+      animation:      87
+      prepare_time:  250
+      message:       185
+
+    cursed_sphere:
+      id:           712
+      mob_skill:    3880
+      animation:    403
+      aoe:          {sphere: {origin: target, radius: 10}}
+      prepare_time: 250
+      message:      185
+
+    venom:
+      id:           713
+      mob_skill:    3881
+      animation:    404
+      aoe:          {cone: {origin: front, distance: 10}}
+      prepare_time: 250
+      message:      185
+
+    sandblast:
+      id:           714
+      mob_skill:    3882
+      animation:    809
+      aoe:          {sphere: {origin: caster, radius: 8}}
+      prepare_time: 250
+      message:      242
+
+    sandpit:
+      id:            715
+      mob_skill:    3883
+      animation:     810
+      prepare_time:  250
+      message:       242
+
+    venom_spray:
+      id:           716
+      mob_skill:    3884
+      animation:    811
+      aoe:          {cone: {origin: front, distance: 10}}
+      prepare_time: 250
+      message:      242
+
+    mandibular_bite:
+      id:             717
+      mob_skill:      3885
+      animation:      813
+      animation_time: 250
+      prepare_time:   1500
+      message:        185
+      skillchain:     [detonation]
+
+    soporific:
+      id:           718
+      mob_skill:    3886
+      animation:    806
+      aoe:          {sphere: {origin: caster, radius: 10}}
+      prepare_time: 250
+      message:      242
+
+    gloeosuccus:
+      id:           719
+      mob_skill:    3887
+      animation:    808
+      aoe:          {cone: {origin: front, distance: 10}}
+      prepare_time: 250
+      message:      242
+
+    palsy_pollen:
+      id:            720
+      mob_skill:    3888
+      animation:     807
+      prepare_time:  250
+      message:       242
+
+    geist_wall:
+      id:           721
+      mob_skill:    3889
+      animation:    815
+      aoe:          {sphere: {origin: caster, radius: 10}}
+      prepare_time: 250
+      message:      185
+
+    numbing_noise:
+      id:           722
+      mob_skill:    3890
+      animation:    816
+      aoe:          {cone: {origin: front, distance: 10}}
+      prepare_time: 250
+      message:      185
+
+    nimble_snap:
+      id:           723
+      mob_skill:    3891
+      animation:    817
+      prepare_time: 250
+      message:      185
+      skillchain:   [impaction]
+
+    cyclotail:
+      id:           724
+      mob_skill:    3892
+      animation:    818
+      aoe:          {sphere: {origin: caster, radius: 10}}
+      prepare_time: 250
+      message:      185
+      skillchain:   [impaction]
+
+    toxic_spit:
+      id:            725
+      mob_skill:    3893
+      animation:     814
+      prepare_time:  250
+      message:       185
+
+    double_claw:
+      id:           726
+      mob_skill:    3894
+      animation:    830
+      prepare_time: 250
+      message:      185
+      skillchain:   [liquefaction]
+
+    grapple:
+      id:           727
+      mob_skill:    3895
+      animation:    831
+      aoe:          {cone: {origin: front, distance: 10}}
+      prepare_time: 250
+      message:      185
+      skillchain:   [reverberation]
+
+    spinning_top:
+      id:           728
+      mob_skill:    3897
+      animation:    833
+      aoe:          {sphere: {origin: caster, radius: 10}}
+      prepare_time: 250
+      message:      185
+      skillchain:   [impaction]
+
+    filamented_hold:
+      id:           729
+      mob_skill:    3896
+      animation:    832
+      aoe:          {cone: {origin: front, distance: 10}}
+      prepare_time: 250
+      message:      242
+
+    chaotic_eye:
+      id:            730
+      mob_skill:    3898
+      animation:     397
+      prepare_time:  250
+      message:       185
+
+    blaster:
+      id:            731
+      mob_skill:    3899
+      animation:     396
+      prepare_time:  250
+      message:       185
+
+    suction:
+      id:           732
+      mob_skill:    3900
+      animation:    158
+      prepare_time: 250
+      message:      185
+      skillchain:   [compression]
+
+    drainkiss:
+      id:            733
+      mob_skill:    3901
+      animation:     161
+      prepare_time:  250
+      message:       187
+
+    snow_cloud:
+      id:           734
+      mob_skill:    3902
+      animation:    970
+      aoe:          {cone: {origin: front, distance: 10}}
+      prepare_time: 200
+      message:      185
+
+    wild_carrot:
+      id:           735
+      mob_skill:    3903
+      animation:    37
+      target:       [self, player_party]
+      aoe:          {sphere: {origin: caster, radius: 10}}
+      prepare_time: 0
+      message:      238
+
+    sudden_lunge:
+      id:           736
+      mob_skill:    3904
+      animation:    1576
+      prepare_time: 250
+      message:      185
+      skillchain:   [impaction]
+
+    spiral_spin:
+      id:           737
+      mob_skill:    3905
+      animation:    1579
+      aoe:          {cone: {origin: front, distance: 12}}
+      prepare_time: 250
+      message:      185
+      skillchain:   [scission]
+
+    noisome_powder:
+      id:           738
+      mob_skill:    3906
+      animation:    1577
+      aoe:          {sphere: {origin: caster, radius: 10}}
+      prepare_time: 250
+      message:      242
+
+    acid_mist:
+      id:           740
+      mob_skill:    3907
+      animation:    159
+      aoe:          {sphere: {origin: caster, radius: 10}}
+      prepare_time: 250
+      message:      185
+
+    tp_drainkiss:
+      id:            741
+      mob_skill:    3908
+      animation:     164
+      prepare_time:  250
+      message:       226
+
+    scythe_tail:
+      id:           743
+      mob_skill:    3909
+      animation:    124
+      prepare_time: 250
+      message:      185
+      skillchain:   [liquefaction]
+
+    ripper_fang:
+      id:           744
+      mob_skill:    3910
+      animation:    118
+      prepare_time: 250
+      message:      185
+      skillchain:   [induration]
+
+    chomp_rush:
+      id:           745
+      mob_skill:    3911
+      animation:    123
+      prepare_time: 250
+      message:      185
+      skillchain:   [darkness, gravitation]
+
+    charged_whisker:
+      id:           746
+      mob_skill:    3912
+      animation:    291
+      aoe:          {sphere: {origin: caster, radius: 10}}
+      prepare_time: 250
+      message:      185
+
+    purulent_ooze:
+      id:           747
+      mob_skill:    3913
+      animation:    1573
+      aoe:          {cone: {origin: front, distance: 10}}
+      prepare_time: 250
+      message:      185
+
+    corrosive_ooze:
+      id:           748
+      mob_skill:    3914
+      animation:    1574
+      aoe:          {sphere: {origin: caster, radius: 10}}
+      prepare_time: 250
+      message:      185
+
+    back_heel:
+      id:           749
+      mob_skill:    3915
+      animation:    910
+      prepare_time: 250
+      message:      185
+      skillchain:   [reverberation]
+
+    jettatura:
+      id:           750
+      mob_skill:    3916
+      animation:    911
+      aoe:          {cone: {origin: front, distance: 10}}
+      prepare_time: 250
+      message:      242
+
+    choke_breath:
+      id:           751
+      mob_skill:    3917
+      animation:    913
+      aoe:          {cone: {origin: front, distance: 10}}
+      prepare_time: 250
+      message:      185
+
+    fantod:
+      id:           752
+      mob_skill:    3918
+      animation:    914
+      target:       [self]
+      prepare_time: 0
+      message:      238
+
+    tortoise_stomp:
+      id:           753
+      mob_skill:    3919
+      animation:    478
+      prepare_time: 250
+      message:      185
+      skillchain:   [liquefaction]
+
+    harden_shell:
+      id:           754
+      mob_skill:    3920
+      animation:    479
+      target:       [self, player_party]
+      master_range: 8
+      prepare_time: 0
+      message:      238
+
+    aqua_breath:
+      id:           755
+      mob_skill:    3921
+      animation:    481
+      aoe:          {cone: {origin: front, distance: 10}}
+      prepare_time: 250
+      message:      185
+
+    wing_slap:
+      id:           756
+      mob_skill:    3922
+      animation:    1160
+      prepare_time: 250
+      message:      185
+      skillchain:   [gravitation, liquefaction]
+
+    beak_lunge:
+      id:           757
+      mob_skill:    3923
+      animation:    1161
+      prepare_time: 250
+      message:      185
+      skillchain:   [scission]
+
+    intimidate:
+      id:            758
+      mob_skill:    3924
+      animation:     193
+      prepare_time:  250
+      message:       185
+
+    recoil_dive:
+      id:           759
+      mob_skill:    3925
+      animation:    973
+      aoe:          {cone: {origin: front, distance: 7}}
+      prepare_time: 250
+      message:      185
+      skillchain:   [transfixion]
+
+    water_wall:
+      id:           760
+      mob_skill:    3926
+      animation:    197
+      target:       [self, player_party]
+      master_range: 8
+      prepare_time: 0
+      message:      238
+
+    sensilla_blades:
+      id:           761
+      mob_skill:    3927
+      animation:    2168
+      aoe:          {cone: {origin: front, distance: 10}}
+      prepare_time: 250
+      message:      185
+      skillchain:   [scission]
+
+    tegmina_buffet:
+      id:           762
+      mob_skill:    3928
+      animation:    2169
+      aoe:          {sphere: {origin: caster, radius: 6}}
+      prepare_time: 250
+      message:      185
+      skillchain:   [distortion, detonation]
+
+    molting_plumage:
+      id:           763
+      mob_skill:    3929
+      animation:    2233
+      aoe:          {cone: {origin: front, distance: 10}}
+      prepare_time: 250
+      message:      185
+
+    swooping_frenzy:
+      id:           764
+      mob_skill:    3930
+      animation:    2235
+      aoe:          {cone: {origin: front, distance: 10}}
+      prepare_time: 250
+      message:      185
+      skillchain:   [fusion, reverberation]
+
+    sweeping_gouge:
+      id:           765
+      mob_skill:    3931
+      animation:    2275
+      aoe:          {cone: {origin: front, distance: 7}}
+      prepare_time: 250
+      message:      185
+
+    zealous_snort:
+      id:            766
+      mob_skill:    3932
+      animation:    2276
+      prepare_time:    0
+      message:       185
+
+    pentapeck:
+      id:           767
+      mob_skill:    3933
+      animation:    2234
+      prepare_time: 250
+      message:      185
+      skillchain:   [light, distortion]
+
+    tickling_tendrils:
+      id:            768
+      mob_skill:    3934
+      animation:    2172
+      prepare_time:  250
+      message:       185
+
+    stink_bomb:
+      id:           769
+      mob_skill:    3935
+      animation:    2173
+      aoe:          {sphere: {origin: target, radius: 10}}
+      prepare_time: 250
+      message:      185
+
+    nectarous_deluge:
+      id:           770
+      mob_skill:    3936
+      animation:    2174
+      aoe:          {sphere: {origin: caster, radius: 10}}
+      prepare_time: 250
+      message:      185
+
+    nepenthic_plunge:
+      id:           771
+      mob_skill:    3937
+      animation:    2175
+      aoe:          {cone: {origin: front, distance: 10}}
+      prepare_time: 250
+      message:      185
+
+    somersault:
+      id:           772
+      mob_skill:    3938
+      animation:    401
+      prepare_time: 250
+      message:      185
+      skillchain:   [compression]
+
+    foul_waters:
+      id:           774
+      mob_skill:    3939
+      animation:    2189
+      aoe:          {cone: {origin: front, distance: 14}}
+      prepare_time: 250
+      message:      185
+
+    pestilent_plume:
+      id:           775
+      mob_skill:    3940
+      animation:    2190
+      aoe:          {cone: {origin: front, distance: 14}}
+      prepare_time: 250
+      message:      185
+
+    pecking_flurry:
+      id:            776
+      mob_skill:    3941
+      animation:    1176
+      prepare_time:  250
+      message:       185
+
+    sickle_slash:
+      id:            777
+      mob_skill:    3942
+      animation:     482
+      prepare_time:  250
+      message:       185
+
+    acid_spray:
+      id:            778
+      mob_skill:    3943
+      animation:     483
+      prepare_time:  250
+      message:       185
+
+    spider_web:
+      id:           779
+      mob_skill:    3944
+      animation:    484
+      aoe:          {sphere: {origin: caster, radius: 10}}
+      prepare_time: 250
+      message:      185
+
+    infected_leech:
+      id:           781
+      mob_skill:    3945
+      animation:    2509
+      aoe:          {cone: {origin: front, distance: 10}}
+      prepare_time: 250
+      message:      185
+
+    gloom_spray:
+      id:           782
+      mob_skill:    3946
+      animation:    2510
+      aoe:          {cone: {origin: front, distance: 10}}
+      prepare_time: 250
+      message:      185
+
+    disembowel:
+      id:           786
+      mob_skill:    3950
+      animation:    2565
+      aoe:          {cone: {origin: front, distance: 14}}
+      prepare_time: 250
+      message:      185
+
+    extirpating_salvo:
+      id:            787
+      mob_skill:    3951
+      animation:    2567
+      prepare_time:  250
+      message:       185
+
+    venom_shower:
+      id:           788
+      mob_skill:    3952
+      animation:    1778
+      aoe:          {sphere: {origin: caster, radius: 10}}
+      prepare_time: 250
+      message:      185
+
+    mega_scissors:
+      id:            789
+      mob_skill:    3953
+      animation:    1781
+      prepare_time:  250
+      message:       185
+
+    frenzied_rage:
+      id:           790
+      mob_skill:    3954
+      animation:    289
+      target:       [self, player_party]
+      master_range: 8
+      prepare_time: 0
+      message:      238
+
+    rhinowrecker:
+      id:           791
+      mob_skill:    3955
+      animation:    1986
+      aoe:          {cone: {origin: front, distance: 10}}
+      prepare_time: 250
+      message:      185
+      skillchain:   [fusion, scission]
+
+    fluid_toss:
+      id:            792
+      mob_skill:    3956
+      animation:     176
+      prepare_time:  250
+      message:       185
+
+    fluid_spread:
+      id:           793
+      mob_skill:    3957
+      animation:    175
+      aoe:          {sphere: {origin: caster, radius: 10}}
+      prepare_time: 250
+      message:      185
+
+    digest:
+      id:            794
+      mob_skill:    3958
+      animation:     177
+      prepare_time:  250
+      message:       185
+
+    crossthrash:
+      id:           795
+      mob_skill:    3959
+      animation:    17
+      aoe:          {cone: {origin: front, distance: 14}}
+      prepare_time: 250
+      message:      185
+      skillchain:   [distortion, detonation]
+
+    predatory_glare:
+      id:           796
+      mob_skill:    3960
+      animation:    984
+      aoe:          {cone: {origin: front, distance: 14}}
+      prepare_time: 250
+      message:      242
+
+    hoof_volley:
+      id:           797
+      mob_skill:    3961
+      animation:    910
+      prepare_time: 250
+      message:      185
+      skillchain:   [fragmentation]
+
+    nihility_song:
+      id:           798
+      mob_skill:    3962
+      animation:    912
+      aoe:          {sphere: {origin: caster, radius: 12}}
+      prepare_time: 250
+      message:      159
+
+  luopan:
+    concentric_pulse:
+      id:        353
+      mob_skill: 3045
+      animation: 2213
+      range:     10
+      aoe:       {sphere: {origin: caster, radius: 10}}
+      message:   185
+
+    mending_halation:
+      id:        354
+      mob_skill: 3051
+      animation: 2211
+      range:     0
+      target:    [self, player_party]
+      aoe:       {sphere: {origin: caster, radius: 10}}
+      message:   238
+
+    radial_arcana:
+      id:        355
+      mob_skill: 3052
+      animation: 2212
+      range:     0
+      target:    [self, player_party]
+      aoe:       {sphere: {origin: caster, radius: 10}}
+      message:   224

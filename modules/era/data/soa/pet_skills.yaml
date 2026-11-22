@@ -1,0 +1,66 @@
+# Pet skills as they were before the Seekers of Adoulin updates.
+#
+# Wyvern breaths readied in 3 seconds instead of 1.
+# TODO: revert the readying animation to show the ready spikes.
+#
+# Blood pacts gained skillchain properties in the November 2014 update.
+# https://wiki.ffo.jp/html/32087.html
+#
+# Jug pet ready moves gained skillchain properties in the February 2015 update.
+# https://wiki.ffo.jp/html/32665.html
+
+pet_skills:
+  fenrir:
+    eclipse_bite: {skillchain: []}
+  ifrit:
+    flaming_crush: {skillchain: []}
+  titan:
+    mountain_buster: {skillchain: []}
+  leviathan:
+    spinning_dive: {skillchain: []}
+  garuda:
+    predator_claws: {skillchain: []}
+  shiva:
+    rush: {skillchain: []}
+  ramuh:
+    chaotic_strike: {skillchain: []}
+  wyvern:
+    healing_breath_iv:  {prepare_time: 3000}
+    healing_breath:     {prepare_time: 3000}
+    healing_breath_ii:  {prepare_time: 3000}
+    healing_breath_iii: {prepare_time: 3000}
+    remove_poison:      {prepare_time: 3000}
+    remove_blindness:   {prepare_time: 3000}
+    remove_paralysis:   {prepare_time: 3000}
+    flame_breath:       {prepare_time: 3000}
+    frost_breath:       {prepare_time: 3000}
+    gust_breath:        {prepare_time: 3000}
+    sand_breath:        {prepare_time: 3000}
+    lightning_breath:   {prepare_time: 3000}
+    hydro_breath:       {prepare_time: 3000}
+    remove_curse:       {prepare_time: 3000}
+    remove_disease:     {prepare_time: 3000}
+  jug_pets:
+    foot_kick:       {skillchain: []}
+    whirl_claws:     {skillchain: []}
+    head_butt:       {skillchain: []}
+    wild_oats:       {skillchain: []}
+    leaf_dagger:     {skillchain: []}
+    razor_fang:      {skillchain: []}
+    claw_cyclone:    {skillchain: []}
+    tail_blow:       {skillchain: []}
+    blockhead:       {skillchain: []}
+    brain_crush:     {skillchain: []}
+    lamb_chop:       {skillchain: []}
+    sheep_charge:    {skillchain: []}
+    big_scissors:    {skillchain: []}
+    needleshot:      {skillchain: []}
+    random_needles:  {skillchain: []}
+    frogkick:        {skillchain: []}
+    rhino_attack:    {skillchain: []}
+    mandibular_bite: {skillchain: []}
+    nimble_snap:     {skillchain: []}
+    cyclotail:       {skillchain: []}
+    double_claw:     {skillchain: []}
+    grapple:         {skillchain: []}
+    spinning_top:    {skillchain: []}
