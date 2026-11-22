@@ -23,6 +23,9 @@
 #include <common/cbasetypes.h>
 #include <common/types/maybe.h>
 
+#include <array>
+#include <string>
+
 namespace synergyutils
 {
 
@@ -46,14 +49,7 @@ struct SynergyRecipe
     uint8 cost_light_fewell;
     uint8 cost_dark_fewell;
 
-    uint16 ingredient1;
-    uint16 ingredient2;
-    uint16 ingredient3;
-    uint16 ingredient4;
-    uint16 ingredient5;
-    uint16 ingredient6;
-    uint16 ingredient7;
-    uint16 ingredient8;
+    std::array<uint16, 8> ingredients; // sorted, 0 in empty slots
 
     uint16 result;
     uint16 resultHQ1;
@@ -71,6 +67,6 @@ struct SynergyRecipe
 void LoadSynergyRecipes();
 
 auto GetSynergyRecipeByID(uint32 id) -> Maybe<SynergyRecipe>;
-auto GetSynergyRecipeByIngredients(uint16 ingredient1, uint16 ingredient2, uint16 ingredient3, uint16 ingredient4, uint16 ingredient5, uint16 ingredient6, uint16 ingredient7, uint16 ingredient8) -> Maybe<SynergyRecipe>;
+auto GetSynergyRecipeByIngredients(const std::array<uint16, 8>& ingredients) -> Maybe<SynergyRecipe>;
 
 } // namespace synergyutils

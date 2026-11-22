@@ -6649,122 +6649,82 @@ void InitializeFishingContestSystem()
     }
 }
 
-auto GetSynergyRecipeByID(uint32 id) -> sol::table
+namespace
 {
-    auto maybeResult = synergyutils::GetSynergyRecipeByID(id);
-    if (!maybeResult.has_value())
-    {
-        return sol::lua_nil;
-    }
-    const auto& result = *maybeResult;
 
+auto synergyRecipeTable(const synergyutils::SynergyRecipe& recipe) -> sol::table
+{
     sol::table table = lua.create_table();
 
-    table["id"]                    = result.id;
-    table["primary_skill"]         = result.primary_skill;
-    table["primary_rank"]          = result.primary_rank;
-    table["secondary_skill"]       = result.secondary_skill;
-    table["secondary_rank"]        = result.secondary_rank;
-    table["tertiary_skill"]        = result.tertiary_skill;
-    table["tertiary_rank"]         = result.tertiary_rank;
-    table["cost_fire_fewell"]      = result.cost_fire_fewell;
-    table["cost_ice_fewell"]       = result.cost_ice_fewell;
-    table["cost_wind_fewell"]      = result.cost_wind_fewell;
-    table["cost_earth_fewell"]     = result.cost_earth_fewell;
-    table["cost_lightning_fewell"] = result.cost_lightning_fewell;
-    table["cost_water_fewell"]     = result.cost_water_fewell;
-    table["cost_light_fewell"]     = result.cost_light_fewell;
-    table["cost_dark_fewell"]      = result.cost_dark_fewell;
-    table["ingredient1"]           = result.ingredient1;
-    table["ingredient2"]           = result.ingredient2;
-    table["ingredient3"]           = result.ingredient3;
-    table["ingredient4"]           = result.ingredient4;
-    table["ingredient5"]           = result.ingredient5;
-    table["ingredient6"]           = result.ingredient6;
-    table["ingredient7"]           = result.ingredient7;
-    table["ingredient8"]           = result.ingredient8;
-    table["result"]                = result.result;
-    table["resultHQ1"]             = result.resultHQ1;
-    table["resultHQ2"]             = result.resultHQ2;
-    table["resultHQ3"]             = result.resultHQ3;
-    table["resultQty"]             = result.resultQty;
-    table["resultHQ1Qty"]          = result.resultHQ1Qty;
-    table["resultHQ2Qty"]          = result.resultHQ2Qty;
-    table["resultHQ3Qty"]          = result.resultHQ3Qty;
-    table["resultName"]            = result.resultName;
+    table["id"]                    = recipe.id;
+    table["primary_skill"]         = recipe.primary_skill;
+    table["primary_rank"]          = recipe.primary_rank;
+    table["secondary_skill"]       = recipe.secondary_skill;
+    table["secondary_rank"]        = recipe.secondary_rank;
+    table["tertiary_skill"]        = recipe.tertiary_skill;
+    table["tertiary_rank"]         = recipe.tertiary_rank;
+    table["cost_fire_fewell"]      = recipe.cost_fire_fewell;
+    table["cost_ice_fewell"]       = recipe.cost_ice_fewell;
+    table["cost_wind_fewell"]      = recipe.cost_wind_fewell;
+    table["cost_earth_fewell"]     = recipe.cost_earth_fewell;
+    table["cost_lightning_fewell"] = recipe.cost_lightning_fewell;
+    table["cost_water_fewell"]     = recipe.cost_water_fewell;
+    table["cost_light_fewell"]     = recipe.cost_light_fewell;
+    table["cost_dark_fewell"]      = recipe.cost_dark_fewell;
+    table["result"]                = recipe.result;
+    table["resultHQ1"]             = recipe.resultHQ1;
+    table["resultHQ2"]             = recipe.resultHQ2;
+    table["resultHQ3"]             = recipe.resultHQ3;
+    table["resultQty"]             = recipe.resultQty;
+    table["resultHQ1Qty"]          = recipe.resultHQ1Qty;
+    table["resultHQ2Qty"]          = recipe.resultHQ2Qty;
+    table["resultHQ3Qty"]          = recipe.resultHQ3Qty;
+    table["resultName"]            = recipe.resultName;
+
+    for (size_t index = 0; index < recipe.ingredients.size(); ++index)
+    {
+        table[fmt::format("ingredient{}", index + 1)] = recipe.ingredients[index];
+    }
 
     return table;
 }
 
-auto GetSynergyRecipeByTrade(CLuaTradeContainer luaTradeContainer) -> sol::table
+} // namespace
+
+auto GetSynergyRecipeByID(uint32 id) -> sol::table
 {
-    auto tradeContainer = luaTradeContainer.GetTradeContainer();
-
-    std::vector<uint16> itemIds;
-    for (uint8 i = 0; i < 8; i++)
-    {
-        auto itemId = tradeContainer->getItemID(i);
-        if (itemId == 0)
-        {
-            continue;
-        }
-        itemIds.push_back(itemId);
-    }
-
-    // We will sort now, because we want to insert zeroes at the end of the vector for lookup
-    std::ranges::sort(itemIds);
-
-    // We will still need to fill out the call to GetSynergyRecipeByIngredients
-    // with zeroes for empty slots.
-    while (itemIds.size() < 8)
-    {
-        itemIds.push_back(0);
-    }
-
-    auto maybeResult = synergyutils::GetSynergyRecipeByIngredients(
-        itemIds[0], itemIds[1], itemIds[2], itemIds[3], itemIds[4], itemIds[5], itemIds[6], itemIds[7]);
-    if (!maybeResult.has_value())
+    const auto recipe = synergyutils::GetSynergyRecipeByID(id);
+    if (!recipe.has_value())
     {
         return sol::lua_nil;
     }
-    const auto& result = *maybeResult;
 
-    sol::table table = lua.create_table();
+    return synergyRecipeTable(*recipe);
+}
 
-    table["id"]                    = result.id;
-    table["primary_skill"]         = result.primary_skill;
-    table["primary_rank"]          = result.primary_rank;
-    table["secondary_skill"]       = result.secondary_skill;
-    table["secondary_rank"]        = result.secondary_rank;
-    table["tertiary_skill"]        = result.tertiary_skill;
-    table["tertiary_rank"]         = result.tertiary_rank;
-    table["cost_fire_fewell"]      = result.cost_fire_fewell;
-    table["cost_ice_fewell"]       = result.cost_ice_fewell;
-    table["cost_wind_fewell"]      = result.cost_wind_fewell;
-    table["cost_earth_fewell"]     = result.cost_earth_fewell;
-    table["cost_lightning_fewell"] = result.cost_lightning_fewell;
-    table["cost_water_fewell"]     = result.cost_water_fewell;
-    table["cost_light_fewell"]     = result.cost_light_fewell;
-    table["cost_dark_fewell"]      = result.cost_dark_fewell;
-    table["ingredient1"]           = result.ingredient1;
-    table["ingredient2"]           = result.ingredient2;
-    table["ingredient3"]           = result.ingredient3;
-    table["ingredient4"]           = result.ingredient4;
-    table["ingredient5"]           = result.ingredient5;
-    table["ingredient6"]           = result.ingredient6;
-    table["ingredient7"]           = result.ingredient7;
-    table["ingredient8"]           = result.ingredient8;
-    table["result"]                = result.result;
-    table["resultHQ1"]             = result.resultHQ1;
-    table["resultHQ2"]             = result.resultHQ2;
-    table["resultHQ3"]             = result.resultHQ3;
-    table["resultQty"]             = result.resultQty;
-    table["resultHQ1Qty"]          = result.resultHQ1Qty;
-    table["resultHQ2Qty"]          = result.resultHQ2Qty;
-    table["resultHQ3Qty"]          = result.resultHQ3Qty;
-    table["resultName"]            = result.resultName;
+auto GetSynergyRecipeByTrade(CLuaTradeContainer luaTradeContainer) -> sol::table
+{
+    auto* tradeContainer = luaTradeContainer.GetTradeContainer();
 
-    return table;
+    std::array<uint16, 8> itemIds{};
+    size_t                count = 0;
+    for (uint8 i = 0; i < itemIds.size(); i++)
+    {
+        if (const auto itemId = tradeContainer->getItemID(i); itemId != 0)
+        {
+            itemIds[count++] = itemId;
+        }
+    }
+
+    std::sort(itemIds.begin(), itemIds.begin() + count);
+
+    const auto recipe = synergyutils::GetSynergyRecipeByIngredients(itemIds);
+    if (!recipe.has_value())
+    {
+        return sol::lua_nil;
+    }
+
+    return synergyRecipeTable(*recipe);
 }
 
 }; // namespace luautils

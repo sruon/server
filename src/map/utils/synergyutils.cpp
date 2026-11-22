@@ -64,14 +64,15 @@ void LoadSynergyRecipes()
         {
             const auto context = fmt::format("synergy recipe {}", source.Id);
 
-            std::vector<uint16> ingredients;
+            std::array<uint16, 8> ingredients{};
+            size_t                filled = 0;
             for (const auto& [item, count] : source.Items.Ingredients)
             {
-                ingredients.insert(ingredients.end(), count, xi::items::resolveRecipeItem(item, context));
+                std::fill_n(ingredients.begin() + filled, count, xi::items::resolveRecipeItem(item, context));
+                filled += count;
             }
 
-            std::ranges::sort(ingredients);
-            ingredients.resize(8);
+            std::sort(ingredients.begin(), ingredients.begin() + filled);
 
             std::array<std::pair<uint8, uint8>, 2> support{}; // skill and rank
             for (size_t index = 0; index < source.Support.size(); ++index)
@@ -100,15 +101,7 @@ void LoadSynergyRecipes()
                 .cost_water_fewell     = fewell[5],
                 .cost_light_fewell     = fewell[6],
                 .cost_dark_fewell      = fewell[7],
-
-                .ingredient1 = ingredients[0],
-                .ingredient2 = ingredients[1],
-                .ingredient3 = ingredients[2],
-                .ingredient4 = ingredients[3],
-                .ingredient5 = ingredients[4],
-                .ingredient6 = ingredients[5],
-                .ingredient7 = ingredients[6],
-                .ingredient8 = ingredients[7],
+                .ingredients           = ingredients,
 
                 .result    = xi::items::resolveRecipeItem(results[0].Item, context),
                 .resultHQ1 = xi::items::resolveRecipeItem(results[1].Item, context),
@@ -144,23 +137,13 @@ auto GetSynergyRecipeByID(uint32 id) -> Maybe<SynergyRecipe>
     return std::nullopt;
 }
 
-auto GetSynergyRecipeByIngredients(uint16 ingredient1, uint16 ingredient2, uint16 ingredient3, uint16 ingredient4, uint16 ingredient5, uint16 ingredient6, uint16 ingredient7, uint16 ingredient8) -> Maybe<SynergyRecipe>
+auto GetSynergyRecipeByIngredients(const std::array<uint16, 8>& ingredients) -> Maybe<SynergyRecipe>
 {
-    // TODO: Use a map instead of a vector for faster lookups
-    for (const auto& recipe : synergyRecipes)
+    if (const auto it = std::ranges::find(synergyRecipes, ingredients, &SynergyRecipe::ingredients); it != synergyRecipes.end())
     {
-        if (recipe.ingredient1 == ingredient1 &&
-            recipe.ingredient2 == ingredient2 &&
-            recipe.ingredient3 == ingredient3 &&
-            recipe.ingredient4 == ingredient4 &&
-            recipe.ingredient5 == ingredient5 &&
-            recipe.ingredient6 == ingredient6 &&
-            recipe.ingredient7 == ingredient7 &&
-            recipe.ingredient8 == ingredient8)
-        {
-            return recipe;
-        }
+        return *it;
     }
+
     return std::nullopt;
 }
 
