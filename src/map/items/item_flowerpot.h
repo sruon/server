@@ -24,6 +24,7 @@
 #pragma once
 
 #include "common/cbasetypes.h"
+#include "data/enums/flowerpot_plant.h"
 
 #include "item_furnishing.h"
 
@@ -35,19 +36,6 @@ enum FLOWERPOT_POT_TYPE
     FLOWERPOT_POT_CERAMIC,
     FLOWERPOT_POT_WOODEN,
     FLOWERPOT_POT_ARCANE,
-};
-
-enum FLOWERPOT_PLANT_TYPE
-{
-    FLOWERPOT_PLANT_NONE,
-    FLOWERPOT_PLANT_FRUIT_SEEDS,
-    FLOWERPOT_PLANT_HERB_SEEDS,
-    FLOWERPOT_PLANT_GRAIN_SEEDS,
-    FLOWERPOT_PLANT_VEGETABLE_SEEDS,
-    FLOWERPOT_PLANT_CACTUS_STEMS,
-    FLOWERPOT_PLANT_TREE_CUTTINGS,
-    FLOWERPOT_PLANT_TREE_SAPLINGS,
-    FLOWERPOT_PLANT_WILDGRASS_SEEDS,
 };
 
 enum FLOWERPOT_STAGE_TYPE
@@ -97,10 +85,10 @@ public:
     auto isDried() -> bool;
     auto canGrow() -> bool;
 
-    void        setPlant(FLOWERPOT_PLANT_TYPE plant);
-    auto        getPlant() -> FLOWERPOT_PLANT_TYPE;
-    static auto getSeedID(FLOWERPOT_PLANT_TYPE plantType) -> uint16;
-    static auto getPlantFromSeed(uint16 seedID) -> FLOWERPOT_PLANT_TYPE;
+    void        setPlant(xi::FlowerpotPlant plant);
+    auto        getPlant() -> xi::FlowerpotPlant;
+    static auto getSeedID(xi::FlowerpotPlant plantType) -> uint16;
+    static auto getPlantFromSeed(uint16 seedID) -> xi::FlowerpotPlant;
 
     void setStage(FLOWERPOT_STAGE_TYPE stage);
     auto getStage() -> FLOWERPOT_STAGE_TYPE;

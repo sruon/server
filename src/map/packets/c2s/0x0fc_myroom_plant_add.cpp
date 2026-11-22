@@ -134,7 +134,7 @@ void GP_CLI_COMMAND_MYROOM_PLANT_ADD::process(MapSession* PSession, CCharEntity*
 
     bool updatedPot = false;
 
-    if (CItemFlowerpot::getPlantFromSeed(this->MyroomAddItemNo) != FLOWERPOT_PLANT_NONE)
+    if (CItemFlowerpot::getPlantFromSeed(this->MyroomAddItemNo) != xi::FlowerpotPlant::None)
     {
         // Planting a seed in the flowerpot
         PChar->pushPacket<GP_SERV_COMMAND_MESSAGE>(this->MyroomAddItemNo, MsgStd::MooglePlantsSeeds);

@@ -36,7 +36,7 @@ CItemFlowerpot::~CItemFlowerpot() = default;
 void CItemFlowerpot::cleanPot()
 {
     setDried(false);
-    setPlant(FLOWERPOT_PLANT_NONE);
+    setPlant(xi::FlowerpotPlant::None);
     setStage(FLOWERPOT_STAGE_EMPTY);
     setFirstCrystalFeed(FLOWERPOT_ELEMENT_NONE);
     setSecondCrystalFeed(FLOWERPOT_ELEMENT_NONE);
@@ -53,15 +53,15 @@ auto CItemFlowerpot::isTree() -> bool
 {
     switch (getPlant())
     {
-        case FLOWERPOT_PLANT_FRUIT_SEEDS:
-        case FLOWERPOT_PLANT_CACTUS_STEMS:
-        case FLOWERPOT_PLANT_TREE_CUTTINGS:
-        case FLOWERPOT_PLANT_TREE_SAPLINGS:
+        case xi::FlowerpotPlant::FruitSeeds:
+        case xi::FlowerpotPlant::CactusStems:
+        case xi::FlowerpotPlant::TreeCuttings:
+        case xi::FlowerpotPlant::TreeSaplings:
             return true;
-        case FLOWERPOT_PLANT_HERB_SEEDS:
-        case FLOWERPOT_PLANT_GRAIN_SEEDS:
-        case FLOWERPOT_PLANT_VEGETABLE_SEEDS:
-        case FLOWERPOT_PLANT_WILDGRASS_SEEDS:
+        case xi::FlowerpotPlant::HerbSeeds:
+        case xi::FlowerpotPlant::GrainSeeds:
+        case xi::FlowerpotPlant::VegetableSeeds:
+        case xi::FlowerpotPlant::WildgrassSeeds:
         default:
             return false;
     }
@@ -83,64 +83,64 @@ auto CItemFlowerpot::canGrow() -> bool
     return stage >= FLOWERPOT_STAGE_INITIAL && stage <= FLOWERPOT_STAGE_THIRD_SPROUTS && !isDried();
 }
 
-void CItemFlowerpot::setPlant(FLOWERPOT_PLANT_TYPE plant)
+void CItemFlowerpot::setPlant(xi::FlowerpotPlant plant)
 {
-    this->exdata<Exdata::FlowerPot>().Kind = plant;
+    this->exdata<Exdata::FlowerPot>().Kind = static_cast<uint8>(plant);
 }
 
-auto CItemFlowerpot::getPlant() -> FLOWERPOT_PLANT_TYPE
+auto CItemFlowerpot::getPlant() -> xi::FlowerpotPlant
 {
-    return static_cast<FLOWERPOT_PLANT_TYPE>(this->exdata<Exdata::FlowerPot>().Kind);
+    return static_cast<xi::FlowerpotPlant>(this->exdata<Exdata::FlowerPot>().Kind);
 }
 
-auto CItemFlowerpot::getSeedID(FLOWERPOT_PLANT_TYPE plantType) -> uint16
+auto CItemFlowerpot::getSeedID(xi::FlowerpotPlant plantType) -> uint16
 {
     switch (plantType)
     {
-        case FLOWERPOT_PLANT_HERB_SEEDS:
+        case xi::FlowerpotPlant::HerbSeeds:
             return 572;
-        case FLOWERPOT_PLANT_GRAIN_SEEDS:
+        case xi::FlowerpotPlant::GrainSeeds:
             return 575;
-        case FLOWERPOT_PLANT_VEGETABLE_SEEDS:
+        case xi::FlowerpotPlant::VegetableSeeds:
             return 573;
-        case FLOWERPOT_PLANT_FRUIT_SEEDS:
+        case xi::FlowerpotPlant::FruitSeeds:
             return 574;
-        case FLOWERPOT_PLANT_CACTUS_STEMS:
+        case xi::FlowerpotPlant::CactusStems:
             return 1236;
-        case FLOWERPOT_PLANT_TREE_CUTTINGS:
+        case xi::FlowerpotPlant::TreeCuttings:
             return 1237;
-        case FLOWERPOT_PLANT_TREE_SAPLINGS:
+        case xi::FlowerpotPlant::TreeSaplings:
             return 1238;
-        case FLOWERPOT_PLANT_WILDGRASS_SEEDS:
+        case xi::FlowerpotPlant::WildgrassSeeds:
             return 2235;
-        case FLOWERPOT_PLANT_NONE:
+        case xi::FlowerpotPlant::None:
         default:
             return 0;
     }
 }
 
-auto CItemFlowerpot::getPlantFromSeed(uint16 seedID) -> FLOWERPOT_PLANT_TYPE
+auto CItemFlowerpot::getPlantFromSeed(uint16 seedID) -> xi::FlowerpotPlant
 {
     switch (seedID)
     {
         case 572:
-            return FLOWERPOT_PLANT_HERB_SEEDS;
+            return xi::FlowerpotPlant::HerbSeeds;
         case 575:
-            return FLOWERPOT_PLANT_GRAIN_SEEDS;
+            return xi::FlowerpotPlant::GrainSeeds;
         case 573:
-            return FLOWERPOT_PLANT_VEGETABLE_SEEDS;
+            return xi::FlowerpotPlant::VegetableSeeds;
         case 574:
-            return FLOWERPOT_PLANT_FRUIT_SEEDS;
+            return xi::FlowerpotPlant::FruitSeeds;
         case 1236:
-            return FLOWERPOT_PLANT_CACTUS_STEMS;
+            return xi::FlowerpotPlant::CactusStems;
         case 1237:
-            return FLOWERPOT_PLANT_TREE_CUTTINGS;
+            return xi::FlowerpotPlant::TreeCuttings;
         case 1238:
-            return FLOWERPOT_PLANT_TREE_SAPLINGS;
+            return xi::FlowerpotPlant::TreeSaplings;
         case 2235:
-            return FLOWERPOT_PLANT_WILDGRASS_SEEDS;
+            return xi::FlowerpotPlant::WildgrassSeeds;
         default:
-            return FLOWERPOT_PLANT_NONE;
+            return xi::FlowerpotPlant::None;
     }
 }
 

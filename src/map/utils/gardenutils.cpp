@@ -151,28 +151,28 @@ auto CalculateResults(CCharEntity* PChar, CItemFlowerpot* PItem) -> std::tuple<u
 
     switch (PItem->getPlant())
     {
-        case FLOWERPOT_PLANT_HERB_SEEDS:
+        case xi::FlowerpotPlant::HerbSeeds:
             elements[FLOWERPOT_ELEMENT_WIND] += 10;
             break;
-        case FLOWERPOT_PLANT_GRAIN_SEEDS:
+        case xi::FlowerpotPlant::GrainSeeds:
             elements[FLOWERPOT_ELEMENT_FIRE] += 10;
             break;
-        case FLOWERPOT_PLANT_VEGETABLE_SEEDS:
+        case xi::FlowerpotPlant::VegetableSeeds:
             elements[FLOWERPOT_ELEMENT_EARTH] += 10;
             break;
-        case FLOWERPOT_PLANT_FRUIT_SEEDS:
+        case xi::FlowerpotPlant::FruitSeeds:
             elements[FLOWERPOT_ELEMENT_WATER] += 10;
             break;
-        case FLOWERPOT_PLANT_CACTUS_STEMS:
+        case xi::FlowerpotPlant::CactusStems:
             elements[FLOWERPOT_ELEMENT_LIGHT] += 10;
             break;
-        case FLOWERPOT_PLANT_TREE_CUTTINGS:
+        case xi::FlowerpotPlant::TreeCuttings:
             elements[FLOWERPOT_ELEMENT_ICE] += 10;
             break;
-        case FLOWERPOT_PLANT_TREE_SAPLINGS:
+        case xi::FlowerpotPlant::TreeSaplings:
             elements[FLOWERPOT_ELEMENT_DARK] += 10;
             break;
-        case FLOWERPOT_PLANT_WILDGRASS_SEEDS:
+        case xi::FlowerpotPlant::WildgrassSeeds:
             elements[FLOWERPOT_ELEMENT_LIGHTNING] += 10;
             break;
         default:
@@ -374,7 +374,7 @@ auto GetStageDuration(CItemFlowerpot* PItem, bool growFromFeed /*= false*/) -> u
 {
     switch (PItem->getPlant())
     {
-        case FLOWERPOT_PLANT_FRUIT_SEEDS:
+        case xi::FlowerpotPlant::FruitSeeds:
             switch (PItem->getStage())
             {
                 case FLOWERPOT_STAGE_EMPTY:
@@ -403,7 +403,7 @@ auto GetStageDuration(CItemFlowerpot* PItem, bool growFromFeed /*= false*/) -> u
                     break;
             }
             break;
-        case FLOWERPOT_PLANT_HERB_SEEDS:
+        case xi::FlowerpotPlant::HerbSeeds:
             switch (PItem->getStage())
             {
                 case FLOWERPOT_STAGE_INITIAL:
@@ -424,7 +424,7 @@ auto GetStageDuration(CItemFlowerpot* PItem, bool growFromFeed /*= false*/) -> u
                     break;
             }
             break;
-        case FLOWERPOT_PLANT_GRAIN_SEEDS:
+        case xi::FlowerpotPlant::GrainSeeds:
             switch (PItem->getStage())
             {
                 case FLOWERPOT_STAGE_INITIAL:
@@ -445,7 +445,7 @@ auto GetStageDuration(CItemFlowerpot* PItem, bool growFromFeed /*= false*/) -> u
                     break;
             }
             break;
-        case FLOWERPOT_PLANT_VEGETABLE_SEEDS:
+        case xi::FlowerpotPlant::VegetableSeeds:
             switch (PItem->getStage())
             {
                 case FLOWERPOT_STAGE_INITIAL:
@@ -466,7 +466,7 @@ auto GetStageDuration(CItemFlowerpot* PItem, bool growFromFeed /*= false*/) -> u
                     break;
             }
             break;
-        case FLOWERPOT_PLANT_CACTUS_STEMS:
+        case xi::FlowerpotPlant::CactusStems:
             switch (PItem->getStage())
             {
                 case FLOWERPOT_STAGE_EMPTY:
@@ -495,7 +495,7 @@ auto GetStageDuration(CItemFlowerpot* PItem, bool growFromFeed /*= false*/) -> u
                     break;
             }
             break;
-        case FLOWERPOT_PLANT_TREE_CUTTINGS:
+        case xi::FlowerpotPlant::TreeCuttings:
             switch (PItem->getStage())
             {
                 case FLOWERPOT_STAGE_EMPTY:
@@ -524,7 +524,7 @@ auto GetStageDuration(CItemFlowerpot* PItem, bool growFromFeed /*= false*/) -> u
                     break;
             }
             break;
-        case FLOWERPOT_PLANT_TREE_SAPLINGS:
+        case xi::FlowerpotPlant::TreeSaplings:
             switch (PItem->getStage())
             {
                 case FLOWERPOT_STAGE_EMPTY:
@@ -553,7 +553,7 @@ auto GetStageDuration(CItemFlowerpot* PItem, bool growFromFeed /*= false*/) -> u
                     break;
             }
             break;
-        case FLOWERPOT_PLANT_WILDGRASS_SEEDS:
+        case xi::FlowerpotPlant::WildgrassSeeds:
             switch (PItem->getStage())
             {
                 case FLOWERPOT_STAGE_INITIAL:

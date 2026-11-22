@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=../schemas/enums/_enum.schema.json
+
+meta:
+  cpp:
+    underlying: uint8_t
+  lua:
+    table: xi.gardening.plant
+
+values:
+  none:            0
+  fruit_seeds:     1
+  herb_seeds:      2
+  grain_seeds:     3
+  vegetable_seeds: 4
+  cactus_stems:    5
+  tree_cuttings:   6
+  tree_saplings:   7
+  wildgrass_seeds: 8

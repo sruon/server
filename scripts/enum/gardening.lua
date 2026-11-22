@@ -20,17 +20,3 @@ xi.gardening.stage =
     MATURE_PLANT           = 10,
     WILTED                 = 11,
 }
-
----@enum xi.gardening.plant
-xi.gardening.plant =
-{
-    NONE            = 0,
-    FRUIT_SEEDS     = 1,
-    HERB_SEEDS      = 2,
-    GRAIN_SEEDS     = 3,
-    VEGETABLE_SEEDS = 4,
-    CACTUS_STEMS    = 5,
-    TREE_CUTTINGS   = 6,
-    TREE_SAPLINGS   = 7,
-    WILDGRASS_SEEDS = 8,
-}
