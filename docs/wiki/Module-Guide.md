@@ -239,8 +239,8 @@ SQL modules are additional SQL files that are run at the end of `dbtool.py` upda
 `dbtool` will look them up and load them for you, so they still need to be enabled with `init.txt`.
 
 ```sql
--- Setting all 2HR abilities to 2HR cooldown
-UPDATE abilities SET recastTime = "7200" WHERE name = "mighty_strikes";
-UPDATE abilities SET recastTime = "7200" WHERE name = "hundred_fists";
+-- Removes access to Bone Crusher, Armor Piercer and Magic Mortar
+UPDATE mob_skills SET mob_skill_param = 999 WHERE mob_skill_name = "bone_crusher";
+UPDATE mob_skills SET mob_skill_param = 999 WHERE mob_skill_name = "armor_piercer";
 -- ...
 ```

@@ -803,10 +803,10 @@ So we instead store it as:
 INSERT INTO `mob_droplist` VALUES (504,0,0,1000,888,340); -- (Colossal Calamari) seashell
 ```
 
-Conversely, the `Mighty Strikes` ability doesn't need any additional comments because it has a name field:
+Conversely, the `Cure` spell doesn't need any additional comments because it has a name field:
 
 ```sql
-INSERT INTO `abilities` VALUES (16,'mighty_strikes',1,0,1,3600,0,0,0,33,2000,0,6,0,0,0,1,300,0,0,NULL);
+INSERT INTO `spell_list` VALUES (1,'cure',0x00000100030005000000000000000000000000050000,6,1,@ELEMENT_LIGHT,0,95,@SKILL_HEALING,8,2000,5000,7,7,1,2000,4,0,1.00,0,0,0,200,0,NULL,NULL,0);
 ```
 
 The format of the comment isn't massively important, but it is preferred not to use ';' as a seperator in the middle of your comment. This is a little confusing, as it's the statement-terminator in SQL.
