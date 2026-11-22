@@ -82,7 +82,7 @@ values:
   enmity_loss_reduction:  427 # Reduces Enmity lost when taking damage
   matt:                    28 # Magic Attack
   mdef:                    29 # Magic Defense
-  macc:                    30 # Magic Accuracy - note that this is NOT iLvl "magic accuracy skill" which happens in item_weapon.sql
+  macc:                    30 # Magic Accuracy - note that this is NOT iLvl "magic accuracy skill" which happens in the weapon block of data/items.yaml
   meva:                    31 # Magic Evasion
   # Magic Accuracy and Elemental Attacks
   fire_mab:     32 # Elemental "Magic Attack Bonus" aka "Affinity"
@@ -127,7 +127,7 @@ values:
   inhibit_tp:               488 # Inhibits TP Gain (percent)
   eva_percent:             1214 # % Evasion Multiplier
   # Working Skills (weapon combat skills)
-  # These are NOT item Level skill, they are skill in your status menu. iLvl "skill" happens in item_weapon.sql
+  # These are NOT item Level skill, they are skill in your status menu. iLvl "skill" happens in the weapon block of data/items.yaml
   hth:                80 # Hand To Hand Skill
   dagger:             81 # Dagger Skill
   sword:              82 # Sword Skill

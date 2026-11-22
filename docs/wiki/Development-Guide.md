@@ -821,9 +821,14 @@ In general, it is preferred to comment out the entire row rather than only leavi
 - By having the partial data but commenting it out, it remains obviously incomplete and the next editor can more easily see what needs to happen.
 - Example:
 
-```sql
--- Missing model, looks like a fish. Just kidding this doesn't exist and is only a made up example
--- INSERT INTO `item_equipment` VALUES (65534,'holy_moly_mace',43,0,1048645,???,0,0,3,0,0);
+```yaml
+# Missing model, looks like a fish. Just kidding this doesn't exist and is only a made up example
+# holy_moly_mace:
+#   id:   65534
+#   type: weapon
+#   equipment:
+#     level: 43
+#     model: ???
 ```
 
 **_And absolutely never substitute item modifiers!_**

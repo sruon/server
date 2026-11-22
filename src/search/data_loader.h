@@ -103,6 +103,9 @@ struct SearchEntity
 class CDataLoader
 {
 public:
+    // Loads data/items.yaml ahead of the first auction house request.
+    static void LoadItems();
+
     auto GetPlayersCount(const SearchRequest& sr) const -> uint32;
     auto GetAHItemHistory(uint16 ItemID, bool stack) const -> std::vector<AuctionHouseHistory>;
     auto GetPartyList(uint32 PartyID, uint32 AllianceID) const -> std::vector<SearchEntity>;

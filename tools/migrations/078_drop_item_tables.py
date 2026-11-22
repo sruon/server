@@ -1,12 +1,15 @@
 import mariadb
 
-# item_basic, item_equipment, item_mods and item_weapon stay until xi_search reads data/items.yaml.
 DROPPED_TABLES = [
+    "item_basic",
+    "item_equipment",
     "item_furnishing",
     "item_latents",
+    "item_mods",
     "item_mods_pet",
     "item_puppet",
     "item_usable",
+    "item_weapon",
 ]
 
 

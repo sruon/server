@@ -203,7 +203,7 @@ stock12: 5 (number of stacks items that will be restocked each tick)
 
 3. Executing `\pydarkstar\pydarkstar\bin\refill.py` will restock items automatically.
 
-4. Editing prices manually: open `\pydarkstar\bin\items.csv` with a text editor (0 = non listed item, add them by referring to the IDs in `\server\sql\item_equipment.sql` if necessary) and change prices accordingly.
+4. Editing prices manually: open `\pydarkstar\bin\items.csv` with a text editor (0 = non listed item, add them by referring to the IDs in `\server\data\items.yaml` if necessary) and change prices accordingly.
 
 ### HeidiSQL useful querys
 

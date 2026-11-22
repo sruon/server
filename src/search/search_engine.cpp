@@ -54,6 +54,8 @@ SearchEngine::~SearchEngine() = default;
 
 void SearchEngine::onInitialize()
 {
+    CDataLoader::LoadItems();
+
     if (settings::get<bool>("search.EXPIRE_AUCTIONS"))
     {
         ShowInfoFmt("AH task to return items older than {} days is running", settings::get<uint16>("search.EXPIRE_DAYS"));

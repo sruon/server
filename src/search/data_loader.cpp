@@ -24,7 +24,11 @@
 #include "common/logging.h"
 #include "common/mmo.h"
 #include "common/settings.h"
+#include "common/types/hash_map.h"
+#include "data/datasets/items/dataset.h"
 #include "data/enums/job.h"
+#include "data/enums/mod.h"
+#include "data/loader.h"
 
 #include <algorithm>
 #include <array>
@@ -32,7 +36,11 @@
 #include <compare>
 #include <cstring>
 #include <limits>
+#include <optional>
+#include <ranges>
 #include <tuple>
+#include <unordered_set>
+#include <utility>
 
 #include <fmt/ranges.h>
 
@@ -72,7 +80,59 @@ auto compareBy(const SearchType type, const SearchEntity& left, const SearchEnti
     }
 }
 
+auto items() -> const xi::data::Items&
+{
+    static const auto loaded = xi::data::loadDataset<xi::data::datasets::items::Dataset>();
+    return loaded;
+}
+
+struct ListingCounts
+{
+    uint32 Singles{};
+    uint32 Stacks{};
+};
+
+// Unsold auction house listings of each item.
+auto listingCounts(const std::vector<uint16>& itemIds) -> HashMap<uint16, ListingCounts>
+{
+    HashMap<uint16, ListingCounts> counts;
+    if (itemIds.empty())
+    {
+        return counts;
+    }
+
+    const auto rset = db::preparedStmt("SELECT itemid, COUNT(*) - SUM(stack) AS singles, SUM(stack) AS stacks "
+                                       "FROM JSON_TABLE(?, '$[*]' COLUMNS (itemid SMALLINT UNSIGNED PATH '$')) AS ids "
+                                       "JOIN auction_house USING (itemid) "
+                                       "WHERE buyer_name IS NULL GROUP BY itemid",
+                                       fmt::format("[{}]", fmt::join(itemIds, ",")));
+    FOR_DB_MULTIPLE_RESULTS(rset)
+    {
+        counts[rset->get<uint16>("itemid")] = ListingCounts{
+            .Singles = rset->getOrDefault<uint32>("singles", 0),
+            .Stacks  = rset->getOrDefault<uint32>("stacks", 0),
+        };
+    }
+
+    return counts;
+}
+
+auto modValue(const xi::data::ItemEquipmentData& equipment, const xi::Mod mod) -> std::optional<int16>
+{
+    if (const auto entry = equipment.Mods.find(mod); entry != equipment.Mods.end())
+    {
+        return entry->second;
+    }
+
+    return std::nullopt;
+}
+
 } // namespace
+
+void CDataLoader::LoadItems()
+{
+    std::ignore = items();
+}
 
 /************************************************************************
  *                                                                       *
@@ -134,42 +194,35 @@ auto CDataLoader::GetAHItemsToCategory(uint8 ahCategoryID, const std::vector<Auc
         std::string      sortName;
     };
 
-    std::vector<SortableItem> rows;
-
-    const auto rset = [&]
+    std::vector<const xi::data::ItemData*> listed;
+    for (const auto& [itemId, item] : items())
     {
-        if (settings::get<bool>("search.OMIT_NO_HISTORY"))
+        if (std::to_underlying(item.Auction) == ahCategoryID)
         {
-            return db::preparedStmt("SELECT item_basic.itemid, item_basic.stackSize, COUNT(*)-SUM(stack), SUM(stack), "
-                                    "CAST(item_basic.sortname AS CHAR(255)) AS sortname, item_equipment.level, item_equipment.ilevel, item_equipment.su_level, item_equipment.jobs, item_weapon.dmg, item_weapon.delay, item_defense.value AS defense, item_resistance.resistance, item_race.value AS races "
-                                    "FROM (SELECT item_basic.* FROM item_basic "
-                                    "INNER JOIN auction_house_items ON item_basic.itemid = auction_house_items.itemid) AS item_basic "
-                                    "LEFT JOIN auction_house ON item_basic.itemId = auction_house.itemid AND auction_house.buyer_name IS NULL "
-                                    "LEFT JOIN item_equipment ON item_basic.itemid = item_equipment.itemid "
-                                    "LEFT JOIN item_weapon ON item_basic.itemid = item_weapon.itemid "
-                                    "LEFT JOIN item_mods AS item_defense ON item_basic.itemid = item_defense.itemId AND item_defense.modId = 1 "
-                                    "LEFT JOIN item_mods AS item_race ON item_basic.itemid = item_race.itemId AND item_race.modId = 276 "
-                                    "LEFT JOIN (SELECT itemId, MAX(value) AS resistance FROM item_mods WHERE modId BETWEEN 15 AND 22 GROUP BY itemId) AS item_resistance ON item_basic.itemid = item_resistance.itemId "
-                                    "WHERE aH = ? "
-                                    "GROUP BY item_basic.itemid "
-                                    "ORDER BY item_basic.itemid",
-                                    ahCategoryID);
+            listed.push_back(&item);
+        }
+    }
+
+    std::ranges::sort(listed, {}, &xi::data::ItemData::Id);
+
+    if (settings::get<bool>("search.OMIT_NO_HISTORY") && !listed.empty())
+    {
+        std::unordered_set<uint16> withHistory;
+
+        const auto rset = db::preparedStmt("SELECT itemid FROM JSON_TABLE(?, '$[*]' COLUMNS (itemid SMALLINT UNSIGNED PATH '$')) AS ids "
+                                           "JOIN auction_house_items USING (itemid)",
+                                           fmt::format("[{}]", fmt::join(listed | std::views::transform(&xi::data::ItemData::Id), ",")));
+        FOR_DB_MULTIPLE_RESULTS(rset)
+        {
+            withHistory.insert(rset->get<uint16>("itemid"));
         }
 
-        return db::preparedStmt("SELECT item_basic.itemid, item_basic.stackSize, COUNT(*)-SUM(stack), SUM(stack), "
-                                "CAST(item_basic.sortname AS CHAR(255)) AS sortname, item_equipment.level, item_equipment.ilevel, item_equipment.su_level, item_equipment.jobs, item_weapon.dmg, item_weapon.delay, item_defense.value AS defense, item_resistance.resistance, item_race.value AS races "
-                                "FROM item_basic "
-                                "LEFT JOIN auction_house ON item_basic.itemId = auction_house.itemid AND auction_house.buyer_name IS NULL "
-                                "LEFT JOIN item_equipment ON item_basic.itemid = item_equipment.itemid "
-                                "LEFT JOIN item_weapon ON item_basic.itemid = item_weapon.itemid "
-                                "LEFT JOIN item_mods AS item_defense ON item_basic.itemid = item_defense.itemId AND item_defense.modId = 1 "
-                                "LEFT JOIN item_mods AS item_race ON item_basic.itemid = item_race.itemId AND item_race.modId = 276 "
-                                "LEFT JOIN (SELECT itemId, MAX(value) AS resistance FROM item_mods WHERE modId BETWEEN 15 AND 22 GROUP BY itemId) AS item_resistance ON item_basic.itemid = item_resistance.itemId "
-                                "WHERE aH = ? "
-                                "GROUP BY item_basic.itemid "
-                                "ORDER BY item_basic.itemid",
-                                ahCategoryID);
-    }();
+        std::erase_if(listed,
+                      [&withHistory](const xi::data::ItemData* item)
+                      {
+                          return !withHistory.contains(item->Id);
+                      });
+    }
 
     uint32 requiredJobs  = 0;
     uint32 requiredRaces = 0;
@@ -190,15 +243,31 @@ auto CDataLoader::GetAHItemsToCategory(uint8 ahCategoryID, const std::vector<Auc
         }
     }
 
-    FOR_DB_MULTIPLE_RESULTS(rset)
+    const auto counts = listingCounts(std::ranges::to<std::vector<uint16>>(listed | std::views::transform(&xi::data::ItemData::Id)));
+
+    std::vector<SortableItem> rows;
+    rows.reserve(listed.size());
+
+    constexpr auto missing = std::numeric_limits<int64>::min();
+    for (const auto* data : listed)
     {
-        if (requiredJobs != 0 && (rset->getOrDefault<uint32>("jobs", 0) & requiredJobs) != requiredJobs)
+        const auto& equipment = data->Equipment;
+
+        uint32 jobs  = 0;
+        uint32 races = 0;
+        if (equipment)
+        {
+            jobs = equipment->Jobs;
+
+            // EQUIPMENT_ONLY_RACE, 0 means every race can wear it
+            races = static_cast<uint32>(modValue(*equipment, xi::Mod::EQUIPMENT_ONLY_RACE).value_or(0));
+        }
+
+        if (requiredJobs != 0 && (jobs & requiredJobs) != requiredJobs)
         {
             continue;
         }
 
-        // EQUIPMENT_ONLY_RACE, 0 means every race can wear it
-        const auto races = rset->getOrDefault<uint32>("races", 0);
         if (requiredRaces != 0 && races != 0 && (races & requiredRaces) != requiredRaces)
         {
             continue;
@@ -206,29 +275,61 @@ auto CDataLoader::GetAHItemsToCategory(uint8 ahCategoryID, const std::vector<Auc
 
         AuctionHouseItem item{};
 
-        item.ItemID = rset->get<uint16>("itemid");
+        item.ItemID   = data->Id;
+        item.Category = ahCategoryID;
 
-        item.SingleAmount = rset->getOrDefault<uint32>("COUNT(*)-SUM(stack)", 0);
-        item.StackAmount  = rset->getOrDefault<uint32>("SUM(stack)", 0);
-        item.Category     = ahCategoryID;
+        if (const auto count = counts.find(data->Id); count != counts.end())
+        {
+            item.SingleAmount = count->second.Singles;
+            item.StackAmount  = count->second.Stacks;
+        }
 
-        if (rset->get<uint32>("stackSize") == 1)
+        if (data->Stack == 1)
         {
             item.StackAmount = -1;
         }
 
-        // INT64_MIN stands in for NULL, which MariaDB treats as the lowest value; delay is signed, so -1 is a real value.
-        rows.push_back(SortableItem{
+        // INT64_MIN stands in for a missing value, which sorts lowest.
+        SortableItem row{
             .item          = item,
-            .level         = rset->getOrDefault<int64>("level", std::numeric_limits<int64>::min()),
-            .itemLevel     = rset->getOrDefault<int64>("ilevel", std::numeric_limits<int64>::min()),
-            .superiorLevel = rset->getOrDefault<int64>("su_level", std::numeric_limits<int64>::min()),
-            .damage        = rset->getOrDefault<int64>("dmg", std::numeric_limits<int64>::min()),
-            .delay         = rset->getOrDefault<int64>("delay", std::numeric_limits<int64>::min()),
-            .defense       = rset->getOrDefault<int64>("defense", std::numeric_limits<int64>::min()),
-            .resistance    = rset->getOrDefault<int64>("resistance", std::numeric_limits<int64>::min()),
-            .sortName      = rset->get<std::string>("sortname"),
-        });
+            .level         = missing,
+            .itemLevel     = missing,
+            .superiorLevel = missing,
+            .damage        = missing,
+            .delay         = missing,
+            .defense       = missing,
+            .resistance    = missing,
+            .sortName      = data->SortName,
+        };
+
+        if (equipment)
+        {
+            row.level         = equipment->Level;
+            row.itemLevel     = equipment->ItemLevel;
+            row.superiorLevel = equipment->SuperiorLevel;
+
+            if (const auto defense = modValue(*equipment, xi::Mod::DEF))
+            {
+                row.defense = *defense;
+            }
+
+            // Highest single elemental resistance
+            for (const auto mod : { xi::Mod::FIRE_MEVA, xi::Mod::ICE_MEVA, xi::Mod::WIND_MEVA, xi::Mod::EARTH_MEVA, xi::Mod::THUNDER_MEVA, xi::Mod::WATER_MEVA, xi::Mod::LIGHT_MEVA, xi::Mod::DARK_MEVA })
+            {
+                if (const auto resistance = modValue(*equipment, mod))
+                {
+                    row.resistance = std::max<int64>(row.resistance, *resistance);
+                }
+            }
+        }
+
+        if (data->Weapon)
+        {
+            row.damage = data->Weapon->Damage;
+            row.delay  = data->Weapon->Delay;
+        }
+
+        rows.push_back(std::move(row));
     }
 
     const auto compareKey = [](const SortableItem& lhs, const SortableItem& rhs, const AuctionParam key) -> std::weak_ordering
@@ -263,7 +364,7 @@ auto CDataLoader::GetAHItemsToCategory(uint8 ahCategoryID, const std::vector<Auc
         }
     };
 
-    // Stable, so the itemid order from the query breaks the remaining ties.
+    // Stable, so the itemid order breaks the remaining ties.
     std::ranges::stable_sort(
         rows,
         [&](const SortableItem& lhs, const SortableItem& rhs)
@@ -300,25 +401,23 @@ auto CDataLoader::GetAHItemsToCategory(uint8 ahCategoryID, const std::vector<Auc
 // Return single item including category and how many are listed
 auto CDataLoader::GetAHItemFromItemID(uint16 ItemID) const -> AuctionHouseItem
 {
-    AuctionHouseItem CAHItem = {};
-    CAHItem.ItemID           = ItemID;
-    CAHItem.Category         = 0;
-    CAHItem.SingleAmount     = 0;
-    CAHItem.StackAmount      = 0;
+    AuctionHouseItem CAHItem{ .ItemID = ItemID };
 
-    const auto rset = db::preparedStmt("SELECT aH, COUNT(*)-SUM(stack), SUM(stack) "
-                                       "FROM item_basic "
-                                       "LEFT JOIN auction_house ON item_basic.itemId = auction_house.itemid AND auction_house.buyer_name IS NULL "
-                                       "LEFT JOIN item_equipment ON item_basic.itemid = item_equipment.itemid "
-                                       "LEFT JOIN item_weapon ON item_basic.itemid = item_weapon.itemid "
-                                       "WHERE item_basic.itemid = ?",
-                                       ItemID);
-    FOR_DB_SINGLE_RESULT(rset)
+    const auto item = items().find(ItemID);
+    if (item == items().end())
     {
-        CAHItem.Category     = rset->get<uint16>("aH");
-        CAHItem.SingleAmount = rset->getOrDefault<uint32>("COUNT(*)-SUM(stack)", 0);
-        CAHItem.StackAmount  = rset->getOrDefault<uint32>("SUM(stack)", 0);
+        return CAHItem;
     }
+
+    CAHItem.Category = std::to_underlying(item->second.Auction);
+
+    const auto counts = listingCounts({ ItemID });
+    if (const auto count = counts.find(ItemID); count != counts.end())
+    {
+        CAHItem.SingleAmount = count->second.Singles;
+        CAHItem.StackAmount  = count->second.Stacks;
+    }
+
     return CAHItem;
 }
 
@@ -959,9 +1058,7 @@ void CDataLoader::ExpireAHItems(uint16 expireAgeInDays) const
     ShowInfoFmt("Expiring auction house listings over {} days old", expireAgeInDays);
 
     const auto cutoff = earth_time::timestamp() - static_cast<uint32>(expireAgeInDays) * 86400u;
-    const auto rset0  = db::preparedStmt("SELECT T0.id,T0.itemid,T1.stacksize, T0.stack, T0.seller FROM auction_house T0 INNER JOIN item_basic T1 ON "
-                                         "T0.itemid = T1.itemid WHERE T0.buyer_name IS NULL AND T0.date <= ?",
-                                         cutoff);
+    const auto rset0  = db::preparedStmt("SELECT id, itemid, stack, seller FROM auction_house WHERE buyer_name IS NULL AND date <= ?", cutoff);
 
     if (!rset0)
     {
@@ -976,10 +1073,16 @@ void CDataLoader::ExpireAHItems(uint16 expireAgeInDays) const
         std::vector<ListingToExpire> listingsToExpire;
         while (rset0->next())
         {
-            // Collect the items we're going to expire
+            // Collect the items we're going to expire, skipping any without an item template
+            const uint32 itemID = rset0->get<uint32>("itemid");
+            const auto   item   = items().find(static_cast<uint16>(itemID));
+            if (item == items().end())
+            {
+                continue;
+            }
+
             const uint32 saleID    = rset0->get<uint32>("id");
-            const uint32 itemID    = rset0->get<uint32>("itemid");
-            const uint8  itemStack = rset0->get<uint8>("stacksize");
+            const uint8  itemStack = item->second.Stack;
             const uint8  ahStack   = rset0->get<uint8>("stack");
             const uint32 sellerID  = rset0->get<uint32>("seller");
             // NOTE: seller name left out for now, we'll populate this later

@@ -89,11 +89,10 @@ SELECT
     c.charname,
     ci.quantity,
     ci.bazaar,
-    itb.`name` AS itemname,
+    ci.itemid,
     z.`name` AS "last_seen_zone",
     acc_sess.accid IS NOT NULL AS "currently_online"
 FROM char_inventory AS ci
-LEFT JOIN item_basic AS itb ON ci.itemid = itb.itemid
 LEFT JOIN chars AS c on c.charid = ci.charid
 LEFT JOIN zone_settings AS z on c.pos_zone = z.zoneid
 LEFT JOIN accounts_sessions AS acc_sess on c.accid = acc_sess.accid
@@ -101,6 +100,6 @@ WHERE ci.bazaar > 0;
 ```
 
 ```txt
-Testo    1    100        adventurer_coupon    Southern_San_dOria    1
-Testo    1    99999999   kraken_club          Southern_San_dOria    1
+Testo    1    100        536      Southern_San_dOria    1
+Testo    1    99999999   17440    Southern_San_dOria    1
 ```

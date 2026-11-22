@@ -17,12 +17,12 @@ Retail packet captures are essential for accurate migrations. They provide the e
 
 ### Database (SQL)
 - **NPC IDs & Positions:** Check `sql/npc_list.sql`. Use this to find the 8-digit NPC ID and their `!pos` coordinates.
-- **Item IDs:** Check `sql/item_basic.sql`. If an item constant is missing from Lua, find the ID here and use it directly or add it to the enum.
+- **Item IDs:** Check `data/items.yaml`. Every item there generates an `xi.item` constant.
 
 ### Global Registries (Lua Enums)
 - **Quest IDs:** `scripts/globals/quests.lua`.
 - **Mission IDs:** `scripts/globals/missions.lua`.
-- **Item Constants:** `scripts/enum/item.lua`.
+- **Item Constants:** `data/items.yaml`.
 - **Key Item Constants:** `data/enums/key_item.yaml`.
 - **Zone Constants:** `scripts/enum/zone.lua`.
 
