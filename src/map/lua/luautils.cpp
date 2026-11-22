@@ -87,6 +87,7 @@
 #include "besieged_system.h"
 #include "conquest_system.h"
 #include "daily_system.h"
+#include "data/datasets/zones/instances/dataset.h"
 #include "data/datasets/zones/mobs/dataset.h"
 #include "data/datasets/zones/npcs/dataset.h"
 #include "data/enums/mob_mod.h"
@@ -1317,12 +1318,12 @@ void PopulateIDLookups(const xi::ZoneId zoneId, const std::string& zoneName, con
     std::vector<uint16> effectiveZones;
     effectiveZones.push_back(static_cast<uint16>(zoneId));
 
-    const auto overlayRset = db::preparedStmt("SELECT overlay_id FROM instance_list "
-                                              "WHERE instance_zone = ? AND overlay_id IS NOT NULL AND overlay_id != 0",
-                                              zoneId);
-    FOR_DB_MULTIPLE_RESULTS(overlayRset)
+    for (const auto& instance : xi::data::loadZoneFile<xi::data::datasets::zones::instances::Dataset>(zoneId).value_or(xi::data::Instances{}))
     {
-        effectiveZones.push_back(overlayRset->get<uint16>("overlay_id"));
+        if (instance.Overlay != 0)
+        {
+            effectiveZones.push_back(instance.Overlay);
+        }
     }
 
     for (auto effectiveZone : effectiveZones)

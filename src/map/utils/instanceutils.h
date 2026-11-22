@@ -25,6 +25,7 @@
 #include "common/database.h"
 #include "common/ipp.h"
 #include "common/scheduler/scheduler.h"
+#include "data/datasets/zones/instances/dataset.h"
 #include "data/enums/zone.h"
 
 #include "map_config.h"
@@ -36,38 +37,16 @@ class CCharEntity;
 
 struct InstanceData_t
 {
-    uint16        id;
-    std::string   instance_name;
-    xi::ZoneId    instance_zone;
-    std::string   instance_zone_name;
-    uint16        entrance_zone;
-    std::string   entrance_zone_name;
-    uint16        time_limit;
-    float         start_x;
-    float         start_y;
-    float         start_z;
-    uint16        start_rot;
-    Maybe<uint16> music_day{ std::nullopt };
-    Maybe<uint16> music_night{ std::nullopt };
-    Maybe<uint16> battlesolo{ std::nullopt };
-    Maybe<uint16> battlemulti{ std::nullopt };
-    std::string   filename;
-
-    InstanceData_t()
-    : id(0)
-    , instance_zone(xi::ZoneId::Unknown)
-    , entrance_zone(0)
-    , time_limit(0)
-    , start_x(0.f)
-    , start_y(0.f)
-    , start_z(0.f)
-    , start_rot(0)
-    , music_day(0)
-    , music_night(0)
-    , battlesolo(0)
-    , battlemulti(0)
-    {
-    }
+    uint16                      id{};
+    std::string                 instance_name;
+    xi::ZoneId                  instance_zone{ xi::ZoneId::Unknown };
+    std::string                 instance_zone_name;
+    uint16                      entrance_zone{};
+    uint16                      overlay{};
+    std::chrono::minutes        time_limit{};
+    position_t                  entry{};
+    xi::data::InstanceMusicData music;
+    std::string                 filename;
 };
 
 namespace instanceutils

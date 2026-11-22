@@ -22,6 +22,7 @@
 #include "instanceutils.h"
 
 #include "common/logging.h"
+#include "data/loader.h"
 
 #include <common/types/hash_map.h>
 
@@ -43,23 +44,41 @@ namespace instanceutils
 namespace
 {
 
+HashMap<uint16, InstanceData_t>       InstanceCatalog;
 HashMap<uint16, InstanceData_t>       InstanceData;
 std::queue<std::pair<uint32, uint16>> LoadQueue; // player id, instance id
 detail::LazyLoadState                 lazyLoad;
 
-auto GetInstancesAssignedToThisProcess(IPP mapIPP) -> std::vector<uint16>
+auto ReadInstancesAssignedToThisProcess(IPP mapIPP) -> std::vector<uint16>
 {
     std::vector<uint16> result;
 
-    const auto rset = db::preparedStmt("SELECT instanceid FROM instance_list INNER JOIN zone_settings "
-                                       "ON instance_zone = zone_settings.zoneid "
+    const auto rset = db::preparedStmt("SELECT zoneid, name FROM zone_settings "
                                        "WHERE IF(? <> 0, ? = zoneip AND ? = zoneport, TRUE)",
                                        mapIPP.getIP(),
                                        mapIPP.getIPString(),
                                        mapIPP.getPort());
     FOR_DB_MULTIPLE_RESULTS(rset)
     {
-        result.emplace_back(rset->get<uint16>("instanceid"));
+        const auto zoneId   = rset->get<xi::ZoneId>("zoneid");
+        const auto zoneName = rset->get<std::string>("name");
+
+        for (const auto& instance : xi::data::loadZoneFile<xi::data::datasets::zones::instances::Dataset>(zoneId).value_or(xi::data::Instances{}))
+        {
+            InstanceCatalog[instance.Id] = InstanceData_t{
+                .id                 = instance.Id,
+                .instance_name      = instance.Name,
+                .instance_zone      = zoneId,
+                .instance_zone_name = zoneName,
+                .entrance_zone      = static_cast<uint16>(instance.Entrance),
+                .overlay            = instance.Overlay,
+                .time_limit         = instance.TimeLimit,
+                .entry              = instance.Entry,
+                .music              = instance.Music,
+            };
+
+            result.emplace_back(instance.Id);
+        }
     }
 
     return result;
@@ -67,57 +86,15 @@ auto GetInstancesAssignedToThisProcess(IPP mapIPP) -> std::vector<uint16>
 
 auto LoadInstances(const std::vector<uint16>& instanceIds) -> void
 {
-    if (instanceIds.empty())
+    for (const auto instanceId : instanceIds)
     {
-        return;
-    }
-
-    const auto rset = db::preparedStmt("SELECT instanceid,instance_name,instance_zone,entrance_zone,"
-                                       "time_limit,start_x,start_y,start_z,"
-                                       "start_rot,instance_list.music_day,instance_list.music_night,instance_list.battlesolo,"
-                                       "instance_list.battlemulti,zone_settings.name AS zone_name "
-                                       "FROM instance_list INNER JOIN zone_settings "
-                                       "ON instance_zone = zone_settings.zoneid "
-                                       "WHERE FIND_IN_SET(instanceid, ?)",
-                                       fmt::format("{}", fmt::join(instanceIds, ",")));
-
-    FOR_DB_MULTIPLE_RESULTS(rset)
-    {
-        InstanceData_t data;
-
-        // Main data
-        data.id            = rset->get<uint16>("instanceid");
-        data.instance_name = rset->get<std::string>("instance_name");
-        data.instance_zone = rset->get<xi::ZoneId>("instance_zone");
-        data.entrance_zone = rset->get<uint16>("entrance_zone");
-        data.time_limit    = rset->get<uint16>("time_limit");
-        data.start_x       = rset->get<float>("start_x");
-        data.start_y       = rset->get<float>("start_y");
-        data.start_z       = rset->get<float>("start_z");
-        data.start_rot     = rset->get<uint16>("start_rot");
-        if (!rset->isNull("music_day"))
+        const auto entry = InstanceCatalog.find(instanceId);
+        if (entry == InstanceCatalog.end())
         {
-            data.music_day = rset->get<uint16>("music_day");
+            continue;
         }
 
-        if (!rset->isNull("music_night"))
-        {
-            data.music_night = rset->get<uint16>("music_night");
-        }
-
-        if (!rset->isNull("battlesolo"))
-        {
-            data.battlesolo = rset->get<uint16>("battlesolo");
-        }
-
-        if (!rset->isNull("battlemulti"))
-        {
-            data.battlemulti = rset->get<uint16>("battlemulti");
-        }
-
-        // Meta data
-        data.instance_zone_name = rset->get<std::string>("zone_name");
-        data.entrance_zone_name = rset->get<std::string>("zone_name");
+        auto data = entry->second;
 
         // Determine if instance exists at new assault path
         data.filename = fmt::format("./scripts/assaults/{}/{}.lua", data.instance_zone_name, data.instance_name);
@@ -143,7 +120,7 @@ auto LoadInstances(const std::vector<uint16>& instanceIds) -> void
 // Initialize instance loading: immediate (load all now) or lazy (load on first access)
 auto Initialize(MapConfig config) -> void
 {
-    const auto instanceIds = GetInstancesAssignedToThisProcess(config.ipp);
+    const auto instanceIds = ReadInstancesAssignedToThisProcess(config.ipp);
 
     if (!config.lazyZones)
     {
@@ -216,7 +193,7 @@ auto GetInstanceData(uint32 instanceid) -> InstanceData_t
             return it->second;
         }
 
-        ShowWarning("instanceutils::GetInstanceData: managed instanceid %u has no row in instance_list", instanceid);
+        ShowWarning("instanceutils::GetInstanceData: managed instanceid %u is in no instances.yaml", instanceid);
     }
 
     return {};

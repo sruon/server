@@ -29,6 +29,7 @@
 #include "ai/ai_container.h"
 #include "entities/char_entity.h"
 #include "lua/luautils.h"
+#include "utils/instanceutils.h"
 #include "zone.h"
 
 #include "common/timer.h"
@@ -77,7 +78,7 @@ auto CInstance::GetStage() const -> uint32
 
 /************************************************************************
  *                                                                       *
- *  Loads instances settings from instance_list                          *
+ *  Loads instance settings from the zone's instances.yaml               *
  *                                                                       *
  ************************************************************************/
 
@@ -85,58 +86,38 @@ void CInstance::LoadInstance()
 {
     TracyZoneScoped;
 
-    const auto rset = db::preparedStmt("SELECT "
-                                       "instance_name, "
-                                       "time_limit, "
-                                       "entrance_zone, "
-                                       "overlay_id, "
-                                       "start_x, "
-                                       "start_y, "
-                                       "start_z, "
-                                       "start_rot, "
-                                       "music_day, "
-                                       "music_night, "
-                                       "battlesolo, "
-                                       "battlemulti "
-                                       "FROM instance_list "
-                                       "WHERE instanceid = ? "
-                                       "LIMIT 1",
-                                       m_instanceid);
-
-    if (rset && rset->rowsCount() && rset->next())
-    {
-        m_instanceName = rset->get<std::string>("instance_name");
-
-        m_timeLimit                       = std::chrono::minutes(rset->get<uint32>("time_limit"));
-        m_entrance                        = rset->get<uint16>("entrance_zone");
-        overlayId_                        = rset->getOrDefault("overlay_id", 0);
-        m_entryloc.x                      = rset->get<float>("start_x");
-        m_entryloc.y                      = rset->get<float>("start_y");
-        m_entryloc.z                      = rset->get<float>("start_z");
-        m_entryloc.rotation               = rset->get<uint8>("start_rot");
-        m_zone_music_override.m_songDay   = !rset->isNull("music_day") ? Maybe<uint16>(rset->get<uint16>("music_day")) : std::nullopt;
-        m_zone_music_override.m_songNight = !rset->isNull("music_night") ? Maybe<uint16>(rset->get<uint16>("music_night")) : std::nullopt;
-        m_zone_music_override.m_bSongS    = !rset->isNull("battlesolo") ? Maybe<uint16>(rset->get<uint16>("battlesolo")) : std::nullopt;
-        m_zone_music_override.m_bSongM    = !rset->isNull("battlemulti") ? Maybe<uint16>(rset->get<uint16>("battlemulti")) : std::nullopt;
-
-        // Add to Lua cache
-        // TODO: This will happen more often than needed, but not so often that it's a performance concern
-        const auto zone        = m_zone->getName();
-        const auto name        = m_instanceName;
-        const auto assaultPath = fmt::format("./scripts/assaults/{}/{}.lua", zone, name);
-        if (std::filesystem::exists(assaultPath))
-        {
-            luautils::LoadLuaObjectFromFile(assaultPath, true);
-        }
-        else
-        {
-            luautils::LoadLuaObjectFromFile(fmt::format("./scripts/zones/{}/instances/{}.lua", zone, name));
-        }
-    }
-    else
+    if (!instanceutils::IsValidInstanceID(m_instanceid))
     {
         ShowCritical("CZone::LoadInstance: Cannot load instance %u", m_instanceid);
         Fail();
+        return;
+    }
+
+    const auto data = instanceutils::GetInstanceData(m_instanceid);
+
+    m_instanceName = data.instance_name;
+
+    m_timeLimit                       = data.time_limit;
+    m_entrance                        = data.entrance_zone;
+    overlayId_                        = data.overlay;
+    m_entryloc                        = data.entry;
+    m_zone_music_override.m_songDay   = data.music.Day;
+    m_zone_music_override.m_songNight = data.music.Night;
+    m_zone_music_override.m_bSongS    = data.music.BattleSolo;
+    m_zone_music_override.m_bSongM    = data.music.BattleParty;
+
+    // Add to Lua cache
+    // TODO: This will happen more often than needed, but not so often that it's a performance concern
+    const auto zone        = m_zone->getName();
+    const auto name        = m_instanceName;
+    const auto assaultPath = fmt::format("./scripts/assaults/{}/{}.lua", zone, name);
+    if (std::filesystem::exists(assaultPath))
+    {
+        luautils::LoadLuaObjectFromFile(assaultPath, true);
+    }
+    else
+    {
+        luautils::LoadLuaObjectFromFile(fmt::format("./scripts/zones/{}/instances/{}.lua", zone, name));
     }
 }
 
