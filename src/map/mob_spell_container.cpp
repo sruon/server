@@ -54,7 +54,7 @@ void CMobSpellContainer::AddSpell(SpellID spellId)
 
     if (spell == nullptr)
     {
-        ShowDebug("Missing spellID = %d, given to mob. Check spell_list.sql", static_cast<uint16>(spellId));
+        ShowDebug("Missing spellID = %d, given to mob. Check data/spells.yaml", static_cast<uint16>(spellId));
         return;
     }
 

@@ -23,6 +23,8 @@
 #include <cstring>
 
 #include "common/types/hash_map.h"
+#include "data/datasets/blue_traits/dataset.h"
+#include "data/datasets/spells/dataset.h"
 
 #include "lua/luautils.h"
 
@@ -37,6 +39,7 @@
 #include "enums/msg_basic.h"
 #include "status_effect_container.h"
 #include "utils/blueutils.h"
+#include "utils/dataset_loader.h"
 
 CSpell::CSpell(SpellID id)
 : m_ID(id)
@@ -418,9 +421,9 @@ void CSpell::setFlag(uint8 flag)
     m_flag = flag;
 }
 
-auto CSpell::getContentTag() -> const std::string&
+auto CSpell::getContent() const -> xi::Content
 {
-    return m_contentTag;
+    return m_content;
 }
 
 auto CSpell::getRange() const -> float
@@ -460,9 +463,9 @@ auto CSpell::getFourCC(const bool interrupt) const -> FourCC
     }
 }
 
-void CSpell::setContentTag(const std::string& contentTag)
+void CSpell::setContent(const xi::Content content)
 {
-    m_contentTag = contentTag;
+    m_content = content;
 }
 
 void CSpell::setRange(float range)
@@ -485,15 +488,20 @@ std::map<uint16, uint16>          PMobSkillToBlueSpell; // maps the skill id (ke
 // Load a list of spells
 void LoadSpellList()
 {
-    auto rset = db::preparedStmt("SELECT spellid, name, jobs, `group`, family, validTargets, skill, castTime, recastTime, animation, animationTime, mpCost, "
-                                 "AOE, base, element, zonemisc, multiplier, message, magicBurstMessage, CE, VE, requirements, content_tag, spell_range, radius, status_effect, status_effect_tier "
-                                 "FROM spell_list");
-    FOR_DB_MULTIPLE_RESULTS(rset)
+    const auto blueTraits = xi::data::loadDataset<xi::data::datasets::blue_traits::Dataset>();
+
+    HashMap<std::string, uint8> traitCategories;
+    for (const auto& category : blueTraits)
+    {
+        traitCategories.emplace(category.Name, category.Id);
+    }
+
+    for (const auto& entry : xi::data::loadDataset<xi::data::datasets::spells::Dataset>())
     {
         CSpell* PSpell = nullptr;
 
-        const auto id = rset->get<SpellID>("spellid");
-        if (rset->get<SPELLGROUP>("group") == SPELLGROUP_BLUE)
+        const auto id = static_cast<SpellID>(entry.Id);
+        if (entry.Group == xi::SpellGroup::Blue)
         {
             PSpell = new CBlueSpell(id);
         }
@@ -502,50 +510,93 @@ void LoadSpellList()
             PSpell = new CSpell(id);
         }
 
-        PSpell->setName(rset->get<std::string>("name"));
+        PSpell->setName(entry.Name);
 
-        // Jobs are stored in DB as 22 entries.
-        // Index 0 is reserved for NON, index 23 for MON (both left as 0).
-        std::array<uint8, MAX_JOBTYPE> jobs{};
-        std::array<uint8, 22>          tempJobs{};
-        db::extractFromBlob(rset, "jobs", tempJobs);
-        std::memcpy(&jobs[1], tempJobs.data(), 22);
-        PSpell->setJob(jobs);
+        PSpell->setJob(entry.JobLevels);
 
-        PSpell->setSpellGroup(rset->get<SPELLGROUP>("group"));
-        PSpell->setSpellFamily(rset->get<SPELLFAMILY>("family"));
-        PSpell->setValidTarget(rset->get<xi::TargetType>("validTargets"));
-        PSpell->setSkillType(rset->get<xi::SkillType>("skill"));
-        PSpell->setCastTime(std::chrono::milliseconds(rset->get<uint32>("castTime")));
-        PSpell->setRecastTime(std::chrono::milliseconds(rset->get<uint32>("recastTime")));
-        PSpell->setAnimationID(rset->get<uint16>("animation"));
-        PSpell->setAnimationTime(std::chrono::milliseconds(rset->get<uint32>("animationTime")));
-        PSpell->setMPCost(rset->get<uint16>("mpCost"));
-        PSpell->setAOE(rset->get<uint8>("AOE"));
-        PSpell->setBase(rset->get<uint16>("base"));
-        PSpell->setElement(rset->get<uint16>("element"));
-        PSpell->setZoneMisc(rset->get<xi::ZoneMisc>("zonemisc"));
-        PSpell->setMultiplier(rset->get<float>("multiplier"));
-        PSpell->setMessage(rset->get<MsgBasic>("message"));
-        PSpell->setMagicBurstMessage(rset->get<MsgBasic>("magicBurstMessage"));
-        PSpell->setCE(rset->get<int32>("CE"));
-        PSpell->setVE(rset->get<int32>("VE"));
-        PSpell->setRequirements(rset->get<uint8>("requirements"));
-        PSpell->setContentTag(rset->getOrDefault<std::string>("content_tag", ""));
+        PSpell->setSpellGroup(static_cast<SPELLGROUP>(entry.Group));
+        PSpell->setSpellFamily(static_cast<SPELLFAMILY>(entry.Family));
+        PSpell->setValidTarget(entry.Targets);
+        PSpell->setSkillType(entry.Skill);
+        PSpell->setCastTime(entry.CastTime);
+        PSpell->setRecastTime(entry.RecastTime);
+        PSpell->setAnimationID(entry.Animation);
+        PSpell->setAnimationTime(entry.AnimationTime);
+        PSpell->setMPCost(entry.MpCost);
+        PSpell->setAOE(static_cast<uint8>(entry.Aoe));
+        PSpell->setBase(entry.Base);
+        PSpell->setElement(static_cast<uint16>(entry.Element));
+        PSpell->setZoneMisc(entry.ZoneMisc);
+        PSpell->setMultiplier(entry.Multiplier);
+        PSpell->setMessage(static_cast<MsgBasic>(entry.Message));
+        PSpell->setMagicBurstMessage(static_cast<MsgBasic>(entry.MagicBurstMessage));
+        PSpell->setCE(static_cast<int32>(entry.CumulativeEnmity));
+        PSpell->setVE(static_cast<int32>(entry.VolatileEnmity));
+        PSpell->setRequirements(static_cast<uint8>(entry.Requirements));
+        PSpell->setContent(entry.Content);
+        PSpell->setRange(entry.Range);
+        PSpell->setRadius(entry.Radius);
 
-        PSpell->setRange(rset->get<float>("spell_range") / 10);
-        PSpell->setRadius(rset->get<float>("radius") / 10);
-
-        if (!rset->isNull("status_effect"))
+        if (entry.StatusEffect)
         {
-            PSpell->setStatusEffect(rset->get<xi::StatusEffect>("status_effect"));
+            PSpell->setStatusEffect(*entry.StatusEffect);
         }
 
-        PSpell->setStatusEffectTier(rset->get<uint8>("status_effect_tier"));
+        PSpell->setStatusEffectTier(entry.StatusEffectTier);
 
-        PSpellList[static_cast<uint16>(PSpell->getID())] = PSpell;
+        PSpellList[entry.Id] = PSpell;
 
-        auto filename = fmt::format("./scripts/actions/spells/{}.lua", PSpell->getName());
+        if (entry.BlueMagic)
+        {
+            const auto& blue       = *entry.BlueMagic;
+            auto*       PBlueSpell = static_cast<CBlueSpell*>(PSpell);
+
+            uint8 traitCategory = 0;
+            if (!blue.Trait.empty())
+            {
+                const auto category = traitCategories.find(blue.Trait);
+                if (category == traitCategories.end())
+                {
+                    ShowErrorFmt("spell::LoadSpellList: {} names unknown blue trait {}", entry.Name, blue.Trait);
+                }
+                else
+                {
+                    traitCategory = category->second;
+                }
+            }
+
+            for (const auto& [mod, value] : blue.Mods)
+            {
+                PBlueSpell->addModifier(CModifier(mod, value));
+            }
+
+            if (luautils::IsContentEnabled(entry.Content))
+            {
+                PBlueSpell->setSetPoints(blue.SetPoints);
+                PBlueSpell->setTraitCategory(traitCategory);
+                PBlueSpell->setTraitWeight(blue.TraitWeight);
+                const auto skillchainAt = [&](const std::size_t index) -> uint8
+                {
+                    if (index < blue.Skillchain.size())
+                    {
+                        return std::to_underlying(blue.Skillchain[index]);
+                    }
+
+                    return 0;
+                };
+
+                PBlueSpell->setPrimarySkillchain(skillchainAt(0));
+                PBlueSpell->setSecondarySkillchain(skillchainAt(1));
+                PBlueSpell->setTertiarySkillchain(skillchainAt(2));
+                PBlueSpell->setKnockback(static_cast<Knockback>(blue.Knockback));
+
+                for (const auto monsterSkill : blue.MonsterSkills)
+                {
+                    PBlueSpell->setMonsterSkillId(monsterSkill);
+                    PMobSkillToBlueSpell.insert(std::make_pair(monsterSkill, entry.Id));
+                }
+            }
+        }
 
         std::string switchKey = "";
         switch (PSpell->getSpellGroup())
@@ -597,56 +648,8 @@ void LoadSpellList()
             break;
         }
 
-        filename = fmt::format("./scripts/actions/spells/{}/{}.lua", switchKey, PSpell->getName());
+        const auto filename = fmt::format("./scripts/actions/spells/{}/{}.lua", switchKey, PSpell->getName());
         luautils::LoadLuaObjectFromFile(filename);
-    }
-
-    rset = db::preparedStmt("SELECT blue_spell_list.spellid, blue_spell_list.mob_skill_id, blue_spell_list.set_points, "
-                            "blue_spell_list.trait_category, blue_spell_list.trait_category_weight, blue_spell_list.primary_sc, "
-                            "blue_spell_list.secondary_sc, blue_spell_list.tertiary_sc, blue_spell_list.knockback, spell_list.content_tag "
-                            "FROM blue_spell_list JOIN spell_list on blue_spell_list.spellid = spell_list.spellid");
-    FOR_DB_MULTIPLE_RESULTS(rset)
-    {
-        if (!luautils::IsContentEnabled(rset->getOrDefault<std::string>("content_tag", "")))
-        {
-            continue;
-        }
-
-        // Sanity check the spell ID
-        auto spellId = rset->get<uint16>("spellid");
-        if (PSpellList[spellId] == nullptr)
-        {
-            ShowWarning("spell::LoadSpellList Tried to load nullptr blue spell (%u)", spellId);
-            continue;
-        }
-
-        auto* PBlueSpell = static_cast<CBlueSpell*>(PSpellList[spellId]);
-
-        PBlueSpell->setMonsterSkillId(rset->get<uint16>("mob_skill_id"));
-        PBlueSpell->setSetPoints(rset->get<uint16>("set_points"));
-        PBlueSpell->setTraitCategory(rset->get<uint16>("trait_category"));
-        PBlueSpell->setTraitWeight(rset->get<uint16>("trait_category_weight"));
-        PBlueSpell->setPrimarySkillchain(rset->get<uint16>("primary_sc"));
-        PBlueSpell->setSecondarySkillchain(rset->get<uint16>("secondary_sc"));
-        PBlueSpell->setTertiarySkillchain(rset->get<uint16>("tertiary_sc"));
-        PBlueSpell->setKnockback(rset->getOrDefault<Knockback>("knockback", Knockback::None));
-        PMobSkillToBlueSpell.insert(std::make_pair(rset->get<uint16>("mob_skill_id"), spellId));
-    }
-
-    rset = db::preparedStmt("SELECT spellId, modId, value "
-                            "FROM blue_spell_mods "
-                            "WHERE spellId IN "
-                            "(SELECT spellId FROM spell_list LEFT JOIN blue_spell_list USING (spellId))");
-    FOR_DB_MULTIPLE_RESULTS(rset)
-    {
-        const auto spellId = rset->get<uint16>("spellId");
-        const auto modID   = rset->get<xi::Mod>("modId");
-        const auto value   = rset->get<int16>("value");
-
-        if (PSpellList[spellId])
-        {
-            static_cast<CBlueSpell*>(PSpellList[spellId])->addModifier(CModifier(modID, value));
-        }
     }
 }
 

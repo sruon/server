@@ -23,6 +23,7 @@
 #include "entities/char_entity.h"
 
 #include "data/datasets/merits/dataset.h"
+#include "data/datasets/spells/dataset.h"
 #include "data/datasets/weapon_skills/dataset.h"
 #include "packets/s2c/0x0aa_magic_data.h"
 #include "packets/s2c/0x0ac_command_data.h"
@@ -45,22 +46,6 @@ xi::data::Merits                                        meritData{};
 std::unordered_map<uint16, xi::data::MeritCategoryData> categoryById;
 std::unordered_map<uint16, uint16>                      meritIndexById;
 Merit_t                                                 meritDefaults[kMeritPacketSlots]{};
-
-auto loadNameLookup(const std::unique_ptr<db::ResultSet>& rset, const std::string& column) -> std::unordered_map<std::string, uint16>
-{
-    std::unordered_map<std::string, uint16> lookup;
-
-    FOR_DB_MULTIPLE_RESULTS(rset)
-    {
-        const auto value = rset->getOrDefault<uint16>(column, 0);
-        if (value != 0)
-        {
-            lookup.emplace(rset->get<std::string>("name"), value);
-        }
-    }
-
-    return lookup;
-}
 
 // a merit grants only what it names, so sharing a name with a spell grants nothing
 auto resolveGrant(const std::unordered_map<std::string, uint16>& lookup,
@@ -408,7 +393,11 @@ void LoadMeritsList()
         return;
     }
 
-    const auto spells = loadNameLookup(db::preparedStmt("SELECT name, spellid FROM spell_list"), "spellid");
+    std::unordered_map<std::string, uint16> spells;
+    for (const auto& spellData : xi::data::loadDataset<xi::data::datasets::spells::Dataset>())
+    {
+        spells.emplace(spellData.Name, spellData.Id);
+    }
 
     std::unordered_map<std::string, uint16> wsUnlocks;
     for (const auto& weaponSkill : xi::data::loadDataset<xi::data::datasets::weapon_skills::Dataset>())
@@ -441,7 +430,7 @@ void LoadMeritsList()
             .upgrade    = entry.MaxUpgrades,
             .jobs       = jobs,
             .category   = entry.Category,
-            .spellid    = resolveGrant(spells, entry.Spell, name, "spell_list"),
+            .spellid    = resolveGrant(spells, entry.Spell, name, "spells"),
             .wsunlockid = resolveGrant(wsUnlocks, entry.WeaponSkill, name, "weapon_skills"),
             .costs      = entry.UpgradeCosts.data(),
         };

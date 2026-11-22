@@ -945,28 +945,14 @@ void LoadFromCharSpellsSQL(CCharEntity* PChar)
     // disable all spells
     PChar->m_SpellList.reset();
 
-    std::vector<std::string_view> enabledExpansions;
-    for (const auto& expansion : { "ROTZ", "COP", "TOAU", "WOTG", "ACP", "AMK", "ASA", "ABYSSEA", "SOA", "ROV", "TVR", "VOIDWATCH" })
-    {
-        if (luautils::IsContentEnabled(expansion))
-        {
-            enabledExpansions.emplace_back(expansion);
-        }
-    }
-
-    const auto rset = db::preparedStmt("SELECT char_spells.spellid "
-                                       "FROM char_spells "
-                                       "JOIN spell_list "
-                                       "ON spell_list.spellid = char_spells.spellid "
-                                       "WHERE charid = ? AND (spell_list.content_tag IS NULL OR FIND_IN_SET(spell_list.content_tag, ?))",
-                                       PChar->id,
-                                       fmt::format("{}", fmt::join(enabledExpansions, ",")));
+    const auto rset = db::preparedStmt("SELECT spellid FROM char_spells WHERE charid = ?", PChar->id);
     if (rset && rset->rowsCount())
     {
         while (rset->next())
         {
-            uint16 spellId = rset->get<uint16>("spellid");
-            if (spell::GetSpell(static_cast<SpellID>(spellId)) != nullptr)
+            const auto spellId = rset->get<uint16>("spellid");
+            auto*      PSpell  = spell::GetSpell(static_cast<SpellID>(spellId));
+            if (PSpell != nullptr && luautils::IsContentEnabled(PSpell->getContent()))
             {
                 PChar->m_SpellList.set(spellId);
             }

@@ -23,6 +23,7 @@
 
 #include "common/cbasetypes.h"
 #include "common/types/maybe.h"
+#include "data/enums/content.h"
 #include "data/enums/skill_type.h"
 #include "data/enums/status_effect.h"
 #include "data/enums/zone_misc.h"
@@ -1209,7 +1210,7 @@ public:
     auto getRadius() const -> float;
     auto getRequirements() const -> uint8;
     auto getFlag() const -> uint8;
-    auto getContentTag() -> const std::string&;
+    auto getContent() const -> xi::Content;
     auto getRange() const -> float;
     auto getPrimaryTargetID() const -> uint32;
     auto getFourCC(bool interrupt = false) const -> FourCC;
@@ -1255,7 +1256,7 @@ public:
     void setRequirements(uint8 requirements);
     void setModifiedRecast(timer::duration mrec);
     void setFlag(uint8 flag);
-    void setContentTag(const std::string& contentTag);
+    void setContent(xi::Content content);
     void setRange(float range);
     void setStatusEffect(Maybe<xi::StatusEffect> statusEffect);
     void setStatusEffectTier(uint8 tier);
@@ -1300,7 +1301,7 @@ private:
     timer::duration                m_modifiedRecastTime{};            // recast time after modifications
     uint8                          m_requirements{};                  // requirements before being able to cast spell
     uint8                          m_flag{};
-    std::string                    m_contentTag{};
+    xi::Content                    m_content{};
     Maybe<xi::StatusEffect>        statusEffect_{};
     uint8                          statusEffectTier_{};
 };

@@ -22,8 +22,14 @@
 #include "lua/luautils.h"
 
 #include "blue_trait.h"
+#include "data/datasets/blue_traits/dataset.h"
 #include "entities/battle_entity.h"
 #include "trait.h"
+#include "utils/dataset_loader.h"
+
+#include <algorithm>
+#include <utility>
+#include <vector>
 
 /************************************************************************
  *                                                                       *
@@ -81,22 +87,39 @@ void LoadTraitsList()
         PTraitsList[PTrait->getJob()].emplace_back(PTrait);
     }
 
-    rset = db::preparedStmt("SELECT trait_category, trait_points_needed, traitid, modifier, value, tier, job_points_only "
-                            "FROM blue_traits "
-                            "WHERE traitid < ? "
-                            "ORDER BY tier ASC",
-                            MAX_TRAIT_ID);
-    FOR_DB_MULTIPLE_RESULTS(rset)
+    const auto blueTraits = xi::data::loadDataset<xi::data::datasets::blue_traits::Dataset>();
+
+    std::vector<std::pair<uint8, const xi::data::BlueTraitTierData*>> blueTiers;
+    for (const auto& category : blueTraits)
     {
-        auto* PTrait = new CBlueTrait(rset->get<uint8>("trait_category"), rset->get<uint8>("traitid"), rset->get<bool>("job_points_only"));
+        for (const auto& tier : category.Tiers)
+        {
+            if (tier.Trait < MAX_TRAIT_ID)
+            {
+                blueTiers.emplace_back(category.Id, &tier);
+            }
+        }
+    }
 
-        PTrait->setJob(static_cast<int8>(xi::Job::BLU));
-        PTrait->setRank(rset->get<uint8>("tier"));
-        PTrait->setPoints(rset->get<uint8>("trait_points_needed"));
-        PTrait->setMod(rset->get<xi::Mod>("modifier"));
-        PTrait->setValue(rset->get<int16>("value"));
+    std::ranges::stable_sort(blueTiers, {}, [](const auto& entry)
+                             {
+                                 return entry.second->Rank;
+                             });
 
-        PTraitsList[static_cast<uint8>(xi::Job::BLU)].emplace_back(PTrait);
+    for (const auto& [category, tier] : blueTiers)
+    {
+        for (const auto& [mod, value] : tier->Mods)
+        {
+            auto* PTrait = new CBlueTrait(category, static_cast<uint8>(tier->Trait), tier->JobPointsOnly);
+
+            PTrait->setJob(static_cast<int8>(xi::Job::BLU));
+            PTrait->setRank(tier->Rank);
+            PTrait->setPoints(tier->Points);
+            PTrait->setMod(mod);
+            PTrait->setValue(value);
+
+            PTraitsList[static_cast<uint8>(xi::Job::BLU)].emplace_back(PTrait);
+        }
     }
 }
 

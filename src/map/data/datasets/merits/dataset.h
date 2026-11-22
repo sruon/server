@@ -49,7 +49,7 @@ struct MeritData
     std::vector<xi::Job>       Jobs{};
     std::vector<xi::SkillType> Skills{};
     MeritUpgradeCosts          UpgradeCosts{};
-    std::string                Spell{};       // name in spell_list
+    std::string                Spell{};       // name in data/spells.yaml
     std::string                WeaponSkill{}; // name in weapon_skills
 };
 

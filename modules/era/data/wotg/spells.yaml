@@ -1,0 +1,14 @@
+# Spells as they were before the WOTG changes.
+# https://www.bg-wiki.com/ffxi/Version_Update_(04/08/2009)
+# https://www.bg-wiki.com/ffxi/Version_Update_(03/11/2008)
+# https://www.bg-wiki.com/ffxi/Version_Update_(11/09/2009)
+# http://www.playonline.com/pcd/update/ff11us/20071120wwnX41/detail.html
+
+spells:
+  raise_ii:    {mp_cost: 200, cast_time: 20}
+  banish_ii:   {cast_time: 3.75}
+  banish_iii:  {cast_time: 5.5}
+  reraise:     {jobs: {whm: 33}}
+  raise_iii:   {mp_cost: 250, cast_time: 20}
+  reraise_ii:  {jobs: {whm: 60}, mp_cost: 175, cast_time: 8}
+  reraise_iii: {jobs: {whm: 75}, mp_cost: 200, cast_time: 8}

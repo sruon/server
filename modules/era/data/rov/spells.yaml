@@ -1,0 +1,37 @@
+# Spells as they were before the ROV changes.
+# https://forum.square-enix.com/ffxi/threads/52969
+# https://forum.square-enix.com/ffxi/threads/56444-February-12-2020-%28JST%29-Version-Update
+# https://forum.square-enix.com/ffxi/threads/50942
+# https://forum.square-enix.com/ffxi/threads/55263-April.-3-2019-%28JST%29-Version-Update
+# https://forum.square-enix.com/ffxi/threads/54901-January.-10-2019-%28JST%29-Version-Update
+# https://forum.square-enix.com/ffxi/threads/46531-Mar-26-2015-%28JST%29-Version-Update
+# https://forum.square-enix.com/ffxi/threads/49065-Nov-10-2015-%28JST%29-Version-Update
+# https://forum.square-enix.com/ffxi/threads/47481-Jun-25-2015-%28JST%29-Version-Update
+# https://forum.square-enix.com/ffxi/threads/46531
+# https://forum.square-enix.com/ffxi/threads/56243
+# https://forum.square-enix.com/ffxi/threads/55525-June.-10-2019-%28JST%29-Version-Update
+
+spells:
+  banishga:      {jobs: {pld: null}}
+  protectra:     {cast_time: 3}
+  protectra_ii:  {cast_time: 3.75}
+  protectra_iii: {cast_time: 4.5}
+  protectra_iv:  {cast_time: 5.25}
+  protectra_v:   {cast_time: 7}
+  shellra:       {cast_time: 3}
+  shellra_ii:    {cast_time: 3.75}
+  shellra_iii:   {cast_time: 4.5}
+  shellra_iv:    {cast_time: 5.25}
+  shellra_v:     {cast_time: 6}
+  flare:         {cast_time: 12}
+  flare_ii:      {cast_time: 10}
+  freeze:        {cast_time: 12}
+  freeze_ii:     {cast_time: 10}
+  tornado:       {cast_time: 12}
+  tornado_ii:    {cast_time: 10}
+  quake:         {cast_time: 12}
+  quake_ii:      {cast_time: 10}
+  burst:         {cast_time: 12}
+  burst_ii:      {cast_time: 10}
+  flood:         {cast_time: 12}
+  flood_ii:      {cast_time: 10}

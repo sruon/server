@@ -91,7 +91,7 @@ struct glz::json_schema<xi::data::datasets::merits::wire::Merit>
     glz::schema max_upgrades{ .description = "How far this merit can be upgraded. Defaults to the cost table's length and cannot exceed it; zero leaves it visible but unbuyable.", .minimum = 0L, .maximum = 255L };
     glz::schema jobs{ .description = "Jobs this merit applies to. Falls back to the category's list, then to every job.", .uniqueItems = true };
     glz::schema skills{ .description = "Skills this merit raises, each by `value` per upgrade.", .uniqueItems = true };
-    glz::schema spell{ .description = "Spell in spell_list the character knows while this merit has any upgrades." };
+    glz::schema spell{ .description = "Spell in data/spells.yaml the character knows while this merit has any upgrades." };
     glz::schema weapon_skill{ .description = "Weapon skill in weapon_skills the character has while this merit has any upgrades." };
 };
 

@@ -154,16 +154,10 @@ HashMap<uint16, std::unique_ptr<TrustData>> g_PTrustData;
 
 void trustutils::LoadTrustList()
 {
-    const auto rset = db::preparedStmt("SELECT "
-                                       "spell_list.spellid, mob_pools.poolid "
-                                       "FROM spell_list, mob_pools "
-                                       "WHERE spell_list.spellid >= 896 AND mob_pools.poolid = (spell_list.spellid + 5000) ORDER BY spell_list.spellid");
-
-    if (rset && rset->rowsCount())
+    for (uint16 trustSpellId = 896; trustSpellId < MAX_SPELL_ID; ++trustSpellId)
     {
-        while (rset->next())
+        if (spell::GetSpell(static_cast<SpellID>(trustSpellId)) != nullptr)
         {
-            const auto trustSpellId = rset->get<uint32>(0);
             BuildTrustData(trustSpellId);
         }
     }
@@ -226,7 +220,6 @@ void BuildTrustData(uint32 TrustID)
                                        "mob_pools.skill_list_id, "
                                        "mob_pools.modelSize, "
                                        "mob_pools.modelHitboxSize, "
-                                       "spell_list.spellid, "
                                        "mob_resistances.slash_sdt, mob_resistances.pierce_sdt, "
                                        "mob_resistances.h2h_sdt, mob_resistances.impact_sdt, "
                                        "mob_resistances.magical_sdt, "
@@ -243,12 +236,10 @@ void BuildTrustData(uint32 TrustID)
                                        "mob_resistances.poison_res_rank, mob_resistances.light_sleep_res_rank, "
                                        "mob_resistances.dark_sleep_res_rank, mob_resistances.blind_res_rank, "
                                        "mob_resistances.stun_res_rank, mob_resistances.gravity_res_rank "
-                                       "FROM spell_list, mob_pools, mob_resistances "
-                                       "WHERE spell_list.spellid = ? "
-                                       "AND (spell_list.spellid + 5000) = mob_pools.poolid "
-                                       "AND mob_pools.resist_id = mob_resistances.resist_id "
-                                       "ORDER BY spell_list.spellid",
-                                       TrustID);
+                                       "FROM mob_pools, mob_resistances "
+                                       "WHERE mob_pools.poolid = ? "
+                                       "AND mob_pools.resist_id = mob_resistances.resist_id",
+                                       TrustID + 5000);
 
     if (rset && rset->rowsCount())
     {

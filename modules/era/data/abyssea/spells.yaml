@@ -1,0 +1,218 @@
+# Spells as they were before the ABYSSEA changes.
+# https://forum.square-enix.com/ffxi/threads/22099-March-27-2012-%28JST%29-Version-Update
+# https://www.bg-wiki.com/ffxi/Version_Update_(06/21/2010)
+# https://kanican.livejournal.com/tag/enmity%20table%21/
+# https://www.bg-wiki.com/ffxi/Version_Update_(12/12/2012)
+# https://wiki.ffo.jp/html/27533.html
+# https://www.bg-wiki.com/ffxi/Version_Update_(05/09/2011)
+# https://www.bg-wiki.com/ffxi/Version_Update_(02/13/2012)
+# https://www.bg-wiki.com/ffxi/Version_Update_(03/26/2012)
+# https://www.bg-wiki.com/ffxi/Version_Update_(09/08/2010)
+# https://www.bg-wiki.com/ffxi/Version_Update_(05/15/2012)
+# https://www.bg-wiki.com/ffxi/Version_Update_(07/11/2011)
+# https://www.bg-wiki.com/ffxi/Version_Update_(09/19/2011)
+# https://www.bg-wiki.com/ffxi/Version_Update_(12/06/2010)
+# https://www.bg-wiki.com/ffxi/Version_Update_(07/23/2012)
+# https://www.bg-wiki.com/ffxi/Version_Update_(12/14/2011)
+# https://forum.square-enix.com/ffxi/threads/29150-December-13-2012-%28JST%29-Version-Update
+# https://forum.square-enix.com/ffxi/threads/27883-dev1138-Bard-Job-Adjustments
+
+spells:
+  poisona:            {enmity: {volatile: 300}}
+  paralyna:           {enmity: {volatile: 300}}
+  blindna:            {cast_time: 3, enmity: {volatile: 300}}
+  silena:             {enmity: {volatile: 300}}
+  stona:              {enmity: {volatile: 300}}
+  viruna:             {enmity: {volatile: 300}}
+  cursna:             {cast_time: 3, enmity: {volatile: 300}}
+  blink:              {enmity: {cumulative: 1, volatile: 300}}
+  stoneskin:          {enmity: {cumulative: 1, volatile: 300}}
+  aquaveil:           {enmity: {cumulative: 1, volatile: 300}}
+  slow:               {enmity: {volatile: 320}}
+  haste:              {enmity: {volatile: 300}}
+  paralyze:           {enmity: {volatile: 320}}
+  silence:            {enmity: {volatile: 320}}
+  barfire:            {enmity: {volatile: 300}}
+  barblizzard:        {enmity: {volatile: 300}}
+  baraero:            {enmity: {volatile: 300}}
+  barstone:           {enmity: {volatile: 300}}
+  barthunder:         {enmity: {volatile: 300}}
+  barwater:           {enmity: {volatile: 300}}
+  barsleep:           {enmity: {volatile: 300}}
+  barpoison:          {enmity: {volatile: 300}}
+  barparalyze:        {enmity: {volatile: 300}}
+  barblind:           {enmity: {volatile: 300}}
+  barsilence:         {enmity: {volatile: 300}}
+  barpetrify:         {enmity: {volatile: 300}}
+  barvirus:           {enmity: {volatile: 300}}
+  slow_ii:            {enmity: {volatile: 320}}
+  paralyze_ii:        {enmity: {volatile: 320}}
+  sacrifice:          {cast_time: 1.5, enmity: {volatile: 300}}
+  esuna:              {cast_time: 3, enmity: {volatile: 300}}
+  auspice:            {enmity: {volatile: 300}}
+  repose:             {enmity: {volatile: 300}}
+  sandstorm:          {enmity: {volatile: 300}}
+  enfire:             {enmity: {volatile: 300}}
+  enblizzard:         {enmity: {volatile: 300}}
+  enaero:             {enmity: {volatile: 300}}
+  enstone:            {enmity: {volatile: 300}}
+  enthunder:          {enmity: {volatile: 300}}
+  enwater:            {enmity: {volatile: 300}}
+  phalanx:            {enmity: {volatile: 300}}
+  phalanx_ii:         {enmity: {volatile: 300}}
+  regen:              {cast_time: 4, enmity: {volatile: 300}}
+  refresh:            {enmity: {volatile: 300}}
+  regen_ii:           {cast_time: 4.5, enmity: {volatile: 300}}
+  regen_iii:          {cast_time: 5, enmity: {volatile: 300}}
+  rainstorm:          {enmity: {volatile: 300}}
+  windstorm:          {enmity: {volatile: 300}}
+  firestorm:          {enmity: {volatile: 300}}
+  hailstorm:          {enmity: {volatile: 300}}
+  thunderstorm:       {enmity: {volatile: 300}}
+  voidstorm:          {enmity: {volatile: 300}}
+  aurorastorm:        {enmity: {volatile: 300}}
+  erase:              {enmity: {volatile: 480}}
+  gravity:            {enmity: {cumulative: 1, volatile: 80}}
+  poison:             {enmity: {volatile: 320}}
+  poison_ii:          {enmity: {volatile: 320}}
+  poisonga:           {enmity: {volatile: 320}}
+  bio:                {enmity: {volatile: 320}}
+  bio_ii:             {enmity: {volatile: 320}}
+  bio_iii:            {enmity: {volatile: 320}}
+  burn:               {enmity: {volatile: 300}}
+  frost:              {enmity: {volatile: 300}}
+  choke:              {enmity: {volatile: 300}}
+  rasp:               {enmity: {volatile: 300}}
+  shock:              {enmity: {volatile: 300}}
+  drown:              {enmity: {volatile: 300}}
+  blaze_spikes:       {enmity: {volatile: 480}}
+  ice_spikes:         {enmity: {volatile: 480}}
+  shock_spikes:       {enmity: {volatile: 480}}
+  sleep:              {enmity: {cumulative: 320, volatile: 240}}
+  blind:              {enmity: {volatile: 640}}
+  bind:               {enmity: {volatile: 640}}
+  sleep_ii:           {enmity: {cumulative: 480, volatile: 480}}
+  dispel:             {enmity: {cumulative: 320, volatile: 320}}
+  absorb-str:         {enmity: {volatile: 640}}
+  absorb-dex:         {enmity: {volatile: 640}}
+  absorb-vit:         {enmity: {volatile: 640}}
+  absorb-agi:         {enmity: {volatile: 640}}
+  absorb-int:         {enmity: {volatile: 640}}
+  absorb-mnd:         {enmity: {volatile: 640}}
+  absorb-chr:         {enmity: {volatile: 640}}
+  blind_ii:           {enmity: {volatile: 640}}
+  fire_spirit:        {enmity: {cumulative: 90, volatile: 300}}
+  ice_spirit:         {enmity: {cumulative: 90, volatile: 300}}
+  air_spirit:         {enmity: {cumulative: 90, volatile: 300}}
+  earth_spirit:       {enmity: {cumulative: 90, volatile: 300}}
+  thunder_spirit:     {enmity: {cumulative: 90, volatile: 300}}
+  water_spirit:       {enmity: {cumulative: 90, volatile: 300}}
+  light_spirit:       {enmity: {cumulative: 90, volatile: 300}}
+  dark_spirit:        {enmity: {cumulative: 90, volatile: 300}}
+  carbuncle:          {enmity: {cumulative: 90, volatile: 300}}
+  fenrir:             {enmity: {cumulative: 90, volatile: 300}}
+  ifrit:              {enmity: {cumulative: 90, volatile: 300}}
+  titan:              {enmity: {cumulative: 90, volatile: 300}}
+  leviathan:          {enmity: {cumulative: 90, volatile: 300}}
+  garuda:             {enmity: {cumulative: 90, volatile: 300}}
+  shiva:              {enmity: {cumulative: 90, volatile: 300}}
+  ramuh:              {enmity: {cumulative: 90, volatile: 300}}
+  diabolos:           {enmity: {cumulative: 90, volatile: 300}}
+  odin:               {enmity: {cumulative: 90, volatile: 300}}
+  alexander:          {enmity: {cumulative: 90, volatile: 300}}
+  cait_sith:          {enmity: {cumulative: 90, volatile: 300}}
+  enfire_ii:          {enmity: {cumulative: 1, volatile: 240}}
+  enblizzard_ii:      {enmity: {cumulative: 1, volatile: 240}}
+  enaero_ii:          {enmity: {cumulative: 1, volatile: 240}}
+  enstone_ii:         {enmity: {cumulative: 1, volatile: 240}}
+  enthunder_ii:       {enmity: {cumulative: 1, volatile: 240}}
+  enwater_ii:         {enmity: {cumulative: 1, volatile: 240}}
+  monomi_ichi:        {cast_time: 4, enmity: {cumulative: 80, volatile: 240}}
+  aisha_ichi:         {enmity: {cumulative: 80, volatile: 240}}
+  utsusemi_ichi:      {enmity: {cumulative: 1, volatile: 300}}
+  utsusemi_ni:        {enmity: {cumulative: 1, volatile: 300}}
+  jubaku_ichi:        {enmity: {cumulative: 80, volatile: 240}}
+  hojo_ichi:          {enmity: {cumulative: 80, volatile: 240}}
+  hojo_ni:            {enmity: {cumulative: 80, volatile: 240}}
+  kurayami_ichi:      {enmity: {cumulative: 80, volatile: 240}}
+  kurayami_ni:        {enmity: {cumulative: 80, volatile: 240}}
+  dokumori_ichi:      {enmity: {cumulative: 80, volatile: 240}}
+  tonko_ichi:         {cast_time: 4}
+  foe_requiem:        {enmity: {cumulative: 100, volatile: 240}}
+  foe_requiem_ii:     {enmity: {cumulative: 100, volatile: 240}}
+  foe_requiem_iii:    {enmity: {cumulative: 100, volatile: 240}}
+  foe_requiem_iv:     {enmity: {cumulative: 100, volatile: 240}}
+  foe_requiem_v:      {enmity: {cumulative: 100, volatile: 240}}
+  foe_requiem_vi:     {enmity: {cumulative: 100, volatile: 240}}
+  horde_lullaby:      {enmity: {cumulative: 240}}
+  armys_paeon:        {enmity: {cumulative: 20, volatile: 80}}
+  armys_paeon_ii:     {enmity: {cumulative: 20, volatile: 80}}
+  armys_paeon_iii:    {enmity: {cumulative: 20, volatile: 80}}
+  armys_paeon_iv:     {enmity: {cumulative: 20, volatile: 80}}
+  armys_paeon_v:      {enmity: {cumulative: 20, volatile: 80}}
+  mages_ballad:       {enmity: {cumulative: 20, volatile: 80}}
+  mages_ballad_ii:    {enmity: {cumulative: 20, volatile: 80}}
+  knights_minne:      {enmity: {cumulative: 20, volatile: 80}}
+  knights_minne_ii:   {enmity: {cumulative: 20, volatile: 80}}
+  knights_minne_iii:  {enmity: {cumulative: 20, volatile: 80}}
+  knights_minne_iv:   {enmity: {cumulative: 20, volatile: 80}}
+  valor_minuet:       {enmity: {cumulative: 20, volatile: 80}}
+  valor_minuet_ii:    {enmity: {cumulative: 20, volatile: 80}}
+  valor_minuet_iii:   {enmity: {cumulative: 20, volatile: 80}}
+  valor_minuet_iv:    {enmity: {cumulative: 20, volatile: 80}}
+  sword_madrigal:     {enmity: {cumulative: 20, volatile: 80}}
+  blade_madrigal:     {enmity: {cumulative: 20, volatile: 80}}
+  hunters_prelude:    {cast_time: 4, targets: [self, player_party], enmity: {cumulative: 20, volatile: 80}, aoe: null}
+  archers_prelude:    {cast_time: 4, targets: [self, player_party], enmity: {cumulative: 20, volatile: 80}, aoe: null}
+  sheepfoe_mambo:     {enmity: {cumulative: 20, volatile: 80}}
+  dragonfoe_mambo:    {enmity: {cumulative: 20, volatile: 80}}
+  fowl_aubade:        {enmity: {cumulative: 20, volatile: 80}}
+  herb_pastoral:      {enmity: {cumulative: 20, volatile: 80}}
+  shining_fantasia:   {enmity: {cumulative: 20, volatile: 80}}
+  scops_operetta:     {enmity: {cumulative: 20, volatile: 80}}
+  puppets_operetta:   {enmity: {cumulative: 20, volatile: 80}}
+  gold_capriccio:     {enmity: {cumulative: 20, volatile: 80}}
+  warding_round:      {enmity: {cumulative: 20, volatile: 80}}
+  goblin_gavotte:     {enmity: {cumulative: 20, volatile: 80}}
+  advancing_march:    {enmity: {cumulative: 20, volatile: 80}}
+  victory_march:      {enmity: {cumulative: 20, volatile: 80}}
+  battlefield_elegy:  {enmity: {cumulative: 100, volatile: 240}}
+  carnage_elegy:      {enmity: {cumulative: 100, volatile: 240}}
+  sinewy_etude:       {cast_time: 4, enmity: {cumulative: 160, volatile: 160}, aoe: null}
+  dextrous_etude:     {cast_time: 4, enmity: {cumulative: 160, volatile: 160}, aoe: null}
+  vivacious_etude:    {cast_time: 4, enmity: {cumulative: 160, volatile: 160}, aoe: null}
+  quick_etude:        {cast_time: 4, enmity: {cumulative: 160, volatile: 160}, aoe: null}
+  learned_etude:      {cast_time: 4, enmity: {cumulative: 160, volatile: 160}, aoe: null}
+  spirited_etude:     {cast_time: 4, enmity: {cumulative: 160, volatile: 160}, aoe: null}
+  enchanting_etude:   {cast_time: 4, enmity: {cumulative: 160, volatile: 160}, aoe: null}
+  herculean_etude:    {cast_time: 4, enmity: {cumulative: 160, volatile: 160}, aoe: null}
+  uncanny_etude:      {cast_time: 4, enmity: {cumulative: 160, volatile: 160}, aoe: null}
+  vital_etude:        {cast_time: 4, enmity: {cumulative: 160, volatile: 160}, aoe: null}
+  swift_etude:        {cast_time: 4, enmity: {cumulative: 160, volatile: 160}, aoe: null}
+  sage_etude:         {cast_time: 4, enmity: {cumulative: 160, volatile: 160}, aoe: null}
+  logical_etude:      {cast_time: 4, enmity: {cumulative: 160, volatile: 160}, aoe: null}
+  bewitching_etude:   {cast_time: 4, enmity: {cumulative: 160, volatile: 160}, aoe: null}
+  fire_carol:         {enmity: {cumulative: 20, volatile: 80}}
+  ice_carol:          {enmity: {cumulative: 20, volatile: 80}}
+  wind_carol:         {enmity: {cumulative: 20, volatile: 80}}
+  earth_carol:        {enmity: {cumulative: 20, volatile: 80}}
+  lightning_carol:    {enmity: {cumulative: 20, volatile: 80}}
+  water_carol:        {enmity: {cumulative: 20, volatile: 80}}
+  light_carol:        {enmity: {cumulative: 20, volatile: 80}}
+  dark_carol:         {enmity: {cumulative: 20, volatile: 80}}
+  fire_threnody:      {enmity: {cumulative: 100, volatile: 240}}
+  ice_threnody:       {enmity: {cumulative: 100, volatile: 240}}
+  wind_threnody:      {enmity: {cumulative: 100, volatile: 240}}
+  earth_threnody:     {enmity: {cumulative: 100, volatile: 240}}
+  lightning_threnody: {enmity: {cumulative: 100, volatile: 240}}
+  water_threnody:     {enmity: {cumulative: 100, volatile: 240}}
+  light_threnody:     {enmity: {cumulative: 100, volatile: 240}}
+  dark_threnody:      {enmity: {cumulative: 100, volatile: 240}}
+  magic_finale:       {enmity: {cumulative: 100, volatile: 240}}
+  foe_lullaby:        {enmity: {cumulative: 240}}
+  goddesss_hymnus:    {enmity: {cumulative: 20, volatile: 80}}
+  chocobo_mazurka:    {enmity: {cumulative: 20, volatile: 80}}
+  maidens_virelai:    {enmity: {cumulative: 240, volatile: 240}}
+  raptor_mazurka:     {enmity: {cumulative: 20, volatile: 80}}
+  foe_sirvente:       {cast_time: 4, targets: [self, player_party], enmity: {cumulative: 20, volatile: 80}, aoe: null}
+  adventurers_dirge:  {cast_time: 4, targets: [self, player_party], enmity: {cumulative: 20, volatile: 80}, aoe: null}

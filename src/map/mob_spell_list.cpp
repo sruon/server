@@ -27,6 +27,7 @@
 #include "lua/luautils.h"
 
 #include "mob_spell_list.h"
+#include "spell.h"
 
 CMobSpellList::CMobSpellList(Maybe<uint16> listId)
 : m_listId(listId)
@@ -75,9 +76,8 @@ void LoadMobSpellList()
         "SELECT mob_spell_lists.spell_list_id, "
         "mob_spell_lists.spell_id, "
         "mob_spell_lists.min_level, "
-        "mob_spell_lists.max_level, "
-        "spell_list.content_tag "
-        "FROM mob_spell_lists JOIN spell_list ON spell_list.spellid = mob_spell_lists.spell_id "
+        "mob_spell_lists.max_level "
+        "FROM mob_spell_lists "
         "WHERE spell_list_id < ? "
         "ORDER BY min_level ASC");
 
@@ -88,6 +88,11 @@ void LoadMobSpellList()
         const auto spellId     = rset->get<uint16>("spell_id");
         const auto minLvl      = rset->get<uint16>("min_level");
         const auto maxLvl      = rset->get<uint16>("max_level");
+
+        if (spell::GetSpell(static_cast<SpellID>(spellId)) == nullptr)
+        {
+            continue;
+        }
 
         if (!PMobSpellList.contains(spellListId))
         {

@@ -10,6 +10,10 @@ def check_preconditions(cur):
 
 
 def needs_to_run(cur):
+    cur.execute("SHOW TABLES LIKE 'spell_list'")
+    if not cur.fetchone():
+        return False
+
     cur.execute("SHOW COLUMNS FROM spell_list LIKE 'status_effect_tier'")
     if not cur.fetchone():
         return True

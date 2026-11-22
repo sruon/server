@@ -1,0 +1,74 @@
+# Spells as they were before the SOA changes.
+# https://forum.square-enix.com/ffxi/threads/43706-Aug-12-2014-%28JST%29-Version-Update
+# https://www.bg-wiki.com/ffxi/Version_Update_(04/29/2013)
+# https://forum.square-enix.com/ffxi/threads/44592-Oct-7-2014-%28JST%29-Version-Update
+# https://forum.square-enix.com/ffxi/threads/44090-Sep-9-2014-%28JST%29-Version-Update
+# https://forum.square-enix.com/ffxi/threads/46531-Mar-26-2015-%28JST%29-Version-Update
+# https://forum.square-enix.com/ffxi/threads/42614-Jun-17-2014-%28JST%29-Version-Update
+# https://forum.square-enix.com/ffxi/threads/35228-July-9-2013-%28JST%29-Version-Update
+
+spells:
+  fire:         {mp_cost: 24, cast_time: 2.25, recast_time: 10.25}
+  fire_ii:      {mp_cost: 68, cast_time: 4.25, recast_time: 18.5}
+  fire_iii:     {mp_cost: 113, cast_time: 6, recast_time: 26.5}
+  fire_iv:      {mp_cost: 157, cast_time: 8, recast_time: 34.75}
+  blizzard:     {mp_cost: 30, cast_time: 2.5, recast_time: 11.5}
+  blizzard_ii:  {mp_cost: 77, cast_time: 4.5, recast_time: 19.75}
+  blizzard_iii: {mp_cost: 120, cast_time: 6.25, recast_time: 27.75}
+  blizzard_iv:  {mp_cost: 164, cast_time: 8.25, recast_time: 36}
+  aero:         {mp_cost: 18, cast_time: 2, recast_time: 9}
+  aero_ii:      {mp_cost: 59, cast_time: 3.75, recast_time: 17}
+  aero_iii:     {mp_cost: 106, cast_time: 5.75, recast_time: 25.25}
+  aero_iv:      {mp_cost: 150, cast_time: 7.5, recast_time: 33.25}
+  stone:        {mp_cost: 9, cast_time: 1.5, recast_time: 6.5}
+  stone_ii:     {mp_cost: 43, cast_time: 3.25, recast_time: 14.5}
+  stone_iii:    {mp_cost: 92, cast_time: 5.25, recast_time: 22.5}
+  stone_iv:     {mp_cost: 138, cast_time: 7, recast_time: 30.75}
+  thunder:      {mp_cost: 37, cast_time: 3, recast_time: 13}
+  thunder_ii:   {mp_cost: 86, cast_time: 4.75, recast_time: 21}
+  thunder_iii:  {mp_cost: 128, cast_time: 6.75, recast_time: 29.25}
+  thunder_iv:   {mp_cost: 171, cast_time: 8.5, recast_time: 37.25}
+  water:        {mp_cost: 13, cast_time: 1.75, recast_time: 7.75}
+  water_ii:     {mp_cost: 51, cast_time: 3.5, recast_time: 15.75}
+  water_iii:    {mp_cost: 98, cast_time: 5.5, recast_time: 24}
+  water_iv:     {mp_cost: 144, cast_time: 7.25, recast_time: 32}
+  firaga:       {mp_cost: 71, cast_time: 3.5, recast_time: 15.25}
+  firaga_ii:    {mp_cost: 158, cast_time: 5.25, recast_time: 23.25}
+  firaga_iii:   {mp_cost: 277, cast_time: 7.25, recast_time: 31.5}
+  blizzaga:     {mp_cost: 82, cast_time: 3.75, recast_time: 16.5}
+  blizzaga_ii:  {cast_time: 5.5, recast_time: 24.5}
+  blizzaga_iii: {mp_cost: 299, cast_time: 7.5, recast_time: 32.75}
+  aeroga:       {mp_cost: 57, cast_time: 3, recast_time: 13.5}
+  aeroga_ii:    {mp_cost: 138, cast_time: 5, recast_time: 21.75}
+  aeroga_iii:   {mp_cost: 252, cast_time: 6.75, recast_time: 29.75}
+  stonega:      {mp_cost: 37, cast_time: 2.5, recast_time: 11}
+  stonega_ii:   {mp_cost: 109, cast_time: 4.25, recast_time: 19}
+  stonega_iii:  {mp_cost: 211, cast_time: 6.25, recast_time: 27.25}
+  thundaga:     {mp_cost: 95, cast_time: 4, recast_time: 17.75}
+  thundaga_ii:  {mp_cost: 193, cast_time: 6, recast_time: 26}
+  thundaga_iii: {mp_cost: 322, cast_time: 7.75, recast_time: 34}
+  waterga:      {mp_cost: 47, cast_time: 2.75, recast_time: 12.25}
+  waterga_ii:   {mp_cost: 123, cast_time: 4.5, recast_time: 20.25}
+  waterga_iii:  {mp_cost: 231, cast_time: 6.5, recast_time: 28.5}
+  flare:        {mp_cost: 383, cast_time: 19, recast_time: 44.5}
+  flare_ii:     {mp_cost: 287, recast_time: 90}
+  freeze:       {mp_cost: 307, cast_time: 17.75, recast_time: 41.5}
+  freeze_ii:    {mp_cost: 287, recast_time: 90}
+  tornado:      {mp_cost: 322, cast_time: 18, recast_time: 42.25}
+  tornado_ii:   {mp_cost: 287, recast_time: 90}
+  quake:        {mp_cost: 337, cast_time: 18.25, recast_time: 42.75}
+  quake_ii:     {mp_cost: 287, recast_time: 90}
+  burst:        {mp_cost: 352, cast_time: 18.5, recast_time: 43.25}
+  burst_ii:     {mp_cost: 287, recast_time: 90}
+  flood:        {mp_cost: 368, cast_time: 18.75, recast_time: 43.75}
+  flood_ii:     {mp_cost: 287, recast_time: 90}
+  absorb-acc:   {cast_time: 2}
+  absorb-attri: {cast_time: 2}
+  absorb-str:   {cast_time: 2}
+  absorb-dex:   {cast_time: 2}
+  absorb-vit:   {cast_time: 2}
+  absorb-agi:   {cast_time: 2}
+  absorb-int:   {cast_time: 2}
+  absorb-mnd:   {cast_time: 2}
+  absorb-chr:   {cast_time: 2}
+  absorb-tp:    {cast_time: 2}

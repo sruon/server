@@ -1,0 +1,13 @@
+# Spells as they were before the TOAU changes.
+# http://www.playonline.com/pcd/update/ff11us/20061219WH3cX1/detail.html
+# http://www.playonline.com/pcd/update/ff11us/20070308c2bbd1/detail.html
+
+spells:
+  absorb-str: {cast_time: 4}
+  absorb-dex: {cast_time: 4}
+  absorb-vit: {cast_time: 4}
+  absorb-agi: {cast_time: 4}
+  absorb-int: {cast_time: 4}
+  absorb-mnd: {cast_time: 4}
+  absorb-chr: {cast_time: 4}
+  absorb-tp:  {cast_time: 4}

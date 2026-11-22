@@ -1,0 +1,258 @@
+# yaml-language-server: $schema=schemas/blue_traits.schema.json
+
+# Blue magic trait categories, keyed by the trait the category opens with. Set blue spells add their weight to their category; each tier applies once the total reaches its points.
+
+blue_traits:
+  beast_killer:
+    id:     1
+    trait: 32
+    tiers:
+      - {rank: 1, points: 2, mods: {beast_killer: 8}}
+      - {rank: 2, points: 4, mods: {beast_killer: 10}}
+      - {rank: 3, points: 6, mods: {beast_killer: 12}}
+
+  auto_regen:
+    id:    2
+    trait: 9
+    tiers:
+      - {rank: 1, points: 2, mods: {regen: 1}}
+      - {rank: 2, points: 4, mods: {regen: 2}, job_points_only: true}
+      - {rank: 3, points: 6, mods: {regen: 3}, job_points_only: true}
+
+  lizard_killer:
+    id:     3
+    trait: 35
+    tiers:
+      - {rank: 1, points: 2, mods: {lizard_killer: 8}}
+      - {rank: 2, points: 4, mods: {lizard_killer: 10}}
+      - {rank: 3, points: 6, mods: {lizard_killer: 12}, job_points_only: true}
+
+  clear_mind:
+    id:     4
+    trait: 24
+    tiers:
+      - {rank: 1, points: 2, mods: {mpheal: 3}}
+      - {rank: 2, points: 4, mods: {mpheal: 6}}
+      - {rank: 3, points: 6, mods: {mpheal: 9, clear_mind: 1}}
+      - {rank: 4, points: 8, mods: {mpheal: 12, clear_mind: 1}}
+      - {rank: 5, points: 10, mods: {mpheal: 15, clear_mind: 2}, job_points_only: true}
+      - {rank: 6, points: 12, mods: {mpheal: 18, clear_mind: 3}, job_points_only: true}
+
+  resist_sleep:
+    id:     5
+    trait: 48
+    tiers:
+      - {rank: 1, points: 2, mods: {sleepres: 10}}
+      - {rank: 2, points: 4, mods: {sleepres: 15}}
+      - {rank: 3, points: 6, mods: {sleepres: 20}, job_points_only: true}
+      - {rank: 4, points: 8, mods: {sleepres: 25}, job_points_only: true}
+
+  magic_attack_bonus:
+    id:    6
+    trait: 5
+    tiers:
+      - {rank: 1, points: 2, mods: {matt: 20}}
+      - {rank: 2, points: 4, mods: {matt: 24}}
+      - {rank: 3, points: 6, mods: {matt: 28}}
+      - {rank: 4, points: 8, mods: {matt: 32}}
+      - {rank: 5, points: 10, mods: {matt: 36}, job_points_only: true}
+      - {rank: 6, points: 12, mods: {matt: 40}, job_points_only: true}
+
+  undead_killer:
+    id:     7
+    trait: 39
+    tiers:
+      - {rank: 1, points: 2, mods: {undead_killer: 8}}
+      - {rank: 2, points: 4, mods: {undead_killer: 10}, job_points_only: true}
+      - {rank: 3, points: 6, mods: {undead_killer: 12}, job_points_only: true}
+
+  attack_bonus:
+    id:    8
+    trait: 3
+    tiers:
+      - {rank: 1, points: 2, mods: {att: 10, ratt: 10}}
+      - {rank: 2, points: 4, mods: {att: 22, ratt: 22}}
+      - {rank: 3, points: 6, mods: {att: 35, ratt: 35}}
+      - {rank: 4, points: 8, mods: {att: 48, ratt: 48}}
+      - {rank: 5, points: 10, mods: {att: 60, ratt: 60}, job_points_only: true}
+      - {rank: 6, points: 12, mods: {att: 72, ratt: 72}, job_points_only: true}
+
+  rapid_shot:
+    id:     9
+    trait: 11
+    tiers:
+      - {rank: 1, points: 2, mods: {rapid_shot: 25}}
+      - {rank: 2, points: 4, mods: {rapid_shot: 30}, job_points_only: true}
+      - {rank: 3, points: 6, mods: {rapid_shot: 35}, job_points_only: true}
+
+  max_mp_boost:
+    id:    10
+    trait:  8
+    tiers:
+      - {rank: 1, points: 2, mods: {base_mp: 10}}
+      - {rank: 2, points: 4, mods: {base_mp: 20}}
+
+  defense_bonus:
+    id:    11
+    trait:  4
+    tiers:
+      - {rank: 1, points: 2, mods: {def: 10}}
+      - {rank: 2, points: 4, mods: {def: 22}}
+      - {rank: 3, points: 6, mods: {def: 35}}
+      - {rank: 4, points: 8, mods: {def: 48}}
+      - {rank: 5, points: 10, mods: {def: 60}, job_points_only: true}
+      - {rank: 6, points: 12, mods: {def: 72}, job_points_only: true}
+
+  plantoid_killer:
+    id:    12
+    trait: 33
+    tiers:
+      - {rank: 1, points: 2, mods: {plantoid_killer: 8}}
+      - {rank: 2, points: 4, mods: {plantoid_killer: 10}}
+      - {rank: 3, points: 6, mods: {plantoid_killer: 12}, job_points_only: true}
+
+  magic_defense_bonus:
+    id:    13
+    trait:  6
+    tiers:
+      - {rank: 1, points: 2, mods: {mdef: 10}}
+      - {rank: 2, points: 4, mods: {mdef: 12}}
+      - {rank: 3, points: 6, mods: {mdef: 14}}
+      - {rank: 4, points: 8, mods: {mdef: 16}, job_points_only: true}
+      - {rank: 5, points: 10, mods: {mdef: 18}, job_points_only: true}
+
+  auto_refresh:
+    id:    14
+    trait: 10
+    tiers:
+      - {rank: 1, points: 8, mods: {refresh: 1}}
+
+  max_hp_boost:
+    id:    15
+    trait:  7
+    tiers:
+      - {rank: 1, points: 2, mods: {base_hp: 30}}
+      - {rank: 2, points: 4, mods: {base_hp: 60}}
+      - {rank: 3, points: 6, mods: {base_hp: 120}}
+      - {rank: 4, points: 8, mods: {base_hp: 180}}
+      - {rank: 5, points: 10, mods: {base_hp: 240}, job_points_only: true}
+      - {rank: 6, points: 12, mods: {base_hp: 280}, job_points_only: true}
+
+  accuracy_bonus:
+    id:    16
+    trait:  1
+    tiers:
+      - {rank: 1, points: 2, mods: {acc: 10, racc: 10}}
+      - {rank: 2, points: 4, mods: {acc: 22, racc: 22}}
+      - {rank: 3, points: 6, mods: {acc: 35, racc: 35}}
+      - {rank: 4, points: 8, mods: {acc: 48, racc: 48}}
+      - {rank: 5, points: 10, mods: {acc: 60, racc: 60}, job_points_only: true}
+      - {rank: 6, points: 12, mods: {acc: 73, racc: 73}, job_points_only: true}
+
+  conserve_mp:
+    id:    17
+    trait: 13
+    tiers:
+      - {rank: 1, points: 2, mods: {conserve_mp: 25}}
+      - {rank: 2, points: 4, mods: {conserve_mp: 28}}
+      - {rank: 3, points: 6, mods: {conserve_mp: 31}}
+      - {rank: 4, points: 8, mods: {conserve_mp: 34}, job_points_only: true}
+      - {rank: 5, points: 10, mods: {conserve_mp: 37}, job_points_only: true}
+
+  evasion_bonus:
+    id:    18
+    trait:  2
+    tiers:
+      - {rank: 1, points: 2, mods: {eva: 10}}
+      - {rank: 2, points: 4, mods: {eva: 22}}
+      - {rank: 3, points: 6, mods: {eva: 35}}
+      - {rank: 4, points: 8, mods: {eva: 48}, job_points_only: true}
+      - {rank: 5, points: 10, mods: {eva: 60}, job_points_only: true}
+
+  resist_gravity:
+    id:    19
+    trait: 58
+    tiers:
+      - {rank: 1, points: 2, mods: {gravityres: 10}}
+      - {rank: 2, points: 3, mods: {gravityres: 15}, job_points_only: true}
+      - {rank: 3, points: 4, mods: {gravityres: 20}, job_points_only: true}
+
+  store_tp:
+    id:    20
+    trait: 14
+    tiers:
+      - {rank: 1, points: 2, mods: {storetp: 10}}
+      - {rank: 2, points: 4, mods: {storetp: 15}}
+      - {rank: 3, points: 6, mods: {storetp: 20}}
+      - {rank: 4, points: 8, mods: {storetp: 25}, job_points_only: true}
+      - {rank: 5, points: 10, mods: {storetp: 30}, job_points_only: true}
+
+  counter:
+    id:    21
+    trait: 17
+    tiers:
+      - {rank: 1, points: 2, mods: {counter: 10}}
+      - {rank: 2, points: 4, mods: {counter: 12}}
+      - {rank: 3, points: 6, mods: {counter: 14}, job_points_only: true}
+      - {rank: 4, points: 8, mods: {counter: 16}, job_points_only: true}
+
+  fast_cast:
+    id:    22
+    trait: 12
+    tiers:
+      - {rank: 0, points: 2, mods: {fastcast: 5}}
+      - {rank: 1, points: 4, mods: {fastcast: 10}}
+      - {rank: 2, points: 6, mods: {fastcast: 15}}
+      - {rank: 3, points: 8, mods: {fastcast: 20}, job_points_only: true}
+      - {rank: 4, points: 10, mods: {fastcast: 25}, job_points_only: true}
+
+  skillchain_bonus:
+    id:     23
+    trait: 106
+    tiers:
+      - {rank: 1, points: 2, mods: {skillchainbonus: 8}}
+      - {rank: 2, points: 3, mods: {skillchainbonus: 12}}
+      - {rank: 3, points: 4, mods: {skillchainbonus: 16}}
+      - {rank: 4, points: 5, mods: {skillchainbonus: 20}, job_points_only: true}
+      - {rank: 5, points: 6, mods: {skillchainbonus: 23}, job_points_only: true}
+
+  double_attack:
+    id:    24
+    trait: 15
+    tiers:
+      - {rank: 0, points: 2, mods: {double_attack: 7}}
+      - {rank: 1, points: 4, trait: 16, mods: {triple_attack: 5}}
+
+  dual_wield:
+    id:    25
+    trait: 18
+    tiers:
+      - {rank: 1, points: 2, mods: {dual_wield: 10}}
+      - {rank: 2, points: 4, mods: {dual_wield: 15}}
+      - {rank: 3, points: 6, mods: {dual_wield: 25}}
+      - {rank: 4, points: 8, mods: {dual_wield: 30}}
+      - {rank: 5, points: 10, mods: {dual_wield: 35}, job_points_only: true}
+      - {rank: 6, points: 12, mods: {dual_wield: 40}, job_points_only: true}
+
+  zanshin:
+    id:    26
+    trait: 70
+    tiers:
+      - {rank: 1, points: 2, mods: {zanshin: 15}}
+
+  magic_burst_bonus:
+    id:     27
+    trait: 110
+    tiers:
+      - {rank: 1, points: 2, mods: {magic_burst_bonus_uncapped: 5}}
+      - {rank: 2, points: 3, mods: {magic_burst_bonus_uncapped: 7}}
+      - {rank: 3, points: 4, mods: {magic_burst_bonus_uncapped: 9}}
+      - {rank: 4, points: 5, mods: {magic_burst_bonus_uncapped: 11}, job_points_only: true}
+      - {rank: 5, points: 6, mods: {magic_burst_bonus_uncapped: 13}, job_points_only: true}
+
+  gilfinder:
+    id:    28
+    trait: 20
+    tiers:
+      - {rank: 1, points: 2, mods: {gilfinder: 1}}
+      - {rank: 2, points: 3, trait: 19, mods: {treasure_hunter: 1}}
