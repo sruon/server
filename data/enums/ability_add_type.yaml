@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=../schemas/enums/_enum.schema.json
+
+# What else a character needs before an ability is added to their list.
+
+meta:
+  flags: true
+  cpp:
+    underlying: uint16_t
+  lua:
+    table: xi.addType
+
+values:
+  none:        0x000
+  merit:       0x001
+  astral_flow: 0x002
+  main_only:   0x004
+  learned:     0x008
+  light_arts:  0x010
+  dark_arts:   0x020
+  jug_pet:     0x040
+  charm_pet:   0x080
+  avatar:      0x100
+  automaton:   0x200

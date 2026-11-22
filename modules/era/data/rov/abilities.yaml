@@ -1,0 +1,43 @@
+# Abilities as they were before the Rhapsodies of Vana'diel updates.
+
+abilities:
+  mnk:
+    # https://forum.square-enix.com/ffxi/threads/52969
+    # Boost: Revert recast from 60 to 15 seconds
+    boost: {recast: 15}
+    # Focus: Revert recast from 2 to 5 minutes
+    focus: {recast: 300}
+    # Dodge: Revert recast from 2 to 5 minutes
+    dodge: {recast: 300}
+    # Chakra: Revert recast from 3 to 5 minutes
+    chakra: {recast: 300}
+
+  pld:
+    # Rampart: Revert recast from 3 to 5 minutes
+    # https://forum.square-enix.com/ffxi/threads/56444-February-12-2020-%28JST%29-Version-Update
+    rampart: {recast: 300}
+
+  bst:
+    # Fight: Revert recast from 5 to 10 seconds
+    # https://forum.square-enix.com/ffxi/threads/50942
+    fight: {recast: 10}
+
+  rng:
+    # Velocity Shot: Revert recast from 1 minute to 5 minutes
+    # https://forum.square-enix.com/ffxi/threads/55263-April.-3-2019-%28JST%29-Version-Update
+    velocity_shot: {recast: 300}
+
+  drg:
+    # Jump / Spirit Jump, High Jump / Soul Jump: Revert to share a cooldown
+    # https://forum.square-enix.com/ffxi/threads/54901-January.-10-2019-%28JST%29-Version-Update
+    jump:        {recast_id: 158}
+    spirit_jump: {recast_id: 158}
+    high_jump:   {recast_id: 159}
+    soul_jump:   {recast_id: 159}
+
+  pup:
+    # https://forum.square-enix.com/ffxi/threads/50942
+    # Deploy: Revert recast from 5 to 10 seconds
+    deploy: {recast: 10}
+    # Retrieve: Revert recast from 5 to 10 seconds
+    retrieve: {recast: 10}

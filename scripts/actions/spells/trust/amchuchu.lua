@@ -34,45 +34,45 @@ spellObject.onMobSpawn = function(mob)
     local lvl = mob:getMainLvl()
 
     if lvl >= 5 then
-        mob:addGambit(ai.t.SELF, { ai.c.NO_MAX_RUNE, 0 }, { ai.r.JA, ai.s.RUNE_DAY, xi.ja.IGNIS })
+        mob:addGambit(ai.t.SELF, { ai.c.NO_MAX_RUNE, 0 }, { ai.r.JA, ai.s.RUNE_DAY, xi.jobAbility.IGNIS })
     end
 
     if lvl >= 10 then
-        mob:addGambit(ai.t.TARGET, { ai.c.ALWAYS,           0                    }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.PROVOKE   })
-        mob:addGambit(ai.t.TARGET, { ai.c.CAST_ELE_MA_SELF, xi.effect.VALLATION  }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.VALLATION })
+        mob:addGambit(ai.t.TARGET, { ai.c.ALWAYS,           0                    }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.PROVOKE   })
+        mob:addGambit(ai.t.TARGET, { ai.c.CAST_ELE_MA_SELF, xi.effect.VALLATION  }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.VALLATION })
     end
 
     if lvl >= 20 then
-        mob:addGambit(ai.t.SELF, { ai.c.NOT_STATUS, xi.effect.SWORDPLAY }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.SWORDPLAY })
+        mob:addGambit(ai.t.SELF, { ai.c.NOT_STATUS, xi.effect.SWORDPLAY }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.SWORDPLAY })
     end
 
     if lvl >= 25 then
-        mob:addGambit(ai.t.TARGET, { ai.c.LUNGE_MB_AVAILABLE, 0 }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.LUNGE })
-        mob:addGambit(ai.t.TARGET, { ai.c.LUNGE_MB_AVAILABLE, 0 }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.SWIPE })
+        mob:addGambit(ai.t.TARGET, { ai.c.LUNGE_MB_AVAILABLE, 0 }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.LUNGE })
+        mob:addGambit(ai.t.TARGET, { ai.c.LUNGE_MB_AVAILABLE, 0 }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.SWIPE })
     end
 
     if lvl >= 30 then
-        mob:addGambit(ai.t.SELF, { ai.c.NOT_STATUS, xi.effect.BERSERK }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.BERSERK })
+        mob:addGambit(ai.t.SELF, { ai.c.NOT_STATUS, xi.effect.BERSERK }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.BERSERK })
     end
 
     if lvl >= 50 then
-        mob:addGambit(ai.t.TARGET, { ai.c.CASTING_ELE_MA_AOE, 0 }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.VALIANCE })
+        mob:addGambit(ai.t.TARGET, { ai.c.CASTING_ELE_MA_AOE, 0 }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.VALIANCE })
     end
 
     if lvl >= 60 then
-        mob:addGambit(ai.t.SELF, { ai.c.NOT_STATUS, xi.effect.EMBOLDEN }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.EMBOLDEN })
+        mob:addGambit(ai.t.SELF, { ai.c.NOT_STATUS, xi.effect.EMBOLDEN }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.EMBOLDEN })
     end
 
     if lvl >= 65 then
-        mob:addGambit(ai.t.SELF, { ai.c.HPP_LT, 50 }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.VIVACIOUS_PULSE })
+        mob:addGambit(ai.t.SELF, { ai.c.HPP_LT, 50 }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.VIVACIOUS_PULSE })
     end
 
     if lvl >= 75 then
-        mob:addGambit(ai.t.SELF, { ai.c.HPP_LT, 75 }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.BATTUTA })
+        mob:addGambit(ai.t.SELF, { ai.c.HPP_LT, 75 }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.BATTUTA })
     end
 
     if lvl >= 95 then
-        mob:addGambit(ai.t.TARGET, { ai.c.CASTING_ELE_MA_AOE, 0 }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.ONE_FOR_ALL })
+        mob:addGambit(ai.t.TARGET, { ai.c.CASTING_ELE_MA_AOE, 0 }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.ONE_FOR_ALL })
     end
 
     mob:addGambit(ai.t.TARGET, { ai.c.NOT_STATUS, xi.effect.FLASH   }, { ai.r.MA, ai.s.SPECIFIC, xi.magic.spell.FLASH         })

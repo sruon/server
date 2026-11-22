@@ -15,12 +15,12 @@ end
 spellObject.onMobSpawn = function(mob)
     xi.trust.message(mob, xi.trust.messageOffset.SPAWN)
 
-    mob:addGambit(ai.t.SELF, { ai.c.NOT_STATUS, xi.effect.AGGRESSOR }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.AGGRESSOR })
-    mob:addGambit(ai.t.SELF, { ai.c.NOT_STATUS, xi.effect.BERSERK }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.BERSERK })
+    mob:addGambit(ai.t.SELF, { ai.c.NOT_STATUS, xi.effect.AGGRESSOR }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.AGGRESSOR })
+    mob:addGambit(ai.t.SELF, { ai.c.NOT_STATUS, xi.effect.BERSERK }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.BERSERK })
     mob:addGambit(ai.t.PARTY, { ai.l.OR(
                         { ai.c.NOT_STATUS, xi.effect.WARCRY },
                         { ai.c.NOT_STATUS, xi.effect.BLOOD_RAGE })
-                            }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.BLOOD_RAGE })
+                            }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.BLOOD_RAGE })
 
     mob:addListener('WEAPONSKILL_USE', 'AREUHAT_WEAPONSKILL_USE', function(mobArg, target, skill, tp, action, damage)
         if skill:getID() == xi.mobSkill.DRAGON_BREATH_3 then

@@ -485,7 +485,7 @@ auto CGambitsContainer::Tick(timer::time_point tick) -> Task<void>
                 // Basic validation: SPECIFIC must exist
                 if (action.select == G_SELECT::SPECIFIC)
                 {
-                    if (ability::GetAbility(action.select_arg) == nullptr)
+                    if (ability::GetAbility(static_cast<xi::JobAbility>(action.select_arg)) == nullptr)
                     {
                         canExecute[i] = false;
                     }
@@ -731,7 +731,7 @@ auto CGambitsContainer::Tick(timer::time_point tick) -> Task<void>
             }
             else if (action.reaction == G_REACTION::JA)
             {
-                auto* PAbility = ability::GetAbility(action.select_arg);
+                auto* PAbility = ability::GetAbility(static_cast<xi::JobAbility>(action.select_arg));
                 if (PAbility == nullptr)
                 {
                     // If SPECIFIC was validated earlier this shouldn't happen; skip this action.
@@ -745,13 +745,13 @@ auto CGambitsContainer::Tick(timer::time_point tick) -> Task<void>
                     auto currentTP = POwner->health.tp;
 
                     // clang-format off
-                        ABILITY wlist[5] =
+                        xi::JobAbility wlist[5] =
                         {
-                            ABILITY_CURING_WALTZ_V,
-                            ABILITY_CURING_WALTZ_IV,
-                            ABILITY_CURING_WALTZ_III,
-                            ABILITY_CURING_WALTZ_II,
-                            ABILITY_CURING_WALTZ,
+                            xi::JobAbility::CuringWaltzV,
+                            xi::JobAbility::CuringWaltzIv,
+                            xi::JobAbility::CuringWaltzIii,
+                            xi::JobAbility::CuringWaltzIi,
+                            xi::JobAbility::CuringWaltz,
                         };
                     // clang-format on
 
@@ -770,19 +770,19 @@ auto CGambitsContainer::Tick(timer::time_point tick) -> Task<void>
                         {
                             switch (PWaltzAbility->getID())
                             {
-                                case ABILITY_CURING_WALTZ_V:
+                                case xi::JobAbility::CuringWaltzV:
                                     tpCost = 800;
                                     break;
-                                case ABILITY_CURING_WALTZ_IV:
+                                case xi::JobAbility::CuringWaltzIv:
                                     tpCost = 650;
                                     break;
-                                case ABILITY_CURING_WALTZ_III:
+                                case xi::JobAbility::CuringWaltzIii:
                                     tpCost = 500;
                                     break;
-                                case ABILITY_CURING_WALTZ_II:
+                                case xi::JobAbility::CuringWaltzIi:
                                     tpCost = 350;
                                     break;
-                                case ABILITY_CURING_WALTZ:
+                                case xi::JobAbility::CuringWaltz:
                                     tpCost = 200;
                                     break;
                                 default:
@@ -792,7 +792,7 @@ auto CGambitsContainer::Tick(timer::time_point tick) -> Task<void>
                             if (tpCost != 0 && currentTP >= tpCost)
                             {
                                 PAbility = PWaltzAbility;
-                                controller->Ability(target->entityId(), PAbility->getID());
+                                controller->Ability(target->entityId(), std::to_underlying(PAbility->getID()));
                                 executedAnyAction = true;
                             }
                         }
@@ -812,7 +812,7 @@ auto CGambitsContainer::Tick(timer::time_point tick) -> Task<void>
                 {
                     if (target != nullptr)
                     {
-                        controller->Ability(target->entityId(), PAbility->getID());
+                        controller->Ability(target->entityId(), std::to_underlying(PAbility->getID()));
                         executedAnyAction = true;
                     }
                 }
@@ -828,7 +828,7 @@ auto CGambitsContainer::Tick(timer::time_point tick) -> Task<void>
                         {
                             if (PartyHasHealer())
                             {
-                                if (auto* PSambaAbility = ability::GetAbility(ABILITY_HASTE_SAMBA))
+                                if (auto* PSambaAbility = ability::GetAbility(xi::JobAbility::HasteSamba))
                                 {
                                     PAbility = PSambaAbility;
                                     tpCost   = 350;
@@ -836,7 +836,7 @@ auto CGambitsContainer::Tick(timer::time_point tick) -> Task<void>
                             }
                             else
                             {
-                                if (auto* PSambaAbility = ability::GetAbility(ABILITY_DRAIN_SAMBA_III))
+                                if (auto* PSambaAbility = ability::GetAbility(xi::JobAbility::DrainSambaIii))
                                 {
                                     PAbility = PSambaAbility;
                                     tpCost   = 400;
@@ -847,7 +847,7 @@ auto CGambitsContainer::Tick(timer::time_point tick) -> Task<void>
                         {
                             if (PartyHasHealer())
                             {
-                                if (auto* PSambaAbility = ability::GetAbility(ABILITY_HASTE_SAMBA))
+                                if (auto* PSambaAbility = ability::GetAbility(xi::JobAbility::HasteSamba))
                                 {
                                     PAbility = PSambaAbility;
                                     tpCost   = 350;
@@ -855,7 +855,7 @@ auto CGambitsContainer::Tick(timer::time_point tick) -> Task<void>
                             }
                             else
                             {
-                                if (auto* PSambaAbility = ability::GetAbility(ABILITY_DRAIN_SAMBA_II))
+                                if (auto* PSambaAbility = ability::GetAbility(xi::JobAbility::DrainSambaIi))
                                 {
                                     PAbility = PSambaAbility;
                                     tpCost   = 250;
@@ -864,7 +864,7 @@ auto CGambitsContainer::Tick(timer::time_point tick) -> Task<void>
                         }
                         else if (mLevel < 45 && mLevel > 35)
                         {
-                            if (auto* PSambaAbility = ability::GetAbility(ABILITY_DRAIN_SAMBA_II))
+                            if (auto* PSambaAbility = ability::GetAbility(xi::JobAbility::DrainSambaIi))
                             {
                                 PAbility = PSambaAbility;
                                 tpCost   = 250;
@@ -872,7 +872,7 @@ auto CGambitsContainer::Tick(timer::time_point tick) -> Task<void>
                         }
                         else
                         {
-                            if (auto* PSambaAbility = ability::GetAbility(ABILITY_DRAIN_SAMBA))
+                            if (auto* PSambaAbility = ability::GetAbility(xi::JobAbility::DrainSamba))
                             {
                                 PAbility = PSambaAbility;
                                 tpCost   = 100;
@@ -882,7 +882,7 @@ auto CGambitsContainer::Tick(timer::time_point tick) -> Task<void>
 
                     if (tpCost != 0 && (currentTP >= tpCost))
                     {
-                        controller->Ability(target->entityId(), PAbility->getID());
+                        controller->Ability(target->entityId(), std::to_underlying(PAbility->getID()));
                         executedAnyAction = true;
                     }
                 }
@@ -890,7 +890,7 @@ auto CGambitsContainer::Tick(timer::time_point tick) -> Task<void>
                 {
                     uint32 localVarElement = POwner->GetLocalVar("[Gambit]CastElement");
                     uint32 element         = battleutils::GetDayElement();
-                    auto   ability         = ABILITY_IGNIS;
+                    auto   ability         = xi::JobAbility::Ignis;
 
                     if (localVarElement > 0)
                     {
@@ -900,34 +900,34 @@ auto CGambitsContainer::Tick(timer::time_point tick) -> Task<void>
                     switch (element)
                     {
                         case ELEMENT_FIRE:
-                            ability = ABILITY_UNDA;
+                            ability = xi::JobAbility::Unda;
                             break;
                         case ELEMENT_ICE:
-                            ability = ABILITY_IGNIS;
+                            ability = xi::JobAbility::Ignis;
                             break;
                         case ELEMENT_WIND:
-                            ability = ABILITY_GELUS;
+                            ability = xi::JobAbility::Gelus;
                             break;
                         case ELEMENT_EARTH:
-                            ability = ABILITY_FLABRA;
+                            ability = xi::JobAbility::Flabra;
                             break;
                         case ELEMENT_THUNDER:
-                            ability = ABILITY_TELLUS;
+                            ability = xi::JobAbility::Tellus;
                             break;
                         case ELEMENT_WATER:
-                            ability = ABILITY_SULPOR;
+                            ability = xi::JobAbility::Sulpor;
                             break;
                         case ELEMENT_LIGHT:
-                            ability = ABILITY_TENEBRAE;
+                            ability = xi::JobAbility::Tenebrae;
                             break;
                         case ELEMENT_DARK:
-                            ability = ABILITY_LUX;
+                            ability = xi::JobAbility::Lux;
                             break;
                         default:
-                            ability = ABILITY_IGNIS;
+                            ability = xi::JobAbility::Ignis;
                             break;
                     }
-                    controller->Ability(target->entityId(), ability);
+                    controller->Ability(target->entityId(), std::to_underlying(ability));
                     executedAnyAction = true;
                 }
             }
@@ -1095,7 +1095,7 @@ auto CGambitsContainer::CheckTrigger(const CBattleEntity* triggerTarget, const G
             }
             case G_CONDITION::JA_ON_COOLDOWN:
             {
-                auto* PAbility = ability::GetAbility(static_cast<ABILITY>(predicate.condition_arg));
+                auto* PAbility = ability::GetAbility(static_cast<xi::JobAbility>(predicate.condition_arg));
                 predicateResults.push_back(PAbility->getRecastTime() > 0s);
                 continue;
             }

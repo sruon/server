@@ -455,12 +455,12 @@ local jobTable =
         },
         jobAbility =
         {
-            xi.ja.FIGHTERS_ROLL,
-            xi.ja.ROGUES_ROLL,
-            xi.ja.GALLANTS_ROLL,
-            xi.ja.CHAOS_ROLL,
-            xi.ja.HUNTERS_ROLL,
-            xi.ja.NINJA_ROLL,
+            xi.jobAbility.FIGHTERS_ROLL,
+            xi.jobAbility.ROGUES_ROLL,
+            xi.jobAbility.GALLANTS_ROLL,
+            xi.jobAbility.CHAOS_ROLL,
+            xi.jobAbility.HUNTERS_ROLL,
+            xi.jobAbility.NINJA_ROLL,
         },
         twoHour      = xi.mobSkill.WILD_CARD,
         isPetJob     = false,
@@ -748,7 +748,7 @@ entity.onMobFight = function(mob, target)
                 mob:useJobAbility(jobAbility[math.randomInt(1, #jobAbility)], mob)
                 -- TODO: Don't use a timer, add actual double up logic. Double ups each roll once.
                 mob:timer(4000, function(mobArg)
-                    mobArg:useJobAbility(xi.ja.DOUBLE_UP, mobArg)
+                    mobArg:useJobAbility(xi.jobAbility.DOUBLE_UP, mobArg)
                 end)
             elseif diceRoll == 14 then
                 mob:useMobAbility(jobInfo.twoHour)

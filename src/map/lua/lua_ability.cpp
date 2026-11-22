@@ -32,7 +32,7 @@ CLuaAbility::CLuaAbility(CAbility* PAbility)
     }
 }
 
-auto CLuaAbility::getID() -> uint16
+auto CLuaAbility::getID() -> xi::JobAbility
 {
     return m_PLuaAbility->getID();
 }
@@ -77,7 +77,7 @@ auto CLuaAbility::getAnimation() -> ActionAnimation
     return m_PLuaAbility->getAnimationID();
 }
 
-auto CLuaAbility::getAddType() -> uint16
+auto CLuaAbility::getAddType() -> xi::AbilityAddType
 {
     return m_PLuaAbility->getAddType();
 }
@@ -155,7 +155,7 @@ void CLuaAbility::Register()
 
 auto operator<<(std::ostream& os, const CLuaAbility& ability) -> std::ostream&
 {
-    std::string id = ability.m_PLuaAbility ? std::to_string(ability.m_PLuaAbility->getID()) : "nullptr";
+    std::string id = ability.m_PLuaAbility ? std::to_string(std::to_underlying(ability.m_PLuaAbility->getID())) : "nullptr";
     return os << "CLuaAbility(" << id << ")";
 }
 

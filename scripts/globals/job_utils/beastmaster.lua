@@ -404,7 +404,7 @@ xi.job_utils.beastmaster.useCallBeast = function(player, target, ability)
     -- Briefly put the recastId for READY/SIC (102) into a recast state to
     -- toggle charges accumulating. 102 is the shared recast id for all jug
     -- pet abilities and for SIC when using a charmed mob.
-    -- see sql/abilities_charges and sql_abilities
+    -- see the ready charges in data/abilities.yaml
     player:addRecast(xi.recast.ABILITY, 102, 1)
 end
 

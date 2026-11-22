@@ -1,0 +1,6559 @@
+# yaml-language-server: $schema=schemas/abilities.schema.json
+
+meta:
+  enum:
+    - section: abilities.*
+      cpp:
+        underlying: uint16_t
+        class:      JobAbility
+      lua:
+        table: xi.jobAbility
+
+abilities:
+  war:
+    mighty_strikes:
+      id:        16
+      animation: 33
+      recast:    3600
+      enmity:    {ce: 1, ve: 300}
+
+    provoke:
+      id:        35
+      level:     5
+      target:    [hostile]
+      range:     16
+      animation: 3
+      message:   119
+      recast:    30
+      recast_id: 5
+      enmity:    {ce: 1, ve: 1800}
+
+    berserk:
+      id:        31
+      level:     15
+      animation: 0
+      message:   115
+      recast:    300
+      recast_id: 1
+      enmity:    {ce: 1, ve: 80}
+      merit:     berserk_recast
+
+    defender:
+      id:        33
+      level:     25
+      animation: 1
+      message:   117
+      recast:    180
+      recast_id: 3
+      enmity:    {ce: 1, ve: 80}
+      merit:     defender_recast
+
+    warcry:
+      id:        32
+      level:     35
+      aoe:       true
+      radius:    14
+      animation: 28
+      message:   116
+      recast:    300
+      recast_id: 2
+      enmity:    {ce: 1, ve: 320}
+      merit:     warcry_recast
+
+    aggressor:
+      id:        34
+      level:     45
+      animation: 2
+      message:   118
+      recast:    300
+      recast_id: 4
+      enmity:    {ce: 1, ve: 80}
+      merit:     aggressor_recast
+
+    retaliation:
+      id:        226
+      level:     60
+      animation: 193
+      recast:    180
+      recast_id: 8
+      enmity:    {ce: 1, ve: 80}
+      content:   wotg
+
+    warriors_charge:
+      id:        149
+      level:     75
+      animation: 154
+      recast:    300
+      recast_id: 6
+      enmity:    {ce: 1, ve: 300}
+      merit:     warriors_charge
+      add_type:  [merit]
+      content:   toau
+
+    tomahawk:
+      id:        150
+      level:     75
+      target:    [hostile]
+      range:     10
+      category:  skill_finish
+      animation: 244
+      recast:    180
+      recast_id: 7
+      enmity:    {ce: 1, ve: 600}
+      merit:     tomahawk
+      add_type:  [merit]
+      content:   toau
+
+    restraint:
+      id:        252
+      level:     77
+      animation: 220
+      message:   100
+      recast:    600
+      recast_id: 9
+      enmity:    {ce: 1, ve: 300}
+      content:   abyssea
+
+    blood_rage:
+      id:        267
+      level:     87
+      aoe:       true
+      radius:    14
+      animation: 239
+      message:   319
+      recast:    300
+      recast_id: 11
+      enmity:    {ce: 1, ve: 320}
+      content:   abyssea
+
+    brazen_rush:
+      id:        323
+      level:     96
+      animation: 271
+      message:   100
+      recast:    3600
+      recast_id: 254
+      enmity:    {ce: 1, ve: 300}
+      content:   soa
+
+  mnk:
+    hundred_fists:
+      id:        17
+      animation: 34
+      recast:    3600
+      enmity:    {ce: 1, ve: 300}
+
+    boost:
+      id:        39
+      level:     5
+      animation: 7
+      message:   116
+      recast:    60
+      recast_id: 16
+      enmity:    {ce: 1, ve: 300}
+
+    dodge:
+      id:        37
+      level:     15
+      animation: 5
+      message:   121
+      recast:    120
+      recast_id: 14
+      enmity:    {ce: 1, ve: 320}
+      merit:     dodge_recast
+
+    focus:
+      id:        36
+      level:     25
+      animation: 4
+      message:   120
+      recast:    120
+      recast_id: 13
+      enmity:    {ce: 1, ve: 320}
+      merit:     focus_recast
+
+    chakra:
+      id:        38
+      level:     35
+      animation: 6
+      message:   102
+      recast:    180
+      recast_id: 15
+      enmity:    {ce: 1, ve: 320}
+      merit:     chakra_recast
+
+    chi_blast:
+      id:        82
+      level:     41
+      target:    [hostile]
+      range:     16
+      animation: 92
+      message:   110
+      recast:    180
+      recast_id: 18
+      content:   rotz
+
+    counterstance:
+      id:        40
+      level:     45
+      animation: 8
+      recast:    300
+      recast_id: 17
+      enmity:    {ce: 1, ve: 900}
+
+    footwork:
+      id:        227
+      level:     65
+      animation: 197
+      recast:    300
+      recast_id: 21
+      enmity:    {ce: 1, ve: 80}
+      content:   wotg
+
+    mantra:
+      id:        151
+      level:     75
+      aoe:       true
+      radius:    8
+      animation: 155
+      message:   441
+      recast:    600
+      recast_id: 19
+      enmity:    {ce: 1, ve: 60}
+      merit:     mantra
+      add_type:  [merit]
+      content:   toau
+
+    formless_strikes:
+      id:        152
+      level:     75
+      animation: 156
+      recast:    600
+      recast_id: 20
+      enmity:    {ce: 1, ve: 300}
+      merit:     formless_strikes
+      add_type:  [merit]
+      content:   toau
+
+    perfect_counter:
+      id:        253
+      level:     79
+      animation: 221
+      message:   100
+      recast:    60
+      recast_id: 22
+      enmity:    {ce: 1, ve: 1200}
+      content:   abyssea
+
+    impetus:
+      id:        269
+      level:     88
+      animation: 240
+      message:   100
+      recast:    300
+      recast_id: 31
+      enmity:    {ce: 1, ve: 320}
+      content:   abyssea
+
+    inner_strength:
+      id:        324
+      level:     96
+      animation: 272
+      message:   100
+      recast:    3600
+      recast_id: 254
+      content:   soa
+
+  whm:
+    benediction:
+      id:        18
+      aoe:       true
+      radius:    14
+      animation: 35
+      message:   102
+      recast:    3600
+
+    divine_seal:
+      id:        74
+      level:     15
+      animation: 81
+      recast:    600
+      recast_id: 26
+      enmity:    {ce: 0, ve: 80}
+      merit:     divine_seal_recast
+
+    afflatus_solace:
+      id:        245
+      level:     40
+      animation: 216
+      recast:    60
+      recast_id: 29
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [main_only]
+      content:   wotg
+
+    afflatus_misery:
+      id:        246
+      level:     40
+      animation: 217
+      recast:    60
+      recast_id: 30
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [main_only]
+      content:   wotg
+
+    martyr:
+      id:        153
+      level:     75
+      target:    [party]
+      range:     20
+      animation: 157
+      message:   102
+      recast:    600
+      recast_id: 27
+      enmity:    {ce: 1, ve: 300}
+      merit:     martyr
+      add_type:  [merit]
+      content:   toau
+
+    devotion:
+      id:        154
+      level:     75
+      target:    [party]
+      range:     10
+      animation: 158
+      message:   451
+      recast:    600
+      recast_id: 28
+      enmity:    {ce: 1, ve: 300}
+      merit:     devotion
+      add_type:  [merit]
+      content:   toau
+
+    divine_caress:
+      id:        270
+      level:     83
+      animation: 254
+      message:   100
+      recast:    60
+      recast_id: 32
+      content:   abyssea
+
+    sacrosanctity:
+      id:        271
+      level:     95
+      aoe:       true
+      radius:    14
+      animation: 268
+      message:   100
+      recast:    600
+      recast_id: 33
+      content:   abyssea
+
+    asylum:
+      id:        325
+      level:     96
+      target:    [hostile]
+      aoe:       true
+      radius:    14
+      animation: 273
+      message:   100
+      recast:    3600
+      recast_id: 254
+      content:   soa
+
+  blm:
+    manafont:
+      id:        19
+      animation: 36
+      recast:    3600
+      enmity:    {ce: 1, ve: 0}
+
+    elemental_seal:
+      id:        75
+      level:     15
+      animation: 80
+      recast:    600
+      recast_id: 38
+      enmity:    {ce: 0, ve: 80}
+      merit:     elemental_seal_recast
+
+    mana_wall:
+      id:        254
+      level:     76
+      animation: 222
+      message:   100
+      recast:    600
+      recast_id: 39
+      enmity:    {ce: 1, ve: 0}
+      content:   abyssea
+
+    cascade:
+      id:        388
+      level:     85
+      animation: 336
+      message:   100
+      recast:    60
+      recast_id: 12
+      content:   rov
+
+    enmity_douse:
+      id:        272
+      level:     87
+      target:    [hostile]
+      range:     10
+      animation: 238
+      message:   100
+      recast:    600
+      recast_id: 34
+      content:   abyssea
+
+    manawell:
+      id:        273
+      level:     95
+      target:    [self, party]
+      range:     20
+      animation: 252
+      message:   319
+      recast:    600
+      recast_id: 35
+      enmity:    {ce: 1, ve: 80}
+      content:   abyssea
+
+    subtle_sorcery:
+      id:        326
+      level:     96
+      animation: 274
+      message:   100
+      recast:    3600
+      recast_id: 254
+      content:   soa
+
+  rdm:
+    chainspell:
+      id:        20
+      animation: 37
+      recast:    3600
+      enmity:    {ce: 1, ve: 0}
+
+    convert:
+      id:        83
+      level:     40
+      animation: 88
+      recast:    600
+      recast_id: 49
+      enmity:    {ce: 1, ve: 80}
+      merit:     convert_recast
+      content:   rotz
+
+    composure:
+      id:        247
+      level:     50
+      animation: 215
+      recast:    300
+      recast_id: 50
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [main_only]
+      content:   wotg
+
+    saboteur:
+      id:        274
+      level:     83
+      animation: 258
+      recast:    180
+      recast_id: 36
+      enmity:    {ce: 1, ve: 80}
+      content:   abyssea
+
+    spontaneity:
+      id:        275
+      level:     95
+      target:    [self, party]
+      range:     20
+      animation: 259
+      recast:    600
+      recast_id: 37
+      enmity:    {ce: 1, ve: 80}
+      content:   abyssea
+
+    stymie:
+      id:        327
+      level:     96
+      animation: 275
+      message:   100
+      recast:    3600
+      recast_id: 254
+      enmity:    {ce: 1, ve: 80}
+      content:   soa
+
+  thf:
+    perfect_dodge:
+      id:        21
+      animation: 38
+      recast:    3600
+      enmity:    {ce: 1, ve: 0}
+
+    steal:
+      id:        41
+      level:     5
+      target:    [hostile]
+      range:     3
+      category:  skill_finish
+      animation: 181
+      message:   125
+      recast:    300
+      recast_id: 60
+      enmity:    {ce: 1, ve: 300}
+
+    sneak_attack:
+      id:        44
+      level:     15
+      animation: 17
+      recast:    60
+      recast_id: 64
+      enmity:    {ce: 1, ve: 0}
+      merit:     sneak_attack_recast
+
+    flee:
+      id:        42
+      level:     25
+      animation: 9
+      message:   126
+      recast:    300
+      recast_id: 62
+      enmity:    {ce: 1, ve: 80}
+      merit:     flee_recast
+
+    trick_attack:
+      id:        76
+      level:     30
+      animation: 82
+      recast:    60
+      recast_id: 66
+      enmity:    {ce: 1, ve: 0}
+      merit:     trick_attack_recast
+
+    mug:
+      id:        45
+      level:     35
+      target:    [hostile]
+      range:     3
+      category:  skill_finish
+      animation: 183
+      message:   129
+      recast:    300
+      recast_id: 65
+      enmity:    {ce: 1, ve: 300}
+
+    hide:
+      id:        43
+      level:     45
+      animation: 10
+      recast:    300
+      recast_id: 63
+      merit:     hide_recast
+
+    accomplice:
+      id:        84
+      level:     65
+      target:    [party]
+      range:     12
+      animation: 185
+      message:   526
+      recast:    300
+      recast_id: 69
+      content:   wotg
+
+    collaborator:
+      id:        236
+      level:     65
+      target:    [party]
+      range:     12
+      animation: 185
+      message:   526
+      recast:    60
+      recast_id: 69
+      content:   wotg
+
+    assassins_charge:
+      id:        155
+      level:     75
+      animation: 160
+      recast:    300
+      recast_id: 67
+      enmity:    {ce: 1, ve: 300}
+      merit:     assassins_charge
+      add_type:  [merit]
+      content:   toau
+
+    feint:
+      id:        156
+      level:     75
+      animation: 159
+      recast:    120
+      recast_id: 68
+      enmity:    {ce: 1, ve: 300}
+      merit:     feint
+      add_type:  [merit]
+      content:   toau
+
+    despoil:
+      id:        228
+      level:     77
+      target:    [hostile]
+      range:     3
+      category:  skill_finish
+      animation: 181
+      message:   125
+      recast:    300
+      recast_id: 61
+      enmity:    {ce: 1, ve: 300}
+      content:   abyssea
+
+    conspirator:
+      id:        276
+      level:     87
+      aoe:       true
+      radius:    14
+      animation: 237
+      recast:    300
+      recast_id: 40
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [main_only]
+      content:   abyssea
+
+    bully:
+      id:        321
+      level:     93
+      target:    [hostile]
+      range:     10
+      animation: 248
+      message:   127
+      recast:    180
+      recast_id: 240
+      enmity:    {ce: 1, ve: 300}
+      add_type:  [main_only]
+      content:   abyssea
+
+    larceny:
+      id:        328
+      level:     96
+      target:    [hostile]
+      range:     3
+      category:  skill_finish
+      animation: 181
+      message:   453
+      recast:    3600
+      recast_id: 254
+      content:   soa
+
+  pld:
+    invincible:
+      id:        22
+      animation: 18
+      recast:    3600
+      enmity:    {ce: 1, ve: 7200}
+
+    holy_circle:
+      id:        47
+      level:     5
+      aoe:       true
+      radius:    10
+      animation: 29
+      message:   131
+      recast:    300
+      recast_id: 74
+      enmity:    {ce: 1, ve: 20}
+      merit:     holy_circle_recast
+
+    shield_bash:
+      id:        46
+      level:     15
+      target:    [hostile]
+      range:     3
+      category:  skill_finish
+      animation: 185
+      recast:    60
+      recast_id: 73
+      enmity:    {ce: 450, ve: 900}
+      merit:     shield_bash_recast
+
+    sentinel:
+      id:        48
+      level:     30
+      animation: 11
+      recast:    300
+      recast_id: 75
+      enmity:    {ce: 1, ve: 900}
+      merit:     sentinel_recast
+
+    cover:
+      id:        79
+      level:     35
+      target:    [party]
+      range:     16
+      animation: 86
+      recast:    180
+      recast_id: 76
+      enmity:    {ce: 1, ve: 300}
+
+    rampart:
+      id:        92
+      level:     62
+      aoe:       true
+      radius:    14
+      animation: 91
+      message:   319
+      recast:    180
+      recast_id: 77
+      enmity:    {ce: 320, ve: 320}
+      merit:     rampart_recast
+      content:   rotz
+
+    majesty:
+      id:        394
+      level:     70
+      animation: 338
+      message:   100
+      recast:    60
+      recast_id: 150
+      enmity:    {ce: 0, ve: 340}
+      content:   rov
+
+    fealty:
+      id:        157
+      level:     75
+      animation: 148
+      recast:    600
+      recast_id: 78
+      enmity:    {ce: 1, ve: 300}
+      merit:     fealty
+      add_type:  [merit]
+      content:   toau
+
+    chivalry:
+      id:        158
+      level:     75
+      animation: 149
+      message:   451
+      recast:    600
+      recast_id: 79
+      enmity:    {ce: 1, ve: 300}
+      merit:     chivalry
+      add_type:  [merit]
+      content:   toau
+
+    divine_emblem:
+      id:        255
+      level:     78
+      animation: 223
+      message:   100
+      recast:    180
+      recast_id: 80
+      enmity:    {ce: 1, ve: 3600}
+      content:   abyssea
+
+    sepulcher:
+      id:        277
+      level:     87
+      target:    [hostile]
+      range:     10
+      animation: 233
+      message:   320
+      recast:    300
+      recast_id: 41
+      enmity:    {ce: 1, ve: 80}
+      content:   abyssea
+
+    palisade:
+      id:        278
+      level:     95
+      animation: 253
+      message:   100
+      recast:    300
+      recast_id: 42
+      enmity:    {ce: 900, ve: 1800}
+      content:   abyssea
+
+    intervene:
+      id:        329
+      level:     96
+      target:    [hostile]
+      range:     3
+      category:  skill_finish
+      animation: 120
+      message:   110
+      recast:    3600
+      recast_id: 254
+      enmity:    {ce: 0, ve: 340}
+      content:   soa
+
+  drk:
+    blood_weapon:
+      id:        23
+      animation: 19
+      recast:    3600
+      enmity:    {ce: 1, ve: 80}
+
+    arcane_circle:
+      id:        50
+      level:     5
+      aoe:       true
+      radius:    10
+      animation: 30
+      message:   134
+      recast:    300
+      recast_id: 86
+      enmity:    {ce: 1, ve: 20}
+      merit:     arcane_circle_recast
+
+    last_resort:
+      id:        51
+      level:     15
+      animation: 12
+      message:   115
+      recast:    300
+      recast_id: 87
+      enmity:    {ce: 1, ve: 1280}
+      merit:     last_resort_recast
+
+    weapon_bash:
+      id:        77
+      level:     20
+      target:    [hostile]
+      range:     3
+      category:  skill_finish
+      animation: 201
+      message:   110
+      recast:    180
+      recast_id: 88
+      enmity:    {ce: 1, ve: 900}
+      merit:     weapon_bash_effect
+
+    souleater:
+      id:        49
+      level:     30
+      animation: 20
+      recast:    360
+      recast_id: 85
+      enmity:    {ce: 1, ve: 1300}
+      merit:     souleater_recast
+
+    consume_mana:
+      id:        389
+      level:     55
+      animation: 337
+      recast:    60
+      recast_id: 95
+      enmity:    {ce: 1, ve: 1300}
+      content:   rov
+
+    dark_seal:
+      id:        159
+      level:     75
+      animation: 144
+      recast:    300
+      recast_id: 89
+      enmity:    {ce: 1, ve: 300}
+      merit:     dark_seal
+      add_type:  [merit]
+      content:   toau
+
+    diabolic_eye:
+      id:        160
+      level:     75
+      animation: 145
+      recast:    300
+      recast_id: 90
+      enmity:    {ce: 1, ve: 300}
+      merit:     diabolic_eye
+      add_type:  [merit]
+      content:   toau
+
+    nether_void:
+      id:        256
+      level:     78
+      animation: 224
+      message:   100
+      recast:    300
+      recast_id: 91
+      enmity:    {ce: 1, ve: 80}
+      content:   abyssea
+
+    arcane_crest:
+      id:        279
+      level:     87
+      target:    [hostile]
+      range:     10
+      animation: 234
+      message:   320
+      recast:    300
+      recast_id: 43
+      enmity:    {ce: 1, ve: 80}
+      content:   abyssea
+
+    scarlet_delirium:
+      id:        280
+      level:     95
+      animation: 250
+      message:   100
+      recast:    90
+      recast_id: 44
+      enmity:    {ce: 1, ve: 80}
+      content:   abyssea
+
+    soul_enslavement:
+      id:        330
+      level:     96
+      animation: 278
+      message:   100
+      recast:    3600
+      recast_id: 254
+      content:   soa
+
+  bst:
+    familiar:
+      id:          24
+      animation:   39
+      recast:    3600
+
+    charm:
+      id:        52
+      level:     1
+      target:    [hostile]
+      range:     16
+      animation: 13
+      recast:    15
+      recast_id: 97
+      enmity:    {ce: 320, ve: 0}
+
+    pet_commands:
+      id:         55
+      level:       1
+      animation:   0
+      recast_id: 255
+
+    fight:
+      id:        69
+      level:     1
+      target:    [hostile]
+      range:     16
+      animation: 83
+      recast:    5
+      recast_id: 100
+      add_type:  [jug_pet, charm_pet]
+
+    gauge:
+      id:        53
+      level:     10
+      target:    [hostile]
+      range:     20
+      animation: 14
+      recast:    30
+      recast_id: 98
+
+    heel:
+      id:        70
+      level:     10
+      animation: 83
+      recast:    5
+      recast_id: 101
+      enmity:    {ce: 1, ve: 300}
+      add_type:  [jug_pet, charm_pet]
+
+    reward:
+      id:        78
+      level:     12
+      target:    [self, pet]
+      range:     4
+      animation: 85
+      message:   102
+      recast:    90
+      recast_id: 103
+      merit:     reward_recast
+
+    stay:
+      id:        73
+      level:     15
+      animation: 83
+      recast:    5
+      recast_id: 101
+      enmity:    {ce: 1, ve: 300}
+      add_type:  [jug_pet, charm_pet]
+
+    call_beast:
+      id:        85
+      level:     23
+      animation: 83
+      recast:    300
+      recast_id: 104
+      enmity:    {ce: 1, ve: 0}
+      merit:     call_beast_recast
+      content:   rotz
+
+    bestial_loyalty:
+      id:        387
+      level:     23
+      animation: 83
+      message:   100
+      recast:    1200
+      recast_id: 94
+      enmity:    {ce: 1, ve: 0}
+      merit:     call_beast_recast
+      content:   soa
+
+    sic:
+      id:        72
+      level:     25
+      target:    [self, pet]
+      range:     4
+      animation: 83
+      recast:    90
+      recast_id: 102
+      merit:     sic_recast
+      add_type:  [charm_pet]
+
+    ready:
+      id:        251
+      level:     25
+      range:     4
+      animation: 83
+      recast_id: 102
+      merit:     sic_recast
+      add_type:  [jug_pet]
+      content:   wotg
+      charges:
+        tiers:
+          - {level: 25, max: 3, time: 30, merit: sic_recast}
+
+    foot_kick:
+      id:        672
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    dust_cloud:
+      id:        673
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    whirl_claws:
+      id:        674
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    head_butt:
+      id:        675
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    dream_flower:
+      id:        676
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    wild_oats:
+      id:        677
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    leaf_dagger:
+      id:        678
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    scream:
+      id:        679
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    roar:
+      id:        680
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    razor_fang:
+      id:        681
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    claw_cyclone:
+      id:        682
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    tail_blow:
+      id:        683
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    fireball:
+      id:        684
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    blockhead:
+      id:        685
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    brain_crush:
+      id:        686
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    infrasonics:
+      id:        687
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    secretion:
+      id:        688
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    8
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    lamb_chop:
+      id:        689
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    rage:
+      id:        690
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    8
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    sheep_charge:
+      id:        691
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    sheep_song:
+      id:        692
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    bubble_shower:
+      id:        693
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    bubble_curtain:
+      id:        694
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    8
+      animation: 0
+      recast:    3
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    big_scissors:
+      id:        695
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    scissor_guard:
+      id:        696
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    8
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    metallic_body:
+      id:        697
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    8
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    needleshot:
+      id:        698
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    random_needles:
+      id:        699
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    3
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    frogkick:
+      id:        700
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    spore:
+      id:        701
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    queasyshroom:
+      id:        702
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    numbshroom:
+      id:        703
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    shakeshroom:
+      id:        704
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    silence_gas:
+      id:        705
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    3
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    dark_spore:
+      id:        706
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    3
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    power_attack:
+      id:        707
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    hi_freq_field:
+      id:        708
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    rhino_attack:
+      id:        709
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    rhino_guard:
+      id:        710
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    spoil:
+      id:        711
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    cursed_sphere:
+      id:        712
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    venom:
+      id:        713
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    sandblast:
+      id:        714
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    8
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    sandpit:
+      id:        715
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    venom_spray:
+      id:        716
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    mandibular_bite:
+      id:        717
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    soporific:
+      id:        718
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    gloeosuccus:
+      id:        719
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    palsy_pollen:
+      id:        720
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    geist_wall:
+      id:        721
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    numbing_noise:
+      id:        722
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    nimble_snap:
+      id:        723
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    cyclotail:
+      id:        724
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    toxic_spit:
+      id:        725
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    double_claw:
+      id:        726
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    grapple:
+      id:        727
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    spinning_top:
+      id:        728
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    filamented_hold:
+      id:        729
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    chaotic_eye:
+      id:        730
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    blaster:
+      id:        731
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    suction:
+      id:        732
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    drainkiss:
+      id:        733
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    snow_cloud:
+      id:        734
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    wild_carrot:
+      id:        735
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    sudden_lunge:
+      id:        736
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    spiral_spin:
+      id:        737
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    12
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    noisome_powder:
+      id:        738
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    chomp_rush:
+      id:        745
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    3
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    purulent_ooze:
+      id:        747
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    corrosive_ooze:
+      id:        748
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    3
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    back_heel:
+      id:        749
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    jettatura:
+      id:        750
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    3
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    choke_breath:
+      id:        751
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    fantod:
+      id:        752
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    tortoise_stomp:
+      id:        753
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    harden_shell:
+      id:        754
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    8
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    aqua_breath:
+      id:        755
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    3
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    wing_slap:
+      id:        756
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    beak_lunge:
+      id:        757
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    intimidate:
+      id:        758
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    recoil_dive:
+      id:        759
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    7
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    water_wall:
+      id:        760
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    8
+      animation: 0
+      recast:    3
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    sensilla_blades:
+      id:        761
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    tegmina_buffet:
+      id:        762
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    6
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    molting_plumage:
+      id:        763
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    swooping_frenzy:
+      id:        764
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    sweeping_gouge:
+      id:        765
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    7
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    zealous_snort:
+      id:        766
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    8
+      animation: 0
+      recast:    3
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    pentapeck:
+      id:        767
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    3
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    tickling_tendrils:
+      id:        768
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    stink_bomb:
+      id:        769
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    nectarous_deluge:
+      id:        770
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    nepenthic_plunge:
+      id:        771
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    3
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    somersault:
+      id:        772
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    foul_waters:
+      id:        774
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    14
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    pestilent_plume:
+      id:        775
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    14
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    pecking_flurry:
+      id:        776
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    sickle_slash:
+      id:        777
+      level:     25
+      target:    [self, pet]
+      range:     3
+      aoe:       true
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    acid_spray:
+      id:        778
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 2, ve: 60}
+
+    spider_web:
+      id:        779
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 2, ve: 60}
+
+    infected_leech:
+      id:        781
+      level:     25
+      target:    [self, pet]
+      range:     3
+      aoe:       true
+      radius:    10
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    gloom_spray:
+      id:        782
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 2, ve: 60}
+
+    disembowel:
+      id:        786
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    14
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    extirpating_salvo:
+      id:        787
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    venom_shower:
+      id:        788
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    mega_scissors:
+      id:        789
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    frenzied_rage:
+      id:        790
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    8
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 2, ve: 60}
+
+    rhinowrecker:
+      id:        791
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 2, ve: 60}
+
+    fluid_toss:
+      id:        792
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 2, ve: 60}
+
+    fluid_spread:
+      id:        793
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 2, ve: 60}
+
+    digest:
+      id:        794
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 2, ve: 60}
+
+    crossthrash:
+      id:        795
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    14
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 2, ve: 60}
+
+    predatory_glare:
+      id:        796
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    14
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 2, ve: 60}
+
+    hoof_volley:
+      id:        797
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    3
+      recast_id: 102
+      enmity:    {ce: 2, ve: 60}
+
+    nihility_song:
+      id:        798
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    12
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 2, ve: 60}
+
+    scythe_tail:
+      id:        743
+      level:     26
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    ripper_fang:
+      id:        744
+      level:     26
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    1
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    charged_whisker:
+      id:        746
+      level:     26
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    tame:
+      id:        54
+      level:     30
+      target:    [hostile]
+      range:     16
+      animation: 15
+      recast:    600
+      recast_id: 99
+      merit:     tame_recast
+
+    leave:
+      id:        71
+      level:     35
+      animation: 83
+      recast:    5
+      recast_id: 101
+      enmity:    {ce: 1, ve: 300}
+      add_type:  [jug_pet, charm_pet]
+
+    snarl:
+      id:        225
+      level:     45
+      target:    [self, pet]
+      range:     10
+      animation: 87
+      message:   528
+      recast:    30
+      recast_id: 107
+      add_type:  [jug_pet, charm_pet]
+      content:   wotg
+
+    feral_howl:
+      id:        161
+      level:     75
+      target:    [hostile]
+      range:     16
+      animation: 146
+      recast:    300
+      recast_id: 105
+      enmity:    {ce: 1, ve: 600}
+      merit:     feral_howl
+      add_type:  [merit]
+      content:   toau
+
+    killer_instinct:
+      id:        162
+      level:     75
+      aoe:       true
+      radius:    8
+      animation: 147
+      recast:    300
+      recast_id: 106
+      enmity:    {ce: 1, ve: 80}
+      merit:     killer_instinct
+      add_type:  [merit]
+      content:   toau
+
+    spur:
+      id:        281
+      level:     83
+      target:    [self, pet]
+      range:     4
+      animation: 255
+      message:   100
+      recast:    180
+      recast_id: 45
+      content:   abyssea
+
+    run_wild:
+      id:        282
+      level:     93
+      range:     4
+      animation: 247
+      message:   100
+      recast:    900
+      recast_id: 46
+      content:   abyssea
+
+    unleash:
+      id:        331
+      level:     96
+      animation: 279
+      message:   100
+      recast:    3600
+      recast_id: 254
+      content:   soa
+
+  brd:
+    soul_voice:
+      id:        25
+      animation: 40
+      recast:    3600
+      enmity:    {ce: 1, ve: 0}
+
+    pianissimo:
+      id:        229
+      level:     20
+      animation: 194
+      recast:    5
+      recast_id: 112
+      enmity:    {ce: 1, ve: 60}
+      content:   wotg
+
+    acid_mist:
+      id:        740
+      level:     25
+      target:    [self, pet]
+      range:     3
+      radius:    10
+      animation: 0
+      recast:    2
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    tp_drainkiss:
+      id:        741
+      level:     25
+      target:    [self, pet]
+      range:     3
+      animation: 0
+      recast:    3
+      recast_id: 102
+      enmity:    {ce: 1, ve: 60}
+
+    nightingale:
+      id:        163
+      level:     75
+      animation: 161
+      recast:    600
+      recast_id: 109
+      enmity:    {ce: 1, ve: 300}
+      merit:     nightingale
+      add_type:  [merit]
+      content:   toau
+
+    troubadour:
+      id:        164
+      level:     75
+      animation: 162
+      recast:    600
+      recast_id: 110
+      enmity:    {ce: 1, ve: 300}
+      merit:     troubadour
+      add_type:  [merit]
+      content:   toau
+
+    tenuto:
+      id:        283
+      level:     83
+      animation: 257
+      recast:    5
+      recast_id: 47
+      content:   abyssea
+
+    marcato:
+      id:        284
+      level:     95
+      animation: 251
+      recast:    600
+      recast_id: 48
+      content:   abyssea
+
+    clarion_call:
+      id:        332
+      level:     96
+      animation: 280
+      message:   100
+      recast:    3600
+      recast_id: 254
+      content:   soa
+
+  rng:
+    eagle_eye_shot:
+      id:        26
+      target:    [hostile]
+      range:     20
+      category:  skill_finish
+      animation: 186
+      message:   110
+      recast:    3600
+
+    sharpshot:
+      id:        59
+      level:     1
+      animation: 22
+      recast:    300
+      recast_id: 124
+      enmity:    {ce: 1, ve: 600}
+      merit:     sharpshot_recast
+
+    scavenge:
+      id:        56
+      level:     10
+      animation: 21
+      recast:    60
+      recast_id: 121
+      enmity:    {ce: 1, ve: 80}
+      merit:     scavenge_effect
+
+    camouflage:
+      id:        58
+      level:     20
+      animation: 10
+      recast:    300
+      recast_id: 123
+      enmity:    {ce: 1, ve: 80}
+      merit:     camouflage_recast
+
+    barrage:
+      id:        60
+      level:     30
+      animation: 23
+      recast:    300
+      recast_id: 125
+      enmity:    {ce: 1, ve: 600}
+
+    shadowbind:
+      id:        57
+      level:     40
+      target:    [hostile]
+      range:     20
+      category:  skill_finish
+      animation: 188
+      recast:    300
+      recast_id: 122
+      enmity:    {ce: 1, ve: 800}
+
+    velocity_shot:
+      id:        224
+      level:     45
+      animation: 186
+      recast:    60
+      recast_id: 129
+      enmity:    {ce: 1, ve: 300}
+      add_type:  [main_only]
+      content:   wotg
+
+    unlimited_shot:
+      id:        86
+      level:     51
+      animation: 90
+      recast:    180
+      recast_id: 126
+      enmity:    {ce: 1, ve: 300}
+      merit:     unlimited_shot_recast
+      content:   rotz
+
+    stealth_shot:
+      id:        165
+      level:     75
+      animation: 150
+      recast:    300
+      recast_id: 127
+      enmity:    {ce: 1, ve: 300}
+      merit:     stealth_shot
+      add_type:  [merit]
+      content:   toau
+
+    flashy_shot:
+      id:        166
+      level:     75
+      animation: 151
+      recast:    600
+      recast_id: 128
+      enmity:    {ce: 1, ve: 300}
+      merit:     flashy_shot
+      add_type:  [merit]
+      content:   toau
+
+    double_shot:
+      id:        257
+      level:     79
+      animation: 225
+      recast:    180
+      recast_id: 126
+      enmity:    {ce: 1, ve: 80}
+      content:   abyssea
+
+    bounty_shot:
+      id:        285
+      level:     87
+      target:    [hostile]
+      range:     20
+      category:  skill_finish
+      animation: 189
+      message:   100
+      recast:    60
+      recast_id: 51
+      content:   abyssea
+
+    decoy_shot:
+      id:        286
+      level:     95
+      target:    [hostile]
+      animation: 261
+      message:   100
+      recast:    300
+      recast_id: 52
+      content:   abyssea
+
+    overkill:
+      id:        333
+      level:     96
+      animation: 281
+      message:   100
+      recast:    3600
+      recast_id: 254
+      content:   soa
+
+  sam:
+    meikyo_shisui:
+      id:        27
+      animation: 96
+      recast:    3600
+      enmity:    {ce: 1, ve: 300}
+
+    warding_circle:
+      id:        64
+      level:     5
+      aoe:       true
+      radius:    10
+      animation: 31
+      message:   148
+      recast:    300
+      recast_id: 135
+      enmity:    {ce: 1, ve: 20}
+      merit:     warding_circle_recast
+
+    third_eye:
+      id:        62
+      level:     15
+      animation: 24
+      recast:    60
+      recast_id: 133
+      enmity:    {ce: 1, ve: 0}
+      merit:     third_eye_recast
+
+    hasso:
+      id:        173
+      level:     25
+      animation: 163
+      recast:    60
+      recast_id: 138
+      enmity:    {ce: 1, ve: 300}
+      content:   toau
+
+    meditate:
+      id:        63
+      level:     30
+      animation: 25
+      recast:    180
+      recast_id: 134
+      enmity:    {ce: 320, ve: 0}
+      merit:     meditate_recast
+
+    seigan:
+      id:        174
+      level:     35
+      animation: 164
+      recast:    60
+      recast_id: 139
+      enmity:    {ce: 1, ve: 300}
+      content:   toau
+
+    sekkanoki:
+      id:        230
+      level:     40
+      animation: 199
+      recast:    300
+      recast_id: 140
+      enmity:    {ce: 1, ve: 80}
+      content:   wotg
+
+    konzen_ittai:
+      id:        320
+      level:     65
+      target:    [hostile]
+      range:     3
+      category:  dancer
+      animation: 39
+      message:   529
+      recast:    180
+      recast_id: 132
+      enmity:    {ce: 1, ve: 300}
+      content:   abyssea
+
+    shikikoyo:
+      id:        167
+      level:     75
+      target:    [party]
+      range:     10
+      animation: 152
+      message:   452
+      recast:    300
+      recast_id: 136
+      enmity:    {ce: 1, ve: 300}
+      merit:     shikikoyo
+      add_type:  [merit]
+      content:   toau
+
+    blade_bash:
+      id:        168
+      level:     75
+      target:    [hostile]
+      range:     3
+      category:  skill_finish
+      animation: 202
+      message:   110
+      recast:    180
+      recast_id: 137
+      enmity:    {ce: 1, ve: 900}
+      merit:     blade_bash
+      add_type:  [merit]
+      content:   toau
+
+    sengikori:
+      id:        258
+      level:     77
+      animation: 226
+      message:   100
+      recast:    180
+      recast_id: 141
+      enmity:    {ce: 1, ve: 80}
+      content:   abyssea
+
+    hamanoha:
+      id:        287
+      level:     87
+      target:    [hostile]
+      range:     10
+      animation: 249
+      message:   100
+      recast:    300
+      recast_id: 53
+      content:   abyssea
+
+    hagakure:
+      id:        288
+      level:     95
+      animation: 249
+      recast:    180
+      recast_id: 54
+      enmity:    {ce: 1, ve: 80}
+      content:   abyssea
+
+    yaegasumi:
+      id:        334
+      level:     96
+      animation: 282
+      message:   100
+      recast:    3600
+      recast_id: 254
+      content:   soa
+
+  nin:
+    mijin_gakure:
+      id:        28
+      target:    [hostile]
+      range:     16
+      animation: 93
+      message:   110
+      recast:    3600
+
+    yonin:
+      id:        248
+      level:     40
+      animation: 218
+      recast:    180
+      recast_id: 146
+      enmity:    {ce: 1, ve: 600}
+      add_type:  [main_only]
+      content:   wotg
+
+    innin:
+      id:        249
+      level:     40
+      animation: 219
+      recast:    180
+      recast_id: 147
+      enmity:    {ce: 1, ve: 60}
+      add_type:  [main_only]
+      content:   wotg
+
+    sange:
+      id:        171
+      level:     75
+      animation: 23
+      recast:    180
+      recast_id: 145
+      enmity:    {ce: 1, ve: 0}
+      merit:     sange
+      add_type:  [merit]
+      content:   toau
+
+    futae:
+      id:        259
+      level:     77
+      animation: 227
+      recast:    180
+      recast_id: 148
+      enmity:    {ce: 1, ve: 0}
+      content:   abyssea
+
+    issekigan:
+      id:        291
+      level:     95
+      animation: 246
+      recast:    300
+      recast_id: 57
+      enmity:    {ce: 1, ve: 1200}
+      content:   abyssea
+
+    mikage:
+      id:        335
+      level:     96
+      animation: 283
+      recast:    3600
+      recast_id: 254
+      enmity:    {ce: 1, ve: 80}
+      content:   soa
+
+  drg:
+    spirit_surge:
+      id:        29
+      animation: 97
+      recast:    3600
+      content:   cop
+
+    call_wyvern:
+      id:        61
+      level:     1
+      animation: 94
+      recast:    1200
+      recast_id: 163
+      enmity:    {ce: 1, ve: 300}
+      add_type:  [main_only]
+
+    dismiss:
+      id:        87
+      level:     1
+      animation: 94
+      recast:    300
+      recast_id: 161
+      add_type:  [main_only]
+
+    ancient_circle:
+      id:        65
+      level:     5
+      aoe:       true
+      radius:    10
+      animation: 32
+      message:   150
+      recast:    300
+      recast_id: 157
+      enmity:    {ce: 1, ve: 20}
+      merit:     ancient_circle_recast
+
+    jump:
+      id:        66
+      level:     10
+      target:    [hostile]
+      range:     8
+      category:  skill_finish
+      animation: 204
+      message:   110
+      recast:    60
+      recast_id: 158
+      merit:     jump_recast
+
+    spirit_link:
+      id:        80
+      level:     25
+      animation: 83
+      message:   318
+      recast:    90
+      recast_id: 162
+      merit:     spirit_link_recast
+      add_type:  [main_only]
+      content:   rotz
+
+    high_jump:
+      id:        67
+      level:     35
+      target:    [hostile]
+      range:     10
+      category:  skill_finish
+      animation: 209
+      message:   110
+      recast:    120
+      recast_id: 159
+      merit:     high_jump_recast
+
+    super_jump:
+      id:        68
+      level:     50
+      target:    [hostile]
+      range:     12
+      category:  skill_finish
+      animation: 214
+      message:   110
+      recast:    180
+      recast_id: 160
+      merit:     super_jump_recast
+
+    spirit_bond:
+      id:        393
+      level:     65
+      target:    [self, pet]
+      range:     4
+      animation: 86
+      message:   100
+      recast:    60
+      recast_id: 149
+      content:   rov
+
+    deep_breathing:
+      id:        169
+      level:     75
+      animation: 153
+      recast:    300
+      recast_id: 164
+      merit:     deep_breathing
+      add_type:  [merit]
+      content:   toau
+
+    angon:
+      id:        170
+      level:     75
+      target:    [hostile]
+      range:     10
+      category:  skill_finish
+      animation: 245
+      message:   127
+      recast:    180
+      recast_id: 165
+      enmity:    {ce: 1, ve: 600}
+      merit:     angon
+      add_type:  [merit]
+      content:   toau
+
+    spirit_jump:
+      id:        260
+      level:     77
+      target:    [hostile]
+      range:     8
+      category:  skill_finish
+      animation: 204
+      message:   100
+      recast:    60
+      recast_id: 166
+      enmity:    {ce: 1, ve: 80}
+      merit:     jump_recast
+      content:   abyssea
+
+    soul_jump:
+      id:        293
+      level:     85
+      target:    [hostile]
+      range:     8
+      category:  skill_finish
+      animation: 209
+      message:   100
+      recast:    120
+      recast_id: 167
+      enmity:    {ce: 1, ve: 0}
+      merit:     high_jump_recast
+      content:   abyssea
+
+    dragon_breaker:
+      id:        292
+      level:     87
+      target:    [hostile]
+      range:     10
+      animation: 236
+      message:   320
+      recast:    300
+      recast_id: 58
+      content:   abyssea
+
+    smiting_breath:
+      id:        318
+      level:     90
+      target:    [hostile]
+      range:     10
+      animation: 94
+      message:   100
+      recast:    60
+      recast_id: 238
+      enmity:    {ce: 1, ve: 80}
+      content:   abyssea
+
+    restoring_breath:
+      id:        319
+      level:     90
+      animation: 94
+      message:   100
+      recast:    60
+      recast_id: 239
+      enmity:    {ce: 1, ve: 80}
+      content:   abyssea
+
+    steady_wing:
+      id:        295
+      level:     95
+      animation: 262
+      message:   100
+      recast:    300
+      recast_id: 70
+      content:   abyssea
+
+    fly_high:
+      id:        336
+      level:     96
+      animation: 284
+      recast:    3600
+      recast_id: 254
+      content:   soa
+
+  smn:
+    astral_flow:
+      id:          30
+      animation:   95
+      recast:    3600
+
+    katabatic_blades:
+      id:        962
+      enum_only: true
+
+    lunatic_voice:
+      id:        963
+      enum_only: true
+
+    chinook:
+      id:        965
+      enum_only: true
+
+    bitter_elegy:
+      id:        966
+      enum_only: true
+
+    winds_blessing:
+      id:        969
+      enum_only: true
+
+    assault:
+      id:        88
+      level:     1
+      target:    [hostile]
+      range:     20
+      animation: 94
+      recast:    5
+      recast_id: 170
+      add_type:  [avatar]
+
+    retreat:
+      id:        89
+      level:     1
+      animation: 94
+      recast:    5
+      recast_id: 171
+      enmity:    {ce: -10, ve: 0}
+      add_type:  [avatar]
+
+    release:
+      id:        90
+      level:     1
+      animation: 94
+      recast:    5
+      recast_id: 172
+      enmity:    {ce: -10, ve: 0}
+      add_type:  [avatar]
+
+    blood_pact_rage:
+      id:        91
+      level:     1
+      range:     20
+      animation: 0
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 300}
+      add_type:  [avatar]
+
+    blood_pact_ward:
+      id:        172
+      level:     1
+      range:     20
+      animation: 0
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 300}
+      add_type:  [avatar]
+
+    healing_ruby:
+      id:        512
+      level:     1
+      target:    [self, party]
+      range:     20
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+
+    searing_light:
+      id:        518
+      level:     1
+      target:    [hostile]
+      range:     5
+      aoe:       true
+      radius:    10
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+      add_type:  [astral_flow]
+
+    regal_scratch:
+      id:        521
+      level:     1
+      target:    [hostile]
+      range:     3
+      animation: 5
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+      content:   soa
+
+    altanas_favor:
+      id:        527
+      level:     1
+      range:     20
+      radius:    20
+      animation: 0
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+      add_type:  [astral_flow]
+      content:   soa
+
+    howling_moon:
+      id:        536
+      level:     1
+      target:    [hostile]
+      range:     5
+      aoe:       true
+      radius:    10
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+      add_type:  [astral_flow]
+
+    punch:
+      id:        544
+      level:     1
+      target:    [hostile]
+      range:     3
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    inferno:
+      id:        552
+      level:     1
+      target:    [hostile]
+      range:     5
+      aoe:       true
+      radius:    10
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+      add_type:  [astral_flow]
+
+    rock_throw:
+      id:        560
+      level:     1
+      target:    [hostile]
+      range:     12
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    earthen_fury:
+      id:        568
+      level:     1
+      target:    [hostile]
+      range:     5
+      aoe:       true
+      radius:    10
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+      add_type:  [astral_flow]
+
+    barracuda_dive:
+      id:        576
+      level:     1
+      target:    [hostile]
+      range:     3
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    tidal_wave:
+      id:        584
+      level:     1
+      target:    [hostile]
+      range:     5
+      aoe:       true
+      radius:    10
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+      add_type:  [astral_flow]
+
+    claw:
+      id:        592
+      level:     1
+      target:    [hostile]
+      range:     3
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    aerial_blast:
+      id:        600
+      level:     1
+      target:    [hostile]
+      range:     5
+      aoe:       true
+      radius:    10
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+      add_type:  [astral_flow]
+
+    axe_kick:
+      id:        608
+      level:     1
+      target:    [hostile]
+      range:     3
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    diamond_dust:
+      id:        616
+      level:     1
+      target:    [hostile]
+      range:     5
+      radius:    10
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+      add_type:  [astral_flow]
+
+    shock_strike:
+      id:        624
+      level:     1
+      target:    [hostile]
+      range:     3
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    judgment_bolt:
+      id:        632
+      level:     1
+      target:    [hostile]
+      range:     5
+      radius:    10
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+      add_type:  [astral_flow]
+
+    camisado:
+      id:        656
+      level:     1
+      target:    [hostile]
+      range:     10
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    ruinous_omen:
+      id:        664
+      level:     1
+      target:    [hostile]
+      range:     5
+      radius:    10
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+      add_type:  [astral_flow]
+
+    clarsach_call:
+      id:        960
+      level:     1
+      target:    [hostile]
+      range:     5
+      aoe:       true
+      radius:    10
+      animation: 175
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+      add_type:  [astral_flow]
+      content:   rov
+
+    welt:
+      id:        961
+      level:     1
+      target:    [hostile]
+      range:     3
+      animation: 176
+      message:   326
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 0, ve: 60}
+      content:   rov
+
+    poison_nails:
+      id:        513
+      level:     5
+      target:    [hostile]
+      range:     3
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    moonlit_charge:
+      id:        528
+      level:     5
+      target:    [hostile]
+      range:     3
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    crescent_fang:
+      id:        529
+      level:     10
+      target:    [hostile]
+      range:     3
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    fire_ii:
+      id:        545
+      level:     10
+      target:    [hostile]
+      range:     10
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    stone_ii:
+      id:        561
+      level:     10
+      target:    [hostile]
+      range:     10
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    water_ii:
+      id:        577
+      level:     10
+      target:    [hostile]
+      range:     10
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    aero_ii:
+      id:        593
+      level:     10
+      target:    [hostile]
+      range:     10
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    blizzard_ii:
+      id:        609
+      level:     10
+      target:    [hostile]
+      range:     10
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    thunder_ii:
+      id:        625
+      level:     10
+      target:    [hostile]
+      range:     10
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    raise_ii:
+      id:        525
+      level:     15
+      target:    [self, party, dead]
+      range:     20
+      animation: 160
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+      content:   soa
+
+    thunderspark:
+      id:        627
+      level:     19
+      target:    [hostile]
+      range:     5
+      radius:    10
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    somnolence:
+      id:        657
+      level:     20
+      target:    [hostile]
+      range:     5
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+
+    lunar_cry:
+      id:        530
+      level:     21
+      target:    [hostile]
+      range:     12
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+
+    rock_buster:
+      id:        562
+      level:     21
+      target:    [hostile]
+      range:     3
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    burning_strike:
+      id:        546
+      level:     23
+      target:    [hostile]
+      range:     3
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    shining_ruby:
+      id:        514
+      level:     24
+      range:     20
+      radius:    14
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+
+    mewing_lullaby:
+      id:        522
+      level:     25
+      target:    [hostile]
+      range:     5
+      radius:    10
+      animation: 61
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+      content:   soa
+
+    aerial_armor:
+      id:        596
+      level:     25
+      range:     20
+      radius:    14
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+
+    roundhouse:
+      id:        964
+      level:     25
+      target:    [hostile]
+      range:     3
+      animation: 179
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 0, ve: 60}
+      content:   rov
+
+    tail_whip:
+      id:        578
+      level:     26
+      target:    [hostile]
+      range:     3
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    frost_armor:
+      id:        610
+      level:     28
+      range:     20
+      radius:    14
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+
+    nightmare:
+      id:        658
+      level:     29
+      target:    [hostile]
+      range:     5
+      radius:    10
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+
+    reraise_ii:
+      id:        526
+      level:     30
+      target:    [self, party]
+      range:     20
+      animation: 80
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+      content:   soa
+
+    double_punch:
+      id:        547
+      level:     30
+      target:    [hostile]
+      range:     3
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    rolling_thunder:
+      id:        626
+      level:     31
+      range:     20
+      radius:    14
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+
+    lunar_roar:
+      id:        531
+      level:     32
+      target:    [hostile]
+      range:     5
+      radius:    10
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+
+    slowga:
+      id:        580
+      level:     33
+      target:    [hostile]
+      range:     5
+      radius:    10
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+
+    megalith_throw:
+      id:        563
+      level:     35
+      target:    [hostile]
+      range:     12
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    whispering_wind:
+      id:        594
+      level:     36
+      range:     20
+      radius:    14
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+
+    ultimate_terror:
+      id:        659
+      level:     37
+      target:    [hostile]
+      range:     5
+      radius:    10
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+
+    crimson_howl:
+      id:        548
+      level:     38
+      range:     20
+      radius:    14
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+
+    sleepga:
+      id:        611
+      level:     39
+      target:    [hostile]
+      range:     5
+      radius:    10
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+
+    lightning_armor:
+      id:        628
+      level:     42
+      range:     20
+      radius:    14
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+
+    ecliptic_growl:
+      id:        532
+      level:     43
+      range:     20
+      radius:    14
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+
+    glittering_ruby:
+      id:        515
+      level:     44
+      range:     20
+      radius:    14
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+
+    earthen_ward:
+      id:        564
+      level:     46
+      range:     20
+      radius:    14
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+
+    spring_water:
+      id:        579
+      level:     47
+      target:    [self, party]
+      range:     20
+      radius:    14
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+
+    hastega:
+      id:        595
+      level:     48
+      range:     20
+      radius:    14
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+
+    noctoshield:
+      id:        660
+      level:     49
+      range:     20
+      radius:    14
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+
+    elemental_siphon:
+      id:        232
+      level:     50
+      animation: 201
+      message:   451
+      recast:    300
+      recast_id: 175
+      enmity:    {ce: 1, ve: 0}
+      content:   wotg
+
+    double_slap:
+      id:        612
+      level:     50
+      target:    [hostile]
+      range:     3
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    ecliptic_howl:
+      id:        533
+      level:     54
+      range:     20
+      radius:    14
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+
+    avatars_favor:
+      id:        250
+      level:     55
+      aoe:       true
+      animation: 94
+      message:   100
+      recast:    30
+      recast_id: 176
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [avatar]
+      content:   wotg
+
+    meteorite:
+      id:        516
+      level:     55
+      target:    [hostile]
+      range:     5
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    eerie_eye:
+      id:        523
+      level:     55
+      target:    [hostile]
+      range:     3
+      animation: 134
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+      content:   soa
+
+    dream_shroud:
+      id:        661
+      level:     56
+      range:     20
+      radius:    14
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+
+    fire_iv:
+      id:        549
+      level:     60
+      target:    [hostile]
+      range:     10
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    stone_iv:
+      id:        565
+      level:     60
+      target:    [hostile]
+      range:     10
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    water_iv:
+      id:        581
+      level:     60
+      target:    [hostile]
+      range:     10
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    aero_iv:
+      id:        597
+      level:     60
+      target:    [hostile]
+      range:     10
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    blizzard_iv:
+      id:        613
+      level:     60
+      target:    [hostile]
+      range:     10
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    thunder_iv:
+      id:        629
+      level:     60
+      target:    [hostile]
+      range:     10
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    healing_ruby_ii:
+      id:        517
+      level:     65
+      range:     20
+      radius:    14
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+
+    eclipse_bite:
+      id:        534
+      level:     65
+      target:    [hostile]
+      range:     3
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    nether_blast:
+      id:        662
+      level:     65
+      target:    [hostile]
+      range:     12
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    sonic_buffet:
+      id:        967
+      level:     65
+      target:    [hostile]
+      range:     10
+      animation: 182
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 0, ve: 60}
+      content:   rov
+
+    apogee:
+      id:        385
+      level:     70
+      animation: 94
+      message:   100
+      recast:    180
+      recast_id: 108
+      enmity:    {ce: 1, ve: 80}
+      content:   soa
+
+    flaming_crush:
+      id:        550
+      level:     70
+      target:    [hostile]
+      range:     3
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    mountain_buster:
+      id:        566
+      level:     70
+      target:    [hostile]
+      range:     3
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    spinning_dive:
+      id:        582
+      level:     70
+      target:    [hostile]
+      range:     3
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    predator_claws:
+      id:        598
+      level:     70
+      target:    [hostile]
+      range:     3
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    rush:
+      id:        614
+      level:     70
+      target:    [hostile]
+      range:     3
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    chaotic_strike:
+      id:        630
+      level:     70
+      target:    [hostile]
+      range:     3
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+
+    level_qm_holy:
+      id:        524
+      level:     75
+      target:    [hostile]
+      range:     12
+      radius:    10
+      animation: 235
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+      content:   soa
+
+    meteor_strike:
+      id:        551
+      level:     75
+      target:    [hostile]
+      range:     12
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+      merit:     meteor_strike
+      add_type:  [merit]
+      content:   toau
+
+    geocrush:
+      id:        567
+      level:     75
+      target:    [hostile]
+      range:     12
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+      merit:     geocrush
+      add_type:  [merit]
+      content:   toau
+
+    grand_fall:
+      id:        583
+      level:     75
+      target:    [hostile]
+      range:     12
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+      merit:     grandfall
+      add_type:  [merit]
+      content:   toau
+
+    wind_blade:
+      id:        599
+      level:     75
+      target:    [hostile]
+      range:     12
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+      merit:     wind_blade
+      add_type:  [merit]
+      content:   toau
+
+    heavenly_strike:
+      id:        615
+      level:     75
+      target:    [hostile]
+      range:     12
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+      merit:     heavenly_strike
+      add_type:  [merit]
+      content:   toau
+
+    thunderstorm:
+      id:        631
+      level:     75
+      target:    [hostile]
+      range:     12
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+      merit:     thunderstorm
+      add_type:  [merit]
+      content:   toau
+
+    deconstruction:
+      id:             668
+      level:          75
+      target:         [hostile]
+      range:          20
+      animation:      0
+      animation_time: 0
+
+    chronoshift:
+      id:             669
+      level:          75
+      target:         [hostile]
+      radius:         14
+      animation:      0
+      animation_time: 0
+
+    perfect_defense:
+      id:        671
+      level:     75
+      radius:    10
+      animation: 152
+      recast_id: 300
+      add_type:  [astral_flow]
+
+    tornado_ii:
+      id:        968
+      level:     75
+      target:    [hostile]
+      range:     10
+      animation: 183
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 0, ve: 60}
+      content:   rov
+
+    holy_mist:
+      id:        519
+      level:     76
+      target:    [hostile]
+      range:     5
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+      content:   abyssea
+
+    lunar_bay:
+      id:        537
+      level:     78
+      target:    [hostile]
+      range:     5
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+      content:   abyssea
+
+    night_terror:
+      id:        665
+      level:     80
+      target:    [hostile]
+      range:     5
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+      content:   abyssea
+
+    earthen_armor:
+      id:        569
+      level:     82
+      range:     20
+      radius:    14
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+      content:   abyssea
+
+    tidal_roar:
+      id:        585
+      level:     84
+      target:    [hostile]
+      range:     5
+      aoe:       true
+      radius:    10
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+      content:   abyssea
+
+    fleet_wind:
+      id:        601
+      level:     86
+      range:     20
+      radius:    14
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+      content:   abyssea
+
+    mana_cede:
+      id:        296
+      level:     87
+      animation: 241
+      message:   100
+      recast:    300
+      recast_id: 71
+      content:   abyssea
+
+    inferno_howl:
+      id:        553
+      level:     88
+      range:     20
+      radius:    14
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+      content:   abyssea
+
+    diamond_storm:
+      id:        617
+      level:     90
+      target:    [hostile]
+      range:     5
+      radius:    10
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+      content:   abyssea
+
+    shock_squall:
+      id:        633
+      level:     92
+      target:    [hostile]
+      range:     12
+      radius:    10
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+      content:   abyssea
+
+    soothing_ruby:
+      id:        520
+      level:     94
+      range:     20
+      radius:    14
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+      content:   abyssea
+
+    astral_conduit:
+      id:        337
+      level:     96
+      animation: 285
+      recast:    3600
+      recast_id: 254
+      content:   soa
+
+    heavenward_howl:
+      id:        538
+      level:     96
+      range:     20
+      radius:    14
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+      content:   abyssea
+
+    pavor_nocturnus:
+      id:        666
+      level:     98
+      target:    [hostile]
+      range:     12
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+      content:   abyssea
+
+    impact:
+      id:        539
+      level:     99
+      target:    [hostile]
+      range:     12
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+      content:   soa
+
+    conflag_strike:
+      id:        554
+      level:     99
+      target:    [hostile]
+      range:     12
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+      content:   soa
+
+    crag_throw:
+      id:        570
+      level:     99
+      target:    [hostile]
+      range:     12
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+      content:   soa
+
+    soothing_current:
+      id:        586
+      level:     99
+      target:    [self, party]
+      range:     20
+      radius:    14
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+      content:   soa
+
+    hastega_ii:
+      id:        602
+      level:     99
+      range:     20
+      radius:    14
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+      content:   soa
+
+    crystal_blessing:
+      id:        618
+      level:     99
+      range:     20
+      radius:    14
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+      content:   soa
+
+    volt_strike:
+      id:        634
+      level:     99
+      target:    [hostile]
+      range:     3
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+      content:   soa
+
+    blindside:
+      id:        667
+      level:     99
+      target:    [hostile]
+      range:     10
+      animation: 94
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 1, ve: 60}
+      content:   soa
+
+    pacifying_ruby:
+      id:        773
+      level:     99
+      target:    [self, party]
+      range:     20
+      animation: 94
+      recast:    60
+      recast_id: 174
+      enmity:    {ce: 1, ve: 60}
+      content:   soa
+
+    hysteric_assault:
+      id:        970
+      level:     99
+      target:    [hostile]
+      range:     3
+      animation: 185
+      recast:    60
+      recast_id: 173
+      enmity:    {ce: 0, ve: 60}
+      content:   rov
+
+  blu:
+    azure_lore:
+      id:        93
+      animation: 142
+      recast:    3600
+      enmity:    {ce: 1, ve: 300}
+      content:   toau
+
+    burst_affinity:
+      id:        95
+      level:     25
+      animation: 141
+      recast:    120
+      recast_id: 182
+      enmity:    {ce: 1, ve: 300}
+      merit:     burst_affinity_recast
+      content:   toau
+
+    chain_affinity:
+      id:        94
+      level:     40
+      animation: 140
+      recast:    120
+      recast_id: 181
+      enmity:    {ce: 1, ve: 300}
+      merit:     chain_affinity_recast
+      content:   toau
+
+    convergence:
+      id:        175
+      level:     75
+      animation: 165
+      recast:    600
+      recast_id: 183
+      enmity:    {ce: 1, ve: 300}
+      merit:     convergence
+      add_type:  [merit]
+      content:   toau
+
+    diffusion:
+      id:        176
+      level:     75
+      aoe:       true
+      animation: 166
+      recast:    600
+      recast_id: 184
+      enmity:    {ce: 1, ve: 300}
+      merit:     diffusion
+      add_type:  [merit]
+      content:   toau
+
+    efflux:
+      id:        297
+      level:     83
+      animation: 256
+      message:   100
+      recast:    180
+      recast_id: 185
+      content:   abyssea
+
+    unbridled_learning:
+      id:        298
+      level:     95
+      animation: 263
+      message:   100
+      recast:    300
+      recast_id: 81
+      content:   abyssea
+
+    unbridled_wisdom:
+      id:        338
+      level:     96
+      animation: 286
+      message:   100
+      recast:    3600
+      recast_id: 254
+      content:   soa
+
+  cor:
+    wild_card:
+      id:        96
+      aoe:       true
+      radius:    8
+      animation: 132
+      recast:    3600
+      enmity:    {ce: 1, ve: 300}
+      content:   toau
+
+    phantom_roll:
+      id:        97
+      level:     5
+      animation: 0
+      recast:    60
+      recast_id: 193
+      merit:     phantom_roll_recast
+      content:   toau
+
+    corsairs_roll:
+      id:        114
+      level:     5
+      aoe:       true
+      radius:    8
+      animation: 114
+      message:   420
+      recast:    60
+      recast_id: 193
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [learned]
+      content:   toau
+
+    double_up:
+      id:        123
+      level:     5
+      aoe:       true
+      radius:    8
+      animation: 116
+      message:   424
+      recast:    5
+      recast_id: 194
+      enmity:    {ce: 1, ve: 80}
+      content:   toau
+
+    ninja_roll:
+      id:        110
+      level:     8
+      aoe:       true
+      radius:    8
+      animation: 110
+      message:   420
+      recast:    60
+      recast_id: 193
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [learned]
+      content:   toau
+
+    hunters_roll:
+      id:        108
+      level:     11
+      aoe:       true
+      radius:    8
+      animation: 108
+      message:   420
+      recast:    60
+      recast_id: 193
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [learned]
+      content:   toau
+
+    chaos_roll:
+      id:        105
+      level:     14
+      aoe:       true
+      radius:    8
+      animation: 105
+      message:   420
+      recast:    60
+      recast_id: 193
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [learned]
+      content:   toau
+
+    maguss_roll:
+      id:        113
+      level:     17
+      aoe:       true
+      radius:    8
+      animation: 113
+      message:   420
+      recast:    60
+      recast_id: 193
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [learned]
+      content:   toau
+
+    healers_roll:
+      id:        100
+      level:     20
+      aoe:       true
+      radius:    8
+      animation: 100
+      message:   420
+      recast:    60
+      recast_id: 193
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [learned]
+      content:   toau
+
+    drachen_roll:
+      id:        111
+      level:     23
+      aoe:       true
+      radius:    8
+      animation: 111
+      message:   420
+      recast:    60
+      recast_id: 193
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [learned]
+      content:   toau
+
+    choral_roll:
+      id:        107
+      level:     26
+      aoe:       true
+      radius:    8
+      animation: 107
+      message:   420
+      recast:    60
+      recast_id: 193
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [learned]
+      content:   toau
+
+    monks_roll:
+      id:        99
+      level:     31
+      aoe:       true
+      radius:    8
+      animation: 99
+      message:   420
+      recast:    60
+      recast_id: 193
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [learned]
+      content:   toau
+
+    beast_roll:
+      id:        106
+      level:     34
+      aoe:       true
+      radius:    8
+      animation: 106
+      message:   420
+      recast:    60
+      recast_id: 193
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [learned]
+      content:   toau
+
+    samurai_roll:
+      id:        109
+      level:     37
+      aoe:       true
+      radius:    8
+      animation: 109
+      message:   420
+      recast:    60
+      recast_id: 193
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [learned]
+      content:   toau
+
+    evokers_roll:
+      id:        112
+      level:     40
+      aoe:       true
+      radius:    8
+      animation: 112
+      message:   420
+      recast:    60
+      recast_id: 193
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [learned]
+      content:   toau
+
+    quick_draw:
+      id:        124
+      level:     40
+      animation: 0
+      recast:    1
+      recast_id: 199
+      merit:     quick_draw_recast
+      content:   toau
+      charges:
+        recast_id: 195
+        tiers:
+          - {level: 40, max: 2, time: 60, merit: quick_draw_recast}
+
+    fire_shot:
+      id:        125
+      level:     40
+      target:    [hostile]
+      range:     20
+      animation: 125
+      message:   110
+      recast:    1
+      recast_id: 195
+      merit:     quick_draw_recast
+      content:   toau
+
+    ice_shot:
+      id:        126
+      level:     40
+      target:    [hostile]
+      range:     20
+      animation: 126
+      message:   110
+      recast:    1
+      recast_id: 195
+      merit:     quick_draw_recast
+      content:   toau
+
+    wind_shot:
+      id:        127
+      level:     40
+      target:    [hostile]
+      range:     20
+      animation: 127
+      message:   110
+      recast:    1
+      recast_id: 195
+      merit:     quick_draw_recast
+      content:   toau
+
+    earth_shot:
+      id:        128
+      level:     40
+      target:    [hostile]
+      range:     20
+      animation: 128
+      message:   110
+      recast:    1
+      recast_id: 195
+      merit:     quick_draw_recast
+      content:   toau
+
+    thunder_shot:
+      id:        129
+      level:     40
+      target:    [hostile]
+      range:     20
+      animation: 129
+      message:   110
+      recast:    1
+      recast_id: 195
+      merit:     quick_draw_recast
+      content:   toau
+
+    water_shot:
+      id:        130
+      level:     40
+      target:    [hostile]
+      range:     20
+      animation: 130
+      message:   110
+      recast:    1
+      recast_id: 195
+      merit:     quick_draw_recast
+      content:   toau
+
+    light_shot:
+      id:        131
+      level:     40
+      target:    [hostile]
+      range:     20
+      animation: 123
+      recast:    1
+      recast_id: 195
+      merit:     quick_draw_recast
+      content:   toau
+
+    dark_shot:
+      id:        132
+      level:     40
+      target:    [hostile]
+      range:     20
+      animation: 124
+      recast:    1
+      recast_id: 195
+      merit:     quick_draw_recast
+      content:   toau
+
+    rogues_roll:
+      id:        103
+      level:     43
+      aoe:       true
+      radius:    8
+      animation: 103
+      message:   420
+      recast:    60
+      recast_id: 193
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [learned]
+      content:   toau
+
+    warlocks_roll:
+      id:        102
+      level:     46
+      aoe:       true
+      radius:    8
+      animation: 102
+      message:   420
+      recast:    60
+      recast_id: 193
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [learned]
+      content:   toau
+
+    fighters_roll:
+      id:        98
+      level:     49
+      aoe:       true
+      radius:    8
+      animation: 98
+      message:   420
+      recast:    60
+      recast_id: 193
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [learned]
+      content:   toau
+
+    random_deal:
+      id:        133
+      level:     50
+      aoe:       true
+      radius:    8
+      animation: 131
+      recast:    1200
+      recast_id: 196
+      enmity:    {ce: 1, ve: 300}
+      merit:     random_deal_recast
+      content:   toau
+
+    puppet_roll:
+      id:        115
+      level:     52
+      aoe:       true
+      radius:    8
+      animation: 115
+      message:   420
+      recast:    60
+      recast_id: 193
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [learned]
+      content:   toau
+
+    gallants_roll:
+      id:        104
+      level:     55
+      aoe:       true
+      radius:    8
+      animation: 104
+      message:   420
+      recast:    60
+      recast_id: 193
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [learned]
+      content:   toau
+
+    wizards_roll:
+      id:        101
+      level:     58
+      aoe:       true
+      radius:    8
+      animation: 101
+      message:   420
+      recast:    60
+      recast_id: 193
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [learned]
+      content:   toau
+
+    dancers_roll:
+      id:        116
+      level:     61
+      aoe:       true
+      radius:    8
+      animation: 116
+      message:   420
+      recast:    60
+      recast_id: 193
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [learned]
+      content:   wotg
+
+    scholars_roll:
+      id:        117
+      level:     64
+      aoe:       true
+      radius:    8
+      animation: 117
+      message:   420
+      recast:    60
+      recast_id: 193
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [learned]
+      content:   wotg
+
+    naturalists_roll:
+      id:        390
+      level:     67
+      aoe:       true
+      radius:    8
+      animation: 328
+      message:   420
+      recast:    60
+      recast_id: 193
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [learned]
+      content:   rov
+
+    runeists_roll:
+      id:        391
+      level:     70
+      aoe:       true
+      radius:    8
+      animation: 329
+      message:   420
+      recast:    60
+      recast_id: 193
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [learned]
+      content:   rov
+
+    snake_eye:
+      id:        177
+      level:     75
+      animation: 167
+      recast:    300
+      recast_id: 197
+      enmity:    {ce: 1, ve: 300}
+      merit:     snake_eye
+      add_type:  [merit]
+      content:   toau
+
+    fold:
+      id:        178
+      level:     75
+      animation: 168
+      recast:    300
+      recast_id: 198
+      enmity:    {ce: 1, ve: 300}
+      merit:     fold
+      add_type:  [merit]
+      content:   toau
+
+    bolters_roll:
+      id:        118
+      level:     76
+      aoe:       true
+      radius:    8
+      animation: 118
+      message:   420
+      recast:    60
+      recast_id: 193
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [learned]
+      content:   abyssea
+
+    casters_roll:
+      id:        119
+      level:     79
+      aoe:       true
+      radius:    8
+      animation: 119
+      message:   420
+      recast:    60
+      recast_id: 193
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [learned]
+      content:   abyssea
+
+    coursers_roll:
+      id:        120
+      level:     81
+      aoe:       true
+      radius:    8
+      animation: 120
+      message:   420
+      recast:    60
+      recast_id: 193
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [learned]
+      content:   abyssea
+
+    blitzers_roll:
+      id:        121
+      level:     83
+      aoe:       true
+      radius:    8
+      animation: 121
+      message:   420
+      recast:    60
+      recast_id: 193
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [learned]
+      content:   abyssea
+
+    tacticians_roll:
+      id:        122
+      level:     86
+      aoe:       true
+      radius:    8
+      animation: 122
+      message:   420
+      recast:    60
+      recast_id: 193
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [learned]
+      content:   abyssea
+
+    triple_shot:
+      id:        301
+      level:     87
+      animation: 242
+      message:   100
+      recast:    300
+      recast_id: 84
+      content:   abyssea
+
+    allies_roll:
+      id:        302
+      level:     89
+      aoe:       true
+      radius:    8
+      animation: 138
+      message:   420
+      recast:    60
+      recast_id: 193
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [learned]
+      content:   abyssea
+
+    misers_roll:
+      id:        303
+      level:     92
+      aoe:       true
+      radius:    8
+      animation: 139
+      message:   420
+      recast:    60
+      recast_id: 193
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [learned]
+      content:   abyssea
+
+    companions_roll:
+      id:        304
+      level:     95
+      aoe:       true
+      radius:    8
+      animation: 265
+      message:   420
+      recast:    60
+      recast_id: 193
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [learned]
+      content:   abyssea
+
+    crooked_cards:
+      id:        392
+      level:     95
+      animation: 335
+      message:   100
+      recast:    600
+      recast_id: 96
+      content:   rov
+
+    cutting_cards:
+      id:        339
+      level:     96
+      target:    [self, party]
+      range:     10
+      animation: 321
+      recast:    3600
+      recast_id: 254
+      content:   soa
+
+    avengers_roll:
+      id:        305
+      level:     97
+      aoe:       true
+      radius:    8
+      animation: 266
+      message:   420
+      recast:    60
+      recast_id: 193
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [learned]
+      content:   abyssea
+
+  pup:
+    overdrive:
+      id:        135
+      animation: 143
+      recast:    3600
+      content:   toau
+
+    activate:
+      id:        136
+      level:     1
+      animation: 94
+      recast:    1200
+      recast_id: 205
+      enmity:    {ce: 1, ve: 80}
+      merit:     activate_recast
+      content:   toau
+
+    deploy:
+      id:        138
+      level:     1
+      target:    [hostile]
+      range:     16
+      animation: 94
+      recast:    5
+      recast_id: 207
+      add_type:  [automaton]
+      content:   toau
+
+    deactivate:
+      id:        139
+      level:     1
+      animation: 94
+      recast:    60
+      recast_id: 208
+      add_type:  [automaton]
+      content:   toau
+
+    fire_maneuver:
+      id:             141
+      level:          1
+      animation:      333
+      animation_time: 0
+      recast:         10
+      recast_id:      210
+      enmity:         {ce: 1, ve: 0}
+      add_type:       [automaton]
+      content:        toau
+
+    ice_maneuver:
+      id:             142
+      level:          1
+      animation:      333
+      animation_time: 0
+      recast:         10
+      recast_id:      210
+      enmity:         {ce: 1, ve: 0}
+      add_type:       [automaton]
+      content:        toau
+
+    wind_maneuver:
+      id:             143
+      level:          1
+      animation:      333
+      animation_time: 0
+      recast:         10
+      recast_id:      210
+      enmity:         {ce: 1, ve: 0}
+      add_type:       [automaton]
+      content:        toau
+
+    earth_maneuver:
+      id:             144
+      level:          1
+      animation:      333
+      animation_time: 0
+      recast:         10
+      recast_id:      210
+      enmity:         {ce: 1, ve: 0}
+      add_type:       [automaton]
+      content:        toau
+
+    thunder_maneuver:
+      id:             145
+      level:          1
+      animation:      333
+      animation_time: 0
+      recast:         10
+      recast_id:      210
+      enmity:         {ce: 1, ve: 0}
+      add_type:       [automaton]
+      content:        toau
+
+    water_maneuver:
+      id:             146
+      level:          1
+      animation:      333
+      animation_time: 0
+      recast:         10
+      recast_id:      210
+      enmity:         {ce: 1, ve: 0}
+      add_type:       [automaton]
+      content:        toau
+
+    light_maneuver:
+      id:             147
+      level:          1
+      animation:      333
+      animation_time: 0
+      recast:         10
+      recast_id:      210
+      enmity:         {ce: 1, ve: 0}
+      add_type:       [automaton]
+      content:        toau
+
+    dark_maneuver:
+      id:             148
+      level:          1
+      animation:      333
+      animation_time: 0
+      recast:         10
+      recast_id:      210
+      enmity:         {ce: 1, ve: 0}
+      add_type:       [automaton]
+      content:        toau
+
+    deus_ex_automata:
+      id:        310
+      level:     5
+      animation: 94
+      recast:    60
+      recast_id: 115
+      enmity:    {ce: 1, ve: 80}
+      content:   abyssea
+
+    retrieve:
+      id:        140
+      level:     10
+      animation: 94
+      recast:    5
+      recast_id: 209
+      add_type:  [automaton]
+      content:   toau
+
+    repair:
+      id:        137
+      level:     15
+      animation: 83
+      message:   102
+      recast:    90
+      recast_id: 206
+      merit:     repair_recast
+      content:   toau
+
+    maintenance:
+      id:        322
+      level:     30
+      animation: 270
+      recast:    90
+      recast_id: 214
+      merit:     maintenance_recast
+      content:   abyssea
+
+    role_reversal:
+      id:        179
+      level:     75
+      animation: 169
+      recast:    120
+      recast_id: 211
+      merit:     role_reversal
+      add_type:  [merit]
+      content:   toau
+
+    ventriloquy:
+      id:        180
+      level:     75
+      target:    [hostile]
+      range:     10
+      animation: 170
+      recast:    60
+      recast_id: 212
+      merit:     ventriloquy
+      add_type:  [merit]
+      content:   toau
+
+    tactical_switch:
+      id:        266
+      level:     79
+      animation: 228
+      message:   100
+      recast:    180
+      recast_id: 213
+      content:   abyssea
+
+    cooldown:
+      id:        309
+      level:     95
+      animation: 264
+      message:   100
+      recast:    300
+      recast_id: 114
+      content:   abyssea
+
+    heady_artifice:
+      id:        340
+      level:     96
+      animation: 288
+      recast:    3600
+      recast_id: 254
+      content:   soa
+
+  dnc:
+    trance:
+      id:        181
+      animation: 184
+      message:   100
+      recast:    3600
+      enmity:    {ce: 1, ve: 300}
+      content:   wotg
+
+    sambas:
+      id:        182
+      level:     5
+      category:  dancer
+      animation: 0
+      recast_id: 216
+      content:   wotg
+
+    drain_samba:
+      id:        184
+      level:     5
+      category:  dancer
+      animation: 0
+      message:   319
+      recast:    60
+      recast_id: 216
+      enmity:    {ce: 1, ve: 300}
+      content:   wotg
+
+    waltzes:
+      id:        183
+      level:     15
+      category:  dancer
+      animation: 0
+      recast_id: 217
+      content:   wotg
+
+    curing_waltz:
+      id:        190
+      level:     15
+      target:    [self, party, alliance, friendly]
+      range:     20
+      category:  dancer
+      animation: 6
+      message:   102
+      recast:    6
+      recast_id: 217
+      content:   wotg
+
+    steps:
+      id:        199
+      level:     20
+      category:  dancer
+      animation: 0
+      recast_id: 220
+      content:   wotg
+
+    flourishes_i:
+      id:        200
+      level:     20
+      category:  dancer
+      animation: 0
+      message:   221
+      content:   wotg
+
+    quickstep:
+      id:        201
+      level:     20
+      target:    [hostile]
+      range:     3
+      category:  dancer
+      animation: 17
+      message:   519
+      recast:    5
+      recast_id: 220
+      enmity:    {ce: 1, ve: 0}
+      content:   wotg
+
+    animated_flourish:
+      id:        204
+      level:     20
+      target:    [hostile]
+      range:     16
+      animation: 181
+      message:   119
+      recast:    30
+      recast_id: 221
+      enmity:    {ce: 1, ve: 1000}
+      content:   wotg
+
+    aspir_samba:
+      id:        187
+      level:     25
+      category:  dancer
+      animation: 3
+      message:   319
+      recast:    60
+      recast_id: 216
+      enmity:    {ce: 1, ve: 300}
+      content:   wotg
+
+    divine_waltz:
+      id:        195
+      level:     25
+      target:    [self, party, alliance, friendly]
+      range:     10
+      aoe:       true
+      radius:    10
+      category:  dancer
+      animation: 11
+      message:   102
+      recast:    13
+      recast_id: 225
+      content:   wotg
+
+    spectral_jig:
+      id:        196
+      level:     25
+      category:  dancer
+      animation: 12
+      message:   532
+      recast:    30
+      recast_id: 218
+      enmity:    {ce: 1, ve: 300}
+      content:   wotg
+
+    jigs:
+      id:        198
+      level:     25
+      category:  dancer
+      animation: 0
+      recast_id: 218
+      content:   wotg
+
+    curing_waltz_ii:
+      id:        191
+      level:     30
+      target:    [self, party, alliance, friendly]
+      range:     20
+      category:  dancer
+      animation: 7
+      message:   102
+      recast:    8
+      recast_id: 186
+      content:   wotg
+
+    box_step:
+      id:        202
+      level:     30
+      target:    [hostile]
+      range:     3
+      category:  dancer
+      animation: 16
+      message:   520
+      recast:    5
+      recast_id: 220
+      enmity:    {ce: 1, ve: 0}
+      content:   wotg
+
+    desperate_flourish:
+      id:        205
+      level:     30
+      target:    [hostile]
+      range:     3
+      category:  dancer
+      animation: 26
+      message:   127
+      recast:    20
+      recast_id: 221
+      enmity:    {ce: 1, ve: 0}
+      content:   wotg
+
+    drain_samba_ii:
+      id:        185
+      level:     35
+      category:  dancer
+      animation: 1
+      message:   319
+      recast:    60
+      recast_id: 216
+      enmity:    {ce: 1, ve: 300}
+      content:   wotg
+
+    healing_waltz:
+      id:        194
+      level:     35
+      target:    [self, party, alliance, friendly]
+      range:     20
+      category:  dancer
+      animation: 10
+      message:   123
+      recast:    8
+      recast_id: 215
+      enmity:    {ce: 1, ve: 300}
+      content:   wotg
+
+    stutter_step:
+      id:        203
+      level:     40
+      target:    [hostile]
+      range:     3
+      category:  dancer
+      animation: 16
+      message:   521
+      recast:    5
+      recast_id: 220
+      enmity:    {ce: 1, ve: 0}
+      content:   wotg
+
+    reverse_flourish:
+      id:        206
+      level:     40
+      animation: 182
+      message:   452
+      recast:    30
+      recast_id: 222
+      enmity:    {ce: 1, ve: 0}
+      content:   wotg
+
+    flourishes_ii:
+      id:        213
+      level:     40
+      animation: 0
+      recast_id: 222
+      content:   wotg
+
+    haste_samba:
+      id:        189
+      level:     45
+      category:  dancer
+      animation: 5
+      message:   319
+      recast:    60
+      recast_id: 216
+      enmity:    {ce: 1, ve: 300}
+      content:   wotg
+
+    curing_waltz_iii:
+      id:        192
+      level:     45
+      target:    [self, party, alliance, friendly]
+      range:     20
+      category:  dancer
+      animation: 8
+      message:   102
+      recast:    10
+      recast_id: 187
+      content:   wotg
+
+    violent_flourish:
+      id:        207
+      level:     45
+      target:    [hostile]
+      range:     3
+      category:  dancer
+      animation: 26
+      message:   522
+      recast:    20
+      recast_id: 221
+      enmity:    {ce: 1, ve: 0}
+      content:   wotg
+
+    building_flourish:
+      id:        208
+      level:     50
+      animation: 183
+      message:   100
+      recast:    10
+      recast_id: 222
+      enmity:    {ce: 1, ve: 0}
+      content:   wotg
+
+    contradance:
+      id:        384
+      level:     50
+      animation: 81
+      recast:    300
+      recast_id: 229
+      content:   soa
+
+    chocobo_jig:
+      id:        197
+      level:     55
+      category:  dancer
+      animation: 13
+      message:   126
+      recast:    60
+      recast_id: 218
+      enmity:    {ce: 1, ve: 300}
+      content:   wotg
+
+    aspir_samba_ii:
+      id:        188
+      level:     60
+      category:  dancer
+      animation: 4
+      message:   319
+      recast:    60
+      recast_id: 216
+      enmity:    {ce: 1, ve: 300}
+      content:   wotg
+
+    wild_flourish:
+      id:        209
+      level:     60
+      target:    [hostile]
+      range:     3
+      category:  dancer
+      animation: 26
+      message:   529
+      recast:    30
+      recast_id: 222
+      enmity:    {ce: 1, ve: 0}
+      content:   wotg
+
+    drain_samba_iii:
+      id:        186
+      level:     65
+      category:  dancer
+      animation: 2
+      message:   319
+      recast:    60
+      recast_id: 216
+      enmity:    {ce: 1, ve: 300}
+      content:   wotg
+
+    curing_waltz_iv:
+      id:        193
+      level:     70
+      target:    [self, party, alliance, friendly]
+      range:     20
+      category:  dancer
+      animation: 9
+      message:   102
+      recast:    13
+      recast_id: 188
+      content:   wotg
+
+    chocobo_jig_ii:
+      id:        381
+      level:     70
+      aoe:       true
+      radius:    10
+      category:  dancer
+      animation: 13
+      message:   126
+      recast:    60
+      recast_id: 218
+      enmity:    {ce: 1, ve: 300}
+      content:   soa
+
+    saber_dance:
+      id:        237
+      level:     75
+      animation: 207
+      recast:    180
+      recast_id: 219
+      enmity:    {ce: 1, ve: 80}
+      merit:     saber_dance
+      add_type:  [merit]
+      content:   wotg
+
+    fan_dance:
+      id:        238
+      level:     75
+      animation: 208
+      recast:    180
+      recast_id: 224
+      enmity:    {ce: 1, ve: 80}
+      merit:     fan_dance
+      add_type:  [merit]
+      content:   wotg
+
+    no_foot_rise:
+      id:        239
+      level:     75
+      animation: 209
+      message:   560
+      recast:    180
+      recast_id: 223
+      enmity:    {ce: 1, ve: 80}
+      merit:     no_foot_rise
+      add_type:  [merit]
+      content:   wotg
+
+    presto:
+      id:        261
+      level:     77
+      animation: 229
+      message:   100
+      recast:    15
+      recast_id: 236
+      enmity:    {ce: 1, ve: 80}
+      content:   abyssea
+
+    divine_waltz_ii:
+      id:        262
+      level:     78
+      target:    [self, party, alliance, friendly]
+      range:     10
+      aoe:       true
+      radius:    10
+      category:  dancer
+      animation: 34
+      message:   102
+      recast:    20
+      recast_id: 190
+      enmity:    {ce: 1, ve: 80}
+      content:   abyssea
+
+    flourishes_iii:
+      id:        263
+      level:     80
+      category:  dancer
+      animation: 0
+      recast_id: 226
+      content:   abyssea
+
+    climactic_flourish:
+      id:        264
+      level:     80
+      animation: 230
+      message:   100
+      recast:    90
+      recast_id: 226
+      enmity:    {ce: 1, ve: 80}
+      content:   abyssea
+
+    feather_step:
+      id:        312
+      level:     83
+      target:    [hostile]
+      range:     3
+      category:  dancer
+      animation: 17
+      message:   591
+      recast:    5
+      recast_id: 220
+      enmity:    {ce: 1, ve: 0}
+      content:   abyssea
+
+    curing_waltz_v:
+      id:        311
+      level:     87
+      target:    [self, party, alliance, friendly]
+      range:     20
+      category:  dancer
+      animation: 35
+      message:   102
+      recast:    16
+      recast_id: 189
+      content:   abyssea
+
+    striking_flourish:
+      id:        313
+      level:     89
+      animation: 243
+      message:   100
+      recast:    30
+      recast_id: 226
+      enmity:    {ce: 1, ve: 80}
+      content:   abyssea
+
+    ternary_flourish:
+      id:        314
+      level:     93
+      animation: 260
+      message:   100
+      recast:    45
+      recast_id: 226
+      enmity:    {ce: 1, ve: 80}
+      content:   abyssea
+
+    grand_pas:
+      id:        341
+      level:     96
+      animation: 289
+      message:   100
+      recast:    3600
+      recast_id: 254
+      add_type:  [main_only]
+      content:   soa
+
+  sch:
+    tabula_rasa:
+      id:        210
+      animation: 187
+      recast:    3600
+      enmity:    {ce: 1, ve: 300}
+      content:   wotg
+
+    light_arts:
+      id:        211
+      level:     10
+      animation: 171
+      recast:    60
+      recast_id: 228
+      enmity:    {ce: 1, ve: 80}
+      merit:     grimoire_recast
+      content:   wotg
+
+    dark_arts:
+      id:        212
+      level:     10
+      animation: 176
+      recast:    60
+      recast_id: 232
+      enmity:    {ce: 1, ve: 80}
+      merit:     grimoire_recast
+      content:   wotg
+
+    penury:
+      id:        215
+      level:     10
+      animation: 172
+      recast:    1
+      recast_id: 231
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [light_arts]
+      content:   wotg
+
+    parsimony:
+      id:        219
+      level:     10
+      animation: 177
+      recast:    1
+      recast_id: 231
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [dark_arts]
+      content:   wotg
+
+    stratagems:
+      id:        223
+      level:     10
+      animation: 0
+      recast_id: 233
+      content:   wotg
+      charges:
+        recast_id: 231
+        tiers:
+          - {level: 10, max: 1, time: 240}
+          - {level: 30, max: 2, time: 120}
+          - {level: 50, max: 3, time: 80}
+          - {level: 70, max: 4, time: 60}
+          - {level: 90, max: 5, time: 48}
+
+    addendum_white:
+      id:        234
+      level:     10
+      animation: 191
+      recast:    1
+      recast_id: 231
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [light_arts]
+      content:   wotg
+
+    celerity:
+      id:        216
+      level:     25
+      animation: 173
+      recast:    1
+      recast_id: 231
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [light_arts]
+      content:   wotg
+
+    alacrity:
+      id:        220
+      level:     25
+      animation: 178
+      recast:    1
+      recast_id: 231
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [dark_arts]
+      content:   wotg
+
+    addendum_black:
+      id:        235
+      level:     30
+      animation: 192
+      recast:    1
+      recast_id: 231
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [dark_arts]
+      content:   wotg
+
+    sublimation:
+      id:        233
+      level:     35
+      animation: 189
+      recast:    30
+      recast_id: 234
+      enmity:    {ce: 1, ve: 80}
+      content:   wotg
+
+    accession:
+      id:        218
+      level:     40
+      animation: 175
+      recast:    1
+      recast_id: 231
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [light_arts]
+      content:   wotg
+
+    manifestation:
+      id:        222
+      level:     40
+      animation: 180
+      recast:    1
+      recast_id: 231
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [dark_arts]
+      content:   wotg
+
+    rapture:
+      id:        217
+      level:     55
+      animation: 174
+      recast:    1
+      recast_id: 231
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [light_arts]
+      content:   wotg
+
+    ebullience:
+      id:        221
+      level:     55
+      animation: 179
+      recast:    1
+      recast_id: 231
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [dark_arts]
+      content:   wotg
+
+    modus_veritas:
+      id:        214
+      level:     65
+      target:    [hostile]
+      range:     20
+      animation: 188
+      recast:    180
+      recast_id: 230
+      enmity:    {ce: 1, ve: 80}
+      content:   wotg
+
+    altruism:
+      id:        240
+      level:     75
+      animation: 210
+      recast:    1
+      recast_id: 231
+      enmity:    {ce: 1, ve: 80}
+      merit:     altruism
+      add_type:  [merit, light_arts]
+      content:   wotg
+
+    focalization:
+      id:        241
+      level:     75
+      animation: 212
+      recast:    1
+      recast_id: 231
+      enmity:    {ce: 1, ve: 80}
+      merit:     focalization
+      add_type:  [merit, dark_arts]
+      content:   wotg
+
+    tranquility:
+      id:        242
+      level:     75
+      animation: 211
+      recast:    1
+      recast_id: 231
+      enmity:    {ce: 1, ve: 80}
+      merit:     tranquility
+      add_type:  [merit, light_arts]
+      content:   wotg
+
+    equanimity:
+      id:        243
+      level:     75
+      animation: 213
+      recast:    1
+      recast_id: 231
+      enmity:    {ce: 1, ve: 80}
+      merit:     equanimity
+      add_type:  [merit, dark_arts]
+      content:   wotg
+
+    enlightenment:
+      id:        244
+      level:     75
+      animation: 214
+      recast:    300
+      recast_id: 235
+      enmity:    {ce: 1, ve: 80}
+      merit:     enlightenment
+      add_type:  [merit]
+      content:   wotg
+
+    libra:
+      id:        265
+      level:     76
+      target:    [hostile]
+      range:     10
+      animation: 231
+      message:   100
+      recast:    60
+      recast_id: 237
+      content:   abyssea
+
+    perpetuance:
+      id:        316
+      level:     87
+      animation: 244
+      message:   100
+      recast:    1
+      recast_id: 231
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [light_arts]
+      content:   abyssea
+
+    immanence:
+      id:        317
+      level:     87
+      animation: 245
+      message:   100
+      recast:    1
+      recast_id: 231
+      enmity:    {ce: 1, ve: 80}
+      add_type:  [dark_arts]
+      content:   abyssea
+
+    caper_emissarius:
+      id:        342
+      level:     96
+      target:    [party]
+      range:     10
+      animation: 290
+      recast:    3600
+      recast_id: 254
+      content:   soa
+
+  geo:
+    bolster:
+      id:        343
+      level:     1
+      animation: 303
+      recast:    3600
+      enmity:    {ce: 1, ve: 300}
+      add_type:  [main_only]
+      content:   soa
+
+    full_circle:
+      id:        345
+      level:     5
+      animation: 94
+      recast:    10
+      recast_id: 243
+      enmity:    {ce: 1, ve: 300}
+      content:   soa
+
+    lasting_emanation:
+      id:        346
+      level:     25
+      animation: 306
+      message:   663
+      recast:    300
+      recast_id: 244
+      enmity:    {ce: 1, ve: 300}
+      merit:     ecliptic_att_recast
+      content:   soa
+
+    ecliptic_attrition:
+      id:        347
+      level:     25
+      animation: 307
+      message:   664
+      recast:    300
+      recast_id: 244
+      enmity:    {ce: 1, ve: 300}
+      merit:     ecliptic_att_recast
+      content:   soa
+
+    collimated_fervor:
+      id:        348
+      level:     40
+      animation: 304
+      message:   100
+      recast:    300
+      recast_id: 245
+      enmity:    {ce: 1, ve: 300}
+      content:   soa
+
+    life_cycle:
+      id:        349
+      level:     50
+      animation: 309
+      message:   306
+      recast:    600
+      recast_id: 246
+      enmity:    {ce: 1, ve: 300}
+      merit:     life_cycle_recast
+      content:   soa
+
+    blaze_of_glory:
+      id:        350
+      level:     60
+      animation: 308
+      message:   100
+      recast:    600
+      recast_id: 247
+      enmity:    {ce: 1, ve: 300}
+      merit:     blaze_of_glory_recast
+      content:   soa
+
+    dematerialize:
+      id:        351
+      level:     70
+      animation: 310
+      message:   319
+      recast:    600
+      recast_id: 248
+      enmity:    {ce: 1, ve: 300}
+      merit:     dematerialize_recast
+      content:   soa
+
+    mending_halation:
+      id:        354
+      level:     75
+      target:    [self, party]
+      radius:    10
+      animation: 311
+      recast:    300
+      recast_id: 251
+      enmity:    {ce: 1, ve: 0}
+      merit:     mending_halation
+      content:   soa
+
+    radial_arcana:
+      id:        355
+      level:     75
+      target:    [self, party]
+      radius:    10
+      animation: 311
+      recast:    300
+      recast_id: 252
+      enmity:    {ce: 1, ve: 0}
+      merit:     radial_arcana
+      content:   soa
+
+    entrust:
+      id:        386
+      level:     75
+      animation: 332
+      message:   100
+      recast:    600
+      recast_id: 93
+      enmity:    {ce: 1, ve: 300}
+      content:   soa
+
+    theurgic_focus:
+      id:        352
+      level:     80
+      animation: 305
+      message:   100
+      recast:    300
+      recast_id: 249
+      enmity:    {ce: 1, ve: 300}
+      content:   soa
+
+    concentric_pulse:
+      id:        353
+      level:     90
+      target:    [hostile]
+      range:     10
+      radius:    10
+      animation: 311
+      recast:    300
+      recast_id: 250
+      enmity:    {ce: 1, ve: 300}
+      content:   soa
+
+    widened_compass:
+      id:        377
+      level:     96
+      animation: 276
+      message:   100
+      recast:    3600
+      recast_id: 130
+      enmity:    {ce: 1, ve: 300}
+      content:   soa
+
+  run:
+    elemental_sforzo:
+      id:        356
+      animation: 302
+      recast:    3600
+      enmity:    {ce: 1800, ve: 7200}
+      content:   soa
+
+    cacodemonia:
+      id:        663
+      enum_only: true
+
+    zantetsuken:
+      id:        670
+      enum_only: true
+
+    regal_gash:
+      id:        780
+      enum_only: true
+
+    ward:
+      id:        379
+      level:     1
+      animation: 0
+      recast_id: 142
+      content:   soa
+
+    effusion:
+      id:        380
+      level:     1
+      animation: 0
+      recast_id: 143
+      content:   soa
+
+    rune_enchantment:
+      id:        357
+      level:     5
+      animation: 0
+      recast_id: 92
+      content:   soa
+
+    ignis:
+      id:        358
+      level:     5
+      animation: 291
+      recast:    5
+      recast_id: 10
+      content:   soa
+
+    gelus:
+      id:        359
+      level:     5
+      animation: 292
+      recast:    5
+      recast_id: 10
+      content:   soa
+
+    flabra:
+      id:        360
+      level:     5
+      animation: 293
+      recast:    5
+      recast_id: 10
+      content:   soa
+
+    tellus:
+      id:        361
+      level:     5
+      animation: 294
+      recast:    5
+      recast_id: 10
+      content:   soa
+
+    sulpor:
+      id:        362
+      level:     5
+      animation: 295
+      recast:    5
+      recast_id: 10
+      content:   soa
+
+    unda:
+      id:        363
+      level:     5
+      animation: 296
+      recast:    5
+      recast_id: 10
+      content:   soa
+
+    lux:
+      id:        364
+      level:     5
+      animation: 297
+      recast:    5
+      recast_id: 10
+      content:   soa
+
+    tenebrae:
+      id:        365
+      level:     5
+      animation: 298
+      recast:    5
+      recast_id: 10
+      content:   soa
+
+    vallation:
+      id:        366
+      level:     10
+      category:  rune_fencer
+      animation: 0
+      message:   668
+      recast:    180
+      recast_id: 23
+      enmity:    {ce: 450, ve: 900}
+      content:   soa
+
+    swordplay:
+      id:        367
+      level:     20
+      animation: 299
+      message:   667
+      recast:    300
+      recast_id: 24
+      enmity:    {ce: 160, ve: 320}
+      content:   soa
+
+    swipe:
+      id:        344
+      level:     25
+      target:    [hostile]
+      range:     3
+      category:  rune_fencer
+      animation: 0
+      message:   110
+      recast:    90
+      recast_id: 241
+      enmity:    {ce: 80, ve: 320}
+      content:   soa
+
+    lunge:
+      id:        368
+      level:     25
+      target:    [hostile]
+      range:     3
+      category:  rune_fencer
+      animation: 8
+      message:   110
+      recast:    180
+      recast_id: 25
+      merit:     lunge_effect
+      content:   soa
+
+    pflug:
+      id:        369
+      level:     40
+      category:  rune_fencer
+      animation: 1
+      message:   671
+      recast:    180
+      recast_id: 59
+      enmity:    {ce: 450, ve: 900}
+      content:   soa
+
+    valiance:
+      id:        371
+      level:     50
+      aoe:       true
+      radius:    14
+      category:  rune_fencer
+      animation: 2
+      message:   668
+      recast:    300
+      recast_id: 113
+      enmity:    {ce: 450, ve: 900}
+      content:   soa
+
+    embolden:
+      id:        370
+      level:     60
+      animation: 300
+      message:   100
+      recast:    600
+      recast_id: 72
+      enmity:    {ce: 160, ve: 320}
+      content:   soa
+
+    vivacious_pulse:
+      id:        383
+      level:     65
+      animation: 327
+      message:   102
+      recast:    60
+      recast_id: 242
+      content:   soa
+
+    gambit:
+      id:        372
+      level:     70
+      target:    [hostile]
+      range:     3
+      category:  rune_fencer
+      animation: 4
+      message:   672
+      recast:    300
+      recast_id: 116
+      enmity:    {ce: 640, ve: 1280}
+      merit:     gambit_effect
+      content:   soa
+
+    rayke:
+      id:        375
+      level:     75
+      target:    [hostile]
+      range:     3
+      category:  rune_fencer
+      animation: 4
+      message:   320
+      recast:    300
+      recast_id: 119
+      enmity:    {ce: 640, ve: 1260}
+      merit:     rayke
+      add_type:  [merit]
+      content:   soa
+
+    battuta:
+      id:        376
+      level:     75
+      category:  rune_fencer
+      animation: 4
+      message:   100
+      recast:    300
+      recast_id: 120
+      enmity:    {ce: 450, ve: 900}
+      merit:     battuta
+      add_type:  [merit]
+      content:   soa
+
+    liement:
+      id:        373
+      level:     85
+      category:  rune_fencer
+      animation: 3
+      message:   670
+      recast:    180
+      recast_id: 117
+      enmity:    {ce: 450, ve: 900}
+      content:   soa
+
+    one_for_all:
+      id:        374
+      level:     95
+      aoe:       true
+      radius:    10
+      animation: 301
+      message:   100
+      recast:    300
+      recast_id: 118
+      enmity:    {ce: 160, ve: 320}
+      content:   soa
+
+    odyllic_subterfuge:
+      id:        378
+      level:     96
+      target:    [hostile]
+      range:     10
+      aoe:       true
+      animation: 277
+      recast:    3600
+      recast_id: 131
+      enmity:    {ce: 1, ve: 318}
+      content:   soa
+
+  mon:
+    relinquish:
+      id:             382
+      level:            1
+      animation:      312
+      animation_time:   0
+      recast:          60
+      recast_id:      253
+
+  none:
+    enrage:
+      id:        81
+      enum_only: true
+
+    healing_breath:
+      id:        640
+      level:     1
+      target:    [party]
+      range:     12
+      category:  pet_skill_finish
+      animation: 128
+      cast_time: 1500
+
+    remove_poison:
+      id:        643
+      level:     1
+      target:    [party]
+      range:     12
+      category:  pet_skill_finish
+      animation: 131
+      cast_time: 1500
+
+    flame_breath:
+      id:        646
+      level:     1
+      target:    [hostile]
+      range:     8
+      category:  pet_skill_finish
+      animation: 134
+      cast_time: 1500
+
+    frost_breath:
+      id:        647
+      level:     1
+      target:    [hostile]
+      range:     8
+      category:  pet_skill_finish
+      animation: 135
+      cast_time: 1500
+
+    gust_breath:
+      id:        648
+      level:     1
+      target:    [hostile]
+      range:     8
+      category:  pet_skill_finish
+      animation: 136
+      cast_time: 1500
+
+    sand_breath:
+      id:        649
+      level:     1
+      target:    [hostile]
+      range:     8
+      category:  pet_skill_finish
+      animation: 137
+      cast_time: 1500
+
+    lightning_breath:
+      id:        650
+      level:     1
+      target:    [hostile]
+      range:     8
+      category:  pet_skill_finish
+      animation: 138
+      cast_time: 1500
+
+    hydro_breath:
+      id:        651
+      level:     1
+      target:    [hostile]
+      range:     8
+      category:  pet_skill_finish
+      animation: 139
+      cast_time: 1500
+
+    healing_breath_ii:
+      id:        641
+      level:     20
+      target:    [party]
+      range:     12
+      category:  pet_skill_finish
+      animation: 129
+      cast_time: 1500
+
+    remove_blindness:
+      id:        644
+      level:     20
+      target:    [party]
+      range:     12
+      category:  pet_skill_finish
+      animation: 132
+      cast_time: 1500
+
+    healing_breath_iii:
+      id:        642
+      level:     40
+      target:    [party]
+      range:     12
+      category:  pet_skill_finish
+      animation: 130
+      cast_time: 1500
+
+    remove_paralysis:
+      id:        645
+      level:     40
+      target:    [party]
+      range:     12
+      category:  pet_skill_finish
+      animation: 133
+      cast_time: 1500
+
+    super_climb:
+      id:        652
+      level:     50
+      category:  pet_skill_finish
+      animation: 140
+
+    remove_curse:
+      id:        653
+      level:     60
+      target:    [party]
+      range:     12
+      category:  pet_skill_finish
+      animation: 157
+      cast_time: 1500
+
+    healing_breath_iv:
+      id:        639
+      level:     80
+      target:    [party]
+      range:     12
+      category:  pet_skill_finish
+      animation: 156
+      cast_time: 1500
+      content:   abyssea
+
+    remove_disease:
+      id:        654
+      level:     80
+      target:    [party]
+      range:     12
+      category:  pet_skill_finish
+      animation: 158
+      cast_time: 1500

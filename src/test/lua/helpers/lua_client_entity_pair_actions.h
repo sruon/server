@@ -39,7 +39,7 @@ public:
     void useSpell(CLuaBaseEntity* target, SpellID spellId) const;
     void setBlueSpells(const sol::table& spellIds) const;
     void useWeaponskill(CLuaBaseEntity* target, uint16 wsId) const;
-    void useAbility(CLuaBaseEntity* target, ABILITY abilityId) const;
+    void useAbility(CLuaBaseEntity* target, xi::JobAbility abilityId) const;
     void useMonsterSkill(CLuaBaseEntity* target, uint16 datSkillId) const;
     void changeTarget(CLuaBaseEntity* target) const;
     void rangedAttack(CLuaBaseEntity* target) const;

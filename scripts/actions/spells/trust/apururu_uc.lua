@@ -33,7 +33,7 @@ spellObject.onMobSpawn = function(mob)
 
     mob:addGambit(ai.t.SELF, { { ai.c.MPP_LT, 51 }, { ai.c.LVL_GTE, 50 }, { ai.c.TP_GTE, 1000 } }, { ai.r.MS, ai.s.SPECIFIC, xi.mobSkill.NOTT })
 
-    mob:addGambit(ai.t.SELF, { ai.c.MPP_LT, 25 }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.CONVERT })
+    mob:addGambit(ai.t.SELF, { ai.c.MPP_LT, 25 }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.CONVERT })
 
     mob:addGambit(ai.t.PARTY, { ai.c.HPP_LT, 25 }, { ai.r.MA, ai.s.HIGHEST, xi.magic.spellFamily.CURE })
 

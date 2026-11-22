@@ -73,20 +73,20 @@ spellObject.onMobSpawn = function(mob)
     end)
 
     if lvl >= 10 then
-        mob:addGambit(ai.t.TARGET, { ai.c.ALWAYS, 0 }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.PROVOKE })
+        mob:addGambit(ai.t.TARGET, { ai.c.ALWAYS, 0 }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.PROVOKE })
     end
 
     if lvl >= 30 then
-        mob:addGambit(ai.t.SELF, { { ai.c.NOT_PT_HAS_TANK, 0 }, { ai.c.NOT_STATUS, xi.effect.BERSERK } }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.BERSERK })
+        mob:addGambit(ai.t.SELF, { { ai.c.NOT_PT_HAS_TANK, 0 }, { ai.c.NOT_STATUS, xi.effect.BERSERK } }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.BERSERK })
     end
 
     if lvl >= 40 then
-        mob:addGambit(ai.t.SELF, { { ai.c.NOT_PT_HAS_TANK, 0 }, { ai.c.NOT_STATUS, xi.effect.INNIN } }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.INNIN })
-        mob:addGambit(ai.t.SELF, { { ai.c.PT_HAS_TANK,     0 }, { ai.c.NOT_STATUS, xi.effect.YONIN } }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.YONIN })
+        mob:addGambit(ai.t.SELF, { { ai.c.NOT_PT_HAS_TANK, 0 }, { ai.c.NOT_STATUS, xi.effect.INNIN } }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.INNIN })
+        mob:addGambit(ai.t.SELF, { { ai.c.PT_HAS_TANK,     0 }, { ai.c.NOT_STATUS, xi.effect.YONIN } }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.YONIN })
     end
 
     if lvl >= 70 then
-        mob:addGambit(ai.t.SELF, { { ai.c.PT_HAS_TANK, 0 }, { ai.c.NOT_STATUS, xi.effect.WARCRY } }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.WARCRY })
+        mob:addGambit(ai.t.SELF, { { ai.c.PT_HAS_TANK, 0 }, { ai.c.NOT_STATUS, xi.effect.WARCRY } }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.WARCRY })
     end
 
     mob:addGambit(ai.t.SELF,    { ai.c.NOT_STATUS,         xi.effect.MIGAWARI   }, { ai.r.MA, ai.s.SPECIFIC, xi.magic.spell.MIGAWARI_ICHI  })

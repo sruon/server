@@ -21,14 +21,21 @@
 
 #include "ability.h"
 
+#include "data/datasets/abilities/dataset.h"
 #include "data/enums/recast.h"
 
+#include "enums/action/category.h"
 #include "enums/msg_basic.h"
 #include "lua/luautils.h"
+#include "utils/dataset_loader.h"
 
+#include <algorithm>
+#include <array>
 #include <map>
+#include <stdexcept>
+#include <utility>
 
-CAbility::CAbility(uint16 id)
+CAbility::CAbility(xi::JobAbility id)
 : m_ID(id)
 , m_Job(xi::Job::NONE)
 , m_level(0)
@@ -36,7 +43,6 @@ CAbility::CAbility(uint16 id)
 , m_range(0)
 , m_aoe(0)
 , m_validTarget(0)
-, m_addType(0)
 , m_message(MsgBasic::None)
 , m_recastTime(0s)
 , m_recastId(xi::Recast::Special)
@@ -48,7 +54,7 @@ CAbility::CAbility(uint16 id)
 
 auto CAbility::isPetAbility() const -> bool
 {
-    return ((getID() >= ABILITY_CONCENTRIC_PULSE && getID() <= ABILITY_RADIAL_ARCANA) || getID() >= ABILITY_HEALING_RUBY);
+    return ((getID() >= xi::JobAbility::ConcentricPulse && getID() <= xi::JobAbility::RadialArcana) || getID() >= xi::JobAbility::HealingRuby);
 }
 
 auto CAbility::isAoE() const -> bool
@@ -62,12 +68,12 @@ auto CAbility::isConal() -> bool
     return false;
 }
 
-void CAbility::setID(uint16 id)
+void CAbility::setID(xi::JobAbility id)
 {
     m_ID = id;
 }
 
-auto CAbility::getID() const -> uint16
+auto CAbility::getID() const -> xi::JobAbility
 {
     return m_ID;
 }
@@ -202,12 +208,17 @@ auto CAbility::getValidTarget() const -> uint16
     return m_validTarget;
 }
 
-auto CAbility::getAddType() const -> uint16
+auto CAbility::getAddType() const -> xi::AbilityAddType
 {
     return m_addType;
 }
 
-void CAbility::setAddType(uint16 addType)
+auto CAbility::hasAddType(const xi::AbilityAddType addType) const -> bool
+{
+    return (m_addType & addType) != xi::AbilityAddType::None;
+}
+
+void CAbility::setAddType(xi::AbilityAddType addType)
 {
     m_addType = addType;
 }
@@ -280,110 +291,108 @@ namespace ability
 namespace
 {
 
-std::map<uint16, std::unique_ptr<CAbility>> PAbilityList;    // Complete Abilities List
-std::map<xi::Job, std::vector<CAbility*>>   PAbilitiesByJob; // Abilities by Job
-std::vector<std::unique_ptr<Charge_t>>      PChargesList;    // Abilities with charges
+std::map<xi::JobAbility, std::unique_ptr<CAbility>> PAbilityList;    // Complete Abilities List
+std::map<xi::Job, std::vector<CAbility*>>           PAbilitiesByJob; // Abilities by Job
+std::vector<std::unique_ptr<Charge_t>>              PChargesList;    // Abilities with charges
+
+auto toTargetType(const xi::ActionTarget targets, const std::string_view name) -> uint16
+{
+    constexpr std::array mapping{
+        std::pair{ xi::ActionTarget::Self, TARGET_SELF },
+        std::pair{ xi::ActionTarget::Pet, TARGET_PET },
+        std::pair{ xi::ActionTarget::Party, TARGET_PLAYER_PARTY },
+        std::pair{ xi::ActionTarget::Alliance, TARGET_PLAYER_ALLIANCE },
+        std::pair{ xi::ActionTarget::Friendly, TARGET_PLAYER },
+        std::pair{ xi::ActionTarget::Hostile, TARGET_ENEMY },
+        std::pair{ xi::ActionTarget::Dead, TARGET_PLAYER_DEAD },
+    };
+
+    uint16 result  = 0;
+    auto   pending = targets;
+    for (const auto& [target, type] : mapping)
+    {
+        if ((targets & target) != xi::ActionTarget::None)
+        {
+            result |= type;
+            pending = pending & ~target;
+        }
+    }
+
+    if (pending != xi::ActionTarget::None)
+    {
+        throw std::runtime_error(fmt::format("{} has a target abilities do not support", name));
+    }
+
+    return result;
+}
 
 } // namespace
 
 /************************************************************************
  *                                                                       *
- *  Load Abilities from Database                                         *
+ *  Load Abilities from data/abilities.yaml                              *
  *                                                                       *
  ************************************************************************/
 
 void LoadAbilitiesList()
 {
-    // TODO: Add message field to table
+    auto abilities = xi::data::loadDataset<xi::data::datasets::abilities::Dataset>();
 
-    const auto rset = db::preparedStmt("SELECT "
-                                       "abilityId, "
-                                       "name, "
-                                       "job, "
-                                       "level, "
-                                       "validTarget, "
-                                       "recastTime, "
-                                       "message1, "
-                                       "message2, "
-                                       "animation, "
-                                       "animationTime, "
-                                       "castTime, "
-                                       "actionType, "
-                                       "`range`, "
-                                       "isAOE, "
-                                       "radius, "
-                                       "recastId, "
-                                       "CE, "
-                                       "VE, "
-                                       "meritModID, "
-                                       "addType, "
-                                       "content_tag "
-                                       "FROM abilities "
-                                       "WHERE job < ? AND abilityId < ? "
-                                       "ORDER BY job, level ASC",
-                                       MAX_JOBTYPE,
-                                       MAX_ABILITY_ID);
+    // Abilities by job, lowest level first
+    std::ranges::stable_sort(abilities, {}, &xi::data::AbilityData::Level);
+    std::ranges::stable_sort(abilities, {}, &xi::data::AbilityData::Job);
 
-    if (rset && rset->rowsCount())
+    for (const auto& entry : abilities)
     {
-        while (rset->next())
+        if (entry.Charges)
         {
-            const auto contentTag = rset->getOrDefault<std::string>("content_tag", "");
-            if (!luautils::IsContentEnabled(contentTag))
+            for (const auto& tier : entry.Charges->Tiers)
             {
-                continue;
+                PChargesList.emplace_back(std::make_unique<Charge_t>(Charge_t{
+                    .ID         = entry.Charges->RecastId,
+                    .job        = entry.Job,
+                    .level      = tier.Level,
+                    .maxCharges = tier.MaxCharges,
+                    .chargeTime = std::chrono::seconds(tier.ChargeTime),
+                    .merit      = std::to_underlying(tier.Merit),
+                }));
             }
-
-            const auto abilityId    = rset->get<uint16>("abilityId");
-            PAbilityList[abilityId] = std::make_unique<CAbility>(abilityId);
-            const auto& PAbility    = PAbilityList[abilityId];
-
-            PAbility->setName(rset->get<std::string>("name"));
-            PAbility->setJob(rset->get<xi::Job>("job"));
-            PAbility->setLevel(rset->get<uint8>("level"));
-            PAbility->setValidTarget(rset->get<uint16>("validTarget"));
-            PAbility->setRecastTime(std::chrono::seconds(rset->get<uint16>("recastTime")));
-            PAbility->setMessage(rset->get<MsgBasic>("message1"));
-            // Unused - message2
-            PAbility->setAnimationID(rset->get<uint16>("animation"));
-            PAbility->setAnimationTime(std::chrono::milliseconds(rset->get<uint16>("animationTime")));
-            PAbility->setCastTime(std::chrono::milliseconds(rset->get<uint16>("castTime")));
-            PAbility->setActionType(rset->get<ActionCategory>("actionType"));
-            PAbility->setRange(rset->get<float>("range"));
-            PAbility->setAOE(rset->get<uint8>("isAOE"));
-            PAbility->setRadius(rset->get<uint8>("radius"));
-            PAbility->setRecastId(rset->get<xi::Recast>("recastId"));
-            PAbility->setCE(rset->get<int32>("CE"));
-            PAbility->setVE(rset->get<int32>("VE"));
-            PAbility->setMeritModID(rset->get<uint16>("meritModID"));
-            PAbility->setAddType(rset->get<uint16>("addType"));
-
-            PAbilitiesByJob[PAbility->getJob()].emplace_back(PAbility.get());
-
-            auto filename = fmt::format("./scripts/actions/abilities/{}.lua", PAbility->getName());
-            if (PAbility->isPetAbility())
-            {
-                filename = fmt::format("./scripts/actions/abilities/pets/{}.lua", PAbility->getName());
-            }
-            luautils::LoadLuaObjectFromFile(filename);
         }
-    }
 
-    const auto rset2 = db::preparedStmt("SELECT recastId, job, level, maxCharges, chargeTime, meritModId FROM abilities_charges ORDER BY job, level ASC");
-    if (rset2 && rset2->rowsCount())
-    {
-        while (rset2->next())
+        if (!luautils::IsContentEnabled(entry.Content))
         {
-            auto PCharge        = std::make_unique<Charge_t>();
-            PCharge->ID         = rset2->get<uint16>("recastId");
-            PCharge->job        = rset2->get<xi::Job>("job");
-            PCharge->level      = rset2->get<uint8>("level");
-            PCharge->maxCharges = rset2->get<uint8>("maxCharges");
-            PCharge->chargeTime = std::chrono::seconds(rset2->get<uint32>("chargeTime"));
-            PCharge->merit      = rset2->get<uint16>("meritModId");
-
-            PChargesList.emplace_back(std::move(PCharge));
+            continue;
         }
+
+        auto PAbility = std::make_unique<CAbility>(entry.Id);
+        PAbility->setName(entry.Name);
+        PAbility->setJob(entry.Job);
+        PAbility->setLevel(entry.Level);
+        PAbility->setValidTarget(toTargetType(entry.Target, entry.Name));
+        PAbility->setRecastTime(std::chrono::seconds(entry.Recast));
+        PAbility->setMessage(static_cast<MsgBasic>(entry.Message));
+        PAbility->setAnimationID(entry.Animation);
+        PAbility->setCastTime(std::chrono::milliseconds(entry.CastTime));
+        PAbility->setActionType(static_cast<ActionCategory>(std::to_underlying(entry.Category)));
+        PAbility->setAnimationTime(std::chrono::milliseconds(entry.AnimationTime));
+        PAbility->setRange(entry.Range);
+        PAbility->setRecastId(static_cast<xi::Recast>(entry.RecastId));
+        PAbility->setCE(entry.CE);
+        PAbility->setVE(entry.VE);
+        PAbility->setMeritModID(std::to_underlying(entry.Merit));
+        PAbility->setAddType(entry.AddType);
+        PAbility->setAOE(static_cast<uint8>(entry.Aoe));
+        PAbility->setRadius(entry.Radius);
+
+        auto filename = fmt::format("./scripts/actions/abilities/{}.lua", PAbility->getName());
+        if (PAbility->isPetAbility())
+        {
+            filename = fmt::format("./scripts/actions/abilities/pets/{}.lua", PAbility->getName());
+        }
+        luautils::LoadLuaObjectFromFile(filename);
+
+        PAbilitiesByJob[PAbility->getJob()].emplace_back(PAbility.get());
+        PAbilityList[entry.Id] = std::move(PAbility);
     }
 }
 
@@ -393,13 +402,13 @@ void LoadAbilitiesList()
  *                                                                       *
  ************************************************************************/
 
-auto GetAbility(uint16 AbilityID) -> CAbility*
+auto GetAbility(xi::JobAbility AbilityID) -> CAbility*
 {
     if (auto itr = PAbilityList.find(AbilityID); itr != PAbilityList.end())
     {
         return itr->second.get();
     }
-    ShowDebug("Unable to look up ability %d", AbilityID);
+    ShowDebug("Unable to look up ability %d", std::to_underlying(AbilityID));
     return nullptr;
 }
 
@@ -416,70 +425,70 @@ auto GetTwoHourAbility(xi::Job JobID) -> CAbility*
         switch (JobID)
         {
             case xi::Job::WAR:
-                return GetAbility(ABILITY_MIGHTY_STRIKES);
+                return GetAbility(xi::JobAbility::MightyStrikes);
                 break;
             case xi::Job::MNK:
-                return GetAbility(ABILITY_HUNDRED_FISTS);
+                return GetAbility(xi::JobAbility::HundredFists);
                 break;
             case xi::Job::WHM:
-                return GetAbility(ABILITY_BENEDICTION);
+                return GetAbility(xi::JobAbility::Benediction);
                 break;
             case xi::Job::BLM:
-                return GetAbility(ABILITY_MANAFONT);
+                return GetAbility(xi::JobAbility::Manafont);
                 break;
             case xi::Job::RDM:
-                return GetAbility(ABILITY_CHAINSPELL);
+                return GetAbility(xi::JobAbility::Chainspell);
                 break;
             case xi::Job::THF:
-                return GetAbility(ABILITY_PERFECT_DODGE);
+                return GetAbility(xi::JobAbility::PerfectDodge);
                 break;
             case xi::Job::PLD:
-                return GetAbility(ABILITY_INVINCIBLE);
+                return GetAbility(xi::JobAbility::Invincible);
                 break;
             case xi::Job::DRK:
-                return GetAbility(ABILITY_BLOOD_WEAPON);
+                return GetAbility(xi::JobAbility::BloodWeapon);
                 break;
             case xi::Job::BST:
-                return GetAbility(ABILITY_FAMILIAR);
+                return GetAbility(xi::JobAbility::Familiar);
                 break;
             case xi::Job::BRD:
-                return GetAbility(ABILITY_SOUL_VOICE);
+                return GetAbility(xi::JobAbility::SoulVoice);
                 break;
             case xi::Job::RNG:
-                return GetAbility(ABILITY_EAGLE_EYE_SHOT);
+                return GetAbility(xi::JobAbility::EagleEyeShot);
                 break;
             case xi::Job::SAM:
-                return GetAbility(ABILITY_MEIKYO_SHISUI);
+                return GetAbility(xi::JobAbility::MeikyoShisui);
                 break;
             case xi::Job::NIN:
-                return GetAbility(ABILITY_MIJIN_GAKURE);
+                return GetAbility(xi::JobAbility::MijinGakure);
                 break;
             case xi::Job::DRG:
-                return GetAbility(ABILITY_SPIRIT_SURGE);
+                return GetAbility(xi::JobAbility::SpiritSurge);
                 break;
             case xi::Job::SMN:
-                return GetAbility(ABILITY_ASTRAL_FLOW);
+                return GetAbility(xi::JobAbility::AstralFlow);
                 break;
             case xi::Job::BLU:
-                return GetAbility(ABILITY_AZURE_LORE);
+                return GetAbility(xi::JobAbility::AzureLore);
                 break;
             case xi::Job::COR:
-                return GetAbility(ABILITY_WILD_CARD);
+                return GetAbility(xi::JobAbility::WildCard);
                 break;
             case xi::Job::PUP:
-                return GetAbility(ABILITY_OVERDRIVE);
+                return GetAbility(xi::JobAbility::Overdrive);
                 break;
             case xi::Job::DNC:
-                return GetAbility(ABILITY_TRANCE);
+                return GetAbility(xi::JobAbility::Trance);
                 break;
             case xi::Job::SCH:
-                return GetAbility(ABILITY_TABULA_RASA);
+                return GetAbility(xi::JobAbility::TabulaRasa);
                 break;
             case xi::Job::GEO:
-                return GetAbility(ABILITY_BOLSTER);
+                return GetAbility(xi::JobAbility::Bolster);
                 break;
             case xi::Job::RUN:
-                return GetAbility(ABILITY_ELEMENTAL_SFORZO);
+                return GetAbility(xi::JobAbility::ElementalSforzo);
                 break;
             default:
                 break;
@@ -492,7 +501,7 @@ auto GetTwoHourAbility(xi::Job JobID) -> CAbility*
 
 auto CanLearnAbility(CBattleEntity* PUser, uint16 AbilityID) -> bool
 {
-    auto* PAbility = GetAbility(AbilityID);
+    auto* PAbility = GetAbility(static_cast<xi::JobAbility>(AbilityID));
     if (PAbility)
     {
         const auto Job    = PAbility->getJob();

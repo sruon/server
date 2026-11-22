@@ -52,31 +52,31 @@ spellObject.onMobSpawn = function(mob)
     end
 
     if lvl >= 5 then
-        mob:addGambit(ai.t.SELF, { ai.c.ALWAYS, 0 }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.PROVOKE })
+        mob:addGambit(ai.t.SELF, { ai.c.ALWAYS, 0 }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.PROVOKE })
     end
 
     if lvl >= 30 then
-        mob:addGambit(ai.t.SELF, { ai.c.NOT_STATUS, xi.effect.SENTINEL }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.SENTINEL })
+        mob:addGambit(ai.t.SELF, { ai.c.NOT_STATUS, xi.effect.SENTINEL }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.SENTINEL })
     end
 
     if lvl >= 50 then
-        mob:addGambit(ai.t.SELF, { { ai.c.MPP_LT,         50             }, { ai.c.TP_GTE,     1000               } }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.CHIVALRY })
-        mob:addGambit(ai.t.SELF, { { ai.c.JA_ON_COOLDOWN, xi.ja.SENTINEL }, { ai.c.NOT_STATUS, xi.effect.SENTINEL } }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.DEFENDER })
+        mob:addGambit(ai.t.SELF, { { ai.c.MPP_LT,         50             }, { ai.c.TP_GTE,     1000               } }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.CHIVALRY })
+        mob:addGambit(ai.t.SELF, { { ai.c.JA_ON_COOLDOWN, xi.jobAbility.SENTINEL }, { ai.c.NOT_STATUS, xi.effect.SENTINEL } }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.DEFENDER })
     end
 
     if lvl >= 62 then
-        mob:addGambit(ai.t.TARGET, { ai.c.STATUS, xi.effect.MANAFONT    }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.RAMPART })
-        mob:addGambit(ai.t.TARGET, { ai.c.STATUS, xi.effect.CHAINSPELL  }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.RAMPART })
-        mob:addGambit(ai.t.TARGET, { ai.c.STATUS, xi.effect.ASTRAL_FLOW }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.RAMPART })
+        mob:addGambit(ai.t.TARGET, { ai.c.STATUS, xi.effect.MANAFONT    }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.RAMPART })
+        mob:addGambit(ai.t.TARGET, { ai.c.STATUS, xi.effect.CHAINSPELL  }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.RAMPART })
+        mob:addGambit(ai.t.TARGET, { ai.c.STATUS, xi.effect.ASTRAL_FLOW }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.RAMPART })
     end
 
     if lvl >= 70 then
-        mob:addGambit(ai.t.SELF, { ai.c.NOT_STATUS, xi.effect.MAJESTY }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.MAJESTY })
+        mob:addGambit(ai.t.SELF, { ai.c.NOT_STATUS, xi.effect.MAJESTY }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.MAJESTY })
     end
 
     if lvl >= 75 then
-        mob:addGambit(ai.t.TARGET, { ai.c.CASTING_DEBUFF, 0               }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.FEALTY        })
-        mob:addGambit(ai.t.TARGET, { ai.c.NOT_STATUS,     xi.effect.FLASH }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.DIVINE_EMBLEM })
+        mob:addGambit(ai.t.TARGET, { ai.c.CASTING_DEBUFF, 0               }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.FEALTY        })
+        mob:addGambit(ai.t.TARGET, { ai.c.NOT_STATUS,     xi.effect.FLASH }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.DIVINE_EMBLEM })
     end
 
     mob:addGambit(ai.t.SELF,   { ai.c.NOT_STATUS, xi.effect.PROTECT  }, { ai.r.MA, ai.s.HIGHEST, xi.magic.spellFamily.PROTECT })

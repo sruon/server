@@ -14,6 +14,8 @@
 # - sql files are loaded either by dbtool, or by hand.
 # - sql under era/sql/<expansion>/ is applied by dbtool when listed; list the
 #   expansion folders you want. Listing plain 'era' includes all of them.
+# - data patches under era/data/<expansion>/ load only when that folder is
+#   listed, for example era/data/rov. Plain 'era' does not include them.
 #
 # Examples:
 #

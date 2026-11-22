@@ -317,7 +317,7 @@ void CPetEntity::OnAbility(CAbilityState& state, action_t& action)
 
         action.actorId                = this->id;
         action.actiontype             = PAbility->getActionType();
-        action.actionid               = PAbility->getID();
+        action.actionid               = std::to_underlying(PAbility->getID());
         action_target_t& actionTarget = action.addTarget(PTarget->id);
         action_result_t& actionResult = actionTarget.addResult();
         actionResult.resolution       = ActionResolution::Hit;
@@ -609,7 +609,7 @@ void CPetEntity::OnPetSkillFinished(CPetSkillState& state, action_t& action)
         if (PTarget->objtype == TYPE_MOB && PTarget->allegiance != this->allegiance)
         {
             bool isAvatar      = (this->getPetType() == PET_TYPE::AVATAR);
-            bool isAtomosSkill = (PSkill->getID() == ABILITY_DECONSTRUCTION);
+            bool isAtomosSkill = (PSkill->getID() == std::to_underlying(xi::JobAbility::Deconstruction));
             bool isDead        = PTarget->isDead();
 
             if (isDead || (isAvatar && !isAtomosSkill))

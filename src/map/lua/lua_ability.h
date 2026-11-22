@@ -34,6 +34,8 @@ class CAbility;
 namespace xi
 {
 
+enum class AbilityAddType : uint16_t;
+enum class JobAbility : uint16_t;
 enum class Recast : uint16_t;
 enum class StatusEffect : uint16_t;
 
@@ -53,7 +55,7 @@ public:
 
     friend auto operator<<(std::ostream& out, const CLuaAbility& ability) -> std::ostream&;
 
-    auto getID() -> uint16;
+    auto getID() -> xi::JobAbility;
     auto getMsg() -> MsgBasic;
     auto getRecast() -> uint16;
     auto getRecastID() const -> xi::Recast;
@@ -62,7 +64,7 @@ public:
     auto getAOE() const -> uint8;
     auto getName() -> const std::string&;
     auto getAnimation() -> ActionAnimation;
-    auto getAddType() -> uint16; // see map/ability.h for definitions. These can tell if the ability is a Merit ability, Astral Flow only ability, etc
+    auto getAddType() -> xi::AbilityAddType;
 
     void setMsg(MsgBasic messageID);
     void setAnimation(uint16 animationID);

@@ -1,0 +1,151 @@
+# Abilities as they were before the Abyssea-era updates.
+# Unless otherwise noted, changes are from https://www.bg-wiki.com/ffxi/Version_Update_(03/26/2012)
+# Two-hour abilities go back from 1 hour to 2 hours: https://www.bg-wiki.com/ffxi/Version_Update_(12/12/2012)
+# Enmity: CE is minimal (1), VE is the era-accurate spike: https://kanican.livejournal.com/tag/enmity%20table%21/
+
+abilities:
+  war:
+    mighty_strikes: {recast: 7200}
+    # Warrior's Charge: Revert recast from 5 to 15 minutes
+    warriors_charge: {recast: 900}
+
+  mnk:
+    hundred_fists: {recast: 7200}
+
+  whm:
+    benediction: {recast: 7200}
+    divine_seal: {enmity: {ce: 1, ve: 80}}
+    # Martyr: Revert recast from 10 to 20 minutes
+    martyr: {recast: 1200}
+    # Devotion: Revert recast from 10 to 20 minutes
+    devotion: {recast: 1200}
+
+  blm:
+    manafont:       {recast: 7200}
+    elemental_seal: {enmity: {ce: 1, ve: 80}}
+
+  rdm:
+    chainspell: {recast: 7200}
+
+  thf:
+    perfect_dodge: {recast: 7200}
+    # Assassin's Charge: Revert cooldown to 15 minutes
+    assassins_charge: {recast: 900}
+    # Feint: Revert cooldown to 10 minutes
+    feint: {recast: 600}
+
+  pld:
+    invincible:    {recast: 7200}
+    sentinel:      {enmity: {ce: 1, ve: 1800}}
+    cover:         {enmity: {ce: 1, ve: 0}}
+    rampart:       {enmity: {ce: 1, ve: 300}}
+    divine_emblem: {enmity: {ce: 1, ve: 300}}
+    # Holy Circle: Revert recast from 5 to 10 minutes
+    # https://www.bg-wiki.com/ffxi/Version_Update_(02/13/2012)
+    holy_circle: {recast: 600}
+    # Chivalry: Revert recast from 10 to 20 minutes
+    chivalry: {recast: 1200}
+    # Fealty: Revert recast from 10 to 20 minutes
+    fealty: {recast: 1200}
+    # Shield Bash: Revert recast from 3 to 5 minutes
+    shield_bash: {recast: 300, enmity: {ce: 1, ve: 900}}
+
+  drk:
+    blood_weapon: {recast: 7200}
+    nether_void:  {enmity: {ce: 1, ve: 300}}
+    # https://www.bg-wiki.com/ffxi/Version_Update_(02/13/2012)
+    # Arcane Circle: Revert recast from 5 to 10 minutes
+    arcane_circle: {recast: 600}
+    # Weapon Bash: Revert recast from 3 to 5 minutes
+    weapon_bash: {recast: 300}
+    # Dark Seal: Revert recast from 5 to 15 minutes
+    # https://www.bg-wiki.com/ffxi/Version_Update_(03/26/2012)
+    dark_seal: {recast: 900}
+    # Diabolic Eye: Revert recast from 5 to 15 minutes
+    diabolic_eye: {recast: 900}
+
+  bst:
+    familiar: {recast: 7200}
+    # Feral Howl: Revert recast from 5 to 15 minutes
+    feral_howl: {recast: 900}
+    # Killer Instinct: Revert recast from 5 to 15 minutes
+    killer_instinct: {recast: 900}
+
+  brd:
+    soul_voice: {recast: 7200}
+    pianissimo: {enmity: {ce: 1, ve: 80}}
+
+  rng:
+    # Eagle Eye Shot: Revert range from 20 to 15 yalms
+    # https://www.bg-wiki.com/ffxi/Version_Update_(05/15/2012)
+    eagle_eye_shot: {recast: 7200, range: 15}
+    # Shadowbind: Revert range from 20 to 10 yalms
+    shadowbind: {range: 10}
+    # Flashy Shot: revert recast from 10 to 20 minutes
+    flashy_shot: {recast: 1200}
+
+  sam:
+    meikyo_shisui: {recast: 7200}
+    # https://www.bg-wiki.com/ffxi/Version_Update_(02/13/2012)
+    # Warding Circle: Revert recast from 5 to 10 minutes
+    warding_circle: {recast: 600}
+    # Sekkanoki: Adjust level requirement from 40 to 60
+    # https://www.bg-wiki.com/ffxi/Version_Update_(06/21/2010)
+    sekkanoki: {level: 60}
+    # Blade Bash: Revert recast from 5 to 15 minutes
+    # https://www.bg-wiki.com/ffxi/Version_Update_(05/15/2012)
+    blade_bash: {recast: 900}
+    # Shikikoyo: Revert recast from 5 to 15 minutes
+    shikikoyo: {recast: 900}
+
+  nin:
+    mijin_gakure: {recast: 7200}
+    # Yonin, Innin: Revert recast from 3 minutes to 5 minutes and share a cooldown
+    # https://www.bg-wiki.com/ffxi/Version_Update_(07/11/2011)
+    yonin: {recast: 300}
+    innin: {recast: 300, recast_id: 146}
+
+  drg:
+    spirit_surge: {recast: 7200}
+    # https://www.bg-wiki.com/ffxi/Version_Update_(02/13/2012)
+    # Jump: Revert recast from 1 minute to 1.5 minutes
+    jump: {recast: 90}
+    # High Jump: Revert recast from 2 minutes to 3 minutes
+    high_jump: {recast: 180}
+    # Super Jump: Revert range from 12.5 to 9.5 yalms
+    super_jump: {range: 9.5}
+    # Spirit Link: Revert recast from 1.5 minutes to 3 minutes
+    spirit_link: {recast: 180}
+    # Ancient Circle: Revert recast from 5 to 10 minutes
+    ancient_circle: {recast: 600}
+    # Deep Breathing: Revert recast from 5 to 15 minutes
+    deep_breathing: {recast: 900}
+
+  smn:
+    astral_flow: {recast: 7200}
+
+  blu:
+    azure_lore: {recast: 7200}
+
+  cor:
+    wild_card: {recast: 7200}
+    # Double-Up: Revert recast from 5 to 7 seconds
+    # https://www.bg-wiki.com/ffxi/Version_Update_(09/19/2011)
+    double_up: {recast: 7}
+    # Snake Eye: Revert recast from 5 to 15 minutes
+    # https://www.bg-wiki.com/ffxi/Version_Update_(05/15/2012)
+    snake_eye: {recast: 900}
+    # Fold: Revert recast from 5 to 15 minutes
+    fold: {recast: 900}
+    # Quick Draw: Revert range from 22 to 15 yalms
+    quick_draw: {range: 15}
+
+  pup:
+    overdrive: {recast: 7200}
+
+  dnc:
+    trance: {recast: 7200}
+
+  sch:
+    tabula_rasa:   {recast: 7200}
+    modus_veritas: {enmity: {ce: 1, ve: 300}}

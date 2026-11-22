@@ -194,7 +194,7 @@ auto CPlayerController::Ability(EntityId target, const uint16 abilityid) -> bool
     auto* PChar = static_cast<CCharEntity*>(POwner);
     if (canAct() && PChar->PAI->CanChangeState())
     {
-        CAbility* PAbility = ability::GetAbility(abilityid);
+        CAbility* PAbility = ability::GetAbility(static_cast<xi::JobAbility>(abilityid));
         if (!PAbility)
         {
             PChar->pushPacket<GP_SERV_COMMAND_BATTLE_MESSAGE>(PChar, PChar, 0, 0, MsgBasic::UnableToUseJobAbility);

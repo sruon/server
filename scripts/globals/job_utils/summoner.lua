@@ -112,7 +112,7 @@ local function getBaseMPCost(player, ability)
         -- Cait Sith
         [xi.jobAbility.REGAL_SCRATCH]    = 5,
         [xi.jobAbility.MEWING_LULLABY]   = 61,
-        [xi.jobAbility.EARIE_EYE]        = 134,
+        [xi.jobAbility.EERIE_EYE]        = 134,
         [xi.jobAbility.LEVEL_QM_HOLY]    = 235,
         [xi.jobAbility.RAISE_II]         = 160,
         [xi.jobAbility.RERAISE_II]       = 80,
@@ -127,7 +127,7 @@ local function getBaseMPCost(player, ability)
     local baseMPCost = nil
 
     if ability then
-        if ability:getAddType() == xi.addType.ADDTYPE_ASTRAL_FLOW then
+        if ability:getAddType() == xi.addType.ASTRAL_FLOW then
             baseMPCost = player:getMainLvl() * 2
         else
             baseMPCost = baseMPCostMap[ability:getID()]
@@ -152,7 +152,7 @@ local function getMPCost(baseMPCost, player, petskill)
     local mpCost = baseMPCost
 
     -- don't proc blood boon on Astral Flow
-    if petskill:getAddType() ~= xi.addType.ADDTYPE_ASTRAL_FLOW then
+    if petskill:getAddType() ~= xi.addType.ASTRAL_FLOW then
         local bloodBoonRate = player:getMod(xi.mod.BLOOD_BOON)
         -- assuming it works like Conserve MP... https://www.bg-wiki.com/ffxi/Conserve_MP
         if math.randomInt(1, 100) <= bloodBoonRate then

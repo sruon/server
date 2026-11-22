@@ -1,0 +1,14 @@
+# yaml-language-server: $schema=../schemas/enums/_enum.schema.json
+
+# Action packet category an ability is sent with. Values match ActionCategory.
+
+meta:
+  cpp:
+    underlying: uint8_t
+
+values:
+  skill_finish:      3
+  ability_finish:    6
+  pet_skill_finish: 13
+  dancer:           14
+  rune_fencer:      15

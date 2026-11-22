@@ -3343,54 +3343,54 @@ void BuildingCharPetAbilityTable(CCharEntity* PChar, CPetEntity* PPet, uint32 Pe
             {
                 if (PetID == PETID_CARBUNCLE)
                 {
-                    if (PAbility->getID() >= ABILITY_HEALING_RUBY && PAbility->getID() <= ABILITY_SOOTHING_RUBY)
+                    if (PAbility->getID() >= xi::JobAbility::HealingRuby && PAbility->getID() <= xi::JobAbility::SoothingRuby)
                     {
-                        addPetAbility(PChar, PAbility->getID() - ABILITY_HEALING_RUBY);
+                        addPetAbility(PChar, std::to_underlying(PAbility->getID()) - std::to_underlying(xi::JobAbility::HealingRuby));
                     }
-                    else if (PAbility->getID() == ABILITY_PACIFYING_RUBY)
+                    else if (PAbility->getID() == xi::JobAbility::PacifyingRuby)
                     {
                         addPetAbility(PChar, 261);
                     }
                 }
                 else if (PetID >= PETID_FENRIR && PetID <= PETID_RAMUH)
                 {
-                    if (PAbility->getID() >= (ABILITY_HEALING_RUBY + ((PetID - 8) * 16)) && PAbility->getID() < (ABILITY_HEALING_RUBY + ((PetID - 7) * 16)))
+                    if (std::to_underlying(PAbility->getID()) >= (std::to_underlying(xi::JobAbility::HealingRuby) + ((PetID - 8) * 16)) && std::to_underlying(PAbility->getID()) < (std::to_underlying(xi::JobAbility::HealingRuby) + ((PetID - 7) * 16)))
                     {
-                        addPetAbility(PChar, PAbility->getID() - ABILITY_HEALING_RUBY);
+                        addPetAbility(PChar, std::to_underlying(PAbility->getID()) - std::to_underlying(xi::JobAbility::HealingRuby));
                     }
                 }
                 else if (PetID == PETID_DIABOLOS)
                 {
-                    if (PAbility->getID() >= ABILITY_CAMISADO && PAbility->getID() <= ABILITY_BLINDSIDE)
+                    if (PAbility->getID() >= xi::JobAbility::Camisado && PAbility->getID() <= xi::JobAbility::Blindside)
                     {
-                        addPetAbility(PChar, PAbility->getID() - ABILITY_HEALING_RUBY);
+                        addPetAbility(PChar, std::to_underlying(PAbility->getID()) - std::to_underlying(xi::JobAbility::HealingRuby));
                     }
                 }
                 else if (PetID == PETID_CAIT_SITH)
                 {
-                    if (PAbility->getID() > ABILITY_SOOTHING_RUBY && PAbility->getID() < ABILITY_MOONLIT_CHARGE)
+                    if (PAbility->getID() > xi::JobAbility::SoothingRuby && PAbility->getID() < xi::JobAbility::MoonlitCharge)
                     {
-                        addPetAbility(PChar, PAbility->getID() - ABILITY_HEALING_RUBY);
+                        addPetAbility(PChar, std::to_underlying(PAbility->getID()) - std::to_underlying(xi::JobAbility::HealingRuby));
                     }
                 }
                 else if (PetID == PETID_SIREN)
                 {
-                    if (PAbility->getID() >= ABILITY_CLARSACH_CALL && PAbility->getID() <= ABILITY_HYSTERIC_ASSAULT)
+                    if (PAbility->getID() >= xi::JobAbility::ClarsachCall && PAbility->getID() <= xi::JobAbility::HystericAssault)
                     {
                         uint16 sirenAbilltyPacketOffset = 0x1C0;
-                        uint16 sirenAbilityPacketBit    = (PAbility->getID() - ABILITY_CLARSACH_CALL) + sirenAbilltyPacketOffset;
+                        uint16 sirenAbilityPacketBit    = (std::to_underlying(PAbility->getID()) - std::to_underlying(xi::JobAbility::ClarsachCall)) + sirenAbilltyPacketOffset;
                         addPetAbility(PChar, sirenAbilityPacketBit);
                     }
                 }
             }
         }
     }
-    if (PPet->getPetType() == PET_TYPE::JUG_PET && !hasAbility(PChar, ABILITY_SIC) && PChar->GetMLevel() >= 25)
+    if (PPet->getPetType() == PET_TYPE::JUG_PET && !hasAbility(PChar, std::to_underlying(xi::JobAbility::Sic)) && PChar->GetMLevel() >= 25)
     {
         auto skillList{ battleutils::GetMobSkillList(PPet->m_MobSkillList) };
         for (auto&& abilityid : skillList)
         {
-            addPetAbility(PChar, abilityid - ABILITY_HEALING_RUBY);
+            addPetAbility(PChar, abilityid - std::to_underlying(xi::JobAbility::HealingRuby));
         }
     }
 
@@ -3416,7 +3416,7 @@ void BuildingCharAbilityTable(CCharEntity* PChar)
 
     const auto learn = [&](CAbility* PAbility)
     {
-        addAbility(PChar, PAbility->getID());
+        addAbility(PChar, std::to_underlying(PAbility->getID()));
         const auto* charge     = ability::GetCharge(PChar, static_cast<uint16>(PAbility->getRecastId()));
         auto        chargeTime = timer::duration{ 0s };
         auto        maxCharges = 0;
@@ -3448,7 +3448,7 @@ void BuildingCharAbilityTable(CCharEntity* PChar)
                     break;
                 }
 
-                if (PAbility->getID() < ABILITY_HEALING_RUBY && PAbility->getID() != ABILITY_PET_COMMANDS && PAbility->getID() != ABILITY_PROVOKE && CheckAbilityAddtype(PChar, PAbility))
+                if (PAbility->getID() < xi::JobAbility::HealingRuby && PAbility->getID() != xi::JobAbility::PetCommands && PAbility->getID() != xi::JobAbility::Provoke && CheckAbilityAddtype(PChar, PAbility))
                 {
                     learn(PAbility);
                 }
@@ -3467,7 +3467,7 @@ void BuildingCharAbilityTable(CCharEntity* PChar)
 
         if (PChar->GetMLevel() >= PAbility->getLevel())
         {
-            if (PAbility->getID() < ABILITY_HEALING_RUBY && PAbility->getID() != ABILITY_PET_COMMANDS && CheckAbilityAddtype(PChar, PAbility))
+            if (PAbility->getID() < xi::JobAbility::HealingRuby && PAbility->getID() != xi::JobAbility::PetCommands && CheckAbilityAddtype(PChar, PAbility))
             {
                 learn(PAbility);
             }
@@ -3493,9 +3493,9 @@ void BuildingCharAbilityTable(CCharEntity* PChar)
 
         if (PChar->GetSLevel() >= PAbility->getLevel())
         {
-            if (PAbility->getLevel() != 0 && PAbility->getID() < ABILITY_HEALING_RUBY)
+            if (PAbility->getLevel() != 0 && PAbility->getID() < xi::JobAbility::HealingRuby)
             {
-                if (PAbility->getID() != ABILITY_PET_COMMANDS && CheckAbilityAddtype(PChar, PAbility) && !(PAbility->getAddType() & ADDTYPE_MAIN_ONLY))
+                if (PAbility->getID() != xi::JobAbility::PetCommands && CheckAbilityAddtype(PChar, PAbility) && !PAbility->hasAddType(xi::AbilityAddType::MainOnly))
                 {
                     learn(PAbility);
                 }
@@ -6349,7 +6349,7 @@ void CheckUnarmedWeapon(CCharEntity* PChar)
 
 auto CheckAbilityAddtype(CCharEntity* PChar, const CAbility* PAbility) -> bool
 {
-    if (PAbility->getAddType() & ADDTYPE_MERIT)
+    if (PAbility->hasAddType(xi::AbilityAddType::Merit))
     {
         if (!PChar->PMeritPoints->GetMerit(static_cast<xi::Merit>(PAbility->getMeritModID())))
         {
@@ -6362,35 +6362,35 @@ auto CheckAbilityAddtype(CCharEntity* PChar, const CAbility* PAbility) -> bool
             return false;
         }
     }
-    if (PAbility->getAddType() & ADDTYPE_ASTRAL_FLOW)
+    if (PAbility->hasAddType(xi::AbilityAddType::AstralFlow))
     {
         if (!PChar->StatusEffectContainer->HasStatusEffect(xi::StatusEffect::AstralFlow))
         {
             return false;
         }
     }
-    if (PAbility->getAddType() & ADDTYPE_LEARNED)
+    if (PAbility->hasAddType(xi::AbilityAddType::Learned))
     {
-        if (!hasLearnedAbility(PChar, PAbility->getID()))
+        if (!hasLearnedAbility(PChar, std::to_underlying(PAbility->getID())))
         {
             return false;
         }
     }
-    if (PAbility->getAddType() & ADDTYPE_LIGHT_ARTS)
+    if (PAbility->hasAddType(xi::AbilityAddType::LightArts))
     {
         if (!PChar->StatusEffectContainer->HasStatusEffect({ xi::StatusEffect::LightArts, xi::StatusEffect::AddendumWhite }))
         {
             return false;
         }
     }
-    if (PAbility->getAddType() & ADDTYPE_DARK_ARTS)
+    if (PAbility->hasAddType(xi::AbilityAddType::DarkArts))
     {
         if (!PChar->StatusEffectContainer->HasStatusEffect({ xi::StatusEffect::DarkArts, xi::StatusEffect::AddendumBlack }))
         {
             return false;
         }
     }
-    if ((PAbility->getAddType() & (ADDTYPE_JUGPET | ADDTYPE_CHARMPET)) == (ADDTYPE_JUGPET | ADDTYPE_CHARMPET))
+    if (PAbility->hasAddType(xi::AbilityAddType::JugPet) && PAbility->hasAddType(xi::AbilityAddType::CharmPet))
     {
         if (!PChar->PPet || !(PChar->PPet->objtype == TYPE_MOB ||
                               (PChar->PPet->objtype == TYPE_PET && static_cast<CPetEntity*>(PChar->PPet)->getPetType() == PET_TYPE::JUG_PET)))
@@ -6398,21 +6398,21 @@ auto CheckAbilityAddtype(CCharEntity* PChar, const CAbility* PAbility) -> bool
             return false;
         }
     }
-    if ((PAbility->getAddType() & (ADDTYPE_JUGPET | ADDTYPE_CHARMPET)) == ADDTYPE_JUGPET)
+    if (PAbility->hasAddType(xi::AbilityAddType::JugPet) && !PAbility->hasAddType(xi::AbilityAddType::CharmPet))
     {
         if (!PChar->PPet || PChar->PPet->objtype != TYPE_PET || static_cast<CPetEntity*>(PChar->PPet)->getPetType() != PET_TYPE::JUG_PET)
         {
             return false;
         }
     }
-    if ((PAbility->getAddType() & (ADDTYPE_JUGPET | ADDTYPE_CHARMPET)) == ADDTYPE_CHARMPET)
+    if (PAbility->hasAddType(xi::AbilityAddType::CharmPet) && !PAbility->hasAddType(xi::AbilityAddType::JugPet))
     {
         if (!PChar->PPet || PChar->PPet->objtype != TYPE_MOB)
         {
             return false;
         }
     }
-    if (PAbility->getAddType() & ADDTYPE_AVATAR)
+    if (PAbility->hasAddType(xi::AbilityAddType::Avatar))
     {
         if (!PChar->PPet || PChar->PPet->objtype != TYPE_PET || static_cast<CPetEntity*>(PChar->PPet)->getPetType() != PET_TYPE::AVATAR)
         {
@@ -6426,7 +6426,7 @@ auto CheckAbilityAddtype(CCharEntity* PChar, const CAbility* PAbility) -> bool
             return false;
         }
     }
-    if (PAbility->getAddType() & ADDTYPE_AUTOMATON)
+    if (PAbility->hasAddType(xi::AbilityAddType::Automaton))
     {
         if (!PChar->PPet || PChar->PPet->objtype != TYPE_PET || static_cast<CPetEntity*>(PChar->PPet)->getPetType() != PET_TYPE::AUTOMATON)
         {

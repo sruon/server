@@ -5879,7 +5879,7 @@ auto GetAbility(uint16 id) -> CAbility*
 {
     TracyZoneScoped;
 
-    return ability::GetAbility(id);
+    return ability::GetAbility(static_cast<xi::JobAbility>(id));
 }
 
 auto GetSpell(uint16 id) -> CSpell*

@@ -54,6 +54,7 @@ xi_add_executable(xi_test testserver.rc
     ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/bitset_tests.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/char_points_queries_tests.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/tests/data/abilities_dataset_tests.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/data/data_binding_tests.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/database_tests.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/data/ecosystems_tree_tests.cpp

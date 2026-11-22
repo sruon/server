@@ -202,11 +202,11 @@ void CLuaClientEntityPairActions::useWeaponskill(CLuaBaseEntity* target, const u
 /************************************************************************
  *  Function: useAbility()
  *  Purpose : Emits packet to use an ability on a target.
- *  Example : player.actions:useAbility(player, xi.ability.BERSERK)
+ *  Example : player.actions:useAbility(player, xi.jobAbility.BERSERK)
  *  Notes   :
  ************************************************************************/
 
-void CLuaClientEntityPairActions::useAbility(CLuaBaseEntity* target, const ABILITY abilityId) const
+void CLuaClientEntityPairActions::useAbility(CLuaBaseEntity* target, const xi::JobAbility abilityId) const
 {
     if (!target)
     {
@@ -219,7 +219,7 @@ void CLuaClientEntityPairActions::useAbility(CLuaBaseEntity* target, const ABILI
     actionPacket->UniqueNo           = target->getID();
     actionPacket->ActIndex           = target->getTargID();
     actionPacket->ActionID           = GP_CLI_COMMAND_ACTION_ACTIONID::JobAbility;
-    actionPacket->JobAbility.SkillId = abilityId;
+    actionPacket->JobAbility.SkillId = std::to_underlying(abilityId);
 
     parent_->packets().sendBasicPacket(*packet);
 }

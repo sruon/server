@@ -364,9 +364,9 @@ void GP_CLI_COMMAND_ACTION::process(MapSession* PSession, CCharEntity* PChar) co
         case GP_CLI_COMMAND_ACTION_ACTIONID::JobAbility:
         {
             // Don't allow BST to use ready before level 25
-            if (PChar->PPet != nullptr && (!charutils::hasAbility(PChar, ABILITY_READY) || !PChar->PPet->PAI->IsEngaged()))
+            if (PChar->PPet != nullptr && (!charutils::hasAbility(PChar, std::to_underlying(xi::JobAbility::Ready)) || !PChar->PPet->PAI->IsEngaged()))
             {
-                if (this->JobAbility.SkillId >= ABILITY_FOOT_KICK && this->JobAbility.SkillId <= ABILITY_PENTAPECK) // Is this a BST ability?
+                if (this->JobAbility.SkillId >= std::to_underlying(xi::JobAbility::FootKick) && this->JobAbility.SkillId <= std::to_underlying(xi::JobAbility::Pentapeck)) // Is this a BST ability?
                 {
                     PChar->pushPacket<GP_SERV_COMMAND_BATTLE_MESSAGE>(PChar, PChar, 0, 0, MsgBasic::UnableToUseJobAbility2);
                     return;

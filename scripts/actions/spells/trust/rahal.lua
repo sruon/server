@@ -35,7 +35,7 @@ spellObject.onMobSpawn = function(mob)
     local lvl = mob:getMainLvl()
 
     if lvl >= 10 then
-        mob:addGambit(ai.t.SELF, { ai.c.NOT_HAS_TOP_ENMITY, 0 }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.PROVOKE })
+        mob:addGambit(ai.t.SELF, { ai.c.NOT_HAS_TOP_ENMITY, 0 }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.PROVOKE })
     end
 
     if lvl >= 15 then
@@ -43,12 +43,12 @@ spellObject.onMobSpawn = function(mob)
             { ai.c.CASTING_MA, 0 },
             { ai.c.READYING_JA, 0 },
             { ai.c.READYING_MS, 0 },
-            { ai.c.READYING_WS, 0 }) }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.SHIELD_BASH })
+            { ai.c.READYING_WS, 0 }) }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.SHIELD_BASH })
     end
 
     if lvl >= 30 then
-        mob:addGambit(ai.t.MASTER, { ai.c.NOT_STATUS, xi.effect.BERSERK }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.BERSERK  })
-        mob:addGambit(ai.t.SELF,   { ai.c.HPP_LT,     35                }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.SENTINEL })
+        mob:addGambit(ai.t.MASTER, { ai.c.NOT_STATUS, xi.effect.BERSERK }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.BERSERK  })
+        mob:addGambit(ai.t.SELF,   { ai.c.HPP_LT,     35                }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.SENTINEL })
     end
 
     mob:addGambit(ai.t.PARTY,  { ai.c.HPP_LT,     33                }, { ai.r.MA, ai.s.HIGHEST, xi.magic.spellFamily.CURE    })

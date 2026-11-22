@@ -2737,7 +2737,7 @@ void CBattleEntity::OnAbility(CAbilityState& state, action_t& action)
 
         action.actorId    = this->id;
         action.actiontype = PAbility->getActionType();
-        action.actionid   = PAbility->getID();
+        action.actionid   = std::to_underlying(PAbility->getID());
         action.recast     = PAbility->getRecastTime();
 
         if (PAbility->isAoE())

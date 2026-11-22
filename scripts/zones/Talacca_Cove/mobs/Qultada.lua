@@ -20,8 +20,8 @@ entity.onMobInitialize = function(mob)
     mob:addListener('ABILITY_USE', 'QULTADA_ABILITY_USE', function(mobArg, target, ability, action)
         local abilityId = ability:getID()
         if
-            abilityId == xi.ja.CORSAIRS_ROLL or
-            abilityId == xi.ja.DOUBLE_UP
+            abilityId == xi.jobAbility.CORSAIRS_ROLL or
+            abilityId == xi.jobAbility.DOUBLE_UP
         then
             action:messageID(action:getPrimaryTargetID(), 0)
         end
@@ -67,11 +67,11 @@ entity.onMobRoam = function(mob)
 
     mob:setLocalVar('initialTaunt', 1)
     mob:messageText(mob, ID.text.QULTADA_LADY_DESTINY)
-    mob:useJobAbility(xi.ja.CORSAIRS_ROLL, mob)
+    mob:useJobAbility(xi.jobAbility.CORSAIRS_ROLL, mob)
 
     -- TODO: Dont use timers. Use mob entity functions once they are supported for JAs
     mob:timer(6000, function(mobArg)
-        mobArg:useJobAbility(xi.ja.DOUBLE_UP, mob)
+        mobArg:useJobAbility(xi.jobAbility.DOUBLE_UP, mob)
         mob:timer(4000, function(mobArgTwo)
             mobArgTwo:messageText(mob, math.randomInt(ID.text.QULTADA_LUCK_OF_CORSAIR, ID.text.QULTADA_CHIPS_ARE_DOWN))
         end)

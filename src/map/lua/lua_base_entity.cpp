@@ -16350,7 +16350,7 @@ void CLuaBaseEntity::trustPartyMessage(uint32 message_id) const
  *            }, { ai.r.MA, ai.s.HIGHEST, xi.magic.spellFamily.REFRESH })
  *            trust:addGambit(ai.t.SELF, { ai.c.NOT_STATUS, xi.effect.HASTE }, { ai.r.MA, ai.s.HIGHEST, xi.magic.spellFamily.HASTE })
  *            trust:addGambit(ai.t.TARGET, { ai.c.NOT_STATUS, xi.effect.FLASH }, {
- *                  { ai.r.JA, ai.s.SPECIFIC, xi.ja.DIVINE_EMBLEM },
+ *                  { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.DIVINE_EMBLEM },
  *                  { ai.r.MA, ai.s.SPECIFIC, xi.magic.spellFamily.FLASH } })
  *  Notes   : Adds a behavior to the gambit system
  ************************************************************************/

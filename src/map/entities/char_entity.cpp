@@ -1880,11 +1880,11 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
         // TODO: this is DIFFERENT than gear reduction mod which is a static reduction for the entire ability!
         auto recastReduction = 0s;
 
-        if (PAbility->getMeritModID() > 0 && !(PAbility->getAddType() & ADDTYPE_MERIT))
+        if (PAbility->getMeritModID() > 0 && !PAbility->hasAddType(xi::AbilityAddType::Merit))
         {
             recastReduction = std::chrono::seconds(PMeritPoints->GetMeritValue(static_cast<xi::Merit>(PAbility->getMeritModID()), this));
 
-            if (PAbility->getID() == ABILITY_THIRD_EYE && StatusEffectContainer->HasStatusEffect(xi::StatusEffect::Seigan))
+            if (PAbility->getID() == xi::JobAbility::ThirdEye && StatusEffectContainer->HasStatusEffect(xi::StatusEffect::Seigan))
             {
                 recastReduction = recastReduction / 2;
             }
@@ -1895,7 +1895,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
 
         timer::duration bloodPactRecast = 0s;
 
-        if (charge && PAbility->getID() != ABILITY_SIC)
+        if (charge && PAbility->getID() != xi::JobAbility::Sic)
         {
             auto chargesUsed = timer::count_seconds(PAbility->getRecastTime()); // charge cost is stored in the recast...
 
@@ -1918,7 +1918,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
             action.recast = PAbility->getRecastTime() - recastReduction;
         }
 
-        if (PAbility->getID() == ABILITY_LIGHT_ARTS || PAbility->getID() == ABILITY_DARK_ARTS || PAbility->getRecastId() == xi::Recast::Stratagem)
+        if (PAbility->getID() == xi::JobAbility::LightArts || PAbility->getID() == xi::JobAbility::DarkArts || PAbility->getRecastId() == xi::Recast::Stratagem)
         {
             if (this->StatusEffectContainer->HasStatusEffect(xi::StatusEffect::TabulaRasa))
             {
@@ -1968,11 +1968,11 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
         }
 
         // remove invisible if aggressive
-        if (PAbility->getID() != ABILITY_TAME && PAbility->getID() != ABILITY_FIGHT && PAbility->getID() != ABILITY_DEPLOY && PAbility->getID() != ABILITY_GAUGE)
+        if (PAbility->getID() != xi::JobAbility::Tame && PAbility->getID() != xi::JobAbility::Fight && PAbility->getID() != xi::JobAbility::Deploy && PAbility->getID() != xi::JobAbility::Gauge)
         {
             if (PAbility->getValidTarget() & TARGET_ENEMY)
             {
-                if (PAbility->getID() == ABILITY_ASSAULT)
+                if (PAbility->getID() == xi::JobAbility::Assault)
                 {
                     charutils::RemoveInvisible(this);
                 }
@@ -1983,7 +1983,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
                 }
                 StatusEffectContainer->DelStatusEffect(xi::StatusEffect::Illusion);
             }
-            else if (PAbility->getID() != ABILITY_TRICK_ATTACK)
+            else if (PAbility->getID() != xi::JobAbility::TrickAttack)
             {
                 // remove invisible only
                 charutils::RemoveInvisible(this);
@@ -1991,7 +1991,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
             }
         }
 
-        if (PAbility->getID() == ABILITY_REWARD)
+        if (PAbility->getID() == xi::JobAbility::Reward)
         {
             CItem* PItem = getEquip(SLOT_HEAD);
             if (PItem && (PItem->getID() == 15157 || PItem->getID() == 15158 || PItem->getID() == 16104 || PItem->getID() == 16105))
@@ -2001,14 +2001,14 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
                 action.recast -= 10s; // remove 10 seconds
             }
         }
-        else if (PAbility->getID() == ABILITY_READY || PAbility->getID() == ABILITY_SIC)
+        else if (PAbility->getID() == xi::JobAbility::Ready || PAbility->getID() == xi::JobAbility::Sic)
         {
             action.recast = std::max<timer::duration>(0s, action.recast - std::chrono::seconds(getMod(xi::Mod::SIC_READY_RECAST)));
         }
 
         action.actorId    = this->id;
         action.actiontype = PAbility->getActionType();
-        action.actionid   = PAbility->getID();
+        action.actionid   = std::to_underlying(PAbility->getID());
 
         // Calculate ability AoE type and radius via Lua
         const auto  aoeResult = luautils::callGlobal<sol::table>("xi.combat.abilityAoE.calculateTypeAndRadius", this, PAbility);
@@ -2019,7 +2019,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
         if (PAbility->isPetAbility())
         {
             CPetEntity* PPetEntity = dynamic_cast<CPetEntity*>(PPet);
-            CPetSkill*  PPetSkill  = battleutils::GetPetSkill(PAbility->getID());
+            CPetSkill*  PPetSkill  = battleutils::GetPetSkill(std::to_underlying(PAbility->getID()));
 
             // is a real pet (charmed pets won't return a valid PPetEntity)
             // and has pet ability in the pet_skills sql table
@@ -2099,7 +2099,7 @@ void CCharEntity::OnAbility(CAbilityState& state, action_t& action)
             MsgBasic prevMsg              = actionResult.messageID;
 
             // Check for special situations from Steal (The Tenshodo Showdown quest)
-            if (PAbility->getID() == ABILITY_STEAL)
+            if (PAbility->getID() == xi::JobAbility::Steal)
             {
                 // Force a specific result to be stolen based on the mob LUA
                 actionResult.param = luautils::OnSteal(this, PTarget, PAbility, &action);

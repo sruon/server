@@ -78,21 +78,21 @@ end
 
 local playerAbilityToMobSP =
 {
-    [xi.ja.MIGHTY_STRIKES] = xi.mobSkill.MIGHTY_STRIKES_1,
-    [xi.ja.HUNDRED_FISTS ] = xi.mobSkill.HUNDRED_FISTS_1,
-    [xi.ja.BENEDICTION   ] = xi.mobSkill.BENEDICTION_1,
-    [xi.ja.MANAFONT      ] = xi.mobSkill.MANAFONT_1,
-    [xi.ja.CHAINSPELL    ] = xi.mobSkill.CHAINSPELL_1,
-    [xi.ja.PERFECT_DODGE ] = xi.mobSkill.PERFECT_DODGE_1,
-    [xi.ja.INVINCIBLE    ] = xi.mobSkill.INVINCIBLE_1,
-    [xi.ja.BLOOD_WEAPON  ] = xi.mobSkill.BLOOD_WEAPON_1,
-    [xi.ja.FAMILIAR      ] = xi.mobSkill.FAMILIAR_1,
-    [xi.ja.SOUL_VOICE    ] = xi.mobSkill.SOUL_VOICE_1,
-    [xi.ja.EAGLE_EYE_SHOT] = xi.mobSkill.EES_AERN,
-    [xi.ja.MEIKYO_SHISUI ] = xi.mobSkill.MEIKYO_SHISUI_1,
-    [xi.ja.MIJIN_GAKURE  ] = xi.mobSkill.MIJIN_GAKURE_1,
-    [xi.ja.ASTRAL_FLOW   ] = xi.mobSkill.ASTRAL_FLOW_1,
-    [xi.ja.CALL_WYVERN   ] = xi.mobSkill.CALL_WYVERN_1,
+    [xi.jobAbility.MIGHTY_STRIKES] = xi.mobSkill.MIGHTY_STRIKES_1,
+    [xi.jobAbility.HUNDRED_FISTS ] = xi.mobSkill.HUNDRED_FISTS_1,
+    [xi.jobAbility.BENEDICTION   ] = xi.mobSkill.BENEDICTION_1,
+    [xi.jobAbility.MANAFONT      ] = xi.mobSkill.MANAFONT_1,
+    [xi.jobAbility.CHAINSPELL    ] = xi.mobSkill.CHAINSPELL_1,
+    [xi.jobAbility.PERFECT_DODGE ] = xi.mobSkill.PERFECT_DODGE_1,
+    [xi.jobAbility.INVINCIBLE    ] = xi.mobSkill.INVINCIBLE_1,
+    [xi.jobAbility.BLOOD_WEAPON  ] = xi.mobSkill.BLOOD_WEAPON_1,
+    [xi.jobAbility.FAMILIAR      ] = xi.mobSkill.FAMILIAR_1,
+    [xi.jobAbility.SOUL_VOICE    ] = xi.mobSkill.SOUL_VOICE_1,
+    [xi.jobAbility.EAGLE_EYE_SHOT] = xi.mobSkill.EES_AERN,
+    [xi.jobAbility.MEIKYO_SHISUI ] = xi.mobSkill.MEIKYO_SHISUI_1,
+    [xi.jobAbility.MIJIN_GAKURE  ] = xi.mobSkill.MIJIN_GAKURE_1,
+    [xi.jobAbility.ASTRAL_FLOW   ] = xi.mobSkill.ASTRAL_FLOW_1,
+    [xi.jobAbility.CALL_WYVERN   ] = xi.mobSkill.CALL_WYVERN_1,
 }
 
 local isLocked = function(sp)

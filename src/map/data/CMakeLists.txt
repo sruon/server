@@ -25,6 +25,7 @@ set(DATA_CORE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/yaml/schema_annotations.h
 )
 
+add_data_dataset(abilities)
 add_data_dataset(animation_locks)
 add_data_dataset(status_effects)
 add_data_dataset(ecosystems)

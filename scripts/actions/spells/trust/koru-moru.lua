@@ -19,7 +19,7 @@ spellObject.onMobSpawn = function(mob)
         [xi.magic.spell.AJIDO_MARUJIDO] = xi.trust.messageOffset.TEAMWORK_2,
     })
 
-    mob:addGambit(ai.t.SELF, { ai.c.MPP_LT, 5 }, { ai.r.JA, ai.s.SPECIFIC, xi.ja.CONVERT })
+    mob:addGambit(ai.t.SELF, { ai.c.MPP_LT, 5 }, { ai.r.JA, ai.s.SPECIFIC, xi.jobAbility.CONVERT })
 
     mob:addGambit(ai.t.PARTY, { ai.c.HPP_LT, 50 }, { ai.r.MA, ai.s.HIGHEST, xi.magic.spellFamily.CURE })
 

@@ -196,7 +196,7 @@ describe('TargetFind', function()
 
         assert(qultada, 'Qultada was not summoned')
 
-        qultada:useJobAbility(xi.ja.CORSAIRS_ROLL, qultada)
+        qultada:useJobAbility(xi.jobAbility.CORSAIRS_ROLL, qultada)
         xi.test.world:tickEntity(qultada)
         xi.test.world:skipTime(5)
 
@@ -217,7 +217,7 @@ describe('TargetFind', function()
         }
 
         local player = xi.test.world:spawnPlayer(pConfig)
-        player:addLearnedAbility(xi.ja.CORSAIRS_ROLL)
+        player:addLearnedAbility(xi.jobAbility.CORSAIRS_ROLL)
         player:spawnPet(xi.petId.CARBUNCLE)
         local carby = player:getPet()
         assert(carby, 'Carbuncle was not summoned')
@@ -230,7 +230,7 @@ describe('TargetFind', function()
         local stranger = xi.test.world:spawnPlayer(pConfig)
         stranger:setPos(player:getXPos(), player:getYPos(), player:getZPos())
 
-        player.actions:useAbility(player, xi.ja.CORSAIRS_ROLL)
+        player.actions:useAbility(player, xi.jobAbility.CORSAIRS_ROLL)
         xi.test.world:tickEntity(player)
         xi.test.world:skipTime(5)
 
@@ -273,7 +273,7 @@ describe('TargetFind', function()
         stranger:setHP(1)
         stranger:setPos(player:getXPos(), player:getYPos(), player:getZPos())
 
-        valaineral:useJobAbility(xi.ja.MAJESTY, valaineral)
+        valaineral:useJobAbility(xi.jobAbility.MAJESTY, valaineral)
         xi.test.world:tickEntity(valaineral)
         xi.test.world:skipTime(3)
 

@@ -1,0 +1,24 @@
+# Abilities as they were before the Seekers of Adoulin updates.
+
+abilities:
+  thf:
+    # Mug: Revert cooldown from 5 minutes to 15 minutes
+    # https://forum.square-enix.com/ffxi/threads/43706-Aug-12-2014-%28JST%29-Version-Update
+    mug: {recast: 900}
+
+  bst:
+    # https://www.bg-wiki.com/ffxi/Version_Update_(04/29/2013)
+    # Sic: Revert recast from 1 1/2 min to 2 min
+    sic: {recast: 120}
+    # Ready: Revert charge recast from 30 to 60 seconds
+    ready: {recast: 60}
+
+  rng:
+    # Scavenge: Revert recast from 3 to 5 minutes
+    # https://www.bg-wiki.com/ffxi/Version_Update_(04/29/2013)
+    scavenge: {recast: 300}
+
+  nin:
+    # Sange: Revert recast from 5 to 15 minutes
+    # https://forum.square-enix.com/ffxi/threads/44592-Oct-7-2014-%28JST%29-Version-Update
+    sange: {recast: 900}

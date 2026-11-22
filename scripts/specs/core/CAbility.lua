@@ -5,7 +5,7 @@
 local CAbility = {}
 
 ---@nodiscard
----@return integer
+---@return xi.jobAbility
 function CAbility:getID()
 end
 
@@ -50,7 +50,7 @@ function CAbility:getAnimation()
 end
 
 ---@nodiscard
----@return integer
+---@return xi.addType
 function CAbility:getAddType()
 end
 
