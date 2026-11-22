@@ -1,0 +1,16 @@
+# yaml-language-server: $schema=../schemas/enums/_enum.schema.json
+
+meta:
+  cpp:
+    underlying: uint8_t
+  lua:
+    table: xi.magic.aoe
+
+values:
+  none:        0
+  radial:      1
+  conal:       2
+  radial_mani: 3 # AOE when under SCH stratagem Manifestation
+  radial_acce: 4 # AOE when under SCH stratagem Accession
+  pianissimo:  5 # Single target when under BRD JA Pianissimo
+  diffusion:   6 # AOE when under Diffusion

@@ -1,0 +1,18 @@
+# yaml-language-server: $schema=../schemas/enums/_enum.schema.json
+
+meta:
+  cpp:
+    underlying: uint8_t
+  lua:
+    table: xi.magic.spellGroup
+
+values:
+  none:      0
+  song:      1
+  black:     2
+  blue:      3
+  ninjutsu:  4
+  summoning: 5
+  white:     6
+  geomancy:  7
+  trust:     8

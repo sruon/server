@@ -1,0 +1,17 @@
+# yaml-language-server: $schema=../schemas/enums/_enum.schema.json
+
+# What a caster needs, beyond job and level, to cast a spell.
+
+meta:
+  flags: true
+  cpp:
+    underlying: uint8_t
+
+values:
+  none:               0x00
+  merit:              0x01
+  addendum_black:     0x02
+  addendum_white:     0x04
+  tabula_rasa:        0x08
+  unbridled_learning: 0x10
+  main_job_only:      0x20
