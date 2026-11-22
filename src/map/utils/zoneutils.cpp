@@ -30,6 +30,7 @@
 #include "common/logging.h"
 #include "common/synchronized.h"
 #include "conquest_system.h"
+#include "data/datasets/zones/instances/dataset.h"
 #include "data/datasets/zones/mobs/dataset.h"
 #include "data/datasets/zones/npcs/dataset.h"
 #include "data/datasets/zones/regions/dataset.h"
@@ -39,6 +40,7 @@
 #include "data/loader.h"
 #include "entities/mob_entity.h"
 #include "entities/npc_entity.h"
+#include "instance.h"
 #include "items/item_weapon.h"
 #include "itemutils.h"
 #include "lua/luautils.h"
@@ -57,6 +59,7 @@
 #include <execution>
 #include <future>
 #include <ranges>
+#include <set>
 
 #include <fmt/ranges.h>
 
@@ -72,6 +75,7 @@ using ZoneSettingsDataset = xi::data::datasets::zones::settings::Dataset;
 using NpcsDataset         = xi::data::datasets::zones::npcs::Dataset;
 using MobsDataset         = xi::data::datasets::zones::mobs::Dataset;
 using RegionsDataset      = xi::data::datasets::zones::regions::Dataset;
+using InstancesDataset    = xi::data::datasets::zones::instances::Dataset;
 
 Synchronized<std::deque<CMobSpellList>> ownedSpellLists;
 
@@ -81,6 +85,25 @@ struct ZoneEntityFiles
     std::optional<xi::data::Npcs> Npcs;
     std::optional<xi::data::Mobs> Mobs;
 };
+
+struct TemplateLists
+{
+    HashMap<std::string, const DropList_t*> DropLists;
+    HashMap<std::string, CMobSpellList*>    SpellLists;
+};
+
+struct InstanceZoneEntities
+{
+    ZoneEntityFiles Files;
+    TemplateLists   Lists;
+};
+
+HashMap<xi::ZoneId, InstanceZoneEntities> instanceZoneEntities;
+
+auto joinsInstance(const std::vector<std::string>& instances, CInstance* PInstance) -> bool
+{
+    return std::ranges::find(instances, PInstance->GetName()) != instances.end();
+}
 
 // Loot is named in the files, so it resolves here, where the item table exists.
 auto buildDropList(const xi::ZoneId zoneId, const std::string& templateName, const xi::data::LootData& loot) -> const DropList_t*
@@ -161,9 +184,9 @@ auto buildSpellList(const xi::ZoneId zoneId, const std::string& templateName, co
                                  });
 }
 
-void InsertNPCs(CZone* PZone, const xi::ZoneId zoneId, const xi::data::Npcs& npcs)
+void InsertNPCs(CZone* PZone, const xi::ZoneId zoneId, const xi::data::Npcs& npcs, CInstance* PInstance)
 {
-    if ((PZone->GetTypeMask() & xi::ZoneType::Instanced) != xi::ZoneType::Unknown)
+    if (!PInstance && (PZone->GetTypeMask() & xi::ZoneType::Instanced) != xi::ZoneType::Unknown)
     {
         return;
     }
@@ -172,6 +195,11 @@ void InsertNPCs(CZone* PZone, const xi::ZoneId zoneId, const xi::data::Npcs& npc
 
     for (const auto& entry : npcs)
     {
+        if (PInstance && !joinsInstance(entry.Instances, PInstance))
+        {
+            continue;
+        }
+
         auto* PNpc   = new CNpcEntity;
         PNpc->targid = entry.ActIndex;
         PNpc->id     = entry.Id;
@@ -203,7 +231,7 @@ void InsertNPCs(CZone* PZone, const xi::ZoneId zoneId, const xi::data::Npcs& npc
         PNpc->setWidescan(entry.Widescan);
         PNpc->setAlwaysRelevant(entry.King);
 
-        if (!luautils::IsContentEnabled(entry.Content))
+        if (!PInstance && !luautils::IsContentEnabled(entry.Content))
         {
             PNpc->loc.p.x = 0.f;
             PNpc->loc.p.y = 0.f;
@@ -213,6 +241,13 @@ void InsertNPCs(CZone* PZone, const xi::ZoneId zoneId, const xi::data::Npcs& npc
 
             PNpc->setWidescan(false);
             PNpc->setContentDisabled(true);
+        }
+
+        if (PInstance)
+        {
+            PNpc->PInstance = PInstance;
+            PInstance->InsertNPC(PNpc);
+            continue;
         }
 
         PZone->InsertNPC(PNpc);
@@ -230,28 +265,35 @@ void InsertNPCs(CZone* PZone, const xi::ZoneId zoneId, const xi::data::Npcs& npc
     }
 }
 
-void InsertMobs(CZone* PZone, const xi::ZoneId zoneId, const xi::data::Mobs& mobs, const uint8 normalLevelRangeMin, const uint8 normalLevelRangeMax)
+auto buildTemplateLists(const xi::ZoneId zoneId, const xi::data::Mobs& mobs) -> TemplateLists
 {
-    const auto zoneType = PZone->GetTypeMask();
-    if ((zoneType & xi::ZoneType::Instanced) != xi::ZoneType::Unknown)
-    {
-        return;
-    }
-
-    HashMap<std::string, const DropList_t*> dropListByTemplate;
-    HashMap<std::string, CMobSpellList*>    spellListByTemplate;
+    TemplateLists lists;
     for (const auto& [name, mobTemplate] : mobs.Templates)
     {
         if (!mobTemplate.Loot.empty())
         {
-            dropListByTemplate[name] = buildDropList(zoneId, name, mobTemplate.Loot);
+            lists.DropLists[name] = buildDropList(zoneId, name, mobTemplate.Loot);
         }
 
         if (!mobTemplate.Spells.empty())
         {
-            spellListByTemplate[name] = buildSpellList(zoneId, name, mobTemplate.Spells);
+            lists.SpellLists[name] = buildSpellList(zoneId, name, mobTemplate.Spells);
         }
     }
+
+    return lists;
+}
+
+void InsertMobs(CZone* PZone, const xi::ZoneId zoneId, const xi::data::Mobs& mobs, const TemplateLists& lists, const uint8 normalLevelRangeMin, const uint8 normalLevelRangeMax, CInstance* PInstance)
+{
+    const auto zoneType = PZone->GetTypeMask();
+    if (!PInstance && (zoneType & xi::ZoneType::Instanced) != xi::ZoneType::Unknown)
+    {
+        return;
+    }
+
+    const auto& dropListByTemplate  = lists.DropLists;
+    const auto& spellListByTemplate = lists.SpellLists;
 
     struct SlotPlacement
     {
@@ -283,9 +325,14 @@ void InsertMobs(CZone* PZone, const xi::ZoneId zoneId, const xi::data::Mobs& mob
             continue;
         }
 
+        if (PInstance && !joinsInstance(spawn.Instances, PInstance))
+        {
+            continue;
+        }
+
         const auto& mobTemplate = mobs.Templates.at(spawn.TemplateName);
 
-        if (!luautils::IsContentEnabled(mobTemplate.Content))
+        if (!PInstance && !luautils::IsContentEnabled(mobTemplate.Content))
         {
             continue;
         }
@@ -322,6 +369,11 @@ void InsertMobs(CZone* PZone, const xi::ZoneId zoneId, const xi::data::Mobs& mob
             // And apply it!
             mobutils::ApplySpecies(PMob, attributes);
 
+            if (PInstance && (PMob->m_Type & xi::MobType::Event) != xi::MobType::Normal)
+            {
+                PMob->setMobMod(xi::MobMod::AlwaysAggro, static_cast<uint16>(PMob->m_Aggro));
+            }
+
             // The weapon's own defaults are not a mob's, so these are always applied.
             auto* mainWeapon = static_cast<CItemWeapon*>(PMob->m_Weapons[SLOT_MAIN]);
             mainWeapon->setMaxHit(1);
@@ -352,12 +404,12 @@ void InsertMobs(CZone* PZone, const xi::ZoneId zoneId, const xi::data::Mobs& mob
 
             // main.NORMAL_MOB_MAX_LEVEL_RANGE_MIN/MAX let a server flatten normal mob levels; notorious mobs keep theirs.
             const bool isNotorious = (PMob->m_Type & xi::MobType::Notorious) != xi::MobType::Normal;
-            if (normalLevelRangeMin > 0 && !isNotorious && PMob->m_minLevel > normalLevelRangeMin)
+            if (normalLevelRangeMin > 0 && !isNotorious && !PInstance && PMob->m_minLevel > normalLevelRangeMin)
             {
                 PMob->m_minLevel = normalLevelRangeMin;
             }
 
-            if (normalLevelRangeMax > 0 && !isNotorious && PMob->m_maxLevel > normalLevelRangeMax)
+            if (normalLevelRangeMax > 0 && !isNotorious && !PInstance && PMob->m_maxLevel > normalLevelRangeMax)
             {
                 PMob->m_maxLevel = normalLevelRangeMax;
             }
@@ -442,6 +494,13 @@ void InsertMobs(CZone* PZone, const xi::ZoneId zoneId, const xi::data::Mobs& mob
             for (const auto& [id, value] : attributes.MobMods)
             {
                 PMob->setMobMod(id, value);
+            }
+
+            if (PInstance)
+            {
+                PMob->PInstance = PInstance;
+                PInstance->InsertMOB(PMob);
+                continue;
             }
 
             PZone->InsertMOB(PMob);
@@ -694,7 +753,7 @@ auto LoadNPCList(Scheduler& scheduler, const std::vector<xi::ZoneId>& zoneIds, c
 
                         if (const auto& npcs = records.Npcs)
                         {
-                            InsertNPCs(PZone, zoneId, *npcs);
+                            InsertNPCs(PZone, zoneId, *npcs, nullptr);
                         }
                     });
             }
@@ -794,7 +853,7 @@ auto LoadMOBList(Scheduler& scheduler, const std::vector<xi::ZoneId>& zoneIds, c
 
                         if (const auto& mobs = records.Mobs)
                         {
-                            InsertMobs(PZone, zoneId, *mobs, normalLevelRangeMin, normalLevelRangeMax);
+                            InsertMobs(PZone, zoneId, *mobs, buildTemplateLists(zoneId, *mobs), normalLevelRangeMin, normalLevelRangeMax, nullptr);
                         }
                     });
             }
@@ -904,6 +963,68 @@ auto CreateZone(Scheduler& scheduler, MapConfig config, const xi::ZoneId ZoneID)
 }
 
 } // namespace
+
+void LoadInstanceEntities(CInstance* PInstance, const xi::ZoneId entityZoneId)
+{
+    TracyZoneScoped;
+
+    auto* PZone = PInstance->GetZone();
+
+    auto [cached, inserted] = instanceZoneEntities.try_emplace(entityZoneId);
+    auto& entities          = cached->second;
+    if (inserted)
+    {
+        entities.Files.Npcs = xi::data::loadZoneFile<NpcsDataset>(entityZoneId);
+        entities.Files.Mobs = xi::data::loadZoneFile<MobsDataset>(entityZoneId);
+        if (entities.Files.Mobs)
+        {
+            entities.Lists = buildTemplateLists(entityZoneId, *entities.Files.Mobs);
+        }
+
+        std::set<std::string> known;
+        for (const auto& instance : xi::data::loadZoneFile<InstancesDataset>(PZone->GetID()).value_or(xi::data::Instances{}))
+        {
+            known.insert(instance.Name);
+        }
+
+        const auto check = [&](const uint32 id, const std::vector<std::string>& names)
+        {
+            for (const auto& name : names)
+            {
+                if (!known.contains(name))
+                {
+                    ShowErrorFmt("LoadInstanceEntities: entity {} names instance '{}', which zone {} does not declare", id, name, static_cast<uint16>(PZone->GetID()));
+                }
+            }
+        };
+
+        if (entities.Files.Npcs)
+        {
+            for (const auto& npc : *entities.Files.Npcs)
+            {
+                check(npc.Id, npc.Instances);
+            }
+        }
+
+        if (entities.Files.Mobs)
+        {
+            for (const auto& spawn : entities.Files.Mobs->Spawns)
+            {
+                check(spawn.Id, spawn.Instances);
+            }
+        }
+    }
+
+    if (entities.Files.Npcs)
+    {
+        InsertNPCs(PZone, entityZoneId, *entities.Files.Npcs, PInstance);
+    }
+
+    if (entities.Files.Mobs)
+    {
+        InsertMobs(PZone, entityZoneId, *entities.Files.Mobs, entities.Lists, 0, 0, PInstance);
+    }
+}
 
 /************************************************************************
  *                                                                       *

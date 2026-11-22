@@ -75,6 +75,7 @@ auto GetWeatherElement(xi::Weather weather) -> int;
 
 auto GetZone(xi::ZoneId zoneId) -> CZone*;
 auto GetInstanceByRunId(xi::ZoneId zoneId, uint32 runId) -> CInstance*; // the live instance of a run, or nullptr if that run has ended
+void LoadInstanceEntities(CInstance* PInstance, xi::ZoneId entityZoneId);
 auto GetEntity(uint32 id, uint8 filter = -1) -> CBaseEntity*;
 auto GetNpcByName(CZone* PZone, const std::string& name) -> CNpcEntity*; // the zone's first NPC with that script name, or nullptr
 auto GetCharByName(const std::string& name) -> CCharEntity*;
