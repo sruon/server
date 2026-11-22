@@ -24,10 +24,10 @@
 #include "common/logging.h"
 #include "common/utils.h"
 
-#include <common/types/hash_map.h>
-
+#include "data/datasets/augments/dataset.h"
 #include "exdata/augment_standard.h"
 #include "exdata/augment_trial.h"
+#include "utils/dataset_loader.h"
 
 #include <algorithm>
 #include <bit>
@@ -35,52 +35,13 @@
 namespace
 {
 
-/*
-From augments.sql:
-
-`augmentId` smallint(5) unsigned NOT NULL,
-`multiplier` smallint(2) NOT NULL DEFAULT 0,
-`modId` smallint(5) unsigned NOT NULL DEFAULT 0,
-`value` smallint(5) NOT NULL DEFAULT 0,
-`isPet` tinyint(1) NOT NULL DEFAULT 0,
-`petType` tinyint(3) unsigned NOT NULL DEFAULT 0,
-*/
-struct AugmentDataRow
-{
-    uint16 augmentId;
-    uint16 multiplier;
-    uint16 modId;
-    int16  value; // Can be negative
-    uint8  isPet;
-    uint8  petType;
-};
-
-using AugmentDataRows = std::vector<AugmentDataRow>;
-HashMap<uint16, AugmentDataRows> sAugmentData;
+xi::data::Augments sAugmentData;
 
 } // namespace
 
 void CItemEquipment::LoadAugmentData()
 {
-    const auto rset = db::preparedStmt("SELECT `augmentId`, `multiplier`, `modId`, `value`, `isPet`, `petType` FROM `augments`");
-    if (rset)
-    {
-        while (rset->next())
-        {
-            const auto augmentId = rset->get<uint16>("augmentId");
-
-            AugmentDataRow augmentData = {
-                .augmentId  = augmentId,
-                .multiplier = rset->get<uint16>("multiplier"),
-                .modId      = rset->get<uint16>("modId"),
-                .value      = rset->get<int16>("value"),
-                .isPet      = rset->get<uint8>("isPet"),
-                .petType    = rset->get<uint8>("petType"),
-            };
-
-            sAugmentData[augmentId].push_back(augmentData);
-        }
-    }
+    sAugmentData = xi::data::loadDataset<xi::data::datasets::augments::Dataset>();
 }
 
 CItemEquipment::CItemEquipment(uint16 id)
@@ -414,50 +375,41 @@ void CItemEquipment::setAugment(uint8 slot, uint16 type, uint8 value)
 
 void CItemEquipment::SetAugmentMod(uint16 type, uint8 value)
 {
-    if (!sAugmentData.contains(type))
+    if (type == 0 || type > xi::data::datasets::augments::kMaxAugmentId)
     {
         ShowErrorFmt("Invalid augment type {} requested for item {}", type, this->getID());
         return;
     }
 
-    if (type != 0)
+    auto& augData = this->exdata<Exdata::AugmentStandard>();
+    setSubType(ITEM_AUGMENTED);
+    augData.AugmentKind |= Exdata::AugmentKindFlags::HasAugments;
+    augData.AugmentSubKind |= Exdata::AugmentSubKindFlags::Standard;
+
+    const auto entry = sAugmentData.find(type);
+    if (entry == sAugmentData.end())
     {
-        auto& augData = this->exdata<Exdata::AugmentStandard>();
-        setSubType(ITEM_AUGMENTED);
-        augData.AugmentKind |= Exdata::AugmentKindFlags::HasAugments;
-        augData.AugmentSubKind |= Exdata::AugmentSubKindFlags::Standard;
+        return;
     }
 
-    const auto& augmentDataModifiers = sAugmentData[type];
-
-    for (const auto& augmentData : augmentDataModifiers)
+    const auto& augment = entry->second;
+    for (const auto& [mod, base] : augment.Mods)
     {
-        uint8   multiplier = augmentData.multiplier;
-        xi::Mod modId      = static_cast<xi::Mod>(augmentData.modId);
-        int16   modValue   = augmentData.value;
-
-        // type is 0 unless mod is for pets
-        uint8          isPet   = augmentData.isPet;
-        xi::PetModType petType = static_cast<xi::PetModType>(augmentData.petType);
-
-        // apply modifier to item. increase modifier power by 'value' (default magnitude 1 for most augments) if multiplier isn't specified
-        // otherwise increase modifier power using the multiplier
-        // check if we should be adding to or taking away from the mod power (handle scripted augments properly)
-        modValue = (modValue > 0 ? modValue + value : modValue - value) * std::max<uint8>(multiplier, 1);
-
-        // Skip unimplemented augments modifiers
-        if (modId == xi::Mod::NONE)
+        int16 amount = base - value;
+        if (base > 0)
         {
-            continue;
+            amount = base + value;
         }
 
-        if (!isPet)
+        amount *= augment.Multiplier;
+
+        if (augment.Pet)
         {
-            addModifier(CModifier(modId, modValue));
+            addPetModifier(CPetModifier(mod, *augment.Pet, amount));
         }
         else
         {
-            addPetModifier(CPetModifier(modId, petType, modValue));
+            addModifier(CModifier(mod, amount));
         }
     }
 }
