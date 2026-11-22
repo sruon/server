@@ -97,7 +97,7 @@ struct action_t
     ActionCategory               actiontype{ ActionCategory::None };
     uint32                       actionid{ 0 };
     timer::duration              recast{ 0s };
-    SPELLGROUP                   spellgroup{ SPELLGROUP_NONE };
+    xi::SpellGroup               spellgroup{ xi::SpellGroup::None };
     std::vector<action_target_t> targets{};
 
     auto addTarget(const uint32 targetId) -> action_target_t&

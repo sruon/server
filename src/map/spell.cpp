@@ -112,22 +112,22 @@ void CSpell::setName(const std::string& name)
     m_name = name;
 }
 
-auto CSpell::getSpellGroup() const -> SPELLGROUP
+auto CSpell::getSpellGroup() const -> xi::SpellGroup
 {
     return m_spellGroup;
 }
 
-auto CSpell::getSpellFamily() -> SPELLFAMILY
+auto CSpell::getSpellFamily() -> xi::SpellFamily
 {
     return m_spellFamily;
 }
 
-void CSpell::setSpellGroup(SPELLGROUP SpellGroup)
+void CSpell::setSpellGroup(xi::SpellGroup SpellGroup)
 {
     m_spellGroup = SpellGroup;
 }
 
-void CSpell::setSpellFamily(SPELLFAMILY SpellFamily)
+void CSpell::setSpellFamily(xi::SpellFamily SpellFamily)
 {
     m_spellFamily = SpellFamily;
 }
@@ -174,7 +174,7 @@ auto CSpell::tookEffect() const -> bool
 
 auto CSpell::hasMPCost() -> bool
 {
-    return m_spellGroup != SPELLGROUP_SONG && m_spellGroup != SPELLGROUP_NINJUTSU && m_spellGroup != SPELLGROUP_TRUST;
+    return m_spellGroup != xi::SpellGroup::Song && m_spellGroup != xi::SpellGroup::Ninjutsu && m_spellGroup != xi::SpellGroup::Trust;
 }
 
 auto CSpell::isHeal() -> bool
@@ -191,8 +191,8 @@ auto CSpell::isCure() -> bool
 
 auto CSpell::isDebuff() -> bool
 {
-    return ((getValidTarget() & xi::TargetType::Enemy) != xi::TargetType::None && getSkillType() == xi::SkillType::EnfeeblingMagic) || m_spellFamily == SPELLFAMILY_ELE_DOT ||
-           m_spellFamily == SPELLFAMILY_BIO || m_ID == SpellID::Stun || m_ID == SpellID::Curse;
+    return ((getValidTarget() & xi::TargetType::Enemy) != xi::TargetType::None && getSkillType() == xi::SkillType::EnfeeblingMagic) || m_spellFamily == xi::SpellFamily::EleDot ||
+           m_spellFamily == xi::SpellFamily::Bio || m_ID == SpellID::Stun || m_ID == SpellID::Curse;
 }
 
 auto CSpell::isNa() -> bool
@@ -271,12 +271,12 @@ auto CSpell::canTargetEnemy() const -> bool
     return (getValidTarget() & xi::TargetType::Enemy) != xi::TargetType::None && (getValidTarget() & xi::TargetType::Self) == xi::TargetType::None;
 }
 
-auto CSpell::getAOE() const -> uint8
+auto CSpell::getAOE() const -> xi::SpellAoe
 {
     return m_AOE;
 }
 
-void CSpell::setAOE(uint8 AOE)
+void CSpell::setAOE(const xi::SpellAoe AOE)
 {
     m_AOE = AOE;
 }
@@ -401,12 +401,12 @@ auto CSpell::getModifiedRecast() const -> timer::duration
     return m_modifiedRecastTime;
 }
 
-auto CSpell::getRequirements() const -> uint8
+auto CSpell::getRequirements() const -> xi::SpellRequirement
 {
     return m_requirements;
 }
 
-void CSpell::setRequirements(uint8 requirements)
+void CSpell::setRequirements(const xi::SpellRequirement requirements)
 {
     m_requirements = requirements;
 }
@@ -440,23 +440,23 @@ auto CSpell::getFourCC(const bool interrupt) const -> FourCC
 {
     switch (this->getSpellGroup())
     {
-        case SPELLGROUP_WHITE:
+        case xi::SpellGroup::White:
             return interrupt ? FourCC::WhiteMagicInterrupt : FourCC::WhiteMagicCast;
-        case SPELLGROUP_BLACK:
+        case xi::SpellGroup::Black:
             return interrupt ? FourCC::BlackMagicInterrupt : FourCC::BlackMagicCast;
-        case SPELLGROUP_BLUE:
+        case xi::SpellGroup::Blue:
             return interrupt ? FourCC::BlueMagicInterrupt : FourCC::BlueMagicCast;
-        case SPELLGROUP_SONG:
+        case xi::SpellGroup::Song:
             return interrupt ? FourCC::SongMagicInterrupt : FourCC::SongMagicCast;
-        case SPELLGROUP_NINJUTSU:
+        case xi::SpellGroup::Ninjutsu:
             return interrupt ? FourCC::NinjutsuMagicInterrupt : FourCC::NinjutsuMagicCast;
-        case SPELLGROUP_SUMMONING:
+        case xi::SpellGroup::Summoning:
             return interrupt ? FourCC::SummonMagicInterrupt : FourCC::SummonMagicCast;
-        case SPELLGROUP_GEOMANCY:
+        case xi::SpellGroup::Geomancy:
             return interrupt ? FourCC::GeomancyMagicInterrupt : FourCC::GeomancyMagicCast;
-        case SPELLGROUP_TRUST:
+        case xi::SpellGroup::Trust:
             return interrupt ? FourCC::TrustMagicInterrupt : FourCC::TrustMagicCast;
-        case SPELLGROUP_NONE:
+        case xi::SpellGroup::None:
         default:
             // Uh...
             return FourCC::WhiteMagicInterrupt;
@@ -514,8 +514,8 @@ void LoadSpellList()
 
         PSpell->setJob(entry.JobLevels);
 
-        PSpell->setSpellGroup(static_cast<SPELLGROUP>(entry.Group));
-        PSpell->setSpellFamily(static_cast<SPELLFAMILY>(entry.Family));
+        PSpell->setSpellGroup(entry.Group);
+        PSpell->setSpellFamily(entry.Family);
         PSpell->setValidTarget(entry.Targets);
         PSpell->setSkillType(entry.Skill);
         PSpell->setCastTime(entry.CastTime);
@@ -523,7 +523,7 @@ void LoadSpellList()
         PSpell->setAnimationID(entry.Animation);
         PSpell->setAnimationTime(entry.AnimationTime);
         PSpell->setMPCost(entry.MpCost);
-        PSpell->setAOE(static_cast<uint8>(entry.Aoe));
+        PSpell->setAOE(entry.Aoe);
         PSpell->setBase(entry.Base);
         PSpell->setElement(static_cast<uint16>(entry.Element));
         PSpell->setZoneMisc(entry.ZoneMisc);
@@ -532,7 +532,7 @@ void LoadSpellList()
         PSpell->setMagicBurstMessage(static_cast<MsgBasic>(entry.MagicBurstMessage));
         PSpell->setCE(static_cast<int32>(entry.CumulativeEnmity));
         PSpell->setVE(static_cast<int32>(entry.VolatileEnmity));
-        PSpell->setRequirements(static_cast<uint8>(entry.Requirements));
+        PSpell->setRequirements(entry.Requirements);
         PSpell->setContent(entry.Content);
         PSpell->setRange(entry.Range);
         PSpell->setRadius(entry.Radius);
@@ -601,42 +601,42 @@ void LoadSpellList()
         std::string switchKey = "";
         switch (PSpell->getSpellGroup())
         {
-            case SPELLGROUP_WHITE:
+            case xi::SpellGroup::White:
             {
                 switchKey = "white";
             }
             break;
-            case SPELLGROUP_BLACK:
+            case xi::SpellGroup::Black:
             {
                 switchKey = "black";
             }
             break;
-            case SPELLGROUP_SONG:
+            case xi::SpellGroup::Song:
             {
                 switchKey = "songs";
             }
             break;
-            case SPELLGROUP_NINJUTSU:
+            case xi::SpellGroup::Ninjutsu:
             {
                 switchKey = "ninjutsu";
             }
             break;
-            case SPELLGROUP_SUMMONING:
+            case xi::SpellGroup::Summoning:
             {
                 switchKey = "summoning";
             }
             break;
-            case SPELLGROUP_BLUE:
+            case xi::SpellGroup::Blue:
             {
                 switchKey = "blue";
             }
             break;
-            case SPELLGROUP_GEOMANCY:
+            case xi::SpellGroup::Geomancy:
             {
                 switchKey = "geomancy";
             }
             break;
-            case SPELLGROUP_TRUST:
+            case xi::SpellGroup::Trust:
             {
                 switchKey = "trust";
             }
@@ -723,8 +723,8 @@ auto CanUseSpell(CBattleEntity* PCaster, CSpell* spell) -> bool
         return false;
     }
 
-    bool  usable       = false;
-    uint8 requirements = 0;
+    bool                 usable       = false;
+    xi::SpellRequirement requirements = xi::SpellRequirement::None;
 
     // A Monipulator casts with its species' jobs.
     const auto [mainJob, subJob] = [&]() -> std::pair<xi::Job, xi::Job>
@@ -751,7 +751,7 @@ auto CanUseSpell(CBattleEntity* PCaster, CSpell* spell) -> bool
 
         case TYPE_PC:
             // every PC can use trusts
-            if (spell->getSpellGroup() == SPELLGROUP_TRUST || luautils::OnCanUseSpell(PCaster, spell))
+            if (spell->getSpellGroup() == xi::SpellGroup::Trust || luautils::OnCanUseSpell(PCaster, spell))
             {
                 return true;
             }
@@ -764,7 +764,7 @@ auto CanUseSpell(CBattleEntity* PCaster, CSpell* spell) -> bool
             if (PCaster->GetMLevel() >= spell->getJob(mainJob))
             {
                 usable = true;
-                if (requirements & SPELLREQ_TABULA_RASA)
+                if ((requirements & xi::SpellRequirement::TabulaRasa) != xi::SpellRequirement::None)
                 {
                     if (!PCaster->StatusEffectContainer->HasStatusEffect(xi::StatusEffect::TabulaRasa))
                     {
@@ -773,14 +773,14 @@ auto CanUseSpell(CBattleEntity* PCaster, CSpell* spell) -> bool
                 }
                 if (mainJob == xi::Job::SCH)
                 {
-                    if (requirements & SPELLREQ_ADDENDUM_BLACK)
+                    if ((requirements & xi::SpellRequirement::AddendumBlack) != xi::SpellRequirement::None)
                     {
                         if (!PCaster->StatusEffectContainer->HasStatusEffect({ xi::StatusEffect::AddendumBlack, xi::StatusEffect::Enlightenment }))
                         {
                             usable = false;
                         }
                     }
-                    else if (requirements & SPELLREQ_ADDENDUM_WHITE)
+                    else if ((requirements & xi::SpellRequirement::AddendumWhite) != xi::SpellRequirement::None)
                     {
                         if (!PCaster->StatusEffectContainer->HasStatusEffect({ xi::StatusEffect::AddendumWhite, xi::StatusEffect::Enlightenment }))
                         {
@@ -788,9 +788,9 @@ auto CanUseSpell(CBattleEntity* PCaster, CSpell* spell) -> bool
                         }
                     }
                 }
-                if (auto* PChar = dynamic_cast<CCharEntity*>(PCaster); spell->getSpellGroup() == SPELLGROUP_BLUE && PChar)
+                if (auto* PChar = dynamic_cast<CCharEntity*>(PCaster); spell->getSpellGroup() == xi::SpellGroup::Blue && PChar)
                 {
-                    if (requirements & SPELLREQ_UNBRIDLED_LEARNING)
+                    if ((requirements & xi::SpellRequirement::UnbridledLearning) != xi::SpellRequirement::None)
                     {
                         if (!PCaster->StatusEffectContainer->HasStatusEffect({ xi::StatusEffect::UnbridledLearning, xi::StatusEffect::UnbridledWisdom }))
                         {
@@ -809,10 +809,10 @@ auto CanUseSpell(CBattleEntity* PCaster, CSpell* spell) -> bool
             }
 
             // Make sure caster has the right sub job and level
-            if (PCaster->GetSLevel() >= spell->getJob(subJob) && !(requirements & SPELLREQ_MAIN_JOB_ONLY))
+            if (PCaster->GetSLevel() >= spell->getJob(subJob) && (requirements & xi::SpellRequirement::MainJobOnly) == xi::SpellRequirement::None)
             {
                 usable = true;
-                if (requirements & SPELLREQ_TABULA_RASA)
+                if ((requirements & xi::SpellRequirement::TabulaRasa) != xi::SpellRequirement::None)
                 {
                     if (!PCaster->StatusEffectContainer->HasStatusEffect(xi::StatusEffect::TabulaRasa))
                     {
@@ -821,14 +821,14 @@ auto CanUseSpell(CBattleEntity* PCaster, CSpell* spell) -> bool
                 }
                 if (subJob == xi::Job::SCH)
                 {
-                    if (requirements & SPELLREQ_ADDENDUM_BLACK)
+                    if ((requirements & xi::SpellRequirement::AddendumBlack) != xi::SpellRequirement::None)
                     {
                         if (!PCaster->StatusEffectContainer->HasStatusEffect({ xi::StatusEffect::AddendumBlack, xi::StatusEffect::Enlightenment }))
                         {
                             usable = false;
                         }
                     }
-                    else if (requirements & SPELLREQ_ADDENDUM_WHITE)
+                    else if ((requirements & xi::SpellRequirement::AddendumWhite) != xi::SpellRequirement::None)
                     {
                         if (!PCaster->StatusEffectContainer->HasStatusEffect({ xi::StatusEffect::AddendumWhite, xi::StatusEffect::Enlightenment }))
                         {
@@ -836,9 +836,9 @@ auto CanUseSpell(CBattleEntity* PCaster, CSpell* spell) -> bool
                         }
                     }
                 }
-                if (auto* PChar = dynamic_cast<CCharEntity*>(PCaster); spell->getSpellGroup() == SPELLGROUP_BLUE && PChar)
+                if (auto* PChar = dynamic_cast<CCharEntity*>(PCaster); spell->getSpellGroup() == xi::SpellGroup::Blue && PChar)
                 {
-                    if (requirements & SPELLREQ_UNBRIDLED_LEARNING)
+                    if ((requirements & xi::SpellRequirement::UnbridledLearning) != xi::SpellRequirement::None)
                     {
                         if (!PCaster->StatusEffectContainer->HasStatusEffect({ xi::StatusEffect::UnbridledLearning, xi::StatusEffect::UnbridledWisdom }))
                         {

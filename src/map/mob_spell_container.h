@@ -64,7 +64,7 @@ public:
     void RemoveSpell(SpellID spellId);
 
     auto GetAvailable(SpellID spellId) -> Maybe<SpellID>;
-    auto GetBestAvailable(SPELLFAMILY family) -> Maybe<SpellID>;
+    auto GetBestAvailable(xi::SpellFamily family) -> Maybe<SpellID>;
     auto GetBestIndiSpell(CBattleEntity* PMaster) -> Maybe<SpellID>;
     auto GetBestEntrustedSpell(CBattleEntity* PMaster) -> Maybe<SpellID>;
     auto GetBestAgainstTargetWeakness(CBattleEntity* PTarget, SpellID spellId) -> Maybe<SpellID>;

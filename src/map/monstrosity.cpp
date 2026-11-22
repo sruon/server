@@ -1719,7 +1719,7 @@ auto monstrosity::GetExpNEXTLevel(const uint8 level) -> uint32
 auto monstrosity::CanCastSpell(CSpell* PSpell) -> bool
 {
     // Monipulators cannot call Trusts.
-    if (PSpell->getSpellGroup() == SPELLGROUP_TRUST)
+    if (PSpell->getSpellGroup() == xi::SpellGroup::Trust)
     {
         return false;
     }
@@ -1737,7 +1737,7 @@ auto monstrosity::ListsSpell(const CCharEntity* PChar, CSpell* PSpell) -> bool
         return true;
     }
 
-    return level >= PSpell->getJob(data.SubJob) && !(PSpell->getRequirements() & SPELLREQ_MAIN_JOB_ONLY);
+    return level >= PSpell->getJob(data.SubJob) && (PSpell->getRequirements() & xi::SpellRequirement::MainJobOnly) == xi::SpellRequirement::None;
 }
 
 // JP wiki: a Monipulator cannot party.

@@ -803,42 +803,42 @@ auto getSpellCachedFunction(CSpell* PSpell, std::string funcName) -> sol::functi
     std::string switchKey = "";
     switch (PSpell->getSpellGroup())
     {
-        case SPELLGROUP_WHITE:
+        case xi::SpellGroup::White:
         {
             switchKey = "white";
         }
         break;
-        case SPELLGROUP_BLACK:
+        case xi::SpellGroup::Black:
         {
             switchKey = "black";
         }
         break;
-        case SPELLGROUP_SONG:
+        case xi::SpellGroup::Song:
         {
             switchKey = "songs";
         }
         break;
-        case SPELLGROUP_NINJUTSU:
+        case xi::SpellGroup::Ninjutsu:
         {
             switchKey = "ninjutsu";
         }
         break;
-        case SPELLGROUP_SUMMONING:
+        case xi::SpellGroup::Summoning:
         {
             switchKey = "summoning";
         }
         break;
-        case SPELLGROUP_BLUE:
+        case xi::SpellGroup::Blue:
         {
             switchKey = "blue";
         }
         break;
-        case SPELLGROUP_GEOMANCY:
+        case xi::SpellGroup::Geomancy:
         {
             switchKey = "geomancy";
         }
         break;
-        case SPELLGROUP_TRUST:
+        case xi::SpellGroup::Trust:
         {
             switchKey = "trust";
         }

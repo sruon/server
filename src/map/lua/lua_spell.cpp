@@ -65,7 +65,7 @@ void CLuaSpell::setCritical(const bool isCritical) const
 
 void CLuaSpell::setAoE(uint8 aoe)
 {
-    m_PLuaSpell->setAOE(aoe);
+    m_PLuaSpell->setAOE(static_cast<xi::SpellAoe>(aoe));
 }
 
 void CLuaSpell::setFlag(uint8 flags)
@@ -140,17 +140,17 @@ auto CLuaSpell::getElement() -> uint16
 
 auto CLuaSpell::isAoE() const -> bool
 {
-    return m_PLuaSpell->getAOE() == SPELLAOE_RADIAL;
+    return m_PLuaSpell->getAOE() == xi::SpellAoe::Radial;
 }
 
 auto CLuaSpell::isConal() const -> bool
 {
-    return m_PLuaSpell->getAOE() == SPELLAOE_CONAL;
+    return m_PLuaSpell->getAOE() == xi::SpellAoe::Conal;
 }
 
 auto CLuaSpell::getAoE() const -> uint8
 {
-    return m_PLuaSpell->getAOE();
+    return static_cast<uint8>(m_PLuaSpell->getAOE());
 }
 
 auto CLuaSpell::getRadius() -> float

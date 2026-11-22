@@ -25,6 +25,10 @@
 #include "common/types/maybe.h"
 #include "data/enums/content.h"
 #include "data/enums/skill_type.h"
+#include "data/enums/spell_aoe.h"
+#include "data/enums/spell_family.h"
+#include "data/enums/spell_group.h"
+#include "data/enums/spell_requirement.h"
 #include "data/enums/status_effect.h"
 #include "data/enums/zone_misc.h"
 #include "entities/battle_entity.h"
@@ -37,202 +41,6 @@
 enum class ActionAnimation : uint16_t;
 enum class ActionModifier : uint32_t;
 enum class FourCC : uint32_t;
-
-enum SPELLGROUP
-{
-    SPELLGROUP_NONE      = 0,
-    SPELLGROUP_SONG      = 1,
-    SPELLGROUP_BLACK     = 2,
-    SPELLGROUP_BLUE      = 3,
-    SPELLGROUP_NINJUTSU  = 4,
-    SPELLGROUP_SUMMONING = 5,
-    SPELLGROUP_WHITE     = 6,
-    SPELLGROUP_GEOMANCY  = 7,
-    SPELLGROUP_TRUST     = 8
-};
-
-enum SPELLFAMILY
-{
-    SPELLFAMILY_NONE               = 0,
-    SPELLFAMILY_CURE               = 1,
-    SPELLFAMILY_CURAGA             = 2,
-    SPELLFAMILY_RAISE              = 3,
-    SPELLFAMILY_NA                 = 4,
-    SPELLFAMILY_HOLY               = 5,
-    SPELLFAMILY_DIA                = 6,
-    SPELLFAMILY_BANISH             = 7,
-    SPELLFAMILY_DIAGA              = 8,
-    SPELLFAMILY_BANISHGA           = 9,
-    SPELLFAMILY_PROTECT            = 10,
-    SPELLFAMILY_SHELL              = 11,
-    SPELLFAMILY_SLOW               = 12,
-    SPELLFAMILY_HASTE              = 13,
-    SPELLFAMILY_PARALYZE           = 14,
-    SPELLFAMILY_ELE_BAR            = 15,
-    SPELLFAMILY_ELE_BAR_RA         = 16,
-    SPELLFAMILY_STATUS_BAR         = 17,
-    SPELLFAMILY_STATUS_BAR_RA      = 18,
-    SPELLFAMILY_RECALL             = 19,
-    SPELLFAMILY_CURA               = 20,
-    SPELLFAMILY_ENFIRE             = 21,
-    SPELLFAMILY_ENBLIZZARD         = 22,
-    SPELLFAMILY_ENAERO             = 23,
-    SPELLFAMILY_ENSTONE            = 24,
-    SPELLFAMILY_ENTHUNDER          = 25,
-    SPELLFAMILY_ENWATER            = 26,
-    SPELLFAMILY_PHALANX            = 27,
-    SPELLFAMILY_REGEN              = 28,
-    SPELLFAMILY_REFRESH            = 29,
-    SPELLFAMILY_SANDSTORM          = 30,
-    SPELLFAMILY_RAINSTORM          = 31,
-    SPELLFAMILY_WINDSTORM          = 32,
-    SPELLFAMILY_FIRESTORM          = 33,
-    SPELLFAMILY_HAILSTORM          = 34,
-    SPELLFAMILY_THUNDERSTORM       = 35,
-    SPELLFAMILY_VOIDSTORM          = 36,
-    SPELLFAMILY_AURORASTORM        = 37,
-    SPELLFMAILY_TELEPORT           = 38,
-    SPELLFAMILY_PROTECTRA          = 39,
-    SPELLFAMILY_SHELLRA            = 40,
-    SPELLFAMILY_RERAISE            = 41,
-    SPELLFAMILY_FIRE               = 42,
-    SPELLFAMILY_BLIZZARD           = 43,
-    SPELLFAMILY_AERO               = 44,
-    SPELLFAMILY_STONE              = 45,
-    SPELLFAMILY_THUNDER            = 46,
-    SPELLFAMILY_WATER              = 47,
-    SPELLFAMILY_FIRAGA             = 48,
-    SPELLFAMILY_BLIZZAGA           = 49,
-    SPELLFAMILY_AEROGA             = 50,
-    SPELLFAMILY_STONEGA            = 51,
-    SPELLFAMILY_THUNDAGA           = 52,
-    SPELLFAMILY_WATERGA            = 53,
-    SPELLFAMILY_FLARE              = 54,
-    SPELLFAMILY_FREEZE             = 55,
-    SPELLFAMILY_TORNADO            = 56,
-    SPELLFAMILY_QUAKE              = 57,
-    SPELLFAMILY_BURST              = 58,
-    SPELLFAMILY_FLOOD              = 59,
-    SPELLFAMILY_GRAVITY            = 60,
-    SPELLFAMILY_METEOR             = 61,
-    SPELLFAMILY_POISON             = 62,
-    SPELLFAMILY_POISONGA           = 63,
-    SPELLFAMILY_BIO                = 64,
-    SPELLFAMILY_ELE_DOT            = 65,
-    SPELLFAMILY_ABSORB             = 66,
-    SPELLFAMILY_DRAIN              = 67,
-    SPELLFAMILY_ASPIR              = 68,
-    SPELLFAMILY_SPIKES             = 69,
-    SPELLFAMILY_STATUS             = 70,
-    SPELLFAMILY_SLEEP              = 71,
-    SPELLFAMILY_BLIND              = 72,
-    SPELLFAMILY_WARP               = 73,
-    SPELLFAMILY_TRACTOR            = 74,
-    SPELLFAMILY_SLEEPGA            = 75,
-    SPELLFAMILY_GEOHELIX           = 76,
-    SPELLFAMILY_HYDROHELIX         = 77,
-    SPELLFAMILY_ANEMOHELIX         = 78,
-    SPELLFAMILY_PYROHELIX          = 79,
-    SPELLFAMILY_CRYOHELIX          = 80,
-    SPELLFAMILY_IONOHELIX          = 81,
-    SPELLFAMILY_NOCTOHELIX         = 82,
-    SPELLFAMILY_LUMINOHELIX        = 83,
-    SPELLFAMILY_ADDLE              = 84,
-    SPELLFAMILY_SPIRIT             = 85,
-    SPELLFAMILY_AVATAR             = 86,
-    SPELLFAMILY_ANIMUS             = 87,
-    SPELLFAMILY_ENLIGHT            = 88,
-    SPELLFAMILY_ENDARK             = 89,
-    SPELLFAMILY_KATON              = 90,
-    SPELLFAMILY_HYOTON             = 91,
-    SPELLFAMILY_HUTON              = 92,
-    SPELLFAMILY_DOTON              = 93,
-    SPELLFAMILY_RAITON             = 94,
-    SPELLFAMILY_SUITON             = 95,
-    SPELLFAMILY_UTSUSEMI           = 96,
-    SPELLFAMILY_JUBAKU             = 97,
-    SPELLFAMILY_HOJO               = 98,
-    SPELLFAMILY_KURAYAMI           = 99,
-    SPELLFAMILY_DOKUMORI           = 100,
-    SPELLFAMILY_TONKO              = 101,
-    SPELLFAMILY_STATUS_GA          = 102,
-    SPELLFAMILY_FOE_REQUIEM        = 103,
-    SPELLFAMILY_HORDE_LULLABY      = 104,
-    SPELLFAMILY_ARMYS_PAEON        = 105,
-    SPELLFAMILY_MAGES_BALLAD       = 106,
-    SPELLFAMILY_KNIGHTS_MINNE      = 107,
-    SPELLFAMILY_VALOR_MINUET       = 108,
-    SPELLFAMILY_MADRIGAL           = 109,
-    SPELLFAMILY_PRELUDE            = 110,
-    SPELLFAMILY_MAMBO              = 111,
-    SPELLFAMILY_OPERETTA           = 112,
-    SPELLFAMILY_MARCH              = 113,
-    SPELLFAMILY_ELEGY              = 114,
-    SPELLFAMILY_STR_ETUDE          = 115,
-    SPELLFAMILY_DEX_ETUDE          = 116,
-    SPELLFAMILY_VIT_ETUDE          = 117,
-    SPELLFAMILY_AGI_ETUDE          = 118,
-    SPELLFAMILY_INT_ETUDE          = 119,
-    SPELLFAMILY_MND_ETUDE          = 120,
-    SPELLFAMILY_CHR_ETUDE          = 121,
-    SPELLFAMILY_FIRE_CAROL         = 122,
-    SPELLFAMILY_ICE_CAROL          = 123,
-    SPELLFAMILY_WIND_CAROL         = 124,
-    SPELLFAMILY_EARTH_CAROL        = 125,
-    SPELLFAMILY_LIGHTNING_CAROL    = 126,
-    SPELLFAMILY_WATER_CAROL        = 127,
-    SPELLFAMILY_LIGHT_CAROL        = 128,
-    SPELLFAMILY_DARK_CAROL         = 129,
-    SPELLFAMILY_FIRE_THRENODY      = 130,
-    SPELLFAMILY_ICE_THRENODY       = 131,
-    SPELLFAMILY_WIND_THRENODY      = 132,
-    SPELLFAMILY_EARTH_THRENODY     = 133,
-    SPELLFAMILY_LIGHTNING_THRENODY = 134,
-    SPELLFAMILY_WATER_THRENODY     = 135,
-    SPELLFAMILY_LIGHT_THRENODY     = 136,
-    SPELLFAMILY_DARK_THRENODY      = 137,
-    SPELLFAMILY_FOE_LULLABY        = 138,
-    SPELLFAMILY_MAZURKA            = 139,
-    SPELLFAMILY_BOOST              = 140,
-    SPELLFAMILY_GAIN               = 141,
-    SPELLFAMILY_TEMPER             = 142,
-    SPELLFAMILY_JA                 = 143,
-    SPELLFAMILY_INDI_BUFF          = 144,
-    SPELLFAMILY_INDI_DEBUFF        = 145,
-    SPELLFAMILY_GEO_BUFF           = 146,
-    SPELLFAMILY_GEO_DEBUFF         = 147,
-    SPELLFAMILY_FIRA               = 148,
-    SPELLFAMILY_BLIZZARA           = 149,
-    SPELLFAMILY_AERORA             = 150,
-    SPELLFAMILY_STONERA            = 151,
-    SPELLFAMILY_THUNDARA           = 152,
-    SPELLFAMILY_WATERA             = 153,
-    SPELLFAMILY_DISTRACT           = 154,
-    SPELLFAMILY_FRAZZLE            = 155,
-    SPELLFAMILY_FLURRY             = 156,
-};
-
-enum SPELLREQ
-{
-    SPELLCASTTYPE_NORMAL        = 0x00,
-    SPELLREQ_MERIT              = 0x01,
-    SPELLREQ_ADDENDUM_BLACK     = 0x02,
-    SPELLREQ_ADDENDUM_WHITE     = 0x04,
-    SPELLREQ_TABULA_RASA        = 0x08,
-    SPELLREQ_UNBRIDLED_LEARNING = 0x10,
-    SPELLREQ_MAIN_JOB_ONLY      = 0x20,
-};
-
-enum SPELLAOE
-{
-    SPELLAOE_NONE        = 0,
-    SPELLAOE_RADIAL      = 1,
-    SPELLAOE_CONAL       = 2,
-    SPELLAOE_RADIAL_MANI = 3, // AOE when under SCH stratagem Manifestation
-    SPELLAOE_RADIAL_ACCE = 4, // AOE when under SCH stratagem Accession
-    SPELLAOE_PIANISSIMO  = 5, // Single target when under BRD JA Pianissimo
-    SPELLAOE_DIFFUSION   = 6  // AOE when under Diffusion
-};
 
 enum SPELLFLAG
 {
@@ -1194,11 +1002,11 @@ public:
     auto getValidTarget() const -> xi::TargetType;
     auto getAnimationID() const -> ActionAnimation;
     auto getAnimationTime() const -> timer::duration;
-    auto getSpellGroup() const -> SPELLGROUP;
-    auto getSpellFamily() -> SPELLFAMILY;
+    auto getSpellGroup() const -> xi::SpellGroup;
+    auto getSpellFamily() -> xi::SpellFamily;
     auto getSkillType() const -> xi::SkillType;
     auto getZoneMisc() const -> xi::ZoneMisc;
-    auto getAOE() const -> uint8;
+    auto getAOE() const -> xi::SpellAoe;
     auto getBase() const -> uint16;
     auto getElement() const -> uint16;
     auto getMultiplier() const -> float;
@@ -1208,7 +1016,7 @@ public:
     auto getVE() const -> int32;
     auto getModifiedRecast() const -> timer::duration;
     auto getRadius() const -> float;
-    auto getRequirements() const -> uint8;
+    auto getRequirements() const -> xi::SpellRequirement;
     auto getFlag() const -> uint8;
     auto getContent() const -> xi::Content;
     auto getRange() const -> float;
@@ -1235,11 +1043,11 @@ public:
     void setValidTarget(xi::TargetType ValidTarget);
     void setAnimationID(uint16 AnimationID);
     void setAnimationTime(timer::duration AnimationTime);
-    void setSpellGroup(SPELLGROUP SpellGroup);
-    void setSpellFamily(SPELLFAMILY SpellFamily);
+    void setSpellGroup(xi::SpellGroup SpellGroup);
+    void setSpellFamily(xi::SpellFamily SpellFamily);
     void setSkillType(xi::SkillType SkillType);
     void setZoneMisc(xi::ZoneMisc Misc);
-    void setAOE(uint8 AOE);
+    void setAOE(xi::SpellAoe AOE);
     void setBase(uint16 base);
     void setElement(uint16 element);
     void setMultiplier(float multiplier);
@@ -1253,7 +1061,7 @@ public:
 
     void setCE(int32 ce);
     void setVE(int32 ve);
-    void setRequirements(uint8 requirements);
+    void setRequirements(xi::SpellRequirement requirements);
     void setModifiedRecast(timer::duration mrec);
     void setFlag(uint8 flag);
     void setContent(xi::Content content);
@@ -1281,25 +1089,25 @@ private:
     float                          m_range{};
     float                          m_radius{};
     uint16                         m_totalTargets{};
-    uint16                         m_mpCost{};                        // mpCost/itemId for ninjitsu tool
-    std::array<uint8, MAX_JOBTYPE> m_job{};                           // job
-    xi::TargetType                 m_ValidTarget{};                   // target pc/npc/both
-    SPELLGROUP                     m_spellGroup{ SPELLGROUP_NONE };   // spellgroup
-    SPELLFAMILY                    m_spellFamily{ SPELLFAMILY_NONE }; // spell family
-    xi::ZoneMisc                   m_zoneMisc{};                      // spellcasting conditions
-    uint8                          m_AOE{};                           // aoe or single target spell
-    uint16                         m_base{};                          // spell base damage
-    float                          m_multiplier{};                    // multiplier for upper tier spells
-    uint16                         m_element{};                       // element of spell
-    MsgBasic                       m_message{};                       // message id
-    MsgBasic                       m_MagicBurstMessage{};             // Message used for magic bursts.
-    ActionModifier                 m_MessageModifier{};               // Message modifier, "Cover!", "Resist!" or "Immunobreak!"
-    bool                           critical_{};                       // transient critical hit flag for action packets
-    int32                          m_CE{};                            // cumulative enmity of spell
-    int32                          m_VE{};                            // volatile enmity of spell
-    std::string                    m_name;                            // spell name
-    timer::duration                m_modifiedRecastTime{};            // recast time after modifications
-    uint8                          m_requirements{};                  // requirements before being able to cast spell
+    uint16                         m_mpCost{};                             // mpCost/itemId for ninjitsu tool
+    std::array<uint8, MAX_JOBTYPE> m_job{};                                // job
+    xi::TargetType                 m_ValidTarget{};                        // target pc/npc/both
+    xi::SpellGroup                 m_spellGroup{ xi::SpellGroup::None };   // spellgroup
+    xi::SpellFamily                m_spellFamily{ xi::SpellFamily::None }; // spell family
+    xi::ZoneMisc                   m_zoneMisc{};                           // spellcasting conditions
+    xi::SpellAoe                   m_AOE{};                                // aoe or single target spell
+    uint16                         m_base{};                               // spell base damage
+    float                          m_multiplier{};                         // multiplier for upper tier spells
+    uint16                         m_element{};                            // element of spell
+    MsgBasic                       m_message{};                            // message id
+    MsgBasic                       m_MagicBurstMessage{};                  // Message used for magic bursts.
+    ActionModifier                 m_MessageModifier{};                    // Message modifier, "Cover!", "Resist!" or "Immunobreak!"
+    bool                           critical_{};                            // transient critical hit flag for action packets
+    int32                          m_CE{};                                 // cumulative enmity of spell
+    int32                          m_VE{};                                 // volatile enmity of spell
+    std::string                    m_name;                                 // spell name
+    timer::duration                m_modifiedRecastTime{};                 // recast time after modifications
+    xi::SpellRequirement           m_requirements{};                       // requirements before being able to cast spell
     uint8                          m_flag{};
     xi::Content                    m_content{};
     Maybe<xi::StatusEffect>        statusEffect_{};

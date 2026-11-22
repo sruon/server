@@ -6432,7 +6432,7 @@ void RemoveInvisible(const CCharEntity* PChar)
 
 void RemoveStratagems(CCharEntity* PChar, CSpell* PSpell)
 {
-    if (PSpell->getSpellGroup() == SPELLGROUP_WHITE)
+    if (PSpell->getSpellGroup() == xi::SpellGroup::White)
     {
         // rapture to be deleted in applicable scripts
         PChar->StatusEffectContainer->DelStatusEffect(xi::StatusEffect::Penury);
@@ -6440,7 +6440,7 @@ void RemoveStratagems(CCharEntity* PChar, CSpell* PSpell)
         PChar->StatusEffectContainer->DelStatusEffect(xi::StatusEffect::Enlightenment);
         PChar->StatusEffectContainer->DelStatusEffect(xi::StatusEffect::Altruism);
         PChar->StatusEffectContainer->DelStatusEffect(xi::StatusEffect::Tranquility);
-        if (PSpell->getAOE() == SPELLAOE_RADIAL_ACCE)
+        if (PSpell->getAOE() == xi::SpellAoe::RadialAcce)
         {
             PChar->StatusEffectContainer->DelStatusEffect(xi::StatusEffect::Accession);
         }
@@ -6449,7 +6449,7 @@ void RemoveStratagems(CCharEntity* PChar, CSpell* PSpell)
             PChar->StatusEffectContainer->DelStatusEffect(xi::StatusEffect::Perpetuance);
         }
     }
-    else if (PSpell->getSpellGroup() == SPELLGROUP_BLACK)
+    else if (PSpell->getSpellGroup() == xi::SpellGroup::Black)
     {
         // ebullience to be deleted in applicable scripts
         PChar->StatusEffectContainer->DelStatusEffect(xi::StatusEffect::Parsimony);
@@ -6457,7 +6457,7 @@ void RemoveStratagems(CCharEntity* PChar, CSpell* PSpell)
         PChar->StatusEffectContainer->DelStatusEffect(xi::StatusEffect::Enlightenment);
         PChar->StatusEffectContainer->DelStatusEffect(xi::StatusEffect::Focalization);
         PChar->StatusEffectContainer->DelStatusEffect(xi::StatusEffect::Equanimity);
-        if (PSpell->getAOE() == SPELLAOE_RADIAL_MANI)
+        if (PSpell->getAOE() == xi::SpellAoe::RadialMani)
         {
             PChar->StatusEffectContainer->DelStatusEffect(xi::StatusEffect::Manifestation);
         }

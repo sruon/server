@@ -5503,7 +5503,7 @@ auto CalculateSpellCastTime(CBattleEntity* PEntity, CMagicState* PMagicState) ->
         cast = std::chrono::floor<std::chrono::milliseconds>(cast * 1.5);
     }
 
-    if (PSpell->getSpellGroup() == SPELLGROUP_BLACK)
+    if (PSpell->getSpellGroup() == xi::SpellGroup::Black)
     {
         if (PEntity->StatusEffectContainer->HasStatusEffect(xi::StatusEffect::Alacrity))
         {
@@ -5544,7 +5544,7 @@ auto CalculateSpellCastTime(CBattleEntity* PEntity, CMagicState* PMagicState) ->
             }
         }
     }
-    else if (PSpell->getSpellGroup() == SPELLGROUP_WHITE)
+    else if (PSpell->getSpellGroup() == xi::SpellGroup::White)
     {
         if (PEntity->StatusEffectContainer->HasStatusEffect(xi::StatusEffect::Celerity))
         {
@@ -5577,7 +5577,7 @@ auto CalculateSpellCastTime(CBattleEntity* PEntity, CMagicState* PMagicState) ->
             }
         }
     }
-    else if (PSpell->getSpellGroup() == SPELLGROUP_SUMMONING)
+    else if (PSpell->getSpellGroup() == xi::SpellGroup::Summoning)
     {
         auto amount = 1000ms * PEntity->getMod(xi::Mod::SUMMONING_MAGIC_CAST);
 
@@ -5595,11 +5595,11 @@ auto CalculateSpellCastTime(CBattleEntity* PEntity, CMagicState* PMagicState) ->
             cast = 0s;
         }
     }
-    else if (PSpell->getSpellGroup() == SPELLGROUP_SONG)
+    else if (PSpell->getSpellGroup() == xi::SpellGroup::Song)
     {
         if (PEntity->StatusEffectContainer->HasStatusEffect(xi::StatusEffect::Pianissimo))
         {
-            if (PSpell->getAOE() == SPELLAOE_PIANISSIMO)
+            if (PSpell->getAOE() == xi::SpellAoe::Pianissimo)
             {
                 cast = base / 2;
             }
@@ -5620,7 +5620,7 @@ auto CalculateSpellCastTime(CBattleEntity* PEntity, CMagicState* PMagicState) ->
         uint16 songcasting = PEntity->getMod(xi::Mod::SONG_SPELLCASTING_TIME);
         cast               = std::chrono::floor<std::chrono::milliseconds>(cast * (1.0f - (std::min<uint16>(songcasting, 50) / 100.0f)));
     }
-    else if (PSpell->getSpellGroup() == SPELLGROUP_NINJUTSU)
+    else if (PSpell->getSpellGroup() == xi::SpellGroup::Ninjutsu)
     {
         if (auto* PChar = dynamic_cast<CCharEntity*>(PEntity))
         {
@@ -5685,9 +5685,9 @@ auto CalculateSpellCost(CBattleEntity* PEntity, CSpell* PSpell) -> uint16
 
     int16 cost = base;
 
-    if (PSpell->getSpellGroup() == SPELLGROUP_BLACK)
+    if (PSpell->getSpellGroup() == xi::SpellGroup::Black)
     {
-        if (PSpell->getAOE() == SPELLAOE_RADIAL_MANI && PEntity->StatusEffectContainer->HasStatusEffect(xi::StatusEffect::Manifestation))
+        if (PSpell->getAOE() == xi::SpellAoe::RadialMani && PEntity->StatusEffectContainer->HasStatusEffect(xi::StatusEffect::Manifestation))
         {
             cost *= 2;
             applyArts = false;
@@ -5702,9 +5702,9 @@ auto CalculateSpellCost(CBattleEntity* PEntity, CSpell* PSpell) -> uint16
             cost += (int16)(base * (PEntity->getMod(xi::Mod::BLACK_MAGIC_COST) / 100.0f));
         }
     }
-    else if (PSpell->getSpellGroup() == SPELLGROUP_WHITE)
+    else if (PSpell->getSpellGroup() == xi::SpellGroup::White)
     {
-        if (PSpell->getAOE() == SPELLAOE_RADIAL_ACCE && PEntity->StatusEffectContainer->HasStatusEffect(xi::StatusEffect::Accession))
+        if (PSpell->getAOE() == xi::SpellAoe::RadialAcce && PEntity->StatusEffectContainer->HasStatusEffect(xi::StatusEffect::Accession))
         {
             cost *= 2;
             applyArts = false;
@@ -5798,7 +5798,7 @@ auto CalculateSpellRecastTime(CBattleEntity* PEntity, CSpell* PSpell) -> timer::
     int32 haste      = hasteMagic + hasteGear;
     recast           = std::chrono::floor<std::chrono::milliseconds>(recast * ((10000.0f - haste) / 10000.0f));
 
-    if (PSpell->getSpellGroup() == SPELLGROUP_SONG)
+    if (PSpell->getSpellGroup() == xi::SpellGroup::Song)
     {
         if (PEntity->StatusEffectContainer->HasStatusEffect(xi::StatusEffect::Nightingale))
         {
@@ -5859,9 +5859,9 @@ auto CalculateSpellRecastTime(CBattleEntity* PEntity, CSpell* PSpell) -> timer::
     recast = std::chrono::floor<std::chrono::milliseconds>(recast * ((100.0f + recastMod) / 100.0f));
 
     // Light/Dark arts recast bonus/penalties applies after other bonuses
-    if (PSpell->getSpellGroup() == SPELLGROUP_BLACK)
+    if (PSpell->getSpellGroup() == xi::SpellGroup::Black)
     {
-        if (PSpell->getAOE() == SPELLAOE_RADIAL_MANI && PEntity->StatusEffectContainer->HasStatusEffect(xi::StatusEffect::Manifestation))
+        if (PSpell->getAOE() == xi::SpellAoe::RadialMani && PEntity->StatusEffectContainer->HasStatusEffect(xi::StatusEffect::Manifestation))
         {
             if (PEntity->GetMJob() == xi::Job::SCH)
             {
@@ -5905,9 +5905,9 @@ auto CalculateSpellRecastTime(CBattleEntity* PEntity, CSpell* PSpell) -> timer::
             recast = std::max<timer::duration>(recast, recastCapFloor(reductionCap));
         }
     }
-    else if (PSpell->getSpellGroup() == SPELLGROUP_WHITE)
+    else if (PSpell->getSpellGroup() == xi::SpellGroup::White)
     {
-        if (PSpell->getAOE() == SPELLAOE_RADIAL_ACCE && PEntity->StatusEffectContainer->HasStatusEffect(xi::StatusEffect::Accession))
+        if (PSpell->getAOE() == xi::SpellAoe::RadialAcce && PEntity->StatusEffectContainer->HasStatusEffect(xi::StatusEffect::Accession))
         {
             if (PEntity->GetMJob() == xi::Job::SCH)
             {

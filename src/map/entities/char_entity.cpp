@@ -1531,7 +1531,7 @@ void CCharEntity::OnCastFinished(CMagicState& state, action_t& action)
     CBattleEntity* taChar = nullptr;
 
     if (StatusEffectContainer->HasStatusEffect(xi::StatusEffect::TrickAttack) &&
-        PSpell->getSpellGroup() == SPELLGROUP_BLUE &&
+        PSpell->getSpellGroup() == xi::SpellGroup::Blue &&
         PSpell->dealsDamage())
     {
         taChar = battleutils::getAvailableTrickAttackChar(this, PTarget);
@@ -1548,7 +1548,7 @@ void CCharEntity::OnCastFinished(CMagicState& state, action_t& action)
         {
             if (actionResult.param > 0 &&
                 PSpell->dealsDamage() &&
-                PSpell->getSpellGroup() == SPELLGROUP_BLUE &&
+                PSpell->getSpellGroup() == xi::SpellGroup::Blue &&
                 (StatusEffectContainer->HasStatusEffect(xi::StatusEffect::ChainAffinity) || StatusEffectContainer->HasStatusEffect(xi::StatusEffect::AzureLore)) &&
                 static_cast<CBlueSpell*>(PSpell)->getPrimarySkillchain() != 0)
             {
@@ -1579,7 +1579,7 @@ void CCharEntity::OnCastFinished(CMagicState& state, action_t& action)
             if (PTarget->health.hp > 0 &&
                 actionResult.param >= 0 &&
                 PSpell->dealsDamage() &&
-                PSpell->getSpellGroup() == SPELLGROUP_BLACK &&
+                PSpell->getSpellGroup() == xi::SpellGroup::Black &&
                 (StatusEffectContainer->HasStatusEffect(xi::StatusEffect::Immanence)))
             {
                 auto immanenceApplies = true;
@@ -1587,47 +1587,47 @@ void CCharEntity::OnCastFinished(CMagicState& state, action_t& action)
                 auto effect           = ActionProcSkillChain::None;
                 switch (PSpell->getSpellFamily())
                 {
-                    case SPELLFAMILY_GEOHELIX:
+                    case xi::SpellFamily::Geohelix:
                         isHelix = true;
                         [[fallthrough]];
-                    case SPELLFAMILY_STONE:
+                    case xi::SpellFamily::Stone:
                         effect = battleutils::GetSkillChainEffect(PTarget, std::to_underlying(xi::SkillchainType::Scission), 0, 0);
                         break;
-                    case SPELLFAMILY_HYDROHELIX:
+                    case xi::SpellFamily::Hydrohelix:
                         isHelix = true;
                         [[fallthrough]];
-                    case SPELLFAMILY_WATER:
+                    case xi::SpellFamily::Water:
                         effect = battleutils::GetSkillChainEffect(PTarget, std::to_underlying(xi::SkillchainType::Reverberation), 0, 0);
                         break;
-                    case SPELLFAMILY_ANEMOHELIX:
+                    case xi::SpellFamily::Anemohelix:
                         isHelix = true;
                         [[fallthrough]];
-                    case SPELLFAMILY_AERO:
+                    case xi::SpellFamily::Aero:
                         effect = battleutils::GetSkillChainEffect(PTarget, std::to_underlying(xi::SkillchainType::Detonation), 0, 0);
                         break;
-                    case SPELLFAMILY_PYROHELIX:
+                    case xi::SpellFamily::Pyrohelix:
                         isHelix = true;
                         [[fallthrough]];
-                    case SPELLFAMILY_FIRE:
+                    case xi::SpellFamily::Fire:
                         effect = battleutils::GetSkillChainEffect(PTarget, std::to_underlying(xi::SkillchainType::Liquefaction), 0, 0);
                         break;
-                    case SPELLFAMILY_CRYOHELIX:
+                    case xi::SpellFamily::Cryohelix:
                         isHelix = true;
                         [[fallthrough]];
-                    case SPELLFAMILY_BLIZZARD:
+                    case xi::SpellFamily::Blizzard:
                         effect = battleutils::GetSkillChainEffect(PTarget, std::to_underlying(xi::SkillchainType::Induration), 0, 0);
                         break;
-                    case SPELLFAMILY_IONOHELIX:
+                    case xi::SpellFamily::Ionohelix:
                         isHelix = true;
                         [[fallthrough]];
-                    case SPELLFAMILY_THUNDER:
+                    case xi::SpellFamily::Thunder:
                         effect = battleutils::GetSkillChainEffect(PTarget, std::to_underlying(xi::SkillchainType::Impaction), 0, 0);
                         break;
-                    case SPELLFAMILY_NOCTOHELIX:
+                    case xi::SpellFamily::Noctohelix:
                         isHelix = true;
                         effect  = battleutils::GetSkillChainEffect(PTarget, std::to_underlying(xi::SkillchainType::Compression), 0, 0);
                         break;
-                    case SPELLFAMILY_LUMINOHELIX:
+                    case xi::SpellFamily::Luminohelix:
                         isHelix = true;
                         effect  = battleutils::GetSkillChainEffect(PTarget, std::to_underlying(xi::SkillchainType::Transfixion), 0, 0);
                         break;

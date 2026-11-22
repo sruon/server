@@ -575,7 +575,7 @@ auto CTargetFind::validEntity(CBattleEntity* PTarget) -> bool
         }
 
         // If offensive, don't target other entities with same allegiance
-        // Cures can be AoE with Accession and Majesty, ideally we would use SPELLGROUP or some other mechanism, but TargetFind wasn't designed with that in mind
+        // Cures can be AoE with Accession and Majesty, ideally we would use xi::SpellGroup or some other mechanism, but TargetFind wasn't designed with that in mind
         if ((m_targetFlags & xi::TargetType::Enemy) != xi::TargetType::None && (m_targetFlags & xi::TargetType::PlayerParty) == xi::TargetType::None &&
             m_PBattleEntity->allegiance == PTarget->allegiance)
         {

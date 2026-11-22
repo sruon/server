@@ -62,8 +62,7 @@ void CMobSpellContainer::AddSpell(SpellID spellId)
 
     // add spell to correct vector
     // try to add it to ga list first
-    const uint8 aoe = spell->getAOE();
-    if (aoe > 0 && spell->canTargetEnemy())
+    if (spell->getAOE() != xi::SpellAoe::None && spell->canTargetEnemy())
     {
         m_gaList.emplace_back(spellId);
     }
@@ -144,7 +143,7 @@ auto CMobSpellContainer::GetAvailable(SpellID spellId) -> Maybe<SpellID>
 }
 
 // Used in Gambits to see if the Trust can cast the spell
-auto CMobSpellContainer::GetBestAvailable(SPELLFAMILY family) -> Maybe<SpellID>
+auto CMobSpellContainer::GetBestAvailable(xi::SpellFamily family) -> Maybe<SpellID>
 {
     std::vector<SpellID> matches;
     auto                 searchInList = [&](std::vector<SpellID>& list)
@@ -152,7 +151,7 @@ auto CMobSpellContainer::GetBestAvailable(SPELLFAMILY family) -> Maybe<SpellID>
         for (auto id : list)
         {
             auto* spell         = spell::GetSpell(id);
-            bool  sameFamily    = (family == SPELLFAMILY_NONE) ? true : spell->getSpellFamily() == family;
+            bool  sameFamily    = (family == xi::SpellFamily::None) ? true : spell->getSpellFamily() == family;
             bool  enoughMP      = spell->getMPCost() <= m_PMob->health.mp ||
                                   spell->getSkillType() == xi::SkillType::Ninjutsu ||
                                   spell->getSkillType() == xi::SkillType::Singing ||
@@ -168,7 +167,7 @@ auto CMobSpellContainer::GetBestAvailable(SPELLFAMILY family) -> Maybe<SpellID>
     };
 
     // TODO: After a good refactoring, this sort of hack won't be needed...
-    if (family == SPELLFAMILY_NONE)
+    if (family == xi::SpellFamily::None)
     {
         searchInList(m_damageList);
     }
@@ -368,47 +367,47 @@ auto CMobSpellContainer::GetBestAgainstTargetWeakness(CBattleEntity* PTarget, Sp
     {
         case ELEMENT_FIRE:
         {
-            choice = GetBestAvailable(SPELLFAMILY_FIRE);
+            choice = GetBestAvailable(xi::SpellFamily::Fire);
             break;
         }
         case ELEMENT_ICE:
         {
-            choice = GetBestAvailable(SPELLFAMILY_BLIZZARD);
+            choice = GetBestAvailable(xi::SpellFamily::Blizzard);
             break;
         }
         case ELEMENT_WIND:
         {
-            choice = GetBestAvailable(SPELLFAMILY_AERO);
+            choice = GetBestAvailable(xi::SpellFamily::Aero);
             break;
         }
         case ELEMENT_EARTH:
         {
-            choice = GetBestAvailable(SPELLFAMILY_STONE);
+            choice = GetBestAvailable(xi::SpellFamily::Stone);
             break;
         }
         case ELEMENT_THUNDER:
         {
-            choice = GetBestAvailable(SPELLFAMILY_THUNDER);
+            choice = GetBestAvailable(xi::SpellFamily::Thunder);
             break;
         }
         case ELEMENT_WATER:
         {
-            choice = GetBestAvailable(SPELLFAMILY_WATER);
+            choice = GetBestAvailable(xi::SpellFamily::Water);
             break;
         }
         case ELEMENT_LIGHT:
         {
-            choice = GetBestAvailable(SPELLFAMILY_BANISH);
+            choice = GetBestAvailable(xi::SpellFamily::Banish);
             break;
         }
         case ELEMENT_DARK:
         {
-            choice = GetBestAvailable(SPELLFAMILY_DRAIN);
+            choice = GetBestAvailable(xi::SpellFamily::Drain);
             break;
         }
     }
     // If all else fails, just cast the best you have!
-    return !choice ? GetBestAvailable(SPELLFAMILY_NONE) : choice;
+    return !choice ? GetBestAvailable(xi::SpellFamily::None) : choice;
 }
 
 auto CMobSpellContainer::EnSpellAgainstTargetWeakness(CBattleEntity* PTarget) -> Maybe<SpellID>
@@ -436,32 +435,32 @@ auto CMobSpellContainer::EnSpellAgainstTargetWeakness(CBattleEntity* PTarget) ->
     {
         case ELEMENT_FIRE:
         {
-            choice = GetBestAvailable(SPELLFAMILY_ENFIRE);
+            choice = GetBestAvailable(xi::SpellFamily::Enfire);
             break;
         }
         case ELEMENT_ICE:
         {
-            choice = GetBestAvailable(SPELLFAMILY_ENBLIZZARD);
+            choice = GetBestAvailable(xi::SpellFamily::Enblizzard);
             break;
         }
         case ELEMENT_WIND:
         {
-            choice = GetBestAvailable(SPELLFAMILY_ENAERO);
+            choice = GetBestAvailable(xi::SpellFamily::Enaero);
             break;
         }
         case ELEMENT_EARTH:
         {
-            choice = GetBestAvailable(SPELLFAMILY_ENSTONE);
+            choice = GetBestAvailable(xi::SpellFamily::Enstone);
             break;
         }
         case ELEMENT_THUNDER:
         {
-            choice = GetBestAvailable(SPELLFAMILY_ENTHUNDER);
+            choice = GetBestAvailable(xi::SpellFamily::Enthunder);
             break;
         }
         case ELEMENT_WATER:
         {
-            choice = GetBestAvailable(SPELLFAMILY_ENWATER);
+            choice = GetBestAvailable(xi::SpellFamily::Enwater);
             break;
         }
     }
@@ -493,42 +492,42 @@ auto CMobSpellContainer::StormDayAgainstTargetWeakness(CBattleEntity* PTarget) -
     {
         case ELEMENT_FIRE:
         {
-            choice = GetBestAvailable(SPELLFAMILY_FIRESTORM);
+            choice = GetBestAvailable(xi::SpellFamily::Firestorm);
             break;
         }
         case ELEMENT_ICE:
         {
-            choice = GetBestAvailable(SPELLFAMILY_HAILSTORM);
+            choice = GetBestAvailable(xi::SpellFamily::Hailstorm);
             break;
         }
         case ELEMENT_WIND:
         {
-            choice = GetBestAvailable(SPELLFAMILY_WINDSTORM);
+            choice = GetBestAvailable(xi::SpellFamily::Windstorm);
             break;
         }
         case ELEMENT_EARTH:
         {
-            choice = GetBestAvailable(SPELLFAMILY_SANDSTORM);
+            choice = GetBestAvailable(xi::SpellFamily::Sandstorm);
             break;
         }
         case ELEMENT_THUNDER:
         {
-            choice = GetBestAvailable(SPELLFAMILY_THUNDERSTORM);
+            choice = GetBestAvailable(xi::SpellFamily::Thunderstorm);
             break;
         }
         case ELEMENT_WATER:
         {
-            choice = GetBestAvailable(SPELLFAMILY_RAINSTORM);
+            choice = GetBestAvailable(xi::SpellFamily::Rainstorm);
             break;
         }
         case ELEMENT_LIGHT:
         {
-            choice = GetBestAvailable(SPELLFAMILY_AURORASTORM);
+            choice = GetBestAvailable(xi::SpellFamily::Aurorastorm);
             break;
         }
         case ELEMENT_DARK:
         {
-            choice = GetBestAvailable(SPELLFAMILY_VOIDSTORM);
+            choice = GetBestAvailable(xi::SpellFamily::Voidstorm);
             break;
         }
     }
@@ -560,42 +559,42 @@ auto CMobSpellContainer::HelixAgainstTargetWeakness(CBattleEntity* PTarget) -> M
     {
         case ELEMENT_FIRE:
         {
-            choice = GetBestAvailable(SPELLFAMILY_PYROHELIX);
+            choice = GetBestAvailable(xi::SpellFamily::Pyrohelix);
             break;
         }
         case ELEMENT_ICE:
         {
-            choice = GetBestAvailable(SPELLFAMILY_CRYOHELIX);
+            choice = GetBestAvailable(xi::SpellFamily::Cryohelix);
             break;
         }
         case ELEMENT_WIND:
         {
-            choice = GetBestAvailable(SPELLFAMILY_ANEMOHELIX);
+            choice = GetBestAvailable(xi::SpellFamily::Anemohelix);
             break;
         }
         case ELEMENT_EARTH:
         {
-            choice = GetBestAvailable(SPELLFAMILY_GEOHELIX);
+            choice = GetBestAvailable(xi::SpellFamily::Geohelix);
             break;
         }
         case ELEMENT_THUNDER:
         {
-            choice = GetBestAvailable(SPELLFAMILY_IONOHELIX);
+            choice = GetBestAvailable(xi::SpellFamily::Ionohelix);
             break;
         }
         case ELEMENT_WATER:
         {
-            choice = GetBestAvailable(SPELLFAMILY_HYDROHELIX);
+            choice = GetBestAvailable(xi::SpellFamily::Hydrohelix);
             break;
         }
         case ELEMENT_LIGHT:
         {
-            choice = GetBestAvailable(SPELLFAMILY_LUMINOHELIX);
+            choice = GetBestAvailable(xi::SpellFamily::Luminohelix);
             break;
         }
         case ELEMENT_DARK:
         {
-            choice = GetBestAvailable(SPELLFAMILY_NOCTOHELIX);
+            choice = GetBestAvailable(xi::SpellFamily::Noctohelix);
             break;
         }
     }
@@ -610,42 +609,42 @@ auto CMobSpellContainer::GetStormDay() -> Maybe<SpellID>
     {
         case ELEMENT_FIRE:
         {
-            choice = GetBestAvailable(SPELLFAMILY_FIRESTORM);
+            choice = GetBestAvailable(xi::SpellFamily::Firestorm);
             break;
         }
         case ELEMENT_ICE:
         {
-            choice = GetBestAvailable(SPELLFAMILY_HAILSTORM);
+            choice = GetBestAvailable(xi::SpellFamily::Hailstorm);
             break;
         }
         case ELEMENT_WIND:
         {
-            choice = GetBestAvailable(SPELLFAMILY_WINDSTORM);
+            choice = GetBestAvailable(xi::SpellFamily::Windstorm);
             break;
         }
         case ELEMENT_EARTH:
         {
-            choice = GetBestAvailable(SPELLFAMILY_SANDSTORM);
+            choice = GetBestAvailable(xi::SpellFamily::Sandstorm);
             break;
         }
         case ELEMENT_THUNDER:
         {
-            choice = GetBestAvailable(SPELLFAMILY_THUNDERSTORM);
+            choice = GetBestAvailable(xi::SpellFamily::Thunderstorm);
             break;
         }
         case ELEMENT_WATER:
         {
-            choice = GetBestAvailable(SPELLFAMILY_RAINSTORM);
+            choice = GetBestAvailable(xi::SpellFamily::Rainstorm);
             break;
         }
         case ELEMENT_LIGHT:
         {
-            choice = GetBestAvailable(SPELLFAMILY_AURORASTORM);
+            choice = GetBestAvailable(xi::SpellFamily::Aurorastorm);
             break;
         }
         case ELEMENT_DARK:
         {
-            choice = GetBestAvailable(SPELLFAMILY_VOIDSTORM);
+            choice = GetBestAvailable(xi::SpellFamily::Voidstorm);
             break;
         }
     }
@@ -660,42 +659,42 @@ auto CMobSpellContainer::GetHelixDay() -> Maybe<SpellID>
     {
         case ELEMENT_FIRE:
         {
-            choice = GetBestAvailable(SPELLFAMILY_PYROHELIX);
+            choice = GetBestAvailable(xi::SpellFamily::Pyrohelix);
             break;
         }
         case ELEMENT_ICE:
         {
-            choice = GetBestAvailable(SPELLFAMILY_CRYOHELIX);
+            choice = GetBestAvailable(xi::SpellFamily::Cryohelix);
             break;
         }
         case ELEMENT_WIND:
         {
-            choice = GetBestAvailable(SPELLFAMILY_ANEMOHELIX);
+            choice = GetBestAvailable(xi::SpellFamily::Anemohelix);
             break;
         }
         case ELEMENT_EARTH:
         {
-            choice = GetBestAvailable(SPELLFAMILY_GEOHELIX);
+            choice = GetBestAvailable(xi::SpellFamily::Geohelix);
             break;
         }
         case ELEMENT_THUNDER:
         {
-            choice = GetBestAvailable(SPELLFAMILY_IONOHELIX);
+            choice = GetBestAvailable(xi::SpellFamily::Ionohelix);
             break;
         }
         case ELEMENT_WATER:
         {
-            choice = GetBestAvailable(SPELLFAMILY_HYDROHELIX);
+            choice = GetBestAvailable(xi::SpellFamily::Hydrohelix);
             break;
         }
         case ELEMENT_LIGHT:
         {
-            choice = GetBestAvailable(SPELLFAMILY_LUMINOHELIX);
+            choice = GetBestAvailable(xi::SpellFamily::Luminohelix);
             break;
         }
         case ELEMENT_DARK:
         {
-            choice = GetBestAvailable(SPELLFAMILY_NOCTOHELIX);
+            choice = GetBestAvailable(xi::SpellFamily::Noctohelix);
             break;
         }
     }

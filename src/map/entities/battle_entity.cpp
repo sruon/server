@@ -2413,25 +2413,25 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
         flags |= FINDFLAGS_DEAD;
     }
 
-    const auto result    = luautils::callGlobal<sol::table>("xi.combat.magicAoE.calculateTypeAndRadius", this, PSpell);
-    SPELLAOE   aoeType   = result.get_or(1, SPELLAOE_NONE);
-    float      aoeRadius = result.get_or(2, 0.0f);
+    const auto   result    = luautils::callGlobal<sol::table>("xi.combat.magicAoE.calculateTypeAndRadius", this, PSpell);
+    xi::SpellAoe aoeType   = result.get_or(1, xi::SpellAoe::None);
+    float        aoeRadius = result.get_or(2, 0.0f);
 
     // Convergence reduces AoEs to a single target
     // TODO: there isn't a good way to pick out which spells are supposed to be compatible with convergence
     // So you could accidentally use Battle Dance with Convergence and lose AoE for no bonus
-    if (PSpell->getSpellGroup() == SPELLGROUP_BLUE && StatusEffectContainer->HasStatusEffect(xi::StatusEffect::Convergence))
+    if (PSpell->getSpellGroup() == xi::SpellGroup::Blue && StatusEffectContainer->HasStatusEffect(xi::StatusEffect::Convergence))
     {
-        aoeType   = SPELLAOE_NONE;
+        aoeType   = xi::SpellAoe::None;
         aoeRadius = 0.0f;
     }
 
     switch (aoeType)
     {
-        case SPELLAOE_RADIAL:
+        case xi::SpellAoe::Radial:
             PAI->TargetFind->findWithinArea(PActionTarget, AOE_RADIUS::TARGET, aoeRadius, flags, PSpell->getValidTarget());
             break;
-        case SPELLAOE_CONAL:
+        case xi::SpellAoe::Conal:
             PAI->TargetFind->findWithinCone(PActionTarget, aoeRadius, 45, flags, PSpell->getValidTarget());
             break;
         default:
@@ -2482,7 +2482,7 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
         int32 damage = 0;
 
         // Take all shadows
-        if (PSpell->canTargetEnemy() && (aoeType > SPELLAOE_NONE || (PSpell->getFlag() & SPELLFLAG_WIPE_SHADOWS)))
+        if (PSpell->canTargetEnemy() && (aoeType > xi::SpellAoe::None || (PSpell->getFlag() & SPELLFLAG_WIPE_SHADOWS)))
         {
             PTarget->StatusEffectContainer->DelStatusEffect(xi::StatusEffect::Blink);
             PTarget->StatusEffectContainer->DelStatusEffect(xi::StatusEffect::CopyImage);
@@ -2490,7 +2490,7 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
 
         // TODO: this is really hacky and should eventually be moved into lua, and spellFlags should probably be in the spells table..
         // Also need to have IsAbsorbByShadow last in conditional because that has side effects including removing a shadow
-        if (PSpell->getSpellGroup() != SPELLGROUP_BLUE && PSpell->canHitShadow() && aoeType == SPELLAOE_NONE && !(PSpell->getFlag() & SPELLFLAG_IGNORE_SHADOWS) && battleutils::IsAbsorbByShadow(PTarget, this))
+        if (PSpell->getSpellGroup() != xi::SpellGroup::Blue && PSpell->canHitShadow() && aoeType == xi::SpellAoe::None && !(PSpell->getFlag() & SPELLFLAG_IGNORE_SHADOWS) && battleutils::IsAbsorbByShadow(PTarget, this))
         {
             // take shadow
             msg                = MsgBasic::ShadowAbsorb;
@@ -2521,7 +2521,7 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
             PSpell->setModifier(ActionModifier::None); // Reset modifier on use
 
             // BLU physical spells do set certain bits in the action packet
-            if (PSpell->getSpellGroup() == SPELLGROUP_BLUE && PSpell->getElement() == ELEMENT_NONE && msg == MsgBasic::MagicDamage)
+            if (PSpell->getSpellGroup() == xi::SpellGroup::Blue && PSpell->getElement() == ELEMENT_NONE && msg == MsgBasic::MagicDamage)
             {
                 actionResult.recordDamage(attack_outcome_t{
                     .atkType    = xi::AttackType::Physical,
@@ -2543,7 +2543,7 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
                 actionResult.param      = 0;
                 actionResult.knockback  = Knockback::None;
             }
-            else if (PSpell->getSpellGroup() == SPELLGROUP_BLUE)
+            else if (PSpell->getSpellGroup() == xi::SpellGroup::Blue)
             {
                 actionResult.knockback = luautils::callGlobal<Knockback>("xi.combat.knockback.calculate", PTarget, this, PSpell, &action);
             }
@@ -2685,7 +2685,7 @@ void CBattleEntity::OnCastFinished(CMagicState& state, action_t& action)
     }
 
     // Remove Ebullience effect.
-    if (PSpell->getSpellGroup() == SPELLGROUP_BLACK && StatusEffectContainer->HasStatusEffect(xi::StatusEffect::Ebullience))
+    if (PSpell->getSpellGroup() == xi::SpellGroup::Black && StatusEffectContainer->HasStatusEffect(xi::StatusEffect::Ebullience))
     {
         StatusEffectContainer->DelStatusEffect(xi::StatusEffect::Ebullience);
     }

@@ -333,7 +333,7 @@ auto CGambitsContainer::Tick(timer::time_point tick) -> Task<void>
             }
             else if (action.select == G_SELECT::HIGHEST)
             {
-                return POwner->SpellContainer->GetBestAvailable(static_cast<SPELLFAMILY>(action.select_arg));
+                return POwner->SpellContainer->GetBestAvailable(static_cast<xi::SpellFamily>(action.select_arg));
             }
             else if (action.select == G_SELECT::LOWEST)
             {
@@ -553,7 +553,7 @@ auto CGambitsContainer::Tick(timer::time_point tick) -> Task<void>
                     }
                     else if (action.select == G_SELECT::HIGHEST)
                     {
-                        auto spell_id = POwner->SpellContainer->GetBestAvailable(static_cast<SPELLFAMILY>(action.select_arg));
+                        auto spell_id = POwner->SpellContainer->GetBestAvailable(static_cast<xi::SpellFamily>(action.select_arg));
                         if (spell_id.has_value())
                         {
                             controller->Cast(target->entityId(), spell_id.value());
@@ -1317,7 +1317,7 @@ auto CGambitsContainer::CheckTrigger(const CBattleEntity* triggerTarget, const G
                     auto spellElement  = static_cast<CMagicState*>(triggerTarget->PAI->GetCurrentState())->GetSpell()->getElement();
                     auto isElementalMA = spellElement >= ELEMENT_FIRE && spellElement <= ELEMENT_WATER;
                     auto spellAOEType  = static_cast<CMagicState*>(triggerTarget->PAI->GetCurrentState())->GetSpell()->getAOE();
-                    if (isElementalMA && spellAOEType == SPELLAOE_RADIAL)
+                    if (isElementalMA && spellAOEType == xi::SpellAoe::Radial)
                     {
                         isAOE = true;
                     }
