@@ -178,7 +178,7 @@ UPDATE abilities SET recastTime = 900 WHERE name = 'deep_breathing';
 
 -- Double-Up: Revert recast from 5 to 7 seconds
 -- Source: https://www.bg-wiki.com/ffxi/Version_Update_(09/19/2011)
-UPDATE abilities SET recastTime = 7 WHERE name = 'double-up';
+UPDATE abilities SET recastTime = 7 WHERE name = 'double_up';
 
 -- Snake Eye: Revert recast from 5 to 15 minutes
 -- Source: https://www.bg-wiki.com/ffxi/Version_Update_(05/15/2012)

@@ -234,7 +234,7 @@ UPDATE pet_skills SET pet_anim_time = 2000, pet_prepare_time = 1500 WHERE pet_sk
 UPDATE pet_skills SET pet_anim_time = 2000, pet_prepare_time = 1500 WHERE pet_skill_name = 'silence_gas';
 UPDATE pet_skills SET pet_anim_time = 2000, pet_prepare_time = 1500 WHERE pet_skill_name = 'dark_spore';
 UPDATE pet_skills SET pet_anim_time = 2000, pet_prepare_time = 1000 WHERE pet_skill_name = 'power_attack_beetle';
-UPDATE pet_skills SET pet_anim_time = 1700, pet_prepare_time = 1000 WHERE pet_skill_name = 'hi-freq_field';
+UPDATE pet_skills SET pet_anim_time = 1700, pet_prepare_time = 1000 WHERE pet_skill_name = 'hi_freq_field';
 UPDATE pet_skills SET pet_anim_time = 1800, pet_prepare_time = 1000 WHERE pet_skill_name = 'rhino_attack';
 UPDATE pet_skills SET pet_anim_time = 2700, pet_prepare_time = 1000 WHERE pet_skill_name = 'rhino_guard';
 UPDATE pet_skills SET pet_anim_time = 1900, pet_prepare_time = 1000 WHERE pet_skill_name = 'spoil';

@@ -140,7 +140,7 @@ INSERT INTO `abilities` VALUES (119,'casters_roll',17,79,1,60,193,420,0,119,2000
 INSERT INTO `abilities` VALUES (120,'coursers_roll',17,81,1,60,193,420,0,120,2000,0,6,0,1,8,1,80,0,8,'ABYSSEA');
 INSERT INTO `abilities` VALUES (121,'blitzers_roll',17,83,1,60,193,420,0,121,2000,0,6,0,1,8,1,80,0,8,'ABYSSEA');
 INSERT INTO `abilities` VALUES (122,'tacticians_roll',17,86,1,60,193,420,0,122,2000,0,6,0,1,8,1,80,0,8,'ABYSSEA');
-INSERT INTO `abilities` VALUES (123,'double-up',17,5,1,5,194,424,0,116,2000,0,6,0,1,8,1,80,0,0,'TOAU');
+INSERT INTO `abilities` VALUES (123,'double_up',17,5,1,5,194,424,0,116,2000,0,6,0,1,8,1,80,0,0,'TOAU');
 INSERT INTO `abilities` VALUES (124,'quick_draw',17,40,1,1,199,0,0,0,2000,0,6,0,0,0,0,0,1410,0,'TOAU');
 INSERT INTO `abilities` VALUES (125,'fire_shot',17,40,4,1,195,110,0,125,2000,0,6,20,0,0,0,0,1410,0,'TOAU');
 INSERT INTO `abilities` VALUES (126,'ice_shot',17,40,4,1,195,110,0,126,2000,0,6,20,0,0,0,0,1410,0,'TOAU');
@@ -325,7 +325,7 @@ INSERT INTO `abilities` VALUES (316,'perpetuance',20,87,1,1,231,100,0,244,2000,0
 INSERT INTO `abilities` VALUES (317,'immanence',20,87,1,1,231,100,0,245,2000,0,6,0,0,0,1,80,0,32,'ABYSSEA');
 INSERT INTO `abilities` VALUES (318,'smiting_breath',14,90,4,60,238,100,0,94,2000,0,6,10,0,0,1,80,0,0,'ABYSSEA');
 INSERT INTO `abilities` VALUES (319,'restoring_breath',14,90,1,60,239,100,0,94,2000,0,6,0,0,0,1,80,0,0,'ABYSSEA');
-INSERT INTO `abilities` VALUES (320,'konzen-ittai',12,65,4,180,132,529,0,39,2000,0,14,3,0,0,1,300,0,0,'ABYSSEA');
+INSERT INTO `abilities` VALUES (320,'konzen_ittai',12,65,4,180,132,529,0,39,2000,0,14,3,0,0,1,300,0,0,'ABYSSEA');
 INSERT INTO `abilities` VALUES (321,'bully',6,93,4,180,240,127,0,248,2000,0,6,10,0,0,1,300,0,4,'ABYSSEA');
 INSERT INTO `abilities` VALUES (322,'maintenance',18,30,1,90,214,0,0,270,2000,0,6,0,0,0,0,0,1474,0,'ABYSSEA'); -- ta257
 INSERT INTO `abilities` VALUES (323,'brazen_rush',1,96,1,3600,254,100,0,271,2000,0,6,0,0,0,1,300,0,0,'SOA');
@@ -412,10 +412,10 @@ INSERT INTO `abilities` VALUES (520,'soothing_ruby',15,94,1,60,174,0,0,94,2000,0
 INSERT INTO `abilities` VALUES (521,'regal_scratch',15,1,4,60,173,0,0,5,2000,0,6,3,0,0,1,60,0,0,'SOA');
 INSERT INTO `abilities` VALUES (522,'mewing_lullaby',15,25,4,60,174,0,0,61,2000,0,6,5,0,10,1,60,0,0,'SOA');
 INSERT INTO `abilities` VALUES (523,'eerie_eye',15,55,4,60,174,0,0,134,2000,0,6,3,0,0,1,60,0,0,'SOA');
-INSERT INTO `abilities` VALUES (524,'level_X_holy',15,75,4,60,173,0,0,235,2000,0,6,12,0,10,1,60,0,0,'SOA');
+INSERT INTO `abilities` VALUES (524,'level_qm_holy',15,75,4,60,173,0,0,235,2000,0,6,12,0,10,1,60,0,0,'SOA');
 INSERT INTO `abilities` VALUES (525,'raise_ii',15,15,35,60,174,0,0,160,2000,0,6,20,0,0,1,60,0,0,'SOA');
 INSERT INTO `abilities` VALUES (526,'reraise_ii',15,30,3,60,174,0,0,80,2000,0,6,20,0,0,1,60,0,0,'SOA');
-INSERT INTO `abilities` VALUES (527,'altana_s_favor',15,1,1,60,174,0,0,0,2000,0,6,20,0,20,1,60,0,2,'SOA');
+INSERT INTO `abilities` VALUES (527,'altanas_favor',15,1,1,60,174,0,0,0,2000,0,6,20,0,20,1,60,0,2,'SOA');
 INSERT INTO `abilities` VALUES (528,'moonlit_charge',15,5,4,60,173,0,0,94,2000,0,6,3,0,0,1,60,0,0,NULL);
 INSERT INTO `abilities` VALUES (529,'crescent_fang',15,10,4,60,173,0,0,94,2000,0,6,3,0,0,1,60,0,0,NULL);
 INSERT INTO `abilities` VALUES (530,'lunar_cry',15,21,4,60,174,0,0,94,2000,0,6,12,0,0,1,60,0,0,NULL);
@@ -561,7 +561,7 @@ INSERT INTO `abilities` VALUES (704,'shakeshroom',9,25,257,2,102,0,0,0,2000,0,6,
 INSERT INTO `abilities` VALUES (705,'silence_gas',9,25,257,3,102,0,0,0,2000,0,6,3,0,10,1,60,0,0,NULL);
 INSERT INTO `abilities` VALUES (706,'dark_spore',9,25,257,3,102,0,0,0,2000,0,6,3,0,10,1,60,0,0,NULL);
 INSERT INTO `abilities` VALUES (707,'power_attack',9,25,257,1,102,0,0,0,2000,0,6,3,0,0,1,60,0,0,NULL);
-INSERT INTO `abilities` VALUES (708,'hi-freq_field',9,25,257,2,102,0,0,0,2000,0,6,3,0,10,1,60,0,0,NULL);
+INSERT INTO `abilities` VALUES (708,'hi_freq_field',9,25,257,2,102,0,0,0,2000,0,6,3,0,10,1,60,0,0,NULL);
 INSERT INTO `abilities` VALUES (709,'rhino_attack',9,25,257,1,102,0,0,0,2000,0,6,3,0,0,1,60,0,0,NULL);
 INSERT INTO `abilities` VALUES (710,'rhino_guard',9,25,257,1,102,0,0,0,2000,0,6,3,0,0,1,60,0,0,NULL);
 INSERT INTO `abilities` VALUES (711,'spoil',9,25,257,1,102,0,0,0,2000,0,6,3,0,0,1,60,0,0,NULL);
