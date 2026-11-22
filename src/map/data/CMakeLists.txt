@@ -26,6 +26,7 @@ set(DATA_CORE_SOURCES
 )
 
 add_data_dataset(animation_locks)
+add_data_dataset(augments)
 add_data_dataset(status_effects)
 add_data_dataset(ecosystems)
 add_data_dataset(merits)

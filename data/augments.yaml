@@ -1,0 +1,932 @@
+# yaml-language-server: $schema=schemas/augments.schema.json
+#
+# Standard augment IDs, as sent in item exdata (11 bits, so 1 to 2047). They follow the packet, not the DAT, so
+# Windower resources and POLUtils dumps do not line up with them.
+# Every ID marks the item as augmented; only the IDs listed here also grant modifiers.
+# Commented-out IDs are known augments with no modifier yet.
+
+augments:
+  1:  {mods: {hp: 1}}                           # HP+1
+  2:  {mods: {hp: 33}}                          # HP+33
+  3:  {mods: {hp: 65}}                          # HP+65
+  4:  {mods: {hp: 97}}                          # HP+97
+  5:  {mods: {hp: -1}}                          # HP-1
+  6:  {mods: {hp: -33}}                         # HP-33
+  7:  {mods: {hp: -65}}                         # HP-65
+  8:  {mods: {hp: -97}}                         # HP-97
+  9:  {mods: {mp: 1}}                           # MP+1
+  10: {mods: {mp: 33}}                          # MP+33
+  11: {mods: {mp: 65}}                          # MP+65
+  12: {mods: {mp: 97}}                          # MP+97
+  13: {mods: {mp: -1}}                          # MP-1
+  14: {mods: {mp: -33}}                         # MP-33
+  15: {mods: {mp: -65}}                         # MP-65
+  16: {mods: {mp: -97}}                         # MP-97
+  17: {mods: {hp: 1, mp: 1}}                    # HP+1 MP+1
+  18: {mods: {hp: 33, mp: 33}}                  # HP+33 MP+33
+  19: {mods: {hp: 1, mp: -1}}                   # HP+1 MP-1
+  20: {mods: {hp: 33, mp: -33}}                 # HP+33 MP-33
+  21: {mods: {hp: -1, mp: 1}}                   # HP-1 MP+1
+  22: {mods: {hp: -33, mp: 33}}                 # HP-33 MP+33
+  23: {mods: {acc: 1}}                          # Accuracy+1
+  24: {mods: {acc: -1}}                         # Accuracy-1
+  25: {mods: {att: 1}}                          # Attack+1
+  26: {mods: {att: -1}}                         # Attack-1
+  27: {mods: {racc: 1}}                         # Rng.Acc.+1
+  28: {mods: {racc: -1}}                        # Rng.Acc.-1
+  29: {mods: {ratt: 1}}                         # Rng.Atk.+1
+  30: {mods: {ratt: -1}}                        # Rng.Atk.-1
+  31: {mods: {eva: 1}}                          # Evasion+1
+  32: {mods: {eva: -1}}                         # Evasion-1
+  33: {mods: {def: 1}}                          # DEF+1
+  34: {mods: {def: -1}}                         # DEF-1
+  35: {mods: {macc: 1}}                         # Mag.Acc.+1
+  36: {mods: {macc: -1}}                        # Mag.Acc.-1
+  37: {mods: {meva: 1}}                         # Mag.Evasion+1
+  38: {mods: {meva: -1}}                        # Mag.Evasion-1
+  39: {mods: {enmity: 1}}                       # Enmity+1
+  40: {mods: {enmity: -1}}                      # Enmity-1
+  41: {mods: {crithitrate: 1}}                  # Crit.hit rate+1%
+  42: {mods: {critical_hit_evasion: 1}}         # Enemy crit. hit rate-1%
+  43: {mods: {charm_chance: 1}}                 # Charm+1 Could not determine retail AUGMENT effect. Duration? Chance to land charm? Just set as chance for now.
+  44: {mods: {storetp: 1, subtle_blow: 1}}      # Store TP+1 Subtle Blow+1
+  45: {mods: {dmg_rating: 1}}                   # DMG:+(X+1), Increases damage rating of this weapon (Maximum X=31 for DMG+32) (Retail: melee,not ranged...Mainhand only?) Item displays a value 1 larger than stored in item
+  46: {mods: {dmg_rating: -1}}                  # DMG:-(X+1), Decreases damage rating of this weapon (Maximum X=31 for DMG-32) (Retail: melee,not ranged...Mainhand only?) Item displays a (negative) value 1 larger than stored in item
+  47: {mods: {delayp: 1}}                       # Delay:+1% (melee,not ranged)
+  48: {mods: {delayp: -1}}                      # Delay:-1% (melee,not ranged)
+  49: {mods: {haste_gear: 1}, multiplier: 100}  # Haste+1
+  50: {mods: {haste_gear: -1}, multiplier: 100} # Slow+1
+  51: {mods: {hpheal: 1}}                       # HP recovered while healing+1
+  52: {mods: {mpheal: 1}}                       # MP recovered while healing+1
+  53: {mods: {spellinterrupt: -1}}              # Spell interruption rate down 1%
+  54: {mods: {dmgphys: -1}, multiplier: 100}    # Phys. dmg. taken -1%
+  55: {mods: {dmgmagic: -1}, multiplier: 100}   # Magic dmg. taken -1%
+  56: {mods: {dmgbreath: -1}, multiplier: 100}  # Breath dmg. taken -1%
+  57: {mods: {magic_crithitrate: 1}}            # Magic crit. hit rate+1%
+  58: {mods: {mdef: -1}}                        # Mag.Def.Bns.-1
+  # 59: Latent effect: Regain+10 (Do via Latent: triggered with your current weapon drawn for 10 TP/tick.)
+  # 60: Latent effect: Refresh+1 (Do via Latent: triggered with your current weapon not drawn for 1 MP/tick. Refresh is not present while resting(/heal),chocobo or /sit.)
+  61: {mods: {statusres: 1}}             # Occ. inc. resist to stat ailments+1
+  62: {mods: {acc: 33}}                  # Accuracy +33
+  63: {mods: {racc: 33}}                 # Rng.Accuracy +33
+  64: {mods: {macc: 33}}                 # Mag. Acc. +33
+  65: {mods: {att: 33}}                  # Attack +33
+  66: {mods: {ratt: 33}}                 # Rng.Attack +33
+  67: {mods: {all_songs_effect: 1}}      # All songs +1
+  68: {mods: {acc: 1, att: 1}}           # Accuracy +1 Attack +1
+  69: {mods: {racc: 1, ratt: 1}}         # Rng.Acc. +1 Rng.Atk. +1
+  70: {mods: {macc: 33, matt: 33}}       # Mag. Acc. +33 Mag.Atk.Bns +33
+  71: {mods: {dmg: -1}, multiplier: 100} # Damage Taken -1%
+  # 72: Exp. Point +1%
+  # 73: Exp. Point +33%
+  74: {mods: {capacity_bonus: 1}}  # Cap. Point +1%
+  75: {mods: {capacity_bonus: 33}} # Cap. Point +33%
+  # 76: DMG +33 Unsure if main hand or off hand so leaving values blank for now,goes up in increments of 1 after the initial 33.
+  # 77: Delay -33% Unsure if main hand or off hand so leaving values blank for now,goes up in increments of 1 after the initial 33.
+  78: {mods: {hp: 1}, multiplier: 2}     # HP +2 (count by 2)
+  79: {mods: {hp: 1}, multiplier: 3}     # HP +3 (count by 3)
+  80: {mods: {macc: 1, magic_damage: 1}} # Mag. Acc. +1/Mag. Dmg. +1
+  # 81: Eva +1/Mag. Eva + d (corrupted)
+  82:  {mods: {mp: 1}, multiplier: 2}                       # MP +2 (count by 2)
+  83:  {mods: {mp: 1}, multiplier: 3}                       # MP +3 (count by 3)
+  96:  {pet: all, mods: {acc: 1, racc: 1}}                  # Pet: Accuracy+1 Rng.Acc+1
+  97:  {pet: all, mods: {att: 1, ratt: 1}}                  # Pet: Attack+1 Rng.Atk.+1
+  98:  {pet: all, mods: {eva: 1}}                           # Pet: Evasion+1
+  99:  {pet: all, mods: {def: 1}}                           # Pet: DEF+1
+  100: {pet: all, mods: {macc: 1}}                          # Pet: Mag.Acc.+1
+  101: {pet: all, mods: {matt: 1}}                          # Pet: Mag.Atk.Bns.+1
+  102: {pet: all, mods: {crithitrate: 1}}                   # Pet: Crit.hit rate+1%
+  103: {pet: all, mods: {critical_hit_evasion: -1}}         # Pet: Enemy crit. hit rate -1%
+  104: {pet: all, mods: {enmity: 1}}                        # Pet: Enmity+1
+  105: {pet: all, mods: {enmity: -1}}                       # Pet: Enmity-1
+  106: {pet: all, mods: {acc: 1, racc: 1}}                  # Pet: Accuracy+1 Rng.Acc.+1
+  107: {pet: all, mods: {att: 1, ratt: 1}}                  # Pet: Attack+1 Rng.Atk.+1
+  108: {pet: all, mods: {macc: 1, matt: 1}}                 # Pet: Mag.Acc.+1 Mag.Atk.Bns.+1
+  109: {pet: all, mods: {double_attack: 1, crithitrate: 1}} # Pet: Dbl.Atk.+1% Crit.hit rate+1
+  110: {pet: all, mods: {regen: 1}}                         # Pet: Regen+1
+  111: {pet: all, mods: {haste_gear: 1}, multiplier: 100}   # Pet: Haste+1
+  112: {pet: all, mods: {dmg: -1}, multiplier: 100}         # Pet: Damage taken -1%
+  113: {pet: all, mods: {racc: 1}}                          # Pet: Rng.Acc.+1
+  114: {pet: all, mods: {ratt: 1}}                          # Pet: Rng.Atk.+1
+  115: {pet: all, mods: {storetp: 1}}                       # Pet: Store TP+1
+  116: {pet: all, mods: {subtle_blow: 1}}                   # Pet: Subtle Blow+1
+  117: {pet: all, mods: {meva: 1}}                          # Pet: Mag. Evasion+1
+  118: {pet: all, mods: {dmgphys: -1}, multiplier: 100}     # Pet: Phys. dmg. taken -1%
+  119: {pet: all, mods: {mdef: 1}}                          # Pet: Mag.Def.Bns.+1
+  120: {pet: avatar, mods: {matt: 1}}                       # Avatar: Mag.Atk.Bns.+1
+  # 121: Pet: Breath +1
+  122: {pet: all, mods: {tp_bonus: 20}}                     # Pet: TP Bonus +20
+  123: {pet: all, mods: {double_attack: 1}}                 # Pet: Dbl.Att.+1%
+  124: {pet: all, mods: {att: 1, ratt: 1, acc: 1, racc: 1}} # Pet: Acc+1 R.Acc+1 Atk.+1 R.Atk.+1
+  125: {pet: all, mods: {macc: 1, magic_damage: 1}}         # Pet: Mag.Acc.+1 Mag.Dmg.+1
+  126: {pet: all, mods: {magic_damage: 1}}                  # Pet: Magic Damage +1
+  127: {pet: all, mods: {dmgmagic: -1}, multiplier: 100}    # Pet: Magic Damage Taken -1%
+  # 128: 128 doesnt seem to be a valid Augment,incomplete or garbled text displays
+  129: {mods: {acc: 1, racc: 1}}                  # Accuracy+1 Rng.Acc.+1
+  130: {mods: {att: 1, ratt: 1}}                  # Attack+1 Rng.Atk.+1
+  131: {mods: {macc: 1, matt: 1}}                 # Mag. Acc.+1 Mag.Atk.Bns+1
+  132: {mods: {double_attack: 1, crithitrate: 1}} # Dbl.Atk.+1% Crit.hit rate+1%
+  133: {mods: {matt: 1}}                          # Mag.Atk.Bns.+1
+  134: {mods: {mdef: 1}}                          # Mag.Def.Bns.+1
+  # 135: 135 doesnt seem to be a valid Augment,incomplete or garbled text displays
+  # 136: 136 doesnt seem to be a valid Augment,incomplete or garbled text displays
+  137: {mods: {regen: 1}}           # Regen+1
+  138: {mods: {refresh: 1}}         # Refresh+1
+  139: {mods: {rapid_shot: 1}}      # Rapid Shot+1
+  140: {mods: {fastcast: 1}}        # Fast Cast+1%
+  141: {mods: {conserve_mp: 1}}     # Conserve MP+1
+  142: {mods: {storetp: 1}}         # Store TP+1
+  143: {mods: {double_attack: 1}}   # Dbl.Atk.+1%
+  144: {mods: {triple_attack: 1}}   # Triple Atk.+1%
+  145: {mods: {counter: 1}}         # Counter+1
+  146: {mods: {dual_wield: 1}}      # Dual Wield+1
+  147: {mods: {treasure_hunter: 1}} # Treasure Hunter+1
+  148: {mods: {gilfinder: 1}}       # Gilfinder+1
+  # 149: 149 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 150: 150 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  151: {mods: {martial_arts: 1}} # Martial Arts+1
+  # 152: 152 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  153: {mods: {shield_mastery_tp: 1}} # Shield Mastery+1 (tested in retail,this is correct)
+  176: {mods: {sleepres: 1}}          # Resist Sleep+1
+  177: {mods: {poisonres: 1}}         # Resist Poison+1
+  178: {mods: {paralyzeres: 1}}       # Resist Paralyze+1
+  179: {mods: {blindres: 1}}          # Resist Blind+1
+  180: {mods: {silenceres: 1}}        # Resist Silence+1
+  181: {mods: {virusres: 1}}          # Resist Virus+1
+  182: {mods: {petrifyres: 1}}        # Resist Petrify+1
+  183: {mods: {bindres: 1}}           # Resist Bind+1
+  184: {mods: {curseres: 1}}          # Resist Curse+1
+  185: {mods: {gravityres: 1}}        # Resist Gravity+1
+  186: {mods: {slowres: 1}}           # Resist Slow+1
+  187: {mods: {stunres: 1}}           # Resist Stun+1
+  188: {mods: {charmres: 1}}          # Resist Charm+1
+  # 189: 189 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 190: 190 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 191: 191 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 192: 192 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 193: 193 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  194: {mods: {kick_attack_rate: 1}} # Kick Attacks+1 Rate or Damage? Assuming Rate for now.
+  195: {mods: {subtle_blow: 1}}      # Subtle Blow+1
+  # 196: 196 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 197: 197 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  198: {mods: {zanshin: 1}}  # Zanshin+1
+  211: {mods: {snapshot: 1}} # Snapshot+1
+  212: {mods: {recycle: 1}}  # Recycle+1
+  # 213: 213 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 214: 214 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  215: {mods: {ninja_tool: 1}} # Ninja tool expertise+1
+  # 232: True Shot +1
+  233: {mods: {blood_boon: 1}}        # Blood Boon+1
+  237: {mods: {occult_acumen: 1}}     # Occult Acumen+1
+  251: {mods: {daken: 1}}             # Daken +1
+  257: {mods: {hth: 1}}               # Hand-to-Hand skill+1
+  258: {mods: {dagger: 1}}            # Dagger skill+1
+  259: {mods: {sword: 1}}             # Sword skill+1
+  260: {mods: {gsword: 1}}            # Great Sword skill+1
+  261: {mods: {axe: 1}}               # Axe skill+1
+  262: {mods: {gaxe: 1}}              # Great Axe skill+1
+  263: {mods: {scythe: 1}}            # Scythe skill+1
+  264: {mods: {polearm: 1}}           # Polearm skill+1
+  265: {mods: {katana: 1}}            # Katana skill+1
+  266: {mods: {gkatana: 1}}           # Great Katana skill+1
+  267: {mods: {club: 1}}              # Club skill+1
+  268: {mods: {staff: 1}}             # Staff skill+1
+  278: {mods: {auto_melee_skill: 1}}  # Melee skill+1 (for automaton)
+  279: {mods: {auto_ranged_skill: 1}} # Ranged skill+1 (for automaton)
+  280: {mods: {auto_magic_skill: 1}}  # Magic skill+1 (for automaton)
+  281: {mods: {archery: 1}}           # Archery skill+1
+  282: {mods: {marksman: 1}}          # Marksmanship skill+1
+  283: {mods: {throw: 1}}             # Throwing skill+1
+  # 284: 284 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 285: 285 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  286: {mods: {shield: 1}}                                   # Shield skill+1
+  287: {mods: {parry: 1}}                                    # Parrying Skill +1
+  288: {mods: {divine: 1}}                                   # Divine magic skill+1
+  289: {mods: {healing: 1}}                                  # Healing magic skill+1
+  290: {mods: {enhance: 1}}                                  # Enha.mag. skill+1
+  291: {mods: {enfeeble: 1}}                                 # Enfb.mag. skill+1
+  292: {mods: {elem: 1}}                                     # Elem. magic skill+1
+  293: {mods: {dark: 1}}                                     # Dark magic skill+1
+  294: {mods: {summoning: 1}}                                # Summoning magic skill+1
+  295: {mods: {ninjutsu: 1}}                                 # Ninjutsu skill+1
+  296: {mods: {singing: 1}}                                  # Singing skill+1
+  297: {mods: {string: 1}}                                   # String instrument skill+1
+  298: {mods: {wind: 1}}                                     # Wind instrument skill+1
+  299: {mods: {blue: 1}}                                     # Blue Magic skill+1
+  300: {mods: {geomancy_skill: 1}}                           # Geomancy Skill+1
+  301: {mods: {handbell_skill: 1}}                           # Handbell Skill+1
+  320: {mods: {bp_delay: 1}}                                 # Blood Pact ability delay -1
+  321: {mods: {perpetuation_reduction: 1}}                   # Avatar perpetuation cost -1
+  322: {mods: {song_spellcasting_time: 1}}                   # Song spellcasting time -1%
+  323: {mods: {cure_cast_time: 1}}                           # Cure spellcasting time -1%
+  324: {mods: {call_beast_delay: 1}}                         # Call Beast ability delay -1
+  325: {mods: {quick_draw_recast: 1}}                        # Quick Draw ability delay -1
+  326: {mods: {wsacc: 1}}                                    # Weapon Skill Acc.+1
+  327: {mods: {all_wsdmg_all_hits: 1}}                       # Weapon skill damage+1% "However, some sources apply to all swings of the weapon skill (like Magian Trials Weapon Skill Damage +n% weapons)" (i.e. this indicates the augment is for all hits)
+  328: {mods: {crit_dmg_increase: 1}}                        # Crit. hit damage+1%
+  329: {mods: {cure_potency: 1}}                             # Cure potency+1%
+  330: {mods: {waltz_potency: 1}}                            # Waltz potency+1%
+  331: {mods: {waltz_delay: -1}}                             # Waltz ability delay -1
+  332: {mods: {skillchaindmg: 1}, multiplier: 100}           # Sklchn.dmg.+1%
+  333: {mods: {conserve_tp: 1}}                              # Conserve TP+1
+  334: {mods: {magic_burst_bonus_capped: 1}}                 # Magic burst dmg.+1%
+  335: {mods: {magic_crit_dmg_increase: 1}}                  # Mag. crit. hit dmg.+1%
+  336: {mods: {sic_ready_recast: 1}}                         # Sic and Ready ability delay -1
+  337: {mods: {song_recast_delay: 1}}                        # Song recast delay -1
+  338: {mods: {barrage_count: 1}}                            # Barrage+1 (additional shots,NOT acc)
+  339: {mods: {enhances_elemental_siphon: 1}, multiplier: 5} # Elemental Siphon+5 (value*5) Use Multiplier field.
+  340: {mods: {phantom_recast: 1}}                           # Phantom Roll ability delay -1
+  341: {mods: {repair_potency: 1}}                           # Repair potency+1%
+  342: {mods: {waltz_cost: 1}}                               # Waltz TP cost -1
+  343: {mods: {enh_drain_aspir: 1}}                          # "Drain" and "Aspir" Potency +1
+  347: {mods: {healing_magic_recast: -1}}                    # Healing Magic Recast Delay -1%
+  348: {mods: {elemental_magic_recast: -1}}                  # Elemental Magic Recast Delay -1%
+  349: {mods: {enfeebling_magic_recast: -1}}                 # Enfeebling Magic Recast Delay -1%
+  # 350: Occ. maximizes magic accuracy+1%
+  351: {mods: {quick_magic: 1}} # Occ. quickens spellcasting+1%
+  # 352: Occ. grants dmg. bonus based on TP+1%
+  353: {mods: {tp_bonus: 50}}               # TP Bonus +50
+  354: {mods: {quad_attack: 1}}             # Quadruple Attack+1%
+  355: {mods: {enhancing_magic_recast: -1}} # Enhancing Magic Recast Delay -1%
+  356: {mods: {cure_potency_rcvd: 1}}       # Potency of Cure received+1%
+  360: {mods: {savetp: 10}}                 # Save TP+10: Mod undefined as of yet so leaving blank.
+  362: {mods: {magic_damage: 1}}            # Magic Damage+1
+  363: {mods: {shieldblockrate: 1}}         # Chance of successful block+1
+  # 364: 364 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 365: 365 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 366: Blood Pact Ability Delay II: (modId is 541 but no idea what the value of the augment is so leaving zero until the value is determined)
+  # 367: 367 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  368: {mods: {phalanx_received: 1}}        # Phalanx Received+1
+  369: {pet: avatar, mods: {bp_damage: 1}}  # Avatar: Blood Pact Dmg+1
+  370: {mods: {reverse_flourish_effect: 1}} # Reverse Flourish+1
+  371: {mods: {regen_bonus: 1}}             # Regen Potency+1
+  # 372: Embolden+1: Mod undefined as of yet so leaving blank.
+  # 374: Enhancing Magic Duration +1
+  # 379: Enmity +1 for each Utsusemi
+  380: {mods: {damage_limitp: 1}}                                                                                                            # Physical Damage Limit +1%
+  512: {mods: {str: 1}}                                                                                                                      # STR+1
+  513: {mods: {dex: 1}}                                                                                                                      # DEX+1
+  514: {mods: {vit: 1}}                                                                                                                      # VIT+1
+  515: {mods: {agi: 1}}                                                                                                                      # AGI+1
+  516: {mods: {int: 1}}                                                                                                                      # INT+1
+  517: {mods: {mnd: 1}}                                                                                                                      # MND+1
+  518: {mods: {chr: 1}}                                                                                                                      # CHR+1
+  519: {mods: {str: -1}}                                                                                                                     # STR-1
+  520: {mods: {dex: -1}}                                                                                                                     # DEX-1
+  521: {mods: {vit: -1}}                                                                                                                     # VIT-1
+  522: {mods: {agi: -1}}                                                                                                                     # AGI-1
+  523: {mods: {int: -1}}                                                                                                                     # INT-1
+  524: {mods: {mnd: -1}}                                                                                                                     # MND-1
+  525: {mods: {chr: -1}}                                                                                                                     # CHR-1
+  526: {mods: {str: 1, dex: -1, vit: -1}}                                                                                                    # STR+1 DEX-1 VIT-1
+  527: {mods: {str: 1, dex: -1, agi: -1}}                                                                                                    # STR+1 DEX-1 AGI-1
+  528: {mods: {str: 1, vit: -1, agi: -1}}                                                                                                    # STR+1 VIT-1 AGI-1
+  529: {mods: {str: -1, dex: 1, vit: -1}}                                                                                                    # STR-1 DEX+1 VIT-1
+  530: {mods: {str: -1, dex: 1, agi: -1}}                                                                                                    # STR-1 DEX+1 AGI-1
+  531: {mods: {dex: 1, vit: -1, agi: -1}}                                                                                                    # DEX+1 VIT-1 AGI-1
+  532: {mods: {str: -1, dex: -1, vit: 1}}                                                                                                    # STR-1 DEX-1 VIT+1
+  533: {mods: {str: -1, vit: 1, agi: -1}}                                                                                                    # STR-1 VIT+1 AGI-1
+  534: {mods: {dex: -1, vit: 1, agi: -1}}                                                                                                    # DEX-1 VIT+1 AGI-1
+  535: {mods: {str: -1, dex: -1, agi: 1}}                                                                                                    # STR-1 DEX-1 AGI+1
+  536: {mods: {str: -1, vit: -1, agi: 1}}                                                                                                    # STR-1 VIT-1 AGI+1
+  537: {mods: {dex: -1, vit: -1, agi: 1}}                                                                                                    # DEX-1 VIT-1 AGI+1
+  538: {mods: {agi: 1, int: -1, mnd: -1}}                                                                                                    # AGI+1 INT-1 MND-1
+  539: {mods: {agi: 1, int: -1, chr: -1}}                                                                                                    # AGI+1 INT-1 CHR-1
+  540: {mods: {agi: 1, mnd: -1, chr: -1}}                                                                                                    # AGI+1 MND-1 CHR-1
+  541: {mods: {agi: -1, int: 1, mnd: -1}}                                                                                                    # AGI-1 INT+1 MND-1
+  542: {mods: {agi: -1, int: 1, chr: -1}}                                                                                                    # AGI-1 INT+1 CHR-1
+  543: {mods: {int: 1, mnd: -1, chr: -1}}                                                                                                    # INT+1 MND-1 CHR-1
+  544: {mods: {agi: -1, int: -1, mnd: 1}}                                                                                                    # AGI-1 INT-1 MND+1
+  545: {mods: {agi: -1, mnd: 1, chr: -1}}                                                                                                    # AGI-1 MND+1 CHR-1
+  546: {mods: {int: -1, mnd: 1, chr: -1}}                                                                                                    # INT-1 MND+1 CHR-1
+  547: {mods: {agi: -1, int: -1, chr: 1}}                                                                                                    # AGI-1 INT-1 CHR+1
+  548: {mods: {agi: -1, mnd: -1, chr: 1}}                                                                                                    # AGI-1 MND-1 CHR+1
+  549: {mods: {int: -1, mnd: -1, chr: 1}}                                                                                                    # INT-1 MND-1 CHR+1
+  550: {mods: {str: 1, dex: 1}}                                                                                                              # STR+1 DEX+1
+  551: {mods: {str: 1, vit: 1}}                                                                                                              # STR+1 VIT+1
+  552: {mods: {str: 1, agi: 1}}                                                                                                              # STR+1 AGI+1
+  553: {mods: {dex: 1, agi: 1}}                                                                                                              # DEX+1 AGI+1
+  554: {mods: {int: 1, mnd: 1}}                                                                                                              # INT+1 MND+1
+  555: {mods: {mnd: 1, chr: 1}}                                                                                                              # MND+1 CHR+1
+  556: {mods: {int: 1, mnd: 1, chr: 1}}                                                                                                      # INT+1 MND+1 CHR+1
+  557: {mods: {str: 1, chr: 1}}                                                                                                              # STR+1 CHR+1
+  558: {mods: {str: 1, int: 1}}                                                                                                              # STR+1 INT+1
+  559: {mods: {str: 1, mnd: 1}}                                                                                                              # STR+1 MND+1
+  640: {mods: {counter: 1}, multiplier: 2}                                                                                                   # Counter +2 (increases by 2)
+  740: {mods: {dmg_rating: 1}}                                                                                                               # DMG:+1
+  741: {mods: {dmg_rating: 33}}                                                                                                              # Dmg:+33   Needs to work in either hand,whichever one the weapon is equipped in.
+  742: {mods: {dmg_rating: 65}}                                                                                                              # Dmg:+65   Ranged weapons use diff AugID (starts at 746) and diff ModID.
+  743: {mods: {dmg_rating: 97}}                                                                                                              # Dmg:+97    (melee,not ranged)
+  744: {mods: {dmg_rating: -1}}                                                                                                              # Dmg:-1    (melee,not ranged)
+  745: {mods: {dmg_rating: -33}}                                                                                                             # Dmg:-33    (melee,not ranged)
+  746: {mods: {ranged_dmg_rating: 1}}                                                                                                        # Dmg:+1    (ranged,not melee)
+  747: {mods: {ranged_dmg_rating: 33}}                                                                                                       # Dmg:+33    (ranged,not melee)
+  748: {mods: {ranged_dmg_rating: 65}}                                                                                                       # Dmg:+65    (ranged,not melee)
+  749: {mods: {ranged_dmg_rating: 97}}                                                                                                       # Dmg:+97    (ranged,not melee)
+  750: {mods: {ranged_dmg_rating: -1}}                                                                                                       # Dmg:-1    (ranged,not melee)
+  751: {mods: {ranged_dmg_rating: -33}}                                                                                                      # Dmg:-33    (ranged,not melee)
+  752: {mods: {delay: 1}}                                                                                                                    # Delay:+1    (melee,not ranged)
+  753: {mods: {delay: 33}}                                                                                                                   # Delay:+33    (melee,not ranged)
+  754: {mods: {delay: 65}}                                                                                                                   # Delay:+65    (melee,not ranged)
+  755: {mods: {delay: 97}}                                                                                                                   # Delay:+97    (melee,not ranged)
+  756: {mods: {delay: -1}}                                                                                                                   # Delay:-1    (melee,not ranged)
+  757: {mods: {delay: -33}}                                                                                                                  # Delay:-33    (melee,not ranged)
+  758: {mods: {delay: -65}}                                                                                                                  # Delay:-65    (melee,not ranged)
+  759: {mods: {delay: -97}}                                                                                                                  # Delay:-97    (melee,not ranged)
+  760: {mods: {ranged_delay: 1}}                                                                                                             # Delay:+1    (ranged,not melee)
+  761: {mods: {ranged_delay: 33}}                                                                                                            # Delay:+33    (ranged,not melee)
+  762: {mods: {ranged_delay: 65}}                                                                                                            # Delay:+65    (ranged,not melee)
+  763: {mods: {ranged_delay: 97}}                                                                                                            # Delay:+97    (ranged,not melee)
+  764: {mods: {ranged_delay: -1}}                                                                                                            # Delay:-1    (ranged,not melee)
+  765: {mods: {ranged_delay: -33}}                                                                                                           # Delay:-33    (ranged,not melee)
+  766: {mods: {ranged_delay: -65}}                                                                                                           # Delay:-65    (ranged,not melee)
+  767: {mods: {ranged_delay: -97}}                                                                                                           # Delay:-97    (ranged,not melee)
+  768: {mods: {fire_meva: 1}}                                                                                                                # Fire resist+1
+  769: {mods: {ice_meva: 1}}                                                                                                                 # Ice resist+1
+  770: {mods: {wind_meva: 1}}                                                                                                                # Wind resist+1
+  771: {mods: {earth_meva: 1}}                                                                                                               # Earth resist+1
+  772: {mods: {thunder_meva: 1}}                                                                                                             # Lightning resist+1
+  773: {mods: {water_meva: 1}}                                                                                                               # Water resist+1
+  774: {mods: {light_meva: 1}}                                                                                                               # Light resist+1
+  775: {mods: {dark_meva: 1}}                                                                                                                # Dark resist+1
+  776: {mods: {fire_meva: -1}}                                                                                                               # Fire resist-1
+  777: {mods: {ice_meva: -1}}                                                                                                                # Ice resist-1
+  778: {mods: {wind_meva: -1}}                                                                                                               # Wind resist-1
+  779: {mods: {earth_meva: -1}}                                                                                                              # Earth resist-1
+  780: {mods: {thunder_meva: -1}}                                                                                                            # Lightning resist-1
+  781: {mods: {water_meva: -1}}                                                                                                              # Water resist-1
+  782: {mods: {light_meva: -1}}                                                                                                              # Light resist-1
+  783: {mods: {dark_meva: -1}}                                                                                                               # Dark resist-1
+  784: {mods: {fire_meva: 1, water_meva: -1}}                                                                                                # Fire resist+1 Water resist-1
+  785: {mods: {fire_meva: -1, water_meva: 1}}                                                                                                # Fire resist-1 Water resist+1
+  786: {mods: {ice_meva: -1, wind_meva: 1}}                                                                                                  # Ice resist-1 Wind resist+1
+  787: {mods: {wind_meva: -1, earth_meva: 1}}                                                                                                # Wind resist-1 Earth resist+1
+  788: {mods: {earth_meva: -1, thunder_meva: 1}}                                                                                             # Earth resist-1 Lightning resist+1
+  789: {mods: {thunder_meva: -1, water_meva: 1}}                                                                                             # Lightning resist-1 Water resist+1
+  790: {mods: {light_meva: 1, dark_meva: -1}}                                                                                                # Light resist+1 Dark resist-1
+  791: {mods: {light_meva: -1, dark_meva: 1}}                                                                                                # Light resist-1 Dark resist+1
+  792: {mods: {fire_meva: 1, wind_meva: 1, thunder_meva: 1, light_meva: 1}}                                                                  # Fire,Wind,Lightning,Light resists+1
+  793: {mods: {ice_meva: 1, earth_meva: 1, water_meva: 1, dark_meva: 1}}                                                                     # Ice,Earth,Water,Dark resists+1
+  794: {mods: {fire_meva: 1, wind_meva: 1, thunder_meva: 1, light_meva: 1, ice_meva: -1, earth_meva: -1, water_meva: -1, dark_meva: -1}}     # Fire,Wind,Lightning,Light resists+1,Ice,Earth,Water,Dark resists-1
+  795: {mods: {fire_meva: -1, wind_meva: -1, thunder_meva: -1, light_meva: -1, ice_meva: 1, earth_meva: 1, water_meva: 1, dark_meva: 1}}     # Fire,Wind,Lightning,Light resists-1,Ice,Earth,Water,Dark resists+1
+  796: {mods: {fire_meva: 1, ice_meva: 1, wind_meva: 1, earth_meva: 1, thunder_meva: 1, water_meva: 1, light_meva: 1, dark_meva: 1}}         # All elemental resists+1
+  797: {mods: {fire_meva: -1, ice_meva: -1, wind_meva: -1, earth_meva: -1, thunder_meva: -1, water_meva: -1, light_meva: -1, dark_meva: -1}} # All elemental resists -1
+  # NOTICE: additional effect augments will not work until we finish refactoring additional effects and fill in values here.
+  # 832: Additional Effect: Fire Dmg      (Base of 5,each additional point +1 for range of 5 to 36)
+  # 833: Additional Effect: Ice Dmg       (Base of 5,each additional point +1 for range of 5 to 36)
+  # 834: Additional Effect: Wind Dmg      (Base of 5,each additional point +1 for range of 5 to 36)
+  # 835: Additional Effect: Earth Dmg     (Base of 5,each additional point +1 for range of 5 to 36)
+  # 836: Additional Effect: Lightning Dmg (Base of 5,each additional point +1 for range of 5 to 36)
+  # 837: Additional Effect: Water Dmg     (Base of 5,each additional point +1 for range of 5 to 36)
+  # 838: Additional Effect: Light Dmg     (Base of 5,each additional point +1 for range of 5 to 36)
+  # 839: Additional Effect: Darkness Dmg  (Base of 5,each additional point +1 for range of 5 to 36)
+  # 840: Additional Effect: Disease +1
+  # 841: Additional Effect: Paralysis +1
+  # 842: Additional Effect: Silence +1
+  # 843: Additional Effect: Slow +1
+  # 844: Additional Effect: Stun +1
+  # 845: Additional Effect: Poison +1
+  # 846: Additional Effect: Flash +1
+  # 847: Additional Effect: Blindness +1
+  # 848: Additional Effect: Weakens Defense +1
+  # 849: Additional Effect: Sleep +1
+  # 850: Additional Effect: Weakens Attack +1
+  # 851: Additional Effect: Impairs Evasion +1
+  # 852: Additional Effect: Lowers Accuracy +1
+  # 853: Additional Effect: Lowers Magic Evasion +1
+  # 854: Additional Effect: Lowers Magic Attack +1
+  # 855: Additional Effect: Lowers Magic Defense +1
+  # 856: Additional Effect: Lowers Magic Accuracy +1
+  896: {mods: {enspell_dmg_bonus: 1}}     # Sword Enhancement Spell Damage +1
+  897: {mods: {souleater_effect: 1}}      # Enhances Souleater Effect +1%
+  899: {mods: {enspell_dmg_pct: 1}}       # Sword Enhancement spell damage +1% (Percent Damage)
+  913: {mods: {move_speed_gear_bonus: 6}} # MOVE_SPEED_GEAR_BONUS
+  # The Elemental affinity increase matches value,not displayed if value is zero.
+  928: {mods: {fire_staff_bonus: 1, fire_ftp_bonus: 1, fire_affinity_perp: 1}}          # Fire Affinity+1
+  929: {mods: {ice_staff_bonus: 1, ice_ftp_bonus: 1, ice_affinity_perp: 1}}             # Ice Affinity+1
+  930: {mods: {wind_staff_bonus: 1, wind_ftp_bonus: 1, wind_affinity_perp: 1}}          # Wind Affinity+1
+  931: {mods: {earth_staff_bonus: 1, earth_ftp_bonus: 1, earth_affinity_perp: 1}}       # Earth Affinity+1
+  932: {mods: {thunder_staff_bonus: 1, thunder_ftp_bonus: 1, thunder_affinity_perp: 1}} # Lightning Affinity+1
+  933: {mods: {water_staff_bonus: 1, water_ftp_bonus: 1, water_affinity_perp: 1}}       # Water Affinity+1
+  934: {mods: {light_staff_bonus: 1, light_ftp_bonus: 1, light_affinity_perp: 1}}       # Light Affinity+1
+  935: {mods: {dark_staff_bonus: 1, dark_ftp_bonus: 1, dark_affinity_perp: 1}}          # Dark Affinity+1
+  936: {mods: {fire_ftp_bonus: 1}}                                                      # Fire Affinity Magic Accuracy+1
+  937: {mods: {ice_ftp_bonus: 1}}                                                       # Ice Affinity Magic Accuracy+1
+  938: {mods: {wind_ftp_bonus: 1}}                                                      # Wind Affinity Magic Accuracy+1
+  939: {mods: {earth_ftp_bonus: 1}}                                                     # Earth Affinity Magic Accuracy+1
+  940: {mods: {thunder_ftp_bonus: 1}}                                                   # Lightning Affinity Magic Accuracy+1
+  941: {mods: {water_ftp_bonus: 1}}                                                     # Water Affinity Magic Accuracy+1
+  942: {mods: {light_ftp_bonus: 1}}                                                     # Light Affinity Magic Accuracy+1
+  943: {mods: {dark_ftp_bonus: 1}}                                                      # Dark Affinity Magic Accuracy+1
+  944: {mods: {fire_staff_bonus: 1}}                                                    # Fire Affinity Magic Damage+1
+  945: {mods: {ice_staff_bonus: 1}}                                                     # Ice Affinity Magic Damage+1
+  946: {mods: {wind_staff_bonus: 1}}                                                    # Wind Affinity Magic Damage+1
+  947: {mods: {earth_staff_bonus: 1}}                                                   # Earth Affinity Magic Damage+1
+  948: {mods: {thunder_staff_bonus: 1}}                                                 # Lightning Affinity Magic Damage+1
+  949: {mods: {water_staff_bonus: 1}}                                                   # Water Affinity Magic Damage+1
+  950: {mods: {light_staff_bonus: 1}}                                                   # Light Affinity Magic Damage+1
+  951: {mods: {dark_staff_bonus: 1}}                                                    # Dark Affinity Magic Damage+1
+  952: {mods: {fire_affinity_perp: 1}}                                                  # Fire Affinity: Avatar perp. cost -1
+  953: {mods: {ice_affinity_perp: 1}}                                                   # Ice Affinity: Avatar perp. cost -1
+  954: {mods: {wind_affinity_perp: 1}}                                                  # Wind Affinity: Avatar perp. cost -1
+  955: {mods: {earth_affinity_perp: 1}}                                                 # Earth Affinity: Avatar perp. cost -1
+  956: {mods: {thunder_affinity_perp: 1}}                                               # Thunder Affinity: Avatar perp. cost -1
+  957: {mods: {water_affinity_perp: 1}}                                                 # Water Affinity: Avatar perp. cost -1
+  958: {mods: {light_affinity_perp: 1}}                                                 # Light Affinity: Avatar perp. cost -1
+  959: {mods: {dark_affinity_perp: 1}}                                                  # Dark Affinity: Avatar perp. cost -1
+  # For 960 to 975 and 984 to 1015 the values behave differently.
+  # The Magic Accuracy increase matches value,not displayed if value is zero.
+  960: {mods: {fire_ftp_bonus: 1}}    # Fire Affinity: Magic Accuracy+0 Recast time -2% (Increases by 2)
+  961: {mods: {ice_ftp_bonus: 1}}     # Ice Affinity: (otherwise same as augID 960)
+  962: {mods: {wind_ftp_bonus: 1}}    # Wind Affinity: (otherwise same as augID 960)
+  963: {mods: {earth_ftp_bonus: 1}}   # Earth Affinity: (otherwise same as augID 960)
+  964: {mods: {thunder_ftp_bonus: 1}} # Lightning Affinity: (otherwise same as augID 960)
+  965: {mods: {water_ftp_bonus: 1}}   # Water Affinity: (otherwise same as augID 960)
+  966: {mods: {light_ftp_bonus: 1}}   # Light Affinity: (otherwise same as augID 960)
+  967: {mods: {dark_ftp_bonus: 1}}    # Dark Affinity: (otherwise same as augID 960)
+  # The Magic Damage increase matches value,not displayed if value is zero.
+  968: {mods: {fire_staff_bonus: 1}}    # Fire Affinity: Magic Damage+0,Fire Affinity: Casting time -2% (Increases by 2)
+  969: {mods: {ice_staff_bonus: 1}}     # Ice Affinity: (otherwise same as augID 968)
+  970: {mods: {wind_staff_bonus: 1}}    # Wind Affinity: (otherwise same as augID 968)
+  971: {mods: {earth_staff_bonus: 1}}   # Earth Affinity: (otherwise same as augID 968)
+  972: {mods: {thunder_staff_bonus: 1}} # Lightning Affinity: (otherwise same as augID 968)
+  973: {mods: {water_staff_bonus: 1}}   # Water Affinity: (otherwise same as augID 968)
+  974: {mods: {light_staff_bonus: 1}}   # Light Affinity: (otherwise same as augID 968)
+  975: {mods: {dark_staff_bonus: 1}}    # Dark Affinity: (otherwise same as augID 968)
+  # 976: Fire Affin.: Blood Pact delay -1
+  # 977: Ice Affin.: Blood Pact delay -1
+  # 978: Wind Affin.: Blood Pact delay -1
+  # 979: Earth Affin.: Blood Pact delay -1
+  # 980: Lightning Affin.: Blood Pact delay -1
+  # 981: Water Affin.: Blood Pact delay -1
+  # 982: Light Affin.: Blood Pact delay -1
+  # 983: Dark Affin.: Blood Pact delay -1
+  # 984: Fire Affin.: Recast time-2% (increases by 2)
+  # 985: Ice Affin.: (otherwise same as augID 984)
+  # 986: Wind Affin.: (otherwise same as augID 984)
+  # 987: Earth Affin.: (otherwise same as augID 984)
+  # 988: Lightning Affin.: (otherwise same as augID 984)
+  # 989: Water Affin.: (otherwise same as augID 984)
+  # 990: Light Affin.: (otherwise same as augID 984)
+  # 991: Dark Affin.: (otherwise same as augID 984)
+  # 992: Fire Affinity: Castin time -2% (increases by 2)
+  # 993: Ice Affinity: (otherwise same as augID 992)
+  # 994: Wind Affinity: (otherwise same as augID 992)
+  # 995: Earth Affinity: (otherwise same as augID 992)
+  # 996: Lightning Affinity: (otherwise same as augID 992)
+  # 997: Water Affinity: (otherwise same as augID 992)
+  # 998: Light Affinity: (otherwise same as augID 992)
+  # 999: Dark Affinity: (otherwise same as augID 992)
+  # The Magic Accuracy increase matches value,not displayed if value is zero.
+  1000: {mods: {fire_ftp_bonus: 1}}    # Fire Affinity: Magic Accuracy+0,Fire Affinity: Casting time -6% (increases by 6)
+  1001: {mods: {ice_ftp_bonus: 1}}     # Ice Affinity: (otherwise same as augID 1000)
+  1002: {mods: {wind_ftp_bonus: 1}}    # Wind Affinity: (otherwise same as augID 1000)
+  1003: {mods: {earth_ftp_bonus: 1}}   # Earth Affinity: (otherwise same as augID 1000)
+  1004: {mods: {thunder_ftp_bonus: 1}} # Lightning Affinity: (otherwise same as augID 1000)
+  1005: {mods: {water_ftp_bonus: 1}}   # Water Affintiy: (otherwise same as augID 1000)
+  1006: {mods: {light_ftp_bonus: 1}}   # Light Affinity: (otherwise same as augID 1000)
+  1007: {mods: {dark_ftp_bonus: 1}}    # Dark Affinity: (otherwise same as augID 1000)
+  # The Magic Damage increase matches value,not displayed if value is zero.
+  1008: {mods: {fire_staff_bonus: 1}}    # Fire Affinity: Magic Damage+0,Fire Affinity: Recast time -6%
+  1009: {mods: {ice_staff_bonus: 1}}     # Ice Affinity: (otherwise same as augID 1008)
+  1010: {mods: {wind_staff_bonus: 1}}    # Wind Affinity: (otherwise same as augID 1008)
+  1011: {mods: {earth_staff_bonus: 1}}   # Earth Affinity: (otherwise same as augID 1008)
+  1012: {mods: {thunder_staff_bonus: 1}} # Lightning Affinity: (otherwise same as augID 1008)
+  1013: {mods: {water_staff_bonus: 1}}   # Water Affinity: (otherwise same as augID 1008)
+  1014: {mods: {light_staff_bonus: 1}}   # Light Affinity: (otherwise same as augID 1008)
+  1015: {mods: {dark_staff_bonus: 1}}    # Dark Affinity: (otherwise same as augID 1008)
+  # For 1024 to 1080 values,count by 5 each increase
+  1024: {mods: {wsdmg_backhand_blow: 1}, multiplier: 5}    # Backhand Blow:DMG+5% (increases by 5)
+  1025: {mods: {wsdmg_spinning_attack: 1}, multiplier: 5}  # Spinning Attack:DMG+5% (increases by 5)
+  1026: {mods: {wsdmg_howling_fist: 1}, multiplier: 5}     # Howling Fist:DMG+5% (increases by 5)
+  1027: {mods: {wsdmg_dragon_kick: 1}, multiplier: 5}      # Dragon Kick:DMG+5% (increases by 5)
+  1028: {mods: {wsdmg_viper_bite: 1}, multiplier: 5}       # Viper Bite:DMG+5% (increases by 5)
+  1029: {mods: {wsdmg_shadowstitch: 1}, multiplier: 5}     # Shadowstitch:DMG+5% (increases by 5)
+  1030: {mods: {wsdmg_cyclone: 1}, multiplier: 5}          # Cyclone:DMG+5% (increases by 5)
+  1031: {mods: {wsdmg_evisceration: 1}, multiplier: 5}     # Evisceration:DMG+5% (increases by 5)
+  1032: {mods: {wsdmg_burning_blade: 1}, multiplier: 5}    # Burning Blade:DMG+5% (increases by 5)
+  1033: {mods: {wsdmg_shining_blade: 1}, multiplier: 5}    # Shining Blade:DMG+5% (increases by 5)
+  1034: {mods: {wsdmg_circle_blade: 1}, multiplier: 5}     # Circle Blade:DMG+5% (increases by 5)
+  1035: {mods: {wsdmg_savage_blade: 1}, multiplier: 5}     # Savage Blade:DMG+5% (increases by 5)
+  1036: {mods: {wsdmg_freezebite: 1}, multiplier: 5}       # Freezebite:DMG+5% (increases by 5)
+  1037: {mods: {wsdmg_shockwave: 1}, multiplier: 5}        # Shockwave:DMG+5% (increases by 5)
+  1038: {mods: {wsdmg_ground_strike: 1}, multiplier: 5}    # Ground Strike:DMG+5% (increases by 5)
+  1039: {mods: {wsdmg_sickle_moon: 1}, multiplier: 5}      # Sickle Moon:DMG+5% (increases by 5)
+  1040: {mods: {wsdmg_gale_axe: 1}, multiplier: 5}         # Gale Axe:DMG+5% (increases by 5)
+  1041: {mods: {wsdmg_spinning_axe: 1}, multiplier: 5}     # Spinning Axe:DMG+5% (increases by 5)
+  1042: {mods: {wsdmg_calamity: 1}, multiplier: 5}         # Calamity:DMG+5% (increases by 5)
+  1043: {mods: {wsdmg_decimation: 1}, multiplier: 5}       # Decimation:DMG+5% (increases by 5)
+  1044: {mods: {wsdmg_iron_tempest: 1}, multiplier: 5}     # Iron Tempest:DMG+5% (increases by 5)
+  1045: {mods: {wsdmg_sturmwind: 1}, multiplier: 5}        # Sturmwind:DMG+5% (increases by 5)
+  1046: {mods: {wsdmg_keen_edge: 1}, multiplier: 5}        # Keen Edge:DMG+5% (increases by 5)
+  1047: {mods: {wsdmg_steel_cyclone: 1}, multiplier: 5}    # Steel Cyclone:DMG+5% (increase by 5)
+  1048: {mods: {wsdmg_nightmare_scythe: 1}, multiplier: 5} # Nightmare Scythe:DMG+5% (increases by 5)
+  1049: {mods: {wsdmg_spinning_scythe: 1}, multiplier: 5}  # Spinning Scythe:DMG+5% (increases by 5)
+  1050: {mods: {wsdmg_vorpal_scythe: 1}, multiplier: 5}    # Vorpal Scythe:DMG+5% (increases by 5)
+  1051: {mods: {wsdmg_spiral_hell: 1}, multiplier: 5}      # Spiral Hell:DMG+5% (increases by 5)
+  1052: {mods: {wsdmg_leg_sweep: 1}, multiplier: 5}        # Leg Sweep:DMG+5% (increases by 5)
+  1053: {mods: {wsdmg_vorpal_thrust: 1}, multiplier: 5}    # Vorpal Thrust:DMG+5% (increases by 5)
+  1054: {mods: {wsdmg_skewer: 1}, multiplier: 5}           # Skewer:DMG+5% (increases by 5)
+  1055: {mods: {wsdmg_impulse_drive: 1}, multiplier: 5}    # Impulse Drive:DMG+5% (increases by 5)
+  1056: {mods: {wsdmg_blade_to: 1}, multiplier: 5}         # Blade: To:DMG+5% (increases by 5)
+  1057: {mods: {wsdmg_blade_chi: 1}, multiplier: 5}        # Blade: Chi:DMG+5% (increases by 5)
+  1058: {mods: {wsdmg_blade_ten: 1}, multiplier: 5}        # Blade: Ten:DMG+5% (increases by 5)
+  1059: {mods: {wsdmg_blade_ku: 1}, multiplier: 5}         # Blade: Ku:DMG+5% (increases by 5)
+  1060: {mods: {wsdmg_tachi_goten: 1}, multiplier: 5}      # Tachi: Goten:DMG+5% (increases by 5)
+  1061: {mods: {wsdmg_tachi_jinpu: 1}, multiplier: 5}      # Tachi: Jinpu:DMG+5% (increases by 5)
+  1062: {mods: {wsdmg_tachi_koki: 1}, multiplier: 5}       # Tachi: Koki:DMG+5% (increases by 5)
+  1063: {mods: {wsdmg_tachi_kasha: 1}, multiplier: 5}      # Tachi: Kasha:DMG+5% (increases by 5)
+  1064: {mods: {wsdmg_brainshaker: 1}, multiplier: 5}      # Brainshaker:DMG+5% (increases by 5)
+  1065: {mods: {wsdmg_skullbreaker: 1}, multiplier: 5}     # Skullbreaker:DMG+5% (increases by 5)
+  1066: {mods: {wsdmg_judgment: 1}, multiplier: 5}         # Judgment:DMG+5% (increases by 5)
+  1067: {mods: {wsdmg_black_halo: 1}, multiplier: 5}       # Black Halo:DMG+5% (increases by 5)
+  1068: {mods: {wsdmg_rock_crusher: 1}, multiplier: 5}     # Rock Crusher:DMG+5% (increases by 5)
+  1069: {mods: {wsdmg_shell_crusher: 1}, multiplier: 5}    # Shell Crusher:DMG+5% (increases by 5)
+  1070: {mods: {wsdmg_full_swing: 1}, multiplier: 5}       # Full Swing:DMG+5% (increases by 5)
+  1071: {mods: {wsdmg_retribution: 1}, multiplier: 5}      # Retribution:DMG+5% (increases by 5)
+  1072: {mods: {wsdmg_dulling_arrow: 1}, multiplier: 5}    # Dulling Arrow:DMG+5% (increases by 5)
+  1073: {mods: {wsdmg_blast_arrow: 1}, multiplier: 5}      # Blast Arrow:DMG+5% (increases by 5)
+  1074: {mods: {wsdmg_arching_arrow: 1}, multiplier: 5}    # Arching Arrow:DMG+5% (increases by 5)
+  1075: {mods: {wsdmg_empyreal_arrow: 1}, multiplier: 5}   # Empyreal Arrow:DMG+5% (increases by 5)
+  1076: {mods: {wsdmg_hot_shot: 1}, multiplier: 5}         # Hot Shot:DMG+5% (increases by 5)
+  1077: {mods: {wsdmg_split_shot: 1}, multiplier: 5}       # Split Shot:DMG+5% (increases by 5)
+  1078: {mods: {wsdmg_sniper_shot: 1}, multiplier: 5}      # Sniper Shot:DMG+5% (increases by 5)
+  1079: {mods: {wsdmg_detonator: 1}, multiplier: 5}        # Detonator:DMG+5% (increases by 5)
+  1080: {mods: {all_wsdmg_all_hits: 1}, multiplier: 5}     # Weapon Skill:DMG+5% (increases by 5)
+  1081: {mods: {wsdmg_final_heaven: 1}, multiplier: 5}     # Final Heaven:DMG+5% (increases by 5)
+  1082: {mods: {wsdmg_ascetics_fury: 1}, multiplier: 5}    # Ascetics Fury:DMG+5% (increases by 5)
+  1083: {mods: {wsdmg_stringing_pummel: 1}, multiplier: 5} # Stringing Pummel:DMG+5% (increases by 5)
+  1084: {mods: {wsdmg_victory_smite: 1}, multiplier: 5}    # Victory Smite:DMG+5% (increases by 5)
+  1085: {mods: {wsdmg_mercy_stroke: 1}, multiplier: 5}     # Mercy Stroke:DMG+5% (increases by 5)
+  1086: {mods: {wsdmg_pyrrhic_kleos: 1}, multiplier: 5}    # Pyric Kleos:DMG+5% (increases by 5)
+  1087: {mods: {wsdmg_mandalic_stab: 1}, multiplier: 5}    # Mandalic Stab:DMG+5% (increases by 5)
+  1088: {mods: {wsdmg_mordant_rime: 1}, multiplier: 5}     # Mordant Rime:DMG+5% (increases by 5)
+  1089: {mods: {wsdmg_rudras_storm: 1}, multiplier: 5}     # Rudra's Storm:DMG+5% (increases by 5)
+  1090: {mods: {wsdmg_knights_of_round: 1}, multiplier: 5} # Knights of Round:DMG+5% (increases by 5)
+  1091: {mods: {wsdmg_death_blossom: 1}, multiplier: 5}    # Death Blossom:DMG+5% (increases by 5)
+  1092: {mods: {wsdmg_expiacion: 1}, multiplier: 5}        # Expiacion:DMG+5% (increases by 5)
+  1093: {mods: {wsdmg_chant_du_cygne: 1}, multiplier: 5}   # Chant du Cygne:DMG+5% (increases by 5)
+  1094: {mods: {wsdmg_randgrith: 1}, multiplier: 5}        # Randgrith:DMG+5% (increases by 5)
+  1095: {mods: {wsdmg_mystic_boon: 1}, multiplier: 5}      # Mystic Boon:DMG+5% (increases by 5)
+  1096: {mods: {wsdmg_scourge: 1}, multiplier: 5}          # Scourge:DMG+5% (increases by 5)
+  1097: {mods: {wsdmg_torcleaver: 1}, multiplier: 5}       # Torcleaver:DMG+5% (increases by 5)
+  1098: {mods: {wsdmg_onslaught: 1}, multiplier: 5}        # Onslaught:DMG+5% (increases by 5)
+  1099: {mods: {wsdmg_primal_rend: 1}, multiplier: 5}      # Primal Rend:DMG+5% (increases by 5)
+  1100: {mods: {wsdmg_cloudsplitter: 1}, multiplier: 5}    # Cloudsplitter:DMG+5% (increases by 5)
+  1101: {mods: {wsdmg_metatron_torment: 1}, multiplier: 5} # Metatron Torment:DMG+5% (increases by 5)
+  1102: {mods: {wsdmg_kings_justice: 1}, multiplier: 5}    # King's Justice:DMG+5% (increases by 5)
+  1103: {mods: {wsdmg_ukkos_fury: 1}, multiplier: 5}       # Ukko's Fury:DMG+5% (increases by 5)
+  1104: {mods: {wsdmg_catastrophe: 1}, multiplier: 5}      # Catastrophe:DMG+5% (increases by 5)
+  1105: {mods: {wsdmg_insurgency: 1}, multiplier: 5}       # Insurgency:DMG+5% (increases by 5)
+  1106: {mods: {wsdmg_quietus: 1}, multiplier: 5}          # Quietus:DMG+5% (increases by 5)
+  1107: {mods: {wsdmg_geirskogul: 1}, multiplier: 5}       # Geirskogul:DMG+5% (increases by 5)
+  1108: {mods: {wsdmg_drakesbane: 1}, multiplier: 5}       # Drakesbane:DMG+5% (increases by 5)
+  1109: {mods: {wsdmg_camlanns_torment: 1}, multiplier: 5} # Camlann's Torment:DMG+5% (increases by 5)
+  1110: {mods: {wsdmg_blade_metsu: 1}, multiplier: 5}      # Blade: Metsu:DMG+5% (increases by 5)
+  1111: {mods: {wsdmg_blade_kamu: 1}, multiplier: 5}       # Blade: Kamu:DMG+5% (increases by 5)
+  1112: {mods: {wsdmg_blade_hi: 1}, multiplier: 5}         # Blade: Hi:DMG+5% (increases by 5)
+  1113: {mods: {wsdmg_tachi_kaiten: 1}, multiplier: 5}     # Tachi: Kaiten:DMG+5% (increases by 5)
+  1114: {mods: {wsdmg_tachi_rana: 1}, multiplier: 5}       # Tachi: Rana:DMG+5% (increases by 5)
+  1115: {mods: {wsdmg_tachi_fudo: 1}, multiplier: 5}       # Tachi: Fudo:DMG+5% (increases by 5)
+  1116: {mods: {wsdmg_gate_of_tartarus: 1}, multiplier: 5} # Gate of Tartarus:DMG+5% (increases by 5)
+  1117: {mods: {wsdmg_omniscience: 1}, multiplier: 5}      # Omniscience:DMG+5% (increases by 5)
+  1118: {mods: {wsdmg_vidohunir: 1}, multiplier: 5}        # Vidohunir:DMG+5% (increases by 5)
+  1119: {mods: {wsdmg_garland_of_bliss: 1}, multiplier: 5} # Garland of Bliss:DMG+5% (increases by 5)
+  1120: {mods: {wsdmg_namas_arrow: 1}, multiplier: 5}      # Namas Arrow:DMG+5% (increases by 5)
+  1121: {mods: {wsdmg_blade_chi: 1}, multiplier: 5}        # Jishnu's Radiance:DMG+5% (increases by 5)
+  1122: {mods: {wsdmg_trueflight: 1}, multiplier: 5}       # Trueflight:DMG+5% (increases by 5)
+  1123: {mods: {wsdmg_coronach: 1}, multiplier: 5}         # Coronach:DMG+5% (increases by 5)
+  1124: {mods: {wsdmg_leaden_salute: 1}, multiplier: 5}    # Leaden Salute:DMG+5% (increases by 5)
+  1125: {mods: {wsdmg_wildfire: 1}, multiplier: 5}         # Wildfire:DMG+5% (increases by 5)
+  1126: {mods: {wsdmg_dimidiation: 1}, multiplier: 5}      # Dimidiation:DMG+5% (increases by 5)
+  # 1127: Exudation:DMG+5% (increases by 5)
+  1128: {mods: {wsdmg_shijin_spiral: 1}, multiplier: 5}   # Shijin Spiral:DMG+5% (increases by 5)
+  1129: {mods: {wsdmg_exenterator: 1}, multiplier: 5}     # Exenterator:DMG+5% (increases by 5)
+  1130: {mods: {wsdmg_requiescat: 1}, multiplier: 5}      # Requiescat:DMG+5% (increases by 5)
+  1131: {mods: {wsdmg_upheaval: 1}, multiplier: 5}        # Upheaval:DMG+5% (increases by 5)
+  1132: {mods: {wsdmg_entropy: 1}, multiplier: 5}         # Entropy:DMG+5% (increases by 5)
+  1133: {mods: {wsdmg_stardiver: 1}, multiplier: 5}       # Stardiver:DMG+5% (increases by 5)
+  1134: {mods: {wsdmg_blade_shun: 1}, multiplier: 5}      # Blade: Shun:DMG+5% (increases by 5)
+  1135: {mods: {wsdmg_tachi_shoha: 1}, multiplier: 5}     # Tachi: Shoha:DMG+5% (increases by 5)
+  1136: {mods: {wsdmg_realmrazer: 1}, multiplier: 5}      # Realmrazer:DMG+5% (increases by 5)
+  1137: {mods: {wsdmg_shattersoul: 1}, multiplier: 5}     # Shattersoul:DMG+5% (increases by 5)
+  1138: {mods: {wsdmg_resolution: 1}, multiplier: 5}      # Resolution:DMG+5% (increases by 5)
+  1139: {mods: {wsdmg_ruinator: 1}, multiplier: 5}        # Ruinator:DMG+5% (increases by 5)
+  1140: {mods: {wsdmg_last_stand: 1}, multiplier: 5}      # Last Stand:DMG+5% (increases by 5)
+  1152: {mods: {def: 1}, multiplier: 10}                  # DEF +10 (increases by 10)
+  1153: {mods: {eva: 3}}                                  # Evasion +3
+  1154: {mods: {meva: 3}}                                 # Mag. Evasion +3
+  1155: {mods: {dmgphys: -1}, multiplier: 200}            # Physical Damage Taken -2%
+  1156: {mods: {dmgmagic: -1}, multiplier: 200}           # Magic Damage Taken -2%
+  1157: {mods: {spellinterrupt: 2}}                       # Spell Interruption Rate Down 2%
+  1158: {mods: {statusres: 2}}                            # Occ. Resistance to Status Ailments +2
+  1246: {pet: all, mods: {dmgphys: -1}, multiplier: 200}  # Pet: Phy. Dmg. Taken -2%
+  1247: {pet: all, mods: {dmgmagic: -1}, multiplier: 200} # Pet: Magic Dmg. Taken -2%
+  1248: {mods: {enh_magic_duration: 1}}                   # Enhancing Magic Effect Duration +1
+  1249: {mods: {helix_duration: 1}}                       # Helix Effect Duration+1
+  1250: {mods: {indi_duration: 1}}                        # Indi Effect Duration+1
+  # 1251: Enfeebling Magic Duration +1
+  1264: {mods: {meditate_duration: 1}} # Meditate Effect Duration +1
+  # 1280: Enhances Mighty Strikes effect
+  # 1281: Enhances Hundred Fists effect
+  # 1282: Enhances Benediction effect
+  # 1283: Enhances Manafont effect
+  # 1284: Enhances Chainspell effect
+  # 1285: Enhances Perfect Dodge effect
+  # 1286: Enhances Invincible effect
+  1287: {mods: {enhances_blood_weapon: 1}, multiplier: 10} # Enhances Blood Weapon effect
+  # 1288: Enhances Familiar effect
+  # 1289: Enhances Soul Voice effect
+  # 1290: Enhances Eagle Eye Shot effect
+  # 1291: Enhances Meikyo Shisui effect
+  # 1292: Enhances Mijin Gakure effect
+  # 1293: Enhances Spirit Surge effect
+  # 1294: Enhances Astral Flow effect
+  # 1295: Enhances Azure Lore effect
+  # 1296: Enhances Wild Card effect
+  # 1297: Enhances Overdrive effect
+  # 1298: Enhances Trance effect
+  # 1299: Enhances Tablua Rasa effect
+  1300: {mods: {bolster_effect: 1}} # Enhances Bolster effect
+  # 1301: Enhances Elemental Sforzo effect
+  # 1328: Enhances "Savagery" effect
+  # 1329: Enhances "Aggressive Aim" effect
+  # 1330: Enhances "Warriors Charge" effect
+  # 1331: Enhances "Tomahawk" effect
+  # 1332: 1332 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1333: 1333 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1334: Enhances "Penance" effect
+  # 1335: Enhances "Formless Strikes" effect
+  # 1336: Enhances "Invigorate" effect
+  # 1337: Enhances "Mantra" effect
+  # 1338: 1338 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1339: 1339 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1340: Enhances "Protectra V" effect
+  # 1341: Enhances "Martyr" effect
+  # 1342: Enhances "Shellra V" effect
+  # 1343: Enhances "Devotion" effect
+  # 1344: 1344 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1345: 1345 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1346: Increases Ancient Magic II damage
+  # 1347: Reduces Ancient Magic II casting time
+  # 1348: Increases Ancient Magic II accuracy
+  # 1349: Reduces Ancient Magic II MP cost
+  # 1350: 1350 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1351: 1351 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1352: Enhances "Dia III" effect
+  # 1353: Enhances "Slow II" effect
+  # 1354: Enhances "Phalanx II" effect
+  # 1355: Enhances "Bio III" effect
+  # 1356: Enhances "Blind II" effect
+  # 1357: Enhances "Paralyze II" effect
+  # 1358: Enhances "Aura Steal" effect
+  # 1359: Enhances "Ambush" effect
+  # 1360: Enhances "Feint" effect
+  1361: {mods: {augments_assassins_charge: 1}} # Enh. "Assassins Charge" effect
+  # 1362: 1362 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1363: 1363 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  1364: {mods: {enhances_iron_will: 1}, multiplier: 3} # Enhances "Iron Will" effect
+  1365: {mods: {enhances_fealty: 1}, multiplier: 4}    # Enhances "Fealty" effect
+  1366: {mods: {enhances_chivalry: 1}, multiplier: 5}  # Enhances "Chivalry" effect
+  1367: {mods: {enhances_guardian: 1}, multiplier: 2}  # Enhances "Guardian" effect
+  # 1368: 1368 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1369: 1369 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  1370: {mods: {enhances_dark_seal: 1}, multiplier: 10} # Enhances "Dark Seal" effect
+  # 1371: Enhances "Diabolic Eye" effect
+  # 1372: Enhances "Muted Soul" effect
+  # 1373: Enhances "Desperate Blows" effect
+  # 1374: 1374 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1375: 1375 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1376: Enhances "Killer Instinct" effect
+  1377: {mods: {feral_howl_duration: 1}} # Enhances "Feral Howl effect"
+  # 1378: Enhances Beast Affinity effect
+  # 1379: Enhances Beast Healer effect
+  # 1380: 1380 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1381: 1381 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1382: Enhances "Foe Sirvente" effect
+  # 1383: Enhances "Troubadour" effect
+  # 1384: Enh. "Adventurers Dirge" effect
+  # 1385: Enhances "Nightingale" effect
+  # 1386: 1386 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1387: 1387 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1388: Enhances "Recycle" effect
+  # 1389: Enhances "Snapshot" effect
+  # 1390: Enhances "Flashy Shot" effect
+  # 1391: Enhances "Stealth Shot" effect
+  # 1392: 1392 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1393: 1393 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1394: Enhances "Shikikoyo" effect
+  # 1395: Enhances "Overwhelm" effect
+  # 1396: Enhances "Blade Bash" effect
+  # 1397: Enhances "Ikishoten" effect
+  # 1398: 1398 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1399: 1399 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1400: Increases elem. ninjutsu III damage
+  1401: {mods: {enhances_sange: 1}} # Enhances "Sange" effect
+  # 1402: Enh. Ninja Tool Expertise effect
+  # 1403: Reduces elem. ninjutsu III cast time
+  # 1404: 1404 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1405: 1405 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1406: Enhances Deep Breathing effect
+  # 1407: Enhances Angon effect
+  # 1408: Enhances Strafe effect
+  # 1409: Enhances Empathy effect
+  # 1410: 1410 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1411: 1411 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1412: Reduces Sp Blood Pact MP cost
+  # 1413: Inc Sp Blood Pact magic burst dmg
+  # 1414: Increases Sp Blood Pact accuracy
+  # 1415: Inc. Sp. Blood Pact magic crit. dmg.
+  # 1416: 1416 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1417: 1417 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1418: Enhances "Convergence" effect
+  # 1419: Enhances "Enchainment" effect
+  # 1420: Enhances "Assimilation" effect
+  # 1421: Enhances "Diffusion" effect
+  # 1422: 1422 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1423: 1423 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1424: Enhances "Winning Streak" effect
+  # 1425: Enhances "Loaded Deck" effect
+  # 1426: Enhances "Fold" effect
+  # 1427: Enhances "Snake Eye" effect
+  # 1428: 1428 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1429: 1429 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1430: Enhances "Optimization" effect
+  # 1431: Enhances "Fine-Tuning" effect
+  # 1432: Enhances "Ventriloquy" effect
+  # 1433: Enhances "Role Reversal" effect
+  # 1434: 1434 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1435: 1435 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1436: Enhances "No Foot" Rise effect
+  # 1437: Enhances "Fan Dance" effect
+  # 1438: Enhances "Saber Dance" effect
+  # 1439: Enhances "Closed Position" effect
+  # 1440: 1440 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1441: 1441 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1442: Enh. "Altruism" and "Focalization"
+  # 1443: Enhances "Enlightenment" effect
+  # 1444: Enh. "Tranquility" and "Equanimity"
+  # 1445: Enhances Stormsurge effect
+  # 1446: 1446 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1447: 1447 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  1448: {mods: {mending_halation: 1}}     # Enhances "Mending Halation" effect
+  1449: {mods: {radial_arcana: 1}}        # Enhances "Radial Arcana" effect
+  1450: {mods: {curative_recantation: 1}} # Enhances "Curative Recantation" effect
+  1451: {mods: {primeval_zeal: 1}}        # Enhances "Primeval Zeal" effect
+  # 1452: 1452 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1453: 1453 currently unused. Leave at zero. Edit+move or remove this note as new augments get discovered.
+  # 1454: Enhances "Battuta" effect
+  # 1455: Enhances "Rayke" effect
+  # 1456: Enhances "Inspire" effect
+  # 1457: Enhances "Sleight of Sword" effect
+  1472: {mods: {inquartata: 1}}                            # Parrying rate +1% (not +skill)
+  1536: {mods: {wsdmg_backhand_blow: 1}, multiplier: 5}    # Backhand Blow:DMG+5% (increases by 5)
+  1537: {mods: {wsdmg_spinning_attack: 1}, multiplier: 5}  # Spinning Attack:DMG+5% (increases by 5)
+  1538: {mods: {wsdmg_howling_fist: 1}, multiplier: 5}     # Howling Fist:DMG+5% (increases by 5)
+  1539: {mods: {wsdmg_dragon_kick: 1}, multiplier: 5}      # Dragon Kick:DMG+5% (increases by 5)
+  1540: {mods: {wsdmg_viper_bite: 1}, multiplier: 5}       # Viper Bite:DMG+5% (increases by 5)
+  1541: {mods: {wsdmg_shadowstitch: 1}, multiplier: 5}     # Shadowstitch:DMG+5% (increases by 5)
+  1542: {mods: {wsdmg_cyclone: 1}, multiplier: 5}          # Cyclone:DMG+5% (increases by 5)
+  1543: {mods: {wsdmg_evisceration: 1}, multiplier: 5}     # Evisceration:DMG+5% (increases by 5)
+  1544: {mods: {wsdmg_burning_blade: 1}, multiplier: 5}    # Burning Blade:DMG+5% (increases by 5)
+  1545: {mods: {wsdmg_shining_blade: 1}, multiplier: 5}    # Shining Blade:DMG+5% (increases by 5)
+  1546: {mods: {wsdmg_circle_blade: 1}, multiplier: 5}     # Circle Blade:DMG+5% (increases by 5)
+  1547: {mods: {wsdmg_savage_blade: 1}, multiplier: 5}     # Savage Blade:DMG+5% (increases by 5)
+  1548: {mods: {wsdmg_freezebite: 1}, multiplier: 5}       # Freezebite:DMG+5% (increases by 5)
+  1549: {mods: {wsdmg_shockwave: 1}, multiplier: 5}        # Shockwave:DMG+5% (increases by 5)
+  1550: {mods: {wsdmg_ground_strike: 1}, multiplier: 5}    # Ground Strike:DMG+5% (increases by 5)
+  1551: {mods: {wsdmg_sickle_moon: 1}, multiplier: 5}      # Sickle Moon:DMG+5% (increases by 5)
+  1552: {mods: {wsdmg_gale_axe: 1}, multiplier: 5}         # Gale Axe:DMG+5% (increases by 5)
+  1553: {mods: {wsdmg_spinning_axe: 1}, multiplier: 5}     # Spinning Axe:DMG+5% (increases by 5)
+  1554: {mods: {wsdmg_calamity: 1}, multiplier: 5}         # Calamity:DMG+5% (increases by 5)
+  1555: {mods: {wsdmg_decimation: 1}, multiplier: 5}       # Decimation:DMG+5% (increases by 5)
+  1556: {mods: {wsdmg_iron_tempest: 1}, multiplier: 5}     # Iron Tempest:DMG+5% (increases by 5)
+  1557: {mods: {wsdmg_sturmwind: 1}, multiplier: 5}        # Sturmwind:DMG+5% (increases by 5)
+  1558: {mods: {wsdmg_keen_edge: 1}, multiplier: 5}        # Keen Edge:DMG+5% (increases by 5)
+  1559: {mods: {wsdmg_steel_cyclone: 1}, multiplier: 5}    # Steel Cyclone:DMG+5% (increase by 5)
+  1560: {mods: {wsdmg_nightmare_scythe: 1}, multiplier: 5} # Nightmare Scythe:DMG+5% (increases by 5)
+  1561: {mods: {wsdmg_spinning_scythe: 1}, multiplier: 5}  # Spinning Scythe:DMG+5% (increases by 5)
+  1562: {mods: {wsdmg_vorpal_scythe: 1}, multiplier: 5}    # Vorpal Scythe:DMG+5% (increases by 5)
+  1563: {mods: {wsdmg_spiral_hell: 1}, multiplier: 5}      # Spiral Hell:DMG+5% (increases by 5)
+  1564: {mods: {wsdmg_leg_sweep: 1}, multiplier: 5}        # Leg Sweep:DMG+5% (increases by 5)
+  1565: {mods: {wsdmg_vorpal_thrust: 1}, multiplier: 5}    # Vorpal Thrust:DMG+5% (increases by 5)
+  1566: {mods: {wsdmg_skewer: 1}, multiplier: 5}           # Skewer:DMG+5% (increases by 5)
+  1567: {mods: {wsdmg_impulse_drive: 1}, multiplier: 5}    # Impulse Drive:DMG+5% (increases by 5)
+  1568: {mods: {wsdmg_blade_to: 1}, multiplier: 5}         # Blade: To:DMG+5% (increases by 5)
+  1569: {mods: {wsdmg_blade_chi: 1}, multiplier: 5}        # Blade: Chi:DMG+5% (increases by 5)
+  1570: {mods: {wsdmg_blade_ten: 1}, multiplier: 5}        # Blade: Ten:DMG+5% (increases by 5)
+  1571: {mods: {wsdmg_blade_ku: 1}, multiplier: 5}         # Blade: Ku:DMG+5% (increases by 5)
+  1572: {mods: {wsdmg_tachi_goten: 1}, multiplier: 5}      # Tachi: Goten:DMG+5% (increases by 5)
+  1573: {mods: {wsdmg_tachi_jinpu: 1}, multiplier: 5}      # Tachi: Jinpu:DMG+5% (increases by 5)
+  1574: {mods: {wsdmg_tachi_koki: 1}, multiplier: 5}       # Tachi: Koki:DMG+5% (increases by 5)
+  1575: {mods: {wsdmg_tachi_kasha: 1}, multiplier: 5}      # Tachi: Kasha:DMG+5% (increases by 5)
+  1576: {mods: {wsdmg_brainshaker: 1}, multiplier: 5}      # Brainshaker:DMG+5% (increases by 5)
+  1577: {mods: {wsdmg_skullbreaker: 1}, multiplier: 5}     # Skullbreaker:DMG+5% (increases by 5)
+  1578: {mods: {wsdmg_judgment: 1}, multiplier: 5}         # Judgment:DMG+5% (increases by 5)
+  1579: {mods: {wsdmg_black_halo: 1}, multiplier: 5}       # Black Halo:DMG+5% (increases by 5)
+  1580: {mods: {wsdmg_rock_crusher: 1}, multiplier: 5}     # Rock Crusher:DMG+5% (increases by 5)
+  1581: {mods: {wsdmg_shell_crusher: 1}, multiplier: 5}    # Shell Crusher:DMG+5% (increases by 5)
+  1582: {mods: {wsdmg_full_swing: 1}, multiplier: 5}       # Full Swing:DMG+5% (increases by 5)
+  1583: {mods: {wsdmg_retribution: 1}, multiplier: 5}      # Retribution:DMG+5% (increases by 5)
+  1584: {mods: {wsdmg_dulling_arrow: 1}, multiplier: 5}    # Dulling Arrow:DMG+5% (increases by 5)
+  1585: {mods: {wsdmg_blast_arrow: 1}, multiplier: 5}      # Blast Arrow:DMG+5% (increases by 5)
+  1586: {mods: {wsdmg_arching_arrow: 1}, multiplier: 5}    # Arching Arrow:DMG+5% (increases by 5)
+  1587: {mods: {wsdmg_empyreal_arrow: 1}, multiplier: 5}   # Empyreal Arrow:DMG+5% (increases by 5)
+  1588: {mods: {wsdmg_split_shot: 1}, multiplier: 5}       # Split Shot:DMG+5% (increases by 5)
+  1589: {mods: {wsdmg_hot_shot: 1}, multiplier: 5}         # Hot Shot:DMG+5% (increases by 5)
+  1590: {mods: {wsdmg_sniper_shot: 1}, multiplier: 5}      # Sniper Shot:DMG+5% (increases by 5)
+  1591: {mods: {wsdmg_detonator: 1}, multiplier: 5}        # Detonator:DMG+5% (increases by 5)
+  1592: {mods: {all_wsdmg_all_hits: 1}, multiplier: 5}     # Weapon Skill:DMG+5% (increases by 5)
+  1593: {mods: {wsdmg_final_heaven: 1}, multiplier: 5}     # Final Heaven:DMG+5% (increases by 5)
+  1594: {mods: {wsdmg_ascetics_fury: 1}, multiplier: 5}    # Ascetics Fury:DMG+5% (increases by 5)
+  1595: {mods: {wsdmg_stringing_pummel: 1}, multiplier: 5} # Stringing Pummel:DMG+5% (increases by 5)
+  1596: {mods: {wsdmg_victory_smite: 1}, multiplier: 5}    # Victory Smite:DMG+5% (increases by 5)
+  1597: {mods: {wsdmg_mercy_stroke: 1}, multiplier: 5}     # Mercy Stroke:DMG+5% (increases by 5)
+  1598: {mods: {wsdmg_pyrrhic_kleos: 1}, multiplier: 5}    # Pyric Kleos:DMG+5% (increases by 5)
+  1599: {mods: {wsdmg_mandalic_stab: 1}, multiplier: 5}    # Mandalic Stab:DMG+5% (increases by 5)
+  1600: {mods: {wsdmg_mordant_rime: 1}, multiplier: 5}     # Mordant Rime:DMG+5% (increases by 5)
+  1601: {mods: {wsdmg_rudras_storm: 1}, multiplier: 5}     # Rudra's Storm:DMG+5% (increases by 5)
+  1602: {mods: {wsdmg_knights_of_round: 1}, multiplier: 5} # Knights of Round:DMG+5% (increases by 5)
+  1603: {mods: {wsdmg_death_blossom: 1}, multiplier: 5}    # Death Blossom:DMG+5% (increases by 5)
+  1604: {mods: {wsdmg_expiacion: 1}, multiplier: 5}        # Expiacion:DMG+5% (increases by 5)
+  1605: {mods: {wsdmg_chant_du_cygne: 1}, multiplier: 5}   # Chant du Cygne:DMG+5% (increases by 5)
+  1606: {mods: {wsdmg_randgrith: 1}, multiplier: 5}        # Randgrith:DMG+5% (increases by 5)
+  1607: {mods: {wsdmg_mystic_boon: 1}, multiplier: 5}      # Mystic Boon:DMG+5% (increases by 5)
+  1608: {mods: {wsdmg_scourge: 1}, multiplier: 5}          # Scourge:DMG+5% (increases by 5)
+  1609: {mods: {wsdmg_torcleaver: 1}, multiplier: 5}       # Torcleaver:DMG+5% (increases by 5)
+  1610: {mods: {wsdmg_onslaught: 1}, multiplier: 5}        # Onslaught:DMG+5% (increases by 5)
+  1611: {mods: {wsdmg_primal_rend: 1}, multiplier: 5}      # Primal Rend:DMG+5% (increases by 5)
+  1612: {mods: {wsdmg_cloudsplitter: 1}, multiplier: 5}    # Cloudsplitter:DMG+5% (increases by 5)
+  1613: {mods: {wsdmg_metatron_torment: 1}, multiplier: 5} # Metatron Torment:DMG+5% (increases by 5)
+  1614: {mods: {wsdmg_kings_justice: 1}, multiplier: 5}    # King's Justice:DMG+5% (increases by 5)
+  1615: {mods: {wsdmg_ukkos_fury: 1}, multiplier: 5}       # Ukko's Fury:DMG+5% (increases by 5)
+  1616: {mods: {wsdmg_catastrophe: 1}, multiplier: 5}      # Catastrophe:DMG+5% (increases by 5)
+  1617: {mods: {wsdmg_insurgency: 1}, multiplier: 5}       # Insurgency:DMG+5% (increases by 5)
+  1618: {mods: {wsdmg_quietus: 1}, multiplier: 5}          # Quietus:DMG+5% (increases by 5)
+  1619: {mods: {wsdmg_geirskogul: 1}, multiplier: 5}       # Geirskogul:DMG+5% (increases by 5)
+  1620: {mods: {wsdmg_drakesbane: 1}, multiplier: 5}       # Drakesbane:DMG+5% (increases by 5)
+  1621: {mods: {wsdmg_camlanns_torment: 1}, multiplier: 5} # Camlann's Torment:DMG+5% (increases by 5)
+  1622: {mods: {wsdmg_blade_metsu: 1}, multiplier: 5}      # Blade: Metsu:DMG+5% (increases by 5)
+  1623: {mods: {wsdmg_blade_kamu: 1}, multiplier: 5}       # Blade: Kamu:DMG+5% (increases by 5)
+  1624: {mods: {wsdmg_blade_hi: 1}, multiplier: 5}         # Blade: Hi:DMG+5% (increases by 5)
+  1625: {mods: {wsdmg_tachi_kaiten: 1}, multiplier: 5}     # Tachi: Kaiten:DMG+5% (increases by 5)
+  1626: {mods: {wsdmg_tachi_rana: 1}, multiplier: 5}       # Tachi: Rana:DMG+5% (increases by 5)
+  1627: {mods: {wsdmg_tachi_fudo: 1}, multiplier: 5}       # Tachi: Fudo:DMG+5% (increases by 5)
+  1628: {mods: {wsdmg_gate_of_tartarus: 1}, multiplier: 5} # Gate of Tartarus:DMG+5% (increases by 5)
+  1629: {mods: {wsdmg_omniscience: 1}, multiplier: 5}      # Omniscience:DMG+5% (increases by 5)
+  1630: {mods: {wsdmg_vidohunir: 1}, multiplier: 5}        # Vidohunir:DMG+5% (increases by 5)
+  1631: {mods: {wsdmg_garland_of_bliss: 1}, multiplier: 5} # Garland of Bliss:DMG+5% (increases by 5)
+  1632: {mods: {wsdmg_namas_arrow: 1}, multiplier: 5}      # Namas Arrow:DMG+5% (increases by 5)
+  1633: {mods: {wsdmg_blade_chi: 1}, multiplier: 5}        # Jishnu's Radiance:DMG+5% (increases by 5)
+  1634: {mods: {wsdmg_trueflight: 1}, multiplier: 5}       # Trueflight:DMG+5% (increases by 5)
+  1635: {mods: {wsdmg_coronach: 1}, multiplier: 5}         # Coronach:DMG+5% (increases by 5)
+  1636: {mods: {wsdmg_leaden_salute: 1}, multiplier: 5}    # Leaden Salute:DMG+5% (increases by 5)
+  1637: {mods: {wsdmg_wildfire: 1}, multiplier: 5}         # Wildfire:DMG+5% (increases by 5)
+  1638: {mods: {wsdmg_dimidiation: 1}, multiplier: 5}      # Dimidiation:DMG+5% (increases by 5)
+  # 1639: Exudation:DMG+5% (increases by 5)
+  1640: {mods: {wsdmg_shijin_spiral: 1}, multiplier: 5} # Shijin Spiral:DMG+5% (increases by 5)
+  1641: {mods: {wsdmg_exenterator: 1}, multiplier: 5}   # Exenterator:DMG+5% (increases by 5)
+  1642: {mods: {wsdmg_requiescat: 1}, multiplier: 5}    # Requiescat:DMG+5% (increases by 5)
+  1643: {mods: {wsdmg_upheaval: 1}, multiplier: 5}      # Upheaval:DMG+5% (increases by 5)
+  1644: {mods: {wsdmg_entropy: 1}, multiplier: 5}       # Entropy:DMG+5% (increases by 5)
+  1645: {mods: {wsdmg_stardiver: 1}, multiplier: 5}     # Stardiver:DMG+5% (increases by 5)
+  1646: {mods: {wsdmg_blade_shun: 1}, multiplier: 5}    # Blade: Shun:DMG+5% (increases by 5)
+  1647: {mods: {wsdmg_tachi_shoha: 1}, multiplier: 5}   # Tachi: Shoha:DMG+5% (increases by 5)
+  1648: {mods: {wsdmg_realmrazer: 1}, multiplier: 5}    # Realmrazer:DMG+5% (increases by 5)
+  1649: {mods: {wsdmg_shattersoul: 1}, multiplier: 5}   # Shattersoul:DMG+5% (increases by 5)
+  1650: {mods: {wsdmg_resolution: 1}, multiplier: 5}    # Resolution:DMG+5% (increases by 5)
+  1651: {mods: {wsdmg_ruinator: 1}, multiplier: 5}      # Ruinator:DMG+5% (increases by 5)
+  1652: {mods: {wsdmg_last_stand: 1}, multiplier: 5}    # Last Stand:DMG+5% (increases by 5)
+  1792: {pet: all, mods: {str: 1}}                      # Pet: STR+1
+  1793: {pet: all, mods: {dex: 1}}                      # Pet: DEX+1
+  1794: {pet: all, mods: {vit: 1}}                      # Pet: VIT+1
+  1795: {pet: all, mods: {agi: 1}}                      # Pet: AGI+1
+  1796: {pet: all, mods: {int: 1}}                      # Pet: INT+1
+  1797: {pet: all, mods: {mnd: 1}}                      # Pet: MND+1
+  1798: {pet: all, mods: {chr: 1}}                      # Pet: CHR+1
+  1799: {pet: all, mods: {str: -1}}                     # Pet: STR-1
+  1800: {pet: all, mods: {dex: -1}}                     # Pet: DEX-1
+  1801: {pet: all, mods: {vit: -1}}                     # Pet: VIT-1
+  1802: {pet: all, mods: {agi: -1}}                     # Pet: AGI-1
+  1803: {pet: all, mods: {int: -1}}                     # Pet: INT-1
+  1804: {pet: all, mods: {mnd: -1}}                     # Pet: MND-1
+  1805: {pet: all, mods: {chr: -1}}                     # Pet: CHR-1
+  1806: {pet: all, mods: {str: 1, dex: 1, vit: 1}}      # Pet: STR+1 DEX+1 VIT+1
+  # 1807: Pet: <dummy>
+  # 1808: Pet: <dummy>
+  # 1809: Pet: <dummy>
+  # 1810: Pet: <dummy>
+  # 1811: Pet: <dummy>
+  # 1812: Pet: <dummy>
+  # 1813: Pet: <dummy>
+  # 1814: Pet: <dummy>
+  # 1815: Pet: <dummy>
+  # 1816: Pet: <dummy>
+  # 1817: Pet: <dummy>
+  # 1818: Pet: <dummy>
+  # 1819: Pet: <dummy>
+  # 1820: Pet: <dummy>
+  # 1821: Pet: <dummy>
+  # 1822: Pet: <dummy>
+  # 1823: Pet: <dummy>
+  # 2047: ??? (it literally just says "???")
