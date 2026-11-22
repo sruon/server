@@ -52,6 +52,7 @@ endif()
 # Catch2 test TUs live in the executable, the only target that links Catch2.
 xi_add_executable(xi_test testserver.rc
     ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/tests/auction_house_trigger_tests.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/bitset_tests.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/char_points_queries_tests.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/data/data_binding_tests.cpp

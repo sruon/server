@@ -9,7 +9,7 @@ CREATE TRIGGER auction_house_buy
 BEGIN
     -- Carry quantity in extra for dbox message display
     IF OLD.seller != 0 AND NEW.sale != 0 THEN INSERT INTO delivery_box VALUES (NEW.seller, NEW.seller_name, 1, 0, 0xFFFF, NEW.itemid, NEW.sale,
-        CHAR(IF(NEW.stack = 1, (SELECT stackSize FROM item_basic WHERE itemid = NEW.itemid), 1) USING binary), 0, 'AH-Jeuno', 0, 0); END IF;
+        CHAR(IF(NEW.stack = 1, IFNULL(@ah_sale_quantity, 1), 1) USING binary), 0, 'AH-Jeuno', 0, 0); END IF;
 END $$
 
 DROP TRIGGER IF EXISTS auction_house_list $$

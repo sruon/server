@@ -290,6 +290,11 @@ auto auctionutils::PurchasingItems(CCharEntity* PChar, GP_AUC_PARAM_BID param) -
             const auto success = db::transaction(
                 [&]()
                 {
+                    if (!db::preparedStmt("SET @ah_sale_quantity = ?", boughtQuantity))
+                    {
+                        throw std::runtime_error(fmt::format("AH: could not record the quantity of item {} sold to {} ({})", param.ItemNo, PChar->getName(), PChar->id));
+                    }
+
                     const auto rset = db::preparedStmt("UPDATE auction_house SET buyer = ?, buyer_name = ?, sale = ?, sell_date = ? WHERE itemid = ? AND buyer_name IS NULL "
                                                        "AND stack = ? AND price <= ? ORDER BY price ASC, id ASC LIMIT 1",
                                                        PChar->id,
@@ -299,6 +304,11 @@ auto auctionutils::PurchasingItems(CCharEntity* PChar, GP_AUC_PARAM_BID param) -
                                                        param.ItemNo,
                                                        param.ItemStacks == 0,
                                                        param.BidPrice);
+                    if (!db::preparedStmt("SET @ah_sale_quantity = NULL"))
+                    {
+                        throw std::runtime_error(fmt::format("AH: could not clear the quantity of item {} sold to {} ({})", param.ItemNo, PChar->getName(), PChar->id));
+                    }
+
                     if (!rset)
                     {
                         throw std::runtime_error(fmt::format("AH: could not mark item {} sold to {} ({})", param.ItemNo, PChar->getName(), PChar->id));
