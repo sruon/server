@@ -31,7 +31,9 @@
 
 #include <algorithm>
 #include <array>
+#include <charconv>
 #include <map>
+#include <stdexcept>
 
 #include "entities/battle_entity.h"
 #include "enums/item_types.h"
@@ -150,6 +152,27 @@ auto lookupIdByName(const std::string_view name) -> Maybe<uint16>
     }
 
     return entry->second;
+}
+
+auto resolveRecipeItem(const std::string_view item, const std::string_view context) -> uint16
+{
+    uint16 itemId{};
+    if (const auto [end, error] = std::from_chars(item.data(), item.data() + item.size(), itemId); error == std::errc{} && end == item.data() + item.size())
+    {
+        if (lookup(itemId) == nullptr)
+        {
+            throw std::runtime_error(fmt::format("{} uses unknown item {}", context, itemId));
+        }
+
+        return itemId;
+    }
+
+    if (const auto named = lookupIdByName(item))
+    {
+        return *named;
+    }
+
+    throw std::runtime_error(fmt::format("{} uses unknown item '{}'", context, item));
 }
 
 auto lookup(const uint16 itemId) -> const CItem*

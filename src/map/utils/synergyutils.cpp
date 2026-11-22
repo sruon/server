@@ -20,9 +20,18 @@
 */
 #include "synergyutils.h"
 
-#include "common/database.h"
 #include "common/logging.h"
 #include "common/utils.h"
+#include "data/datasets/synergy_recipes/dataset.h"
+#include "data/enums/skill_type.h"
+#include "utils/dataset_loader.h"
+#include "utils/itemutils.h"
+
+#include <algorithm>
+#include <array>
+#include <stdexcept>
+#include <utility>
+#include <vector>
 
 namespace synergyutils
 {
@@ -32,70 +41,96 @@ namespace
 
 std::vector<SynergyRecipe> synergyRecipes;
 
+// Skill numbering the synergy scripts use: 0 synergy, 1 fishing, then woodworking to cooking.
+auto synergySkill(const xi::SkillType skill) -> uint8
+{
+    if (skill == xi::SkillType::Synergy)
+    {
+        return 0;
+    }
+
+    return static_cast<uint8>(skill) - static_cast<uint8>(xi::SkillType::Fishing) + 1;
+}
+
 } // namespace
 
 void LoadSynergyRecipes()
 {
-    const auto rset = db::preparedStmt("SELECT "
-                                       "id, "
-                                       "primary_skill, primary_rank, secondary_skill, secondary_rank, tertiary_skill, tertiary_rank, "
-                                       "cost_fire_fewell, cost_ice_fewell, cost_wind_fewell, cost_earth_fewell, "
-                                       "cost_lightning_fewell, cost_water_fewell, cost_light_fewell, cost_dark_fewell, "
-                                       "ingredient1, ingredient2, ingredient3, ingredient4, "
-                                       "ingredient5, ingredient6, ingredient7, ingredient8, "
-                                       "result, resultHQ1, resultHQ2, resultHQ3, "
-                                       "resultQty, resultHQ1Qty, resultHQ2Qty, resultHQ3Qty, "
-                                       "resultName "
-                                       "FROM synergy_recipes");
-    if (rset && rset->rowsCount())
+    std::vector<SynergyRecipe> recipes;
+
+    try
     {
-        synergyRecipes.reserve(rset->rowsCount());
-
-        while (rset->next())
+        for (const auto& source : xi::data::loadDataset<xi::data::datasets::synergy_recipes::Dataset>())
         {
-            auto recipe = SynergyRecipe{
-                .id = rset->get<uint32>("id"),
+            const auto context = fmt::format("synergy recipe {}", source.Id);
 
-                .primary_skill   = rset->get<uint8>("primary_skill"),
-                .primary_rank    = rset->get<uint8>("primary_rank"),
-                .secondary_skill = rset->get<uint8>("secondary_skill"),
-                .secondary_rank  = rset->get<uint8>("secondary_rank"),
-                .tertiary_skill  = rset->get<uint8>("tertiary_skill"),
-                .tertiary_rank   = rset->get<uint8>("tertiary_rank"),
+            std::vector<uint16> ingredients;
+            for (const auto& [item, count] : source.Items.Ingredients)
+            {
+                ingredients.insert(ingredients.end(), count, xi::items::resolveRecipeItem(item, context));
+            }
 
-                .cost_fire_fewell      = rset->get<uint8>("cost_fire_fewell"),
-                .cost_ice_fewell       = rset->get<uint8>("cost_ice_fewell"),
-                .cost_wind_fewell      = rset->get<uint8>("cost_wind_fewell"),
-                .cost_earth_fewell     = rset->get<uint8>("cost_earth_fewell"),
-                .cost_lightning_fewell = rset->get<uint8>("cost_lightning_fewell"),
-                .cost_water_fewell     = rset->get<uint8>("cost_water_fewell"),
-                .cost_light_fewell     = rset->get<uint8>("cost_light_fewell"),
-                .cost_dark_fewell      = rset->get<uint8>("cost_dark_fewell"),
+            std::ranges::sort(ingredients);
+            ingredients.resize(8);
 
-                .ingredient1 = rset->get<uint16>("ingredient1"),
-                .ingredient2 = rset->get<uint16>("ingredient2"),
-                .ingredient3 = rset->get<uint16>("ingredient3"),
-                .ingredient4 = rset->get<uint16>("ingredient4"),
-                .ingredient5 = rset->get<uint16>("ingredient5"),
-                .ingredient6 = rset->get<uint16>("ingredient6"),
-                .ingredient7 = rset->get<uint16>("ingredient7"),
-                .ingredient8 = rset->get<uint16>("ingredient8"),
+            std::array<std::pair<uint8, uint8>, 2> support{}; // skill and rank
+            for (size_t index = 0; index < source.Support.size(); ++index)
+            {
+                support[index] = { synergySkill(source.Support[index].Skill), static_cast<uint8>(source.Support[index].Rank) };
+            }
 
-                .result    = rset->get<uint16>("result"),
-                .resultHQ1 = rset->get<uint16>("resultHQ1"),
-                .resultHQ2 = rset->get<uint16>("resultHQ2"),
-                .resultHQ3 = rset->get<uint16>("resultHQ3"),
+            const auto& results = source.Items.Results;
+            const auto& fewell  = source.Fewell;
 
-                .resultQty    = rset->get<uint8>("resultQty"),
-                .resultHQ1Qty = rset->get<uint8>("resultHQ1Qty"),
-                .resultHQ2Qty = rset->get<uint8>("resultHQ2Qty"),
-                .resultHQ3Qty = rset->get<uint8>("resultHQ3Qty"),
+            recipes.push_back({
+                .id = source.Id,
 
-                .resultName = rset->get<std::string>("resultName").c_str(),
-            };
-            synergyRecipes.push_back(recipe);
+                .primary_skill   = synergySkill(xi::SkillType::Synergy),
+                .primary_rank    = static_cast<uint8>(source.Rank),
+                .secondary_skill = support[0].first,
+                .secondary_rank  = support[0].second,
+                .tertiary_skill  = support[1].first,
+                .tertiary_rank   = support[1].second,
+
+                .cost_fire_fewell      = fewell[0],
+                .cost_ice_fewell       = fewell[1],
+                .cost_wind_fewell      = fewell[2],
+                .cost_earth_fewell     = fewell[3],
+                .cost_lightning_fewell = fewell[4],
+                .cost_water_fewell     = fewell[5],
+                .cost_light_fewell     = fewell[6],
+                .cost_dark_fewell      = fewell[7],
+
+                .ingredient1 = ingredients[0],
+                .ingredient2 = ingredients[1],
+                .ingredient3 = ingredients[2],
+                .ingredient4 = ingredients[3],
+                .ingredient5 = ingredients[4],
+                .ingredient6 = ingredients[5],
+                .ingredient7 = ingredients[6],
+                .ingredient8 = ingredients[7],
+
+                .result    = xi::items::resolveRecipeItem(results[0].Item, context),
+                .resultHQ1 = xi::items::resolveRecipeItem(results[1].Item, context),
+                .resultHQ2 = xi::items::resolveRecipeItem(results[2].Item, context),
+                .resultHQ3 = xi::items::resolveRecipeItem(results[3].Item, context),
+
+                .resultQty    = results[0].Quantity,
+                .resultHQ1Qty = results[1].Quantity,
+                .resultHQ2Qty = results[2].Quantity,
+                .resultHQ3Qty = results[3].Quantity,
+
+                .resultName = source.Name,
+            });
         }
     }
+    catch (const std::exception& error)
+    {
+        ShowErrorFmt("Failed to load synergy recipes: {}", error.what());
+        return;
+    }
+
+    synergyRecipes = std::move(recipes);
 }
 
 auto GetSynergyRecipeByID(uint32 id) -> Maybe<SynergyRecipe>

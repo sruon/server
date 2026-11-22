@@ -26,6 +26,8 @@
 #include "common/logging.h"
 #include "common/timer.h"
 #include "common/types/flat_hash_map.h"
+#include "data/datasets/synth_recipes/dataset.h"
+#include "data/enums/element.h"
 #include "data/enums/key_item.h"
 #include "entities/battle_entity.h"
 #include "enums/msg_basic.h"
@@ -43,6 +45,7 @@
 #include "packets/s2c/0x06f_combine_ans.h"
 #include "packets/s2c/0x070_combine_inf.h"
 #include "roe.h"
+#include "utils/dataset_loader.h"
 #include "zone.h"
 
 #include <fmt/chrono.h>
@@ -51,6 +54,9 @@
 #include <algorithm>
 #include <array>
 #include <cmath>
+#include <stdexcept>
+#include <tuple>
+#include <vector>
 
 // TODO: This largely overlaps with SynthesisOutcome and could be simplified.
 #define RESULT_SUCCESS 0x00
@@ -63,146 +69,85 @@ namespace synthutils
 namespace
 {
 
-struct SynthRecipe
+auto crystalString(uint16 crystalID) -> std::string
 {
-    uint32      ID{};
-    uint8       Desynth{};
-    xi::KeyItem RequiredKeyItem{};
-    uint8       Wood{};
-    uint8       Smith{};
-    uint8       Gold{};
-    uint8       Cloth{};
-    uint8       Leather{};
-    uint8       Bone{};
-    uint8       Alchemy{};
-    uint8       Cook{};
-    uint16      Crystal{};
-    uint16      HQCrystal{};
-    uint16      Ingredient1{};
-    uint16      Ingredient2{};
-    uint16      Ingredient3{};
-    uint16      Ingredient4{};
-    uint16      Ingredient5{};
-    uint16      Ingredient6{};
-    uint16      Ingredient7{};
-    uint16      Ingredient8{};
-    uint16      Result{};
-    uint16      ResultHQ1{};
-    uint16      ResultHQ2{};
-    uint16      ResultHQ3{};
-    uint8       ResultQty{};
-    uint8       ResultHQ1Qty{};
-    uint8       ResultHQ2Qty{};
-    uint8       ResultHQ3Qty{};
+    std::string out = "None";
 
-    std::string ResultName;
-    std::string ContentTag;
-
-    auto getSkillValue(xi::SkillType type) const -> uint16
+    switch (crystalID)
     {
-        switch (type)
-        {
-            case xi::SkillType::Woodworking:
-                return Wood;
-            case xi::SkillType::Smithing:
-                return Smith;
-            case xi::SkillType::Goldsmithing:
-                return Gold;
-            case xi::SkillType::Clothcraft:
-                return Cloth;
-            case xi::SkillType::Leathercraft:
-                return Leather;
-            case xi::SkillType::Bonecraft:
-                return Bone;
-            case xi::SkillType::Alchemy:
-                return Alchemy;
-            case xi::SkillType::Cooking:
-                return Cook;
-            default:
-                return 0;
-        }
+        case FIRE_CRYSTAL:
+        case INFERNO_CRYSTAL:
+        case PYRE_CRYSTAL:
+            out = "Fire";
+            break;
+
+        case ICE_CRYSTAL:
+        case GLACIER_CRYSTAL:
+        case FROST_CRYSTAL:
+            out = "Ice";
+            break;
+
+        case WIND_CRYSTAL:
+        case CYCLONE_CRYSTAL:
+        case VORTEX_CRYSTAL:
+            out = "Wind";
+            break;
+
+        case EARTH_CRYSTAL:
+        case TERRA_CRYSTAL:
+        case GEO_CRYSTAL:
+            out = "Earth";
+            break;
+
+        case LIGHTNING_CRYSTAL:
+        case PLASMA_CRYSTAL:
+        case BOLT_CRYSTAL:
+            out = "Lightning";
+            break;
+
+        case WATER_CRYSTAL:
+        case TORRENT_CRYSTAL:
+        case FLUID_CRYSTAL:
+            out = "Water";
+            break;
+
+        case LIGHT_CRYSTAL:
+        case AURORA_CRYSTAL:
+        case GLIMMER_CRYSTAL:
+            out = "Light";
+            break;
+
+        case DARK_CRYSTAL:
+        case TWILIGHT_CRYSTAL:
+        case SHADOW_CRYSTAL:
+            out = "Dark";
+            break;
     }
 
-    static auto crystalString(uint16 crystalID) -> std::string
-    {
-        std::string out = "None";
+    return out;
+}
 
-        switch (crystalID)
-        {
-            case FIRE_CRYSTAL:
-            case INFERNO_CRYSTAL:
-            case PYRE_CRYSTAL:
-                out = "Fire";
-                break;
+auto ingredientKey(uint16 crystal, const std::array<uint16, 8>& ingredients) -> std::string
+{
+    return fmt::format("{}-{}-{}-{}-{}-{}-{}-{}-{}",
+                       crystalString(crystal),
+                       ingredients[0],
+                       ingredients[1],
+                       ingredients[2],
+                       ingredients[3],
+                       ingredients[4],
+                       ingredients[5],
+                       ingredients[6],
+                       ingredients[7]);
+}
 
-            case ICE_CRYSTAL:
-            case GLACIER_CRYSTAL:
-            case FROST_CRYSTAL:
-                out = "Ice";
-                break;
+auto recipeKey(const SynthRecipe& recipe) -> std::string
+{
+    return ingredientKey(recipe.Crystal, recipe.Ingredients);
+}
 
-            case WIND_CRYSTAL:
-            case CYCLONE_CRYSTAL:
-            case VORTEX_CRYSTAL:
-                out = "Wind";
-                break;
-
-            case EARTH_CRYSTAL:
-            case TERRA_CRYSTAL:
-            case GEO_CRYSTAL:
-                out = "Earth";
-                break;
-
-            case LIGHTNING_CRYSTAL:
-            case PLASMA_CRYSTAL:
-            case BOLT_CRYSTAL:
-                out = "Lightning";
-                break;
-
-            case WATER_CRYSTAL:
-            case TORRENT_CRYSTAL:
-            case FLUID_CRYSTAL:
-                out = "Water";
-                break;
-
-            case LIGHT_CRYSTAL:
-            case AURORA_CRYSTAL:
-            case GLIMMER_CRYSTAL:
-                out = "Light";
-                break;
-
-            case DARK_CRYSTAL:
-            case TWILIGHT_CRYSTAL:
-            case SHADOW_CRYSTAL:
-                out = "Dark";
-                break;
-        }
-
-        return out;
-    }
-
-    static auto ingredientKey(uint16 crystal, const std::array<uint16, 8>& ingredients) -> std::string
-    {
-        return fmt::format("{}-{}-{}-{}-{}-{}-{}-{}-{}",
-                           crystalString(crystal),
-                           ingredients[0],
-                           ingredients[1],
-                           ingredients[2],
-                           ingredients[3],
-                           ingredients[4],
-                           ingredients[5],
-                           ingredients[6],
-                           ingredients[7]);
-    }
-
-    auto key() const
-    {
-        return ingredientKey(Crystal,
-                             { Ingredient1, Ingredient2, Ingredient3, Ingredient4, Ingredient5, Ingredient6, Ingredient7, Ingredient8 });
-    }
-};
-
-FlatHashMap<std::string, SynthRecipe> synthRecipes;
+std::vector<SynthRecipe>              synthRecipes; // ordered by id
+FlatHashMap<std::string, std::size_t> synthRecipesByKey;
 
 struct CrystalProps
 {
@@ -258,88 +203,106 @@ void LoadSynthRecipes()
 
     ShowInfo("Loading synth recipes");
 
-    synthRecipes.clear();
+    std::vector<SynthRecipe>              recipes;
+    FlatHashMap<std::string, std::size_t> byKey;
 
-    // TODO: If we limit by ID ranges, we could use multiple threads to load the recipes
-
-    const auto rset = db::preparedStmt("SELECT "
-                                       "ID, "
-                                       "Desynth, "
-                                       "KeyItem, "
-                                       "Wood, "
-                                       "Smith, "
-                                       "Gold, "
-                                       "Cloth, "
-                                       "Leather, "
-                                       "Bone, "
-                                       "Alchemy, "
-                                       "Cook, "
-                                       "Crystal, "
-                                       "HQCrystal, "
-                                       "Ingredient1, "
-                                       "Ingredient2, "
-                                       "Ingredient3, "
-                                       "Ingredient4, "
-                                       "Ingredient5, "
-                                       "Ingredient6, "
-                                       "Ingredient7, "
-                                       "Ingredient8, "
-                                       "Result, "
-                                       "ResultHQ1, "
-                                       "ResultHQ2, "
-                                       "ResultHQ3, "
-                                       "ResultQty, "
-                                       "ResultHQ1Qty, "
-                                       "ResultHQ2Qty, "
-                                       "ResultHQ3Qty, "
-                                       "ResultName, "
-                                       "content_tag "
-                                       "FROM synth_recipes");
-
-    if (!rset || !rset->rowsCount())
+    try
     {
-        ShowError("Failed to load synth recipes");
+        for (const auto& source : xi::data::loadDataset<xi::data::datasets::synth_recipes::Dataset>())
+        {
+            const auto context = fmt::format("synth recipe {}", source.Id);
+
+            SynthRecipe recipe{
+                .ID              = source.Id,
+                .Desynth         = source.Desynth,
+                .RequiredKeyItem = source.KeyItem,
+                .Skills          = source.Skills,
+                .Crystal         = static_cast<uint16>(FIRE_CRYSTAL + static_cast<uint16>(source.Crystal) - static_cast<uint16>(xi::Element::Fire)),
+                .Name            = source.Name,
+                .Content         = source.Content,
+            };
+
+            std::vector<uint16> ingredients;
+            for (const auto& [item, count] : source.Items.Ingredients)
+            {
+                ingredients.insert(ingredients.end(), count, xi::items::resolveRecipeItem(item, context));
+            }
+
+            std::ranges::sort(ingredients);
+            std::ranges::copy(ingredients, recipe.Ingredients.begin());
+
+            for (size_t tier = 0; tier < recipe.Results.size(); ++tier)
+            {
+                recipe.Results[tier] = { xi::items::resolveRecipeItem(source.Items.Results[tier].Item, context), source.Items.Results[tier].Quantity };
+            }
+
+            if (const auto [entry, inserted] = byKey.try_emplace(recipeKey(recipe), recipes.size()); !inserted)
+            {
+                throw std::runtime_error(fmt::format("{} uses the same crystal and ingredients as synth recipe {}", context, recipes[entry->second].ID));
+            }
+
+            recipes.emplace_back(std::move(recipe));
+        }
+    }
+    catch (const std::exception& error)
+    {
+        ShowErrorFmt("Failed to load synth recipes: {}", error.what());
         return;
     }
 
-    while (rset->next())
-    {
-        const auto recipe = SynthRecipe{
-            .ID              = rset->get<uint32>("ID"),
-            .Desynth         = rset->get<uint8>("Desynth"),
-            .RequiredKeyItem = rset->get<xi::KeyItem>("KeyItem"),
-            .Wood            = rset->get<uint8>("Wood"),
-            .Smith           = rset->get<uint8>("Smith"),
-            .Gold            = rset->get<uint8>("Gold"),
-            .Cloth           = rset->get<uint8>("Cloth"),
-            .Leather         = rset->get<uint8>("Leather"),
-            .Bone            = rset->get<uint8>("Bone"),
-            .Alchemy         = rset->get<uint8>("Alchemy"),
-            .Cook            = rset->get<uint8>("Cook"),
-            .Crystal         = rset->get<uint16>("Crystal"),
-            .HQCrystal       = rset->get<uint16>("HQCrystal"),
-            .Ingredient1     = rset->get<uint16>("Ingredient1"),
-            .Ingredient2     = rset->get<uint16>("Ingredient2"),
-            .Ingredient3     = rset->get<uint16>("Ingredient3"),
-            .Ingredient4     = rset->get<uint16>("Ingredient4"),
-            .Ingredient5     = rset->get<uint16>("Ingredient5"),
-            .Ingredient6     = rset->get<uint16>("Ingredient6"),
-            .Ingredient7     = rset->get<uint16>("Ingredient7"),
-            .Ingredient8     = rset->get<uint16>("Ingredient8"),
-            .Result          = rset->get<uint16>("Result"),
-            .ResultHQ1       = rset->get<uint16>("ResultHQ1"),
-            .ResultHQ2       = rset->get<uint16>("ResultHQ2"),
-            .ResultHQ3       = rset->get<uint16>("ResultHQ3"),
-            .ResultQty       = rset->get<uint8>("ResultQty"),
-            .ResultHQ1Qty    = rset->get<uint8>("ResultHQ1Qty"),
-            .ResultHQ2Qty    = rset->get<uint8>("ResultHQ2Qty"),
-            .ResultHQ3Qty    = rset->get<uint8>("ResultHQ3Qty"),
-            .ResultName      = rset->get<std::string>("ResultName"),
-            .ContentTag      = rset->getOrDefault<std::string>("content_tag", ""),
-        };
+    synthRecipes      = std::move(recipes);
+    synthRecipesByKey = std::move(byKey);
+}
 
-        synthRecipes[recipe.key()] = recipe;
+auto getMenuRecipes(const uint16 craft, const uint8 minLevel, const uint8 maxLevel) -> std::vector<const SynthRecipe*>
+{
+    struct MenuEntry
+    {
+        const SynthRecipe* Recipe{};
+        uint8              Level{};
+        std::string        ResultName;
+    };
+
+    std::vector<MenuEntry> entries;
+    if (craft < 1 || craft > 8)
+    {
+        return {};
     }
+
+    for (const auto& recipe : synthRecipes)
+    {
+        const auto level = recipe.Skills[craft - 1];
+        if (recipe.Desynth || level < std::ranges::max(recipe.Skills) || level < minLevel || level > maxLevel)
+        {
+            continue;
+        }
+
+        const auto* PItem = xi::items::lookup(recipe.Results[0].first);
+        if (PItem == nullptr)
+        {
+            continue;
+        }
+
+        // Uppercased to keep the order the case-insensitive SQL collation gave: letters sort before '_'.
+        auto resultName = PItem->getName();
+        std::ranges::transform(resultName, resultName.begin(), ::toupper);
+        entries.push_back({ .Recipe = &recipe, .Level = level, .ResultName = std::move(resultName) });
+    }
+
+    std::ranges::sort(entries,
+                      [](const MenuEntry& lhs, const MenuEntry& rhs)
+                      {
+                          return std::tie(lhs.Level, lhs.ResultName, lhs.Recipe->ID) < std::tie(rhs.Level, rhs.ResultName, rhs.Recipe->ID);
+                      });
+
+    std::vector<const SynthRecipe*> menu;
+    menu.reserve(entries.size());
+    for (const auto& entry : entries)
+    {
+        menu.push_back(entry.Recipe);
+    }
+
+    return menu;
 }
 
 namespace
@@ -365,25 +328,26 @@ auto resolveRecipe(CCharEntity* PChar, const SynthOffer& offer) -> bool
         ingredientIds[i] = offer.ingredients[i].itemId;
     }
 
-    const auto possibleRecipeKey = SynthRecipe::ingredientKey(offer.crystal.itemId, ingredientIds);
+    const auto possibleRecipeKey = ingredientKey(offer.crystal.itemId, ingredientIds);
 
-    auto it = synthRecipes.find(possibleRecipeKey);
-    if (it == synthRecipes.end())
+    const auto it = synthRecipesByKey.find(possibleRecipeKey);
+    if (it == synthRecipesByKey.end())
     {
         PChar->pushPacket<GP_SERV_COMMAND_COMBINE_ANS>(PChar, SynthesisResult::CancelBadRecipe);
         return false;
     }
 
-    const auto& recipe = it->second;
+    const auto& recipe = synthRecipes[it->second];
 
-    if (!luautils::IsContentEnabled(recipe.ContentTag))
+    if (!luautils::IsContentEnabled(recipe.Content))
     {
         PChar->pushPacket<GP_SERV_COMMAND_COMBINE_ANS>(PChar, SynthesisResult::CancelBadRecipe);
         return false;
     }
 
-    const CItem* PItem = xi::items::lookup(recipe.Result);
-    if (PItem && PItem->hasFlag(xi::ItemFlag::Rare) && charutils::HasItem(PChar, recipe.Result))
+    const auto   result = recipe.Results[0].first;
+    const CItem* PItem  = xi::items::lookup(result);
+    if (PItem && PItem->hasFlag(xi::ItemFlag::Rare) && charutils::HasItem(PChar, result))
     {
         PChar->pushPacket<GP_SERV_COMMAND_COMBINE_ANS>(PChar, SynthesisResult::CancelRareItem);
         return false;
@@ -402,10 +366,10 @@ auto resolveRecipe(CCharEntity* PChar, const SynthOffer& offer) -> bool
         .element       = crystalProps(offer.crystal.itemId).element,
         .results       = { {
             {},
-            { recipe.Result, recipe.ResultQty },
-            { recipe.ResultHQ1, recipe.ResultHQ1Qty },
-            { recipe.ResultHQ2, recipe.ResultHQ2Qty },
-            { recipe.ResultHQ3, recipe.ResultHQ3Qty },
+            { recipe.Results[0].first, recipe.Results[0].second },
+            { recipe.Results[1].first, recipe.Results[1].second },
+            { recipe.Results[2].first, recipe.Results[2].second },
+            { recipe.Results[3].first, recipe.Results[3].second },
         } },
     };
 
@@ -416,7 +380,7 @@ auto resolveRecipe(CCharEntity* PChar, const SynthOffer& offer) -> bool
 
     for (uint8 skillID = static_cast<uint8>(xi::SkillType::Woodworking); skillID <= static_cast<uint8>(xi::SkillType::Cooking); ++skillID)
     {
-        const uint16 skillValue   = recipe.getSkillValue(static_cast<xi::SkillType>(skillID));
+        const uint16 skillValue   = recipe.Skills[skillID - static_cast<uint8>(xi::SkillType::Woodworking)];
         const uint16 currentSkill = PChar->RealSkills.skill[skillID];
 
         data.skillRequired[skillID - static_cast<uint8>(xi::SkillType::Woodworking)] = static_cast<uint8>(skillValue);
@@ -1141,6 +1105,17 @@ auto toUtcDatetime(const earth_time::time_point timePoint) -> std::string
     return fmt::format("{:%Y-%m-%d %H:%M:%S}.{:03}", earth_time::to_utc_tm(seconds), millis);
 }
 
+auto lookupRecipeName(const uint32 recipeId) -> std::string
+{
+    const auto it = std::ranges::lower_bound(synthRecipes, recipeId, {}, &SynthRecipe::ID);
+    if (it == synthRecipes.end() || it->ID != recipeId)
+    {
+        return {};
+    }
+
+    return it->Name;
+}
+
 void auditSynth(CCharEntity* PChar, const std::string_view result)
 {
     if (!settings::get<bool>("map.AUDIT_PLAYER_CRAFT") || !PChar->PSession || !PChar->PSession->scheduler)
@@ -1149,19 +1124,20 @@ void auditSynth(CCharEntity* PChar, const std::string_view result)
     }
 
     PChar->PSession->scheduler->postToWorkerThread(
-        [result    = std::string(result),
-         charId    = PChar->id,
-         charName  = PChar->getName(),
-         recipeId  = PChar->craftState().recipeId(),
-         startTime = toUtcDatetime(timer::to_utc(PChar->m_LastSynthTime)),
-         endTime   = toUtcDatetime(earth_time::now())]()
+        [result     = std::string(result),
+         charId     = PChar->id,
+         charName   = PChar->getName(),
+         recipeId   = PChar->craftState().recipeId(),
+         recipeName = lookupRecipeName(PChar->craftState().recipeId()),
+         startTime  = toUtcDatetime(timer::to_utc(PChar->m_LastSynthTime)),
+         endTime    = toUtcDatetime(earth_time::now())]()
         {
             if (!db::preparedStmt("INSERT INTO audit_craft(charid, char_name, recipeid, recipe_name, result, start_time, end_time) "
-                                  "VALUES (?, ?, ?, (SELECT ResultName FROM synth_recipes WHERE ID = ?), ?, ?, ?)",
+                                  "VALUES (?, ?, ?, ?, ?, ?, ?)",
                                   charId,
                                   charName,
                                   recipeId,
-                                  recipeId,
+                                  recipeName,
                                   result,
                                   startTime,
                                   endTime))

@@ -99,8 +99,6 @@ auto db::checkTriggers() -> void
         "char_insert",
         "char_delete",
         "delivery_box_insert",
-        "ensure_synth_ingredients_are_ordered",
-        "ensure_synergy_ingredients_are_ordered",
     };
 
     bool foundError = false;

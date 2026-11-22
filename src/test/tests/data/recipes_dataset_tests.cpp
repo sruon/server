@@ -118,6 +118,32 @@ TEST_CASE("synth_recipes: recipes read from data/synth_recipes.yaml", "[data][re
     CHECK(findRecipe(recipes, 505) == nullptr);
 }
 
+TEST_CASE("synth_recipes: era modules patch yields, results and levels", "[data][recipes]")
+{
+    const auto core = slurp("data/synth_recipes.yaml");
+
+    const auto soa = SynthRecipesDataset::decode(xi::data::mergeYaml(core, std::array{ slurp("modules/era/data/soa/synth_recipes.yaml") }));
+
+    const auto* fuma = findRecipe(soa, 14017);
+    REQUIRE(fuma != nullptr);
+    CHECK(resultQuantities(fuma->Items) == std::vector<uint8>{ 3, 6, 9, 12 });
+
+    const auto* pebble = findRecipe(soa, 50514);
+    REQUIRE(pebble != nullptr);
+    CHECK(pebble->Name == "Pebble");
+    CHECK(resultItems(pebble->Items) == std::vector<std::string>{ "pebble", "pearl", "black_pearl", "black_pearl" });
+
+    const auto  rov     = SynthRecipesDataset::decode(xi::data::mergeYaml(core, std::array{ slurp("modules/era/data/rov/synth_recipes.yaml") }));
+    const auto* luShang = findRecipe(rov, 3049);
+    REQUIRE(luShang != nullptr);
+    CHECK(luShang->Skills[0] == 80);
+
+    const auto  abyssea  = SynthRecipesDataset::decode(xi::data::mergeYaml(core, std::array{ slurp("modules/era/data/abyssea/synth_recipes.yaml") }));
+    const auto* riceBall = findRecipe(abyssea, 74523);
+    REQUIRE(riceBall != nullptr);
+    CHECK(resultQuantities(riceBall->Items) == std::vector<uint8>{ 2, 1, 2, 2 });
+}
+
 TEST_CASE("synth_recipes: a module enables a recipe and changes its ingredients", "[data][recipes]")
 {
     const auto modules = std::array{ std::string{ "synth_recipes:\n"

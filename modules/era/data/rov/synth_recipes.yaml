@@ -1,0 +1,5 @@
+synth_recipes:
+  woodworking:
+    # Repairing Lu Shang's Fishing Rod needed 80 woodworking instead of 70.
+    # https://forum.square-enix.com/ffxi/threads/47481-Jun-25-2015-%28JST%29-Version-Update
+    3049: {level: 80}

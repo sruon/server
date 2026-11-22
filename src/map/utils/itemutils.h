@@ -41,6 +41,9 @@ auto lookup(uint16 itemId) -> const CItem*;
 // Reverse of lookup(), for data that names items instead of numbering them. Names are not unique yet, so a shared one resolves to the lower id.
 auto lookupIdByName(std::string_view name) -> Maybe<uint16>;
 
+// Item of a recipe, named or numbered when its name is shared. Throws when no loaded item matches.
+auto resolveRecipeItem(std::string_view item, std::string_view context) -> uint16;
+
 template <typename T>
 auto lookup(const uint16 itemId) -> const T*
 {

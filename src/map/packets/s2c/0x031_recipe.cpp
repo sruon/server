@@ -21,75 +21,54 @@
 
 #include "0x031_recipe.h"
 
+#include "common/xirand.h"
+#include "utils/synthutils.h"
+
+#include <array>
 #include <map>
 
 namespace
 {
 
-auto processRecipeDetails = [](auto& rset, GP_SERV_COMMAND_RECIPE_TYPE1_3& details, uint16 skillID)
+void fillRecipeDetails(const synthutils::SynthRecipe& recipe, GP_SERV_COMMAND_RECIPE_TYPE1_3& details, const uint16 skillID)
 {
-    std::map<uint16, uint16> ingredients;
-    uint16                   subcraftIDs[3] = { 0u, 0u, 0u };
-    size_t                   subidx         = 0;
+    std::array<uint16, 3> subcraftIDs{};
+    size_t                subidx = 0;
 
-    // So, each craft can have up to 3 subcrafts. This loop is
-    //     to pack the subcraft requirements to be sent
-    for (auto i = 1; i < 9; ++i)
+    // Each craft can have up to 3 subcrafts, packed in craft order.
+    for (uint16 craft = 1; craft <= recipe.Skills.size() && subidx < subcraftIDs.size(); ++craft)
     {
-        uint16 this_skill = 0u;
-        if (i != skillID && subidx < 3)
+        if (craft != skillID && recipe.Skills[craft - 1] > 0)
         {
-            this_skill = rset->template get<uint16>(i);
-        }
-
-        if (this_skill > 0u)
-        {
-            subcraftIDs[subidx] = i;
+            subcraftIDs[subidx] = craft;
             subidx++;
         }
     }
 
-    details.productitem   = rset->template get<uint16>("Result");
+    details.productitem   = recipe.Results[0].first;
     details.need_skill_1  = subcraftIDs[0];
     details.need_skill_2  = subcraftIDs[1];
     details.need_skill_3  = subcraftIDs[2];
-    details.need_item     = rset->template get<uint16>("Crystal");
-    details.need_key_item = rset->template get<uint16>("KeyItem");
+    details.need_item     = recipe.Crystal;
+    details.need_key_item = static_cast<uint16>(recipe.RequiredKeyItem);
 
-    // So this loop is a little weird. What we store in the db
-    //     is a list of 8 individual ingredients which may or
-    //     may not contain duplicates. What we need for the
-    //     packet is a set of ingredient and quantity. In order
-    //     to achieve that, we're pushing the first instance of
-    //     an ingredient into a std::map with a qty 1 and then
-    //     any duplicate instances will increase the quantity
-    //     without creating new duplicate entries
-    for (auto i = 0; i < 8; ++i)
+    std::map<uint16, uint16> ingredients;
+    for (const auto ingredient : recipe.Ingredients)
     {
-        uint16 this_ingredient = 0;
-
-        this_ingredient = rset->template get<uint16>(11 + i);
-        if (this_ingredient != 0)
+        if (ingredient != 0)
         {
-            if (ingredients[this_ingredient])
-            {
-                ingredients[this_ingredient] = ingredients[this_ingredient] + 1;
-            }
-            else
-            {
-                ingredients[this_ingredient] = 1;
-            }
+            ++ingredients[ingredient];
         }
     }
 
     auto idx = 0;
-    for (auto& [itemId, itemCount] : ingredients)
+    for (const auto& [itemId, itemCount] : ingredients)
     {
         details.itemnum[idx]   = itemId;
         details.itemcount[idx] = itemCount;
         idx++;
     }
-};
+}
 
 } // namespace
 
@@ -107,20 +86,9 @@ GP_SERV_COMMAND_RECIPE::GP_SERV_COMMAND_RECIPE(GP_SERV_COMMAND_RECIPE_TYPE type,
             const uint8 minSkill       = calculatedRank * 10;
             const uint8 maxSkill       = (calculatedRank + 1) * 10;
 
-            const auto rset = db::preparedStmt("SELECT KeyItem, Wood, Smith, Gold, Cloth, Leather, Bone, Alchemy, Cook, Crystal, Result, "
-                                               "Ingredient1, Ingredient2, Ingredient3, Ingredient4, Ingredient5, Ingredient6, Ingredient7, Ingredient8 "
-                                               "FROM (SELECT *, CASE ? WHEN 1 THEN Wood WHEN 2 THEN Smith WHEN 3 THEN Gold WHEN 4 THEN Cloth "
-                                               "WHEN 5 THEN Leather WHEN 6 THEN Bone WHEN 7 THEN Alchemy WHEN 8 THEN Cook END AS craftLevel "
-                                               "FROM synth_recipes WHERE Desynth = 0) AS recipes "
-                                               "INNER JOIN item_basic ON Result = item_basic.itemid "
-                                               "WHERE craftLevel >= GREATEST(Wood, Smith, Gold, Cloth, Leather, Bone, Alchemy, Cook) AND "
-                                               "craftLevel BETWEEN ? AND ? ORDER BY RAND() LIMIT 1",
-                                               skillID,
-                                               minSkill,
-                                               maxSkill);
-            FOR_DB_SINGLE_RESULT(rset)
+            if (const auto recipes = synthutils::getMenuRecipes(skillID, minSkill, maxSkill); !recipes.empty())
             {
-                processRecipeDetails(rset, packet.Details, skillID);
+                fillRecipeDetails(*xirand::GetRandomElement(recipes), packet.Details, skillID);
             }
 
             packet.Details.Type = GP_SERV_COMMAND_RECIPE_TYPE::RecipeDetail1;
@@ -136,21 +104,9 @@ GP_SERV_COMMAND_RECIPE::GP_SERV_COMMAND_RECIPE(GP_SERV_COMMAND_RECIPE_TYPE type,
                 maxSkill = skillLevel;
             }
 
-            const auto rset = db::preparedStmt("SELECT KeyItem, Wood, Smith, Gold, Cloth, Leather, Bone, Alchemy, Cook, Crystal, Result, "
-                                               "Ingredient1, Ingredient2, Ingredient3, Ingredient4, Ingredient5, Ingredient6, Ingredient7, Ingredient8 "
-                                               "FROM (SELECT *, CASE ? WHEN 1 THEN Wood WHEN 2 THEN Smith WHEN 3 THEN Gold WHEN 4 THEN Cloth "
-                                               "WHEN 5 THEN Leather WHEN 6 THEN Bone WHEN 7 THEN Alchemy WHEN 8 THEN Cook END AS craftLevel "
-                                               "FROM synth_recipes WHERE Desynth = 0) AS recipes "
-                                               "INNER JOIN item_basic ON Result = item_basic.itemid "
-                                               "WHERE craftLevel >= GREATEST(Wood, Smith, Gold, Cloth, Leather, Bone, Alchemy, Cook) AND "
-                                               "craftLevel BETWEEN ? AND ? ORDER BY craftLevel, item_basic.name LIMIT ?, 1",
-                                               skillID,
-                                               minSkill,
-                                               maxSkill,
-                                               offset);
-            FOR_DB_SINGLE_RESULT(rset)
+            if (const auto recipes = synthutils::getMenuRecipes(skillID, minSkill, maxSkill); offset < recipes.size())
             {
-                processRecipeDetails(rset, packet.Details, skillID);
+                fillRecipeDetails(*recipes[offset], packet.Details, skillID);
             }
 
             packet.Details.Type = GP_SERV_COMMAND_RECIPE_TYPE::RecipeDetail2;
@@ -167,28 +123,18 @@ GP_SERV_COMMAND_RECIPE::GP_SERV_COMMAND_RECIPE(GP_SERV_COMMAND_RECIPE_TYPE type,
                 maxSkill = skillLevel;
             }
 
-            const auto rset = db::preparedStmt("SELECT Result "
-                                               "FROM (SELECT *, CASE ? WHEN 1 THEN Wood WHEN 2 THEN Smith WHEN 3 THEN Gold WHEN 4 THEN Cloth "
-                                               "WHEN 5 THEN Leather WHEN 6 THEN Bone WHEN 7 THEN Alchemy WHEN 8 THEN Cook END AS craftLevel "
-                                               "FROM synth_recipes WHERE Desynth = 0) AS recipes "
-                                               "INNER JOIN item_basic ON Result = item_basic.itemid "
-                                               "WHERE craftLevel >= GREATEST(Wood, Smith, Gold, Cloth, Leather, Bone, Alchemy, Cook) AND "
-                                               "craftLevel BETWEEN ? AND ? ORDER BY craftLevel, item_basic.name LIMIT ?, 17",
-                                               skillID,
-                                               minSkill,
-                                               maxSkill,
-                                               offset);
-            FOR_DB_MULTIPLE_RESULTS(rset)
+            const auto recipes = synthutils::getMenuRecipes(skillID, minSkill, maxSkill);
+            for (size_t index = offset; index < recipes.size(); ++index)
             {
                 if (idx == 16)
                 {
                     // The 17th result of a query is not displayed in the menu, but instead is used to signal
                     // to the client that another page is available.  This item ID is stored at 0x32.
-                    packet.List.itemnum_next = rset->get<uint16>("Result");
+                    packet.List.itemnum_next = recipes[index]->Results[0].first;
                     break;
                 }
 
-                packet.List.itemnum[idx] = rset->get<uint16>("Result");
+                packet.List.itemnum[idx] = recipes[index]->Results[0].first;
                 ++idx;
             }
 

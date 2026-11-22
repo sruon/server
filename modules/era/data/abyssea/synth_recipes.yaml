@@ -1,0 +1,7 @@
+synth_recipes:
+  cooking:
+    # Tonosama Rice Ball made 2 at normal quality instead of 4.
+    # https://forum.square-enix.com/ffxi/threads/22099-March-27-2012-%28JST%29-Version-Update
+    74523:
+      results:
+        nq: {qty: 2}

@@ -1,0 +1,27 @@
+synth_recipes:
+  smithing:
+    # Fuma Shuriken yields went from 3, 6, 9, 12 to 33, 66, 99, 99.
+    # https://forum.square-enix.com/ffxi/threads/44592-Oct-7-2014-%28JST%29-Version-Update
+    14017:
+      results:
+        nq:  {qty:  3}
+        hq1: {qty:  6}
+        hq2: {qty:  9}
+        hq3: {qty: 12}
+
+  bonecraft:
+    # Shall Shell and Istiridye made Pebble, with Pearl and Black Pearl at high quality.
+    # https://forum.square-enix.com/ffxi/threads/42614-Jun-17-2014-%28JST%29-Version-Update
+    50514:
+      name: Pebble
+      results:
+        nq:  {item:      pebble}
+        hq1: {item:       pearl}
+        hq2: {item: black_pearl}
+
+    50516:
+      name: Pebble
+      results:
+        nq:  {item:      pebble}
+        hq1: {item:       pearl}
+        hq2: {item: black_pearl}

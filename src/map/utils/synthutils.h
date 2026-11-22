@@ -21,6 +21,15 @@
 
 #pragma once
 
+#include "common/cbasetypes.h"
+#include "data/enums/content.h"
+#include "data/enums/key_item.h"
+
+#include <array>
+#include <string>
+#include <utility>
+#include <vector>
+
 /************************************************************************
  *                                                                       *
  *  Methods required for the synthesis to work                           *
@@ -45,7 +54,23 @@ enum SYNTHESIS_ELEMENT
     ELEMENT_DARK      = 7,
 };
 
+struct SynthRecipe
+{
+    uint32                                  ID{};
+    bool                                    Desynth{};
+    xi::KeyItem                             RequiredKeyItem{};
+    std::array<uint8, 8>                    Skills{}; // woodworking to cooking
+    uint16                                  Crystal{};
+    std::array<uint16, 8>                   Ingredients{}; // sorted, 0 in empty slots
+    std::array<std::pair<uint16, uint8>, 4> Results{};     // item and quantity, normal quality then high quality 1 to 3
+    std::string                             Name;
+    xi::Content                             Content{};
+};
+
 void LoadSynthRecipes();
+
+// Recipes the recipe menu of a craft (1 woodworking to 8 cooking) lists, in menu order.
+auto getMenuRecipes(uint16 craft, uint8 minLevel, uint8 maxLevel) -> std::vector<const SynthRecipe*>;
 void startSynth(CCharEntity* PChar, const SynthOffer& offer);
 void sendSynthDone(CCharEntity* PChar);
 void doSynthCriticalFail(CCharEntity* PChar);
