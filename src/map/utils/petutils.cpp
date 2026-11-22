@@ -58,10 +58,46 @@
 #include "packets/s2c/0x0ac_command_data.h"
 #include "zone.h"
 
+#include <array>
+
 namespace
 {
 
 std::vector<Pet_t*> g_PPetList;
+
+constexpr std::array kPoolResists{
+    xi::Mod::SLASH_SDT,
+    xi::Mod::PIERCE_SDT,
+    xi::Mod::HTH_SDT,
+    xi::Mod::IMPACT_SDT,
+    xi::Mod::UDMGMAGIC,
+    xi::Mod::FIRE_SDT,
+    xi::Mod::ICE_SDT,
+    xi::Mod::WIND_SDT,
+    xi::Mod::EARTH_SDT,
+    xi::Mod::THUNDER_SDT,
+    xi::Mod::WATER_SDT,
+    xi::Mod::LIGHT_SDT,
+    xi::Mod::DARK_SDT,
+    xi::Mod::FIRE_RES_RANK,
+    xi::Mod::ICE_RES_RANK,
+    xi::Mod::WIND_RES_RANK,
+    xi::Mod::EARTH_RES_RANK,
+    xi::Mod::THUNDER_RES_RANK,
+    xi::Mod::WATER_RES_RANK,
+    xi::Mod::LIGHT_RES_RANK,
+    xi::Mod::DARK_RES_RANK,
+    xi::Mod::PARALYZE_RES_RANK,
+    xi::Mod::BIND_RES_RANK,
+    xi::Mod::SILENCE_RES_RANK,
+    xi::Mod::SLOW_RES_RANK,
+    xi::Mod::POISON_RES_RANK,
+    xi::Mod::LIGHT_SLEEP_RES_RANK,
+    xi::Mod::DARK_SLEEP_RES_RANK,
+    xi::Mod::BLIND_RES_RANK,
+    xi::Mod::STUN_RES_RANK,
+    xi::Mod::GRAVITY_RES_RANK,
+};
 
 } // namespace
 
@@ -82,16 +118,6 @@ void LoadPetList()
         }
 
         const auto attributes = mobutils::ResolvePoolAttributes(*pool);
-        const auto resist     = [&attributes](const xi::Mod modifier) -> int16
-        {
-            const auto it = attributes.Resists.find(modifier);
-            if (it == attributes.Resists.end())
-            {
-                return 0;
-            }
-
-            return it->second;
-        };
 
         auto* Pet = new Pet_t();
 
@@ -121,43 +147,14 @@ void LoadPetList()
 
         Pet->spellList = pool->SpellList;
 
-        // Specific Dmage Taken, as a %
-        Pet->slash_sdt  = resist(xi::Mod::SLASH_SDT);
-        Pet->pierce_sdt = resist(xi::Mod::PIERCE_SDT);
-        Pet->hth_sdt    = resist(xi::Mod::HTH_SDT);
-        Pet->impact_sdt = resist(xi::Mod::IMPACT_SDT);
-
-        Pet->magical_sdt = resist(xi::Mod::UDMGMAGIC);
-
-        Pet->fire_sdt    = resist(xi::Mod::FIRE_SDT);
-        Pet->ice_sdt     = resist(xi::Mod::ICE_SDT);
-        Pet->wind_sdt    = resist(xi::Mod::WIND_SDT);
-        Pet->earth_sdt   = resist(xi::Mod::EARTH_SDT);
-        Pet->thunder_sdt = resist(xi::Mod::THUNDER_SDT);
-        Pet->water_sdt   = resist(xi::Mod::WATER_SDT);
-        Pet->light_sdt   = resist(xi::Mod::LIGHT_SDT);
-        Pet->dark_sdt    = resist(xi::Mod::DARK_SDT);
-
-        // resistances
-        Pet->fire_res_rank    = resist(xi::Mod::FIRE_RES_RANK);
-        Pet->ice_res_rank     = resist(xi::Mod::ICE_RES_RANK);
-        Pet->wind_res_rank    = resist(xi::Mod::WIND_RES_RANK);
-        Pet->earth_res_rank   = resist(xi::Mod::EARTH_RES_RANK);
-        Pet->thunder_res_rank = resist(xi::Mod::THUNDER_RES_RANK);
-        Pet->water_res_rank   = resist(xi::Mod::WATER_RES_RANK);
-        Pet->light_res_rank   = resist(xi::Mod::LIGHT_RES_RANK);
-        Pet->dark_res_rank    = resist(xi::Mod::DARK_RES_RANK);
-
-        Pet->paralyze_res_rank    = resist(xi::Mod::PARALYZE_RES_RANK);
-        Pet->bind_res_rank        = resist(xi::Mod::BIND_RES_RANK);
-        Pet->silence_res_rank     = resist(xi::Mod::SILENCE_RES_RANK);
-        Pet->slow_res_rank        = resist(xi::Mod::SLOW_RES_RANK);
-        Pet->poison_res_rank      = resist(xi::Mod::POISON_RES_RANK);
-        Pet->light_sleep_res_rank = resist(xi::Mod::LIGHT_SLEEP_RES_RANK);
-        Pet->dark_sleep_res_rank  = resist(xi::Mod::DARK_SLEEP_RES_RANK);
-        Pet->blind_res_rank       = resist(xi::Mod::BLIND_RES_RANK);
-        Pet->stun_res_rank        = resist(xi::Mod::STUN_RES_RANK);
-        Pet->gravity_res_rank     = resist(xi::Mod::GRAVITY_RES_RANK);
+        for (const auto modifier : kPoolResists)
+        {
+            Pet->Resists[modifier] = 0;
+            if (const auto it = attributes.Resists.find(modifier); it != attributes.Resists.end())
+            {
+                Pet->Resists[modifier] = it->second;
+            }
+        }
 
         Pet->cmbSkill       = attributes.CombatSkill.value_or(xi::SkillType::None);
         Pet->cmbDelay       = attributes.Delay.value_or(240);
@@ -1340,41 +1337,10 @@ void SpawnMobPet(CBattleEntity* PMaster, uint32 PetID, bool preserveName)
 
         PPet->m_SpellListContainer = mobSpellList::GetMobSpellList(petData->spellList);
 
-        PPet->setModifier(xi::Mod::SLASH_SDT, petData->slash_sdt);
-        PPet->setModifier(xi::Mod::PIERCE_SDT, petData->pierce_sdt);
-        PPet->setModifier(xi::Mod::HTH_SDT, petData->hth_sdt);
-        PPet->setModifier(xi::Mod::IMPACT_SDT, petData->impact_sdt);
-
-        PPet->setModifier(xi::Mod::UDMGMAGIC, petData->magical_sdt);
-
-        PPet->setModifier(xi::Mod::FIRE_SDT, petData->fire_sdt);
-        PPet->setModifier(xi::Mod::ICE_SDT, petData->ice_sdt);
-        PPet->setModifier(xi::Mod::WIND_SDT, petData->wind_sdt);
-        PPet->setModifier(xi::Mod::EARTH_SDT, petData->earth_sdt);
-        PPet->setModifier(xi::Mod::THUNDER_SDT, petData->thunder_sdt);
-        PPet->setModifier(xi::Mod::WATER_SDT, petData->water_sdt);
-        PPet->setModifier(xi::Mod::LIGHT_SDT, petData->light_sdt);
-        PPet->setModifier(xi::Mod::DARK_SDT, petData->dark_sdt);
-
-        PPet->setModifier(xi::Mod::FIRE_RES_RANK, petData->fire_res_rank);
-        PPet->setModifier(xi::Mod::ICE_RES_RANK, petData->ice_res_rank);
-        PPet->setModifier(xi::Mod::WIND_RES_RANK, petData->wind_res_rank);
-        PPet->setModifier(xi::Mod::EARTH_RES_RANK, petData->earth_res_rank);
-        PPet->setModifier(xi::Mod::THUNDER_RES_RANK, petData->thunder_res_rank);
-        PPet->setModifier(xi::Mod::WATER_RES_RANK, petData->water_res_rank);
-        PPet->setModifier(xi::Mod::LIGHT_RES_RANK, petData->light_res_rank);
-        PPet->setModifier(xi::Mod::DARK_RES_RANK, petData->dark_res_rank);
-
-        PPet->setModifier(xi::Mod::PARALYZE_RES_RANK, petData->paralyze_res_rank);
-        PPet->setModifier(xi::Mod::BIND_RES_RANK, petData->bind_res_rank);
-        PPet->setModifier(xi::Mod::SILENCE_RES_RANK, petData->silence_res_rank);
-        PPet->setModifier(xi::Mod::SLOW_RES_RANK, petData->slow_res_rank);
-        PPet->setModifier(xi::Mod::POISON_RES_RANK, petData->poison_res_rank);
-        PPet->setModifier(xi::Mod::LIGHT_SLEEP_RES_RANK, petData->light_sleep_res_rank);
-        PPet->setModifier(xi::Mod::DARK_SLEEP_RES_RANK, petData->dark_sleep_res_rank);
-        PPet->setModifier(xi::Mod::BLIND_RES_RANK, petData->blind_res_rank);
-        PPet->setModifier(xi::Mod::STUN_RES_RANK, petData->stun_res_rank);
-        PPet->setModifier(xi::Mod::GRAVITY_RES_RANK, petData->gravity_res_rank);
+        for (const auto& [modifier, value] : petData->Resists)
+        {
+            PPet->setModifier(modifier, value);
+        }
 
         PPet->savePetModifiers();
     }
@@ -1932,41 +1898,10 @@ void LoadPet(CBattleEntity* PMaster, uint32 PetID, bool spawningFromZone)
     PPet->animationSpeed = PPetData->speed;
     PPet->UpdateSpeed();
 
-    PPet->setModifier(xi::Mod::SLASH_SDT, PPetData->slash_sdt);
-    PPet->setModifier(xi::Mod::PIERCE_SDT, PPetData->pierce_sdt);
-    PPet->setModifier(xi::Mod::HTH_SDT, PPetData->hth_sdt);
-    PPet->setModifier(xi::Mod::IMPACT_SDT, PPetData->impact_sdt);
-
-    PPet->setModifier(xi::Mod::UDMGMAGIC, PPetData->magical_sdt);
-
-    PPet->setModifier(xi::Mod::FIRE_SDT, PPetData->fire_sdt);
-    PPet->setModifier(xi::Mod::ICE_SDT, PPetData->ice_sdt);
-    PPet->setModifier(xi::Mod::WIND_SDT, PPetData->wind_sdt);
-    PPet->setModifier(xi::Mod::EARTH_SDT, PPetData->earth_sdt);
-    PPet->setModifier(xi::Mod::THUNDER_SDT, PPetData->thunder_sdt);
-    PPet->setModifier(xi::Mod::WATER_SDT, PPetData->water_sdt);
-    PPet->setModifier(xi::Mod::LIGHT_SDT, PPetData->light_sdt);
-    PPet->setModifier(xi::Mod::DARK_SDT, PPetData->dark_sdt);
-
-    PPet->setModifier(xi::Mod::FIRE_RES_RANK, PPetData->fire_res_rank);
-    PPet->setModifier(xi::Mod::ICE_RES_RANK, PPetData->ice_res_rank);
-    PPet->setModifier(xi::Mod::WIND_RES_RANK, PPetData->wind_res_rank);
-    PPet->setModifier(xi::Mod::EARTH_RES_RANK, PPetData->earth_res_rank);
-    PPet->setModifier(xi::Mod::THUNDER_RES_RANK, PPetData->thunder_res_rank);
-    PPet->setModifier(xi::Mod::WATER_RES_RANK, PPetData->water_res_rank);
-    PPet->setModifier(xi::Mod::LIGHT_RES_RANK, PPetData->light_res_rank);
-    PPet->setModifier(xi::Mod::DARK_RES_RANK, PPetData->dark_res_rank);
-
-    PPet->setModifier(xi::Mod::PARALYZE_RES_RANK, PPetData->paralyze_res_rank);
-    PPet->setModifier(xi::Mod::BIND_RES_RANK, PPetData->bind_res_rank);
-    PPet->setModifier(xi::Mod::SILENCE_RES_RANK, PPetData->silence_res_rank);
-    PPet->setModifier(xi::Mod::SLOW_RES_RANK, PPetData->slow_res_rank);
-    PPet->setModifier(xi::Mod::POISON_RES_RANK, PPetData->poison_res_rank);
-    PPet->setModifier(xi::Mod::LIGHT_SLEEP_RES_RANK, PPetData->light_sleep_res_rank);
-    PPet->setModifier(xi::Mod::DARK_SLEEP_RES_RANK, PPetData->dark_sleep_res_rank);
-    PPet->setModifier(xi::Mod::BLIND_RES_RANK, PPetData->blind_res_rank);
-    PPet->setModifier(xi::Mod::STUN_RES_RANK, PPetData->stun_res_rank);
-    PPet->setModifier(xi::Mod::GRAVITY_RES_RANK, PPetData->gravity_res_rank);
+    for (const auto& [modifier, value] : PPetData->Resists)
+    {
+        PPet->setModifier(modifier, value);
+    }
 
     if (PPet->getPetType() == PET_TYPE::AVATAR)
     {

@@ -24,8 +24,10 @@
 
 #include "common/cbasetypes.h"
 #include "common/mmo.h"
+#include "common/types/hash_map.h"
 #include "data/enums/damage_type.h"
 #include "data/enums/ecosystem.h"
+#include "data/enums/mod.h"
 #include "data/enums/skill_type.h"
 #include "modifier.h"
 
@@ -209,42 +211,7 @@ struct Pet_t
     // magic stuff
     uint16 spellList;
 
-    // resists
-    int16 slash_sdt;
-    int16 pierce_sdt;
-    int16 hth_sdt;
-    int16 impact_sdt;
-
-    int16 magical_sdt;
-
-    int16 fire_sdt;
-    int16 ice_sdt;
-    int16 wind_sdt;
-    int16 earth_sdt;
-    int16 thunder_sdt;
-    int16 water_sdt;
-    int16 light_sdt;
-    int16 dark_sdt;
-
-    int8 fire_res_rank;
-    int8 ice_res_rank;
-    int8 wind_res_rank;
-    int8 earth_res_rank;
-    int8 thunder_res_rank;
-    int8 water_res_rank;
-    int8 light_res_rank;
-    int8 dark_res_rank;
-
-    int8 paralyze_res_rank;
-    int8 bind_res_rank;
-    int8 silence_res_rank;
-    int8 slow_res_rank;
-    int8 poison_res_rank;
-    int8 light_sleep_res_rank;
-    int8 dark_sleep_res_rank;
-    int8 blind_res_rank;
-    int8 stun_res_rank;
-    int8 gravity_res_rank;
+    HashMap<xi::Mod, int16> Resists;
 
     Pet_t()
     : PetID(0)
@@ -276,37 +243,6 @@ struct Pet_t
     , accRank(0)
     , m_MobSkillList(0)
     , spellList(0)
-    , slash_sdt(0)
-    , pierce_sdt(0)
-    , hth_sdt(0)
-    , impact_sdt(0)
-    , magical_sdt(0)
-    , fire_sdt(0)
-    , ice_sdt(0)
-    , wind_sdt(0)
-    , earth_sdt(0)
-    , thunder_sdt(0)
-    , water_sdt(0)
-    , light_sdt(0)
-    , dark_sdt(0)
-    , fire_res_rank(0)
-    , ice_res_rank(0)
-    , wind_res_rank(0)
-    , earth_res_rank(0)
-    , thunder_res_rank(0)
-    , water_res_rank(0)
-    , light_res_rank(0)
-    , dark_res_rank(0)
-    , paralyze_res_rank(0)
-    , bind_res_rank(0)
-    , silence_res_rank(0)
-    , slow_res_rank(0)
-    , poison_res_rank(0)
-    , light_sleep_res_rank(0)
-    , dark_sleep_res_rank(0)
-    , blind_res_rank(0)
-    , stun_res_rank(0)
-    , gravity_res_rank(0)
     {
     }
 };

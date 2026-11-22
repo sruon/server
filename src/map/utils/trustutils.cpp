@@ -109,43 +109,6 @@ struct TrustData
 
     // magic stuff
     uint16 spellList{};
-
-    // resists
-    int16 slash_sdt{};
-    int16 pierce_sdt{};
-    int16 hth_sdt{};
-    int16 impact_sdt{};
-
-    int16 magical_sdt{};
-
-    int16 fire_sdt{};
-    int16 ice_sdt{};
-    int16 wind_sdt{};
-    int16 earth_sdt{};
-    int16 thunder_sdt{};
-    int16 water_sdt{};
-    int16 light_sdt{};
-    int16 dark_sdt{};
-
-    int8 fire_res_rank{};
-    int8 ice_res_rank{};
-    int8 wind_res_rank{};
-    int8 earth_res_rank{};
-    int8 thunder_res_rank{};
-    int8 water_res_rank{};
-    int8 light_res_rank{};
-    int8 dark_res_rank{};
-
-    int8 paralyze_res_rank{};
-    int8 bind_res_rank{};
-    int8 silence_res_rank{};
-    int8 slow_res_rank{};
-    int8 poison_res_rank{};
-    int8 light_sleep_res_rank{};
-    int8 dark_sleep_res_rank{};
-    int8 blind_res_rank{};
-    int8 stun_res_rank{};
-    int8 gravity_res_rank{};
 };
 
 HashMap<uint16, std::unique_ptr<TrustData>> g_PTrustData;
@@ -213,16 +176,6 @@ void BuildTrustData(uint32 TrustID)
     }
 
     const auto attributes = mobutils::ResolvePoolAttributes(*pool);
-    const auto resist     = [&attributes](const xi::Mod modifier) -> int16
-    {
-        const auto it = attributes.Resists.find(modifier);
-        if (it == attributes.Resists.end())
-        {
-            return 0;
-        }
-
-        return it->second;
-    };
 
     auto data = std::make_unique<TrustData>();
 
@@ -266,41 +219,6 @@ void BuildTrustData(uint32 TrustID)
     mobutils::ApplyStatRanks(*data, species.MobAttributes.Stats);
 
     // resistances
-    data->slash_sdt  = resist(xi::Mod::SLASH_SDT);
-    data->pierce_sdt = resist(xi::Mod::PIERCE_SDT);
-    data->hth_sdt    = resist(xi::Mod::HTH_SDT);
-    data->impact_sdt = resist(xi::Mod::IMPACT_SDT);
-
-    data->magical_sdt = resist(xi::Mod::UDMGMAGIC);
-
-    data->fire_sdt    = resist(xi::Mod::FIRE_SDT);
-    data->ice_sdt     = resist(xi::Mod::ICE_SDT);
-    data->wind_sdt    = resist(xi::Mod::WIND_SDT);
-    data->earth_sdt   = resist(xi::Mod::EARTH_SDT);
-    data->thunder_sdt = resist(xi::Mod::THUNDER_SDT);
-    data->water_sdt   = resist(xi::Mod::WATER_SDT);
-    data->light_sdt   = resist(xi::Mod::LIGHT_SDT);
-    data->dark_sdt    = resist(xi::Mod::DARK_SDT);
-
-    data->fire_res_rank    = resist(xi::Mod::FIRE_RES_RANK);
-    data->ice_res_rank     = resist(xi::Mod::ICE_RES_RANK);
-    data->wind_res_rank    = resist(xi::Mod::WIND_RES_RANK);
-    data->earth_res_rank   = resist(xi::Mod::EARTH_RES_RANK);
-    data->thunder_res_rank = resist(xi::Mod::THUNDER_RES_RANK);
-    data->water_res_rank   = resist(xi::Mod::WATER_RES_RANK);
-    data->light_res_rank   = resist(xi::Mod::LIGHT_RES_RANK);
-    data->dark_res_rank    = resist(xi::Mod::DARK_RES_RANK);
-
-    data->paralyze_res_rank    = resist(xi::Mod::PARALYZE_RES_RANK);
-    data->bind_res_rank        = resist(xi::Mod::BIND_RES_RANK);
-    data->silence_res_rank     = resist(xi::Mod::SILENCE_RES_RANK);
-    data->slow_res_rank        = resist(xi::Mod::SLOW_RES_RANK);
-    data->poison_res_rank      = resist(xi::Mod::POISON_RES_RANK);
-    data->light_sleep_res_rank = resist(xi::Mod::LIGHT_SLEEP_RES_RANK);
-    data->dark_sleep_res_rank  = resist(xi::Mod::DARK_SLEEP_RES_RANK);
-    data->blind_res_rank       = resist(xi::Mod::BLIND_RES_RANK);
-    data->stun_res_rank        = resist(xi::Mod::STUN_RES_RANK);
-    data->gravity_res_rank     = resist(xi::Mod::GRAVITY_RES_RANK);
 
     g_PTrustData[TrustID] = std::move(data);
 }
