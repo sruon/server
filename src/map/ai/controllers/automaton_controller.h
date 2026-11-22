@@ -41,21 +41,6 @@ struct CurrentManeuvers
     int dark{ 0 };
 };
 
-struct AutomatonAbility
-{
-    uint8  requiredFrame = 0;
-    uint16 skillLevel    = 0;
-};
-
-struct AutomatonSpell
-{
-    uint16                        skilllevel{ 0 };
-    uint8                         heads{ 0 };
-    xi::StatusEffect              enfeeble{ xi::StatusEffect::Ko };
-    xi::Immunity                  immunity{ xi::Immunity::None };
-    std::vector<xi::StatusEffect> removes;
-};
-
 class CAutomatonEntity;
 
 class CAutomatonController : public CPetController

@@ -25,7 +25,6 @@
 #include "ai/states/ability_state.h"
 #include "ai/states/weaponskill_state.h"
 #include "common/types/flat_hash_map.h"
-#include "common/types/hash_map.h"
 #include "common/utils.h"
 #include "data/datasets/automaton_abilities/dataset.h"
 #include "data/datasets/automaton_spells/dataset.h"
@@ -1696,58 +1695,44 @@ namespace automaton
 namespace
 {
 
-FlatHashMap<SpellID, AutomatonSpell, EnumClassHash> autoSpellList;
-std::vector<SpellID>                                naSpells;
-HashMap<uint16, AutomatonAbility>                   autoAbilityList;
+FlatHashMap<SpellID, xi::data::AutomatonSpellData, EnumClassHash> autoSpellList;
+std::vector<SpellID>                                              naSpells;
 
 } // namespace
 
 void LoadAutomatonSpellList()
 {
-    for (const auto& entry : xi::data::loadDataset<xi::data::datasets::automaton_spells::Dataset>())
+    for (auto& entry : xi::data::loadDataset<xi::data::datasets::automaton_spells::Dataset>())
     {
         const auto id = static_cast<SpellID>(entry.Id);
 
-        AutomatonSpell PSpell{
-            .skilllevel = entry.SkillLevel,
-            .enfeeble   = entry.Enfeeble,
-            .immunity   = entry.Immunity,
-            .removes    = entry.Removes,
-        };
-
-        for (const auto head : entry.Heads)
-        {
-            PSpell.heads |= 1 << (std::to_underlying(head) - 1);
-        }
-
-        if (!PSpell.removes.empty())
+        if (!entry.Removes.empty())
         {
             naSpells.emplace_back(id);
         }
 
-        autoSpellList[id] = std::move(PSpell);
+        autoSpellList[id] = std::move(entry);
     }
 }
 
 auto CanUseSpell(CAutomatonEntity* PCaster, const SpellID spellid) -> bool
 {
-    const AutomatonSpell& PSpell = autoSpellList[spellid];
-    return (PCaster->GetSkill(xi::SkillType::AutomatonMagic) >= PSpell.skilllevel) && (PSpell.heads & (1 << (static_cast<uint8>(PCaster->head()) - 1)));
+    const auto& PSpell = autoSpellList[spellid];
+    return PCaster->GetSkill(xi::SkillType::AutomatonMagic) >= PSpell.SkillLevel && std::ranges::contains(PSpell.Heads, PCaster->head());
 }
 
 auto CanUseEnfeeble(CBattleEntity* PTarget, const SpellID spell) -> bool
 {
-    const AutomatonSpell& PSpell   = autoSpellList[spell];
-    const auto&           statuses = PTarget->StatusEffectContainer;
-    return (!statuses->HasStatusEffect(PSpell.enfeeble) && !PTarget->hasImmunity(PSpell.immunity));
+    const auto& PSpell   = autoSpellList[spell];
+    const auto& statuses = PTarget->StatusEffectContainer;
+    return (!statuses->HasStatusEffect(PSpell.Enfeeble) && !PTarget->hasImmunity(PSpell.Immunity));
 }
 
 auto FindNaSpell(const CStatusEffect* PStatus) -> Maybe<SpellID>
 {
     for (auto spell : naSpells)
     {
-        const AutomatonSpell& PSpell = autoSpellList[spell];
-        if (std::ranges::find(PSpell.removes, PStatus->GetStatusID()) != PSpell.removes.end())
+        if (std::ranges::contains(autoSpellList[spell].Removes, PStatus->GetStatusID()))
         {
             return spell;
         }
@@ -1768,11 +1753,6 @@ void LoadAutomatonAbilities()
 {
     for (const auto& entry : xi::data::loadDataset<xi::data::datasets::automaton_abilities::Dataset>())
     {
-        autoAbilityList[entry.Id] = AutomatonAbility{
-            .requiredFrame = std::to_underlying(entry.Frame),
-            .skillLevel    = entry.SkillLevel,
-        };
-
         const auto filename = fmt::format("./scripts/actions/abilities/pets/automaton/{}.lua", entry.Name);
         luautils::LoadLuaObjectFromFile(filename);
     }
