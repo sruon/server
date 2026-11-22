@@ -25,6 +25,7 @@
 #include "data/datasets/zones/npcs/dataset.h"
 #include "data/datasets/zones/regions/dataset.h"
 #include "data/datasets/zones/settings/dataset.h"
+#include "data/datasets/zones/weather/dataset.h"
 #include "data/enums/weather.h"
 #include "data/loader.h"
 
@@ -33,12 +34,11 @@
 namespace
 {
 
-constexpr std::uint16_t WeatherCycle = 2160;
-
 using ZoneSettingsDataset = xi::data::datasets::zones::settings::Dataset;
 using MobsDataset         = xi::data::datasets::zones::mobs::Dataset;
 using NpcsDataset         = xi::data::datasets::zones::npcs::Dataset;
 using RegionsDataset      = xi::data::datasets::zones::regions::Dataset;
+using WeatherDataset      = xi::data::datasets::zones::weather::Dataset;
 
 } // namespace
 
@@ -372,43 +372,13 @@ void CZone::LoadZoneLines(const std::optional<xi::data::ZoneSettings>& settings)
     }
 }
 
-/*************************************************************************
- *                                                                        *
- *  Loads weather for the zone from zone_bweather SQL Table               *
- *                                                                        *
- *  xi::Weather is a rotating pattern of 2160 vanadiel days for each zone.    *
- *  It's stored as a blob of 2160 16-bit values, each representing 1 day  *
- *  starting from day 0 and storing 3 5-bit weather values each.          *
- *                                                                        *
- *              0        00000       00000        00000                   *
- *              ^        ^^^^^       ^^^^^        ^^^^^                   *
- *          padding      normal      common       rare                    *
- *                                                                        *
- *************************************************************************/
-
 void CZone::LoadZoneWeather()
 {
     TracyZoneScoped;
 
-    const auto rset = db::preparedStmt("SELECT weather "
-                                       "FROM zone_weather "
-                                       "WHERE zone = ? LIMIT 1",
-                                       m_zoneID);
-    FOR_DB_SINGLE_RESULT(rset)
+    if (const auto forecasts = xi::data::loadZoneFile<WeatherDataset>(GetID()))
     {
-        uint16_t weatherBlob[WeatherCycle]{};
-
-        db::extractFromBlob(rset, "weather", weatherBlob);
-        for (uint16 i = 0; i < WeatherCycle; i++)
-        {
-            if (weatherBlob[i])
-            {
-                const auto w_normal = static_cast<xi::Weather>(weatherBlob[i] >> 10);
-                const auto w_common = static_cast<xi::Weather>((weatherBlob[i] >> 5) & 0x1F);
-                const auto w_rare   = static_cast<xi::Weather>(weatherBlob[i] & 0x1F);
-                weather_.addEntry(i, ZoneWeather(w_normal, w_common, w_rare));
-            }
-        }
+        weather_.load(*forecasts);
     }
 }
 
@@ -776,7 +746,7 @@ void CZone::SetWeather(const xi::Weather weather)
 
     m_zoneEntities->WeatherChange(weather);
 
-    const auto   cycleTime  = vanadiel_time::now().time_since_epoch() % xi::vanadiel_clock::days(WeatherCycle);
+    const auto   cycleTime  = vanadiel_time::now().time_since_epoch() % xi::vanadiel_clock::days(xi::data::kWeatherCycleDays);
     const uint32 changeTime = static_cast<uint32>(std::chrono::floor<xi::vanadiel_clock::minutes>(cycleTime).count());
     weather_.set(weather, changeTime);
 
@@ -802,7 +772,7 @@ void CZone::UpdateWeather()
     WeatherDay = vanadiel_time::count_days(CurrentVanaDate.time_since_epoch());
 
     // The weather starts over again every 2160 days
-    WeatherDay = WeatherDay % WeatherCycle;
+    WeatherDay = WeatherDay % xi::data::kWeatherCycleDays;
 
     // Get a random number to determine which weather effect we will use
     WeatherChance = xirand::GetRandomNumber(100);

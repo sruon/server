@@ -44,9 +44,12 @@ auto WeatherContainer::isStatic() const -> bool
     return probabilities_.empty() || probabilities_.size() == 1;
 }
 
-void WeatherContainer::addEntry(uint16 day, ZoneWeather entry)
+void WeatherContainer::load(const xi::data::ZoneWeatherData& forecasts)
 {
-    probabilities_.insert(std::make_pair(day, entry));
+    for (const auto& [day, forecast] : forecasts)
+    {
+        probabilities_.insert(std::make_pair(day, ZoneWeather(forecast.Normal, forecast.Common, forecast.Rare)));
+    }
 }
 
 auto WeatherContainer::entryForDay(uint16 day) const -> ZoneWeather

@@ -25,6 +25,7 @@
 
 #include <map>
 
+#include "data/datasets/zones/weather/dataset.h"
 #include "data/enums/weather.h"
 
 struct ZoneWeather
@@ -43,7 +44,7 @@ struct ZoneWeather
 
 //
 // Owns a zone's weather state: the active weather, the timestamp it last
-// changed, and the per-day probability table loaded from the database.
+// changed, and the per-day probability table loaded from the zone data.
 //
 class WeatherContainer
 {
@@ -56,7 +57,7 @@ public:
     auto isStatic() const -> bool;
 
     // Build the probability table (called while loading the zone).
-    void addEntry(uint16 day, ZoneWeather entry);
+    void load(const xi::data::ZoneWeatherData& forecasts);
 
     // The probabilities in effect for the given day-of-cycle. Returns a zeroed
     // entry (which reads as xi::Weather::None) when no entry covers the day.
