@@ -49,10 +49,13 @@
 
 #include "battleutils.h"
 #include "charutils.h"
+#include "data/datasets/fishing/dataset.h"
+#include "data/datasets/zones/fishing_areas/dataset.h"
 #include "data/enums/detects.h"
 #include "data/enums/key_item.h"
 #include "data/enums/mob_mod.h"
 #include "data/enums/weather.h"
+#include "data/loader.h"
 #include "enums/chat_message_type.h"
 #include "enums/four_cc.h"
 #include "enums/msg_basic.h"
@@ -66,6 +69,7 @@
 #include "packets/c2s/0x110_fishing_2.h"
 #include "packets/s2c/0x029_battle_message.h"
 #include "status_effect_container.h"
+#include "utils/dataset_loader.h"
 #include "zoneutils.h"
 
 namespace fishingutils
@@ -74,16 +78,15 @@ namespace fishingutils
 namespace
 {
 
-std::map<xi::ZoneId, uint16>                          MessageOffset;
-std::map<uint32, fish_t*>                             FishList;
-std::map<xi::ZoneId, std::vector<uint32>>             ChestList;
-std::map<uint16, rod_t*>                              FishingRods;
-std::map<uint16, bait_t*>                             FishingBaits;
-std::map<xi::ZoneId, std::map<uint32, fishmob_t*>>    FishZoneMobList;       // zoneid, mobid, mob
-std::map<xi::ZoneId, std::map<uint8, fishingarea_t*>> FishingAreaList;       // zoneid, areaid, area
-std::map<xi::ZoneId, std::map<uint8, uint16>>         FishingCatchLists;     // zoneid, areaid, groupid
-std::map<uint16, std::map<uint32, uint16>>            FishingGroups;         // groupid, fishid, rarity
-std::map<uint16, std::map<uint32, uint8>>             FishingBaitAffinities; // baitid, fishid, power
+std::map<xi::ZoneId, uint16>                                    MessageOffset;
+std::map<uint32, fish_t*>                                       FishList;
+std::map<xi::ZoneId, std::vector<uint32>>                       ChestList;
+std::map<uint16, rod_t*>                                        FishingRods;
+std::map<uint16, bait_t*>                                       FishingBaits;
+std::map<xi::ZoneId, std::map<uint32, fishmob_t*>>              FishZoneMobList;       // zoneid, mobid, mob
+std::map<xi::ZoneId, std::map<uint8, fishingarea_t*>>           FishingAreaList;       // zoneid, areaid, area
+std::map<xi::ZoneId, std::map<uint8, std::map<uint32, uint16>>> FishingPools;          // zoneid, areaid, fishid, rarity
+std::map<uint16, std::map<uint32, uint8>>                       FishingBaitAffinities; // baitid, fishid, power
 
 constexpr auto superLegendaryFish = std::array<uint16, 4>{ ITEMID::GUGRUSAURUS, ITEMID::LIK, ITEMID::MATSYA, ITEMID::ABAIA };
 
@@ -1233,9 +1236,8 @@ auto GetBaitPower(bait_t* bait, fish_t* fish) -> uint8
 auto GetFishPool(const xi::ZoneId zoneID, const uint8 areaID, const uint16 BaitID) -> std::map<fish_t*, uint16>
 {
     std::map<fish_t*, uint16> pool;
-    uint16                    groupId = FishingCatchLists[zoneID][areaID];
 
-    for (auto fish : FishingGroups[groupId])
+    for (auto fish : FishingPools[zoneID][areaID])
     {
         auto* fishEntry = GetFish(fish.first);
         if (fishEntry == nullptr)
@@ -1255,9 +1257,8 @@ auto GetFishPool(const xi::ZoneId zoneID, const uint8 areaID, const uint16 BaitI
 auto GetItemPool(const xi::ZoneId zoneID, const uint8 areaID) -> std::vector<fish_t*>
 {
     std::vector<fish_t*> pool;
-    uint16               groupId = FishingCatchLists[zoneID][areaID];
 
-    for (auto fish : FishingGroups[groupId])
+    for (auto fish : FishingPools[zoneID][areaID])
     {
         auto* fishEntry = GetFish(fish.first);
         if (fishEntry != nullptr && fishEntry->item)
@@ -2619,7 +2620,7 @@ auto FishingCheck(CCharEntity* PChar, uint8 fishingSkill, rod_t* rod, bait_t* ba
 
         for (auto fishmob : FishZoneMobList[PChar->getZone()])
         {
-            if (fishmob.second->mobName == "Puffer_Pugil_Brigand")
+            if (fishmob.second->mobName == "puffer_pugil_brigand")
             {
                 CMobEntity* PMob = dynamic_cast<CMobEntity*>(zoneutils::GetEntity(fishmob.second->mobId, TYPE_MOB));
                 if (PMob != nullptr && PMob->GetLocalVar("hooked") == 0 && !PMob->isAlive())
@@ -3236,123 +3237,6 @@ void LoadFishingMessages()
         });
 }
 
-void LoadFishingAreas()
-{
-    const auto rset = db::preparedStmt("SELECT fa.areaid, fa.bound_type, fa.bound_height, fa.bounds, "
-                                       "fa.center_x, fa.center_y, fa.center_z, fa.bound_radius, "
-                                       "fa.name, fa.zoneid, fz.difficulty "
-                                       "FROM `fishing_area` fa "
-                                       "LEFT JOIN fishing_zone fz "
-                                       "ON fz.zoneid = fa.zoneid");
-    FOR_DB_MULTIPLE_RESULTS(rset)
-    {
-        auto* fishingArea = new fishingarea_t();
-
-        fishingArea->areaId   = rset->get<uint8>("areaid");
-        fishingArea->areatype = rset->get<uint8>("bound_type");
-        fishingArea->height   = rset->get<uint8>("bound_height");
-
-        fishingArea->numBounds  = 0;
-        fishingArea->areaBounds = nullptr;
-
-        if (!rset->isNull("bounds"))
-        {
-            constexpr size_t MAX_BOUNDS             = 32;
-            areavector_t     tempBounds[MAX_BOUNDS] = {};
-            size_t           actualBounds           = 0;
-
-            db::extractFromBlob(rset, "bounds", tempBounds);
-
-            for (size_t i = 0; i < MAX_BOUNDS; i++)
-            {
-                if (tempBounds[i].x != 0 || tempBounds[i].y != 0 || tempBounds[i].z != 0)
-                {
-                    actualBounds = i + 1;
-                }
-            }
-
-            if (actualBounds > 0)
-            {
-                fishingArea->numBounds  = static_cast<uint8>(actualBounds);
-                fishingArea->areaBounds = new areavector_t[actualBounds];
-                std::memcpy(fishingArea->areaBounds, tempBounds, actualBounds * sizeof(areavector_t));
-            }
-        }
-
-        fishingArea->center.x   = rset->get<float>("center_x");
-        fishingArea->center.y   = rset->get<float>("center_y");
-        fishingArea->center.z   = rset->get<float>("center_z");
-        fishingArea->radius     = rset->get<uint8>("bound_radius");
-        fishingArea->areaName   = rset->get<std::string>("name");
-        fishingArea->zoneId     = rset->get<xi::ZoneId>("zoneid");
-        fishingArea->difficulty = rset->get<uint8>("difficulty");
-
-        FishingAreaList[fishingArea->zoneId][fishingArea->areaId] = fishingArea;
-    }
-}
-
-void LoadFishItems()
-{
-    const auto rset = db::preparedStmt("SELECT distinct "
-                                       "ff.fishid, ff.name, ff.skill_level, ff.difficulty, "
-                                       "ff.base_delay, ff.base_move, ff.min_length, ff.max_length, "
-                                       "ff.size_type, ff.water_type, ff.log, ff.quest, "
-                                       "ff.flags, ff.legendary, ff.legendary_flags, ff.item, "
-                                       "ff.max_hook, ff.rarity, ff.required_keyitem, ff.required_catches, "
-                                       "ff.quest_status, ff.quest_only, ff.ranking, ff.contest "
-                                       "FROM fishing_fish ff "
-                                       "WHERE ff.disabled = 0 AND ff.ranking < 99");
-    FOR_DB_MULTIPLE_RESULTS(rset)
-    {
-        auto* fish = new fish_t();
-
-        fish->fishID          = rset->get<uint16>("fishid");
-        fish->fishName        = rset->get<std::string>("name");
-        fish->maxSkill        = rset->get<uint8>("skill_level");
-        fish->difficulty      = rset->get<uint8>("difficulty");
-        fish->baseDelay       = rset->get<uint8>("base_delay");
-        fish->baseMove        = rset->get<uint8>("base_move");
-        fish->minLength       = rset->get<uint16>("min_length");
-        fish->maxLength       = rset->get<uint16>("max_length");
-        fish->sizeType        = rset->get<uint8>("size_type");
-        fish->waterType       = rset->get<uint8>("water_type");
-        fish->log             = rset->get<uint8>("log");
-        fish->quest           = rset->get<uint8>("quest");
-        fish->fishFlags       = rset->get<uint32>("flags");
-        fish->legendary       = rset->get<bool>("legendary");
-        fish->legendary_flags = rset->get<uint32>("legendary_flags");
-        fish->item            = rset->get<bool>("item");
-        fish->maxhook         = rset->get<uint8>("max_hook");
-        fish->rarity          = rset->get<uint16>("rarity");
-        fish->reqKeyItem      = rset->get<xi::KeyItem>("required_keyitem");
-
-        fish->reqFish = new std::vector<uint16>();
-
-        constexpr size_t MAX_REQ_FISH              = 10;
-        uint16           tempReqFish[MAX_REQ_FISH] = {};
-
-        db::extractFromBlob(rset, "required_catches", tempReqFish);
-        for (size_t i = 0; i < MAX_REQ_FISH; i++)
-        {
-            if (tempReqFish[i] != 0)
-            {
-                fish->reqFish->emplace_back(tempReqFish[i]);
-            }
-            else
-            {
-                break;
-            }
-        }
-
-        fish->quest_status = rset->get<uint8>("quest_status");
-        fish->quest_only   = rset->get<bool>("quest_only");
-        fish->ranking      = rset->get<uint8>("ranking");
-        fish->contest      = rset->get<bool>("contest");
-
-        FishList[fish->fishID] = fish;
-    }
-}
-
 void LoadChests()
 {
     const auto rset = db::preparedStmt("SELECT distinct "
@@ -3367,156 +3251,242 @@ void LoadChests()
     }
 }
 
-void LoadFishMobs()
+namespace
 {
-    const auto rset = db::preparedStmt("SELECT mobid, name, level, difficulty, "
-                                       "base_delay, base_move, log, quest, "
-                                       "nm, nm_flags, rarity, min_respawn, "
-                                       "required_keyitem, required_baitid, areaid, zoneid, "
-                                       "quest_only, min_length, max_length, ranking, "
-                                       "max_respawn, alternative_baitid "
-                                       "FROM fishing_mob "
-                                       "WHERE disabled=0 "
-                                       "ORDER BY mobid ASC");
-    FOR_DB_MULTIPLE_RESULTS(rset)
+
+auto resolveItemName(const std::string& name, const std::string& owner) -> uint16
+{
+    const auto itemId = xi::items::lookupIdByName(name);
+    if (!itemId)
     {
-        auto* mob = new fishmob_t();
-
-        mob->mobId      = rset->get<uint32>("mobid");
-        mob->mobName    = rset->get<std::string>("name");
-        mob->level      = rset->get<uint8>("level");
-        mob->difficulty = rset->get<uint8>("difficulty");
-        mob->baseDelay  = rset->get<uint8>("base_delay");
-        mob->baseMove   = rset->get<uint8>("base_move");
-        mob->log        = rset->get<uint8>("log");
-        mob->quest      = rset->get<uint8>("quest");
-        mob->nm         = rset->get<bool>("nm");
-        mob->nmFlags    = rset->get<uint32>("nm_flags");
-        mob->rarity     = rset->get<uint16>("rarity");
-        mob->minRespawn = rset->get<uint16>("min_respawn");
-        mob->reqKeyItem = rset->get<uint16>("required_keyitem");
-        mob->reqBaitId  = rset->get<uint16>("required_baitid");
-        mob->areaId     = rset->get<uint8>("areaid");
-        mob->zoneId     = rset->get<xi::ZoneId>("zoneid");
-        mob->questOnly  = rset->get<bool>("quest_only");
-        mob->minLength  = rset->get<uint16>("min_length");
-        mob->maxLength  = rset->get<uint16>("max_length");
-        mob->ranking    = rset->get<uint8>("ranking");
-        mob->maxRespawn = rset->get<uint16>("max_respawn");
-        mob->altBaitId  = rset->get<uint16>("alternative_baitid");
-
-        FishZoneMobList[mob->zoneId][mob->mobId] = mob;
+        ShowCriticalFmt("fishing: {} names unknown or ambiguous item '{}'", owner, name);
+        std::exit(-1);
     }
+
+    return *itemId;
 }
 
-void LoadFishingRods()
+auto resolveCatalogName(const std::map<std::string, uint16>& ids, const std::string& name, const std::string& owner) -> uint16
 {
-    const auto rset = db::preparedStmt("SELECT rodid, name, material, size_type, "
-                                       "fish_attack, lgd_bonus_attack, fish_recovery, fish_time, "
-                                       "lgd_bonus_time, sm_delay_Bonus, sm_move_bonus, lg_delay_bonus, "
-                                       "lg_move_bonus, multiplier, breakable, broken_rodid, "
-                                       "mmm, flags, legendary, min_rank, max_rank "
-                                       "FROM fishing_rod");
-    FOR_DB_MULTIPLE_RESULTS(rset)
+    const auto it = ids.find(name);
+    if (it == ids.end())
+    {
+        ShowCriticalFmt("fishing: {} names unknown catalog entry '{}'", owner, name);
+        std::exit(-1);
+    }
+
+    return it->second;
+}
+
+// fish and bait ids by name
+using CatalogNames = std::pair<std::map<std::string, uint16>, std::map<std::string, uint16>>;
+
+auto LoadFishingCatalog() -> CatalogNames
+{
+    const auto catalog           = xi::data::loadDataset<xi::data::datasets::fishing::Dataset>();
+    auto       names             = CatalogNames{};
+    auto& [fishNames, baitNames] = names;
+
+    for (const auto& entry : catalog.Fish)
+    {
+        fishNames.emplace(entry.Name, entry.Id);
+        if (entry.Disabled || entry.Ranking >= 99)
+        {
+            continue;
+        }
+
+        auto* fish = new fish_t();
+
+        fish->fishID          = entry.Id;
+        fish->fishName        = entry.Name;
+        fish->maxSkill        = entry.Skill;
+        fish->difficulty      = entry.Difficulty;
+        fish->baseDelay       = entry.Delay;
+        fish->baseMove        = entry.Move;
+        fish->minLength       = entry.MinLength;
+        fish->maxLength       = entry.MaxLength;
+        fish->sizeType        = std::to_underlying(entry.Size);
+        fish->waterType       = std::to_underlying(entry.Water);
+        fish->log             = entry.Log;
+        fish->quest           = entry.Quest;
+        fish->fishFlags       = std::to_underlying(entry.Flags);
+        fish->legendary       = entry.Legendary;
+        fish->legendary_flags = std::to_underlying(entry.LegendaryFlags);
+        fish->item            = entry.Item;
+        fish->maxhook         = entry.MaxHook;
+        fish->rarity          = entry.Rarity;
+        fish->reqKeyItem      = entry.KeyItem;
+        fish->reqFish         = new std::vector<uint16>();
+        fish->quest_only      = entry.QuestOnly;
+        fish->ranking         = static_cast<uint8>(entry.Ranking);
+        fish->contest         = entry.Contest;
+
+        FishList[fish->fishID] = fish;
+    }
+
+    for (const auto& entry : catalog.Rods)
     {
         auto* rod = new rod_t();
 
-        rod->rodID        = rset->get<uint16>("rodid");
-        rod->rodName      = rset->get<std::string>("name");
-        rod->material     = rset->get<uint8>("material");
-        rod->sizeType     = rset->get<uint8>("size_type");
-        rod->fishAttack   = rset->get<uint8>("fish_attack");
-        rod->lgdBonusAtk  = rset->get<uint8>("lgd_bonus_attack");
-        rod->fishRecovery = rset->get<uint8>("fish_recovery");
-        rod->fishTime     = rset->get<uint8>("fish_time");
-        rod->lgdBonusTime = rset->get<uint8>("lgd_bonus_time");
-        rod->smDelayBonus = rset->get<uint8>("sm_delay_Bonus");
-        rod->smMoveBonus  = rset->get<uint8>("sm_move_bonus");
-        rod->lgDelayBonus = rset->get<uint8>("lg_delay_bonus");
-        rod->lgMoveBonus  = rset->get<uint8>("lg_move_bonus");
-        rod->multiplier   = rset->get<uint8>("multiplier");
-        rod->breakable    = rset->get<bool>("breakable");
-        rod->brokenRodId  = rset->get<uint16>("broken_rodid");
-        rod->isMMM        = rset->get<bool>("mmm");
-        rod->rodFlags     = rset->get<uint32>("flags");
-        rod->legendary    = rset->get<bool>("legendary");
-        rod->minRank      = rset->get<uint16>("min_rank");
-        rod->maxRank      = rset->get<uint16>("max_rank");
+        rod->rodID        = entry.Id;
+        rod->rodName      = entry.Name;
+        rod->material     = std::to_underlying(entry.Material);
+        rod->sizeType     = std::to_underlying(entry.Size);
+        rod->fishAttack   = entry.Attack;
+        rod->lgdBonusAtk  = entry.LegendaryAttack;
+        rod->fishRecovery = entry.Recovery;
+        rod->fishTime     = entry.Time;
+        rod->lgdBonusTime = entry.LegendaryTime;
+        rod->smDelayBonus = entry.SmallDelayBonus;
+        rod->smMoveBonus  = entry.SmallMoveBonus;
+        rod->lgDelayBonus = entry.LargeDelayBonus;
+        rod->lgMoveBonus  = entry.LargeMoveBonus;
+        rod->multiplier   = entry.Multiplier;
+        rod->breakable    = !entry.BreaksInto.empty();
+        rod->isMMM        = entry.Mmm;
+        rod->rodFlags     = std::to_underlying(entry.Flags);
+        rod->legendary    = entry.Legendary;
+        rod->minRank      = entry.MinRank;
+        rod->maxRank      = entry.MaxRank;
+
+        if (rod->breakable)
+        {
+            rod->brokenRodId = resolveItemName(entry.BreaksInto, entry.Name);
+        }
 
         FishingRods[rod->rodID] = rod;
     }
-}
 
-void LoadFishingBaits()
-{
-    const auto rset = db::preparedStmt("SELECT baitid, name, type, maxhook, "
-                                       "losable, flags, mmm, rankmod "
-                                       "FROM fishing_bait");
-    FOR_DB_MULTIPLE_RESULTS(rset)
+    for (const auto& entry : catalog.Baits)
     {
+        baitNames.emplace(entry.Name, entry.Id);
+
         auto* bait = new bait_t();
 
-        bait->baitID    = rset->get<uint16>("baitid");
-        bait->baitName  = rset->get<std::string>("name");
-        bait->baitType  = rset->get<uint8>("type");
-        bait->maxhook   = rset->get<uint8>("maxhook");
-        bait->losable   = rset->get<bool>("losable");
-        bait->baitFlags = rset->get<uint32>("flags");
-        bait->isMMM     = rset->get<bool>("mmm");
-        bait->rankMod   = rset->get<uint8>("rankmod");
+        bait->baitID    = entry.Id;
+        bait->baitName  = entry.Name;
+        bait->baitType  = std::to_underlying(entry.Type);
+        bait->maxhook   = entry.MaxHook;
+        bait->losable   = true;
+        bait->baitFlags = std::to_underlying(entry.Flags);
+        bait->isMMM     = entry.Mmm;
 
         FishingBaits[bait->baitID] = bait;
+
+        for (const auto& [fishId, power] : entry.Catches)
+        {
+            FishingBaitAffinities[bait->baitID][fishId] = std::to_underlying(power);
+        }
+    }
+
+    return names;
+}
+
+void LoadFishingZone(const xi::ZoneId zoneId, const xi::data::ZoneFishing& zone, const CatalogNames& names)
+{
+    const auto owner = [&](const std::string& name)
+    {
+        return fmt::format("{} in zone {}", name, static_cast<uint16>(zoneId));
+    };
+
+    for (const auto& entry : zone.Areas)
+    {
+        auto* fishingArea = new fishingarea_t();
+
+        fishingArea->zoneId     = zoneId;
+        fishingArea->areaId     = entry.Id;
+        fishingArea->areaName   = entry.Name;
+        fishingArea->areatype   = std::to_underlying(entry.Shape);
+        fishingArea->height     = entry.Height;
+        fishingArea->center     = areavector_t(entry.Center[0], entry.Center[1], entry.Center[2]);
+        fishingArea->radius     = static_cast<uint8>(entry.Radius);
+        fishingArea->difficulty = zone.Difficulty;
+
+        if (!entry.Corners.empty())
+        {
+            fishingArea->numBounds  = static_cast<uint8>(entry.Corners.size());
+            fishingArea->areaBounds = new areavector_t[entry.Corners.size()];
+            for (size_t i = 0; i < entry.Corners.size(); ++i)
+            {
+                fishingArea->areaBounds[i] = areavector_t(entry.Corners[i][0], 0.0f, entry.Corners[i][1]);
+            }
+        }
+
+        auto& pool = FishingPools[zoneId][entry.Id];
+        for (const auto& [fish, rarity] : entry.Pool)
+        {
+            pool[resolveCatalogName(names.first, fish, owner(entry.Name))] = rarity;
+        }
+
+        FishingAreaList[zoneId][entry.Id] = fishingArea;
+    }
+
+    for (const auto& entry : zone.Monsters)
+    {
+        if (entry.Disabled)
+        {
+            continue;
+        }
+
+        for (const auto spawn : entry.Spawns)
+        {
+            auto* mob = new fishmob_t();
+
+            mob->mobId      = spawn;
+            mob->mobName    = entry.Name;
+            mob->level      = entry.Level;
+            mob->difficulty = entry.Difficulty;
+            mob->baseDelay  = entry.Delay;
+            mob->baseMove   = entry.Move;
+            mob->log        = entry.Log;
+            mob->quest      = entry.Quest;
+            mob->nm         = entry.Nm;
+            mob->nmFlags    = std::to_underlying(entry.NmFlags);
+            mob->rarity     = entry.Rarity;
+            mob->minRespawn = entry.MinRespawn;
+            mob->maxRespawn = entry.MaxRespawn;
+            mob->areaId     = entry.Area;
+            mob->zoneId     = zoneId;
+            mob->questOnly  = entry.QuestOnly;
+            mob->minLength  = 1;
+            mob->maxLength  = 1;
+            mob->ranking    = static_cast<uint8>(entry.Ranking);
+
+            if (!entry.Bait.empty())
+            {
+                mob->reqBaitId = resolveCatalogName(names.second, entry.Bait, owner(entry.Name));
+            }
+
+            if (!entry.AlternativeBait.empty())
+            {
+                mob->altBaitId = resolveCatalogName(names.second, entry.AlternativeBait, owner(entry.Name));
+            }
+
+            FishZoneMobList[zoneId][mob->mobId] = mob;
+        }
     }
 }
 
-void LoadFishingBaitAffinities()
-{
-    const auto rset = db::preparedStmt("SELECT baitid, fishid, power "
-                                       "FROM fishing_bait_affinity");
-    FOR_DB_MULTIPLE_RESULTS(rset)
-    {
-        FishingBaitAffinities[rset->get<uint16>("baitid")]
-                             [rset->get<uint32>("fishid")] = rset->get<uint8>("power");
-    }
-}
+} // namespace
 
-void LoadFishGroups()
+void LoadFishingData()
 {
-    const auto rset = db::preparedStmt("SELECT groupid, fishid, rarity "
-                                       "FROM fishing_group");
-    FOR_DB_MULTIPLE_RESULTS(rset)
-    {
-        const auto groupId             = rset->get<uint16>("groupid");
-        const auto fishId              = rset->get<uint32>("fishid");
-        FishingGroups[groupId][fishId] = rset->get<uint16>("rarity");
-    }
-}
+    const auto names = LoadFishingCatalog();
 
-void LoadFishingCatchLists()
-{
-    const auto rset = db::preparedStmt("SELECT zoneid, areaid, groupid "
-                                       "FROM fishing_catch");
-    FOR_DB_MULTIPLE_RESULTS(rset)
+    for (const auto& [key, zoneId] : xi::data::EnumTraits<xi::ZoneId>::kEntries)
     {
-        const auto zoneId = rset->get<xi::ZoneId>("zoneid");
-        const auto areaId = rset->get<uint8>("areaid");
-
-        FishingCatchLists[zoneId][areaId] = rset->get<uint16>("groupid");
+        if (const auto zone = xi::data::loadZoneFile<xi::data::datasets::zones::fishing_areas::Dataset>(zoneId))
+        {
+            LoadFishingZone(zoneId, *zone, names);
+        }
     }
 }
 
 void InitializeFishingSystem()
 {
     LoadFishingMessages();
-    LoadFishItems();
-    LoadFishMobs();
+    LoadFishingData();
     LoadChests();
-    LoadFishingRods();
-    LoadFishingBaits();
-    LoadFishingBaitAffinities();
-    LoadFishingAreas();
-    LoadFishGroups();
-    LoadFishingCatchLists();
 }
 
 void CleanupFishing()

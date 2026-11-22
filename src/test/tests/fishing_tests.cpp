@@ -289,7 +289,7 @@ TEST_CASE("Fishing a Nebimonite from the Selbina ship warns without promising", 
     // Seeded so every run checks the same reels
     xirand::rng().seed(1);
 
-    // Stats from fishing_rod.sql and fishing_fish.sql, and Nebimonite is the only fish in zone 220 that takes Ball of Crayfish Paste
+    // Stats from data/fishing.yaml, and Nebimonite is the only fish in zone 220 that takes Ball of Crayfish Paste
     auto rod      = rod_t{};
     rod.rodID     = TARUTARU;
     rod.sizeType  = FISHINGSIZETYPE_SMALL;

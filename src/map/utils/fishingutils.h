@@ -961,15 +961,8 @@ auto GetFish(uint16 itemid) -> std::unique_ptr<CItem>;
 
 // Initialization
 void LoadFishingMessages();
-void LoadFishingAreas();
-void LoadFishItems();
-void LoadFishMobs();
 void LoadChests();
-void LoadFishingRods();
-void LoadFishingBaits();
-void LoadFishingBaitAffinities();
-void LoadFishGroups();
-void LoadFishingCatchLists();
+void LoadFishingData();
 void InitializeFishingSystem();
 void CleanupFishing();
 
