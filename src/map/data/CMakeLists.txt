@@ -16,6 +16,9 @@ set(DATA_CORE_SOURCES
     ${CMAKE_CURRENT_SOURCE_DIR}/shared_types/mob_attributes/dataset.h
     ${CMAKE_CURRENT_SOURCE_DIR}/shared_types/mob_attributes/yaml.h
     ${CMAKE_CURRENT_SOURCE_DIR}/shared_types/position.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/shared_types/recipe/dataset.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/shared_types/recipe/dataset.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/shared_types/recipe/yaml.h
     ${CMAKE_CURRENT_SOURCE_DIR}/shared_types/render.h
     ${CMAKE_CURRENT_SOURCE_DIR}/yaml/enum_keyed_map.h
     ${CMAKE_CURRENT_SOURCE_DIR}/yaml/enum_token.h
@@ -35,6 +38,8 @@ add_data_dataset(skills)
 add_data_dataset(stats)
 add_data_dataset(experience)
 add_data_dataset(weapon_skills)
+add_data_dataset(synth_recipes)
+add_data_dataset(synergy_recipes)
 add_data_dataset(zones/settings)
 add_data_dataset(zones/npcs)
 add_data_dataset(zones/mobs)

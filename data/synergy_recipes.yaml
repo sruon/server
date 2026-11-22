@@ -1,0 +1,51 @@
+# yaml-language-server: $schema=schemas/synergy_recipes.schema.json
+
+synergy_recipes:
+  1:
+    name:        Alliance Shirt +1
+    fewell:      {earth: 5}
+    ingredients: {alliance_shirt: 2}
+    results:
+      nq: {item: alliance_shirt_+1}
+
+  2:
+    name:        Excalipoor II
+    fewell:      {light: 5, dark: 5}
+    ingredients: {excalipoor: 2}
+    results:
+      nq: {item: excalipoor_ii}
+
+  3:
+    name:        Galley Kitchen
+    fewell:      {fire: 5, earth: 5}
+    ingredients: {kitchen_brick: 1, kitchen_stove: 1, kitchen_plate: 1}
+    results:
+      nq: {item: galley_kitchen}
+
+  4:
+    name:        Poroggo Coat +1
+    fewell:      {water: 10}
+    ingredients: {poroggo_coat: 2}
+    results:
+      nq: {item: poroggo_coat_+1}
+
+  5:
+    name:        Poroggo Fleece +1
+    fewell:      {water: 10}
+    ingredients: {poroggo_fleece: 2}
+    results:
+      nq: {item: poroggo_fleece_+1}
+
+  6:
+    name:        Poroggo Cassock +1
+    fewell:      {water: 10}
+    ingredients: {poroggo_cassock: 2}
+    results:
+      nq: {item: poroggo_cassock_+1}
+
+  7:
+    name:        White Rarab Cap +1
+    fewell:      {ice: 10}
+    ingredients: {white_rarab_cap: 2}
+    results:
+      nq: {item: white_rarab_cap_+1}
