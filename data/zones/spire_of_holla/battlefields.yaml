@@ -1,6 +1,17 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
 battlefields:
-  ancient_flames_beckon_spire_of_holla: {index: 0}
-  simulant:                             {index: 1} # experimental
-  empty_hopes:                          {index: 2}
+  ancient_flames_beckon_spire_of_holla:
+    index:        0
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true
+    is_mission:   true
+
+  simulant: # experimental
+    index:        1
+    max_players: 18
+    level_cap:   30
+
+  empty_hopes:
+    index: 2

@@ -6,18 +6,14 @@ local cloisterOfGalesID = zones[xi.zone.CLOISTER_OF_GALES]
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId           = xi.zone.CLOISTER_OF_GALES,
-    battlefieldId    = xi.battlefield.id.TRIAL_SIZE_TRIAL_BY_WIND,
-    canLoseExp       = false,
-    maxPlayers       = 1,
-    levelCap         = 20,
-    timeLimit        = utils.minutes(15),
-    entryNpc         = 'WP_Entrance',
-    exitNpc          = 'Wind_Protocrystal',
-    requiredItems    = { xi.item.MINI_TUNING_FORK_OF_WIND },
+    zoneId        = xi.zone.CLOISTER_OF_GALES,
+    battlefieldId = xi.battlefield.id.TRIAL_SIZE_TRIAL_BY_WIND,
+    entryNpc      = 'WP_Entrance',
+    exitNpc       = 'Wind_Protocrystal',
+    requiredItems = { xi.item.MINI_TUNING_FORK_OF_WIND },
 
-    questArea = xi.questLog.OUTLANDS,
-    quest     = xi.quest.id.outlands.TRIAL_SIZE_TRIAL_BY_WIND,
+    questArea     = xi.questLog.OUTLANDS,
+    quest         = xi.quest.id.outlands.TRIAL_SIZE_TRIAL_BY_WIND,
 })
 
 function content:entryRequirement(player, npc, isRegistrant, trade)

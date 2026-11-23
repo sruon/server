@@ -8,12 +8,6 @@ local talaccaCoveID = zones[xi.zone.TALACCA_COVE]
 local content = BattlefieldMission:new({
     zoneId                = xi.zone.TALACCA_COVE,
     battlefieldId         = xi.battlefield.id.LEGACY_OF_THE_LOST,
-    canLoseExp            = false,
-    isMission             = true,
-    allowTrusts           = true,
-    maxPlayers            = 6,
-    levelCap              = xi.settings.main.MAX_LEVEL,
-    timeLimit             = utils.minutes(30),
     allowedAreas          = set{ 1 },
     entryNpc              = '_1l0',
     exitNpcs              = { '_1l1', '_1l2', '_1l3' },
@@ -21,7 +15,7 @@ local content = BattlefieldMission:new({
     mission               = xi.mission.id.toau.LEGACY_OF_THE_LOST,
     requiredMissionStatus = 0,
 
-    title = xi.title.GESSHOS_MERCY,
+    title                 = xi.title.GESSHOS_MERCY,
 })
 
 content.groups =

@@ -7,14 +7,11 @@ local qubiaID = zones[xi.zone.QUBIA_ARENA]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId           = xi.zone.QUBIA_ARENA,
-    battlefieldId    = xi.battlefield.id.CELERY,
-    maxPlayers       = 3,
-    levelCap         = 60,
-    timeLimit        = utils.minutes(15),
-    entryNpc         = 'BC_Entrance',
-    exitNpc          = 'Burning_Circle',
-    requiredItems    = { xi.item.MOON_ORB, wearMessage = qubiaID.text.A_CRACK_HAS_FORMED, wornMessage = qubiaID.text.ORB_IS_CRACKED },
+    zoneId        = xi.zone.QUBIA_ARENA,
+    battlefieldId = xi.battlefield.id.CELERY,
+    entryNpc      = 'BC_Entrance',
+    exitNpc       = 'Burning_Circle',
+    requiredItems = { xi.item.MOON_ORB, wearMessage = qubiaID.text.A_CRACK_HAS_FORMED, wornMessage = qubiaID.text.ORB_IS_CRACKED },
 })
 
 content:addEssentialMobs({ 'Annihilated_Anthony', 'Shredded_Samson', 'Mauled_Murdock', 'Punctured_Percy' })

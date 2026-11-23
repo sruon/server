@@ -1,9 +1,44 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
 battlefields:
-  ark_angels_1: {index: 0}
-  ark_angels_2: {index: 1}
-  ark_angels_3: {index: 2}
-  ark_angels_4: {index: 3}
-  ark_angels_5: {index: 4}
-  divine_might: {index: 5}
+  ark_angels_1:
+    index:        0
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true
+    is_mission:   true
+
+  ark_angels_2:
+    index:        1
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true
+    is_mission:   true
+
+  ark_angels_3:
+    index:        2
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true
+    is_mission:   true
+
+  ark_angels_4:
+    index:        3
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true
+    is_mission:   true
+
+  ark_angels_5:
+    index:        4
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true
+    is_mission:   true
+
+  divine_might:
+    index:        5
+    max_players:  18
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true

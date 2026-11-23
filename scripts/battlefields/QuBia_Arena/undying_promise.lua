@@ -9,9 +9,6 @@ local qubiaID = zones[xi.zone.QUBIA_ARENA]
 local content = Battlefield:new({
     zoneId        = xi.zone.QUBIA_ARENA,
     battlefieldId = xi.battlefield.id.UNDYING_PROMISE,
-    maxPlayers    = 3,
-    levelCap      = 40,
-    timeLimit     = utils.minutes(15),
     entryNpc      = 'BC_Entrance',
     exitNpc       = 'Burning_Circle',
     requiredItems = { xi.item.STAR_ORB, wearMessage = qubiaID.text.A_CRACK_HAS_FORMED, wornMessage = qubiaID.text.ORB_IS_CRACKED },

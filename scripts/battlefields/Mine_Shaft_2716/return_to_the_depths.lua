@@ -9,9 +9,6 @@ local mineshaftID = zones[xi.zone.MINE_SHAFT_2716]
 local content = BattlefieldQuest:new({
     zoneId        = xi.zone.MINE_SHAFT_2716,
     battlefieldId = xi.battlefield.id.RETURN_TO_THE_DEPTHS,
-    maxPlayers    = 6,
-    levelCap      = xi.settings.main.MAX_LEVEL,
-    timeLimit     = utils.minutes(30),
     entryNpc      = '_0d0',
     exitNpcs      = { '_0d1', '_0d2', '_0d3' },
 

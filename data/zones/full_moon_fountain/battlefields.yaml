@@ -1,7 +1,21 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
 battlefields:
-  moonlit_path:              {index: 0}
-  moon_reading:              {index: 1}
-  waking_the_beast_fullmoon: {index: 2}
-  battaru_royale:            {index: 3}
+  moonlit_path:
+    index:        0
+    can_lose_exp: false
+
+  moon_reading:
+    index:        1
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true
+    is_mission:   true
+
+  waking_the_beast_fullmoon:
+    index:        2
+    max_players:  18
+    can_lose_exp: false
+
+  battaru_royale:
+    index: 3

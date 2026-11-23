@@ -13,15 +13,12 @@ local shroudedMawID = zones[xi.zone.THE_SHROUDED_MAW]
 local content = BattlefieldQuest:new({
     zoneId           = xi.zone.THE_SHROUDED_MAW,
     battlefieldId    = xi.battlefield.id.WAKING_DREAMS,
-    canLoseExp       = false,
-    maxPlayers       = 6,
-    timeLimit        = utils.minutes(30),
     entryNpc         = 'MC_Entrance',
     exitNpc          = 'Memento_Circle',
     requiredKeyItems = { xi.keyItem.VIAL_OF_DREAM_INCENSE, keep = true },
 
-    questArea = xi.questLog.WINDURST,
-    quest     = xi.quest.id.windurst.WAKING_DREAMS,
+    questArea        = xi.questLog.WINDURST,
+    quest            = xi.quest.id.windurst.WAKING_DREAMS,
 })
 
 function content:setupBattlefield(battlefield)

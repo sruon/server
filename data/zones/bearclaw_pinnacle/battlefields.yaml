@@ -1,8 +1,30 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
 battlefields:
-  flames_for_the_dead:     {index: 0}
-  follow_the_white_rabbit: {index: 1}
-  when_hell_freezes_over:  {index: 2}
-  brothers:                {index: 3}
-  holy_cow:                {index: 4}
+  flames_for_the_dead:
+    index:           0
+    level_cap:       max
+    can_lose_exp:    false
+    is_mission:      true
+    cleanup_debuffs: true
+
+  follow_the_white_rabbit:
+    index:        1
+    max_players: 18
+    level_cap:   75
+
+  when_hell_freezes_over:
+    index:        2
+    time_limit:  15
+    max_players: 18
+    level_cap:   75
+
+  brothers:
+    index:        3
+    max_players: 18
+    level_cap:   75
+
+  holy_cow:
+    index:        4
+    max_players: 18
+    level_cap:   75

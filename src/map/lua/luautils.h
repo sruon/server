@@ -328,6 +328,7 @@ void SendToJailOffline(uint32 playerId, int8 cellId, float posX, float posY, flo
 void DrawIn(CLuaBaseEntity* PLuaBaseEntity, const sol::table& table, float offset, float degrees);
 
 auto GetSystemTime() -> uint32;
+auto GetBattlefieldDefinition(uint16 battlefieldId) -> sol::object;
 auto JstMidnight() -> uint32;
 
 auto LoadLinkshellConciergeSlots(uint16 zoneId) -> sol::table;

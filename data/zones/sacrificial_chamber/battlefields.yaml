@@ -1,8 +1,23 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
 battlefields:
-  temple_of_uggalepih:       {index: 0}
-  jungle_boogymen:           {index: 1}
-  amphibian_assault:         {index: 2}
-  project_shantottofication: {index: 3}
-  whom_wilt_thou_call:       {index: 4}
+  temple_of_uggalepih:
+    index:        0
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true
+    is_mission:   true
+
+  jungle_boogymen:
+    index:      1
+    level_cap: 60
+
+  amphibian_assault:
+    index:      2
+    level_cap: 60
+
+  project_shantottofication:
+    index: 3
+
+  whom_wilt_thou_call:
+    index: 4

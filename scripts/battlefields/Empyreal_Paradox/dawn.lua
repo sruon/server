@@ -11,22 +11,15 @@ local empyrealParadoxID = zones[xi.zone.EMPYREAL_PARADOX]
 local content = BattlefieldMission:new({
     zoneId        = xi.zone.EMPYREAL_PARADOX,
     battlefieldId = xi.battlefield.id.DAWN,
-    canLoseExp    = false,
-    isMission     = true,
-    allowTrusts   = true,
-    maxPlayers    = 6,
-    levelCap      = xi.settings.main.MAX_LEVEL,
-    timeLimit     = utils.minutes(30),
     entryNpc      = 'TR_Entrance',
     exitNpc       = 'Transcendental_Radiance',
     missionArea   = xi.mission.log_id.COP,
     mission       = xi.mission.id.cop.DAWN,
     requiredVar   = 'Mission[6][840]Status',
     requiredValue = 1,
-    hasWipeGrace  = false,
 
-    grantXP = 2000,
-    title   = xi.title.AVERTER_OF_THE_APOCALYPSE,
+    grantXP       = 2000,
+    title         = xi.title.AVERTER_OF_THE_APOCALYPSE,
 })
 
 local playerCoords =

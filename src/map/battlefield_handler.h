@@ -36,15 +36,9 @@ class CZone;
 
 struct BattlefieldRegistration
 {
-    uint16          id         = -1;
-    uint8           area       = 1;
-    uint32          initiator  = 0;
-    uint32          maxPlayers = 0;
-    uint32          levelCap   = 0;
-    uint32          rules      = 0;
-    timer::duration timeLimit  = 0s;
-    bool            isMission  = false;
-    bool            showTimer  = true;
+    uint16 id        = -1;
+    uint8  area      = 1;
+    uint32 initiator = 0;
 };
 
 class CBattlefieldHandler

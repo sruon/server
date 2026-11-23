@@ -7,14 +7,12 @@ local balgasID = zones[xi.zone.BALGAS_DAIS]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId           = xi.zone.BALGAS_DAIS,
-    battlefieldId    = xi.battlefield.id.SEASONS_GREETINGS,
-    maxPlayers       = 6,
-    timeLimit        = utils.minutes(30),
-    entryNpc         = 'BC_Entrance',
-    exitNpc          = 'Burning_Circle',
-    requiredItems    = { xi.item.CLOTHO_ORB, wearMessage = balgasID.text.A_CRACK_HAS_FORMED, wornMessage = balgasID.text.ORB_IS_CRACKED },
-    armouryCrates    =
+    zoneId        = xi.zone.BALGAS_DAIS,
+    battlefieldId = xi.battlefield.id.SEASONS_GREETINGS,
+    entryNpc      = 'BC_Entrance',
+    exitNpc       = 'Burning_Circle',
+    requiredItems = { xi.item.CLOTHO_ORB, wearMessage = balgasID.text.A_CRACK_HAS_FORMED, wornMessage = balgasID.text.ORB_IS_CRACKED },
+    armouryCrates =
     {
         balgasID.mob.GILAGOGE_TLUGVI + 4,
         balgasID.mob.GILAGOGE_TLUGVI + 9,

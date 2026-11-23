@@ -9,10 +9,6 @@ local spireOfDemID = zones[xi.zone.SPIRE_OF_DEM]
 local content = Battlefield:new({
     zoneId           = xi.zone.SPIRE_OF_DEM,
     battlefieldId    = xi.battlefield.id.YOU_ARE_WHAT_YOU_EAT,
-    allowTrusts      = false,
-    maxPlayers       = 18,
-    levelCap         = 30,
-    timeLimit        = utils.minutes(30),
     entryNpc         = '_0j0',
     exitNpcs         = { '_0j1', '_0j2', '_0j3' },
     requiredKeyItems = { xi.keyItem.CENSER_OF_ANTIPATHY, message = spireOfDemID.text.FADES_INTO_NOTHINGNESS },

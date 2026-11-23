@@ -1,7 +1,25 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
 battlefields:
-  trial_by_fire:                             {index: 0}
-  trial_size_trial_by_fire:                  {index: 1}
-  waking_the_beast_cloister_of_flames:       {index: 2}
-  sugar_coated_directive_cloister_of_flames: {index: 3}
+  trial_by_fire:
+    index:        0
+    can_lose_exp: false
+
+  trial_size_trial_by_fire:
+    index:        1
+    time_limit:   15
+    max_players:  1
+    level_cap:    20
+    can_lose_exp: false
+
+  waking_the_beast_cloister_of_flames:
+    index:        2
+    max_players:  18
+    can_lose_exp: false
+
+  sugar_coated_directive_cloister_of_flames:
+    index:        3
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true
+    is_mission:   true

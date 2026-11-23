@@ -12617,7 +12617,7 @@ auto CLuaBaseEntity::getBattlefieldID() const -> int32
  *  Notes   : Returns BATTLEFIELD_RETURNCODE (see scripts/globals/battlefield.lua or src/map/battlefield.h)
  ************************************************************************/
 
-auto CLuaBaseEntity::registerBattlefield(const sol::object& arg0, const sol::object& arg1, const sol::object& arg2, const sol::object& arg3) const -> uint8
+auto CLuaBaseEntity::registerBattlefield(const sol::object& arg0, const sol::object& arg1, const sol::object& arg2) const -> uint8
 {
     if (!m_PBaseEntity->loc.zone)
     {
@@ -12657,24 +12657,6 @@ auto CLuaBaseEntity::registerBattlefield(const sol::object& arg0, const sol::obj
     registration.id        = arg0.as<int>();
     registration.area      = (arg1 != sol::lua_nil) ? arg1.as<uint8>() : 1;
     registration.initiator = (arg2 != sol::lua_nil) ? arg2.as<uint32>() : 0;
-
-    if (arg3 != sol::lua_nil)
-    {
-        sol::table battlefield  = arg3.as<sol::table>();
-        registration.maxPlayers = battlefield["maxPlayers"];
-        registration.levelCap   = battlefield["levelCap"];
-        registration.timeLimit  = std::chrono::seconds(battlefield.get<int32>("timeLimit"));
-        registration.isMission  = battlefield.get_or("isMission", false);
-
-        if (registration.isMission && settings::get<uint8>("map.LV_CAP_MISSION_BCNM") == 0)
-        {
-            registration.levelCap = settings::get<uint8>("main.MAX_LEVEL");
-        }
-
-        registration.showTimer = battlefield.get_or("showTimer", true);
-        registration.rules |= battlefield.get<bool>("allowSubjob") ? RULES_ALLOW_SUBJOBS : 0;
-        registration.rules |= battlefield.get<bool>("canLoseExp") ? RULES_LOSE_EXP : 0;
-    }
 
     return PZone->battlefieldHandler()->RegisterBattlefield(PChar, registration);
 }

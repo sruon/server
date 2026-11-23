@@ -1,6 +1,18 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
 battlefields:
-  darkness_named: {index: 0}
-  test_your_mite: {index: 1}
-  waking_dreams:  {index: 2}
+  darkness_named:
+    index:        0
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true
+    is_mission:   true
+
+  test_your_mite:
+    index:        1
+    max_players: 18
+    level_cap:   40
+
+  waking_dreams:
+    index:        2
+    can_lose_exp: false

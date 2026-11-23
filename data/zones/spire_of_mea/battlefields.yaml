@@ -1,6 +1,17 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
 battlefields:
-  ancient_flames_beckon_spire_of_mea: {index: 0}
-  playing_host:                       {index: 1} # experimental
-  empty_desires:                      {index: 2}
+  ancient_flames_beckon_spire_of_mea:
+    index:        0
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true
+    is_mission:   true
+
+  playing_host: # experimental
+    index:        1
+    max_players: 18
+    level_cap:   30
+
+  empty_desires:
+    index: 2

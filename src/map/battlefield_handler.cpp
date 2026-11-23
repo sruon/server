@@ -26,6 +26,8 @@
 #include "battlefield.h"
 #include "battlefield_handler.h"
 
+#include "common/settings.h"
+
 #include "entities/battle_entity.h"
 #include "entities/char_entity.h"
 
@@ -127,20 +129,41 @@ auto CBattlefieldHandler::LoadBattlefield(CCharEntity* PChar, const BattlefieldR
         return BATTLEFIELD_RETURN_CODE_REQS_NOT_MET;
     }
 
+    const auto levelCap = [&]() -> uint8
+    {
+        if (data->CapAtMaxLevel || (data->IsMission && settings::get<uint8>("map.LV_CAP_MISSION_BCNM") == 0))
+        {
+            return settings::get<uint8>("main.MAX_LEVEL");
+        }
+
+        return data->LevelCap;
+    }();
+
+    uint32 rules = 0;
+    if (data->AllowSubjob)
+    {
+        rules |= RULES_ALLOW_SUBJOBS;
+    }
+
+    if (data->CanLoseExp)
+    {
+        rules |= RULES_LOSE_EXP;
+    }
+
     battlefield->SetName(data->Name);
-    battlefield->SetRecord("nobody", registration.timeLimit, 0);
+    battlefield->SetRecord("nobody", data->TimeLimit, 0);
 
     const auto rset = db::preparedStmt("SELECT fastestName, fastestTime, fastestPartySize FROM battlefield_records WHERE bcnmId = ?", registration.id);
     FOR_DB_SINGLE_RESULT(rset)
     {
         battlefield->SetRecord(rset->get<std::string>("fastestName"), std::chrono::seconds(rset->get<uint32>("fastestTime")), rset->get<uint8>("fastestPartySize"));
     }
-    battlefield->SetTimeLimit(registration.timeLimit);
-    battlefield->SetLevelCap(registration.levelCap);
-    battlefield->SetMaxParticipants(registration.maxPlayers);
-    battlefield->SetRuleMask(registration.rules);
-    battlefield->m_isMission = registration.isMission;
-    battlefield->m_showTimer = registration.showTimer;
+    battlefield->SetTimeLimit(data->TimeLimit);
+    battlefield->SetLevelCap(levelCap);
+    battlefield->SetMaxParticipants(data->MaxPlayers);
+    battlefield->SetRuleMask(rules);
+    battlefield->m_isMission = data->IsMission;
+    battlefield->m_showTimer = data->ShowTimer;
 
     const auto area = battlefield->GetArea();
     m_Battlefields.insert(std::make_pair(area, std::move(battlefield)));

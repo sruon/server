@@ -4,16 +4,13 @@
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId           = xi.zone.CLOISTER_OF_TIDES,
-    battlefieldId    = xi.battlefield.id.WAKING_THE_BEAST_CLOISTER_OF_TIDES,
-    canLoseExp       = false,
-    maxPlayers       = 18,
-    timeLimit        = utils.minutes(30),
-    entryNpc         = 'WP_Entrance',
-    exitNpc          = 'Water_Protocrystal',
+    zoneId        = xi.zone.CLOISTER_OF_TIDES,
+    battlefieldId = xi.battlefield.id.WAKING_THE_BEAST_CLOISTER_OF_TIDES,
+    entryNpc      = 'WP_Entrance',
+    exitNpc       = 'Water_Protocrystal',
 
-    questArea = xi.questLog.OTHER_AREAS,
-    quest     = xi.quest.id.otherAreas.WAKING_THE_BEAST,
+    questArea     = xi.questLog.OTHER_AREAS,
+    quest         = xi.quest.id.otherAreas.WAKING_THE_BEAST,
 })
 
 -- can help if you are doing the quest or already completed the quest

@@ -634,10 +634,10 @@ public:
 
     // Battlefields
     auto getBattlefield() const -> CBattlefield*;
-    auto getRegisteredBattlefield() const -> CBattlefield*;                                                                                      // returns CBattlefield* or nullptr if not available
-    auto getBattlefieldID() const -> int32;                                                                                                      // returns entity->PBattlefield->GetID() or -1 if not available
-    auto registerBattlefield(const sol::object& arg0, const sol::object& arg1, const sol::object& arg2, const sol::object& arg3) const -> uint8; // attempt to register a battlefield, returns BATTLEFIELD_RETURNCODE
-    auto battlefieldAtCapacity(int battlefieldID) const -> bool;                                                                                 // returns 1 if this battlefield is full
+    auto getRegisteredBattlefield() const -> CBattlefield*;                                                             // returns CBattlefield* or nullptr if not available
+    auto getBattlefieldID() const -> int32;                                                                             // returns entity->PBattlefield->GetID() or -1 if not available
+    auto registerBattlefield(const sol::object& arg0, const sol::object& arg1, const sol::object& arg2) const -> uint8; // attempt to register a battlefield, returns BATTLEFIELD_RETURNCODE
+    auto battlefieldAtCapacity(int battlefieldID) const -> bool;                                                        // returns 1 if this battlefield is full
     auto enterBattlefield(const sol::object& area) const -> bool;
     auto leaveBattlefield(uint8 leavecode) const -> bool;
     auto isInDynamis() const -> bool;

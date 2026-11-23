@@ -7,14 +7,11 @@ local chamberOfOraclesID = zones[xi.zone.CHAMBER_OF_ORACLES]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId           = xi.zone.CHAMBER_OF_ORACLES,
-    battlefieldId    = xi.battlefield.id.LEGION_XI_COMITATENSIS,
-    maxPlayers       = 6,
-    levelCap         = 60,
-    timeLimit        = utils.minutes(30),
-    entryNpc         = 'SC_Entrance',
-    exitNpc          = 'Shimmering_Circle',
-    requiredItems    = { xi.item.MOON_ORB, wearMessage = chamberOfOraclesID.text.A_CRACK_HAS_FORMED, wornMessage = chamberOfOraclesID.text.ORB_IS_CRACKED },
+    zoneId        = xi.zone.CHAMBER_OF_ORACLES,
+    battlefieldId = xi.battlefield.id.LEGION_XI_COMITATENSIS,
+    entryNpc      = 'SC_Entrance',
+    exitNpc       = 'Shimmering_Circle',
+    requiredItems = { xi.item.MOON_ORB, wearMessage = chamberOfOraclesID.text.A_CRACK_HAS_FORMED, wornMessage = chamberOfOraclesID.text.ORB_IS_CRACKED },
 })
 
 content:addEssentialMobs({ 'Secutor_XI-XXXII', 'Retiarius_XI-XIX', 'Hoplomachus_XI-XXVI', 'Centurio_XI-I' })

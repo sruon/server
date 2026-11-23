@@ -7,14 +7,11 @@ local waughroonID = zones[xi.zone.WAUGHROON_SHRINE]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId           = xi.zone.WAUGHROON_SHRINE,
-    battlefieldId    = xi.battlefield.id.CRUSTACEAN_CONUNDRUM,
-    maxPlayers       = 3,
-    levelCap         = 20,
-    timeLimit        = utils.minutes(15),
-    entryNpc         = 'BC_Entrance',
-    exitNpc          = 'Burning_Circle',
-    requiredItems    = { xi.item.CLOUDY_ORB, wearMessage = waughroonID.text.A_CRACK_HAS_FORMED, wornMessage = waughroonID.text.ORB_IS_CRACKED },
+    zoneId        = xi.zone.WAUGHROON_SHRINE,
+    battlefieldId = xi.battlefield.id.CRUSTACEAN_CONUNDRUM,
+    entryNpc      = 'BC_Entrance',
+    exitNpc       = 'Burning_Circle',
+    requiredItems = { xi.item.CLOUDY_ORB, wearMessage = waughroonID.text.A_CRACK_HAS_FORMED, wornMessage = waughroonID.text.ORB_IS_CRACKED },
 })
 
 content:addEssentialMobs({ 'Heavy_Metal_Crab', 'Metal_Crab' })

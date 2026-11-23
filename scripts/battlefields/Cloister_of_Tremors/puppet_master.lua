@@ -7,19 +7,16 @@ local cloisterOfTremorsID = zones[xi.zone.CLOISTER_OF_TREMORS]
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId           = xi.zone.CLOISTER_OF_TREMORS,
-    battlefieldId    = xi.battlefield.id.PUPPET_MASTER,
-    canLoseExp       = false,
-    maxPlayers       = 18,
-    timeLimit        = utils.minutes(30),
-    entryNpc         = 'EP_Entrance',
-    exitNpc          = 'Earth_Protocrystal',
-    requiredItems    = { xi.item.EARTH_PENDULUM, keep = true },
-    requiredVar      = 'Quest[2][81]Prog',
-    requiredValue    = 1,
+    zoneId        = xi.zone.CLOISTER_OF_TREMORS,
+    battlefieldId = xi.battlefield.id.PUPPET_MASTER,
+    entryNpc      = 'EP_Entrance',
+    exitNpc       = 'Earth_Protocrystal',
+    requiredItems = { xi.item.EARTH_PENDULUM, keep = true },
+    requiredVar   = 'Quest[2][81]Prog',
+    requiredValue = 1,
 
-    questArea = xi.questLog.WINDURST,
-    quest     = xi.quest.id.windurst.THE_PUPPET_MASTER,
+    questArea     = xi.questLog.WINDURST,
+    quest         = xi.quest.id.windurst.THE_PUPPET_MASTER,
 })
 
 -- Only the battlefield registrant needs to have the required item and quest state to initiate the battlefield.

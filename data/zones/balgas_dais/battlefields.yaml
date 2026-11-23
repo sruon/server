@@ -1,26 +1,125 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
 battlefields:
-  rank_2_mission:               {index:  0}
-  steamed_sprouts:              {index:  1}
-  divine_punishers:             {index:  2}
-  saintly_invitation:           {index:  3}
-  treasure_and_tribulations:    {index:  4}
-  shattering_stars_mnk:         {index:  5}
-  shattering_stars_whm:         {index:  6}
-  shattering_stars_smn:         {index:  7}
-  creeping_doom:                {index:  8}
-  charming_trio:                {index:  9}
-  harem_scarem:                 {index: 10}
-  early_bird_catches_the_wyrm:  {index: 11} # experimental
-  royal_succession:             {index: 12}
-  rapid_raptors:                {index: 13}
-  wild_wild_whiskers:           {index: 14}
-  seasons_greetings:            {index: 15} # experimental
-  royale_ramble:                {index: 16}
-  moa_constrictors:             {index: 17}
-  v_formation:                  {index: 18}
-  avian_apostates:              {index: 19}
-  beyond_infinity_balgas_dais:  {index: 20}
-  aman_trove_mars_balgas_dais:  {index: 24}
-  aman_trove_venus_balgas_dais: {index: 25}
+  rank_2_mission:
+    index:        0
+    time_limit:   15
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true
+    is_mission:   true
+
+  steamed_sprouts:
+    index:      1
+    level_cap: 40
+
+  divine_punishers:
+    index:      2
+    level_cap: 60
+
+  saintly_invitation:
+    index:        3
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true
+    is_mission:   true
+
+  treasure_and_tribulations:
+    index:      4
+    level_cap: 50
+
+  shattering_stars_mnk:
+    index:           5
+    time_limit:      10
+    max_players:     1
+    level_cap:       max
+    allow_subjob:    false
+    cleanup_debuffs: true
+
+  shattering_stars_whm:
+    index:           6
+    time_limit:      10
+    max_players:     1
+    level_cap:       max
+    allow_subjob:    false
+    cleanup_debuffs: true
+
+  shattering_stars_smn:
+    index:           7
+    time_limit:      10
+    max_players:     1
+    level_cap:       max
+    allow_subjob:    false
+    cleanup_debuffs: true
+
+  creeping_doom:
+    index:        8
+    time_limit:  15
+    max_players:  3
+    level_cap:   30
+
+  charming_trio:
+    index:        9
+    time_limit:  15
+    max_players:  3
+    level_cap:   20
+
+  harem_scarem:
+    index:     10
+    level_cap: 30
+
+  early_bird_catches_the_wyrm: # experimental
+    index:       11
+    max_players: 18
+
+  royal_succession:
+    index:       12
+    time_limit:  15
+    max_players:  3
+    level_cap:   40
+
+  rapid_raptors:
+    index:       13
+    time_limit:  15
+    max_players:  3
+    level_cap:   50
+
+  wild_wild_whiskers:
+    index:       14
+    time_limit:  15
+    max_players:  3
+    level_cap:   60
+
+  seasons_greetings: # experimental
+    index: 15
+
+  royale_ramble:
+    index: 16
+
+  moa_constrictors:
+    index: 17
+
+  v_formation:
+    index: 18
+
+  avian_apostates:
+    index: 19
+
+  beyond_infinity_balgas_dais:
+    index:        20
+    time_limit:   10
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true
+
+  aman_trove_mars_balgas_dais:
+    index:         24
+    can_lose_exp:  false
+    allow_trusts:  true
+    delay_to_exit: 4     # Observed on retail: the win cutscene plays about 4 seconds after the coffer opens.
+
+  aman_trove_venus_balgas_dais:
+    index:         25
+    can_lose_exp:  false
+    allow_trusts:  true
+    delay_to_exit: 4     # Observed on retail: the win cutscene plays about 4 seconds after the coffer opens.

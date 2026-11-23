@@ -87,6 +87,7 @@
 #include "besieged_system.h"
 #include "conquest_system.h"
 #include "daily_system.h"
+#include "data/datasets/zones/battlefields/dataset.h"
 #include "data/datasets/zones/mobs/dataset.h"
 #include "data/datasets/zones/npcs/dataset.h"
 #include "data/enums/mob_mod.h"
@@ -342,6 +343,7 @@ void init(IPP mapIPP, bool isRunningInCI)
     lua.set_function("SendToJailOffline", &luautils::SendToJailOffline);
     lua.set_function("DrawIn", &luautils::DrawIn);
     lua.set_function("GetSystemTime", &luautils::GetSystemTime);
+    lua.set_function("GetBattlefieldDefinition", &luautils::GetBattlefieldDefinition);
     lua.set_function("LoadLinkshellConciergeSlots", &luautils::LoadLinkshellConciergeSlots);
     lua.set_function("SetLinkshellConciergeSlot", &luautils::SetLinkshellConciergeSlot);
     lua.set_function("DeleteLinkshellConciergeSlot", &luautils::DeleteLinkshellConciergeSlot);
@@ -1954,6 +1956,42 @@ auto VanadielDayElement() -> uint8
 auto GetSystemTime() -> uint32
 {
     return earth_time::timestamp();
+}
+
+/************************************************************************
+ *                                                                       *
+ * What the battlefield framework reads from a zone's battlefields.yaml  *
+ *                                                                       *
+ ************************************************************************/
+
+auto GetBattlefieldDefinition(const uint16 battlefieldId) -> sol::object
+{
+    static std::map<xi::ZoneId, std::optional<xi::data::Battlefields>> zones;
+
+    const auto zone            = static_cast<xi::ZoneId>(battlefieldId >> xi::data::kBattlefieldIndexBits);
+    const auto [it, isNewZone] = zones.try_emplace(zone);
+    if (isNewZone)
+    {
+        it->second = xi::data::loadZoneFile<xi::data::datasets::zones::battlefields::Dataset>(zone);
+    }
+
+    if (!it->second)
+    {
+        return sol::lua_nil;
+    }
+
+    const auto entry = std::ranges::find_if(*it->second,
+                                            [&](const xi::data::BattlefieldData& battlefield)
+                                            {
+                                                return std::to_underlying(xi::data::battlefieldId(zone, battlefield.Index)) == battlefieldId;
+                                            });
+    if (entry == it->second->end())
+    {
+        return sol::lua_nil;
+    }
+
+    return lua.create_table_with(
+        "maxPlayers", entry->MaxPlayers, "timeLimit", std::chrono::seconds(entry->TimeLimit).count(), "allowTrusts", entry->AllowTrusts, "hasWipeGrace", entry->HasWipeGrace, "cleanupDebuffs", entry->CleanupDebuffs, "delayToExit", entry->DelayToExit.count());
 }
 
 auto LoadLinkshellConciergeSlots(uint16 zoneId) -> sol::table

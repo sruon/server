@@ -335,15 +335,12 @@ local checkElementalAvatarTwoHour = function(mainCarbyID, battlefield, phase)
 end
 
 local content = BattlefieldQuest:new({
-    zoneId           = xi.zone.FULL_MOON_FOUNTAIN,
-    battlefieldId    = xi.battlefield.id.WAKING_THE_BEAST_FULLMOON,
-    canLoseExp       = false,
-    maxPlayers       = 18,
-    timeLimit        = utils.minutes(30),
-    entryNpc         = 'MS_Entrance',
-    exitNpc          = 'Moon_Spiral',
-    questArea = xi.questLog.OTHER_AREAS,
-    quest     = xi.quest.id.otherAreas.WAKING_THE_BEAST,
+    zoneId        = xi.zone.FULL_MOON_FOUNTAIN,
+    battlefieldId = xi.battlefield.id.WAKING_THE_BEAST_FULLMOON,
+    entryNpc      = 'MS_Entrance',
+    exitNpc       = 'Moon_Spiral',
+    questArea     = xi.questLog.OTHER_AREAS,
+    quest         = xi.quest.id.otherAreas.WAKING_THE_BEAST,
 })
 
 -- can help if you are doing the quest or already completed the quest

@@ -4,16 +4,13 @@
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId           = xi.zone.CLOISTER_OF_FLAMES,
-    battlefieldId    = xi.battlefield.id.WAKING_THE_BEAST_CLOISTER_OF_FLAMES,
-    canLoseExp       = false,
-    maxPlayers       = 18,
-    timeLimit        = utils.minutes(30),
-    entryNpc         = 'FP_Entrance',
-    exitNpc          = 'Fire_Protocrystal',
+    zoneId        = xi.zone.CLOISTER_OF_FLAMES,
+    battlefieldId = xi.battlefield.id.WAKING_THE_BEAST_CLOISTER_OF_FLAMES,
+    entryNpc      = 'FP_Entrance',
+    exitNpc       = 'Fire_Protocrystal',
 
-    questArea = xi.questLog.OTHER_AREAS,
-    quest     = xi.quest.id.otherAreas.WAKING_THE_BEAST,
+    questArea     = xi.questLog.OTHER_AREAS,
+    quest         = xi.quest.id.otherAreas.WAKING_THE_BEAST,
 })
 
 -- can help if you are doing the quest or already completed the quest

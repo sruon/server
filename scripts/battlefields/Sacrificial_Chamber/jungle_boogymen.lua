@@ -7,15 +7,12 @@ local sacrificialChamberID = zones[xi.zone.SACRIFICIAL_CHAMBER]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId           = xi.zone.SACRIFICIAL_CHAMBER,
-    battlefieldId    = xi.battlefield.id.JUNGLE_BOOGYMEN,
-    maxPlayers       = 6,
-    levelCap         = 60,
-    timeLimit        = utils.minutes(30),
-    entryNpc         = '_4j0',
-    exitNpcs         = { '_4j2', '_4j3', '_4j4' },
-    requiredItems    = { xi.item.MOON_ORB, wearMessage = sacrificialChamberID.text.A_CRACK_HAS_FORMED, wornMessage = sacrificialChamberID.text.ORB_IS_CRACKED },
-    armouryCrates    =
+    zoneId        = xi.zone.SACRIFICIAL_CHAMBER,
+    battlefieldId = xi.battlefield.id.JUNGLE_BOOGYMEN,
+    entryNpc      = '_4j0',
+    exitNpcs      = { '_4j2', '_4j3', '_4j4' },
+    requiredItems = { xi.item.MOON_ORB, wearMessage = sacrificialChamberID.text.A_CRACK_HAS_FORMED, wornMessage = sacrificialChamberID.text.ORB_IS_CRACKED },
+    armouryCrates =
     {
         sacrificialChamberID.mob.SABLE_TONGUED_GONBERRY + 4,
         sacrificialChamberID.mob.SABLE_TONGUED_GONBERRY + 11,

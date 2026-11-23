@@ -6,16 +6,10 @@ local cloisterOfGalesID = zones[xi.zone.CLOISTER_OF_GALES]
 -----------------------------------
 
 local content = BattlefieldMission:new({
-    zoneId        = xi.zone.CLOISTER_OF_GALES,
-    battlefieldId = xi.battlefield.id.SUGAR_COATED_DIRECTIVE_CLOISTER_OF_GALES,
-    canLoseExp    = false,
-    isMission     = true,
-    allowTrusts   = true,
-    maxPlayers    = 6,
-    levelCap      = xi.settings.main.MAX_LEVEL,
-    timeLimit     = utils.minutes(30),
-    entryNpc      = 'WP_Entrance',
-    exitNpc       = 'Wind_Protocrystal',
+    zoneId           = xi.zone.CLOISTER_OF_GALES,
+    battlefieldId    = xi.battlefield.id.SUGAR_COATED_DIRECTIVE_CLOISTER_OF_GALES,
+    entryNpc         = 'WP_Entrance',
+    exitNpc          = 'Wind_Protocrystal',
 
     requiredKeyItems = { xi.keyItem.DOMINAS_EMERALD_SEAL, keep = true },
     missionArea      = xi.mission.log_id.ASA,
@@ -23,7 +17,7 @@ local content = BattlefieldMission:new({
     requiredVar      = 'Mission[11][3]Garuda',
     requiredValue    = 1,
 
-    grantXP = 400,
+    grantXP          = 400,
 })
 
 content.groups =

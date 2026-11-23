@@ -7,15 +7,12 @@ local ghelsbaID = zones[xi.zone.GHELSBA_OUTPOST]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId           = xi.zone.GHELSBA_OUTPOST,
-    battlefieldId    = xi.battlefield.id.WINGS_OF_FURY,
-    maxPlayers       = 3,
-    levelCap         = 20,
-    timeLimit        = utils.minutes(15),
-    area             = 1,
-    entryNpc         = 'Hut_Door',
-    requiredItems    = { xi.item.CLOUDY_ORB, wearMessage = ghelsbaID.text.A_CRACK_HAS_FORMED, wornMessage = ghelsbaID.text.ORB_IS_CRACKED },
-    armouryCrates    =
+    zoneId        = xi.zone.GHELSBA_OUTPOST,
+    battlefieldId = xi.battlefield.id.WINGS_OF_FURY,
+    area          = 1,
+    entryNpc      = 'Hut_Door',
+    requiredItems = { xi.item.CLOUDY_ORB, wearMessage = ghelsbaID.text.A_CRACK_HAS_FORMED, wornMessage = ghelsbaID.text.ORB_IS_CRACKED },
+    armouryCrates =
     {
         ghelsbaID.mob.COLO_COLO + 3,
     },

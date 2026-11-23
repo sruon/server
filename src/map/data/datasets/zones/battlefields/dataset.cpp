@@ -29,8 +29,10 @@
 
 #include <algorithm>
 #include <stdexcept>
+#include <string>
 #include <unordered_set>
 #include <utility>
+#include <variant>
 
 namespace xi::data::datasets::zones::battlefields
 {
@@ -54,10 +56,47 @@ auto Dataset::decode(const std::string_view text) -> Records
             throw std::runtime_error(fmt::format("duplicate battlefield index {}", source.index));
         }
 
-        records.emplace_back(BattlefieldData{
+        BattlefieldData record{
             .Name  = name,
             .Index = source.index,
-        });
+        };
+
+        if (source.time_limit)
+        {
+            record.TimeLimit = std::chrono::minutes(*source.time_limit);
+        }
+
+        if (source.delay_to_exit)
+        {
+            record.DelayToExit = std::chrono::seconds(*source.delay_to_exit);
+        }
+
+        if (source.level_cap)
+        {
+            if (const auto* level = std::get_if<uint8>(&*source.level_cap))
+            {
+                record.LevelCap = *level;
+            }
+            else if (std::get<wire::LevelCapKeyword>(*source.level_cap).Value == "max")
+            {
+                record.CapAtMaxLevel = true;
+            }
+            else
+            {
+                throw std::runtime_error(fmt::format("battlefield '{}' level_cap must be a level or max", name));
+            }
+        }
+
+        record.MaxPlayers     = source.max_players.value_or(record.MaxPlayers);
+        record.CanLoseExp     = source.can_lose_exp.value_or(record.CanLoseExp);
+        record.AllowTrusts    = source.allow_trusts.value_or(record.AllowTrusts);
+        record.IsMission      = source.is_mission.value_or(record.IsMission);
+        record.AllowSubjob    = source.allow_subjob.value_or(record.AllowSubjob);
+        record.CleanupDebuffs = source.cleanup_debuffs.value_or(record.CleanupDebuffs);
+        record.HasWipeGrace   = source.has_wipe_grace.value_or(record.HasWipeGrace);
+        record.ShowTimer      = source.show_timer.value_or(record.ShowTimer);
+
+        records.emplace_back(std::move(record));
     }
 
     std::ranges::sort(records, {}, &BattlefieldData::Index);

@@ -7,14 +7,11 @@ local horlaisID = zones[xi.zone.HORLAIS_PEAK]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId           = xi.zone.HORLAIS_PEAK,
-    battlefieldId    = xi.battlefield.id.SHOOTING_FISH,
-    maxPlayers       = 3,
-    levelCap         = 20,
-    timeLimit        = utils.minutes(15),
-    entryNpc         = 'BC_Entrance',
-    exitNpc          = 'Burning_Circle',
-    requiredItems    = { xi.item.CLOUDY_ORB, wearMessage = horlaisID.text.A_CRACK_HAS_FORMED, wornMessage = horlaisID.text.ORB_IS_CRACKED },
+    zoneId        = xi.zone.HORLAIS_PEAK,
+    battlefieldId = xi.battlefield.id.SHOOTING_FISH,
+    entryNpc      = 'BC_Entrance',
+    exitNpc       = 'Burning_Circle',
+    requiredItems = { xi.item.CLOUDY_ORB, wearMessage = horlaisID.text.A_CRACK_HAS_FORMED, wornMessage = horlaisID.text.ORB_IS_CRACKED },
 })
 
 content:addEssentialMobs({ 'Sniper_Pugil', 'Archer_Pugil' })

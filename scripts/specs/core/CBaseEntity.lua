@@ -2664,9 +2664,8 @@ end
 ---@param arg0 integer?
 ---@param arg1 integer?
 ---@param arg2 integer?
----@param arg3 table?
 ---@return integer
-function CBaseEntity:registerBattlefield(arg0, arg1, arg2, arg3)
+function CBaseEntity:registerBattlefield(arg0, arg1, arg2)
 end
 
 ---@nodiscard

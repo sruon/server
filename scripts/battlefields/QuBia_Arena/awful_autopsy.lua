@@ -12,15 +12,12 @@ local qubiaID = zones[xi.zone.QUBIA_ARENA]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId           = xi.zone.QUBIA_ARENA,
-    battlefieldId    = xi.battlefield.id.AWFUL_AUTOPSY,
-    maxPlayers       = 3,
-    levelCap         = 50,
-    timeLimit        = utils.minutes(15),
-    entryNpc         = 'BC_Entrance',
-    exitNpc          = 'Burning_Circle',
-    requiredItems    = { xi.item.COMET_ORB, wearMessage = qubiaID.text.A_CRACK_HAS_FORMED, wornMessage = qubiaID.text.ORB_IS_CRACKED },
-    armouryCrates    =
+    zoneId        = xi.zone.QUBIA_ARENA,
+    battlefieldId = xi.battlefield.id.AWFUL_AUTOPSY,
+    entryNpc      = 'BC_Entrance',
+    exitNpc       = 'Burning_Circle',
+    requiredItems = { xi.item.COMET_ORB, wearMessage = qubiaID.text.A_CRACK_HAS_FORMED, wornMessage = qubiaID.text.ORB_IS_CRACKED },
+    armouryCrates =
     {
         qubiaID.mob.CHAHNAMEEDS_STOMACH + 4,
         qubiaID.mob.CHAHNAMEEDS_STOMACH + 9,

@@ -7,14 +7,11 @@ local balgasID = zones[xi.zone.BALGAS_DAIS]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId           = xi.zone.BALGAS_DAIS,
-    battlefieldId    = xi.battlefield.id.HAREM_SCAREM,
-    maxPlayers       = 6,
-    levelCap         = 30,
-    timeLimit        = utils.minutes(30),
-    entryNpc         = 'BC_Entrance',
-    exitNpc          = 'Burning_Circle',
-    requiredItems    = { xi.item.SKY_ORB, wearMessage = balgasID.text.A_CRACK_HAS_FORMED, wornMessage = balgasID.text.ORB_IS_CRACKED },
+    zoneId        = xi.zone.BALGAS_DAIS,
+    battlefieldId = xi.battlefield.id.HAREM_SCAREM,
+    entryNpc      = 'BC_Entrance',
+    exitNpc       = 'Burning_Circle',
+    requiredItems = { xi.item.SKY_ORB, wearMessage = balgasID.text.A_CRACK_HAS_FORMED, wornMessage = balgasID.text.ORB_IS_CRACKED },
 })
 
 content:addEssentialMobs({ 'Nenaunir', 'Nenaunirs_Wife' })

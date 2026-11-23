@@ -9,9 +9,6 @@ local ID = zones[xi.zone.THE_SHROUDED_MAW]
 local content = Battlefield:new({
     zoneId           = xi.zone.THE_SHROUDED_MAW,
     battlefieldId    = xi.battlefield.id.TEST_YOUR_MITE,
-    maxPlayers       = 18,
-    levelCap         = 40,
-    timeLimit        = utils.minutes(30),
     entryNpc         = 'MC_Entrance',
     exitNpc          = 'Memento_Circle',
     requiredKeyItems = { xi.keyItem.ASTRAL_COVENANT, message = ID.text.ASTRAL_DISINTEGRATES },

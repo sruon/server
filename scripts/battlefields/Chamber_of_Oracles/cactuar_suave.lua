@@ -7,13 +7,11 @@ local chamberOfOraclesID = zones[xi.zone.CHAMBER_OF_ORACLES]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId           = xi.zone.CHAMBER_OF_ORACLES,
-    battlefieldId    = xi.battlefield.id.CACTUAR_SUAVE,
-    maxPlayers       = 6,
-    timeLimit        = utils.minutes(30),
-    entryNpc         = 'SC_Entrance',
-    exitNpc          = 'Shimmering_Circle',
-    requiredItems    = { xi.item.CLOTHO_ORB, wearMessage = chamberOfOraclesID.text.A_CRACK_HAS_FORMED, wornMessage = chamberOfOraclesID.text.ORB_IS_CRACKED },
+    zoneId        = xi.zone.CHAMBER_OF_ORACLES,
+    battlefieldId = xi.battlefield.id.CACTUAR_SUAVE,
+    entryNpc      = 'SC_Entrance',
+    exitNpc       = 'Shimmering_Circle',
+    requiredItems = { xi.item.CLOTHO_ORB, wearMessage = chamberOfOraclesID.text.A_CRACK_HAS_FORMED, wornMessage = chamberOfOraclesID.text.ORB_IS_CRACKED },
 })
 
 content:addEssentialMobs({ 'Sabotender_Campeon', 'Sabotender_Amante' })

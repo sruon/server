@@ -8,12 +8,6 @@ local sealionsDenID = zones[xi.zone.SEALIONS_DEN]
 local content = BattlefieldMission:new({
     zoneId        = xi.zone.SEALIONS_DEN,
     battlefieldId = xi.battlefield.id.ONE_TO_BE_FEARED,
-    canLoseExp    = false,
-    isMission     = true,
-    allowTrusts   = true,
-    maxPlayers    = 6,
-    levelCap      = xi.settings.main.MAX_LEVEL,
-    timeLimit     = utils.minutes(45),
     entryNpc      = '_0w0',
     exitNpc       = 'Airship_Door',
     missionArea   = xi.mission.log_id.COP,
@@ -21,8 +15,8 @@ local content = BattlefieldMission:new({
     requiredVar   = 'Mission[6][638]Status',
     requiredValue = 3,
 
-    grantXP = 1500,
-    title   = xi.title.ULTIMA_UNDERTAKER,
+    grantXP       = 1500,
+    title         = xi.title.ULTIMA_UNDERTAKER,
 })
 
 -- NOTE: Mob spawning for phase changes in this battlefield is triggered

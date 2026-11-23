@@ -8,9 +8,6 @@ local boneyardGullyID = zones[xi.zone.BONEYARD_GULLY]
 local content = Battlefield:new({
     zoneId           = xi.zone.BONEYARD_GULLY,
     battlefieldId    = xi.battlefield.id.SHEEP_IN_ANTLIONS_CLOTHING,
-    maxPlayers       = 18,
-    levelCap         = 75,
-    timeLimit        = utils.minutes(15),
     entryNpc         = '_081',
     exitNpcs         = { '_082', '_084', '_086' },
     requiredKeyItems = { xi.keyItem.MIASMA_FILTER },
@@ -20,7 +17,7 @@ local content = Battlefield:new({
         boneyardGullyID.mob.TUCHULCHA + 10,
         boneyardGullyID.mob.TUCHULCHA + 16,
     },
-    grantXP = 2500,
+    grantXP          = 2500,
 })
 
 content.groups =

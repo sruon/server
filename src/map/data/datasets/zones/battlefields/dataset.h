@@ -25,6 +25,7 @@
 #include "data/enums/battlefield.h"
 #include "data/enums/zone.h"
 
+#include <chrono>
 #include <utility>
 
 #include <string>
@@ -44,8 +45,20 @@ constexpr auto battlefieldId(const xi::ZoneId zone, const uint8 index) -> xi::Ba
 
 struct BattlefieldData
 {
-    std::string Name{};
-    uint8       Index{};
+    std::string          Name{};
+    uint8                Index{};
+    std::chrono::minutes TimeLimit{ 30 };
+    uint8                MaxPlayers{ 6 };
+    uint8                LevelCap{};      // 0 is no cap
+    bool                 CapAtMaxLevel{}; // cap at the server's maximum level instead
+    bool                 CanLoseExp{ true };
+    bool                 AllowTrusts{};
+    bool                 IsMission{};
+    bool                 AllowSubjob{ true };
+    bool                 CleanupDebuffs{};
+    std::chrono::seconds DelayToExit{ 5 };
+    bool                 HasWipeGrace{ true };
+    bool                 ShowTimer{ true };
 };
 
 using Battlefields = std::vector<BattlefieldData>; // ordered by index

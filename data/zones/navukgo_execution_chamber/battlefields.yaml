@@ -1,8 +1,29 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
 battlefields:
-  tough_nut_to_crack:   {index: 0}
-  happy_caster:         {index: 1}
-  omens:                {index: 2}
-  achieving_true_power: {index: 3}
-  shield_of_diplomacy:  {index: 4}
+  tough_nut_to_crack:
+    index:      0
+    level_cap: 60
+
+  happy_caster:
+    index: 1
+
+  omens:
+    index:        2
+    max_players:  18
+    can_lose_exp: false
+
+  achieving_true_power:
+    index:        3
+    time_limit:   10
+    max_players:  1
+    level_cap:    max
+    can_lose_exp: false
+    allow_subjob: false
+
+  shield_of_diplomacy:
+    index:        4
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true
+    is_mission:   true

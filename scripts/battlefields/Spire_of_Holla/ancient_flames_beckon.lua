@@ -9,12 +9,6 @@ local spireOfHollaID = zones[xi.zone.SPIRE_OF_HOLLA]
 local content = Battlefield:new({
     zoneId         = xi.zone.SPIRE_OF_HOLLA,
     battlefieldId  = xi.battlefield.id.ANCIENT_FLAMES_BECKON_SPIRE_OF_HOLLA,
-    canLoseExp     = false,
-    isMission      = true,
-    allowTrusts    = true,
-    maxPlayers     = 6,
-    levelCap       = xi.settings.main.MAX_LEVEL,
-    timeLimit      = utils.minutes(30),
     entryNpc       = '_0h0',
     exitNpcs       = { '_0h1', '_0h2', '_0h3' },
 

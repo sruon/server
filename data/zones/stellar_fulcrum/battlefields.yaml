@@ -1,10 +1,27 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
 battlefields:
-  return_to_delkfutts_tower:   {index: 0}
-  indomitable_triumvirate_vs3: {index: 1}
-  dauntless_duo_vs2:           {index: 2}
-  solitary_demolisher_vs1:     {index: 3}
-  heroines_combat:             {index: 4}
-  mercenary_camp:              {index: 5}
-  ode_of_life_bestowing:       {index: 6}
+  return_to_delkfutts_tower:
+    index:        0
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true
+    is_mission:   true
+
+  indomitable_triumvirate_vs3:
+    index: 1
+
+  dauntless_duo_vs2:
+    index: 2
+
+  solitary_demolisher_vs1:
+    index: 3
+
+  heroines_combat:
+    index: 4
+
+  mercenary_camp:
+    index: 5
+
+  ode_of_life_bestowing:
+    index: 6

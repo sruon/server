@@ -8,12 +8,6 @@ local sealionsDenID = zones[xi.zone.SEALIONS_DEN]
 local content = BattlefieldMission:new({
     zoneId        = xi.zone.SEALIONS_DEN,
     battlefieldId = xi.battlefield.id.WARRIORS_PATH,
-    canLoseExp    = false,
-    isMission     = true,
-    allowTrusts   = true,
-    maxPlayers    = 6,
-    levelCap      = xi.settings.main.MAX_LEVEL,
-    timeLimit     = utils.minutes(30),
     entryNpc      = '_0w0',
     exitNpc       = 'Airship_Door',
     missionArea   = xi.mission.log_id.COP,
@@ -21,7 +15,7 @@ local content = BattlefieldMission:new({
     requiredVar   = 'Mission[6][748]Status',
     requiredValue = 1,
 
-    title = xi.title.UNQUENCHABLE_LIGHT,
+    title         = xi.title.UNQUENCHABLE_LIGHT,
 })
 
 -- Both titles are granted here. Unquenchable Light is the one left displayed.

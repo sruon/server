@@ -9,13 +9,10 @@ local monarchLinnID = zones[xi.zone.MONARCH_LINN]
 local content = Battlefield:new({
     zoneId           = xi.zone.MONARCH_LINN,
     battlefieldId    = xi.battlefield.id.FIRE_IN_THE_SKY,
-    maxPlayers       = 18,
-    levelCap         = 40,
-    timeLimit        = utils.minutes(15),
     entryNpc         = 'SD_Entrance',
     exitNpcs         = { 'SD_BCNM_Exit_1', 'SD_BCNM_Exit_2', 'SD_BCNM_Exit_3' },
     requiredKeyItems = { xi.keyItem.MONARCH_BEARD, message = monarchLinnID.text.TORN_FROM_YOUR_HANDS },
-    grantXP = 2500,
+    grantXP          = 2500,
 })
 
 content.groups =

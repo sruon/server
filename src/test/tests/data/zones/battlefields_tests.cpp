@@ -28,6 +28,7 @@
 
 #include <algorithm>
 #include <array>
+#include <chrono>
 #include <string>
 
 namespace
@@ -73,6 +74,68 @@ TEST_CASE("battlefields: a zone lists the battlefields it hosts", "[data][battle
     REQUIRE(tailsOfWoe != nullptr);
     CHECK(tailsOfWoe->Name == "tails_of_woe");
     CHECK(tailsOfWoe->Index == 1);
+}
+
+TEST_CASE("battlefields: limits and rules fall back to the framework defaults", "[data][battlefield]")
+{
+    const auto  modules      = std::array{ std::string{ "battlefields:\n  plain_trial: {index: 30}\n" } };
+    const auto  battlefields = BattlefieldsDataset::decode(xi::data::mergeYaml(horlaisPeakFile(), modules));
+    const auto* plain        = find(battlefields, xi::ZoneId::HorlaisPeak, xi::data::battlefieldId(xi::ZoneId::HorlaisPeak, 30));
+    REQUIRE(plain != nullptr);
+
+    CHECK(plain->TimeLimit == std::chrono::minutes(30));
+    CHECK(plain->MaxPlayers == 6);
+    CHECK(plain->LevelCap == 0);
+    CHECK_FALSE(plain->CapAtMaxLevel);
+    CHECK(plain->CanLoseExp);
+    CHECK_FALSE(plain->AllowTrusts);
+    CHECK_FALSE(plain->IsMission);
+    CHECK(plain->AllowSubjob);
+    CHECK_FALSE(plain->CleanupDebuffs);
+    CHECK(plain->DelayToExit == std::chrono::seconds(5));
+    CHECK(plain->HasWipeGrace);
+    CHECK(plain->ShowTimer);
+}
+
+TEST_CASE("battlefields: a zone file sets limits and rules", "[data][battlefield]")
+{
+    const auto battlefields = xi::data::loadZoneFile<BattlefieldsDataset>(xi::ZoneId::HorlaisPeak);
+    REQUIRE(battlefields.has_value());
+
+    const auto* rankTwo = find(*battlefields, xi::ZoneId::HorlaisPeak, xi::BattlefieldId::Rank2Mission1);
+    REQUIRE(rankTwo != nullptr);
+    CHECK(rankTwo->TimeLimit == std::chrono::minutes(15));
+    CHECK(rankTwo->CapAtMaxLevel);
+    CHECK_FALSE(rankTwo->CanLoseExp);
+    CHECK(rankTwo->AllowTrusts);
+    CHECK(rankTwo->IsMission);
+
+    const auto* tailsOfWoe = find(*battlefields, xi::ZoneId::HorlaisPeak, xi::BattlefieldId::TailsOfWoe);
+    REQUIRE(tailsOfWoe != nullptr);
+    CHECK(tailsOfWoe->LevelCap == 40);
+    CHECK_FALSE(tailsOfWoe->CapAtMaxLevel);
+
+    const auto* amanTrove = find(*battlefields, xi::ZoneId::HorlaisPeak, xi::BattlefieldId::AmanTroveMarsHorlaisPeak);
+    REQUIRE(amanTrove != nullptr);
+    CHECK(amanTrove->DelayToExit == std::chrono::seconds(4));
+}
+
+TEST_CASE("battlefields: a module changes a battlefield's limits", "[data][battlefield]")
+{
+    const auto  modules      = std::array{ std::string{ "battlefields:\n  tails_of_woe:\n    level_cap: max\n    time_limit: 45\n" } };
+    const auto  battlefields = BattlefieldsDataset::decode(xi::data::mergeYaml(horlaisPeakFile(), modules));
+    const auto* tailsOfWoe   = find(battlefields, xi::ZoneId::HorlaisPeak, xi::BattlefieldId::TailsOfWoe);
+    REQUIRE(tailsOfWoe != nullptr);
+
+    CHECK(tailsOfWoe->CapAtMaxLevel);
+    CHECK(tailsOfWoe->TimeLimit == std::chrono::minutes(45));
+}
+
+TEST_CASE("battlefields: a level cap is a level or max", "[data][battlefield]")
+{
+    const auto modules = std::array{ std::string{ "battlefields:\n  tails_of_woe:\n    level_cap: highest\n" } };
+
+    CHECK_THROWS(BattlefieldsDataset::decode(xi::data::mergeYaml(horlaisPeakFile(), modules)));
 }
 
 TEST_CASE("battlefields: a zone without a file hosts none", "[data][battlefield]")

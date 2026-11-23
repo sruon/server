@@ -9,12 +9,6 @@ local spireOfDemID = zones[xi.zone.SPIRE_OF_DEM]
 local content = Battlefield:new({
     zoneId         = xi.zone.SPIRE_OF_DEM,
     battlefieldId  = xi.battlefield.id.ANCIENT_FLAMES_BECKON_SPIRE_OF_DEM,
-    canLoseExp     = false,
-    isMission      = true,
-    allowTrusts    = true,
-    maxPlayers     = 6,
-    levelCap       = xi.settings.main.MAX_LEVEL,
-    timeLimit      = utils.minutes(30),
     entryNpc       = '_0j0',
     exitNpcs       = { '_0j1', '_0j2', '_0j3' },
 

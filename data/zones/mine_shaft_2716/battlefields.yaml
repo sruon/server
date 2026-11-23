@@ -1,9 +1,34 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
 battlefields:
-  century_of_hardship:  {index: 0}
-  return_to_the_depths: {index: 1}
-  bionic_bug:           {index: 2}
-  pulling_the_strings:  {index: 3}
-  automaton_assault:    {index: 4}
-  mobline_comedy:       {index: 5}
+  century_of_hardship:
+    index:        0
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true
+    is_mission:   true
+
+  return_to_the_depths:
+    index:        1
+    level_cap:    max
+    can_lose_exp: false
+
+  bionic_bug:
+    index:        2
+    max_players: 18
+    level_cap:   75
+
+  pulling_the_strings:
+    index:        3
+    time_limit:   15
+    max_players:  1
+    level_cap:    60
+    allow_subjob: false
+
+  automaton_assault:
+    index:       4
+    time_limit: 15
+    level_cap:  60
+
+  mobline_comedy:
+    index: 5

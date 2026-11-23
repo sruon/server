@@ -9,9 +9,6 @@ local qubiaID = zones[xi.zone.QUBIA_ARENA]
 local content = Battlefield:new({
     zoneId        = xi.zone.QUBIA_ARENA,
     battlefieldId = xi.battlefield.id.DEMOLITION_SQUAD,
-    maxPlayers    = 6,
-    levelCap      = 60,
-    timeLimit     = utils.minutes(30),
     entryNpc      = 'BC_Entrance',
     exitNpc       = 'Burning_Circle',
     requiredItems = { xi.item.MOON_ORB, wearMessage = qubiaID.text.A_CRACK_HAS_FORMED, wornMessage = qubiaID.text.ORB_IS_CRACKED },

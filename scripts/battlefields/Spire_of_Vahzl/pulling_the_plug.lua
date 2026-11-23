@@ -9,10 +9,6 @@ local spireOfVahzlID = zones[xi.zone.SPIRE_OF_VAHZL]
 local content = Battlefield:new({
     zoneId           = xi.zone.SPIRE_OF_VAHZL,
     battlefieldId    = xi.battlefield.id.PULLING_THE_PLUG,
-    allowTrusts      = false,
-    maxPlayers       = 18,
-    levelCap         = 50,
-    timeLimit        = utils.minutes(30),
     entryNpc         = '_0n0',
     exitNpcs         = { '_0n1', '_0n2', '_0n3' },
     requiredKeyItems = { xi.keyItem.CENSER_OF_ACRIMONY, message = spireOfVahzlID.text.FADES_INTO_NOTHINGNESS },

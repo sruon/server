@@ -1,13 +1,56 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
 battlefields:
-  through_the_quicksand_caves: {index: 0}
-  legion_xi_comitatensis:      {index: 1}
-  shattering_stars_sam:        {index: 2}
-  shattering_stars_nin:        {index: 3}
-  shattering_stars_drg:        {index: 4}
-  cactuar_suave:               {index: 5}
-  eye_of_the_storm:            {index: 6}
-  scarlet_king:                {index: 7}
-  cat_burglar_bares_fangs:     {index: 8} # experimental
-  dragon_scales:               {index: 9}
+  through_the_quicksand_caves:
+    index:        0
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true
+    is_mission:   true
+
+  legion_xi_comitatensis:
+    index:      1
+    level_cap: 60
+
+  shattering_stars_sam:
+    index:           2
+    time_limit:      10
+    max_players:     1
+    level_cap:       max
+    allow_subjob:    false
+    cleanup_debuffs: true
+
+  shattering_stars_nin:
+    index:           3
+    time_limit:      10
+    max_players:     1
+    level_cap:       max
+    allow_subjob:    false
+    cleanup_debuffs: true
+
+  shattering_stars_drg:
+    index:           4
+    time_limit:      10
+    max_players:     1
+    level_cap:       max
+    allow_subjob:    false
+    cleanup_debuffs: true
+
+  cactuar_suave:
+    index: 5
+
+  eye_of_the_storm:
+    index: 6
+
+  scarlet_king:
+    index: 7
+
+  cat_burglar_bares_fangs: # experimental
+    index:        8
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true
+    is_mission:   true
+
+  dragon_scales:
+    index: 9

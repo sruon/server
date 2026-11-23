@@ -9,9 +9,6 @@ local mineShaft2716ID = zones[xi.zone.MINE_SHAFT_2716]
 local content = Battlefield:new({
     zoneId           = xi.zone.MINE_SHAFT_2716,
     battlefieldId    = xi.battlefield.id.BIONIC_BUG,
-    maxPlayers       = 18,
-    levelCap         = 75,
-    timeLimit        = utils.minutes(30),
     entryNpc         = '_0d0',
     exitNpcs         = { '_0d1', '_0d2', '_0d3' },
     requiredKeyItems = { xi.keyItem.SHAFT_2716_OPERATING_LEVER, message = mineShaft2716ID.text.SNAPS_IN_TWO, },

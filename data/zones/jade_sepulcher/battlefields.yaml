@@ -1,8 +1,28 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
 battlefields:
-  making_a_mockery:    {index: 0}
-  shadows_of_the_mind: {index: 1}
-  beast_within:        {index: 2}
-  moment_of_truth:     {index: 3}
-  puppet_in_peril:     {index: 4}
+  making_a_mockery:
+    index:      0
+    level_cap: 60
+
+  shadows_of_the_mind:
+    index: 1
+
+  beast_within:
+    index:        2
+    time_limit:   10
+    max_players:  1
+    level_cap:    max
+    can_lose_exp: false
+    allow_subjob: false
+
+  moment_of_truth:
+    index:        3
+    can_lose_exp: false
+
+  puppet_in_peril:
+    index:        4
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true
+    is_mission:   true

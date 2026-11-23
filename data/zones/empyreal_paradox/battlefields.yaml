@@ -1,5 +1,16 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
 battlefields:
-  dawn:            {index: 0}
-  apocalypse_nigh: {index: 1}
+  dawn:
+    index:          0
+    level_cap:      max
+    can_lose_exp:   false
+    allow_trusts:   true
+    is_mission:     true
+    has_wipe_grace: false
+
+  apocalypse_nigh:
+    index:        1
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true

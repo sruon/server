@@ -6,15 +6,12 @@
 local content = BattlefieldQuest:new({
     zoneId           = xi.zone.CLOISTER_OF_GALES,
     battlefieldId    = xi.battlefield.id.TRIAL_BY_WIND,
-    canLoseExp       = false,
-    maxPlayers       = 6,
-    timeLimit        = utils.minutes(30),
     entryNpc         = 'WP_Entrance',
     exitNpc          = 'Wind_Protocrystal',
     requiredKeyItems = { xi.keyItem.TUNING_FORK_OF_WIND },
 
-    questArea = xi.questLog.OUTLANDS,
-    quest     = xi.quest.id.outlands.TRIAL_BY_WIND,
+    questArea        = xi.questLog.OUTLANDS,
+    quest            = xi.quest.id.outlands.TRIAL_BY_WIND,
 })
 
 function content:onEventFinishWin(player, csid, option, npc)

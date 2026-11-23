@@ -9,10 +9,6 @@ local riverneID = zones[xi.zone.RIVERNE_SITE_B01]
 local content = BattlefieldQuest:new({
     zoneId        = xi.zone.RIVERNE_SITE_B01,
     battlefieldId = xi.battlefield.id.STORMS_OF_FATE,
-    allowTrusts   = true,
-    maxPlayers    = 18,
-    levelCap      = xi.settings.main.MAX_LEVEL,
-    timeLimit     = utils.minutes(30),
     area          = 1,
     entryNpc      = 'Unstable_Displacement',
     exitNpc       = 'SD_BCNM_Exit',
@@ -21,7 +17,7 @@ local content = BattlefieldQuest:new({
     requiredVar   = 'Quest[3][86]Prog',
     requiredValue = 2,
 
-    title = xi.title.CONQUEROR_OF_FATE,
+    title         = xi.title.CONQUEROR_OF_FATE,
 })
 
 local function healCharacter(player)

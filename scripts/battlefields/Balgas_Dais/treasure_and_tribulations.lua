@@ -7,14 +7,11 @@ local balgasID = zones[xi.zone.BALGAS_DAIS]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId           = xi.zone.BALGAS_DAIS,
-    battlefieldId    = xi.battlefield.id.TREASURE_AND_TRIBULATIONS,
-    maxPlayers       = 6,
-    levelCap         = 50,
-    timeLimit        = utils.minutes(30),
-    entryNpc         = 'BC_Entrance',
-    exitNpc          = 'Burning_Circle',
-    requiredItems    = { xi.item.COMET_ORB, wearMessage = balgasID.text.A_CRACK_HAS_FORMED, wornMessage = balgasID.text.ORB_IS_CRACKED },
+    zoneId        = xi.zone.BALGAS_DAIS,
+    battlefieldId = xi.battlefield.id.TREASURE_AND_TRIBULATIONS,
+    entryNpc      = 'BC_Entrance',
+    exitNpc       = 'Burning_Circle',
+    requiredItems = { xi.item.COMET_ORB, wearMessage = balgasID.text.A_CRACK_HAS_FORMED, wornMessage = balgasID.text.ORB_IS_CRACKED },
 })
 
 function content:handleCrateDefeated(battlefield, mob)

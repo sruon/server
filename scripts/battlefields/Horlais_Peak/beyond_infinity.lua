@@ -6,18 +6,13 @@ local horlaisID = zones[xi.zone.HORLAIS_PEAK]
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId        = xi.zone.HORLAIS_PEAK,
-    battlefieldId = xi.battlefield.id.BEYOND_INFINITY_HORLAIS_PEAK,
-    canLoseExp    = false,
-    allowTrusts   = true,
-    maxPlayers    = 6,
-    levelCap      = xi.settings.main.MAX_LEVEL,
-    timeLimit     = utils.minutes(10),
-    entryNpc      = 'BC_Entrance',
-    exitNpc       = 'Burning_Circle',
+    zoneId           = xi.zone.HORLAIS_PEAK,
+    battlefieldId    = xi.battlefield.id.BEYOND_INFINITY_HORLAIS_PEAK,
+    entryNpc         = 'BC_Entrance',
+    exitNpc          = 'Burning_Circle',
 
-    questArea = xi.questLog.JEUNO,
-    quest     = xi.quest.id.jeuno.BEYOND_INFINITY,
+    questArea        = xi.questLog.JEUNO,
+    quest            = xi.quest.id.jeuno.BEYOND_INFINITY,
 
     requiredKeyItems =
     {

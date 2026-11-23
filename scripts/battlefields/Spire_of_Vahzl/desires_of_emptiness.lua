@@ -6,23 +6,17 @@ local spireOfVahzlID = zones[xi.zone.SPIRE_OF_VAHZL]
 -----------------------------------
 
 local content = BattlefieldMission:new({
-    zoneId                = xi.zone.SPIRE_OF_VAHZL,
-    battlefieldId         = xi.battlefield.id.DESIRES_OF_EMPTINESS,
-    canLoseExp            = false,
-    isMission             = true,
-    allowTrusts           = true,
-    maxPlayers            = 6,
-    levelCap              = xi.settings.main.MAX_LEVEL,
-    timeLimit             = utils.minutes(30),
-    entryNpc              = '_0n0',
-    exitNpcs              = { '_0n1', '_0n2', '_0n3' },
-    missionArea           = xi.mission.log_id.COP,
-    mission               = xi.mission.id.cop.DESIRES_OF_EMPTINESS,
-    requiredVar           = 'Mission[6][518]Status',
-    requiredValue         = 2,
+    zoneId        = xi.zone.SPIRE_OF_VAHZL,
+    battlefieldId = xi.battlefield.id.DESIRES_OF_EMPTINESS,
+    entryNpc      = '_0n0',
+    exitNpcs      = { '_0n1', '_0n2', '_0n3' },
+    missionArea   = xi.mission.log_id.COP,
+    mission       = xi.mission.id.cop.DESIRES_OF_EMPTINESS,
+    requiredVar   = 'Mission[6][518]Status',
+    requiredValue = 2,
 
-    grantXP = 1500,
-    title   = xi.title.FROZEN_DEAD_BODY,
+    grantXP       = 1500,
+    title         = xi.title.FROZEN_DEAD_BODY,
 })
 
 content.groups =

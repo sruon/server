@@ -8,12 +8,6 @@ local ID = zones[xi.zone.BONEYARD_GULLY]
 local content = BattlefieldMission:new({
     zoneId                = xi.zone.BONEYARD_GULLY,
     battlefieldId         = xi.battlefield.id.HEAD_WIND,
-    canLoseExp            = false,
-    isMission             = true,
-    allowTrusts           = true,
-    maxPlayers            = 6,
-    levelCap              = xi.settings.main.MAX_LEVEL,
-    timeLimit             = utils.minutes(30),
     entryNpc              = '_081',
     exitNpcs              = { '_082', '_084', '_086' },
 

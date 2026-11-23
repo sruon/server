@@ -9,13 +9,10 @@ local throneRoomID = zones[xi.zone.THRONE_ROOM]
 local content = Battlefield:new({
     zoneId        = xi.zone.THRONE_ROOM,
     battlefieldId = xi.battlefield.id.KINDRED_SPIRITS,
-    maxPlayers    = 6,
-    levelCap      = 60,
-    timeLimit     = utils.minutes(30),
     entryNpc      = '_4l1',
     exitNpcs      = { '_4l2', '_4l3', '_4l4' },
     requiredItems = { xi.item.MOON_ORB, wearMessage = throneRoomID.text.A_CRACK_HAS_FORMED, wornMessage = throneRoomID.text.ORB_IS_CRACKED },
-    armouryCrates    =
+    armouryCrates =
     {
         throneRoomID.mob.GRAND_MARQUIS_CHOMIEL + 4,
         throneRoomID.mob.GRAND_MARQUIS_CHOMIEL + 11,

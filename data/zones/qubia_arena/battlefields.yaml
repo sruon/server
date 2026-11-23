@@ -1,25 +1,117 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
 battlefields:
-  rank_5_mission:            {index:  0}
-  come_into_my_parlor:       {index:  1}
-  e_vase_ive_action:         {index:  2}
-  infernal_swarm:            {index:  3}
-  heir_to_the_light:         {index:  4}
-  shattering_stars_pld:      {index:  5}
-  shattering_stars_drk:      {index:  6}
-  shattering_stars_brd:      {index:  7}
-  demolition_squad:          {index:  8}
-  die_by_the_sword:          {index:  9}
-  let_sleeping_dogs_die:     {index: 10}
-  brothers_d_aurphe:         {index: 11}
-  undying_promise:           {index: 12}
-  factory_rejects:           {index: 13}
-  idol_thoughts:             {index: 14}
-  awful_autopsy:             {index: 15}
-  celery:                    {index: 16} # experimental
-  mirror_images:             {index: 17}
-  furious_finale:            {index: 18}
-  clash_of_the_comrades:     {index: 19}
-  those_who_lurk_in_shadows: {index: 20} # experimental
-  beyond_infinity:           {index: 21}
+  rank_5_mission:
+    index:        0
+    time_limit:   15
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true
+    is_mission:   true
+
+  come_into_my_parlor:
+    index: 1
+
+  e_vase_ive_action:
+    index: 2
+
+  infernal_swarm:
+    index: 3
+
+  heir_to_the_light:
+    index:        4
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true
+    is_mission:   true
+
+  shattering_stars_pld:
+    index:           5
+    time_limit:      10
+    max_players:     1
+    level_cap:       max
+    allow_subjob:    false
+    cleanup_debuffs: true
+
+  shattering_stars_drk:
+    index:           6
+    time_limit:      10
+    max_players:     1
+    level_cap:       max
+    allow_subjob:    false
+    cleanup_debuffs: true
+
+  shattering_stars_brd:
+    index:           7
+    time_limit:      10
+    max_players:     1
+    level_cap:       max
+    allow_subjob:    false
+    cleanup_debuffs: true
+
+  demolition_squad:
+    index:      8
+    level_cap: 60
+
+  die_by_the_sword:
+    index:        9
+    time_limit:  15
+    max_players:  3
+    level_cap:   30
+
+  let_sleeping_dogs_die:
+    index:     10
+    level_cap: 30
+
+  brothers_d_aurphe:
+    index:     11
+    level_cap: 60
+
+  undying_promise:
+    index:       12
+    time_limit:  15
+    max_players:  3
+    level_cap:   40
+
+  factory_rejects:
+    index:     13
+    level_cap: 40
+
+  idol_thoughts:
+    index:     14
+    level_cap: 50
+
+  awful_autopsy:
+    index:       15
+    time_limit:  15
+    max_players:  3
+    level_cap:   50
+
+  celery: # experimental
+    index:       16
+    time_limit:  15
+    max_players:  3
+    level_cap:   60
+
+  mirror_images:
+    index: 17
+
+  furious_finale:
+    index: 18
+
+  clash_of_the_comrades:
+    index: 19
+
+  those_who_lurk_in_shadows: # experimental
+    index:        20
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true
+    is_mission:   true
+
+  beyond_infinity:
+    index:        21
+    time_limit:   10
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true

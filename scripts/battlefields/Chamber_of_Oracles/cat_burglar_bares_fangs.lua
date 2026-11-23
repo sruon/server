@@ -9,12 +9,6 @@ local chamberOfOraclesID = zones[xi.zone.CHAMBER_OF_ORACLES]
 local content = BattlefieldMission:new({
     zoneId                = xi.zone.CHAMBER_OF_ORACLES,
     battlefieldId         = xi.battlefield.id.CAT_BURGLAR_BARES_FANGS,
-    canLoseExp            = false,
-    isMission             = true,
-    allowTrusts           = true,
-    maxPlayers            = 6,
-    levelCap              = xi.settings.main.MAX_LEVEL,
-    timeLimit             = utils.minutes(30),
     allowedAreas          = set{ 1 },
     entryNpc              = 'SC_Entrance',
     exitNpc               = 'Shimmering_Circle',
@@ -27,7 +21,7 @@ local content = BattlefieldMission:new({
     missionStatusArea     = xi.mission.log_id.AMK,
     requiredMissionStatus = 0,
 
-    experimental = true,
+    experimental          = true,
 })
 
 content.groups =

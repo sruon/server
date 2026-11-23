@@ -8,12 +8,6 @@ local monarchLinnID = zones[xi.zone.MONARCH_LINN]
 local content = BattlefieldMission:new({
     zoneId        = xi.zone.MONARCH_LINN,
     battlefieldId = xi.battlefield.id.SAVAGE,
-    canLoseExp    = false,
-    isMission     = true,
-    allowTrusts   = true,
-    maxPlayers    = 6,
-    levelCap      = xi.settings.main.MAX_LEVEL,
-    timeLimit     = utils.minutes(30),
     entryNpc      = 'SD_Entrance',
     exitNpcs      = { 'SD_BCNM_Exit_1', 'SD_BCNM_Exit_2', 'SD_BCNM_Exit_3' },
     missionArea   = xi.mission.log_id.COP,
@@ -21,8 +15,8 @@ local content = BattlefieldMission:new({
     requiredVar   = 'Mission[6][418]Status',
     requiredValue = 1,
 
-    grantXP = 1500,
-    title   = xi.title.MIST_MELTER,
+    grantXP       = 1500,
+    title         = xi.title.MIST_MELTER,
 })
 
 function content:entryRequirement(player, npc, isRegistrant, trade)

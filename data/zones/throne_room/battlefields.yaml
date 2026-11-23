@@ -1,8 +1,29 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
 battlefields:
-  shadow_lord_battle:        {index: 0}
-  where_two_paths_converge:  {index: 1}
-  kindred_spirits:           {index: 2} # experimental
-  survival_of_the_wisest:    {index: 3}
-  smash_a_malevolent_menace: {index: 4} # experimental
+  shadow_lord_battle:
+    index:        0
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true
+    is_mission:   true
+
+  where_two_paths_converge:
+    index:        1
+    level_cap:    max
+    can_lose_exp: false
+    is_mission:   true
+
+  kindred_spirits: # experimental
+    index:      2
+    level_cap: 60
+
+  survival_of_the_wisest:
+    index: 3
+
+  smash_a_malevolent_menace: # experimental
+    index:        4
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true
+    is_mission:   true

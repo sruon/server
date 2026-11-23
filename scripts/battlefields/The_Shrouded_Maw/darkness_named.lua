@@ -8,12 +8,6 @@ local shroudedMawID = zones[xi.zone.THE_SHROUDED_MAW]
 local content = BattlefieldMission:new({
     zoneId        = xi.zone.THE_SHROUDED_MAW,
     battlefieldId = xi.battlefield.id.DARKNESS_NAMED,
-    canLoseExp    = false,
-    isMission     = true,
-    allowTrusts   = true,
-    maxPlayers    = 6,
-    levelCap      = xi.settings.main.MAX_LEVEL,
-    timeLimit     = utils.minutes(30),
     entryNpc      = 'MC_Entrance',
     exitNpc       = 'Memento_Circle',
     missionArea   = xi.mission.log_id.COP,
@@ -21,8 +15,8 @@ local content = BattlefieldMission:new({
     requiredVar   = 'Mission[6][358]Status',
     requiredValue = 4,
 
-    grantXP = 1000,
-    title   = xi.title.DREAMBREAKER,
+    grantXP       = 1000,
+    title         = xi.title.DREAMBREAKER,
 })
 
 -- Both titles are granted here. Dreambreaker is the one left displayed.

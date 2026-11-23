@@ -6,14 +6,8 @@ local cloisterOfTremorsID = zones[xi.zone.CLOISTER_OF_TREMORS]
 -----------------------------------
 
 local content = BattlefieldMission:new({
-    zoneId        = xi.zone.CLOISTER_OF_TREMORS,
-    battlefieldId = xi.battlefield.id.SUGAR_COATED_DIRECTIVE_CLOISTER_OF_TREMORS,
-    canLoseExp    = false,
-    isMission     = true,
-    allowTrusts   = true,
-    maxPlayers    = 6,
-    levelCap      = xi.settings.main.MAX_LEVEL,
-    timeLimit     = utils.minutes(30),
+    zoneId           = xi.zone.CLOISTER_OF_TREMORS,
+    battlefieldId    = xi.battlefield.id.SUGAR_COATED_DIRECTIVE_CLOISTER_OF_TREMORS,
     entryNpc         = 'EP_Entrance',
     exitNpc          = 'Earth_Protocrystal',
 
@@ -23,7 +17,7 @@ local content = BattlefieldMission:new({
     requiredVar      = 'Mission[11][3]Titan',
     requiredValue    = 1,
 
-    grantXP = 400,
+    grantXP          = 400,
 })
 
 content.groups =

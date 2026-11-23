@@ -7,13 +7,11 @@ local chamberOfOraclesID = zones[xi.zone.CHAMBER_OF_ORACLES]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId           = xi.zone.CHAMBER_OF_ORACLES,
-    battlefieldId    = xi.battlefield.id.EYE_OF_THE_STORM,
-    maxPlayers       = 6,
-    timeLimit        = utils.minutes(30),
-    entryNpc         = 'SC_Entrance',
-    exitNpc          = 'Shimmering_Circle',
-    requiredItems    = { xi.item.LACHESIS_ORB, wearMessage = chamberOfOraclesID.text.A_CRACK_HAS_FORMED, wornMessage = chamberOfOraclesID.text.ORB_IS_CRACKED },
+    zoneId        = xi.zone.CHAMBER_OF_ORACLES,
+    battlefieldId = xi.battlefield.id.EYE_OF_THE_STORM,
+    entryNpc      = 'SC_Entrance',
+    exitNpc       = 'Shimmering_Circle',
+    requiredItems = { xi.item.LACHESIS_ORB, wearMessage = chamberOfOraclesID.text.A_CRACK_HAS_FORMED, wornMessage = chamberOfOraclesID.text.ORB_IS_CRACKED },
 })
 
 content:addEssentialMobs({ 'Radiant_Wyvern', 'Blizzard_Wyvern', 'Lightning_Wyvern', 'Chaos_Wyvern' })

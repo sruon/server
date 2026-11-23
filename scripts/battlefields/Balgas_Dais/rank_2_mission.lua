@@ -7,12 +7,6 @@
 local content = Battlefield:new({
     zoneId        = xi.zone.BALGAS_DAIS,
     battlefieldId = xi.battlefield.id.RANK_2_MISSION,
-    canLoseExp    = false,
-    isMission     = true,
-    allowTrusts   = true,
-    maxPlayers    = 6,
-    levelCap      = xi.settings.main.MAX_LEVEL,
-    timeLimit     = utils.minutes(15),
     entryNpc      = 'BC_Entrance',
     exitNpc       = 'Burning_Circle',
 })

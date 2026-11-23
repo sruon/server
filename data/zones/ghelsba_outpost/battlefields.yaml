@@ -1,9 +1,34 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
 battlefields:
-  save_the_children: {index: 0}
-  holy_crest:        {index: 1}
-  wings_of_fury:     {index: 2}
-  petrifying_pair:   {index: 3}
-  toadal_recall:     {index: 4}
-  mirror_mirror:     {index: 5}
+  save_the_children:
+    index:        0
+    time_limit:   10
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true
+    is_mission:   true
+
+  holy_crest:
+    index:        1
+    time_limit:   15
+    can_lose_exp: false
+
+  wings_of_fury:
+    index:        2
+    time_limit:  15
+    max_players:  3
+    level_cap:   20
+
+  petrifying_pair:
+    index:        3
+    time_limit:  15
+    max_players:  3
+    level_cap:   30
+
+  toadal_recall:
+    index:      4
+    level_cap: 30
+
+  mirror_mirror:
+    index: 5

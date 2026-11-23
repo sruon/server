@@ -1,6 +1,17 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
 battlefields:
-  desires_of_emptiness: {index: 0}
-  pulling_the_plug:     {index: 1}
-  empty_aspirations:    {index: 2}
+  desires_of_emptiness:
+    index:        0
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true
+    is_mission:   true
+
+  pulling_the_plug:
+    index:        1
+    max_players: 18
+    level_cap:   50
+
+  empty_aspirations:
+    index: 2

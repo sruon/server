@@ -175,6 +175,20 @@ end
 function GetSystemTime()
 end
 
+---@class BattlefieldDefinition
+---@field maxPlayers integer
+---@field timeLimit integer
+---@field allowTrusts boolean
+---@field hasWipeGrace boolean
+---@field cleanupDebuffs boolean
+---@field delayToExit integer
+
+---@nodiscard
+---@param battlefieldId integer
+---@return BattlefieldDefinition?
+function GetBattlefieldDefinition(battlefieldId)
+end
+
 ---@class ChocoboRacerStats
 ---@field str integer
 ---@field ["end"] integer

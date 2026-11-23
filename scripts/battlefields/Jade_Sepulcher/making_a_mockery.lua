@@ -9,9 +9,6 @@ local ID = zones[xi.zone.JADE_SEPULCHER]
 local content = Battlefield:new({
     zoneId           = xi.zone.JADE_SEPULCHER,
     battlefieldId    = xi.battlefield.id.MAKING_A_MOCKERY,
-    maxPlayers       = 6,
-    levelCap         = 60,
-    timeLimit        = utils.minutes(30),
     entryNpc         = '_1v0',
     exitNpcs         = { '_1v1', '_1v2', '_1v3' },
     requiredKeyItems = { xi.keyItem.CONFIDENTIAL_IMPERIAL_ORDER, onlyInitiator = true, message = ID.text.IMPERIAL_ORDER_BREAKS },

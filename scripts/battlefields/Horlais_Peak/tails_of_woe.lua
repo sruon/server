@@ -7,15 +7,12 @@ local horlaisID = zones[xi.zone.HORLAIS_PEAK]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId           = xi.zone.HORLAIS_PEAK,
-    battlefieldId    = xi.battlefield.id.TAILS_OF_WOE,
-    maxPlayers       = 6,
-    levelCap         = 40,
-    timeLimit        = utils.minutes(30),
-    entryNpc         = 'BC_Entrance',
-    exitNpc          = 'Burning_Circle',
-    requiredItems    = { xi.item.STAR_ORB, wearMessage = horlaisID.text.A_CRACK_HAS_FORMED, wornMessage = horlaisID.text.ORB_IS_CRACKED },
-    armouryCrates    =
+    zoneId        = xi.zone.HORLAIS_PEAK,
+    battlefieldId = xi.battlefield.id.TAILS_OF_WOE,
+    entryNpc      = 'BC_Entrance',
+    exitNpc       = 'Burning_Circle',
+    requiredItems = { xi.item.STAR_ORB, wearMessage = horlaisID.text.A_CRACK_HAS_FORMED, wornMessage = horlaisID.text.ORB_IS_CRACKED },
+    armouryCrates =
     {
         horlaisID.mob.HELLTAIL_HARRY + 8,
         horlaisID.mob.HELLTAIL_HARRY + 17,

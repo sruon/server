@@ -6,18 +6,14 @@ local cloisterOfStormsID = zones[xi.zone.CLOISTER_OF_STORMS]
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId           = xi.zone.CLOISTER_OF_STORMS,
-    battlefieldId    = xi.battlefield.id.TRIAL_SIZE_TRIAL_BY_LIGHTNING,
-    canLoseExp       = false,
-    maxPlayers       = 1,
-    levelCap         = 20,
-    timeLimit        = utils.minutes(15),
-    entryNpc         = 'LP_Entrance',
-    exitNpc          = 'Lightning_Protocrystal',
-    requiredItems    = { xi.item.MINI_TUNING_FORK_OF_LIGHTNING },
+    zoneId        = xi.zone.CLOISTER_OF_STORMS,
+    battlefieldId = xi.battlefield.id.TRIAL_SIZE_TRIAL_BY_LIGHTNING,
+    entryNpc      = 'LP_Entrance',
+    exitNpc       = 'Lightning_Protocrystal',
+    requiredItems = { xi.item.MINI_TUNING_FORK_OF_LIGHTNING },
 
-    questArea = xi.questLog.OTHER_AREAS,
-    quest     = xi.quest.id.otherAreas.TRIAL_SIZE_TRIAL_BY_LIGHTNING,
+    questArea     = xi.questLog.OTHER_AREAS,
+    quest         = xi.quest.id.otherAreas.TRIAL_SIZE_TRIAL_BY_LIGHTNING,
 })
 
 function content:entryRequirement(player, npc, isRegistrant, trade)

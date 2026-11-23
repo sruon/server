@@ -1,8 +1,29 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
 battlefields:
-  trial_by_ice:                             {index: 0}
-  class_reunion:                            {index: 1}
-  trial_size_trial_by_ice:                  {index: 2}
-  waking_the_beast_cloister_of_frost:       {index: 3}
-  sugar_coated_directive_cloister_of_frost: {index: 4}
+  trial_by_ice:
+    index:        0
+    can_lose_exp: false
+
+  class_reunion:
+    index:        1
+    can_lose_exp: false
+
+  trial_size_trial_by_ice:
+    index:        2
+    time_limit:   15
+    max_players:  1
+    level_cap:    20
+    can_lose_exp: false
+
+  waking_the_beast_cloister_of_frost:
+    index:        3
+    max_players:  18
+    can_lose_exp: false
+
+  sugar_coated_directive_cloister_of_frost:
+    index:        4
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true
+    is_mission:   true

@@ -6,16 +6,10 @@ local celestialNexusID = zones[xi.zone.THE_CELESTIAL_NEXUS]
 -----------------------------------
 
 local content = BattlefieldMission:new({
-    zoneId        = xi.zone.THE_CELESTIAL_NEXUS,
-    battlefieldId = xi.battlefield.id.CELESTIAL_NEXUS,
-    canLoseExp    = false,
-    isMission     = true,
-    allowTrusts   = true,
-    maxPlayers    = 6,
-    levelCap      = xi.settings.main.MAX_LEVEL,
-    timeLimit     = utils.minutes(30),
-    entryNpc      = '_513',
-    exitNpcs      = { '_514', '_515' },
+    zoneId                = xi.zone.THE_CELESTIAL_NEXUS,
+    battlefieldId         = xi.battlefield.id.CELESTIAL_NEXUS,
+    entryNpc              = '_513',
+    exitNpcs              = { '_514', '_515' },
 
     missionArea           = xi.mission.log_id.ZILART,
     mission               = xi.mission.id.zilart.THE_CELESTIAL_NEXUS,

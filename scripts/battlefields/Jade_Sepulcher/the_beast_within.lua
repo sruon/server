@@ -6,20 +6,15 @@ local jadeSepulcherID = zones[xi.zone.JADE_SEPULCHER]
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId                = xi.zone.JADE_SEPULCHER,
-    battlefieldId         = xi.battlefield.id.BEAST_WITHIN,
-    canLoseExp            = false,
-    maxPlayers            = 1,
-    levelCap              = xi.settings.main.MAX_LEVEL,
-    allowSubjob           = false,
-    timeLimit             = utils.minutes(10),
-    entryNpc              = '_1v0',
-    exitNpcs              = { '_1v1', '_1v2', '_1v3' },
-    requiredItems         = { xi.item.BLUE_MAGES_TESTIMONY, wearMessage = jadeSepulcherID.text.TESTIMONY_WEARS, wornMessage = jadeSepulcherID.text.TESTIMONY_IS_TORN },
-    questArea             = xi.questLog.AHT_URHGAN,
-    quest                 = xi.quest.id.ahtUrhgan.THE_BEAST_WITHIN,
-    requiredVar           = 'Quest[6][40]Prog',
-    requiredValue         = 2,
+    zoneId        = xi.zone.JADE_SEPULCHER,
+    battlefieldId = xi.battlefield.id.BEAST_WITHIN,
+    entryNpc      = '_1v0',
+    exitNpcs      = { '_1v1', '_1v2', '_1v3' },
+    requiredItems = { xi.item.BLUE_MAGES_TESTIMONY, wearMessage = jadeSepulcherID.text.TESTIMONY_WEARS, wornMessage = jadeSepulcherID.text.TESTIMONY_IS_TORN },
+    questArea     = xi.questLog.AHT_URHGAN,
+    quest         = xi.quest.id.ahtUrhgan.THE_BEAST_WITHIN,
+    requiredVar   = 'Quest[6][40]Prog',
+    requiredValue = 2,
 })
 
 function content:entryRequirement(player, npc, isRegistrant, trade)

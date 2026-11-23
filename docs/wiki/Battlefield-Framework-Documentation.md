@@ -16,14 +16,21 @@ A battlefield is defined by using `Battlefield:new()` or one of the subclasses s
 local content = Battlefield:new({
     zoneId           = xi.zone.BEARCLAW_PINNACLE,
     battlefieldId    = xi.battlefield.id.BROTHERS,
-    maxPlayers       = 18,
-    levelCap         = 75,
-    timeLimit        = utils.minutes(30),
     entryNpc         = "Wind_Pillar_4",
     exitNpc          = "Wind_Pillar_Exit",
     requiredKeyItems = { xi.keyItem.ZEPHYR_FAN, message = ID.text.ZEPHYR_RIPS },
     grantXP          = 3500,
 })
+```
+
+Its limits and rules live with the zone, in `data/zones/<zone>/battlefields.yaml`:
+
+```yaml
+battlefields:
+  brothers:
+    index:       3
+    max_players: 18
+    level_cap:   75
 ```
 
 Once a Battlefield has been initially defined there are additional aspects that need to be provided.
@@ -127,21 +134,16 @@ end
 
 - **zoneId**: Which zone this battlefield exists within (required)
 - **battlefieldId**: Battlefield ID used in the database (required)
-- **maxPlayers**: Maximum number of players allowed to enter (required)
-- **timeLimit**: Time in seconds allotted to complete the battlefield before being ejected. (required)
-- **levelCap**: Level cap imposed upon the battlefield. Defaults to 0 - no level cap. (optional)
 - **area**: Some battlefields have multiple areas (Burning Circles) while others have fixed areas (Apollyon). Set to have a fixed area. (optional)
 - **entryNpc**: The name of the NPC used for entering (required)
 - **exitNpc**: The name of the NPC used for exiting
-- **allowSubjob**: Determines if character subjobs are enabled or disabled upon entry. Defaults to true. (optional)
-- **hasWipeGrace**: Grants players a 3 minute grace period on a full wipe before ejecting them. Defaults to true. (optional)
-- **canLoseExp**: Determines if a character loses experience points upon death while inside the battlefield. Defaults to true. (optional)
-- **delayToExit**: Amount of time to wait before exiting the battlefield. Defaults to 5 seconds. (optional)
 - **requiredItems**: Items required to be traded to enter the battlefield. Needs to be in the format of `{ itemid, quantity, useMessage = ID.text.*, wearMessage = ID.text.*, wornMessage = ID.text.* }`. (optional)
 - **requiredKeyItems**: Key items required to be able to enter the battlefield - these are removed upon entry (optional)
 - **title**: Title given to players upon victory (optional)
 - **grantXP**: Amount of XP to grant upon victory (optional)
 - **lossEventParams**: Parameters given to the loss event (32002). Defaults to none. (optional)
+
+The time limit, player count, level cap and rules (`time_limit`, `max_players`, `level_cap`, `can_lose_exp`, `allow_trusts`, `is_mission`, `allow_subjob`, `cleanup_debuffs`, `delay_to_exit`, `has_wipe_grace`, `show_timer`) are set in the zone's `battlefields.yaml`. Its schema lists each field's default.
 
 #### BattlefieldMission Parameters
 

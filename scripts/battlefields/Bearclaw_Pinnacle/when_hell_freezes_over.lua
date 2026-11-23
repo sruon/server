@@ -8,9 +8,6 @@ local bearclawID = zones[xi.zone.BEARCLAW_PINNACLE]
 local content = Battlefield:new({
     zoneId           = xi.zone.BEARCLAW_PINNACLE,
     battlefieldId    = xi.battlefield.id.WHEN_HELL_FREEZES_OVER,
-    maxPlayers       = 18,
-    levelCap         = 75,
-    timeLimit        = utils.minutes(15),
     entryNpc         = 'Wind_Pillar_3',
     exitNpc          = 'Wind_Pillar_Exit',
     requiredKeyItems = { xi.keyItem.ZEPHYR_FAN, message = bearclawID.text.ZEPHYR_RIPS },

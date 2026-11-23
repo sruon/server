@@ -6,18 +6,14 @@ local cloisterOfFlamesID = zones[xi.zone.CLOISTER_OF_FLAMES]
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId           = xi.zone.CLOISTER_OF_FLAMES,
-    battlefieldId    = xi.battlefield.id.TRIAL_SIZE_TRIAL_BY_FIRE,
-    canLoseExp       = false,
-    maxPlayers       = 1,
-    levelCap         = 20,
-    timeLimit        = utils.minutes(15),
-    entryNpc         = 'FP_Entrance',
-    exitNpc          = 'Fire_Protocrystal',
-    requiredItems    = { xi.item.MINI_TUNING_FORK_OF_FIRE },
+    zoneId        = xi.zone.CLOISTER_OF_FLAMES,
+    battlefieldId = xi.battlefield.id.TRIAL_SIZE_TRIAL_BY_FIRE,
+    entryNpc      = 'FP_Entrance',
+    exitNpc       = 'Fire_Protocrystal',
+    requiredItems = { xi.item.MINI_TUNING_FORK_OF_FIRE },
 
-    questArea = xi.questLog.OUTLANDS,
-    quest     = xi.quest.id.outlands.TRIAL_SIZE_TRIAL_BY_FIRE,
+    questArea     = xi.questLog.OUTLANDS,
+    quest         = xi.quest.id.outlands.TRIAL_SIZE_TRIAL_BY_FIRE,
 })
 
 function content:entryRequirement(player, npc, isRegistrant, trade)

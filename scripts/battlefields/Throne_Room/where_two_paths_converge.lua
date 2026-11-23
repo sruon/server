@@ -7,14 +7,10 @@ local ID = zones[xi.zone.THRONE_ROOM]
 -----------------------------------
 
 local content = BattlefieldMission:new({
-    zoneId        = xi.zone.THRONE_ROOM,
-    battlefieldId = xi.battlefield.id.WHERE_TWO_PATHS_CONVERGE,
-    canLoseExp    = false,
-    maxPlayers    = 6,
-    levelCap      = xi.settings.main.MAX_LEVEL,
-    timeLimit     = utils.minutes(30),
-    entryNpc      = '_4l1',
-    exitNpcs      = { '_4l2', '_4l3', '_4l4' },
+    zoneId                = xi.zone.THRONE_ROOM,
+    battlefieldId         = xi.battlefield.id.WHERE_TWO_PATHS_CONVERGE,
+    entryNpc              = '_4l1',
+    exitNpcs              = { '_4l2', '_4l3', '_4l4' },
 
     missionArea           = xi.mission.log_id.BASTOK,
     mission               = xi.mission.id.bastok.WHERE_TWO_PATHS_CONVERGE,

@@ -1,13 +1,32 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
 battlefields:
-  temenos_western_tower:        {index: 18}
-  temenos_northern_tower:       {index: 19}
-  temenos_eastern_tower:        {index: 20}
-  central_temenos_basement:     {index: 21}
-  central_temenos_basement_ii:  {index: 22}
-  central_temenos_1st_floor:    {index: 23}
-  central_temenos_2nd_floor:    {index: 24}
-  central_temenos_3rd_floor:    {index: 25}
-  central_temenos_4th_floor:    {index: 26}
-  central_temenos_4th_floor_ii: {index: 27}
+  temenos_western_tower:
+    index: 18
+
+  temenos_northern_tower:
+    index: 19
+
+  temenos_eastern_tower:
+    index: 20
+
+  central_temenos_basement:
+    index: 21
+
+  central_temenos_basement_ii:
+    index: 22
+
+  central_temenos_1st_floor:
+    index: 23
+
+  central_temenos_2nd_floor:
+    index: 24
+
+  central_temenos_3rd_floor:
+    index: 25
+
+  central_temenos_4th_floor:
+    index: 26
+
+  central_temenos_4th_floor_ii:
+    index: 27

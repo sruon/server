@@ -1,5 +1,17 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
 battlefields:
-  one_to_be_feared: {index: 0}
-  warriors_path:    {index: 1}
+  one_to_be_feared:
+    index:        0
+    time_limit:   45
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true
+    is_mission:   true
+
+  warriors_path:
+    index:        1
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true
+    is_mission:   true

@@ -138,19 +138,10 @@ end
 -- Data takes the following keys:
 --  - zoneId: Which zone this battlefield exists within (required)
 --  - battlefieldId: Battlefield ID used in the database (required)
---  - maxPlayers: Maximum number of players allowed to enter (required)
---  - timeLimit: Time in seconds alotted to complete the battlefield before being ejected. (required)
---  - levelCap: Level cap imposed upon the battlefield. Defaults to 0 - no level cap. (optional)
 --  - area: Some battlefields has multiple areas (Burning Circles) while others have fixed areas (Apollyon). Set to have a fixed area. (optional)
 --  - entryNpc: The name of the NPC used for entering (required)
 --  - exitNpc: The name of the NPC used for exiting (optional)
 --  - exitNpcs: The names of the NPC used for exiting (optional)
---  - allowSubjob: Determines if character subjobs are enabled or disabled upon entry. Defaults to true. (optional)
---  - hasWipeGrace: Grants players a 3 minute grace period on a full wipe before ejecting them. Defaults to true. (optional)
---  - canLoseExp: Determines if a character loses experience points upon death while inside the battlefield. Defaults to true. (optional)
---  - cleanupDebuffs: Removes negative status effects from players upon victory. Defaults to false. (optional)
---  - showTimer: Show the time remaining in the battlefield in the UI for the player. Defaults to true. (optional)
---  - delayToExit: Amount of time to wait before exiting the battlefield. Defaults to 5 seconds. (optional)
 --  - requiredItems: Items required to be traded to enter the battlefield.
 --                   Needs to be in the format of { itemid, quantity, useMessage = ID.text.*, wearMessage = ID.text.*, wornMessage = ID.text.* }. (optional)
 --  - requiredKeyItems: Key items required to be able to enter the battlefield - these are removed upon entry unless 'keep = true'.
@@ -161,13 +152,18 @@ end
 --  - lossEventParams: Parameters given to the loss event (32002). Defaults to none. (optional)
 ---@diagnostic disable-next-line: duplicate-set-field
 function Battlefield:new(data)
-    local obj = Container:new(Battlefield.getVarPrefix(data.battlefieldId))
+    local obj        = Container:new(Battlefield.getVarPrefix(data.battlefieldId))
+    local definition = GetBattlefieldDefinition(data.battlefieldId)
+
+    if not definition then
+        error(string.format('battlefield %d is not listed in its zone battlefields.yaml', data.battlefieldId))
+    end
 
     setmetatable(obj, self)
     obj.zoneId        = data.zoneId
     obj.battlefieldId = data.battlefieldId
-    obj.maxPlayers    = data.maxPlayers
-    obj.timeLimit     = data.timeLimit
+    obj.maxPlayers    = definition.maxPlayers
+    obj.timeLimit     = definition.timeLimit
     obj.index         = bit.band(data.battlefieldId, 31)
 
     if data.entryNpcs then
@@ -187,15 +183,10 @@ function Battlefield:new(data)
     obj.title            = data.title
     obj.grantXP          = data.grantXP
     obj.grantXPLockout   = data.grantXPLockout
-    obj.levelCap         = data.levelCap or 0
-    obj.allowSubjob      = (data.allowSubjob == nil or data.allowSubjob) or false
-    obj.allowTrusts      = data.allowTrusts or false
-    obj.hasWipeGrace     = (data.hasWipeGrace == nil or data.hasWipeGrace) or false
-    obj.isMission        = data.isMission or false
-    obj.canLoseExp       = (data.canLoseExp == nil or data.canLoseExp) or false
-    obj.cleanupDebuffs   = data.cleanupDebuffs or false
-    obj.showTimer        = (data.showTimer == nil or data.showTimer) or false
-    obj.delayToExit      = data.delayToExit or 5
+    obj.allowTrusts      = definition.allowTrusts
+    obj.hasWipeGrace     = definition.hasWipeGrace
+    obj.cleanupDebuffs   = definition.cleanupDebuffs
+    obj.delayToExit      = definition.delayToExit
     obj.requiredItems    = data.requiredItems or {}
     obj.requiredKeyItems = data.requiredKeyItems or {}
     obj.lossEventParams  = data.lossEventParams or {}
@@ -594,7 +585,7 @@ function Battlefield:onEntryEventUpdate(player, csid, option, npc)
         return 0
     end
 
-    local result = player:registerBattlefield(self.battlefieldId, area, player:getID(), self)
+    local result = player:registerBattlefield(self.battlefieldId, area, player:getID())
     local status = xi.battlefield.status.OPEN
 
     if result ~= xi.battlefield.returnCode.CUTSCENE then
@@ -655,7 +646,7 @@ function Battlefield:onEntryEventUpdate(player, csid, option, npc)
                 not member:getBattlefield()
             then
                 member:copyStatusEffect(effect)
-                member:registerBattlefield(self.battlefieldId, area, player:getID(), self)
+                member:registerBattlefield(self.battlefieldId, area, player:getID())
             end
         end
     end
@@ -1143,13 +1134,11 @@ end
 --  - missionStatus: The optional extra status information xi.mission.status (optional)
 --  - requiredMissionStatus: The required mission status to enter
 --  - skipMissionStatus: The required mission status to skip the cutscene. Defaults to the required mission status.
---  - canLoseExp: Determines if a character loses experience points upon death while inside the battlefield. Defaults to false. (optional)
 ---@diagnostic disable-next-line: duplicate-set-field
 function BattlefieldMission:new(data)
     local obj = Battlefield:new(data)
 
     setmetatable(obj, self)
-    obj.isMission             = true
     obj.missionArea           = data.missionArea
     obj.mission               = data.mission
     obj.missionStatusArea     = data.missionStatusArea
@@ -1158,7 +1147,6 @@ function BattlefieldMission:new(data)
     obj.skipMissionStatus     = data.skipMissionStatus or data.requiredMissionStatus
     obj.requiredVar           = data.requiredVar
     obj.requiredValue         = data.requiredValue
-    obj.canLoseExp            = data.canLoseExp or false
 
     return obj
 end
@@ -1253,7 +1241,6 @@ BattlefieldQuest.isQuest = true
 -- Data takes the additional following keys:
 --  - questArea: The quest area this battlefield is associated with (optional)
 --  - quest: The quest this battlefield is associated with (optional)
---  - canLoseExp: Determines if a character loses experience points upon death while inside the battlefield. Defaults to false. (optional)
 ---@diagnostic disable-next-line: duplicate-set-field
 function BattlefieldQuest:new(data)
     local obj = Battlefield:new(data)
@@ -1261,7 +1248,6 @@ function BattlefieldQuest:new(data)
 
     obj.questArea     = data.questArea
     obj.quest         = data.quest
-    obj.canLoseExp    = data.canLoseExp or false
     obj.requiredVar   = data.requiredVar
     obj.requiredValue = data.requiredValue
 

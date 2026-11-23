@@ -6,15 +6,12 @@
 local content = BattlefieldQuest:new({
     zoneId           = xi.zone.CLOISTER_OF_FLAMES,
     battlefieldId    = xi.battlefield.id.TRIAL_BY_FIRE,
-    canLoseExp       = false,
-    maxPlayers       = 6,
-    timeLimit        = utils.minutes(30),
     entryNpc         = 'FP_Entrance',
     exitNpc          = 'Fire_Protocrystal',
     requiredKeyItems = { xi.keyItem.TUNING_FORK_OF_FIRE },
 
-    questArea = xi.questLog.OUTLANDS,
-    quest     = xi.quest.id.outlands.TRIAL_BY_FIRE,
+    questArea        = xi.questLog.OUTLANDS,
+    quest            = xi.quest.id.outlands.TRIAL_BY_FIRE,
 })
 
 content.groups =

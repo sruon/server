@@ -7,9 +7,6 @@
 local content = Battlefield:new({
     zoneId        = xi.zone.RIVERNE_SITE_A01,
     battlefieldId = xi.battlefield.id.OURYU_COMETH,
-    maxPlayers    = 18,
-    levelCap      = xi.settings.main.MAX_LEVEL,
-    timeLimit     = utils.minutes(60),
     area          = 1,
     entryNpc      = 'Unstable_Displacement',
     exitNpc       = 'Spatial_Displacement_BC',

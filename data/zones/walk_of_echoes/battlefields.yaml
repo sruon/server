@@ -1,4 +1,5 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
 battlefields:
-  maiden_of_the_dusk: {index: 1}
+  maiden_of_the_dusk:
+    index: 1

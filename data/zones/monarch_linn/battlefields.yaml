@@ -1,11 +1,44 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
 battlefields:
-  ancient_vows:            {index: 0}
-  savage:                  {index: 1}
-  fire_in_the_sky:         {index: 2} # experimental
-  bad_seed:                {index: 3}
-  bugard_in_the_clouds:    {index: 4}
-  beloved_of_the_atlantes: {index: 5}
-  uninvited_guests:        {index: 6} # experimental
-  nest_of_nightmares:      {index: 7}
+  ancient_vows:
+    index:        0
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true
+    is_mission:   true
+
+  savage:
+    index:        1
+    level_cap:    max
+    can_lose_exp: false
+    allow_trusts: true
+    is_mission:   true
+
+  fire_in_the_sky: # experimental
+    index:        2
+    time_limit:  15
+    max_players: 18
+    level_cap:   40
+
+  bad_seed:
+    index: 3
+
+  bugard_in_the_clouds:
+    index:        4
+    time_limit:  15
+    max_players: 18
+    level_cap:   50
+
+  beloved_of_the_atlantes:
+    index:        5
+    max_players: 18
+    level_cap:   50
+
+  uninvited_guests: # experimental
+    index:        6
+    max_players:  18
+    can_lose_exp: false
+
+  nest_of_nightmares:
+    index: 7

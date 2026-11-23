@@ -7,14 +7,11 @@ local qubiaID = zones[xi.zone.QUBIA_ARENA]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId           = xi.zone.QUBIA_ARENA,
-    battlefieldId    = xi.battlefield.id.DIE_BY_THE_SWORD,
-    maxPlayers       = 3,
-    levelCap         = 30,
-    timeLimit        = utils.minutes(15),
-    entryNpc         = 'BC_Entrance',
-    exitNpc          = 'Burning_Circle',
-    requiredItems    = { xi.item.SKY_ORB, wearMessage = qubiaID.text.A_CRACK_HAS_FORMED, wornMessage = qubiaID.text.ORB_IS_CRACKED },
+    zoneId        = xi.zone.QUBIA_ARENA,
+    battlefieldId = xi.battlefield.id.DIE_BY_THE_SWORD,
+    entryNpc      = 'BC_Entrance',
+    exitNpc       = 'Burning_Circle',
+    requiredItems = { xi.item.SKY_ORB, wearMessage = qubiaID.text.A_CRACK_HAS_FORMED, wornMessage = qubiaID.text.ORB_IS_CRACKED },
 })
 
 content:addEssentialMobs({ 'Gladiatorial_Weapon' })

@@ -7,14 +7,12 @@ local balgasID = zones[xi.zone.BALGAS_DAIS]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId           = xi.zone.BALGAS_DAIS,
-    battlefieldId    = xi.battlefield.id.ROYALE_RAMBLE,
-    maxPlayers       = 6,
-    timeLimit        = utils.minutes(30),
-    entryNpc         = 'BC_Entrance',
-    exitNpc          = 'Burning_Circle',
-    requiredItems    = { xi.item.LACHESIS_ORB, wearMessage = balgasID.text.A_CRACK_HAS_FORMED, wornMessage = balgasID.text.ORB_IS_CRACKED },
-    armouryCrates    =
+    zoneId        = xi.zone.BALGAS_DAIS,
+    battlefieldId = xi.battlefield.id.ROYALE_RAMBLE,
+    entryNpc      = 'BC_Entrance',
+    exitNpc       = 'Burning_Circle',
+    requiredItems = { xi.item.LACHESIS_ORB, wearMessage = balgasID.text.A_CRACK_HAS_FORMED, wornMessage = balgasID.text.ORB_IS_CRACKED },
+    armouryCrates =
     {
         balgasID.mob.KING_OF_CUPS + 6,
         balgasID.mob.KING_OF_CUPS + 13,

@@ -6,18 +6,13 @@ local balgasID = zones[xi.zone.BALGAS_DAIS]
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId        = xi.zone.BALGAS_DAIS,
-    battlefieldId = xi.battlefield.id.BEYOND_INFINITY_BALGAS_DAIS,
-    canLoseExp    = false,
-    allowTrusts   = true,
-    maxPlayers    = 6,
-    levelCap      = xi.settings.main.MAX_LEVEL,
-    timeLimit     = utils.minutes(10),
-    entryNpc      = 'BC_Entrance',
-    exitNpc       = 'Burning_Circle',
+    zoneId           = xi.zone.BALGAS_DAIS,
+    battlefieldId    = xi.battlefield.id.BEYOND_INFINITY_BALGAS_DAIS,
+    entryNpc         = 'BC_Entrance',
+    exitNpc          = 'Burning_Circle',
 
-    questArea = xi.questLog.JEUNO,
-    quest     = xi.quest.id.jeuno.BEYOND_INFINITY,
+    questArea        = xi.questLog.JEUNO,
+    quest            = xi.quest.id.jeuno.BEYOND_INFINITY,
 
     requiredKeyItems =
     {

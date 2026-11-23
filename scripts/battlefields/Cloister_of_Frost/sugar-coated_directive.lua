@@ -6,16 +6,10 @@ local cloisterOfFrostID = zones[xi.zone.CLOISTER_OF_FROST]
 -----------------------------------
 
 local content = BattlefieldMission:new({
-    zoneId        = xi.zone.CLOISTER_OF_FROST,
-    battlefieldId = xi.battlefield.id.SUGAR_COATED_DIRECTIVE_CLOISTER_OF_FROST,
-    canLoseExp    = false,
-    isMission     = true,
-    allowTrusts   = true,
-    maxPlayers    = 6,
-    levelCap      = xi.settings.main.MAX_LEVEL,
-    timeLimit     = utils.minutes(30),
-    entryNpc      = 'IP_Entrance',
-    exitNpc       = 'Ice_Protocrystal',
+    zoneId           = xi.zone.CLOISTER_OF_FROST,
+    battlefieldId    = xi.battlefield.id.SUGAR_COATED_DIRECTIVE_CLOISTER_OF_FROST,
+    entryNpc         = 'IP_Entrance',
+    exitNpc          = 'Ice_Protocrystal',
 
     requiredKeyItems = { xi.keyItem.DOMINAS_AZURE_SEAL, keep = true },
     missionArea      = xi.mission.log_id.ASA,
@@ -23,7 +17,7 @@ local content = BattlefieldMission:new({
     requiredVar      = 'Mission[11][3]Shiva',
     requiredValue    = 1,
 
-    grantXP = 400,
+    grantXP          = 400,
 })
 
 content.groups =

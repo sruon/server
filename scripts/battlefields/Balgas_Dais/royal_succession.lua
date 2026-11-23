@@ -7,14 +7,11 @@ local balgasID = zones[xi.zone.BALGAS_DAIS]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId           = xi.zone.BALGAS_DAIS,
-    battlefieldId    = xi.battlefield.id.ROYAL_SUCCESSION,
-    maxPlayers       = 3,
-    levelCap         = 40,
-    timeLimit        = utils.minutes(15),
-    entryNpc         = 'BC_Entrance',
-    exitNpc          = 'Burning_Circle',
-    requiredItems    = { xi.item.STAR_ORB, wearMessage = balgasID.text.A_CRACK_HAS_FORMED, wornMessage = balgasID.text.ORB_IS_CRACKED },
+    zoneId        = xi.zone.BALGAS_DAIS,
+    battlefieldId = xi.battlefield.id.ROYAL_SUCCESSION,
+    entryNpc      = 'BC_Entrance',
+    exitNpc       = 'Burning_Circle',
+    requiredItems = { xi.item.STAR_ORB, wearMessage = balgasID.text.A_CRACK_HAS_FORMED, wornMessage = balgasID.text.ORB_IS_CRACKED },
 })
 
 content:addEssentialMobs({ 'Opo-opo_Monarch', 'Opo-opo_Heir', 'Myrmidon_Spo-spo', 'Myrmidon_Apu-apu', 'Myrmidon_Epa-epa' })
