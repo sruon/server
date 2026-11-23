@@ -6,10 +6,7 @@ local qubiaID = zones[xi.zone.QUBIA_ARENA]
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId           = xi.zone.QUBIA_ARENA,
     battlefieldId    = xi.battlefield.id.BEYOND_INFINITY,
-    entryNpc         = 'BC_Entrance',
-    exitNpc          = 'Burning_Circle',
 
     questArea        = xi.questLog.JEUNO,
     quest            = xi.quest.id.jeuno.BEYOND_INFINITY,

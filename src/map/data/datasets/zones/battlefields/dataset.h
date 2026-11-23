@@ -26,6 +26,7 @@
 #include "data/enums/zone.h"
 
 #include <chrono>
+#include <optional>
 #include <utility>
 
 #include <string>
@@ -45,23 +46,35 @@ constexpr auto battlefieldId(const xi::ZoneId zone, const uint8 index) -> xi::Ba
 
 struct BattlefieldData
 {
-    std::string          Name{};
-    uint8                Index{};
-    std::chrono::minutes TimeLimit{ 30 };
-    uint8                MaxPlayers{ 6 };
-    uint8                LevelCap{};      // 0 is no cap
-    bool                 CapAtMaxLevel{}; // cap at the server's maximum level instead
-    bool                 CanLoseExp{ true };
-    bool                 AllowTrusts{};
-    bool                 IsMission{};
-    bool                 AllowSubjob{ true };
-    bool                 CleanupDebuffs{};
-    std::chrono::seconds DelayToExit{ 5 };
-    bool                 HasWipeGrace{ true };
-    bool                 ShowTimer{ true };
+    std::string              Name{};
+    uint8                    Index{};
+    std::chrono::minutes     TimeLimit{ 30 };
+    uint8                    MaxPlayers{ 6 };
+    uint8                    LevelCap{};      // 0 is no cap
+    bool                     CapAtMaxLevel{}; // cap at the server's maximum level instead
+    bool                     CanLoseExp{ true };
+    bool                     AllowTrusts{};
+    bool                     IsMission{};
+    bool                     AllowSubjob{ true };
+    bool                     CleanupDebuffs{};
+    std::chrono::seconds     DelayToExit{ 5 };
+    bool                     HasWipeGrace{ true };
+    bool                     ShowTimer{ true };
+    std::vector<std::string> EntryNpcs{};
+    std::vector<std::string> ExitNpcs{};
+    std::optional<uint8>     Area{};         // the one arena it always uses
+    std::vector<uint8>       AllowedAreas{}; // empty allows every arena
+    std::optional<uint32>    GrantXP{};
+    bool                     GrantXPLockout{};
+    bool                     Experimental{};
+    bool                     RhapsodyTrusts{}; // Rhapsody in Umber lets a lone player call trusts
 };
 
-using Battlefields = std::vector<BattlefieldData>; // ordered by index
+struct Battlefields
+{
+    uint8                        MaxAreas{ 3 };
+    std::vector<BattlefieldData> Entries{}; // ordered by index
+};
 
 } // namespace xi::data
 

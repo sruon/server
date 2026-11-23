@@ -7,11 +7,7 @@ local chamberOfOraclesID = zones[xi.zone.CHAMBER_OF_ORACLES]
 -----------------------------------
 
 local content = BattlefieldMission:new({
-    zoneId                = xi.zone.CHAMBER_OF_ORACLES,
     battlefieldId         = xi.battlefield.id.CAT_BURGLAR_BARES_FANGS,
-    allowedAreas          = set{ 1 },
-    entryNpc              = 'SC_Entrance',
-    exitNpc               = 'Shimmering_Circle',
     requiredKeyItems      = { xi.keyItem.NAVARATNA_TALISMAN, onlyInitiator = true },
 
     -- TODO: Currently AMK does not depend on this fight in mission scripts.  Verify
@@ -21,7 +17,6 @@ local content = BattlefieldMission:new({
     missionStatusArea     = xi.mission.log_id.AMK,
     requiredMissionStatus = 0,
 
-    experimental          = true,
 })
 
 content.groups =

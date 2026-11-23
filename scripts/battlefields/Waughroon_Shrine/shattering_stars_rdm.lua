@@ -6,10 +6,7 @@ local waughroonID = zones[xi.zone.WAUGHROON_SHRINE]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId        = xi.zone.WAUGHROON_SHRINE,
     battlefieldId = xi.battlefield.id.SHATTERING_STARS_RDM,
-    entryNpc      = 'BC_Entrance',
-    exitNpc       = 'Burning_Circle',
     requiredItems = { xi.item.RED_MAGES_TESTIMONY, wearMessage = waughroonID.text.TESTIMONY_WEARS, wornMessage = waughroonID.text.TESTIMONY_IS_TORN },
 })
 

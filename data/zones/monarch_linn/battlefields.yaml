@@ -1,5 +1,8 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
+entry_npcs: [SD_Entrance]
+exit_npcs:  [SD_BCNM_Exit_1, SD_BCNM_Exit_2, SD_BCNM_Exit_3]
+
 battlefields:
   ancient_vows:
     index:        0
@@ -7,6 +10,7 @@ battlefields:
     can_lose_exp: false
     allow_trusts: true
     is_mission:   true
+    grant_xp:     1000
 
   savage:
     index:        1
@@ -14,26 +18,30 @@ battlefields:
     can_lose_exp: false
     allow_trusts: true
     is_mission:   true
+    grant_xp:     1500
 
   fire_in_the_sky: # experimental
-    index:        2
-    time_limit:  15
-    max_players: 18
-    level_cap:   40
+    index:          2
+    time_limit:    15
+    max_players:   18
+    level_cap:     40
+    grant_xp:    2500
 
   bad_seed:
     index: 3
 
   bugard_in_the_clouds:
-    index:        4
-    time_limit:  15
-    max_players: 18
-    level_cap:   50
+    index:          4
+    time_limit:    15
+    max_players:   18
+    level_cap:     50
+    grant_xp:    2500
 
   beloved_of_the_atlantes:
-    index:        5
-    max_players: 18
-    level_cap:   50
+    index:          5
+    max_players:   18
+    level_cap:     50
+    grant_xp:    2500
 
   uninvited_guests: # experimental
     index:        6

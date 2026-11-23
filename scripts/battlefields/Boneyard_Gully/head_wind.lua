@@ -6,10 +6,7 @@ local ID = zones[xi.zone.BONEYARD_GULLY]
 -----------------------------------
 
 local content = BattlefieldMission:new({
-    zoneId                = xi.zone.BONEYARD_GULLY,
     battlefieldId         = xi.battlefield.id.HEAD_WIND,
-    entryNpc              = '_081',
-    exitNpcs              = { '_082', '_084', '_086' },
 
     missionArea           = xi.mission.log_id.COP,
     mission               = xi.mission.id.cop.THREE_PATHS,
@@ -17,7 +14,6 @@ local content = BattlefieldMission:new({
     missionStatusArea     = xi.mission.log_id.COP,
     requiredMissionStatus = 7,
 
-    grantXP               = 1000,
     title                 = xi.title.DELTA_ENFORCER,
 })
 

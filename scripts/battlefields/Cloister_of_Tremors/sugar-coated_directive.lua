@@ -6,10 +6,7 @@ local cloisterOfTremorsID = zones[xi.zone.CLOISTER_OF_TREMORS]
 -----------------------------------
 
 local content = BattlefieldMission:new({
-    zoneId           = xi.zone.CLOISTER_OF_TREMORS,
     battlefieldId    = xi.battlefield.id.SUGAR_COATED_DIRECTIVE_CLOISTER_OF_TREMORS,
-    entryNpc         = 'EP_Entrance',
-    exitNpc          = 'Earth_Protocrystal',
 
     requiredKeyItems = { xi.keyItem.DOMINAS_AMBER_SEAL, keep = true },
     missionArea      = xi.mission.log_id.ASA,
@@ -17,7 +14,6 @@ local content = BattlefieldMission:new({
     requiredVar      = 'Mission[11][3]Titan',
     requiredValue    = 1,
 
-    grantXP          = 400,
 })
 
 content.groups =

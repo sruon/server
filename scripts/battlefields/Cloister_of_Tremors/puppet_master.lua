@@ -7,10 +7,7 @@ local cloisterOfTremorsID = zones[xi.zone.CLOISTER_OF_TREMORS]
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId        = xi.zone.CLOISTER_OF_TREMORS,
     battlefieldId = xi.battlefield.id.PUPPET_MASTER,
-    entryNpc      = 'EP_Entrance',
-    exitNpc       = 'Earth_Protocrystal',
     requiredItems = { xi.item.EARTH_PENDULUM, keep = true },
     requiredVar   = 'Quest[2][81]Prog',
     requiredValue = 1,

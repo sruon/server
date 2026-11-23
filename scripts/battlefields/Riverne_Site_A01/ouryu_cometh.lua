@@ -5,11 +5,7 @@
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId        = xi.zone.RIVERNE_SITE_A01,
     battlefieldId = xi.battlefield.id.OURYU_COMETH,
-    area          = 1,
-    entryNpc      = 'Unstable_Displacement',
-    exitNpc       = 'Spatial_Displacement_BC',
     requiredItems = { xi.item.CLOUD_EVOKER }
 })
 

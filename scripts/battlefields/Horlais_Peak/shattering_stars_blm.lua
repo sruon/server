@@ -6,10 +6,7 @@ local horlaisID = zones[xi.zone.HORLAIS_PEAK]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId        = xi.zone.HORLAIS_PEAK,
     battlefieldId = xi.battlefield.id.SHATTERING_STARS_BLM,
-    entryNpc      = 'BC_Entrance',
-    exitNpc       = 'Burning_Circle',
     requiredItems = { xi.item.BLACK_MAGES_TESTIMONY, wearMessage = horlaisID.text.TESTIMONY_WEARS, wornMessage = horlaisID.text.TESTIMONY_IS_TORN },
 })
 

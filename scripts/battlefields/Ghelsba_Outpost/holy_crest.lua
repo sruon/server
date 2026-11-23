@@ -7,10 +7,7 @@ local ghelsbaID = zones[xi.zone.GHELSBA_OUTPOST]
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId        = xi.zone.GHELSBA_OUTPOST,
     battlefieldId = xi.battlefield.id.HOLY_CREST,
-    area          = 1,
-    entryNpc      = 'Hut_Door',
     questArea     = xi.questLog.SANDORIA,
     quest         = xi.quest.id.sandoria.THE_HOLY_CREST,
 })

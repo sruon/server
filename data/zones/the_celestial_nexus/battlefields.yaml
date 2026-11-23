@@ -3,6 +3,8 @@
 battlefields:
   celestial_nexus:
     index:        0
+    entry_npcs:   [_513]
+    exit_npcs:    [_514, _515]
     level_cap:    max
     can_lose_exp: false
     allow_trusts: true

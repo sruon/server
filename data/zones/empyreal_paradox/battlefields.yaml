@@ -1,5 +1,8 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
+entry_npcs: [TR_Entrance]
+exit_npcs:  [Transcendental_Radiance]
+
 battlefields:
   dawn:
     index:          0
@@ -8,6 +11,7 @@ battlefields:
     allow_trusts:   true
     is_mission:     true
     has_wipe_grace: false
+    grant_xp:       2000
 
   apocalypse_nigh:
     index:        1

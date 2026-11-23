@@ -7,10 +7,7 @@ local ID = zones[xi.zone.THRONE_ROOM]
 -----------------------------------
 
 local content = BattlefieldMission:new({
-    zoneId                = xi.zone.THRONE_ROOM,
     battlefieldId         = xi.battlefield.id.SHADOW_LORD_BATTLE,
-    entryNpc              = '_4l1',
-    exitNpcs              = { '_4l2', '_4l3', '_4l4' },
 
     mission               = xi.mission.id.nation.SHADOW_LORD,
     requiredMissionStatus = 3,

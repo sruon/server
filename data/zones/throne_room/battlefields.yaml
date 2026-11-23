@@ -1,5 +1,8 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
+entry_npcs: [_4l1]
+exit_npcs:  [_4l2, _4l3, _4l4]
+
 battlefields:
   shadow_lord_battle:
     index:        0
@@ -19,11 +22,14 @@ battlefields:
     level_cap: 60
 
   survival_of_the_wisest:
-    index: 3
+    index:           3
+    rhapsody_trusts: true
 
   smash_a_malevolent_menace: # experimental
-    index:        4
-    level_cap:    max
-    can_lose_exp: false
-    allow_trusts: true
-    is_mission:   true
+    index:         4
+    allowed_areas: [1]
+    level_cap:     max
+    can_lose_exp:  false
+    allow_trusts:  true
+    is_mission:    true
+    experimental:  true

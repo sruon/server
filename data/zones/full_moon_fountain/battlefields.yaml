@@ -1,5 +1,8 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
+entry_npcs: [MS_Entrance]
+exit_npcs:  [Moon_Spiral]
+
 battlefields:
   moonlit_path:
     index:        0

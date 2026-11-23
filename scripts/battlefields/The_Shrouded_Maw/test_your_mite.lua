@@ -7,12 +7,8 @@ local ID = zones[xi.zone.THE_SHROUDED_MAW]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId           = xi.zone.THE_SHROUDED_MAW,
     battlefieldId    = xi.battlefield.id.TEST_YOUR_MITE,
-    entryNpc         = 'MC_Entrance',
-    exitNpc          = 'Memento_Circle',
     requiredKeyItems = { xi.keyItem.ASTRAL_COVENANT, message = ID.text.ASTRAL_DISINTEGRATES },
-    grantXP          = 3000,
 })
 
 content:addEssentialMobs({ 'Pasuk' })

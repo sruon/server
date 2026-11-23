@@ -7,10 +7,7 @@ local sacrificialChamberID = zones[xi.zone.SACRIFICIAL_CHAMBER]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId        = xi.zone.SACRIFICIAL_CHAMBER,
     battlefieldId = xi.battlefield.id.AMPHIBIAN_ASSAULT,
-    entryNpc      = '_4j0',
-    exitNpcs      = { '_4j2', '_4j3', '_4j4' },
     requiredItems = { xi.item.MOON_ORB, wearMessage = sacrificialChamberID.text.A_CRACK_HAS_FORMED, wornMessage = sacrificialChamberID.text.ORB_IS_CRACKED },
     armouryCrates =
     {

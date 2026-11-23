@@ -436,7 +436,7 @@ void CZone::LoadZoneSettings(const std::optional<xi::data::ZoneSettings>& settin
             navMeshData_            = settings->NavMesh;
         }
 
-        if (auto battlefields = xi::data::loadZoneFile<xi::data::datasets::zones::battlefields::Dataset>(m_zoneID); battlefields && !battlefields->empty())
+        if (auto battlefields = xi::data::loadZoneFile<xi::data::datasets::zones::battlefields::Dataset>(m_zoneID); battlefields && !battlefields->Entries.empty())
         {
             m_BattlefieldHandler = new CBattlefieldHandler(this, std::move(*battlefields));
         }

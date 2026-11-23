@@ -4,10 +4,7 @@
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId        = xi.zone.CLOISTER_OF_TREMORS,
     battlefieldId = xi.battlefield.id.WAKING_THE_BEAST_CLOISTER_OF_TREMORS,
-    entryNpc      = 'EP_Entrance',
-    exitNpc       = 'Earth_Protocrystal',
 
     questArea     = xi.questLog.OTHER_AREAS,
     quest         = xi.quest.id.otherAreas.WAKING_THE_BEAST,

@@ -6,10 +6,7 @@ local balgasID = zones[xi.zone.BALGAS_DAIS]
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId           = xi.zone.BALGAS_DAIS,
     battlefieldId    = xi.battlefield.id.BEYOND_INFINITY_BALGAS_DAIS,
-    entryNpc         = 'BC_Entrance',
-    exitNpc          = 'Burning_Circle',
 
     questArea        = xi.questLog.JEUNO,
     quest            = xi.quest.id.jeuno.BEYOND_INFINITY,

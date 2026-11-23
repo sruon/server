@@ -1,8 +1,12 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
+max_areas:  1
+entry_npcs: [Hut_Door]
+
 battlefields:
   save_the_children:
     index:        0
+    area:         1
     time_limit:   10
     level_cap:    max
     can_lose_exp: false
@@ -11,23 +15,27 @@ battlefields:
 
   holy_crest:
     index:        1
+    area:         1
     time_limit:   15
     can_lose_exp: false
 
   wings_of_fury:
     index:        2
+    area:         1
     time_limit:  15
     max_players:  3
     level_cap:   20
 
   petrifying_pair:
     index:        3
+    area:         1
     time_limit:  15
     max_players:  3
     level_cap:   30
 
   toadal_recall:
     index:      4
+    area:       1
     level_cap: 30
 
   mirror_mirror:

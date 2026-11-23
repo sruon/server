@@ -7,10 +7,7 @@ local stellarFulcrumID = zones[xi.zone.STELLAR_FULCRUM]
 -----------------------------------
 
 local content = BattlefieldMission:new({
-    zoneId                = xi.zone.STELLAR_FULCRUM,
     battlefieldId         = xi.battlefield.id.RETURN_TO_DELKFUTTS_TOWER,
-    entryNpc              = '_4z0',
-    exitNpcs              = { '_4z1', '_4z2', '_4z3' },
     missionArea           = xi.mission.log_id.ZILART,
     mission               = xi.mission.id.zilart.RETURN_TO_DELKFUTTS_TOWER,
     missionStatusArea     = xi.mission.log_id.ZILART,

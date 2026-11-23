@@ -1,5 +1,8 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
+entry_npcs: [_0d0]
+exit_npcs:  [_0d1, _0d2, _0d3]
+
 battlefields:
   century_of_hardship:
     index:        0
@@ -7,6 +10,7 @@ battlefields:
     can_lose_exp: false
     allow_trusts: true
     is_mission:   true
+    grant_xp:     1000
 
   return_to_the_depths:
     index:        1
@@ -14,9 +18,10 @@ battlefields:
     can_lose_exp: false
 
   bionic_bug:
-    index:        2
-    max_players: 18
-    level_cap:   75
+    index:          2
+    max_players:   18
+    level_cap:     75
+    grant_xp:    3000
 
   pulling_the_strings:
     index:        3
@@ -24,11 +29,13 @@ battlefields:
     max_players:  1
     level_cap:    60
     allow_subjob: false
+    grant_xp:     2000
 
   automaton_assault:
-    index:       4
-    time_limit: 15
-    level_cap:  60
+    index:         4
+    time_limit:   15
+    level_cap:    60
+    grant_xp:   2000
 
   mobline_comedy:
     index: 5

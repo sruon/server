@@ -7,10 +7,7 @@ local laVauleID = zones[xi.zone.LA_VAULE_S]
 -----------------------------------
 
 local content = BattlefieldMission:new({
-    zoneId                = xi.zone.LA_VAULE_S,
     battlefieldId         = xi.battlefield.id.PURPLE_THE_NEW_BLACK,
-    entryNpc              = '_2d1',
-    exitNpcs              = { '_2d3', '_2d5', '_2d7' },
     missionArea           = xi.mission.log_id.WOTG,
     mission               = xi.mission.id.wotg.PURPLE_THE_NEW_BLACK,
     missionStatusArea     = xi.mission.log_id.WOTG,

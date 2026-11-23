@@ -9,10 +9,7 @@ local qubiaID = zones[xi.zone.QUBIA_ARENA]
 local warriorOffsetsBySpawnPoint = { { 3, 5 }, { 4, 6 } }
 
 local content = BattlefieldMission:new({
-    zoneId                = xi.zone.QUBIA_ARENA,
     battlefieldId         = xi.battlefield.id.RANK_5_MISSION,
-    entryNpc              = 'BC_Entrance',
-    exitNpc               = 'Burning_Circle',
     mission               = xi.mission.id.nation.ARCHLICH,
     requiredMissionStatus = 11,
     title                 = xi.title.ARCHMAGE_ASSASSIN,

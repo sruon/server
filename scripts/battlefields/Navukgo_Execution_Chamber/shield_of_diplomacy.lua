@@ -6,11 +6,7 @@ local navukgoID = zones[xi.zone.NAVUKGO_EXECUTION_CHAMBER]
 -----------------------------------
 
 local content = BattlefieldMission:new({
-    zoneId                = xi.zone.NAVUKGO_EXECUTION_CHAMBER,
     battlefieldId         = xi.battlefield.id.SHIELD_OF_DIPLOMACY,
-    allowedAreas          = set{ 1 },
-    entryNpc              = '_1s0',
-    exitNpcs              = { '_1s1', '_1s2', '_1s3' },
     missionArea           = xi.mission.log_id.TOAU,
     mission               = xi.mission.id.toau.SHIELD_OF_DIPLOMACY,
     missionStatusArea     = xi.mission.log_id.TOAU,

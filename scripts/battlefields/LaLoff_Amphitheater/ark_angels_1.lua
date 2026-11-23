@@ -6,10 +6,7 @@ local laLoffID = zones[xi.zone.LALOFF_AMPHITHEATER]
 -----------------------------------
 
 local content = BattlefieldMission:new({
-    zoneId                = xi.zone.LALOFF_AMPHITHEATER,
     battlefieldId         = xi.battlefield.id.ARK_ANGELS_1,
-    entryNpc              = 'qm1_1',
-    exitNpc               = 'qm2',
     missionArea           = xi.mission.log_id.ZILART,
     mission               = xi.mission.id.zilart.ARK_ANGELS,
     missionStatusArea     = xi.mission.log_id.ZILART,

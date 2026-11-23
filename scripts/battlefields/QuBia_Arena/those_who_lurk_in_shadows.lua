@@ -6,17 +6,13 @@ local qubiaID = zones[xi.zone.QUBIA_ARENA]
 -----------------------------------
 
 local content = BattlefieldMission:new({
-    zoneId                = xi.zone.QUBIA_ARENA,
     battlefieldId         = xi.battlefield.id.THOSE_WHO_LURK_IN_SHADOWS,
-    entryNpc              = 'BC_Entrance',
-    exitNpc               = 'Burning_Circle',
     missionArea           = xi.mission.log_id.ACP,
     mission               = xi.mission.id.acp.THOSE_WHO_LURK_IN_SHADOWS_III,
     missionStatusArea     = xi.mission.log_id.ACP,
     requiredMissionStatus = 0,
     requiredKeyItems      = { xi.keyItem.MARK_OF_SEED, message = qubiaID.text.LOST_KEYITEM },
 
-    experimental          = true,
 })
 
 -- TODO: This should be moved to mission script once converted to Interaction Framework

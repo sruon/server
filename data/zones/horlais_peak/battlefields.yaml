@@ -1,5 +1,8 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
+entry_npcs: [BC_Entrance]
+exit_npcs:  [Burning_Circle]
+
 battlefields:
   rank_2_mission_1:
     index:        0
@@ -30,6 +33,7 @@ battlefields:
 
   shattering_stars_war:
     index:           5
+    rhapsody_trusts: true
     time_limit:      10
     max_players:     1
     level_cap:       max
@@ -38,6 +42,7 @@ battlefields:
 
   shattering_stars_blm:
     index:           6
+    rhapsody_trusts: true
     time_limit:      10
     max_players:     1
     level_cap:       max
@@ -46,6 +51,7 @@ battlefields:
 
   shattering_stars_rng:
     index:           7
+    rhapsody_trusts: true
     time_limit:      10
     max_players:     1
     level_cap:       max

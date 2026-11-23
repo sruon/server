@@ -7,10 +7,7 @@ local ID = zones[xi.zone.BONEYARD_GULLY]
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId           = xi.zone.BONEYARD_GULLY,
     battlefieldId    = xi.battlefield.id.TANGO_WITH_A_TRACKER,
-    entryNpc         = '_081',
-    exitNpcs         = { '_082', '_084', '_086' },
     questArea        = xi.questLog.OTHER_AREAS,
     quest            = xi.quest.id.otherAreas.TANGO_WITH_A_TRACKER,
 

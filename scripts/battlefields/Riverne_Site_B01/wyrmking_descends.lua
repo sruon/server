@@ -3,11 +3,7 @@
 -- !pos -612.800 1.750 693.190 29
 -----------------------------------
 local content = Battlefield:new({
-    zoneId        = xi.zone.RIVERNE_SITE_B01,
     battlefieldId = xi.battlefield.id.WYRMKING_DESCENDS,
-    area          = 1,
-    entryNpc      = 'Unstable_Displacement',
-    exitNpc       = 'SD_BCNM_Exit',
     requiredItems = { xi.item.MONARCHS_ORB }
 })
 

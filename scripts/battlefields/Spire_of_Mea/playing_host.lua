@@ -7,12 +7,8 @@ local spireOfMeaID = zones[xi.zone.SPIRE_OF_MEA]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId           = xi.zone.SPIRE_OF_MEA,
     battlefieldId    = xi.battlefield.id.PLAYING_HOST,
-    entryNpc         = '_0l0',
-    exitNpcs         = { '_0l1', '_0l2', '_0l3' },
     requiredKeyItems = { xi.keyItem.CENSER_OF_ANIMUS, message = spireOfMeaID.text.FADES_INTO_NOTHINGNESS },
-    grantXP          = 3000,
     armouryCrates    =
     {
         spireOfMeaID.mob.ENVIER + 4,

@@ -40,7 +40,7 @@
 CBattlefieldHandler::CBattlefieldHandler(CZone* PZone, xi::data::Battlefields battlefields)
 : m_PZone(PZone)
 , m_BattlefieldData(std::move(battlefields))
-, m_MaxBattlefields(luautils::OnBattlefieldHandlerInitialize(PZone))
+, m_MaxBattlefields(m_BattlefieldData.MaxAreas)
 {
 }
 
@@ -118,12 +118,12 @@ auto CBattlefieldHandler::LoadBattlefield(CCharEntity* PChar, const BattlefieldR
 
     auto battlefield = std::make_unique<CBattlefield>(registration.id, m_PZone, registration.area, PChar);
 
-    const auto data = std::ranges::find_if(m_BattlefieldData,
+    const auto data = std::ranges::find_if(m_BattlefieldData.Entries,
                                            [&](const xi::data::BattlefieldData& entry)
                                            {
                                                return std::to_underlying(xi::data::battlefieldId(m_PZone->GetID(), entry.Index)) == registration.id;
                                            });
-    if (data == m_BattlefieldData.end())
+    if (data == m_BattlefieldData.Entries.end())
     {
         ShowError("Cannot load battlefield : %u ", registration.id);
         return BATTLEFIELD_RETURN_CODE_REQS_NOT_MET;

@@ -6,10 +6,7 @@ local balgasID = zones[xi.zone.BALGAS_DAIS]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId        = xi.zone.BALGAS_DAIS,
     battlefieldId = xi.battlefield.id.SHATTERING_STARS_MNK,
-    entryNpc      = 'BC_Entrance',
-    exitNpc       = 'Burning_Circle',
     requiredItems = { xi.item.MONKS_TESTIMONY, wearMessage = balgasID.text.TESTIMONY_WEARS, wornMessage = balgasID.text.TESTIMONY_IS_TORN },
 })
 

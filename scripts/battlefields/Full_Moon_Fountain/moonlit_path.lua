@@ -6,10 +6,7 @@ local fullMoonFountainID = zones[xi.zone.FULL_MOON_FOUNTAIN]
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId           = xi.zone.FULL_MOON_FOUNTAIN,
     battlefieldId    = xi.battlefield.id.MOONLIT_PATH,
-    entryNpc         = 'MS_Entrance',
-    exitNpc          = 'Moon_Spiral',
     requiredKeyItems = { xi.keyItem.MOON_BAUBLE, keep = true },
 
     questArea        = xi.questLog.WINDURST,

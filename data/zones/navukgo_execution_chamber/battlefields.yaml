@@ -1,5 +1,8 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
+entry_npcs: [_1s0]
+exit_npcs:  [_1s1, _1s2, _1s3]
+
 battlefields:
   tough_nut_to_crack:
     index:      0
@@ -14,16 +17,18 @@ battlefields:
     can_lose_exp: false
 
   achieving_true_power:
-    index:        3
-    time_limit:   10
-    max_players:  1
-    level_cap:    max
-    can_lose_exp: false
-    allow_subjob: false
+    index:           3
+    rhapsody_trusts: true
+    time_limit:      10
+    max_players:     1
+    level_cap:       max
+    can_lose_exp:    false
+    allow_subjob:    false
 
   shield_of_diplomacy:
-    index:        4
-    level_cap:    max
-    can_lose_exp: false
-    allow_trusts: true
-    is_mission:   true
+    index:         4
+    allowed_areas: [1]
+    level_cap:     max
+    can_lose_exp:  false
+    allow_trusts:  true
+    is_mission:    true

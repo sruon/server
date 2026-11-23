@@ -6,16 +6,12 @@ local ruHmetID = zones[xi.zone.THE_GARDEN_OF_RUHMET]
 -----------------------------------
 
 local content = BattlefieldMission:new({
-    zoneId        = xi.zone.THE_GARDEN_OF_RUHMET,
     battlefieldId = xi.battlefield.id.WHEN_ANGELS_FALL,
-    area          = 1,
-    entryNpc      = '_0z0',
     missionArea   = xi.mission.log_id.COP,
     mission       = xi.mission.id.cop.WHEN_ANGELS_FALL,
     requiredVar   = 'Mission[6][828]Status',
     requiredValue = 4,
 
-    grantXP       = 1000,
 })
 
 function content:onEventFinishWin(player, csid, option, npc)

@@ -41,7 +41,7 @@ auto Dataset::decode(const std::string_view text) -> Records
 {
     const auto document = yaml::read<YamlDocument>(text);
 
-    Records                   records;
+    Records                   records{ .MaxAreas = document.max_areas.value_or(3) };
     std::unordered_set<uint8> indices;
 
     for (const auto& [name, source] : document.battlefields)
@@ -95,17 +95,38 @@ auto Dataset::decode(const std::string_view text) -> Records
         record.CleanupDebuffs = source.cleanup_debuffs.value_or(record.CleanupDebuffs);
         record.HasWipeGrace   = source.has_wipe_grace.value_or(record.HasWipeGrace);
         record.ShowTimer      = source.show_timer.value_or(record.ShowTimer);
+        record.EntryNpcs      = source.entry_npcs.value_or(document.entry_npcs.value_or(std::vector<std::string>{}));
+        record.ExitNpcs       = source.exit_npcs.value_or(document.exit_npcs.value_or(std::vector<std::string>{}));
+        record.Area           = source.area;
+        record.AllowedAreas   = source.allowed_areas.value_or(std::vector<uint8>{});
+        record.GrantXP        = source.grant_xp;
+        record.GrantXPLockout = source.grant_xp_lockout.value_or(false);
+        record.Experimental   = source.experimental.value_or(false);
+        record.RhapsodyTrusts = source.rhapsody_trusts.value_or(false);
 
-        records.emplace_back(std::move(record));
+        for (const auto arena : record.AllowedAreas)
+        {
+            if (arena < 1 || arena > records.MaxAreas)
+            {
+                throw std::runtime_error(fmt::format("battlefield '{}' allows arena {}, the zone has {}", name, arena, records.MaxAreas));
+            }
+        }
+
+        if (record.Area && (*record.Area < 1 || *record.Area > records.MaxAreas))
+        {
+            throw std::runtime_error(fmt::format("battlefield '{}' uses arena {}, the zone has {}", name, *record.Area, records.MaxAreas));
+        }
+
+        records.Entries.emplace_back(std::move(record));
     }
 
-    std::ranges::sort(records, {}, &BattlefieldData::Index);
+    std::ranges::sort(records.Entries, {}, &BattlefieldData::Index);
     return records;
 }
 
 void Dataset::verifyZone(const Records& records, const xi::ZoneId zoneId)
 {
-    for (const auto& record : records)
+    for (const auto& record : records.Entries)
     {
         yaml::verifyNamedMapEntry<xi::BattlefieldId>(record.Name, std::to_underlying(battlefieldId(zoneId, record.Index)));
     }

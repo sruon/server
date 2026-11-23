@@ -4,10 +4,7 @@
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId        = xi.zone.CLOISTER_OF_FROST,
     battlefieldId = xi.battlefield.id.WAKING_THE_BEAST_CLOISTER_OF_FROST,
-    entryNpc      = 'IP_Entrance',
-    exitNpc       = 'Ice_Protocrystal',
 
     questArea     = xi.questLog.OTHER_AREAS,
     quest         = xi.quest.id.otherAreas.WAKING_THE_BEAST,

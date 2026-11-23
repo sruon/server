@@ -1,5 +1,8 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
+entry_npcs: [_081]
+exit_npcs:  [_082, _084, _086]
+
 battlefields:
   head_wind:
     index:        0
@@ -7,23 +10,28 @@ battlefields:
     can_lose_exp: false
     allow_trusts: true
     is_mission:   true
+    grant_xp:     1000
 
   like_the_wind: # experimental
     index:        1
-    time_limit:  15
-    max_players: 18
-    level_cap:   75
+    time_limit:   15
+    max_players:  18
+    level_cap:    75
+    grant_xp:     2000
+    experimental: true
 
   sheep_in_antlions_clothing:
-    index:        2
-    time_limit:  15
-    max_players: 18
-    level_cap:   75
+    index:          2
+    time_limit:    15
+    max_players:   18
+    level_cap:     75
+    grant_xp:    2500
 
   shell_we_dance: # experimental
-    index:        3
-    max_players: 18
-    level_cap:   75
+    index:          3
+    max_players:   18
+    level_cap:     75
+    grant_xp:    3000
 
   totentanz:
     index: 4

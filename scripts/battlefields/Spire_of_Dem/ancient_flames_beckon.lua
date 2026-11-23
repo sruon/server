@@ -7,13 +7,8 @@ local spireOfDemID = zones[xi.zone.SPIRE_OF_DEM]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId         = xi.zone.SPIRE_OF_DEM,
-    battlefieldId  = xi.battlefield.id.ANCIENT_FLAMES_BECKON_SPIRE_OF_DEM,
-    entryNpc       = '_0j0',
-    exitNpcs       = { '_0j1', '_0j2', '_0j3' },
+    battlefieldId = xi.battlefield.id.ANCIENT_FLAMES_BECKON_SPIRE_OF_DEM,
 
-    grantXP        = 1500,
-    grantXPLockout = true,
 })
 
 function content:entryRequirement(player, npc, isRegistrant, trade)

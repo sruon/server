@@ -6,10 +6,7 @@ local empyrealParadoxID = zones[xi.zone.EMPYREAL_PARADOX]
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId        = xi.zone.EMPYREAL_PARADOX,
     battlefieldId = xi.battlefield.id.APOCALYPSE_NIGH,
-    entryNpc      = 'TR_Entrance',
-    exitNpc       = 'Transcendental_Radiance',
     questArea     = xi.questLog.JEUNO,
     quest         = xi.quest.id.jeuno.APOCALYPSE_NIGH,
     requiredVar   = 'Quest[3][89]Prog',

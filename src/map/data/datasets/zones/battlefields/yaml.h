@@ -46,25 +46,34 @@ using LevelCap = std::variant<uint8, LevelCapKeyword>;
 
 struct Battlefield
 {
-    uint8                   index{};
-    std::optional<uint16>   time_limit;
-    std::optional<uint8>    max_players;
-    std::optional<LevelCap> level_cap;
-    std::optional<bool>     can_lose_exp;
-    std::optional<bool>     allow_trusts;
-    std::optional<bool>     is_mission;
-    std::optional<bool>     allow_subjob;
-    std::optional<bool>     cleanup_debuffs;
-    std::optional<uint8>    delay_to_exit;
-    std::optional<bool>     has_wipe_grace;
-    std::optional<bool>     show_timer;
+    uint8                                   index{};
+    std::optional<uint16>                   time_limit;
+    std::optional<uint8>                    max_players;
+    std::optional<LevelCap>                 level_cap;
+    std::optional<bool>                     can_lose_exp;
+    std::optional<bool>                     allow_trusts;
+    std::optional<bool>                     is_mission;
+    std::optional<bool>                     allow_subjob;
+    std::optional<bool>                     cleanup_debuffs;
+    std::optional<uint8>                    delay_to_exit;
+    std::optional<bool>                     has_wipe_grace;
+    std::optional<bool>                     show_timer;
+    std::optional<std::vector<std::string>> entry_npcs;
+    std::optional<std::vector<std::string>> exit_npcs;
+    std::optional<uint8>                    area;
+    std::optional<std::vector<uint8>>       allowed_areas;
+    std::optional<uint32>                   grant_xp;
+    std::optional<bool>                     grant_xp_lockout;
+    std::optional<bool>                     experimental;
+    std::optional<bool>                     rhapsody_trusts;
 };
 
 struct Document
 {
-    std::map<std::string, Battlefield> battlefields;
-
-    using YamlRoot = yaml::DatasetRoot<&Document::battlefields>;
+    std::optional<uint8>                    max_areas;
+    std::optional<std::vector<std::string>> entry_npcs;
+    std::optional<std::vector<std::string>> exit_npcs;
+    std::map<std::string, Battlefield>      battlefields;
 };
 
 } // namespace xi::data::datasets::zones::battlefields::wire
@@ -98,10 +107,21 @@ struct glz::json_schema<xi::data::datasets::zones::battlefields::wire::Battlefie
     glz::schema delay_to_exit{ .description = "Seconds between the win and the exit cutscene.", .defaultValue = 5, .minimum = 0L, .maximum = 255L };
     glz::schema has_wipe_grace{ .description = "A wiped party gets 3 minutes to recover before it is removed.", .defaultValue = true };
     glz::schema show_timer{ .description = "The remaining time shows in the client.", .defaultValue = true };
+    glz::schema entry_npcs{ .description = "NPCs that open the entry menu for this battlefield, by name. Omit to use the zone's.", .uniqueItems = true };
+    glz::schema exit_npcs{ .description = "NPCs that lead out of this battlefield's arenas, by name. Omit to use the zone's, `[]` for none.", .uniqueItems = true };
+    glz::schema area{ .description = "The one arena this battlefield always uses. Omit to use any free arena.", .minimum = 1L, .maximum = 15L };
+    glz::schema allowed_areas{ .description = "Arenas this battlefield may use, for when only some have their mobs placed. Omit for every arena.", .uniqueItems = true };
+    glz::schema grant_xp{ .description = "Experience points given to each player on a win." };
+    glz::schema grant_xp_lockout{ .description = "The experience is only given once per JST day.", .defaultValue = false };
+    glz::schema experimental{ .description = "Marked experimental: enemies are stronger and players are warned on entry.", .defaultValue = false };
+    glz::schema rhapsody_trusts{ .description = "A player holding Rhapsody in Umber may call trusts even though only one player can enter.", .defaultValue = false };
 };
 
 template <>
 struct glz::json_schema<xi::data::datasets::zones::battlefields::wire::Document>
 {
+    glz::schema max_areas{ .description = "Arenas the zone has, which is also how many of its battlefields can run at once.", .defaultValue = 3, .minimum = 1L, .maximum = 15L };
+    glz::schema entry_npcs{ .description = "NPCs that open the entry menu, by name, for every battlefield that does not name its own.", .uniqueItems = true };
+    glz::schema exit_npcs{ .description = "NPCs that lead out of the arenas, by name, for every battlefield that does not name its own.", .uniqueItems = true };
     glz::schema battlefields{ .description = "Battlefields the zone hosts, keyed by their canonical name in index order." };
 };

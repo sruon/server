@@ -1,5 +1,8 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
+entry_npcs: [IP_Entrance]
+exit_npcs:  [Ice_Protocrystal]
+
 battlefields:
   trial_by_ice:
     index:        0
@@ -27,3 +30,4 @@ battlefields:
     can_lose_exp: false
     allow_trusts: true
     is_mission:   true
+    grant_xp:     400

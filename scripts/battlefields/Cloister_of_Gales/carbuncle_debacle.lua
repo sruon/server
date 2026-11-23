@@ -6,10 +6,7 @@ local cloisterOfGalesID = zones[xi.zone.CLOISTER_OF_GALES]
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId        = xi.zone.CLOISTER_OF_GALES,
     battlefieldId = xi.battlefield.id.CARBUNCLE_DEBACLE_CLOISTER_OF_GALES,
-    entryNpc      = 'WP_Entrance',
-    exitNpc       = 'Wind_Protocrystal',
     requiredItems = { xi.item.WIND_PENDULUM, keep = true }, -- Wind Pendulum is not consumed on entry, but is required to enter the battlefield.
 
     questArea     = xi.questLog.WINDURST,

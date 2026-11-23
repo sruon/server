@@ -40,31 +40,6 @@ xi.trust.messageOffset =
 
 local maxMessagePage = 121
 
-local rovKIBattlefieldIDs = set{
-    xi.battlefield.id.SHATTERING_STARS_WAR,
-    xi.battlefield.id.SHATTERING_STARS_BLM,
-    xi.battlefield.id.SHATTERING_STARS_RNG,
-    xi.battlefield.id.SHATTERING_STARS_RDM,
-    xi.battlefield.id.SHATTERING_STARS_THF,
-    xi.battlefield.id.SHATTERING_STARS_BST,
-    xi.battlefield.id.SHATTERING_STARS_MNK,
-    xi.battlefield.id.SHATTERING_STARS_WHM,
-    xi.battlefield.id.SHATTERING_STARS_SMN,
-    xi.battlefield.id.SURVIVAL_OF_THE_WISEST,
-    xi.battlefield.id.SHATTERING_STARS_SAM,
-    xi.battlefield.id.SHATTERING_STARS_NIN,
-    xi.battlefield.id.SHATTERING_STARS_DRG,
-    xi.battlefield.id.SHATTERING_STARS_PLD,
-    xi.battlefield.id.SHATTERING_STARS_DRK,
-    xi.battlefield.id.SHATTERING_STARS_BRD,
-    xi.battlefield.id.FURIOUS_FINALE,
-    xi.battlefield.id.BREAKING_THE_BONDS_OF_FATE,
-    xi.battlefield.id.ACHIEVING_TRUE_POWER,
-    xi.battlefield.id.BEAST_WITHIN,
--- TODO: GEO LB5
--- TODO: RUN LB5
-}
-
 -- NOTE: Unfortunately, these are not linear, so we have to use
 --       a big lookup of offsets instead of a single offset
 local poolIDToMessagePageOffset =
@@ -206,8 +181,10 @@ xi.trust.checkBattlefieldTrustCount = function(caster)
         -- one participant which would cause the return to fail.  In this case,
         -- set the maxParticipants value to 6 to allow summoning.
 
+        local content = xi.battlefield.contents[battlefield:getID()]
         if
-            rovKIBattlefieldIDs[battlefield:getID()] and
+            content and
+            content.rhapsodyTrusts and
             caster:hasKeyItem(xi.keyItem.RHAPSODY_IN_UMBER)
         then
             maxParticipants = 6
@@ -371,14 +348,14 @@ xi.trust.canCast = function(caster, spell, notAllowedTrustIds)
     -- Some battlefields allow trusts after you get this ROV Key Item, and this
     -- rule should take precedence.  If it is not one of these, then fall back
     -- to checking the battlefield's definitions.
-    local casterBattlefieldID = caster:getBattlefieldID()
-    if rovKIBattlefieldIDs[casterBattlefieldID] then
+    local content = xi.battlefield.contents[caster:getBattlefieldID()]
+    if content and content.rhapsodyTrusts then
         if not caster:hasKeyItem(xi.keyItem.RHAPSODY_IN_UMBER) then
             return xi.msg.basic.TRUST_NO_CAST_TRUST
         end
     elseif
-        xi.battlefield.contents[casterBattlefieldID] and
-        not xi.battlefield.contents[casterBattlefieldID].allowTrusts
+        content and
+        not content.allowTrusts
     then
         return xi.msg.basic.TRUST_NO_CAST_TRUST
     end

@@ -1,17 +1,23 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
+entry_npcs: [_0j0]
+exit_npcs:  [_0j1, _0j2, _0j3]
+
 battlefields:
   ancient_flames_beckon_spire_of_dem:
-    index:        0
-    level_cap:    max
-    can_lose_exp: false
-    allow_trusts: true
-    is_mission:   true
+    index:            0
+    level_cap:        max
+    can_lose_exp:     false
+    allow_trusts:     true
+    is_mission:       true
+    grant_xp:         1500
+    grant_xp_lockout: true
 
   you_are_what_you_eat: # experimental
-    index:        1
-    max_players: 18
-    level_cap:   30
+    index:          1
+    max_players:   18
+    level_cap:     30
+    grant_xp:    3000
 
   empty_dreams:
     index: 2

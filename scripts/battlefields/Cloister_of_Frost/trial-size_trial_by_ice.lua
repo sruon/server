@@ -6,10 +6,7 @@ local cloisterOfFrostID = zones[xi.zone.CLOISTER_OF_FROST]
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId        = xi.zone.CLOISTER_OF_FROST,
     battlefieldId = xi.battlefield.id.TRIAL_SIZE_TRIAL_BY_ICE,
-    entryNpc      = 'IP_Entrance',
-    exitNpc       = 'Ice_Protocrystal',
     requiredItems = { xi.item.MINI_TUNING_FORK_OF_ICE },
 
     questArea     = xi.questLog.SANDORIA,

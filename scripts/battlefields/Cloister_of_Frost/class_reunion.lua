@@ -6,10 +6,7 @@ local cloisterOfFrostID = zones[xi.zone.CLOISTER_OF_FROST]
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId        = xi.zone.CLOISTER_OF_FROST,
     battlefieldId = xi.battlefield.id.CLASS_REUNION,
-    entryNpc      = 'IP_Entrance',
-    exitNpc       = 'Ice_Protocrystal',
     requiredItems = { xi.item.ICE_PENDULUM, keep = true },
 
     questArea     = xi.questLog.WINDURST,

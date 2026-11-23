@@ -11,10 +11,7 @@ local shroudedMawID = zones[xi.zone.THE_SHROUDED_MAW]
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId           = xi.zone.THE_SHROUDED_MAW,
     battlefieldId    = xi.battlefield.id.WAKING_DREAMS,
-    entryNpc         = 'MC_Entrance',
-    exitNpc          = 'Memento_Circle',
     requiredKeyItems = { xi.keyItem.VIAL_OF_DREAM_INCENSE, keep = true },
 
     questArea        = xi.questLog.WINDURST,

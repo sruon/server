@@ -7,10 +7,7 @@ local balgasID = zones[xi.zone.BALGAS_DAIS]
 -----------------------------------
 
 local content = BattlefieldMission:new({
-    zoneId                = xi.zone.BALGAS_DAIS,
     battlefieldId         = xi.battlefield.id.SAINTLY_INVITATION,
-    entryNpc              = 'BC_Entrance',
-    exitNpc               = 'Burning_Circle',
     missionArea           = xi.mission.log_id.WINDURST,
     mission               = xi.mission.id.windurst.SAINTLY_INVITATION,
     missionStatusArea     = xi.mission.log_id.WINDURST,

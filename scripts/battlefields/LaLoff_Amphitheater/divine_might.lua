@@ -6,9 +6,7 @@ local laLoffID = zones[xi.zone.LALOFF_AMPHITHEATER]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId        = xi.zone.LALOFF_AMPHITHEATER,
     battlefieldId = xi.battlefield.id.DIVINE_MIGHT,
-    entryNpcs     = { 'qm1_1', 'qm1_2', 'qm1_3', 'qm1_4', 'qm1_5' },
 
     requiredItems = { xi.item.ARK_PENTASPHERE, wearMessage = laLoffID.text.THE_SEAL_FADES, wornMessage = { laLoffID.text.INK_HAS_FADED, xi.item.ARK_PENTASPHERE } },
 })

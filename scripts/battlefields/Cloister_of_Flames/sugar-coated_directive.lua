@@ -6,10 +6,7 @@ local cloisterOfFlamesID = zones[xi.zone.CLOISTER_OF_FLAMES]
 -----------------------------------
 
 local content = BattlefieldMission:new({
-    zoneId           = xi.zone.CLOISTER_OF_FLAMES,
     battlefieldId    = xi.battlefield.id.SUGAR_COATED_DIRECTIVE_CLOISTER_OF_FLAMES,
-    entryNpc         = 'FP_Entrance',
-    exitNpc          = 'Fire_Protocrystal',
 
     requiredKeyItems = { xi.keyItem.DOMINAS_SCARLET_SEAL, keep = true },
     missionArea      = xi.mission.log_id.ASA,
@@ -17,7 +14,6 @@ local content = BattlefieldMission:new({
     requiredVar      = 'Mission[11][3]Ifrit',
     requiredValue    = 1,
 
-    grantXP          = 400,
 })
 
 content.groups =

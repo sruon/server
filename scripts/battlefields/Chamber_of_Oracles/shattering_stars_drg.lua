@@ -6,10 +6,7 @@ local chamberOfOraclesID = zones[xi.zone.CHAMBER_OF_ORACLES]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId        = xi.zone.CHAMBER_OF_ORACLES,
     battlefieldId = xi.battlefield.id.SHATTERING_STARS_DRG,
-    entryNpc      = 'SC_Entrance',
-    exitNpc       = 'Shimmering_Circle',
     requiredItems = { xi.item.DRAGOONS_TESTIMONY, wearMessage = chamberOfOraclesID.text.TESTIMONY_WEARS, wornMessage = chamberOfOraclesID.text.TESTIMONY_IS_TORN },
 })
 

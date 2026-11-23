@@ -1,5 +1,8 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
+entry_npcs: [_4j0]
+exit_npcs:  [_4j2, _4j3, _4j4]
+
 battlefields:
   temple_of_uggalepih:
     index:        0

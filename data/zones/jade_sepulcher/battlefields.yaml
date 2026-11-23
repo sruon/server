@@ -1,5 +1,8 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
+entry_npcs: [_1v0]
+exit_npcs:  [_1v1, _1v2, _1v3]
+
 battlefields:
   making_a_mockery:
     index:      0
@@ -9,20 +12,22 @@ battlefields:
     index: 1
 
   beast_within:
-    index:        2
-    time_limit:   10
-    max_players:  1
-    level_cap:    max
-    can_lose_exp: false
-    allow_subjob: false
+    index:           2
+    rhapsody_trusts: true
+    time_limit:      10
+    max_players:     1
+    level_cap:       max
+    can_lose_exp:    false
+    allow_subjob:    false
 
   moment_of_truth:
     index:        3
     can_lose_exp: false
 
   puppet_in_peril:
-    index:        4
-    level_cap:    max
-    can_lose_exp: false
-    allow_trusts: true
-    is_mission:   true
+    index:         4
+    allowed_areas: [1]
+    level_cap:     max
+    can_lose_exp:  false
+    allow_trusts:  true
+    is_mission:    true

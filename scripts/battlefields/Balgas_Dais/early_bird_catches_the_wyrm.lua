@@ -7,10 +7,7 @@ local balgasID = zones[xi.zone.BALGAS_DAIS]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId        = xi.zone.BALGAS_DAIS,
     battlefieldId = xi.battlefield.id.EARLY_BIRD_CATCHES_THE_WYRM,
-    entryNpc      = 'BC_Entrance',
-    exitNpc       = 'Burning_Circle',
     requiredItems = { xi.item.THEMIS_ORB, wearMessage = balgasID.text.A_CRACK_HAS_FORMED, wornMessage = balgasID.text.ORB_IS_CRACKED },
 })
 

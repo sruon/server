@@ -1,8 +1,13 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
+max_areas:  1
+entry_npcs: [Unstable_Displacement]
+exit_npcs:  [SD_BCNM_Exit]
+
 battlefields:
   storms_of_fate:
     index:        0
+    area:         1
     max_players:  18
     level_cap:    max
     can_lose_exp: false
@@ -10,6 +15,7 @@ battlefields:
 
   wyrmking_descends:
     index:       1
+    area:        1
     time_limit:  60
     max_players: 18
     level_cap:   max

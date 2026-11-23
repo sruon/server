@@ -1,5 +1,8 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
+entry_npcs: [_0n0]
+exit_npcs:  [_0n1, _0n2, _0n3]
+
 battlefields:
   desires_of_emptiness:
     index:        0
@@ -7,11 +10,13 @@ battlefields:
     can_lose_exp: false
     allow_trusts: true
     is_mission:   true
+    grant_xp:     1500
 
   pulling_the_plug:
-    index:        1
-    max_players: 18
-    level_cap:   50
+    index:          1
+    max_players:   18
+    level_cap:     50
+    grant_xp:    3000
 
   empty_aspirations:
     index: 2

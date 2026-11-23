@@ -7,12 +7,8 @@ local monarchLinnID = zones[xi.zone.MONARCH_LINN]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId           = xi.zone.MONARCH_LINN,
     battlefieldId    = xi.battlefield.id.BELOVED_OF_THE_ATLANTES,
-    entryNpc         = 'SD_Entrance',
-    exitNpcs         = { 'SD_BCNM_Exit_1', 'SD_BCNM_Exit_2', 'SD_BCNM_Exit_3' },
     requiredKeyItems = { xi.keyItem.MONARCH_BEARD, message = monarchLinnID.text.TORN_FROM_YOUR_HANDS },
-    grantXP          = 2500,
 })
 
 content.groups =

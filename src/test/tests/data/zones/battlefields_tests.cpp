@@ -30,6 +30,7 @@
 #include <array>
 #include <chrono>
 #include <string>
+#include <vector>
 
 namespace
 {
@@ -43,12 +44,12 @@ auto horlaisPeakFile() -> std::string
 
 auto find(const xi::data::Battlefields& battlefields, const xi::ZoneId zone, const xi::BattlefieldId id) -> const xi::data::BattlefieldData*
 {
-    const auto it = std::ranges::find_if(battlefields,
+    const auto it = std::ranges::find_if(battlefields.Entries,
                                          [&](const xi::data::BattlefieldData& entry)
                                          {
                                              return xi::data::battlefieldId(zone, entry.Index) == id;
                                          });
-    if (it == battlefields.end())
+    if (it == battlefields.Entries.end())
     {
         return nullptr;
     }
@@ -68,7 +69,7 @@ TEST_CASE("battlefields: a zone lists the battlefields it hosts", "[data][battle
 {
     const auto battlefields = xi::data::loadZoneFile<BattlefieldsDataset>(xi::ZoneId::HorlaisPeak);
     REQUIRE(battlefields.has_value());
-    CHECK(std::ranges::is_sorted(*battlefields, {}, &xi::data::BattlefieldData::Index));
+    CHECK(std::ranges::is_sorted(battlefields->Entries, {}, &xi::data::BattlefieldData::Index));
 
     const auto* tailsOfWoe = find(*battlefields, xi::ZoneId::HorlaisPeak, xi::BattlefieldId::TailsOfWoe);
     REQUIRE(tailsOfWoe != nullptr);
@@ -136,6 +137,82 @@ TEST_CASE("battlefields: a level cap is a level or max", "[data][battlefield]")
     const auto modules = std::array{ std::string{ "battlefields:\n  tails_of_woe:\n    level_cap: highest\n" } };
 
     CHECK_THROWS(BattlefieldsDataset::decode(xi::data::mergeYaml(horlaisPeakFile(), modules)));
+}
+
+TEST_CASE("battlefields: a zone has three arenas unless its file says otherwise", "[data][battlefield]")
+{
+    const auto horlaisPeak = xi::data::loadZoneFile<BattlefieldsDataset>(xi::ZoneId::HorlaisPeak);
+    REQUIRE(horlaisPeak.has_value());
+    CHECK(horlaisPeak->MaxAreas == 3);
+
+    const auto ghelsbaOutpost = xi::data::loadZoneFile<BattlefieldsDataset>(xi::ZoneId::GhelsbaOutpost);
+    REQUIRE(ghelsbaOutpost.has_value());
+    CHECK(ghelsbaOutpost->MaxAreas == 1);
+
+    const auto* saveTheChildren = find(*ghelsbaOutpost, xi::ZoneId::GhelsbaOutpost, xi::BattlefieldId::SaveTheChildren);
+    REQUIRE(saveTheChildren != nullptr);
+    CHECK(saveTheChildren->Area == 1);
+    CHECK(saveTheChildren->EntryNpcs == std::vector<std::string>{ "Hut_Door" });
+    CHECK(saveTheChildren->ExitNpcs.empty());
+}
+
+TEST_CASE("battlefields: a zone file names entry and exit npcs, rewards and trust rules", "[data][battlefield]")
+{
+    const auto battlefields = xi::data::loadZoneFile<BattlefieldsDataset>(xi::ZoneId::HorlaisPeak);
+    REQUIRE(battlefields.has_value());
+
+    const auto* shatteringStars = find(*battlefields, xi::ZoneId::HorlaisPeak, xi::BattlefieldId::ShatteringStarsWar);
+    REQUIRE(shatteringStars != nullptr);
+    CHECK(shatteringStars->EntryNpcs == std::vector<std::string>{ "BC_Entrance" });
+    CHECK(shatteringStars->ExitNpcs == std::vector<std::string>{ "Burning_Circle" });
+    CHECK(shatteringStars->RhapsodyTrusts);
+    CHECK_FALSE(shatteringStars->Area.has_value());
+    CHECK(shatteringStars->AllowedAreas.empty());
+
+    const auto* tailsOfWoe = find(*battlefields, xi::ZoneId::HorlaisPeak, xi::BattlefieldId::TailsOfWoe);
+    REQUIRE(tailsOfWoe != nullptr);
+    CHECK_FALSE(tailsOfWoe->RhapsodyTrusts);
+    CHECK_FALSE(tailsOfWoe->GrantXP.has_value());
+    CHECK_FALSE(tailsOfWoe->Experimental);
+}
+
+TEST_CASE("battlefields: npcs fall back to the zone's and a battlefield can override them", "[data][battlefield]")
+{
+    const auto laloff = xi::data::loadZoneFile<BattlefieldsDataset>(xi::ZoneId::LaloffAmphitheater);
+    REQUIRE(laloff.has_value());
+
+    const auto* arkAngels = find(*laloff, xi::ZoneId::LaloffAmphitheater, xi::BattlefieldId::ArkAngels1);
+    REQUIRE(arkAngels != nullptr);
+    CHECK(arkAngels->EntryNpcs == std::vector<std::string>{ "qm1_1" });
+    CHECK(arkAngels->ExitNpcs == std::vector<std::string>{ "qm2" });
+
+    const auto* divineMight = find(*laloff, xi::ZoneId::LaloffAmphitheater, xi::BattlefieldId::DivineMight);
+    REQUIRE(divineMight != nullptr);
+    CHECK(divineMight->EntryNpcs.size() == 5);
+    CHECK(divineMight->ExitNpcs.empty());
+
+    const auto  modules      = std::array{ std::string{ "exit_npcs: [Burning_Circle_2]\nbattlefields:\n  tails_of_woe:\n    entry_npcs: [Other_Entrance]\n" } };
+    const auto  battlefields = BattlefieldsDataset::decode(xi::data::mergeYaml(horlaisPeakFile(), modules));
+    const auto* tailsOfWoe   = find(battlefields, xi::ZoneId::HorlaisPeak, xi::BattlefieldId::TailsOfWoe);
+    REQUIRE(tailsOfWoe != nullptr);
+    CHECK(tailsOfWoe->EntryNpcs == std::vector<std::string>{ "Other_Entrance" });
+    CHECK(tailsOfWoe->ExitNpcs == std::vector<std::string>{ "Burning_Circle_2" });
+
+    const auto* dismemberment = find(battlefields, xi::ZoneId::HorlaisPeak, xi::BattlefieldId::DismembermentBrigade);
+    REQUIRE(dismemberment != nullptr);
+    CHECK(dismemberment->EntryNpcs == std::vector<std::string>{ "BC_Entrance" });
+}
+
+TEST_CASE("battlefields: arenas must exist in the zone", "[data][battlefield]")
+{
+    const auto allowed = std::array{ std::string{ "battlefields:\n  tails_of_woe:\n    allowed_areas: [4]\n" } };
+    CHECK_THROWS(BattlefieldsDataset::decode(xi::data::mergeYaml(horlaisPeakFile(), allowed)));
+
+    const auto fixed = std::array{ std::string{ "battlefields:\n  tails_of_woe:\n    area: 4\n" } };
+    CHECK_THROWS(BattlefieldsDataset::decode(xi::data::mergeYaml(horlaisPeakFile(), fixed)));
+
+    const auto moreArenas = std::array{ std::string{ "max_areas: 4\nbattlefields:\n  tails_of_woe:\n    area: 4\n" } };
+    CHECK_NOTHROW(BattlefieldsDataset::decode(xi::data::mergeYaml(horlaisPeakFile(), moreArenas)));
 }
 
 TEST_CASE("battlefields: a zone without a file hosts none", "[data][battlefield]")

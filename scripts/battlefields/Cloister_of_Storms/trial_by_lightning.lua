@@ -4,10 +4,7 @@
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId           = xi.zone.CLOISTER_OF_STORMS,
     battlefieldId    = xi.battlefield.id.TRIAL_BY_LIGHTNING,
-    entryNpc         = 'LP_Entrance',
-    exitNpc          = 'Lightning_Protocrystal',
     requiredKeyItems = { xi.keyItem.TUNING_FORK_OF_LIGHTNING },
 
     questArea        = xi.questLog.OTHER_AREAS,

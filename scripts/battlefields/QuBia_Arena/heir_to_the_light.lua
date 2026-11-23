@@ -6,10 +6,7 @@ local qubiaID = zones[xi.zone.QUBIA_ARENA]
 -----------------------------------
 
 local content = BattlefieldMission:new({
-    zoneId                = xi.zone.QUBIA_ARENA,
     battlefieldId         = xi.battlefield.id.HEIR_TO_THE_LIGHT,
-    entryNpc              = 'BC_Entrance',
-    exitNpc               = 'Burning_Circle',
     missionArea           = xi.mission.log_id.SANDORIA,
     mission               = xi.mission.id.sandoria.THE_HEIR_TO_THE_LIGHT,
     missionStatusArea     = xi.mission.log_id.SANDORIA,

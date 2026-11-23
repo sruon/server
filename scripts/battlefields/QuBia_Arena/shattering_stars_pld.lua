@@ -6,10 +6,7 @@ local qubiaID = zones[xi.zone.QUBIA_ARENA]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId        = xi.zone.QUBIA_ARENA,
     battlefieldId = xi.battlefield.id.SHATTERING_STARS_PLD,
-    entryNpc      = 'BC_Entrance',
-    exitNpc       = 'Burning_Circle',
     requiredItems = { xi.item.PALADINS_TESTIMONY, wearMessage = qubiaID.text.TESTIMONY_WEARS, wornMessage = qubiaID.text.TESTIMONY_IS_TORN },
 })
 

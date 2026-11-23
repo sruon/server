@@ -6,10 +6,7 @@ local talaccaCoveID = zones[xi.zone.TALACCA_COVE]
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId           = xi.zone.TALACCA_COVE,
     battlefieldId    = xi.battlefield.id.PUPPETMASTER_BLUES,
-    entryNpc         = '_1l0',
-    exitNpcs         = { '_1l1', '_1l2', '_1l3' },
     questArea        = xi.questLog.AHT_URHGAN,
     quest            = xi.quest.id.ahtUrhgan.PUPPETMASTER_BLUES,
     requiredKeyItems = { xi.keyItem.TOGGLE_SWITCH, xi.keyItem.VALKENGS_MEMORY_CHIP, keep = true }, -- Key items are not consumed on entry, but are required to enter the battlefield.

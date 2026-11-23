@@ -7,10 +7,7 @@ local ID = zones[xi.zone.NAVUKGO_EXECUTION_CHAMBER]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId           = xi.zone.NAVUKGO_EXECUTION_CHAMBER,
     battlefieldId    = xi.battlefield.id.HAPPY_CASTER,
-    entryNpc         = '_1s0',
-    exitNpcs         = { '_1s1', '_1s2', '_1s3' },
     requiredKeyItems = { xi.keyItem.SECRET_IMPERIAL_ORDER, onlyInitiator = true, message = ID.text.IMPERIAL_ORDER_BREAKS },
 })
 

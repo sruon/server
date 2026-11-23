@@ -4,10 +4,7 @@
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId           = xi.zone.CLOISTER_OF_TREMORS,
     battlefieldId    = xi.battlefield.id.TRIAL_BY_EARTH,
-    entryNpc         = 'EP_Entrance',
-    exitNpc          = 'Earth_Protocrystal',
     requiredKeyItems = { xi.keyItem.TUNING_FORK_OF_EARTH },
 
     questArea        = xi.questLog.BASTOK,

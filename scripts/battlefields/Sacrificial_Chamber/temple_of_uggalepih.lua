@@ -6,10 +6,7 @@ local sacrificialChamberID = zones[xi.zone.SACRIFICIAL_CHAMBER]
 -----------------------------------
 
 local content = BattlefieldMission:new({
-    zoneId                = xi.zone.SACRIFICIAL_CHAMBER,
     battlefieldId         = xi.battlefield.id.TEMPLE_OF_UGGALEPIH,
-    entryNpc              = '_4j0',
-    exitNpcs              = { '_4j2', '_4j3', '_4j4' },
     missionArea           = xi.mission.log_id.ZILART,
     mission               = xi.mission.id.zilart.THE_TEMPLE_OF_UGGALEPIH,
     missionStatusArea     = xi.mission.log_id.ZILART,

@@ -6,10 +6,7 @@ local navukgoID = zones[xi.zone.NAVUKGO_EXECUTION_CHAMBER]
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId        = xi.zone.NAVUKGO_EXECUTION_CHAMBER,
     battlefieldId = xi.battlefield.id.ACHIEVING_TRUE_POWER,
-    entryNpc      = '_1s0',
-    exitNpcs      = { '_1s1', '_1s2', '_1s3' },
     requiredItems = { xi.item.PUPPETMASTERS_TESTIMONY, wearMessage = navukgoID.text.TESTIMONY_WEARS, wornMessage = navukgoID.text.TESTIMONY_IS_TORN },
     questArea     = xi.questLog.BASTOK,
     quest         = xi.quest.id.bastok.ACHIEVING_TRUE_POWER,

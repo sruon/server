@@ -1,9 +1,14 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
+max_areas: 1
+
 battlefields:
   when_angels_fall:
     index:        0
+    entry_npcs:   [_0z0]
+    area:         1
     level_cap:    max
     can_lose_exp: false
     allow_trusts: true
     is_mission:   true
+    grant_xp:     1000

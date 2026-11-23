@@ -1,5 +1,8 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
+entry_npcs: [SC_Entrance]
+exit_npcs:  [Shimmering_Circle]
+
 battlefields:
   through_the_quicksand_caves:
     index:        0
@@ -14,6 +17,7 @@ battlefields:
 
   shattering_stars_sam:
     index:           2
+    rhapsody_trusts: true
     time_limit:      10
     max_players:     1
     level_cap:       max
@@ -22,6 +26,7 @@ battlefields:
 
   shattering_stars_nin:
     index:           3
+    rhapsody_trusts: true
     time_limit:      10
     max_players:     1
     level_cap:       max
@@ -30,6 +35,7 @@ battlefields:
 
   shattering_stars_drg:
     index:           4
+    rhapsody_trusts: true
     time_limit:      10
     max_players:     1
     level_cap:       max
@@ -46,11 +52,13 @@ battlefields:
     index: 7
 
   cat_burglar_bares_fangs: # experimental
-    index:        8
-    level_cap:    max
-    can_lose_exp: false
-    allow_trusts: true
-    is_mission:   true
+    index:         8
+    allowed_areas: [1]
+    level_cap:     max
+    can_lose_exp:  false
+    allow_trusts:  true
+    is_mission:    true
+    experimental:  true
 
   dragon_scales:
     index: 9

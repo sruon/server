@@ -6,10 +6,7 @@ local celestialNexusID = zones[xi.zone.THE_CELESTIAL_NEXUS]
 -----------------------------------
 
 local content = BattlefieldMission:new({
-    zoneId                = xi.zone.THE_CELESTIAL_NEXUS,
     battlefieldId         = xi.battlefield.id.CELESTIAL_NEXUS,
-    entryNpc              = '_513',
-    exitNpcs              = { '_514', '_515' },
 
     missionArea           = xi.mission.log_id.ZILART,
     mission               = xi.mission.id.zilart.THE_CELESTIAL_NEXUS,

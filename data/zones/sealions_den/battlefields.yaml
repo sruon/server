@@ -1,5 +1,8 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
+entry_npcs: [_0w0]
+exit_npcs:  [Airship_Door]
+
 battlefields:
   one_to_be_feared:
     index:        0
@@ -8,6 +11,7 @@ battlefields:
     can_lose_exp: false
     allow_trusts: true
     is_mission:   true
+    grant_xp:     1500
 
   warriors_path:
     index:        1

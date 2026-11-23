@@ -4,10 +4,7 @@
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId           = xi.zone.CLOISTER_OF_TIDES,
     battlefieldId    = xi.battlefield.id.TRIAL_BY_WATER,
-    entryNpc         = 'WP_Entrance',
-    exitNpc          = 'Water_Protocrystal',
     requiredKeyItems = { xi.keyItem.TUNING_FORK_OF_WATER },
 
     questArea        = xi.questLog.OUTLANDS,

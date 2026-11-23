@@ -7,12 +7,8 @@ local spireOfHollaID = zones[xi.zone.SPIRE_OF_HOLLA]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId           = xi.zone.SPIRE_OF_HOLLA,
     battlefieldId    = xi.battlefield.id.SIMULANT,
-    entryNpc         = '_0h0',
-    exitNpcs         = { '_0h1', '_0h2', '_0h3' },
     requiredKeyItems = { xi.keyItem.CENSER_OF_ABANDONMENT, message = spireOfHollaID.text.FADES_INTO_NOTHINGNESS },
-    grantXP          = 3000,
     armouryCrates    =
     {
         spireOfHollaID.mob.COGITATOR + 4,

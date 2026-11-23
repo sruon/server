@@ -7,10 +7,7 @@ local chamberOfOraclesID = zones[xi.zone.CHAMBER_OF_ORACLES]
 -----------------------------------
 
 local content = BattlefieldMission:new({
-    zoneId                = xi.zone.CHAMBER_OF_ORACLES,
     battlefieldId         = xi.battlefield.id.THROUGH_THE_QUICKSAND_CAVES,
-    entryNpc              = 'SC_Entrance',
-    exitNpc               = 'Shimmering_Circle',
     missionArea           = xi.mission.log_id.ZILART,
     mission               = xi.mission.id.zilart.THROUGH_THE_QUICKSAND_CAVES,
     missionStatusArea     = xi.mission.log_id.ZILART,

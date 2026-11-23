@@ -176,12 +176,21 @@ function GetSystemTime()
 end
 
 ---@class BattlefieldDefinition
+---@field maxAreas integer
 ---@field maxPlayers integer
 ---@field timeLimit integer
 ---@field allowTrusts boolean
+---@field rhapsodyTrusts boolean
 ---@field hasWipeGrace boolean
 ---@field cleanupDebuffs boolean
 ---@field delayToExit integer
+---@field entryNpcs string[]
+---@field exitNpcs string[]?
+---@field area integer?
+---@field allowedAreas integer[]?
+---@field grantXP integer?
+---@field grantXPLockout boolean
+---@field experimental boolean
 
 ---@nodiscard
 ---@param battlefieldId integer

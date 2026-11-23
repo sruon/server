@@ -5,15 +5,10 @@
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId           = xi.zone.BONEYARD_GULLY,
     battlefieldId    = xi.battlefield.id.LIKE_THE_WIND,
-    entryNpc         = '_081',
-    exitNpcs         = { '_082', '_084', '_086' },
     requiredKeyItems = { xi.keyItem.MIASMA_FILTER },
 
-    grantXP          = 2000,
 
-    experimental     = true,
 })
 
 -- TODO: Race Runner has a constant movement mechanic and different hate rules that need

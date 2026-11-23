@@ -7,11 +7,7 @@ local throneRoomID = zones[xi.zone.THRONE_ROOM]
 -----------------------------------
 
 local content = BattlefieldMission:new({
-    zoneId                = xi.zone.THRONE_ROOM,
     battlefieldId         = xi.battlefield.id.SMASH_A_MALEVOLENT_MENACE,
-    allowedAreas          = set{ 1 },
-    entryNpc              = '_4l1',
-    exitNpcs              = { '_4l2', '_4l3', '_4l4' },
     requiredKeyItems      = { xi.keyItem.MEGA_BONANZA_KUPON, onlyInitiator = true },
 
     -- TODO: Currently AMK does not depend on this fight in mission scripts.  Verify
@@ -21,7 +17,6 @@ local content = BattlefieldMission:new({
     missionStatusArea     = xi.mission.log_id.AMK,
     requiredMissionStatus = 0,
 
-    experimental          = true,
 })
 
 content.groups =

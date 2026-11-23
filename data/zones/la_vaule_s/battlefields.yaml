@@ -3,6 +3,8 @@
 battlefields:
   purple_the_new_black:
     index:        1
+    entry_npcs:   [_2d1]
+    exit_npcs:    [_2d3, _2d5, _2d7]
     level_cap:    max
     can_lose_exp: false
     allow_trusts: true

@@ -6,11 +6,7 @@ local talaccaCoveID = zones[xi.zone.TALACCA_COVE]
 -----------------------------------
 
 local content = BattlefieldMission:new({
-    zoneId                = xi.zone.TALACCA_COVE,
     battlefieldId         = xi.battlefield.id.LEGACY_OF_THE_LOST,
-    allowedAreas          = set{ 1 },
-    entryNpc              = '_1l0',
-    exitNpcs              = { '_1l1', '_1l2', '_1l3' },
     missionArea           = xi.mission.log_id.TOAU,
     mission               = xi.mission.id.toau.LEGACY_OF_THE_LOST,
     requiredMissionStatus = 0,

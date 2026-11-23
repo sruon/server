@@ -6,10 +6,7 @@ local horlaisID = zones[xi.zone.HORLAIS_PEAK]
 -----------------------------------
 
 local content = BattlefieldMission:new({
-    zoneId                = xi.zone.HORLAIS_PEAK,
     battlefieldId         = xi.battlefield.id.THE_SECRET_WEAPON,
-    entryNpc              = 'BC_Entrance',
-    exitNpc               = 'Burning_Circle',
     missionArea           = xi.mission.log_id.SANDORIA,
     mission               = xi.mission.id.sandoria.THE_SECRET_WEAPON,
     missionStatusArea     = xi.mission.log_id.SANDORIA,

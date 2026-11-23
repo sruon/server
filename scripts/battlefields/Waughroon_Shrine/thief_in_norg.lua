@@ -7,10 +7,7 @@ local waughroonID = zones[xi.zone.WAUGHROON_SHRINE]
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId        = xi.zone.WAUGHROON_SHRINE,
     battlefieldId = xi.battlefield.id.THIEF_IN_NORG,
-    entryNpc      = 'BC_Entrance',
-    exitNpc       = 'Burning_Circle',
     requiredItems = { xi.item.BANISHING_CHARM, keep = true }, -- Banishing Charm is not consumed on entry, but is required to enter the battlefield.
 
     questArea     = xi.questLog.OUTLANDS,

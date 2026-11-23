@@ -4,10 +4,7 @@
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId           = xi.zone.CLOISTER_OF_GALES,
     battlefieldId    = xi.battlefield.id.TRIAL_BY_WIND,
-    entryNpc         = 'WP_Entrance',
-    exitNpc          = 'Wind_Protocrystal',
     requiredKeyItems = { xi.keyItem.TUNING_FORK_OF_WIND },
 
     questArea        = xi.questLog.OUTLANDS,

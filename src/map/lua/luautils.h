@@ -471,7 +471,6 @@ void OnPathPoint(CBaseEntity* PEntity);
 void OnPathComplete(CBaseEntity* PEntity);
 void OnShopBuy(CCharEntity* PChar, CBaseEntity* PNpc, uint16 itemId, uint32 quantity, uint32 gil);
 
-auto OnBattlefieldHandlerInitialize(CZone* PZone) -> int32;
 void OnBattlefieldInitialize(CBattlefield* PBattlefield); // what to do when initialising battlefield, battlefield:setLocalVar("lootId") here for any which have loot
 void OnBattlefieldTick(CBattlefield* PBattlefield);
 void OnBattlefieldStatusChange(CBattlefield* PBattlefield);

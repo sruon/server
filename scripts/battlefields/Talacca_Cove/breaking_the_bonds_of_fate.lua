@@ -6,10 +6,7 @@ local talaccaCoveID = zones[xi.zone.TALACCA_COVE]
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId        = xi.zone.TALACCA_COVE,
     battlefieldId = xi.battlefield.id.BREAKING_THE_BONDS_OF_FATE,
-    entryNpc      = '_1l0',
-    exitNpcs      = { '_1l1', '_1l2', '_1l3' },
     requiredItems = { xi.item.CORSAIRS_TESTIMONY, wearMessage = talaccaCoveID.text.TESTIMONY_WEARS, wornMessage = talaccaCoveID.text.TESTIMONY_IS_TORN },
     questArea     = xi.questLog.AHT_URHGAN,
     quest         = xi.quest.id.ahtUrhgan.BREAKING_THE_BONDS_OF_FATE,

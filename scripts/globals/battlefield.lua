@@ -5,45 +5,6 @@ require('scripts/globals/pathfind')
 -----------------------------------
 xi = xi or {}
 
-local maxAreas =
-{
-    {
-        Max   = 8,
-        Zones =
-        {
-            xi.zone.TEMENOS,
-        },
-    },
-
-    {
-        Max   = 6,
-        Zones =
-        {
-            xi.zone.APOLLYON,
-        },
-    },
-
-    {
-        Max   = 1,
-        Zones =
-        {
-            xi.zone.DYNAMIS_VALKURM,
-            xi.zone.DYNAMIS_BUBURIMU,
-            xi.zone.DYNAMIS_QUFIM,
-            xi.zone.DYNAMIS_TAVNAZIA,
-            xi.zone.DYNAMIS_BEAUCEDINE,
-            xi.zone.DYNAMIS_XARCABARD,
-            xi.zone.DYNAMIS_SAN_DORIA,
-            xi.zone.DYNAMIS_BASTOK,
-            xi.zone.DYNAMIS_WINDURST,
-            xi.zone.DYNAMIS_JEUNO,
-            xi.zone.RIVERNE_SITE_B01,
-            xi.zone.GHELSBA_OUTPOST,
-            xi.zone.THE_GARDEN_OF_RUHMET
-        },
-    },
-}
-
 xi.loot = xi.loot or {}
 
 xi.loot.weight =
@@ -60,23 +21,6 @@ xi.loot.weight =
 xi.battlefield = xi.battlefield or {}
 xi.battlefield.contents = xi.battlefield.contents or {}
 xi.battlefield.contentsByZone = xi.battlefield.contentsByZone or {}
-
--- Battlefields the zone can hold at once, which is also how many arenas its entry event asks for
-function xi.battlefield.getMaxAreas(zoneId)
-    for _, battlefield in pairs(maxAreas) do
-        for _, zoneid in pairs(battlefield.Zones) do
-            if zoneId == zoneid then
-                return battlefield.Max
-            end
-        end
-    end
-
-    return 3
-end
-
-function onBattlefieldHandlerInitialize(zone)
-    return xi.battlefield.getMaxAreas(zone:getID())
-end
 
 xi.battlefield.status =
 {
@@ -136,19 +80,12 @@ end
 
 -- Creates a new Battlefield interaction
 -- Data takes the following keys:
---  - zoneId: Which zone this battlefield exists within (required)
 --  - battlefieldId: Battlefield ID used in the database (required)
---  - area: Some battlefields has multiple areas (Burning Circles) while others have fixed areas (Apollyon). Set to have a fixed area. (optional)
---  - entryNpc: The name of the NPC used for entering (required)
---  - exitNpc: The name of the NPC used for exiting (optional)
---  - exitNpcs: The names of the NPC used for exiting (optional)
 --  - requiredItems: Items required to be traded to enter the battlefield.
 --                   Needs to be in the format of { itemid, quantity, useMessage = ID.text.*, wearMessage = ID.text.*, wornMessage = ID.text.* }. (optional)
 --  - requiredKeyItems: Key items required to be able to enter the battlefield - these are removed upon entry unless 'keep = true'.
 --                      Set 'onlyInitiator' to true to only require the initiator of the battlefield to have the key item. (optional)
 --  - title: Title given to players upon victory (optional)
---  - grantXP: Amount of XP to grant upon victory (optional)
---  - grantXPLockout: If true, players can only receive the grantXP once per day, resetting at JST midnight. (optional)
 --  - lossEventParams: Parameters given to the loss event (32002). Defaults to none. (optional)
 ---@diagnostic disable-next-line: duplicate-set-field
 function Battlefield:new(data)
@@ -160,30 +97,22 @@ function Battlefield:new(data)
     end
 
     setmetatable(obj, self)
-    obj.zoneId        = data.zoneId
+    obj.zoneId        = bit.rshift(data.battlefieldId, 5)
     obj.battlefieldId = data.battlefieldId
+    obj.index         = bit.band(data.battlefieldId, 31)
+    obj.maxAreas      = definition.maxAreas
     obj.maxPlayers    = definition.maxPlayers
     obj.timeLimit     = definition.timeLimit
-    obj.index         = bit.band(data.battlefieldId, 31)
-
-    if data.entryNpcs then
-        obj.entryNpcs = data.entryNpcs
-    elseif data.entryNpc then
-        obj.entryNpcs = { data.entryNpc }
-    end
-
-    obj.area          = data.area
-
-    if data.exitNpcs then
-        obj.exitNpcs = data.exitNpcs
-    elseif data.exitNpc then
-        obj.exitNpcs = { data.exitNpc }
-    end
+    obj.entryNpcs     = definition.entryNpcs
+    obj.exitNpcs      = definition.exitNpcs
+    obj.area          = definition.area
+    obj.allowedAreas  = definition.allowedAreas and set(definition.allowedAreas)
 
     obj.title            = data.title
-    obj.grantXP          = data.grantXP
-    obj.grantXPLockout   = data.grantXPLockout
+    obj.grantXP          = definition.grantXP
+    obj.grantXPLockout   = definition.grantXPLockout
     obj.allowTrusts      = definition.allowTrusts
+    obj.rhapsodyTrusts   = definition.rhapsodyTrusts
     obj.hasWipeGrace     = definition.hasWipeGrace
     obj.cleanupDebuffs   = definition.cleanupDebuffs
     obj.delayToExit      = definition.delayToExit
@@ -191,8 +120,7 @@ function Battlefield:new(data)
     obj.requiredKeyItems = data.requiredKeyItems or {}
     obj.lossEventParams  = data.lossEventParams or {}
     obj.armouryCrates    = data.armouryCrates or false
-    obj.experimental     = data.experimental or false
-    obj.allowedAreas     = data.allowedAreas
+    obj.experimental     = definition.experimental
     obj.csParam7         = data.csParam7 and data.csParam7 or 0
     obj.csParam8         = data.csParam8 and data.csParam8 or 0
 
@@ -563,7 +491,7 @@ function Battlefield:onEntryEventUpdate(player, csid, option, npc)
     local requestedArea = bit.band(option, 0xF)
     if
         not self.area and
-        (requestedArea < 1 or requestedArea > xi.battlefield.getMaxAreas(player:getZoneID()))
+        (requestedArea < 1 or requestedArea > self.maxAreas)
     then
         player:updateEvent(xi.battlefield.returnCode.REQS_NOT_MET)
         player:setLocalVar('noPosUpdate', 1)

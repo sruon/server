@@ -1980,18 +1980,50 @@ auto GetBattlefieldDefinition(const uint16 battlefieldId) -> sol::object
         return sol::lua_nil;
     }
 
-    const auto entry = std::ranges::find_if(*it->second,
+    const auto entry = std::ranges::find_if(it->second->Entries,
                                             [&](const xi::data::BattlefieldData& battlefield)
                                             {
                                                 return std::to_underlying(xi::data::battlefieldId(zone, battlefield.Index)) == battlefieldId;
                                             });
-    if (entry == it->second->end())
+    if (entry == it->second->Entries.end())
     {
         return sol::lua_nil;
     }
 
-    return lua.create_table_with(
-        "maxPlayers", entry->MaxPlayers, "timeLimit", std::chrono::seconds(entry->TimeLimit).count(), "allowTrusts", entry->AllowTrusts, "hasWipeGrace", entry->HasWipeGrace, "cleanupDebuffs", entry->CleanupDebuffs, "delayToExit", entry->DelayToExit.count());
+    auto definition              = lua.create_table();
+    definition["maxAreas"]       = it->second->MaxAreas;
+    definition["maxPlayers"]     = entry->MaxPlayers;
+    definition["timeLimit"]      = std::chrono::seconds(entry->TimeLimit).count();
+    definition["allowTrusts"]    = entry->AllowTrusts;
+    definition["rhapsodyTrusts"] = entry->RhapsodyTrusts;
+    definition["hasWipeGrace"]   = entry->HasWipeGrace;
+    definition["cleanupDebuffs"] = entry->CleanupDebuffs;
+    definition["delayToExit"]    = entry->DelayToExit.count();
+    definition["entryNpcs"]      = sol::as_table(entry->EntryNpcs);
+    definition["grantXPLockout"] = entry->GrantXPLockout;
+    definition["experimental"]   = entry->Experimental;
+
+    if (!entry->ExitNpcs.empty())
+    {
+        definition["exitNpcs"] = sol::as_table(entry->ExitNpcs);
+    }
+
+    if (entry->Area)
+    {
+        definition["area"] = *entry->Area;
+    }
+
+    if (!entry->AllowedAreas.empty())
+    {
+        definition["allowedAreas"] = sol::as_table(entry->AllowedAreas);
+    }
+
+    if (entry->GrantXP)
+    {
+        definition["grantXP"] = *entry->GrantXP;
+    }
+
+    return definition;
 }
 
 auto LoadLinkshellConciergeSlots(uint16 zoneId) -> sol::table
@@ -4005,35 +4037,6 @@ void OnShopBuy(CCharEntity* PChar, CBaseEntity* PNpc, uint16 itemId, uint32 quan
         sol::error err = result;
         ShowError("luautils::OnShopBuy: %s", err.what());
     }
-}
-
-auto OnBattlefieldHandlerInitialize(CZone* PZone) -> int32
-{
-    TracyZoneScoped;
-
-    if (PZone == nullptr)
-    {
-        return -1;
-    }
-
-    int32 MaxAreas = 3;
-
-    // TODO: This is loaded globally, fix this
-    auto onBattlefieldHandlerInitialize = lua["onBattlefieldHandlerInitialize"];
-    if (!onBattlefieldHandlerInitialize.valid())
-    {
-        return MaxAreas;
-    }
-
-    auto result = onBattlefieldHandlerInitialize(PZone);
-    if (!result.valid())
-    {
-        sol::error err = result;
-        ShowError("luautils::onBattlefieldHandlerInitialize: %s", err.what());
-        return MaxAreas;
-    }
-
-    return result.get_type(0) == sol::type::number ? result.get<int32>(0) : MaxAreas;
 }
 
 void OnBattlefieldInitialize(CBattlefield* PBattlefield)

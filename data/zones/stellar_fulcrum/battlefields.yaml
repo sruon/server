@@ -3,6 +3,8 @@
 battlefields:
   return_to_delkfutts_tower:
     index:        0
+    entry_npcs:   [_4z0]
+    exit_npcs:    [_4z1, _4z2, _4z3]
     level_cap:    max
     can_lose_exp: false
     allow_trusts: true

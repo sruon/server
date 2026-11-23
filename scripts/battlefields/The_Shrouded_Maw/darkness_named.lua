@@ -6,16 +6,12 @@ local shroudedMawID = zones[xi.zone.THE_SHROUDED_MAW]
 -----------------------------------
 
 local content = BattlefieldMission:new({
-    zoneId        = xi.zone.THE_SHROUDED_MAW,
     battlefieldId = xi.battlefield.id.DARKNESS_NAMED,
-    entryNpc      = 'MC_Entrance',
-    exitNpc       = 'Memento_Circle',
     missionArea   = xi.mission.log_id.COP,
     mission       = xi.mission.id.cop.DARKNESS_NAMED,
     requiredVar   = 'Mission[6][358]Status',
     requiredValue = 4,
 
-    grantXP       = 1000,
     title         = xi.title.DREAMBREAKER,
 })
 

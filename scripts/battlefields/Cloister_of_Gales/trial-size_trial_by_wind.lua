@@ -6,10 +6,7 @@ local cloisterOfGalesID = zones[xi.zone.CLOISTER_OF_GALES]
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId        = xi.zone.CLOISTER_OF_GALES,
     battlefieldId = xi.battlefield.id.TRIAL_SIZE_TRIAL_BY_WIND,
-    entryNpc      = 'WP_Entrance',
-    exitNpc       = 'Wind_Protocrystal',
     requiredItems = { xi.item.MINI_TUNING_FORK_OF_WIND },
 
     questArea     = xi.questLog.OUTLANDS,

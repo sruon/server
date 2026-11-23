@@ -6,10 +6,7 @@ local cloisterOfStormsID = zones[xi.zone.CLOISTER_OF_STORMS]
 -----------------------------------
 
 local content = BattlefieldMission:new({
-    zoneId           = xi.zone.CLOISTER_OF_STORMS,
     battlefieldId    = xi.battlefield.id.SUGAR_COATED_DIRECTIVE_CLOISTER_OF_STORMS,
-    entryNpc         = 'LP_Entrance',
-    exitNpc          = 'Lightning_Protocrystal',
 
     requiredKeyItems = { xi.keyItem.DOMINAS_VIOLET_SEAL, keep = true },
     missionArea      = xi.mission.log_id.ASA,
@@ -17,7 +14,6 @@ local content = BattlefieldMission:new({
     requiredVar      = 'Mission[11][3]Ramuh',
     requiredValue    = 1,
 
-    grantXP          = 400,
 })
 
 content.groups =

@@ -14,24 +14,26 @@ A battlefield is defined by using `Battlefield:new()` or one of the subclasses s
 
 ```lua
 local content = Battlefield:new({
-    zoneId           = xi.zone.BEARCLAW_PINNACLE,
     battlefieldId    = xi.battlefield.id.BROTHERS,
-    entryNpc         = "Wind_Pillar_4",
-    exitNpc          = "Wind_Pillar_Exit",
     requiredKeyItems = { xi.keyItem.ZEPHYR_FAN, message = ID.text.ZEPHYR_RIPS },
-    grantXP          = 3500,
 })
 ```
 
-Its limits and rules live with the zone, in `data/zones/<zone>/battlefields.yaml`:
+Where it is entered, its limits, rules and rewards live with the zone, in `data/zones/<zone>/battlefields.yaml`:
 
 ```yaml
+exit_npcs: [Wind_Pillar_Exit]
+
 battlefields:
   brothers:
     index:       3
+    entry_npcs:  [Wind_Pillar_4]
     max_players: 18
     level_cap:   75
+    grant_xp:    3500
 ```
+
+`entry_npcs` and `exit_npcs` at the top of the file apply to every battlefield in the zone that does not name its own.
 
 Once a Battlefield has been initially defined there are additional aspects that need to be provided.
 
@@ -132,18 +134,13 @@ end
 
 ### Battlefield Parameters
 
-- **zoneId**: Which zone this battlefield exists within (required)
 - **battlefieldId**: Battlefield ID used in the database (required)
-- **area**: Some battlefields have multiple areas (Burning Circles) while others have fixed areas (Apollyon). Set to have a fixed area. (optional)
-- **entryNpc**: The name of the NPC used for entering (required)
-- **exitNpc**: The name of the NPC used for exiting
 - **requiredItems**: Items required to be traded to enter the battlefield. Needs to be in the format of `{ itemid, quantity, useMessage = ID.text.*, wearMessage = ID.text.*, wornMessage = ID.text.* }`. (optional)
 - **requiredKeyItems**: Key items required to be able to enter the battlefield - these are removed upon entry (optional)
 - **title**: Title given to players upon victory (optional)
-- **grantXP**: Amount of XP to grant upon victory (optional)
 - **lossEventParams**: Parameters given to the loss event (32002). Defaults to none. (optional)
 
-The time limit, player count, level cap and rules (`time_limit`, `max_players`, `level_cap`, `can_lose_exp`, `allow_trusts`, `is_mission`, `allow_subjob`, `cleanup_debuffs`, `delay_to_exit`, `has_wipe_grace`, `show_timer`) are set in the zone's `battlefields.yaml`. Its schema lists each field's default.
+The entry and exit npcs, arenas, time limit, player count, level cap, rules and rewards (`entry_npcs`, `exit_npcs`, `area`, `allowed_areas`, `time_limit`, `max_players`, `level_cap`, `can_lose_exp`, `allow_trusts`, `rhapsody_trusts`, `is_mission`, `allow_subjob`, `cleanup_debuffs`, `delay_to_exit`, `has_wipe_grace`, `show_timer`, `grant_xp`, `grant_xp_lockout`, `experimental`) are set in the zone's `battlefields.yaml`, as is the number of arenas the zone has (`max_areas`). The zone comes from the battlefield ID. The schema lists each field's default.
 
 #### BattlefieldMission Parameters
 

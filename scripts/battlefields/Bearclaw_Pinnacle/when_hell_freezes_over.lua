@@ -6,12 +6,8 @@
 local bearclawID = zones[xi.zone.BEARCLAW_PINNACLE]
 
 local content = Battlefield:new({
-    zoneId           = xi.zone.BEARCLAW_PINNACLE,
     battlefieldId    = xi.battlefield.id.WHEN_HELL_FREEZES_OVER,
-    entryNpc         = 'Wind_Pillar_3',
-    exitNpc          = 'Wind_Pillar_Exit',
     requiredKeyItems = { xi.keyItem.ZEPHYR_FAN, message = bearclawID.text.ZEPHYR_RIPS },
-    grantXP          = 3000,
     armouryCrates    =
     {
         bearclawID.mob.SNOW_DEVIL + 6,

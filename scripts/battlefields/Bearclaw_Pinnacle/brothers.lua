@@ -8,12 +8,8 @@ local ID = zones[xi.zone.BEARCLAW_PINNACLE]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId           = xi.zone.BEARCLAW_PINNACLE,
     battlefieldId    = xi.battlefield.id.BROTHERS,
-    entryNpc         = 'Wind_Pillar_4',
-    exitNpc          = 'Wind_Pillar_Exit',
     requiredKeyItems = { xi.keyItem.ZEPHYR_FAN, message = ID.text.ZEPHYR_RIPS },
-    grantXP          = 3500,
 })
 
 content:addEssentialMobs({ 'Eldertaur', 'Mindertaur' })

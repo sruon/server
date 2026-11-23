@@ -7,10 +7,7 @@ local ID = zones[xi.zone.TALACCA_COVE]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId           = xi.zone.TALACCA_COVE,
     battlefieldId    = xi.battlefield.id.CALL_TO_ARMS,
-    entryNpc         = '_1l0',
-    exitNpcs         = { '_1l1', '_1l2', '_1l3' },
     requiredKeyItems = { xi.keyItem.CONFIDENTIAL_IMPERIAL_ORDER, onlyInitiator = true, message = ID.text.IMPERIAL_ORDER_BREAKS },
 })
 

@@ -8,10 +8,7 @@ local monarchLinnID = zones[xi.zone.MONARCH_LINN]
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId           = xi.zone.MONARCH_LINN,
     battlefieldId    = xi.battlefield.id.UNINVITED_GUESTS,
-    entryNpc         = 'SD_Entrance',
-    exitNpcs         = { 'SD_BCNM_Exit_1', 'SD_BCNM_Exit_2', 'SD_BCNM_Exit_3' },
     requiredKeyItems = { xi.keyItem.MONARCH_LINN_PATROL_PERMIT },
     questArea        = xi.questLog.OTHER_AREAS,
     quest            = xi.quest.id.otherAreas.UNINVITED_GUESTS,

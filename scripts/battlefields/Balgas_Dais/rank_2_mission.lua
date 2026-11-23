@@ -5,10 +5,7 @@
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId        = xi.zone.BALGAS_DAIS,
     battlefieldId = xi.battlefield.id.RANK_2_MISSION,
-    entryNpc      = 'BC_Entrance',
-    exitNpc       = 'Burning_Circle',
 })
 
 function content:entryRequirement(player, npc, isRegistrant, trade)

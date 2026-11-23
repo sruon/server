@@ -7,10 +7,7 @@ local waughroonID = zones[xi.zone.WAUGHROON_SHRINE]
 -----------------------------------
 
 local content = BattlefieldMission:new({
-    zoneId                = xi.zone.WAUGHROON_SHRINE,
     battlefieldId         = xi.battlefield.id.ON_MY_WAY,
-    entryNpc              = 'BC_Entrance',
-    exitNpc               = 'Burning_Circle',
     missionArea           = xi.mission.log_id.BASTOK,
     mission               = xi.mission.id.bastok.ON_MY_WAY,
     missionStatusArea     = xi.mission.log_id.BASTOK,

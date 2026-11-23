@@ -7,11 +7,7 @@ local riverneID = zones[xi.zone.RIVERNE_SITE_B01]
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId        = xi.zone.RIVERNE_SITE_B01,
     battlefieldId = xi.battlefield.id.STORMS_OF_FATE,
-    area          = 1,
-    entryNpc      = 'Unstable_Displacement',
-    exitNpc       = 'SD_BCNM_Exit',
     questArea     = xi.questLog.JEUNO,
     quest         = xi.quest.id.jeuno.STORMS_OF_FATE,
     requiredVar   = 'Quest[3][86]Prog',

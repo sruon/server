@@ -51,4 +51,19 @@ describe('Battlefield definitions', function()
         assert(not definition.cleanupDebuffs, 'debuff cleanup should default to off')
         assert(GetBattlefieldDefinition(xi.battlefield.id.RANK_2_MISSION_1 + 31) == nil, 'an unlisted id has no definition')
     end)
+
+    it('places a battlefield in its zone, arenas and entry npcs', function()
+        local content = xi.battlefield.contents[xi.battlefield.id.SAVE_THE_CHILDREN]
+
+        assert(content.zoneId == xi.zone.GHELSBA_OUTPOST, string.format('zone is %d', content.zoneId))
+        assert(content.maxAreas == 1, string.format('zone has %d arenas', content.maxAreas))
+        assert(content.area == 1, 'Save the Children always uses the first arena')
+        assert(content.entryNpcs[1] == 'Hut_Door' and #content.entryNpcs == 1, 'entry is the hut door')
+        assert(content.exitNpcs == nil, 'Ghelsba has no exit npc')
+
+        local shatteringStars = xi.battlefield.contents[xi.battlefield.id.SHATTERING_STARS_WAR]
+        assert(shatteringStars.maxAreas == 3, 'a zone has three arenas by default')
+        assert(shatteringStars.rhapsodyTrusts, 'LB5 fights let Rhapsody in Umber holders call trusts')
+        assert(shatteringStars.exitNpcs[1] == 'Burning_Circle', 'exit is the burning circle')
+    end)
 end)

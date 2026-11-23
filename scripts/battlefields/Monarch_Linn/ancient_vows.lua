@@ -6,16 +6,12 @@ local monarchLinnID = zones[xi.zone.MONARCH_LINN]
 -----------------------------------
 
 local content = BattlefieldMission:new({
-    zoneId        = xi.zone.MONARCH_LINN,
     battlefieldId = xi.battlefield.id.ANCIENT_VOWS,
-    entryNpc      = 'SD_Entrance',
-    exitNpcs      = { 'SD_BCNM_Exit_1', 'SD_BCNM_Exit_2', 'SD_BCNM_Exit_3' },
     missionArea   = xi.mission.log_id.COP,
     mission       = xi.mission.id.cop.ANCIENT_VOWS,
     requiredVar   = 'Mission[6][248]Status',
     requiredValue = 2,
 
-    grantXP       = 1000,
     title         = xi.title.TAVNAZIAN_TRAVELER,
 })
 

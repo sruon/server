@@ -6,10 +6,7 @@ local cloisterOfTidesID = zones[xi.zone.CLOISTER_OF_TIDES]
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId        = xi.zone.CLOISTER_OF_TIDES,
     battlefieldId = xi.battlefield.id.TRIAL_SIZE_TRIAL_BY_WATER,
-    entryNpc      = 'WP_Entrance',
-    exitNpc       = 'Water_Protocrystal',
     requiredItems = { xi.item.MINI_TUNING_FORK_OF_WATER },
 
     questArea     = xi.questLog.OUTLANDS,

@@ -6,10 +6,7 @@ local jadeSepulcherID = zones[xi.zone.JADE_SEPULCHER]
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId        = xi.zone.JADE_SEPULCHER,
     battlefieldId = xi.battlefield.id.BEAST_WITHIN,
-    entryNpc      = '_1v0',
-    exitNpcs      = { '_1v1', '_1v2', '_1v3' },
     requiredItems = { xi.item.BLUE_MAGES_TESTIMONY, wearMessage = jadeSepulcherID.text.TESTIMONY_WEARS, wornMessage = jadeSepulcherID.text.TESTIMONY_IS_TORN },
     questArea     = xi.questLog.AHT_URHGAN,
     quest         = xi.quest.id.ahtUrhgan.THE_BEAST_WITHIN,

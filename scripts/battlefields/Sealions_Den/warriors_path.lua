@@ -6,10 +6,7 @@ local sealionsDenID = zones[xi.zone.SEALIONS_DEN]
 -----------------------------------
 
 local content = BattlefieldMission:new({
-    zoneId        = xi.zone.SEALIONS_DEN,
     battlefieldId = xi.battlefield.id.WARRIORS_PATH,
-    entryNpc      = '_0w0',
-    exitNpc       = 'Airship_Door',
     missionArea   = xi.mission.log_id.COP,
     mission       = xi.mission.id.cop.THE_WARRIORS_PATH,
     requiredVar   = 'Mission[6][748]Status',

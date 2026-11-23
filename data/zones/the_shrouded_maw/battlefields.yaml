@@ -1,5 +1,8 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
+entry_npcs: [MC_Entrance]
+exit_npcs:  [Memento_Circle]
+
 battlefields:
   darkness_named:
     index:        0
@@ -7,11 +10,13 @@ battlefields:
     can_lose_exp: false
     allow_trusts: true
     is_mission:   true
+    grant_xp:     1000
 
   test_your_mite:
-    index:        1
-    max_players: 18
-    level_cap:   40
+    index:          1
+    max_players:   18
+    level_cap:     40
+    grant_xp:    3000
 
   waking_dreams:
     index:        2

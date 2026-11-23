@@ -7,10 +7,7 @@ local boneyardGullyID = zones[xi.zone.BONEYARD_GULLY]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId           = xi.zone.BONEYARD_GULLY,
     battlefieldId    = xi.battlefield.id.SHELL_WE_DANCE,
-    entryNpc         = '_081',
-    exitNpcs         = { '_082', '_084', '_086' },
     requiredKeyItems = { xi.keyItem.MIASMA_FILTER },
     armouryCrates    =
     {
@@ -19,7 +16,6 @@ local content = Battlefield:new({
         boneyardGullyID.mob.PARATA + 26,
     },
 
-    grantXP          = 3000,
 })
 
 content.groups =

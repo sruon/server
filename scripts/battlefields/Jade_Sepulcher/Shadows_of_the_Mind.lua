@@ -7,10 +7,7 @@ local ID = zones[xi.zone.JADE_SEPULCHER]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId           = xi.zone.JADE_SEPULCHER,
     battlefieldId    = xi.battlefield.id.SHADOWS_OF_THE_MIND,
-    entryNpc         = '_1v0',
-    exitNpcs         = { '_1v1', '_1v2', '_1v3' },
     requiredKeyItems = { xi.keyItem.SECRET_IMPERIAL_ORDER, onlyInitiator = true, message = ID.text.IMPERIAL_ORDER_BREAKS },
 })
 

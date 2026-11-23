@@ -6,10 +6,7 @@ local fullMoonFountainID = zones[xi.zone.FULL_MOON_FOUNTAIN]
 -----------------------------------
 
 local content = BattlefieldMission:new({
-    zoneId                = xi.zone.FULL_MOON_FOUNTAIN,
     battlefieldId         = xi.battlefield.id.MOON_READING,
-    entryNpc              = 'MS_Entrance',
-    exitNpc               = 'Moon_Spiral',
     missionArea           = xi.mission.log_id.WINDURST,
     mission               = xi.mission.id.windurst.MOON_READING,
     missionStatusArea     = xi.mission.log_id.WINDURST,

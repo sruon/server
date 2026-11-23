@@ -7,10 +7,7 @@ local ghelsbaID = zones[xi.zone.GHELSBA_OUTPOST]
 -----------------------------------
 
 local content = Battlefield:new({
-    zoneId        = xi.zone.GHELSBA_OUTPOST,
     battlefieldId = xi.battlefield.id.PETRIFYING_PAIR,
-    area          = 1,
-    entryNpc      = 'Hut_Door',
     requiredItems = { xi.item.SKY_ORB, wearMessage = ghelsbaID.text.A_CRACK_HAS_FORMED, wornMessage = ghelsbaID.text.ORB_IS_CRACKED },
     armouryCrates =
     {

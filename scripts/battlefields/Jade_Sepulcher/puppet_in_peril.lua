@@ -6,11 +6,7 @@ local jadeSepulcherID = zones[xi.zone.JADE_SEPULCHER]
 -----------------------------------
 
 local content = BattlefieldMission:new({
-    zoneId                = xi.zone.JADE_SEPULCHER,
     battlefieldId         = xi.battlefield.id.PUPPET_IN_PERIL,
-    allowedAreas          = set{ 1 },
-    entryNpc              = '_1v0',
-    exitNpcs              = { '_1v1', '_1v2', '_1v3' },
     missionArea           = xi.mission.log_id.TOAU,
     mission               = xi.mission.id.toau.PUPPET_IN_PERIL,
     missionStatusArea     = xi.mission.log_id.TOAU,

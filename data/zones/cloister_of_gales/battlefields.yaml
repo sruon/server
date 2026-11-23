@@ -1,5 +1,8 @@
 # yaml-language-server: $schema=../../schemas/battlefields.schema.json
 
+entry_npcs: [WP_Entrance]
+exit_npcs:  [Wind_Protocrystal]
+
 battlefields:
   trial_by_wind:
     index:        0
@@ -28,3 +31,4 @@ battlefields:
     can_lose_exp: false
     allow_trusts: true
     is_mission:   true
+    grant_xp:     400

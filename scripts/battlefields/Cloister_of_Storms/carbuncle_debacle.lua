@@ -6,10 +6,7 @@ local cloisterOfStormsID = zones[xi.zone.CLOISTER_OF_STORMS]
 -----------------------------------
 
 local content = BattlefieldQuest:new({
-    zoneId        = xi.zone.CLOISTER_OF_STORMS,
     battlefieldId = xi.battlefield.id.CARBUNCLE_DEBACLE_CLOISTER_OF_STORMS,
-    entryNpc      = 'LP_Entrance',
-    exitNpc       = 'Lightning_Protocrystal',
     requiredItems = { xi.item.LIGHTNING_PENDULUM, keep = true }, -- Lightning Pendulum is not consumed on entry, but is required to enter the battlefield.
 
     questArea     = xi.questLog.WINDURST,

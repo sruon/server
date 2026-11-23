@@ -7,10 +7,7 @@ local ghelsbaID = zones[xi.zone.GHELSBA_OUTPOST]
 -----------------------------------
 
 local content = BattlefieldMission:new({
-    zoneId                = xi.zone.GHELSBA_OUTPOST,
     battlefieldId         = xi.battlefield.id.SAVE_THE_CHILDREN,
-    area                  = 1,
-    entryNpc              = 'Hut_Door',
     missionArea           = xi.mission.log_id.SANDORIA,
     mission               = xi.mission.id.sandoria.SAVE_THE_CHILDREN,
     missionStatusArea     = xi.mission.log_id.SANDORIA,
