@@ -11,7 +11,6 @@ local content = BattlefieldQuest:new({
     canLoseExp       = false,
     maxPlayers       = 6,
     timeLimit        = utils.minutes(30),
-    index            = 0,
     entryNpc         = 'MS_Entrance',
     exitNpc          = 'Moon_Spiral',
     requiredKeyItems = { xi.keyItem.MOON_BAUBLE, keep = true },

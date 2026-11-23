@@ -13,7 +13,6 @@ local content = Battlefield:new({
     allowSubjob    = false,
     cleanupDebuffs = true,
     timeLimit      = utils.minutes(10),
-    index          = 5,
     entryNpc       = 'BC_Entrance',
     exitNpc        = 'Burning_Circle',
     requiredItems  = { xi.item.WARRIORS_TESTIMONY, wearMessage = horlaisID.text.TESTIMONY_WEARS, wornMessage = horlaisID.text.TESTIMONY_IS_TORN },

@@ -12,7 +12,6 @@ local content = Battlefield:new({
     maxPlayers       = 3,
     levelCap         = 30,
     timeLimit        = utils.minutes(15),
-    index            = 3,
     area             = 1,
     entryNpc         = 'Hut_Door',
     requiredItems    = { xi.item.SKY_ORB, wearMessage = ghelsbaID.text.A_CRACK_HAS_FORMED, wornMessage = ghelsbaID.text.ORB_IS_CRACKED },

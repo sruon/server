@@ -11,7 +11,6 @@ local content = BattlefieldQuest:new({
     canLoseExp       = false,
     maxPlayers       = 18,
     timeLimit        = utils.minutes(30),
-    index            = 1,
     entryNpc         = 'WP_Entrance',
     exitNpc          = 'Wind_Protocrystal',
     requiredItems    = { xi.item.WIND_PENDULUM, keep = true }, -- Wind Pendulum is not consumed on entry, but is required to enter the battlefield.

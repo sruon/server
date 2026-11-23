@@ -11,7 +11,6 @@ local content = Battlefield:new({
     battlefieldId    = xi.battlefield.id.SCARLET_KING,
     maxPlayers       = 6,
     timeLimit        = utils.minutes(30),
-    index            = 7, -- "The Scarlet King"
     entryNpc         = 'SC_Entrance',
     exitNpc          = 'Shimmering_Circle',
     requiredItems    = { xi.item.ATROPOS_ORB, wearMessage = chamberOfOraclesID.text.A_CRACK_HAS_FORMED, wornMessage = chamberOfOraclesID.text.ORB_IS_CRACKED },

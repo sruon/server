@@ -12,7 +12,6 @@ local content = BattlefieldQuest:new({
     maxPlayers       = 1,
     levelCap         = 20,
     timeLimit        = utils.minutes(15),
-    index            = 2,
     entryNpc         = 'LP_Entrance',
     exitNpc          = 'Lightning_Protocrystal',
     requiredItems    = { xi.item.MINI_TUNING_FORK_OF_LIGHTNING },

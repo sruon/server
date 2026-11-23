@@ -12,7 +12,6 @@ local content = Battlefield:new({
     maxPlayers       = 18,
     levelCap         = 75,
     timeLimit        = utils.minutes(30),
-    index            = 3,
     entryNpc         = '_081',
     exitNpcs         = { '_082', '_084', '_086' },
     requiredKeyItems = { xi.keyItem.MIASMA_FILTER },

@@ -16,7 +16,6 @@ local content = BattlefieldQuest:new({
     canLoseExp       = false,
     maxPlayers       = 6,
     timeLimit        = utils.minutes(30),
-    index            = 2,
     entryNpc         = 'MC_Entrance',
     exitNpc          = 'Memento_Circle',
     requiredKeyItems = { xi.keyItem.VIAL_OF_DREAM_INCENSE, keep = true },

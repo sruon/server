@@ -13,7 +13,6 @@ local content = Battlefield:new({
     allowSubjob    = false,
     cleanupDebuffs = true,
     timeLimit      = utils.minutes(10),
-    index          = 3,
     entryNpc       = 'SC_Entrance',
     exitNpc        = 'Shimmering_Circle',
     requiredItems  = { xi.item.NINJAS_TESTIMONY, wearMessage = chamberOfOraclesID.text.TESTIMONY_WEARS, wornMessage = chamberOfOraclesID.text.TESTIMONY_IS_TORN },

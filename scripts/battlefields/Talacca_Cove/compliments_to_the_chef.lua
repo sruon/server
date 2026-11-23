@@ -11,7 +11,6 @@ local content = Battlefield:new({
     battlefieldId    = xi.battlefield.id.COMPLIMENTS_TO_THE_CHEF,
     maxPlayers       = 6,
     timeLimit        = utils.minutes(30),
-    index            = 1,
     entryNpc         = '_1l0',
     exitNpcs         = { '_1l1', '_1l2', '_1l3' },
     requiredKeyItems = { xi.keyItem.SECRET_IMPERIAL_ORDER, onlyInitiator = true, message = ID.text.IMPERIAL_ORDER_BREAKS },

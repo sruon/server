@@ -12,7 +12,6 @@ local content = BattlefieldQuest:new({
     maxPlayers    = 6,
     levelCap      = xi.settings.main.MAX_LEVEL,
     timeLimit     = utils.minutes(30),
-    index         = 1,
     entryNpc      = 'TR_Entrance',
     exitNpc       = 'Transcendental_Radiance',
     questArea     = xi.questLog.JEUNO,

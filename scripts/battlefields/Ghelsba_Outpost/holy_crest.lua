@@ -11,7 +11,6 @@ local content = BattlefieldQuest:new({
     battlefieldId = xi.battlefield.id.HOLY_CREST,
     maxPlayers    = 6,
     timeLimit     = utils.minutes(15),
-    index         = 1,
     area          = 1,
     entryNpc      = 'Hut_Door',
     questArea     = xi.questLog.SANDORIA,

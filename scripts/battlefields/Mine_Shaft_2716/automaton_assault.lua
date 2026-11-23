@@ -13,7 +13,6 @@ local content = Battlefield:new({
     maxPlayers       = 6,
     levelCap         = 60,
     timeLimit        = utils.minutes(15),
-    index            = 4,
     entryNpc         = '_0d0',
     exitNpcs         = { '_0d1', '_0d2', '_0d3' },
     requiredKeyItems = { xi.keyItem.SHAFT_GATE_OPERATING_DIAL, message = mineshaftID.text.SNAPS_IN_TWO, },

@@ -12,7 +12,6 @@ local content = BattlefieldQuest:new({
     maxPlayers       = 1,
     levelCap         = 20,
     timeLimit        = utils.minutes(15),
-    index            = 1,
     entryNpc         = 'FP_Entrance',
     exitNpc          = 'Fire_Protocrystal',
     requiredItems    = { xi.item.MINI_TUNING_FORK_OF_FIRE },

@@ -13,7 +13,6 @@ local content = BattlefieldQuest:new({
     levelCap      = xi.settings.main.MAX_LEVEL,
     allowSubjob   = false,
     timeLimit     = utils.minutes(10),
-    index         = 3,
     entryNpc      = '_1s0',
     exitNpcs      = { '_1s1', '_1s2', '_1s3' },
     requiredItems = { xi.item.PUPPETMASTERS_TESTIMONY, wearMessage = navukgoID.text.TESTIMONY_WEARS, wornMessage = navukgoID.text.TESTIMONY_IS_TORN },

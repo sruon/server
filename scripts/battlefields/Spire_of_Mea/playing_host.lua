@@ -12,7 +12,6 @@ local content = Battlefield:new({
     maxPlayers       = 18,
     levelCap         = 30,
     timeLimit        = utils.minutes(30),
-    index            = 1,
     entryNpc         = '_0l0',
     exitNpcs         = { '_0l1', '_0l2', '_0l3' },
     requiredKeyItems = { xi.keyItem.CENSER_OF_ANIMUS, message = spireOfMeaID.text.FADES_INTO_NOTHINGNESS },

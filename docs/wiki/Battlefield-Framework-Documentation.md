@@ -19,7 +19,6 @@ local content = Battlefield:new({
     maxPlayers       = 18,
     levelCap         = 75,
     timeLimit        = utils.minutes(30),
-    index            = 3,
     entryNpc         = "Wind_Pillar_4",
     exitNpc          = "Wind_Pillar_Exit",
     requiredKeyItems = { xi.keyItem.ZEPHYR_FAN, message = ID.text.ZEPHYR_RIPS },
@@ -130,7 +129,6 @@ end
 - **battlefieldId**: Battlefield ID used in the database (required)
 - **maxPlayers**: Maximum number of players allowed to enter (required)
 - **timeLimit**: Time in seconds allotted to complete the battlefield before being ejected. (required)
-- **index**: The index of the battlefield within the zone. This is used to communicate with the client on which menu item this battlefield is. (required)
 - **levelCap**: Level cap imposed upon the battlefield. Defaults to 0 - no level cap. (optional)
 - **area**: Some battlefields have multiple areas (Burning Circles) while others have fixed areas (Apollyon). Set to have a fixed area. (optional)
 - **entryNpc**: The name of the NPC used for entering (required)

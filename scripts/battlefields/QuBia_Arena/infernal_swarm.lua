@@ -11,7 +11,6 @@ local content = Battlefield:new({
     battlefieldId = xi.battlefield.id.INFERNAL_SWARM,
     maxPlayers    = 6,
     timeLimit     = utils.minutes(30),
-    index         = 3,
     entryNpc      = 'BC_Entrance',
     exitNpc       = 'Burning_Circle',
     requiredItems = { xi.item.ATROPOS_ORB, wearMessage = qubiaID.text.A_CRACK_HAS_FORMED, wornMessage = qubiaID.text.ORB_IS_CRACKED },

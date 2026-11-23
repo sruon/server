@@ -10,7 +10,6 @@ local content = BattlefieldQuest:new({
     battlefieldId    = xi.battlefield.id.OMENS,
     maxPlayers       = 18,
     timeLimit        = utils.minutes(30),
-    index            = 2,
     entryNpc         = '_1s0',
     exitNpcs         = { '_1s1', '_1s2', '_1s3' },
 

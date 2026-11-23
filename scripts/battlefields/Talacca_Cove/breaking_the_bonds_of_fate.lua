@@ -13,7 +13,6 @@ local content = BattlefieldQuest:new({
     levelCap              = xi.settings.main.MAX_LEVEL,
     allowSubjob           = false,
     timeLimit             = utils.minutes(10),
-    index                 = 3,
     entryNpc              = '_1l0',
     exitNpcs              = { '_1l1', '_1l2', '_1l3' },
     requiredItems         = { xi.item.CORSAIRS_TESTIMONY, wearMessage = talaccaCoveID.text.TESTIMONY_WEARS, wornMessage = talaccaCoveID.text.TESTIMONY_IS_TORN },

@@ -13,7 +13,6 @@ local content = Battlefield:new({
     maxPlayers    = 18,
     levelCap      = xi.settings.main.MAX_LEVEL,
     timeLimit     = utils.minutes(30),
-    index         = 5,
     entryNpcs     = { 'qm1_1', 'qm1_2', 'qm1_3', 'qm1_4', 'qm1_5' },
 
     requiredItems = { xi.item.ARK_PENTASPHERE, wearMessage = laLoffID.text.THE_SEAL_FADES, wornMessage = { laLoffID.text.INK_HAS_FADED, xi.item.ARK_PENTASPHERE } },

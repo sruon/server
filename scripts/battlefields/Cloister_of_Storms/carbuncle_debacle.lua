@@ -11,7 +11,6 @@ local content = BattlefieldQuest:new({
     canLoseExp       = false,
     maxPlayers       = 18,
     timeLimit        = utils.minutes(30),
-    index            = 1,
     entryNpc         = 'LP_Entrance',
     exitNpc          = 'Lightning_Protocrystal',
     requiredItems    = { xi.item.LIGHTNING_PENDULUM, keep = true }, -- Lightning Pendulum is not consumed on entry, but is required to enter the battlefield.

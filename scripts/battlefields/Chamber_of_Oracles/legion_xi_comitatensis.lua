@@ -12,7 +12,6 @@ local content = Battlefield:new({
     maxPlayers       = 6,
     levelCap         = 60,
     timeLimit        = utils.minutes(30),
-    index            = 1,
     entryNpc         = 'SC_Entrance',
     exitNpc          = 'Shimmering_Circle',
     requiredItems    = { xi.item.MOON_ORB, wearMessage = chamberOfOraclesID.text.A_CRACK_HAS_FORMED, wornMessage = chamberOfOraclesID.text.ORB_IS_CRACKED },

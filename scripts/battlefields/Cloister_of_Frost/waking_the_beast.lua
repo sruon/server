@@ -9,7 +9,6 @@ local content = BattlefieldQuest:new({
     canLoseExp       = false,
     maxPlayers       = 18,
     timeLimit        = utils.minutes(30),
-    index            = 3,
     entryNpc         = 'IP_Entrance',
     exitNpc          = 'Ice_Protocrystal',
 

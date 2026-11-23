@@ -13,7 +13,6 @@ local content = BattlefieldQuest:new({
     levelCap              = xi.settings.main.MAX_LEVEL,
     allowSubjob           = false,
     timeLimit             = utils.minutes(10),
-    index                 = 2,
     entryNpc              = '_1v0',
     exitNpcs              = { '_1v1', '_1v2', '_1v3' },
     requiredItems         = { xi.item.BLUE_MAGES_TESTIMONY, wearMessage = jadeSepulcherID.text.TESTIMONY_WEARS, wornMessage = jadeSepulcherID.text.TESTIMONY_IS_TORN },

@@ -12,7 +12,6 @@ local content = Battlefield:new({
     maxPlayers    = 6,
     levelCap      = 60,
     timeLimit     = utils.minutes(30),
-    index         = 8,
     entryNpc      = 'BC_Entrance',
     exitNpc       = 'Burning_Circle',
     requiredItems = { xi.item.MOON_ORB, wearMessage = qubiaID.text.A_CRACK_HAS_FORMED, wornMessage = qubiaID.text.ORB_IS_CRACKED },

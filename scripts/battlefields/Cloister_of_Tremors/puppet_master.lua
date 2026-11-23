@@ -12,7 +12,6 @@ local content = BattlefieldQuest:new({
     canLoseExp       = false,
     maxPlayers       = 18,
     timeLimit        = utils.minutes(30),
-    index            = 1,
     entryNpc         = 'EP_Entrance',
     exitNpc          = 'Earth_Protocrystal',
     requiredItems    = { xi.item.EARTH_PENDULUM, keep = true },

@@ -12,7 +12,6 @@ local content = Battlefield:new({
     maxPlayers       = 18,
     levelCap         = 40,
     timeLimit        = utils.minutes(15),
-    index            = 2,
     entryNpc         = 'SD_Entrance',
     exitNpcs         = { 'SD_BCNM_Exit_1', 'SD_BCNM_Exit_2', 'SD_BCNM_Exit_3' },
     requiredKeyItems = { xi.keyItem.MONARCH_BEARD, message = monarchLinnID.text.TORN_FROM_YOUR_HANDS },

@@ -11,7 +11,6 @@ local content = Battlefield:new({
     battlefieldId = xi.battlefield.id.AMAN_TROVE_MARS_BALGAS_DAIS,
     maxPlayers    = 6,
     timeLimit     = utils.minutes(30),
-    index         = 24,
     entryNpc      = 'BC_Entrance',
     exitNpc       = 'Burning_Circle',
     allowTrusts   = true,

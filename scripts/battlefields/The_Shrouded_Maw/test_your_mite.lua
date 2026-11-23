@@ -12,7 +12,6 @@ local content = Battlefield:new({
     maxPlayers       = 18,
     levelCap         = 40,
     timeLimit        = utils.minutes(30),
-    index            = 1,
     entryNpc         = 'MC_Entrance',
     exitNpc          = 'Memento_Circle',
     requiredKeyItems = { xi.keyItem.ASTRAL_COVENANT, message = ID.text.ASTRAL_DISINTEGRATES },

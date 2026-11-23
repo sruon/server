@@ -9,7 +9,6 @@ local content = BattlefieldQuest:new({
     canLoseExp       = false,
     maxPlayers       = 6,
     timeLimit        = utils.minutes(30),
-    index            = 0,
     entryNpc         = 'WP_Entrance',
     exitNpc          = 'Water_Protocrystal',
     requiredKeyItems = { xi.keyItem.TUNING_FORK_OF_WATER },

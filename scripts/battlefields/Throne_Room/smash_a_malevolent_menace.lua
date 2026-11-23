@@ -15,7 +15,6 @@ local content = BattlefieldMission:new({
     maxPlayers       = 6,
     levelCap         = xi.settings.main.MAX_LEVEL,
     timeLimit        = utils.minutes(30),
-    index            = 4,
     allowedAreas     = set{ 1 },
     entryNpc         = '_4l1',
     exitNpcs         = { '_4l2', '_4l3', '_4l4' },

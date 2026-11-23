@@ -11,7 +11,6 @@ local content = BattlefieldQuest:new({
     battlefieldId    = xi.battlefield.id.TANGO_WITH_A_TRACKER,
     maxPlayers       = 6,
     timeLimit        = utils.minutes(30),
-    index            = 5,
     entryNpc         = '_081',
     exitNpcs         = { '_082', '_084', '_086' },
     questArea        = xi.questLog.OTHER_AREAS,

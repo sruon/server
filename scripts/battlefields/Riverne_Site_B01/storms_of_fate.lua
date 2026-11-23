@@ -13,7 +13,6 @@ local content = BattlefieldQuest:new({
     maxPlayers    = 18,
     levelCap      = xi.settings.main.MAX_LEVEL,
     timeLimit     = utils.minutes(30),
-    index         = 0,
     area          = 1,
     entryNpc      = 'Unstable_Displacement',
     exitNpc       = 'SD_BCNM_Exit',

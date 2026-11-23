@@ -12,7 +12,6 @@ local content = Battlefield:new({
     maxPlayers       = 6,
     levelCap         = 60,
     timeLimit        = utils.minutes(30),
-    index            = 0,
     entryNpc         = '_1l0',
     exitNpcs         = { '_1l1', '_1l2', '_1l3' },
     requiredKeyItems = { xi.keyItem.CONFIDENTIAL_IMPERIAL_ORDER, onlyInitiator = true, message = ID.text.IMPERIAL_ORDER_BREAKS },

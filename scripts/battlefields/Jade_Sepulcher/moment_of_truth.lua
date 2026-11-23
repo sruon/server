@@ -10,7 +10,6 @@ local content = BattlefieldQuest:new({
     battlefieldId = xi.battlefield.id.MOMENT_OF_TRUTH,
     maxPlayers    = 6,
     timeLimit     = utils.minutes(30),
-    index         = 3,
     entryNpc      = '_1v0',
     exitNpcs      = { '_1v1', '_1v2', '_1v3' },
     questArea     = xi.questLog.AHT_URHGAN,

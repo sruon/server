@@ -17,7 +17,6 @@ local content = BattlefieldMission:new({
     maxPlayers            = 6,
     levelCap              = xi.settings.main.MAX_LEVEL,
     timeLimit             = utils.minutes(15),
-    index                 = 0,
     entryNpc              = 'BC_Entrance',
     exitNpc               = 'Burning_Circle',
     mission               = xi.mission.id.nation.ARCHLICH,

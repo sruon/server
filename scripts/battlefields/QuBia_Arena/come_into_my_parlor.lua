@@ -11,7 +11,6 @@ local content = Battlefield:new({
     battlefieldId = xi.battlefield.id.COME_INTO_MY_PARLOR,
     maxPlayers    = 6,
     timeLimit     = utils.minutes(30),
-    index         = 1,
     entryNpc      = 'BC_Entrance',
     exitNpc       = 'Burning_Circle',
     requiredItems = { xi.item.CLOTHO_ORB, wearMessage = qubiaID.text.A_CRACK_HAS_FORMED, wornMessage = qubiaID.text.ORB_IS_CRACKED },

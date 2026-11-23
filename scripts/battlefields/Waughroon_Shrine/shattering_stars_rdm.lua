@@ -13,7 +13,6 @@ local content = Battlefield:new({
     allowSubjob    = false,
     cleanupDebuffs = true,
     timeLimit      = utils.minutes(10),
-    index          = 6,
     entryNpc       = 'BC_Entrance',
     exitNpc        = 'Burning_Circle',
     requiredItems  = { xi.item.RED_MAGES_TESTIMONY, wearMessage = waughroonID.text.TESTIMONY_WEARS, wornMessage = waughroonID.text.TESTIMONY_IS_TORN },

@@ -12,7 +12,6 @@ local content = BattlefieldQuest:new({
     battlefieldId    = xi.battlefield.id.UNINVITED_GUESTS,
     maxPlayers       = 18,
     timeLimit        = utils.minutes(30),
-    index            = 6,
     entryNpc         = 'SD_Entrance',
     exitNpcs         = { 'SD_BCNM_Exit_1', 'SD_BCNM_Exit_2', 'SD_BCNM_Exit_3' },
     requiredKeyItems = { xi.keyItem.MONARCH_LINN_PATROL_PERMIT },

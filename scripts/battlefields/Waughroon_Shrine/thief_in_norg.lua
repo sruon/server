@@ -11,7 +11,6 @@ local content = BattlefieldQuest:new({
     battlefieldId    = xi.battlefield.id.THIEF_IN_NORG,
     maxPlayers       = 6,
     timeLimit        = utils.minutes(30),
-    index            = 4,
     entryNpc         = 'BC_Entrance',
     exitNpc          = 'Burning_Circle',
     requiredItems    = { xi.item.BANISHING_CHARM, keep = true }, -- Banishing Charm is not consumed on entry, but is required to enter the battlefield.

@@ -12,7 +12,6 @@ local content = Battlefield:new({
     maxPlayers       = 18,
     levelCap         = 30,
     timeLimit        = utils.minutes(30),
-    index            = 1,
     entryNpc         = '_0h0',
     exitNpcs         = { '_0h1', '_0h2', '_0h3' },
     requiredKeyItems = { xi.keyItem.CENSER_OF_ABANDONMENT, message = spireOfHollaID.text.FADES_INTO_NOTHINGNESS },

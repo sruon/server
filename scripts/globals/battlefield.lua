@@ -140,7 +140,6 @@ end
 --  - battlefieldId: Battlefield ID used in the database (required)
 --  - maxPlayers: Maximum number of players allowed to enter (required)
 --  - timeLimit: Time in seconds alotted to complete the battlefield before being ejected. (required)
---  - index: The index of the battlefield within the zone. This is used to communicate with the client on which menu item this battlefield is. (required)
 --  - levelCap: Level cap imposed upon the battlefield. Defaults to 0 - no level cap. (optional)
 --  - area: Some battlefields has multiple areas (Burning Circles) while others have fixed areas (Apollyon). Set to have a fixed area. (optional)
 --  - entryNpc: The name of the NPC used for entering (required)
@@ -169,7 +168,7 @@ function Battlefield:new(data)
     obj.battlefieldId = data.battlefieldId
     obj.maxPlayers    = data.maxPlayers
     obj.timeLimit     = data.timeLimit
-    obj.index         = data.index
+    obj.index         = bit.band(data.battlefieldId, 31)
 
     if data.entryNpcs then
         obj.entryNpcs = data.entryNpcs

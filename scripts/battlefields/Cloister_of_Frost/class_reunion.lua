@@ -11,7 +11,6 @@ local content = BattlefieldQuest:new({
     canLoseExp       = false,
     maxPlayers       = 6,
     timeLimit        = utils.minutes(30),
-    index            = 1,
     entryNpc         = 'IP_Entrance',
     exitNpc          = 'Ice_Protocrystal',
     requiredItems    = { xi.item.ICE_PENDULUM, keep = true },

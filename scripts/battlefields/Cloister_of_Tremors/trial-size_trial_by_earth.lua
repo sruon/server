@@ -12,7 +12,6 @@ local content = BattlefieldQuest:new({
     maxPlayers       = 1,
     levelCap         = 20,
     timeLimit        = utils.minutes(15),
-    index            = 2,
     entryNpc         = 'EP_Entrance',
     exitNpc          = 'Earth_Protocrystal',
     requiredItems    = { xi.item.MINI_TUNING_FORK_OF_EARTH },

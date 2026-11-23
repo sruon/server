@@ -12,7 +12,6 @@ local content = Battlefield:new({
     maxPlayers    = 6,
     levelCap      = 60,
     timeLimit     = utils.minutes(30),
-    index         = 2,
     entryNpc      = '_4l1',
     exitNpcs      = { '_4l2', '_4l3', '_4l4' },
     requiredItems = { xi.item.MOON_ORB, wearMessage = throneRoomID.text.A_CRACK_HAS_FORMED, wornMessage = throneRoomID.text.ORB_IS_CRACKED },
