@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=../../schemas/battlefields.schema.json
+
+battlefields:
+  ancient_vows:            {index: 0}
+  savage:                  {index: 1}
+  fire_in_the_sky:         {index: 2} # experimental
+  bad_seed:                {index: 3}
+  bugard_in_the_clouds:    {index: 4}
+  beloved_of_the_atlantes: {index: 5}
+  uninvited_guests:        {index: 6} # experimental
+  nest_of_nightmares:      {index: 7}

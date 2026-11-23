@@ -21,6 +21,7 @@
 
 #include <algorithm>
 #include <cstring>
+#include <utility>
 
 #include "battlefield.h"
 #include "battlefield_handler.h"
@@ -34,8 +35,9 @@
 
 #include "zone.h"
 
-CBattlefieldHandler::CBattlefieldHandler(CZone* PZone)
+CBattlefieldHandler::CBattlefieldHandler(CZone* PZone, xi::data::Battlefields battlefields)
 : m_PZone(PZone)
+, m_BattlefieldData(std::move(battlefields))
 , m_MaxBattlefields(luautils::OnBattlefieldHandlerInitialize(PZone))
 {
 }
@@ -114,24 +116,25 @@ auto CBattlefieldHandler::LoadBattlefield(CCharEntity* PChar, const BattlefieldR
 
     auto battlefield = std::make_unique<CBattlefield>(registration.id, m_PZone, registration.area, PChar);
 
-    const auto rset = db::preparedStmt("SELECT name, fastestName, fastestTime, fastestPartySize "
-                                       "FROM bcnm_records "
-                                       "WHERE bcnmId = ?",
-                                       registration.id);
-
-    if (!rset || rset->rowsCount() == 0 || !rset->next())
+    const auto data = std::ranges::find_if(m_BattlefieldData,
+                                           [&](const xi::data::BattlefieldData& entry)
+                                           {
+                                               return std::to_underlying(xi::data::battlefieldId(m_PZone->GetID(), entry.Index)) == registration.id;
+                                           });
+    if (data == m_BattlefieldData.end())
     {
         ShowError("Cannot load battlefield : %u ", registration.id);
         return BATTLEFIELD_RETURN_CODE_REQS_NOT_MET;
     }
 
-    const auto name            = rset->get<std::string>("name");
-    const auto recordholder    = rset->get<std::string>("fastestName");
-    const auto recordtime      = std::chrono::seconds(rset->get<uint32>("fastestTime"));
-    const auto recordPartySize = rset->get<uint8>("fastestPartySize");
+    battlefield->SetName(data->Name);
+    battlefield->SetRecord("nobody", registration.timeLimit, 0);
 
-    battlefield->SetName(name);
-    battlefield->SetRecord(recordholder, recordtime, recordPartySize);
+    const auto rset = db::preparedStmt("SELECT fastestName, fastestTime, fastestPartySize FROM battlefield_records WHERE bcnmId = ?", registration.id);
+    FOR_DB_SINGLE_RESULT(rset)
+    {
+        battlefield->SetRecord(rset->get<std::string>("fastestName"), std::chrono::seconds(rset->get<uint32>("fastestTime")), rset->get<uint8>("fastestPartySize"));
+    }
     battlefield->SetTimeLimit(registration.timeLimit);
     battlefield->SetLevelCap(registration.levelCap);
     battlefield->SetMaxParticipants(registration.maxPlayers);

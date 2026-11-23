@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=../../schemas/battlefields.schema.json
+
+battlefields:
+  moonlit_path:              {index: 0}
+  moon_reading:              {index: 1}
+  waking_the_beast_fullmoon: {index: 2}
+  battaru_royale:            {index: 3}

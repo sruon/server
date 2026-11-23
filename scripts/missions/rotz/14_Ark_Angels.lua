@@ -72,8 +72,8 @@ mission.sections =
             onEventFinish =
             {
                 [32001] = function(player, csid, option, npc)
-                    -- Ark Angels and Divine Might are sequential, offset starts at 288
-                    local keyItemIndex = player:getLocalVar('battlefieldWin') - 288
+                    -- Ark Angels and Divine Might are sequential
+                    local keyItemIndex = player:getLocalVar('battlefieldWin') - xi.battlefield.id.ARK_ANGELS_1
 
                     -- Single Fights
                     if keyItemIndex >= 0 and keyItemIndex <= 4 then

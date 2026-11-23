@@ -16,11 +16,11 @@ quest.reward =
 
 local maatBattlefieldIds =
 {
-    [xi.zone.BALGAS_DAIS]        = { 101, 102, 103 },
-    [xi.zone.CHAMBER_OF_ORACLES] = { 194, 195, 196 },
-    [xi.zone.HORLAIS_PEAK]       = {   5,   6,   7 },
-    [xi.zone.QUBIA_ARENA]        = { 517, 518, 519 },
-    [xi.zone.WAUGHROON_SHRINE]   = {  70,  71,  72 },
+    [xi.zone.BALGAS_DAIS]        = { xi.battlefield.id.SHATTERING_STARS_MNK, xi.battlefield.id.SHATTERING_STARS_WHM, xi.battlefield.id.SHATTERING_STARS_SMN },
+    [xi.zone.CHAMBER_OF_ORACLES] = { xi.battlefield.id.SHATTERING_STARS_SAM, xi.battlefield.id.SHATTERING_STARS_NIN, xi.battlefield.id.SHATTERING_STARS_DRG },
+    [xi.zone.HORLAIS_PEAK]       = { xi.battlefield.id.SHATTERING_STARS_WAR, xi.battlefield.id.SHATTERING_STARS_BLM, xi.battlefield.id.SHATTERING_STARS_RNG },
+    [xi.zone.QUBIA_ARENA]        = { xi.battlefield.id.SHATTERING_STARS_PLD, xi.battlefield.id.SHATTERING_STARS_DRK, xi.battlefield.id.SHATTERING_STARS_BRD },
+    [xi.zone.WAUGHROON_SHRINE]   = { xi.battlefield.id.SHATTERING_STARS_RDM, xi.battlefield.id.SHATTERING_STARS_THF, xi.battlefield.id.SHATTERING_STARS_BST },
 }
 
 local maatBattlefieldZone =

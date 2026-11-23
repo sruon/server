@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=../../schemas/battlefields.schema.json
+
+battlefields:
+  ancient_flames_beckon_spire_of_dem: {index: 0}
+  you_are_what_you_eat:               {index: 1} # experimental
+  empty_dreams:                       {index: 2}

@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=../../schemas/battlefields.schema.json
+
+battlefields:
+  trial_by_wind:                            {index: 0}
+  carbuncle_debacle_cloister_of_gales:      {index: 1}
+  trial_size_trial_by_wind:                 {index: 2}
+  waking_the_beast_cloister_of_gales:       {index: 3}
+  sugar_coated_directive_cloister_of_gales: {index: 4}

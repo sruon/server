@@ -21,6 +21,7 @@
 
 #include "packets/s2c/0x057_weather.h"
 
+#include "data/datasets/zones/battlefields/dataset.h"
 #include "data/datasets/zones/mobs/dataset.h"
 #include "data/datasets/zones/npcs/dataset.h"
 #include "data/datasets/zones/regions/dataset.h"
@@ -416,13 +417,7 @@ void CZone::LoadZoneSettings(const std::optional<xi::data::ZoneSettings>& settin
 {
     TracyZoneScoped;
 
-    const auto rset = db::preparedStmt("SELECT zone.name, zone.zoneip, zone.zoneport, bcnm.name AS bcnmname "
-                                       "FROM zone_settings AS zone "
-                                       "LEFT JOIN bcnm_records AS bcnm "
-                                       "USING (zoneid) "
-                                       "WHERE zoneid = ? "
-                                       "LIMIT 1",
-                                       m_zoneID);
+    const auto rset = db::preparedStmt("SELECT name, zoneip, zoneport FROM zone_settings WHERE zoneid = ? LIMIT 1", m_zoneID);
     FOR_DB_SINGLE_RESULT(rset)
     {
         m_zoneName.insert(0, rset->get<std::string>("name"));
@@ -441,9 +436,9 @@ void CZone::LoadZoneSettings(const std::optional<xi::data::ZoneSettings>& settin
             navMeshData_            = settings->NavMesh;
         }
 
-        if (!rset->getOrDefault<std::string>("bcnmname", "").empty()) // bcnmid cannot be used now, because they start from scratch
+        if (auto battlefields = xi::data::loadZoneFile<xi::data::datasets::zones::battlefields::Dataset>(m_zoneID); battlefields && !battlefields->empty())
         {
-            m_BattlefieldHandler = new CBattlefieldHandler(this);
+            m_BattlefieldHandler = new CBattlefieldHandler(this, std::move(*battlefields));
         }
 
         if ((m_miscMask & xi::ZoneMisc::Treasure) != xi::ZoneMisc::None)

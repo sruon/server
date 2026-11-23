@@ -41,26 +41,26 @@ xi.trust.messageOffset =
 local maxMessagePage = 121
 
 local rovKIBattlefieldIDs = set{
-    5,    -- Shattering Stars (WAR LB5)
-    6,    -- Shattering Stars (BLM LB5)
-    7,    -- Shattering Stars (RNG LB5)
-    70,   -- Shattering Stars (RDM LB5)
-    71,   -- Shattering Stars (THF LB5)
-    72,   -- Shattering Stars (BST LB5)
-    101,  -- Shattering Stars (MNK LB5)
-    102,  -- Shattering Stars (WHM LB5)
-    103,  -- Shattering Stars (SMN LB5)
-    163,  -- Survival of the Wisest (SCH LB5)
-    194,  -- Shattering Stars (SAM LB5)
-    195,  -- Shattering Stars (NIN LB5)
-    196,  -- Shattering Stars (DRG LB5)
-    517,  -- Shattering Stars (PLD LB5)
-    518,  -- Shattering Stars (DRK LB5)
-    519,  -- Shattering Stars (BRD LB5)
-    530,  -- A Furious Finale (DNC LB5)
-    1091, -- Breaking the Bonds of Fate (COR LB5)
-    1123, -- Achieving True Power (PUP LB5)
-    1154, -- The Beast Within (BLU LB5)
+    xi.battlefield.id.SHATTERING_STARS_WAR,
+    xi.battlefield.id.SHATTERING_STARS_BLM,
+    xi.battlefield.id.SHATTERING_STARS_RNG,
+    xi.battlefield.id.SHATTERING_STARS_RDM,
+    xi.battlefield.id.SHATTERING_STARS_THF,
+    xi.battlefield.id.SHATTERING_STARS_BST,
+    xi.battlefield.id.SHATTERING_STARS_MNK,
+    xi.battlefield.id.SHATTERING_STARS_WHM,
+    xi.battlefield.id.SHATTERING_STARS_SMN,
+    xi.battlefield.id.SURVIVAL_OF_THE_WISEST,
+    xi.battlefield.id.SHATTERING_STARS_SAM,
+    xi.battlefield.id.SHATTERING_STARS_NIN,
+    xi.battlefield.id.SHATTERING_STARS_DRG,
+    xi.battlefield.id.SHATTERING_STARS_PLD,
+    xi.battlefield.id.SHATTERING_STARS_DRK,
+    xi.battlefield.id.SHATTERING_STARS_BRD,
+    xi.battlefield.id.FURIOUS_FINALE,
+    xi.battlefield.id.BREAKING_THE_BONDS_OF_FATE,
+    xi.battlefield.id.ACHIEVING_TRUE_POWER,
+    xi.battlefield.id.BEAST_WITHIN,
 -- TODO: GEO LB5
 -- TODO: RUN LB5
 }

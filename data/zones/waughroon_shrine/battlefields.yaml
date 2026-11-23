@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=../../schemas/battlefields.schema.json
+
+battlefields:
+  rank_2_mission_2:                  {index:  0}
+  worms_turn:                        {index:  1}
+  grimshell_shocktroopers:           {index:  2}
+  on_my_way:                         {index:  3}
+  thief_in_norg:                     {index:  4}
+  three_two_one:                     {index:  5}
+  shattering_stars_rdm:              {index:  6}
+  shattering_stars_thf:              {index:  7}
+  shattering_stars_bst:              {index:  8}
+  birds_of_a_feather:                {index:  9}
+  crustacean_conundrum:              {index: 10} # experimental
+  grove_guardians:                   {index: 11}
+  hills_are_alive:                   {index: 12} # experimental
+  royal_jelly:                       {index: 13}
+  final_bout:                        {index: 14} # experimental
+  up_in_arms:                        {index: 15}
+  copycat:                           {index: 16}
+  operation_desert_swarm:            {index: 17} # experimental
+  prehistoric_pigeons:               {index: 18} # experimental
+  palborough_project:                {index: 19}
+  shell_shocked:                     {index: 20}
+  beyond_infinity_waughroon_shrine:  {index: 21}
+  aman_trove_mars_waughroon_shrine:  {index: 25}
+  aman_trove_venus_waughroon_shrine: {index: 26}

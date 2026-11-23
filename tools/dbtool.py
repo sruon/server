@@ -197,6 +197,7 @@ player_data = [
     "accounts_totp.sql",
     "auction_house_items.sql",
     "auction_house.sql",
+    "battlefield_records.sql",
     "audit_bazaar.sql",
     "audit_craft.sql",
     "audit_dbox.sql",

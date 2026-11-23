@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=../../schemas/battlefields.schema.json
+
+battlefields:
+  tough_nut_to_crack:   {index: 0}
+  happy_caster:         {index: 1}
+  omens:                {index: 2}
+  achieving_true_power: {index: 3}
+  shield_of_diplomacy:  {index: 4}

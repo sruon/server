@@ -170,13 +170,12 @@ end
 
 ## Battlefield Creation
 
-Creating a new battlefield is much more streamlined than it was previously. Nearly all data pertaining to the battlefield is contained within the single battlefield script. New battlefields belong in `scripts/battlefields/<zone>/<name>.lua`. The only other place battlefield data exists is within `bcnm_info.sql` where the following values are needed: `bcnmId`, `zoneId`, `name`, `fastestName`, `fastestPartySize`, `fastestTime`. All other values are made redundant with this new solution.
+Creating a new battlefield is much more streamlined than it was previously. Nearly all data pertaining to the battlefield is contained within the single battlefield script. New battlefields belong in `scripts/battlefields/<zone>/<name>.lua`. The only other place battlefield data exists is `data/zones/<zone>/battlefields.yaml`, which lists the battlefields the zone hosts with their entry menu `index`. Those entries also generate `xi.battlefield.id`, whose value is the zone id shifted up 5 bits ORed with the index. Fastest clear records are kept in the `battlefield_records` table.
 
 Here is a checklist of things to do when creating a battlefield.
 
 - Create a new script file within `scripts/battlefields/<zone>/<name>.lua`
-- A new `xi.battlefield.id` entry needs to be made for the battlefield.
-- Determine the proper Battlefield `index` which is used for communicating with the client.
+- Add the battlefield to `data/zones/<zone>/battlefields.yaml` with its entry menu `index`, which is used for communicating with the client. This also creates its `xi.battlefield.id` entry.
 - Properly [setup](#battlefield-setup) the battlefield with the appropriate [parameters](#battlefield-parameters).
 - Provide the [monster groups](#battlefield-groups). Often this can be solved with something such as `content:addEssentialMobs({ "Apis" })`.
 - Implement the monster scripts if they need any unique behavior/logic that cannot be handled within monster groups. (not covered)
@@ -207,8 +206,6 @@ There are a significant number of existing battlefields that need to be migrated
 
 The first thing to do is identify the battlefield ID that is associated with the battlefield being migrating.
 
-Within `bcnm_info.sql` the values `timeLimit`, `levelCap`, and `partySize` can be found that need to be provided during battlefield creation.
-
 Inside `scripts/globals/bcnms.lua` the battlefield **index** can be found inside `local battlefields` table as the first value for the battlefield table. In the same table the required entry item (if any) can be found.
 
 Down below inside `checkReqs()` the requirements for entry are specified. This can vary significantly from having to provide a `requiredKeyItems` to missions using a `BattlefieldMission` to having to [override](#overriding-battlefield-logic) `Battlefield:checkRequirements()`.
@@ -233,7 +230,6 @@ Once all of the battlefields have been migrated then the previous battlefield so
 - Remove bcnm_treasure_chests.sql
 - Remove globals/bcnm.lua
 - Remove xi.battlefield.* lua functions
-- Remove bcnm_info usage from CBattlefieldHandler::LoadBattlefield
 - Remove CLuaBattlefield::loadMobs
 - Remove Battlefield::getMobs
 - Simplify Battlefield::rules (only using loseexp and allowsubjob)

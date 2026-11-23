@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=../../schemas/battlefields.schema.json
+
+battlefields:
+  rider_cometh: {index: 0}

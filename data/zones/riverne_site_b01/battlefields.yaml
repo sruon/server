@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=../../schemas/battlefields.schema.json
+
+battlefields:
+  storms_of_fate:    {index: 0}
+  wyrmking_descends: {index: 1}

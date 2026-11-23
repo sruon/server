@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=../../schemas/battlefields.schema.json
+
+battlefields:
+  making_a_mockery:    {index: 0}
+  shadows_of_the_mind: {index: 1}
+  beast_within:        {index: 2}
+  moment_of_truth:     {index: 3}
+  puppet_in_peril:     {index: 4}

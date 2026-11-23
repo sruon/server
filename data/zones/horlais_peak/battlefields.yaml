@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=../../schemas/battlefields.schema.json
+
+battlefields:
+  rank_2_mission_1:              {index:  0}
+  tails_of_woe:                  {index:  1}
+  dismemberment_brigade:         {index:  2}
+  the_secret_weapon:             {index:  3}
+  hostile_herbivores:            {index:  4}
+  shattering_stars_war:          {index:  5}
+  shattering_stars_blm:          {index:  6}
+  shattering_stars_rng:          {index:  7}
+  carapace_combatants:           {index:  8}
+  shooting_fish:                 {index:  9} # experimental
+  dropping_like_flies:           {index: 10}
+  horns_of_war:                  {index: 11} # experimental
+  under_observation:             {index: 12}
+  eye_of_the_tiger:              {index: 13}
+  shots_in_the_dark:             {index: 14} # experimental
+  double_dragonian:              {index: 15}
+  todays_horoscope:              {index: 16} # experimental
+  contaminated_colosseum:        {index: 17}
+  kindergarten_cap:              {index: 18}
+  last_orc_shunned_hero:         {index: 19}
+  beyond_infinity_horlais_peak:  {index: 20}
+  aman_trove_mars_horlais_peak:  {index: 24}
+  aman_trove_venus_horlais_peak: {index: 25}

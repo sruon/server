@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=../../schemas/battlefields.schema.json
+
+battlefields:
+  fiat_lux:          {index: 0}
+  darkness_descends: {index: 1}
+  bonds_of_mythril:  {index: 2}

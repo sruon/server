@@ -1,0 +1,7 @@
+# yaml-language-server: $schema=../../schemas/battlefields.schema.json
+
+battlefields:
+  trial_by_water:                           {index: 0}
+  trial_size_trial_by_water:                {index: 1}
+  waking_the_beast_cloister_of_tides:       {index: 2}
+  sugar_coated_directive_cloister_of_tides: {index: 3}

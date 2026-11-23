@@ -861,25 +861,22 @@ auto CBattlefield::Cleanup(timer::time_point time, bool force) -> bool
 
     if (m_Attacked && m_Status == BATTLEFIELD_STATUS_WON)
     {
-        bool updateRecord = true;
+        const uint32 recordTime  = timer::count_seconds(m_Record.time);
+        uint32       fastestTime = timer::count_seconds(m_TimeLimit);
 
-        const auto rset = db::preparedStmt("SELECT fastestTime FROM bcnm_records WHERE bcnmId = ? AND zoneId = ?", this->GetID(), this->GetZoneID());
-        if (rset && rset->rowsCount() && rset->next())
+        const auto rset = db::preparedStmt("SELECT fastestTime FROM battlefield_records WHERE bcnmId = ?", this->GetID());
+        FOR_DB_SINGLE_RESULT(rset)
         {
-            const auto fastestTime = rset->get<uint32>("fastestTime");
-            updateRecord           = fastestTime > timer::count_seconds(m_Record.time);
+            fastestTime = rset->get<uint32>("fastestTime");
         }
 
-        if (updateRecord)
+        if (fastestTime > recordTime)
         {
-            const uint32 timeThing = timer::count_seconds(m_Record.time);
-
-            db::preparedStmt("UPDATE bcnm_records SET fastestName = ?, fastestTime = ?, fastestPartySize = ? WHERE bcnmId = ? AND zoneid = ?",
-                             m_Record.name,
-                             timeThing,
-                             static_cast<uint32>(m_Record.partySize),
+            db::preparedStmt("REPLACE INTO battlefield_records (bcnmId, fastestName, fastestTime, fastestPartySize) VALUES (?, ?, ?, ?)",
                              this->GetID(),
-                             GetZoneID());
+                             m_Record.name,
+                             recordTime,
+                             static_cast<uint32>(m_Record.partySize));
         }
     }
 

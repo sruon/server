@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=../../schemas/battlefields.schema.json
+
+battlefields:
+  one_to_be_feared: {index: 0}
+  warriors_path:    {index: 1}

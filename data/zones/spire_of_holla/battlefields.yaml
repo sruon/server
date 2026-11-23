@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=../../schemas/battlefields.schema.json
+
+battlefields:
+  ancient_flames_beckon_spire_of_holla: {index: 0}
+  simulant:                             {index: 1} # experimental
+  empty_hopes:                          {index: 2}

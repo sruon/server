@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=../../schemas/battlefields.schema.json
+
+battlefields:
+  purple_the_new_black: {index: 1}

@@ -1,0 +1,4 @@
+# yaml-language-server: $schema=../../schemas/battlefields.schema.json
+
+battlefields:
+  celestial_nexus: {index: 0}

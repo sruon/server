@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=../../schemas/battlefields.schema.json
+
+battlefields:
+  nw_apollyon:         {index: 10}
+  sw_apollyon:         {index: 11}
+  ne_apollyon:         {index: 12}
+  se_apollyon:         {index: 13}
+  cs_apollyon:         {index: 14}
+  cs_apollyon_ii:      {index: 15}
+  central_apollyon:    {index: 16}
+  central_apollyon_ii: {index: 17}

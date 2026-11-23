@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=../../schemas/battlefields.schema.json
+
+battlefields:
+  trial_by_earth:                             {index: 0}
+  puppet_master:                              {index: 1}
+  trial_size_trial_by_earth:                  {index: 2}
+  waking_the_beast_cloister_of_tremors:       {index: 3}
+  sugar_coated_directive_cloister_of_tremors: {index: 4}

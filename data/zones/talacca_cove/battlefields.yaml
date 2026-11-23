@@ -1,0 +1,8 @@
+# yaml-language-server: $schema=../../schemas/battlefields.schema.json
+
+battlefields:
+  call_to_arms:               {index: 0}
+  compliments_to_the_chef:    {index: 1}
+  puppetmaster_blues:         {index: 2}
+  breaking_the_bonds_of_fate: {index: 3}
+  legacy_of_the_lost:         {index: 4}

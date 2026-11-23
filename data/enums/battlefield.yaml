@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=../schemas/enums/_enum.schema.json
+#
+# Members come from data/zones/<zone>/battlefields.yaml. A battlefield's id is its zone id shifted up 5 bits, ORed with its entry menu index.
+
+meta:
+  cpp:
+    underlying: uint16_t
+    class:      BattlefieldId
+  lua:
+    table: xi.battlefield.id
+  collect:
+    files:     zones/*/battlefields.yaml
+    section:   battlefields
+    index:     index
+    zone_bits: 5

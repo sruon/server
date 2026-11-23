@@ -24,6 +24,7 @@
 #include "common/cbasetypes.h"
 #include "common/macros.h"
 #include "common/timer.h"
+#include "data/datasets/zones/battlefields/dataset.h"
 
 #include <map>
 #include <memory>
@@ -49,7 +50,7 @@ struct BattlefieldRegistration
 class CBattlefieldHandler
 {
 public:
-    CBattlefieldHandler(CZone* PZone);
+    CBattlefieldHandler(CZone* PZone, xi::data::Battlefields battlefields);
     ~CBattlefieldHandler();
 
     DISALLOW_COPY_AND_MOVE(CBattlefieldHandler);
@@ -71,6 +72,7 @@ private:
     void RemoveOtherRegistrations(CCharEntity* PChar, const CBattlefield* PKeep);
 
     CZone*                                       m_PZone;
+    xi::data::Battlefields                       m_BattlefieldData;
     uint8                                        m_MaxBattlefields; // usually 3 except dynamis, einherjar, besieged, ...
     std::map<int, std::unique_ptr<CBattlefield>> m_Battlefields;    // area
     std::map<uint32, uint8>                      m_ReservedAreas;   // <charid, area>

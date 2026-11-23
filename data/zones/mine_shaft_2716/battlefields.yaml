@@ -1,0 +1,9 @@
+# yaml-language-server: $schema=../../schemas/battlefields.schema.json
+
+battlefields:
+  century_of_hardship:  {index: 0}
+  return_to_the_depths: {index: 1}
+  bionic_bug:           {index: 2}
+  pulling_the_strings:  {index: 3}
+  automaton_assault:    {index: 4}
+  mobline_comedy:       {index: 5}

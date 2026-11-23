@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=../../schemas/battlefields.schema.json
+
+battlefields:
+  head_wind:                  {index: 0}
+  like_the_wind:              {index: 1} # experimental
+  sheep_in_antlions_clothing: {index: 2}
+  shell_we_dance:             {index: 3} # experimental
+  totentanz:                  {index: 4}
+  tango_with_a_tracker:       {index: 5}
+  requiem_of_sin:             {index: 6}
+  antagonistic_ambuscade:     {index: 7}

@@ -1,0 +1,6 @@
+# yaml-language-server: $schema=../../schemas/battlefields.schema.json
+
+battlefields:
+  desires_of_emptiness: {index: 0}
+  pulling_the_plug:     {index: 1}
+  empty_aspirations:    {index: 2}

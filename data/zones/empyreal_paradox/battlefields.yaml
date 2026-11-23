@@ -1,0 +1,5 @@
+# yaml-language-server: $schema=../../schemas/battlefields.schema.json
+
+battlefields:
+  dawn:            {index: 0}
+  apocalypse_nigh: {index: 1}

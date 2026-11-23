@@ -1,0 +1,13 @@
+# yaml-language-server: $schema=../../schemas/battlefields.schema.json
+
+battlefields:
+  through_the_quicksand_caves: {index: 0}
+  legion_xi_comitatensis:      {index: 1}
+  shattering_stars_sam:        {index: 2}
+  shattering_stars_nin:        {index: 3}
+  shattering_stars_drg:        {index: 4}
+  cactuar_suave:               {index: 5}
+  eye_of_the_storm:            {index: 6}
+  scarlet_king:                {index: 7}
+  cat_burglar_bares_fangs:     {index: 8} # experimental
+  dragon_scales:               {index: 9}
