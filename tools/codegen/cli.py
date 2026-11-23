@@ -2,8 +2,13 @@ import argparse
 from pathlib import Path
 
 from .common import ENUMS_DIR, ROOT, TEMPLATES_DIR, ZONES_DIR, write_if_changed
-from .enum_codegen import emit_pure_enum, emit_table_enums
+from .enum_codegen import collect_files, emit_pure_enum, emit_table_enums, load_yaml
 from .validate import validate_data_yamls
+
+
+def collected_inputs(enum_path: Path) -> list[Path]:
+    collect = ((load_yaml(enum_path) or {}).get("meta") or {}).get("collect")
+    return collect_files(collect) if collect else []
 
 
 def enum_inputs_newer_than(stamp: Path) -> bool:
@@ -15,6 +20,7 @@ def enum_inputs_newer_than(stamp: Path) -> bool:
         *TEMPLATES_DIR.glob("*.j2"),
         *(path for path in (ROOT / "data").rglob("*.yaml") if not path.is_relative_to(ZONES_DIR)),
         *ROOT.glob("modules/*/data/*.yaml"),
+        *(path for enum_path in ENUMS_DIR.glob("*.yaml") for path in collected_inputs(enum_path)),
     ]
     return any(input_path.stat().st_mtime > stamp_mtime for input_path in inputs)
 

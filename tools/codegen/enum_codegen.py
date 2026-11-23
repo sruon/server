@@ -1,4 +1,5 @@
 import copy
+import functools
 from pathlib import Path
 from typing import Any
 
@@ -83,7 +84,9 @@ def emit_pure_enum(yaml_path: Path) -> dict[str, Any]:
         doc = YAML_LOADER.load(f)
 
     meta = doc.get("meta") or {}
-    values = doc.get("values") or {}
+    values = dict(doc.get("values") or {})
+    if meta.get("collect"):
+        values.update(collect_values(yaml_path, meta["collect"], values))
     if not values:
         raise ValueError(f"{yaml_path.name}: no values: block")
 
@@ -106,6 +109,57 @@ def emit_pure_enum(yaml_path: Path) -> dict[str, Any]:
         ),
         "lua": lua_block(meta.get("lua"), source_name, is_flags, values),
     }
+
+
+def collect_files(collect: dict[str, Any]) -> list[Path]:
+    """Data files a `meta.collect` block reads, core first, then every module's copy."""
+    pattern = collect["files"]
+    return [*sorted((ROOT / "data").glob(pattern)), *sorted(ROOT.glob(f"modules/*/data/{pattern}"))]
+
+
+@functools.cache
+def zone_ids() -> dict[str, int]:
+    return dict(load_yaml(ENUMS_DIR / "zone.yaml")["values"])
+
+
+def collected_entries(data_path: Path, section: dict[str, Any], collect: dict[str, Any]) -> dict[str, int]:
+    """An entry's `id`, or with `zone_bits` its zone id (from the folder) shifted up and ORed with its `index`."""
+    if "zone_bits" not in collect:
+        return derive_values(data_path, section, None)
+
+    bits = int(collect["zone_bits"])
+    zone_id = zone_ids()[data_path.parent.name]
+    values: dict[str, int] = {}
+    for key, entry in section.items():
+        index = entry.get(collect["index"]) if isinstance(entry, dict) else None
+        if not isinstance(index, int) or not 0 <= index < (1 << bits):
+            raise ValueError(f"{data_path.relative_to(ROOT).as_posix()}: '{key}' needs an {collect['index']} from 0 to {(1 << bits) - 1}")
+        values[str(key)] = (zone_id << bits) | index
+    return values
+
+
+def collect_values(yaml_path: Path, collect: dict[str, Any], declared: dict[str, int]) -> dict[str, int]:
+    """Members taken from the entries of `section` in every file matching `files`, e.g. one list per zone."""
+    values: dict[str, int] = {}
+    owners: dict[int, str] = {value: name for name, value in declared.items()}
+    for data_path in collect_files(collect):
+        is_core = data_path.is_relative_to(ROOT / "data")
+        doc = load_yaml(data_path)
+        if not isinstance(doc, dict):
+            continue
+
+        for section in resolve_sections(doc, collect["section"]):
+            for key, value in collected_entries(data_path, section, collect).items():
+                if key in declared or values.get(key, value) != value:
+                    raise ValueError(f"{yaml_path.name}: '{key}' from {data_path.relative_to(ROOT).as_posix()} is already {declared.get(key, values.get(key))}")
+                if is_core and owners.get(value, key) != key:
+                    raise ValueError(f"{yaml_path.name}: id {value} is used by both '{owners[value]}' and '{key}'")
+
+                values[key] = value
+                if is_core:
+                    owners[value] = key
+
+    return values
 
 
 def resolve_sections(doc: dict[str, Any], path: str) -> list[dict[str, Any]]:

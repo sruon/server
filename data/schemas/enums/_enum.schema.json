@@ -5,7 +5,11 @@
   "description": "Meta-schema for data/enums/*.yaml. Each file declares a typed enum: a `meta` block describing the C++/Lua surface, and a `values` map of name -> integer.",
   "type": "object",
   "unevaluatedProperties": false,
-  "required": ["meta", "values"],
+  "required": ["meta"],
+  "anyOf": [
+    { "required": ["values"] },
+    { "properties": { "meta": { "required": ["collect"] } } }
+  ],
 
   "properties": {
     "meta": {
@@ -45,6 +49,33 @@
               "description": "Adds a C++-only `None = 0` member, so a default-initialised value has a name. Data and Lua can't use it."
             }
           }
+        },
+        "collect": {
+          "type": "object",
+          "unevaluatedProperties": false,
+          "required": ["files", "section"],
+          "description": "Members taken from data files spread over many folders, such as one file per zone. Each entry of the section is a member named by its key. Module copies under `modules/*/data/` add to it.",
+          "properties": {
+            "files": {
+              "type": "string",
+              "description": "Glob relative to data/, e.g. `zones/*/battlefields.yaml`."
+            },
+            "section": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]*([.](\\*|[a-z][a-z0-9_]*))*$",
+              "description": "Dotted path to the section holding the entries in each file."
+            },
+            "index": {
+              "type": "string",
+              "description": "With `zone_bits`: the entry field holding its index within the zone."
+            },
+            "zone_bits": {
+              "type": "integer",
+              "minimum": 1,
+              "description": "A member's value is the zone id of the folder the file sits in, shifted up this many bits, ORed with the entry's `index`. Without it, the value is the entry's `id`."
+            }
+          },
+          "dependentRequired": { "zone_bits": ["index"], "index": ["zone_bits"] }
         },
         "lua": {
           "type": "object",
