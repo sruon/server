@@ -16176,8 +16176,6 @@ ecosystems:
                   gravity:      0
               mods:
                 attp: 20
-              mob_mods:
-                immunity: 256
       spider:
         id: 195
         attributes:
@@ -17166,9 +17164,8 @@ ecosystems:
                 udmgbreath: -8750
                 mdef:         112
               mob_mods:
-                immunity:             2047
-                hp_standback:           -1
-                base_damage_modifier:  220
+                hp_standback:          -1
+                base_damage_modifier: 220
           orc_statue:
             id: 479
             attributes:
@@ -17210,9 +17207,8 @@ ecosystems:
                 udmgbreath: -8750
                 mdef:          62
               mob_mods:
-                immunity:             2047
-                hp_standback:           -1
-                base_damage_modifier:  220
+                hp_standback:          -1
+                base_damage_modifier: 220
           quadav_statue:
             id: 480
             attributes:
@@ -17254,9 +17250,8 @@ ecosystems:
                 udmgbreath: -8750
                 mdef:         112
               mob_mods:
-                immunity:             2047
-                hp_standback:           -1
-                base_damage_modifier:  220
+                hp_standback:          -1
+                base_damage_modifier: 220
           yagudo_statue:
             id: 481
             attributes:
@@ -17298,9 +17293,8 @@ ecosystems:
                 udmgbreath: -8750
                 mdef:         162
               mob_mods:
-                immunity:             2047
-                hp_standback:           -1
-                base_damage_modifier:  220
+                hp_standback:          -1
+                base_damage_modifier: 220
       ultima:
         id: 206
         species:
