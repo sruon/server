@@ -205,6 +205,8 @@ templates:
     attributes:
       combat:
         skill: scythe
+      resists:
+        immune_status: [addle, gravity, bind, silence]
       render:
         look:
           type:  standard
@@ -216,8 +218,6 @@ templates:
         aggressive:     true
         links:          true
         true_detection: true
-      mob_mods:
-        immunity: 23
       spawn:
         type: [scripted]
       stats:
@@ -562,7 +562,7 @@ templates:
       combat:
         skill: great_axe
       resists:
-        immune_status: [gravity, paralyze, light_sleep, dark_sleep]
+        immune_status: [addle, gravity, bind, stun, paralyze, light_sleep, dark_sleep]
       render:
         look:
           type:  standard
@@ -575,8 +575,6 @@ templates:
         flags:          [aggro_ambush]
         aggressive:     true
         true_detection: true
-      mob_mods:
-        immunity: 6191
       spawn:
         type: [scripted]
       stats:
