@@ -22,23 +22,45 @@ local earringRewards =
     [5] = xi.item.BUSHINOMIMI,
 }
 
+local hasArkShard = function(player)
+    for keyItemId = xi.keyItem.SHARD_OF_APATHY, xi.keyItem.SHARD_OF_RAGE do
+        if player:hasKeyItem(keyItemId) then
+            return true
+        end
+    end
+
+    return false
+end
+
 local onTriggerIncomplete = function(player, npc)
     local currentMission = player:getCurrentMission(xi.mission.log_id.ZILART)
+    local hasShard       = hasArkShard(player)
 
     if
         currentMission == xi.mission.id.zilart.ARK_ANGELS and
         player:getMissionStatus(xi.mission.log_id.ZILART) == 1
     then
-        return quest:event(54, xi.item.SHEET_OF_PARCHMENT, xi.item.BOTTLE_OF_ILLUMININK, xi.item.ARK_PENTASPHERE)
-    elseif currentMission >= xi.mission.id.zilart.ARK_ANGELS then
+        return quest:event(54, xi.item.SHEET_OF_PARCHMENT, xi.item.BOTTLE_OF_ILLUMININK, xi.item.ARK_PENTASPHERE, 0, 0, 0, hasShard and 0 or 1)
+    elseif
+        currentMission >= xi.mission.id.zilart.ARK_ANGELS and
+        hasShard
+    then
         -- NOTE: In order for a player to have the appropriate KI for an event to be displayed, they will be at least
         -- at missionStatus 1, so no need to verify greater than.
 
-        for keyItemId = xi.keyItem.SHARD_OF_APATHY, xi.keyItem.SHARD_OF_RAGE do
-            if player:hasKeyItem(keyItemId) then
-                return quest:event(56, xi.item.SHEET_OF_PARCHMENT, xi.item.BOTTLE_OF_ILLUMININK, xi.item.ARK_PENTASPHERE)
-            end
-        end
+        return quest:event(56, xi.item.SHEET_OF_PARCHMENT, xi.item.BOTTLE_OF_ILLUMININK, xi.item.ARK_PENTASPHERE)
+    end
+end
+
+local onTriggerAvailable = function(player, npc)
+    local currentMission = player:getCurrentMission(xi.mission.log_id.ZILART)
+    local hasShard       = hasArkShard(player)
+
+    if
+        (currentMission == xi.mission.id.zilart.ARK_ANGELS and player:getMissionStatus(xi.mission.log_id.ZILART) == 1) or
+        (currentMission >= xi.mission.id.zilart.ARK_ANGELS and hasShard)
+    then
+        return quest:event(53, xi.item.SHEET_OF_PARCHMENT, xi.item.BOTTLE_OF_ILLUMININK, xi.item.ARK_PENTASPHERE, 0, 0, 0, hasShard and 0 or 1)
     end
 end
 
@@ -51,15 +73,11 @@ quest.sections =
 
         [xi.zone.THE_SHRINE_OF_RUAVITAU] =
         {
-            ['blank_divine_might'] = onTriggerIncomplete,
+            ['blank_divine_might'] = onTriggerAvailable,
 
             onEventFinish =
             {
-                [54] = function(player, csid, option, npc)
-                    quest:begin(player)
-                end,
-
-                [56] = function(player, csid, option, npc)
+                [53] = function(player, csid, option, npc)
                     quest:begin(player)
                 end,
             },
