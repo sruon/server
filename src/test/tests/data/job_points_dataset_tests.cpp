@@ -92,6 +92,27 @@ TEST_CASE("job_points: decodes categories and gifts", "[data][jobpoints]")
     CHECK(jobPoints.at(xi::Job::RUN).Categories.front() == xi::JobPoint::ElementalSforzoEffect);
 }
 
+TEST_CASE("job_points: Superior gifts at 50, 100, 500, 1200 and 2100", "[data][jobpoints]")
+{
+    const auto jobPoints = JobPointsDataset::decode(slurp("data/job_points.yaml"));
+
+    for (const auto& [job, data] : jobPoints)
+    {
+        std::vector<uint16> superiorAt;
+        for (const auto& gift : data.Gifts)
+        {
+            if (gift.Mod == xi::Mod::SUPERIOR_LEVEL)
+            {
+                CHECK(gift.Value == 1);
+                superiorAt.emplace_back(gift.JobPointsSpent);
+            }
+        }
+
+        CAPTURE(xi::data::EnumTraits<xi::Job>::toName(job));
+        CHECK(superiorAt == std::vector<uint16>{ 50, 100, 500, 1200, 2100 });
+    }
+}
+
 TEST_CASE("job_points: module changes, removes and adds gifts", "[data][jobpoints]")
 {
     const auto modules   = std::array{ std::string{ "job_points:\n  war:\n    gifts:\n      100:\n        crithitrate: 6\n        superior_level: null\n      101:\n        str: 3\n" } };

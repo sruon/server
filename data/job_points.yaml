@@ -820,8 +820,8 @@ job_points:
         triple_attack: 2 # Triple Attack Chance
       2000:
         crit_dmg_increase: 2 # Critical Damage Bonus
-        superior_level:    1 # Superior 5
       2100:
+        superior_level:   1 # Superior 5
         one_hour_recast: 15 # 1 Hour Delay
 
   pld:
@@ -1811,7 +1811,6 @@ job_points:
       5:
         def:            10 # Physical Defense Bonus
         capacity_bonus:  5 # Capacity Point Bonus
-        superior_level:  1 # Superior 2
       10:
         att:  10 # Attack Bonus
         ratt: 10 # Ranged Attack Bonus
@@ -1835,6 +1834,7 @@ job_points:
       95:
         capacity_bonus: 11 # Capacity Point Bonus
       100:
+        superior_level:      1 # Superior 2
         wyvern_attribute_da: 1 # Wyvern Attribute Increase Effect
       125:
         pet_acc_eva: 10 # Wyvern Phys. Acc. and Eva. Bonus
