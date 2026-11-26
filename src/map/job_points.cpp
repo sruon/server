@@ -15,12 +15,21 @@
 */
 
 #include "job_points.h"
+#include "data/datasets/job_points/dataset.h"
 #include "entities/battle_entity.h"
 #include "entities/char_entity.h"
 
 #include "packets/s2c/0x0aa_magic_data.h"
 #include "spell.h"
 #include "utils/charutils.h"
+#include "utils/dataset_loader.h"
+
+namespace
+{
+
+xi::data::JobPoints jobPointData{};
+
+} // namespace
 
 CJobPoints::CJobPoints(CCharEntity* PChar)
 : m_PChar(PChar)
@@ -282,24 +291,9 @@ auto CJobPoints::GetJobPointValue(const xi::JobPoint jpType) -> uint8
 namespace jobpointutils
 {
 
-std::vector<JobPointGifts_t> jpGifts[MAX_JOBTYPE] = {};
-
 void LoadGifts()
 {
-    const auto rset = db::preparedStmt("SELECT jobid, jp_needed, modid, value "
-                                       "FROM job_point_gifts "
-                                       "ORDER BY jp_needed ASC");
-    FOR_DB_MULTIPLE_RESULTS(rset)
-    {
-        JobPointGifts_t gift = {};
-
-        const auto jobId = rset->get<uint8>("jobid");
-        gift.jpRequired  = rset->get<uint16>("jp_needed");
-        gift.modId       = rset->get<uint16>("modid");
-        gift.value       = rset->get<int16>("value");
-
-        jpGifts[jobId].emplace_back(gift);
-    }
+    jobPointData = xi::data::loadDataset<xi::data::datasets::job_points::Dataset>();
 }
 
 void RefreshGiftMods(CCharEntity* PChar)
@@ -314,14 +308,17 @@ void RefreshGiftMods(CCharEntity* PChar)
         currentGifts->clear();
     }
 
-    for (auto&& gift : jpGifts[jobId])
+    if (const auto job = jobPointData.find(PChar->GetMJob()); job != jobPointData.end())
     {
-        if (gift.jpRequired > totalJpSpent || PChar->GetMLevel() < 99)
+        for (const auto& gift : job->second.Gifts)
         {
-            break;
-        }
+            if (gift.JobPointsSpent > totalJpSpent || PChar->GetMLevel() < 99)
+            {
+                break;
+            }
 
-        currentGifts->emplace_back(static_cast<xi::Mod>(gift.modId), gift.value);
+            currentGifts->emplace_back(gift.Mod, gift.Value);
+        }
     }
 
     PChar->addModifiers(currentGifts);

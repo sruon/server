@@ -72,6 +72,14 @@ auto Dataset::decode(const std::string_view text) -> Records
         {
             throw std::runtime_error(fmt::format("duplicate job point id in {}", EnumTraits<xi::Job>::toName(job)));
         }
+
+        for (const auto& [spent, mods] : entry.gifts.value_or(wire::Gifts{}))
+        {
+            for (const auto& [mod, value] : yaml::resolveKeys(std::optional{ mods }))
+            {
+                record.Gifts.push_back({ .JobPointsSpent = spent, .Mod = mod, .Value = value });
+            }
+        }
     }
 
     return records;

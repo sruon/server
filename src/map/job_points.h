@@ -56,13 +56,6 @@ struct JobPoints_t
     JobPointType_t job_point_types[JOBPOINTS_JPTYPE_PER_CATEGORY]{};
 };
 
-struct JobPointGifts_t
-{
-    uint16 jpRequired;
-    uint16 modId;
-    int16  value;
-};
-
 /************************************************************************
  *                                                                       *
  *                                                                       *
@@ -110,8 +103,7 @@ private:
 namespace jobpointutils
 {
 
-void                                LoadGifts();
-void                                RefreshGiftMods(CCharEntity* PChar);
-extern std::vector<JobPointGifts_t> jpGifts[MAX_JOBTYPE];
+void LoadGifts();
+void RefreshGiftMods(CCharEntity* PChar);
 
 } // namespace jobpointutils

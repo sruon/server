@@ -23,12 +23,14 @@
 
 #include "common/cbasetypes.h"
 #include "data/enums/job.h"
+#include "data/enums/mod.h"
 #include "data/yaml/enum_keyed_map.h"
 #include "data/yaml/schema_annotations.h"
 
 #include <glaze/glaze.hpp>
 
 #include <map>
+#include <optional>
 #include <string>
 
 namespace xi::data::datasets::job_points::wire
@@ -39,9 +41,12 @@ struct Category
     uint16 id{};
 };
 
+using Gifts = std::map<uint16, yaml::EnumKeyedMap<xi::Mod, int16>>;
+
 struct Job
 {
     std::map<std::string, Category> categories;
+    std::optional<Gifts>            gifts;
 };
 
 struct Document
@@ -63,10 +68,11 @@ template <>
 struct glz::json_schema<xi::data::datasets::job_points::wire::Job>
 {
     glz::schema categories{ .description = "The job's ten job point categories keyed by their canonical name, in ID order." };
+    glz::schema gifts{ .description = "Mods granted at level 99, keyed by job points spent." };
 };
 
 template <>
 struct glz::json_schema<xi::data::datasets::job_points::wire::Document>
 {
-    glz::schema job_points{ .description = "Job point categories, keyed by job." };
+    glz::schema job_points{ .description = "Job point categories and gifts by job." };
 };

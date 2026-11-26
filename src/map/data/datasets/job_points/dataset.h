@@ -24,6 +24,7 @@
 #include "common/cbasetypes.h"
 #include "data/enums/job.h"
 #include "data/enums/job_point.h"
+#include "data/enums/mod.h"
 
 #include <map>
 #include <string_view>
@@ -32,9 +33,17 @@
 namespace xi::data
 {
 
+struct JobPointGiftData
+{
+    uint16  JobPointsSpent{};
+    xi::Mod Mod{};
+    int16   Value{};
+};
+
 struct JobPointJobData
 {
-    std::vector<xi::JobPoint> Categories{}; // ordered by id
+    std::vector<xi::JobPoint>     Categories{}; // ordered by id
+    std::vector<JobPointGiftData> Gifts{};      // ordered by job points spent
 };
 
 using JobPoints = std::map<xi::Job, JobPointJobData>;
@@ -58,7 +67,7 @@ struct Dataset
 
     static constexpr std::string_view kDataPath{ "job_points" };
     static constexpr std::string_view kTitle{ "Job Points" };
-    static constexpr std::string_view kDescription{ "The ten job point categories of each job." };
+    static constexpr std::string_view kDescription{ "Job point categories and the gifts each job gets for the job points it has spent." };
 
     static auto decode(std::string_view text) -> Records;
 };
