@@ -432,9 +432,9 @@ job_points:
       magic_burst_dmg_bonus:    {id: 0x083} # Magic Burst Damage Bonus
       mana_wall_effect:         {id: 0x084} # Mana Wall Effect
       blm_magic_acc_bonus:      {id: 0x085} # Magic Accuracy Bonus
-      emnity_douse_recast:      {id: 0x086} # Enmity Douse Recast
+      enmity_douse_recast:      {id: 0x086} # Enmity Douse Recast
       manawell_effect:          {id: 0x087} # Manawell Effect
-      magic_burst_emnity_bonus: {id: 0x088} # Magic Burst Enmity Decrease
+      magic_burst_enmity_bonus: {id: 0x088} # Magic Burst Enmity Decrease
       magic_dmg_bonus:          {id: 0x089} # Magic Damage Bonus
 
     gifts:
@@ -1661,10 +1661,10 @@ job_points:
       yonin_effect:             {id: 0x1A1} # Yonin Effect
       mikage_effect:            {id: 0x1A2} # Mikage Effect
       innin_effect:             {id: 0x1A3} # Innin Effect
-      ninjitsu_acc_bonus:       {id: 0x1A4} # Ninjutsu Accuracy Bonus
-      ninjitsu_cast_time_bonus: {id: 0x1A5} # Ninjutsu Cast Time
+      ninjutsu_acc_bonus:       {id: 0x1A4} # Ninjutsu Accuracy Bonus
+      ninjutsu_cast_time_bonus: {id: 0x1A5} # Ninjutsu Cast Time
       futae_effect:             {id: 0x1A6} # Futae Effect
-      elem_ninjitsu_effect:     {id: 0x1A7} # Elemental Ninjutsu Effect
+      elem_ninjutsu_effect:     {id: 0x1A7} # Elemental Ninjutsu Effect
       issekigan_effect:         {id: 0x1A8} # Issekigan Effect
       tactical_parry_effect:    {id: 0x1A9} # Tactical Parry Effect
 
@@ -2628,16 +2628,16 @@ job_points:
 
   sch:
     categories:
-      tabula_rasa_effect:       {id: 0x280} # Tabula Rasa Effect
-      light_arts_effect:        {id: 0x281} # Light Arts Effect
-      caper_emmissarius_effect: {id: 0x282} # Caper Emissarius Effect
-      dark_arts_effect:         {id: 0x283} # Dark Arts Effect
-      strategem_effect_i:       {id: 0x284} # Stratagem Effect
-      strategem_effect_ii:      {id: 0x285} # Stratagem Effect II
-      strategem_effect_iii:     {id: 0x286} # Stratagem Effect III
-      strategem_effect_iv:      {id: 0x287} # Stratagem Effect IV
-      modus_veritas_effect:     {id: 0x288} # Modus Veritas Effect
-      sublimation_effect:       {id: 0x289} # Sublimation Effect
+      tabula_rasa_effect:      {id: 0x280} # Tabula Rasa Effect
+      light_arts_effect:       {id: 0x281} # Light Arts Effect
+      caper_emissarius_effect: {id: 0x282} # Caper Emissarius Effect
+      dark_arts_effect:        {id: 0x283} # Dark Arts Effect
+      stratagem_effect_i:      {id: 0x284} # Stratagem Effect
+      stratagem_effect_ii:     {id: 0x285} # Stratagem Effect II
+      stratagem_effect_iii:    {id: 0x286} # Stratagem Effect III
+      stratagem_effect_iv:     {id: 0x287} # Stratagem Effect IV
+      modus_veritas_effect:    {id: 0x288} # Modus Veritas Effect
+      sublimation_effect:      {id: 0x289} # Sublimation Effect
 
     gifts:
       5:

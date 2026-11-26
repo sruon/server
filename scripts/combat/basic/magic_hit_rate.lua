@@ -260,7 +260,7 @@ local function magicAccuracyFromJobPoints(actor, params)
 
         [xi.job.NIN] = function()
             if params.skillType == xi.skill.NINJUTSU then
-                magicAcc = actor:getJobPointLevel(xi.jp.NINJITSU_ACC_BONUS)
+                magicAcc = actor:getJobPointLevel(xi.jp.NINJUTSU_ACC_BONUS)
             end
         end,
 
@@ -269,7 +269,7 @@ local function magicAccuracyFromJobPoints(actor, params)
                 (params.spellGroup == xi.magic.spellGroup.WHITE and actor:hasStatusEffect(xi.effect.PARSIMONY)) or
                 (params.spellGroup == xi.magic.spellGroup.BLACK and actor:hasStatusEffect(xi.effect.PENURY))
             then
-                magicAcc = actor:getJobPointLevel(xi.jp.STRATEGEM_EFFECT_I)
+                magicAcc = actor:getJobPointLevel(xi.jp.STRATAGEM_EFFECT_I)
             end
         end,
     }

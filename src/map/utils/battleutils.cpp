@@ -5526,7 +5526,7 @@ auto CalculateSpellCastTime(CBattleEntity* PEntity, CMagicState* PMagicState) ->
             // SCH JP: Stratagem II - 1% reduction in cast time per point
             if (auto* PChar = dynamic_cast<CCharEntity*>(PEntity))
             {
-                bonus += PChar->PJobPoints->GetJobPointValue(xi::JobPoint::StrategemEffectIi);
+                bonus += PChar->PJobPoints->GetJobPointValue(xi::JobPoint::StratagemEffectIi);
             }
 
             cast -= std::chrono::floor<std::chrono::milliseconds>(base * ((50 + bonus) / 100.0f));
@@ -5567,7 +5567,7 @@ auto CalculateSpellCastTime(CBattleEntity* PEntity, CMagicState* PMagicState) ->
             // SCH JP: Stratagem II - 1% reduction in cast time per point
             if (auto* PChar = dynamic_cast<CCharEntity*>(PEntity))
             {
-                bonus += PChar->PJobPoints->GetJobPointValue(xi::JobPoint::StrategemEffectIi);
+                bonus += PChar->PJobPoints->GetJobPointValue(xi::JobPoint::StratagemEffectIi);
             }
 
             cast -= std::chrono::floor<std::chrono::milliseconds>(base * ((50 + bonus) / 100.0f));
@@ -5633,7 +5633,7 @@ auto CalculateSpellCastTime(CBattleEntity* PEntity, CMagicState* PMagicState) ->
     {
         if (auto* PChar = dynamic_cast<CCharEntity*>(PEntity))
         {
-            uint8 jpValue = PChar->PJobPoints->GetJobPointValue(xi::JobPoint::NinjitsuCastTimeBonus);
+            uint8 jpValue = PChar->PJobPoints->GetJobPointValue(xi::JobPoint::NinjutsuCastTimeBonus);
             cast          = std::chrono::floor<std::chrono::milliseconds>(cast * (1.0f - (0.03f * jpValue)));
         }
     }

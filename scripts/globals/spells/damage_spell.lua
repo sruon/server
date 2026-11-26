@@ -409,7 +409,7 @@ xi.spells.damage.calculateBaseDamage = function(caster, target, spellId, spellGr
 
         -- NIN Job Point: Elemental Ninjutsu Effect
         if skillType == xi.skill.NINJUTSU then
-            baseSpellDamageBonus = baseSpellDamageBonus + caster:getJobPointLevel(xi.jp.ELEM_NINJITSU_EFFECT) * 2
+            baseSpellDamageBonus = baseSpellDamageBonus + caster:getJobPointLevel(xi.jp.ELEM_NINJUTSU_EFFECT) * 2
         end
 
         -- SCH Job Point: Stratagem Effect III
@@ -417,7 +417,7 @@ xi.spells.damage.calculateBaseDamage = function(caster, target, spellId, spellGr
             (spellGroup == xi.magic.spellGroup.WHITE and caster:hasStatusEffect(xi.effect.RAPTURE)) or
             (spellGroup == xi.magic.spellGroup.BLACK and caster:hasStatusEffect(xi.effect.EBULLIENCE))
         then
-            baseSpellDamageBonus = baseSpellDamageBonus + caster:getJobPointLevel(xi.jp.STRATEGEM_EFFECT_III) * 2
+            baseSpellDamageBonus = baseSpellDamageBonus + caster:getJobPointLevel(xi.jp.STRATAGEM_EFFECT_III) * 2
         end
     end
 
