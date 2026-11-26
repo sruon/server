@@ -28,15 +28,15 @@ job_points:
         def:            10 # Physical Defense Bonus
         capacity_bonus:  5 # Capacity Point Bonus
       10:
-        att:  10 # Attack Bonus
-        ratt: 10 # Ranged Attack Bonus
+        att:  10 # Physical Attack Bonus
+        ratt: 10 # Physical Attack Bonus
       20:
         eva: 5 # Physical Evasion Bonus
       25:
         capacity_bonus: 7 # Capacity Point Bonus
       30:
-        acc:  5 # Accuracy Bonus
-        racc: 5 # Ranged Accuracy Bonus
+        acc:  5 # Physical Accuracy Bonus
+        racc: 5 # Physical Accuracy Bonus
       45:
         meva: 5 # Magic Evasion Bonus
       50:
@@ -46,14 +46,14 @@ job_points:
       60:
         macc: 5 # Magic Accuracy Bonus
       80:
-        fencer_tp_bonus: 50 # Enhances "Fencer" effect.
+        fencer_tp_bonus: 50 # Fencer Effect
       95:
         capacity_bonus: 11 # Capacity Point Bonus
       100:
         crithitrate:    5 # Critical Hit Bonus
         superior_level: 1 # Superior 2
       125:
-        double_attack: 2 # Double Attack Effect
+        double_attack: 2 # Double Attack Chance
       145:
         capacity_bonus: 13 # Capacity Point Bonus
       150:
@@ -63,15 +63,15 @@ job_points:
       205:
         capacity_bonus: 15 # Capacity Point Bonus
       210:
-        att:  15 # Attack Bonus
-        ratt: 15 # Ranged Attack Bonus
+        att:  15 # Physical Attack Bonus
+        ratt: 15 # Physical Attack Bonus
       245:
         eva: 8 # Physical Evasion Bonus
       275:
         capacity_bonus: 17 # Capacity Point Bonus
       280:
-        acc:  8 # Accuracy Bonus
-        racc: 8 # Ranged Accuracy Bonus
+        acc:  8 # Physical Accuracy Bonus
+        racc: 8 # Physical Accuracy Bonus
       320:
         meva: 8 # Magic Evasion Bonus
       355:
@@ -83,28 +83,28 @@ job_points:
       445:
         capacity_bonus: 21 # Capacity Point Bonus
       450:
-        double_attack: 2 # Double Attack Effect
+        double_attack: 2 # Double Attack Chance
       500:
         crit_dmg_increase: 2 # Critical Damage Bonus
         superior_level:    1 # Superior 3
       545:
         capacity_bonus: 23 # Capacity Point Bonus
       550:
-        all_wsdmg_all_hits: 3 # Weapon Skill Damage
+        all_wsdmg_all_hits: 3 # Weapon Skill Damage Bonus
       605:
         def: 20 # Physical Defense Bonus
       655:
         capacity_bonus: 25 # Capacity Point Bonus
       660:
-        att:  20 # Attack Bonus
-        ratt: 20 # Ranged Attack Bonus
+        att:  20 # Physical Attack Bonus
+        ratt: 20 # Physical Attack Bonus
       720:
         eva: 10 # Physical Evasion Bonus
       775:
         capacity_bonus: 27 # Capacity Point Bonus
       780:
-        acc:  10 # Accuracy Bonus
-        racc: 10 # Ranged Accuracy Bonus
+        acc:  10 # Physical Accuracy Bonus
+        racc: 10 # Physical Accuracy Bonus
       845:
         meva: 10 # Magic Evasion Bonus
       905:
@@ -116,7 +116,7 @@ job_points:
       1045:
         capacity_bonus: 31 # Capacity Point Bonus
       1050:
-        double_attack: 3 # Double Attack Effect
+        double_attack: 3 # Double Attack Chance
       1125:
         crit_dmg_increase: 3 # Critical Damage Bonus
       1195:
@@ -129,13 +129,13 @@ job_points:
       1355:
         capacity_bonus: 35 # Capacity Point Bonus
       1360:
-        att:  25 # Attack Bonus
-        ratt: 25 # Ranged Attack Bonus
+        att:  25 # Physical Attack Bonus
+        ratt: 25 # Physical Attack Bonus
       1445:
         eva: 13 # Physical Evasion Bonus
       1530:
-        acc:  13 # Accuracy Bonus
-        racc: 13 # Ranged Accuracy Bonus
+        acc:  13 # Physical Accuracy Bonus
+        racc: 13 # Physical Accuracy Bonus
       1620:
         meva: 13 # Magic Evasion Bonus
       1710:
@@ -143,12 +143,12 @@ job_points:
       1805:
         fencer_tp_bonus: 70 # Fencer Effect
       1900:
-        double_attack: 3 # Double Attack Effect
+        double_attack: 3 # Double Attack Chance
       2000:
         crit_dmg_increase: 3 # Critical Damage Bonus
       2100:
         superior_level:   1 # Superior 5
-        one_hour_recast: 15 # 1 Hour Delay
+        one_hour_recast: 15 # ★Master!
 
   mnk:
     categories:
@@ -168,15 +168,15 @@ job_points:
         def:            5 # Physical Defense Bonus
         capacity_bonus: 5 # Capacity Point Bonus
       10:
-        att:  8 # Attack Bonus
-        ratt: 8 # Ranged Attack Bonus
+        att:  8 # Physical Attack Bonus
+        ratt: 8 # Physical Attack Bonus
       20:
         eva: 6 # Physical Evasion Bonus
       25:
         capacity_bonus: 7 # Capacity Point Bonus
       30:
-        acc:  6 # Accuracy Bonus
-        racc: 6 # Ranged Accuracy Bonus
+        acc:  6 # Physical Accuracy Bonus
+        racc: 6 # Physical Accuracy Bonus
       45:
         meva: 5 # Magic Evasion Bonus
       50:
@@ -203,15 +203,15 @@ job_points:
       205:
         capacity_bonus: 15 # Capacity Point Bonus
       210:
-        att:  12 # Attack Bonus
-        ratt: 12 # Ranged Attack Bonus
+        att:  12 # Physical Attack Bonus
+        ratt: 12 # Physical Attack Bonus
       245:
         eva: 9 # Physical Evasion Bonus
       275:
         capacity_bonus: 17 # Capacity Point Bonus
       280:
-        acc:  9 # Accuracy Bonus
-        racc: 9 # Ranged Accuracy Bonus
+        acc:  9 # Physical Accuracy Bonus
+        racc: 9 # Physical Accuracy Bonus
       320:
         meva: 8 # Magic Evasion Bonus
       355:
@@ -236,15 +236,15 @@ job_points:
       655:
         capacity_bonus: 25 # Capacity Point Bonus
       660:
-        att:  16 # Attack Bonus
-        ratt: 16 # Ranged Attack Bonus
+        att:  16 # Physical Attack Bonus
+        ratt: 16 # Physical Attack Bonus
       720:
         eva: 12 # Physical Evasion Bonus
       775:
         capacity_bonus: 27 # Capacity Point Bonus
       780:
-        acc:  12 # Accuracy Bonus
-        racc: 12 # Ranged Accuracy Bonus
+        acc:  12 # Physical Accuracy Bonus
+        racc: 12 # Physical Accuracy Bonus
       845:
         meva: 10 # Magic Evasion Bonus
       905:
@@ -269,13 +269,13 @@ job_points:
       1355:
         capacity_bonus: 35 # Capacity Point Bonus
       1360:
-        att:  20 # Attack Bonus
-        ratt: 20 # Ranged Attack Bonus
+        att:  20 # Physical Attack Bonus
+        ratt: 20 # Physical Attack Bonus
       1445:
         eva: 15 # Physical Evasion Bonus
       1530:
-        acc:  15 # Accuracy Bonus
-        racc: 15 # Ranged Accuracy Bonus
+        acc:  15 # Physical Accuracy Bonus
+        racc: 15 # Physical Accuracy Bonus
       1620:
         meva: 13 # Magic Evasion Bonus
       1710:
@@ -288,7 +288,7 @@ job_points:
         counter: 3 # Counter Effect
       2100:
         superior_level:   1 # Superior 5
-        one_hour_recast: 15 # 1 Hour Delay
+        one_hour_recast: 15 # ★Master!
 
   whm:
     categories:
@@ -316,8 +316,8 @@ job_points:
       30:
         macc: 7 # Magic Accuracy Bonus
       45:
-        acc:  2 # Accuracy Bonus
-        racc: 2 # Ranged Accuracy Bonus
+        acc:  2 # Physical Accuracy Bonus
+        racc: 2 # Physical Accuracy Bonus
       50:
         superior_level: 1 # Superior 1
       55:
@@ -337,7 +337,7 @@ job_points:
       145:
         capacity_bonus: 13 # Capacity Point Bonus
       150:
-        cure_cast_time: 2 # Healing Magic Cast Time Decrease
+        cure_cast_time: 2 # Healing Magic Cast Time
       180:
         mdef: 11 # Magic Defense Bonus
       205:
@@ -351,8 +351,8 @@ job_points:
       280:
         macc: 11 # Magic Accuracy Bonus
       320:
-        acc:  3 # Accuracy Bonus
-        racc: 3 # Ranged Accuracy Bonus
+        acc:  3 # Physical Accuracy Bonus
+        racc: 3 # Physical Accuracy Bonus
       355:
         capacity_bonus: 19 # Capacity Point Bonus
       360:
@@ -364,7 +364,7 @@ job_points:
       450:
         cure_potency: 5 # Cure Potency Bonus
       500:
-        cure_cast_time: 2 # Healing Magic Cast Time Decrease
+        cure_cast_time: 2 # Healing Magic Cast Time
         superior_level: 1 # Superior 3
       545:
         capacity_bonus: 23 # Capacity Point Bonus
@@ -383,8 +383,8 @@ job_points:
       780:
         macc: 14 # Magic Accuracy Bonus
       845:
-        acc:  4 # Accuracy Bonus
-        racc: 4 # Ranged Accuracy Bonus
+        acc:  4 # Physical Accuracy Bonus
+        racc: 4 # Physical Accuracy Bonus
       905:
         capacity_bonus: 29 # Capacity Point Bonus
       910:
@@ -396,7 +396,7 @@ job_points:
       1050:
         cure_potency: 6 # Cure Potency Bonus
       1125:
-        cure_cast_time: 2 # Healing Magic Cast Time Decrease
+        cure_cast_time: 2 # Healing Magic Cast Time
       1195:
         capacity_bonus: 33 # Capacity Point Bonus
       1200:
@@ -414,8 +414,8 @@ job_points:
       1530:
         macc: 18 # Magic Accuracy Bonus
       1620:
-        acc:  5 # Accuracy Bonus
-        racc: 5 # Ranged Accuracy Bonus
+        acc:  5 # Physical Accuracy Bonus
+        racc: 5 # Physical Accuracy Bonus
       1710:
         healing: 13 # Healing Magic Skill Bonus
       1805:
@@ -423,10 +423,10 @@ job_points:
       1900:
         cure_potency: 7 # Cure Potency Bonus
       2000:
-        cure_cast_time: 2 # Healing Magic Cast Time Decrease
+        cure_cast_time: 2 # Healing Magic Cast Time
       2100:
         superior_level:   1 # Superior 5
-        one_hour_recast: 15 # 1 Hour Delay
+        one_hour_recast: 15 # ★Master!
 
   blm:
     categories:
@@ -566,7 +566,7 @@ job_points:
         elemental_celerity: 2 # Elemental Celerity Effect
       2100:
         superior_level:   1 # Superior 5
-        one_hour_recast: 15 # 1 Hour Delay
+        one_hour_recast: 15 # ★Master!
 
   rdm:
     categories:
@@ -594,8 +594,8 @@ job_points:
       30:
         macc: 10 # Magic Accuracy Bonus
       45:
-        acc:  3 # Accuracy Bonus
-        racc: 3 # Ranged Accuracy Bonus
+        acc:  3 # Physical Accuracy Bonus
+        racc: 3 # Physical Accuracy Bonus
       50:
         superior_level: 1 # Superior 1
       55:
@@ -616,11 +616,11 @@ job_points:
           - thunder_v
           - water_v
       125:
-        enspell_dmg_bonus: 5 # Enhanced Weapon Enchantment Damage
+        enspell_dmg_bonus: 5 # "En"spell Damage
       145:
         capacity_bonus: 13 # Capacity Point Bonus
       150:
-        fastcast: 2 # Enhanced Fast Cast Effect
+        fastcast: 2 # Fast Cast Effect
       180:
         mdef: 6 # Magic Defense Bonus
       205:
@@ -634,8 +634,8 @@ job_points:
       280:
         macc: 15 # Magic Accuracy Bonus
       320:
-        acc:  5 # Accuracy Bonus
-        racc: 5 # Ranged Accuracy Bonus
+        acc:  5 # Physical Accuracy Bonus
+        racc: 5 # Physical Accuracy Bonus
       355:
         capacity_bonus: 19 # Capacity Point Bonus
       360:
@@ -645,9 +645,9 @@ job_points:
       445:
         capacity_bonus: 21 # Capacity Point Bonus
       450:
-        enspell_dmg_bonus: 5 # Enhanced Weapon Enchantment Damage
+        enspell_dmg_bonus: 5 # "En"spell Damage
       500:
-        fastcast:       2 # Enhanced Fast Cast Effect
+        fastcast:       2 # Fast Cast Effect
         superior_level: 1 # Superior 3
       545:
         capacity_bonus: 23 # Capacity Point Bonus
@@ -669,8 +669,8 @@ job_points:
       780:
         macc: 20 # Magic Accuracy Bonus
       845:
-        acc:  6 # Accuracy Bonus
-        racc: 6 # Ranged Accuracy Bonus
+        acc:  6 # Physical Accuracy Bonus
+        racc: 6 # Physical Accuracy Bonus
       905:
         capacity_bonus: 29 # Capacity Point Bonus
       910:
@@ -680,7 +680,7 @@ job_points:
       1045:
         capacity_bonus: 31 # Capacity Point Bonus
       1050:
-        enspell_dmg_bonus: 6 # Enspell Damage
+        enspell_dmg_bonus: 6 # "En"spell Damage
       1125:
         fastcast: 2 # Fast Cast Effect
       1195:
@@ -701,19 +701,19 @@ job_points:
       1530:
         macc: 25 # Magic Accuracy Bonus
       1620:
-        acc:  8 # Accuracy Bonus
-        racc: 8 # Ranged Accuracy Bonus
+        acc:  8 # Physical Accuracy Bonus
+        racc: 8 # Physical Accuracy Bonus
       1710:
         enfeeble: 13 # Enfeebling Magic Skill Bonus
       1805:
         enhance: 13 # Enhancing Magic Skill Bonus
       1900:
-        enspell_dmg_bonus: 7 # Enspell Damage
+        enspell_dmg_bonus: 7 # "En"spell Damage
       2000:
         fastcast: 2 # Fast Cast Effect
       2100:
         superior_level:   1 # Superior 5
-        one_hour_recast: 15 # 1 Hour Delay
+        one_hour_recast: 15 # ★Master!
 
   thf:
     categories:
@@ -733,15 +733,15 @@ job_points:
         def:            4 # Physical Defense Bonus
         capacity_bonus: 5 # Capacity Point Bonus
       10:
-        att:  7 # Attack Bonus
-        ratt: 7 # Ranged Attack Bonus
+        att:  7 # Physical Attack Bonus
+        ratt: 7 # Physical Attack Bonus
       20:
         eva: 10 # Physical Evasion Bonus
       25:
         capacity_bonus: 7 # Capacity Point Bonus
       30:
-        acc:  5 # Accuracy Bonus
-        racc: 5 # Ranged Accuracy Bonus
+        acc:  5 # Physical Accuracy Bonus
+        racc: 5 # Physical Accuracy Bonus
       45:
         meva: 5 # Magic Evasion Bonus
       50:
@@ -758,7 +758,7 @@ job_points:
         treasure_hunter_cap: 1 # Maximum Treasure Hunter Value
         superior_level:      1 # Superior 2
       125:
-        triple_attack: 2 # Triple Attack Bonus
+        triple_attack: 2 # Triple Attack Chance
       145:
         capacity_bonus: 13 # Capacity Point Bonus
       150:
@@ -768,15 +768,15 @@ job_points:
       205:
         capacity_bonus: 15 # Capacity Point Bonus
       210:
-        att:  11 # Attack Bonus
-        ratt: 11 # Ranged Attack Bonus
+        att:  11 # Physical Attack Bonus
+        ratt: 11 # Physical Attack Bonus
       245:
         eva: 15 # Physical Evasion Bonus
       275:
         capacity_bonus: 17 # Capacity Point Bonus
       280:
-        acc:  8 # Accuracy Bonus
-        racc: 8 # Ranged Accuracy Bonus
+        acc:  8 # Physical Accuracy Bonus
+        racc: 8 # Physical Accuracy Bonus
       320:
         meva: 8 # Magic Evasion Bonus
       355:
@@ -784,7 +784,7 @@ job_points:
       360:
         macc: 8 # Magic Accuracy Bonus
       405:
-        treasure_hunter_proc: 5 # Treasure Hunter Bonus
+        treasure_hunter_proc: 5 # "Treasure Hunter" Bonus
       445:
         capacity_bonus: 21 # Capacity Point Bonus
       450:
@@ -801,15 +801,15 @@ job_points:
       655:
         capacity_bonus: 25 # Capacity Point Bonus
       660:
-        att:  14 # Attack Bonus
-        ratt: 14 # Ranged Attack Bonus
+        att:  14 # Physical Attack Bonus
+        ratt: 14 # Physical Attack Bonus
       720:
         eva: 20 # Physical Evasion Bonus
       775:
         capacity_bonus: 27 # Capacity Point Bonus
       780:
-        acc:  10 # Accuracy Bonus
-        racc: 10 # Ranged Accuracy Bonus
+        acc:  10 # Physical Accuracy Bonus
+        racc: 10 # Physical Accuracy Bonus
       845:
         meva: 10 # Magic Evasion Bonus
       905:
@@ -817,7 +817,7 @@ job_points:
       910:
         macc: 10 # Magic Accuracy Bonus
       980:
-        treasure_hunter_proc: 6 # Treasure Hunter Bonus
+        treasure_hunter_proc: 6 # "Treasure Hunter" Bonus
       1045:
         capacity_bonus: 31 # Capacity Point Bonus
       1050:
@@ -834,26 +834,26 @@ job_points:
       1355:
         capacity_bonus: 35 # Capacity Point Bonus
       1360:
-        att:  18 # Attack Bonus
-        ratt: 18 # Ranged Attack Bonus
+        att:  18 # Physical Attack Bonus
+        ratt: 18 # Physical Attack Bonus
       1445:
         eva: 25 # Physical Evasion Bonus
       1530:
-        acc:  13 # Accuracy Bonus
-        racc: 13 # Ranged Accuracy Bonus
+        acc:  13 # Physical Accuracy Bonus
+        racc: 13 # Physical Accuracy Bonus
       1620:
         meva: 13 # Magic Evasion Bonus
       1710:
         macc: 13 # Magic Accuracy Bonus
       1805:
-        treasure_hunter_proc: 7 # Treasure Hunter Bonus
+        treasure_hunter_proc: 7 # "Treasure Hunter" Bonus
       1900:
         triple_attack: 2 # Triple Attack Chance
       2000:
         crit_dmg_increase: 2 # Critical Damage Bonus
       2100:
         superior_level:   1 # Superior 5
-        one_hour_recast: 15 # 1 Hour Delay
+        one_hour_recast: 15 # ★Master!
 
   pld:
     categories:
@@ -873,15 +873,15 @@ job_points:
         def:            15 # Physical Defense Bonus
         capacity_bonus:  5 # Capacity Point Bonus
       10:
-        att:  4 # Attack Bonus
-        ratt: 4 # Ranged Attack Bonus
+        att:  4 # Physical Attack Bonus
+        ratt: 4 # Physical Attack Bonus
       20:
         eva: 3 # Physical Evasion Bonus
       25:
         capacity_bonus: 7 # Capacity Point Bonus
       30:
-        acc:  4 # Accuracy Bonus
-        racc: 4 # Ranged Accuracy Bonus
+        acc:  4 # Physical Accuracy Bonus
+        racc: 4 # Physical Accuracy Bonus
       45:
         meva: 6 # Magic Evasion Bonus
       50:
@@ -909,15 +909,15 @@ job_points:
       205:
         capacity_bonus: 15 # Capacity Point Bonus
       210:
-        att:  6 # Attack Bonus
-        ratt: 6 # Ranged Attack Bonus
+        att:  6 # Physical Attack Bonus
+        ratt: 6 # Physical Attack Bonus
       245:
         eva: 5 # Physical Evasion Bonus
       275:
         capacity_bonus: 17 # Capacity Point Bonus
       280:
-        acc:  6 # Accuracy Bonus
-        racc: 6 # Ranged Accuracy Bonus
+        acc:  6 # Physical Accuracy Bonus
+        racc: 6 # Physical Accuracy Bonus
       320:
         meva: 9 # Magic Evasion Bonus
       355:
@@ -942,15 +942,15 @@ job_points:
       655:
         capacity_bonus: 25 # Capacity Point Bonus
       660:
-        att:  8 # Attack Bonus
-        ratt: 8 # Ranged Attack Bonus
+        att:  8 # Physical Attack Bonus
+        ratt: 8 # Physical Attack Bonus
       720:
         eva: 6 # Physical Evasion Bonus
       775:
         capacity_bonus: 27 # Capacity Point Bonus
       780:
-        acc:  8 # Accuracy Bonus
-        racc: 8 # Ranged Accuracy Bonus
+        acc:  8 # Physical Accuracy Bonus
+        racc: 8 # Physical Accuracy Bonus
       845:
         meva: 12 # Magic Evasion Bonus
       905:
@@ -975,13 +975,13 @@ job_points:
       1355:
         capacity_bonus: 35 # Capacity Point Bonus
       1360:
-        att:  10 # Attack Bonus
-        ratt: 10 # Ranged Attack Bonus
+        att:  10 # Physical Attack Bonus
+        ratt: 10 # Physical Attack Bonus
       1445:
         eva: 8 # Physical Evasion Bonus
       1530:
-        acc:  10 # Accuracy Bonus
-        racc: 10 # Ranged Accuracy Bonus
+        acc:  10 # Physical Accuracy Bonus
+        racc: 10 # Physical Accuracy Bonus
       1620:
         meva: 15 # Magic Evasion Bonus
       1710:
@@ -994,7 +994,7 @@ job_points:
         crit_def_bonus: 2 # Critical Defense Bonus
       2100:
         superior_level:   1 # Superior 5
-        one_hour_recast: 15 # 1 Hour Delay
+        one_hour_recast: 15 # ★Master!
 
   drk:
     categories:
@@ -1014,15 +1014,15 @@ job_points:
         def:            4 # Physical Defense Bonus
         capacity_bonus: 5 # Capacity Point Bonus
       10:
-        att:  15 # Attack Bonus
-        ratt: 15 # Ranged Attack Bonus
+        att:  15 # Physical Attack Bonus
+        ratt: 15 # Physical Attack Bonus
       20:
         eva: 3 # Physical Evasion Bonus
       25:
         capacity_bonus: 7 # Capacity Point Bonus
       30:
-        acc:  3 # Accuracy Bonus
-        racc: 3 # Ranged Accuracy Bonus
+        acc:  3 # Physical Accuracy Bonus
+        racc: 3 # Physical Accuracy Bonus
       45:
         meva: 6 # Magic Evasion Bonus
       50:
@@ -1050,15 +1050,15 @@ job_points:
       205:
         capacity_bonus: 15 # Capacity Point Bonus
       210:
-        att:  23 # Attack Bonus
-        ratt: 23 # Ranged Attack Bonus
+        att:  23 # Physical Attack Bonus
+        ratt: 23 # Physical Attack Bonus
       245:
         eva: 5 # Physical Evasion Bonus
       275:
         capacity_bonus: 17 # Capacity Point Bonus
       280:
-        acc:  5 # Accuracy Bonus
-        racc: 5 # Ranged Accuracy Bonus
+        acc:  5 # Physical Accuracy Bonus
+        racc: 5 # Physical Accuracy Bonus
       320:
         meva: 9 # Magic Evasion Bonus
       355:
@@ -1084,15 +1084,15 @@ job_points:
       655:
         capacity_bonus: 25 # Capacity Point Bonus
       660:
-        att:  30 # Attack Bonus
-        ratt: 30 # Ranged Attack Bonus
+        att:  30 # Physical Attack Bonus
+        ratt: 30 # Physical Attack Bonus
       720:
         eva: 6 # Physical Evasion Bonus
       775:
         capacity_bonus: 27 # Capacity Point Bonus
       780:
-        acc:  6 # Accuracy Bonus
-        racc: 6 # Ranged Accuracy Bonus
+        acc:  6 # Physical Accuracy Bonus
+        racc: 6 # Physical Accuracy Bonus
       845:
         meva: 12 # Magic Evasion Bonus
       905:
@@ -1117,13 +1117,13 @@ job_points:
       1355:
         capacity_bonus: 35 # Capacity Point Bonus
       1360:
-        att:  38 # Attack Bonus
-        ratt: 38 # Ranged Attack Bonus
+        att:  38 # Physical Attack Bonus
+        ratt: 38 # Physical Attack Bonus
       1445:
         eva: 8 # Physical Evasion Bonus
       1530:
-        acc:  8 # Accuracy Bonus
-        racc: 8 # Ranged Accuracy Bonus
+        acc:  8 # Physical Accuracy Bonus
+        racc: 8 # Physical Accuracy Bonus
       1620:
         meva: 15 # Magic Evasion Bonus
       1710:
@@ -1136,7 +1136,7 @@ job_points:
         all_wsdmg_all_hits: 2 # Weapon Skill Damage Bonus
       2100:
         superior_level:   1 # Superior 5
-        one_hour_recast: 15 # 1 Hour Delay
+        one_hour_recast: 15 # ★Master!
 
   bst:
     categories:
@@ -1156,15 +1156,15 @@ job_points:
         def:            10 # Physical Defense Bonus
         capacity_bonus:  5 # Capacity Point Bonus
       10:
-        att:  10 # Attack Bonus
-        ratt: 10 # Ranged Attack Bonus
+        att:  10 # Physical Attack Bonus
+        ratt: 10 # Physical Attack Bonus
       20:
         eva: 5 # Physical Evasion Bonus
       25:
         capacity_bonus: 7 # Capacity Point Bonus
       30:
-        acc:  5 # Accuracy Bonus
-        racc: 5 # Ranged Accuracy Bonus
+        acc:  5 # Physical Accuracy Bonus
+        racc: 5 # Physical Accuracy Bonus
       45:
         meva: 5 # Magic Evasion Bonus
       50:
@@ -1174,7 +1174,7 @@ job_points:
       60:
         macc: 5 # Magic Accuracy Bonus
       80:
-        pet_atk_def: 15 # Familiar Physical Attack and Physical Defense Bonus
+        pet_atk_def: 15 # Familiar Phys. Atk. and Def. Bonus
       95:
         capacity_bonus: 11 # Capacity Point Bonus
       100:
@@ -1191,15 +1191,15 @@ job_points:
       205:
         capacity_bonus: 15 # Capacity Point Bonus
       210:
-        att:  15 # Attack Bonus
-        ratt: 15 # Ranged Attack Bonus
+        att:  15 # Physical Attack Bonus
+        ratt: 15 # Physical Attack Bonus
       245:
         eva: 8 # Physical Evasion Bonus
       275:
         capacity_bonus: 17 # Capacity Point Bonus
       280:
-        acc:  8 # Accuracy Bonus
-        racc: 8 # Ranged Accuracy Bonus
+        acc:  8 # Physical Accuracy Bonus
+        racc: 8 # Physical Accuracy Bonus
       320:
         meva: 8 # Magic Evasion Bonus
       355:
@@ -1218,21 +1218,21 @@ job_points:
       545:
         capacity_bonus: 23 # Capacity Point Bonus
       550:
-        pet_attr_bonus: 8 # Pet Attribute Bonus
+        pet_attr_bonus: 8 # Familiar Attribute Bonus
       605:
         def: 20 # Physical Defense Bonus
       655:
         capacity_bonus: 25 # Capacity Point Bonus
       660:
-        att:  20 # Attack Bonus
-        ratt: 20 # Ranged Attack Bonus
+        att:  20 # Physical Attack Bonus
+        ratt: 20 # Physical Attack Bonus
       720:
         eva: 10 # Physical Evasion Bonus
       775:
         capacity_bonus: 27 # Capacity Point Bonus
       780:
-        acc:  10 # Accuracy Bonus
-        racc: 10 # Ranged Accuracy Bonus
+        acc:  10 # Physical Accuracy Bonus
+        racc: 10 # Physical Accuracy Bonus
       845:
         meva: 10 # Magic Evasion Bonus
       905:
@@ -1257,13 +1257,13 @@ job_points:
       1355:
         capacity_bonus: 35 # Capacity Point Bonus
       1360:
-        att:  25 # Attack Bonus
-        ratt: 25 # Ranged Attack Bonus
+        att:  25 # Physical Attack Bonus
+        ratt: 25 # Physical Attack Bonus
       1445:
         eva: 13 # Physical Evasion Bonus
       1530:
-        acc:  13 # Accuracy Bonus
-        racc: 13 # Ranged Accuracy Bonus
+        acc:  13 # Physical Accuracy Bonus
+        racc: 13 # Physical Accuracy Bonus
       1620:
         meva: 13 # Magic Evasion Bonus
       1710:
@@ -1276,7 +1276,7 @@ job_points:
         fencer_tp_bonus: 70 # Fencer Effect
       2100:
         superior_level:   1 # Superior 5
-        one_hour_recast: 15 # 1 Hour Delay
+        one_hour_recast: 15 # ★Master!
 
   brd:
     categories:
@@ -1298,8 +1298,8 @@ job_points:
       10:
         eva: 3 # Physical Evasion Bonus
       20:
-        acc:  2 # Accuracy Bonus
-        racc: 2 # Ranged Accuracy Bonus
+        acc:  2 # Physical Accuracy Bonus
+        racc: 2 # Physical Accuracy Bonus
       25:
         capacity_bonus: 7 # Capacity Point Bonus
       30:
@@ -1340,8 +1340,8 @@ job_points:
       210:
         eva: 5 # Physical Evasion Bonus
       245:
-        acc:  5 # Accuracy Bonus
-        racc: 5 # Ranged Accuracy Bonus
+        acc:  5 # Physical Accuracy Bonus
+        racc: 5 # Physical Accuracy Bonus
       275:
         capacity_bonus: 17 # Capacity Point Bonus
       280:
@@ -1372,8 +1372,8 @@ job_points:
       660:
         eva: 6 # Physical Evasion Bonus
       720:
-        acc:  6 # Accuracy Bonus
-        racc: 6 # Ranged Accuracy Bonus
+        acc:  6 # Physical Accuracy Bonus
+        racc: 6 # Physical Accuracy Bonus
       775:
         capacity_bonus: 27 # Capacity Point Bonus
       780:
@@ -1404,8 +1404,8 @@ job_points:
       1360:
         eva: 8 # Physical Evasion Bonus
       1445:
-        acc:  8 # Accuracy Bonus
-        racc: 8 # Ranged Accuracy Bonus
+        acc:  8 # Physical Accuracy Bonus
+        racc: 8 # Physical Accuracy Bonus
       1530:
         mdef: 5 # Magic Defense Bonus
       1620:
@@ -1420,7 +1420,7 @@ job_points:
         wind: 13 # Wind Instrument Skill Bonus
       2100:
         superior_level:   1 # Superior 5
-        one_hour_recast: 15 # 1 Hour Delay
+        one_hour_recast: 15 # ★Master!
 
   rng:
     categories:
@@ -1440,15 +1440,15 @@ job_points:
         def:            3 # Physical Defense Bonus
         capacity_bonus: 5 # Capacity Point Bonus
       10:
-        att:  10 # Attack Bonus
-        ratt: 10 # Ranged Attack Bonus
+        att:  10 # Physical Attack Bonus
+        ratt: 10 # Physical Attack Bonus
       20:
         eva: 2 # Physical Evasion Bonus
       25:
         capacity_bonus: 7 # Capacity Point Bonus
       30:
-        acc:  10 # Accuracy Bonus
-        racc: 10 # Ranged Accuracy Bonus
+        acc:  10 # Physical Accuracy Bonus
+        racc: 10 # Physical Accuracy Bonus
       45:
         meva: 5 # Magic Evasion Bonus
       50:
@@ -1458,7 +1458,7 @@ job_points:
       60:
         macc: 5 # Magic Accuracy Bonus
       80:
-        conserve_tp: 3 # Conserve TP Effect Bonus
+        conserve_tp: 3 # "Conserve TP" Effect
       95:
         capacity_bonus: 11 # Capacity Point Bonus
       100:
@@ -1475,15 +1475,15 @@ job_points:
       205:
         capacity_bonus: 15 # Capacity Point Bonus
       210:
-        att:  15 # Attack Bonus
-        ratt: 15 # Ranged Attack Bonus
+        att:  15 # Physical Attack Bonus
+        ratt: 15 # Physical Attack Bonus
       245:
         eva: 3 # Physical Evasion Bonus
       275:
         capacity_bonus: 17 # Capacity Point Bonus
       280:
-        acc:  15 # Accuracy Bonus
-        racc: 15 # Ranged Accuracy Bonus
+        acc:  15 # Physical Accuracy Bonus
+        racc: 15 # Physical Accuracy Bonus
       320:
         meva: 8 # Magic Evasion Bonus
       355:
@@ -1491,7 +1491,7 @@ job_points:
       360:
         macc: 8 # Magic Accuracy Bonus
       405:
-        conserve_tp: 3 # Conserve TP Effect Bonus
+        conserve_tp: 3 # "Conserve TP" Effect Bonus
       445:
         capacity_bonus: 21 # Capacity Point Bonus
       450:
@@ -1508,15 +1508,15 @@ job_points:
       655:
         capacity_bonus: 25 # Capacity Point Bonus
       660:
-        att:  20 # Attack Bonus
-        ratt: 20 # Ranged Attack Bonus
+        att:  20 # Physical Attack Bonus
+        ratt: 20 # Physical Attack Bonus
       720:
         eva: 4 # Physical Evasion Bonus
       775:
         capacity_bonus: 27 # Capacity Point Bonus
       780:
-        acc:  20 # Accuracy Bonus
-        racc: 20 # Ranged Accuracy Bonus
+        acc:  20 # Physical Accuracy Bonus
+        racc: 20 # Physical Accuracy Bonus
       845:
         meva: 10 # Magic Evasion Bonus
       905:
@@ -1524,7 +1524,7 @@ job_points:
       910:
         macc: 10 # Magic Accuracy Bonus
       980:
-        conserve_tp: 4 # Conserve TP Effect Bonus
+        conserve_tp: 4 # "Conserve TP" Effect
       1045:
         capacity_bonus: 31 # Capacity Point Bonus
       1050:
@@ -1541,26 +1541,26 @@ job_points:
       1355:
         capacity_bonus: 35 # Capacity Point Bonus
       1360:
-        att:  25 # Attack Bonus
-        ratt: 25 # Ranged Attack Bonus
+        att:  25 # Physical Attack Bonus
+        ratt: 25 # Physical Attack Bonus
       1445:
         eva: 5 # Physical Evasion Bonus
       1530:
-        acc:  25 # Accuracy Bonus
-        racc: 25 # Ranged Accuracy Bonus
+        acc:  25 # Physical Accuracy Bonus
+        racc: 25 # Physical Accuracy Bonus
       1620:
         meva: 13 # Magic Evasion Bonus
       1710:
         macc: 13 # Magic Accuracy Bonus
       1805:
-        conserve_tp: 5 # Conserve TP Effect Bonus
+        conserve_tp: 5 # "Conserve TP" Effect
       1900:
         true_shot_effect: 2 # True Shot Effect
       2000:
         dead_aim_effect: 2 # Dead Aim Effect
       2100:
         superior_level:   1 # Superior 5
-        one_hour_recast: 15 # 1 Hour Delay
+        one_hour_recast: 15 # ★Master!
 
   sam:
     categories:
@@ -1580,15 +1580,15 @@ job_points:
         def:            10 # Physical Defense Bonus
         capacity_bonus:  5 # Capacity Point Bonus
       10:
-        att:  10 # Attack Bonus
-        ratt: 10 # Ranged Attack Bonus
+        att:  10 # Physical Attack Bonus
+        ratt: 10 # Physical Attack Bonus
       20:
         eva: 5 # Physical Evasion Bonus
       25:
         capacity_bonus: 7 # Capacity Point Bonus
       30:
-        acc:  5 # Accuracy Bonus
-        racc: 5 # Ranged Accuracy Bonus
+        acc:  5 # Physical Accuracy Bonus
+        racc: 5 # Physical Accuracy Bonus
       45:
         meva: 5 # Magic Evasion Bonus
       50:
@@ -1598,7 +1598,7 @@ job_points:
       60:
         macc: 5 # Magic Accuracy Bonus
       80:
-        zanshin: 2 # Zanshin Effect Bonus
+        zanshin: 2 # "Zanshin" Chance Bonus
       95:
         capacity_bonus: 11 # Capacity Point Bonus
       100:
@@ -1615,15 +1615,15 @@ job_points:
       205:
         capacity_bonus: 15 # Capacity Point Bonus
       210:
-        att:  15 # Attack Bonus
-        ratt: 15 # Ranged Attack Bonus
+        att:  15 # Physical Attack Bonus
+        ratt: 15 # Physical Attack Bonus
       245:
         eva: 8 # Physical Evasion Bonus
       275:
         capacity_bonus: 17 # Capacity Point Bonus
       280:
-        acc:  8 # Accuracy Bonus
-        racc: 8 # Ranged Accuracy Bonus
+        acc:  8 # Physical Accuracy Bonus
+        racc: 8 # Physical Accuracy Bonus
       320:
         meva: 8 # Magic Evasion Bonus
       355:
@@ -1631,7 +1631,7 @@ job_points:
       360:
         macc: 8 # Magic Accuracy Bonus
       405:
-        zanshin: 2 # Zanshin Chance Bonus
+        zanshin: 2 # "Zanshin" Chance Bonus
       445:
         capacity_bonus: 21 # Capacity Point Bonus
       450:
@@ -1648,15 +1648,15 @@ job_points:
       655:
         capacity_bonus: 25 # Capacity Point Bonus
       660:
-        att:  20 # Attack Bonus
-        ratt: 20 # Ranged Attack Bonus
+        att:  20 # Physical Attack Bonus
+        ratt: 20 # Physical Attack Bonus
       720:
         eva: 10 # Physical Evasion Bonus
       775:
         capacity_bonus: 27 # Capacity Point Bonus
       780:
-        acc:  10 # Accuracy Bonus
-        racc: 10 # Ranged Accuracy Bonus
+        acc:  10 # Physical Accuracy Bonus
+        racc: 10 # Physical Accuracy Bonus
       845:
         meva: 10 # Magic Evasion Bonus
       905:
@@ -1664,7 +1664,7 @@ job_points:
       910:
         macc: 10 # Magic Accuracy Bonus
       980:
-        zanshin: 3 # Zanshin Chance Bonus
+        zanshin: 3 # "Zanshin" Chance
       1045:
         capacity_bonus: 31 # Capacity Point Bonus
       1050:
@@ -1681,26 +1681,26 @@ job_points:
       1355:
         capacity_bonus: 35 # Capacity Point Bonus
       1360:
-        att:  25 # Attack Bonus
-        ratt: 25 # Ranged Attack Bonus
+        att:  25 # Physical Attack Bonus
+        ratt: 25 # Physical Attack Bonus
       1445:
         eva: 13 # Physical Evasion Bonus
       1530:
-        acc:  13 # Accuracy Bonus
-        racc: 13 # Ranged Accuracy Bonus
+        acc:  13 # Physical Accuracy Bonus
+        racc: 13 # Physical Accuracy Bonus
       1620:
         meva: 13 # Magic Evasion Bonus
       1710:
         macc: 13 # Magic Accuracy Bonus
       1805:
-        zanshin: 3 # Zanshin Chance Bonus
+        zanshin: 3 # "Zanshin" Chance
       1900:
         storetp: 2 # Store TP Effect
       2000:
         skillchainbonus: 2 # Skillchain Bonus
       2100:
         superior_level:   1 # Superior 5
-        one_hour_recast: 15 # 1 Hour Delay
+        one_hour_recast: 15 # ★Master!
 
   nin:
     categories:
@@ -1720,15 +1720,15 @@ job_points:
         def:            8 # Physical Defense Bonus
         capacity_bonus: 5 # Capacity Point Bonus
       10:
-        att:  10 # Attack Bonus
-        ratt: 10 # Ranged Attack Bonus
+        att:  10 # Physical Attack Bonus
+        ratt: 10 # Physical Attack Bonus
       20:
         eva: 9 # Physical Evasion Bonus
       25:
         capacity_bonus: 7 # Capacity Point Bonus
       30:
-        acc:  8 # Accuracy Bonus
-        racc: 8 # Ranged Accuracy Bonus
+        acc:  8 # Physical Accuracy Bonus
+        racc: 8 # Physical Accuracy Bonus
       45:
         matt: 4 # Magic Attack Bonus
       50:
@@ -1756,15 +1756,15 @@ job_points:
       205:
         capacity_bonus: 15 # Capacity Point Bonus
       210:
-        att:  15 # Attack Bonus
-        ratt: 15 # Ranged Attack Bonus
+        att:  15 # Physical Attack Bonus
+        ratt: 15 # Physical Attack Bonus
       245:
         eva: 14 # Physical Evasion Bonus
       275:
         capacity_bonus: 17 # Capacity Point Bonus
       280:
-        acc:  12 # Accuracy Bonus
-        racc: 12 # Ranged Accuracy Bonus
+        acc:  12 # Physical Accuracy Bonus
+        racc: 12 # Physical Accuracy Bonus
       320:
         matt: 6 # Magic Attack Bonus
       355:
@@ -1789,15 +1789,15 @@ job_points:
       655:
         capacity_bonus: 25 # Capacity Point Bonus
       660:
-        att:  20 # Attack Bonus
-        ratt: 20 # Ranged Attack Bonus
+        att:  20 # Physical Attack Bonus
+        ratt: 20 # Physical Attack Bonus
       720:
         eva: 18 # Physical Evasion Bonus
       775:
         capacity_bonus: 27 # Capacity Point Bonus
       780:
-        acc:  16 # Accuracy Bonus
-        racc: 16 # Ranged Accuracy Bonus
+        acc:  16 # Physical Accuracy Bonus
+        racc: 16 # Physical Accuracy Bonus
       845:
         matt: 8 # Magic Attack Bonus
       905:
@@ -1822,13 +1822,13 @@ job_points:
       1355:
         capacity_bonus: 35 # Capacity Point Bonus
       1360:
-        att:  25 # Attack Bonus
-        ratt: 25 # Ranged Attack Bonus
+        att:  25 # Physical Attack Bonus
+        ratt: 25 # Physical Attack Bonus
       1445:
         eva: 23 # Physical Evasion Bonus
       1530:
-        acc:  20 # Accuracy Bonus
-        racc: 20 # Ranged Accuracy Bonus
+        acc:  20 # Physical Accuracy Bonus
+        racc: 20 # Physical Accuracy Bonus
       1620:
         matt: 10 # Magic Attack Bonus
       1710:
@@ -1841,7 +1841,7 @@ job_points:
         daken: 5 # Daken Effect
       2100:
         superior_level:   1 # Superior 5
-        one_hour_recast: 15 # 1 Hour Delay
+        one_hour_recast: 15 # ★Master!
 
   drg:
     categories:
@@ -1861,15 +1861,15 @@ job_points:
         def:            10 # Physical Defense Bonus
         capacity_bonus:  5 # Capacity Point Bonus
       10:
-        att:  10 # Attack Bonus
-        ratt: 10 # Ranged Attack Bonus
+        att:  10 # Physical Attack Bonus
+        ratt: 10 # Physical Attack Bonus
       20:
         eva: 5 # Physical Evasion Bonus
       25:
         capacity_bonus: 7 # Capacity Point Bonus
       30:
-        acc:  9 # Accuracy Bonus
-        racc: 9 # Ranged Accuracy Bonus
+        acc:  9 # Physical Accuracy Bonus
+        racc: 9 # Physical Accuracy Bonus
       45:
         meva: 5 # Magic Evasion Bonus
       50:
@@ -1896,15 +1896,15 @@ job_points:
       205:
         capacity_bonus: 15 # Capacity Point Bonus
       210:
-        att:  15 # Attack Bonus
-        ratt: 15 # Ranged Attack Bonus
+        att:  15 # Physical Attack Bonus
+        ratt: 15 # Physical Attack Bonus
       245:
         eva: 8 # Physical Evasion Bonus
       275:
         capacity_bonus: 17 # Capacity Point Bonus
       280:
-        acc:  14 # Accuracy Bonus
-        racc: 14 # Ranged Accuracy Bonus
+        acc:  14 # Physical Accuracy Bonus
+        racc: 14 # Physical Accuracy Bonus
       320:
         meva: 8 # Magic Evasion Bonus
       355:
@@ -1929,15 +1929,15 @@ job_points:
       655:
         capacity_bonus: 25 # Capacity Point Bonus
       660:
-        att:  20 # Attack Bonus
-        ratt: 20 # Ranged Attack Bonus
+        att:  20 # Physical Attack Bonus
+        ratt: 20 # Physical Attack Bonus
       720:
         eva: 10 # Physical Evasion Bonus
       775:
         capacity_bonus: 27 # Capacity Point Bonus
       780:
-        acc:  18 # Accuracy Bonus
-        racc: 18 # Ranged Accuracy Bonus
+        acc:  18 # Physical Accuracy Bonus
+        racc: 18 # Physical Accuracy Bonus
       845:
         meva: 10 # Magic Evasion Bonus
       905:
@@ -1962,13 +1962,13 @@ job_points:
       1355:
         capacity_bonus: 35 # Capacity Point Bonus
       1360:
-        att:  25 # Attack Bonus
-        ratt: 25 # Ranged Attack Bonus
+        att:  25 # Physical Attack Bonus
+        ratt: 25 # Physical Attack Bonus
       1445:
         eva: 13 # Physical Evasion Bonus
       1530:
-        acc:  23 # Accuracy Bonus
-        racc: 23 # Ranged Accuracy Bonus
+        acc:  23 # Physical Accuracy Bonus
+        racc: 23 # Physical Accuracy Bonus
       1620:
         meva: 13 # Magic Evasion Bonus
       1710:
@@ -1981,7 +1981,7 @@ job_points:
         pet_macc_meva: 25 # Wyvern Mag. Acc. and Eva. Bonus
       2100:
         superior_level:   1 # Superior 5
-        one_hour_recast: 15 # 1 Hour Delay
+        one_hour_recast: 15 # ★Master!
 
   smn:
     categories:
@@ -2024,7 +2024,7 @@ job_points:
         bp_delay:       5 # Blood Pact Recast Time
         superior_level: 1 # Superior 2
       125:
-        pet_macc_meva: 10 # Spirit/Avatar Mag. Acc. & Eva. Bonus
+        pet_macc_meva: 10 # Avatar/Spirit Mag. Acc. & Eva. Bonus
       145:
         capacity_bonus: 13 # Capacity Point Bonus
       150:
@@ -2052,7 +2052,7 @@ job_points:
       445:
         capacity_bonus: 21 # Capacity Point Bonus
       450:
-        pet_macc_meva: 15 # Avatar/Spirit Mac. Acc. & Eva. Bonus
+        pet_macc_meva: 15 # Avatar/Spirit Mag. Acc. & Eva. Bonus
       500:
         summoning:      8 # Summoning Magic Skill Bonus
         superior_level: 1 # Superior 3
@@ -2113,7 +2113,7 @@ job_points:
         summoning: 13 # Summoning Magic Skill Bonus
       2100:
         superior_level:   1 # Superior 5
-        one_hour_recast: 15 # 1 Hour Delay
+        one_hour_recast: 15 # ★Master!
 
   blu:
     categories:
@@ -2133,15 +2133,15 @@ job_points:
         def:            10 # Physical Defense Bonus
         capacity_bonus:  5 # Capacity Point Bonus
       10:
-        att:  10 # Attack Bonus
-        ratt: 10 # Ranged Attack Bonus
+        att:  10 # Physical Attack Bonus
+        ratt: 10 # Physical Attack Bonus
       20:
         eva: 5 # Physical Evasion Bonus
       25:
         capacity_bonus: 7 # Capacity Point Bonus
       30:
-        acc:  5 # Accuracy Bonus
-        racc: 5 # Ranged Accuracy Bonus
+        acc:  5 # Physical Accuracy Bonus
+        racc: 5 # Physical Accuracy Bonus
       45:
         mdef: 5 # Magic Defense Bonus
       50:
@@ -2168,15 +2168,15 @@ job_points:
       205:
         capacity_bonus: 15 # Capacity Point Bonus
       210:
-        att:  15 # Attack Bonus
-        ratt: 15 # Ranged Attack Bonus
+        att:  15 # Physical Attack Bonus
+        ratt: 15 # Physical Attack Bonus
       245:
         eva: 8 # Physical Evasion Bonus
       275:
         capacity_bonus: 17 # Capacity Point Bonus
       280:
-        acc:  8 # Accuracy Bonus
-        racc: 8 # Ranged Accuracy Bonus
+        acc:  8 # Physical Accuracy Bonus
+        racc: 8 # Physical Accuracy Bonus
       320:
         mdef: 8 # Magic Defense Bonus
       355:
@@ -2201,15 +2201,15 @@ job_points:
       655:
         capacity_bonus: 25 # Capacity Point Bonus
       660:
-        att:  20 # Attack Bonus
-        ratt: 20 # Ranged Attack Bonus
+        att:  20 # Physical Attack Bonus
+        ratt: 20 # Physical Attack Bonus
       720:
         eva: 10 # Physical Evasion Bonus
       775:
         capacity_bonus: 27 # Capacity Point Bonus
       780:
-        acc:  10 # Accuracy Bonus
-        racc: 10 # Ranged Accuracy Bonus
+        acc:  10 # Physical Accuracy Bonus
+        racc: 10 # Physical Accuracy Bonus
       845:
         mdef: 10 # Magic Defense Bonus
       905:
@@ -2228,19 +2228,19 @@ job_points:
         capacity_bonus: 33 # Capacity Point Bonus
       1200:
         superior_level:       1 # Superior 4
-        blue_job_trait_bonus: 1 # Jobs Trait Bonus
+        blue_job_trait_bonus: 1 # Job Trait Bonus
       1280:
         def: 25 # Physical Defense Bonus
       1355:
         capacity_bonus: 35 # Capacity Point Bonus
       1360:
-        att:  25 # Attack Bonus
-        ratt: 25 # Ranged Attack Bonus
+        att:  25 # Physical Attack Bonus
+        ratt: 25 # Physical Attack Bonus
       1445:
         eva: 13 # Physical Evasion Bonus
       1530:
-        acc:  13 # Accuracy Bonus
-        racc: 13 # Ranged Accuracy Bonus
+        acc:  13 # Physical Accuracy Bonus
+        racc: 13 # Physical Accuracy Bonus
       1620:
         mdef: 13 # Magic Defense Bonus
       1710:
@@ -2253,7 +2253,7 @@ job_points:
         blue: 13 # Blue Magic Skill Bonus
       2100:
         superior_level:   1 # Superior 5
-        one_hour_recast: 15 # 1 Hour Delay
+        one_hour_recast: 15 # ★Master!
 
   cor:
     categories:
@@ -2273,15 +2273,15 @@ job_points:
         def:            3 # Physical Defense Bonus
         capacity_bonus: 5 # Capacity Point Bonus
       10:
-        att:  5 # Attack Bonus
-        ratt: 5 # Ranged Attack Bonus
+        att:  5 # Physical Attack Bonus
+        ratt: 5 # Physical Attack Bonus
       20:
         eva: 3 # Physical Evasion Bonus
       25:
         capacity_bonus: 7 # Capacity Point Bonus
       30:
-        acc:  5 # Accuracy Bonus
-        racc: 5 # Ranged Accuracy Bonus
+        acc:  5 # Physical Accuracy Bonus
+        racc: 5 # Physical Accuracy Bonus
       45:
         matt: 2 # Magic Attack Bonus
       50:
@@ -2308,15 +2308,15 @@ job_points:
       205:
         capacity_bonus: 15 # Capacity Point Bonus
       210:
-        att:  8 # Attack Bonus
-        ratt: 8 # Ranged Attack Bonus
+        att:  8 # Physical Attack Bonus
+        ratt: 8 # Physical Attack Bonus
       245:
         eva: 5 # Physical Evasion Bonus
       275:
         capacity_bonus: 17 # Capacity Point Bonus
       280:
-        acc:  8 # Accuracy Bonus
-        racc: 8 # Ranged Accuracy Bonus
+        acc:  8 # Physical Accuracy Bonus
+        racc: 8 # Physical Accuracy Bonus
       320:
         matt: 3 # Magic Attack Bonus
       355:
@@ -2341,15 +2341,15 @@ job_points:
       655:
         capacity_bonus: 25 # Capacity Point Bonus
       660:
-        att:  10 # Attack Bonus
-        ratt: 10 # Ranged Attack Bonus
+        att:  10 # Physical Attack Bonus
+        ratt: 10 # Physical Attack Bonus
       720:
         eva: 6 # Physical Evasion Bonus
       775:
         capacity_bonus: 27 # Capacity Point Bonus
       780:
-        acc:  10 # Accuracy Bonus
-        racc: 10 # Ranged Accuracy Bonus
+        acc:  10 # Physical Accuracy Bonus
+        racc: 10 # Physical Accuracy Bonus
       845:
         matt: 4 # Magic Attack Bonus
       905:
@@ -2374,13 +2374,13 @@ job_points:
       1355:
         capacity_bonus: 35 # Capacity Point Bonus
       1360:
-        att:  13 # Attack Bonus
-        ratt: 13 # Ranged Attack Bonus
+        att:  13 # Physical Attack Bonus
+        ratt: 13 # Physical Attack Bonus
       1445:
         eva: 8 # Physical Evasion Bonus
       1530:
-        acc:  13 # Accuracy Bonus
-        racc: 13 # Ranged Accuracy Bonus
+        acc:  13 # Physical Accuracy Bonus
+        racc: 13 # Physical Accuracy Bonus
       1620:
         matt: 5 # Magic Attack Bonus
       1710:
@@ -2393,7 +2393,7 @@ job_points:
         true_shot_effect: 2 # True Shot Effect
       2100:
         superior_level:   1 # Superior 5
-        one_hour_recast: 15 # 1 Hour Delay
+        one_hour_recast: 15 # ★Master!
 
   pup:
     categories:
@@ -2410,14 +2410,14 @@ job_points:
 
     gifts:
       5:
-        att:            6 # Attack Bonus
-        ratt:           6 # Ranged Attack Bonus
+        att:            6 # Physical Attack Bonus
+        ratt:           6 # Physical Attack Bonus
         capacity_bonus: 5 # Capacity Point Bonus
       10:
         eva: 8 # Physical Evasion Bonus
       20:
-        acc:  7 # Accuracy Bonus
-        racc: 7 # Ranged Accuracy Bonus
+        acc:  7 # Physical Accuracy Bonus
+        racc: 7 # Physical Accuracy Bonus
       25:
         capacity_bonus: 7 # Capacity Point Bonus
       30:
@@ -2429,9 +2429,9 @@ job_points:
       55:
         capacity_bonus: 9 # Capacity Point Bonus
       60:
-        pet_atk_def: 15 # Automaton Physical Attack and Defense Bonus
+        pet_atk_def: 15 # Automaton Phys. Atk. and Def. Bonus
       80:
-        pet_acc_eva: 10 # Automaton Physical Accuracy and Physical Evasion Bonus
+        pet_acc_eva: 10 # Automaton Phys. Acc. and Eva. Bonus
       95:
         capacity_bonus: 11 # Capacity Point Bonus
       100:
@@ -2444,15 +2444,15 @@ job_points:
       150:
         pet_macc_meva: 10 # Automaton Mag. Acc. and Eva. Bonus
       180:
-        att:  9 # Attack Bonus
-        ratt: 9 # Ranged Attack Bonus
+        att:  9 # Physical Attack Bonus
+        ratt: 9 # Physical Attack Bonus
       205:
         capacity_bonus: 15 # Capacity Point Bonus
       210:
         eva: 12 # Physical Evasion Bonus
       245:
-        acc:  11 # Accuracy Bonus
-        racc: 11 # Ranged Accuracy Bonus
+        acc:  11 # Physical Accuracy Bonus
+        racc: 11 # Physical Accuracy Bonus
       275:
         capacity_bonus: 17 # Capacity Point Bonus
       280:
@@ -2477,48 +2477,48 @@ job_points:
       550:
         martial_arts: 5 # Martial Arts Effect
       605:
-        att:  12 # Attack Bonus
-        ratt: 12 # Ranged Attack Bonus
+        att:  12 # Physical Attack Bonus
+        ratt: 12 # Physical Attack Bonus
       655:
         capacity_bonus: 25 # Capacity Point Bonus
       660:
         eva: 16 # Physical Evasion Bonus
       720:
-        acc:  14 # Accuracy Bonus
-        racc: 14 # Ranged Accuracy Bonus
+        acc:  14 # Physical Accuracy Bonus
+        racc: 14 # Physical Accuracy Bonus
       775:
         capacity_bonus: 27 # Capacity Point Bonus
       780:
         meva: 10 # Magic Evasion Bonus
       845:
-        macc: 10 # Magic Accuracy bonus
+        macc: 10 # Magic Accuracy Bonus
       905:
         capacity_bonus: 29 # Capacity Point Bonus
       910:
-        pet_atk_def: 30 # Automation Phys. Atk. and Def. Bonus
+        pet_atk_def: 30 # Automaton Phys. Atk. and Def. Bonus
       980:
-        pet_acc_eva: 20 # Automation Phys. Acc. and Eva. Bonus
+        pet_acc_eva: 20 # Automaton Phys. Acc. and Eva. Bonus
       1045:
         capacity_bonus: 31 # Capacity Point Bonus
       1050:
-        pet_mab_mdb: 10 # Automation Mag. Atk. and Def. Bonus
+        pet_mab_mdb: 10 # Automaton Mag. Atk. and Def. Bonus
       1125:
-        pet_macc_meva: 20 # Automation Mag. Acc. and Eva. Bonus
+        pet_macc_meva: 20 # Automaton Mag. Acc. and Eva. Bonus
       1195:
         capacity_bonus: 33 # Capacity Point Bonus
       1200:
         superior_level:     1 # Superior 4
-        auto_elem_capacity: 2 # Automation Elemental Capacity Bonus
+        auto_elem_capacity: 2 # Automaton Elemental Capacity Bonus
       1280:
-        att:  15 # Attack Bonus
-        ratt: 15 # Ranged Attack Bonus
+        att:  15 # Physical Attack Bonus
+        ratt: 15 # Physical Attack Bonus
       1355:
         capacity_bonus: 35 # Capacity Point Bonus
       1360:
         eva: 20 # Physical Evasion Bonus
       1445:
-        acc:  18 # Accuracy Bonus
-        racc: 18 # Ranged Accuracy Bonus
+        acc:  18 # Physical Accuracy Bonus
+        racc: 18 # Physical Accuracy Bonus
       1530:
         meva: 13 # Magic Evasion Bonus
       1620:
@@ -2533,7 +2533,7 @@ job_points:
         pet_macc_meva: 25 # Automaton Mag. Acc. and Eva. Bonus
       2100:
         superior_level:   1 # Superior 5
-        one_hour_recast: 15 # 1 Hour Delay
+        one_hour_recast: 15 # ★Master!
 
   dnc:
     categories:
@@ -2553,15 +2553,15 @@ job_points:
         def:            6 # Physical Defense Bonus
         capacity_bonus: 5 # Capacity Point Bonus
       10:
-        att:  6 # Attack Bonus
-        ratt: 6 # Ranged Attack Bonus
+        att:  6 # Physical Attack Bonus
+        ratt: 6 # Physical Attack Bonus
       20:
         eva: 9 # Physical Evasion Bonus
       25:
         capacity_bonus: 7 # Capacity Point Bonus
       30:
-        acc:  9 # Accuracy Bonus
-        racc: 9 # Ranged Accuracy Bonus
+        acc:  9 # Physical Accuracy Bonus
+        racc: 9 # Physical Accuracy Bonus
       45:
         meva: 5 # Magic Evasion Bonus
       50:
@@ -2571,7 +2571,7 @@ job_points:
       60:
         macc: 5 # Magic Accuracy Bonus
       80:
-        subtle_blow: 3 # "Subtle Blow" Effect Bonus
+        subtle_blow: 3 # Subtle Blow Effect
       95:
         capacity_bonus: 11 # Capacity Point Bonus
       100:
@@ -2588,15 +2588,15 @@ job_points:
       205:
         capacity_bonus: 15 # Capacity Point Bonus
       210:
-        att:  9 # Attack Bonus
-        ratt: 9 # Ranged Attack Bonus
+        att:  9 # Physical Attack Bonus
+        ratt: 9 # Physical Attack Bonus
       245:
         eva: 14 # Physical Evasion Bonus
       275:
         capacity_bonus: 17 # Capacity Point Bonus
       280:
-        acc:  14 # Accuracy Bonus
-        racc: 14 # Ranged Accuracy Bonus
+        acc:  14 # Physical Accuracy Bonus
+        racc: 14 # Physical Accuracy Bonus
       320:
         meva: 8 # Magic Evasion Bonus
       355:
@@ -2604,7 +2604,7 @@ job_points:
       360:
         macc: 8 # Magic Accuracy Bonus
       405:
-        subtle_blow: 3 # "Subtle Blow" Effect Bonus
+        subtle_blow: 3 # Subtle Blow Effect
       445:
         capacity_bonus: 21 # Capacity Point Bonus
       450:
@@ -2621,15 +2621,15 @@ job_points:
       655:
         capacity_bonus: 25 # Capacity Point Bonus
       660:
-        att:  12 # Attack Bonus
-        ratt: 12 # Ranged Attack Bonus
+        att:  12 # Physical Attack Bonus
+        ratt: 12 # Physical Attack Bonus
       720:
         eva: 18 # Physical Evasion Bonus
       775:
         capacity_bonus: 27 # Capacity Point Bonus
       780:
-        acc:  18 # Accuracy Bonus
-        racc: 18 # Ranged Accuracy Bonus
+        acc:  18 # Physical Accuracy Bonus
+        racc: 18 # Physical Accuracy Bonus
       845:
         meva: 10 # Magic Evasion Bonus
       905:
@@ -2637,7 +2637,7 @@ job_points:
       910:
         macc: 10 # Magic Accuracy Bonus
       980:
-        subtle_blow: 3 # "Subtle Blow" Effect Bonus
+        subtle_blow: 3 # Subtle Blow Effect
       1045:
         capacity_bonus: 31 # Capacity Point Bonus
       1050:
@@ -2654,26 +2654,26 @@ job_points:
       1355:
         capacity_bonus: 35 # Capacity Point Bonus
       1360:
-        att:  15 # Attack Bonus
-        ratt: 15 # Ranged Attack Bonus
+        att:  15 # Physical Attack Bonus
+        ratt: 15 # Physical Attack Bonus
       1445:
         eva: 23 # Physical Evasion Bonus
       1530:
-        acc:  23 # Accuracy Bonus
-        racc: 23 # Ranged Accuracy Bonus
+        acc:  23 # Physical Accuracy Bonus
+        racc: 23 # Physical Accuracy Bonus
       1620:
         meva: 13 # Magic Evasion Bonus
       1710:
         macc: 13 # Magic Accuracy Bonus
       1805:
-        subtle_blow: 4 # Subtle Blow Effect Bonus
+        subtle_blow: 4 # Subtle Blow Effect
       1900:
         crit_dmg_increase: 2 # Critical Damage Bonus
       2000:
         skillchainbonus: 2 # Skillchain Bonus
       2100:
         superior_level:   1 # Superior 5
-        one_hour_recast: 15 # 1 Hour Delay
+        one_hour_recast: 15 # ★Master!
 
   sch:
     categories:
@@ -2821,7 +2821,7 @@ job_points:
         magic_burst_bonus_uncapped: 4 # Magic Burst Damage Bonus
       2100:
         superior_level:   1 # Superior 5
-        one_hour_recast: 15 # 1 Hour Delay
+        one_hour_recast: 15 # ★Master!
 
   geo:
     categories:
@@ -2959,14 +2959,14 @@ job_points:
       1710:
         pet_atk_def: 13 # Handbell Skill Bonus
       1805:
-        elem: 13 # Elemental Skill Bonus
+        elem: 13 # Elemental Magic Skill Bonus
       1900:
         dark: 13 # Dark Magic Skill Bonus
       2000:
         magic_damage: 4 # Magic Damage Bonus
       2100:
         superior_level:   1 # Superior 5
-        one_hour_recast: 15 # 1 Hour Delay
+        one_hour_recast: 15 # ★Master!
 
   run:
     categories:
@@ -2986,15 +2986,15 @@ job_points:
         def:            5 # Physical Defense Bonus
         capacity_bonus: 5 # Capacity Point Bonus
       10:
-        att:  7 # Attack Bonus
-        ratt: 7 # Ranged Attack Bonus
+        att:  7 # Physical Attack Bonus
+        ratt: 7 # Physical Attack Bonus
       20:
         eva: 8 # Physical Evasion Bonus
       25:
         capacity_bonus: 7 # Capacity Point Bonus
       30:
-        acc:  8 # Accuracy Bonus
-        racc: 8 # Ranged Accuracy Bonus
+        acc:  8 # Physical Accuracy Bonus
+        racc: 8 # Physical Accuracy Bonus
       45:
         mdef: 8 # Magic Defense Bonus
       50:
@@ -3008,7 +3008,7 @@ job_points:
       95:
         capacity_bonus: 11 # Capacity Point Bonus
       100:
-        enh_magic_duration_rcvd: 10 # Enhancing Magic Received Duration
+        enh_magic_duration_rcvd: 10 # Enh. Magic Received Duration
         superior_level:           1 # Superior 2
       125:
         enhance: 5 # Enhancing Magic Skill Bonus
@@ -3021,15 +3021,15 @@ job_points:
       205:
         capacity_bonus: 15 # Capacity Point Bonus
       210:
-        att:  11 # Attack Bonus
-        ratt: 11 # Ranged Attack Bonus
+        att:  11 # Physical Attack Bonus
+        ratt: 11 # Physical Attack Bonus
       245:
         eva: 12 # Physical Evasion Bonus
       275:
         capacity_bonus: 17 # Capacity Point Bonus
       280:
-        acc:  12 # Accuracy Bonus
-        racc: 12 # Ranged Accuracy Bonus
+        acc:  12 # Physical Accuracy Bonus
+        racc: 12 # Physical Accuracy Bonus
       320:
         mdef: 12 # Magic Defense Bonus
       355:
@@ -3055,15 +3055,15 @@ job_points:
       655:
         capacity_bonus: 25 # Capacity Point Bonus
       660:
-        att:  14 # Attack Bonus
-        ratt: 14 # Ranged Attack Bonus
+        att:  14 # Physical Attack Bonus
+        ratt: 14 # Physical Attack Bonus
       720:
         eva: 16 # Physical Evasion Bonus
       775:
         capacity_bonus: 27 # Capacity Point Bonus
       780:
-        acc:  16 # Accuracy Bonus
-        racc: 16 # Ranged Accuracy Bonus
+        acc:  16 # Physical Accuracy Bonus
+        racc: 16 # Physical Accuracy Bonus
       845:
         mdef: 16 # Magic Defense Bonus
       905:
@@ -3088,13 +3088,13 @@ job_points:
       1355:
         capacity_bonus: 35 # Capacity Point Bonus
       1360:
-        att:  18 # Attack Bonus
-        ratt: 18 # Ranged Attack Bonus
+        att:  18 # Physical Attack Bonus
+        ratt: 18 # Physical Attack Bonus
       1445:
         eva: 20 # Physical Evasion Bonus
       1530:
-        acc:  20 # Accuracy Bonus
-        racc: 20 # Ranged Accuracy Bonus
+        acc:  20 # Physical Accuracy Bonus
+        racc: 20 # Physical Accuracy Bonus
       1620:
         mdef: 20 # Magic Defense Bonus
       1710:
@@ -3107,4 +3107,4 @@ job_points:
         inquartata: 2 # Inquartata Effect
       2100:
         superior_level:   1 # Superior 5
-        one_hour_recast: 15 # 1 Hour Delay
+        one_hour_recast: 15 # ★Master!
