@@ -20,14 +20,20 @@
 #include "entities/char_entity.h"
 
 #include "packets/s2c/0x0aa_magic_data.h"
-#include "spell.h"
 #include "utils/charutils.h"
 #include "utils/dataset_loader.h"
+
+#include <fmt/ranges.h>
+
+#include <set>
+#include <string>
+#include <unordered_map>
 
 namespace
 {
 
-xi::data::JobPoints jobPointData{};
+xi::data::JobPoints                     jobPointData{};
+std::unordered_map<std::string, uint16> giftSpellIds;
 
 } // namespace
 
@@ -294,12 +300,40 @@ namespace jobpointutils
 void LoadGifts()
 {
     jobPointData = xi::data::loadDataset<xi::data::datasets::job_points::Dataset>();
+
+    std::unordered_map<std::string, uint16> spellIds;
+    const auto                              rset = db::preparedStmt("SELECT spellid, name FROM spell_list");
+    FOR_DB_MULTIPLE_RESULTS(rset)
+    {
+        spellIds.emplace(rset->get<std::string>("name"), rset->get<uint16>("spellid"));
+    }
+
+    giftSpellIds.clear();
+    std::set<std::string> missing;
+    for (const auto& [job, data] : jobPointData)
+    {
+        for (const auto& gift : data.GiftSpells)
+        {
+            if (const auto spell = spellIds.find(gift.Spell); spell != spellIds.end())
+            {
+                giftSpellIds.emplace(gift.Spell, spell->second);
+            }
+            else
+            {
+                missing.emplace(gift.Spell);
+            }
+        }
+    }
+
+    if (!missing.empty())
+    {
+        ShowWarningFmt("Job point gift spells missing from spell_list: {}", fmt::join(missing, ", "));
+    }
 }
 
 void RefreshGiftMods(CCharEntity* PChar)
 {
-    uint16 totalJpSpent = PChar->PJobPoints->GetJobPointsSpent();
-    uint8  jobId        = static_cast<uint8>(PChar->GetMJob());
+    const uint16 totalJpSpent = PChar->PJobPoints->GetJobPointsSpent();
 
     auto* currentGifts = &PChar->PJobPoints->current_gifts;
     if (!currentGifts->empty())
@@ -308,244 +342,41 @@ void RefreshGiftMods(CCharEntity* PChar)
         currentGifts->clear();
     }
 
-    if (const auto job = jobPointData.find(PChar->GetMJob()); job != jobPointData.end())
+    const auto job = jobPointData.find(PChar->GetMJob());
+    if (job == jobPointData.end())
     {
-        for (const auto& gift : job->second.Gifts)
-        {
-            if (gift.JobPointsSpent > totalJpSpent || PChar->GetMLevel() < 99)
-            {
-                break;
-            }
+        return;
+    }
 
-            currentGifts->emplace_back(gift.Mod, gift.Value);
+    for (const auto& gift : job->second.Gifts)
+    {
+        if (gift.JobPointsSpent > totalJpSpent || PChar->GetMLevel() < 99)
+        {
+            break;
         }
+
+        currentGifts->emplace_back(gift.Mod, gift.Value);
     }
 
     PChar->addModifiers(currentGifts);
 
-    // Add JP Spells
-    bool sendUpdate = false;
-    switch (static_cast<xi::Job>(jobId))
+    bool learnedSpell = false;
+    for (const auto& gift : job->second.GiftSpells)
     {
-        case xi::Job::BLM:
-            if (totalJpSpent >= 100 && !charutils::hasSpell(PChar, (uint16)SpellID::Fire_VI))
-            {
-                for (const SpellID elementalSpell : { SpellID::Fire_VI,
-                                                      SpellID::Blizzard_VI,
-                                                      SpellID::Aero_VI,
-                                                      SpellID::Stone_VI,
-                                                      SpellID::Thunder_VI,
-                                                      SpellID::Water_VI })
-                {
-                    charutils::addSpell(PChar, (uint16)elementalSpell);
-                    charutils::SaveSpell(PChar, (uint16)elementalSpell);
-                }
-
-                sendUpdate = true;
-            }
-
-            if (totalJpSpent >= 550 && !charutils::hasSpell(PChar, (uint16)SpellID::Aspir_III))
-            {
-                charutils::addSpell(PChar, (uint16)SpellID::Aspir_III);
-                charutils::SaveSpell(PChar, (uint16)SpellID::Aspir_III);
-
-                sendUpdate = true;
-            }
-
-            if (totalJpSpent >= 1200 && !charutils::hasSpell(PChar, (uint16)SpellID::Death))
-            {
-                charutils::addSpell(PChar, (uint16)SpellID::Death);
-                charutils::SaveSpell(PChar, (uint16)SpellID::Death);
-
-                sendUpdate = true;
-            }
+        if (gift.JobPointsSpent > totalJpSpent)
+        {
             break;
+        }
 
-        case xi::Job::BRD:
-            if (totalJpSpent >= 100 && !charutils::hasSpell(PChar, (uint16)SpellID::Fire_Threnody_II))
-            {
-                for (const SpellID threnodySpell : { SpellID::Fire_Threnody_II,
-                                                     SpellID::Ice_Threnody_II,
-                                                     SpellID::Wind_Threnody_II,
-                                                     SpellID::Earth_Threnody_II,
-                                                     SpellID::Lightning_Threnody_II,
-                                                     SpellID::Water_Threnody_II,
-                                                     SpellID::Light_Threnody_II,
-                                                     SpellID::Dark_Threnody_II })
-                {
-                    charutils::addSpell(PChar, (uint16)threnodySpell);
-                    charutils::SaveSpell(PChar, (uint16)threnodySpell);
-                }
-
-                sendUpdate = true;
-            }
-            break;
-
-        case xi::Job::DRK:
-            if (totalJpSpent >= 100 && !charutils::hasSpell(PChar, (uint16)SpellID::Endark_II))
-            {
-                charutils::addSpell(PChar, (uint16)SpellID::Endark_II);
-                charutils::SaveSpell(PChar, (uint16)SpellID::Endark_II);
-
-                sendUpdate = true;
-            }
-
-            if (totalJpSpent >= 550 && !charutils::hasSpell(PChar, (uint16)SpellID::Drain_III))
-            {
-                charutils::addSpell(PChar, (uint16)SpellID::Drain_III);
-                charutils::SaveSpell(PChar, (uint16)SpellID::Drain_III);
-
-                sendUpdate = true;
-            }
-            break;
-
-        case xi::Job::GEO:
-            if (totalJpSpent >= 100)
-            {
-                for (const SpellID elementalSpell : { SpellID::Fire_V,
-                                                      SpellID::Blizzard_V,
-                                                      SpellID::Aero_V,
-                                                      SpellID::Stone_V,
-                                                      SpellID::Thunder_V,
-                                                      SpellID::Water_V })
-                {
-                    uint16 spellIdNum = static_cast<uint16>(elementalSpell);
-
-                    if (!charutils::hasSpell(PChar, spellIdNum))
-                    {
-                        charutils::addSpell(PChar, spellIdNum);
-                        charutils::SaveSpell(PChar, spellIdNum);
-                    }
-                }
-
-                sendUpdate = true;
-            }
-
-            if (totalJpSpent >= 550 && !charutils::hasSpell(PChar, (uint16)SpellID::Aspir_III))
-            {
-                charutils::addSpell(PChar, (uint16)SpellID::Aspir_III);
-                charutils::SaveSpell(PChar, (uint16)SpellID::Aspir_III);
-
-                sendUpdate = true;
-            }
-
-            if (totalJpSpent >= 1200 && !charutils::hasSpell(PChar, (uint16)SpellID::Fira_III))
-            {
-                for (const SpellID elementalSpell : { SpellID::Fira_III,
-                                                      SpellID::Blizzara_III,
-                                                      SpellID::Aera_III,
-                                                      SpellID::Stonera_III,
-                                                      SpellID::Thundara_III,
-                                                      SpellID::Watera_III })
-                {
-                    charutils::addSpell(PChar, (uint16)elementalSpell);
-                    charutils::SaveSpell(PChar, (uint16)elementalSpell);
-                }
-
-                sendUpdate = true;
-            }
-            break;
-
-        case xi::Job::NIN:
-            if (totalJpSpent >= 100 && !charutils::hasSpell(PChar, (uint16)SpellID::Utsusemi_San))
-            {
-                charutils::addSpell(PChar, (uint16)SpellID::Utsusemi_San);
-                charutils::SaveSpell(PChar, (uint16)SpellID::Utsusemi_San);
-
-                sendUpdate = true;
-            }
-            break;
-
-        case xi::Job::PLD:
-            if (totalJpSpent >= 100 && !charutils::hasSpell(PChar, (uint16)SpellID::Enlight_II))
-            {
-                charutils::addSpell(PChar, (uint16)SpellID::Enlight_II);
-                charutils::SaveSpell(PChar, (uint16)SpellID::Enlight_II);
-
-                sendUpdate = true;
-            }
-            break;
-
-        case xi::Job::RDM:
-            if (totalJpSpent >= 100)
-            {
-                for (const SpellID elementalSpell : { SpellID::Fire_V,
-                                                      SpellID::Blizzard_V,
-                                                      SpellID::Aero_V,
-                                                      SpellID::Stone_V,
-                                                      SpellID::Thunder_V,
-                                                      SpellID::Water_V })
-                {
-                    uint16 spellIdNum = static_cast<uint16>(elementalSpell);
-
-                    if (!charutils::hasSpell(PChar, spellIdNum))
-                    {
-                        charutils::addSpell(PChar, spellIdNum);
-                        charutils::SaveSpell(PChar, spellIdNum);
-                    }
-                }
-
-                sendUpdate = true;
-            }
-
-            if (totalJpSpent >= 550 && !charutils::hasSpell(PChar, (uint16)SpellID::Addle_II))
-            {
-                for (const SpellID enfeeblingSpell : { SpellID::Addle_II,
-                                                       SpellID::Distract_III,
-                                                       SpellID::Frazzle_III })
-                {
-                    charutils::addSpell(PChar, (uint16)enfeeblingSpell);
-                    charutils::SaveSpell(PChar, (uint16)enfeeblingSpell);
-                }
-
-                sendUpdate = true;
-            }
-
-            if (totalJpSpent >= 1200 && !charutils::hasSpell(PChar, (uint16)SpellID::Refresh_III))
-            {
-                for (const SpellID enfeeblingSpell : { SpellID::Refresh_III,
-                                                       SpellID::Temper_II })
-                {
-                    charutils::addSpell(PChar, (uint16)enfeeblingSpell);
-                    charutils::SaveSpell(PChar, (uint16)enfeeblingSpell);
-                }
-
-                sendUpdate = true;
-            }
-            break;
-
-        case xi::Job::RUN:
-            if (totalJpSpent >= 550 && !charutils::hasSpell(PChar, (uint16)SpellID::Temper))
-            {
-                charutils::addSpell(PChar, (uint16)SpellID::Temper);
-                charutils::SaveSpell(PChar, (uint16)SpellID::Temper);
-
-                sendUpdate = true;
-            }
-            break;
-
-        case xi::Job::WHM:
-            if (totalJpSpent >= 100 && !charutils::hasSpell(PChar, (uint16)SpellID::Reraise_IV))
-            {
-                charutils::addSpell(PChar, (uint16)SpellID::Reraise_IV);
-                charutils::SaveSpell(PChar, (uint16)SpellID::Reraise_IV);
-
-                sendUpdate = true;
-            }
-
-            if (totalJpSpent >= 1200 && !charutils::hasSpell(PChar, (uint16)SpellID::Full_Cure))
-            {
-                charutils::addSpell(PChar, (uint16)SpellID::Full_Cure);
-                charutils::SaveSpell(PChar, (uint16)SpellID::Full_Cure);
-
-                sendUpdate = true;
-            }
-            break;
-        default:
-            break;
+        const auto spell = giftSpellIds.find(gift.Spell);
+        if (spell != giftSpellIds.end() && charutils::addSpell(PChar, spell->second))
+        {
+            charutils::SaveSpell(PChar, spell->second);
+            learnedSpell = true;
+        }
     }
 
-    if (sendUpdate)
+    if (learnedSpell)
     {
         PChar->pushPacket<GP_SERV_COMMAND_MAGIC_DATA>(PChar);
     }

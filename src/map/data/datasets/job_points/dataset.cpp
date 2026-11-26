@@ -30,8 +30,12 @@
 
 #include <algorithm>
 #include <optional>
+#include <set>
 #include <stdexcept>
+#include <string>
 #include <string_view>
+#include <variant>
+#include <vector>
 
 namespace xi::data::datasets::job_points
 {
@@ -39,7 +43,8 @@ namespace xi::data::datasets::job_points
 namespace
 {
 
-constexpr uint16 kCategoriesPerJob = 10;
+constexpr uint16 kCategoriesPerJob  = 10;
+constexpr uint16 kMaxJobPointsSpent = 2100; // 10 categories at rank 20
 
 } // namespace
 
@@ -73,11 +78,51 @@ auto Dataset::decode(const std::string_view text) -> Records
             throw std::runtime_error(fmt::format("duplicate job point id in {}", EnumTraits<xi::Job>::toName(job)));
         }
 
-        for (const auto& [spent, mods] : entry.gifts.value_or(wire::Gifts{}))
+        std::set<std::string> spells;
+        for (const auto& [spent, tier] : entry.gifts.value_or(wire::Gifts{}))
         {
-            for (const auto& [mod, value] : yaml::resolveKeys(std::optional{ mods }))
+            if (spent == 0 || spent > kMaxJobPointsSpent)
             {
-                record.Gifts.push_back({ .JobPointsSpent = spent, .Mod = mod, .Value = value });
+                throw std::runtime_error(fmt::format("{} gift at {} job points is outside 1-{}", EnumTraits<xi::Job>::toName(job), spent, kMaxJobPointsSpent));
+            }
+
+            std::set<xi::Mod> mods;
+            for (const auto& [key, value] : tier.Entries)
+            {
+                if (key == wire::kSpellsKey)
+                {
+                    const auto* names = std::get_if<std::vector<std::string>>(&value);
+                    if (!names)
+                    {
+                        throw std::runtime_error(fmt::format("{} gift spells at {} must be a list", EnumTraits<xi::Job>::toName(job), spent));
+                    }
+
+                    for (const auto& name : *names)
+                    {
+                        if (!spells.insert(name).second)
+                        {
+                            throw std::runtime_error(fmt::format("duplicate gift spell {} in {}", name, EnumTraits<xi::Job>::toName(job)));
+                        }
+
+                        record.GiftSpells.push_back({ .JobPointsSpent = spent, .Spell = name });
+                    }
+
+                    continue;
+                }
+
+                const auto* amount = std::get_if<int16>(&value);
+                if (!amount)
+                {
+                    throw std::runtime_error(fmt::format("{} gift {} at {} must be a number", EnumTraits<xi::Job>::toName(job), key, spent));
+                }
+
+                const auto mod = EnumTraits<xi::Mod>::fromName(key);
+                if (!mods.insert(mod).second)
+                {
+                    throw std::runtime_error(fmt::format("duplicate gift {} at {} in {}", key, spent, EnumTraits<xi::Job>::toName(job)));
+                }
+
+                record.Gifts.push_back({ .JobPointsSpent = spent, .Mod = mod, .Value = *amount });
             }
         }
     }

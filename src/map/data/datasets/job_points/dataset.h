@@ -27,6 +27,7 @@
 #include "data/enums/mod.h"
 
 #include <map>
+#include <string>
 #include <string_view>
 #include <vector>
 
@@ -40,10 +41,17 @@ struct JobPointGiftData
     int16   Value{};
 };
 
+struct JobPointGiftSpellData
+{
+    uint16      JobPointsSpent{};
+    std::string Spell{}; // spell_list name
+};
+
 struct JobPointJobData
 {
-    std::vector<xi::JobPoint>     Categories{}; // ordered by id
-    std::vector<JobPointGiftData> Gifts{};      // ordered by job points spent
+    std::vector<xi::JobPoint>          Categories{}; // ordered by id
+    std::vector<JobPointGiftData>      Gifts{};      // ordered by job points spent
+    std::vector<JobPointGiftSpellData> GiftSpells{}; // ordered by job points spent
 };
 
 using JobPoints = std::map<xi::Job, JobPointJobData>;
@@ -67,7 +75,7 @@ struct Dataset
 
     static constexpr std::string_view kDataPath{ "job_points" };
     static constexpr std::string_view kTitle{ "Job Points" };
-    static constexpr std::string_view kDescription{ "Job point categories and the gifts each job gets for the job points it has spent." };
+    static constexpr std::string_view kDescription{ "Job point categories, gifts and gift spells by job." };
 
     static auto decode(std::string_view text) -> Records;
 };

@@ -27,6 +27,22 @@ describe('Job point gifts', function()
         assert(defenseDelta == 36, string.format('magic defense +%d', defenseDelta))
     end)
 
+    it('SCH learns Helix II', function()
+        local player = xi.test.world:spawnPlayer({ job = xi.job.SCH, level = 99 })
+        player:masterJob()
+
+        assert(player:hasSpell(xi.magic.spell.GEOHELIX_II), 'no Geohelix II')
+        assert(player:hasSpell(xi.magic.spell.LUMINOHELIX_II), 'no Luminohelix II')
+    end)
+
+    it('BLM learns Fire VI and Death', function()
+        local player = xi.test.world:spawnPlayer({ job = xi.job.BLM, level = 99 })
+        player:masterJob()
+
+        assert(player:hasSpell(xi.magic.spell.FIRE_VI), 'no Fire VI')
+        assert(player:hasSpell(xi.magic.spell.DEATH), 'no Death')
+    end)
+
     it('SMN Avatar\'s Favor +1', function()
         local favorDelta = giftDelta(xi.job.SMN, xi.mod.AVATARS_FAVOR_ENHANCE)
         assert(favorDelta == 1, string.format('avatar\'s favor +%d', favorDelta))

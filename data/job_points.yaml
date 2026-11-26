@@ -330,6 +330,8 @@ job_points:
         capacity_bonus: 11 # Capacity Point Bonus
       100:
         superior_level: 1 # Superior 2
+        spells:
+          - reraise_iv
       125:
         cure_potency: 5 # Cure Potency Bonus
       145:
@@ -399,6 +401,8 @@ job_points:
         capacity_bonus: 33 # Capacity Point Bonus
       1200:
         superior_level: 1 # Superior 4
+        spells:
+          - full_cure
       1280:
         mdef: 18 # Magic Defense Bonus
       1355:
@@ -463,6 +467,13 @@ job_points:
         capacity_bonus: 11 # Capacity Point Bonus
       100:
         superior_level: 1 # Superior 2
+        spells:
+          - fire_vi
+          - blizzard_vi
+          - aero_vi
+          - stone_vi
+          - thunder_vi
+          - water_vi
       125:
         magic_damage: 5 # Magic Damage Bonus
       145:
@@ -498,6 +509,9 @@ job_points:
         superior_level:     1 # Superior 3
       545:
         capacity_bonus: 23 # Capacity Point Bonus
+      550:
+        spells:
+          - aspir_iii
       605:
         mdef: 4 # Magic Defense Bonus
       655:
@@ -528,6 +542,8 @@ job_points:
         capacity_bonus: 33 # Capacity Point Bonus
       1200:
         superior_level: 1 # Superior 4
+        spells:
+          - death
       1280:
         mdef: 5 # Magic Defense Bonus
       1355:
@@ -592,6 +608,13 @@ job_points:
         capacity_bonus: 11 # Capacity Point Bonus
       100:
         superior_level: 1 # Superior 2
+        spells:
+          - fire_v
+          - blizzard_v
+          - aero_v
+          - stone_v
+          - thunder_v
+          - water_v
       125:
         enspell_dmg_bonus: 5 # Enhanced Weapon Enchantment Damage
       145:
@@ -628,6 +651,11 @@ job_points:
         superior_level: 1 # Superior 3
       545:
         capacity_bonus: 23 # Capacity Point Bonus
+      550:
+        spells:
+          - addle_ii
+          - distract_iii
+          - frazzle_iii
       605:
         mdef: 8 # Magic Defense Bonus
       655:
@@ -659,6 +687,9 @@ job_points:
         capacity_bonus: 33 # Capacity Point Bonus
       1200:
         superior_level: 1 # Superior 4
+        spells:
+          - refresh_iii
+          - temper_ii
       1280:
         mdef: 10 # Magic Defense Bonus
       1355:
@@ -865,6 +896,8 @@ job_points:
         capacity_bonus: 11 # Capacity Point Bonus
       100:
         superior_level: 1 # Superior 2
+        spells:
+          - enlight_ii
       125:
         shield_mastery_tp: 3 # Shield Mastery Effect
       145:
@@ -1004,6 +1037,8 @@ job_points:
         capacity_bonus: 11 # Capacity Point Bonus
       100:
         superior_level: 1 # Superior 2
+        spells:
+          - endark_ii
       125:
         crit_dmg_increase: 2 # Critical Damage Bonus
       145:
@@ -1041,6 +1076,9 @@ job_points:
         superior_level:     1 # Superior 3
       545:
         capacity_bonus: 23 # Capacity Point Bonus
+      550:
+        spells:
+          - drain_iii
       605:
         def: 8 # Physical Defense Bonus
       655:
@@ -1280,6 +1318,15 @@ job_points:
         capacity_bonus: 11 # Capacity Point Bonus
       100:
         superior_level: 1 # Superior 2
+        spells:
+          - fire_threnody_ii
+          - ice_threnody_ii
+          - wind_threnody_ii
+          - earth_threnody_ii
+          - ltng_threnody_ii
+          - water_threnody_ii
+          - light_threnody_ii
+          - dark_threnody_ii
       125:
         string: 5 # String Instrument Skill Bonus
       145:
@@ -1696,6 +1743,8 @@ job_points:
         capacity_bonus: 11 # Capacity Point Bonus
       100:
         superior_level: 1 # Superior 2
+        spells:
+          - utsusemi_san
       125:
         ninjutsu: 5 # Ninjutsu Skill Bonus
       145:
@@ -2665,6 +2714,15 @@ job_points:
         capacity_bonus: 11 # Capacity Point Bonus
       100:
         superior_level: 1 # Superior 2
+        spells:
+          - sandstorm_ii
+          - rainstorm_ii
+          - windstorm_ii
+          - firestorm_ii
+          - hailstorm_ii
+          - thunderstorm_ii
+          - voidstorm_ii
+          - aurorastorm_ii
       125:
         healing: 5 # Healing Magic Skill Bonus
       145:
@@ -2732,6 +2790,15 @@ job_points:
         capacity_bonus: 33 # Capacity Point Bonus
       1200:
         superior_level: 1 # Superior 4
+        spells:
+          - geohelix_ii
+          - hydrohelix_ii
+          - anemohelix_ii
+          - pyrohelix_ii
+          - cryohelix_ii
+          - ionohelix_ii
+          - noctohelix_ii
+          - luminohelix_ii
       1280:
         mdef: 8 # Magic Defense Bonus
       1355:
@@ -2795,6 +2862,13 @@ job_points:
         capacity_bonus: 11 # Capacity Point Bonus
       100:
         superior_level: 1 # Superior 2
+        spells:
+          - fire_v
+          - blizzard_v
+          - aero_v
+          - stone_v
+          - thunder_v
+          - water_v
       125:
         dark: 5 # Dark Magic Skill Bonus
       145:
@@ -2830,6 +2904,9 @@ job_points:
         magic_damage:   3 # Magic Damage Bonus
       545:
         capacity_bonus: 23 # Capacity Point Bonus
+      550:
+        spells:
+          - aspir_iii
       605:
         mdef: 8 # Magic Defense Bonus
       655:
@@ -2860,6 +2937,13 @@ job_points:
         capacity_bonus: 33 # Capacity Point Bonus
       1200:
         superior_level: 1 # Superior 4
+        spells:
+          - fira_iii
+          - blizzara_iii
+          - aera_iii
+          - stonera_iii
+          - thundara_iii
+          - watera_iii
       1280:
         mdef: 10 # Magic Defense Bonus
       1355:
@@ -2963,6 +3047,9 @@ job_points:
         inquartata:     2 # Inquartata Effect
       545:
         capacity_bonus: 23 # Capacity Point Bonus
+      550:
+        spells:
+          - temper
       605:
         def: 10 # Physical Defense Bonus
       655:

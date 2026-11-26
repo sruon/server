@@ -32,6 +32,9 @@
 #include <map>
 #include <optional>
 #include <string>
+#include <string_view>
+#include <variant>
+#include <vector>
 
 namespace xi::data::datasets::job_points::wire
 {
@@ -41,7 +44,15 @@ struct Category
     uint16 id{};
 };
 
-using Gifts = std::map<uint16, yaml::EnumKeyedMap<xi::Mod, int16>>;
+inline constexpr std::string_view kSpellsKey{ "spells" };
+
+// mods by name (`def: 10`) and the spells learned (`spells: [death]`)
+struct GiftTier
+{
+    std::map<std::string, std::variant<int16, std::vector<std::string>>> Entries;
+};
+
+using Gifts = std::map<uint16, GiftTier>;
 
 struct Job
 {
@@ -67,8 +78,8 @@ struct glz::json_schema<xi::data::datasets::job_points::wire::Category>
 template <>
 struct glz::json_schema<xi::data::datasets::job_points::wire::Job>
 {
-    glz::schema categories{ .description = "The job's ten job point categories keyed by their canonical name, in ID order." };
-    glz::schema gifts{ .description = "Mods granted at level 99, keyed by job points spent." };
+    glz::schema categories{ .description = "Job point categories keyed by canonical name, in ID order." };
+    glz::schema gifts{ .description = "Mods granted at level 99 and spells learned, keyed by job points spent. Spells are spell_list names; missing ones are skipped." };
 };
 
 template <>
@@ -76,3 +87,42 @@ struct glz::json_schema<xi::data::datasets::job_points::wire::Document>
 {
     glz::schema job_points{ .description = "Job point categories and gifts by job." };
 };
+
+template <>
+struct glz::meta<xi::data::datasets::job_points::wire::GiftTier>
+{
+    using T                     = xi::data::datasets::job_points::wire::GiftTier;
+    static constexpr auto name  = "JobPointGiftTier";
+    static constexpr auto value = &T::Entries;
+};
+
+namespace glz::detail
+{
+
+template <>
+struct to_json_schema<xi::data::datasets::job_points::wire::GiftTier>
+{
+    template <auto Opts>
+    static void op(auto& s, auto& defs)
+    {
+        schema amount{};
+        to_json_schema<int16>::template op<Opts>(amount, defs);
+
+        schema spells{};
+        to_json_schema<std::vector<std::string>>::template op<Opts>(spells, defs);
+
+        std::map<std::string_view, schema, std::less<>> properties;
+        for (const auto& [name, _] : xi::data::EnumTraits<xi::Mod>::kEntries)
+        {
+            properties.emplace(name, amount);
+        }
+
+        properties.emplace(xi::data::datasets::job_points::wire::kSpellsKey, spells);
+
+        s.type                 = std::string_view{ "object" };
+        s.properties           = std::move(properties);
+        s.additionalProperties = false;
+    }
+};
+
+} // namespace glz::detail

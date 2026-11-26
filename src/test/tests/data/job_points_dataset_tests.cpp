@@ -129,6 +129,31 @@ TEST_CASE("job_points: BLU magic defense gifts", "[data][jobpoints]")
     CHECK(valueOf(giftsAt(jobPoints.at(xi::Job::BLU), 45), xi::Mod::MDEF) == 5);
 }
 
+TEST_CASE("job_points: gift spells by job points spent", "[data][jobpoints]")
+{
+    const auto  jobPoints = JobPointsDataset::decode(slurp("data/job_points.yaml"));
+    const auto& scholar   = jobPoints.at(xi::Job::SCH).GiftSpells;
+
+    REQUIRE(scholar.size() == 16);
+    CHECK(scholar.front().JobPointsSpent == 100);
+    CHECK(scholar.front().Spell == "sandstorm_ii");
+    CHECK(scholar.back().JobPointsSpent == 1200);
+    CHECK(scholar.back().Spell == "luminohelix_ii");
+    CHECK(jobPoints.at(xi::Job::WAR).GiftSpells.empty());
+}
+
+TEST_CASE("job_points: module adds a gift spell, duplicates throw", "[data][jobpoints]")
+{
+    const auto added   = std::array{ std::string{ "job_points:\n  war:\n    gifts:\n      2100:\n        spells: [protect]\n" } };
+    const auto warrior = JobPointsDataset::decode(xi::data::mergeYaml(slurp("data/job_points.yaml"), added)).at(xi::Job::WAR);
+    const auto twice   = std::array{ std::string{ "job_points:\n  blm:\n    gifts:\n      2100:\n        spells: [death]\n" } };
+
+    REQUIRE(warrior.GiftSpells.size() == 1);
+    CHECK(warrior.GiftSpells.front().Spell == "protect");
+    CHECK(warrior.Gifts.size() == JobPointsDataset::decode(slurp("data/job_points.yaml")).at(xi::Job::WAR).Gifts.size());
+    CHECK_THROWS(JobPointsDataset::decode(xi::data::mergeYaml(slurp("data/job_points.yaml"), twice)));
+}
+
 TEST_CASE("job_points: Hasso and Seigan Effect is the zanshin cap", "[data][jobpoints]")
 {
     const auto  jobPoints = JobPointsDataset::decode(slurp("data/job_points.yaml"));
@@ -158,6 +183,13 @@ TEST_CASE("job_points: module changes, removes and adds gifts", "[data][jobpoint
 TEST_CASE("job_points: category outside its job throws", "[data][jobpoints]")
 {
     const auto modules = std::array{ std::string{ "job_points:\n  mnk:\n    categories:\n      mighty_strikes_effect: {id: 0x020}\n" } };
+
+    CHECK_THROWS(JobPointsDataset::decode(xi::data::mergeYaml(slurp("data/job_points.yaml"), modules)));
+}
+
+TEST_CASE("job_points: gift above 2100 job points throws", "[data][jobpoints]")
+{
+    const auto modules = std::array{ std::string{ "job_points:\n  war:\n    gifts:\n      2101:\n        str: 1\n" } };
 
     CHECK_THROWS(JobPointsDataset::decode(xi::data::mergeYaml(slurp("data/job_points.yaml"), modules)));
 }
