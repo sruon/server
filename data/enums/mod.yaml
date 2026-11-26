@@ -931,6 +931,7 @@ values:
   ebullience_amount:             569 # Bonus amount added to Ebullience effect
   aquaveil_count:                832 # Modifies the amount of hits that Aquaveil absorbs before being removed
   enh_magic_duration:            890 # Enhancing Magic Duration increase %
+  enh_magic_duration_rcvd:      1222 # Received Enhancing Magic Duration increase %
   enhances_coursers_roll:        891 # Courser's Roll Bonus % chance
   enhances_casters_roll:         892 # Caster's Roll Bonus % chance
   enhances_blitzers_roll:        893 # Blitzer's Roll Bonus % chance
@@ -1283,4 +1284,4 @@ values:
 
   # The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
   # 570 through 825 used by WS DMG mods these are not spares.
-  # SPARE IDs: 1222 and onward, 378
+  # SPARE IDs: 1223 and onward, 378

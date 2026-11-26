@@ -2924,8 +2924,8 @@ job_points:
       95:
         capacity_bonus: 11 # Capacity Point Bonus
       100:
-        pet_acc_eva:    10 # Enhancing Magic Received Duration
-        superior_level:  1 # Superior 2
+        enh_magic_duration_rcvd: 10 # Enhancing Magic Received Duration
+        superior_level:           1 # Superior 2
       125:
         enhance: 5 # Enhancing Magic Skill Bonus
       145:
@@ -2994,8 +2994,8 @@ job_points:
       1195:
         capacity_bonus: 33 # Capacity Point Bonus
       1200:
-        superior_level:  1 # Superior 4
-        pet_acc_eva:    10 # Enh. Magic Received Duration
+        superior_level:           1 # Superior 4
+        enh_magic_duration_rcvd: 10 # Enh. Magic Received Duration
       1280:
         def: 13 # Physical Defense Bonus
       1355:
