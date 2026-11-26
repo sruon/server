@@ -32,13 +32,8 @@ effectObject.onEffectTick = function(target, effect)
         end
     end
 
-    -- Applying gear bonus
-    effect:setPower(effect:getPower() + target:getMaxGearMod(xi.mod.AVATARS_FAVOR_ENHANCE))
-
-    -- TODO add Job Point Gift Bonus
-    -- if GET PLAYERS JP TOTAL >= 550 then
-    --    effect:setPower(effect:getPower() + 1)
-    -- end
+    -- Applying gear and job point gift bonus
+    effect:setPower(effect:getPower() + target:getMod(xi.mod.AVATARS_FAVOR_ENHANCE))
 
     xi.avatarsFavor.applyAvatarsFavorAuraToPet(target, effect)
 end

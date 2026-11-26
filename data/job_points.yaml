@@ -2010,7 +2010,7 @@ job_points:
       545:
         capacity_bonus: 23 # Capacity Point Bonus
       550:
-        statusres: 1 # Avatar's Favor Effect
+        avatars_favor_enhance: 1 # Avatar's Favor Effect
       605:
         mdef: 6 # Magic Defense Bonus
       655:
