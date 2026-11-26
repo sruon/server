@@ -110,7 +110,6 @@ void LoadPetSkillsList();
 
 [[nodiscard]] auto GetEcosystemStrongAgainst(xi::Ecosystem ecosystem) -> xi::Ecosystem;
 
-auto CheckMultiHits(CBattleEntity* PEntity, CItemWeapon* PWeapon) -> uint8;
 auto GetCappedZanshinRate(CBattleEntity* PEntity) -> uint16;
 
 auto getHitCount(uint8 hits) -> uint8;
