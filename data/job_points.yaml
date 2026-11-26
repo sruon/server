@@ -2542,8 +2542,8 @@ job_points:
       grand_pas_effect:    {id: 0x262} # Grand Pas Effect
       samba_duration:      {id: 0x263} # Samba Duration
       waltz_potency_bonus: {id: 0x264} # Waltz Potency
-      jig_duration:        {id: 0x265} # Jig Duration
-      flourish_i_effect:   {id: 0x266} # Flourish I Effect
+      flourish_i_effect:   {id: 0x265} # Flourish I Effect
+      jig_duration:        {id: 0x266} # Jig Duration
       flourish_ii_effect:  {id: 0x267} # Flourish II Effect
       flourish_iii_effect: {id: 0x268} # Flourish III Effect
       contradance_effect:  {id: 0x269} # Contradance Effect

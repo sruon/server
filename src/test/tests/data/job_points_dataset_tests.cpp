@@ -90,6 +90,8 @@ TEST_CASE("job_points: decodes categories and gifts", "[data][jobpoints]")
     CHECK(valueOf(firstGifts, xi::Mod::CAPACITY_BONUS) == 5);
 
     CHECK(jobPoints.at(xi::Job::RUN).Categories.front() == xi::JobPoint::ElementalSforzoEffect);
+    CHECK(static_cast<uint16>(xi::JobPoint::FlourishIEffect) == 0x265);
+    CHECK(static_cast<uint16>(xi::JobPoint::JigDuration) == 0x266);
 }
 
 TEST_CASE("job_points: Superior gifts at 50, 100, 500, 1200 and 2100", "[data][jobpoints]")
