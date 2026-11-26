@@ -2240,9 +2240,9 @@ job_points:
       55:
         capacity_bonus: 9 # Capacity Point Bonus
       60:
-        macc: 5 # Magic Evasion Bonus
+        meva: 5 # Magic Evasion Bonus
       80:
-        meva: 5 # Magic Accuracy Bonus
+        macc: 5 # Magic Accuracy Bonus
       95:
         capacity_bonus: 11 # Capacity Point Bonus
       100:
@@ -2273,9 +2273,9 @@ job_points:
       355:
         capacity_bonus: 19 # Capacity Point Bonus
       360:
-        macc: 8 # Magic Evasion Bonus
+        meva: 8 # Magic Evasion Bonus
       405:
-        meva: 8 # Magic Accuracy Bonus
+        macc: 8 # Magic Accuracy Bonus
       445:
         capacity_bonus: 21 # Capacity Point Bonus
       450:
@@ -2306,9 +2306,9 @@ job_points:
       905:
         capacity_bonus: 29 # Capacity Point Bonus
       910:
-        macc: 10 # Magic Evasion Bonus
+        meva: 10 # Magic Evasion Bonus
       980:
-        meva: 10 # Magic Accuracy Bonus
+        macc: 10 # Magic Accuracy Bonus
       1045:
         capacity_bonus: 31 # Capacity Point Bonus
       1050:
@@ -2335,9 +2335,9 @@ job_points:
       1620:
         matt: 5 # Magic Attack Bonus
       1710:
-        macc: 13 # Magic Evasion Bonus
+        meva: 13 # Magic Evasion Bonus
       1805:
-        meva: 13 # Magic Accuracy Bonus
+        macc: 13 # Magic Accuracy Bonus
       1900:
         recycle: 2 # Reduced Ammunition Consumption
       2000:
