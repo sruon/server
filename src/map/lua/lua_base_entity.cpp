@@ -9691,7 +9691,7 @@ auto CLuaBaseEntity::getSpentJobPoints() -> uint16
 /************************************************************************
  *  Function: getJobPointLevel()
  *  Purpose : Returns the current value a specific job point
- *  Example : player:getJobPointLevel(JP_MIGHTY_STRIKES_EFFECT)
+ *  Example : player:getJobPointLevel(xi.jp.MIGHTY_STRIKES_EFFECT)
  *  Notes   :
  ************************************************************************/
 auto CLuaBaseEntity::getJobPointLevel(uint16 jpType) -> uint8
@@ -9699,7 +9699,7 @@ auto CLuaBaseEntity::getJobPointLevel(uint16 jpType) -> uint8
     if (m_PBaseEntity->objtype == TYPE_PC)
     {
         CCharEntity* PChar = static_cast<CCharEntity*>(m_PBaseEntity);
-        return PChar->PJobPoints->GetJobPointValue(static_cast<JOBPOINT_TYPE>(jpType));
+        return PChar->PJobPoints->GetJobPointValue(static_cast<xi::JobPoint>(jpType));
     }
 
     return 0;
@@ -9823,7 +9823,7 @@ void CLuaBaseEntity::masterJob()
     auto jpCategory = 0x020 * static_cast<uint8>(PChar->GetMJob());
     for (auto i = jpCategory; i < jpCategory + 0xA; i++)
     {
-        auto points       = PChar->PJobPoints->GetJobPointType((JOBPOINT_TYPE)i);
+        auto points       = PChar->PJobPoints->GetJobPointType(static_cast<xi::JobPoint>(i));
         auto pointsNeeded = 20 - points->value;
         auto currentJP    = PChar->PJobPoints->GetJobPoints();
 
@@ -9831,7 +9831,7 @@ void CLuaBaseEntity::masterJob()
         {
             auto cost = JobPointCost(points->value);
             PChar->PJobPoints->SetJobPoints(currentJP + cost);
-            PChar->PJobPoints->RaiseJobPoint((JOBPOINT_TYPE)i);
+            PChar->PJobPoints->RaiseJobPoint(static_cast<xi::JobPoint>(i));
         }
     }
 
@@ -17557,7 +17557,7 @@ void CLuaBaseEntity::reduceBurden(const float percentReduction, const sol::objec
     {
         uint8 intReduction = (intReductionObj != sol::lua_nil) ? intReductionObj.as<uint8>() : 0;
 
-        burden[i] = (uint8)std::max(0.0f, burden[i] * (1 - ((percentReduction / 100) - PEntity->PJobPoints->GetJobPointValue(JP_COOLDOWN_EFFECT))) - intReduction);
+        burden[i] = (uint8)std::max(0.0f, burden[i] * (1 - ((percentReduction / 100) - PEntity->PJobPoints->GetJobPointValue(xi::JobPoint::CooldownEffect))) - intReduction);
     }
 
     PAutomaton->setBurdenArray(burden);

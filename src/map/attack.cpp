@@ -796,7 +796,7 @@ void CAttack::ProcessDamage()
 
             if (auto* PChar = dynamic_cast<CCharEntity*>(m_attacker))
             {
-                jpBonus = PChar->PJobPoints->GetJobPointValue(JP_RESTRAINT_EFFECT) * 2;
+                jpBonus = PChar->PJobPoints->GetJobPointValue(xi::JobPoint::RestraintEffect) * 2;
             }
 
             // Convert weapon delay and divide

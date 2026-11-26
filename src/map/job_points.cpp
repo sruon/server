@@ -62,7 +62,7 @@ void CJobPoints::LoadJobPoints()
     }
 }
 
-auto CJobPoints::IsJobPointExist(JOBPOINT_TYPE jpType) -> bool
+auto CJobPoints::IsJobPointExist(const xi::JobPoint jpType) -> bool
 {
     if ((static_cast<uint16>(jpType) < JOBPOINTS_CATEGORY_START) ||
         (JobPointsCategoryIndexByJpType(jpType) - 1 >= JOBPOINTS_CATEGORY_COUNT) ||
@@ -74,7 +74,7 @@ auto CJobPoints::IsJobPointExist(JOBPOINT_TYPE jpType) -> bool
     return true;
 }
 
-auto CJobPoints::GetJobPointsByType(JOBPOINT_TYPE jpType) -> JobPoints_t*
+auto CJobPoints::GetJobPointsByType(const xi::JobPoint jpType) -> JobPoints_t*
 {
     if (IsJobPointExist(jpType))
     {
@@ -84,7 +84,7 @@ auto CJobPoints::GetJobPointsByType(JOBPOINT_TYPE jpType) -> JobPoints_t*
     return nullptr;
 }
 
-auto CJobPoints::GetJobPointType(JOBPOINT_TYPE jpType) -> JobPointType_t*
+auto CJobPoints::GetJobPointType(const xi::JobPoint jpType) -> JobPointType_t*
 {
     if (IsJobPointExist(jpType))
     {
@@ -94,7 +94,7 @@ auto CJobPoints::GetJobPointType(JOBPOINT_TYPE jpType) -> JobPointType_t*
     return nullptr;
 }
 
-void CJobPoints::RaiseJobPoint(JOBPOINT_TYPE jpType)
+void CJobPoints::RaiseJobPoint(const xi::JobPoint jpType)
 {
     JobPoints_t*    job      = GetJobPointsByType(jpType);
     JobPointType_t* jobPoint = GetJobPointType(jpType);
@@ -269,7 +269,7 @@ void CJobPoints::SetCapacityPoints(uint16 amount)
                      amount);
 }
 
-auto CJobPoints::GetJobPointValue(JOBPOINT_TYPE jpType) -> uint8
+auto CJobPoints::GetJobPointValue(const xi::JobPoint jpType) -> uint8
 {
     if (IsJobPointExist(jpType) && m_PChar->GetMLevel() >= 99 && static_cast<uint8>(m_PChar->GetMJob()) == JobPointsCategoryIndexByJpType(jpType))
     {

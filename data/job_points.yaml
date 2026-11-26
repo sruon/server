@@ -1,0 +1,297 @@
+# yaml-language-server: $schema=schemas/job_points.schema.json
+
+meta:
+  enum:
+    - section: job_points.*.categories
+      cpp:
+        class:      JobPoint
+        underlying: uint16_t
+      lua:
+        table: xi.jp
+
+job_points:
+  war:
+    categories:
+      mighty_strikes_effect: {id: 0x020} # Mighty Strikes Effect
+      berserk_effect:        {id: 0x021} # Berserk Effect
+      brazen_rush_effect:    {id: 0x022} # Brazen Rush Effect
+      defender_effect:       {id: 0x023} # Defender Effect
+      warcry_effect:         {id: 0x024} # Warcry Effect
+      aggressor_effect:      {id: 0x025} # Aggressor Effect
+      retaliation_effect:    {id: 0x026} # Retaliation Effect
+      restraint_effect:      {id: 0x027} # Restraint Effect
+      blood_rage_effect:     {id: 0x028} # Blood Rage Effect
+      double_attack_effect:  {id: 0x029} # Double Attack Effect
+
+  mnk:
+    categories:
+      hundred_fists_effect:   {id: 0x040} # Hundred Fists Effect
+      dodge_effect:           {id: 0x041} # Dodge Effect
+      inner_strength_effect:  {id: 0x042} # Inner Strength Effect
+      focus_effect:           {id: 0x043} # Focus Effect
+      chakra_effect:          {id: 0x044} # Chakra Effect
+      counterstance_effect:   {id: 0x045} # Counterstance Effect
+      footwork_effect:        {id: 0x046} # Footwork Effect
+      perfect_counter_effect: {id: 0x047} # Perfect Counter Effect
+      impetus_effect:         {id: 0x048} # Impetus Effect
+      kick_attacks_effect:    {id: 0x049} # Kick Attacks Effect
+
+  whm:
+    categories:
+      benediction_effect:     {id: 0x060} # Benediction Effect
+      divine_seal_effect:     {id: 0x061} # Divine Seal Effect
+      asylum_effect:          {id: 0x062} # Asylum Effect
+      whm_magic_acc_bonus:    {id: 0x063} # Magic Accuracy Bonus
+      afflatus_solace_effect: {id: 0x064} # Afflatus Solace Effect
+      afflatus_misery_effect: {id: 0x065} # Afflatus Misery Effect
+      divine_caress_duration: {id: 0x066} # Divine Caress Duration
+      sacrosanctity_effect:   {id: 0x067} # Sacrosanctity Effect
+      regen_duration:         {id: 0x068} # Regen Duration
+      bar_spell_effect:       {id: 0x069} # Bar Spell Effect
+
+  blm:
+    categories:
+      manafont_effect:          {id: 0x080} # Manafont Effect
+      elemental_seal_effect:    {id: 0x081} # Elemental Seal Effect
+      subtle_sorcery_effect:    {id: 0x082} # Subtle Sorcery Effect
+      magic_burst_dmg_bonus:    {id: 0x083} # Magic Burst Damage Bonus
+      mana_wall_effect:         {id: 0x084} # Mana Wall Effect
+      blm_magic_acc_bonus:      {id: 0x085} # Magic Accuracy Bonus
+      emnity_douse_recast:      {id: 0x086} # Enmity Douse Recast
+      manawell_effect:          {id: 0x087} # Manawell Effect
+      magic_burst_emnity_bonus: {id: 0x088} # Magic Burst Enmity Decrease
+      magic_dmg_bonus:          {id: 0x089} # Magic Damage Bonus
+
+  rdm:
+    categories:
+      chainspell_effect:   {id: 0x0A0} # Chainspell Effect
+      convert_effect:      {id: 0x0A1} # Convert Effect
+      stymie_effect:       {id: 0x0A2} # Stymie Effect
+      rdm_magic_acc_bonus: {id: 0x0A3} # Magic Accuracy Bonus
+      composure_effect:    {id: 0x0A4} # Composure Effect
+      rdm_magic_atk_bonus: {id: 0x0A5} # Magic Atk. Bonus
+      saboteur_effect:     {id: 0x0A6} # Saboteur Effect
+      enfeeble_duration:   {id: 0x0A7} # Enfeebling Magic Duration
+      quick_magic_effect:  {id: 0x0A8} # Quick Magic Effect
+      enhancing_duration:  {id: 0x0A9} # Enhancing Magic Duration
+
+  thf:
+    categories:
+      perfect_dodge_effect: {id: 0x0C0} # Perfect Dodge Effect
+      sneak_attack_effect:  {id: 0x0C1} # Sneak Attack Effect
+      larceny_effect:       {id: 0x0C2} # Larceny Duration
+      trick_attack_effect:  {id: 0x0C3} # Trick Attack Effect
+      steal_recast:         {id: 0x0C4} # Steal Recast
+      mug_effect:           {id: 0x0C5} # Mug Effect
+      despoil_effect:       {id: 0x0C6} # Despoil Effect
+      conspirator_effect:   {id: 0x0C7} # Conspirator Effect
+      bully_effect:         {id: 0x0C8} # Bully Effect
+      triple_attack_effect: {id: 0x0C9} # Triple Attack Effect
+
+  pld:
+    categories:
+      invincible_effect:    {id: 0x0E0} # Invincible Effect
+      holy_circle_effect:   {id: 0x0E1} # Holy Circle Effect
+      intervene_effect:     {id: 0x0E2} # Intervene Effect
+      sentinel_effect:      {id: 0x0E3} # Sentinel Effect
+      shield_bash_effect:   {id: 0x0E4} # Shield Bash Effect
+      cover_duration:       {id: 0x0E5} # Cover Duration
+      divine_emblem_effect: {id: 0x0E6} # Divine Emblem Effect
+      sepulcher_duration:   {id: 0x0E7} # Sepulcher Duration
+      palisade_effect:      {id: 0x0E8} # Palisade Effect
+      enlight_effect:       {id: 0x0E9} # Enlight Effect
+
+  drk:
+    categories:
+      blood_weapon_effect:       {id: 0x100} # Blood Weapon Effect
+      arcane_circle_effect:      {id: 0x101} # Arcane Circle Effect
+      soul_enslavement_effect:   {id: 0x102} # Soul Enslavement Effect
+      last_resort_effect:        {id: 0x103} # Last Resort Effect
+      souleater_duration:        {id: 0x104} # Souleater Duration
+      weapon_bash_effect:        {id: 0x105} # Weapon Bash Effect
+      nether_void_effect:        {id: 0x106} # Nether Void Effect
+      arcane_crest_duration:     {id: 0x107} # Arcane Crest Duration
+      scarlet_delirium_duration: {id: 0x108} # Scarlet Delirium Duration
+      endark_effect:             {id: 0x109} # Endark Effect
+
+  bst:
+    categories:
+      familiar_effect:    {id: 0x120} # Familiar Effect
+      pet_acc_bonus:      {id: 0x121} # Pet Accuracy Bonus
+      unleash_effect:     {id: 0x122} # Unleash Effect
+      charm_success_rate: {id: 0x123} # Charm Success Rate
+      reward_effect:      {id: 0x124} # Reward Effect
+      pet_atk_spd_bonus:  {id: 0x125} # Pet Attack Speed
+      ready_effect:       {id: 0x126} # Ready Effect
+      spur_effect:        {id: 0x127} # Spur Effect
+      run_wild_duration:  {id: 0x128} # Run Wild Duration
+      pet_emnity_bonus:   {id: 0x129} # Pet Magic Accuracy Bonus
+
+  brd:
+    categories:
+      soul_voice_effect:   {id: 0x140} # Soul Voice Effect
+      minne_effect:        {id: 0x141} # Minne Effect
+      clarion_call_effect: {id: 0x142} # Clarion Call Effect
+      minuet_effect:       {id: 0x143} # Minuet Effect
+      pianissimo_effect:   {id: 0x144} # Pianissimo Effect
+      song_acc_bonus:      {id: 0x145} # Song Accuracy Bonus
+      tenuto_effect:       {id: 0x146} # Tenuto Effect
+      lullaby_duration:    {id: 0x147} # Lullaby Duration
+      marcato_effect:      {id: 0x148} # Marcato Effect
+      requiem_effect:      {id: 0x149} # Requiem Effect
+
+  rng:
+    categories:
+      eagle_eye_shot_effect: {id: 0x160} # Eagle Eye Shot Effect
+      sharpshot_effect:      {id: 0x161} # Sharpshot Effect
+      overkill_effect:       {id: 0x162} # Overkill Effect
+      camouflage_effect:     {id: 0x163} # Camouflage Effect
+      barrage_effect:        {id: 0x164} # Barrage Effect
+      shadowbind_duration:   {id: 0x165} # Shadowbind Duration
+      velocity_shot_effect:  {id: 0x166} # Velocity Shot Effect
+      double_shot_effect:    {id: 0x167} # Double Shot Effect
+      decoy_shot_effect:     {id: 0x168} # Decoy Shot Effect
+      unlimited_shot_effect: {id: 0x169} # Unlimited Shot Effect
+
+  sam:
+    categories:
+      meikyo_shisui_effect:  {id: 0x180} # Meikyo Shisui Effect
+      warding_circle_effect: {id: 0x181} # Warding Circle Effect
+      yaegasumi_effect:      {id: 0x182} # Yaegasumi Effect
+      hasso_effect:          {id: 0x183} # Hasso Effect
+      meditate_effect:       {id: 0x184} # Meditate Effect
+      seigan_effect:         {id: 0x185} # Seigan Effect
+      konzen_ittai_effect:   {id: 0x186} # Konzen-ittai Effect
+      hamanoha_duration:     {id: 0x187} # Hamanoha Duration
+      hagakure_effect:       {id: 0x188} # Hagakure Effect
+      zanshin_effect:        {id: 0x189} # Zanshin Effect
+
+  nin:
+    categories:
+      mijin_gakure_effect:      {id: 0x1A0} # Mijin Gakure Effect
+      yonin_effect:             {id: 0x1A1} # Yonin Effect
+      mikage_effect:            {id: 0x1A2} # Mikage Effect
+      innin_effect:             {id: 0x1A3} # Innin Effect
+      ninjitsu_acc_bonus:       {id: 0x1A4} # Ninjutsu Accuracy Bonus
+      ninjitsu_cast_time_bonus: {id: 0x1A5} # Ninjutsu Cast Time
+      futae_effect:             {id: 0x1A6} # Futae Effect
+      elem_ninjitsu_effect:     {id: 0x1A7} # Elemental Ninjutsu Effect
+      issekigan_effect:         {id: 0x1A8} # Issekigan Effect
+      tactical_parry_effect:    {id: 0x1A9} # Tactical Parry Effect
+
+  drg:
+    categories:
+      spirit_surge_effect:     {id: 0x1C0} # Spirit Surge Effect
+      ancient_circle_effect:   {id: 0x1C1} # Ancient Circle Effect
+      fly_high_effect:         {id: 0x1C2} # Fly High Effect
+      jump_effect:             {id: 0x1C3} # Jump Effect
+      spirit_link_effect:      {id: 0x1C4} # Spirit Link Effect
+      wyvern_max_hp_bonus:     {id: 0x1C5} # Wyvern Max HP Bonus
+      dragon_breaker_duration: {id: 0x1C6} # Dragon Breaker Duration
+      wyvern_breath_effect:    {id: 0x1C7} # Wyvern Breath Effect
+      high_jump_effect:        {id: 0x1C8} # High Jump Effect
+      wyvern_attr_bonus:       {id: 0x1C9} # Wyvern Attr. Increase Effect
+
+  smn:
+    categories:
+      astral_flow_effect:      {id: 0x1E0} # Astral Flow Effect
+      summon_acc_bonus:        {id: 0x1E1} # Avatar/Spirit Accuracy Bonus
+      astral_conduit_effect:   {id: 0x1E2} # Astral Conduit Effect
+      summon_magic_acc_bonus:  {id: 0x1E3} # Avatar/Spirit Mag. Acc. Bonus
+      elemental_siphon_effect: {id: 0x1E4} # Elemental Siphon Effect
+      summon_phys_atk_bonus:   {id: 0x1E5} # Avatar/Spirit Physical Attack
+      mana_cede_effect:        {id: 0x1E6} # Mana Cede Effect
+      avatars_favor_effect:    {id: 0x1E7} # Avatar's Favor Effect
+      summon_magic_dmg_bonus:  {id: 0x1E8} # Avatar/Spirit Mag. Damage
+      blood_pact_dmg_bonus:    {id: 0x1E9} # Blood Pact Damage
+
+  blu:
+    categories:
+      azure_lore_effect:       {id: 0x200} # Azure Lore Effect
+      blue_magic_point_bonus:  {id: 0x201} # Blue Magic Point Bonus
+      unbridled_wisdom_effect: {id: 0x202} # Unbridled Wisdom Effect
+      burst_affinity_bonus:    {id: 0x203} # Burst Affinity Bonus
+      chain_affinity_effect:   {id: 0x204} # Chain Affinity Effect
+      blue_phys_ae_acc_bonus:  {id: 0x205} # Phys. Blue Magic Effect Acc.
+      unbridled_lrn_effect:    {id: 0x206} # Unbridled Learning Effect
+      unbridled_lrn_effect_ii: {id: 0x207} # Unbridled Learning Effect II
+      efflux_effect:           {id: 0x208} # Efflux Effect
+      blu_magic_acc_bonus:     {id: 0x209} # Magic Accuracy Bonus
+
+  cor:
+    categories:
+      wild_card_effect:      {id: 0x220} # Wild Card Effect
+      phantom_roll_duration: {id: 0x221} # Phantom Roll Duration
+      cutting_cards_effect:  {id: 0x222} # Cut Card Effect
+      bust_evasion:          {id: 0x223} # Bust Evasion
+      quick_draw_effect:     {id: 0x224} # Quick Draw Effect
+      ammo_consumption:      {id: 0x225} # Ammo Consumption
+      random_deal_effect:    {id: 0x226} # Random Deal Effect
+      cor_ranged_acc_bonus:  {id: 0x227} # Ranged Accuracy Bonus
+      triple_shot_effect:    {id: 0x228} # Triple Shot Effect
+      optimal_range_bonus:   {id: 0x229} # Optimal Range Effect
+
+  pup:
+    categories:
+      overdrive_effect:        {id: 0x240} # Overdrive Effect
+      automaton_hp_mp_bonus:   {id: 0x241} # Automaton HP and MP Bonus
+      heady_artifice_effect:   {id: 0x242} # Heady Artifice Effect
+      activate_effect:         {id: 0x243} # Activate Effect
+      repair_effect:           {id: 0x244} # Repair Effect
+      deus_ex_automata_recast: {id: 0x245} # Deus Ex Automata Recast
+      tactical_switch_bonus:   {id: 0x246} # Tactical Switch
+      cooldown_effect:         {id: 0x247} # Cooldown Effect
+      deactivate_effect:       {id: 0x248} # Deactivate Effect
+      pup_martial_arts_effect: {id: 0x249} # Martial Arts Effect
+
+  dnc:
+    categories:
+      trance_effect:       {id: 0x260} # Trance Effect
+      step_duration:       {id: 0x261} # Step Duration
+      grand_pas_effect:    {id: 0x262} # Grand Pas Effect
+      samba_duration:      {id: 0x263} # Samba Duration
+      waltz_potency_bonus: {id: 0x264} # Waltz Potency
+      jig_duration:        {id: 0x265} # Jig Duration
+      flourish_i_effect:   {id: 0x266} # Flourish I Effect
+      flourish_ii_effect:  {id: 0x267} # Flourish II Effect
+      flourish_iii_effect: {id: 0x268} # Flourish III Effect
+      contradance_effect:  {id: 0x269} # Contradance Effect
+
+  sch:
+    categories:
+      tabula_rasa_effect:       {id: 0x280} # Tabula Rasa Effect
+      light_arts_effect:        {id: 0x281} # Light Arts Effect
+      caper_emmissarius_effect: {id: 0x282} # Caper Emissarius Effect
+      dark_arts_effect:         {id: 0x283} # Dark Arts Effect
+      strategem_effect_i:       {id: 0x284} # Stratagem Effect
+      strategem_effect_ii:      {id: 0x285} # Stratagem Effect II
+      strategem_effect_iii:     {id: 0x286} # Stratagem Effect III
+      strategem_effect_iv:      {id: 0x287} # Stratagem Effect IV
+      modus_veritas_effect:     {id: 0x288} # Modus Veritas Effect
+      sublimation_effect:       {id: 0x289} # Sublimation Effect
+
+  geo:
+    categories:
+      bolster_effect:          {id: 0x2A0} # Bolster Effect
+      life_cycle_effect:       {id: 0x2A1} # Life Cycle Effect
+      widened_compass_effect:  {id: 0x2A2} # Widened Compass Effect
+      blaze_of_glory_effect:   {id: 0x2A3} # Blaze of Glory Effect
+      geo_magic_atk_bonus:     {id: 0x2A4} # Magic Atk. Bonus
+      geo_magic_acc_bonus:     {id: 0x2A5} # Magic Accuracy Bonus
+      dematerialize_duration:  {id: 0x2A6} # Dematerialize Duration
+      theurgic_focus_effect:   {id: 0x2A7} # Theurgic Focus Effect
+      concentric_pulse_effect: {id: 0x2A8} # Concentric Pulse Effect
+      indi_spell_duration:     {id: 0x2A9} # Indicolure Spell Effect Dur.
+
+  run:
+    categories:
+      elemental_sforzo_effect: {id: 0x2C0} # Elemental Sforzo Effect
+      rune_enchantment_effect: {id: 0x2C1} # Rune Enchantment Effect
+      odyllic_subter_effect:   {id: 0x2C2} # Odyllic Subterfuge Effect
+      vallation_duration:      {id: 0x2C3} # Vallation Duration
+      swordplay_effect:        {id: 0x2C4} # Swordplay Effect
+      swipe_effect:            {id: 0x2C5} # Swipe Effect
+      embolden_effect:         {id: 0x2C6} # Embolden Effect
+      vivacious_pulse_effect:  {id: 0x2C7} # Vivacious Pulse
+      one_for_all_duration:    {id: 0x2C8} # One for All Effect Duration
+      gambit_duration:         {id: 0x2C9} # Gambit Effect Duration

@@ -331,7 +331,7 @@ auto GetTotalBlueMagicPoints(CCharEntity* PChar) -> uint8
 
         if (level >= 99)
         {
-            points = points + PChar->PJobPoints->GetJobPointValue(JP_BLUE_MAGIC_POINT_BONUS);
+            points = points + PChar->PJobPoints->GetJobPointValue(xi::JobPoint::BlueMagicPointBonus);
         }
 
         return points;

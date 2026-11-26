@@ -3307,7 +3307,7 @@ void CBattleEntity::OnRangedAttack(CRangeState& state, action_t& action)
                 recycleChance += PChar->PMeritPoints->GetMeritValue(xi::Merit::Recycle, PChar);
             }
 
-            recycleChance += PChar->PJobPoints->GetJobPointValue(JP_AMMO_CONSUMPTION);
+            recycleChance += PChar->PJobPoints->GetJobPointValue(xi::JobPoint::AmmoConsumption);
 
             if (StatusEffectContainer->HasStatusEffect(xi::StatusEffect::UnlimitedShot))
             {
@@ -3756,7 +3756,7 @@ auto CBattleEntity::OnAttack(CBattleEntity* PTarget, action_t& action) -> bool
                         float attBonus = 1.0f;
                         if (auto* PChar = dynamic_cast<CCharEntity*>(PTarget); PChar && PTarget->GetMJob() == xi::Job::MNK && PTarget->StatusEffectContainer->HasStatusEffect(xi::StatusEffect::Counterstance))
                         {
-                            float csJpModifier = static_cast<float>(PChar->PJobPoints->GetJobPointValue(JP_COUNTERSTANCE_EFFECT) * 2);
+                            float csJpModifier = static_cast<float>(PChar->PJobPoints->GetJobPointValue(xi::JobPoint::CounterstanceEffect) * 2);
                             float targetDex    = static_cast<float>(PTarget->DEX());
 
                             attBonus += std::max((targetDex / 100.f) * csJpModifier, 0.f);

@@ -50,7 +50,7 @@ GP_SERV_COMMAND_MISCDATA::MERITS::MERITS(CCharEntity* PChar)
 
         if (PChar->GetMLevel() >= 99)
         {
-            bluePointBonus += PChar->PJobPoints->GetJobPointValue(JP_BLUE_MAGIC_POINT_BONUS);
+            bluePointBonus += PChar->PJobPoints->GetJobPointValue(xi::JobPoint::BlueMagicPointBonus);
         }
 
         packet.bluBonus = bluePointBonus;

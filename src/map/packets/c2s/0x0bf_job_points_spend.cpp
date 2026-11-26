@@ -33,12 +33,12 @@ auto GP_CLI_COMMAND_JOB_POINTS_SPEND::validate(MapSession* PSession, const CChar
     return PacketValidator(PChar)
         .blockedBy({ BlockedState::InEvent })
         .mustEqual(PChar->inMogHouse(), true, "Character not in a mog house.") // Has been verified to work in ANY Mog House.
-        .mustEqual(PChar->PJobPoints && PChar->PJobPoints->IsJobPointExist(static_cast<JOBPOINT_TYPE>(this->Index)), true, "Job point does not exist.");
+        .mustEqual(PChar->PJobPoints && PChar->PJobPoints->IsJobPointExist(static_cast<xi::JobPoint>(this->Index)), true, "Job point does not exist.");
 }
 
 void GP_CLI_COMMAND_JOB_POINTS_SPEND::process(MapSession* PSession, CCharEntity* PChar) const
 {
-    auto jpType = static_cast<JOBPOINT_TYPE>(this->Index);
+    auto jpType = static_cast<xi::JobPoint>(this->Index);
     PChar->PJobPoints->RaiseJobPoint(jpType);
     auto newLevel = PChar->PJobPoints->GetJobPointType(jpType)->value;
 

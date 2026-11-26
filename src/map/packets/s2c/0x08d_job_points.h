@@ -49,5 +49,5 @@ public:
     GP_SERV_COMMAND_JOB_POINTS(CCharEntity* PChar);
 
     // Constructor for single job point update
-    GP_SERV_COMMAND_JOB_POINTS(const CCharEntity* PChar, JOBPOINT_TYPE jpType);
+    GP_SERV_COMMAND_JOB_POINTS(const CCharEntity* PChar, xi::JobPoint jpType);
 };

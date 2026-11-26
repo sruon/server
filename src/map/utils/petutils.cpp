@@ -911,11 +911,11 @@ void CalculateAvatarStats(CBattleEntity* PMaster, CPetEntity* PPet)
         PPet->addModifier(xi::Mod::MACC, PChar->PMeritPoints->GetMeritValue(xi::Merit::AvatarMagicalAccuracy, PChar));
         PPet->addModifier(xi::Mod::ACC, PChar->PMeritPoints->GetMeritValue(xi::Merit::AvatarPhysicalAccuracy, PChar));
 
-        PPet->addModifier(xi::Mod::ACC, PChar->PJobPoints->GetJobPointValue(JP_SUMMON_ACC_BONUS));
-        PPet->addModifier(xi::Mod::MACC, PChar->PJobPoints->GetJobPointValue(JP_SUMMON_MAGIC_ACC_BONUS));
-        PPet->addModifier(xi::Mod::ATT, PChar->PJobPoints->GetJobPointValue(JP_SUMMON_PHYS_ATK_BONUS) * 2);
-        PPet->addModifier(xi::Mod::MAGIC_DAMAGE, PChar->PJobPoints->GetJobPointValue(JP_SUMMON_MAGIC_DMG_BONUS) * 5);
-        PPet->addModifier(xi::Mod::BP_DAMAGE, PChar->PJobPoints->GetJobPointValue(JP_BLOOD_PACT_DMG_BONUS) * 3);
+        PPet->addModifier(xi::Mod::ACC, PChar->PJobPoints->GetJobPointValue(xi::JobPoint::SummonAccBonus));
+        PPet->addModifier(xi::Mod::MACC, PChar->PJobPoints->GetJobPointValue(xi::JobPoint::SummonMagicAccBonus));
+        PPet->addModifier(xi::Mod::ATT, PChar->PJobPoints->GetJobPointValue(xi::JobPoint::SummonPhysAtkBonus) * 2);
+        PPet->addModifier(xi::Mod::MAGIC_DAMAGE, PChar->PJobPoints->GetJobPointValue(xi::JobPoint::SummonMagicDmgBonus) * 5);
+        PPet->addModifier(xi::Mod::BP_DAMAGE, PChar->PJobPoints->GetJobPointValue(xi::JobPoint::BloodPactDmgBonus) * 3);
     }
 
     // SMN Job Gift Bonuses, DRG and PUP handled in their respective functions
@@ -1028,7 +1028,7 @@ void CalculateWyvernStats(CBattleEntity* PMaster, CPetEntity* PPet)
     // Job Point: Wyvern Max HP
     if (auto* PChar = dynamic_cast<CCharEntity*>(PMaster))
     {
-        uint8 jpValue = PChar->PJobPoints->GetJobPointValue(JP_WYVERN_MAX_HP_BONUS);
+        uint8 jpValue = PChar->PJobPoints->GetJobPointValue(xi::JobPoint::WyvernMaxHpBonus);
         if (jpValue > 0)
         {
             PPet->addModifier(xi::Mod::HP, jpValue * 10);
@@ -1149,7 +1149,7 @@ void CalculateLuopanStats(CBattleEntity* PMaster, CPetEntity* PPet)
 
     if (PMaster->StatusEffectContainer->HasStatusEffect(xi::StatusEffect::Bolster))
     {
-        uint8 bolsterJPVal = static_cast<CCharEntity*>(PMaster)->PJobPoints->GetJobPointValue(JP_BOLSTER_EFFECT);
+        uint8 bolsterJPVal = static_cast<CCharEntity*>(PMaster)->PJobPoints->GetJobPointValue(xi::JobPoint::BolsterEffect);
         PPet->health.maxhp += (uint32)floor(PPet->health.maxhp * (0.03 * bolsterJPVal));
     }
 

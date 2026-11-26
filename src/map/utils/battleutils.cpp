@@ -1414,7 +1414,7 @@ void HandleEnspell(CBattleEntity* PAttacker, CBattleEntity* PDefender, action_re
             if (auto* PChar = dynamic_cast<CCharEntity*>(PAttacker))
             {
                 absorbed += (int32)floor(
-                    absorbed * 0.02f * PChar->PJobPoints->GetJobPointValue(JP_BLOOD_WEAPON_EFFECT));
+                    absorbed * 0.02f * PChar->PJobPoints->GetJobPointValue(xi::JobPoint::BloodWeaponEffect));
             }
 
             Action->addEffectParam = PAttacker->addHP(absorbed);
@@ -4604,7 +4604,7 @@ void HandleIssekiganEnmityBonus(CBattleEntity* PDefender, CBattleEntity* PAttack
         // JP is known to give 10 VE per point
         // Only give jpBonus if the defender is a player, as mobs don't have job points.
         const auto* PChar   = dynamic_cast<CCharEntity*>(PDefender);
-        uint16      jpBonus = PChar ? PChar->PJobPoints->GetJobPointValue(JP_ISSEKIGAN_EFFECT) * 10 : 0;
+        uint16      jpBonus = PChar ? PChar->PJobPoints->GetJobPointValue(xi::JobPoint::IssekiganEffect) * 10 : 0;
         static_cast<CMobEntity*>(PAttacker)->PEnmityContainer->UpdateEnmity(PDefender, 300, 0 + jpBonus, false, false);
     }
 }
@@ -5517,7 +5517,7 @@ auto CalculateSpellCastTime(CBattleEntity* PEntity, CMagicState* PMagicState) ->
             // SCH JP: Stratagem II - 1% reduction in cast time per point
             if (auto* PChar = dynamic_cast<CCharEntity*>(PEntity))
             {
-                bonus += PChar->PJobPoints->GetJobPointValue(JP_STRATEGEM_EFFECT_II);
+                bonus += PChar->PJobPoints->GetJobPointValue(xi::JobPoint::StrategemEffectIi);
             }
 
             cast -= std::chrono::floor<std::chrono::milliseconds>(base * ((50 + bonus) / 100.0f));
@@ -5558,7 +5558,7 @@ auto CalculateSpellCastTime(CBattleEntity* PEntity, CMagicState* PMagicState) ->
             // SCH JP: Stratagem II - 1% reduction in cast time per point
             if (auto* PChar = dynamic_cast<CCharEntity*>(PEntity))
             {
-                bonus += PChar->PJobPoints->GetJobPointValue(JP_STRATEGEM_EFFECT_II);
+                bonus += PChar->PJobPoints->GetJobPointValue(xi::JobPoint::StrategemEffectIi);
             }
 
             cast -= std::chrono::floor<std::chrono::milliseconds>(base * ((50 + bonus) / 100.0f));
@@ -5624,7 +5624,7 @@ auto CalculateSpellCastTime(CBattleEntity* PEntity, CMagicState* PMagicState) ->
     {
         if (auto* PChar = dynamic_cast<CCharEntity*>(PEntity))
         {
-            uint8 jpValue = PChar->PJobPoints->GetJobPointValue(JP_NINJITSU_CAST_TIME_BONUS);
+            uint8 jpValue = PChar->PJobPoints->GetJobPointValue(xi::JobPoint::NinjitsuCastTimeBonus);
             cast          = std::chrono::floor<std::chrono::milliseconds>(cast * (1.0f - (0.03f * jpValue)));
         }
     }
@@ -5644,7 +5644,7 @@ auto CalculateSpellCastTime(CBattleEntity* PEntity, CMagicState* PMagicState) ->
     }
     else if (auto* PChar = dynamic_cast<CCharEntity*>(PEntity); PSpell->getSkillType() == xi::SkillType::Geomancy && PChar)
     {
-        fastCast += PChar->PJobPoints->GetJobPointValue(JP_WIDENED_COMPASS_EFFECT);
+        fastCast += PChar->PJobPoints->GetJobPointValue(xi::JobPoint::WidenedCompassEffect);
     }
 
     fastCast                  = std::clamp<int16>(fastCast, -100, 80);
