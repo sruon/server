@@ -1102,16 +1102,16 @@ job_points:
 
   bst:
     categories:
-      familiar_effect:    {id: 0x120} # Familiar Effect
-      pet_acc_bonus:      {id: 0x121} # Pet Accuracy Bonus
-      unleash_effect:     {id: 0x122} # Unleash Effect
-      charm_success_rate: {id: 0x123} # Charm Success Rate
-      reward_effect:      {id: 0x124} # Reward Effect
-      pet_atk_spd_bonus:  {id: 0x125} # Pet Attack Speed
-      ready_effect:       {id: 0x126} # Ready Effect
-      spur_effect:        {id: 0x127} # Spur Effect
-      run_wild_duration:  {id: 0x128} # Run Wild Duration
-      pet_emnity_bonus:   {id: 0x129} # Pet Magic Accuracy Bonus
+      familiar_effect:     {id: 0x120} # Familiar Effect
+      pet_acc_bonus:       {id: 0x121} # Pet Accuracy Bonus
+      unleash_effect:      {id: 0x122} # Unleash Effect
+      charm_success_rate:  {id: 0x123} # Charm Success Rate
+      reward_effect:       {id: 0x124} # Reward Effect
+      pet_atk_spd_bonus:   {id: 0x125} # Pet Attack Speed
+      ready_effect:        {id: 0x126} # Ready Effect
+      spur_effect:         {id: 0x127} # Spur Effect
+      run_wild_duration:   {id: 0x128} # Run Wild Duration
+      pet_magic_acc_bonus: {id: 0x129} # Pet Magic Accuracy Bonus
 
     gifts:
       5:
