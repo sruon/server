@@ -2094,7 +2094,7 @@ job_points:
         acc:  5 # Accuracy Bonus
         racc: 5 # Ranged Accuracy Bonus
       45:
-        meva: 5 # Magic Defense Bonus
+        mdef: 5 # Magic Defense Bonus
       50:
         superior_level: 1 # Superior 1
       55:
@@ -2129,7 +2129,7 @@ job_points:
         acc:  8 # Accuracy Bonus
         racc: 8 # Ranged Accuracy Bonus
       320:
-        meva: 8 # Magic Defense Bonus
+        mdef: 8 # Magic Defense Bonus
       355:
         capacity_bonus: 19 # Capacity Point Bonus
       360:
@@ -2162,7 +2162,7 @@ job_points:
         acc:  10 # Accuracy Bonus
         racc: 10 # Ranged Accuracy Bonus
       845:
-        meva: 10 # Magic Defense Bonus
+        mdef: 10 # Magic Defense Bonus
       905:
         capacity_bonus: 29 # Capacity Point Bonus
       910:
@@ -2193,7 +2193,7 @@ job_points:
         acc:  13 # Accuracy Bonus
         racc: 13 # Ranged Accuracy Bonus
       1620:
-        meva: 13 # Magic Defense Bonus
+        mdef: 13 # Magic Defense Bonus
       1710:
         matt: 13 # Magic Attack Bonus
       1805:

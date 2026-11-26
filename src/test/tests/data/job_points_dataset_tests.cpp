@@ -122,6 +122,13 @@ TEST_CASE("job_points: COR magic accuracy and evasion gifts", "[data][jobpoints]
     CHECK(valueOf(giftsAt(corsair, 80), xi::Mod::MACC) == 5);
 }
 
+TEST_CASE("job_points: BLU magic defense gifts", "[data][jobpoints]")
+{
+    const auto jobPoints = JobPointsDataset::decode(slurp("data/job_points.yaml"));
+
+    CHECK(valueOf(giftsAt(jobPoints.at(xi::Job::BLU), 45), xi::Mod::MDEF) == 5);
+}
+
 TEST_CASE("job_points: Hasso and Seigan Effect is the zanshin cap", "[data][jobpoints]")
 {
     const auto  jobPoints = JobPointsDataset::decode(slurp("data/job_points.yaml"));
