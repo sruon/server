@@ -3925,7 +3925,7 @@ auto CBattleEntity::OnAttack(CBattleEntity* PTarget, action_t& action) -> bool
             const bool normalZanshinProc = missedOrCountered && xirand::GetRandomNumber(100) < zanshinChance;
 
             const bool isSamWithHasso   = this->getMod(xi::Mod::HASSO_ZANSHIN_BONUS) > 0 && this->StatusEffectContainer->HasStatusEffect(xi::StatusEffect::Hasso);
-            const bool hassoZanshinProc = isSamWithHasso && xirand::GetRandomNumber(100) < zanshinChance / 4;
+            const bool hassoZanshinProc = isSamWithHasso && xirand::GetRandomNumber(100) < battleutils::GetCappedZanshinRate(this);
 
             if (normalZanshinProc || hassoZanshinProc)
             {

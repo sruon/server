@@ -1555,7 +1555,7 @@ job_points:
       95:
         capacity_bonus: 11 # Capacity Point Bonus
       100:
-        zanshin:        5 # Zanshin Effect
+        zanshin_cap:    5 # Hasso and Seigan Effect
         superior_level: 1 # Superior 2
       125:
         storetp: 2 # Store TP Effect
@@ -1627,7 +1627,7 @@ job_points:
       1195:
         capacity_bonus: 33 # Capacity Point Bonus
       1200:
-        zanshin:        5 # Zanshin Effect
+        zanshin_cap:    5 # Hasso and Seigan Effect
         superior_level: 1 # Superior 4
       1280:
         def: 25 # Physical Defense Bonus

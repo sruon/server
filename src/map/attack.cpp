@@ -467,9 +467,7 @@ auto CAttack::CheckCounter() -> bool
 
         if (hasValidSeigan)
         {
-            seiganChance = PChar->getMod(xi::Mod::ZANSHIN) + PChar->PMeritPoints->GetMeritValue(xi::Merit::ZanshinAttackRate, PChar);
-            seiganChance = std::clamp<uint16>(seiganChance, 0, 100);
-            seiganChance /= 4;
+            seiganChance = battleutils::GetCappedZanshinRate(PChar);
         }
     }
 

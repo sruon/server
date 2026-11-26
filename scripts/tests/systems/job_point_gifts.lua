@@ -7,6 +7,16 @@ describe('Job point gifts', function()
         return player:getMod(mod) - before
     end
 
+    it('SAM Hasso and Seigan cap +10', function()
+        local capDelta = giftDelta(xi.job.SAM, xi.mod.ZANSHIN_CAP)
+        assert(capDelta == 10, string.format('cap +%d', capDelta))
+    end)
+
+    it('SAM Zanshin +10', function()
+        local zanshinDelta = giftDelta(xi.job.SAM, xi.mod.ZANSHIN)
+        assert(zanshinDelta == 10, string.format('zanshin +%d', zanshinDelta))
+    end)
+
     it('RNG Barrage +1 shot', function()
         local barrageDelta = giftDelta(xi.job.RNG, xi.mod.BARRAGE_COUNT)
         assert(barrageDelta == 1, string.format('barrage +%d', barrageDelta))

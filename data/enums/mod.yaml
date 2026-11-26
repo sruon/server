@@ -583,6 +583,7 @@ values:
   sengikori_bonus:          1090 # additive % increase to Sengikori
   hasso_zanshin_bonus:      1187 # Enables Hasso to occasionally trigger Zanshin after landing normal attacks
   seigan_counter_bonus:     1188 # Enables Seigan counter bonus based on Zanshin rate
+  zanshin_cap:              1221 # Hasso Zanshin and Seigan counters use (25 + this)% of the Zanshin rate
   # Ninja
   utsusemi:               307 # Everyone's favorite --tracks shadows.
   utsusemi_bonus:         900 # Extra shadows from gear
@@ -1282,4 +1283,4 @@ values:
 
   # The spares take care of finding the next ID to use so long as we don't forget to list IDs that have been freed up by refactoring.
   # 570 through 825 used by WS DMG mods these are not spares.
-  # SPARE IDs: 1221 and onward, 378
+  # SPARE IDs: 1222 and onward, 378

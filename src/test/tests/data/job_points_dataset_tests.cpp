@@ -113,6 +113,19 @@ TEST_CASE("job_points: Superior gifts at 50, 100, 500, 1200 and 2100", "[data][j
     }
 }
 
+TEST_CASE("job_points: Hasso and Seigan Effect is the zanshin cap", "[data][jobpoints]")
+{
+    const auto  jobPoints = JobPointsDataset::decode(slurp("data/job_points.yaml"));
+    const auto& samurai   = jobPoints.at(xi::Job::SAM);
+
+    for (const auto spent : std::array<uint16, 2>{ 100, 1200 })
+    {
+        const auto gifts = giftsAt(samurai, spent);
+        CHECK(valueOf(gifts, xi::Mod::ZANSHIN_CAP) == 5);
+        CHECK(std::ranges::find(gifts, xi::Mod::ZANSHIN, &xi::data::JobPointGiftData::Mod) == gifts.end());
+    }
+}
+
 TEST_CASE("job_points: module changes, removes and adds gifts", "[data][jobpoints]")
 {
     const auto modules   = std::array{ std::string{ "job_points:\n  war:\n    gifts:\n      100:\n        crithitrate: 6\n        superior_level: null\n      101:\n        str: 3\n" } };

@@ -3009,6 +3009,15 @@ auto GetEcosystemStrongAgainst(const xi::Ecosystem ecosystem) -> xi::Ecosystem
     return strongAgainst[std::to_underlying(ecosystem)];
 }
 
+// hasso zanshin and seigan counters use (25 + ZANSHIN_CAP)% of the zanshin rate
+auto GetCappedZanshinRate(CBattleEntity* PEntity) -> uint16
+{
+    const int32 zanshin = std::clamp(PEntity->getMod(xi::Mod::ZANSHIN) + GetMeritValue(PEntity, xi::Merit::ZanshinAttackRate), 0, 100);
+    const int32 cap     = std::max(0, 25 + PEntity->getMod(xi::Mod::ZANSHIN_CAP));
+
+    return static_cast<uint16>(zanshin * cap / 100);
+}
+
 /************************************************************************
  *                                                                       *
  *  Returns the number of hits for multihit weapons if applicable        *
