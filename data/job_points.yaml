@@ -1455,7 +1455,7 @@ job_points:
       545:
         capacity_bonus: 23 # Capacity Point Bonus
       550:
-        guard_percent: 1 # Barrage Effect
+        barrage_count: 1 # Barrage Effect
       605:
         def: 6 # Physical Defense Bonus
       655:
