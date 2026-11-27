@@ -214,34 +214,19 @@ describe('Gardening', function()
     describe('yields', function()
         for _, feedEntry in ipairs(oreFeeds) do
             it(string.format('a %s-fed tree sapling yields %s ore', feedEntry.element, feedEntry.element), function()
-                -- Ore is the rarest bucket, so grow and harvest until one drops.
-                local gotOre = false
-                for _ = 1, 40 do
-                    local pot = plant(player, xi.item.BAG_OF_TREE_SAPLINGS)
+                local pot = plant(player, xi.item.BAG_OF_TREE_SAPLINGS)
+                pot:setExData({ strength = 31 })
 
-                    growUntil(player, pot, xi.gardening.stage.FIRST_SPROUTS_CRYSTAL)
-                    feed(player, feedEntry.crystal)
+                growUntil(player, pot, xi.gardening.stage.FIRST_SPROUTS_CRYSTAL)
+                feed(player, feedEntry.crystal)
 
-                    growUntil(player, pot, xi.gardening.stage.SECOND_SPROUTS_CRYSTAL)
-                    feed(player, feedEntry.crystal)
+                growUntil(player, pot, xi.gardening.stage.SECOND_SPROUTS_CRYSTAL)
+                feed(player, feedEntry.crystal)
 
-                    growUntil(player, pot, xi.gardening.stage.MATURE_PLANT)
-                    player.actions:plantHarvest(xi.inv.MOG_SAFE, pot:getSlotID())
+                growUntil(player, pot, xi.gardening.stage.MATURE_PLANT)
+                player.actions:plantHarvest(xi.inv.MOG_SAFE, pot:getSlotID())
 
-                    if player:findItem(feedEntry.ore, xi.inv.MOG_SAFE) then
-                        gotOre = true
-                        break
-                    end
-
-                    -- A full mog safe blocks the next sowing.
-                    player:delContainerItems(xi.inv.MOG_SAFE)
-                    stockSafe(player, xi.item.EARTHEN_FLOWERPOT)
-                    local nextPot = mogItem(player, xi.item.EARTHEN_FLOWERPOT)
-                    player.actions:placeFurniture(xi.inv.MOG_SAFE, nextPot:getSlotID(), 0, 0)
-                    player.actions:finishFurnishing()
-                end
-
-                assert(gotOre, string.format('expected %s feed to yield %s ore', feedEntry.element, feedEntry.element))
+                assert(player:findItem(feedEntry.ore, xi.inv.MOG_SAFE), string.format('expected %s feed to yield %s ore', feedEntry.element, feedEntry.element))
             end)
         end
     end)
