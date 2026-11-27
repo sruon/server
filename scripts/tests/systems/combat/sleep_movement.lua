@@ -44,6 +44,7 @@ describe('Prevent-action movement', function()
     end
 
     local function castSleep()
+        player:addStatusEffect(xi.effect.STYMIE, { power = 1, duration = 60, origin = player })
         player.actions:useSpell(mob, xi.magic.spell.SLEEP)
         for _ = 1, 10 do
             if mob:hasStatusEffect(xi.effect.SLEEP_I) then
