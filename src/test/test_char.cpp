@@ -146,6 +146,8 @@ auto TestChar::create(const xi::ZoneId zoneId, const CharRace race) -> std::uniq
     uint32_t accId    = 0;
     uint32_t charId   = 0;
 
+    static const auto passwordHash = BCrypt::generateHash("password");
+
     const auto created = db::transaction(
         [&]
         {
@@ -164,7 +166,7 @@ auto TestChar::create(const xi::ZoneId zoneId, const CharRace race) -> std::uniq
             rset = db::preparedStmt("INSERT INTO accounts (id, login, password) VALUES (?, ?, ?)",
                                     accId,
                                     accountName,
-                                    BCrypt::generateHash("password"));
+                                    passwordHash);
             if (!rset)
             {
                 throw std::runtime_error("Unable to create new account");
