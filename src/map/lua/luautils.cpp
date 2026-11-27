@@ -646,7 +646,12 @@ void TryReloadFilewatchList()
 
     for (const auto& [filename, action] : changedFiles)
     {
-        const auto pathStr = filename.generic_string();
+        const auto pathStr = filename.lexically_normal().generic_string();
+        if (pathStr.starts_with("scripts/tests/"))
+        {
+            continue;
+        }
+
         if (action == Filewatcher::Action::Add || action == Filewatcher::Action::Modified)
         {
             ShowInfo("[FileWatcher] %s", pathStr.c_str());
