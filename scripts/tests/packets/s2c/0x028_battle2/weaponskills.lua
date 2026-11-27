@@ -176,7 +176,9 @@ local packets =
             player:addItem(xi.item.TERPSICHORE_99)
             player:equipItem(xi.item.TERPSICHORE_99, nil, xi.slot.MAIN)
             player:setTP(3000)
-            local mnkMob = player.entities:moveTo('Vanguard_Grappler')
+            local mnkMob = player.entities:get('Vanguard_Grappler')
+            mnkMob:respawn()
+            player.entities:moveTo(mnkMob:getID())
             stub('xi.combat.physical.isGuarded', true)
             mnkMob:setMod(xi.mod.ADDITIVE_GUARD, 100)
 
@@ -185,7 +187,7 @@ local packets =
             xi.test.world:tickEntity(player)
             xi.test.world:skipTime(1)
             player.actions:useWeaponskill(mnkMob, xi.weaponskill.PYRRHIC_KLEOS)
-            xi.test.world:skipTime(3)
+            xi.test.world:tickEntity(player)
             mnkMob:disengage()
         end,
 
