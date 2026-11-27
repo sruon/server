@@ -35,7 +35,7 @@ public:
     TestChar() = default;
 
     static auto create(xi::ZoneId zoneId = xi::ZoneId::GmHome, CharRace race = CharRace::HumeMale) -> std::unique_ptr<TestChar>;
-    static void clean(uint32_t charId = 0);
+    static void clean();
 
     ~TestChar();
 

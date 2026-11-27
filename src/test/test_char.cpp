@@ -25,7 +25,6 @@
 #include "login/login_helpers.h"
 #include "map/entities/base_entity.h"
 #include "map/entities/char_entity.h"
-#include "test_common.h"
 #include "zone.h"
 
 #include <algorithm>
@@ -33,6 +32,7 @@
 #include <cstddef>
 #include <format>
 #include <limits>
+#include <stdexcept>
 #include <utility>
 
 #include <bcrypt/BCrypt.hpp>
@@ -43,23 +43,15 @@ namespace
 constexpr uint32 MinTestCharId = 20000000;
 constexpr uint32 MinTestAccId  = 20000000;
 
-} // namespace
-
-// Cleans the given character ID or all characters with IDs >= MinTestCharId.
-void TestChar::clean(uint32 charId /* = 0 */)
+void cleanCharacters(const std::pair<uint32, uint32> accountIds, const std::pair<uint32, uint32> ids)
 {
-    const auto ids = [&]() -> std::pair<uint32, uint32>
+    constexpr auto accountQuery = db::Query("DELETE FROM accounts WHERE id BETWEEN ? AND ?");
+    if (!db::preparedStmt(accountQuery, accountIds.first, accountIds.second))
     {
-        if (charId > 0)
-        {
-            return { charId, charId };
-        }
-
-        return { MinTestCharId, std::numeric_limits<uint32>::max() };
-    }();
+        ShowErrorFmt("Failed to execute cleanup query: {}", accountQuery);
+    }
 
     constexpr auto oneIdColumn = std::to_array<db::Query>({
-        "DELETE FROM accounts WHERE id BETWEEN ? AND ?",
         "DELETE FROM auction_house WHERE seller BETWEEN ? AND ?",
         "DELETE FROM audit_vendor WHERE seller BETWEEN ? AND ?",
     });
@@ -140,74 +132,95 @@ void TestChar::clean(uint32 charId /* = 0 */)
     }
 }
 
+} // namespace
+
+void TestChar::clean()
+{
+    cleanCharacters({ MinTestAccId, std::numeric_limits<uint32>::max() },
+                    { MinTestCharId, std::numeric_limits<uint32>::max() });
+}
+
 auto TestChar::create(const xi::ZoneId zoneId, const CharRace race) -> std::unique_ptr<TestChar>
 {
-    uint32_t accId  = 0;
-    uint32_t charId = 0;
+    auto     testChar = std::make_unique<TestChar>();
+    uint32_t accId    = 0;
+    uint32_t charId   = 0;
 
-    auto rset = db::preparedStmt("SELECT max(id) FROM accounts");
-    FOR_DB_SINGLE_RESULT(rset)
+    const auto created = db::transaction(
+        [&]
+        {
+            auto rset = db::preparedStmt("SELECT max(id) FROM accounts");
+            FOR_DB_SINGLE_RESULT(rset)
+            {
+                accId = std::max(MinTestAccId, rset->get<uint32>("max(id)") + 1);
+            }
+            else
+            {
+                throw std::runtime_error("Unable to get max accounts ID");
+            }
+
+            const auto accountName = std::format("TEST_{}", accId);
+
+            rset = db::preparedStmt("INSERT INTO accounts (id, login, password) VALUES (?, ?, ?)",
+                                    accId,
+                                    accountName,
+                                    BCrypt::generateHash("password"));
+            if (!rset)
+            {
+                throw std::runtime_error("Unable to create new account");
+            }
+
+            rset = db::preparedStmt("SELECT max(charid) FROM chars");
+            FOR_DB_SINGLE_RESULT(rset)
+            {
+                charId = std::max(MinTestCharId, rset->get<uint32>("max(charid)") + 1);
+            }
+            else
+            {
+                throw std::runtime_error("Unable to get max character ID");
+            }
+
+            const auto charName = std::format("T{}", charId);
+
+            char_mini mini = {
+                .m_name   = {},
+                .m_mjob   = static_cast<uint8>(xi::Job::WAR),
+                .m_zone   = zoneId,
+                .m_nation = xi::Nation::Sandoria,
+            };
+
+            mini.m_look.race = static_cast<uint8>(race);
+            mini.m_look.size = static_cast<uint16>(CharSize::Small);
+            mini.m_look.face = static_cast<uint8>(CharFace::Face1A);
+
+            std::strncpy(reinterpret_cast<char*>(mini.m_name), charName.c_str(), sizeof(mini.m_name) - 1);
+            mini.m_name[sizeof(mini.m_name) - 1] = '\0';
+
+            if (loginHelpers::saveCharacter(accId, charId, &mini) != 0)
+            {
+                throw std::runtime_error("Unable to save test character");
+            }
+
+            testChar->charName_ = charName;
+        });
+
+    if (!created)
     {
-        accId = std::max(MinTestAccId, rset->get<uint32>("max(id)") + 1);
-    }
-    else
-    {
-        TestError("Unable to get max accounts ID");
         return nullptr;
     }
 
-    auto accountName = std::format("TEST_{}", accId);
-
-    rset = db::preparedStmt("INSERT INTO accounts (id, login, password) VALUES (?, ?, ?)",
-                            accId,
-                            accountName,
-                            BCrypt::generateHash("password"));
-    if (!rset)
-    {
-        TestError("Unable to create new account");
-        return nullptr;
-    }
-
-    rset = db::preparedStmt("SELECT max(charid) FROM chars");
-    FOR_DB_SINGLE_RESULT(rset)
-    {
-        charId = std::max(MinTestCharId, rset->get<uint32>("max(charid)") + 1);
-    }
-    else
-    {
-        TestError("Unable to get max character ID");
-        return nullptr;
-    }
-
-    const auto charName = std::format("T{}", charId);
-
-    char_mini mini = {
-        .m_name   = {},
-        .m_mjob   = static_cast<uint8>(xi::Job::WAR),
-        .m_zone   = zoneId,
-        .m_nation = xi::Nation::Sandoria,
-    };
-
-    mini.m_look.race = static_cast<uint8>(race);
-    mini.m_look.size = static_cast<uint16>(CharSize::Small);
-    mini.m_look.face = static_cast<uint8>(CharFace::Face1A);
-
-    std::strncpy(reinterpret_cast<char*>(mini.m_name), charName.c_str(), sizeof(mini.m_name) - 1);
-    mini.m_name[sizeof(mini.m_name) - 1] = '\0';
-
-    loginHelpers::saveCharacter(accId, charId, &mini);
-
-    auto testChar        = std::make_unique<TestChar>();
     testChar->accountId_ = accId;
     testChar->charId_    = charId;
-    testChar->charName_  = charName;
 
     return testChar;
 }
 
 TestChar::~TestChar()
 {
-    TestChar::clean(this->charId_);
+    if (accountId_ != 0 && charId_ != 0)
+    {
+        cleanCharacters({ accountId_, accountId_ }, { charId_, charId_ });
+    }
 }
 
 void TestChar::clearPackets() const
