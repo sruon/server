@@ -24,6 +24,7 @@
 #include "common/lua.h"
 #include "common/tracy.h"
 #include "reporters/reporter_container.h"
+#include "server_variable_scope.h"
 #include <algorithm>
 #include <chrono>
 #include <format>
@@ -50,6 +51,7 @@ TestCollector::TestCollector(const FilterConfig& filters, ReporterContainer& rep
     auto testFiles = collectTestFiles();
     for (const auto& filePath : testFiles)
     {
+        const ServerVariableScope serverVariables;
         loadTestFile(filePath);
     }
 

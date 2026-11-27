@@ -31,6 +31,7 @@
 #include <iostream>
 #include <unordered_set>
 
+#include "utils/scoped_server_var_cache.h"
 #include "utils/serverutils.h"
 
 namespace serverutils
@@ -43,6 +44,18 @@ HashMap<std::string, std::pair<int32, uint32>> serverVarCache;
 std::unordered_set<std::string>                serverVarChanges;
 
 } // namespace
+
+ScopedServerVarCache::ScopedServerVarCache()
+: cache_(serverVarCache)
+, changes_(serverVarChanges)
+{
+}
+
+ScopedServerVarCache::~ScopedServerVarCache()
+{
+    serverVarCache.swap(cache_);
+    serverVarChanges.swap(changes_);
+}
 
 auto GetServerVar(const std::string& name) -> uint32
 {

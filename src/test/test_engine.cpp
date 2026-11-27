@@ -29,6 +29,7 @@
 #include "in_memory_sink.h"
 #include "lua/lua_simulation.h"
 #include "reporters/reporter_container.h"
+#include "server_variable_scope.h"
 #include "test_char.h"
 #include "test_suite.h"
 
@@ -100,8 +101,9 @@ auto TestEngine::executeTests() -> Task<bool>
     const auto& rootSuite = testCollector_->rootSuite();
     for (const auto& suite : rootSuite.childSuites())
     {
-        const HookContext baseContext{};
-        const auto        suiteResults = executeSuite(suite, baseContext);
+        const ServerVariableScope serverVariables;
+        const HookContext         baseContext{};
+        const auto                suiteResults = executeSuite(suite, baseContext);
 
         results.total += suiteResults.total;
         results.passed += suiteResults.passed;
@@ -212,6 +214,7 @@ auto TestEngine::executeSuite(const TestSuite& suite, HookContext context) -> Te
     // Execute nested suites, passing down the accumulated context
     for (const auto& childSuite : suite.childSuites())
     {
+        const ServerVariableScope serverVariables;
         auto [total, passed, failed, skipped] = executeSuite(childSuite, context);
         results.total += total;
         results.passed += passed;
@@ -307,7 +310,8 @@ auto TestEngine::runTestCaseOnce(const TestCase& testCase, const HookContext& co
     TracyZoneString(fmt::format("{} :: {}", suite.fullName(), testCase.name()));
 
     // Track timing
-    auto startTime = std::chrono::steady_clock::now();
+    auto                      startTime = std::chrono::steady_clock::now();
+    const ServerVariableScope serverVariables;
 
     // Clean simulation state, reset PRNG seed and weather, and clear logs before each test
     DebugTestFmt("  Cleaning simulation state for test: {}", testCase.name());
