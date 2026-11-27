@@ -29,6 +29,7 @@
 #include <cstring>
 
 #include "enums/item_lockflg.h"
+#include "enums/packet_s2c.h"
 #include "items/item_access.h"
 #include "packets/basic.h"
 #include "packets/char_status.h"
@@ -380,6 +381,11 @@ auto CCharEntity::getPacketList() const -> const std::deque<std::unique_ptr<CBas
     return PacketList;
 }
 
+auto CCharEntity::hasQueuedLogoutPacket() const -> bool
+{
+    return queuedLogoutPackets_ != 0;
+}
+
 void CCharEntity::clearPacketList()
 {
     while (!PacketList.empty())
@@ -409,15 +415,18 @@ void CCharEntity::pushPacket(std::unique_ptr<CBasicPacket>&& packet)
 
     moduleutils::OnPushPacket(this, packet);
 
-    if (packet->getType() == 0x5B)
+    const auto& queuedPacket = PacketList.emplace_back(std::move(packet));
+    if (queuedPacket->getType() == std::to_underlying(PacketS2C::GP_SERV_COMMAND_LOGOUT))
     {
-        if (packet->ref<uint32>(0x10) == this->id)
+        ++queuedLogoutPackets_;
+    }
+    else if (queuedPacket->getType() == 0x5B)
+    {
+        if (queuedPacket->ref<uint32>(0x10) == this->id)
         {
             pendingPositionUpdate = true;
         }
     }
-
-    PacketList.emplace_back(std::move(packet));
 }
 
 void CCharEntity::updateEntityPacket(CBaseEntity* PEntity, ENTITYUPDATE type, uint8 updatemask)
@@ -466,6 +475,9 @@ auto CCharEntity::popPacket() -> std::unique_ptr<CBasicPacket>
     // Clean up pending
     switch (PPacket->getType())
     {
+        case std::to_underlying(PacketS2C::GP_SERV_COMMAND_LOGOUT):
+            --queuedLogoutPackets_;
+            break;
         case 0x0D: // Char update
             [[fallthrough]];
         case 0x0E: // Entity update
@@ -500,6 +512,11 @@ void CCharEntity::erasePackets(uint8 num)
 // Only for types popPacket keeps no bookkeeping for
 void CCharEntity::erasePacketsOfType(const std::span<const uint16> types)
 {
+    if (std::ranges::contains(types, std::to_underlying(PacketS2C::GP_SERV_COMMAND_LOGOUT)))
+    {
+        queuedLogoutPackets_ = 0;
+    }
+
     std::erase_if(
         PacketList,
         [&](const auto& PPacket)
