@@ -52,7 +52,8 @@ describe('Equipment during weaponskills', function()
 
     before_each(function()
         player = xi.test.world:spawnPlayer({ zone = xi.zone.BEAUCEDINE_GLACIER_S, job = xi.job.WAR, level = 75 })
-        mob    = player.entities:moveTo('Ruszor')
+        mob    = player.entities:get('Ruszor')
+        mob:respawn()
 
         player:setSkillLevel(xi.skill.SWORD, 200)
         player:addItem(xi.item.BRONZE_SWORD)
