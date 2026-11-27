@@ -15,8 +15,16 @@ describe('Patrolling mobs', function()
             { x = mobPosition.x,     y = mobPosition.y, z = mobPosition.z },
         }, xi.path.flag.PATROL)
 
-        xi.test.world:skipTime(60)
+        assert(mob:isFollowingPath(), 'the conductor did not start its patrol')
 
-        assert(not mob:hasStatusEffect(xi.effect.MINNE), 'patrolling mob has not gained Minne')
+        local cast = false
+        mob:addListener('MAGIC_START', 'TEST_PATROL_CAST', function()
+            cast = true
+        end)
+
+        xi.test.world:skipTime(60)
+        mob:removeListener('TEST_PATROL_CAST')
+
+        assert(not cast, 'the patrolling conductor started casting')
     end)
 end)
