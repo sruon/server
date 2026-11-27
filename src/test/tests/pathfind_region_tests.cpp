@@ -245,6 +245,13 @@ TEST_CASE("pathfind: movement does not overshoot a sloped waypoint", "[pathfind]
         CHECK(moved == 1.0f);
     }
 
+    SECTION("a partial step follows the segment between waypoints")
+    {
+        const position_t diagonal{ 4.0f, 0.0f, 1.0f, 0, 0 };
+        pathfind::stepTowards(position, diagonal, 1.25f, 0.0f);
+        CHECK(std::abs(position.x - 4.0f * position.z) < 0.00001f);
+    }
+
     SECTION("stopping range still includes height")
     {
         const float moved = pathfind::stepTowards(position, target, 0.1f, 1.25f);

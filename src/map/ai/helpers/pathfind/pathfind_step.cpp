@@ -42,8 +42,7 @@ auto stepTowards(position_t& pos, const position_t& target, float stepDistance, 
         pos.rotation = worldAngle(pos, target);
     }
 
-    // FFXI's rotation byte is counter-clockwise; standard math convention is clockwise.
-    const float radians = 2.0f * static_cast<float>(M_PI) - rotationToRadian(pos.rotation);
+    const float radians = std::atan2(target.z - pos.z, target.x - pos.x);
 
     // Step Y toward target.y along the slope, clamped so we never overshoot its height either way.
     const auto stepY = [&]() -> void
