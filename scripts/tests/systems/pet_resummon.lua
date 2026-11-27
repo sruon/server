@@ -339,9 +339,13 @@ describe('Normal pet summon placement', function()
         assert(pet:isAlive(), 'distance from the summon point must not despawn a following pet')
         assert(pet:checkDistance(owner) < 5, 'the pet must stay with the owner instead of heading home')
 
+        player:gotoZone(xi.zone.GM_HOME)
+        assert(pet:isAlive(), 'the observer leaving the zone must not despawn the pet')
+
         -- Turning the home check back on should despawn the pet at this distance.
         pet:setMobMod(xi.mobMod.DONT_ROAM_HOME, 0)
         pet:clearPath()
+        xi.test.world:tickEntity(pet)
         for _ = 1, 10 do
             xi.test.world:skipTime(1)
             xi.test.world:tickEntity(pet)
