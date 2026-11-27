@@ -12,6 +12,7 @@ describe('Monstrosity combat', function()
     -- Melee for a fixed span against a target that never fights back or dies.
     -- The harness swings at three quarters of the real delay.
     local function fight(family, seconds)
+        player:setVisibleGMLevel(3)
         helpers.becomeSpecies(player, family, family, 1)
 
         mob = player.entities:moveTo('Wild_Rabbit')

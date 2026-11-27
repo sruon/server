@@ -26,10 +26,9 @@ describe('Monstrosity mobskills', function()
     before_each(function()
         target = nil
         player = helpers.spawnMonipulator(xi.zone.WEST_RONFAURE)
-        helpers.becomeSpecies(player, lizardSpecies, lizardSpecies, 15)
-
         -- Keep ambient aggro from changing TP during these checks.
         player:setVisibleGMLevel(3)
+        helpers.becomeSpecies(player, lizardSpecies, lizardSpecies, 15)
 
         target = player.entities:moveTo('Wild_Rabbit')
         target:respawn()
