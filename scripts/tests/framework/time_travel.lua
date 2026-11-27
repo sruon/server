@@ -66,12 +66,13 @@ describe('Time Travel', function()
     end)
 
     it('can skip to next Vanadiel hourly tick', function()
+        xi.test.world:setVanaTime(3, 0)
         local startHour = VanadielHour()
         xi.test.world:tick(xi.tick.VANA_HOUR)
         local endHour    = VanadielHour()
         local vanaMinute = VanadielMinute()
 
-        assert(startHour ~= endHour, string.format('Vanadiel hour did not change (still %d)', startHour))
+        assert(endHour == (startHour + 1) % 24, string.format('Expected the hour after %d, got %d', startHour, endHour))
         assert(vanaMinute == 0, string.format('Expected Vanadiel minute 0, got %d', vanaMinute))
     end)
 

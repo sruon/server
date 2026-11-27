@@ -499,7 +499,7 @@ void CLuaSimulation::tick(const Maybe<TickType> boundary) const
     const auto nextJstHourlyUpdate = std::chrono::ceil<std::chrono::hours>(timerAdjustedUtcTime);
     const auto nextJstDailyUpdate  = earth_time::jst::get_next_midnight(timerAdjustedUtcTime);
 
-    const auto nextVHourlyUpdate = std::chrono::ceil<xi::vanadiel_clock::hours>(adjustedVanaTime);
+    const auto nextVHourlyUpdate = std::chrono::floor<xi::vanadiel_clock::hours>(adjustedVanaTime) + xi::vanadiel_clock::hours(1);
     const auto nextVDailyUpdate  = std::chrono::ceil<xi::vanadiel_clock::days>(adjustedVanaTime);
 
     // Default to ZoneTick if no type specified
