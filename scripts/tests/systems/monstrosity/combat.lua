@@ -15,6 +15,7 @@ describe('Monstrosity combat', function()
     local function fight(family, seconds)
         player:setVisibleGMLevel(3)
         helpers.becomeSpecies(player, family, family, 1)
+        player:addStatusEffect(xi.effect.INVINCIBLE, { power = 1, duration = 120, origin = player })
 
         mob = player.entities:get('Wild_Rabbit')
         mob:respawn()

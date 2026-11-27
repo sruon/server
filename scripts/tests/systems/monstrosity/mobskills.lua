@@ -122,6 +122,7 @@ describe('Monstrosity mobskills', function()
     end)
 
     it('refunds nothing for an interrupted free move', function()
+        player:addStatusEffect(xi.effect.INVINCIBLE, { power = 1, duration = 120, origin = player })
         player:setTP(500)
         player:addStatusEffect(xi.effect.MEIKYO_SHISUI, { power = 1, duration = 30, origin = player })
         player.actions:useMonsterSkill(target, fireballDat)
