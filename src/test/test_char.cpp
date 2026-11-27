@@ -158,10 +158,12 @@ auto TestChar::create(const xi::ZoneId zoneId, const CharRace race) -> std::uniq
 
     auto accountName = std::format("TEST_{}", accId);
 
+    static const auto passwordHash = BCrypt::generateHash("password");
+
     rset = db::preparedStmt("INSERT INTO accounts (id, login, password) VALUES (?, ?, ?)",
                             accId,
                             accountName,
-                            BCrypt::generateHash("password"));
+                            passwordHash);
     if (!rset)
     {
         TestError("Unable to create new account");
