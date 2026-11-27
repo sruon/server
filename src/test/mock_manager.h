@@ -41,7 +41,7 @@ public:
     auto stub(const std::string& path, const sol::object& mockImpl = sol::lua_nil) -> CLuaStub*;
     auto spy(const std::string& path) -> CLuaSpy*;
 
-    void restoreAll();
+    auto restoreAll() -> std::vector<std::string>;
 
 private:
     void setAtPath(const std::string& path, const sol::object& value) const;

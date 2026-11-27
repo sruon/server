@@ -329,49 +329,66 @@ auto TestEngine::runTestCaseOnce(const TestCase& testCase, const HookContext& co
     std::string              errorMessage;
     std::vector<std::string> logs;
 
-    // Run all before hooks
-    if (auto hookError = runBeforeHooks(context, testCase.name()))
+    const auto recordFailure = [&](const std::string& error)
     {
-        errorMessage = *hookError;
-        status       = TestStatus::Failed;
-    }
-
-    // Execute the test if before hooks passed
-    if (status == TestStatus::Passed)
-    {
-        if (const auto& testFunc = testCase.testFunc())
+        if (!errorMessage.empty())
         {
-            sol::function_result testResult;
-            try
-            {
-                testResult = (*testFunc)();
-            }
-            catch (const std::exception& e)
-            {
-                std::cerr << e.what() << '\n';
-            }
+            errorMessage += '\n';
+        }
 
-            if (!testResult.valid())
+        errorMessage += error;
+        status = TestStatus::Failed;
+    };
+
+    try
+    {
+        if (auto hookError = runBeforeHooks(context, testCase.name()))
+        {
+            recordFailure(*hookError);
+        }
+        else if (const auto& testFunc = testCase.testFunc())
+        {
+            if (const auto result = (*testFunc)(); !result.valid())
             {
-                sol::error err = testResult;
-                errorMessage   = err.what();
-                status         = TestStatus::Failed;
+                const sol::error error = result;
+                recordFailure(error.what());
             }
         }
         else
         {
-            // No test function means this was a loading/setup failure
-            errorMessage = "Test loading or setup failed";
-            status       = TestStatus::Failed;
+            recordFailure("Test loading or setup failed");
         }
-
-        // Restore all mocks, spies and setting overrides after test execution
-        mockManager_->restoreAll();
-        simulation_->restoreSettings();
+    }
+    catch (const std::exception& error)
+    {
+        recordFailure(error.what());
+    }
+    catch (...)
+    {
+        recordFailure("Unknown exception during test execution");
     }
 
-    // Run all after hooks (even if test failed)
-    runAfterHooks(context, testCase.name());
+    const auto restoreOverrides = [&]()
+    {
+        for (const auto& error : mockManager_->restoreAll())
+        {
+            recordFailure(error);
+        }
+
+        for (const auto& error : simulation_->restoreSettings())
+        {
+            recordFailure(error);
+        }
+    };
+
+    restoreOverrides();
+
+    for (const auto& error : runAfterHooks(context, testCase.name()))
+    {
+        recordFailure(error);
+    }
+
+    restoreOverrides();
 
 #if defined(XI_TEST_ASAN)
     // free lua-owned memory now so a stale pointer into it faults in this test, not a later one
@@ -438,13 +455,14 @@ auto TestEngine::runBeforeHooks(const HookContext& context, const std::string& t
     return std::nullopt;
 }
 
-void TestEngine::runAfterHooks(const HookContext& context, const std::string& testName) const
+auto TestEngine::runAfterHooks(const HookContext& context, const std::string& testName) const -> std::vector<std::string>
 {
     TracyZoneScoped;
 
+    auto errors = std::vector<std::string>{};
     if (context.afterEachHooks.empty())
     {
-        return;
+        return errors;
     }
 
     DebugTestFmt("======= TEARDOWN ========");
@@ -455,16 +473,31 @@ void TestEngine::runAfterHooks(const HookContext& context, const std::string& te
         const auto& [func, suiteName, depth] = context.afterEachHooks[i];
         DebugTestFmt("    Running after_each[{}] from suite '{}' (depth {})", i, suiteName, depth);
 
-        if (auto result = func(); !result.valid())
+        try
         {
-            sol::error err = result;
-            ShowErrorFmt("    after_each[{}] from '{}' failed: {}", i, suiteName, err.what());
+            if (const auto result = func(); !result.valid())
+            {
+                const sol::error error = result;
+                errors.push_back(fmt::format("after_each from '{}' failed: {}", suiteName, error.what()));
+                ShowErrorFmt("{}", errors.back());
+            }
+            else
+            {
+                DebugTestFmt("    after_each[{}] from '{}' completed successfully", i, suiteName);
+            }
         }
-        else
+        catch (const std::exception& error)
         {
-            DebugTestFmt("    after_each[{}] from '{}' completed successfully", i, suiteName);
+            errors.push_back(fmt::format("after_each from '{}' failed: {}", suiteName, error.what()));
+            ShowErrorFmt("{}", errors.back());
+        }
+        catch (...)
+        {
+            errors.push_back(fmt::format("after_each from '{}' failed: unknown exception", suiteName));
+            ShowErrorFmt("{}", errors.back());
         }
     }
 
     DebugTest("===== END TEARDOWN ======");
+    return errors;
 }

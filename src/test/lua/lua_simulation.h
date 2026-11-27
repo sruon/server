@@ -75,7 +75,7 @@ public:
     void setSeed(uint64 seed) const;
     auto getSetting(const std::string& key) const -> sol::object;
     void setSetting(const std::string& key, const sol::object& value);
-    void restoreSettings();
+    auto restoreSettings() -> std::vector<std::string>;
     void seed() const;
     void resetWeather() const;
     void setSetupContext(bool inSetup);

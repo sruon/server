@@ -51,6 +51,7 @@
 
 #include <algorithm>
 #include <ranges>
+#include <stdexcept>
 
 namespace
 {
@@ -62,8 +63,14 @@ void applySetting(const std::string& key, const settings::SettingsVariant& value
                 {
                     settings::set(key, held);
 
-                    const auto parts                                              = split(key, ".");
-                    lua["xi"]["settings"][to_lower(parts[0])][to_upper(parts[1])] = held;
+                    const auto parts = split(key, ".");
+                    auto       table = lua["xi"]["settings"][to_lower(parts[0])].get<sol::optional<sol::table>>();
+                    if (!table.has_value())
+                    {
+                        throw std::runtime_error(fmt::format("Settings table for '{}' is missing", key));
+                    }
+
+                    table.value()[to_upper(parts[1])] = held;
                 });
 }
 
@@ -238,14 +245,29 @@ void CLuaSimulation::setSetting(const std::string& key, const sol::object& value
     }
 }
 
-void CLuaSimulation::restoreSettings()
+auto CLuaSimulation::restoreSettings() -> std::vector<std::string>
 {
-    for (const auto& [key, value] : settingOverrides_)
-    {
-        applySetting(key, value);
-    }
+    auto errors = std::vector<std::string>{};
+    std::erase_if(settingOverrides_, [&](const auto& entry)
+                  {
+                      const auto& [key, value] = entry;
+                      try
+                      {
+                          applySetting(key, value);
+                          return true;
+                      }
+                      catch (const std::exception& error)
+                      {
+                          errors.push_back(fmt::format("Restoring setting '{}' failed: {}", key, error.what()));
+                      }
+                      catch (...)
+                      {
+                          errors.push_back(fmt::format("Restoring setting '{}' failed: unknown exception", key));
+                      }
 
-    settingOverrides_.clear();
+                      return false;
+                  });
+    return errors;
 }
 
 /************************************************************************

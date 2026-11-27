@@ -90,7 +90,7 @@ private:
     auto executeTestCase(const TestCase& testCase, const HookContext& context, const TestSuite& suite) const -> bool;
     auto runTestCaseOnce(const TestCase& testCase, const HookContext& context, const TestSuite& suite) const -> TestResult;
     auto runBeforeHooks(const HookContext& context, const std::string& testName) const -> Maybe<std::string>;
-    void runAfterHooks(const HookContext& context, const std::string& testName) const;
+    auto runAfterHooks(const HookContext& context, const std::string& testName) const -> std::vector<std::string>;
 
     Application&                        application_;
     Scheduler&                          scheduler_;
