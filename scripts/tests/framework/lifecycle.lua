@@ -64,34 +64,25 @@ describe('Test lifecycle', function()
                 {
                     zone  = xi.zone.WEST_RONFAURE,
                     job   = xi.job.WHM,
-                    level = math.randomInt(1, 99),
+                    level = (currentLevel or 0) + 1,
                 })
-
-            if currentLevel and player:getMainLvl() == currentLevel then
-                player:setLevel(math.min((currentLevel + 1) % 99, 1)) -- Change level if same as last time
-            end
         end)
 
         describe('executes', function()
             before_each(function()
-                while true do
-                    player:changeJob(utils.randomEntry(xi.job))
-                    if player:getMainJob() ~= currentJob then
-                        break
-                    end
-                end
+                player:changeJob(currentJob == xi.job.WAR and xi.job.BLM or xi.job.WAR)
             end)
 
             it('first case job/level', function()
                 currentLevel = player:getMainLvl()
                 currentJob = player:getMainJob()
-                assert(currentLevel)
-                assert(currentJob)
+                assert(currentLevel == 1)
+                assert(currentJob == xi.job.WAR)
             end)
 
             it('is different from second case', function()
-                assert(player:getMainLvl() ~= currentLevel)
-                assert(player:getMainJob() ~= currentJob)
+                assert(player:getMainLvl() == 2)
+                assert(player:getMainJob() == xi.job.BLM)
             end)
         end)
     end)
