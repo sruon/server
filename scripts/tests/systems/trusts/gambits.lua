@@ -3,21 +3,41 @@
 -----------------------------------
 
 describe('Trust gambits', function()
+    local player
+    local mob
+    local wasUnkillable
+    local mpModifier
+
+    before_each(function()
+        wasUnkillable = nil
+        player        = xi.test.world:spawnPlayer({ zone = xi.zone.WEST_RONFAURE, job = xi.job.WAR, level = 75 })
+        mob           = player.entities:get('Wild_Rabbit')
+        mob:respawn()
+        wasUnkillable = mob:getUnkillable()
+        mpModifier    = mob:getMod(xi.mod.MP)
+        mob:setUnkillable(true)
+        mob:clearPath()
+        player.entities:moveTo(mob:getID())
+    end)
+
+    after_each(function()
+        if mob and wasUnkillable ~= nil then
+            mob:setUnkillable(wasUnkillable)
+            mob:setMod(xi.mod.MP, mpModifier)
+            mob:updateHealth()
+        end
+    end)
+
     -- Amchuchu checks whether the mob's elemental cast is aimed at her.
     it('read a cast whose target has left the zone', function()
-        local player = xi.test.world:spawnPlayer({ zone = xi.zone.WEST_RONFAURE, job = xi.job.WAR, level = 75 })
-        local mob    = player.entities:moveTo('Wild_Rabbit')
-        mob:respawn()
-        mob:setMobMod(xi.mobMod.NO_MOVE, 1)
-        mob:setUnkillable(true)
-
         player:spawnTrust(xi.magic.spell.AMCHUCHU)
         xi.test.world:skipTime(1)
         local amchuchu = player:getPartyWithTrusts()[2]
         assert(amchuchu and amchuchu:isTrust(), 'precondition: Amchuchu was summoned')
         player:setCharVar('TrustEngageType', 1)
+        mob:updateClaim(player)
         mob:updateEnmity(player)
-        player:engage(mob:getTargID())
+        player.actions:engage(mob)
         for _ = 1, 3 do
             xi.test.world:skipTime(1)
             xi.test.world:tick()
