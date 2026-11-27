@@ -592,7 +592,8 @@ describe('Monstrosity starting family moves', function()
     }
 
     before_each(function()
-        player = helpers.spawnMonipulator(xi.zone.WEST_RONFAURE)
+        player = helpers.spawnMonipulator(xi.zone.GM_HOME)
+        player:setVisibleGMLevel(3)
     end)
 
     for family, list in pairs(moves) do
@@ -693,7 +694,8 @@ describe('Monstrosity variant moves', function()
     }
 
     before_each(function()
-        player = helpers.spawnMonipulator(xi.zone.WEST_RONFAURE)
+        player = helpers.spawnMonipulator(xi.zone.GM_HOME)
+        player:setVisibleGMLevel(3)
     end)
 
     for _, variant in ipairs(variants) do
@@ -726,7 +728,8 @@ describe('Monstrosity Goobbue moves', function()
     local player
 
     before_each(function()
-        player = helpers.spawnMonipulator(xi.zone.WEST_RONFAURE)
+        player = helpers.spawnMonipulator(xi.zone.GM_HOME)
+        player:setVisibleGMLevel(3)
     end)
 
     local moves =
