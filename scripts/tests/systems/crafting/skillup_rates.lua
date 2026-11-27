@@ -29,8 +29,7 @@ describe('SkillUpRates', function()
             end
 
             p:setSkillLevel(xi.skill.WOODWORKING, skillTenths)
-            p:addItem(crystal)
-            p:addItem(ingredient)
+            assert(p:addItemStacks({ crystal, ingredient }))
 
             p.actions:craft(crystal, { ingredient })
             xi.test.world:skipTime(15)
@@ -122,8 +121,7 @@ describe('SkillUpRates', function()
                 end
 
                 p:setSkillLevel(xi.skill.LEATHERCRAFT, skillTenths)
-                p:addItem(xi.item.LIGHTNING_CRYSTAL)
-                p:addItem(xi.item.LEATHER_HIGHBOOTS)
+                assert(p:addItemStacks({ xi.item.LIGHTNING_CRYSTAL, xi.item.LEATHER_HIGHBOOTS }))
 
                 p.actions:craft(xi.item.LIGHTNING_CRYSTAL, { xi.item.LEATHER_HIGHBOOTS })
                 xi.test.world:skipTime(15)

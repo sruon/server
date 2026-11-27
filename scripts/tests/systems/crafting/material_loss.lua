@@ -19,9 +19,7 @@ describe('Material loss', function()
 
     -- Runs one guaranteed break and returns how many of each ingredient survived it.
     local function breakSynth()
-        player:addItem(crystal)
-        player:addItem(woolThread)
-        player:addItem(hide)
+        assert(player:addItemStacks({ crystal, woolThread, hide }))
 
         player.actions:craft(crystal, { woolThread, hide })
         xi.test.world:skipTime(15)
@@ -91,8 +89,7 @@ describe('Material loss', function()
         player:setMod(xi.mod.SYNTH_SPEED_WOODWORKING, 17000)
 
         for _ = 1, 20 do
-            player:addItem(lightCrystal)
-            player:addItem(brokenRod)
+            assert(player:addItemStacks({ lightCrystal, brokenRod }))
 
             player.actions:craft(lightCrystal, { brokenRod })
             xi.test.world:skipTime(15)

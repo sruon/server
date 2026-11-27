@@ -64,6 +64,11 @@ end
 function CClientEntityPair:getItemInvSlot(itemId, quantity)
 end
 
+---@param stacks (integer|{ itemId: integer, quantity: integer })[]
+---@return boolean
+function CClientEntityPair:addItemStacks(stacks)
+end
+
 ---Claim and kill a mob, handling death and despawn
 ---@param mobQuery CBaseEntity|string|integer Mob entity, name, or ID
 ---@param params? {expectDeath?: boolean, waitForDespawn?: boolean} Optional parameters

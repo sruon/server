@@ -20,15 +20,18 @@
 */
 
 #include "lua_client_entity_pair.h"
+#include "common/database/database.h"
 #include "enums/tick_type.h"
 #include "map/entities/base_entity.h"
 #include "map/entities/char_entity.h"
 #include "map/item_container.h"
 #include "map/items/item.h"
+#include "map/items/transactions/item_claim.h"
 #include "map/linkshell.h"
 #include "map/lua/lua_base_entity.h"
 #include "map/lua/sol_bindings.h"
 #include "map/utils/charutils.h"
+#include "map/utils/itemutils.h"
 #include "map/zone.h"
 #include "map_engine.h"
 #include "map_networking.h"
@@ -37,6 +40,8 @@
 #include "test_char.h"
 #include "test_common.h"
 #include "test_network_client.h"
+
+#include <stdexcept>
 
 // A test player that combines client and player entity functionality
 // Common test patterns are exposed as properties
@@ -231,6 +236,66 @@ auto CLuaClientEntityPair::getItemInvSlot(const uint16 itemId, const uint8 quant
     }
 
     return std::nullopt;
+}
+
+auto CLuaClientEntityPair::addItemStacks(const sol::table& stacks) const -> bool
+{
+    const auto count = stacks.size();
+
+    std::vector<std::unique_ptr<CItem>> items;
+    items.reserve(count);
+    for (size_t i = 1; i <= count; ++i)
+    {
+        const auto entry    = stacks.get<sol::object>(i);
+        auto       itemId   = uint16{};
+        auto       quantity = uint32{ 1 };
+        if (entry.is<uint16>())
+        {
+            itemId = entry.as<uint16>();
+        }
+        else if (entry.is<sol::table>())
+        {
+            const auto stack = entry.as<sol::table>();
+            itemId           = stack.get_or<uint16>("itemId", 0);
+            quantity         = stack.get_or<uint32>("quantity", 1);
+        }
+        else
+        {
+            return false;
+        }
+
+        auto item = xi::items::spawn(itemId);
+        if (!item || quantity == 0 || quantity > item->getStackSize())
+        {
+            return false;
+        }
+        item->setQuantity(quantity);
+        items.push_back(std::move(item));
+    }
+
+    if (items.empty())
+    {
+        return true;
+    }
+
+    auto claim = ItemClaimTransaction::start(testChar_->entity());
+    if (!claim)
+    {
+        return false;
+    }
+
+    const auto persisted = db::transaction(
+        [&]()
+        {
+            for (auto& item : items)
+            {
+                if (!claim->give(xi::Container::Inventory, std::move(item)))
+                {
+                    throw std::runtime_error("Could not add inventory stack to test player");
+                }
+            }
+        });
+    return persisted && claim->commit();
 }
 
 /************************************************************************
@@ -440,6 +505,7 @@ void CLuaClientEntityPair::Register()
     SOL_REGISTER("getSearchMessage", CLuaClientEntityPair::getSearchMessage);
     SOL_REGISTER("getLinkshellId", CLuaClientEntityPair::getLinkshellId);
     SOL_REGISTER("getItemInvSlot", CLuaClientEntityPair::getItemInvSlot);
+    SOL_REGISTER("addItemStacks", CLuaClientEntityPair::addItemStacks);
     SOL_REGISTER("claimAndKillMob", CLuaClientEntityPair::claimAndKillMob);
     SOL_REGISTER("claimAndKillMobs", CLuaClientEntityPair::claimAndKillMobs);
     SOL_READONLY("actions", CLuaClientEntityPair::actions);
