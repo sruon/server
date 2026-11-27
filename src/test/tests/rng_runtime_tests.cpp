@@ -31,13 +31,21 @@
 #include <common/xirand.h>
 
 #include <catch2/catch_test_macros.hpp>
+#include <catch2/interfaces/catch_interfaces_config.hpp>
+#include <catch2/internal/catch_context.hpp>
 
 #include <algorithm>
 #include <array>
+#include <chrono>
 #include <cmath>
 #include <cstdint>
+#include <cstdlib>
+#include <future>
+#include <iostream>
 #include <limits>
 #include <map>
+#include <string_view>
+#include <thread>
 #include <vector>
 
 namespace
@@ -45,7 +53,10 @@ namespace
 
 constexpr int kSamples = 1'000'000;
 
-TEST_CASE("seeded engine reproduces the same stream", "[rng]")
+constexpr char kStreams[]      = "seeded engine reproduces the same stream";
+constexpr char kDistribution[] = "GetNormalNumber matches the requested distribution";
+
+auto drawSeededStreams()
 {
     std::vector<uint32_t> first;
     first.reserve(16);
@@ -63,6 +74,103 @@ TEST_CASE("seeded engine reproduces the same stream", "[rng]")
         second.emplace_back(xirand::GetRandomNumber<uint32_t>(1'000'000));
     }
 
+    return std::pair{ std::move(first), std::move(second) };
+}
+
+auto sampleNormalDistribution()
+{
+    xirand::rng().seed(1);
+
+    double sum   = 0.0;
+    double sumSq = 0.0;
+    for (int i = 0; i < kSamples; ++i)
+    {
+        const auto value = xirand::GetNormalNumber(3.5, 1.5);
+        sum += value;
+        sumSq += value * value;
+    }
+
+    const double mean   = sum / kSamples;
+    const double stddev = std::sqrt(sumSq / kSamples - mean * mean);
+
+    return std::pair{ mean, stddev };
+}
+
+using Clock = std::chrono::steady_clock;
+
+template <typename Result>
+struct RngCaseResult
+{
+    Result               value;
+    SelectedRandomEngine engine;
+    const char*          name;
+    std::thread::id      thread;
+    Clock::time_point    start;
+    Clock::time_point    end;
+};
+
+template <typename Function>
+auto launchRngCase(const char* name, Function function)
+{
+    const auto work = [name, function]
+    {
+        const auto start = Clock::now();
+        auto       value = function();
+        const auto end   = Clock::now();
+        return RngCaseResult{ std::move(value), xirand::rng(), name, std::this_thread::get_id(), start, end };
+    };
+
+    try
+    {
+        return std::async(std::launch::async, work);
+    }
+    catch (...)
+    {
+        std::promise<decltype(work())> failure;
+        failure.set_exception(std::current_exception());
+        return failure.get_future();
+    }
+}
+
+struct ParallelRngCases
+{
+    std::future<RngCaseResult<decltype(sampleNormalDistribution())>> distribution = launchRngCase(kDistribution, sampleNormalDistribution);
+    std::future<RngCaseResult<decltype(drawSeededStreams())>>        streams      = launchRngCase(kStreams, drawSeededStreams);
+
+    ParallelRngCases()
+    {
+        distribution.wait();
+        streams.wait();
+    }
+};
+
+auto parallelRngCases() -> ParallelRngCases&
+{
+    static ParallelRngCases cases;
+    return cases;
+}
+
+template <typename Function, typename Future>
+auto runRngCase(Function function, Future ParallelRngCases::* member)
+{
+    const auto* mode   = std::getenv("XI_TEST_PARALLEL_RNG");
+    const auto* config = Catch::getCurrentContext().getConfig();
+    if (!mode || std::string_view(mode) != "1" || config->hasTestFilters() || config->shardCount() != 1 || config->abortAfter() > 0)
+    {
+        return function();
+    }
+
+    auto result   = (parallelRngCases().*member).get();
+    xirand::rng() = std::move(result.engine);
+    std::cerr << "RNG case \"" << result.name << "\" thread=" << result.thread
+              << " start_ns=" << std::chrono::duration_cast<std::chrono::nanoseconds>(result.start.time_since_epoch()).count()
+              << " end_ns=" << std::chrono::duration_cast<std::chrono::nanoseconds>(result.end.time_since_epoch()).count() << '\n';
+    return std::move(result.value);
+}
+
+TEST_CASE(kStreams, "[rng]")
+{
+    const auto [first, second] = runRngCase(drawSeededStreams, &ParallelRngCases::streams);
     REQUIRE(first == second);
 }
 
@@ -115,21 +223,9 @@ TEST_CASE("floating GetRandomNumber stays inside [min, max)", "[rng]")
     }
 }
 
-TEST_CASE("GetNormalNumber matches the requested distribution", "[rng]")
+TEST_CASE(kDistribution, "[rng]")
 {
-    xirand::rng().seed(1);
-
-    double sum   = 0.0;
-    double sumSq = 0.0;
-    for (int i = 0; i < kSamples; ++i)
-    {
-        const auto value = xirand::GetNormalNumber(3.5, 1.5);
-        sum += value;
-        sumSq += value * value;
-    }
-
-    const double mean   = sum / kSamples;
-    const double stddev = std::sqrt(sumSq / kSamples - mean * mean);
+    const auto [mean, stddev] = runRngCase(sampleNormalDistribution, &ParallelRngCases::distribution);
 
     CHECK(std::abs(mean - 3.5) < 0.05);
     CHECK(std::abs(stddev - 1.5) < 0.05);
