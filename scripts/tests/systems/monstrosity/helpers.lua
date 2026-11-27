@@ -75,8 +75,9 @@ function helpers.killWorm(player, mobLevel)
         gained = gained + exp
     end)
 
-    local mob = player.entities:moveTo('Tunnel_Worm')
+    local mob = player.entities:get('Tunnel_Worm')
     mob:respawn()
+    player.entities:moveTo(mob:getID())
     if mobLevel then
         mob:setMobLevel(mobLevel)
         mob:setMod(xi.mod.EXP_LVL_MOD, -2)
