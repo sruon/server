@@ -27,15 +27,16 @@ describe('HQ', function()
             end
 
             -- Stack duplicate ingredients into one slot or 0x096 rejects.
-            p:addItem(crystal)
             local counts = {}
             for _, ing in ipairs(ings) do
                 counts[ing] = (counts[ing] or 0) + 1
             end
 
+            local stacks = { crystal }
             for ing, count in pairs(counts) do
-                p:addItem(ing, count)
+                table.insert(stacks, { itemId = ing, quantity = count })
             end
+            assert(p:addItemStacks(stacks))
 
             local nqBefore = p:getItemCount(nq)
             local hqBefore = p:getItemCount(hq)
