@@ -87,8 +87,9 @@ TEST_CASE("Server variable scopes restore rows, cached reads and pending flushes
     CHECK(serverutils::GetVolatileServerVar(clean) == 3);
     serverutils::SetServerVar(cold, 27);
     CHECK(serverutils::GetVolatileServerVar(cold) == 27);
+    serverutils::SetServerVar(absent, 29, 301);
     serverutils::PersistVolatileServerVars();
     CHECK(readRow(dirty) == std::pair{ -8, 102 });
     CHECK(readRow(clean) == std::pair{ 6, 0 });
-    CHECK_FALSE(readRow(absent));
+    CHECK(readRow(absent) == std::pair{ 29, 301 });
 }
