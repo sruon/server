@@ -8,25 +8,28 @@ describe('Monstrosity combat', function()
     ---@type CTestEntity
     local mob
     local wasUnkillable
+    local lizardKiller
 
     -- Melee for a fixed span against a target that never fights back or dies.
     -- The harness swings at three quarters of the real delay.
     local function fight(family, seconds)
         helpers.becomeSpecies(player, family, family, 1)
 
-        mob = player.entities:moveTo('Wild_Rabbit')
+        mob = player.entities:get('Wild_Rabbit')
         mob:respawn()
         wasUnkillable = mob:getUnkillable()
+        lizardKiller  = mob:getMod(xi.mod.LIZARD_KILLER)
+        mob:setMod(xi.mod.LIZARD_KILLER, 0)
         mob:setUnkillable(true)
         mob:setAutoAttackEnabled(false)
         mob:setMobAbilityEnabled(false)
+        mob:clearPath()
+        mob:updateEnmity(player)
         player:setTP(0)
         player.packets:clear()
         player.actions:engage(mob)
 
         for _ = 1, seconds do
-            -- The target roams
-            player.entities:moveTo(mob:getID())
             xi.test.world:skipTime(1)
             xi.test.world:tickEntity(player)
         end
@@ -62,6 +65,8 @@ describe('Monstrosity combat', function()
 
     after_each(function()
         if mob and type(wasUnkillable) == 'boolean' then
+            mob:disengage()
+            mob:setMod(xi.mod.LIZARD_KILLER, lizardKiller)
             mob:setAutoAttackEnabled(true)
             mob:setMobAbilityEnabled(true)
             mob:setUnkillable(wasUnkillable)
