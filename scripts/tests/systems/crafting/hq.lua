@@ -41,6 +41,7 @@ describe('HQ', function()
             local nqBefore = p:getItemCount(nq)
             local hqBefore = p:getItemCount(hq)
 
+            xi.test.world:setSeed(i)
             p.actions:craft(crystal, ings)
             xi.test.world:skipTime(15)
 
