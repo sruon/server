@@ -26,11 +26,16 @@
 #include "lua/lua_stub.h"
 #include "map/lua/luautils.h"
 
+#include <stdexcept>
+
 MockManager::MockManager() = default;
 
 MockManager::~MockManager()
 {
-    restoreAll();
+    for (const auto& error : restoreAll())
+    {
+        ShowErrorFmt("{}", error);
+    }
 }
 
 // Installs a stub in the lua global environment at the specified path.
@@ -60,20 +65,49 @@ auto MockManager::spy(const std::string& path) -> CLuaSpy*
 }
 
 // Restores all stubs and spies to their original functions.
-void MockManager::restoreAll()
+auto MockManager::restoreAll() -> std::vector<std::string>
 {
-    for (const auto& stub : stubs_)
+    auto       errors  = std::vector<std::string>{};
+    const auto restore = [&](const auto& testDouble) -> bool
     {
-        setAtPath(stub->path(), stub->original());
+        try
+        {
+            setAtPath(testDouble->path(), testDouble->original());
+            return true;
+        }
+        catch (const std::exception& error)
+        {
+            errors.push_back(fmt::format("Restoring '{}' failed: {}", testDouble->path(), error.what()));
+        }
+        catch (...)
+        {
+            errors.push_back(fmt::format("Restoring '{}' failed: unknown exception", testDouble->path()));
+        }
+
+        return false;
+    };
+
+    auto failedStubs = std::vector<std::unique_ptr<CLuaStub>>{};
+    auto failedSpies = std::vector<std::unique_ptr<CLuaSpy>>{};
+    for (auto& stub : stubs_)
+    {
+        if (!restore(stub))
+        {
+            failedStubs.push_back(std::move(stub));
+        }
     }
 
-    for (const auto& spy : spies_)
+    for (auto& spy : spies_)
     {
-        setAtPath(spy->path(), spy->original());
+        if (!restore(spy))
+        {
+            failedSpies.push_back(std::move(spy));
+        }
     }
 
-    stubs_.clear();
-    spies_.clear();
+    stubs_ = std::move(failedStubs);
+    spies_ = std::move(failedSpies);
+    return errors;
 }
 
 // Helper function to set a value at a given path in the lua global environment.
@@ -89,7 +123,13 @@ void MockManager::setAtPath(const std::string& path, const sol::object& value) c
 
     for (size_t i = 0; i < parts.size() - 1; ++i)
     {
-        current = current[parts[i]];
+        const auto next = current[parts[i]].get<sol::optional<sol::table>>();
+        if (!next.has_value())
+        {
+            throw std::runtime_error(fmt::format("'{}' is not a table in '{}'", parts[i], path));
+        }
+
+        current = next.value();
     }
 
     current[parts.back()] = value;
