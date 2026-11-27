@@ -527,6 +527,7 @@ public:
     auto GetGender() -> uint8;
 
     auto getPacketList() const -> const std::deque<std::unique_ptr<CBasicPacket>>&;
+    auto hasQueuedLogoutPacket() const -> bool;
     void clearPacketList();
 
     template <typename T, typename... Args>
@@ -900,6 +901,8 @@ private:
     std::unordered_set<uint32>                             charTriggerAreaIDs; // Holds any TriggerArea IDs that the player is currently within the bounds of
 
     CharPersist persist_{};
+
+    size_t queuedLogoutPackets_{};
 
     // TODO: Don't use raw ptrs for this, but don't duplicate whole packets with unique_ptr either.
     std::deque<std::unique_ptr<CBasicPacket>> PacketList;          // The list of packets to be sent to the character during the next network cycle
