@@ -42,6 +42,7 @@ target_sources(xi_map_battle PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/puppetutils.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/puppetutils.h
     ${CMAKE_CURRENT_SOURCE_DIR}/serverutils.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/scoped_server_var_cache.h
     ${CMAKE_CURRENT_SOURCE_DIR}/serverutils.h
     ${CMAKE_CURRENT_SOURCE_DIR}/synergyutils.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/synergyutils.h

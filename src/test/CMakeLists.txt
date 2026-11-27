@@ -21,6 +21,8 @@ set(SOURCES
     mock_manager.cpp
     mock_manager.h
     mock_socket.h
+    server_variable_scope.cpp
+    server_variable_scope.h
     test_application.h
     test_application.cpp
     test_case.h
@@ -75,6 +77,7 @@ xi_add_executable(xi_test testserver.rc
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/pathfind_region_tests.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/roam_region_tests.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/scheduler_tests.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/tests/server_variable_scope_tests.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/transport_voyage_tests.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/ximesh_query_tests.cpp
 )
