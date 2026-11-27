@@ -38,8 +38,8 @@ end
 
 -- Being engaged stops the out-of-combat HP recovery, so HP checks stay exact. The rabbit can't fight back.
 ---@param player CClientEntityPair
-function helpers.engageDummy(player)
-    local mob = player.entities:moveTo('Wild_Rabbit')
+---@param mob CTestEntity
+function helpers.engageDummy(player, mob)
     mob:respawn()
     mob:setUnkillable(true)
     mob:addStatusEffect(xi.effect.PETRIFICATION, { power = 1, duration = 600, origin = mob })

@@ -24,6 +24,7 @@ describe('Monstrosity mobskills', function()
     local target
 
     before_each(function()
+        target = nil
         player = helpers.spawnMonipulator(xi.zone.WEST_RONFAURE)
         helpers.becomeSpecies(player, lizardSpecies, lizardSpecies, 15)
 
@@ -39,7 +40,9 @@ describe('Monstrosity mobskills', function()
     end)
 
     after_each(function()
-        target:setAutoAttackEnabled(true)
+        if target then
+            target:setAutoAttackEnabled(true)
+        end
     end)
 
     it('translates the DAT skill id and spends only the listed TP cost', function()
@@ -467,6 +470,7 @@ describe('Monstrosity Spriggan moves', function()
     local target
 
     before_each(function()
+        target = nil
         player = helpers.spawnMonipulator(xi.zone.WEST_RONFAURE)
         helpers.becomeSpecies(player, xi.monstrositySpecies.EORZEAN_SPRIGGAN, sprigganC, 30)
 
@@ -479,7 +483,9 @@ describe('Monstrosity Spriggan moves', function()
     end)
 
     after_each(function()
-        target:setAutoAttackEnabled(true)
+        if target then
+            target:setAutoAttackEnabled(true)
+        end
     end)
 
     it('Jittering Jig boosts attack for a minute at 700 TP', function()
@@ -617,14 +623,30 @@ describe('Monstrosity Bee moves', function()
     ---@type CClientEntityPair
     local player
 
+    ---@type CTestEntity
+    local mob
+    local wasUnkillable
+
     before_each(function()
+        mob           = nil
+        wasUnkillable = nil
+
         player = helpers.spawnMonipulator(xi.zone.WEST_RONFAURE)
         helpers.becomeSpecies(player, xi.monstrositySpecies.BEE, xi.monstrositySpecies.BEE, 10)
     end)
 
+    after_each(function()
+        if mob and type(wasUnkillable) == 'boolean' then
+            mob:setUnkillable(wasUnkillable)
+            mob:delStatusEffect(xi.effect.PETRIFICATION)
+        end
+    end)
+
     -- JP wiki: Pollen heals a Monipulator for an eighth of its max HP.
     it('heals an eighth of max HP with Pollen', function()
-        helpers.engageDummy(player)
+        mob           = player.entities:moveTo('Wild_Rabbit')
+        wasUnkillable = mob:getUnkillable()
+        helpers.engageDummy(player, mob)
         player:setHP(1)
         player:setTP(3000)
         player.actions:useMonsterSkill(player, pollenDat)

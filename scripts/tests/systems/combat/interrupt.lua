@@ -20,6 +20,7 @@ describe('Action interrupts', function()
     local target
 
     before_each(function()
+        target = nil
         caster = xi.test.world:spawnPlayer({ zone = xi.zone.WEST_RONFAURE, job = xi.job.BLM, level = 99 })
         target = caster.entities:moveTo('Wild_Rabbit')
         target:respawn() -- reset to full HP/alive; a prior test's cast may have killed it
@@ -31,6 +32,8 @@ describe('Action interrupts', function()
 
     after_each(function()
         if target then
+            target:removeListener('TEST_SLEEP')
+            target:removeListener('TEST_SWING')
             target:setAutoAttackEnabled(true)
         end
     end)

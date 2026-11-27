@@ -11,6 +11,21 @@ describe('Monstrosity Belligerency', function()
     ---@type CClientEntityPair
     local gladiator
 
+    ---@type CTestEntity
+    local target
+    local wasUnkillable
+
+    before_each(function()
+        target        = nil
+        wasUnkillable = nil
+    end)
+
+    after_each(function()
+        if target and type(wasUnkillable) == 'boolean' then
+            target:setUnkillable(wasUnkillable)
+        end
+    end)
+
     -- Both arrive in Buburimu Peninsula with Gestation, which shields them until it is clicked off.
     local function meet(flagged)
         monipulator = helpers.spawnMonipulator(xi.zone.BUBURIMU_PENINSULA)
@@ -73,6 +88,8 @@ describe('Monstrosity Belligerency', function()
     local function spawnDhalmel()
         local mob = monipulator.entities:moveTo('Bull_Dhalmel')
         mob:respawn()
+        target        = mob
+        wasUnkillable = mob:getUnkillable()
         mob:setUnkillable(true)
         gladiator.entities:moveTo(mob:getID())
 
