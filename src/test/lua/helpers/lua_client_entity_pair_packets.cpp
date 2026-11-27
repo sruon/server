@@ -148,24 +148,7 @@ void CLuaClientEntityPairPackets::sendZonePackets()
 
 void CLuaClientEntityPairPackets::parseIncoming()
 {
-    const auto testChar        = parent_->testChar();
-    bool       foundZonePacket = false;
-
-    for (auto&& packet : testChar->entity()->getPacketList())
-    {
-        switch (packet->getType())
-        {
-            case 0x0B: // CServerIPPacket: request from server to change zone
-            {
-                foundZonePacket = true;
-                break;
-            }
-            default:
-                break;
-        }
-    }
-
-    if (foundZonePacket)
+    if (parent_->testChar()->entity()->hasQueuedLogoutPacket())
     {
         DebugTest("Server requesting zone change");
         sendZonePackets();
