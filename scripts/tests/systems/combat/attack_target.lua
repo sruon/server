@@ -97,6 +97,7 @@ describe('Auto-attack target', function()
             target:gotoZone(xi.zone.WEST_RONFAURE)
             assert(target:getTargID() ~= oldTargId, 'precondition: the player zoned back into a different slot')
             target:setPos(mob:getXPos(), mob:getYPos(), mob:getZPos())
+            stub('xi.combat.physicalHitRate.getPhysicalHitRate', 1.0)
 
             local hits = 0
             for _ = 1, 10 do
