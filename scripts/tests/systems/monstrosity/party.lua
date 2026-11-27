@@ -95,7 +95,7 @@ describe('Monstrosity assistance', function()
     end)
 
     local function spawnCurer(target)
-        local curer = xi.test.world:spawnPlayer({ zone = xi.zone.WEST_RONFAURE, job = xi.job.WHM, level = 99 })
+        local curer = xi.test.world:spawnPlayer({ zone = target:getZoneID(), job = xi.job.WHM, level = 99 })
         curer:addSpell(xi.magic.spell.CURE)
 
         local pos = target:getPos()
@@ -122,7 +122,7 @@ describe('Monstrosity assistance', function()
     end)
 
     it('lets an adventurer cure another adventurer', function()
-        local target = xi.test.world:spawnPlayer({ zone = xi.zone.WEST_RONFAURE, job = xi.job.WAR, level = 10 })
+        local target = xi.test.world:spawnPlayer({ zone = xi.zone.SOUTHERN_SAN_DORIA, job = xi.job.WAR, level = 10 })
         cure(spawnCurer(target), target)
 
         assert(target:getHP() > 1, 'Cure did not land on an adventurer')
