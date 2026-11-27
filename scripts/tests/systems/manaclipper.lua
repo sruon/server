@@ -91,7 +91,7 @@ describe('Manaclipper mobs', function()
         end)
 
         player = xi.test.world:spawnPlayer({ zone = xi.zone.MANACLIPPER })
-        player:gotoZone(xi.zone.WEST_RONFAURE)
+        player:gotoZone(xi.zone.GM_HOME)
         boarding = false
         zone = GetZone(xi.zone.MANACLIPPER)
         assert(zone, 'Manaclipper is not loaded')
@@ -459,6 +459,7 @@ describe('Manaclipper mobs', function()
         player.entities:moveTo(mobId)
         player:setUnkillable(true)
         player.packets:clear()
+        assert(player:isAlive(), 'the passenger must be alive to draw enmity')
         mob:addEnmity(player, 100, 100)
 
         for _ = 1, 15 do
