@@ -89,6 +89,12 @@ IPCClient::IPCClient(MapNetworking& networking, ZMQService& zmqService)
     TracyZoneScoped;
 }
 
+IPCClient::IPCClient(MapNetworking& networking, SendFunction send)
+: networking_(networking)
+, send_(std::move(send))
+{
+}
+
 auto IPCClient::getZMQEndpointString() -> std::string
 {
     return fmt::format(
@@ -130,7 +136,7 @@ void IPCClient::handleIncomingMessages()
 
     // TODO: Can we stop more messages appearing on the queue while we're processing?
     zmq::message_t out;
-    while (channel_.tryReceive(out))
+    while (channel_ && channel_->tryReceive(out))
     {
         const auto firstByte = out.data<uint8>()[0];
         const auto msgType   = ipc::toString(static_cast<ipc::MessageType>(firstByte));

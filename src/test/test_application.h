@@ -29,6 +29,8 @@
 #include <sys/resource.h>
 #endif
 
+class WorldEngine;
+
 class TestApplication final : public Application
 {
 public:
@@ -39,10 +41,10 @@ public:
 
     auto createEngine() -> std::unique_ptr<Engine> override;
     auto run() -> bool override;
-    void captureLogger() const;
 
 private:
     std::shared_ptr<InMemorySink> sink_;
+    std::unique_ptr<WorldEngine>  world_;
 
     bool success_{ false };
 };

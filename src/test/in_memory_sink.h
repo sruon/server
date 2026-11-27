@@ -21,6 +21,7 @@
 
 #pragma once
 
+#include <memory>
 #include <mutex>
 #include <spdlog/sinks/base_sink.h>
 #include <string>
@@ -29,6 +30,8 @@
 class InMemorySink final : public spdlog::sinks::base_sink<std::mutex>
 {
 public:
+    static void capture(const std::shared_ptr<InMemorySink>& sink);
+
     void clear()
     {
         logs_.clear();

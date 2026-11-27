@@ -41,6 +41,8 @@ class IPCServer final : public ipc::IPCMessageHandlerBase<IPCServer>
 public:
     IPCServer(WorldEngine& worldServer, ZMQService& zmqService);
 
+    using TellLookup = std::function<Maybe<IPP>(const IPP&, const std::string&)>;
+    void setTellLookup(TellLookup lookup);
     void handleIncomingMessages();
 
     template <typename T>
@@ -127,6 +129,7 @@ public:
 private:
     WorldEngine& worldServer_;
 
+    TellLookup     tellLookup_;
     CharacterCache characterCache_;
     ZoneSettings   zoneSettings_;
 

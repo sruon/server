@@ -80,8 +80,15 @@
 #endif
 
 MapEngine::MapEngine(Application& application, MapConfig& config)
-: application_(application)
-, scheduler_(application_.scheduler())
+: MapEngine(application.scheduler(), config, [&application](MapNetworking& networking)
+            { return std::make_unique<IPCClient>(networking, application.zmqService()); })
+{
+    application_ = &application;
+}
+
+MapEngine::MapEngine(Scheduler& scheduler, MapConfig& config, IpcFactory makeIpc)
+: makeIpc_(std::move(makeIpc))
+, scheduler_(scheduler)
 , mapStatistics_(std::make_unique<MapStatistics>())
 , networking_(std::make_unique<MapNetworking>(scheduler_, *mapStatistics_, config))
 , config_(config)
@@ -157,7 +164,7 @@ auto MapEngine::init() -> Task<void>
     }
 
     ShowInfo("do_init: starting ZMQ thread");
-    ipcClient_ = std::make_unique<IPCClient>(networking(), application_.zmqService());
+    ipcClient_ = makeIpc_(networking());
     message::init(*ipcClient_);
 
     // NOTE: We're phasing out server usage without ximeshes and navmeshes. For now for ease of use,
@@ -313,7 +320,10 @@ auto MapEngine::init() -> Task<void>
     // to run everything.
     //
 
-    application_.markLoaded();
+    if (application_)
+    {
+        application_->markLoaded();
+    }
 }
 
 auto MapEngine::watchdogUpdater() -> Task<void>

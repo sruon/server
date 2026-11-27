@@ -24,6 +24,11 @@
 #include <common/lua.h>
 #include <common/tracy.h>
 
+#ifdef XI_TEST_WORLD_LANES
+#include "world_lanes/host.h"
+#include "common/settings.h"
+#endif
+
 #include <catch2/catch_session.hpp>
 
 #include <iostream>
@@ -34,6 +39,16 @@ auto main(int argc, char** argv) -> int
     TracySetThreadName("Test Thread");
 
     auto testApp = std::make_unique<TestApplication>(argc, argv);
+#ifdef XI_TEST_WORLD_LANES
+    const auto* module = std::getenv("XI_TEST_WORLD_MODULE");
+    if (module && settings::get<std::string>("network.SQL_DATABASE") != "xidb_world_lanes")
+    {
+        std::cerr << "World map research requires the private primary database before native tests.\n";
+        testApp.reset();
+        lua_cleanup();
+        return EXIT_FAILURE;
+    }
+#endif
 
     {
         std::cout << "[----------] Running C++ unit tests with Catch2\n";
@@ -49,7 +64,11 @@ auto main(int argc, char** argv) -> int
         }
     }
 
+#ifdef XI_TEST_WORLD_LANES
+    const auto success = module ? runWorldLanes(*testApp, module) : testApp->run();
+#else
     const auto success = testApp->run();
+#endif
 
     const auto exitCode = success ? EXIT_SUCCESS : EXIT_FAILURE;
 

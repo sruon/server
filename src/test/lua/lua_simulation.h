@@ -53,6 +53,9 @@ class CLuaSimulation
 public:
     CLuaSimulation(MapEngine* _mapServer, const std::shared_ptr<InMemorySink>& _sink);
 
+    using SpawnObserver = void (*)(CLuaClientEntityPair&);
+    static void observeSpawns(SpawnObserver observer);
+
     ~CLuaSimulation() = default;
 
     CLuaSimulation(const CLuaSimulation&)                    = delete;

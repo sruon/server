@@ -29,6 +29,8 @@
 #include "map_config.h"
 #include "zone.h"
 
+#include <functional>
+
 //
 // Forward Declarations
 //
@@ -49,6 +51,8 @@ class MapEngine final : public Engine
 {
 public:
     MapEngine(Application& application, MapConfig& config);
+    using IpcFactory = std::function<std::unique_ptr<IPCClient>(MapNetworking&)>;
+    MapEngine(Scheduler& scheduler, MapConfig& config, IpcFactory makeIpc);
     ~MapEngine() override;
 
     DISALLOW_COPY_AND_MOVE(MapEngine);
@@ -92,7 +96,8 @@ public:
     // TODO: gameState()
 
 private:
-    Application& application_;
+    Application* application_{};
+    IpcFactory   makeIpc_;
     Scheduler&   scheduler_;
 
     Maybe<Scheduler::Token> mapCleanupToken_;

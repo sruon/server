@@ -11,6 +11,8 @@ xi.settings = xi.settings or {}
 
 xi.settings.test =
 {
+    NAVMESH_OUTPUT_DIR = 'navmeshes',
+
     -- [22:32:06][info][    CClass::func:120] Log message
     PATTERN = '[%T][%^%-4!l%$][%*] %v',
 }

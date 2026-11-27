@@ -57,11 +57,8 @@ auto freshSeed() -> uint64
 
 } // namespace
 
-TestEngine::TestEngine(Application& application, TestConfig testConfig, std::unique_ptr<MapEngine> mapEngine, std::unique_ptr<WorldEngine> worldEngine)
-: application_(application)
-, scheduler_(application_.scheduler())
-, mapEngine_(std::move(mapEngine))
-, worldEngine_(std::move(worldEngine))
+TestEngine::TestEngine(TestConfig testConfig, std::unique_ptr<MapEngine> mapEngine)
+: mapEngine_(std::move(mapEngine))
 , mockManager_(std::make_unique<MockManager>())
 , testConfig_(std::move(testConfig))
 , reporters_(testConfig_.verbose, testConfig_.output)
@@ -87,6 +84,11 @@ TestEngine::TestEngine(Application& application, TestConfig testConfig, std::uni
 }
 
 TestEngine::~TestEngine() = default;
+
+auto TestEngine::collectedTests() const -> size_t
+{
+    return testCollector_->totalTests();
+}
 
 auto TestEngine::executeTests() -> Task<bool>
 {
@@ -372,6 +374,19 @@ auto TestEngine::runTestCaseOnce(const TestCase& testCase, const HookContext& co
 
     // Run all after hooks (even if test failed)
     runAfterHooks(context, testCase.name());
+
+    if (testConfig_.takeInfrastructureError)
+    {
+        if (const auto error = testConfig_.takeInfrastructureError(); !error.empty())
+        {
+            status = TestStatus::Failed;
+            if (!errorMessage.empty())
+            {
+                errorMessage += "\n";
+            }
+            errorMessage += error;
+        }
+    }
 
 #if defined(XI_TEST_ASAN)
     // free lua-owned memory now so a stale pointer into it faults in this test, not a later one

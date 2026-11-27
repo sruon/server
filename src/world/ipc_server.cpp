@@ -430,11 +430,16 @@ void IPCServer::handleMessage_CharVarUpdate(const IPP& ipp, const ipc::CharVarUp
     rerouteMessageToCharId(message.charId, message);
 }
 
+void IPCServer::setTellLookup(TellLookup lookup)
+{
+    tellLookup_ = std::move(lookup);
+}
+
 void IPCServer::handleMessage_ChatMessageTell(const IPP& ipp, const ipc::ChatMessageTell& message)
 {
     TracyZoneScoped;
 
-    const auto charIPP = getIPPForCharName(message.recipientName);
+    const auto charIPP = tellLookup_ ? tellLookup_(ipp, message.recipientName) : getIPPForCharName(message.recipientName);
     if (!charIPP)
     {
         sendMessage(ipp, ipc::MessageStandard{

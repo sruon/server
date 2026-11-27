@@ -50,6 +50,7 @@ Filewatcher::~Filewatcher()
     {
         fileWatcherImpl->removeWatch(watchId);
     }
+    fileWatcherImpl.reset();
 }
 
 // cppcheck-suppress passedByValue

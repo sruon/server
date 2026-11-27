@@ -26,7 +26,7 @@
 #include "common/settings.h"
 #include "map/map_networking.h"
 
-#include <spdlog/async.h>
+#include "world/world_engine.h"
 
 #include <algorithm>
 #include <charconv>
@@ -133,9 +133,9 @@ auto TestApplication::run() -> bool
             // Prepare WorldEngine
             //
 
-            auto worldEngine = std::make_unique<WorldEngine>(scheduler_, zmqService_, WorldEngine::EnableHTTPServer::No);
+            world_ = std::make_unique<WorldEngine>(scheduler_, zmqService_, WorldEngine::EnableHTTPServer::No);
 
-            worldEngine->onInitialize();
+            world_->onInitialize();
 
             //
             // Prepare MapEngine
@@ -156,7 +156,7 @@ auto TestApplication::run() -> bool
             mapEngine->onInitialize();
 
             //
-            // Prepare TestEngine with MapEngine and WorldEngine
+            // Prepare TestEngine
             //
 
             size_t retryCount = 0;
@@ -202,11 +202,11 @@ auto TestApplication::run() -> bool
                 },
             };
 
-            engine_ = std::make_unique<TestEngine>(*this, std::move(testConfig), std::move(mapEngine), std::move(worldEngine));
+            engine_ = std::make_unique<TestEngine>(std::move(testConfig), std::move(mapEngine));
 
             // From this point, every logging statements end up in the in-memory sink
             // Print to stderr directly if needed
-            captureLogger();
+            InMemorySink::capture(sink_);
 
             // Record the result and exit through the normal path so main() can run
             // lua_cleanup() before the process tears down.
@@ -225,30 +225,4 @@ auto TestApplication::run() -> bool
     }
 
     return success_;
-}
-
-// Replace all loggers sinks with the in-memory sink
-void TestApplication::captureLogger() const
-{
-    const auto loggerNames = std::vector<std::string>{
-        "critical", "error", "lua", "warn", "info", "debug", "trace"
-    };
-
-    // spdlog blows up if we don't!
-    spdlog::shutdown();
-
-    // Re-register all loggers as SYNCHRONOUS loggers with only our in-memory sink
-    // This ensures all logs are immediately written to the sink
-    for (const auto& name : loggerNames)
-    {
-        const auto logger = std::make_shared<spdlog::logger>(name, sink_);
-        logger->set_level(spdlog::level::trace);
-        spdlog::register_logger(logger);
-    }
-
-    // The loggers were just dropped and re-created, so the lock-free loggerFor cache now holds
-    // dangling pointers. Re-resolve it before anything logs again.
-    logging::RefreshLoggerCache();
-
-    logging::SetPattern(settings::get<std::string>("test.PATTERN"));
 }

@@ -55,6 +55,8 @@
 namespace
 {
 
+CLuaSimulation::SpawnObserver spawnObserver{};
+
 // settings::set only writes the C++ map, while Lua reads xi.settings directly, so both have to move together
 void applySetting(const std::string& key, const settings::SettingsVariant& value)
 {
@@ -702,7 +704,16 @@ auto CLuaSimulation::spawnPlayer(sol::optional<sol::table> params) -> CLuaClient
         player->setLevel(level.value());
     }
 
+    if (spawnObserver)
+    {
+        spawnObserver(*player);
+    }
     return player;
+}
+
+void CLuaSimulation::observeSpawns(SpawnObserver observer)
+{
+    spawnObserver = observer;
 }
 
 void CLuaSimulation::setSetupContext(const bool inSetup)

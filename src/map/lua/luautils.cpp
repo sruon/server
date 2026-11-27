@@ -594,6 +594,7 @@ void init(IPP mapIPP, bool isRunningInCI)
 
 void cleanup()
 {
+    filewatcher.reset();
     luaCache.clear();
 
     moduleutils::CleanupLuaModules();

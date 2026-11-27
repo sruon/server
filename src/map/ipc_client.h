@@ -27,6 +27,8 @@
 #include "common/zmq/zmq_service.h"
 
 #include <atomic>
+#include <functional>
+#include <optional>
 #include <thread>
 
 #include <zmq.hpp>
@@ -38,6 +40,9 @@ class IPCClient final : public ipc::IPCMessageHandlerBase<IPCClient>
 {
 public:
     IPCClient(MapNetworking& networking, ZMQService& zmqService);
+
+    using SendFunction = std::function<void(std::span<const uint8_t>)>;
+    IPCClient(MapNetworking& networking, SendFunction send);
 
     auto getZMQEndpointString() -> std::string;
     auto getZMQRoutingId() -> uint64;
@@ -95,7 +100,8 @@ public:
 private:
     MapNetworking& networking_;
 
-    ipc::Channel<zmq::message_t> channel_;
+    std::optional<ipc::Channel<zmq::message_t>> channel_;
+    SendFunction                 send_;
 };
 
 //
@@ -112,7 +118,12 @@ void IPCClient::sendMessage(const T& message)
     DebugIPCFmt("Sending message: {}", ipc::toStringV<T>);
 
     const auto bytes = ipc::toBytesWithHeader<T>(message);
-    channel_.send(zmq::message_t(bytes));
+    if (send_)
+    {
+        send_(bytes);
+        return;
+    }
+    channel_->send(zmq::message_t(bytes));
 }
 
 //

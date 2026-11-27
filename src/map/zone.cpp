@@ -526,6 +526,15 @@ void CZone::applyNavMeshOverrides(NavMeshConfig& config) const
     }
 }
 
+namespace
+{
+auto navMeshOutput(const MapConfig& config, std::string_view zone) -> std::string
+{
+    const auto directory = config.isTestServer ? settings::get<std::string>("test.NAVMESH_OUTPUT_DIR") : "navmeshes";
+    return fmt::format("{}/{}.nav", directory, zone);
+}
+}
+
 auto CZone::LoadNavMesh() -> Task<void>
 {
     auto       navMesh = std::make_unique<DetourNavMesh>(static_cast<uint16>(GetID()));
@@ -546,7 +555,7 @@ auto CZone::LoadNavMesh() -> Task<void>
     auto* dtNavMesh = co_await builder.buildAsync(scheduler_, getName(), static_cast<uint16>(GetID()), config);
     if (dtNavMesh && navMesh->installNavMesh(dtNavMesh))
     {
-        navMesh->save(file);
+        navMesh->save(navMeshOutput(config_, getName()));
         navMesh_ = std::move(navMesh);
         co_return;
     }
@@ -572,7 +581,7 @@ void CZone::RebuildNavMesh(const NavMeshConfig& configIn)
             auto  navMesh   = std::make_unique<DetourNavMesh>(zoneID);
             if (dtNavMesh && navMesh->installNavMesh(dtNavMesh))
             {
-                navMesh->save(fmt::format("navmeshes/{}.nav", zoneName));
+                navMesh->save(navMeshOutput(config_, zoneName));
                 navMesh_ = std::move(navMesh);
             }
         });

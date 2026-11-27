@@ -17,12 +17,11 @@ set(SOURCES
     enums/tick_type.h
     tests/rng_spread_tests.cpp
     tests/utils/saturated_engine.h
+    in_memory_sink.cpp
     in_memory_sink.h
     mock_manager.cpp
     mock_manager.h
     mock_socket.h
-    test_application.h
-    test_application.cpp
     test_case.h
     test_case.cpp
     test_char.h
@@ -52,6 +51,7 @@ endif()
 # Catch2 test TUs live in the executable, the only target that links Catch2.
 xi_add_executable(xi_test testserver.rc
     ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/test_application.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/bitset_tests.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/char_points_queries_tests.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/tests/data/data_binding_tests.cpp
@@ -88,12 +88,28 @@ target_link_libraries(xi_test_lib
     PUBLIC
         xi_connect_lib
         xi_map_core
-        xi_world_lib
         xi_ext_test
 )
 
-target_link_libraries(xi_test PRIVATE xi_test_lib Catch2::Catch2)
+target_link_libraries(xi_test PRIVATE xi_test_lib xi_world_lib Catch2::Catch2)
 xi_precompile_headers(xi_test)
+
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    target_sources(xi_test PRIVATE world_lanes/host.cpp)
+    target_compile_definitions(xi_test PRIVATE XI_TEST_WORLD_LANES)
+    target_link_libraries(xi_test PRIVATE ${CMAKE_DL_LIBS})
+
+    add_library(xi_test_world_map MODULE EXCLUDE_FROM_ALL world_lanes/lane.cpp)
+    target_link_libraries(xi_test_world_map PRIVATE xi_test_lib)
+    if(DEFINED ENV{XI_TEST_PIC_LIBRARY_DIR})
+        target_link_options(xi_test_world_map PRIVATE "-L$ENV{XI_TEST_PIC_LIBRARY_DIR}")
+    endif()
+    set(world_exports "${CMAKE_CURRENT_SOURCE_DIR}/world_lanes/exports.map")
+    target_link_options(xi_test_world_map PRIVATE "LINKER:--version-script=${world_exports}" "LINKER:-z,defs")
+    set_property(TARGET xi_test_world_map APPEND PROPERTY LINK_DEPENDS "${world_exports}")
+    add_custom_command(TARGET xi_test_world_map POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:xi_test_world_map>" "$<TARGET_FILE:xi_test_world_map>.peer")
+endif()
 
 if(TRACY_ENABLE)
     set_target_properties(xi_test PROPERTIES OUTPUT_NAME xi_test_tracy)

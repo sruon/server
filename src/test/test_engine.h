@@ -30,7 +30,6 @@
 #include "reporters/reporter_container.h"
 #include "test_collector.h"
 #include "test_lua_environment.h"
-#include "world/world_engine.h"
 #include <deque>
 #include <memory>
 #include <vector>
@@ -51,6 +50,7 @@ struct TestConfig
     size_t                        retryCount{ 0 };
     Maybe<uint64>                 seed; // fixed PRNG seed for every test (--seed); a fresh one per test when unset
     FilterConfig                  filters;
+    std::function<std::string()>  takeInfrastructureError;
 };
 
 struct TestResults
@@ -77,8 +77,9 @@ struct HookContext
 class TestEngine final : public Engine
 {
 public:
-    TestEngine(Application& application, TestConfig testConfig, std::unique_ptr<MapEngine> mapEngine, std::unique_ptr<WorldEngine> worldEngine);
+    TestEngine(TestConfig testConfig, std::unique_ptr<MapEngine> mapEngine);
     ~TestEngine() override;
+    auto collectedTests() const -> size_t;
 
     DISALLOW_COPY_AND_MOVE(TestEngine);
 
@@ -92,10 +93,7 @@ private:
     auto runBeforeHooks(const HookContext& context, const std::string& testName) const -> Maybe<std::string>;
     void runAfterHooks(const HookContext& context, const std::string& testName) const;
 
-    Application&                        application_;
-    Scheduler&                          scheduler_;
     std::unique_ptr<MapEngine>          mapEngine_;
-    std::unique_ptr<WorldEngine>        worldEngine_;
     std::unique_ptr<MockManager>        mockManager_;
     TestConfig                          testConfig_;
     ReporterContainer                   reporters_;
