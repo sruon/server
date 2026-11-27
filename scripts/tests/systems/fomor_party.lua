@@ -118,8 +118,10 @@ describe('Fomor parties', function()
         }) do
             player:gotoZone(spec[1])
             player:setUnkillable(true)
+            local mobs = getPatrol(player, spec[1], spec[2], spec[3], spec[4])
             advanceRespawns(player, 0)
-            assertPatrol(getPatrol(player, spec[1], spec[2], spec[3], spec[4]))
+            advanceRespawns(player, GetMobRespawnTime(mobs[1]:getID()))
+            assertPatrol(mobs)
         end
     end)
 
