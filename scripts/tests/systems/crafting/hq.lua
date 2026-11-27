@@ -1,3 +1,5 @@
+local craftingTrials = require('scripts.tests.helpers.crafting_trials')
+
 describe('HQ', function()
     ---@type CClientEntityPair
     local player
@@ -21,20 +23,9 @@ describe('HQ', function()
 
         local nqTotal = 0
         local hqTotal = 0
-        for i = 1, tries do
+        for i in craftingTrials(p, crystal, ings, tries) do
             if i % 200 == 0 then
                 print(string.format('iter %d: NQ=%d HQ=%d', i, nqTotal, hqTotal))
-            end
-
-            -- Stack duplicate ingredients into one slot or 0x096 rejects.
-            p:addItem(crystal)
-            local counts = {}
-            for _, ing in ipairs(ings) do
-                counts[ing] = (counts[ing] or 0) + 1
-            end
-
-            for ing, count in pairs(counts) do
-                p:addItem(ing, count)
             end
 
             local nqBefore = p:getItemCount(nq)
@@ -45,8 +36,6 @@ describe('HQ', function()
 
             nqTotal = nqTotal + (p:getItemCount(nq) - nqBefore)
             hqTotal = hqTotal + (p:getItemCount(hq) - hqBefore)
-
-            p:delContainerItems(xi.inv.INVENTORY)
         end
 
         local total  = nqTotal + hqTotal

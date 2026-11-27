@@ -1,3 +1,5 @@
+local craftingTrials = require('scripts.tests.helpers.crafting_trials')
+
 describe('SkillUpRates', function()
     ---@type CClientEntityPair
     local player
@@ -23,14 +25,12 @@ describe('SkillUpRates', function()
         local counts = { 0, 0, 0, 0, 0 }
         local total  = 0
 
-        for i = 1, tries do
+        for i in craftingTrials(p, crystal, { ingredient }, tries) do
             if i % 200 == 0 then
                 print(string.format('iter %d: %d skill ups', i, total))
             end
 
             p:setSkillLevel(xi.skill.WOODWORKING, skillTenths)
-            p:addItem(crystal)
-            p:addItem(ingredient)
 
             p.actions:craft(crystal, { ingredient })
             xi.test.world:skipTime(15)
@@ -42,8 +42,6 @@ describe('SkillUpRates', function()
                 counts[gain] = counts[gain] + 1
                 total        = total + 1
             end
-
-            p:delContainerItems(xi.inv.INVENTORY)
         end
 
         assert(total >= 200, string.format('only %d skill ups in %d synths, not enough samples', total, tries))
@@ -116,14 +114,12 @@ describe('SkillUpRates', function()
 
             local total = 0
 
-            for i = 1, desynthTries do
+            for i in craftingTrials(p, xi.item.LIGHTNING_CRYSTAL, { xi.item.LEATHER_HIGHBOOTS }, desynthTries) do
                 if i % 400 == 0 then
                     print(string.format('iter %d: %d skill ups', i, total))
                 end
 
                 p:setSkillLevel(xi.skill.LEATHERCRAFT, skillTenths)
-                p:addItem(xi.item.LIGHTNING_CRYSTAL)
-                p:addItem(xi.item.LEATHER_HIGHBOOTS)
 
                 p.actions:craft(xi.item.LIGHTNING_CRYSTAL, { xi.item.LEATHER_HIGHBOOTS })
                 xi.test.world:skipTime(15)
@@ -134,8 +130,6 @@ describe('SkillUpRates', function()
                 if gain > 0 then
                     total = total + 1
                 end
-
-                p:delContainerItems(xi.inv.INVENTORY)
             end
 
             local prob  = 0.05
