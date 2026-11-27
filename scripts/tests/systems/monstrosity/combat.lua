@@ -5,13 +5,18 @@ describe('Monstrosity combat', function()
     ---@type CClientEntityPair
     local player
 
+    ---@type CTestEntity
+    local mob
+    local wasUnkillable
+
     -- Melee for a fixed span against a target that never fights back or dies.
     -- The harness swings at three quarters of the real delay.
     local function fight(family, seconds)
         helpers.becomeSpecies(player, family, family, 1)
 
-        local mob = player.entities:moveTo('Wild_Rabbit')
+        mob = player.entities:moveTo('Wild_Rabbit')
         mob:respawn()
+        wasUnkillable = mob:getUnkillable()
         mob:setUnkillable(true)
         mob:setAutoAttackEnabled(false)
         mob:setMobAbilityEnabled(false)
@@ -49,7 +54,18 @@ describe('Monstrosity combat', function()
     end
 
     before_each(function()
+        mob           = nil
+        wasUnkillable = nil
+
         player = helpers.spawnMonipulator(xi.zone.WEST_RONFAURE)
+    end)
+
+    after_each(function()
+        if mob and type(wasUnkillable) == 'boolean' then
+            mob:setAutoAttackEnabled(true)
+            mob:setMobAbilityEnabled(true)
+            mob:setUnkillable(wasUnkillable)
+        end
     end)
 
     -- Retail swings twice a round, right fist then left.

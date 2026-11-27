@@ -78,6 +78,22 @@ end)
 
 -- FFXIclopedia: Monipulators and adventurers cannot cure or buff each other.
 describe('Monstrosity assistance', function()
+    ---@type CTestEntity
+    local mob
+    local wasUnkillable
+
+    before_each(function()
+        mob           = nil
+        wasUnkillable = nil
+    end)
+
+    after_each(function()
+        if mob and type(wasUnkillable) == 'boolean' then
+            mob:setUnkillable(wasUnkillable)
+            mob:delStatusEffect(xi.effect.PETRIFICATION)
+        end
+    end)
+
     local function spawnCurer(target)
         local curer = xi.test.world:spawnPlayer({ zone = xi.zone.WEST_RONFAURE, job = xi.job.WHM, level = 99 })
         curer:addSpell(xi.magic.spell.CURE)
@@ -97,7 +113,9 @@ describe('Monstrosity assistance', function()
     it('stops an adventurer curing a Monipulator', function()
         local monipulator = helpers.spawnMonipulator(xi.zone.WEST_RONFAURE)
         monipulator:delStatusEffect(xi.effect.GESTATION)
-        helpers.engageDummy(monipulator)
+        mob           = monipulator.entities:moveTo('Wild_Rabbit')
+        wasUnkillable = mob:getUnkillable()
+        helpers.engageDummy(monipulator, mob)
         cure(spawnCurer(monipulator), monipulator)
 
         assert(monipulator:getHP() == 1, string.format('an adventurer cured a Monipulator to %d HP', monipulator:getHP()))

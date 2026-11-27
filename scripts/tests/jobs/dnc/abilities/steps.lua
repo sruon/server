@@ -4,8 +4,12 @@ describe('Steps', function()
 
     ---@type CTestEntity
     local mob
+    local wasUnkillable
 
     before_each(function()
+        mob           = nil
+        wasUnkillable = nil
+
         player = xi.test.world:spawnPlayer(
         {
             zone  = xi.zone.WEST_RONFAURE,
@@ -18,10 +22,17 @@ describe('Steps', function()
 
         mob = player.entities:moveTo('Wild_Rabbit')
         mob:respawn()
+        wasUnkillable = mob:getUnkillable()
         mob:setUnkillable(true)
 
         player.actions:engage(mob)
         xi.test.world:tickEntity(player)
+    end)
+
+    after_each(function()
+        if mob and type(wasUnkillable) == 'boolean' then
+            mob:setUnkillable(wasUnkillable)
+        end
     end)
 
     local function useBoxStep()

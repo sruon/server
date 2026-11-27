@@ -12,8 +12,21 @@ describe('Monstrosity restrictions', function()
     ---@type CClientEntityPair
     local player
 
+    ---@type CTestEntity
+    local unkillableMob
+    local wasUnkillable
+
     before_each(function()
+        unkillableMob = nil
+        wasUnkillable = nil
+
         player = helpers.spawnMonipulator(xi.zone.WEST_RONFAURE)
+    end)
+
+    after_each(function()
+        if unkillableMob and type(wasUnkillable) == 'boolean' then
+            unkillableMob:setUnkillable(wasUnkillable)
+        end
     end)
 
     -- Each family unlocks an instinct at 30, 60 and 90, held as a 2-bit count.
@@ -252,6 +265,8 @@ describe('Monstrosity restrictions', function()
     it('stops Relinquish when a monster uses a skill on the player', function()
         local mob = player.entities:moveTo('Wild_Rabbit')
         mob:respawn()
+        unkillableMob = mob
+        wasUnkillable = mob:getUnkillable()
         mob:setUnkillable(true)
         player.entities:moveTo(mob:getID())
         startRelinquish()
@@ -599,6 +614,9 @@ describe('Monstrosity spellcasting', function()
     ---@type CClientEntityPair
     local player
 
+    ---@type CTestEntity
+    local target
+
     -- Returns how many casts went off. Out-of-combat regen refills MP, so MP can't tell.
     local function cast(spellId, target)
         local casts = 0
@@ -633,6 +651,7 @@ describe('Monstrosity spellcasting', function()
     end
 
     before_each(function()
+        target = nil
         player = helpers.spawnMonipulator(xi.zone.WEST_RONFAURE)
 
         for _, spellId in ipairs({ xi.magic.spell.STONE, xi.magic.spell.CURE, xi.magic.spell.WARP, xi.magic.spell.SHANTOTTO }) do
@@ -643,6 +662,12 @@ describe('Monstrosity spellcasting', function()
         helpers.becomeSpecies(player, xi.monstrositySpecies.RABBIT, onyxRabbit, 20)
     end)
 
+    after_each(function()
+        if target then
+            target:setAutoAttackEnabled(true)
+        end
+    end)
+
     it('lists the learned spells its species can cast, and its Trusts', function()
         assert(listsSpell(xi.magic.spell.STONE) == true, 'Stone should be listed')
         assert(listsSpell(xi.magic.spell.SHANTOTTO) == true, 'Shantotto should be listed')
@@ -651,12 +676,12 @@ describe('Monstrosity spellcasting', function()
 
     it('casts a spell its species knows', function()
         -- Not a Tunnel Worm, which burrows out of reach.
-        local mob = player.entities:moveTo('Wild_Rabbit')
-        mob:respawn()
-        mob:setAutoAttackEnabled(false)
-        player.entities:moveTo(mob:getID())
+        target = player.entities:moveTo('Wild_Rabbit')
+        target:respawn()
+        target:setAutoAttackEnabled(false)
+        player.entities:moveTo(target:getID())
 
-        assert(cast(xi.magic.spell.STONE, mob) > 0, 'Stone was not cast')
+        assert(cast(xi.magic.spell.STONE, target) > 0, 'Stone was not cast')
     end)
 
     it('cannot cast a spell outside its species jobs', function()
