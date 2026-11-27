@@ -24,6 +24,23 @@ Follow the [Quick Start Guide](https://github.com/LandSandBoat/server/wiki/Quick
 
 `xi_test` has the same requirements as a fully functioning `xi_map`, namely a working database with tables imported.
 
+### Disposable MariaDB for local and CI tests
+
+On a MariaDB instance used exclusively for disposable tests, you can let InnoDB flush its redo log in the background. The setting applies to every database on that instance. Each commit still writes its redo and returns a result to the client. A MariaDB process crash alone normally preserves acknowledged commits while the OS remains running. A power loss or OS crash can lose recent commits. With the default flush interval the window is usually around one second and can be longer.
+
+For the official MariaDB container image, add this read-only mount to your dedicated test database service and recreate that container.
+
+```yaml
+volumes:
+  - ./docker/xi-test-mariadb.cnf:/etc/mysql/conf.d/xi-test.cnf:ro
+```
+
+Run the following on the test connection before starting `xi_test`. Expect `2` for the profile. To return to durable commits, remove the mount, recreate the test database container and verify the value is `1`. Repeated suite invocations use the selected setting.
+
+```sql
+SELECT @@hostname, @@port, DATABASE(), @@GLOBAL.innodb_flush_log_at_trx_commit;
+```
+
 ## Executing xi_test
 
 In a terminal/shell/your IDE debug configuration, target the `xi_test` binary/launch target.
