@@ -13,6 +13,7 @@ describe('Monstrosity combat', function()
     -- The harness swings at three quarters of the real delay.
     local function fight(family, seconds)
         helpers.becomeSpecies(player, family, family, 1)
+        player:addStatusEffect(xi.effect.INVINCIBLE, { power = 1, duration = 120, origin = player })
 
         mob = player.entities:moveTo('Wild_Rabbit')
         mob:respawn()
