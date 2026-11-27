@@ -30,13 +30,11 @@
 #include "common/logging.h"
 #include "common/synchronized.h"
 #include "conquest_system.h"
-#include "data/datasets/zones/mobs/dataset.h"
-#include "data/datasets/zones/npcs/dataset.h"
-#include "data/datasets/zones/regions/dataset.h"
 #include "data/datasets/zones/settings/dataset.h"
 #include "data/enums/mob_mod.h"
 #include "data/enums/weather.h"
 #include "data/loader.h"
+#include "data/zone_entity_files.h"
 #include "entities/mob_entity.h"
 #include "entities/npc_entity.h"
 #include "items/item_weapon.h"
@@ -74,13 +72,6 @@ using MobsDataset         = xi::data::datasets::zones::mobs::Dataset;
 using RegionsDataset      = xi::data::datasets::zones::regions::Dataset;
 
 Synchronized<std::deque<CMobSpellList>> ownedSpellLists;
-
-// Each zone's entity files, parsed once: the id lookups and the entity inserts both read these.
-struct ZoneEntityFiles
-{
-    std::optional<xi::data::Npcs> Npcs;
-    std::optional<xi::data::Mobs> Mobs;
-};
 
 // Loot is named in the files, so it resolves here, where the item table exists.
 auto buildDropList(const xi::ZoneId zoneId, const std::string& templateName, const xi::data::LootData& loot) -> const DropList_t*
@@ -730,9 +721,8 @@ auto LoadNPCList(Scheduler& scheduler, const std::vector<xi::ZoneId>& zoneIds, c
  *                                                                       *
  ************************************************************************/
 
-void LoadRoamRegions(CZone* PZone)
+void LoadRoamRegions(CZone* PZone, const std::optional<xi::data::Regions>& regions)
 {
-    const auto regions = xi::data::loadZoneFile<RegionsDataset>(PZone->GetID());
     if (!regions)
     {
         return;
@@ -960,35 +950,34 @@ auto LoadZones(Scheduler& scheduler, MapConfig config, const std::vector<xi::Zon
             }
         });
 
-    // Phase 2: Load/build navmeshes (requires ximesh; processed serially because
-    // each zone's build is a coroutine that dispatches tile work to workers)
-    for (const auto zoneId : zonesIdsToLoad)
-    {
-        co_await g_PZoneList[zoneId]->LoadNavMesh();
-    }
-
-    // Parse each zone's entity files once, on workers.
-    // Everything below reads these records.
-
     std::vector<ZoneEntityFiles> parsed(zonesIdsToLoad.size());
-
     co_await runOnWorkerThreads(
         scheduler,
-        zonesIdsToLoad.size(),
+        2 * zonesIdsToLoad.size(),
         [&](auto& add)
         {
-            for (size_t index = 0; index < zonesIdsToLoad.size(); ++index)
+            for (const auto& [zoneId, records] : std::views::zip(zonesIdsToLoad, parsed))
             {
                 add(
-                    [zoneId = zonesIdsToLoad[index], &records = parsed[index]]()
+                    [zoneId, &records]()
                     {
                         TracyZoneScoped;
-
-                        records.Npcs = xi::data::loadZoneFile<NpcsDataset>(zoneId);
                         records.Mobs = xi::data::loadZoneFile<MobsDataset>(zoneId);
+                    });
+                add(
+                    [zoneId, &records]()
+                    {
+                        TracyZoneScoped;
+                        records.Npcs    = xi::data::loadZoneFile<NpcsDataset>(zoneId);
+                        records.Regions = xi::data::loadZoneFile<RegionsDataset>(zoneId);
                     });
             }
         });
+
+    for (const auto& [zoneId, records] : std::views::zip(zonesIdsToLoad, parsed))
+    {
+        co_await g_PZoneList[zoneId]->LoadNavMesh(records);
+    }
 
     // IDs attached to xi.zone[name] need to be populated before NPCs and Mobs are loaded
     for (const auto& [zoneId, records] : std::views::zip(zonesIdsToLoad, parsed))
@@ -997,9 +986,9 @@ auto LoadZones(Scheduler& scheduler, MapConfig config, const std::vector<xi::Zon
     }
 
     // Regions come first: a spawn joins one by name, so they have to exist before mobs load.
-    for (const auto zoneId : zonesIdsToLoad)
+    for (const auto& [zoneId, records] : std::views::zip(zonesIdsToLoad, parsed))
     {
-        LoadRoamRegions(g_PZoneList[zoneId]);
+        LoadRoamRegions(g_PZoneList[zoneId], records.Regions);
     }
 
     co_await LoadNPCList(scheduler, zonesIdsToLoad, parsed);

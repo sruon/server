@@ -21,12 +21,10 @@
 
 #include "packets/s2c/0x057_weather.h"
 
-#include "data/datasets/zones/mobs/dataset.h"
-#include "data/datasets/zones/npcs/dataset.h"
-#include "data/datasets/zones/regions/dataset.h"
 #include "data/datasets/zones/settings/dataset.h"
 #include "data/enums/weather.h"
 #include "data/loader.h"
+#include "data/zone_entity_files.h"
 
 #include <common/types/hash_map.h>
 
@@ -461,7 +459,7 @@ void CZone::LoadZoneSettings(const std::optional<xi::data::ZoneSettings>& settin
 // The zone's lists join whatever the caller asked for, and the knobs it sets replace the caller's.
 // Seeds come from the data files, since the bake runs before the zone's mobs, NPCs and regions exist.
 // Zone lines are already loaded by then.
-void CZone::applyNavMeshOverrides(NavMeshConfig& config) const
+void CZone::applyNavMeshOverrides(NavMeshConfig& config, const ZoneEntityFiles& records) const
 {
     const auto& data = navMeshData_;
 
@@ -482,7 +480,7 @@ void CZone::applyNavMeshOverrides(NavMeshConfig& config) const
         config.seeds.push_back({ position.x, position.y, position.z });
     };
 
-    if (const auto mobs = xi::data::loadZoneFile<MobsDataset>(GetID()))
+    if (const auto& mobs = records.Mobs)
     {
         for (const auto& spawn : mobs->Spawns)
         {
@@ -504,7 +502,7 @@ void CZone::applyNavMeshOverrides(NavMeshConfig& config) const
         }
     }
 
-    if (const auto npcs = xi::data::loadZoneFile<NpcsDataset>(GetID()))
+    if (const auto& npcs = records.Npcs)
     {
         for (const auto& npc : *npcs)
         {
@@ -517,7 +515,7 @@ void CZone::applyNavMeshOverrides(NavMeshConfig& config) const
         seed(zoneLine->originPos);
     }
 
-    if (const auto regions = xi::data::loadZoneFile<RegionsDataset>(GetID()))
+    if (const auto& regions = records.Regions)
     {
         for (const auto& region : *regions)
         {
@@ -526,7 +524,7 @@ void CZone::applyNavMeshOverrides(NavMeshConfig& config) const
     }
 }
 
-auto CZone::LoadNavMesh() -> Task<void>
+auto CZone::LoadNavMesh(const ZoneEntityFiles& records) -> Task<void>
 {
     auto       navMesh = std::make_unique<DetourNavMesh>(static_cast<uint16>(GetID()));
     const auto file    = fmt::format("navmeshes/{}.nav", getName());
@@ -541,7 +539,7 @@ auto CZone::LoadNavMesh() -> Task<void>
 
     auto config = NavMeshConfig{};
 
-    applyNavMeshOverrides(config);
+    applyNavMeshOverrides(config, records);
 
     auto* dtNavMesh = co_await builder.buildAsync(scheduler_, getName(), static_cast<uint16>(GetID()), config);
     if (dtNavMesh && navMesh->installNavMesh(dtNavMesh))
@@ -561,7 +559,11 @@ void CZone::RebuildNavMesh(const NavMeshConfig& configIn)
     const auto* xiMeshPtr = xiMesh_.get();
 
     auto config = configIn;
-    applyNavMeshOverrides(config);
+    applyNavMeshOverrides(config, {
+                                      .Mobs    = xi::data::loadZoneFile<MobsDataset>(GetID()),
+                                      .Npcs    = xi::data::loadZoneFile<NpcsDataset>(GetID()),
+                                      .Regions = xi::data::loadZoneFile<RegionsDataset>(GetID()),
+                                  });
 
     scheduler_.postToMainThread(
         [this, zoneName, zoneID, config, xiMeshPtr]() -> Task<void>

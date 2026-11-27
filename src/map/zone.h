@@ -65,6 +65,7 @@
 #include "data/enums/zone.h"
 #include "data/enums/zone_misc.h"
 #include "data/enums/zone_type.h"
+struct ZoneEntityFiles;
 class XiMesh;
 class NavMesh;
 class RoamRegion;
@@ -276,7 +277,7 @@ public:
     auto roamRegion(const std::string& name) const -> const RoamRegion*;
     auto addRoamRegion(std::string name, RoamRegion region) -> const RoamRegion*;
 
-    auto LoadNavMesh() -> Task<void>;
+    auto LoadNavMesh(const ZoneEntityFiles& records) -> Task<void>;
     void RebuildNavMesh(const NavMeshConfig& config = {});
 
     void LoadXiMesh();
@@ -298,7 +299,7 @@ protected:
 
 private:
     void LoadZoneSettings(const std::optional<xi::data::ZoneSettings>& settings);
-    void applyNavMeshOverrides(NavMeshConfig& config) const;
+    void applyNavMeshOverrides(NavMeshConfig& config, const ZoneEntityFiles& records) const;
     void LoadZoneLines(const std::optional<xi::data::ZoneSettings>& settings);
     void LoadZoneWeather();
 
